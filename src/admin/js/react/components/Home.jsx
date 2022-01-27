@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import { 
+    HashRouter,
     Routes,
     Route,
-    Link
+    NavLink
 } from "react-router-dom"; 
 
 import Dashboard from './Dashboard';
@@ -17,69 +18,69 @@ import Setting from './Setting';
 import Help from './Help';
 
 const Home = () => {
-    
+
     return(
         <>
+        <HashRouter>
             <aside className="relative bg-sidebar ncpi-h-screen w-64 hidden sm:block shadow-xl">
                 <div className="p-6 pb-5">
                     <a href="index.html" className="text-white text-3xl font-semibold hover:text-gray-300">Propovoice</a> 
                 </div>
                 <nav className="text-white text-base"> 
-                    <Link 
-                        to='/'
-                        className="flex items-center active-nav-link text-white py-4 pl-6 nav-item"
-                        >
+                    <NavLink 
+                        to='/'  
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-dashboard mr-3" />
                         Dashboard
-                    </Link>
-                    <Link 
+                    </NavLink>
+                    <NavLink 
                         to='proposal'
-                        className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-portfolio mr-3" />
                         Proposal
-                    </Link> 
-                    <Link 
+                    </NavLink> 
+                    <NavLink 
                         to='contract'
-                        className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-groups mr-3" />
                         Contract
-                    </Link>  
-                    <Link 
+                    </NavLink>  
+                    <NavLink 
                         to='invoice'
-                        className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-text-page mr-3" />
                         Invoice
-                    </Link> 
-                    <Link 
+                    </NavLink> 
+                    <NavLink 
                         to='payment'
-                        className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-money-alt mr-3" />
                         Payment
-                    </Link> 
-                    <Link 
+                    </NavLink> 
+                    <NavLink 
                         to='template-library'
-                        className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-admin-page mr-3" />
                         Template Library
-                    </Link> 
-                    <Link 
+                    </NavLink> 
+                    <NavLink 
                         to='client'
-                        className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-groups mr-3" />
                         Client
-                    </Link> 
-                    <Link 
+                    </NavLink> 
+                    <NavLink 
                         to='setting'
-                        className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-admin-generic mr-3" />
                         Settings
-                    </Link> 
-                    <Link 
+                    </NavLink> 
+                    <NavLink 
                         to='help'
-                        className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-editor-help mr-3" />
                         Help
-                    </Link>
+                    </NavLink>
                 </nav>
 
                 <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
@@ -101,6 +102,7 @@ const Home = () => {
                     <Route path="/help" element={<Help/>}/>  
                 </Routes> 
             </div> 
+        </HashRouter>
         </>
     )
 }

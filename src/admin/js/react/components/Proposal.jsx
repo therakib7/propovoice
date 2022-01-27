@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 const Proposal = () => {
-    
+    const [showModal, setShowModal] = useState(false);
     return(
         <> 
             <div className='mb-5 font-bold text-2xl'>
                 Proposal
             </div>
-
+            <p>Create template library when propo just choose tempalte</p>
             <button className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mb-3">
                 Create New Proposal
-            </button>
+            </button>  
 
             <div className="shadow overflow-hidden rounded border-b border-gray-200">
                 <table className="min-w-full bg-white">
