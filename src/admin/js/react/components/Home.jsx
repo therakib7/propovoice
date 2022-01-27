@@ -12,6 +12,7 @@ import Contract from './Contract';
 import Invoice from './Invoice';
 import Payment from './Payment';
 import TemplateLibrary from './TemplateLibrary';
+import Client from './Client';
 import Setting from './Setting';
 import Help from './Help';
 
@@ -62,6 +63,12 @@ const Home = () => {
                         Template Library
                     </Link> 
                     <Link 
+                        to='client'
+                        className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        <i className="dashicons dashicons-groups mr-3" />
+                        Client
+                    </Link> 
+                    <Link 
                         to='setting'
                         className="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                         <i className="dashicons dashicons-admin-generic mr-3" />
@@ -81,7 +88,7 @@ const Home = () => {
                 </a>
             </aside>
             
-            <div className="w-full flex flex-col ncpi-h-screen overflow-y-hidden p-6"> 
+            <div className="w-full ncpi-h-screen overflow-y-hidden p-6"> 
                 <Routes>
                     <Route path="/" element={<Dashboard/>}/>  
                     <Route path="/proposal" element={<Proposal/>}/>  
@@ -89,6 +96,7 @@ const Home = () => {
                     <Route path="/invoice" element={<Invoice/>}/>  
                     <Route path="/payment" element={<Payment/>}/>  
                     <Route path="/template-library" element={<TemplateLibrary/>}/>  
+                    <Route path="/client" element={<Client/>}/>  
                     <Route path="/setting" element={<Setting/>}/>  
                     <Route path="/help" element={<Help/>}/>  
                 </Routes> 

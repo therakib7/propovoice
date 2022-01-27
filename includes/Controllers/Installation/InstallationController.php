@@ -19,7 +19,7 @@ class InstallationController {
         if ( get_option('ncpi_activation_redirect', false) ) {
             delete_option('ncpi_activation_redirect'); 
 
-			new DB();
+			// new DB();
 			
             wp_redirect( admin_url('admin.php?page=ncpi') );
         }
