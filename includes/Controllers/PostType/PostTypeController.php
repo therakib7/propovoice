@@ -2,11 +2,11 @@
 
 namespace Ncpi\Controllers\PostType;
 
-use Ncpi\Controllers\PostType\Types\Job;
+use Ncpi\Controllers\PostType\Types\Proposal;
 
 class PostTypeController {
 	
 	public function __construct() {    
-        // new Job();
+        new Proposal();
 	} 
 }

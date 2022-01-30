@@ -10,7 +10,7 @@ const Setting = () => {
     const [ email, setEmail ]         = useState( '' );
     const [ loader, setLoader ] = useState( 'Save Settings' );
 
-    const url = `${appLocalizer.apiUrl}ncpi/v1/settings`;
+    const url = `${ncpi_local.apiUrl}ncpi/v1/settings`;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ const Setting = () => {
         }, {
             headers: {
                 'content-type': 'application/json',
-                'X-WP-NONCE': appLocalizer.nonce
+                'X-WP-NONCE': ncpi_local.nonce
             }
         } )
         .then( ( res ) => {

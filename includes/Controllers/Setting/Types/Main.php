@@ -45,7 +45,7 @@ class Main extends SettingsAPI {
 		require_once NCPI_PATH . 'views/settings/admin-settings-display.php';
 	}
 
-	function main_settings() { 
+	function main_settings() {  
         echo '<div class="wrap"><div id="ncpi-admin-app" class="bg-gray-100 flex"></div></div>';
     }
 

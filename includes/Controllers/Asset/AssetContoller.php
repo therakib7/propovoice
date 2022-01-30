@@ -59,7 +59,7 @@ class AssetContoller {
 
 			wp_enqueue_script( 'ncpi-admin-setting', ncpi()->get_assets_uri( "/admin/js/setting{$this->suffix}.js" ), array(), $this->version, true ); 
 			
-			wp_localize_script( 'ncpi-admin-setting', 'appLocalizer', array(
+			wp_localize_script( 'ncpi-admin-setting', 'ncpi_local', array(
 				'apiUrl' => esc_url( rest_url() ),
 				'nonce' => wp_create_nonce( 'wp_rest' )
 			) );

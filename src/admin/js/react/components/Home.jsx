@@ -8,7 +8,7 @@ import {
 } from "react-router-dom"; 
 
 import Dashboard from './Dashboard';
-import Proposal from './Proposal';
+import Proposal from './proposal';
 import Contract from './Contract';
 import Invoice from './Invoice';
 import Payment from './Payment';
