@@ -13,14 +13,19 @@
 }
 .ncpi-h-screen {
     height: 94vh;
+    overflow-y: scroll;
 }
 
 .ncpi-frontend {
     .ncpi-h-screen {
         height: 100vh;
+        overflow-y: scroll;
     }
 }
 
 #wpbody-content {
     padding-bottom: 0; 
 }
+
+//editor js
+.ce-block__content, .ce-toolbar__content { max-width:calc(100% - 80px) !important; } .cdx-block { max-width: 100% !important; }

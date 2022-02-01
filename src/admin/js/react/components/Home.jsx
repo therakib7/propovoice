@@ -9,6 +9,7 @@ import {
 
 import Dashboard from './Dashboard';
 import Proposal from './proposal';
+import Editor from './editor';
 import Contract from './Contract';
 import Invoice from './Invoice';
 import Payment from './Payment';
@@ -38,6 +39,12 @@ const Home = () => {
                         className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-portfolio mr-3" />
                         Proposal
+                    </NavLink> 
+                    <NavLink 
+                        to='editor'
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
+                        <i className="dashicons dashicons-portfolio mr-3" />
+                        Proposal Test
                     </NavLink> 
                     <NavLink 
                         to='contract'
@@ -91,15 +98,16 @@ const Home = () => {
             
             <div className="w-full ncpi-h-screen overflow-y-hidden p-6"> 
                 <Routes>
-                    <Route path="/" element={<Dashboard/>}/>  
-                    <Route path="/proposal" element={<Proposal/>}/>  
-                    <Route path="/contract" element={<Contract/>}/>  
-                    <Route path="/invoice" element={<Invoice/>}/>  
-                    <Route path="/payment" element={<Payment/>}/>  
-                    <Route path="/template-library" element={<TemplateLibrary/>}/>  
-                    <Route path="/client" element={<Client/>}/>  
-                    <Route path="/setting" element={<Setting/>}/>  
-                    <Route path="/help" element={<Help/>}/>  
+                    <Route path="/" element={<Dashboard/>} />  
+                    <Route path="/proposal" element={<Proposal/>} />  
+                    <Route path="/editor" element={<Editor/>} />  
+                    <Route path="/contract" element={<Contract/>} />  
+                    <Route path="/invoice" element={<Invoice/>} />  
+                    <Route path="/payment" element={<Payment/>} />  
+                    <Route path="/template-library" element={<TemplateLibrary/>} />  
+                    <Route path="/client" element={<Client/>} />  
+                    <Route path="/setting" element={<Setting/>} />  
+                    <Route path="/help" element={<Help/>} />  
                 </Routes> 
             </div> 
         </HashRouter>
