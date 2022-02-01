@@ -34,6 +34,10 @@
   height: 94vh;
 }
 
+.ncpi-frontend .ncpi-h-screen {
+  height: 100vh;
+}
+
 #wpbody-content {
   padding-bottom: 0;
 }

@@ -3144,7 +3144,7 @@ var Proposal = function Proposal() {
   var initialProposalState = {
     id: null,
     title: '',
-    name: '',
+    client_name: '',
     date: false
   };
 
@@ -3292,7 +3292,7 @@ var Proposal = function Proposal() {
                       htmlFor: "grid-title",
                       children: "Title"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                      className: "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                      className: "appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
                       id: "grid-title",
                       type: "text",
                       required: true,
@@ -3305,13 +3305,13 @@ var Proposal = function Proposal() {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
                       className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
                       htmlFor: "grid-name",
-                      children: "Name"
+                      children: "Client Name"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                      className: "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                      className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
                       id: "grid-name",
                       type: "text",
                       name: "name",
-                      value: proposal.name,
+                      value: proposal.client_name,
                       onChange: inputChange
                     })]
                   })]
@@ -3321,45 +3321,34 @@ var Proposal = function Proposal() {
                     className: "w-full md:w-1/3 px-3 mb-6 md:mb-0",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
                       className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                      htmlFor: "grid-city",
-                      children: "City"
+                      htmlFor: "grid-price",
+                      children: "Price"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                      className: "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-                      id: "grid-city",
-                      type: "text",
-                      placeholder: "Albuquerque"
+                      className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                      id: "grid-price",
+                      type: "text"
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     className: "w-full md:w-1/3 px-3 mb-6 md:mb-0",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
                       className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                      htmlFor: "grid-state",
-                      children: "State"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "relative",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
-                        className: "block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-                        id: "grid-state",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                          children: "New Mexico"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                          children: "Missouri"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                          children: "Texas"
-                        })]
-                      })
+                      htmlFor: "grid-price",
+                      children: "Duration (Days)"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                      className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                      id: "grid-price",
+                      type: "text"
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     className: "w-full md:w-1/3 px-3 mb-6 md:mb-0",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
                       className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                      htmlFor: "grid-zip",
-                      children: "Zip"
+                      htmlFor: "grid-type",
+                      children: "Type"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                      className: "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-                      id: "grid-zip",
-                      type: "text",
-                      placeholder: 90210
+                      className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                      id: "grid-type",
+                      type: "text"
                     })]
                   })]
                 })]

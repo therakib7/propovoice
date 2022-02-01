@@ -6,7 +6,7 @@ const Proposal = () => {
     const initialProposalState = {
         id: null,
         title: '',
-        name: '',
+        client_name: '',
         date: false
     };
 
@@ -113,13 +113,9 @@ const Proposal = () => {
                         <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"> 
 
                             <div className="flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t">
-                                <h3 className="text-xl p-2 font-semibold">
-                                    New Proposal
-                                </h3>
-                                <button
-                                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                                    onClick={() => setShowModal(false)}
-                                >
+                                <h3 className="text-xl p-2 font-semibold">New Proposal</h3>
+                                <button className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                    onClick={() => setShowModal(false)} >
                                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                                     ×
                                     </span>
@@ -135,29 +131,31 @@ const Proposal = () => {
                                                 htmlFor="grid-title">
                                                 Title
                                             </label>
+
                                             <input
-                                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                                className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                 id="grid-title"
                                                 type="text" 
                                                 required
                                                 name="title"
                                                 value={proposal.title}
                                                 onChange={inputChange}
-                                                
                                             /> 
                                         </div>
+
                                         <div className="w-full md:w-1/2 px-3">
                                             <label
                                                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                 htmlFor="grid-name">
-                                                Name
+                                                Client Name
                                             </label> 
+
                                             <input
-                                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                                 id="grid-name"
                                                 type="text" 
                                                 name="name"
-                                                value={proposal.name}
+                                                value={proposal.client_name}
                                                 onChange={inputChange}
                                             />
                                         </div>
@@ -167,51 +165,46 @@ const Proposal = () => {
                                         <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                             <label
                                                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                                htmlFor="grid-city"
+                                                htmlFor="grid-price"
                                             >
-                                                City
+                                                Price
                                             </label>
+                                           
                                             <input
-                                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                                id="grid-city"
-                                                type="text"
-                                                placeholder="Albuquerque"
+                                                className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="grid-price"
+                                                type="text" 
                                             />
                                         </div>
+                                        
                                         <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                             <label
                                                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                                htmlFor="grid-state"
+                                                htmlFor="grid-price"
                                             >
-                                                State
+                                                Duration (Days)
                                             </label>
-                                            <div className="relative">
-                                                <select
-                                                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                                id="grid-state"
-                                                >
-                                                    <option>New Mexico</option>
-                                                    <option>Missouri</option>
-                                                    <option>Texas</option>
-                                                </select>
-                                                
-                                            </div>
+                                            <input
+                                                className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="grid-price"
+                                                type="text" 
+                                            />
                                         </div>
 
                                         <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                             <label
                                                 className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                                htmlFor="grid-zip"
+                                                htmlFor="grid-type"
                                             >
-                                                Zip
+                                                Type
                                             </label>
                                             <input
-                                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                                id="grid-zip"
-                                                type="text"
-                                                placeholder={90210}
+                                                className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="grid-type"
+                                                type="text" 
                                             />
                                         </div>
+
                                     </div>
                                 </form>
                             </div> 

@@ -4,7 +4,8 @@ namespace Ncpi\Controllers;
 
 use Ncpi\Controllers\Ajax\AjaxController;
 use Ncpi\Controllers\Api\ApiController;
-use Ncpi\Controllers\Asset\AssetContoller; 
+use Ncpi\Controllers\Asset\AssetContoller;
+use Ncpi\Controllers\Template\PageTemplater;
 use Ncpi\Controllers\Filter\FilterController;
 use Ncpi\Controllers\Hook\HookController;
 use Ncpi\Controllers\Marketing\MarketingController;
@@ -24,6 +25,7 @@ class MainController {
             new SettingController(); 
             new MarketingController();
         //}
+        new PageTemplater();
         new AssetContoller();
         new WidgetController(); 
         new AjaxController();

@@ -40,7 +40,7 @@ class Proposal {
 
             $field['id'] = get_the_ID();
             $field['title'] = get_the_title();
-            $field['name'] = 'Test Name';
+            $field['client_name'] = 'Test Name';
             $field['status'] = 'read';
             $field['date'] = '10 12 20';
 
@@ -53,7 +53,7 @@ class Proposal {
 
     public function create( $req ) {
         $title = sanitize_text_field( $req['title'] );
-        $name  = sanitize_text_field( $req['name'] );
+        $client_name  = sanitize_text_field( $req['client_name'] );
  
         $data = array(
             'post_type' => 'ncpi_proposal',
