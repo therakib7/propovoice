@@ -47,15 +47,18 @@
 		"@editorjs/link": "latest",
 		"@editorjs/list": "latest",
 		"@editorjs/marker": "latest",
+		"@editorjs/nested-list": "latest",
 		"@editorjs/paragraph": "latest",
 		"@editorjs/quote": "latest",
 		"@editorjs/raw": "latest",
 		"@editorjs/simple-image": "latest",
 		"@editorjs/table": "latest",
+		"@editorjs/underline": "^1.0.0",
 		"@editorjs/warning": "latest",
 		"@emotion/core": "^10.1.1",
 		"axios": "^0.21.4",
 		"classnames": "^2.3.1",
+		"editorjs-text-color-plugin": "^1.1.22",
 		"react-editor-js": "latest",
 		"react-router-dom": "^6.2.1"
 	}

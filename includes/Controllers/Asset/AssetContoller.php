@@ -41,6 +41,11 @@ class AssetContoller {
 			( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi' ) ||
 			is_page_template('dashboard-template.php')
 		) { 
+			if ( ! is_admin() ) {
+				wp_dequeue_script( 'jquery');
+				wp_deregister_script( 'jquery'); 
+			}
+			
 			wp_enqueue_style('dashicons');
 			
 			wp_enqueue_style( 'ncpi-admin-tailwind', 'https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css', array(), $this->version ); //TODO: fix it later

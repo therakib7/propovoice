@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Helper from './helper';
 
 import { createReactEditorJS } from "react-editor-js";
-import { EDITOR_JS_TOOLS } from "./constant";
-import { EDITOR_VALUE } from "./default";
+import { EDITOR_JS_TOOLS } from "./tools";
+import { EDITOR_VALUE } from "./default-all";
 import { EDITOR_EMPTY_VALUE } from "./empty-default";
 
 const ReactEditorJS = createReactEditorJS();
@@ -60,7 +60,7 @@ const Editor = () => {
 
             { proposals.content && proposals.content.map((proposal, index) => (  
                 <div className="" key={index}>
-                    <div className="shadow rounded border-b border-gray-200 my-6 p-3 mx-auto max-w-4xl bg-white">
+                    <div className="shadow rounded border-b border-gray-200 my-6 p-3 mx-auto max-w-4xl bg-white ncpi-page-content">
                         <ReactEditorJS holder={`ncpi-editor-${index}`} tools={EDITOR_JS_TOOLS} defaultValue={ { time: new Date().getTime(), blocks: proposal.default } } /> 
                         <span className='text-right'>Page {index+1}</span>
                     </div>
