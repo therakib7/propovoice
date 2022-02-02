@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 
 import { 
     HashRouter,
@@ -9,6 +9,7 @@ import {
 
 import Dashboard from './Dashboard';
 import Client from './client';
+// const Client = lazy(() => import('./client')); //TODO: do it later when code split in folder
 import Proposal from './proposal';
 import Editor from './editor';
 import Contract from './Contract';
@@ -103,18 +104,20 @@ const Home = () => {
             </aside>
             
             <div className="w-full ncpi-h-screen overflow-y-hidden p-6"> 
-                <Routes>
-                    <Route path="/" element={<Dashboard/>} />  
-                    <Route path="/proposal" element={<Proposal/>} />  
-                    <Route path="/editor" element={<Editor/>} />  
-                    <Route path="/contract" element={<Contract/>} />  
-                    <Route path="/invoice" element={<Invoice/>} />  
-                    <Route path="/payment" element={<Payment/>} />  
-                    <Route path="/template-library" element={<TemplateLibrary/>} />  
-                    <Route path="/client" element={<Client/>} />  
-                    <Route path="/setting" element={<Setting/>} />  
-                    <Route path="/help" element={<Help/>} />  
-                </Routes> 
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Routes>
+                        <Route path="/" element={<Dashboard/>} />  
+                        <Route path="/proposal" element={<Proposal/>} />  
+                        <Route path="/editor" element={<Editor/>} />  
+                        <Route path="/contract" element={<Contract/>} />  
+                        <Route path="/invoice" element={<Invoice/>} />  
+                        <Route path="/payment" element={<Payment/>} />  
+                        <Route path="/template-library" element={<TemplateLibrary/>} />  
+                        <Route path="/client" element={<Client/>} />  
+                        <Route path="/setting" element={<Setting/>} />  
+                        <Route path="/help" element={<Help/>} />  
+                    </Routes> 
+                </Suspense>
             </div> 
         </HashRouter>
         </>
