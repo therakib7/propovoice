@@ -2813,7 +2813,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // const Client = lazy(() => import('./client')); //TODO: do it later when code split in folder
+ // const Client = lazy(() => import('./client')); //TODO: need to seen path wp-content/folders root
 
 
 

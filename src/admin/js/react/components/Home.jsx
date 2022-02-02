@@ -9,7 +9,7 @@ import {
 
 import Dashboard from './Dashboard';
 import Client from './client';
-// const Client = lazy(() => import('./client')); //TODO: do it later when code split in folder
+// const Client = lazy(() => import('./client')); //TODO: need to seen path wp-content/folders root
 import Proposal from './proposal';
 import Editor from './editor';
 import Contract from './Contract';
