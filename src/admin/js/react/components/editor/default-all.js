@@ -30,9 +30,28 @@ export const EDITOR_VALUE = [
         data: {
             style: "unordered",
             items: [
-            "It is a block-styled editor",
-            "It returns clean data output in JSON",
-            "Designed to be extendable and pluggable with a simple API"
+                {
+                  "content": "Apples",
+                  "items": [
+                    {
+                      "content": "Red",
+                      "items": []
+                    },
+                    {
+                      "content": "Green",
+                      "items": []
+                    },
+                  ]
+                },
+                {
+                  "content": "Bananas",
+                  "items": [
+                    {
+                      "content": "Yellow",
+                      "items": []
+                    },
+                  ]
+                },
             ]
         }
     },

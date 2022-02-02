@@ -20,6 +20,12 @@ class InstallationController {
             delete_option('ncpi_activation_redirect'); 
 
 			// new DB();
+            
+            // add custom role
+            if ( get_option( 'ncpi_roles_version' ) < 1 ) { 
+                add_role('client', esc_html__( 'Client', 'propovoice' ), ['subscriber']);
+                update_option( 'ncpi_roles_version', 1 );
+            }
 			
             wp_redirect( admin_url('admin.php?page=ncpi') );
         }

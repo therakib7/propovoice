@@ -17,7 +17,8 @@ use Ncpi\Controllers\Widget\WidgetController;
 
 class MainController {
 
-    public function __construct() {   
+    public function __construct() {    
+        
         //if ( is_admin() ) {
             new PostTypeController();
             new TaxonomyController();

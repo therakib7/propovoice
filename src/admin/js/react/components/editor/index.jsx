@@ -29,6 +29,7 @@ const Editor = () => {
     const [proposals, setProposals] = useState(initialProposalState); 
 
     useEffect(() => { 
+
     }, []); 
 
     function addAfter(array, index, newItem) {
@@ -38,6 +39,7 @@ const Editor = () => {
             ...array.slice(index)
         ];
     }
+
     const addNewPage = ( page_index ) => {
         console.log(page_index);
         
@@ -65,11 +67,10 @@ const Editor = () => {
                         <span className='text-right'>Page {index+1}</span>
                     </div>
 
-                    <div className="mx-auto max-w-4xl text-center" >  
-                        <button onClick={() => { addNewPage(index); }}>
+                    <div className="mx-auto max-w-4xl text-center">  
+                        <button onClick={ () => { addNewPage(index); } }>
                             <i className="dashicons dashicons-plus-alt"></i>
                         </button>
-                        
                     </div>
                 </div> 
             )) }

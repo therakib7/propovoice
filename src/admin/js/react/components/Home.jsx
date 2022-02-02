@@ -8,13 +8,13 @@ import {
 } from "react-router-dom"; 
 
 import Dashboard from './Dashboard';
+import Client from './client';
 import Proposal from './proposal';
 import Editor from './editor';
 import Contract from './Contract';
 import Invoice from './Invoice';
 import Payment from './Payment';
 import TemplateLibrary from './TemplateLibrary';
-import Client from './Client';
 import Setting from './Setting';
 import Help from './Help';
 
@@ -35,6 +35,24 @@ const Home = () => {
                         Dashboard
                     </NavLink>
                     <NavLink 
+                        to='client'
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
+                        <i className="dashicons dashicons-groups mr-3" />
+                        Client
+                    </NavLink> 
+                    <NavLink 
+                        to='help'
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
+                        <i className="dashicons dashicons-groups mr-3" />
+                        Estimate
+                    </NavLink> 
+                    <NavLink 
+                        to='invoice'
+                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
+                        <i className="dashicons dashicons-text-page mr-3" />
+                        Invoice
+                    </NavLink> 
+                    <NavLink 
                         to='proposal'
                         className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-portfolio mr-3" />
@@ -51,13 +69,7 @@ const Home = () => {
                         className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-groups mr-3" />
                         Contract
-                    </NavLink>  
-                    <NavLink 
-                        to='invoice'
-                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
-                        <i className="dashicons dashicons-text-page mr-3" />
-                        Invoice
-                    </NavLink> 
+                    </NavLink>   
                     <NavLink 
                         to='payment'
                         className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
@@ -69,13 +81,7 @@ const Home = () => {
                         className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
                         <i className="dashicons dashicons-admin-page mr-3" />
                         Template Library
-                    </NavLink> 
-                    <NavLink 
-                        to='client'
-                        className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
-                        <i className="dashicons dashicons-groups mr-3" />
-                        Client
-                    </NavLink> 
+                    </NavLink>  
                     <NavLink 
                         to='setting'
                         className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive  ? "active-nav-link " : "") }>
