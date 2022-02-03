@@ -4,16 +4,14 @@ namespace Ncpi\Controllers\Api\Types;
 
 use WP_Query;
 
-class Client
-{
+class Client {
 
-    public function __construct()
-    {
+    public function __construct() {
         add_action('rest_api_init', [$this, 'create_rest_routes']);
     }
 
-    public function create_rest_routes()
-    {
+    public function create_rest_routes() {
+
         register_rest_route('ncpi/v1', '/clients', [
             'methods' => 'GET',
             'callback' => [$this, 'get'],
@@ -41,7 +39,7 @@ class Client
 
             $field = [];
 
-            $field['id'] = $user->ID;
+            $field['id'] = $user->ID; 
             $field['first_name'] = $user->first_name;
             $field['last_name'] = $user->last_name;
             $field['email'] = $user->user_email;
@@ -49,7 +47,7 @@ class Client
             $field['web'] = get_user_meta($user->ID, 'web', true);
             $field['mobile'] = get_user_meta($user->ID, 'mobile', true);
             $field['zip'] = '1245';
-            $field['date'] = '10 Mar 2022';
+            $field['date'] = $user->user_registered; 
 
             $data[] = $field; 
         } 

@@ -12,6 +12,7 @@ import Client from './client';
 // const Client = lazy(() => import('./client')); //TODO: need to seen path wp-content/folders root
 import Proposal from './proposal';
 import Editor from './editor';
+// const Editor = lazy(() => import('./editor')); 
 import Contract from './Contract';
 import Invoice from './Invoice';
 import Payment from './Payment';

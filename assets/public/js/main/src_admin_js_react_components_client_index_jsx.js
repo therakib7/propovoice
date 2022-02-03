@@ -42,7 +42,7 @@ var remove = function remove(id) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id));
 };
 
-var removeSeleted = function removeSeleted() {
+var removeSelected = function removeSelected() {
   return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl));
 };
 
@@ -56,7 +56,7 @@ var findByArg = function findByArg(title) {
   create: create,
   update: update,
   remove: remove,
-  removeSeleted: removeSeleted,
+  removeSelected: removeSelected,
   findByArg: findByArg
 });
 

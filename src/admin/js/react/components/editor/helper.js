@@ -29,7 +29,7 @@ const remove = id => {
     return axios.delete(`${apiUrl}/${id}`);
 };
 
-const removeSeleted = () => {
+const removeSelected = () => {
     return axios.delete(`${apiUrl}`);
 };
 
@@ -43,6 +43,6 @@ get,
 create,
 update,
 remove,
-removeSeleted,
+removeSelected,
 findByArg
 };
