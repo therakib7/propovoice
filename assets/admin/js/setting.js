@@ -2800,7 +2800,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard */ "./src/admin/js/react/components/Dashboard.jsx");
-/* harmony import */ var _client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./client */ "./src/admin/js/react/components/client/index.jsx");
+/* harmony import */ var _clients__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./clients */ "./src/admin/js/react/components/clients/index.js");
 /* harmony import */ var _proposal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./proposal */ "./src/admin/js/react/components/proposal/index.jsx");
 /* harmony import */ var _editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor */ "./src/admin/js/react/components/editor/index.jsx");
 /* harmony import */ var _Contract__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Contract */ "./src/admin/js/react/components/Contract.jsx");
@@ -2979,7 +2979,7 @@ var Home = function Home() {
               element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_TemplateLibrary__WEBPACK_IMPORTED_MODULE_8__["default"], {})
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
               path: "/client",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_client__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_clients__WEBPACK_IMPORTED_MODULE_2__["default"], {})
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
               path: "/setting",
               element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Setting__WEBPACK_IMPORTED_MODULE_9__["default"], {})
@@ -3287,10 +3287,10 @@ var TemplateLibrary = function TemplateLibrary() {
 
 /***/ }),
 
-/***/ "./src/admin/js/react/components/client/helper.js":
-/*!********************************************************!*\
-  !*** ./src/admin/js/react/components/client/helper.js ***!
-  \********************************************************/
+/***/ "./src/admin/js/react/components/clients/Form.js":
+/*!*******************************************************!*\
+  !*** ./src/admin/js/react/components/clients/Form.js ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3298,73 +3298,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/clients");
-var token = {
-  headers: {
-    'content-type': 'application/json',
-    'X-WP-NONCE': ncpi_local.nonce
-  }
-};
-
-var getAll = function getAll() {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl);
-};
-
-var get = function get(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id));
-};
-
-var create = function create(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
-};
-
-var update = function update(id, data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data);
-};
-
-var remove = function remove(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id));
-};
-
-var removeSelected = function removeSelected() {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl));
-};
-
-var findByArg = function findByArg(title) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "?title=").concat(title));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getAll: getAll,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove,
-  removeSelected: removeSelected,
-  findByArg: findByArg
-});
-
-/***/ }),
-
-/***/ "./src/admin/js/react/components/client/index.jsx":
-/*!********************************************************!*\
-  !*** ./src/admin/js/react/components/client/index.jsx ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Client)
-/* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/client/helper.js");
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
-/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -3398,24 +3333,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+var Form = /*#__PURE__*/function (_Component) {
+  _inherits(Form, _Component);
 
+  var _super = _createSuper(Form);
 
-
-
-var Client = /*#__PURE__*/function (_React$Component) {
-  _inherits(Client, _React$Component);
-
-  var _super = _createSuper(Client);
-
-  function Client(props) {
+  function Form(props) {
     var _this;
 
-    _classCallCheck(this, Client);
+    _classCallCheck(this, Form);
 
     _this = _super.call(this, props);
 
-    _defineProperty(_assertThisInitialized(_this), "emptyForm", {
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function (e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+
+      _this.setState({
+        form: _objectSpread(_objectSpread({}, _this.state.form), {}, _defineProperty({}, name, value))
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onFormSubmit", function (e) {
+      e.preventDefault();
+
+      _this.props.handleSubmit(_this.state.form);
+
+      _this.setState({
+        form: _this.initialState
+      });
+    });
+
+    _this.initialState = {
       id: null,
+      name: '',
+      job: '',
       first_name: '',
       last_name: '',
       email: '',
@@ -3425,28 +3378,487 @@ var Client = /*#__PURE__*/function (_React$Component) {
       zip: '',
       address: '',
       date: false
-    });
+    };
+    _this.state = {
+      // new: true,
+      form: _this.initialState
+    };
+    return _this;
+  }
 
-    _defineProperty(_assertThisInitialized(_this), "dataSearch", function () {
-      _helper__WEBPACK_IMPORTED_MODULE_1__["default"].findByArg(searchTitle).then(function (resp) {
-        _this.setState({
-          clients: resp.data.data
-        });
+  _createClass(Form, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      //TODO: check it later or multiple rendering
+      if (this.props.modalType == 'edit') {
+        if (this.state.form.id != this.props.data.id) {
+          this.setState({
+            form: this.props.data
+          });
+        }
+      } else {// this.setState({ form: this.initialState });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+        children: this.props.show && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "relative w-auto my-6 mx-auto max-w-3xl",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  className: "flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h3", {
+                    className: "text-xl p-2 font-semibold",
+                    children: [this.props.modalType == 'new' ? 'New' : 'Edit', " Client"]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                    className: "p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none",
+                    onClick: function onClick() {
+                      return _this2.props.close();
+                    },
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                      className: "bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none",
+                      children: "\xD7"
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+                  onSubmit: this.onFormSubmit,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                    className: "relative px-6 py-5 flex-auto",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "w-full max-w-lg",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                        className: "flex flex-wrap -mx-3 mb-2",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                          className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "first_name",
+                            children: "First Name"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                            className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                            id: "first_name",
+                            type: "text",
+                            required: true,
+                            name: "first_name",
+                            value: this.state.form.first_name,
+                            onChange: this.handleChange
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                          className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "last_name",
+                            children: "Last Name"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                            className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                            id: "last_name",
+                            type: "text",
+                            required: true,
+                            name: "last_name",
+                            value: this.state.form.last_name,
+                            onChange: this.handleChange
+                          })]
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                        className: "flex flex-wrap -mx-3 mb-2",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                          className: "w-full md:w-1/2 px-3",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "grid-email",
+                            children: "Email"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                            className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                            id: "grid-email",
+                            type: "email",
+                            required: true,
+                            name: "email",
+                            value: this.state.form.email,
+                            onChange: this.handleChange
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                          className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "grid-mobile",
+                            children: "Mobile Number"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                            className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                            id: "grid-mobile",
+                            type: "text",
+                            required: true,
+                            name: "mobile",
+                            value: this.state.form.mobile,
+                            onChange: this.handleChange
+                          })]
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                        className: "flex flex-wrap -mx-3 mb-2",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                          className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "grid-company_name",
+                            children: "Company Name"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                            className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                            id: "grid-company_name",
+                            type: "text",
+                            required: true,
+                            name: "company_name",
+                            value: this.state.form.company_name,
+                            onChange: this.handleChange
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                          className: "w-full md:w-1/2 px-3",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "grid-web",
+                            children: "Website"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                            className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                            id: "grid-web",
+                            type: "url",
+                            name: "web",
+                            value: this.state.form.web,
+                            onChange: this.handleChange
+                          })]
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "flex flex-wrap -mx-3 mb-2",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                          className: "w-full md:w-1/2 px-3",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "grid-zip",
+                            children: "Zip Code"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                            className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                            id: "grid-zip",
+                            type: "number",
+                            name: "zip",
+                            value: this.state.form.zip,
+                            onChange: this.handleChange
+                          })]
+                        })
+                      })]
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                      className: "text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+                      onClick: function onClick() {
+                        return _this2.props.close();
+                      },
+                      children: "Close"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                      className: "text-white bg-blue-700 hover:bg-blue-800 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+                      type: "submit",
+                      children: "Save Changes"
+                    })]
+                  })]
+                })]
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "opacity-25 fixed inset-0 z-40 bg-black"
+          })]
+        })
       });
+    }
+  }]);
+
+  return Form;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Form);
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/clients/Table.js":
+/*!********************************************************!*\
+  !*** ./src/admin/js/react/components/clients/Table.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var TableHeader = function TableHeader() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
+    className: "bg-gray-800 text-white",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 pl-4 pr-0 font-bold text-sm",
+        style: {
+          width: '20px'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "checkbox"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-bold text-sm",
+        children: "Client Name"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Email"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Company Name"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Website"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Mobile"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Date"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Action"
+      })]
+    })
+  });
+};
+
+var TableBody = function TableBody(props) {
+  var rows = props.tableData.map(function (row, index) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 pl-4 pr-0",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "checkbox"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.first_name + ' ' + row.last_name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.email
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.company_name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.web
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.mobile
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.date
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
+        className: "text-left py-3 px-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "bg-green-700 hover:bg-green-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2",
+          children: "View"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          onClick: function onClick() {
+            return props.editEntry('edit', row);
+          },
+          className: "bg-blue-700 hover:bg-blue-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2",
+          children: "Edit"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          onClick: function onClick() {
+            return props.deleteEntry('single', row.id);
+          },
+          className: "bg-red-700 hover:bg-red-800 cursor-pointer text-white text-sm py-1 px-2 rounded",
+          children: "Delete"
+        })]
+      })]
+    }, index);
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
+    className: "text-gray-700",
+    children: rows
+  });
+};
+
+var Table = function Table(props) {
+  var tableData = props.tableData,
+      editEntry = props.editEntry,
+      deleteEntry = props.deleteEntry;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "shadow overflow-hidden rounded border-b border-gray-200",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+      className: "min-w-full bg-white",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TableHeader, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TableBody, {
+        tableData: tableData,
+        editEntry: editEntry,
+        deleteEntry: deleteEntry
+      })]
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Table);
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/clients/helper.js":
+/*!*********************************************************!*\
+  !*** ./src/admin/js/react/components/clients/helper.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/clients");
+var token = {
+  headers: {
+    'content-type': 'application/json',
+    'X-WP-NONCE': ncpi_local.nonce
+  }
+};
+
+var getAll = function getAll() {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl);
+};
+
+var get = function get(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id));
+};
+
+var create = function create(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
+};
+
+var update = function update(id, data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data, token);
+};
+
+var remove = function remove(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id), token);
+};
+
+var findByArg = function findByArg(title) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "?title=").concat(title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAll: getAll,
+  get: get,
+  create: create,
+  update: update,
+  remove: remove,
+  findByArg: findByArg
+});
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/clients/index.js":
+/*!********************************************************!*\
+  !*** ./src/admin/js/react/components/clients/index.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/clients/helper.js");
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/clients/Table.js");
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/clients/Form.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+var App = /*#__PURE__*/function (_Component) {
+  _inherits(App, _Component);
+
+  var _super = _createSuper(App);
+
+  function App() {
+    var _this;
+
+    _classCallCheck(this, App);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      // clients: []
+      formModal: false,
+      formModalType: 'new',
+      msg: {
+        successCreate: 'Successfully Added',
+        successUpdate: 'Successfully Updated',
+        successDelete: 'Successfully Deleted',
+        "delete": 'Are you sure to delete it?'
+      },
+      client: null,
+      clients: [],
+      currentClient: null,
+      setCurrentClient: null,
+      currentIndex: -1,
+      searchTitle: ''
     });
 
     _defineProperty(_assertThisInitialized(_this), "getLists", function () {
-      _helper__WEBPACK_IMPORTED_MODULE_1__["default"].getAll().then(function (resp) {
+      _helper__WEBPACK_IMPORTED_MODULE_3__["default"].getAll().then(function (resp) {
         _this.setState({
           clients: resp.data.data
         });
       });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "refreshList", function () {
-      getLists();
-      setCurrentClient(null);
-      setCurrentIndex(-1);
     });
 
     _defineProperty(_assertThisInitialized(_this), "openForm", function () {
@@ -3461,10 +3873,6 @@ var Client = /*#__PURE__*/function (_React$Component) {
         _this.setState({
           formModalType: 'new'
         });
-
-        _this.setState({
-          client: _this.emptyForm
-        });
       } else {
         _this.setState({
           formModalType: 'edit'
@@ -3476,68 +3884,72 @@ var Client = /*#__PURE__*/function (_React$Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "inputChange", function (e) {
-      var _e$target = e.target,
-          name = _e$target.name,
-          value = _e$target.value;
-
+    _defineProperty(_assertThisInitialized(_this), "closeForm", function () {
       _this.setState({
-        client: _objectSpread(_objectSpread({}, _this.state.client), {}, _defineProperty({}, name, value))
+        formModal: false
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "save", function () {
-      _helper__WEBPACK_IMPORTED_MODULE_1__["default"].create(_this.state.client).then(function (resp) {
-        if (resp.data.success) {
-          _this.setState({
-            formModal: false
-          });
+    _defineProperty(_assertThisInitialized(_this), "deleteEntry", function (type, index) {
+      if (confirm(_this.state.msg["delete"])) {
+        _this.setState({
+          clients: _this.state.clients.filter(function (client, i) {
+            return client.id !== index;
+          })
+        });
 
-          react_toastify__WEBPACK_IMPORTED_MODULE_2__.toast.success(_this.state.successCreateMsg);
-
-          _this.getLists();
-        } else {
-          resp.data.data.forEach(function (value, index, array) {
-            react_toastify__WEBPACK_IMPORTED_MODULE_2__.toast.error(value);
-          });
-        }
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "setActiveClient", function (client, index) {
-      setCurrentClient(client);
-      setCurrentIndex(index);
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "deleteEntry", function () {
-      if (confirm(_this.state.deleteMsg)) {
-        react_toastify__WEBPACK_IMPORTED_MODULE_2__.toast.success(_this.state.successDeleteMsg);
+        react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.successDelete);
+        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].remove(index).then(function (resp) {
+          if (resp.data.success) {} else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+            });
+          }
+        });
       }
-      /* Helper.removeSelected()
-      .then(resp => {
-          refreshList();
-      })  */
-
     });
 
-    _this.state = {
-      formModal: false,
-      formModalType: 'new',
-      successCreateMsg: 'Successfully Added',
-      successUpdateMsg: 'Successfully Updated',
-      successDeleteMsg: 'Successfully Deleted',
-      deleteMsg: 'Are you sure to delete it?',
-      client: _this.emptyForm,
-      clients: [],
-      currentClient: null,
-      setCurrentClient: null,
-      currentIndex: -1,
-      searchTitle: ''
-    };
+    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
+      if (_this.state.formModalType == 'new') {
+        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].create(client).then(function (resp) {
+          if (resp.data.success) {
+            _this.setState({
+              formModal: false
+            });
+
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.successCreate);
+
+            _this.getLists();
+          } else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+            });
+          }
+        });
+      } else {
+        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].update(client.id, client).then(function (resp) {
+          if (resp.data.success) {
+            _this.setState({
+              formModal: false
+            }); // this.setState({ formModalType: 'new' });
+
+
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.successUpdate);
+
+            _this.getLists();
+          } else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+            });
+          }
+        });
+      }
+    });
+
     return _this;
   }
 
-  _createClass(Client, [{
+  _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.getLists();
@@ -3547,282 +3959,36 @@ var Client = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_2__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "ncpi-components",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "mb-5 font-bold text-2xl",
           children: "Client"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
           className: "bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.openForm('new');
           },
           children: "Create New Client"
-        }), this.state.formModal && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-              className: "relative w-auto my-6 mx-auto max-w-3xl",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                className: "border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                  className: "flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h3", {
-                    className: "text-xl p-2 font-semibold",
-                    children: [this.state.formModalType == 'new' ? 'New' : 'Edit', " Client"]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                    className: "p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none",
-                    onClick: function onClick() {
-                      return _this2.setState({
-                        formModal: false
-                      });
-                    },
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                      className: "bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none",
-                      children: "\xD7"
-                    })
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                  className: "relative px-6 py-5 flex-auto",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
-                    className: "w-full max-w-lg",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                      className: "flex flex-wrap -mx-3 mb-2",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                        className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-                          className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                          htmlFor: "first_name",
-                          children: "First Name"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                          className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
-                          id: "first_name",
-                          type: "text",
-                          required: true,
-                          name: "first_name",
-                          value: this.state.client.first_name,
-                          onChange: this.inputChange
-                        })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                        className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-                          className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                          htmlFor: "last_name",
-                          children: "Last Name"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                          className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
-                          id: "last_name",
-                          type: "text",
-                          required: true,
-                          name: "last_name",
-                          value: this.state.client.last_name,
-                          onChange: this.inputChange
-                        })]
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                      className: "flex flex-wrap -mx-3 mb-2",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                        className: "w-full md:w-1/2 px-3",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-                          className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                          htmlFor: "grid-email",
-                          children: "Email"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                          className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-                          id: "grid-email",
-                          type: "email",
-                          name: "email",
-                          value: this.state.client.email,
-                          onChange: this.inputChange
-                        })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                        className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-                          className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                          htmlFor: "grid-mobile",
-                          children: "Mobile Number"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                          className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
-                          id: "grid-mobile",
-                          type: "text",
-                          required: true,
-                          name: "mobile",
-                          value: this.state.client.mobile,
-                          onChange: this.inputChange
-                        })]
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                      className: "flex flex-wrap -mx-3 mb-2",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                        className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-                          className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                          htmlFor: "grid-company_name",
-                          children: "Company Name"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                          className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
-                          id: "grid-company_name",
-                          type: "text",
-                          required: true,
-                          name: "company_name",
-                          value: this.state.client.company_name,
-                          onChange: this.inputChange
-                        })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                        className: "w-full md:w-1/2 px-3",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-                          className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                          htmlFor: "grid-web",
-                          children: "Website"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                          className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-                          id: "grid-web",
-                          type: "url",
-                          name: "web",
-                          value: this.state.client.web,
-                          onChange: this.inputChange
-                        })]
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                      className: "flex flex-wrap -mx-3 mb-2",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                        className: "w-full md:w-1/2 px-3",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-                          className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                          htmlFor: "grid-zip",
-                          children: "Zip Code"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                          className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-                          id: "grid-zip",
-                          type: "number",
-                          name: "zip",
-                          value: this.state.client.zip,
-                          onChange: this.inputChange
-                        })]
-                      })
-                    })]
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                  className: "flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                    className: "text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
-                    type: "button",
-                    onClick: function onClick() {
-                      return _this2.setState({
-                        formModal: false
-                      });
-                    },
-                    children: "Close"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                    className: "text-white bg-blue-700 hover:bg-blue-800 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
-                    type: "button",
-                    onClick: function onClick() {
-                      return _this2.save();
-                    },
-                    children: "Save Changes"
-                  })]
-                })]
-              })
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "opacity-25 fixed inset-0 z-40 bg-black"
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "shadow overflow-hidden rounded border-b border-gray-200",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("table", {
-            className: "min-w-full bg-white",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("thead", {
-              className: "bg-gray-800 text-white",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                  className: "text-left py-3 pl-4 pr-0 font-bold text-sm",
-                  style: {
-                    width: '20px'
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                    type: "checkbox"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                  className: "text-left py-3 px-4 font-bold text-sm",
-                  children: "Client Name"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                  className: "text-left py-3 px-4 font-semibold text-sm",
-                  children: "Email"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                  className: "text-left py-3 px-4 font-semibold text-sm",
-                  children: "Company Name"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                  className: "text-left py-3 px-4 font-semibold text-sm",
-                  children: "Website"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                  className: "text-left py-3 px-4 font-semibold text-sm",
-                  children: "Mobile"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                  className: "text-left py-3 px-4 font-semibold text-sm",
-                  children: "Date"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
-                  className: "text-left py-3 px-4 font-semibold text-sm",
-                  children: "Action"
-                })]
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("tbody", {
-              className: "text-gray-700",
-              children: this.state.clients && this.state.clients.map(function (client, index) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                    className: "text-left py-3 pl-4 pr-0",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-                      type: "checkbox"
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                    className: "text-left py-3 px-4",
-                    children: client.first_name + ' ' + client.last_name
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                    className: "text-left py-3 px-4",
-                    children: client.email
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                    className: "text-left py-3 px-4",
-                    children: client.company_name
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                    className: "text-left py-3 px-4",
-                    children: client.web
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                    className: "text-left py-3 px-4",
-                    children: client.mobile
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                    className: "text-left py-3 px-4",
-                    children: client.date
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("td", {
-                    className: "text-left py-3 px-4",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                      className: "bg-green-700 hover:bg-green-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2",
-                      children: "View"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                      onClick: function onClick() {
-                        return _this2.openForm('edit', client);
-                      },
-                      className: "bg-blue-700 hover:bg-blue-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2",
-                      children: "Edit"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                      onClick: function onClick() {
-                        return _this2.deleteEntry('single', client.id);
-                      },
-                      className: "bg-red-700 hover:bg-red-800 cursor-pointer text-white text-sm py-1 px-2 rounded",
-                      children: "Delete"
-                    })]
-                  })]
-                }, index);
-              })
-            })]
-          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          handleSubmit: this.handleSubmit,
+          show: this.state.formModal,
+          modalType: this.state.formModalType,
+          data: this.state.client,
+          close: this.closeForm
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          tableData: this.state.clients,
+          editEntry: this.openForm,
+          deleteEntry: this.deleteEntry
         })]
       });
     }
   }]);
 
-  return Client;
+  return App;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
 /***/ }),
 
