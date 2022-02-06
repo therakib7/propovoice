@@ -109,22 +109,18 @@ class Client
         return wp_send_json_success($data);
     }
 
-    public function get_single()
-    {
-        return wp_send_json_success(4354);
+    public function get_single( $req )
+    { 
+        
+        // return wp_send_json_success(4354);
+        $url_params = $req->get_url_params();
+        $user_id      = $url_params['id'];
 
-        $args = array(
-            'role'    => 'client',
-            'orderby' => 'registered',
-            'order'   => 'DESC'
-        );
-        $users = get_users($args);
+        $user = get_user_by('id', $user_id );
 
-        $data = [];
-        foreach ($users as $user) {
+        $data = []; 
 
-            $field = [];
-
+            $field = []; 
             $field['id'] = $user->ID;
             $field['first_name'] = $user->first_name;
             $field['last_name'] = $user->last_name;
@@ -135,8 +131,7 @@ class Client
             $field['zip'] = '1245';
             $field['date'] = $user->user_registered;
 
-            $data[] = $field;
-        }
+        $data['user'] = $field; 
 
         return wp_send_json_success($data);
     }

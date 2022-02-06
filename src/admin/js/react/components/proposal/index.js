@@ -6,7 +6,7 @@ import Helper from './helper';
 import Table from './Table';
 import Form from './Form';
 
-export default class Client extends Component {
+export default class Proposal extends Component {
     state = {
         // clients: []
         formModal: false,
@@ -110,13 +110,13 @@ export default class Client extends Component {
                 <ToastContainer />
 
                 <div className='mb-5 font-bold text-2xl'>
-                    Client
+                    Proposal
                 </div>
 
                 <button
                     className="bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.openForm('new')} >
-                    Create New Client
+                    Create New Proposal
                 </button>
 
                 <Form

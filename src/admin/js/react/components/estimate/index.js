@@ -6,7 +6,7 @@ import Helper from './helper';
 import Table from './Table';
 import Form from './Form';
 
-class App extends Component {
+export default class Estimate extends Component {
     state = {
         // clients: []
         formModal: false,
@@ -102,7 +102,7 @@ class App extends Component {
                     }
                 })
         }
-    }
+    } 
 
     render() {
         return (
@@ -110,13 +110,13 @@ class App extends Component {
                 <ToastContainer />
 
                 <div className='mb-5 font-bold text-2xl'>
-                    Client
+                    Estimate
                 </div>
 
                 <button
                     className="bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.openForm('new')} >
-                    Create New Client
+                    Create New Estimate
                 </button>
 
                 <Form
@@ -136,6 +136,4 @@ class App extends Component {
             </div>
         );
     }
-}
-
-export default App;
+} 

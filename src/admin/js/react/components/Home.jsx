@@ -15,7 +15,9 @@ import Proposal from './proposal';
 import Editor from './editor';
 // const Editor = lazy(() => import('./editor')); 
 import Contract from './Contract';
-import Invoice from './Invoice';
+import Estimate from './estimate';
+// import Invoice from './invoice';
+import Invoice from './invoice-test';
 import Payment from './Payment';
 import TemplateLibrary from './TemplateLibrary';
 import Setting from './Setting';
@@ -44,7 +46,7 @@ const Home = () => {
                             Client
                         </NavLink>
                         <NavLink
-                            to='help'
+                            to='estimate'
                             className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-groups mr-3" />
                             Estimate
@@ -112,11 +114,12 @@ const Home = () => {
                             <Route path="/proposal" element={<Proposal />} />
                             <Route path="/editor" element={<Editor />} />
                             <Route path="/contract" element={<Contract />} />
+                            <Route path="/estimate" element={<Estimate />} />
                             <Route path="/invoice" element={<Invoice />} />
                             <Route path="/payment" element={<Payment />} />
                             <Route path="/template-library" element={<TemplateLibrary />} />
-                            <Route path="/client" element={<Client />} />
-                            <Route path="/client/:id" element={<ClientSummary />} />
+                            <Route path="/client" exact element={<Client />} />
+                            <Route path="/client/:id" exact element={<ClientSummary />} />
                             <Route path="/setting" element={<Setting />} />
                             <Route path="/help" element={<Help />} />
                         </Routes>

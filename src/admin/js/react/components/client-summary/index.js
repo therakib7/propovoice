@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom"; 
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,15 +12,12 @@ import Estimate from './tab/estimate';
 import Invoice from './tab/invoice'; 
 import Receipt from './tab/receipt'; 
 
-export default class ClientSummary extends Component { 
+class ClientSummary extends Component { 
 
-    constructor(props) {
-        super(props);
+    constructor(props) { 
+        super(props);  
 
-        // this.navigate = useNavigate();
-
-        this.state = {
-            // clients: []
+        this.state = { 
             tabs: [
                 {
                     id: 'overview',
@@ -48,7 +45,7 @@ export default class ClientSummary extends Component {
                     content: Receipt
                 },
             ],
-            tab: 'overview',
+            currentTab: 'overview',
             formModal: false,
             formModalType: 'new',
             msg: {
@@ -57,24 +54,22 @@ export default class ClientSummary extends Component {
                 delete: 'Successfully Deleted',
                 confirm: 'Are you sure to delete it?',
             },
-            client: { id: null },
-            clients: [],
-            currentClient: null,
-            setCurrentClient: null,
-            currentIndex: -1,
-            searchTitle: ''
+            data: {
+                user: {
+                    first_name: 'Name'
+                }
+            }
         };
     }
 
-    componentDidMount() {
-        this.getLists();
+    componentDidMount() {  
+        this.getData();
     }
 
-    getLists = () => {
-        Helper.get(66)
+    getData = () => { 
+        Helper.get(this.props.id)
             .then(resp => {
-                // this.setState({ clients: resp.data.data });
-                console.log(resp)
+                this.setState({ data: resp.data.data }); 
             })
     };
 
@@ -85,11 +80,11 @@ export default class ClientSummary extends Component {
     setActiveTab(e, id) {
         e.preventDefault(); 
         this.setState({
-            tab: id
+            currentTab: id
         });
     } 
 
-    render() {
+    render() {    
         return (
             <div className="ncpi-components">
                 <ToastContainer />
@@ -103,7 +98,7 @@ export default class ClientSummary extends Component {
                 </div>               
 
                 <div className='mb-5 font-bold text-2xl'>
-                    Maniar
+                    {this.state.data.user.first_name}
                 </div>
 
                 <div className="border-b border-gray-200 dark:border-gray-700">
@@ -113,7 +108,7 @@ export default class ClientSummary extends Component {
                             <li className="mr-2" key={index}>
                                 <a
                                     href="#"
-                                    className={"inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + ( this.state.tab == tab.id ? 'text-gray-700 border-gray-700' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300')}
+                                    className={"inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + ( this.state.currentTab == tab.id ? 'text-gray-700 border-gray-700' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300')}
                                     onClick={(e) => this.setActiveTab(e, tab.id)}
                                 > 
                                     {tab.text}
@@ -125,7 +120,7 @@ export default class ClientSummary extends Component {
 
                 { this.state.tabs && this.state.tabs.map((tab, index) => (  
                     <React.Fragment key={index}>
-                        { ( this.state.tab == tab.id ) ? React.createElement(tab.content, {}) : null } 
+                        { ( this.state.currentTab == tab.id ) ? React.createElement(tab.content, {}) : null } 
                     </React.Fragment>
                 )) }  
 
@@ -133,3 +128,13 @@ export default class ClientSummary extends Component {
         );
     }
 } 
+
+// I did it because useParams not working in class component
+function GetId() {
+    const { id } = useParams(); 
+    return (
+        <ClientSummary id={id} />
+    );
+}
+
+export default GetId;
