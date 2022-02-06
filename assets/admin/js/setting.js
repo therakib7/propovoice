@@ -3474,6 +3474,10 @@ var ClientSummary = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var _this$state = this.state,
+          _this$state$tabs = _this$state.tabs,
+          tabs = _this$state$tabs === void 0 ? [] : _this$state$tabs,
+          currentTab = _this$state.currentTab;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
         className: "ncpi-components",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
@@ -3492,12 +3496,12 @@ var ClientSummary = /*#__PURE__*/function (_Component) {
           className: "border-b border-gray-200 dark:border-gray-700",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("ul", {
             className: "flex flex-wrap -mb-px",
-            children: this.state.tabs && this.state.tabs.map(function (tab, index) {
+            children: tabs.map(function (tab, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("li", {
                 className: "mr-2",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
                   href: "#",
-                  className: "inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + (_this2.state.currentTab == tab.id ? 'text-gray-700 border-gray-700' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300'),
+                  className: "inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + (currentTab == tab.id ? 'text-gray-700 border-gray-700' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300'),
                   onClick: function onClick(e) {
                     return _this2.setActiveTab(e, tab.id);
                   },
@@ -3506,9 +3510,9 @@ var ClientSummary = /*#__PURE__*/function (_Component) {
               }, index);
             })
           })
-        }), this.state.tabs && this.state.tabs.map(function (tab, index) {
+        }), tabs.map(function (tab, index) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-            children: _this2.state.currentTab == tab.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(tab.content, {}) : null
+            children: currentTab == tab.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(tab.content, {}) : null
           }, index);
         })]
       });
