@@ -32,12 +32,18 @@ class Form extends Component {
 
     componentDidUpdate() {
         //TODO: check it later or multiple rendering
-        if (this.props.modalType == 'edit') {
+        
+        if ( this.props.modalType == 'edit' ) {
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
             }
         } else {
-            // this.setState({ form: this.initialState });
+            /* console.log(this.state.form.id)
+            console.log(this.props.data.id)
+            if (this.state.form.id != this.props.data.id) {
+                console.log(this.props.modalType)
+                this.setState({ form: this.initialState });
+            } */
         }
     }
 

@@ -8,7 +8,8 @@ import {
 } from "react-router-dom";
 
 import Dashboard from './Dashboard';
-import Client from './clients';
+import Client from './client';
+import ClientSummary from './client-summary';
 // const Client = lazy(() => import('./client')); //TODO: need to seen path wp-content/folders root
 import Proposal from './proposal';
 import Editor from './editor';
@@ -115,6 +116,7 @@ const Home = () => {
                             <Route path="/payment" element={<Payment />} />
                             <Route path="/template-library" element={<TemplateLibrary />} />
                             <Route path="/client" element={<Client />} />
+                            <Route path="/client/:id" element={<ClientSummary />} />
                             <Route path="/setting" element={<Setting />} />
                             <Route path="/help" element={<Help />} />
                         </Routes>

@@ -12,12 +12,12 @@ class App extends Component {
         formModal: false,
         formModalType: 'new',
         msg: {
-            successCreate: 'Successfully Added',
-            successUpdate: 'Successfully Updated',
-            successDelete: 'Successfully Deleted',
-            delete: 'Are you sure to delete it?',
+            create: 'Successfully Added',
+            update: 'Successfully Updated',
+            delete: 'Successfully Deleted',
+            confirm: 'Are you sure to delete it?',
         },
-        client: null,
+        client: { id: null },
         clients: [],
         currentClient: null,
         setCurrentClient: null,
@@ -52,13 +52,13 @@ class App extends Component {
     };
 
     deleteEntry = (type, index) => {
-        if (confirm(this.state.msg.delete)) {
+        if (confirm(this.state.msg.confirm)) {
             this.setState({
                 clients: this.state.clients.filter((client, i) => {
                     return client.id !== index;
                 })
             });
-            toast.success(this.state.msg.successDelete);
+            toast.success(this.state.msg.delete);
 
             Helper.remove(index)
                 .then(resp => {
@@ -79,7 +79,7 @@ class App extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.state.msg.successCreate);
+                        toast.success(this.state.msg.create);
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -93,7 +93,7 @@ class App extends Component {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
                         // this.setState({ formModalType: 'new' });
-                        toast.success(this.state.msg.successUpdate);
+                        toast.success(this.state.msg.update);
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {

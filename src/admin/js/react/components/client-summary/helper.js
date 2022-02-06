@@ -14,7 +14,7 @@ const getAll = () => {
 };
 
 const get = id => {
-	return axios.get(`${apiUrl}/${id}`);
+	return axios.get(`${apiUrl}/${id}`, token);
 };
 
 const create = data => {

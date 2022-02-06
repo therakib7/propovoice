@@ -41,6 +41,19 @@ class Client
         ]);
 
         register_rest_route('ncpi/v1', '/clients/(?P<id>\d+)', array(
+            'methods' => 'GET',
+            'callback' => [$this, 'get_single'],
+            'permission_callback' => [$this, 'get_permission'],
+            'args' => array(
+                'id' => array(
+                    'validate_callback' => function ($param, $request, $key) {
+                        return is_numeric($param);
+                    }
+                ),
+            ),
+        ));
+
+        register_rest_route('ncpi/v1', '/clients/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -67,6 +80,38 @@ class Client
 
     public function get()
     {
+
+        $args = array(
+            'role'    => 'client',
+            'orderby' => 'registered',
+            'order'   => 'DESC'
+        );
+        $users = get_users($args);
+
+        $data = [];
+        foreach ($users as $user) {
+
+            $field = [];
+
+            $field['id'] = $user->ID;
+            $field['first_name'] = $user->first_name;
+            $field['last_name'] = $user->last_name;
+            $field['email'] = $user->user_email;
+            $field['company_name'] = get_user_meta($user->ID, 'company_name', true);
+            $field['web'] = get_user_meta($user->ID, 'web', true);
+            $field['mobile'] = get_user_meta($user->ID, 'mobile', true);
+            $field['zip'] = '1245';
+            $field['date'] = $user->user_registered;
+
+            $data[] = $field;
+        }
+
+        return wp_send_json_success($data);
+    }
+
+    public function get_single()
+    {
+        return wp_send_json_success(4354);
 
         $args = array(
             'role'    => 'client',
