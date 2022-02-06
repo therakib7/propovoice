@@ -58,14 +58,13 @@
 		"@editorjs/warning": "latest",
 		"@emotion/core": "^10.1.1",
 		"@wordpress/react-i18n": "^3.1.0",
-		"axios": "^0.21.4",
-		"classnames": "^2.3.1",
 		"editorjs-text-alignment-blocktune": "^1.0.3",
 		"editorjs-text-color-plugin": "^1.1.22",
+		"axios": "^0.21.4",
 		"react-editor-js": "latest",
 		"react-router-dom": "^6.2.1",
-		"react-toastify": "^8.1.1", 
-		"prop-types": "^15.6.2", 
+		"react-toastify": "^8.1.1",
+		"prop-types": "^15.6.2",
 		"react-beautiful-dnd": "latest"
 	}
 }
