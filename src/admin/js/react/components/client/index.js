@@ -1,29 +1,37 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'; 
+
+import TablePreloader from '../preloader/table';
 
 import Helper from './helper';
-import Table from './Table';
 import Form from './Form';
+import Table from './Table';
+import Search from './Search';
 
 export default class Client extends Component {
-    state = {
-        // clients: []
-        formModal: false,
-        formModalType: 'new',
-        msg: {
-            create: 'Successfully Added',
-            update: 'Successfully Updated',
-            delete: 'Successfully Deleted',
-            confirm: 'Are you sure to delete it?',
-        },
-        client: { id: null },
-        clients: [],
-        currentClient: null,
-        setCurrentClient: null,
-        currentIndex: -1,
-        searchTitle: ''
-    };
+    constructor(props) {
+        super(props);
+
+         
+
+        this.state = {
+            // clients: []
+            preloader: true,
+            formModal: false,
+            searchModal: false,
+            formModalType: 'new',
+            msg: {
+                create: 'Successfully Added',
+                update: 'Successfully Updated',
+                delete: 'Successfully Deleted',
+                confirm: 'Are you sure to delete it?',
+            },
+            client: { id: null },
+            clients: [],
+            checkedBoxes: []
+        };
+    }    
 
     componentDidMount() {
         this.getLists();
@@ -33,6 +41,7 @@ export default class Client extends Component {
         Helper.getAll()
             .then(resp => {
                 this.setState({ clients: resp.data.data });
+                this.setState({ preloader: false });
             })
     };
 
@@ -51,27 +60,9 @@ export default class Client extends Component {
         this.setState({ formModal: false });
     };
 
-    deleteEntry = (type, index) => {
-        if (confirm(this.state.msg.confirm)) {
-            this.setState({
-                clients: this.state.clients.filter((client, i) => {
-                    return client.id !== index;
-                })
-            });
-            toast.success(this.state.msg.delete);
-
-            Helper.remove(index)
-                .then(resp => {
-                    if (resp.data.success) {
-
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        }
-    }
+    closeSearchForm = () => {
+        this.setState({ searchModal: false });
+    };
 
     handleSubmit = client => {
         if (this.state.formModalType == 'new') {
@@ -102,21 +93,82 @@ export default class Client extends Component {
                     }
                 })
         }
+    }
+
+    deleteEntry = (type, index) => {
+        
+        if ( confirm( this.state.msg.confirm ) ) {
+            
+            if ( type == 'single' ) {
+                this.setState({
+                    clients: this.state.clients.filter((client, i) => {
+                        return client.id !== index;
+                    })
+                });
+            }             
+            let ids = ( type == 'single' ) ? index : this.state.checkedBoxes.toString();
+            Helper.remove(ids)
+                .then(resp => {
+                    if (resp.data.success) {
+                        toast.success(this.state.msg.delete); 
+                        this.getLists();
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                })
+        }
     } 
 
+    handleCheckbox = (e, type, id = null) => {	 
+        let arr = this.state.checkedBoxes;
+        if ( type == 'single' ) {
+            if( e.target.checked ) {
+                arr.push(id);   
+                this.setState({ checkedBoxes: arr }); 
+            } else {			
+                arr.splice(arr.indexOf(id), 1);        
+                this.setState({ checkedBoxes: arr }); 
+            }
+        } else {
+            //check all
+            if( e.target.checked ) { 
+                let ids = [];
+                this.state.clients.map((row) => { ids.push(row.id) }); 
+                this.setState({ checkedBoxes: ids });
+            } else { 	           
+                this.setState({ checkedBoxes: [] });
+            }
+        } 
+    }
+
     render() {
+        const checkedBoxes = this.state.checkedBoxes;
         return (
             <div className="ncpi-components">
-                <ToastContainer />
+                <ToastContainer /> 
 
                 <div className='mb-5 font-bold text-2xl'>
                     Client
                 </div>
 
                 <button
-                    className="bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
+                    className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.openForm('new')} >
                     Create New Client
+                </button>
+                
+                { checkedBoxes.length ? <button
+                    className="ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
+                    onClick={() => this.deleteEntry('selected')} >
+                    Delete selected
+                </button> : ''} 
+
+                <button
+                    className="float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
+                    onClick={() => this.setState({ searchModal: true }) } >
+                    Search
                 </button>
 
                 <Form
@@ -127,11 +179,15 @@ export default class Client extends Component {
                     close={this.closeForm}
                 />
 
-                <Table
-                    tableData={this.state.clients}
-                    editEntry={this.openForm}
-                    deleteEntry={this.deleteEntry}
+                <Search
+                    handleSubmit={this.handleSubmit}
+                    show={this.state.searchModal}
+                    modalType={this.state.formModalType}
+                    data={this.state.client}
+                    close={this.closeSearchForm}
                 />
+
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox}} deleteEntry={this.deleteEntry} /> }
 
             </div>
         );

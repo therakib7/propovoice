@@ -114,7 +114,7 @@ export default class Proposal extends Component {
                 </div>
 
                 <button
-                    className="bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
+                    className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.openForm('new')} >
                     Create New Proposal
                 </button>

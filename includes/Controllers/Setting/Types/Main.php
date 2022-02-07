@@ -46,7 +46,7 @@ class Main extends SettingsAPI {
 	}
 
 	function main_settings() {  
-        echo '<div class="wrap"><div id="ncpi-admin-app" class="bg-gray-100 flex"></div></div>';
+        echo '<div class="wrap"><div id="ncpi-admin-app" class="flex"></div></div>';
     }
 
     public function setTabs() {

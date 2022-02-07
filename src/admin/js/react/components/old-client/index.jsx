@@ -121,7 +121,7 @@ export default class Client extends React.Component {
                 </div>
     
                 <button
-                    className="bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
+                    className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={ () => this.openForm('new')} >
                     Create New Client
                 </button>
@@ -295,7 +295,7 @@ export default class Client extends React.Component {
                                     </button>
     
                                     <button
-                                        className="text-white bg-blue-700 hover:bg-blue-800 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        className="text-white bg-gray-800 hover:bg-gray-900 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
                                         onClick={() => this.save()} >
                                         Save Changes
@@ -310,7 +310,7 @@ export default class Client extends React.Component {
     
                 <div className="shadow overflow-hidden rounded border-b border-gray-200">
                     <table className="min-w-full bg-white">
-                        <thead className="bg-gray-800 text-white">
+                        <thead className="bg-gray-300 text-gray-800">
                             <tr>
                                 <th className="text-left py-3 pl-4 pr-0 font-bold text-sm" style={{width: '20px'}}>
                                     <input type="checkbox" />
@@ -350,9 +350,9 @@ export default class Client extends React.Component {
                                     <td className="text-left py-3 px-4">{client.mobile}</td>
                                     <td className="text-left py-3 px-4">{client.date}</td>
                                     <td className="text-left py-3 px-4">
-                                        <span className='bg-green-700 hover:bg-green-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>View</span>
-                                        <span onClick={() => this.openForm('edit', client)} className='bg-blue-700 hover:bg-blue-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>Edit</span>
-                                        <span onClick={() => this.deleteEntry('single', client.id)} className='bg-red-700 hover:bg-red-800 cursor-pointer text-white text-sm py-1 px-2 rounded'>Delete</span> 
+                                        <span className='bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>View</span>
+                                        <span onClick={() => this.openForm('edit', client)} className='bg-gray-800 hover:bg-gray-900 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>Edit</span>
+                                        <span onClick={() => this.deleteEntry('single', client.id)} className='bg-red-800 hover:bg-red-900 cursor-pointer text-white text-sm py-1 px-2 rounded'>Delete</span> 
                                     </td>
                                 </tr> 
                             )) } 

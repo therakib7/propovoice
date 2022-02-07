@@ -237,7 +237,7 @@ var Client = function Client() {
       className: "mb-5 font-bold text-2xl",
       children: "Client"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-      className: "bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded mb-3",
+      className: "bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
       onClick: function onClick() {
         return openForm('new');
       },
@@ -394,7 +394,7 @@ var Client = function Client() {
                 },
                 children: "Close"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-                className: "text-white bg-blue-700 hover:bg-blue-800 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+                className: "text-white bg-gray-800 hover:bg-gray-900 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
                 type: "button",
                 onClick: function onClick() {
                   return saveClient();
@@ -412,7 +412,7 @@ var Client = function Client() {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
         className: "min-w-full bg-white",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
-          className: "bg-gray-800 text-white",
+          className: "bg-gray-300 text-gray-800",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
               className: "text-left py-3 pl-4 pr-0 font-bold text-sm",
@@ -475,16 +475,16 @@ var Client = function Client() {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
                 className: "text-left py-3 px-4",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "bg-green-700 hover:bg-green-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2",
+                  className: "bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2",
                   children: "View"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                   onClick: function onClick() {
                     return openForm('edit', client);
                   },
-                  className: "bg-blue-700 hover:bg-blue-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2",
+                  className: "bg-gray-800 hover:bg-gray-900 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2",
                   children: "Edit"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "bg-red-700 hover:bg-red-800 cursor-pointer text-white text-sm py-1 px-2 rounded",
+                  className: "bg-red-800 hover:bg-red-900 cursor-pointer text-white text-sm py-1 px-2 rounded",
                   children: "Delete"
                 })]
               })]

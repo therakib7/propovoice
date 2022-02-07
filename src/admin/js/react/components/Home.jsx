@@ -28,80 +28,80 @@ const Home = () => {
     return (
         <>
             <HashRouter>
-                <aside className="relative bg-sidebar ncpi-h-screen w-64 hidden sm:block shadow-xl">
+                <aside className="relative ncpi-h-screen w-64 hidden sm:block shadow-xl">
                     <div className="p-6 pb-5">
-                        <a href="index.html" className="text-white text-3xl font-semibold hover:text-gray-300">Propovoice</a>
+                        <a href="#" className="text-3xl font-semibold text-gray-800 hover:text-purple-700 hover:text-purple-700">Propovoice</a>
                     </div>
-                    <nav className="text-white text-base">
+                    <nav className="text-base">
                         <NavLink
                             to='/'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-dashboard mr-3" />
                             Dashboard
                         </NavLink>
                         <NavLink
                             to='client'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-groups mr-3" />
                             Client
                         </NavLink>
                         <NavLink
                             to='estimate'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-groups mr-3" />
                             Estimate
                         </NavLink>
                         <NavLink
                             to='invoice'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-text-page mr-3" />
                             Invoice
                         </NavLink>
                         <NavLink
                             to='proposal'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-portfolio mr-3" />
                             Proposal
                         </NavLink>
                         <NavLink
                             to='editor'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-portfolio mr-3" />
                             Proposal Test
                         </NavLink>
                         <NavLink
                             to='contract'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-groups mr-3" />
                             Contract
                         </NavLink>
                         <NavLink
                             to='payment'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-money-alt mr-3" />
                             Payment
                         </NavLink>
                         <NavLink
                             to='template-library'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-admin-page mr-3" />
                             Template Library
                         </NavLink>
                         <NavLink
                             to='setting'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-admin-generic mr-3" />
                             Settings
                         </NavLink>
                         <NavLink
                             to='help'
-                            className={({ isActive }) => "flex items-center text-white py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-editor-help mr-3" />
                             Help
                         </NavLink>
                     </nav>
 
-                    <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
+                    <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-gray-700 hover:text-purple-700 flex items-center justify-center py-4">
                         <i className="dashicons dashicons-upload mr-3" />
                         Upgrade to Pro!
                     </a>

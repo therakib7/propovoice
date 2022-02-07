@@ -86,7 +86,7 @@ class Client extends React.Component {
                 </div>
 
                 <button
-                    className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mb-3"
+                    className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded mb-3"
                     onClick={() => setShowModal(true)} >
                     Create New Client
                 </button>
@@ -203,7 +203,7 @@ class Client extends React.Component {
                                         Close
                                     </button>
                                     <button
-                                        className="text-white bg-blue-700 hover:bg-blue-800 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        className="text-white bg-gray-800 hover:bg-gray-900 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
                                         onClick={() => saveClient()} >
                                         Save Changes
@@ -218,7 +218,7 @@ class Client extends React.Component {
 
                 <div className="shadow overflow-hidden rounded border-b border-gray-200">
                     <table className="min-w-full bg-white">
-                        <thead className="bg-gray-800 text-white">
+                        <thead className="bg-gray-300 text-gray-800">
                             <tr>
                                 <th className="text-left py-3 pl-4 pr-0 font-bold text-sm" style={{width: '20px'}}>
                                     <input type="checkbox" />

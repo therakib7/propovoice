@@ -14,7 +14,7 @@
     <?php wp_head(); ?>
 </head>
 <body> 
-    <?php echo '<div id="ncpi-admin-app" class="bg-gray-100 flex ncpi-frontend"></div>'; ?>
+    <?php echo '<div id="ncpi-admin-app" class="flex ncpi-frontend"></div>'; ?>
     <?php wp_footer(); ?>
 </body>
 </html>

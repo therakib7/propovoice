@@ -132,31 +132,27 @@ export default class Invoice extends Component {
 					reorderHandler={this.handleReorderLineItems}
 				/>
 
-				<div className={styles.totalContainer}>
-					<form>
-						<div className={styles.valueTable}>
-							<div className={styles.row}>
-								<div className={styles.label}>Tax Rate (%)</div>
-								<div className={styles.value}><input name="taxRate" type="number" step="0.01" value={this.state.taxRate} onChange={this.handleInvoiceChange} onFocus={this.handleFocusSelect} /></div>
-							</div>
+				<div className={styles.totalContainer}> 
+					<div className={styles.valueTable}>
+						<div className={styles.row}>
+							<div className={styles.label}>Tax Rate (%)</div>
+							<div className={styles.value}><input name="taxRate" type="number" step="0.01" value={this.state.taxRate} onChange={this.handleInvoiceChange} onFocus={this.handleFocusSelect} /></div>
 						</div>
-					</form>
-					<form>
-						<div className={styles.valueTable}>
-							<div className={styles.row}>
-								<div className={styles.label}>Subtotal</div>
-								<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcLineItemsTotal())}</div>
-							</div>
-							<div className={styles.row}>
-								<div className={styles.label}>Tax ({this.state.taxRate}%)</div>
-								<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcTaxTotal())}</div>
-							</div>
-							<div className={styles.row}>
-								<div className={styles.label}>Total Due</div>
-								<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcGrandTotal())}</div>
-							</div>
+					</div> 
+					<div className={styles.valueTable}>
+						<div className={styles.row}>
+							<div className={styles.label}>Subtotal</div>
+							<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcLineItemsTotal())}</div>
 						</div>
-					</form>
+						<div className={styles.row}>
+							<div className={styles.label}>Tax ({this.state.taxRate}%)</div>
+							<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcTaxTotal())}</div>
+						</div>
+						<div className={styles.row}>
+							<div className={styles.label}>Total Due</div>
+							<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcGrandTotal())}</div>
+						</div>
+					</div> 
 				</div>
 
 				<div className={styles.pay}>

@@ -1,16 +1,10 @@
 @import "partials/_tooltip.scss";
-
-.bg-sidebar { background: #3d68ff; }
-.cta-btn { color: #3d68ff; }
-.upgrade-btn { background: #1947ee; }
-.upgrade-btn:hover { background: #0038fd; }
-.active-nav-link { background: #1947ee; }
-.nav-item:hover { background: #1947ee; }
-.account-link:hover { background: #3d68ff; }
-
-.text-white {
-    color: #fff !important;
+body {
+    background-color: transparent;
 }
+.upgrade-btn { background: #f7f7f7; }
+.active-nav-link { color: #1947ee; }
+ 
 .ncpi-h-screen {
     height: 94vh;
     overflow-y: scroll;

@@ -1,33 +1,13 @@
-.bg-sidebar {
-  background: #3d68ff;
-}
-
-.cta-btn {
-  color: #3d68ff;
+body {
+  background-color: transparent;
 }
 
 .upgrade-btn {
-  background: #1947ee;
-}
-
-.upgrade-btn:hover {
-  background: #0038fd;
+  background: #f7f7f7;
 }
 
 .active-nav-link {
-  background: #1947ee;
-}
-
-.nav-item:hover {
-  background: #1947ee;
-}
-
-.account-link:hover {
-  background: #3d68ff;
-}
-
-.text-white {
-  color: #fff !important;
+  color: #1947ee;
 }
 
 .ncpi-h-screen {

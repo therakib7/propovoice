@@ -2,7 +2,7 @@ import React from 'react';
 
 const TableHeader = () => {
     return (
-        <thead className="bg-gray-800 text-white">
+        <thead className="bg-gray-300 text-gray-800">
             <tr>
                 <th className="text-left py-3 pl-4 pr-0 font-bold text-sm" style={{ width: '20px' }}>
                     <input type="checkbox" />
@@ -46,9 +46,9 @@ const TableBody = props => {
                 <td className="text-left py-3 px-4">{row.date}</td>
                 {/* <td><button onClick={() => props.deleteEntry(index)}>Delete</button></td> */}
                 <td className="text-left py-3 px-4">
-                    <span className='bg-green-700 hover:bg-green-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>View</span>
-                    <span onClick={() => props.editEntry('edit', row)} className='bg-blue-700 hover:bg-blue-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>Edit</span>
-                    <span onClick={() => props.deleteEntry('single', row.id)} className='bg-red-700 hover:bg-red-800 cursor-pointer text-white text-sm py-1 px-2 rounded'>Delete</span>
+                    <span className='bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>View</span>
+                    <span onClick={() => props.editEntry('edit', row)} className='bg-gray-800 hover:bg-gray-900 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>Edit</span>
+                    <span onClick={() => props.deleteEntry('single', row.id)} className='bg-red-800 hover:bg-red-900 cursor-pointer text-white text-sm py-1 px-2 rounded'>Delete</span>
                 </td>
             </tr>
         );

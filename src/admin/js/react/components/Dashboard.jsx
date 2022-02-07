@@ -21,7 +21,7 @@ const Dashboard = () => {
 
             <div className="shadow overflow-hidden rounded border-b border-gray-200">
                 <table className="min-w-full bg-white">
-                    <thead className="bg-gray-800 text-white">
+                    <thead className="bg-gray-300 text-gray-800">
                         <tr>
                             <th className="w-1/3 text-left py-3 px-4 font-bold text-sm">
                                 Proposal
@@ -65,7 +65,7 @@ const Dashboard = () => {
 
             <div className="shadow overflow-hidden rounded border-b border-gray-200">
                 <table className="min-w-full bg-white">
-                    <thead className="bg-gray-800 text-white">
+                    <thead className="bg-gray-300 text-gray-800">
                         <tr>
                             <th className="w-1/3 text-left py-3 px-4 font-bold text-sm">
                                 Contract
@@ -109,7 +109,7 @@ const Dashboard = () => {
 
             <div className="shadow overflow-hidden rounded border-b border-gray-200">
                 <table className="min-w-full bg-white">
-                    <thead className="bg-gray-800 text-white">
+                    <thead className="bg-gray-300 text-gray-800">
                         <tr>
                             <th className="w-1/3 text-left py-3 px-4 font-bold text-sm">
                                 Invoice
