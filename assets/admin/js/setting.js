@@ -4112,12 +4112,11 @@ var Form = /*#__PURE__*/function (_Component) {
           });
         }
       } else {
-        /* console.log(this.state.form.id)
-        console.log(this.props.data.id)
-        if (this.state.form.id != this.props.data.id) {
-            console.log(this.props.modalType)
-            this.setState({ form: this.initialState });
-        } */
+        if (this.state.form.id != null) {
+          this.setState({
+            form: this.initialState
+          });
+        }
       }
     }
   }, {

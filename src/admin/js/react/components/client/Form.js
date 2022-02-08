@@ -20,7 +20,6 @@ class Form extends Component {
         };
 
         this.state = {
-            // new: true,
             form: this.initialState
         };
     }
@@ -31,25 +30,20 @@ class Form extends Component {
     }
 
     componentDidUpdate() {
-        //TODO: check it later or multiple rendering
-        
-        if ( this.props.modalType == 'edit' ) {
+        //condition added to stop multiple rendering
+        if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
             }
         } else {
-            /* console.log(this.state.form.id)
-            console.log(this.props.data.id)
-            if (this.state.form.id != this.props.data.id) {
-                console.log(this.props.modalType)
+            if (this.state.form.id != null) {
                 this.setState({ form: this.initialState });
-            } */
+            }
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-
         this.props.handleSubmit(this.state.form);
         this.setState({ form: this.initialState });
     }
