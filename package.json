@@ -65,6 +65,7 @@
 		"react-beautiful-dnd": "latest",
 		"react-content-loader": "^6.1.0",
 		"react-editor-js": "latest",
+		"react-paginate": "^8.1.0",
 		"react-router-dom": "^6.2.1",
 		"react-toastify": "^8.1.1"
 	}

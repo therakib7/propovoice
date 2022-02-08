@@ -48,7 +48,9 @@ class AssetContoller {
 			
 			wp_enqueue_style('dashicons');
 			
-			wp_enqueue_style( 'ncpi-admin-tailwind', 'https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css', array(), $this->version ); //TODO: fix it later
+			// wp_enqueue_style( 'ncpi-admin-tailwind', 'https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css', array(), $this->version ); //TODO: fix it later
+			//TOOD: check tailwind path later
+			wp_enqueue_script( 'ncpi-admin-tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind.3.0.18.js" ), array(), $this->version, false ); 
 			wp_enqueue_style( 'ncpi-admin-main', ncpi()->get_assets_uri( "admin/css/main{$this->suffix}.css" ), array(), $this->version ); 
 			wp_enqueue_script( 'ncpi-admin-main', ncpi()->get_assets_uri( "admin/js/main{$this->suffix}.js" ), array('jquery', 'jquery-ui-sortable'), $this->version, true ); 
 			wp_localize_script('ncpi-admin-main', 'ncpi',

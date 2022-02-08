@@ -9,8 +9,8 @@ const token = {
 	}
 };
 
-const getAll = () => {
-	return axios.get(apiUrl);
+const getAll = ( args = '') => {
+	return axios.get(`${apiUrl}/?${args}`);
 };
 
 const get = id => {

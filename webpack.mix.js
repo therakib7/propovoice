@@ -90,7 +90,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
         ]) */
         .copyDirectory('src/public/imgs', 'assets/public/imgs')
         .copyDirectory('src/admin/imgs', 'assets/admin/imgs')
-    // .copyDirectory('src/vendor', 'assets/vendor');
+        .copyDirectory('src/vendor', 'assets/vendor');
 
     mix.js(`src/admin/js/react/main.jsx`, `assets/admin/js/setting${min}.js`).react()
 }

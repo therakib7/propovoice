@@ -255,12 +255,12 @@ var Client = function Client() {
                 className: "text-xl p-2 font-semibold",
                 children: [formModalType == 'new' ? 'New' : 'Edit', " Client"]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-                className: "p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none",
+                className: "p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none",
                 onClick: function onClick() {
                   return setFormModal(false);
                 },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none",
+                  className: "bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none",
                   children: "\xD7"
                 })
               })]

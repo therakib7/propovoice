@@ -13,7 +13,7 @@
     <title><?php esc_html_e( 'Propovoice Dashboard', 'propovoice' ); ?></title>
     <?php wp_head(); ?>
 </head>
-<body> 
+<body <?php body_class(); ?>> 
     <?php echo '<div id="ncpi-admin-app" class="flex ncpi-frontend"></div>'; ?>
     <?php wp_footer(); ?>
 </body>

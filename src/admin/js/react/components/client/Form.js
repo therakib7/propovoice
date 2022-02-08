@@ -65,9 +65,9 @@ class Form extends Component {
 
                                     <div className="flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t">
                                         <h3 className="text-xl p-2 font-semibold">{this.props.modalType == 'new' ? 'New' : 'Edit'} Client</h3>
-                                        <button className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                        <button className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                                             onClick={() => this.props.close()} >
-                                            <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                                            <span className="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
                                                 ×
                                             </span>
                                         </button>
@@ -119,7 +119,7 @@ class Form extends Component {
 
                                                 <div className="flex flex-wrap -mx-3 mb-2">
 
-                                                    <div className="w-full md:w-1/2 px-3">
+                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                             htmlFor="grid-email">
@@ -176,7 +176,7 @@ class Form extends Component {
                                                         />
                                                     </div>
 
-                                                    <div className="w-full md:w-1/2 px-3">
+                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                             htmlFor="grid-web">
@@ -196,8 +196,7 @@ class Form extends Component {
 
                                                 <div className="flex flex-wrap -mx-3 mb-2">
 
-
-                                                    <div className="w-full md:w-1/2 px-3">
+                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                             htmlFor="grid-zip">

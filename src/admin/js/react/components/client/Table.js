@@ -85,6 +85,12 @@ const Table = (props) => {
             <table className="min-w-full bg-white">
                 <TableHeader checkedBoxes={checkedBoxes} />
                 <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
+                { ! tableData.length && <tbody className="text-gray-700"><tr>
+                    <td className='p-3' colSpan={3}>
+                        No data found
+                    </td>
+                </tr></tbody>}
+                
             </table>
         </div>
 
