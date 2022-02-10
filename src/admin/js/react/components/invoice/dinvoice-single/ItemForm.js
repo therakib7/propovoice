@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 
-class Form extends Component {
+class ItemFrom extends Component {
     constructor(props) {
         super(props);
 
-        this.initialState = {
+        this.initialItem = {
             id: null,
-            name: '',
-            job: '',
-            first_name: '',
-            last_name: '',
-            email: '',
-            company_name: '',
-            web: '',
-            mobile: '',
-            zip: '',
-            address: '',
-            date: false
+            title: null,
+            desc: null,
+            unit: null,
+            rate: null 
         };
 
         this.state = {
-            form: this.initialState
+            invoice: {
+                items: [
+                    this.initialItem
+                ],
+                tax: 0,
+                paid: 0 
+            }
         };
     }
 
@@ -30,20 +29,25 @@ class Form extends Component {
     }
 
     componentDidUpdate() {
-        //condition added to stop multiple rendering
-        if (this.props.modalType == 'edit') {
+        //TODO: check it later or multiple rendering
+        
+        if ( this.props.modalType == 'edit' ) {
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
             }
         } else {
-            if (this.state.form.id != null) {
+            /* console.log(this.state.form.id)
+            console.log(this.props.data.id)
+            if (this.state.form.id != this.props.data.id) {
+                console.log(this.props.modalType)
                 this.setState({ form: this.initialState });
-            }
+            } */
         }
     }
 
-    handleSubmit = (e) => {
+    onFormSubmit = (e) => {
         e.preventDefault();
+
         this.props.handleSubmit(this.state.form);
         this.setState({ form: this.initialState });
     }
@@ -67,7 +71,7 @@ class Form extends Component {
                                         </button>
                                     </div>
 
-                                    <form onSubmit={this.handleSubmit}>
+                                    <form onSubmit={this.onFormSubmit}>
                                         <div className="relative px-6 py-5 flex-auto">
                                             <div className="w-full max-w-lg">
 
@@ -113,7 +117,7 @@ class Form extends Component {
 
                                                 <div className="flex flex-wrap -mx-3 mb-2">
 
-                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                    <div className="w-full md:w-1/2 px-3">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                             htmlFor="grid-email">
@@ -170,7 +174,7 @@ class Form extends Component {
                                                         />
                                                     </div>
 
-                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                    <div className="w-full md:w-1/2 px-3">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                             htmlFor="grid-web">
@@ -190,7 +194,8 @@ class Form extends Component {
 
                                                 <div className="flex flex-wrap -mx-3 mb-2">
 
-                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+
+                                                    <div className="w-full md:w-1/2 px-3">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                             htmlFor="grid-zip">

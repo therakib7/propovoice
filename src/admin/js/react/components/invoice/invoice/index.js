@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+
+import { NavLink } from 'react-router-dom';
+
 import 'react-toastify/dist/ReactToastify.css'; 
 
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from '../preloader/table';
+import TablePreloader from '../../preloader/table';
 
 import Helper from './helper';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
 
-export default class Client extends Component {
+export default class Invoice extends Component {
     constructor(props) {
         super(props);         
 
@@ -35,6 +38,7 @@ export default class Client extends Component {
             totalPage: 1,
             currentPage: 1
         }; 
+
     }   
 
     componentDidMount() {
@@ -127,14 +131,15 @@ export default class Client extends Component {
     } 
 
     openForm = (type = 'new', client = null) => {
-        this.setState({ formModal: true });
+        /* this.setState({ formModal: true });
 
         if (type == 'new') {
             this.setState({ formModalType: 'new' });
         } else {
             this.setState({ formModalType: 'edit' });
             this.setState({ client: client });
-        }
+        } */
+        
     };
 
     closeForm = ( type = 'new' ) => {
@@ -180,20 +185,27 @@ export default class Client extends Component {
     };
 
     render() {
-        const checkedBoxes = this.state.checkedBoxes;
+        const checkedBoxes = this.state.checkedBoxes; 
+
         return (
             <div className="ncpi-components">
                 <ToastContainer /> 
 
                 <div className='mb-5 font-bold text-2xl'>
-                    Client
+                    Invoice
                 </div>
 
-                <button
+                {/* <button
                     className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.openForm('new')} >
-                    Create New Client
-                </button>
+                    Create New Invoice
+                </button> */}
+
+                <NavLink
+                    to='single'
+                    className='inline-block bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3'> 
+                    Create New Invoice
+                </NavLink>
                 
                 { checkedBoxes.length ? <button
                     className="ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3"

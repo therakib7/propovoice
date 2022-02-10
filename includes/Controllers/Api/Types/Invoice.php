@@ -2,7 +2,9 @@
 
 namespace Ncpi\Controllers\Api\Types;
 
-class Client
+use WP_Query;
+
+class Invoice
 {
 
     public function __construct()
@@ -13,22 +15,20 @@ class Client
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/clients', [
+        register_rest_route('ncpi/v1', '/invoices', [
             [
-                'methods' => 'GET',
-                // 'methods' => \WP_REST_Server::READABLE,
+                'methods' => 'GET', 
                 'callback' => [$this, 'get'],
                 'permission_callback' => [$this, 'get_permission'], 
             ],
             [
-                'methods' => 'POST',
-                // 'methods' => \WP_REST_Server::CREATABLE,
+                'methods' => 'POST', 
                 'callback' => [$this, 'create'],
                 'permission_callback' => [$this, 'create_permission']
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/clients/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/invoices/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +41,7 @@ class Client
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/clients/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/invoices/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -54,7 +54,7 @@ class Client
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/clients/(?P<id>[0-9,]+)', array(
+        register_rest_route('ncpi/v1', '/invoices/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -82,103 +82,68 @@ class Client
         }
 
         $args = array(
-            'number' => $per_page, 
-            'offset' => $offset, 
-            'role'    => 'client',
-            'orderby' => 'registered',
-            'order'   => 'DESC'
-        );
-
-        if ( isset( $request['email'] ) ) {
-            $args['search'] = $request['email']; //check email field
-            $args['search_columns'] = array(
-                'user_login',
-                'user_nicename',
-                'user_email',
-                'user_url',
-            );
-        }
+             
+            // 'role'    => 'client',
+            // 'orderby' => 'registered',
+            // 'order'   => 'DESC'
+            'post_type' => 'ncpi_invoice',
+            'post_status' => 'publish',
+            'posts_per_page' => $per_page, 
+            'offset' => $offset,
+        ); 
 
         $args['meta_query'] = array(
             'relation' => 'OR'
         );
 
         if ( isset( $request['first_name'] ) ) { 
-            $args['meta_query'][] = array( 
+            /* $args['meta_query'][] = array( 
                 array(
                     'key'     => 'first_name',
                     'value'   => $request['first_name'],
                     'compare' => 'LIKE'
                 )
-            );
-        }
-
-        if ( isset( $request['last_name'] ) ) {   
-            $args['meta_query'][] = array( 
-                array(
-                    'key'     => 'last_name',
-                    'value'   => $request['last_name'],
-                    'compare' => 'LIKE'
-                )
-            );
-        }
-
-        if ( isset( $request['mobile'] ) ) {   
-            $args['meta_query'][] = array( 
-                array(
-                    'key'     => 'mobile',
-                    'value'   => $request['mobile'],
-                    'compare' => 'LIKE'
-                )
-            );
+            ); */
         } 
 
-        if ( isset( $request['company_name'] ) ) { 
-            $args['meta_query'][] = array( 
-                array(
-                    'key'     => 'company_name',
-                    'value'   => $request['company_name'],
-                    'compare' => 'LIKE'
-                )
-            );
-        }
+        $query = new WP_Query( $args );
+        $total_data = $query->get_total(); //use this for pagination 
+        $result = $data = [];
+        while ( $query->have_posts() ) {
+            $query->the_post();
+            $id = get_the_ID();
 
-        if ( isset( $request['web'] ) ) { 
-            $args['meta_query'][] = array( 
-                array(
-                    'key'     => 'web',
-                    'value'   => $request['web'],
-                    'compare' => 'LIKE'
-                )
-            );
-        }
+            $query_data = [];
+            $query_data['id'] = $id;
+            $query_data['client'] = [
+                'first_name' => 'First Name',
+                'last_name' => 'Last Name',
+                'email' => 'abac@gmail.com',
+            ];  
+            $query_data['total'] = '200';
+            $query_data['paid'] = '100';
+            $query_data['due'] = '100';
+            // $user_data['company_name'] = get_post_meta($user->ID, 'company_name', true);
+            $data[] = $query_data;
 
-        $all_users = new \WP_User_Query( $args );
-        $total_users = $all_users->get_total(); //use this for pagination
-        $filtered = count($all_users->get_results()); //use this for determining if you have any users, although it seems unnecessary
-        $result = [];
+        } 
 
-        //if ( $filtered > 0 ) {
-            $data = [];
-            foreach ( $all_users->get_results() as $user ) {
-                $user_data = [];
+            $query_data = [];
+            $query_data['id'] = 10;
+            $query_data['client'] = [
+                'first_name' => 'First Name',
+                'last_name' => 'Last Name',
+                'email' => 'abac@gmail.com',
+            ];  
+            $query_data['total'] = '200';
+            $query_data['paid'] = '100';
+            $query_data['due'] = '100';
+            $query_data['date'] = '10 Feb 2020';
+            // $user_data['company_name'] = get_post_meta($user->ID, 'company_name', true);
+            $data[] = $query_data;
 
-                $user_data['id'] = $user->ID;
-                $user_data['first_name'] = $user->first_name;
-                $user_data['last_name'] = $user->last_name;
-                $user_data['email'] = $user->user_email;
-                $user_data['company_name'] = get_user_meta($user->ID, 'company_name', true);
-                $user_data['web'] = get_user_meta($user->ID, 'web', true);
-                $user_data['mobile'] = get_user_meta($user->ID, 'mobile', true);
-                $user_data['zip'] = '1245';
-                $user_data['date'] = $user->user_registered;
-
-                $data[] = $user_data;
-            }
-
-            $result['result'] = $data;
-            $result['total'] = $total_users;
-        //}
+        $result['result'] = $data;
+        $result['total'] = $total_data; 
 
         return wp_send_json_success($result); 
     }

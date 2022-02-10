@@ -4,14 +4,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from '../preloader/table';
+import TablePreloader from '../../preloader/table';
 
 import Helper from './helper';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
 
-export default class Estimate extends Component {
+export default class Client extends Component {
     constructor(props) {
         super(props);         
 
@@ -186,13 +186,13 @@ export default class Estimate extends Component {
                 <ToastContainer /> 
 
                 <div className='mb-5 font-bold text-2xl'>
-                    Estimate
+                    Client
                 </div>
 
                 <button
                     className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.openForm('new')} >
-                    Create New Estimate
+                    Create New Client
                 </button>
                 
                 { checkedBoxes.length ? <button

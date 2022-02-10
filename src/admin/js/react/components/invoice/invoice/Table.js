@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 
 const TableHeader = props => {
     return (
@@ -14,19 +14,22 @@ const TableHeader = props => {
                     /> 
                 </th>
                 <th className="text-left py-3 px-4 font-bold text-sm">
+                    #
+                </th>
+                <th className="text-left py-3 px-4 font-bold text-sm">
                     Client Name
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
-                    Email
+                    Client Email
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
-                    Company Name
+                    Total
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
-                    Website
+                    Paid
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
-                    Mobile
+                    Due
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
                     Date
@@ -43,7 +46,7 @@ const TableBody = props => {
      
     let navigate = useNavigate();
     function handleClick( id ) { 
-        navigate(`/client/${id}`, { replace: true });
+        navigate(`/invoice/single/${id}`, { replace: true });
     }
 
     const rows = props.tableData.map((row, index) => {
@@ -60,16 +63,16 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />  
 				</td>
-                <td className="text-left py-3 px-4">{row.first_name + ' ' + row.last_name}</td>
-                <td className="text-left py-3 px-4">{row.email}</td>
-                <td className="text-left py-3 px-4">{row.company_name}</td>
-                <td className="text-left py-3 px-4">{row.web}</td>
-                <td className="text-left py-3 px-4">{row.mobile}</td>
+                <td className="text-left py-3 px-4">{row.id}</td>
+                <td className="text-left py-3 px-4">{row.client.first_name + ' ' + row.client.last_name}</td>
+                <td className="text-left py-3 px-4">{row.client.email}</td>
+                <td className="text-left py-3 px-4">{row.total}</td>
+                <td className="text-left py-3 px-4">{row.paid}</td>
+                <td className="text-left py-3 px-4">{row.due}</td>
                 <td className="text-left py-3 px-4">{row.date}</td> 
-                <td className="text-left py-3 px-4">
-                    <span onClick={() => handleClick(row.id)} className='bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>Overview</span>
-                    <span onClick={() => props.editEntry('edit', row)} className='bg-gray-800 hover:bg-gray-900 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>Edit</span>
-                    <span onClick={() => props.deleteEntry('single', row.id)} className='bg-red-800 hover:bg-red-900 cursor-pointer text-white text-sm py-1 px-2 rounded'>Delete</span>
+                <td className="text-left py-3 px-4">  
+                    <span onClick={() => handleClick(row.id)} className='bg-gray-800 hover:bg-gray-900 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2 inline-block align-middle'><i className="dashicons dashicons-edit-page"></i></span>
+                    <span onClick={() => props.deleteEntry('single', row.id)} className='bg-red-800 hover:bg-red-900 cursor-pointer text-white text-sm py-1 px-2 rounded inline-block align-middle'><i className="dashicons dashicons-trash"></i></span>
                 </td>
             </tr>
         );

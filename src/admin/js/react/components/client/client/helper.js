@@ -9,8 +9,8 @@ const token = {
 	}
 };
 
-const getAll = () => {
-	return axios.get(apiUrl);
+const getAll = ( args = '') => {
+	return axios.get(`${apiUrl}/?${args}`);
 };
 
 const get = id => {
@@ -27,17 +27,12 @@ const update = (id, data) => {
 
 const remove = id => {
 	return axios.delete(`${apiUrl}/${id}`, token);
-};
-
-const findByArg = title => {
-	return axios.get(`${apiUrl}?title=${title}`);
-};
+}; 
 
 export default {
 	getAll,
 	get,
 	create,
 	update,
-	remove,
-	findByArg
+	remove 
 };

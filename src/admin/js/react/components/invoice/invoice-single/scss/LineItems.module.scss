@@ -1,0 +1,85 @@
+// @import 'Invoice';
+
+.lineItems {
+  margin-bottom: 20px * 4;
+  .addItem {
+    padding-top: 20px;
+    button {
+      // @extend %flex-center;
+      background: none;
+      padding: 10px;
+      border: 1px solid #999;
+      color: #999;
+      border-radius: 3px;
+      float: right;
+      .addIcon {
+        color: #999;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.gridTable {
+  margin: 0 auto;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+  overflow: hidden;
+  display: grid;
+  & > .row {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 5fr) 2fr repeat(2, 3fr) 2fr; //repeat(7, 1fr);
+    border-bottom: 1px solid #dfdfdf;
+    &:last-of-type {
+      border-bottom: none;
+    }
+    &.header > div {
+      text-align: center;
+      font-weight: bold;
+      background: white;
+    }
+    &.editable > div {
+      padding: 10px;
+    }
+    & > div {
+      // @extend %flex-center;
+      padding: 10px;
+      border-left: 1px solid #dfdfdf;
+      width: 100%;
+      line-height: 20px;
+      min-width: 20px;
+      &:first-of-type {
+        padding: 10px 0;
+        border-left: none;
+      }
+      &:last-of-type {
+        padding: 10px 0;
+      }
+      &:first-of-type, &:nth-child(4), &:last-of-type {
+        text-align: center;
+      }
+      & > .deleteItem {
+        // @extend %flex-center;
+        color: red;
+        background: none;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+    }
+  }
+  .currency > input[type=number] {
+    max-width: 20px * 4;
+  }
+
+}
+
+.listDraggingOver {
+  background: #ddd;
+  background-image: repeating-linear-gradient(30deg, rgba(#FFF, .2), rgba(#FFF, .2) 30px, transparent 0, transparent 60px);
+}
+
+.listItemDragging {
+  background: #f9fff9;
+  border: 1px solid #dfdfdf;
+}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = `${ncpi_local.apiUrl}ncpi/v1/clients`;
+const apiUrl = `${ncpi_local.apiUrl}ncpi/v1/invoices`;
 
 const token = {
 	headers: {
@@ -27,17 +27,12 @@ const update = (id, data) => {
 
 const remove = id => {
 	return axios.delete(`${apiUrl}/${id}`, token);
-};
-
-const findByArg = title => {
-	return axios.get(`${apiUrl}?title=${title}`);
-};
+}; 
 
 export default {
 	getAll,
 	get,
 	create,
 	update,
-	remove,
-	findByArg
+	remove 
 };

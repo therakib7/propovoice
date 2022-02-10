@@ -26,10 +26,11 @@ class AssetContoller {
 		add_filter( 'show_admin_bar' , [$this, 'hide_admin_bar'] );
 	}    
 
-	function hide_admin_bar(){
+	function hide_admin_bar( $show ){
 		if ( is_page_template('dashboard-template.php') ) {
 			return false;
-		}
+		}  
+		return $show;
 	} 
 
 	function admin_public_script() {  

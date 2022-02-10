@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const TableHeader = () => {
     return (
@@ -9,19 +8,19 @@ const TableHeader = () => {
                     <input type="checkbox" />
                 </th>
                 <th className="text-left py-3 px-4 font-bold text-sm">
-                    #
-                </th>
-                <th className="text-left py-3 px-4 font-semibold text-sm">
                     Client Name
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
-                    Client Email
+                    Email
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
-                    Total
+                    Company Name
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
-                    Paid
+                    Website
+                </th>
+                <th className="text-left py-3 px-4 font-semibold text-sm">
+                    Mobile
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
                     Date
@@ -34,13 +33,7 @@ const TableHeader = () => {
     );
 }
 
-const TableBody = props => { 
-     
-    let navigate = useNavigate();
-    function handleClick( id ) { 
-        navigate(`/client/${id}`, { replace: true });
-    }
-
+const TableBody = props => {
     const rows = props.tableData.map((row, index) => {
         return (
             <tr key={index}>
@@ -50,9 +43,10 @@ const TableBody = props => {
                 <td className="text-left py-3 px-4">{row.company_name}</td>
                 <td className="text-left py-3 px-4">{row.web}</td>
                 <td className="text-left py-3 px-4">{row.mobile}</td>
-                <td className="text-left py-3 px-4">{row.date}</td> 
+                <td className="text-left py-3 px-4">{row.date}</td>
+                {/* <td><button onClick={() => props.deleteEntry(index)}>Delete</button></td> */}
                 <td className="text-left py-3 px-4">
-                    <span onClick={() => handleClick(row.id)} className='bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>Overview</span>
+                    <span className='bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>View</span>
                     <span onClick={() => props.editEntry('edit', row)} className='bg-gray-800 hover:bg-gray-900 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>Edit</span>
                     <span onClick={() => props.deleteEntry('single', row.id)} className='bg-red-800 hover:bg-red-900 cursor-pointer text-white text-sm py-1 px-2 rounded'>Delete</span>
                 </td>

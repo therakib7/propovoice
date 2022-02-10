@@ -33,7 +33,7 @@ body {
 }
 
 .active-nav-link {
-  color: #1947ee;
+  color: #1947ee !important;
 }
 
 .ncpi-h-screen {

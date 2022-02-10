@@ -8,16 +8,16 @@ import {
 } from "react-router-dom";
 
 import Dashboard from './Dashboard';
-import Client from './client';
-import ClientSummary from './client-summary';
+import Client from './client/client';
+import ClientSummary from './client/client-summary';
 // const Client = lazy(() => import('./client')); //TODO: need to seen path wp-content/folders root
 import Proposal from './proposal';
 import Editor from './editor';
 // const Editor = lazy(() => import('./editor')); 
 import Contract from './Contract';
 import Estimate from './estimate';
-// import Invoice from './invoice';
-import Invoice from './invoice-test';
+import Invoice from './invoice/invoice';
+import InvoiceSingle from './invoice/invoice-single';
 import Payment from './Payment';
 import TemplateLibrary from './TemplateLibrary';
 import Setting from './Setting';
@@ -116,6 +116,8 @@ const Home = () => {
                             <Route path="/contract" element={<Contract />} />
                             <Route path="/estimate" element={<Estimate />} />
                             <Route path="/invoice" element={<Invoice />} />
+                            <Route path="/invoice/single" element={<InvoiceSingle />} />
+                            <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
                             <Route path="/payment" element={<Payment />} />
                             <Route path="/template-library" element={<TemplateLibrary />} />
                             <Route path="/client" exact element={<Client />} />

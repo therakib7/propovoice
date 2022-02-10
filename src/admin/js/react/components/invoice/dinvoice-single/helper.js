@@ -9,12 +9,12 @@ const token = {
 	}
 };
 
-const getAll = ( args = '') => {
-	return axios.get(`${apiUrl}/?${args}`);
+const getAll = () => {
+	return axios.get(apiUrl);
 };
 
 const get = id => {
-	return axios.get(`${apiUrl}/${id}`);
+	return axios.get(`${apiUrl}/${id}`, token);
 };
 
 const create = data => {
