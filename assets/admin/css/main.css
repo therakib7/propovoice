@@ -62,3 +62,7 @@ body {
 .cdx-block {
   max-width: 100% !important;
 }
+
+.list-letter {
+  list-style-type: lower-latin;
+}

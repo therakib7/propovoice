@@ -216,69 +216,22 @@ class Client
         /* if (! wp_verify_nonce($req['nonce'], 'exdda-ajax-nonce')) {
 			die('Busted!');
 		} */
+        
+        $request = $req->get_params();
+        
+        $title = sanitize_text_field( $req['title'] );
+        $client_name  = sanitize_text_field( $req['client_name'] );
+ 
+        $data = array(
+            'post_type' => 'ncpi_proposal',
+            'post_title'    => $title,
+            'post_content'  => '',
+            'post_status'   => 'publish',
+            'post_author'   => get_current_user_id() 
+        ); 
+        wp_insert_post( $data );
 
-        $reg_errors             = new \WP_Error;
-        $first_name             = sanitize_text_field($req['first_name']);
-        $last_name              = sanitize_text_field($req['last_name']);
-        $useremail              = strtolower(sanitize_email($req['email']));
-        $company_name           = sanitize_text_field($req['company_name']);
-        $web                    = esc_url_raw($req['web']);
-        $mobile           = sanitize_text_field($req['mobile']);
-        // $password               = esc_attr($req['password']);
-        // $password_confirmation  = esc_attr($req['password_confirmation']);
-
-        if (
-            empty($first_name) ||
-            empty($useremail)
-            // empty($password) ||
-            // empty($password_confirmation)
-        ) {
-            $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
-        }
-
-        if (!is_email($useremail)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        }
-
-        if (email_exists($useremail)) {
-            $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
-        }
-
-        // if (5 > strlen($password)) {
-        // 	$reg_errors->add('password', esc_html__('Password length must be greater than 5!', 'propovoice'));
-        // }
-
-        // if ($password != $password_confirmation) {
-        // 	$reg_errors->add('password', esc_html__('Password confirmation din\'t match!', 'propovoice'));
-        // }
-
-        if ($reg_errors->get_error_messages()) {
-            wp_send_json_error($reg_errors->get_error_messages());
-        } else {
-            $userdata = [
-                'user_login' => $useremail,
-                'user_email' => $useremail,
-                // 'user_pass'  => $password,
-                'user_pass'  => wp_generate_password(8, true, true),
-                // 'display_name' => $name,
-                'first_name' => $first_name,
-                'last_name'  => $last_name,
-            ];
-            $user_id = wp_insert_user($userdata);
-
-            if (!is_wp_error($user_id)) {
-                update_user_meta($user_id, 'company_name', $company_name);
-                update_user_meta($user_id, 'web', $web);
-                update_user_meta($user_id, 'mobile', $mobile);
-
-                $user = new \WP_User($user_id);
-                $user->set_role('client');
-
-                wp_send_json_success($user_id);
-            } else {
-                wp_send_json_error();
-            }
-        }
+        return wp_send_json_success();
     }
 
     public function update($req)

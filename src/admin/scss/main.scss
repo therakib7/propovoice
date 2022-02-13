@@ -24,8 +24,14 @@ body {
 }
 
 //editor js
+//TODO: do it only for editor
 .ncpi-page-content {
     max-height: 600px; //TODO: add a4 size later
     overflow: hidden;
 }
 .ce-block__content, .ce-toolbar__content { max-width:calc(100% - 80px) !important; } .cdx-block { max-width: 100% !important; }
+
+//TODO: do it only for invoice
+.list-letter  {
+    list-style-type: lower-latin;
+  }

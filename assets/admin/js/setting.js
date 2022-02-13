@@ -4919,6 +4919,8 @@ var Client = /*#__PURE__*/function (_Component) {
       if (_this.state.formModalType == 'new') {
         _helper__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
+            console.log(resp.data);
+
             _this.setState({
               formModal: false
             });
@@ -6923,23 +6925,28 @@ var Group = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
 
-    _defineProperty(_assertThisInitialized(_this), "handleListType", function (index) {
+    _defineProperty(_assertThisInitialized(_this), "handleGroupInfo", function (index) {
       return function (e) {
+        var _e$target = e.target,
+            name = _e$target.name,
+            value = _e$target.value;
         var items = _this.state.groups[index];
-        items.list_type = e.target.value;
+        items[name] = value;
         var groups = _this.state.groups;
 
         _this.setState({
           groups: groups
         });
+
+        _this.handlePros();
       };
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (group_index, list_index) {
       return function (e) {
-        var _e$target = e.target,
-            name = _e$target.name,
-            value = _e$target.value;
+        var _e$target2 = e.target,
+            name = _e$target2.name,
+            value = _e$target2.value;
 
         var items = _this.state.groups[group_index].items.map(function (item, i) {
           if (list_index !== i) return item;
@@ -6952,13 +6959,15 @@ var Group = /*#__PURE__*/function (_Component) {
         _this.setState({
           groups: groups
         });
+
+        _this.handlePros();
       };
     });
 
     _defineProperty(_assertThisInitialized(_this), "addGroup", function () {
       var groups = _this.state.groups;
       groups.push({
-        title: 'Group Title',
+        label: 'Group Title',
         list_type: 'letter',
         items: [{
           text: ''
@@ -6982,6 +6991,10 @@ var Group = /*#__PURE__*/function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "handlePros", function () {
+      _this.props.changeHandler(_this.state.groups);
+    });
+
     _defineProperty(_assertThisInitialized(_this), "render", function () {
       var groups = _this.state.groups;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -6992,7 +7005,7 @@ var Group = /*#__PURE__*/function (_Component) {
           if (group_single.list_type == 'letter') {
             list_class = 'list-decimal';
           } else if (group_single.list_type == 'text') {
-            list_class = 'list-none';
+            list_class = 'list-letter';
           } else if (group_single.list_type == 'dot') {
             list_class = 'list-disc';
           }
@@ -7003,9 +7016,19 @@ var Group = /*#__PURE__*/function (_Component) {
               className: "flex justify-between my-3",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "",
-                children: [group_single.title, " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-                    className: "dashicons dashicons-edit-page pt-1"
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                  type: "text",
+                  id: group_index + '-group-label',
+                  onChange: _this.handleGroupInfo(group_index),
+                  name: "label",
+                  value: group_single.label,
+                  className: "w-auto border-none focus:border"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  htmlFor: group_index + '-group-label',
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+                      className: "dashicons dashicons-edit-page pt-1"
+                    })
                   })
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -7015,7 +7038,7 @@ var Group = /*#__PURE__*/function (_Component) {
                   children: "List Type:"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                   id: group_index + '-list-letter',
-                  onChange: _this.handleListType(group_index),
+                  onChange: _this.handleGroupInfo(group_index),
                   name: "list_type",
                   value: "letter",
                   className: "w-auto min-w-0 mr-1 ml-5",
@@ -7025,7 +7048,7 @@ var Group = /*#__PURE__*/function (_Component) {
                   children: "1. Letter"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                   id: group_index + '-list-text',
-                  onChange: _this.handleListType(group_index),
+                  onChange: _this.handleGroupInfo(group_index),
                   name: "list_type",
                   value: "text",
                   className: "w-auto min-w-0 mr-1 ml-5",
@@ -7035,14 +7058,14 @@ var Group = /*#__PURE__*/function (_Component) {
                   children: "a. Text"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                   id: group_index + '-list-dot',
-                  onChange: _this.handleListType(group_index),
+                  onChange: _this.handleGroupInfo(group_index),
                   name: "list_type",
                   value: "dot",
                   className: "w-auto min-w-0 mr-1 ml-5",
                   type: "radio"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                   htmlFor: group_index + '-list-dot',
-                  children: "\u2B24. Dot"
+                  children: "\u25CF. Dot"
                 })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -7085,7 +7108,7 @@ var Group = /*#__PURE__*/function (_Component) {
 
     _this.state = {
       groups: [{
-        title: 'Add Terms',
+        label: 'Add Terms',
         list_type: 'letter',
         items: [{
           text: ''
@@ -7105,10 +7128,10 @@ Group.propTypes = {
 
 /***/ }),
 
-/***/ "./src/admin/js/react/components/invoice/invoice-single/LineItem.js":
-/*!**************************************************************************!*\
-  !*** ./src/admin/js/react/components/invoice/invoice-single/LineItem.js ***!
-  \**************************************************************************/
+/***/ "./src/admin/js/react/components/invoice/invoice-single/Item.js":
+/*!**********************************************************************!*\
+  !*** ./src/admin/js/react/components/invoice/invoice-single/Item.js ***!
+  \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7119,7 +7142,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _scss_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/LineItem.module.scss */ "./src/admin/js/react/components/invoice/invoice-single/scss/LineItem.module.scss");
+/* harmony import */ var _scss_Item_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/Item.module.scss */ "./src/admin/js/react/components/invoice/invoice-single/scss/Item.module.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -7151,15 +7174,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var LineItem = /*#__PURE__*/function (_Component) {
-  _inherits(LineItem, _Component);
+var Item = /*#__PURE__*/function (_Component) {
+  _inherits(Item, _Component);
 
-  var _super = _createSuper(LineItem);
+  var _super = _createSuper(Item);
 
-  function LineItem() {
+  function Item() {
     var _this;
 
-    _classCallCheck(this, LineItem);
+    _classCallCheck(this, Item);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -7171,11 +7194,11 @@ var LineItem = /*#__PURE__*/function (_Component) {
       var _this$props = _this.props,
           index = _this$props.index,
           name = _this$props.name,
-          description = _this$props.description,
+          desc = _this$props.desc,
           quantity = _this$props.quantity,
           price = _this$props.price;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: _scss_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].lineItem,
+        className: _scss_Item_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].lineItem,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           children: index + 1
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -7184,10 +7207,11 @@ var LineItem = /*#__PURE__*/function (_Component) {
             type: "text",
             value: name,
             onChange: _this.props.changeHandler(index)
-          }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            name: "description",
+          }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+            name: "desc",
+            className: "w-full border mt-3",
             type: "text",
-            value: description,
+            value: desc,
             onChange: _this.props.changeHandler(index)
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -7200,7 +7224,7 @@ var LineItem = /*#__PURE__*/function (_Component) {
             onFocus: _this.props.focusHandler
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: _scss_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].currency,
+          className: _scss_Item_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].currency,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             name: "price",
             type: "number",
@@ -7212,12 +7236,12 @@ var LineItem = /*#__PURE__*/function (_Component) {
             onFocus: _this.props.focusHandler
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: _scss_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].currency,
+          className: _scss_Item_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].currency,
           children: _this.props.currencyFormatter(quantity * price)
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
             type: "button",
-            className: _scss_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].deleteItem,
+            className: _scss_Item_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].deleteItem,
             onClick: _this.props.deleteHandler(index),
             children: "x"
           })
@@ -7228,24 +7252,24 @@ var LineItem = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  return _createClass(LineItem);
+  return _createClass(Item);
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-LineItem.propTypes = {
+Item.propTypes = {
   index: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().number.isRequired),
   name: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  description: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+  desc: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
   quantity: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().number)]),
   price: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().number)])
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LineItem);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Item);
 
 /***/ }),
 
-/***/ "./src/admin/js/react/components/invoice/invoice-single/LineItems.js":
-/*!***************************************************************************!*\
-  !*** ./src/admin/js/react/components/invoice/invoice-single/LineItems.js ***!
-  \***************************************************************************/
+/***/ "./src/admin/js/react/components/invoice/invoice-single/Items.js":
+/*!***********************************************************************!*\
+  !*** ./src/admin/js/react/components/invoice/invoice-single/Items.js ***!
+  \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7257,8 +7281,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-beautiful-dnd */ "./node_modules/react-beautiful-dnd/dist/react-beautiful-dnd.esm.js");
-/* harmony import */ var _LineItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LineItem */ "./src/admin/js/react/components/invoice/invoice-single/LineItem.js");
-/* harmony import */ var _scss_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/LineItems.module.scss */ "./src/admin/js/react/components/invoice/invoice-single/scss/LineItems.module.scss");
+/* harmony import */ var _Item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Item */ "./src/admin/js/react/components/invoice/invoice-single/Item.js");
+/* harmony import */ var _scss_Items_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/Items.module.scss */ "./src/admin/js/react/components/invoice/invoice-single/scss/Items.module.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -7314,15 +7338,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var LineItems = /*#__PURE__*/function (_Component) {
-  _inherits(LineItems, _Component);
+var Items = /*#__PURE__*/function (_Component) {
+  _inherits(Items, _Component);
 
-  var _super = _createSuper(LineItems);
+  var _super = _createSuper(Items);
 
-  function LineItems() {
+  function Items() {
     var _this;
 
-    _classCallCheck(this, LineItems);
+    _classCallCheck(this, Items);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -7345,9 +7369,10 @@ var LineItems = /*#__PURE__*/function (_Component) {
       }; // perform reorder
 
 
-      var lineItems = reorder(_this.props.items, result.source.index, result.destination.index); // call parent handler with new state representation
+      var _Items = reorder(_this.props.items, result.source.index, result.destination.index); // call parent handler with new state representation
 
-      _this.props.reorderHandler(lineItems);
+
+      _this.props.reorderHandler(_Items);
     });
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
@@ -7358,11 +7383,11 @@ var LineItems = /*#__PURE__*/function (_Component) {
           functions = _objectWithoutProperties(_this$props, _excluded);
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: _scss_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].lineItems,
+        className: _scss_Items_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].lineItems,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "".concat(_scss_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].gridTable),
+          className: "".concat(_scss_Items_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].gridTable),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "".concat(_scss_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].row, " ").concat(_scss_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].header),
+            className: "".concat(_scss_Items_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].row, " ").concat(_scss_Items_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].header),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               children: "#"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -7381,7 +7406,7 @@ var LineItems = /*#__PURE__*/function (_Component) {
               children: function children(provided, snapshot) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                   ref: provided.innerRef,
-                  className: snapshot.isDraggingOver ? _scss_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].listDraggingOver : '',
+                  className: snapshot.isDraggingOver ? _scss_Items_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].listDraggingOver : '',
                   children: [_this.props.items.map(function (item, i) {
                     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_4__.Draggable, {
                       draggableId: item.id,
@@ -7391,14 +7416,14 @@ var LineItems = /*#__PURE__*/function (_Component) {
                           ref: provided.innerRef
                         }, provided.draggableProps), provided.dragHandleProps), {}, {
                           style: provided.draggableProps.style,
-                          className: snapshot.isDragging ? _scss_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].listItemDragging : '',
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread({
+                          className: snapshot.isDragging ? _scss_Items_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].listItemDragging : '',
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Item__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread({
                             style: {
                               color: 'red'
                             },
                             index: i,
                             name: item.name,
-                            description: item.description,
+                            desc: item.desc,
                             quantity: item.quantity,
                             price: item.price
                           }, functions), i + item.id)
@@ -7426,10 +7451,10 @@ var LineItems = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  return _createClass(LineItems);
+  return _createClass(Items);
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-LineItems.propTypes = {
+Items.propTypes = {
   items: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().array.isRequired),
   currencyFormatter: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().func.isRequired),
   addHandler: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().func.isRequired),
@@ -7438,7 +7463,7 @@ LineItems.propTypes = {
   deleteHandler: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().func.isRequired),
   reorderHandler: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().func.isRequired)
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LineItems);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Items);
 
 /***/ }),
 
@@ -7458,6 +7483,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
@@ -7503,29 +7532,57 @@ var Note = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      label: '',
-      title: ''
+      note: {
+        label: 'Note',
+        text: ''
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function (e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+
+      _this.setState({
+        note: _objectSpread(_objectSpread({}, _this.state.note), {}, _defineProperty({}, name, value))
+      });
+
+      _this.handlePros();
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handlePros", function () {
+      _this.props.changeHandler(_this.state.note);
     });
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
-      // const { index, name, description, title, price } = this.props
-      // this.props.changeHandler(index)
+      var _this$state$note = _this.state.note,
+          label = _this$state$note.label,
+          text = _this$state$note.text;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          children: ["Add Note ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            onClick: function onClick() {
-              return props.editEntry('edit', row);
-            },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
-              className: "dashicons dashicons-edit-page pt-1"
+          className: "",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+            type: "text",
+            id: 'note-label',
+            onChange: _this.handleChange,
+            name: "label",
+            value: label,
+            className: "w-auto border-none focus:border"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+            htmlFor: 'note-label',
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+                className: "dashicons dashicons-edit-page pt-1"
+              })
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-            name: "title",
-            type: "text" // value={this.state.title} 
-            ,
+            name: "text",
+            type: "text",
+            value: text,
+            onChange: _this.handleChange,
             className: "appearance-none block bg-slate-100 w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           })
         })]
@@ -7545,6 +7602,59 @@ Note.propTypes = {
 
 /***/ }),
 
+/***/ "./src/admin/js/react/components/invoice/invoice-single/helper.js":
+/*!************************************************************************!*\
+  !*** ./src/admin/js/react/components/invoice/invoice-single/helper.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/invoices");
+var token = {
+  headers: {
+    'content-type': 'application/json',
+    'X-WP-NONCE': ncpi_local.nonce
+  }
+};
+
+var getAll = function getAll() {
+  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/?").concat(args));
+};
+
+var get = function get(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id));
+};
+
+var create = function create(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
+};
+
+var update = function update(id, data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data, token);
+};
+
+var remove = function remove(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id), token);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAll: getAll,
+  get: get,
+  create: create,
+  update: update,
+  remove: remove
+});
+
+/***/ }),
+
 /***/ "./src/admin/js/react/components/invoice/invoice-single/index.js":
 /*!***********************************************************************!*\
   !*** ./src/admin/js/react/components/invoice/invoice-single/index.js ***!
@@ -7554,26 +7664,29 @@ Note.propTypes = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Invoice)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/Invoice.module.scss */ "./src/admin/js/react/components/invoice/invoice-single/scss/Invoice.module.scss");
-/* harmony import */ var _LineItems__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LineItems */ "./src/admin/js/react/components/invoice/invoice-single/LineItems.js");
-/* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Note */ "./src/admin/js/react/components/invoice/invoice-single/Note.js");
-/* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Group */ "./src/admin/js/react/components/invoice/invoice-single/Group.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/invoice/invoice-single/helper.js");
+/* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Items */ "./src/admin/js/react/components/invoice/invoice-single/Items.js");
+/* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Note */ "./src/admin/js/react/components/invoice/invoice-single/Note.js");
+/* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Group */ "./src/admin/js/react/components/invoice/invoice-single/Group.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -7600,90 +7713,141 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
+
 var Invoice = /*#__PURE__*/function (_Component) {
   _inherits(Invoice, _Component);
 
   var _super = _createSuper(Invoice);
 
-  function Invoice() {
+  function Invoice(props) {
     var _this;
 
     _classCallCheck(this, Invoice);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
+    _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "locale", 'en-US');
 
     _defineProperty(_assertThisInitialized(_this), "currency", 'USD');
 
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      taxRate: 0.00,
-      lineItems: [{
-        id: 'initial',
-        // react-beautiful-dnd unique key
+    _defineProperty(_assertThisInitialized(_this), "handleNoteChange", function (data) {
+      _this.setState({
+        note: data
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleGroupChange", function (data) {
+      _this.setState({
+        group: data
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleInvoiceChange", function (e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice[name] = value;
+
+      _this.setState({
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleLineItemChange", function (elementIndex) {
+      return function (e) {
+        var invoice = _objectSpread({}, _this.state.invoice);
+
+        var items = _this.state.invoice.items.map(function (item, i) {
+          if (elementIndex !== i) return item;
+          return _objectSpread(_objectSpread({}, item), {}, _defineProperty({}, e.target.name, e.target.value));
+        });
+
+        invoice.items = items;
+
+        _this.setState({
+          invoice: invoice
+        });
+      };
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleAddLineItem", function (e) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.items = invoice.items.concat([{
+        id: Date.now().toString(),
         name: '',
         description: '',
         quantity: 0,
         price: 0.00
-      }]
-    });
+      }]);
 
-    _defineProperty(_assertThisInitialized(_this), "handleInvoiceChange", function (event) {
-      _this.setState(_defineProperty({}, event.target.name, event.target.value));
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleLineItemChange", function (elementIndex) {
-      return function (event) {
-        var lineItems = _this.state.lineItems.map(function (item, i) {
-          if (elementIndex !== i) return item;
-          return _objectSpread(_objectSpread({}, item), {}, _defineProperty({}, event.target.name, event.target.value));
-        });
-
-        _this.setState({
-          lineItems: lineItems
-        });
-      };
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleAddLineItem", function (event) {
       _this.setState({
-        // use optimistic uuid for drag drop; in a production app this could be a database id
-        lineItems: _this.state.lineItems.concat([{
-          id: Date.now().toString(),
-          name: '',
-          description: '',
-          quantity: 0,
-          price: 0.00
-        }])
+        invoice: invoice
       });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleRemoveLineItem", function (elementIndex) {
-      return function (event) {
+      return function (e) {
+        var invoice = _objectSpread({}, _this.state.invoice);
+
+        invoice.items = invoice.items.filter(function (item, i) {
+          return elementIndex !== i;
+        });
+
         _this.setState({
-          lineItems: _this.state.lineItems.filter(function (item, i) {
-            return elementIndex !== i;
-          })
+          invoice: invoice
         });
       };
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleReorderLineItems", function (newLineItems) {
+    _defineProperty(_assertThisInitialized(_this), "handleReorderItems", function (newItems) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.items = newItems;
+
       _this.setState({
-        lineItems: newLineItems
+        invoice: invoice
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleFocusSelect", function (event) {
-      event.target.select();
+    _defineProperty(_assertThisInitialized(_this), "handleFocusSelect", function (e) {
+      e.target.select();
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handlePayButtonClick", function () {
-      console.log(_this.state); // alert('Not implemented')
+    _defineProperty(_assertThisInitialized(_this), "handleSave", function () {
+      // console.log(this.state). 
+      if (!_this.state.edit) {
+        console.log(_this.state.invoice);
+        _helper__WEBPACK_IMPORTED_MODULE_4__["default"].create(_this.state.invoice).then(function (resp) {
+          if (resp.data.success) {
+            console.log(resp.data.data);
+            react_toastify__WEBPACK_IMPORTED_MODULE_2__.toast.success('Invoice success'); // this.getLists();
+          } else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_2__.toast.error(value);
+            });
+          }
+        });
+      } else {
+        /* Helper.update(client.id, client)
+            .then(resp => {
+                if (resp.data.success) {
+                    this.setState({ formModal: false })
+                    // this.setState({ formModalType: 'new' });
+                    toast.success(this.state.invoice.msg.update);
+                    this.getLists();
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            }) */
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "formatCurrency", function (amount) {
@@ -7696,127 +7860,131 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "calcTaxAmount", function (c) {
-      return c * (_this.state.taxRate / 100);
+      return c * (_this.state.invoice.tax / 100);
     });
 
-    _defineProperty(_assertThisInitialized(_this), "calcLineItemsTotal", function () {
-      return _this.state.lineItems.reduce(function (prev, cur) {
+    _defineProperty(_assertThisInitialized(_this), "calcItemsTotal", function () {
+      return _this.state.invoice.items.reduce(function (prev, cur) {
         return prev + cur.quantity * cur.price;
       }, 0);
     });
 
     _defineProperty(_assertThisInitialized(_this), "calcTaxTotal", function () {
-      return _this.calcLineItemsTotal() * (_this.state.taxRate / 100);
+      return _this.calcItemsTotal() * (_this.state.invoice.tax / 100);
     });
 
     _defineProperty(_assertThisInitialized(_this), "calcGrandTotal", function () {
-      return _this.calcLineItemsTotal() + _this.calcTaxTotal();
+      return _this.calcItemsTotal() + _this.calcTaxTotal();
     });
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "ncpi-components",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_2__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           className: "mb-3 text-sm",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.NavLink, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink, {
             to: "/invoice",
             className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
               className: "dashicons dashicons-arrow-left-alt2"
             }), " Back to Invoice"]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "grid grid-cols-12 gap-4",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "col-span-9",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
               className: "flex justify-between my-3 mb-10",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                 className: "mb-5 font-bold text-2xl",
                 children: "Create New Invoice"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                 className: "",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
                   className: "border-gray-800 text-gray-800 border hover:bg-gray-900 border hover:text-white font-medium text-base py-2 px-4 rounded-full mr-3",
                   onClick: function onClick() {
                     return _this.openForm('new');
                   },
                   children: "Preview"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
                   className: "bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded-full",
-                  onClick: _this.handlePayButtonClick,
+                  onClick: _this.handleSave,
                   children: "Save"
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
               className: "max-w-3xl m-auto",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_LineItems__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                items: _this.state.lineItems,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                items: _this.state.invoice.items,
                 currencyFormatter: _this.formatCurrency,
                 addHandler: _this.handleAddLineItem,
                 changeHandler: _this.handleLineItemChange,
                 focusHandler: _this.handleFocusSelect,
                 deleteHandler: _this.handleRemoveLineItem,
-                reorderHandler: _this.handleReorderLineItems
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                reorderHandler: _this.handleReorderItems
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                 className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].totalContainer,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                   className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].valueTable,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                     className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].row,
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                       className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].label,
                       children: "Tax Rate (%)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                       className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].value,
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-                        name: "taxRate",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+                        name: "tax",
                         type: "number",
                         step: "0.01",
-                        value: _this.state.taxRate,
+                        value: _this.state.invoice.tax,
                         onChange: _this.handleInvoiceChange,
                         onFocus: _this.handleFocusSelect
                       })
                     })]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                   className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].valueTable,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                     className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].row,
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                       className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].label,
                       children: "Subtotal"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                       className: "".concat(_scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].value, " ").concat(_scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].currency),
-                      children: _this.formatCurrency(_this.calcLineItemsTotal())
+                      children: _this.formatCurrency(_this.calcItemsTotal())
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                     className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].row,
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                       className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].label,
-                      children: ["Tax (", _this.state.taxRate, "%)"]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                      children: ["Tax (", _this.state.invoice.tax, "%)"]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                       className: "".concat(_scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].value, " ").concat(_scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].currency),
                       children: _this.formatCurrency(_this.calcTaxTotal())
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                     className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].row,
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                       className: _scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].label,
                       children: "Total Due"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                       className: "".concat(_scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].value, " ").concat(_scss_Invoice_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].currency),
                       children: _this.formatCurrency(_this.calcGrandTotal())
                     })]
                   })]
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                 className: "mb-16"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                changeHandler: _this.handleNoteChange
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                 className: "mb-16"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                changeHandler: _this.handleGroupChange
+              })]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             className: "col-span-3",
             children: "Sidebar content"
           })]
@@ -7824,13 +7992,35 @@ var Invoice = /*#__PURE__*/function (_Component) {
       });
     });
 
+    _this.state = {
+      edit: false,
+      edit_id: null,
+      invoice: {
+        tax: 0.00,
+        items: [{
+          id: 'initial',
+          //react-beautiful-dnd unique key
+          name: '',
+          description: '',
+          quantity: 0,
+          price: 0.00
+        }],
+        note: null,
+        group: null
+      }
+    };
     return _this;
   }
 
-  return _createClass(Invoice);
+  _createClass(Invoice, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }]);
+
+  return Invoice;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Invoice);
 
 /***/ }),
 
@@ -10506,10 +10696,10 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/LineItem.module.scss":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/LineItem.module.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/Item.module.scss":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/Item.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10523,21 +10713,21 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".sGAPVJ\\+NMdCvzCuUL2lvHg\\=\\= {\n  display: grid;\n  grid-template-columns: 1fr repeat(2, 5fr) 2fr repeat(2, 3fr) 2fr;\n}\n.sGAPVJ\\+NMdCvzCuUL2lvHg\\=\\= > div {\n  padding: 10px;\n  border-left: 1px solid 1px;\n  width: 100%;\n  line-height: 20px;\n  min-width: 20px;\n}\n.sGAPVJ\\+NMdCvzCuUL2lvHg\\=\\= > div:first-of-type {\n  padding: 10px 0;\n  border-left: none;\n}\n.sGAPVJ\\+NMdCvzCuUL2lvHg\\=\\= > div:last-of-type {\n  padding: 10px 0;\n}\n.sGAPVJ\\+NMdCvzCuUL2lvHg\\=\\= > div:first-of-type, .sGAPVJ\\+NMdCvzCuUL2lvHg\\=\\= > div:nth-child(4), .sGAPVJ\\+NMdCvzCuUL2lvHg\\=\\= > div:last-of-type {\n  text-align: center;\n}\n\n.lPYmWqh27B1B1iN8Li8wTA\\=\\= {\n  color: red;\n  background: none;\n  border: 0;\n  padding: 0;\n  cursor: pointer;\n}\n\ninput, input[type=number] {\n  padding: 20px/4;\n  border: 1px solid #dfdfdf;\n  border-radius: #ccc;\n  min-width: 40px;\n  width: 100%;\n}\n\ninput[type=number] {\n  text-align: center;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".cw1Z1fNwzZWXfREG12aHMg\\=\\= {\n  display: grid;\n  grid-template-columns: 1fr repeat(2, 5fr) 2fr repeat(2, 3fr) 2fr;\n}\n.cw1Z1fNwzZWXfREG12aHMg\\=\\= > div {\n  padding: 10px;\n  border-left: 1px solid 1px;\n  width: 100%;\n  line-height: 20px;\n  min-width: 20px;\n}\n.cw1Z1fNwzZWXfREG12aHMg\\=\\= > div:first-of-type {\n  padding: 10px 0;\n  border-left: none;\n}\n.cw1Z1fNwzZWXfREG12aHMg\\=\\= > div:last-of-type {\n  padding: 10px 0;\n}\n.cw1Z1fNwzZWXfREG12aHMg\\=\\= > div:first-of-type, .cw1Z1fNwzZWXfREG12aHMg\\=\\= > div:nth-child(4), .cw1Z1fNwzZWXfREG12aHMg\\=\\= > div:last-of-type {\n  text-align: center;\n}\n\n.j3-J6Swo7w0JAuiuCZCMOQ\\=\\= {\n  color: red;\n  background: none;\n  border: 0;\n  padding: 0;\n  cursor: pointer;\n}\n\ninput, input[type=number] {\n  padding: 20px/4;\n  border: 1px solid #dfdfdf;\n  border-radius: #ccc;\n  min-width: 40px;\n  width: 100%;\n}\n\ninput[type=number] {\n  text-align: center;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"lineItem": "sGAPVJ+NMdCvzCuUL2lvHg==",
-	"deleteItem": "lPYmWqh27B1B1iN8Li8wTA=="
+	"lineItem": "cw1Z1fNwzZWXfREG12aHMg==",
+	"deleteItem": "j3-J6Swo7w0JAuiuCZCMOQ=="
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/LineItems.module.scss":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/LineItems.module.scss ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/Items.module.scss":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/Items.module.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10551,20 +10741,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".nrbPoQ2Dp1F\\+dXsk9NqqHw\\=\\= {\n  margin-bottom: 80px;\n}\n.nrbPoQ2Dp1F\\+dXsk9NqqHw\\=\\= .vsJwyg5oWATeXmUogPBZuQ\\=\\= {\n  padding-top: 20px;\n}\n.nrbPoQ2Dp1F\\+dXsk9NqqHw\\=\\= .vsJwyg5oWATeXmUogPBZuQ\\=\\= button {\n  background: none;\n  padding: 10px;\n  border: 1px solid #999;\n  color: #999;\n  border-radius: 3px;\n  float: right;\n}\n.nrbPoQ2Dp1F\\+dXsk9NqqHw\\=\\= .vsJwyg5oWATeXmUogPBZuQ\\=\\= button .TcWfPuHnCqHIC8d2PXxAow\\=\\= {\n  color: #999;\n  margin-right: 5px;\n}\n\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= {\n  margin: 0 auto;\n  border: 1px solid #dfdfdf;\n  border-radius: 3px;\n  overflow: hidden;\n  display: grid;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\= {\n  display: grid;\n  grid-template-columns: 1fr repeat(2, 5fr) 2fr repeat(2, 3fr) 2fr;\n  border-bottom: 1px solid #dfdfdf;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\=:last-of-type {\n  border-bottom: none;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\=.Jkcn49qa0JcBJHp\\+IACaXg\\=\\= > div {\n  text-align: center;\n  font-weight: bold;\n  background: white;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\=.MsnxZhvyH1yAvroxxaTjCw\\=\\= > div {\n  padding: 10px;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\= > div {\n  padding: 10px;\n  border-left: 1px solid #dfdfdf;\n  width: 100%;\n  line-height: 20px;\n  min-width: 20px;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\= > div:first-of-type {\n  padding: 10px 0;\n  border-left: none;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\= > div:last-of-type {\n  padding: 10px 0;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\= > div:first-of-type, .tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\= > div:nth-child(4), .tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\= > div:last-of-type {\n  text-align: center;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= > .-lMFOjhFGD\\+TMiqUzue1oQ\\=\\= > div > .bK1oPslQpDxc3A\\+U3PxNzQ\\=\\= {\n  color: red;\n  background: none;\n  border: 0;\n  padding: 0;\n  cursor: pointer;\n}\n.tYdgEGu8\\+bcMSq\\+BQSTFxg\\=\\= ._3mpOEMXy6UQ1iITs7KDfgg\\=\\= > input[type=number] {\n  max-width: 80px;\n}\n\n.FVmIyJ8tZ6OttIKMPdVDjQ\\=\\= {\n  background: #ddd;\n  background-image: repeating-linear-gradient(30deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2) 30px, transparent 0, transparent 60px);\n}\n\n.iq49OrGREVXv95I-Nq08DQ\\=\\= {\n  background: #f9fff9;\n  border: 1px solid #dfdfdf;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".xwKZjKn0ctBVxtgsV1Liow\\=\\= {\n  margin-bottom: 80px;\n}\n.xwKZjKn0ctBVxtgsV1Liow\\=\\= .W\\+KTHGVgTfl6uqHTsgbzKg\\=\\= {\n  padding-top: 20px;\n}\n.xwKZjKn0ctBVxtgsV1Liow\\=\\= .W\\+KTHGVgTfl6uqHTsgbzKg\\=\\= button {\n  background: none;\n  padding: 10px;\n  border: 1px solid #999;\n  color: #999;\n  border-radius: 3px;\n  float: right;\n}\n.xwKZjKn0ctBVxtgsV1Liow\\=\\= .W\\+KTHGVgTfl6uqHTsgbzKg\\=\\= button .Pn6dFFHmPsC11fREYJxKIA\\=\\= {\n  color: #999;\n  margin-right: 5px;\n}\n\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= {\n  margin: 0 auto;\n  border: 1px solid #dfdfdf;\n  border-radius: 3px;\n  overflow: hidden;\n  display: grid;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\= {\n  display: grid;\n  grid-template-columns: 1fr repeat(2, 5fr) 2fr repeat(2, 3fr) 2fr;\n  border-bottom: 1px solid #dfdfdf;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\=:last-of-type {\n  border-bottom: none;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\=._6-HN-6MfuLqQ0x1RFAKA1g\\=\\= > div {\n  text-align: center;\n  font-weight: bold;\n  background: white;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\=.ZfrfMIee4\\+MgWGheWtLd-Q\\=\\= > div {\n  padding: 10px;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\= > div {\n  padding: 10px;\n  border-left: 1px solid #dfdfdf;\n  width: 100%;\n  line-height: 20px;\n  min-width: 20px;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\= > div:first-of-type {\n  padding: 10px 0;\n  border-left: none;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\= > div:last-of-type {\n  padding: 10px 0;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\= > div:first-of-type, .ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\= > div:nth-child(4), .ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\= > div:last-of-type {\n  text-align: center;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= > .lBXP8PUutQEpzPwo0vFmTg\\=\\= > div > .H-5kcY2Wj24cul1-7zmqZw\\=\\= {\n  color: red;\n  background: none;\n  border: 0;\n  padding: 0;\n  cursor: pointer;\n}\n.ikzr9VkAByLbdWdEoG4rVg\\=\\= .GscTlAXmOAdgyrReOKmT\\+A\\=\\= > input[type=number] {\n  max-width: 80px;\n}\n\n._9VM0O9IJcQrALGSLUjMtCA\\=\\= {\n  background: #ddd;\n  background-image: repeating-linear-gradient(30deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2) 30px, transparent 0, transparent 60px);\n}\n\n.C6GUHWtKVHEj9DrudxPfMg\\=\\= {\n  background: #f9fff9;\n  border: 1px solid #dfdfdf;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"lineItems": "nrbPoQ2Dp1F+dXsk9NqqHw==",
-	"addItem": "vsJwyg5oWATeXmUogPBZuQ==",
-	"addIcon": "TcWfPuHnCqHIC8d2PXxAow==",
-	"gridTable": "tYdgEGu8+bcMSq+BQSTFxg==",
-	"row": "-lMFOjhFGD+TMiqUzue1oQ==",
-	"header": "Jkcn49qa0JcBJHp+IACaXg==",
-	"editable": "MsnxZhvyH1yAvroxxaTjCw==",
-	"deleteItem": "bK1oPslQpDxc3A+U3PxNzQ==",
-	"currency": "_3mpOEMXy6UQ1iITs7KDfgg==",
-	"listDraggingOver": "FVmIyJ8tZ6OttIKMPdVDjQ==",
-	"listItemDragging": "iq49OrGREVXv95I-Nq08DQ=="
+	"lineItems": "xwKZjKn0ctBVxtgsV1Liow==",
+	"addItem": "W+KTHGVgTfl6uqHTsgbzKg==",
+	"addIcon": "Pn6dFFHmPsC11fREYJxKIA==",
+	"gridTable": "ikzr9VkAByLbdWdEoG4rVg==",
+	"row": "lBXP8PUutQEpzPwo0vFmTg==",
+	"header": "_6-HN-6MfuLqQ0x1RFAKA1g==",
+	"editable": "ZfrfMIee4+MgWGheWtLd-Q==",
+	"deleteItem": "H-5kcY2Wj24cul1-7zmqZw==",
+	"currency": "GscTlAXmOAdgyrReOKmT+A==",
+	"listDraggingOver": "_9VM0O9IJcQrALGSLUjMtCA==",
+	"listItemDragging": "C6GUHWtKVHEj9DrudxPfMg=="
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -57581,10 +57771,10 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./src/admin/js/react/components/invoice/invoice-single/scss/LineItem.module.scss":
-/*!****************************************************************************************!*\
-  !*** ./src/admin/js/react/components/invoice/invoice-single/scss/LineItem.module.scss ***!
-  \****************************************************************************************/
+/***/ "./src/admin/js/react/components/invoice/invoice-single/scss/Item.module.scss":
+/*!************************************************************************************!*\
+  !*** ./src/admin/js/react/components/invoice/invoice-single/scss/Item.module.scss ***!
+  \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -57594,7 +57784,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!../../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!../../../../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./LineItem.module.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/LineItem.module.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_Item_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!../../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!../../../../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./Item.module.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/Item.module.scss");
 
             
 
@@ -57603,18 +57793,18 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_Item_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_Item_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
-/***/ "./src/admin/js/react/components/invoice/invoice-single/scss/LineItems.module.scss":
-/*!*****************************************************************************************!*\
-  !*** ./src/admin/js/react/components/invoice/invoice-single/scss/LineItems.module.scss ***!
-  \*****************************************************************************************/
+/***/ "./src/admin/js/react/components/invoice/invoice-single/scss/Items.module.scss":
+/*!*************************************************************************************!*\
+  !*** ./src/admin/js/react/components/invoice/invoice-single/scss/Items.module.scss ***!
+  \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -57624,7 +57814,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!../../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!../../../../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./LineItems.module.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/LineItems.module.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_Items_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!../../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!../../../../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./Items.module.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[3]!./src/admin/js/react/components/invoice/invoice-single/scss/Items.module.scss");
 
             
 
@@ -57633,11 +57823,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_Items_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_LineItems_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_3_Items_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

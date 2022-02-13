@@ -1,72 +1,130 @@
 import React, { Component } from 'react'
-import { NavLink, useParams } from "react-router-dom";
-
+import { NavLink } from "react-router-dom"; 
 import styles from './scss/Invoice.module.scss'
 
-import LineItems from './LineItems' 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
+
+import Helper from './helper';
+import Items from './Items' 
 import Note from './Note' 
 import Group from './Group';
 
-export default class Invoice extends Component {
+class Invoice extends Component {
 
 	locale = 'en-US'
 	currency = 'USD'
 
-	state = {
-		taxRate: 0.00,
-		lineItems: [
-			{
-				id: 'initial', // react-beautiful-dnd unique key
-				name: '',
-				description: '',
-				quantity: 0,
-				price: 0.00,
-			},
-		]
+	constructor(props) {
+        super(props);         
+
+        this.state = {
+			edit: false,
+			edit_id: null,
+			invoice: {
+				tax: 0.00,
+				items: [
+					{
+						id: 'initial', //react-beautiful-dnd unique key
+						name: '',
+						description: '',
+						quantity: 0,
+						price: 0.00,
+					},
+				],
+				note: null,
+				group: null
+			}
+		};  
+    }  
+
+	handleNoteChange = ( data ) => {  
+		this.setState({ note: data })
+	} 
+
+	handleGroupChange = ( data ) => { 
+		this.setState({ group: data })
+	}
+	
+	handleInvoiceChange = (e) => {
+		const { name, value } = e.target;
+		let invoice = {...this.state.invoice} 
+		invoice[name] = value; 
+		this.setState({invoice})
 	}
 
-	handleInvoiceChange = (event) => {
-		this.setState({ [event.target.name]: event.target.value })
-	}
-
-	handleLineItemChange = (elementIndex) => (event) => {
-		let lineItems = this.state.lineItems.map((item, i) => {
+	handleLineItemChange = (elementIndex) => (e) => {
+		let invoice = {...this.state.invoice} 
+		let items = this.state.invoice.items.map((item, i) => {
 			if (elementIndex !== i) return item
-			return { ...item, [event.target.name]: event.target.value }
+			return { ...item, [e.target.name]: e.target.value }
 		})
-		this.setState({ lineItems })
+		invoice.items = items; 
+		this.setState({invoice})
 	}
 
-	handleAddLineItem = (event) => {
-		this.setState({
-			// use optimistic uuid for drag drop; in a production app this could be a database id
-			lineItems: this.state.lineItems.concat(
-				[{ id: Date.now().toString(), name: '', description: '', quantity: 0, price: 0.00 }]
-			)
-		})
+	handleAddLineItem = (e) => {
+		let invoice = {...this.state.invoice} 
+		invoice.items = invoice.items.concat(
+			[{ id: Date.now().toString(), name: '', description: '', quantity: 0, price: 0.00 }]
+		); 
+		this.setState({invoice}) 
 	}
 
-	handleRemoveLineItem = (elementIndex) => (event) => {
-		this.setState({
-			lineItems: this.state.lineItems.filter((item, i) => {
-				return elementIndex !== i
-			})
-		})
+	handleRemoveLineItem = (elementIndex) => (e) => {
+		let invoice = {...this.state.invoice} 
+		invoice.items = invoice.items.filter((item, i) => {
+			return elementIndex !== i
+		}); 
+		this.setState({invoice}) 
 	}
 
-	handleReorderLineItems = (newLineItems) => {
-		this.setState({
-			lineItems: newLineItems,
-		})
+	handleReorderItems = (newItems) => { 
+		let invoice = {...this.state.invoice} 
+		invoice.items = newItems; 
+		this.setState({invoice})  
 	}
 
-	handleFocusSelect = (event) => {
-		event.target.select()
+	handleFocusSelect = (e) => {
+		e.target.select()
+	} 
+
+	handleSave = () => {
+		// console.log(this.state). 
+		if ( ! this.state.edit ) {
+			console.log(this.state.invoice)
+            Helper.create(this.state.invoice)
+                .then(resp => {
+                    if (resp.data.success) { 
+						console.log(resp.data.data);
+                        toast.success('Invoice success');
+                        // this.getLists();
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                })
+        } else {
+            /* Helper.update(client.id, client)
+                .then(resp => {
+                    if (resp.data.success) {
+                        this.setState({ formModal: false })
+                        // this.setState({ formModalType: 'new' });
+                        toast.success(this.state.invoice.msg.update);
+                        this.getLists();
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                }) */
+        }
+		 
 	}
 
-	handlePayButtonClick = () => {
-		console.log(this.state)
-		// alert('Not implemented')
+	componentDidMount() {
+		 
 	}
 
 	formatCurrency = (amount) => {
@@ -79,24 +137,25 @@ export default class Invoice extends Component {
 	}
 
 	calcTaxAmount = (c) => {
-		return c * (this.state.taxRate / 100)
+		return c * (this.state.invoice.tax / 100)
 	}
 
-	calcLineItemsTotal = () => {
-		return this.state.lineItems.reduce((prev, cur) => (prev + (cur.quantity * cur.price)), 0)
+	calcItemsTotal = () => {
+		return this.state.invoice.items.reduce((prev, cur) => (prev + (cur.quantity * cur.price)), 0)
 	}
 
 	calcTaxTotal = () => {
-		return this.calcLineItemsTotal() * (this.state.taxRate / 100)
+		return this.calcItemsTotal() * (this.state.invoice.tax / 100)
 	}
 
 	calcGrandTotal = () => {
-		return this.calcLineItemsTotal() + this.calcTaxTotal()
+		return this.calcItemsTotal() + this.calcTaxTotal()
 	}
 
 	render = () => {
 		return ( 
 			<div className='ncpi-components'>
+				<ToastContainer />
 				<div className='mb-3 text-sm'>
                     <NavLink
                         to='/invoice'
@@ -121,38 +180,38 @@ export default class Invoice extends Component {
 
 								<button
 									className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded-full"
-									onClick={this.handlePayButtonClick} >
+									onClick={this.handleSave} >
 									Save
-								</button>
+								</button> 
 							</div>
 						</div>
 						
 						<div className='max-w-3xl m-auto'>
-							<LineItems
-								items={this.state.lineItems}
+							<Items
+								items={this.state.invoice.items}
 								currencyFormatter={this.formatCurrency}
 								addHandler={this.handleAddLineItem}
 								changeHandler={this.handleLineItemChange}
 								focusHandler={this.handleFocusSelect}
 								deleteHandler={this.handleRemoveLineItem}
-								reorderHandler={this.handleReorderLineItems}
+								reorderHandler={this.handleReorderItems}
 							/>
 
 							<div className={styles.totalContainer}> 
 								<div className={styles.valueTable}>
 									<div className={styles.row}>
 										<div className={styles.label}>Tax Rate (%)</div>
-										<div className={styles.value}><input name="taxRate" type="number" step="0.01" value={this.state.taxRate} onChange={this.handleInvoiceChange} onFocus={this.handleFocusSelect} /></div>
+										<div className={styles.value}><input name="tax" type="number" step="0.01" value={this.state.invoice.tax} onChange={this.handleInvoiceChange} onFocus={this.handleFocusSelect} /></div>
 									</div>
 								</div> 
 
 								<div className={styles.valueTable}>
 									<div className={styles.row}>
 										<div className={styles.label}>Subtotal</div>
-										<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcLineItemsTotal())}</div>
+										<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcItemsTotal())}</div>
 									</div>
 									<div className={styles.row}>
-										<div className={styles.label}>Tax ({this.state.taxRate}%)</div>
+										<div className={styles.label}>Tax ({this.state.invoice.tax}%)</div>
 										<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcTaxTotal())}</div>
 									</div>
 									<div className={styles.row}>
@@ -163,10 +222,10 @@ export default class Invoice extends Component {
 							</div>
 							
 							<div className='mb-16'></div>
-							<Note />
+							<Note changeHandler={this.handleNoteChange} />
 
 							<div className='mb-16'></div>
-							<Group />
+							<Group changeHandler={this.handleGroupChange} />
 
 						</div>
                     </div>
@@ -178,4 +237,6 @@ export default class Invoice extends Component {
 			</div> 
 		)
 	} 
-} 
+}  
+
+export default Invoice;

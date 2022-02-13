@@ -9,7 +9,7 @@ class Group extends Component {
         this.state = {
             groups: [
                 {
-                    title: 'Add Terms',
+                    label: 'Add Terms',
                     list_type: 'letter',
                     items: [ {  text: '' } ]
                 }
@@ -17,11 +17,13 @@ class Group extends Component {
         };
     }
 
-    handleListType = (index) => (e) => {
+    handleGroupInfo = (index) => (e) => {
+        const { name, value } = e.target;
 		let items = this.state.groups[index]; 
-        items.list_type = e.target.value;  
+        items[name] = value;  
         let groups = this.state.groups;
         this.setState({ groups: groups });
+        this.handlePros();
 	}
 
     handleChange = (group_index, list_index) => (e) => {
@@ -34,12 +36,13 @@ class Group extends Component {
         this.state.groups[group_index].items = items; 
         let groups = this.state.groups;
         this.setState({ groups: groups }); 
+        this.handlePros();
 	}
 
     addGroup = () => {
         let groups = this.state.groups;
         groups.push({
-            title: 'Group Title',
+            label: 'Group Title',
             list_type: 'letter',
             items: [ {  text: '' } ]
         });  
@@ -53,6 +56,10 @@ class Group extends Component {
         this.setState({ groups: groups });
     };  
 
+    handlePros = () => {
+        this.props.changeHandler( this.state.groups );
+    };  
+
     render = () => { 
 
         const { groups } = this.state; 
@@ -64,7 +71,7 @@ class Group extends Component {
                     if ( group_single.list_type == 'letter' ) {
                         list_class = 'list-decimal';
                     } else if ( group_single.list_type == 'text' ) {
-                        list_class = 'list-none';
+                        list_class = 'list-letter';
                     } else if ( group_single.list_type == 'dot' ) {
                         list_class = 'list-disc';
                     }
@@ -74,19 +81,23 @@ class Group extends Component {
                             
                             <div className='flex justify-between my-3'>
                                 <div className=''>
-                                    {group_single.title} <span><i className="dashicons dashicons-edit-page pt-1"></i></span>
+                                    <input type="text" id={group_index+'-group-label'} onChange={ this.handleGroupInfo(group_index) } name="label" value={group_single.label} className='w-auto border-none focus:border' />
+
+                                    <label htmlFor={group_index+'-group-label'}>
+                                        <span><i className="dashicons dashicons-edit-page pt-1"></i></span>
+                                    </label>
                                 </div>
 
                                 <div className="">
                                     <span className='font-medium'>List Type:</span>
-                                    <input id={group_index+'-list-letter'} onChange={ this.handleListType(group_index) } name="list_type" value="letter" className='w-auto min-w-0 mr-1 ml-5' type="radio" />
+                                    <input id={group_index+'-list-letter'} onChange={ this.handleGroupInfo(group_index) } name="list_type" value="letter" className='w-auto min-w-0 mr-1 ml-5' type="radio" />
                                     <label htmlFor={group_index+'-list-letter'}>1. Letter</label>
 
-                                    <input id={group_index+'-list-text'} onChange={ this.handleListType(group_index) } name="list_type" value="text" className='w-auto min-w-0 mr-1 ml-5' type="radio" />
+                                    <input id={group_index+'-list-text'} onChange={ this.handleGroupInfo(group_index) } name="list_type" value="text" className='w-auto min-w-0 mr-1 ml-5' type="radio" />
                                     <label htmlFor={group_index+'-list-text'}>a. Text</label>
 
-                                    <input id={group_index+'-list-dot'} onChange={ this.handleListType(group_index) }  name="list_type" value="dot" className='w-auto min-w-0 mr-1 ml-5' type="radio" />
-                                    <label htmlFor={group_index+'-list-dot'}>&#11044;. Dot</label>
+                                    <input id={group_index+'-list-dot'} onChange={ this.handleGroupInfo(group_index) }  name="list_type" value="dot" className='w-auto min-w-0 mr-1 ml-5' type="radio" />
+                                    <label htmlFor={group_index+'-list-dot'}>●. Dot</label>
                                 </div>
                             </div>
 

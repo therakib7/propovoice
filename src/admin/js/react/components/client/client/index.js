@@ -70,10 +70,11 @@ export default class Client extends Component {
     }; 
 
     handleSubmit = client => {
-        if (this.state.formModalType == 'new') {
+        if (this.state.formModalType == 'new') { 
             Helper.create(client)
                 .then(resp => {
                     if (resp.data.success) {
+                        console.log(resp.data)
                         this.setState({ formModal: false })
                         toast.success(this.state.msg.create);
                         this.getLists();

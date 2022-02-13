@@ -127,6 +127,7 @@ class Invoice
             $data[] = $query_data;
 
         } 
+        wp_reset_postdata();
 
             $query_data = [];
             $query_data['id'] = 10;
@@ -181,6 +182,8 @@ class Invoice
         /* if (! wp_verify_nonce($req['nonce'], 'exdda-ajax-nonce')) {
 			die('Busted!');
 		} */
+        $request = $req->get_params();
+        wp_send_json_success($request);
 
         $reg_errors             = new \WP_Error;
         $first_name             = sanitize_text_field($req['first_name']);
@@ -188,7 +191,7 @@ class Invoice
         $useremail              = strtolower(sanitize_email($req['email']));
         $company_name           = sanitize_text_field($req['company_name']);
         $web                    = esc_url_raw($req['web']);
-        $mobile           = sanitize_text_field($req['mobile']);
+        $mobile                 = sanitize_text_field($req['mobile']);
         // $password               = esc_attr($req['password']);
         // $password_confirmation  = esc_attr($req['password_confirmation']);
 

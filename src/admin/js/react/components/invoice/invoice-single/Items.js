@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
-import LineItem from './LineItem'
+import Item from './Item' 
+import styles from './scss/Items.module.scss' 
 
-import styles from './scss/LineItems.module.scss'
-
-
-class LineItems extends Component {
+class Items extends Component {
 
     handleDragEnd = (result) => {
 
@@ -22,14 +20,14 @@ class LineItems extends Component {
         }
 
         // perform reorder
-        const lineItems = reorder(
+        const Items = reorder(
             this.props.items,
             result.source.index,
             result.destination.index
         )
 
         // call parent handler with new state representation
-        this.props.reorderHandler(lineItems)
+        this.props.reorderHandler(Items)
 
     }
 
@@ -68,10 +66,10 @@ class LineItems extends Component {
                                                     style={provided.draggableProps.style}
                                                     className={snapshot.isDragging ? styles.listItemDragging : ''}
                                                 >
-                                                    <LineItem
+                                                    <Item
                                                         style={{ color: 'red' }}
                                                         key={i + item.id} index={i} name={item.name}
-                                                        description={item.description} quantity={item.quantity} price={item.price}
+                                                        desc={item.desc} quantity={item.quantity} price={item.price}
                                                         {...functions}
                                                     />
                                                 </div>
@@ -97,7 +95,7 @@ class LineItems extends Component {
     }
 }
 
-LineItems.propTypes = {
+Items.propTypes = {
     items: PropTypes.array.isRequired,
     currencyFormatter: PropTypes.func.isRequired,
     addHandler: PropTypes.func.isRequired,
@@ -107,4 +105,4 @@ LineItems.propTypes = {
     reorderHandler: PropTypes.func.isRequired,
 }
 
-export default LineItems
+export default Items
