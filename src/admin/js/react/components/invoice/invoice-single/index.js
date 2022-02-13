@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { NavLink } from "react-router-dom"; 
-import styles from './scss/Invoice.module.scss'
+import { NavLink } from "react-router-dom";  
 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
-
+import 'react-toastify/dist/ReactToastify.css';  
 import Helper from './helper';
 import Items from './Items' 
 import Note from './Note' 
@@ -195,30 +193,40 @@ class Invoice extends Component {
 								focusHandler={this.handleFocusSelect}
 								deleteHandler={this.handleRemoveLineItem}
 								reorderHandler={this.handleReorderItems}
-							/>
-
-							<div className={styles.totalContainer}> 
-								<div className={styles.valueTable}>
-									<div className={styles.row}>
-										<div className={styles.label}>Tax Rate (%)</div>
-										<div className={styles.value}><input name="tax" type="number" step="0.01" value={this.state.invoice.tax} onChange={this.handleInvoiceChange} onFocus={this.handleFocusSelect} /></div>
+							/> 
+							 
+							<div className="py-2 ml-auto mt-5 w-full w-2/6">
+								<div className="flex justify-between mb-3">
+									<div className="text-gray-800 flex-1">Subtotal</div>
+									<div className="text-gray-800 font-medium">
+										{this.formatCurrency(this.calcItemsTotal())}
 									</div>
-								</div> 
-
-								<div className={styles.valueTable}>
-									<div className={styles.row}>
-										<div className={styles.label}>Subtotal</div>
-										<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcItemsTotal())}</div>
+								</div>
+								<div className="flex justify-between mb-3">
+									<div className="text-gray-800 flex-1">
+										Tax 
+										<input 
+											name="tax" 
+											type="number" 
+											className='w-20 border mx-3 pl-2 rounded'
+											step="0.01" 
+											value={this.state.invoice.tax} 
+											onChange={this.handleInvoiceChange} 
+											onFocus={this.handleFocusSelect} />
+											%
 									</div>
-									<div className={styles.row}>
-										<div className={styles.label}>Tax ({this.state.invoice.tax}%)</div>
-										<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcTaxTotal())}</div>
+									<div className="text-gray-800 font-medium">
+										{this.formatCurrency(this.calcTaxTotal())}
 									</div>
-									<div className={styles.row}>
-										<div className={styles.label}>Total Due</div>
-										<div className={`${styles.value} ${styles.currency}`}>{this.formatCurrency(this.calcGrandTotal())}</div>
+								</div>
+								<div className="py-2 border-t border-b">
+									<div className="flex justify-between">
+										<div className="text-xl text-gray-600 flex-1">Total Amount</div>
+										<div className="text-xl text-gray-800 font-bold">
+											{this.formatCurrency(this.calcGrandTotal())}
+										</div>
 									</div>
-								</div> 
+								</div>
 							</div>
 							
 							<div className='mb-16'></div>

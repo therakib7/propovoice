@@ -36,53 +36,74 @@ class Items extends Component {
         const { items, addHandler, reorderHandler, ...functions } = this.props
 
         return ( 
-            <div className={styles.lineItems}>
-                <div className={`${styles.gridTable}`}>
-
-                    <div className={`${styles.row} ${styles.header}`}>
-                        <div>#</div>
-                        <div>Name &amp; Details</div>
-                        {/* <div>Description</div> */}
-                        <div>Qty</div>
-                        <div>Price</div>
-                        <div>Total</div>
-                        <div></div>
+            <div className=''>
+                <div className="flex -mx-1 gap-3 border-b py-2 items-start">
+                    <div className="px-1 w-5">
+                        <p className="text-gray-800 uppercase tracking-wide text-sm font-bold">
+                        #
+                        </p>
                     </div>
-
-                    <DragDropContext onDragEnd={this.handleDragEnd}>
-                        <Droppable droppableId="droppable">
-                            {(provided, snapshot) => (
-                                <div
-                                    ref={provided.innerRef}
-                                    className={snapshot.isDraggingOver ? styles.listDraggingOver : ''}
-                                >
-                                    {this.props.items.map((item, i) => (
-                                        <Draggable key={item.id} draggableId={item.id} index={i}>
-                                            {(provided, snapshot) => (
-                                                <div
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    style={provided.draggableProps.style}
-                                                    className={snapshot.isDragging ? styles.listItemDragging : ''}
-                                                >
-                                                    <Item
-                                                        style={{ color: 'red' }}
-                                                        key={i + item.id} index={i} name={item.name}
-                                                        desc={item.desc} quantity={item.quantity} price={item.price}
-                                                        {...functions}
-                                                    />
-                                                </div>
-                                            )}
-                                        </Draggable>
-                                    ))}
-                                    {provided.placeholder}
-                                </div>
-                            )}
-                        </Droppable>
-                    </DragDropContext>
-
-                </div>
+                    <div className="flex-1 px-1">
+                        <p className="text-gray-800 uppercase tracking-wide text-sm font-bold">
+                        Description
+                        </p>
+                    </div>
+                    <div className="px-1 w-20">
+                        <p className="text-gray-800 uppercase tracking-wide text-sm font-bold">
+                        Units
+                        </p>
+                    </div>
+                    <div className="px-1 w-32">
+                        <p className="leading-none">
+                        <span className="block uppercase tracking-wide text-sm font-bold text-gray-800">
+                            Unit Price
+                        </span>
+                        <span className="font-medium text-xs text-gray-500">USD ($)</span>
+                        </p>
+                    </div>
+                    <div className="px-1 w-32">
+                        <p className="leading-none">
+                        <span className="block uppercase tracking-wide text-sm font-bold text-gray-800">
+                            Amount
+                        </span>
+                        <span className="font-medium text-xs text-gray-500"></span>
+                        </p>
+                    </div>
+                    <div className="px-1 w-10 text-center"></div>
+                </div> 
+                 
+                <DragDropContext onDragEnd={this.handleDragEnd}>
+                    <Droppable droppableId="droppable">
+                        {(provided, snapshot) => (
+                            <div
+                                ref={provided.innerRef}
+                                className={snapshot.isDraggingOver ? styles.listDraggingOver : ''}
+                            >
+                                {this.props.items.map((item, i) => (
+                                    <Draggable key={item.id} draggableId={item.id} index={i}>
+                                        {(provided, snapshot) => (
+                                            <div
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                                style={provided.draggableProps.style}
+                                                className={snapshot.isDragging ? styles.listItemDragging : ''}
+                                            >
+                                                <Item
+                                                    style={{ color: 'red' }}
+                                                    key={i + item.id} index={i} name={item.name}
+                                                    desc={item.desc} quantity={item.quantity} price={item.price}
+                                                    {...functions}
+                                                />
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>  
 
                 <div> 
                     <button onClick={addHandler} className="bg-slate-300 w-full align-center py-2 text-gray-900 font-medium" type="button">
