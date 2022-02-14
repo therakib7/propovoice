@@ -7193,7 +7193,7 @@ var Item = /*#__PURE__*/function (_Component) {
           index = _this$props.index,
           name = _this$props.name,
           desc = _this$props.desc,
-          quantity = _this$props.quantity,
+          qty = _this$props.qty,
           price = _this$props.price;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "flex -mx-1 gap-3 py-2 border-b",
@@ -7221,11 +7221,11 @@ var Item = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: "px-1 w-20",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-            name: "quantity",
+            name: "qty",
             type: "number",
             className: "w-20 border pl-2 rounded",
             step: "1",
-            value: quantity,
+            value: qty,
             onChange: _this.props.changeHandler(index),
             onFocus: _this.props.focusHandler
           })
@@ -7246,7 +7246,7 @@ var Item = /*#__PURE__*/function (_Component) {
           className: "px-1 w-32",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
             className: "text-gray-800",
-            children: _this.props.currencyFormatter(quantity * price)
+            children: _this.props.currencyFormatter(qty * price)
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: "px-1 w-10",
@@ -7270,7 +7270,7 @@ Item.propTypes = {
   index: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().number.isRequired),
   name: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
   desc: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
-  quantity: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_2___default().number)]),
+  qty: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_2___default().number)]),
   price: prop_types__WEBPACK_IMPORTED_MODULE_2___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_2___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_2___default().number)])
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Item);
@@ -7466,7 +7466,7 @@ var Items = /*#__PURE__*/function (_Component) {
                           index: i,
                           name: item.name,
                           desc: item.desc,
-                          quantity: item.quantity,
+                          qty: item.qty,
                           price: item.price
                         }, functions), i + item.id)
                       }));
@@ -7709,6 +7709,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/invoice/invoice-single/helper.js");
@@ -7771,15 +7772,31 @@ var Invoice = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "currency", 'USD');
 
+    _defineProperty(_assertThisInitialized(_this), "getData", function () {
+      _helper__WEBPACK_IMPORTED_MODULE_3__["default"].get(_this.props.id).then(function (resp) {
+        _this.setState({
+          invoice: resp.data.data.invoice
+        });
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "handleNoteChange", function (data) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.note = data;
+
       _this.setState({
-        note: data
+        invoice: invoice
       });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleGroupChange", function (data) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.group = data;
+
       _this.setState({
-        group: data
+        invoice: invoice
       });
     });
 
@@ -7820,8 +7837,8 @@ var Invoice = /*#__PURE__*/function (_Component) {
       invoice.items = invoice.items.concat([{
         id: Date.now().toString(),
         name: '',
-        description: '',
-        quantity: 0,
+        desc: '',
+        qty: 0,
         price: 0.00
       }]);
 
@@ -7859,13 +7876,17 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleSave", function () {
-      // console.log(this.state). 
-      if (!_this.state.edit) {
-        console.log(_this.state.invoice);
-        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].create(_this.state.invoice).then(function (resp) {
+      //console.log(this.state)
+      if (!_this.state.helper.edit) {
+        var data = _objectSpread({}, _this.state);
+
+        delete data.helper;
+        delete data.msg; // console.log(this.state)
+
+        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].create(data).then(function (resp) {
           if (resp.data.success) {
             console.log(resp.data.data);
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success('Invoice success'); // this.getLists();
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create); // this.getLists();
           } else {
             resp.data.data.forEach(function (value, index, array) {
               react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
@@ -7904,7 +7925,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "calcItemsTotal", function () {
       return _this.state.invoice.items.reduce(function (prev, cur) {
-        return prev + cur.quantity * cur.price;
+        return prev + cur.qty * cur.price;
       }, 0);
     });
 
@@ -7913,7 +7934,13 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "calcGrandTotal", function () {
-      return _this.calcItemsTotal() + _this.calcTaxTotal();
+      var total = _this.calcItemsTotal() + _this.calcTaxTotal();
+      /* let invoice = {...this.state.invoice} 
+      invoice.total = total; 
+      this.setState({invoice}); */
+
+
+      return total;
     });
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
@@ -8005,10 +8032,12 @@ var Invoice = /*#__PURE__*/function (_Component) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                 className: "mb-16"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                data: _this.state.invoice.note,
                 changeHandler: _this.handleNoteChange
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                 className: "mb-16"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                data: _this.state.invoice.group,
                 changeHandler: _this.handleGroupChange
               })]
             })]
@@ -8021,20 +8050,33 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
-      edit: false,
-      edit_id: null,
+      helper: {
+        edit: false,
+        edit_id: null
+      },
+      msg: {
+        create: 'Successfully Added',
+        update: 'Successfully Updated',
+        "delete": 'Successfully Deleted',
+        confirm: 'Are you sure to delete it?'
+      },
       invoice: {
-        tax: 0.00,
         items: [{
           id: 'initial',
           //react-beautiful-dnd unique key
           name: '',
-          description: '',
-          quantity: 0,
+          desc: '',
+          qty: 0,
           price: 0.00
         }],
+        tax: 0.00,
+        paid: 0.00,
         note: null,
-        group: null
+        group: null,
+        from: {
+          client_id: 12
+        },
+        to: {}
       }
     };
     return _this;
@@ -8042,13 +8084,26 @@ var Invoice = /*#__PURE__*/function (_Component) {
 
   _createClass(Invoice, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      if (this.props.id) {
+        this.getData();
+      }
+    }
   }]);
 
   return Invoice;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Invoice);
+function GetId() {
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useParams)(),
+      id = _useParams.id;
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Invoice, {
+    id: id
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GetId);
 
 /***/ }),
 
@@ -8646,13 +8701,13 @@ var TableHeader = function TableHeader(props) {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-bold text-sm",
-        children: "#"
+        children: "Invoice ID"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-bold text-sm",
-        children: "Client Name"
+        children: "Project"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-semibold text-sm",
-        children: "Client Email"
+        children: "Client"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-semibold text-sm",
         children: "Total"
@@ -8684,8 +8739,7 @@ var TableBody = function TableBody(props) {
 
   var rows = props.tableData.map(function (row, index) {
     var data = props.checkedBoxes.data;
-    var checkedCheckbox = data.indexOf(row.id) !== -1 ? true : false; // console.log(data)
-
+    var checkedCheckbox = data.indexOf(row.id) !== -1 ? true : false;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 pl-4 pr-0",
@@ -8698,15 +8752,15 @@ var TableBody = function TableBody(props) {
             return props.checkedBoxes.handle(e, 'single', row.id);
           }
         })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
+        className: "text-left py-3 px-4",
+        children: ["INV", row.id]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 px-4",
-        children: row.id
+        children: row.project.name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 px-4",
-        children: row.client.first_name + ' ' + row.client.last_name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-        className: "text-left py-3 px-4",
-        children: row.client.email
+        children: row.to.first_name + ' ' + row.to.last_name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 px-4",
         children: row.total

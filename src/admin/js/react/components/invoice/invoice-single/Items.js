@@ -91,8 +91,12 @@ class Items extends Component {
                                             >
                                                 <Item
                                                     style={{ color: 'red' }}
-                                                    key={i + item.id} index={i} name={item.name}
-                                                    desc={item.desc} quantity={item.quantity} price={item.price}
+                                                    key={i + item.id} 
+                                                    index={i} 
+                                                    name={item.name}
+                                                    desc={item.desc} 
+                                                    qty={item.qty} 
+                                                    price={item.price}
                                                     {...functions}
                                                 />
                                             </div>

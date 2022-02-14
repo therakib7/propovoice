@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from "react-router-dom";  
+import { NavLink, useParams } from "react-router-dom";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  
@@ -17,31 +17,62 @@ class Invoice extends Component {
         super(props);         
 
         this.state = {
-			edit: false,
-			edit_id: null,
-			invoice: {
-				tax: 0.00,
+			helper: {
+				edit: false,
+				edit_id: null
+			},
+			msg: {
+                create: 'Successfully Added',
+                update: 'Successfully Updated',
+                delete: 'Successfully Deleted',
+                confirm: 'Are you sure to delete it?',
+            },
+			invoice: { 
 				items: [
 					{
 						id: 'initial', //react-beautiful-dnd unique key
 						name: '',
-						description: '',
-						quantity: 0,
+						desc: '',
+						qty: 0,
 						price: 0.00,
 					},
 				],
+				tax: 0.00, 
+				paid: 0.00, 
 				note: null,
-				group: null
-			}
+				group: null,
+				from: {
+					client_id: 12,
+				},
+				to: { 
+				}
+			},
 		};  
     }  
 
-	handleNoteChange = ( data ) => {  
-		this.setState({ note: data })
+	componentDidMount() {  
+		if ( this.props.id ) {
+			this.getData();
+		} 
+	}
+
+	getData = () => {
+        Helper.get(this.props.id)
+            .then(resp => {
+                this.setState({ invoice: resp.data.data.invoice }); 
+            })
+    };
+
+	handleNoteChange = ( data ) => {   
+		let invoice = {...this.state.invoice} 
+		invoice.note = data; 
+		this.setState({invoice})  
 	} 
 
-	handleGroupChange = ( data ) => { 
-		this.setState({ group: data })
+	handleGroupChange = ( data ) => {  
+		let invoice = {...this.state.invoice} 
+		invoice.group = data; 
+		this.setState({invoice})  
 	}
 	
 	handleInvoiceChange = (e) => {
@@ -64,7 +95,7 @@ class Invoice extends Component {
 	handleAddLineItem = (e) => {
 		let invoice = {...this.state.invoice} 
 		invoice.items = invoice.items.concat(
-			[{ id: Date.now().toString(), name: '', description: '', quantity: 0, price: 0.00 }]
+			[{ id: Date.now().toString(), name: '', desc: '', qty: 0, price: 0.00 }]
 		); 
 		this.setState({invoice}) 
 	}
@@ -88,14 +119,17 @@ class Invoice extends Component {
 	} 
 
 	handleSave = () => {
-		// console.log(this.state). 
-		if ( ! this.state.edit ) {
-			console.log(this.state.invoice)
-            Helper.create(this.state.invoice)
+		//console.log(this.state)
+		if ( ! this.state.helper.edit ) {
+			let data = {...this.state};
+			delete data.helper;
+			delete data.msg;
+			// console.log(this.state)
+            Helper.create(data)
                 .then(resp => {
                     if (resp.data.success) { 
 						console.log(resp.data.data);
-                        toast.success('Invoice success');
+                        toast.success(this.state.msg.create);
                         // this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -117,13 +151,8 @@ class Invoice extends Component {
                         });
                     }
                 }) */
-        }
-		 
-	}
-
-	componentDidMount() {
-		 
-	}
+        } 
+	} 
 
 	formatCurrency = (amount) => {
 		return (new Intl.NumberFormat(this.locale, {
@@ -139,7 +168,7 @@ class Invoice extends Component {
 	}
 
 	calcItemsTotal = () => {
-		return this.state.invoice.items.reduce((prev, cur) => (prev + (cur.quantity * cur.price)), 0)
+		return this.state.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
 	}
 
 	calcTaxTotal = () => {
@@ -147,7 +176,11 @@ class Invoice extends Component {
 	}
 
 	calcGrandTotal = () => {
-		return this.calcItemsTotal() + this.calcTaxTotal()
+		let total = this.calcItemsTotal() + this.calcTaxTotal();
+		/* let invoice = {...this.state.invoice} 
+		invoice.total = total; 
+		this.setState({invoice}); */
+		return total;
 	}
 
 	render = () => {
@@ -230,10 +263,10 @@ class Invoice extends Component {
 							</div>
 							
 							<div className='mb-16'></div>
-							<Note changeHandler={this.handleNoteChange} />
+							<Note data={this.state.invoice.note} changeHandler={this.handleNoteChange} />
 
 							<div className='mb-16'></div>
-							<Group changeHandler={this.handleGroupChange} />
+							<Group data={this.state.invoice.group} changeHandler={this.handleGroupChange} />
 
 						</div>
                     </div>
@@ -247,4 +280,10 @@ class Invoice extends Component {
 	} 
 }  
 
-export default Invoice;
+function GetId() {
+    const { id } = useParams();
+    return (
+        <Invoice id={id} />
+    );
+} 
+export default GetId; 

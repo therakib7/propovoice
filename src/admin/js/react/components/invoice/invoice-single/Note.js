@@ -15,6 +15,13 @@ class Note extends Component {
         this.handlePros();
     }
 
+    /* componentDidUpdate() {  
+        if ( this.props.data ) {
+            console.log(this.props.data);
+            // this.setState({ note: this.props.data });
+        }
+	} */
+
     handlePros = () => { 
         this.props.changeHandler( this.state.note );
     }; 
