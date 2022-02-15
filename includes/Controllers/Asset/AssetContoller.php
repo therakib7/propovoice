@@ -21,7 +21,7 @@ class AssetContoller {
 			add_filter( 'update_footer',     '__return_empty_string', 11 );
 		} 
 
-		// add_filter( 'show_admin_bar' , [$this, 'hide_admin_bar'] );
+		add_filter( 'show_admin_bar' , [$this, 'hide_admin_bar'] );
 	}    
 
 	function hide_admin_bar( $show ){

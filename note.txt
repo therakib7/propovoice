@@ -1,1 +1,2 @@
-* on show admin abar
+* on show admin bar
+

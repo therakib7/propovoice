@@ -7,6 +7,10 @@ import Items from './Items'
 import Note from './Note' 
 import Group from './Group';
 
+//sidebar section
+import Style from './section/Style'
+import Owner from './section/Owner'
+
 class Invoice extends Component {
 
 	locale = 'en-US'
@@ -274,8 +278,9 @@ class Invoice extends Component {
 						</div>
                     </div>
                     
-                    <div className='col-span-3'> 
-						
+                    <div className='col-span-3 pt-28'> 
+						<Style />
+						<Owner />
                     </div>
                 </div> 
 			</div> 
