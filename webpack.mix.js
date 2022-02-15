@@ -63,11 +63,11 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
         fs.ensureDir(languages, function (err) {
             if (err) return console.error(err); // if file or folder does not exist
             wpPot({
-                package: 'NCPI Project',
+                package: 'Propovocie',
                 bugReport: '',
                 src: '**/*.php',
                 domain: 'propovoice',
-                destFile: `languages/ncpi.pot`
+                destFile: `languages/propovoice.pot`
             });
         });
     }

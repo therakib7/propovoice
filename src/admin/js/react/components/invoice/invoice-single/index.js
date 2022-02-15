@@ -275,7 +275,7 @@ class Invoice extends Component {
                     </div>
                     
                     <div className='col-span-3'> 
-						Sidebar content
+						
                     </div>
                 </div> 
 			</div> 

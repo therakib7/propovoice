@@ -2,8 +2,6 @@
 
 namespace Ncpi\Controllers\Asset;
 
-use Ncpi\Helpers\Functions;
-
 class AssetContoller {
 
 	private $suffix;
@@ -23,7 +21,7 @@ class AssetContoller {
 			add_filter( 'update_footer',     '__return_empty_string', 11 );
 		} 
 
-		add_filter( 'show_admin_bar' , [$this, 'hide_admin_bar'] );
+		// add_filter( 'show_admin_bar' , [$this, 'hide_admin_bar'] );
 	}    
 
 	function hide_admin_bar( $show ){
@@ -40,18 +38,12 @@ class AssetContoller {
 		if ( 
 			( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi' ) ||
 			is_page_template('dashboard-template.php')
-		) { 
-			if ( ! is_admin() ) {
-				wp_dequeue_script( 'jquery');
-				wp_deregister_script( 'jquery'); 
-			}
+		) {  
 			
 			wp_enqueue_style('dashicons');
-			
-			// wp_enqueue_style( 'ncpi-admin-tailwind', 'https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css', array(), $this->version ); //TODO: fix it later
-			//TOOD: check tailwind path later
+			  
 			// wp_enqueue_style( 'tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind{$this->suffix}.css" ), array(), $this->version ); 
-			wp_enqueue_script( 'ncpi-admin-tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind.3.0.18.js" ), array(), $this->version, false ); 
+			wp_enqueue_script( 'tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind.js" ), array(), $this->version, false ); 
 			wp_enqueue_style( 'ncpi-admin-main', ncpi()->get_assets_uri( "admin/css/main{$this->suffix}.css" ), array(), $this->version ); 
 			wp_enqueue_script( 'ncpi-admin-main', ncpi()->get_assets_uri( "admin/js/main{$this->suffix}.js" ), array('jquery', 'jquery-ui-sortable'), $this->version, true ); 
 			wp_localize_script('ncpi-admin-main', 'ncpi',
@@ -84,8 +76,7 @@ class AssetContoller {
 			)
 		);  
 
-		$this->dashboard_script();  
-
+		$this->dashboard_script();   
 	} 
 
 	function admin_scripts() { 

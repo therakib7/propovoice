@@ -8,7 +8,7 @@ Stable tag: 1.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-A complete proposal and invoice WordPress plugin for client.
+A complete proposal and invoice management system for the client.
 
 == Description ==
 

@@ -1,730 +1,135 @@
-#, fuzzy
+# Copyright (C) 2022 Propovocie
+# This file is distributed under the same license as the Propovocie package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Propovoice\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 09:41+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Propovocie\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.5.8; wp-5.9\n"
-"X-Domain: propovoice"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. %s template
-#: includes/Helpers/Functions.php:82
-#, php-format
+#. translators: %s template
+#: ../includes/Helpers/Functions.php:82
 msgid "%s does not exist."
 msgstr ""
 
-#: views/settings/specific-404-settings.php:36
-msgid ""
-"- This CSS will load in 404 page</br>- You don't need &lt;style>&lt;/style> "
-"tag here"
+#: ../includes/Helpers/Functions.php:171, ../includes/Helpers/Functions.php:242
+msgid "Select"
 msgstr ""
 
-#: views/settings/specific-admin-settings.php:37
-msgid ""
-"- This CSS will load in admin page</br>- You don't need &lt;style>&lt;/style>"
-" tag here"
+#: ../includes/Controllers/Asset/AssetContoller.php:53
+msgid "Sorry! this is a premium field. To use this field, you need to use pro plugin."
 msgstr ""
 
-#: views/settings/specific-archive-settings.php:39
-msgid ""
-"- This CSS will load in archive page</br>- You don't need &lt;style>&lt;"
-"/style> tag here"
+#: ../includes/Controllers/Installation/InstallationController.php:26
+msgid "Client"
 msgstr ""
 
-#: views/settings/specific-settings.php:38
-msgid ""
-"- This CSS will load in every page</br>- You don't need &lt;style>&lt;/style>"
-" tag here"
+#: ../includes/Controllers/Template/PageTemplater.php:17, ../templates/dashboard-template.php:3
+msgid "Propovoice Dashboard"
 msgstr ""
 
-#: views/settings/specific-home-settings.php:38
-msgid ""
-"- This CSS will load in home page</br>- You don't need &lt;style>&lt;/style> "
-"tag here"
+#: ../includes/Controllers/Api/Types/Client.php:227, ../includes/Controllers/Api/Types/Client.php:280, ../includes/Controllers/Api/Types/Invoice.php:170, ../includes/Controllers/Api/Types/Invoice.php:228
+msgid "Required form field is missing"
 msgstr ""
 
-#: views/settings/specific-single-settings.php:36
-msgid ""
-"- This CSS will load in single page</br>- You don't need &lt;style>&lt;"
-"/style> tag here"
-msgstr ""
-
-#: views/settings/specific-multiple-settings.php:63
-msgid ""
-"- This CSS will load multiple pages depend on the selection</br>- You don't "
-"need &lt;style>&lt;/style> tag here"
-msgstr ""
-
-#: views/settings/specific-404-settings.php:49
-msgid ""
-"- This JS will load in 404 page</br>- You don't need &lt;script>&lt;/script> "
-"tag here"
-msgstr ""
-
-#: views/settings/specific-admin-settings.php:50
-msgid ""
-"- This JS will load in admin page</br>- You don't need &lt;script>&lt;"
-"/script> tag here"
-msgstr ""
-
-#: views/settings/specific-archive-settings.php:52
-msgid ""
-"- This JS will load in archive page</br>- You don't need &lt;script>&lt;"
-"/script> tag here"
-msgstr ""
-
-#: views/settings/specific-settings.php:51
-msgid ""
-"- This JS will load in every page</br>- You don't need &lt;script>&lt;"
-"/script> tag here"
-msgstr ""
-
-#: views/settings/specific-home-settings.php:51
-msgid ""
-"- This JS will load in home page</br>- You don't need &lt;script>&lt;/script>"
-" tag here"
-msgstr ""
-
-#: views/settings/specific-single-settings.php:49
-msgid ""
-"- This JS will load in single page</br>- You don't need &lt;script>&lt;"
-"/script> tag here"
-msgstr ""
-
-#: views/settings/specific-multiple-settings.php:76
-msgid ""
-"- This JS will load multiple pages depend on the selection</br>- You don't "
-"need &lt;script>&lt;/script> tag here"
-msgstr ""
-
-#: includes/Controllers/Setting/Types/Main.php:115
-msgid "404"
-msgstr ""
-
-#: views/settings/specific-404-settings.php:13
-#: includes/Controllers/Meta/Types/Code.php:266
-msgid "404 Page"
-msgstr ""
-
-#: views/settings/general-settings.php:60
-msgid ""
-"<strong>Warning:</strong> Please consider that on weaker computers, enabling "
-"CSS highlighting may slow you down"
-msgstr ""
-
-#: views/settings/general-settings.php:78
-msgid ""
-"<strong>Warning:</strong> Please consider that on weaker computers, enabling "
-"HTML highlighting may slow you down"
-msgstr ""
-
-#: views/settings/general-settings.php:69
-msgid ""
-"<strong>Warning:</strong> Please consider that on weaker computers, enabling "
-"JS highlighting may slow you down"
-msgstr ""
-
-#: includes/Models/SettingsAPI.php:1011
-msgid "[Pro]"
-msgstr ""
-
-#: includes/Controllers/Setting/Types/Main.php:131
-msgid "Action failed. Please refresh the page and retry."
-msgstr ""
-
-#: includes/Models/SettingsAPI.php:549
-msgid "Add Image"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:24
-msgid "Add New"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:23
-msgctxt "Add New on Toolbar"
-msgid "Proposal"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:25
-msgid "Add New Proposal"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:235
-msgid "Admin"
-msgstr ""
-
-#: views/settings/specific-admin-settings.php:13
-msgid "Admin Dashboard Pages"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:22
-msgctxt "Admin Menu text"
-msgid "All Proposal"
-msgstr ""
-
-#: includes/Controllers/Setting/Types/Main.php:110
-msgid "All"
-msgstr ""
-
-#: views/settings/specific-settings.php:15
-msgid "All Frontend Page"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:262
-msgid "All Pages"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:29
-msgid "All Proposals"
-msgstr ""
-
-#: views/settings/specific-archive-settings.php:15
-msgid "Archie Page"
-msgstr ""
-
-#: includes/Controllers/Setting/Types/Main.php:114
-msgid "Archive"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:265
-msgid "Archive Page"
-msgstr ""
-
-#: includes/Helpers/Functions.php:155 includes/Helpers/Functions.php:165
-#: includes/Helpers/Functions.php:174
-msgid "Body Footer"
-msgstr ""
-
-#: views/settings/specific-archive-settings.php:16
-msgid "Category, Search, Author all are archive page"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:61
-msgid "Code Type"
-msgstr ""
-
-#: includes/Controllers/Widget/Elementor/Widgets/Registration.php:36
-msgid "Content"
-msgstr ""
-
-#: views/settings/general-settings.php:58
-msgid "CSS Syntax Highlight"
-msgstr ""
-
-#: views/settings/general-settings.php:31
-#: views/settings/specific-404-settings.php:34
-#: views/settings/specific-admin-settings.php:35
-#: views/settings/specific-archive-settings.php:37
-#: views/settings/specific-home-settings.php:36
-#: views/settings/specific-multiple-settings.php:61
-#: views/settings/specific-settings.php:36
-#: views/settings/specific-single-settings.php:34
-#: includes/Controllers/Meta/Taxonomy/Any.php:51
-#: includes/Controllers/Meta/Taxonomy/Any.php:117
-#: includes/Controllers/Meta/Types/Any.php:54
-#: includes/Controllers/Meta/Types/Code.php:67
-#: includes/Controllers/Meta/Types/Code.php:95
-msgid "Custom CSS"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Any.php:31
-msgid "Custom CSS and JS"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:26
-msgid "Custom CSS, JS and HTML"
-msgstr ""
-
-#: views/settings/general-settings.php:33
-#: views/settings/specific-404-settings.php:69
-#: views/settings/specific-admin-settings.php:70
-#: views/settings/specific-archive-settings.php:72
-#: views/settings/specific-home-settings.php:71
-#: views/settings/specific-multiple-settings.php:96
-#: views/settings/specific-settings.php:71
-#: views/settings/specific-single-settings.php:69
-#: includes/Controllers/Meta/Taxonomy/Any.php:95
-#: includes/Controllers/Meta/Taxonomy/Any.php:167
-#: includes/Controllers/Meta/Types/Any.php:100
-#: includes/Controllers/Meta/Types/Code.php:75
-#: includes/Controllers/Meta/Types/Code.php:180
-msgid "Custom HTML"
-msgstr ""
-
-#: views/settings/specific-404-settings.php:77
-#: views/settings/specific-admin-settings.php:78
-#: views/settings/specific-archive-settings.php:80
-#: views/settings/specific-home-settings.php:79
-#: views/settings/specific-multiple-settings.php:104
-#: views/settings/specific-settings.php:79
-#: views/settings/specific-single-settings.php:77
-#: includes/Controllers/Meta/Taxonomy/Any.php:100
-#: includes/Controllers/Meta/Taxonomy/Any.php:173
-#: includes/Controllers/Meta/Types/Any.php:105
-#: includes/Controllers/Meta/Types/Code.php:202
-msgid "Custom HTML Position"
-msgstr ""
-
-#: views/settings/general-settings.php:32
-#: views/settings/specific-404-settings.php:47
-#: views/settings/specific-admin-settings.php:48
-#: views/settings/specific-archive-settings.php:50
-#: views/settings/specific-home-settings.php:49
-#: views/settings/specific-multiple-settings.php:74
-#: views/settings/specific-settings.php:49
-#: views/settings/specific-single-settings.php:47
-#: includes/Controllers/Meta/Taxonomy/Any.php:68
-#: includes/Controllers/Meta/Taxonomy/Any.php:135
-#: includes/Controllers/Meta/Types/Any.php:71
-#: includes/Controllers/Meta/Types/Code.php:71
-#: includes/Controllers/Meta/Types/Code.php:130
-msgid "Custom JS"
-msgstr ""
-
-#: views/settings/specific-404-settings.php:55
-#: views/settings/specific-admin-settings.php:56
-#: views/settings/specific-archive-settings.php:58
-#: views/settings/specific-home-settings.php:57
-#: views/settings/specific-multiple-settings.php:82
-#: views/settings/specific-settings.php:57
-#: views/settings/specific-single-settings.php:55
-#: includes/Controllers/Meta/Taxonomy/Any.php:83
-#: includes/Controllers/Meta/Taxonomy/Any.php:151
-#: includes/Controllers/Meta/Types/Any.php:86
-#: includes/Controllers/Meta/Types/Code.php:166
-msgid "Custom JS Position"
-msgstr ""
-
-#: includes/Controllers/Setting/Types/Main.php:116
-msgid "Dashboard"
-msgstr ""
-
-#: views/settings/specific-404-settings.php:24
-#: views/settings/specific-admin-settings.php:25
-#: views/settings/specific-archive-settings.php:27
-#: views/settings/specific-home-settings.php:26
-#: views/settings/specific-multiple-settings.php:27
-#: views/settings/specific-settings.php:26
-#: views/settings/specific-single-settings.php:24
-msgid "Disable"
-msgstr ""
-
-#: includes/Controllers/Marketing/Types/Link.php:27
-msgid "Documentation"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:27
-msgid "Edit Proposal"
-msgstr ""
-
-#: includes/Controllers/Ajax/Types/Auth.php:80
-#: includes/Controllers/Ajax/Types/Auth.php:153
-msgid "Email Already exist!"
-msgstr ""
-
-#: includes/Controllers/Ajax/Types/Auth.php:76
-#: includes/Controllers/Ajax/Types/Auth.php:146
+#: ../includes/Controllers/Api/Types/Client.php:231, ../includes/Controllers/Api/Types/Client.php:284
 msgid "Email id is not valid!"
 msgstr ""
 
-#: views/settings/general-settings.php:24
-#: views/settings/specific-404-settings.php:23
-#: views/settings/specific-admin-settings.php:24
-#: views/settings/specific-archive-settings.php:26
-#: views/settings/specific-home-settings.php:25
-#: views/settings/specific-multiple-settings.php:26
-#: views/settings/specific-settings.php:25
-#: views/settings/specific-single-settings.php:23
-msgid "Enable"
+#: ../includes/Controllers/Api/Types/Client.php:235, ../includes/Controllers/Api/Types/Client.php:292
+msgid "Email Already exist!"
 msgstr ""
 
-#: views/settings/general-settings.php:37
-msgid "Enable In Post Type"
+#: ../includes/Controllers/Marketing/Types/Link.php:22
+msgid "Settings"
 msgstr ""
 
-#: views/settings/general-settings.php:48
-msgid "Enable In Taxonomy"
+#: ../includes/Controllers/Marketing/Types/Link.php:27
+msgid "Documentation"
 msgstr ""
 
-#: views/settings/specific-404-settings.php:17
-#: views/settings/specific-admin-settings.php:18
-#: views/settings/specific-archive-settings.php:20
-#: views/settings/specific-home-settings.php:19
-#: views/settings/specific-multiple-settings.php:20
-#: views/settings/specific-settings.php:19
-#: views/settings/specific-single-settings.php:17
-msgid "Enable?"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:234
-msgid "Frontend"
-msgstr ""
-
-#: includes/Controllers/Setting/Types/Main.php:54
-msgid "General"
-msgstr ""
-
-#: views/settings/general-settings.php:20
-msgid "General Setting"
-msgstr ""
-
-#: includes/Helpers/Functions.php:154 includes/Helpers/Functions.php:163
-#: includes/Helpers/Functions.php:173
-msgid "Head Tag"
-msgstr ""
-
-#: includes/Controllers/Setting/Types/Main.php:112
-msgid "Home"
-msgstr ""
-
-#: views/settings/specific-home-settings.php:15
-#: includes/Controllers/Meta/Types/Code.php:263
-msgid "Home Page"
-msgstr ""
-
-#: views/settings/general-settings.php:76
-msgid "HTML Syntax Highlight"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://nurcreation.com"
-msgstr ""
-
-#. URI of the plugin
-msgid "https://nurcreation.com/plugins/propovoice"
-msgstr ""
-
-#: views/settings/specific-404-settings.php:18
-#: views/settings/specific-admin-settings.php:19
-#: views/settings/specific-archive-settings.php:21
-#: views/settings/specific-home-settings.php:20
-#: views/settings/specific-multiple-settings.php:21
-#: views/settings/specific-settings.php:20
-#: views/settings/specific-single-settings.php:18
-msgid "If you disabled this option following CSS, JS and HTML will not apply"
-msgstr ""
-
-#: views/settings/support-settings.php:13
-msgid ""
-"If you face any issue or any suggestion</br>\n"
-"\t\t\t\tDon't forget to inform us. We will try our best to happy our "
-"valuable customer.</br>\n"
-"\t\t\t\tInform us to <strong>info@nurcreation.com</strong>"
-msgstr ""
-
-#: views/settings/general-settings.php:25
-msgid "If you overall enable/dsiabled custom CSS, JS or HTML from here"
-msgstr ""
-
-#: views/settings/specific-404-settings.php:78
-#: views/settings/specific-admin-settings.php:79
-#: views/settings/specific-archive-settings.php:81
-#: views/settings/specific-home-settings.php:80
-#: views/settings/specific-multiple-settings.php:105
-#: views/settings/specific-settings.php:80
-#: views/settings/specific-single-settings.php:78
-#: includes/Controllers/Meta/Taxonomy/Any.php:106
-#: includes/Controllers/Meta/Taxonomy/Any.php:182
-#: includes/Controllers/Meta/Types/Any.php:113
-#: includes/Controllers/Meta/Types/Code.php:210
-msgid "In which position you want to load your HTML"
-msgstr ""
-
-#: views/settings/specific-404-settings.php:56
-#: views/settings/specific-admin-settings.php:57
-#: views/settings/specific-archive-settings.php:59
-#: views/settings/specific-home-settings.php:58
-#: views/settings/specific-multiple-settings.php:83
-#: views/settings/specific-settings.php:58
-#: views/settings/specific-single-settings.php:56
-#: includes/Controllers/Meta/Taxonomy/Any.php:89
-#: includes/Controllers/Meta/Taxonomy/Any.php:160
-#: includes/Controllers/Meta/Types/Any.php:94
-#: includes/Controllers/Meta/Types/Code.php:174
-msgid "In which position you want to load your JS"
-msgstr ""
-
-#: includes/Controllers/Ajax/Types/Auth.php:40
-msgid "Invalid login details"
-msgstr ""
-
-#: views/settings/general-settings.php:67
-msgid "JS Syntax Highlight"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:231
-msgid "Location"
-msgstr ""
-
-#: views/settings/specific-multiple-settings.php:14
-msgid "Multiple Single Pages"
-msgstr ""
-
-#: includes/Controllers/Widget/Elementor/ElementorController.php:31
-msgid "NCPI Widgets"
-msgstr ""
-
-#: includes/Controllers/Widget/Elementor/Widgets/Registration.php:15
-msgid "NCPI: Registration"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:26
-msgid "New Proposal"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:33
-msgid "No proposal found in Trash."
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:32
-msgid "No proposal found."
-msgstr ""
-
-#. Author of the plugin
-msgid "NurCreation"
-msgstr ""
-
-#: includes/Helpers/Functions.php:164
-msgid "Opening Body"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:35
-msgid "Options"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:31
-msgid "Parent Proposal:"
-msgstr ""
-
-#: includes/Controllers/Ajax/Types/Auth.php:88
-#: includes/Controllers/Ajax/Types/Auth.php:164
-msgid "Password confirmation din't match!"
-msgstr ""
-
-#: includes/Controllers/Ajax/Types/Auth.php:84
-#: includes/Controllers/Ajax/Types/Auth.php:161
-msgid "Password length must be greater than 5!"
-msgstr ""
-
-#: views/settings/specific-multiple-settings.php:31
-msgid "Post Type"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:20
+#: ../includes/Controllers/PostType/Types/Proposal.php:20
 msgctxt "Post type general name"
 msgid "Proposal"
 msgstr ""
 
-#: includes/Controllers/PostType/Types/Proposal.php:21
+#: ../includes/Controllers/PostType/Types/Proposal.php:21
 msgctxt "Post type singular name"
 msgid "Proposal"
 msgstr ""
 
-#: includes/Controllers/Meta/Types/Code.php:312
-msgid "Priority"
+#: ../includes/Controllers/PostType/Types/Proposal.php:22
+msgctxt "Admin Menu text"
+msgid "All Proposal"
 msgstr ""
 
-#. Name of the plugin
-#: includes/Controllers/Setting/Types/Main.php:24
-#: includes/Controllers/Setting/Types/Main.php:25
-msgid "Propovoice"
+#: ../includes/Controllers/PostType/Types/Proposal.php:23
+msgctxt "Add New on Toolbar"
+msgid "Proposal"
 msgstr ""
 
-#: templates/dashboard-template.php:13
-#: includes/Controllers/Template/PageTemplater.php:17
-msgid "Propovoice Dashboard"
+#: ../includes/Controllers/PostType/Types/Proposal.php:24
+msgid "Add New"
 msgstr ""
 
-#: includes/Controllers/Setting/Types/Setup.php:14
-#: includes/Controllers/Setting/Types/Setup.php:15
-msgid "Propovoice Welcome"
+#: ../includes/Controllers/PostType/Types/Proposal.php:25
+msgid "Add New Proposal"
 msgstr ""
 
-#: includes/Models/SettingsAPI.php:553
-msgid "Remove Image"
+#: ../includes/Controllers/PostType/Types/Proposal.php:26
+msgid "New Proposal"
 msgstr ""
 
-#: includes/Controllers/Ajax/Types/Auth.php:29
-#: includes/Controllers/Ajax/Types/Auth.php:72
-#: includes/Controllers/Ajax/Types/Auth.php:142
-msgid "Required form field is missing"
+#: ../includes/Controllers/PostType/Types/Proposal.php:27
+msgid "Edit Proposal"
 msgstr ""
 
-#: includes/Controllers/PostType/Types/Proposal.php:30
-msgid "Search Proposal"
-msgstr ""
-
-#: includes/Helpers/Functions.php:208 includes/Helpers/Functions.php:279
-msgid "Select"
-msgstr ""
-
-#: includes/Models/SettingsAPI.php:990
-msgid "Select all"
-msgstr ""
-
-#: includes/Models/SettingsAPI.php:992
-msgid "Select none"
-msgstr ""
-
-#: includes/Models/SettingsAPI.php:1215
-msgid "Select one"
-msgstr ""
-
-#: views/settings/specific-multiple-settings.php:48
-msgid "Select Pages"
-msgstr ""
-
-#: views/settings/specific-multiple-settings.php:41
-msgid "Select Posts"
-msgstr ""
-
-#: includes/Controllers/Marketing/Types/Link.php:22
-msgid "Settings"
-msgstr ""
-
-#: views/settings/general-settings.php:15
-msgid "Settings Page"
-msgstr ""
-
-#: includes/Controllers/Setting/Types/Main.php:113
-msgid "Single"
-msgstr ""
-
-#: views/settings/specific-single-settings.php:13
-#: includes/Controllers/Meta/Types/Code.php:264
-msgid "Single Page"
-msgstr ""
-
-#: views/settings/general-settings.php:13
-msgid "Single Post Type (Post/Page/Custom Code etc)"
-msgstr ""
-
-#: views/settings/general-settings.php:14
-msgid "Single Taxonomy (Category/Tag etc)"
-msgstr ""
-
-#: includes/Controllers/Asset/AssetContoller.php:58
-msgid ""
-"Sorry! this is a premium field. To use this field, you need to use pro "
-"plugin."
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:259
-#: includes/Controllers/Setting/Types/Main.php:55
-msgid "Specific Page"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:288
-msgid "Specific Post Type"
-msgstr ""
-
-#: includes/Controllers/Meta/Types/Code.php:307
-msgid "Specific Posts"
-msgstr ""
-
-#: includes/Controllers/Setting/Types/Main.php:56
-msgid "Support"
-msgstr ""
-
-#: includes/Controllers/Meta/Taxonomy/Any.php:59
-#: includes/Controllers/Meta/Taxonomy/Any.php:76
-#: includes/Controllers/Meta/Taxonomy/Any.php:125
-#: includes/Controllers/Meta/Taxonomy/Any.php:143
-#: includes/Controllers/Meta/Types/Any.php:62
-#: includes/Controllers/Meta/Types/Any.php:79
-#: includes/Controllers/Meta/Types/Code.php:121
-#: includes/Controllers/Meta/Types/Code.php:159
-msgid "tag here"
-msgstr ""
-
-#: views/settings/specific-404-settings.php:71
-msgid "This HTML will load in 404 page"
-msgstr ""
-
-#: views/settings/specific-admin-settings.php:72
-msgid "This HTML will load in admin page"
-msgstr ""
-
-#: views/settings/specific-archive-settings.php:74
-msgid "This HTML will load in archive page"
-msgstr ""
-
-#: views/settings/specific-settings.php:73
-msgid "This HTML will load in every page"
-msgstr ""
-
-#: views/settings/specific-home-settings.php:73
-msgid "This HTML will load in home page"
-msgstr ""
-
-#: views/settings/specific-single-settings.php:71
-msgid "This HTML will load in single page"
-msgstr ""
-
-#: views/settings/specific-multiple-settings.php:98
-msgid "This HTML will load multiple pages depend on the selection"
-msgstr ""
-
-#: includes/Models/SettingsAPI.php:1010
-msgid "This is a premium field"
-msgstr ""
-
-#. Description of the plugin
-msgid "This plugin will help you to easily create proposal and invoice"
-msgstr ""
-
-#: views/settings/specific-admin-settings.php:14
-msgid "This section only load in admin dashboard"
-msgstr ""
-
-#: includes/Controllers/PostType/Types/Proposal.php:28
+#: ../includes/Controllers/PostType/Types/Proposal.php:28
 msgid "View Proposal"
 msgstr ""
 
-#: views/settings/specific-multiple-settings.php:32
-msgid "Which post type data you want to customize"
+#: ../includes/Controllers/PostType/Types/Proposal.php:29
+msgid "All Proposals"
 msgstr ""
 
-#: views/settings/specific-multiple-settings.php:49
-msgid "Which single page you want to customize"
+#: ../includes/Controllers/PostType/Types/Proposal.php:30
+msgid "Search Proposal"
 msgstr ""
 
-#: views/settings/general-settings.php:38
-msgid "Which single post type you want to edit you can mention here"
+#: ../includes/Controllers/PostType/Types/Proposal.php:31
+msgid "Parent Proposal:"
 msgstr ""
 
-#: views/settings/specific-multiple-settings.php:42
-msgid "Which single post you want to customize"
+#: ../includes/Controllers/PostType/Types/Proposal.php:32
+msgid "No proposal found."
 msgstr ""
 
-#: views/settings/general-settings.php:49
-msgid "Which single taxonomy you want to edit you can mention here"
+#: ../includes/Controllers/PostType/Types/Proposal.php:33
+msgid "No proposal found in Trash."
 msgstr ""
 
-#: views/settings/specific-multiple-settings.php:16
-msgid "You can customize multiple single post/page together from here"
+#: ../includes/Controllers/Setting/Types/Main.php:13, ../includes/Controllers/Setting/Types/Main.php:14
+msgid "Propovoice"
 msgstr ""
 
-#: includes/Controllers/Meta/Taxonomy/Any.php:57
-#: includes/Controllers/Meta/Taxonomy/Any.php:74
-#: includes/Controllers/Meta/Taxonomy/Any.php:123
-#: includes/Controllers/Meta/Taxonomy/Any.php:141
-#: includes/Controllers/Meta/Types/Any.php:60
-#: includes/Controllers/Meta/Types/Any.php:77
-#: includes/Controllers/Meta/Types/Code.php:119
-#: includes/Controllers/Meta/Types/Code.php:157
-msgid "You don't need"
+#: ../includes/Controllers/Setting/Types/Setup.php:14, ../includes/Controllers/Setting/Types/Setup.php:15
+msgid "Propovoice Welcome"
 msgstr ""
 
-#: includes/Controllers/Setting/Types/Main.php:136
-msgid "Your settings have been saved."
+#: ../includes/Controllers/Widget/Elementor/ElementorController.php:31
+msgid "NCPI Widgets"
+msgstr ""
+
+#: ../includes/Controllers/Widget/Elementor/Widgets/Registration.php:15
+msgid "NCPI: Registration"
+msgstr ""
+
+#: ../includes/Controllers/Widget/Elementor/Widgets/Registration.php:36
+msgid "Content"
 msgstr ""
