@@ -74,7 +74,7 @@ msgstr ""
 msgid "Propovoice Dashboard"
 msgstr ""
 
-#: ../includes/Controllers/Ajax/Types/Auth.php:29, ../includes/Controllers/Ajax/Types/Auth.php:72, ../includes/Controllers/Ajax/Types/Auth.php:142, ../includes/Controllers/Api/Types/Invoice.php:204
+#: ../includes/Controllers/Ajax/Types/Auth.php:29, ../includes/Controllers/Ajax/Types/Auth.php:72, ../includes/Controllers/Ajax/Types/Auth.php:142, ../includes/Controllers/Api/Types/Client.php:238, ../includes/Controllers/Api/Types/Invoice.php:203
 msgid "Required form field is missing"
 msgstr ""
 
@@ -82,11 +82,11 @@ msgstr ""
 msgid "Invalid login details"
 msgstr ""
 
-#: ../includes/Controllers/Ajax/Types/Auth.php:76, ../includes/Controllers/Ajax/Types/Auth.php:146, ../includes/Controllers/Api/Types/Invoice.php:208
+#: ../includes/Controllers/Ajax/Types/Auth.php:76, ../includes/Controllers/Ajax/Types/Auth.php:146, ../includes/Controllers/Api/Types/Client.php:242
 msgid "Email id is not valid!"
 msgstr ""
 
-#: ../includes/Controllers/Ajax/Types/Auth.php:80, ../includes/Controllers/Ajax/Types/Auth.php:153, ../includes/Controllers/Api/Types/Invoice.php:212
+#: ../includes/Controllers/Ajax/Types/Auth.php:80, ../includes/Controllers/Ajax/Types/Auth.php:153, ../includes/Controllers/Api/Types/Client.php:246
 msgid "Email Already exist!"
 msgstr ""
 

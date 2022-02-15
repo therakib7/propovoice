@@ -185,8 +185,7 @@ class Client
 
     public function get_single( $req )
     { 
-        
-        // return wp_send_json_success(4354);
+         
         $url_params = $req->get_url_params();
         $user_id      = $url_params['id'];
 
@@ -202,7 +201,7 @@ class Client
             $field['company_name'] = get_user_meta($user->ID, 'company_name', true);
             $field['web'] = get_user_meta($user->ID, 'web', true);
             $field['mobile'] = get_user_meta($user->ID, 'mobile', true);
-            $field['zip'] = '1245';
+            $field['zip'] = '';
             $field['date'] = $user->user_registered;
 
         $data['user'] = $field; 
@@ -211,13 +210,7 @@ class Client
     }
 
     public function create($req)
-    {
-        // Check for nonce security
-        /* if (! wp_verify_nonce($req['nonce'], 'exdda-ajax-nonce')) {
-			die('Busted!');
-		} */
-        // $request = $req->get_params();
-        // wp_send_json_success($request);
+    { 
 
         $reg_errors             = new \WP_Error;
         $first_name             = sanitize_text_field($req['first_name']);
@@ -225,15 +218,11 @@ class Client
         $useremail              = strtolower(sanitize_email($req['email']));
         $company_name           = sanitize_text_field($req['company_name']);
         $web                    = esc_url_raw($req['web']);
-        $mobile                 = sanitize_text_field($req['mobile']);
-        // $password               = esc_attr($req['password']);
-        // $password_confirmation  = esc_attr($req['password_confirmation']);
+        $mobile                 = sanitize_text_field($req['mobile']); 
 
         if (
             empty($first_name) ||
-            empty($useremail)
-            // empty($password) ||
-            // empty($password_confirmation)
+            empty($useremail) 
         ) {
             $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
         }
@@ -244,25 +233,15 @@ class Client
 
         if (email_exists($useremail)) {
             $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
-        }
-
-        // if (5 > strlen($password)) {
-        // 	$reg_errors->add('password', esc_html__('Password length must be greater than 5!', 'propovoice'));
-        // }
-
-        // if ($password != $password_confirmation) {
-        // 	$reg_errors->add('password', esc_html__('Password confirmation din\'t match!', 'propovoice'));
-        // }
+        } 
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $userdata = [
                 'user_login' => $useremail,
-                'user_email' => $useremail,
-                // 'user_pass'  => $password,
-                'user_pass'  => wp_generate_password(8, true, true),
-                // 'display_name' => $name,
+                'user_email' => $useremail, 
+                'user_pass'  => wp_generate_password(8, true, true), 
                 'first_name' => $first_name,
                 'last_name'  => $last_name,
             ];
@@ -298,11 +277,11 @@ class Client
             empty($useremail) ||
             empty($first_name)
         ) {
-            $reg_errors->add('field', esc_html__('Required form field is missing', 'exdda'));
+            $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
         }
 
         if (!is_email($useremail)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'exdda'));
+            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }
 
         $url_params = $req->get_url_params();
@@ -310,7 +289,7 @@ class Client
         $current_user = get_user_by('id', $user_id);
 
         if (($useremail != $current_user->user_email) && email_exists($useremail)) {
-            $reg_errors->add('email', esc_html__('Email Already exist!', 'exdda'));
+            $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
         }
 
         if ($reg_errors->get_error_messages()) {

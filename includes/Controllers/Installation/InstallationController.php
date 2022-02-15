@@ -7,8 +7,8 @@ use Ncpi\Controllers\Installation\Types\DB;
 class InstallationController {
 
     public function __construct() { 
-        register_activation_hook(NCPI_FILE, array($this, 'plugin_activate'));
-        add_action('admin_init', array($this, 'plugin_redirect') );
+        /* register_activation_hook(NCPI_FILE, array($this, 'plugin_activate'));
+        add_action('admin_init', array($this, 'plugin_redirect') ); */
     }   
 
     function plugin_activate() { 

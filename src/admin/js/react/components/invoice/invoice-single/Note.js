@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 class Note extends Component {
     state = {
+        edit: false,
 		note: {
             label: 'Note', 
             text: ''
@@ -15,12 +16,11 @@ class Note extends Component {
         this.handlePros();
     }
 
-    /* componentDidUpdate() {  
-        if ( this.props.data ) {
-            console.log(this.props.data);
-            // this.setState({ note: this.props.data });
+    componentDidUpdate() {   
+        if ( ! this.state.edit && this.props.data ) { 
+            this.setState({ edit: true, note: this.props.data });
         }
-	} */
+	}
 
     handlePros = () => { 
         this.props.changeHandler( this.state.note );
@@ -34,7 +34,6 @@ class Note extends Component {
             <div className=''> 
                 <div className=''>
                     <input type="text" id={'note-label'} onChange={ this.handleChange } name="label" value={label} className='w-auto border-none focus:border' />
-
                     <label htmlFor={'note-label'}>
                         <span><i className="dashicons dashicons-edit-page pt-1"></i></span>
                     </label>

@@ -2604,104 +2604,6 @@ var Dashboard = function Dashboard() {
       className: "mb-5 font-bold text-2xl",
       children: "Dashboard"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "mb-5 font-bold text-xl",
-      children: "Proposal"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "shadow overflow-hidden rounded border-b border-gray-200",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
-        className: "min-w-full bg-white",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
-          className: "bg-gray-300 text-gray-800",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "w-1/3 text-left py-3 px-4 font-bold text-sm",
-              children: "Proposal"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "w-1/3 text-left py-3 px-4 font-semibold text-sm",
-              children: "Client"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "text-left py-3 px-4 font-semibold text-sm",
-              children: "Date"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "text-left py-3 px-4 font-semibold text-sm",
-              children: "Status"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "text-left py-3 px-4 font-semibold text-sm",
-              children: "Action"
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-          className: "text-gray-700",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "w-1/3 text-left py-3 px-4",
-              children: "Title of proposal"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "w-1/3 text-left py-3 px-4",
-              children: "Smith"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "text-left py-3 px-4",
-              children: "10 Nov 2020"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "text-left py-3 px-4",
-              children: "Paid"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "text-left py-3 px-4",
-              children: "View | Edit | Delete"
-            })]
-          })
-        })]
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "my-5 font-bold text-xl",
-      children: "Contract"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "shadow overflow-hidden rounded border-b border-gray-200",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
-        className: "min-w-full bg-white",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
-          className: "bg-gray-300 text-gray-800",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "w-1/3 text-left py-3 px-4 font-bold text-sm",
-              children: "Contract"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "w-1/3 text-left py-3 px-4 font-semibold text-sm",
-              children: "Client"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "text-left py-3 px-4 font-semibold text-sm",
-              children: "Date"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "text-left py-3 px-4 font-semibold text-sm",
-              children: "Status"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-              className: "text-left py-3 px-4 font-semibold text-sm",
-              children: "Action"
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-          className: "text-gray-700",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "w-1/3 text-left py-3 px-4",
-              children: "Title of proposal"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "w-1/3 text-left py-3 px-4",
-              children: "Smith"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "text-left py-3 px-4",
-              children: "10 Nov 2020"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "text-left py-3 px-4",
-              children: "Paid"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "text-left py-3 px-4",
-              children: "View | Edit | Delete"
-            })]
-          })
-        })]
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "my-5 font-bold text-xl",
       children: "Invoice"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -2730,23 +2632,12 @@ var Dashboard = function Dashboard() {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
           className: "text-gray-700",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "w-1/3 text-left py-3 px-4",
-              children: "Title of proposal"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "w-1/3 text-left py-3 px-4",
-              children: "Smith"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "text-left py-3 px-4",
-              children: "10 Nov 2020"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "text-left py-3 px-4",
-              children: "Paid"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-              className: "text-left py-3 px-4",
-              children: "View | Edit | Delete"
-            })]
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+              colSpan: 3,
+              className: "p-3",
+              children: "No data found"
+            })
           })
         })]
       })
@@ -2777,7 +2668,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Help = function Help() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: "Hello Help & Support"
+    children: "If you face any problem, mail us to info@nurency.com"
   });
 };
 
@@ -2867,93 +2758,24 @@ var Home = function Home() {
               className: "dashicons dashicons-groups mr-3"
             }), "Client"]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.NavLink, {
-            to: "estimate",
+            to: "invoice",
             className: function className(_ref3) {
               var isActive = _ref3.isActive;
-              return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
-              className: "dashicons dashicons-groups mr-3"
-            }), "Estimate"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.NavLink, {
-            to: "invoice",
-            className: function className(_ref4) {
-              var isActive = _ref4.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
               className: "dashicons dashicons-text-page mr-3"
             }), "Invoice"]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.NavLink, {
-            to: "proposal",
-            className: function className(_ref5) {
-              var isActive = _ref5.isActive;
-              return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
-              className: "dashicons dashicons-portfolio mr-3"
-            }), "Proposal"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.NavLink, {
-            to: "editor",
-            className: function className(_ref6) {
-              var isActive = _ref6.isActive;
-              return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
-              className: "dashicons dashicons-portfolio mr-3"
-            }), "Proposal Test"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.NavLink, {
-            to: "contract",
-            className: function className(_ref7) {
-              var isActive = _ref7.isActive;
-              return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
-              className: "dashicons dashicons-groups mr-3"
-            }), "Contract"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.NavLink, {
-            to: "payment",
-            className: function className(_ref8) {
-              var isActive = _ref8.isActive;
-              return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
-              className: "dashicons dashicons-money-alt mr-3"
-            }), "Payment"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.NavLink, {
-            to: "template-library",
-            className: function className(_ref9) {
-              var isActive = _ref9.isActive;
-              return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
-              className: "dashicons dashicons-admin-page mr-3"
-            }), "Template Library"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.NavLink, {
-            to: "setting",
-            className: function className(_ref10) {
-              var isActive = _ref10.isActive;
-              return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
-              className: "dashicons dashicons-admin-generic mr-3"
-            }), "Settings"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.NavLink, {
             to: "help",
-            className: function className(_ref11) {
-              var isActive = _ref11.isActive;
+            className: function className(_ref4) {
+              var isActive = _ref4.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
               className: "dashicons dashicons-editor-help mr-3"
             }), "Help"]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("a", {
-          href: "#",
-          className: "absolute w-full upgrade-btn bottom-0 active-nav-link text-gray-700 hover:text-purple-700 flex items-center justify-center py-4",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("i", {
-            className: "dashicons dashicons-upload mr-3"
-          }), "Upgrade to Pro!"]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
         className: "w-full ncpi-h-screen overflow-y-hidden p-6",
@@ -6886,11 +6708,11 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -7107,6 +6929,7 @@ var Group = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
+      edit: false,
       groups: [{
         label: 'Add Terms',
         list_type: 'letter',
@@ -7118,7 +6941,19 @@ var Group = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  return _createClass(Group);
+  _createClass(Group, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (!this.state.edit && this.props.data) {
+        this.setState({
+          edit: true,
+          groups: this.props.data
+        });
+      }
+    }
+  }]);
+
+  return Group;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 Group.propTypes = {
@@ -7529,11 +7364,11 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -7573,6 +7408,7 @@ var Note = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
+      edit: false,
       note: {
         label: 'Note',
         text: ''
@@ -7633,7 +7469,19 @@ var Note = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  return _createClass(Note);
+  _createClass(Note, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (!this.state.edit && this.props.data) {
+        this.setState({
+          edit: true,
+          note: this.props.data
+        });
+      }
+    }
+  }]);
+
+  return Note;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 Note.propTypes = {
@@ -7772,6 +7620,16 @@ var Invoice = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "currency", 'USD');
 
+    _defineProperty(_assertThisInitialized(_this), "updateTxt", function () {
+      var msg = _objectSpread({}, _this.state.msg);
+
+      msg.saveTxt = 'Update';
+
+      _this.setState({
+        msg: msg
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "getData", function () {
       _helper__WEBPACK_IMPORTED_MODULE_3__["default"].get(_this.props.id).then(function (resp) {
         _this.setState({
@@ -7876,17 +7734,20 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleSave", function () {
-      //console.log(this.state)
-      if (!_this.state.helper.edit) {
-        var data = _objectSpread({}, _this.state);
+      var formData = _objectSpread({}, _this.state);
 
-        delete data.helper;
-        delete data.msg; // console.log(this.state)
+      delete formData.msg;
+      var editId = _this.props.id;
 
-        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].create(data).then(function (resp) {
+      if (!editId) {
+        // console.log(this.state)
+        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].create(formData).then(function (resp) {
           if (resp.data.success) {
-            console.log(resp.data.data);
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create); // this.getLists();
+            _this.props.routeChange(resp.data.data);
+
+            _this.updateTxt();
+
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create);
           } else {
             resp.data.data.forEach(function (value, index, array) {
               react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
@@ -7894,19 +7755,15 @@ var Invoice = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        /* Helper.update(client.id, client)
-            .then(resp => {
-                if (resp.data.success) {
-                    this.setState({ formModal: false })
-                    // this.setState({ formModalType: 'new' });
-                    toast.success(this.state.invoice.msg.update);
-                    this.getLists();
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            }) */
+        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].update(editId, formData).then(function (resp) {
+          if (resp.data.success) {
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
+          } else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+            });
+          }
+        });
       }
     });
 
@@ -7961,9 +7818,9 @@ var Invoice = /*#__PURE__*/function (_Component) {
             className: "col-span-9",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
               className: "flex justify-between my-3 mb-10",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "mb-5 font-bold text-2xl",
-                children: "Create New Invoice"
+                children: [_this.props.id ? 'Edit' : 'Create New', " Invoice"]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
@@ -7975,7 +7832,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
                   className: "bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded-full",
                   onClick: _this.handleSave,
-                  children: "Save"
+                  children: _this.state.msg.saveTxt
                 })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -8050,15 +7907,12 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
-      helper: {
-        edit: false,
-        edit_id: null
-      },
       msg: {
         create: 'Successfully Added',
         update: 'Successfully Updated',
         "delete": 'Successfully Deleted',
-        confirm: 'Are you sure to delete it?'
+        confirm: 'Are you sure to delete it?',
+        saveTxt: 'Save'
       },
       invoice: {
         items: [{
@@ -8086,6 +7940,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       if (this.props.id) {
+        this.updateTxt();
         this.getData();
       }
     }
@@ -8094,16 +7949,25 @@ var Invoice = /*#__PURE__*/function (_Component) {
   return Invoice;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-function GetId() {
+function InvoiceWrap() {
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useParams)(),
       id = _useParams.id;
 
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();
+
+  var routeChange = function routeChange(id) {
+    navigate("/invoice/single/".concat(id), {
+      replace: true
+    });
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Invoice, {
-    id: id
+    id: id,
+    routeChange: routeChange
   });
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GetId);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InvoiceWrap);
 
 /***/ }),
 

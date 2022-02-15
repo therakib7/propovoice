@@ -45,54 +45,54 @@ const Home = () => {
                             <i className="dashicons dashicons-groups mr-3" />
                             Client
                         </NavLink>
-                        <NavLink
+                        {/* <NavLink
                             to='estimate'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-groups mr-3" />
                             Estimate
-                        </NavLink>
+                        </NavLink> */}
                         <NavLink
                             to='invoice'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-text-page mr-3" />
                             Invoice
                         </NavLink>
-                        <NavLink
+                        {/* <NavLink
                             to='proposal'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-portfolio mr-3" />
                             Proposal
-                        </NavLink>
-                        <NavLink
+                        </NavLink> */}
+                        {/* <NavLink
                             to='editor'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-portfolio mr-3" />
                             Proposal Test
-                        </NavLink>
-                        <NavLink
+                        </NavLink> */}
+                        {/* <NavLink
                             to='contract'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-groups mr-3" />
                             Contract
-                        </NavLink>
-                        <NavLink
+                        </NavLink> */}
+                        {/* <NavLink
                             to='payment'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-money-alt mr-3" />
                             Payment
-                        </NavLink>
-                        <NavLink
+                        </NavLink> */}
+                        {/* <NavLink
                             to='template-library'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-admin-page mr-3" />
                             Template Library
-                        </NavLink>
-                        <NavLink
+                        </NavLink> */}
+                        {/* <NavLink
                             to='setting'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-admin-generic mr-3" />
                             Settings
-                        </NavLink>
+                        </NavLink> */}
                         <NavLink
                             to='help'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
@@ -101,10 +101,10 @@ const Home = () => {
                         </NavLink>
                     </nav>
 
-                    <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-gray-700 hover:text-purple-700 flex items-center justify-center py-4">
+                    {/* <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-gray-700 hover:text-purple-700 flex items-center justify-center py-4">
                         <i className="dashicons dashicons-upload mr-3" />
                         Upgrade to Pro!
-                    </a>
+                    </a> */}
                 </aside>
 
                 <div className="w-full ncpi-h-screen overflow-y-hidden p-6">

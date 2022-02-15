@@ -7,6 +7,7 @@ class Group extends Component {
         super(props); 
 
         this.state = {
+            edit: false,
             groups: [
                 {
                     label: 'Add Terms',
@@ -16,6 +17,12 @@ class Group extends Component {
             ], 
         };
     }
+
+    componentDidUpdate() {   
+        if ( ! this.state.edit && this.props.data ) { 
+            this.setState({ edit: true, groups: this.props.data });
+        }
+	}
 
     handleGroupInfo = (index) => (e) => {
         const { name, value } = e.target;

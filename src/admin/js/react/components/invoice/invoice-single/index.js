@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink, useParams } from "react-router-dom";
-
+import { NavLink, useParams, useNavigate } from "react-router-dom"; 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  
 import Helper from './helper';
@@ -16,16 +15,13 @@ class Invoice extends Component {
 	constructor(props) {
         super(props);         
 
-        this.state = {
-			helper: {
-				edit: false,
-				edit_id: null
-			},
+        this.state = { 
 			msg: {
                 create: 'Successfully Added',
                 update: 'Successfully Updated',
                 delete: 'Successfully Deleted',
                 confirm: 'Are you sure to delete it?',
+				saveTxt: 'Save'
             },
 			invoice: { 
 				items: [
@@ -52,16 +48,23 @@ class Invoice extends Component {
 
 	componentDidMount() {  
 		if ( this.props.id ) {
+			this.updateTxt();
 			this.getData();
 		} 
 	}
+
+	updateTxt = () => {
+        let msg = {...this.state.msg} 
+		msg.saveTxt = 'Update'; 
+		this.setState({msg});  
+    };
 
 	getData = () => {
         Helper.get(this.props.id)
             .then(resp => {
                 this.setState({ invoice: resp.data.data.invoice }); 
             })
-    };
+    }; 
 
 	handleNoteChange = ( data ) => {   
 		let invoice = {...this.state.invoice} 
@@ -119,18 +122,21 @@ class Invoice extends Component {
 	} 
 
 	handleSave = () => {
-		//console.log(this.state)
-		if ( ! this.state.helper.edit ) {
-			let data = {...this.state};
-			delete data.helper;
-			delete data.msg;
+		let formData = {...this.state}; 
+		delete formData.msg;
+
+		let editId = this.props.id;
+		if ( ! editId ) {
+			
 			// console.log(this.state)
-            Helper.create(data)
+            Helper.create(formData)
                 .then(resp => {
-                    if (resp.data.success) { 
-						console.log(resp.data.data);
-                        toast.success(this.state.msg.create);
-                        // this.getLists();
+                    if (resp.data.success) {  
+						this.props.routeChange(resp.data.data); 
+						
+						this.updateTxt();
+
+                        toast.success(this.state.msg.create); 
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -138,19 +144,16 @@ class Invoice extends Component {
                     }
                 })
         } else {
-            /* Helper.update(client.id, client)
+            Helper.update(editId, formData)
                 .then(resp => {
                     if (resp.data.success) {
-                        this.setState({ formModal: false })
-                        // this.setState({ formModalType: 'new' });
-                        toast.success(this.state.invoice.msg.update);
-                        this.getLists();
+                        toast.success(this.state.msg.update);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
                         });
                     }
-                }) */
+                })
         } 
 	} 
 
@@ -199,7 +202,7 @@ class Invoice extends Component {
                     <div className='col-span-9'>
 						<div className='flex justify-between my-3 mb-10'>
 							<div className='mb-5 font-bold text-2xl'>
-								Create New Invoice
+								{ this.props.id ? 'Edit' : 'Create New'} Invoice
 							</div>
 
 							<div className=''>
@@ -212,7 +215,7 @@ class Invoice extends Component {
 								<button
 									className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded-full"
 									onClick={this.handleSave} >
-									Save
+									{ this.state.msg.saveTxt }
 								</button> 
 							</div>
 						</div>
@@ -280,10 +283,16 @@ class Invoice extends Component {
 	} 
 }  
 
-function GetId() {
+function InvoiceWrap() {
     const { id } = useParams();
+
+	let navigate = useNavigate();
+	const routeChange = id => { 
+		navigate(`/invoice/single/${id}`, { replace: true }); 
+    };
+
     return (
-        <Invoice id={id} />
+        <Invoice id={id} routeChange={routeChange}/>
     );
 } 
-export default GetId; 
+export default InvoiceWrap; 

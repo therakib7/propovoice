@@ -4,7 +4,7 @@ const Help = () => {
     
     return(
         <> 
-            Hello Help & Support
+            If you face any problem, mail us to info@nurency.com
         </>
     )
 }
