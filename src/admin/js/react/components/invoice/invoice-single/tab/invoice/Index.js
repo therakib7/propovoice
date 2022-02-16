@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink, useParams, useNavigate } from "react-router-dom"; 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  
-import Helper from './helper';
+import Helper from '../../helper';
 import Items from './Items' 
 import Note from './Note' 
 import Group from './Group';
@@ -19,24 +19,7 @@ class Invoice extends Component {
 	constructor(props) {
         super(props);         
 
-        this.state = { 
-			tabs: [
-                {
-                    id: 'template',
-                    text: 'Select Template',
-                    // content: Overview
-                },
-                {
-                    id: 'info',
-                    text: 'Add Information',
-                    // content: Project
-                },
-                {
-                    id: 'save',
-                    text: 'Save & Share',
-                    // content: Estimate
-                }, 
-            ],
+        this.state = {  
 			msg: {
                 create: 'Successfully Added',
                 update: 'Successfully Updated',
@@ -207,8 +190,7 @@ class Invoice extends Component {
 		return total;
 	}
 
-	render = () => {
-		const { tabs = [], currentTab } = this.state;
+	render = () => { 
 		return ( 
 			<div className='ncpi-components'>
 				<ToastContainer />
@@ -218,25 +200,8 @@ class Invoice extends Component {
                         className="">
                         <span className="dashicons dashicons-arrow-left-alt2"></span> Back to Invoice
                     </NavLink>
-                </div>
-
-				<div className="border-b border-gray-200 dark:border-gray-700">
-                    <ul className="flex flex-wrap -mb-px">
-
-                        {tabs.map((tab, index) => (
-                            <li className="mr-2" key={index}>
-                                <a
-                                    href="#"
-                                    className={"inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + (currentTab == tab.id ? 'text-gray-700 border-gray-700' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300')}
-                                    onClick={(e) => this.setActiveTab(e, tab.id)}
-                                >
-                                    {tab.text}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
+                </div> 
+				
 				<div className="grid grid-cols-12 gap-4">
                     <div className='col-span-9'>
 						<div className='flex justify-between my-3 mb-10'>
