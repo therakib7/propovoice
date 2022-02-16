@@ -7659,6 +7659,10 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
+      var _this$state = _this.state,
+          _this$state$tabs = _this$state.tabs,
+          tabs = _this$state$tabs === void 0 ? [] : _this$state$tabs,
+          currentTab = _this$state.currentTab;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
         className: "ncpi-components",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
@@ -7669,6 +7673,24 @@ var Invoice = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
               className: "dashicons dashicons-arrow-left-alt2"
             }), " Back to Invoice"]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+          className: "border-b border-gray-200 dark:border-gray-700",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("ul", {
+            className: "flex flex-wrap -mb-px",
+            children: tabs.map(function (tab, index) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("li", {
+                className: "mr-2",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
+                  href: "#",
+                  className: "inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + (currentTab == tab.id ? 'text-gray-700 border-gray-700' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300'),
+                  onClick: function onClick(e) {
+                    return _this.setActiveTab(e, tab.id);
+                  },
+                  children: tab.text
+                })
+              }, index);
+            })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
           className: "grid grid-cols-12 gap-4",
@@ -7765,6 +7787,19 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
+      tabs: [{
+        id: 'template',
+        text: 'Select Template' // content: Overview
+
+      }, {
+        id: 'info',
+        text: 'Add Information' // content: Project
+
+      }, {
+        id: 'save',
+        text: 'Save & Share' // content: Estimate
+
+      }],
       msg: {
         create: 'Successfully Added',
         update: 'Successfully Updated',

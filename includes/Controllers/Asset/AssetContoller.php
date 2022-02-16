@@ -58,6 +58,7 @@ class AssetContoller {
 			
 			wp_localize_script( 'ncpi-admin-setting', 'ncpi_local', array(
 				'apiUrl' => esc_url( rest_url() ),
+				'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
 				'nonce' => wp_create_nonce( 'wp_rest' )
 			) );
 		}
