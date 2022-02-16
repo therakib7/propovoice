@@ -7,6 +7,9 @@ import Items from './Items'
 import Note from './Note' 
 import Group from './Group';
 
+import Template from '../../tab/template'; 
+import Save from '../../tab/save'; 
+
 //sidebar section
 import Style from './section/Style'
 import Owner from './section/Owner'
@@ -20,6 +23,21 @@ class Invoice extends Component {
         super(props);         
 
         this.state = {  
+			tabs: [
+				{
+					id: 'template',
+					text: 'Select Template'  
+				},
+				{
+					id: 'info',
+					text: 'Add Information' 
+				},
+				{
+					id: 'save',
+					text: 'Save & Share' 
+				}, 
+			],
+			currentTab: '',
 			msg: {
                 create: 'Successfully Added',
                 update: 'Successfully Updated',
@@ -28,6 +46,10 @@ class Invoice extends Component {
 				saveTxt: 'Save'
             },
 			invoice: { 
+				template: {
+					id: null,
+					img: ''
+				},
 				items: [
 					{
 						id: 'initial', //react-beautiful-dnd unique key
@@ -52,12 +74,19 @@ class Invoice extends Component {
 
 	componentDidMount() {  
 		if ( this.props.id ) {
-			this.updateTxt();
+			this.setState({
+				currentTab: 'info'
+			});
+			this.updateEdit();
 			this.getData();
-		} 
-	}
+		} else {
+			this.setState({
+				currentTab: 'template'
+			});
+		}
+	}  
 
-	updateTxt = () => {
+	updateEdit = () => {
         let msg = {...this.state.msg} 
 		msg.saveTxt = 'Update'; 
 		this.setState({msg});  
@@ -70,6 +99,12 @@ class Invoice extends Component {
             })
     }; 
 
+	handleTemplateChange = ( data ) => {
+		let invoice = {...this.state.invoice} 
+		invoice.template = data;  
+		this.setState({invoice})
+	}
+
 	handleNoteChange = ( data ) => {   
 		let invoice = {...this.state.invoice} 
 		invoice.note = data; 
@@ -80,7 +115,7 @@ class Invoice extends Component {
 		let invoice = {...this.state.invoice} 
 		invoice.group = data; 
 		this.setState({invoice})  
-	}
+	} 
 	
 	handleInvoiceChange = (e) => {
 		const { name, value } = e.target;
@@ -128,11 +163,11 @@ class Invoice extends Component {
 	handleSave = () => {
 		let formData = {...this.state}; 
 		delete formData.msg;
+		delete formData.tabs;
+		delete formData.currentTab;
 
 		let editId = this.props.id;
-		if ( ! editId ) {
-			
-			// console.log(this.state)
+		if ( ! editId ) { 
             Helper.create(formData)
                 .then(resp => {
                     if (resp.data.success) {  
@@ -183,45 +218,74 @@ class Invoice extends Component {
 	}
 
 	calcGrandTotal = () => {
-		let total = this.calcItemsTotal() + this.calcTaxTotal();
-		/* let invoice = {...this.state.invoice} 
-		invoice.total = total; 
-		this.setState({invoice}); */
+		let total = this.calcItemsTotal() + this.calcTaxTotal(); 
 		return total;
 	}
 
+	setActiveTab(e, id) {
+        e.preventDefault();
+        this.setState({
+            currentTab: id
+        });
+    }
+ 
+	backTab = () => {  
+		let tab = this.state.currentTab;
+		if ( tab == 'info' ) {
+			tab = 'template';
+		} else if ( tab == 'save' ) {
+			tab = 'info';
+		}
+
+        this.setState({
+            currentTab: tab
+        });
+    }
+
 	render = () => { 
+		const { tabs = [], currentTab } = this.state;
 		return ( 
-			<div className='ncpi-components'>
+			<div className='ncpi-components'> 
 				<ToastContainer />
-				<div className='mb-3 text-sm'>
-                    <NavLink
-                        to='/invoice'
-                        className="">
-                        <span className="dashicons dashicons-arrow-left-alt2"></span> Back to Invoice
-                    </NavLink>
-                </div> 
-				
-				<div className="grid grid-cols-12 gap-4">
+				<div className="container flex flex-wrap p-5 px-0 flex-col md:flex-row items-center">
+					<a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"> 
+						<span className="font-bold text-2xl">{this.props.id ? 'Edit' : 'Create'} Invoice</span>
+					</a>
+					<nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center"> 
+						{tabs.map((tab, index) => ( 
+                                <a
+								key={index}
+                                    href="#"
+                                    className={"inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + (currentTab == tab.id ? 'text-blue-800 border-blue-800' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300')}
+                                    onClick={(e) => this.setActiveTab(e, tab.id)}
+                                >
+                                    {tab.text}
+                                </a> 
+                        ))}
+					</nav>
+					<div className="inline-flex items-center mt-4 md:mt-0">
+						{(currentTab != 'template') &&
+						<button
+							className="border-blue-700 text-blue-700 border hover:bg-blue-700 border hover:text-white font-medium text-base py-2 px-4 rounded mr-3"
+							onClick={this.backTab} >
+							Back
+						</button>
+						}
+
+						<button
+							className="bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded"
+							onClick={this.handleSave} >
+							{ this.state.msg.saveTxt } & Continue
+						</button> 
+					</div>
+				</div> 
+
+				{(currentTab == 'template') && <Template changeHandler={this.handleTemplateChange} />}
+
+				{(currentTab == 'info') && <div className="grid grid-cols-12 gap-4">
                     <div className='col-span-9'>
-						<div className='flex justify-between my-3 mb-10'>
-							<div className='mb-5 font-bold text-2xl'>
-								{ this.props.id ? 'Edit' : 'Create New'} Invoice
-							</div>
-
-							<div className=''>
-								<button
-									className="border-gray-800 text-gray-800 border hover:bg-gray-900 border hover:text-white font-medium text-base py-2 px-4 rounded-full mr-3"
-									onClick={() => this.openForm('new')} >
-									Preview
-								</button>
-
-								<button
-									className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded-full"
-									onClick={this.handleSave} >
-									{ this.state.msg.saveTxt }
-								</button> 
-							</div>
+						<div className='mb-5 font-bold text-xl'>
+							{ this.props.id ? 'Edit' : 'Add'} Content
 						</div>
 						
 						<div className='max-w-3xl m-auto'>
@@ -279,10 +343,14 @@ class Invoice extends Component {
                     </div>
                     
                     <div className='col-span-3 pt-28'> 
+						<img src={this.state.invoice.template.img} />
 						<Style />
 						<Owner />
                     </div>
-                </div> 
+                </div>} 
+
+				{(currentTab == 'save') && <Save />}
+
 			</div> 
 		)
 	} 

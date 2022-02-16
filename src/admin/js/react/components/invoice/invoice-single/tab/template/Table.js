@@ -1,14 +1,10 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
- 
+import React from 'react'; 
 
 const TableBody = props => { 
-     
-    let navigate = useNavigate();
-    function handleClick( id ) { 
-        navigate(`/client/${id}`, { replace: true });
-    }
+      
+    function handleClick( data ) { 
+        props.selectEntry( data );
+    } 
 
     const rows = props.tableData.map((row, index) => { 
         /* return (
@@ -37,14 +33,14 @@ const TableBody = props => {
                     />
                     <div className="px-8 py-10 relative z-10 w-full border-4 hover:opacity-100 border-gray-200 bg-white text-center opacity-0 hover:opacity-100">
                             <button
-                                className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded-full"
-                                // onClick={this.handleSave} 
+                                className="bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded" 
+                                onClick={() => handleClick(row)}
                             >
                                 Select
                             </button>
                             <div className='mb-6'></div>
                             <button
-                                className="border-gray-800 text-gray-800 border hover:bg-gray-900 border hover:text-white font-medium text-base py-2 px-4 rounded-full mr-3"
+                                className="border-gray-800 text-gray-800 border hover:bg-blue-700 border hover:text-white font-medium text-base py-2 px-4 rounded mr-3"
                                 // onClick={() => this.openForm('new')} 
                             >
                                 Full Preview
@@ -59,11 +55,11 @@ const TableBody = props => {
 }
 
 const Table = (props) => {
-    const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
+    const { tableData, selectEntry } = props;
     return ( 
         <section className="text-gray-600 body-font">
             <div className="container mx-auto"> 
-                <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
+                <TableBody tableData={tableData} selectEntry={selectEntry} />
             </div>
         </section>  
     );

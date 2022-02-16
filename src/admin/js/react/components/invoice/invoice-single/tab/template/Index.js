@@ -67,82 +67,9 @@ export default class Template extends Component {
             })
     }; 
 
-    handleSubmit = client => {
-        if (this.state.formModalType == 'new') { 
-            Helper.create(client)
-                .then(resp => {
-                    if (resp.data.success) {
-                        console.log(resp.data)
-                        this.setState({ formModal: false })
-                        toast.success(this.state.msg.create);
-                        this.getLists();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        } else {
-            Helper.update(client.id, client)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ formModal: false })
-                        // this.setState({ formModalType: 'new' });
-                        toast.success(this.state.msg.update);
-                        this.getLists();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        }
-    }
-
-    deleteEntry = (type, index) => {
-        
-        if ( confirm( this.state.msg.confirm ) ) {
-            
-            if ( type == 'single' ) {
-                this.setState({
-                    clients: this.state.clients.filter((client, i) => {
-                        return client.id !== index;
-                    })
-                });
-            }             
-            let ids = ( type == 'single' ) ? index : this.state.checkedBoxes.toString();
-            Helper.remove(ids)
-                .then(resp => {
-                    if (resp.data.success) {
-                        toast.success(this.state.msg.delete); 
-                        this.getLists();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        }
-    } 
-
-    openForm = (type = 'new', client = null) => {
-        this.setState({ formModal: true });
-
-        if (type == 'new') {
-            this.setState({ formModalType: 'new' });
-        } else {
-            this.setState({ formModalType: 'edit' });
-            this.setState({ client: client });
-        }
-    };
-
-    closeForm = ( type = 'new' ) => {
-        if ( type == 'new' ) {
-            this.setState({ formModal: false });
-        } else {
-            this.setState({ searchModal: false });
-        }
-    };
+    selectEntry = (data) => { 
+        this.props.changeHandler(data);
+    }   
 
     handleCheckbox = (e, type, id = null) => {	 
         let arr = this.state.checkedBoxes;
@@ -184,11 +111,11 @@ export default class Template extends Component {
             <div className="ncpi-components">
                 <ToastContainer /> 
 
-                <div className='mb-5 font-bold text-2xl'>
+                <div className='mb-5 font-bold text-xl'>
                     Selete Template
                 </div>  
  
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox}} deleteEntry={this.deleteEntry} /> }
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} selectEntry={this.selectEntry} /> }
 
                 { this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}

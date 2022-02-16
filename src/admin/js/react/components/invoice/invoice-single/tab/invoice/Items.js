@@ -37,7 +37,7 @@ class Items extends Component {
 
         return ( 
             <div className=''>
-                <div className="flex -mx-1 gap-3 border-b py-2 items-start">
+                <div className="flex gap-3 border-b py-2 items-start">
                     <div className="px-1 w-5">
                         <p className="text-gray-800 uppercase tracking-wide text-sm font-bold">
                         #

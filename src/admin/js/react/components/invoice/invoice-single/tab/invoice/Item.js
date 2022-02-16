@@ -8,7 +8,7 @@ class Item extends Component {
         const { index, name, desc, qty, price } = this.props
 
         return (
-            <div className='flex -mx-1 gap-3 py-2 border-b'>
+            <div className='flex gap-3 py-2 border-b'>
                 <div className="px-1 w-5 ">
                     <p className="text-gray-800 font-semibold">{index + 1}</p>
                 </div>
