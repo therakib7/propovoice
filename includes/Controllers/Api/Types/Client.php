@@ -271,7 +271,7 @@ class Client
         $useremail              = strtolower(sanitize_email($params['email']));
         $company_name           = sanitize_text_field($params['company_name']);
         $web                    = esc_url_raw($params['web']);
-        $mobile                 = sanitize_text_field($params['mobile']);
+        $mobile                 = sanitize_text_field($params['mobile']); 
 
         if (
             empty($useremail) ||

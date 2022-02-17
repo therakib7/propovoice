@@ -90,6 +90,13 @@ class Invoice extends Component {
         let msg = {...this.state.msg} 
 		msg.saveTxt = 'Update'; 
 		this.setState({msg});  
+
+		/*
+		memory leak in your application
+		let tabs = {...this.state.tabs} 
+		tabs[1].text = 'Edit Information'; 
+		tabs[2].text = 'Update & Share'; 
+		this.setState({tabs});  */ 
     };
 
 	getData = () => {
@@ -173,7 +180,7 @@ class Invoice extends Component {
                     if (resp.data.success) {  
 						this.props.routeChange(resp.data.data); 
 						
-						this.updateTxt();
+						this.updateEdit();
 
                         toast.success(this.state.msg.create); 
                     } else {
@@ -349,7 +356,7 @@ class Invoice extends Component {
                     </div>
                 </div>} 
 
-				{(currentTab == 'save') && <Save />}
+				{(currentTab == 'save') && <Save data={this.state.invoice} />}
 
 			</div> 
 		)

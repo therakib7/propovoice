@@ -10,7 +10,7 @@ class Group extends Component {
             edit: false,
             groups: [
                 {
-                    label: 'Add Terms',
+                    label: 'Terms',
                     list_type: 'letter',
                     items: [ {  text: '' } ]
                 }
@@ -49,7 +49,7 @@ class Group extends Component {
     addGroup = () => {
         let groups = this.state.groups;
         groups.push({
-            label: 'Group Title',
+            label: 'Terms',
             list_type: 'letter',
             items: [ {  text: '' } ]
         });  

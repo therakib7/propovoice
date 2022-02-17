@@ -4,7 +4,7 @@ namespace Ncpi\Controllers\Api\Types;
 
 use WP_Query;
 
-class Invoice
+class Email
 {
 
     public function __construct()
@@ -15,7 +15,7 @@ class Invoice
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/invoices', [
+        register_rest_route('ncpi/v1', '/emails', [
             [
                 'methods' => 'GET', 
                 'callback' => [$this, 'get'],
@@ -28,7 +28,7 @@ class Invoice
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/invoices/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/emails/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +41,7 @@ class Invoice
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/invoices/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/emails/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -54,7 +54,7 @@ class Invoice
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/invoices/(?P<id>[0-9,]+)', array(
+        register_rest_route('ncpi/v1', '/emails/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -207,10 +207,33 @@ class Invoice
                 wp_send_json_error();
             }
         }
-    } 
-    
+    }
+
+    function my_custom_email_content_type() {
+        return 'text/html';
+    }
+
     public function update($req)
-    {   
+    {  
+
+        /* $to  = 'my@email.com';
+        $subject = 'WordPress wp_mail';
+        $message = '
+        <html>
+        <body>
+            <table rules="all" style="border-color: #666;" cellpadding="10">
+            <tr>Hello WordPress '. WP_PLUGIN_DIR . '/propovoice/1.jpg'.'</tr>
+            </table>          
+        </body>
+        </html>
+        ';
+
+        $attachments = array(  WP_PLUGIN_DIR . '/propovoice/1.jpg' );
+        //  $attachments = array( WP_CONTENT_DIR . '/uploads/file_to_attach.zip' )
+        $headers[] = 'From: '.get_option( 'blogname' ).' <'.get_option( 'admin_email' ).'>';
+        add_filter( 'wp_mail_content_type', [$this, 'my_custom_email_content_type'] );
+        wp_mail( $to, $subject, $message, $headers, $attachments ); */
+
         $params = $req->get_params(); 
         $reg_errors             = new \WP_Error;  
         $invoice  = isset( $params['invoice'] ) ? $params['invoice'] : null; 

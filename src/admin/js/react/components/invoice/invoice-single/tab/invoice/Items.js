@@ -40,7 +40,7 @@ class Items extends Component {
                 <div className="flex gap-3 border-b py-2 items-start">
                     <div className="px-1 w-5">
                         <p className="text-gray-800 uppercase tracking-wide text-sm font-bold">
-                        #
+                        SL
                         </p>
                     </div>
                     <div className="flex-1 px-1">
