@@ -97,7 +97,7 @@ class FromTo extends Component {
                             </label> 
                         </div>
                         <div className="bg-slate-50 p-3 border rounded">
-                            Select Receiver
+                            Select or Search Client
                         </div> 
                     </div>
                 </div>

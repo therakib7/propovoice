@@ -9736,7 +9736,7 @@ var FromTo = /*#__PURE__*/function (_Component) {
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
               className: "bg-slate-50 p-3 border rounded",
-              children: "Select Receiver"
+              children: "Select or Search Client"
             })]
           })]
         })
