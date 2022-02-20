@@ -34,7 +34,7 @@ msgstr ""
 msgid "Propovoice Dashboard"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:227, ../includes/Controllers/Api/Types/Client.php:280, ../includes/Controllers/Api/Types/Invoice.php:170, ../includes/Controllers/Api/Types/Invoice.php:228
+#: ../includes/Controllers/Api/Types/Client.php:227, ../includes/Controllers/Api/Types/Client.php:280, ../includes/Controllers/Api/Types/Email.php:170, ../includes/Controllers/Api/Types/Email.php:250, ../includes/Controllers/Api/Types/Invoice.php:170, ../includes/Controllers/Api/Types/Invoice.php:227
 msgid "Required form field is missing"
 msgstr ""
 

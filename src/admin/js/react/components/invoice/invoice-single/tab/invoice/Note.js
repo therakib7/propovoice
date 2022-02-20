@@ -45,7 +45,7 @@ class Note extends Component {
                     type="text" 
                     value={text}
                     onChange={ this.handleChange }
-                    className="appearance-none block bg-slate-100 w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                    className="appearance-none block bg-slate-50 w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     />
                 </div>
             </div>

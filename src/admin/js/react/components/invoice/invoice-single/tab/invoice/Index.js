@@ -13,6 +13,7 @@ import Save from '../../tab/save';
 //sidebar section
 import Style from './section/Style'
 import Owner from './section/Owner'
+import FromTo from './FromTo';
 
 class Invoice extends Component {
 
@@ -296,6 +297,7 @@ class Invoice extends Component {
 						</div>
 						
 						<div className='max-w-3xl m-auto'>
+							<FromTo />
 							<Items
 								items={this.state.invoice.items}
 								currencyFormatter={this.formatCurrency}
@@ -330,6 +332,7 @@ class Invoice extends Component {
 										{this.formatCurrency(this.calcTaxTotal())}
 									</div>
 								</div>
+
 								<div className="py-2 border-t border-b">
 									<div className="flex justify-between">
 										<div className="text-xl text-gray-600 flex-1">Total Amount</div>
@@ -337,7 +340,7 @@ class Invoice extends Component {
 											{this.formatCurrency(this.calcGrandTotal())}
 										</div>
 									</div>
-								</div>
+								</div> 
 							</div>
 							
 							<div className='mb-16'></div>

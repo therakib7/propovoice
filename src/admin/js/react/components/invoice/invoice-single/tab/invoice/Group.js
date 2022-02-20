@@ -108,7 +108,7 @@ class Group extends Component {
                                 </div>
                             </div>
 
-                            <div className='ncpi-invoice-group-items p-3 rounded border bg-slate-100'>
+                            <div className='ncpi-invoice-group-items p-3 rounded border bg-slate-50'>
                                 
                                 <ul className={list_class+' px-5'}>
                                     {group_single.items.map( (item, list_index) => { 

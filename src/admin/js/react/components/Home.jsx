@@ -20,6 +20,7 @@ import Invoice from './invoice/invoice';
 import InvoiceSingle from './invoice/invoice-single';
 import Payment from './Payment';
 import TemplateLibrary from './TemplateLibrary';
+import Business from './business';
 import Setting from './setting';
 import Help from './Help';
 
@@ -88,6 +89,12 @@ const Home = () => {
                             Template Library
                         </NavLink>
                         <NavLink
+                            to='business'
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            <i className="dashicons dashicons-admin-generic mr-3" />
+                            Business
+                        </NavLink>
+                        <NavLink
                             to='setting'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-admin-generic mr-3" />
@@ -122,6 +129,7 @@ const Home = () => {
                             <Route path="/template-library" element={<TemplateLibrary />} />
                             <Route path="/client" exact element={<Client />} />
                             <Route path="/client/:id" exact element={<ClientSummary />} />
+                            <Route path="/business" element={<Business />} />
                             <Route path="/setting" element={<Setting />} />
                             <Route path="/help" element={<Help />} />
                         </Routes>
