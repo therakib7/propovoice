@@ -1,45 +1,52 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
+import Helper from '../../helper';
+
 import PropTypes from 'prop-types' 
 
 class FromTo extends Component {
+
     state = {
         loaded: false,
-        fromList: [
-            { value: 1, label: 'Nurency' } 
-        ],
-        toList:  [
-            { value: 1, label: 'Nurency' } 
-        ],
-		from: { value: 1, label: 'Nurency' }, 
-		to: null, 
-	}
- 
+        fromList: [],
+        toList:  [],
+		from: { id: null }, 
+		to: { id: null }, 
+	} 
 
-    handleFromChange = e => {
-        // const { name, value } = e.target;
-        // this.setState({ note: { ...this.state.note, [name]: value } });
-        this.handlePros();
+    componentDidMount() {  
+		Helper.getAllBusiness('default=1')
+            .then(resp => {
+                let fromData = resp.data.data.result;
+                if ( fromData.length ) {
+                    this.setState({ fromList: fromData });  
+                    this.setState({ from: fromData[0] }); 
+                    this.props.setFrom(fromData[0].id);
+                }
+            })
+	} 
+
+    handleFromChange = val => { 
+        this.setState({ from: val }); 
     }
 
     handleFindClient = (val, callback) => { 
-        callback( this.findClient( val )); 
-    }
+        if ( val.length < 3 ) return;
 
-    findClient = ( val ) => {
-        return [
-            { value: 1, label: 'Nurency', rakib: 'hello' }, 
-            { value: 2, label: 'Nurency Creation' } 
-        ];
-    }
+        Helper.getAllBusiness('default=1')
+            .then(resp => {
+                let toData = resp.data.data.result;
+                callback( toData ); 
+            }); 
+    } 
 
     handleClientSelect = (val) => {  
         console.log(val)
         this.setState({ to: val });
     }
 
-    componentDidUpdate() {   
+    componentDidUpdate() {  
         if ( ! this.state.loaded ) { 
             this.setState({ loaded: true });
         }
@@ -52,7 +59,8 @@ class FromTo extends Component {
     render = () => {
 
         // const { label, text } = this.state.note;
-
+        const { fromList } = this.state;
+        const { toList } = this.state;
         return (
             <> 
                 <div className="flex justify-between p-5 mb-5">
@@ -60,22 +68,25 @@ class FromTo extends Component {
                         <div className="">
                             <label>
                                 Sender: 
-                                
                                 <Select
                                     value={this.state.from}
                                     onChange={this.handleFromChange}
-                                    options={this.state.fromList}
+                                    getOptionLabel ={(fromList)=>fromList.name}
+                                    getOptionValue ={(fromList)=>fromList.id}
+                                    options={fromList}
                                 />
                             </label> 
                         </div>
                         <div className="bg-slate-50 p-3 border rounded">
-                            <span className='font-bold'>Nurency Digital</span>
-                            <p className=''>
-                                Email: hello@gmail.com<br />
-
-                                Address: hello@gmail.com<br />
-
-                            </p>
+                            {this.state.from && 
+                                <>
+                                    <span className='font-bold'>{this.state.from.name}</span>
+                                    <p className=''>
+                                        Email: {this.state.from.email}<br />
+                                        Address: {this.state.from.address}<br />
+                                    </p>
+                                </>
+                            }
                         </div> 
                     </div>
                     <div className="">
@@ -86,18 +97,27 @@ class FromTo extends Component {
                             <label>
                                 Receiver: 
                                 <AsyncSelect
-                                
                                     loadOptions={this.handleFindClient}
                                     // options={this.state.toList}
                                     value={this.state.to}
                                     onChange={this.handleClientSelect}
-                                    defaultOptions={this.state.fromList}
+                                    getOptionLabel ={(toList)=>toList.name}
+                                    getOptionValue ={(toList)=>toList.id}
+                                    // defaultOptions={this.state.toList}
                                     // onInputChange={this.handleInputChange} 
                                     />
                             </label> 
                         </div>
                         <div className="bg-slate-50 p-3 border rounded">
-                            Select or Search Client
+                                {this.state.to ? 
+                                <>
+                                    <span className='font-bold'>{this.state.to.name}</span>
+                                    <p className=''>
+                                        Email: {this.state.to.email}<br />
+                                        Address: {this.state.to.address}<br />
+                                    </p>
+                                </> : 'Search & select'
+                            }
                         </div> 
                     </div>
                 </div>

@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 const apiUrl = `${ncpi_local.apiUrl}ncpi/v1/invoices`;
+const apiUrlBusiness = `${ncpi_local.apiUrl}ncpi/v1/businesses`;
+const apiUrlClient = `${ncpi_local.apiUrl}ncpi/v1/clients`;
 
 const token = {
 	headers: {
@@ -11,6 +13,14 @@ const token = {
 
 const getAll = ( args = '') => {
 	return axios.get(`${apiUrl}/?${args}`);
+};
+
+const getAllBusiness = ( args = '') => {
+	return axios.get(`${apiUrlBusiness}/?${args}`);
+};
+
+const getAllClient = ( args = '') => {
+	return axios.get(`${apiUrlClient}/?${args}`);
 };
 
 const get = id => {
@@ -31,6 +41,7 @@ const remove = id => {
 
 export default {
 	getAll,
+	getAllBusiness,
 	get,
 	create,
 	update,

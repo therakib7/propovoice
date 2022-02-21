@@ -1,9 +1,12 @@
 * on show admin bar
 * Multiple sender will be pro in invoice
-
+* Check it later in edit form {console.log(this.state.form.web)}
 
 
 > Terms list delete button
 > Multiple sender
-> We will submit our plugin from different account than change owner
+> We will submit our plugin from different account than change owner 
+
+> Akta help korar sujog ache? akta joruri kaje 30K dorkar, 2-3 Month er moddhe diye dibo, shomoy beshi cacci jate late na hoy, asha kori er agei diye dite parbo, jodi tomar sujog thake,
+
 

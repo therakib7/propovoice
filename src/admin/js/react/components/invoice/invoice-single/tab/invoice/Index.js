@@ -45,7 +45,7 @@ class Invoice extends Component {
                 delete: 'Successfully Deleted',
                 confirm: 'Are you sure to delete it?',
 				saveTxt: 'Save'
-            },
+            }, 
 			invoice: { 
 				template: {
 					id: null,
@@ -64,11 +64,8 @@ class Invoice extends Component {
 				paid: 0.00, 
 				note: null,
 				group: null,
-				from: {
-					client_id: 12,
-				},
-				to: { 
-				}
+				from: null,
+				to: null
 			},
 		};  
     }  
@@ -80,7 +77,7 @@ class Invoice extends Component {
 			});
 			this.updateEdit();
 			this.getData();
-		} else {
+		} else { 
 			this.setState({
 				currentTab: 'template'
 			});
@@ -106,6 +103,18 @@ class Invoice extends Component {
                 this.setState({ invoice: resp.data.data.invoice }); 
             })
     }; 
+
+	handleSetFrom = ( data ) => {
+		let invoice = {...this.state.invoice} 
+		invoice.from = data;  
+		this.setState({invoice})
+	}
+
+	handleSetTo = ( data ) => {
+		let invoice = {...this.state.invoice} 
+		invoice.to = data;  
+		this.setState({invoice})
+	}
 
 	handleTemplateChange = ( data ) => {
 		let invoice = {...this.state.invoice} 
@@ -297,7 +306,12 @@ class Invoice extends Component {
 						</div>
 						
 						<div className='max-w-3xl m-auto'>
-							<FromTo />
+							<FromTo  
+								setFrom={this.handleSetFrom}
+								setTo={this.handleSetTo}
+								data={this.state.invoice} 
+							/>
+
 							<Items
 								items={this.state.invoice.items}
 								currencyFormatter={this.formatCurrency}

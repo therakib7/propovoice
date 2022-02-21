@@ -92,6 +92,16 @@ class Business
             'relation' => 'OR'
         ); 
 
+        if ( isset( $request['default'] ) ) { 
+            $args['meta_query'][] = array( 
+                array(
+                    'key'     => 'default',
+                    'value'   => 1,
+                    'compare' => 'LIKE'
+                )
+            );
+        }
+
         $query = new WP_Query( $args );
         $total_data = $query->get_total(); //use this for pagination 
         $result = $data = [];
@@ -108,6 +118,7 @@ class Business
             $query_data['mobile'] = get_post_meta($id, 'mobile', true);
             $query_data['address'] = get_post_meta($id, 'address', true);
             $query_data['zip'] = get_post_meta($id, 'zip', true); 
+            $query_data['default'] = (bool) get_post_meta($id, 'default', true); 
 
             $query_data['date'] = '';
             $data[] = $query_data;
@@ -134,6 +145,7 @@ class Business
         $query_data['mobile'] = get_post_meta($id, 'mobile', true);
         $query_data['address'] = get_post_meta($id, 'address', true);
         $query_data['zip'] = get_post_meta($id, 'zip', true);  
+        $query_data['default'] = (bool) get_post_meta($id, 'default', true);  
 
         return wp_send_json_success($query_data); 
     }
@@ -150,6 +162,7 @@ class Business
         $mobile = isset( $params['mobile'] ) ? sanitize_text_field( $params['mobile'] ) : null; 
         $address = isset( $params['address'] ) ? sanitize_text_field( $params['address'] ) : null; 
         $zip = isset( $params['zip'] ) ? sanitize_text_field( $params['zip'] ) : null; 
+        $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null; 
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));
@@ -194,6 +207,12 @@ class Business
                     update_post_meta($post_id, 'zip', $zip); 
                 } 
 
+                if ( $default ) {
+                    update_post_meta($post_id, 'default', true); 
+                } else {
+                    update_post_meta($post_id, 'default', false); 
+                }
+
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -212,6 +231,7 @@ class Business
         $mobile = isset( $params['mobile'] ) ? sanitize_text_field( $params['mobile'] ) : null; 
         $address = isset( $params['address'] ) ? sanitize_text_field( $params['address'] ) : null; 
         $zip = isset( $params['zip'] ) ? sanitize_text_field( $params['zip'] ) : null; 
+        $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null; 
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));
@@ -255,6 +275,12 @@ class Business
                 if ( $zip ) {
                     update_post_meta($post_id, 'zip', $zip); 
                 } 
+
+                if ( $default ) {
+                    update_post_meta($post_id, 'default', true); 
+                } else {
+                    update_post_meta($post_id, 'default', false); 
+                }
 
                 wp_send_json_success($post_id);
             } else {

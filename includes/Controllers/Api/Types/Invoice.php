@@ -105,7 +105,7 @@ class Invoice
             $query_data['project'] = [
                 'name' => ''
             ];
-            
+            $query_data['from'] = get_post_meta($id, 'from', true);  
             $query_data['to'] = [
                 'first_name' => '',
                 'last_name' => '',
@@ -160,8 +160,11 @@ class Invoice
         foreach ( $params['invoice']['items'] as $item ) {
             $total += ( $item['qty'] * $item['price'] );
         }
-        $paid     = isset( $params['invoice']['paid'] ) ? $params['invoice']['paid'] : null;
+        $paid     = isset( $params['invoice']['paid'] ) ? $params['invoice']['paid'] : null; 
         $due      = $paid ? $total - $paid : null; 
+
+        $from     = isset( $params['invoice']['from'] ) ? $params['invoice']['from'] : null;
+        $to     = isset( $params['invoice']['to'] ) ? $params['invoice']['to'] : null;
 
         if (
             //empty($total) ||
@@ -185,6 +188,14 @@ class Invoice
             $post_id = wp_insert_post( $data );
 
             if ( !is_wp_error($post_id) ) {
+
+                if ( $from ) {
+                    update_post_meta($post_id, 'from', $from); 
+                }
+
+                if ( $to ) {
+                    update_post_meta($post_id, 'to', $to); 
+                }
                 
                 if ( $invoice ) {
                     update_post_meta($post_id, 'invoice', json_encode($invoice)); 

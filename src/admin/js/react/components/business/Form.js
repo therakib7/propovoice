@@ -12,6 +12,7 @@ class Form extends Component {
             mobile: '',
             address: '',
             zip: '',
+            default: false,
             date: false
         };
 
@@ -25,9 +26,15 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
+    toggleChange = () => {  
+        let value = !this.state.form.default;
+        this.setState({ form: { ...this.state.form, ['default']: value } });
+    }
+
     componentDidUpdate() {
         //condition added to stop multiple rendering
         if (this.props.modalType == 'edit') {
+            
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
             }
@@ -42,7 +49,7 @@ class Form extends Component {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
         this.setState({ form: this.initialState });
-    }
+    } 
 
     render() {
         return (
@@ -179,6 +186,26 @@ class Form extends Component {
                                                             onChange={this.handleChange}
                                                         />
                                                     </div>
+                                                </div>
+
+                                                <div className="flex flex-wrap -mx-3">
+
+                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                        <label
+                                                            className="text-gray-700 text-xs font-bold"
+                                                            htmlFor="grid-default">
+                                                            Default?   
+                                                            <input 
+                                                                id="grid-default"
+                                                                className="ml-3"
+                                                                type="checkbox"
+                                                                defaultChecked={this.state.form.default}
+                                                                onChange={this.toggleChange}
+                                                            />
+                                                        </label> 
+                                                    </div>
+
+                                                     
                                                 </div>
 
                                             </div>
