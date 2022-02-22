@@ -5,27 +5,43 @@ import Helper from '../../helper';
 
 import PropTypes from 'prop-types' 
 
-class FromTo extends Component {
+class FromTo extends Component { 
 
-    state = {
-        loaded: false,
-        fromList: [],
-        toList:  [],
-		from: { id: null }, 
-		to: { id: null }, 
-	} 
+    constructor(props) {
+        super(props); 
 
-    componentDidMount() {  
-		Helper.getAllBusiness('default=1')
+        this.state = {
+            loaded: false,
+            fromList: [],
+            toList:  [],
+            from: { id: null }, 
+            to: { id: null }, 
+        };
+
+        this.timeout =  0;
+    }
+
+    componentDidMount() {   
+		if ( ! this.props.editId  ) {
+            Helper.getAllBusiness('default=1')
             .then(resp => {
                 let fromData = resp.data.data.result;
-                if ( fromData.length ) {
-                    this.setState({ fromList: fromData });  
+                if ( fromData.length ) { 
                     this.setState({ from: fromData[0] }); 
                     this.props.setFrom(fromData[0].id);
                 }
-            })
-	} 
+            }); 
+        } else {
+            let fromData = this.props.fromData; 
+            let toData = this.props.toData; 
+            if ( fromData && toData ) { 
+                this.setState({ 
+                    from: fromData, 
+                    to: toData 
+                });   
+            }
+        } 
+	}  
 
     handleFromChange = val => { 
         this.setState({ from: val }); 
@@ -34,27 +50,33 @@ class FromTo extends Component {
     handleFindClient = (val, callback) => { 
         if ( val.length < 3 ) return;
 
-        Helper.getAllBusiness('default=1')
-            .then(resp => {
-                let toData = resp.data.data.result;
-                callback( toData ); 
-            }); 
+        //search when typing stop
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+            //search function
+            Helper.getAllClient('first_name='+val+'&last_name='+val)
+                .then(resp => {
+                    let toData = resp.data.data.result;
+                    callback( toData ); 
+                }); 
+        }, 300); 
+        
     } 
 
-    handleClientSelect = (val) => {  
-        console.log(val)
+    handleClientSelect = (val) => {   
         this.setState({ to: val });
+        this.props.setTo(val.id);
     }
 
     componentDidUpdate() {  
-        if ( ! this.state.loaded ) { 
-            this.setState({ loaded: true });
+        if ( ! this.state.loaded && this.props.editId && this.state.to.id != null ) {  
+            this.setState({ 
+                from: this.props.fromData,
+                to: this.props.toData,
+                loaded: true
+             });
         }
-	}
-
-    handlePros = () => { 
-        // this.props.changeHandler( this.state.note );
-    }; 
+	} 
 
     render = () => {
 
@@ -63,7 +85,7 @@ class FromTo extends Component {
         const { toList } = this.state;
         return (
             <> 
-                <div className="flex justify-between p-5 mb-5">
+                <div className="flex justify-between mb-5">
                     <div className="">
                         <div className="">
                             <label>
@@ -71,8 +93,8 @@ class FromTo extends Component {
                                 <Select
                                     value={this.state.from}
                                     onChange={this.handleFromChange}
-                                    getOptionLabel ={(fromList)=>fromList.name}
                                     getOptionValue ={(fromList)=>fromList.id}
+                                    getOptionLabel ={(fromList)=>fromList.name}
                                     options={fromList}
                                 />
                             </label> 
@@ -101,17 +123,17 @@ class FromTo extends Component {
                                     // options={this.state.toList}
                                     value={this.state.to}
                                     onChange={this.handleClientSelect}
-                                    getOptionLabel ={(toList)=>toList.name}
-                                    getOptionValue ={(toList)=>toList.id}
+                                    getOptionValue ={(toList) => toList.id}
+                                    getOptionLabel ={(toList) => ( toList.first_name ) ? toList.first_name + ' ' + toList.last_name : ''} 
                                     // defaultOptions={this.state.toList}
                                     // onInputChange={this.handleInputChange} 
                                     />
                             </label> 
                         </div>
                         <div className="bg-slate-50 p-3 border rounded">
-                                {this.state.to ? 
+                                {this.state.to.id ? 
                                 <>
-                                    <span className='font-bold'>{this.state.to.name}</span>
+                                    <span className='font-bold'>{this.state.to.first_name} {this.state.to.last_name}</span>
                                     <p className=''>
                                         Email: {this.state.to.email}<br />
                                         Address: {this.state.to.address}<br />

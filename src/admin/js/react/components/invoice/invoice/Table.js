@@ -64,7 +64,9 @@ const TableBody = props => {
 				</td>
                 <td className="text-left py-3 px-4">INV{row.id}</td>
                 <td className="text-left py-3 px-4">{row.project.name}</td>
-                <td className="text-left py-3 px-4">{row.to.first_name + ' ' + row.to.last_name}</td>
+                <td className="text-left py-3 px-4">
+                    {row.to.first_name + ' ' + row.to.last_name}
+                </td>
                 <td className="text-left py-3 px-4">{row.total}</td>
                 <td className="text-left py-3 px-4">{row.paid}</td>
                 <td className="text-left py-3 px-4">{row.due}</td>

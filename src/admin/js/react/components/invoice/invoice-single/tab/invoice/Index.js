@@ -45,7 +45,10 @@ class Invoice extends Component {
                 delete: 'Successfully Deleted',
                 confirm: 'Are you sure to delete it?',
 				saveTxt: 'Save'
-            }, 
+            },  
+			fromData: null,
+			toData: null,
+			// editId: null,
 			invoice: { 
 				template: {
 					id: null,
@@ -73,8 +76,8 @@ class Invoice extends Component {
 	componentDidMount() {  
 		if ( this.props.id ) {
 			this.setState({
-				currentTab: 'info'
-			});
+				currentTab: 'info', 
+			}); 
 			this.updateEdit();
 			this.getData();
 		} else { 
@@ -99,9 +102,14 @@ class Invoice extends Component {
 
 	getData = () => {
         Helper.get(this.props.id)
-            .then(resp => {
-                this.setState({ invoice: resp.data.data.invoice }); 
-            })
+            .then(resp => { 
+                this.setState({ 
+					invoice: resp.data.data.invoice, 
+					fromData: resp.data.data.fromData, 
+					toData: resp.data.data.toData, 
+					// editId: this.props.id
+				}); 
+            }) 
     }; 
 
 	handleSetFrom = ( data ) => {
@@ -178,17 +186,15 @@ class Invoice extends Component {
 	} 
 
 	handleSave = () => {
-		let formData = {...this.state}; 
-		delete formData.msg;
-		delete formData.tabs;
-		delete formData.currentTab;
-
 		let editId = this.props.id;
 		if ( ! editId ) { 
-            Helper.create(formData)
+            Helper.create(this.state.invoice)
                 .then(resp => {
                     if (resp.data.success) {  
 						this.props.routeChange(resp.data.data); 
+						/* this.setState({ 
+							editId: resp.data.data
+						}); */
 						
 						this.updateEdit();
 
@@ -200,7 +206,7 @@ class Invoice extends Component {
                     }
                 })
         } else {
-            Helper.update(editId, formData)
+            Helper.update(editId, this.state.invoice)
                 .then(resp => {
                     if (resp.data.success) {
                         toast.success(this.state.msg.update);
@@ -307,10 +313,13 @@ class Invoice extends Component {
 						
 						<div className='max-w-3xl m-auto'>
 							<FromTo  
+								key={this.state.fromData} 
 								setFrom={this.handleSetFrom}
 								setTo={this.handleSetTo}
-								data={this.state.invoice} 
-							/>
+								fromData={this.state.fromData} 
+								toData={this.state.toData} 
+								editId={this.props.id}
+							/> 
 
 							<Items
 								items={this.state.invoice.items}
@@ -373,7 +382,7 @@ class Invoice extends Component {
                     </div>
                 </div>} 
 
-				{(currentTab == 'save') && <Save data={this.state.invoice} />}
+				{(currentTab == 'save') && <Save data={this.state} />}
 
 			</div> 
 		)

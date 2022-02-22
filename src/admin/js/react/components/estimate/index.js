@@ -116,6 +116,9 @@ export default class Estimate extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         toast.success(this.state.msg.delete); 
+                        if ( type != 'single' ) {
+                            this.setState({ checkedBoxes: [] });
+                        }
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {

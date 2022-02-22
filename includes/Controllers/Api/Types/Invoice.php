@@ -105,12 +105,27 @@ class Invoice
             $query_data['project'] = [
                 'name' => ''
             ];
-            $query_data['from'] = get_post_meta($id, 'from', true);  
-            $query_data['to'] = [
-                'first_name' => '',
-                'last_name' => '',
-                'email' => '',
-            ];  
+            
+            $from_id = get_post_meta($id, 'from', true);
+            $fromData = []; 
+            if ( $from_id ) {
+                $fromData['id'] = $from_id;
+                $fromData['name'] = get_post_meta($from_id, 'name', true); 
+            } 
+            $query_data['from'] = $fromData; 
+
+            $to_id = get_post_meta($id, 'to', true);
+            $toData = []; 
+            if ( $to_id ) {
+                $toData['id'] = $to_id;
+                $to_obj = get_user_by('id', $to_id);
+                
+                $toData['first_name'] = $to_obj->first_name;
+                $toData['last_name'] = $to_obj->last_name; 
+                $toData['email'] = $to_obj->user_email; 
+            } 
+            $query_data['to'] = $toData;
+            
             $query_data['invoice'] = json_decode( get_post_meta($id, 'invoice', true) );
             
             $query_data['total'] = get_post_meta($id, 'total', true);
@@ -143,7 +158,35 @@ class Invoice
         $query_data = [];
         $query_data['id'] = $id; 
           
-        $query_data['invoice'] = json_decode( get_post_meta($id, 'invoice', true) );  
+        $query_data['invoice'] = json_decode( get_post_meta($id, 'invoice', true) ); 
+
+        $from_id = get_post_meta($id, 'from', true);
+        $fromData = []; 
+        if ( $from_id ) {
+            $fromData['id'] = $from_id;
+
+            $fromMeta = get_post_meta($from_id); 
+
+            $fromData['name'] = isset( $fromMeta['name'] ) ? $fromMeta['name'][0] : '';
+            $fromData['email'] = isset( $fromMeta['email'] ) ? $fromMeta['email'][0] : '';
+            $fromData['web'] = isset( $fromMeta['web'] ) ? $fromMeta['web'][0] : '';
+            $fromData['address'] = isset( $fromMeta['address'] ) ? $fromMeta['address'][0] : ''; 
+        } 
+        $query_data['fromData'] = $fromData; 
+
+        $to_id = get_post_meta($id, 'to', true);
+        $toData = []; 
+        if ( $to_id ) {
+            $toData['id'] = $to_id;
+            $to_obj = get_user_by('id', $to_id);
+            
+            $toData['first_name'] = $to_obj->first_name;
+            $toData['last_name'] = $to_obj->last_name; 
+            $toData['email'] = $to_obj->user_email;
+            $toData['web'] = get_user_meta($to_id, 'web', true);
+            $toData['address'] = get_user_meta($to_id, 'address', true); 
+        } 
+        $query_data['toData'] = $toData; 
 
         return wp_send_json_success($query_data); 
     }
@@ -154,30 +197,31 @@ class Invoice
         $params = $req->get_params(); 
         $reg_errors             = new \WP_Error; 
         //TODO: sanitize later
-        $invoice  = isset( $params['invoice'] ) ? $params['invoice'] : null;
+        $invoice  = isset( $params ) ? $params : null;
         // wp_send_json_success($invoice);
         $total    = 0;
-        foreach ( $params['invoice']['items'] as $item ) {
+        foreach ( $params['items'] as $item ) {
             $total += ( $item['qty'] * $item['price'] );
         }
-        $paid     = isset( $params['invoice']['paid'] ) ? $params['invoice']['paid'] : null; 
+        $paid     = isset( $params['paid'] ) ? $params['paid'] : null; 
         $due      = $paid ? $total - $paid : null; 
 
-        $from     = isset( $params['invoice']['from'] ) ? $params['invoice']['from'] : null;
-        $to     = isset( $params['invoice']['to'] ) ? $params['invoice']['to'] : null;
+        $from     = isset( $params['from'] ) ? $params['from'] : null;
+        $to     = isset( $params['to'] ) ? $params['to'] : null;
 
-        if (
-            //empty($total) ||
-            empty($invoice) 
-        ) {
-            $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
+        if ( !$from ) {
+            $reg_errors->add('field', esc_html__('Sender is missing', 'propovoice'));
+        } 
+
+        if ( !$to ) {
+            $reg_errors->add('field', esc_html__('Receiver is missing', 'propovoice'));
         } 
 
         if ( $reg_errors->get_error_messages() ) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-        
-            $title = 'This is the title'; 
+            //TODO: give proper title
+            $title = ''; 
             $data = array(
                 'post_type' => 'ncpi_invoice',
                 'post_title'    => $title,
@@ -224,18 +268,23 @@ class Invoice
     {   
         $params = $req->get_params(); 
         $reg_errors             = new \WP_Error;  
-        $invoice  = isset( $params['invoice'] ) ? $params['invoice'] : null; 
+        $invoice  = isset( $params ) ? $params : null; 
         $total    = 0;
-        foreach ( $params['invoice']['items'] as $item ) {
+        foreach ( $params['items'] as $item ) {
             $total += ( $item['qty'] * $item['price'] );
         }
-        $paid     = isset( $params['invoice']['paid'] ) ? $params['invoice']['paid'] : null;
+        $paid     = isset( $params['paid'] ) ? $params['paid'] : null;
         $due      = $paid ? $total - $paid : null; 
 
-        if ( 
-            empty($invoice) 
-        ) {
-            $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
+        $from     = isset( $params['from'] ) ? $params['from'] : null;
+        $to     = isset( $params['to'] ) ? $params['to'] : null;
+
+        if ( !$from ) {
+            $reg_errors->add('field', esc_html__('Sender is missing', 'propovoice'));
+        } 
+
+        if ( !$to ) {
+            $reg_errors->add('field', esc_html__('Receiver is missing', 'propovoice'));
         } 
 
         if ( $reg_errors->get_error_messages() ) {
@@ -253,6 +302,14 @@ class Invoice
 
             if ( !is_wp_error($post_id) ) {
                 
+                if ( $from ) {
+                    update_post_meta($post_id, 'from', $from); 
+                }
+
+                if ( $to ) {
+                    update_post_meta($post_id, 'to', $to); 
+                }
+
                 if ( $invoice ) {
                     update_post_meta($post_id, 'invoice', json_encode($invoice)); 
                 }

@@ -42,6 +42,7 @@ const remove = id => {
 export default {
 	getAll,
 	getAllBusiness,
+	getAllClient,
 	get,
 	create,
 	update,

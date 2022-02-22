@@ -5722,6 +5722,12 @@ var Business = /*#__PURE__*/function (_Component) {
           if (resp.data.success) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
 
+            if (type != 'single') {
+              _this.setState({
+                checkedBoxes: []
+              });
+            }
+
             _this.getLists();
           } else {
             resp.data.data.forEach(function (value, index, array) {
@@ -9307,6 +9313,12 @@ var Estimate = /*#__PURE__*/function (_Component) {
           if (resp.data.success) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
 
+            if (type != 'single') {
+              _this.setState({
+                checkedBoxes: []
+              });
+            }
+
             _this.getLists();
           } else {
             resp.data.data.forEach(function (value, index, array) {
@@ -9565,6 +9577,7 @@ var remove = function remove(id) {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   getAll: getAll,
   getAllBusiness: getAllBusiness,
+  getAllClient: getAllClient,
   get: get,
   create: create,
   update: update,
@@ -9672,28 +9685,12 @@ var FromTo = /*#__PURE__*/function (_Component) {
 
   var _super = _createSuper(FromTo);
 
-  function FromTo() {
+  function FromTo(props) {
     var _this;
 
     _classCallCheck(this, FromTo);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      loaded: false,
-      fromList: [],
-      toList: [],
-      from: {
-        id: null
-      },
-      to: {
-        id: null
-      }
-    });
+    _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "handleFromChange", function (val) {
       _this.setState({
@@ -9702,22 +9699,24 @@ var FromTo = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleFindClient", function (val, callback) {
-      if (val.length < 3) return;
-      _helper__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBusiness('default=1').then(function (resp) {
-        var toData = resp.data.data.result;
-        callback(toData);
-      });
+      if (val.length < 3) return; //search when typing stop
+
+      if (_this.timeout) clearTimeout(_this.timeout);
+      _this.timeout = setTimeout(function () {
+        //search function
+        _helper__WEBPACK_IMPORTED_MODULE_2__["default"].getAllClient('first_name=' + val + '&last_name=' + val).then(function (resp) {
+          var toData = resp.data.data.result;
+          callback(toData);
+        });
+      }, 300);
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleClientSelect", function (val) {
-      console.log(val);
-
       _this.setState({
         to: val
       });
-    });
 
-    _defineProperty(_assertThisInitialized(_this), "handlePros", function () {// this.props.changeHandler( this.state.note );
+      _this.props.setTo(val.id);
     });
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
@@ -9726,7 +9725,7 @@ var FromTo = /*#__PURE__*/function (_Component) {
       var toList = _this.state.toList;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "flex justify-between p-5 mb-5",
+          className: "flex justify-between mb-5",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -9735,11 +9734,11 @@ var FromTo = /*#__PURE__*/function (_Component) {
                 children: ["Sender:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
                   value: _this.state.from,
                   onChange: _this.handleFromChange,
-                  getOptionLabel: function getOptionLabel(fromList) {
-                    return fromList.name;
-                  },
                   getOptionValue: function getOptionValue(fromList) {
                     return fromList.id;
+                  },
+                  getOptionLabel: function getOptionLabel(fromList) {
+                    return fromList.name;
                   },
                   options: fromList
                 })]
@@ -9768,11 +9767,11 @@ var FromTo = /*#__PURE__*/function (_Component) {
                   ,
                   value: _this.state.to,
                   onChange: _this.handleClientSelect,
-                  getOptionLabel: function getOptionLabel(toList) {
-                    return toList.name;
-                  },
                   getOptionValue: function getOptionValue(toList) {
                     return toList.id;
+                  },
+                  getOptionLabel: function getOptionLabel(toList) {
+                    return toList.first_name ? toList.first_name + ' ' + toList.last_name : '';
                   } // defaultOptions={this.state.toList}
                   // onInputChange={this.handleInputChange} 
 
@@ -9780,10 +9779,10 @@ var FromTo = /*#__PURE__*/function (_Component) {
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "bg-slate-50 p-3 border rounded",
-              children: _this.state.to ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              children: _this.state.to.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
                   className: "font-bold",
-                  children: _this.state.to.name
+                  children: [_this.state.to.first_name, " ", _this.state.to.last_name]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                   className: "",
                   children: ["Email: ", _this.state.to.email, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), "Address: ", _this.state.to.address, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {})]
@@ -9795,6 +9794,18 @@ var FromTo = /*#__PURE__*/function (_Component) {
       });
     });
 
+    _this.state = {
+      loaded: false,
+      fromList: [],
+      toList: [],
+      from: {
+        id: null
+      },
+      to: {
+        id: null
+      }
+    };
+    _this.timeout = 0;
     return _this;
   }
 
@@ -9803,27 +9814,37 @@ var FromTo = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _helper__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBusiness('default=1').then(function (resp) {
-        var fromData = resp.data.data.result;
+      if (!this.props.editId) {
+        _helper__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBusiness('default=1').then(function (resp) {
+          var fromData = resp.data.data.result;
 
-        if (fromData.length) {
-          _this2.setState({
-            fromList: fromData
+          if (fromData.length) {
+            _this2.setState({
+              from: fromData[0]
+            });
+
+            _this2.props.setFrom(fromData[0].id);
+          }
+        });
+      } else {
+        var fromData = this.props.fromData;
+        var toData = this.props.toData;
+
+        if (fromData && toData) {
+          this.setState({
+            from: fromData,
+            to: toData
           });
-
-          _this2.setState({
-            from: fromData[0]
-          });
-
-          _this2.props.setFrom(fromData[0].id);
         }
-      });
+      }
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      if (!this.state.loaded) {
+      if (!this.state.loaded && this.props.editId && this.state.to.id != null) {
         this.setState({
+          from: this.props.fromData,
+          to: this.props.toData,
           loaded: true
         });
       }
@@ -10218,7 +10239,10 @@ var Invoice = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "getData", function () {
       _helper__WEBPACK_IMPORTED_MODULE_3__["default"].get(_this.props.id).then(function (resp) {
         _this.setState({
-          invoice: resp.data.data.invoice
+          invoice: resp.data.data.invoice,
+          fromData: resp.data.data.fromData,
+          toData: resp.data.data.toData // editId: this.props.id
+
         });
       });
     });
@@ -10349,17 +10373,16 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleSave", function () {
-      var formData = _objectSpread({}, _this.state);
-
-      delete formData.msg;
-      delete formData.tabs;
-      delete formData.currentTab;
       var editId = _this.props.id;
 
       if (!editId) {
-        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].create(formData).then(function (resp) {
+        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].create(_this.state.invoice).then(function (resp) {
           if (resp.data.success) {
             _this.props.routeChange(resp.data.data);
+            /* this.setState({ 
+            	editId: resp.data.data
+            }); */
+
 
             _this.updateEdit();
 
@@ -10371,7 +10394,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].update(editId, formData).then(function (resp) {
+        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].update(editId, _this.state.invoice).then(function (resp) {
           if (resp.data.success) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
           } else {
@@ -10479,8 +10502,10 @@ var Invoice = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_FromTo__WEBPACK_IMPORTED_MODULE_11__["default"], {
                 setFrom: _this.handleSetFrom,
                 setTo: _this.handleSetTo,
-                data: _this.state.invoice
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                fromData: _this.state.fromData,
+                toData: _this.state.toData,
+                editId: _this.props.id
+              }, _this.state.fromData), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_4__["default"], {
                 items: _this.state.invoice.items,
                 currencyFormatter: _this.formatCurrency,
                 addHandler: _this.handleAddLineItem,
@@ -10548,7 +10573,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_section_Style__WEBPACK_IMPORTED_MODULE_9__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_section_Owner__WEBPACK_IMPORTED_MODULE_10__["default"], {})]
           })]
         }), currentTab == 'save' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_tab_save__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          data: _this.state.invoice
+          data: _this.state
         })]
       });
     });
@@ -10572,6 +10597,9 @@ var Invoice = /*#__PURE__*/function (_Component) {
         confirm: 'Are you sure to delete it?',
         saveTxt: 'Save'
       },
+      fromData: null,
+      toData: null,
+      // editId: null,
       invoice: {
         template: {
           id: null,
@@ -11549,6 +11577,115 @@ var Style = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
+/***/ "./src/admin/js/react/components/invoice/invoice-single/tab/save/FromTo.js":
+/*!*********************************************************************************!*\
+  !*** ./src/admin/js/react/components/invoice/invoice-single/tab/save/FromTo.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var FromTo = /*#__PURE__*/function (_Component) {
+  _inherits(FromTo, _Component);
+
+  var _super = _createSuper(FromTo);
+
+  function FromTo() {
+    var _this;
+
+    _classCallCheck(this, FromTo);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "render", function () {
+      var fromData = _this.props.fromData;
+      var toData = _this.props.toData;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "flex justify-between mb-5",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "bg-slate-50 p-3 border rounded",
+              children: fromData && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                  className: "font-bold",
+                  children: fromData.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                  className: "",
+                  children: ["Email: ", fromData.email, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Address: ", fromData.address, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {})]
+                })]
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: ""
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "bg-slate-50 p-3 border rounded",
+              children: toData.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                  className: "font-bold",
+                  children: [toData.first_name, " ", toData.last_name]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                  className: "",
+                  children: ["Email: ", toData.email, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Address: ", toData.address, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {})]
+                })]
+              }) : 'Search & select'
+            })
+          })]
+        })
+      });
+    });
+
+    return _this;
+  }
+
+  return _createClass(FromTo);
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FromTo);
+
+/***/ }),
+
 /***/ "./src/admin/js/react/components/invoice/invoice-single/tab/save/Group.js":
 /*!********************************************************************************!*\
   !*** ./src/admin/js/react/components/invoice/invoice-single/tab/save/Group.js ***!
@@ -12080,7 +12217,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Items */ "./src/admin/js/react/components/invoice/invoice-single/tab/save/Items.js");
 /* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Note */ "./src/admin/js/react/components/invoice/invoice-single/tab/save/Note.js");
 /* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Group */ "./src/admin/js/react/components/invoice/invoice-single/tab/save/Group.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _FromTo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../FromTo */ "./src/admin/js/react/components/invoice/invoice-single/tab/save/FromTo.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -12111,6 +12249,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var One = /*#__PURE__*/function (_Component) {
   _inherits(One, _Component);
 
@@ -12128,19 +12267,25 @@ var One = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this$props$data$invo = this.props.data.invoice,
+          items = _this$props$data$invo.items,
+          note = _this$props$data$invo.note,
+          group = _this$props$data$invo.group;
       var _this$props$data = this.props.data,
-          items = _this$props$data.items,
-          note = _this$props$data.note,
-          group = _this$props$data.group; // console.log(this.props.data)
+          fromData = _this$props$data.fromData,
+          toData = _this$props$data.toData; // console.log(this.props.data)
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-        children: [items && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_FromTo__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          fromData: fromData,
+          toData: toData
+        }), items && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_1__["default"], {
           data: items
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "mb-10"
-        }), note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        }), note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_2__["default"], {
           data: note
-        }), group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }), group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_3__["default"], {
           data: group
         })]
       });
@@ -13496,6 +13641,12 @@ var Invoice = /*#__PURE__*/function (_Component) {
         _helper__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
+
+            if (type != 'single') {
+              _this.setState({
+                checkedBoxes: []
+              });
+            }
 
             _this.getLists();
           } else {
