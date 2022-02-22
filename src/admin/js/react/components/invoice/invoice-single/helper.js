@@ -3,6 +3,7 @@ import axios from 'axios';
 const apiUrl = `${ncpi_local.apiUrl}ncpi/v1/invoices`;
 const apiUrlBusiness = `${ncpi_local.apiUrl}ncpi/v1/businesses`;
 const apiUrlClient = `${ncpi_local.apiUrl}ncpi/v1/clients`;
+const apiUrlMedia = `${ncpi_local.apiUrl}ncpi/v1/media`;
 
 const token = {
 	headers: {
@@ -21,6 +22,10 @@ const getAllBusiness = ( args = '') => {
 
 const getAllClient = ( args = '') => {
 	return axios.get(`${apiUrlClient}/?${args}`);
+};
+
+const createMedia = data => {
+	return axios.post(apiUrlMedia, data, token);
 };
 
 const get = id => {
@@ -43,6 +48,7 @@ export default {
 	getAll,
 	getAllBusiness,
 	getAllClient,
+	createMedia,
 	get,
 	create,
 	update,

@@ -19,14 +19,13 @@ export default class Save extends Component {
         // console.log(this.props.data)
     } 
 
-    render() { 
-        const data = this.props.data;
+    render() {  
         return (
             <div className="ncpi-components">
                 <ToastContainer /> 
 
                 <div className='max-w-3xl m-auto p-5'>
-                    <One data={data} /> 
+                    <One {...this.props} /> 
                 </div> 
             </div>
         );

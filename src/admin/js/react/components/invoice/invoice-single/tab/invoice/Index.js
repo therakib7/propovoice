@@ -3,9 +3,12 @@ import { NavLink, useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  
 import Helper from '../../helper';
+
+import FromTo from './FromTo';
 import Items from './Items' 
+import Total from './Total';
 import Note from './Note' 
-import Group from './Group';
+import Group from './Group'; 
 
 import Template from '../../tab/template'; 
 import Save from '../../tab/save'; 
@@ -13,7 +16,8 @@ import Save from '../../tab/save';
 //sidebar section
 import Style from './section/Style'
 import Owner from './section/Owner'
-import FromTo from './FromTo';
+import Signature from './Signature';
+
 
 class Invoice extends Component {
 
@@ -47,13 +51,14 @@ class Invoice extends Component {
 				saveTxt: 'Save'
             },  
 			fromData: null,
-			toData: null,
-			// editId: null,
+			toData: null,  
 			invoice: { 
 				template: {
 					id: null,
 					img: ''
 				},
+				from: null,
+				to: null,
 				items: [
 					{
 						id: 'initial', //react-beautiful-dnd unique key
@@ -67,8 +72,9 @@ class Invoice extends Component {
 				paid: 0.00, 
 				note: null,
 				group: null,
-				from: null,
-				to: null
+				attachments: [],
+				signature: null
+				
 			},
 		};  
     }  
@@ -263,7 +269,7 @@ class Invoice extends Component {
         this.setState({
             currentTab: tab
         });
-    }
+    } 
 
 	render = () => { 
 		const { tabs = [], currentTab } = this.state;
@@ -329,48 +335,25 @@ class Invoice extends Component {
 								focusHandler={this.handleFocusSelect}
 								deleteHandler={this.handleRemoveLineItem}
 								reorderHandler={this.handleReorderItems}
-							/> 
-							 
-							<div className="py-2 ml-auto mt-5 w-full w-2/6">
-								<div className="flex justify-between mb-3">
-									<div className="text-gray-800 flex-1">Subtotal</div>
-									<div className="text-gray-800 font-medium">
-										{this.formatCurrency(this.calcItemsTotal())}
-									</div>
-								</div>
-								<div className="flex justify-between mb-3">
-									<div className="text-gray-800 flex-1">
-										Tax 
-										<input 
-											name="tax" 
-											type="number" 
-											className='w-20 border mx-3 pl-2 rounded'
-											step="0.01" 
-											value={this.state.invoice.tax} 
-											onChange={this.handleInvoiceChange} 
-											onFocus={this.handleFocusSelect} />
-											%
-									</div>
-									<div className="text-gray-800 font-medium">
-										{this.formatCurrency(this.calcTaxTotal())}
-									</div>
-								</div>
+							/>  
 
-								<div className="py-2 border-t border-b">
-									<div className="flex justify-between">
-										<div className="text-xl text-gray-600 flex-1">Total Amount</div>
-										<div className="text-xl text-gray-800 font-bold">
-											{this.formatCurrency(this.calcGrandTotal())}
-										</div>
-									</div>
-								</div> 
-							</div>
+							<Total
+								currencyFormatter={this.formatCurrency}
+								itemsTotal={this.calcItemsTotal}
+								tax={this.state.invoice.tax}
+								taxTotal={this.calcTaxTotal}
+								grandTotal={this.calcGrandTotal} 
+								changeHandler={this.handleInvoiceChange}
+								focusHandler={this.handleFocusSelect}
+							/> 
 							
 							<div className='mb-16'></div>
 							<Note data={this.state.invoice.note} changeHandler={this.handleNoteChange} />
 
 							<div className='mb-16'></div>
 							<Group data={this.state.invoice.group} changeHandler={this.handleGroupChange} />
+
+							<Signature /> 
 
 						</div>
                     </div>
@@ -382,7 +365,18 @@ class Invoice extends Component {
                     </div>
                 </div>} 
 
-				{(currentTab == 'save') && <Save data={this.state} />}
+				{(currentTab == 'save') && 
+				<Save  
+					data={this.state} 
+					totalData={
+						{
+							currencyFormatter: this.formatCurrency,
+							itemsTotal: this.calcItemsTotal,
+							taxTotal: this.calcTaxTotal,
+							grandTotal: this.calcGrandTotal,
+						} 
+					} 
+				/>}
 
 			</div> 
 		)
