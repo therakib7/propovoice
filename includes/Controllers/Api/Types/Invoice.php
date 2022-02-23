@@ -269,6 +269,10 @@ class Invoice
         $params = $req->get_params(); 
         $reg_errors             = new \WP_Error;  
         $invoice  = isset( $params ) ? $params : null; 
+
+        $from     = isset( $params['from'] ) ? $params['from'] : null;
+        $to     = isset( $params['to'] ) ? $params['to'] : null;
+
         $total    = 0;
         foreach ( $params['items'] as $item ) {
             $total += ( $item['qty'] * $item['price'] );
@@ -276,8 +280,8 @@ class Invoice
         $paid     = isset( $params['paid'] ) ? $params['paid'] : null;
         $due      = $paid ? $total - $paid : null; 
 
-        $from     = isset( $params['from'] ) ? $params['from'] : null;
-        $to     = isset( $params['to'] ) ? $params['to'] : null;
+        $attachments   = isset( $params['attachments'] ) ? $params['attachments'] : null;
+        $signature     = isset( $params['signature'] ) ? $params['signature'] : null;       
 
         if ( !$from ) {
             $reg_errors->add('field', esc_html__('Sender is missing', 'propovoice'));

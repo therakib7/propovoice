@@ -28,6 +28,10 @@ const createMedia = data => {
 	return axios.post(apiUrlMedia, data, token);
 };
 
+const removeMedia = id => {
+	return axios.delete(`${apiUrlMedia}/${id}`, token);
+};  
+
 const get = id => {
 	return axios.get(`${apiUrl}/${id}`);
 };
@@ -49,6 +53,7 @@ export default {
 	getAllBusiness,
 	getAllClient,
 	createMedia,
+	removeMedia,
 	get,
 	create,
 	update,

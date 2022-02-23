@@ -9,14 +9,15 @@ import Items from './Items'
 import Total from './Total';
 import Note from './Note' 
 import Group from './Group'; 
+import Signature from './Signature';
 
 import Template from '../../tab/template'; 
-import Save from '../../tab/save'; 
+import Preview from '../preview'; 
 
 //sidebar section
 import Style from './section/Style'
 import Owner from './section/Owner'
-import Signature from './Signature';
+import Attachments from './Attachments';
 
 
 class Invoice extends Component {
@@ -38,7 +39,7 @@ class Invoice extends Component {
 					text: 'Add Information' 
 				},
 				{
-					id: 'save',
+					id: 'preview',
 					text: 'Save & Share' 
 				}, 
 			],
@@ -116,18 +117,24 @@ class Invoice extends Component {
 					// editId: this.props.id
 				}); 
             }) 
-    }; 
+    };  
 
 	handleSetFrom = ( data ) => {
 		let invoice = {...this.state.invoice} 
-		invoice.from = data;  
-		this.setState({invoice})
+		invoice.from = data.id;    
+		this.setState({
+			fromData: data,
+			invoice,
+		})
 	}
 
 	handleSetTo = ( data ) => {
 		let invoice = {...this.state.invoice} 
-		invoice.to = data;  
-		this.setState({invoice})
+		invoice.to = data.id;    
+		this.setState({
+			toData: data,
+			invoice,
+		})
 	}
 
 	handleTemplateChange = ( data ) => {
@@ -145,6 +152,18 @@ class Invoice extends Component {
 	handleGroupChange = ( data ) => {  
 		let invoice = {...this.state.invoice} 
 		invoice.group = data; 
+		this.setState({invoice})  
+	} 
+
+	handleSignatureChange = ( data ) => {  
+		let invoice = {...this.state.invoice} 
+		invoice.signature = data; 
+		this.setState({invoice})  
+	} 
+
+	handleAttachmentsChange = ( data ) => {  
+		let invoice = {...this.state.invoice} 
+		invoice.attachments.push(data);  
 		this.setState({invoice})  
 	} 
 	
@@ -262,7 +281,7 @@ class Invoice extends Component {
 		let tab = this.state.currentTab;
 		if ( tab == 'info' ) {
 			tab = 'template';
-		} else if ( tab == 'save' ) {
+		} else if ( tab == 'preview' ) {
 			tab = 'info';
 		}
 
@@ -320,7 +339,7 @@ class Invoice extends Component {
 						<div className='max-w-3xl m-auto'>
 							<FromTo  
 								key={this.state.fromData} 
-								setFrom={this.handleSetFrom}
+								setFrom={this.handleSetFrom} 
 								setTo={this.handleSetTo}
 								fromData={this.state.fromData} 
 								toData={this.state.toData} 
@@ -352,8 +371,9 @@ class Invoice extends Component {
 
 							<div className='mb-16'></div>
 							<Group data={this.state.invoice.group} changeHandler={this.handleGroupChange} />
-
-							<Signature /> 
+							<div className='mb-16'></div>
+							<Attachments data={this.state.invoice.attachments} changeHandler={this.handleAttachmentsChange}/>  
+							<Signature data={this.state.invoice.signature} changeHandler={this.handleSignatureChange}/>  
 
 						</div>
                     </div>
@@ -365,8 +385,8 @@ class Invoice extends Component {
                     </div>
                 </div>} 
 
-				{(currentTab == 'save') && 
-				<Save  
+				{(currentTab == 'preview') && 
+				<Preview  
 					data={this.state} 
 					totalData={
 						{

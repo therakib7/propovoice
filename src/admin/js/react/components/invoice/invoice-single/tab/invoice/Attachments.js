@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { toast } from 'react-toastify';
 import Helper from '../../helper';
 
-class Signature extends Component { 
+class Attachments extends Component { 
 
 	constructor(props) {
 		super(props);
@@ -16,15 +16,15 @@ class Signature extends Component {
 	}
 
     componentDidUpdate() {   
-        if ( ! this.state.edit && this.props.data ) { 
+        /* if ( ! this.state.edit && this.props.data ) { 
             this.setState({ edit: true });
-        }
+        } */
 	}
 
 	onFileUpload = ( file ) => {  
 		const formData = new FormData();  
 		formData.append( 'file', file ); 
-		formData.append( 'type', 'signature' ); 
+		formData.append( 'type', 'attachment' ); 
 	    
 		Helper.createMedia(formData)
             .then(resp => {  
@@ -40,7 +40,7 @@ class Signature extends Component {
 	};
 
 	handleDelete = ( id ) => {   
-        this.props.changeHandler( null )
+        this.props.changeHandler( id )
 
 		Helper.removeMedia(id)
                 .then(resp => {
@@ -62,34 +62,29 @@ class Signature extends Component {
 	};  
 
     render = () => { 
-        const signature = this.props.data; 
+        const attachments = this.props.data; 
         return (
-            <div className='text-right'>  
-				{ ! signature &&
-					<div> 
-						<input type="file" ref={this.inputReference} onChange={this.onFileChange} hidden />  
-						<button className='border p-3 rounded' onClick={ () => this.inputReference.current.click() }> 
-							Authorized Signature 
-						</button> 
-					</div> 
-				}
-
-				{ signature &&
-					<>
-					<div> 
-					<img src={signature.url} width="100" className='inline'/>
-					<button className='border p-3 rounded' onClick={ () => this.handleDelete( signature.id ) }> 
-						x 
+            <div className=''>   
+				<div> 
+					<input type="file" ref={this.inputReference} onChange={this.onFileChange} hidden />  
+					<button className='border p-3 rounded' onClick={ () => this.inputReference.current.click() }> 
+						Add Attachments 
 					</button> 
-					</div> 
-					
-					</>
-				}
+				</div>  
+
+				{attachments.map((item, index) => ( 
+					<div key={index}> 
+						<img src={item.url} width="100" className='inline' />
+						<button className='border p-3 rounded' onClick={ () => this.handleDelete( index ) }> 
+							x 
+						</button> 
+					</div>   
+				))}
             </div>
         )
     }
 } 
 
-export default Signature
+export default Attachments
 
 

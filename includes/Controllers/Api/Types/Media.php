@@ -180,6 +180,7 @@ class Media
     }
 
     public function create($req) { 
+        
 		$params = $req->get_file_params(); 
 		// $file_params = $req->get_file_params(); 
         $file_data     = isset( $params['file'] ) ? $params['file'] : '';
@@ -208,7 +209,7 @@ class Media
                 $reg_errors->add(
                     'field', 
                     sprintf( 
-                        esc_html__('Invalid file type: %s. Supported file types: %s', 'review-schema'), 
+                        esc_html__('Invalid file type: %s. Supported file types: %s', 'propovoice'), 
                         $error_file_type, 
                         $valid_file_type 
                     )
@@ -220,7 +221,7 @@ class Media
                 $reg_errors->add(
                     'field', 
                     sprintf(
-                        esc_html__('File is too large. Max. upload file size is %s', 'review-schema'), 
+                        esc_html__('File is too large. Max. upload file size is %s', 'propovoice'), 
                         Functions::format_bytes($allowed_file_size)
                     )
                 );
@@ -274,76 +275,7 @@ class Media
                 }
             }
 		}
-	}
-    
-    public function update($req)
-    {   
-        $params = $req->get_params(); 
-        $reg_errors             = new \WP_Error;  
-        $invoice  = isset( $params ) ? $params : null; 
-        $total    = 0;
-        foreach ( $params['items'] as $item ) {
-            $total += ( $item['qty'] * $item['price'] );
-        }
-        $paid     = isset( $params['paid'] ) ? $params['paid'] : null;
-        $due      = $paid ? $total - $paid : null; 
-
-        $from     = isset( $params['from'] ) ? $params['from'] : null;
-        $to     = isset( $params['to'] ) ? $params['to'] : null;
-
-        if ( !$from ) {
-            $reg_errors->add('field', esc_html__('Sender is missing', 'propovoice'));
-        } 
-
-        if ( !$to ) {
-            $reg_errors->add('field', esc_html__('Receiver is missing', 'propovoice'));
-        } 
-
-        if ( $reg_errors->get_error_messages() ) {
-            wp_send_json_error($reg_errors->get_error_messages());
-        } else {
-            $url_params = $req->get_url_params();
-            $post_id    = $url_params['id'];
- 
-            $data = array(
-                'ID'            => $post_id,
-                'post_title'    => '',
-                'post_content'  => ''
-            ); 
-            $post_id = wp_update_post( $data );
-
-            if ( !is_wp_error($post_id) ) {
-                
-                if ( $from ) {
-                    update_post_meta($post_id, 'from', $from); 
-                }
-
-                if ( $to ) {
-                    update_post_meta($post_id, 'to', $to); 
-                }
-
-                if ( $invoice ) {
-                    update_post_meta($post_id, 'invoice', json_encode($invoice)); 
-                }
-                 
-                if ( $total ) {
-                    update_post_meta($post_id, 'total', $total); 
-                } 
-
-                if ( $paid ) {
-                    update_post_meta($post_id, 'paid', $paid); 
-                } 
-
-                if ( $due ) {
-                    update_post_meta($post_id, 'due', $due); 
-                } 
-
-                wp_send_json_success($post_id);
-            } else {
-                wp_send_json_error();
-            }
-        }
-    }
+	} 
 
     public function delete($req)
     {
@@ -365,12 +297,7 @@ class Media
     public function create_permission()
     {
         return current_user_can('publish_posts');
-    }
-
-    public function update_permission()
-    {
-        return current_user_can('edit_posts');
-    }
+    } 
 
     public function delete_permission()
     {

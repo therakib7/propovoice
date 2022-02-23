@@ -28,12 +28,12 @@ class FromTo extends Component {
                 let fromData = resp.data.data.result;
                 if ( fromData.length ) { 
                     this.setState({ from: fromData[0] }); 
-                    this.props.setFrom(fromData[0].id);
+                    this.props.setFrom(fromData[0]);
                 }
             }); 
         } else {
             let fromData = this.props.fromData; 
-            let toData = this.props.toData; 
+            let toData = this.props.toData;  
             if ( fromData && toData ) { 
                 this.setState({ 
                     from: fromData, 
@@ -45,6 +45,7 @@ class FromTo extends Component {
 
     handleFromChange = val => { 
         this.setState({ from: val }); 
+        this.props.setFrom(val);
     }
 
     handleFindClient = (val, callback) => { 
@@ -60,12 +61,11 @@ class FromTo extends Component {
                     callback( toData ); 
                 }); 
         }, 300); 
-        
     } 
 
     handleClientSelect = (val) => {   
         this.setState({ to: val });
-        this.props.setTo(val.id);
+        this.props.setTo(val);
     }
 
     componentDidUpdate() {  
@@ -83,6 +83,7 @@ class FromTo extends Component {
         // const { label, text } = this.state.note;
         const { fromList } = this.state;
         const { toList } = this.state;
+        const { fromData, toData } = this.props;
         return (
             <> 
                 <div className="flex justify-between mb-5">
@@ -91,7 +92,7 @@ class FromTo extends Component {
                             <label>
                                 Sender: 
                                 <Select
-                                    value={this.state.from}
+                                    value={fromData}
                                     onChange={this.handleFromChange}
                                     getOptionValue ={(fromList)=>fromList.id}
                                     getOptionLabel ={(fromList)=>fromList.name}
@@ -100,12 +101,12 @@ class FromTo extends Component {
                             </label> 
                         </div>
                         <div className="bg-slate-50 p-3 border rounded">
-                            {this.state.from && 
+                            {fromData && 
                                 <>
-                                    <span className='font-bold'>{this.state.from.name}</span>
+                                    <span className='font-bold'>{fromData.name}</span>
                                     <p className=''>
-                                        Email: {this.state.from.email}<br />
-                                        Address: {this.state.from.address}<br />
+                                        Email: {fromData.email}<br />
+                                        Address: {fromData.address}<br />
                                     </p>
                                 </>
                             }
@@ -120,23 +121,20 @@ class FromTo extends Component {
                                 Receiver: 
                                 <AsyncSelect
                                     loadOptions={this.handleFindClient}
-                                    // options={this.state.toList}
-                                    value={this.state.to}
+                                    value={toData}
                                     onChange={this.handleClientSelect}
                                     getOptionValue ={(toList) => toList.id}
                                     getOptionLabel ={(toList) => ( toList.first_name ) ? toList.first_name + ' ' + toList.last_name : ''} 
-                                    // defaultOptions={this.state.toList}
-                                    // onInputChange={this.handleInputChange} 
-                                    />
+                                />
                             </label> 
                         </div>
                         <div className="bg-slate-50 p-3 border rounded">
-                                {this.state.to.id ? 
+                                {toData ? 
                                 <>
-                                    <span className='font-bold'>{this.state.to.first_name} {this.state.to.last_name}</span>
+                                    <span className='font-bold'>{toData.first_name} {toData.last_name}</span>
                                     <p className=''>
-                                        Email: {this.state.to.email}<br />
-                                        Address: {this.state.to.address}<br />
+                                        Email: {toData.email}<br />
+                                        Address: {toData.address}<br />
                                     </p>
                                 </> : 'Search & select'
                             }
