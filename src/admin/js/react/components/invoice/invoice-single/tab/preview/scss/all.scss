@@ -1,3 +1,27 @@
 .ncpi-invoice-preview {
-    
+    .ncpi-invoice-items { 
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #E6E6E6;
+
+        td, th { 
+            padding: 8px;
+        }
+
+        th {
+            padding: 12px 5px; 
+            text-align: left;
+            background-color: #E6E6E6;
+            color: #000;
+        }
+        td {
+            color: #2d3748;
+        }
+        tr {
+            background-color: #F9F9F9;
+        }
+        tr:nth-child(even){
+            background-color: #fff;
+        }
+    } 
 }

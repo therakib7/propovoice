@@ -1,0 +1,15 @@
+.ncpi-invoice-preview.ncpi-invoice-preview-2 {
+    .ncpi-invoice-items {  
+        border: 0; 
+        th { 
+            background-color: #0099FF;
+            color: #fff;
+        } 
+        tr {
+            background-color: #F7FAFC;
+        }
+        tr:nth-child(even){
+            background-color: #EDF2F7;
+        }
+    } 
+}

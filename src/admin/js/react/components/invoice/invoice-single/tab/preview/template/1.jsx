@@ -21,7 +21,7 @@ export default class One extends Component {
         const { items, note, group, attachments, signature } = this.props.data.invoice; 
         const { fromData, toData } = this.props.data; 
         return (
-            <div className='ncpi-invoice-preview-1'>  
+            <div className=''>  
                 <div className="flex justify-between mb-5">
                     <div className=""> 
                         <div className="">
