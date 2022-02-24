@@ -92,6 +92,15 @@ class Project
             'relation' => 'OR'
         );  
 
+        if ( isset( $request['client_id'] ) ) {   
+            $args['meta_query'][] = array( 
+                array(
+                    'key'     => 'client_id',
+                    'value'   => $request['client_id'] 
+                )
+            );
+        }
+
         $query = new WP_Query( $args );
         $total_data = $query->get_total(); //use this for pagination 
         $result = $data = [];
@@ -104,6 +113,19 @@ class Project
             
             $query_data['title'] = get_the_title();
             $query_data['desc'] = get_the_content(); 
+
+            $client_id = (int) get_post_meta($id, 'client_id', true);
+            $clientData = null; 
+            if ( $client_id ) {
+                $clientData['id'] = $client_id;
+                $client_obj = get_user_by('id', $client_id);
+                
+                $clientData['first_name'] = $client_obj->first_name;
+                $clientData['last_name'] = $client_obj->last_name; 
+                $clientData['email'] = $client_obj->user_email; 
+            } 
+            $query_data['client_id'] = $client_id;
+            $query_data['client'] = $clientData;
 
             $query_data['date'] = get_the_time('j-M-Y h:m a');
             $data[] = $query_data;
@@ -126,6 +148,19 @@ class Project
           
         $query_data['title'] = get_the_title($id);
         $query_data['desc'] = get_post_field('post_content', $id);  
+
+        $client_id = get_post_meta($id, 'client_id', true);
+        $clientData = []; 
+        if ( $client_id ) {
+            $clientData['id'] = $client_id;
+            $client_obj = get_user_by('id', $client_id);
+            
+            $clientData['first_name'] = $client_obj->first_name;
+            $clientData['last_name'] = $client_obj->last_name; 
+            $clientData['email'] = $client_obj->user_email; 
+        } 
+        $query_data['client_id'] = $client_id;
+        $query_data['client'] = $clientData;
 
         return wp_send_json_success($query_data); 
     }
@@ -160,7 +195,7 @@ class Project
             if ( !is_wp_error($post_id) ) {
                 
                 if ( $client_id ) {
-                    update_post_meta($post_id, 'client$client_id', $client_id); 
+                    update_post_meta($post_id, 'client_id', $client_id); 
                 } 
 
                 wp_send_json_success($post_id);
@@ -201,7 +236,9 @@ class Project
                 
                 if ( $client_id ) {
                     update_post_meta($post_id, 'client_id', $client_id); 
-                }   
+                } else {
+                    delete_post_meta($post_id, 'client_id'); 
+                }
 
                 wp_send_json_success($post_id);
             } else {

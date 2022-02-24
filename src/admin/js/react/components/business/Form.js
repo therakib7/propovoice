@@ -48,7 +48,7 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
-        this.setState({ form: this.initialState });
+        // this.setState({ form: this.initialState });
     } 
 
     render() {

@@ -82,9 +82,7 @@ class FromTo extends Component {
 
     render = () => {
 
-        // const { label, text } = this.state.note;
-        const { fromList } = this.state;
-        const { toList } = this.state;
+        const { fromList } = this.state; 
         const { fromData, toData } = this.props;
         return (
             <> 

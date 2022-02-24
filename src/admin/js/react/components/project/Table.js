@@ -16,8 +16,8 @@ const TableHeader = props => {
                 </th>
                 <th className="text-left py-3 px-4 font-semibold text-sm">
                     Description
-                </th> 
-                { !props.client_id && <th className="text-left py-3 px-4 font-semibold text-sm">
+                </th>  
+                {!props.client_id && <th className="text-left py-3 px-4 font-semibold text-sm">
                     Client
                 </th>}
                 <th className="text-left py-3 px-4 font-semibold text-sm">
@@ -72,7 +72,7 @@ const Table = (props) => {
     return (
         <div className="shadow overflow-hidden rounded border-b border-gray-200">
             <table className="min-w-full bg-white">
-                <TableHeader checkedBoxes={checkedBoxes} />
+                <TableHeader checkedBoxes={checkedBoxes} client_id={client_id}/>
                 <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} />                 
             </table>
         </div>

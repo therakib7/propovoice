@@ -10,13 +10,14 @@ class Form extends Component {
         this.initialState = {
             id: null,
             client_id: null,
+            client: null,
             title: '', 
             desc: '', 
             date: false
         };
 
         this.state = {
-            clientList:  [], 
+            clientList: [],  
             form: this.initialState
         };
 
@@ -30,10 +31,11 @@ class Form extends Component {
 
     componentDidUpdate() {
         //condition added to stop multiple rendering
-        if (this.props.modalType == 'edit') {
-            
-            if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
+        if (this.props.modalType == 'edit') { 
+            if (this.state.form.id != this.props.data.id) {  
+                this.setState({ 
+                    form: this.props.data 
+                });
             }
         } else {
             if (this.state.form.id != null) {
@@ -58,14 +60,26 @@ class Form extends Component {
         }, 300); 
     } 
 
-    handleClientSelect = (value) => {   
-        this.setState({ form: { ...this.state.form, ['client_id']: value } }); 
+    handleClientSelect = (value) => {    
+        let form = {...this.state.form} 
+        if ( value ) {
+            form.client_id = value.id;    
+            form.client = value;
+        } else {
+            form.client_id = null;    
+            form.client = null;
+        }
+		    
+		this.setState({ form }) 
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.form);
-        this.setState({ form: this.initialState });
+        let form = {...this.state.form} 
+        if ( this.props.client_id ) {
+            form.client_id = this.props.client_id;
+        }
+        this.props.handleSubmit(form); 
     } 
 
     render() {
@@ -90,24 +104,24 @@ class Form extends Component {
                                     <form onSubmit={this.handleSubmit}>
                                         <div className="relative px-6 py-5 flex-auto">
                                             <div className="w-full max-w-lg">
-
+                                                {!this.props.client_id && 
                                                 <div className="flex flex-wrap -mx-3 mb-5">
                                                     <div className="w-full px-3 mb-6 md:mb-0">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                             htmlFor="grid-title">
                                                             Client
-                                                        </label>
-
+                                                        </label> 
                                                         <AsyncSelect
                                                             loadOptions={this.handleFindClient}
-                                                            value={this.state.form.client_id}
+                                                            value={this.state.form.client}
                                                             onChange={this.handleClientSelect}
+                                                            isClearable={true}
                                                             getOptionValue ={(toList) => toList.id}
                                                             getOptionLabel ={(toList) => ( toList.first_name ) ? toList.first_name + ' ' + toList.last_name : ''} 
                                                         />
                                                     </div> 
-                                                </div> 
+                                                </div>} 
 
                                                 <div className="flex flex-wrap -mx-3 mb-2">
                                                     <div className="w-full px-3 mb-6 md:mb-0">

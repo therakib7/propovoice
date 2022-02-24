@@ -220,6 +220,7 @@ export default class Project extends Component {
                     modalType={this.state.formModalType}
                     data={this.state.client}
                     close={this.closeForm}
+                    client_id={this.props.client_id}
                 />
 
                 <Search

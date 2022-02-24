@@ -5170,11 +5170,8 @@ var Form = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
       e.preventDefault();
 
-      _this.props.handleSubmit(_this.state.form);
+      _this.props.handleSubmit(_this.state.form); // this.setState({ form: this.initialState });
 
-      _this.setState({
-        form: _this.initialState
-      });
     });
 
     _this.initialState = {
@@ -6651,11 +6648,8 @@ var Form = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
       e.preventDefault();
 
-      _this.props.handleSubmit(_this.state.form);
+      _this.props.handleSubmit(_this.state.form); // this.setState({ form: this.initialState });
 
-      _this.setState({
-        form: _this.initialState
-      });
     });
 
     _this.initialState = {
@@ -8301,11 +8295,8 @@ var Form = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
       e.preventDefault();
 
-      _this.props.handleSubmit(_this.state.form);
+      _this.props.handleSubmit(_this.state.form); // this.setState({ form: this.initialState });
 
-      _this.setState({
-        form: _this.initialState
-      });
     });
 
     _this.initialState = {
@@ -9609,9 +9600,7 @@ var FromTo = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
-      // const { label, text } = this.state.note;
       var fromList = _this.state.fromList;
-      var toList = _this.state.toList;
       var _this$props = _this.props,
           fromData = _this$props.fromData,
           toData = _this$props.toData;
@@ -14520,24 +14509,37 @@ var Form = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleClientSelect", function (value) {
+      var form = _objectSpread({}, _this.state.form);
+
+      if (value) {
+        form.client_id = value.id;
+        form.client = value;
+      } else {
+        form.client_id = null;
+        form.client = null;
+      }
+
       _this.setState({
-        form: _objectSpread(_objectSpread({}, _this.state.form), {}, _defineProperty({}, 'client_id', value))
+        form: form
       });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
       e.preventDefault();
 
-      _this.props.handleSubmit(_this.state.form);
+      var form = _objectSpread({}, _this.state.form);
 
-      _this.setState({
-        form: _this.initialState
-      });
+      if (_this.props.client_id) {
+        form.client_id = _this.props.client_id;
+      }
+
+      _this.props.handleSubmit(form);
     });
 
     _this.initialState = {
       id: null,
       client_id: null,
+      client: null,
       title: '',
       desc: '',
       date: false
@@ -14602,7 +14604,7 @@ var Form = /*#__PURE__*/function (_Component) {
                     className: "relative px-6 py-5 flex-auto",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                       className: "w-full max-w-lg",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      children: [!this.props.client_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                         className: "flex flex-wrap -mx-3 mb-5",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                           className: "w-full px-3 mb-6 md:mb-0",
@@ -14612,8 +14614,9 @@ var Form = /*#__PURE__*/function (_Component) {
                             children: "Client"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_select_async__WEBPACK_IMPORTED_MODULE_1__["default"], {
                             loadOptions: this.handleFindClient,
-                            value: this.state.form.client_id,
+                            value: this.state.form.client,
                             onChange: this.handleClientSelect,
+                            isClearable: true,
                             getOptionValue: function getOptionValue(toList) {
                               return toList.id;
                             },
@@ -15080,7 +15083,8 @@ var Table = function Table(props) {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
       className: "min-w-full bg-white",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TableHeader, {
-        checkedBoxes: checkedBoxes
+        checkedBoxes: checkedBoxes,
+        client_id: client_id
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TableBody, {
         tableData: tableData,
         editEntry: editEntry,
@@ -15445,7 +15449,8 @@ var Project = /*#__PURE__*/function (_Component) {
           show: this.state.formModal,
           modalType: this.state.formModalType,
           data: this.state.client,
-          close: this.closeForm
+          close: this.closeForm,
+          client_id: this.props.client_id
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], {
           handleSubmit: this.getLists,
           show: this.state.searchModal,
