@@ -138,44 +138,7 @@ class Functions {
 		$settings = get_option($id, []);
 
 		return apply_filters($id, $settings);
-	}
-
-    public static function is_enable( $type = '' ) {
-        $enable = ncpi()->get_options('ncpi_general_settings', ['enable', ['css']]); 
-        return in_array( $type, $enable );
-    }
-
-    public static function enable_type() {
-        return ncpi()->get_options('ncpi_general_settings', ['enable', ['css']]);  
-    }
-
-    public static function js_pos_args() {
-        $args = [
-			'wp_head' => esc_html__('Head Tag', 'propovoice'),
-			'wp_footer' => esc_html__('Body Footer', 'propovoice'), 
-		];
-
-        return apply_filters( 'ncpi_js_pos_args', $args );
-    }
-
-    public static function html_pos_args() {
-        $args = [
-			'wp_head' => esc_html__('Head Tag', 'propovoice'),
-			'wp_body_open' => esc_html__('Opening Body', 'propovoice'), 
-			'wp_footer' => esc_html__('Body Footer', 'propovoice'), 
-		];
-
-        return apply_filters( 'ncpi_html_pos_args', $args );
-    }
-
-    public static function admin_pos_args() {
-        $args = [
-			'admin_head' => esc_html__('Head Tag', 'propovoice'),
-			'admin_footer' => esc_html__('Body Footer', 'propovoice'), 
-		];
-
-        return apply_filters( 'ncpi_admin_pos_args', $args );
-    }
+	} 
 
 	/**
 	 * Clean variables using sanitize_text_field. Arrays are cleaned recursively.

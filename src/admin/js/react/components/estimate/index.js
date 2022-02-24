@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 import TablePreloader from '../preloader/table';
 
-import Helper from './helper';
+import Api from '../../api/business';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
@@ -56,7 +56,7 @@ export default class Estimate extends Component {
 
         let params = new URLSearchParams(args).toString();
 
-        Helper.getAll(params)
+        Api.getAll(params)
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
@@ -71,7 +71,7 @@ export default class Estimate extends Component {
 
     handleSubmit = client => {
         if (this.state.formModalType == 'new') {
-            Helper.create(client)
+            Api.create(client)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -84,7 +84,7 @@ export default class Estimate extends Component {
                     }
                 })
         } else {
-            Helper.update(client.id, client)
+            Api.update(client.id, client)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -112,10 +112,13 @@ export default class Estimate extends Component {
                 });
             }             
             let ids = ( type == 'single' ) ? index : this.state.checkedBoxes.toString();
-            Helper.remove(ids)
+            Api.remove(ids)
                 .then(resp => {
                     if (resp.data.success) {
                         toast.success(this.state.msg.delete); 
+                        if ( type != 'single' ) {
+                            this.setState({ checkedBoxes: [] });
+                        }
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-const Setting = () => {
+const SettingCopy = () => {
 
     const [ firstname, setFirstName ] = useState( '' );
     const [ lastname, setLastName ]   = useState( '' );
@@ -79,4 +79,4 @@ const Setting = () => {
     )
 }
 
-export default Setting;
+export default SettingCopy;

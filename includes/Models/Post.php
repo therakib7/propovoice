@@ -1,9 +1,7 @@
 <?php
 namespace Ncpi\Models;
-
-use Ncpi\Helpers\Functions;
-use WP_Query;
-use WP_Post;
+ 
+use WP_Query; 
 
 class Post {
 

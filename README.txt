@@ -1,30 +1,27 @@
-=== Custom CSS and JavaScript for specific Post, Page and any Place ===
-Contributors: nurency, therakib7
+=== Propovoice ===
+Contributors: nurcreation, therakib7
 Donate link:
-Tags: tag, tag, tag
+Tags: proposal, invoice, client, template, project, payment, transeciton
 Requires at least: 4.9
 Tested up to: 5.8
 Stable tag: 1.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-A complete custom CSS, JS and HTML applying process for any page. This plugin will help you to add custom CSS and JavaScript speficic post, page, taxonomy, archive etc.
+A complete proposal and invoice management system for the client.
 
 == Description ==
 
-[Plugin Demo](https://www.ncpi.com/demo/plugins/ncpi) | [Documentation](https://www.ncpi.com/docs/ncpi/ncpi)
-
-Advanced CSS and JavaScript for specific Post, Page Plugin. This plugin will help you to reduce page size and speed up your page, You don't need to load Same content every page.
+By this plugin you can easily send proposal and invoice to your client and manage everything from Dashboard.
 
 = Features = 
-* Custom CSS, JS and HTML for all page
-* Custom CSS, JS and HTML specific single Post
-* Custom CSS, JS and HTML specific single Page 
-* Custom CSS, JS and HTML specific category page
-* Custom CSS, JS and HTML specific archive page 
-* Custom CSS, JS and HTML specific search page 
-* Custom CSS, JS and HTML specific 404 page 
-
+* Send invoice to client
+* Send proposal to client
+* Receive payment from client
+* Manage projects
+* Advanced template for invoice
+* Advanced template for proposal
+* Advance dashboard
 
 = Fully translatable =
 * POT files included (/languages/)
@@ -33,7 +30,7 @@ Advanced CSS and JavaScript for specific Post, Page Plugin. This plugin will hel
 
 1. Unzip the downloaded `propovoice` zip file
 2. Upload the 'propovoice' folder and its contents into the `wp-content/plugins/` directory of your WordPress installation
-3. Activate `CSS and JavaScript for specific Page` from Plugins page
+3. Activate `Propovoice` from Plugins page
 
 = Requirements =
 * **WordPress version:** >= 4.5
@@ -43,11 +40,8 @@ Advanced CSS and JavaScript for specific Post, Page Plugin. This plugin will hel
 
 = How to use this plugin =
  
-* From tab configure your all settings.
-* Publish
-
-= How to add specific custom CSS in Post/Page = 
-* Answer will be here
+* Go to Propovoice menu from dashboard.
+* Add you content as you want
 
 = Need Any Help? =
 

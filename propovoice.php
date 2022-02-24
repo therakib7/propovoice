@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) { die; } // Cannot access directly.
  * Author: NurCreation
  * Author URI: https://nurcreation.com
  * Version: 1.0.0
- * Description: This plugin will help you to easily create proposal and invoice
+ * Description: A complete proposal and invoice management system for the client.
  * Text Domain: propovoice
  * Domain Path: /languages
  *

@@ -1,6 +1,5 @@
 
-import Home from './components/Home';
-import Setting from './components/Setting';
+import Home from './components/Home'; 
 
 function App() {
     return(

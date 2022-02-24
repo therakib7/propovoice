@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; 
 
-const TableHeader = props => {
+const TableHeader = props => { 
     return (
         <thead className="bg-gray-300 text-gray-800">
             <tr>
@@ -14,14 +14,14 @@ const TableHeader = props => {
                     /> 
                 </th>
                 <th className="text-left py-3 px-4 font-bold text-sm">
-                    #
+                    Invoice ID
                 </th>
                 <th className="text-left py-3 px-4 font-bold text-sm">
-                    Client Name
+                    Project
                 </th>
-                <th className="text-left py-3 px-4 font-semibold text-sm">
-                    Client Email
-                </th>
+                { !props.client_id && <th className="text-left py-3 px-4 font-semibold text-sm">
+                    Client
+                </th>}
                 <th className="text-left py-3 px-4 font-semibold text-sm">
                     Total
                 </th>
@@ -49,10 +49,9 @@ const TableBody = props => {
         navigate(`/invoice/single/${id}`, { replace: true });
     }
 
-    const rows = props.tableData.map((row, index) => {
+    let rows = props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = ( data.indexOf(row.id) !== -1 ) ? true : false; 
-        // console.log(data)
         return (
             <tr key={index}>
                 <td className="text-left py-3 pl-4 pr-0">
@@ -63,9 +62,11 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />  
 				</td>
-                <td className="text-left py-3 px-4">{row.id}</td>
-                <td className="text-left py-3 px-4">{row.client.first_name + ' ' + row.client.last_name}</td>
-                <td className="text-left py-3 px-4">{row.client.email}</td>
+                <td className="text-left py-3 px-4">INV{row.id}</td>
+                <td className="text-left py-3 px-4">{row.project.name}</td>
+                {!props.client_id &&<td className="text-left py-3 px-4">
+                    {row.to.first_name + ' ' + row.to.last_name}
+                </td>}
                 <td className="text-left py-3 px-4">{row.total}</td>
                 <td className="text-left py-3 px-4">{row.paid}</td>
                 <td className="text-left py-3 px-4">{row.due}</td>
@@ -78,22 +79,20 @@ const TableBody = props => {
         );
     });
 
+    if ( ! props.tableData.length ) {
+        rows = <tr><td className='p-3' colSpan='3'>No data found</td></tr>
+    }
+
     return <tbody className="text-gray-700">{rows}</tbody>;
 }
 
 const Table = (props) => {
-    const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
+    const { tableData, editEntry, checkedBoxes, deleteEntry, client_id } = props;
     return (
         <div className="shadow overflow-hidden rounded border-b border-gray-200">
             <table className="min-w-full bg-white">
-                <TableHeader checkedBoxes={checkedBoxes} />
-                <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
-                { ! tableData.length && <tbody className="text-gray-700"><tr>
-                    <td className='p-3' colSpan={3}>
-                        No data found
-                    </td>
-                </tr></tbody>}
-                
+                <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} />
+                <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} /> 
             </table>
         </div>
 

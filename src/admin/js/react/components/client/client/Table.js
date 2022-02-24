@@ -46,7 +46,7 @@ const TableBody = props => {
         navigate(`/client/${id}`, { replace: true });
     }
 
-    const rows = props.tableData.map((row, index) => {
+    let rows = props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = ( data.indexOf(row.id) !== -1 ) ? true : false; 
         // console.log(data)
@@ -75,6 +75,10 @@ const TableBody = props => {
         );
     });
 
+    if ( ! props.tableData.length ) {
+        rows = <tr><td className='p-3' colSpan='3'>No data found</td></tr>
+    }
+
     return <tbody className="text-gray-700">{rows}</tbody>;
 }
 
@@ -84,13 +88,7 @@ const Table = (props) => {
         <div className="shadow overflow-hidden rounded border-b border-gray-200">
             <table className="min-w-full bg-white">
                 <TableHeader checkedBoxes={checkedBoxes} />
-                <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
-                { ! tableData.length && <tbody className="text-gray-700"><tr>
-                    <td className='p-3' colSpan={3}>
-                        No data found
-                    </td>
-                </tr></tbody>}
-                
+                <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} /> 
             </table>
         </div>
 

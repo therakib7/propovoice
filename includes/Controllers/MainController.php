@@ -8,8 +8,7 @@ use Ncpi\Controllers\Asset\AssetContoller;
 use Ncpi\Controllers\Template\PageTemplater;
 use Ncpi\Controllers\Filter\FilterController;
 use Ncpi\Controllers\Hook\HookController;
-use Ncpi\Controllers\Marketing\MarketingController;
-use Ncpi\Controllers\Meta\MetaController; 
+use Ncpi\Controllers\Marketing\MarketingController; 
 use Ncpi\Controllers\Setting\SettingController;
 use Ncpi\Controllers\PostType\PostTypeController;
 use Ncpi\Controllers\Taxonomy\TaxonomyController; 
@@ -21,8 +20,7 @@ class MainController {
         
         //if ( is_admin() ) {
             new PostTypeController();
-            new TaxonomyController();
-            new MetaController(); 
+            new TaxonomyController(); 
             new SettingController(); 
             new MarketingController();
         //}

@@ -9,6 +9,7 @@ import {
 
 import Dashboard from './Dashboard';
 import Client from './client/client';
+import Project from './project';
 import ClientSummary from './client/client-summary';
 // const Client = lazy(() => import('./client')); //TODO: need to seen path wp-content/folders root
 import Proposal from './proposal';
@@ -20,7 +21,8 @@ import Invoice from './invoice/invoice';
 import InvoiceSingle from './invoice/invoice-single';
 import Payment from './Payment';
 import TemplateLibrary from './TemplateLibrary';
-import Setting from './Setting';
+import Business from './business';
+import Setting from './setting';
 import Help from './Help';
 
 const Home = () => {
@@ -44,6 +46,12 @@ const Home = () => {
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-groups mr-3" />
                             Client
+                        </NavLink>
+                        <NavLink
+                            to='project'
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            <i className="dashicons dashicons-groups mr-3" />
+                            Project
                         </NavLink>
                         <NavLink
                             to='estimate'
@@ -88,6 +96,12 @@ const Home = () => {
                             Template Library
                         </NavLink>
                         <NavLink
+                            to='business'
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            <i className="dashicons dashicons-admin-generic mr-3" />
+                            Business
+                        </NavLink>
+                        <NavLink
                             to='setting'
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-admin-generic mr-3" />
@@ -101,10 +115,10 @@ const Home = () => {
                         </NavLink>
                     </nav>
 
-                    <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-gray-700 hover:text-purple-700 flex items-center justify-center py-4">
+                    {/* <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-gray-700 hover:text-purple-700 flex items-center justify-center py-4">
                         <i className="dashicons dashicons-upload mr-3" />
                         Upgrade to Pro!
-                    </a>
+                    </a> */}
                 </aside>
 
                 <div className="w-full ncpi-h-screen overflow-y-hidden p-6">
@@ -121,7 +135,9 @@ const Home = () => {
                             <Route path="/payment" element={<Payment />} />
                             <Route path="/template-library" element={<TemplateLibrary />} />
                             <Route path="/client" exact element={<Client />} />
+                            <Route path="/project" exact element={<Project />} />
                             <Route path="/client/:id" exact element={<ClientSummary />} />
+                            <Route path="/business" element={<Business />} />
                             <Route path="/setting" element={<Setting />} />
                             <Route path="/help" element={<Help />} />
                         </Routes>

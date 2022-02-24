@@ -8,8 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import ReactPaginate from 'react-paginate';
 
 import TablePreloader from '../../preloader/table';
+ 
+import Api from '../../../api/invoice';
 
-import Helper from './helper';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
@@ -45,11 +46,15 @@ export default class Invoice extends Component {
         this.getLists();
     }
 
-    getLists = ( searchArgs = null ) => { 
+    getLists = ( searchArgs = null ) => {  
         
         let args = {
             page: this.state.currentPage,
             per_page: this.state.perPage
+        }
+
+        if ( this.props.client_id ) {
+            args.client_id = this.props.client_id;
         }
 
         if ( searchArgs ) {
@@ -60,7 +65,7 @@ export default class Invoice extends Component {
 
         let params = new URLSearchParams(args).toString();
 
-        Helper.getAll(params)
+        Api.getAll(params)
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
@@ -75,7 +80,7 @@ export default class Invoice extends Component {
 
     handleSubmit = client => {
         if (this.state.formModalType == 'new') {
-            Helper.create(client)
+            Api.create(client)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -88,7 +93,7 @@ export default class Invoice extends Component {
                     }
                 })
         } else {
-            Helper.update(client.id, client)
+            Api.update(client.id, client)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -116,10 +121,14 @@ export default class Invoice extends Component {
                 });
             }             
             let ids = ( type == 'single' ) ? index : this.state.checkedBoxes.toString();
-            Helper.remove(ids)
+            Api.remove(ids)
                 .then(resp => {
                     if (resp.data.success) {
                         toast.success(this.state.msg.delete); 
+                        if ( type != 'single' ) {
+                            this.setState({ checkedBoxes: [] });
+                        }
+
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -128,19 +137,7 @@ export default class Invoice extends Component {
                     }
                 })
         }
-    } 
-
-    openForm = (type = 'new', client = null) => {
-        /* this.setState({ formModal: true });
-
-        if (type == 'new') {
-            this.setState({ formModalType: 'new' });
-        } else {
-            this.setState({ formModalType: 'edit' });
-            this.setState({ client: client });
-        } */
-        
-    };
+    }  
 
     closeForm = ( type = 'new' ) => {
         if ( type == 'new' ) {
@@ -193,13 +190,7 @@ export default class Invoice extends Component {
 
                 <div className='mb-5 font-bold text-2xl'>
                     Invoice
-                </div>
-
-                {/* <button
-                    className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
-                    onClick={() => this.openForm('new')} >
-                    Create New Invoice
-                </button> */}
+                </div> 
 
                 <NavLink
                     to='single'
@@ -233,7 +224,7 @@ export default class Invoice extends Component {
                     close={this.closeForm}
                 />
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox}} deleteEntry={this.deleteEntry} /> }
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox}} deleteEntry={this.deleteEntry} client_id={this.props.client_id} /> }
 
                 { this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}

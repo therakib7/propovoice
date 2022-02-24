@@ -6,16 +6,13 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
-            name: '',
-            job: '',
-            first_name: '',
-            last_name: '',
-            email: '',
-            company_name: '',
+            name: '', 
             web: '',
+            email: '', 
             mobile: '',
-            zip: '',
             address: '',
+            zip: '',
+            default: false,
             date: false
         };
 
@@ -29,9 +26,15 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
+    toggleChange = () => {  
+        let value = !this.state.form.default;
+        this.setState({ form: { ...this.state.form, ['default']: value } });
+    }
+
     componentDidUpdate() {
         //condition added to stop multiple rendering
         if (this.props.modalType == 'edit') {
+            
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
             }
@@ -45,8 +48,8 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
-        this.setState({ form: this.initialState });
-    }
+        // this.setState({ form: this.initialState });
+    } 
 
     render() {
         return (
@@ -58,7 +61,7 @@ class Form extends Component {
                                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
 
                                     <div className="flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t">
-                                        <h3 className="text-xl p-2 font-semibold">{this.props.modalType == 'new' ? 'New' : 'Edit'} Client</h3>
+                                        <h3 className="text-xl p-2 font-semibold">{this.props.modalType == 'new' ? 'New' : 'Edit'} Estimate</h3>
                                         <button className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                                             onClick={() => this.props.close()} >
                                             <span className="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
@@ -69,24 +72,23 @@ class Form extends Component {
 
                                     <form onSubmit={this.handleSubmit}>
                                         <div className="relative px-6 py-5 flex-auto">
-                                            <div className="w-full max-w-lg">
+                                            <div className="w-full max-w-lg"> 
 
-                                                <div className="flex flex-wrap -mx-3 mb-2">
-
+                                            <div className="flex flex-wrap -mx-3 mb-2">
                                                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                                            htmlFor="first_name">
-                                                            First Name
+                                                            htmlFor="grid-name">
+                                                            Company Name
                                                         </label>
 
                                                         <input
                                                             className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                                            id="first_name"
+                                                            id="grid-name"
                                                             type="text"
                                                             required
-                                                            name="first_name"
-                                                            value={this.state.form.first_name}
+                                                            name="name"
+                                                            value={this.state.form.name}
                                                             onChange={this.handleChange}
                                                         />
                                                     </div>
@@ -94,21 +96,19 @@ class Form extends Component {
                                                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                                            htmlFor="last_name">
-                                                            Last Name
+                                                            htmlFor="grid-web">
+                                                            Website
                                                         </label>
 
                                                         <input
-                                                            className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                                            id="last_name"
-                                                            type="text"
-                                                            required
-                                                            name="last_name"
-                                                            value={this.state.form.last_name}
+                                                            className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                            id="grid-web"
+                                                            type="url"
+                                                            name="web"
+                                                            value={this.state.form.web}
                                                             onChange={this.handleChange}
                                                         />
                                                     </div>
-
                                                 </div>
 
                                                 <div className="flex flex-wrap -mx-3 mb-2">
@@ -149,46 +149,26 @@ class Form extends Component {
                                                         />
                                                     </div>
 
-                                                </div>
+                                                </div> 
 
                                                 <div className="flex flex-wrap -mx-3 mb-2">
-                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                                        <label
-                                                            className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                                            htmlFor="grid-company_name">
-                                                            Company Name
-                                                        </label>
-
-                                                        <input
-                                                            className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                                            id="grid-company_name"
-                                                            type="text"
-                                                            required
-                                                            name="company_name"
-                                                            value={this.state.form.company_name}
-                                                            onChange={this.handleChange}
-                                                        />
-                                                    </div>
 
                                                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                         <label
                                                             className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                                            htmlFor="grid-web">
-                                                            Website
+                                                            htmlFor="grid-address">
+                                                            Address
                                                         </label>
 
                                                         <input
                                                             className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                                            id="grid-web"
-                                                            type="url"
-                                                            name="web"
-                                                            value={this.state.form.web}
+                                                            id="grid-address"
+                                                            type="text"
+                                                            name="address"
+                                                            value={this.state.form.address}
                                                             onChange={this.handleChange}
                                                         />
                                                     </div>
-                                                </div>
-
-                                                <div className="flex flex-wrap -mx-3 mb-2">
 
                                                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                                         <label
@@ -206,6 +186,26 @@ class Form extends Component {
                                                             onChange={this.handleChange}
                                                         />
                                                     </div>
+                                                </div>
+
+                                                <div className="flex flex-wrap -mx-3">
+
+                                                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                                        <label
+                                                            className="text-gray-700 text-xs font-bold"
+                                                            htmlFor="grid-default">
+                                                            Default?   
+                                                            <input 
+                                                                id="grid-default"
+                                                                className="ml-3"
+                                                                type="checkbox"
+                                                                defaultChecked={this.state.form.default}
+                                                                onChange={this.toggleChange}
+                                                            />
+                                                        </label> 
+                                                    </div>
+
+                                                     
                                                 </div>
 
                                             </div>

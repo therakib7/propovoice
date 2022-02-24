@@ -4,12 +4,8 @@ module.exports = {
       './includes/**/*.php',
       './src/**/*.php',
       './src/**/*.js',
-      './templates/**/*.php',
-      './theme/**/*.php',
-      './theme/**/*.js',
-      './views/**/*.php',
-      // './theme/**/*.php',
-      // './theme/**/*.js'
+      './templates/**/*.php', 
+      './views/**/*.php' 
     ]
   },
   darkMode: false, // or 'media' or 'class'

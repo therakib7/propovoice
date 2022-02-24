@@ -3,13 +3,13 @@ import { NavLink, useParams } from "react-router-dom";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import Helper from './helper';
+ 
+import Api from '../../../api/client';
 
 import Overview from './tab/overview';
-import Project from './tab/project';
-import Estimate from './tab/estimate';
-import Invoice from './tab/invoice';
+import Project from '../../project';
+import Estimate from '../../estimate';
+import Invoice from '../../invoice/invoice';
 import Receipt from './tab/receipt';
 
 class ClientSummary extends Component {
@@ -21,28 +21,23 @@ class ClientSummary extends Component {
             tabs: [
                 {
                     id: 'overview',
-                    text: 'Overview',
-                    content: Overview
+                    text: 'Overview'
                 },
                 {
                     id: 'project',
-                    text: 'Project',
-                    content: Project
+                    text: 'Project'
                 },
                 {
                     id: 'estimate',
-                    text: 'Estimate',
-                    content: Estimate
+                    text: 'Estimate'
                 },
                 {
                     id: 'invoice',
-                    text: 'Invoice',
-                    content: Invoice
+                    text: 'Invoice'
                 },
                 {
                     id: 'receipt',
-                    text: 'Receipt',
-                    content: Receipt
+                    text: 'Receipt'
                 },
             ],
             currentTab: 'overview',
@@ -67,7 +62,7 @@ class ClientSummary extends Component {
     }
 
     getData = () => {
-        Helper.get(this.props.id)
+        Api.get(this.props.id)
             .then(resp => {
                 this.setState({ data: resp.data.data });
             })
@@ -86,6 +81,7 @@ class ClientSummary extends Component {
 
     render() {
         const { tabs = [], currentTab } = this.state;
+        const { id } = this.props;
         return (
             <div className="ncpi-components">
                 <ToastContainer />
@@ -118,12 +114,14 @@ class ClientSummary extends Component {
                         ))}
                     </ul>
                 </div>
+                
+                <div className='mb-5'></div>      
 
-                {tabs.map((tab, index) => (
-                    <React.Fragment key={index}>
-                        {(currentTab == tab.id) ? React.createElement(tab.content, {}) : null}
-                    </React.Fragment>
-                ))}
+                { currentTab == 'overview' && <Overview /> }
+                { currentTab == 'project' && <Project client_id={id} /> }
+                { currentTab == 'estimate' && <Estimate client_id={id} /> }
+                { currentTab == 'invoice' && <Invoice client_id={id} /> }
+                { currentTab == 'receipt' && <Receipt /> } 
 
             </div>
         );
