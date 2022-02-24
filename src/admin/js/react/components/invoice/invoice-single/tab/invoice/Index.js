@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { NavLink, useParams, useNavigate } from "react-router-dom"; 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';  
-import Helper from '../../helper';
+import 'react-toastify/dist/ReactToastify.css';   
+import Api from '../../../../../api/invoice';
 
 import FromTo from './FromTo';
 import Items from './Items' 
@@ -11,7 +11,7 @@ import Note from './Note'
 import Group from './Group'; 
 import Signature from './Signature';
 
-import Template from '../../tab/template'; 
+import Template from '../template'; 
 import Preview from '../preview'; 
 
 //sidebar section
@@ -108,7 +108,7 @@ class Invoice extends Component {
     };
 
 	getData = () => {
-        Helper.get(this.props.id)
+        Api.get(this.props.id)
             .then(resp => { 
                 this.setState({ 
 					invoice: resp.data.data.invoice, 
@@ -213,7 +213,7 @@ class Invoice extends Component {
 	handleSave = () => {
 		let editId = this.props.id;
 		if ( ! editId ) { 
-            Helper.create(this.state.invoice)
+            Api.create(this.state.invoice)
                 .then(resp => {
                     if (resp.data.success) {  
 						this.props.routeChange(resp.data.data); 
@@ -231,7 +231,7 @@ class Invoice extends Component {
                     }
                 })
         } else {
-            Helper.update(editId, this.state.invoice)
+            Api.update(editId, this.state.invoice)
                 .then(resp => {
                     if (resp.data.success) {
                         toast.success(this.state.msg.update);

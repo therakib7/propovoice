@@ -5,8 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ReactPaginate from 'react-paginate';
 
 import TablePreloader from '../../../../preloader/table';
-
-import Helper from './helper'; 
+ 
+import Api from '../../../../../api/invoice';
 import Table from './Table'; 
 
 export default class Template extends Component {
@@ -54,7 +54,7 @@ export default class Template extends Component {
 
         let params = new URLSearchParams(args).toString();
 
-        Helper.getAll(params)
+        Api.getAllTemplate(params)
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;

@@ -92,6 +92,15 @@ class Invoice
             'relation' => 'OR'
         ); 
 
+        if ( isset( $request['client_id'] ) ) {   
+            $args['meta_query'][] = array( 
+                array(
+                    'key'     => 'to',
+                    'value'   => $request['client_id'] 
+                )
+            );
+        }
+
         $query = new WP_Query( $args );
         $total_data = $query->get_total(); //use this for pagination 
         $result = $data = [];
@@ -138,7 +147,7 @@ class Invoice
                 $query_data['due'] = 0;
             }
 
-            $query_data['date'] = '';
+            $query_data['date'] = get_the_time('j-M-Y h:m a');;
             $data[] = $query_data;
 
         } 

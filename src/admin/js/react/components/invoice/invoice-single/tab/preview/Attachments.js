@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { toast } from 'react-toastify';
-import Helper from '../../helper';
 
 class Attachments extends Component { 
 

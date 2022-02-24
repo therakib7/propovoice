@@ -120,7 +120,7 @@ class Business
             $query_data['zip'] = get_post_meta($id, 'zip', true); 
             $query_data['default'] = (bool) get_post_meta($id, 'default', true); 
 
-            $query_data['date'] = '';
+            $query_data['date'] = get_the_time('j-M-Y h:m a');
             $data[] = $query_data;
 
         } 

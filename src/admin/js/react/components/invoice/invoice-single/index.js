@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react' 
 import { useParams, useNavigate } from "react-router-dom"; 
 
-import Invoice from './tab/invoice/Index.js'; 
+import Invoice from './tab/invoice'; 
 
 function InvoiceWrap() {
 

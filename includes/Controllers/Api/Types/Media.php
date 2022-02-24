@@ -126,7 +126,7 @@ class Media
                 $query_data['due'] = 0;
             }
 
-            $query_data['date'] = '';
+            $query_data['date'] = get_the_time('j-M-Y h:m a');
             $data[] = $query_data;
 
         } 

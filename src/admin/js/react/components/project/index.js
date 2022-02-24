@@ -4,14 +4,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from '../../preloader/table';
- 
-import Api from '../../../api/client';
+import TablePreloader from '../preloader/table';
+
+import Api from '../../api/project';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
 
-export default class Client extends Component {
+export default class Project extends Component {
     constructor(props) {
         super(props);         
 
@@ -48,6 +48,10 @@ export default class Client extends Component {
             per_page: this.state.perPage
         }
 
+        if ( this.props.client_id ) {
+            args.client_id = this.props.client_id;
+        }
+
         if ( searchArgs ) {
             //Filter all falsy values ( "", 0, false, null, undefined )
             searchArgs = Object.entries(searchArgs).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {}) 
@@ -70,11 +74,10 @@ export default class Client extends Component {
     }; 
 
     handleSubmit = client => {
-        if (this.state.formModalType == 'new') { 
+        if (this.state.formModalType == 'new') {
             Api.create(client)
                 .then(resp => {
                     if (resp.data.success) {
-                        console.log(resp.data)
                         this.setState({ formModal: false })
                         toast.success(this.state.msg.create);
                         this.getLists();
@@ -117,6 +120,9 @@ export default class Client extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         toast.success(this.state.msg.delete); 
+                        if ( type != 'single' ) {
+                            this.setState({ checkedBoxes: [] });
+                        }
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -187,13 +193,13 @@ export default class Client extends Component {
                 <ToastContainer /> 
 
                 <div className='mb-5 font-bold text-2xl'>
-                    Client
+                    Project
                 </div>
 
                 <button
                     className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.openForm('new')} >
-                    Create New Client
+                    Create New Project
                 </button>
                 
                 { checkedBoxes.length ? <button
@@ -222,7 +228,7 @@ export default class Client extends Component {
                     close={this.closeForm}
                 />
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox}} deleteEntry={this.deleteEntry} /> }
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox}} deleteEntry={this.deleteEntry} client_id={this.props.client_id} /> }
 
                 { this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}

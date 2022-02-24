@@ -9,6 +9,7 @@ import {
 
 import Dashboard from './Dashboard';
 import Client from './client/client';
+import Project from './project';
 import ClientSummary from './client/client-summary';
 // const Client = lazy(() => import('./client')); //TODO: need to seen path wp-content/folders root
 import Proposal from './proposal';
@@ -45,6 +46,12 @@ const Home = () => {
                             className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
                             <i className="dashicons dashicons-groups mr-3" />
                             Client
+                        </NavLink>
+                        <NavLink
+                            to='project'
+                            className={({ isActive }) => "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "")}>
+                            <i className="dashicons dashicons-groups mr-3" />
+                            Project
                         </NavLink>
                         <NavLink
                             to='estimate'
@@ -128,6 +135,7 @@ const Home = () => {
                             <Route path="/payment" element={<Payment />} />
                             <Route path="/template-library" element={<TemplateLibrary />} />
                             <Route path="/client" exact element={<Client />} />
+                            <Route path="/project" exact element={<Project />} />
                             <Route path="/client/:id" exact element={<ClientSummary />} />
                             <Route path="/business" element={<Business />} />
                             <Route path="/setting" element={<Setting />} />

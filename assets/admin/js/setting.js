@@ -4356,6 +4356,307 @@ function App() {
 
 /***/ }),
 
+/***/ "./src/admin/js/react/api/business.js":
+/*!********************************************!*\
+  !*** ./src/admin/js/react/api/business.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/api/helper.js");
+
+
+var url = _helper__WEBPACK_IMPORTED_MODULE_1__.apiUrl + 'businesses';
+
+var getAll = function getAll() {
+  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/?").concat(args));
+};
+
+var get = function get(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/").concat(id));
+};
+
+var create = function create(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var update = function update(id, data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(url, "/").concat(id), data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var remove = function remove(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(url, "/").concat(id), _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var findByArg = function findByArg(title) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "?title=").concat(title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAll: getAll,
+  get: get,
+  create: create,
+  update: update,
+  remove: remove,
+  findByArg: findByArg
+});
+
+/***/ }),
+
+/***/ "./src/admin/js/react/api/client.js":
+/*!******************************************!*\
+  !*** ./src/admin/js/react/api/client.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/api/helper.js");
+
+
+var url = _helper__WEBPACK_IMPORTED_MODULE_1__.apiUrl + 'clients';
+
+var getAll = function getAll() {
+  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/?").concat(args));
+};
+
+var get = function get(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/").concat(id));
+};
+
+var create = function create(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var update = function update(id, data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(url, "/").concat(id), data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var remove = function remove(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(url, "/").concat(id), _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var findByArg = function findByArg(title) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "?title=").concat(title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAll: getAll,
+  get: get,
+  create: create,
+  update: update,
+  remove: remove,
+  findByArg: findByArg
+});
+
+/***/ }),
+
+/***/ "./src/admin/js/react/api/helper.js":
+/*!******************************************!*\
+  !*** ./src/admin/js/react/api/helper.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "apiUrl": () => (/* binding */ apiUrl),
+/* harmony export */   "apiServerUrl": () => (/* binding */ apiServerUrl),
+/* harmony export */   "token": () => (/* binding */ token)
+/* harmony export */ });
+var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/");
+var apiServerUrl = "".concat(ncpi_local.apiServerUrl, "ncpis/v1/");
+var token = {
+  headers: {
+    'content-type': 'application/json',
+    'X-WP-NONCE': ncpi_local.nonce
+  }
+};
+
+/***/ }),
+
+/***/ "./src/admin/js/react/api/invoice.js":
+/*!*******************************************!*\
+  !*** ./src/admin/js/react/api/invoice.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/api/helper.js");
+
+
+var url = _helper__WEBPACK_IMPORTED_MODULE_1__.apiUrl + 'invoices';
+var urlServer = _helper__WEBPACK_IMPORTED_MODULE_1__.apiServerUrl + 'invoices';
+
+var getAll = function getAll() {
+  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/?").concat(args));
+};
+
+var getAllTemplate = function getAllTemplate() {
+  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(urlServer, "/?").concat(args));
+};
+
+var get = function get(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/").concat(id));
+};
+
+var create = function create(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var update = function update(id, data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(url, "/").concat(id), data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var remove = function remove(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(url, "/").concat(id), _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var findByArg = function findByArg(title) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "?title=").concat(title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAll: getAll,
+  getAllTemplate: getAllTemplate,
+  get: get,
+  create: create,
+  update: update,
+  remove: remove,
+  findByArg: findByArg
+});
+
+/***/ }),
+
+/***/ "./src/admin/js/react/api/media.js":
+/*!*****************************************!*\
+  !*** ./src/admin/js/react/api/media.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/api/helper.js");
+
+
+var url = _helper__WEBPACK_IMPORTED_MODULE_1__.apiUrl + 'media';
+
+var getAll = function getAll() {
+  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/?").concat(args));
+};
+
+var get = function get(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/").concat(id));
+};
+
+var create = function create(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var update = function update(id, data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(url, "/").concat(id), data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var remove = function remove(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(url, "/").concat(id), _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var findByArg = function findByArg(title) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "?title=").concat(title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAll: getAll,
+  get: get,
+  create: create,
+  update: update,
+  remove: remove,
+  findByArg: findByArg
+});
+
+/***/ }),
+
+/***/ "./src/admin/js/react/api/project.js":
+/*!*******************************************!*\
+  !*** ./src/admin/js/react/api/project.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/api/helper.js");
+
+
+var url = _helper__WEBPACK_IMPORTED_MODULE_1__.apiUrl + 'projects';
+
+var getAll = function getAll() {
+  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/?").concat(args));
+};
+
+var get = function get(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/").concat(id));
+};
+
+var create = function create(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var update = function update(id, data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(url, "/").concat(id), data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var remove = function remove(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(url, "/").concat(id), _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var findByArg = function findByArg(title) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "?title=").concat(title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAll: getAll,
+  get: get,
+  create: create,
+  update: update,
+  remove: remove,
+  findByArg: findByArg
+});
+
+/***/ }),
+
 /***/ "./src/admin/js/react/components/Contract.jsx":
 /*!****************************************************!*\
   !*** ./src/admin/js/react/components/Contract.jsx ***!
@@ -4492,23 +4793,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard */ "./src/admin/js/react/components/Dashboard.jsx");
 /* harmony import */ var _client_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./client/client */ "./src/admin/js/react/components/client/client/index.js");
-/* harmony import */ var _client_client_summary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./client/client-summary */ "./src/admin/js/react/components/client/client-summary/index.js");
-/* harmony import */ var _proposal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./proposal */ "./src/admin/js/react/components/proposal/index.js");
-/* harmony import */ var _editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor */ "./src/admin/js/react/components/editor/index.jsx");
-/* harmony import */ var _Contract__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Contract */ "./src/admin/js/react/components/Contract.jsx");
-/* harmony import */ var _estimate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./estimate */ "./src/admin/js/react/components/estimate/index.js");
-/* harmony import */ var _invoice_invoice__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./invoice/invoice */ "./src/admin/js/react/components/invoice/invoice/index.js");
-/* harmony import */ var _invoice_invoice_single__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./invoice/invoice-single */ "./src/admin/js/react/components/invoice/invoice-single/index.js");
-/* harmony import */ var _Payment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Payment */ "./src/admin/js/react/components/Payment.jsx");
-/* harmony import */ var _TemplateLibrary__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./TemplateLibrary */ "./src/admin/js/react/components/TemplateLibrary.jsx");
-/* harmony import */ var _business__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./business */ "./src/admin/js/react/components/business/index.js");
-/* harmony import */ var _setting__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./setting */ "./src/admin/js/react/components/setting/index.js");
-/* harmony import */ var _Help__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Help */ "./src/admin/js/react/components/Help.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./project */ "./src/admin/js/react/components/project/index.js");
+/* harmony import */ var _client_client_summary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./client/client-summary */ "./src/admin/js/react/components/client/client-summary/index.js");
+/* harmony import */ var _proposal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./proposal */ "./src/admin/js/react/components/proposal/index.js");
+/* harmony import */ var _editor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor */ "./src/admin/js/react/components/editor/index.jsx");
+/* harmony import */ var _Contract__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Contract */ "./src/admin/js/react/components/Contract.jsx");
+/* harmony import */ var _estimate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./estimate */ "./src/admin/js/react/components/estimate/index.js");
+/* harmony import */ var _invoice_invoice__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./invoice/invoice */ "./src/admin/js/react/components/invoice/invoice/index.js");
+/* harmony import */ var _invoice_invoice_single__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./invoice/invoice-single */ "./src/admin/js/react/components/invoice/invoice-single/index.js");
+/* harmony import */ var _Payment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Payment */ "./src/admin/js/react/components/Payment.jsx");
+/* harmony import */ var _TemplateLibrary__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./TemplateLibrary */ "./src/admin/js/react/components/TemplateLibrary.jsx");
+/* harmony import */ var _business__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./business */ "./src/admin/js/react/components/business/index.js");
+/* harmony import */ var _setting__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./setting */ "./src/admin/js/react/components/setting/index.js");
+/* harmony import */ var _Help__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Help */ "./src/admin/js/react/components/Help.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -4532,183 +4835,196 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Home = function Home() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.HashRouter, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("aside", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.HashRouter, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("aside", {
         className: "relative ncpi-h-screen w-64 hidden sm:block shadow-xl",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
           className: "p-6 pb-5",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("a", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("a", {
             href: "#",
             className: "text-3xl font-semibold text-gray-800 hover:text-purple-700 hover:text-purple-700",
             children: "Propovoice"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("nav", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("nav", {
           className: "text-base",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
             to: "/",
             className: function className(_ref) {
               var isActive = _ref.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
               className: "dashicons dashicons-dashboard mr-3"
             }), "Dashboard"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
             to: "client",
             className: function className(_ref2) {
               var isActive = _ref2.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
               className: "dashicons dashicons-groups mr-3"
             }), "Client"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "estimate",
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "project",
             className: function className(_ref3) {
               var isActive = _ref3.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
               className: "dashicons dashicons-groups mr-3"
-            }), "Estimate"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "invoice",
+            }), "Project"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "estimate",
             className: function className(_ref4) {
               var isActive = _ref4.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
-              className: "dashicons dashicons-text-page mr-3"
-            }), "Invoice"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "proposal",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
+              className: "dashicons dashicons-groups mr-3"
+            }), "Estimate"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "invoice",
             className: function className(_ref5) {
               var isActive = _ref5.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
-              className: "dashicons dashicons-portfolio mr-3"
-            }), "Proposal"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "editor",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
+              className: "dashicons dashicons-text-page mr-3"
+            }), "Invoice"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "proposal",
             className: function className(_ref6) {
               var isActive = _ref6.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
               className: "dashicons dashicons-portfolio mr-3"
-            }), "Proposal Test"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "contract",
+            }), "Proposal"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "editor",
             className: function className(_ref7) {
               var isActive = _ref7.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
-              className: "dashicons dashicons-groups mr-3"
-            }), "Contract"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "payment",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
+              className: "dashicons dashicons-portfolio mr-3"
+            }), "Proposal Test"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "contract",
             className: function className(_ref8) {
               var isActive = _ref8.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
-              className: "dashicons dashicons-money-alt mr-3"
-            }), "Payment"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "template-library",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
+              className: "dashicons dashicons-groups mr-3"
+            }), "Contract"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "payment",
             className: function className(_ref9) {
               var isActive = _ref9.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
-              className: "dashicons dashicons-admin-page mr-3"
-            }), "Template Library"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "business",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
+              className: "dashicons dashicons-money-alt mr-3"
+            }), "Payment"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "template-library",
             className: function className(_ref10) {
               var isActive = _ref10.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
-              className: "dashicons dashicons-admin-generic mr-3"
-            }), "Business"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "setting",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
+              className: "dashicons dashicons-admin-page mr-3"
+            }), "Template Library"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "business",
             className: function className(_ref11) {
               var isActive = _ref11.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
               className: "dashicons dashicons-admin-generic mr-3"
-            }), "Settings"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.NavLink, {
-            to: "help",
+            }), "Business"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "setting",
             className: function className(_ref12) {
               var isActive = _ref12.isActive;
               return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
+              className: "dashicons dashicons-admin-generic mr-3"
+            }), "Settings"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.NavLink, {
+            to: "help",
+            className: function className(_ref13) {
+              var isActive = _ref13.isActive;
+              return "flex items-center text-gray-700 hover:text-purple-700 py-4 pl-6 nav-item " + (isActive ? "active-nav-link " : "");
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("i", {
               className: "dashicons dashicons-editor-help mr-3"
             }), "Help"]
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
         className: "w-full ncpi-h-screen overflow-y-hidden p-6",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
-          fallback: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+          fallback: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
             children: "Loading..."
           }),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Routes, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Routes, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/proposal",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_proposal__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_proposal__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/editor",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_editor__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_editor__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/contract",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Contract__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_Contract__WEBPACK_IMPORTED_MODULE_7__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/estimate",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_estimate__WEBPACK_IMPORTED_MODULE_7__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_estimate__WEBPACK_IMPORTED_MODULE_8__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/invoice",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_invoice_invoice__WEBPACK_IMPORTED_MODULE_8__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_invoice_invoice__WEBPACK_IMPORTED_MODULE_9__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/invoice/single",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_invoice_invoice_single__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_invoice_invoice_single__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/invoice/single/:id",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_invoice_invoice_single__WEBPACK_IMPORTED_MODULE_9__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_invoice_invoice_single__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/payment",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Payment__WEBPACK_IMPORTED_MODULE_10__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_Payment__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/template-library",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_TemplateLibrary__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_TemplateLibrary__WEBPACK_IMPORTED_MODULE_12__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/client",
               exact: true,
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_client_client__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_client_client__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
+              path: "/project",
+              exact: true,
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_project__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/client/:id",
               exact: true,
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_client_client_summary__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_client_client_summary__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/business",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_business__WEBPACK_IMPORTED_MODULE_12__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_business__WEBPACK_IMPORTED_MODULE_13__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/setting",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_setting__WEBPACK_IMPORTED_MODULE_13__["default"], {})
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_setting__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
               path: "/help",
-              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Help__WEBPACK_IMPORTED_MODULE_14__["default"], {})
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_Help__WEBPACK_IMPORTED_MODULE_15__["default"], {})
             })]
           })
         })
@@ -5448,6 +5764,17 @@ var TableBody = function TableBody(props) {
       })]
     }, index);
   });
+
+  if (!props.tableData.length) {
+    rows = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "p-3",
+        colSpan: "3",
+        children: "No data found"
+      })
+    });
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
     className: "text-gray-700",
     children: rows
@@ -5470,79 +5797,12 @@ var Table = function Table(props) {
         editEntry: editEntry,
         checkedBoxes: checkedBoxes,
         deleteEntry: deleteEntry
-      }), !tableData.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-        className: "text-gray-700",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-            className: "p-3",
-            colSpan: 3,
-            children: "No data found"
-          })
-        })
       })]
     })
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Table);
-
-/***/ }),
-
-/***/ "./src/admin/js/react/components/business/helper.js":
-/*!**********************************************************!*\
-  !*** ./src/admin/js/react/components/business/helper.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/businesses");
-var token = {
-  headers: {
-    'content-type': 'application/json',
-    'X-WP-NONCE': ncpi_local.nonce
-  }
-};
-
-var getAll = function getAll() {
-  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/?").concat(args));
-};
-
-var get = function get(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id));
-};
-
-var create = function create(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
-};
-
-var update = function update(id, data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data, token);
-};
-
-var remove = function remove(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id), token);
-};
-
-var findByArg = function findByArg(title) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "?title=").concat(title));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getAll: getAll,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove,
-  findByArg: findByArg
-});
 
 /***/ }),
 
@@ -5563,7 +5823,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/business/helper.js");
+/* harmony import */ var _api_business__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/business */ "./src/admin/js/react/api/business.js");
 /* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/business/Form.js");
 /* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/business/Table.js");
 /* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/business/Search.js");
@@ -5652,7 +5912,7 @@ var Business = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _helper__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -5672,7 +5932,7 @@ var Business = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
       if (_this.state.formModalType == 'new') {
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
@@ -5688,7 +5948,7 @@ var Business = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
@@ -5718,7 +5978,7 @@ var Business = /*#__PURE__*/function (_Component) {
         }
 
         var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
 
@@ -5928,63 +6188,6 @@ var Business = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/admin/js/react/components/client/client-summary/helper.js":
-/*!***********************************************************************!*\
-  !*** ./src/admin/js/react/components/client/client-summary/helper.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/clients");
-var token = {
-  headers: {
-    'content-type': 'application/json',
-    'X-WP-NONCE': ncpi_local.nonce
-  }
-};
-
-var getAll = function getAll() {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl);
-};
-
-var get = function get(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id), token);
-};
-
-var create = function create(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
-};
-
-var update = function update(id, data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data, token);
-};
-
-var remove = function remove(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id), token);
-};
-
-var findByArg = function findByArg(title) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "?title=").concat(title));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getAll: getAll,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove,
-  findByArg: findByArg
-});
-
-/***/ }),
-
 /***/ "./src/admin/js/react/components/client/client-summary/index.js":
 /*!**********************************************************************!*\
   !*** ./src/admin/js/react/components/client/client-summary/index.js ***!
@@ -6001,11 +6204,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/client/client-summary/helper.js");
+/* harmony import */ var _api_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../api/client */ "./src/admin/js/react/api/client.js");
 /* harmony import */ var _tab_overview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tab/overview */ "./src/admin/js/react/components/client/client-summary/tab/overview/index.js");
-/* harmony import */ var _tab_project__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tab/project */ "./src/admin/js/react/components/client/client-summary/tab/project/index.js");
-/* harmony import */ var _tab_estimate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tab/estimate */ "./src/admin/js/react/components/client/client-summary/tab/estimate/index.js");
-/* harmony import */ var _tab_invoice__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tab/invoice */ "./src/admin/js/react/components/client/client-summary/tab/invoice/index.js");
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../project */ "./src/admin/js/react/components/project/index.js");
+/* harmony import */ var _estimate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../estimate */ "./src/admin/js/react/components/estimate/index.js");
+/* harmony import */ var _invoice_invoice__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../invoice/invoice */ "./src/admin/js/react/components/invoice/invoice/index.js");
 /* harmony import */ var _tab_receipt__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./tab/receipt */ "./src/admin/js/react/components/client/client-summary/tab/receipt/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -6058,7 +6261,7 @@ var ClientSummary = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "getData", function () {
-      _helper__WEBPACK_IMPORTED_MODULE_3__["default"].get(_this.props.id).then(function (resp) {
+      _api_client__WEBPACK_IMPORTED_MODULE_3__["default"].get(_this.props.id).then(function (resp) {
         _this.setState({
           data: resp.data.data
         });
@@ -6074,24 +6277,19 @@ var ClientSummary = /*#__PURE__*/function (_Component) {
     _this.state = {
       tabs: [{
         id: 'overview',
-        text: 'Overview',
-        content: _tab_overview__WEBPACK_IMPORTED_MODULE_4__["default"]
+        text: 'Overview'
       }, {
         id: 'project',
-        text: 'Project',
-        content: _tab_project__WEBPACK_IMPORTED_MODULE_5__["default"]
+        text: 'Project'
       }, {
         id: 'estimate',
-        text: 'Estimate',
-        content: _tab_estimate__WEBPACK_IMPORTED_MODULE_6__["default"]
+        text: 'Estimate'
       }, {
         id: 'invoice',
-        text: 'Invoice',
-        content: _tab_invoice__WEBPACK_IMPORTED_MODULE_7__["default"]
+        text: 'Invoice'
       }, {
         id: 'receipt',
-        text: 'Receipt',
-        content: _tab_receipt__WEBPACK_IMPORTED_MODULE_8__["default"]
+        text: 'Receipt'
       }],
       currentTab: 'overview',
       formModal: false,
@@ -6133,6 +6331,7 @@ var ClientSummary = /*#__PURE__*/function (_Component) {
           _this$state$tabs = _this$state.tabs,
           tabs = _this$state$tabs === void 0 ? [] : _this$state$tabs,
           currentTab = _this$state.currentTab;
+      var id = this.props.id;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
         className: "ncpi-components",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
@@ -6165,11 +6364,15 @@ var ClientSummary = /*#__PURE__*/function (_Component) {
               }, index);
             })
           })
-        }), tabs.map(function (tab, index) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-            children: currentTab == tab.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(tab.content, {}) : null
-          }, index);
-        })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+          className: "mb-5"
+        }), currentTab == 'overview' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_tab_overview__WEBPACK_IMPORTED_MODULE_4__["default"], {}), currentTab == 'project' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_project__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          client_id: id
+        }), currentTab == 'estimate' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_estimate__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          client_id: id
+        }), currentTab == 'invoice' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_invoice_invoice__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          client_id: id
+        }), currentTab == 'receipt' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_tab_receipt__WEBPACK_IMPORTED_MODULE_8__["default"], {})]
       });
     }
   }]);
@@ -6188,192 +6391,6 @@ function GetId() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GetId);
-
-/***/ }),
-
-/***/ "./src/admin/js/react/components/client/client-summary/tab/estimate/index.js":
-/*!***********************************************************************************!*\
-  !*** ./src/admin/js/react/components/client/client-summary/tab/estimate/index.js ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Estimate)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-var Estimate = /*#__PURE__*/function (_Component) {
-  _inherits(Estimate, _Component);
-
-  var _super = _createSuper(Estimate);
-
-  function Estimate() {
-    var _this;
-
-    _classCallCheck(this, Estimate);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      // clients: []
-      data: ''
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "getLists", function () {
-      Helper.getAll().then(function (resp) {
-        _this.setState({
-          clients: resp.data.data
-        });
-      });
-    });
-
-    return _this;
-  }
-
-  _createClass(Estimate, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {// this.getLists();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "ncpi-components",
-        children: "Estimate content"
-      });
-    }
-  }]);
-
-  return Estimate;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-
-
-/***/ }),
-
-/***/ "./src/admin/js/react/components/client/client-summary/tab/invoice/index.js":
-/*!**********************************************************************************!*\
-  !*** ./src/admin/js/react/components/client/client-summary/tab/invoice/index.js ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Invoice)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-var Invoice = /*#__PURE__*/function (_Component) {
-  _inherits(Invoice, _Component);
-
-  var _super = _createSuper(Invoice);
-
-  function Invoice() {
-    var _this;
-
-    _classCallCheck(this, Invoice);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      // clients: []
-      data: ''
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "getLists", function () {
-      Helper.getAll().then(function (resp) {
-        _this.setState({
-          clients: resp.data.data
-        });
-      });
-    });
-
-    return _this;
-  }
-
-  _createClass(Invoice, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {// this.getLists();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "ncpi-components",
-        children: "Invoice content"
-      });
-    }
-  }]);
-
-  return Invoice;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-
 
 /***/ }),
 
@@ -6464,100 +6481,6 @@ var Overview = /*#__PURE__*/function (_Component) {
   }]);
 
   return Overview;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-
-
-/***/ }),
-
-/***/ "./src/admin/js/react/components/client/client-summary/tab/project/index.js":
-/*!**********************************************************************************!*\
-  !*** ./src/admin/js/react/components/client/client-summary/tab/project/index.js ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Project)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-var Project = /*#__PURE__*/function (_Component) {
-  _inherits(Project, _Component);
-
-  var _super = _createSuper(Project);
-
-  function Project() {
-    var _this;
-
-    _classCallCheck(this, Project);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      // clients: []
-      data: ''
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "getLists", function () {
-      Helper.getAll().then(function (resp) {
-        _this.setState({
-          clients: resp.data.data
-        });
-      });
-    });
-
-    return _this;
-  }
-
-  _createClass(Project, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {// this.getLists();
-      // console.log('from project')
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "ncpi-components",
-        children: "Project content"
-      });
-    }
-  }]);
-
-  return Project;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 
@@ -7346,6 +7269,17 @@ var TableBody = function TableBody(props) {
       })]
     }, index);
   });
+
+  if (!props.tableData.length) {
+    rows = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "p-3",
+        colSpan: "3",
+        children: "No data found"
+      })
+    });
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
     className: "text-gray-700",
     children: rows
@@ -7368,74 +7302,12 @@ var Table = function Table(props) {
         editEntry: editEntry,
         checkedBoxes: checkedBoxes,
         deleteEntry: deleteEntry
-      }), !tableData.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-        className: "text-gray-700",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-            className: "p-3",
-            colSpan: 3,
-            children: "No data found"
-          })
-        })
       })]
     })
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Table);
-
-/***/ }),
-
-/***/ "./src/admin/js/react/components/client/client/helper.js":
-/*!***************************************************************!*\
-  !*** ./src/admin/js/react/components/client/client/helper.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/clients");
-var token = {
-  headers: {
-    'content-type': 'application/json',
-    'X-WP-NONCE': ncpi_local.nonce
-  }
-};
-
-var getAll = function getAll() {
-  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/?").concat(args));
-};
-
-var get = function get(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id));
-};
-
-var create = function create(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
-};
-
-var update = function update(id, data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data, token);
-};
-
-var remove = function remove(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id), token);
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getAll: getAll,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove
-});
 
 /***/ }),
 
@@ -7456,7 +7328,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/client/client/helper.js");
+/* harmony import */ var _api_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../api/client */ "./src/admin/js/react/api/client.js");
 /* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/client/client/Form.js");
 /* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/client/client/Table.js");
 /* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/client/client/Search.js");
@@ -7545,7 +7417,7 @@ var Client = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _helper__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_client__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -7565,7 +7437,7 @@ var Client = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
       if (_this.state.formModalType == 'new') {
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+        _api_client__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             console.log(resp.data);
 
@@ -7583,7 +7455,7 @@ var Client = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+        _api_client__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
@@ -7613,7 +7485,7 @@ var Client = /*#__PURE__*/function (_Component) {
         }
 
         var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+        _api_client__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
 
@@ -8418,6 +8290,14 @@ var Form = /*#__PURE__*/function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "toggleChange", function () {
+      var value = !_this.state.form["default"];
+
+      _this.setState({
+        form: _objectSpread(_objectSpread({}, _this.state.form), {}, _defineProperty({}, 'default', value))
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
       e.preventDefault();
 
@@ -8431,15 +8311,12 @@ var Form = /*#__PURE__*/function (_Component) {
     _this.initialState = {
       id: null,
       name: '',
-      job: '',
-      first_name: '',
-      last_name: '',
-      email: '',
-      company_name: '',
       web: '',
+      email: '',
       mobile: '',
-      zip: '',
       address: '',
+      zip: '',
+      "default": false,
       date: false
     };
     _this.state = {
@@ -8483,7 +8360,7 @@ var Form = /*#__PURE__*/function (_Component) {
                   className: "flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h3", {
                     className: "text-xl p-2 font-semibold",
-                    children: [this.props.modalType == 'new' ? 'New' : 'Edit', " Client"]
+                    children: [this.props.modalType == 'new' ? 'New' : 'Edit', " Estimate"]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                     className: "p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none",
                     onClick: function onClick() {
@@ -8506,30 +8383,29 @@ var Form = /*#__PURE__*/function (_Component) {
                           className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                             className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                            htmlFor: "first_name",
-                            children: "First Name"
+                            htmlFor: "grid-name",
+                            children: "Company Name"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                             className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
-                            id: "first_name",
+                            id: "grid-name",
                             type: "text",
                             required: true,
-                            name: "first_name",
-                            value: this.state.form.first_name,
+                            name: "name",
+                            value: this.state.form.name,
                             onChange: this.handleChange
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                           className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                             className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                            htmlFor: "last_name",
-                            children: "Last Name"
+                            htmlFor: "grid-web",
+                            children: "Website"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                            className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
-                            id: "last_name",
-                            type: "text",
-                            required: true,
-                            name: "last_name",
-                            value: this.state.form.last_name,
+                            className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                            id: "grid-web",
+                            type: "url",
+                            name: "web",
+                            value: this.state.form.web,
                             onChange: this.handleChange
                           })]
                         })]
@@ -8572,35 +8448,17 @@ var Form = /*#__PURE__*/function (_Component) {
                           className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                             className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                            htmlFor: "grid-company_name",
-                            children: "Company Name"
+                            htmlFor: "grid-address",
+                            children: "Address"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                            className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
-                            id: "grid-company_name",
+                            className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                            id: "grid-address",
                             type: "text",
-                            required: true,
-                            name: "company_name",
-                            value: this.state.form.company_name,
+                            name: "address",
+                            value: this.state.form.address,
                             onChange: this.handleChange
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                          className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
-                            htmlFor: "grid-web",
-                            children: "Website"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                            className: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-                            id: "grid-web",
-                            type: "url",
-                            name: "web",
-                            value: this.state.form.web,
-                            onChange: this.handleChange
-                          })]
-                        })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                        className: "flex flex-wrap -mx-3 mb-2",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                           className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                             className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
@@ -8614,6 +8472,22 @@ var Form = /*#__PURE__*/function (_Component) {
                             value: this.state.form.zip,
                             onChange: this.handleChange
                           })]
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "flex flex-wrap -mx-3",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                          className: "w-full md:w-1/2 px-3 mb-6 md:mb-0",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+                            className: "text-gray-700 text-xs font-bold",
+                            htmlFor: "grid-default",
+                            children: ["Default?", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                              id: "grid-default",
+                              className: "ml-3",
+                              type: "checkbox",
+                              defaultChecked: this.state.form["default"],
+                              onChange: this.toggleChange
+                            })]
+                          })
                         })
                       })]
                     })
@@ -8917,7 +8791,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -8935,28 +8808,26 @@ var TableHeader = function TableHeader(props) {
         },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
           type: "checkbox",
-          className: "selectsingle" // value={row.id}
-          // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
-          ,
+          className: "selectsingle",
           onChange: function onChange(e) {
             return props.checkedBoxes.handle(e, 'all');
           }
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-bold text-sm",
-        children: "Client Name"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-        className: "text-left py-3 px-4 font-semibold text-sm",
-        children: "Email"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-        className: "text-left py-3 px-4 font-semibold text-sm",
         children: "Company Name"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-semibold text-sm",
         children: "Website"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Email"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
         children: "Mobile"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Address"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-semibold text-sm",
         children: "Date"
@@ -8969,18 +8840,9 @@ var TableHeader = function TableHeader(props) {
 };
 
 var TableBody = function TableBody(props) {
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
-
-  function handleClick(id) {
-    navigate("/client/".concat(id), {
-      replace: true
-    });
-  }
-
   var rows = props.tableData.map(function (row, index) {
     var data = props.checkedBoxes.data;
-    var checkedCheckbox = data.indexOf(row.id) !== -1 ? true : false; // console.log(data)
-
+    var checkedCheckbox = data.indexOf(row.id) !== -1 ? true : false;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 pl-4 pr-0",
@@ -8995,31 +8857,25 @@ var TableBody = function TableBody(props) {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 px-4",
-        children: row.first_name + ' ' + row.last_name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-        className: "text-left py-3 px-4",
-        children: row.email
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-        className: "text-left py-3 px-4",
-        children: row.company_name
+        children: row.name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 px-4",
         children: row.web
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 px-4",
+        children: row.email
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
         children: row.mobile
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.address
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 px-4",
         children: row.date
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
         className: "text-left py-3 px-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-          onClick: function onClick() {
-            return handleClick(row.id);
-          },
-          className: "bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2 inline-block align-middle",
-          children: "Overview"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
           onClick: function onClick() {
             return props.editEntry('edit', row);
           },
@@ -9039,6 +8895,17 @@ var TableBody = function TableBody(props) {
       })]
     }, index);
   });
+
+  if (!props.tableData.length) {
+    rows = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "p-3",
+        colSpan: "3",
+        children: "No data found"
+      })
+    });
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
     className: "text-gray-700",
     children: rows
@@ -9061,79 +8928,12 @@ var Table = function Table(props) {
         editEntry: editEntry,
         checkedBoxes: checkedBoxes,
         deleteEntry: deleteEntry
-      }), !tableData.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-        className: "text-gray-700",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-            className: "p-3",
-            colSpan: 3,
-            children: "No data found"
-          })
-        })
       })]
     })
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Table);
-
-/***/ }),
-
-/***/ "./src/admin/js/react/components/estimate/helper.js":
-/*!**********************************************************!*\
-  !*** ./src/admin/js/react/components/estimate/helper.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/clients");
-var token = {
-  headers: {
-    'content-type': 'application/json',
-    'X-WP-NONCE': ncpi_local.nonce
-  }
-};
-
-var getAll = function getAll() {
-  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/?").concat(args));
-};
-
-var get = function get(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id));
-};
-
-var create = function create(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
-};
-
-var update = function update(id, data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data, token);
-};
-
-var remove = function remove(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id), token);
-};
-
-var findByArg = function findByArg(title) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "?title=").concat(title));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getAll: getAll,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove,
-  findByArg: findByArg
-});
 
 /***/ }),
 
@@ -9154,7 +8954,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/estimate/helper.js");
+/* harmony import */ var _api_business__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/business */ "./src/admin/js/react/api/business.js");
 /* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/estimate/Form.js");
 /* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/estimate/Table.js");
 /* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/estimate/Search.js");
@@ -9243,7 +9043,7 @@ var Estimate = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _helper__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -9263,7 +9063,7 @@ var Estimate = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
       if (_this.state.formModalType == 'new') {
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
@@ -9279,7 +9079,7 @@ var Estimate = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
@@ -9309,7 +9109,7 @@ var Estimate = /*#__PURE__*/function (_Component) {
         }
 
         var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
 
@@ -9519,84 +9319,6 @@ var Estimate = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/admin/js/react/components/invoice/invoice-single/helper.js":
-/*!************************************************************************!*\
-  !*** ./src/admin/js/react/components/invoice/invoice-single/helper.js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/invoices");
-var apiUrlBusiness = "".concat(ncpi_local.apiUrl, "ncpi/v1/businesses");
-var apiUrlClient = "".concat(ncpi_local.apiUrl, "ncpi/v1/clients");
-var apiUrlMedia = "".concat(ncpi_local.apiUrl, "ncpi/v1/media");
-var token = {
-  headers: {
-    'content-type': 'application/json',
-    'X-WP-NONCE': ncpi_local.nonce
-  }
-};
-
-var getAll = function getAll() {
-  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/?").concat(args));
-};
-
-var getAllBusiness = function getAllBusiness() {
-  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrlBusiness, "/?").concat(args));
-};
-
-var getAllClient = function getAllClient() {
-  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrlClient, "/?").concat(args));
-};
-
-var createMedia = function createMedia(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrlMedia, data, token);
-};
-
-var removeMedia = function removeMedia(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrlMedia, "/").concat(id), token);
-};
-
-var get = function get(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id));
-};
-
-var create = function create(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
-};
-
-var update = function update(id, data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data, token);
-};
-
-var remove = function remove(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id), token);
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getAll: getAll,
-  getAllBusiness: getAllBusiness,
-  getAllClient: getAllClient,
-  createMedia: createMedia,
-  removeMedia: removeMedia,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove
-});
-
-/***/ }),
-
 /***/ "./src/admin/js/react/components/invoice/invoice-single/index.js":
 /*!***********************************************************************!*\
   !*** ./src/admin/js/react/components/invoice/invoice-single/index.js ***!
@@ -9610,7 +9332,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
-/* harmony import */ var _tab_invoice_Index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tab/invoice/Index.js */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Index.js");
+/* harmony import */ var _tab_invoice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tab/invoice */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -9631,7 +9353,7 @@ function InvoiceWrap() {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_tab_invoice_Index_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_tab_invoice__WEBPACK_IMPORTED_MODULE_1__["default"], {
       id: id,
       routeChange: routeChange
     })
@@ -9655,7 +9377,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helper */ "./src/admin/js/react/components/invoice/invoice-single/helper.js");
+/* harmony import */ var _api_media__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../api/media */ "./src/admin/js/react/api/media.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -9704,7 +9426,7 @@ var Attachments = /*#__PURE__*/function (_Component) {
       var formData = new FormData();
       formData.append('file', file);
       formData.append('type', 'attachment');
-      _helper__WEBPACK_IMPORTED_MODULE_2__["default"].createMedia(formData).then(function (resp) {
+      _api_media__WEBPACK_IMPORTED_MODULE_2__["default"].create(formData).then(function (resp) {
         // console.log(resp.data)
         if (resp.data.success) {
           _this.handlePros(resp.data.data.file_info);
@@ -9719,7 +9441,7 @@ var Attachments = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "handleDelete", function (id) {
       _this.props.changeHandler(id);
 
-      _helper__WEBPACK_IMPORTED_MODULE_2__["default"].removeMedia(id).then(function (resp) {
+      _api_media__WEBPACK_IMPORTED_MODULE_2__["default"].remove(id).then(function (resp) {
         if (!resp.data.success) {
           resp.data.data.forEach(function (value, index, array) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
@@ -9806,10 +9528,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
+/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
 /* harmony import */ var react_select_async__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-select/async */ "./node_modules/react-select/async/dist/react-select.esm.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helper */ "./src/admin/js/react/components/invoice/invoice-single/helper.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _api_business__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../api/business */ "./src/admin/js/react/api/business.js");
+/* harmony import */ var _api_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../api/client */ "./src/admin/js/react/api/client.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9833,6 +9556,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -9869,7 +9593,7 @@ var FromTo = /*#__PURE__*/function (_Component) {
       if (_this.timeout) clearTimeout(_this.timeout);
       _this.timeout = setTimeout(function () {
         //search function
-        _helper__WEBPACK_IMPORTED_MODULE_2__["default"].getAllClient('first_name=' + val + '&last_name=' + val).then(function (resp) {
+        _api_client__WEBPACK_IMPORTED_MODULE_3__["default"].getAll('first_name=' + val + '&last_name=' + val).then(function (resp) {
           var toData = resp.data.data.result;
           callback(toData);
         });
@@ -9891,15 +9615,15 @@ var FromTo = /*#__PURE__*/function (_Component) {
       var _this$props = _this.props,
           fromData = _this$props.fromData,
           toData = _this$props.toData;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "flex justify-between mb-5",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["Sender:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+                children: ["Sender:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_5__["default"], {
                   value: fromData,
                   onChange: _this.handleFromChange,
                   getOptionValue: function getOptionValue(fromList) {
@@ -9911,26 +9635,26 @@ var FromTo = /*#__PURE__*/function (_Component) {
                   options: fromList
                 })]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "bg-slate-50 p-3 border rounded",
-              children: fromData && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              children: fromData && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                   className: "font-bold",
                   children: fromData.name
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
                   className: "",
-                  children: ["Email: ", fromData.email, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), "Address: ", fromData.address, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {})]
+                  children: ["Email: ", fromData.email, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), "Address: ", fromData.address, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {})]
                 })]
               })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: ""
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                children: ["Receiver:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_select_async__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+                children: ["Receiver:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_select_async__WEBPACK_IMPORTED_MODULE_1__["default"], {
                   loadOptions: _this.handleFindClient,
                   value: toData,
                   onChange: _this.handleClientSelect,
@@ -9942,15 +9666,15 @@ var FromTo = /*#__PURE__*/function (_Component) {
                   }
                 })]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "bg-slate-50 p-3 border rounded",
-              children: toData ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+              children: toData ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
                   className: "font-bold",
                   children: [toData.first_name, " ", toData.last_name]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
                   className: "",
-                  children: ["Email: ", toData.email, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), "Address: ", toData.address, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {})]
+                  children: ["Email: ", toData.email, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), "Address: ", toData.address, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {})]
                 })]
               }) : 'Search & select'
             })]
@@ -9980,7 +9704,7 @@ var FromTo = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       if (!this.props.editId) {
-        _helper__WEBPACK_IMPORTED_MODULE_2__["default"].getAllBusiness('default=1').then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_2__["default"].getAll('default=1').then(function (resp) {
           var fromData = resp.data.data.result;
 
           if (fromData.length) {
@@ -10296,538 +10020,6 @@ Group.propTypes = {
   title: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Group);
-
-/***/ }),
-
-/***/ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Index.js":
-/*!***********************************************************************************!*\
-  !*** ./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Index.js ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
-/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helper */ "./src/admin/js/react/components/invoice/invoice-single/helper.js");
-/* harmony import */ var _FromTo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FromTo */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/FromTo.js");
-/* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Items */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Items.js");
-/* harmony import */ var _Total__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Total */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Total.js");
-/* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Note */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Note.js");
-/* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Group */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Group.js");
-/* harmony import */ var _Signature__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Signature */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Signature.js");
-/* harmony import */ var _tab_template__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../tab/template */ "./src/admin/js/react/components/invoice/invoice-single/tab/template/index.js");
-/* harmony import */ var _preview__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../preview */ "./src/admin/js/react/components/invoice/invoice-single/tab/preview/index.js");
-/* harmony import */ var _section_Style__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./section/Style */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/section/Style.js");
-/* harmony import */ var _section_Owner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./section/Owner */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/section/Owner.js");
-/* harmony import */ var _Attachments__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Attachments */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Attachments.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-
-
-
-
-
-
- //sidebar section
-
-
-
-
-
-
-
-var Invoice = /*#__PURE__*/function (_Component) {
-  _inherits(Invoice, _Component);
-
-  var _super = _createSuper(Invoice);
-
-  function Invoice(props) {
-    var _this;
-
-    _classCallCheck(this, Invoice);
-
-    _this = _super.call(this, props);
-
-    _defineProperty(_assertThisInitialized(_this), "locale", 'en-US');
-
-    _defineProperty(_assertThisInitialized(_this), "currency", 'USD');
-
-    _defineProperty(_assertThisInitialized(_this), "updateEdit", function () {
-      var msg = _objectSpread({}, _this.state.msg);
-
-      msg.saveTxt = 'Update';
-
-      _this.setState({
-        msg: msg
-      });
-      /*
-      memory leak in your application
-      let tabs = {...this.state.tabs} 
-      tabs[1].text = 'Edit Information'; 
-      tabs[2].text = 'Update & Share'; 
-      this.setState({tabs});  */
-
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "getData", function () {
-      _helper__WEBPACK_IMPORTED_MODULE_3__["default"].get(_this.props.id).then(function (resp) {
-        _this.setState({
-          invoice: resp.data.data.invoice,
-          fromData: resp.data.data.fromData,
-          toData: resp.data.data.toData // editId: this.props.id
-
-        });
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleSetFrom", function (data) {
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice.from = data.id;
-
-      _this.setState({
-        fromData: data,
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleSetTo", function (data) {
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice.to = data.id;
-
-      _this.setState({
-        toData: data,
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleTemplateChange", function (data) {
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice.template = data;
-
-      _this.setState({
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleNoteChange", function (data) {
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice.note = data;
-
-      _this.setState({
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleGroupChange", function (data) {
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice.group = data;
-
-      _this.setState({
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleSignatureChange", function (data) {
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice.signature = data;
-
-      _this.setState({
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleAttachmentsChange", function (data) {
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice.attachments.push(data);
-
-      _this.setState({
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleInvoiceChange", function (e) {
-      var _e$target = e.target,
-          name = _e$target.name,
-          value = _e$target.value;
-
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice[name] = value;
-
-      _this.setState({
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleLineItemChange", function (elementIndex) {
-      return function (e) {
-        var invoice = _objectSpread({}, _this.state.invoice);
-
-        var items = _this.state.invoice.items.map(function (item, i) {
-          if (elementIndex !== i) return item;
-          return _objectSpread(_objectSpread({}, item), {}, _defineProperty({}, e.target.name, e.target.value));
-        });
-
-        invoice.items = items;
-
-        _this.setState({
-          invoice: invoice
-        });
-      };
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleAddLineItem", function (e) {
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice.items = invoice.items.concat([{
-        id: Date.now().toString(),
-        name: '',
-        desc: '',
-        qty: 0,
-        price: 0.00
-      }]);
-
-      _this.setState({
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleRemoveLineItem", function (elementIndex) {
-      return function (e) {
-        var invoice = _objectSpread({}, _this.state.invoice);
-
-        invoice.items = invoice.items.filter(function (item, i) {
-          return elementIndex !== i;
-        });
-
-        _this.setState({
-          invoice: invoice
-        });
-      };
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleReorderItems", function (newItems) {
-      var invoice = _objectSpread({}, _this.state.invoice);
-
-      invoice.items = newItems;
-
-      _this.setState({
-        invoice: invoice
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleFocusSelect", function (e) {
-      e.target.select();
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "handleSave", function () {
-      var editId = _this.props.id;
-
-      if (!editId) {
-        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].create(_this.state.invoice).then(function (resp) {
-          if (resp.data.success) {
-            _this.props.routeChange(resp.data.data);
-            /* this.setState({ 
-            	editId: resp.data.data
-            }); */
-
-
-            _this.updateEdit();
-
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create);
-          } else {
-            resp.data.data.forEach(function (value, index, array) {
-              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
-            });
-          }
-        });
-      } else {
-        _helper__WEBPACK_IMPORTED_MODULE_3__["default"].update(editId, _this.state.invoice).then(function (resp) {
-          if (resp.data.success) {
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
-          } else {
-            resp.data.data.forEach(function (value, index, array) {
-              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
-            });
-          }
-        });
-      }
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "formatCurrency", function (amount) {
-      return new Intl.NumberFormat(_this.locale, {
-        style: 'currency',
-        currency: _this.currency,
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).format(amount);
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "calcTaxAmount", function (c) {
-      return c * (_this.state.invoice.tax / 100);
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "calcItemsTotal", function () {
-      return _this.state.invoice.items.reduce(function (prev, cur) {
-        return prev + cur.qty * cur.price;
-      }, 0);
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "calcTaxTotal", function () {
-      return _this.calcItemsTotal() * (_this.state.invoice.tax / 100);
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "calcGrandTotal", function () {
-      var total = _this.calcItemsTotal() + _this.calcTaxTotal();
-
-      return total;
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "backTab", function () {
-      var tab = _this.state.currentTab;
-
-      if (tab == 'info') {
-        tab = 'template';
-      } else if (tab == 'preview') {
-        tab = 'info';
-      }
-
-      _this.setState({
-        currentTab: tab
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "render", function () {
-      var _this$state = _this.state,
-          _this$state$tabs = _this$state.tabs,
-          tabs = _this$state$tabs === void 0 ? [] : _this$state$tabs,
-          currentTab = _this$state.currentTab;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-        className: "ncpi-components",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-          className: "container flex flex-wrap p-5 px-0 flex-col md:flex-row items-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("a", {
-            className: "flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("span", {
-              className: "font-bold text-2xl",
-              children: [_this.props.id ? 'Edit' : 'Create', " Invoice"]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("nav", {
-            className: "md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center",
-            children: tabs.map(function (tab, index) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("a", {
-                href: "#",
-                className: "inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + (currentTab == tab.id ? 'text-blue-800 border-blue-800' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300'),
-                onClick: function onClick(e) {
-                  return _this.setActiveTab(e, tab.id);
-                },
-                children: tab.text
-              }, index);
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-            className: "inline-flex items-center mt-4 md:mt-0",
-            children: [currentTab != 'template' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("button", {
-              className: "border-blue-700 text-blue-700 border hover:bg-blue-700 border hover:text-white font-medium text-base py-2 px-4 rounded mr-3",
-              onClick: _this.backTab,
-              children: "Back"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("button", {
-              className: "bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded",
-              onClick: _this.handleSave,
-              children: [_this.state.msg.saveTxt, " & Continue"]
-            })]
-          })]
-        }), currentTab == 'template' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_tab_template__WEBPACK_IMPORTED_MODULE_10__["default"], {
-          changeHandler: _this.handleTemplateChange
-        }), currentTab == 'info' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-          className: "grid grid-cols-12 gap-4",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-            className: "col-span-9",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-              className: "mb-5 font-bold text-xl",
-              children: [_this.props.id ? 'Edit' : 'Add', " Content"]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-              className: "max-w-3xl m-auto",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_FromTo__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                setFrom: _this.handleSetFrom,
-                setTo: _this.handleSetTo,
-                fromData: _this.state.fromData,
-                toData: _this.state.toData,
-                editId: _this.props.id
-              }, _this.state.fromData), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                items: _this.state.invoice.items,
-                currencyFormatter: _this.formatCurrency,
-                addHandler: _this.handleAddLineItem,
-                changeHandler: _this.handleLineItemChange,
-                focusHandler: _this.handleFocusSelect,
-                deleteHandler: _this.handleRemoveLineItem,
-                reorderHandler: _this.handleReorderItems
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Total__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                currencyFormatter: _this.formatCurrency,
-                itemsTotal: _this.calcItemsTotal,
-                tax: _this.state.invoice.tax,
-                taxTotal: _this.calcTaxTotal,
-                grandTotal: _this.calcGrandTotal,
-                changeHandler: _this.handleInvoiceChange,
-                focusHandler: _this.handleFocusSelect
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                className: "mb-16"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_7__["default"], {
-                data: _this.state.invoice.note,
-                changeHandler: _this.handleNoteChange
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                className: "mb-16"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                data: _this.state.invoice.group,
-                changeHandler: _this.handleGroupChange
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                className: "mb-16"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Attachments__WEBPACK_IMPORTED_MODULE_14__["default"], {
-                data: _this.state.invoice.attachments,
-                changeHandler: _this.handleAttachmentsChange
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Signature__WEBPACK_IMPORTED_MODULE_9__["default"], {
-                data: _this.state.invoice.signature,
-                changeHandler: _this.handleSignatureChange
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-            className: "col-span-3 pt-28",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("img", {
-              src: _this.state.invoice.template.img
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_section_Style__WEBPACK_IMPORTED_MODULE_12__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_section_Owner__WEBPACK_IMPORTED_MODULE_13__["default"], {})]
-          })]
-        }), currentTab == 'preview' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_preview__WEBPACK_IMPORTED_MODULE_11__["default"], {
-          data: _this.state,
-          totalData: {
-            currencyFormatter: _this.formatCurrency,
-            itemsTotal: _this.calcItemsTotal,
-            taxTotal: _this.calcTaxTotal,
-            grandTotal: _this.calcGrandTotal
-          }
-        })]
-      });
-    });
-
-    _this.state = {
-      tabs: [{
-        id: 'template',
-        text: 'Select Template'
-      }, {
-        id: 'info',
-        text: 'Add Information'
-      }, {
-        id: 'preview',
-        text: 'Save & Share'
-      }],
-      currentTab: '',
-      msg: {
-        create: 'Successfully Added',
-        update: 'Successfully Updated',
-        "delete": 'Successfully Deleted',
-        confirm: 'Are you sure to delete it?',
-        saveTxt: 'Save'
-      },
-      fromData: null,
-      toData: null,
-      invoice: {
-        template: {
-          id: null,
-          img: ''
-        },
-        from: null,
-        to: null,
-        items: [{
-          id: 'initial',
-          //react-beautiful-dnd unique key
-          name: '',
-          desc: '',
-          qty: 0,
-          price: 0.00
-        }],
-        tax: 0.00,
-        paid: 0.00,
-        note: null,
-        group: null,
-        attachments: [],
-        signature: null
-      }
-    };
-    return _this;
-  }
-
-  _createClass(Invoice, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (this.props.id) {
-        this.setState({
-          currentTab: 'info'
-        });
-        this.updateEdit();
-        this.getData();
-      } else {
-        this.setState({
-          currentTab: 'template'
-        });
-      }
-    }
-  }, {
-    key: "setActiveTab",
-    value: function setActiveTab(e, id) {
-      e.preventDefault();
-      this.setState({
-        currentTab: id
-      });
-    }
-  }]);
-
-  return Invoice;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Invoice);
 
 /***/ }),
 
@@ -11372,7 +10564,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helper */ "./src/admin/js/react/components/invoice/invoice-single/helper.js");
+/* harmony import */ var _api_media__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../api/media */ "./src/admin/js/react/api/media.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -11422,7 +10614,7 @@ var Signature = /*#__PURE__*/function (_Component) {
       var formData = new FormData();
       formData.append('file', file);
       formData.append('type', 'signature');
-      _helper__WEBPACK_IMPORTED_MODULE_2__["default"].createMedia(formData).then(function (resp) {
+      _api_media__WEBPACK_IMPORTED_MODULE_2__["default"].create(formData).then(function (resp) {
         // console.log(resp.data)
         if (resp.data.success) {
           _this.handlePros(resp.data.data.file_info);
@@ -11437,7 +10629,7 @@ var Signature = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "handleDelete", function (id) {
       _this.props.changeHandler(null);
 
-      _helper__WEBPACK_IMPORTED_MODULE_2__["default"].removeMedia(id).then(function (resp) {
+      _api_media__WEBPACK_IMPORTED_MODULE_2__["default"].remove(id).then(function (resp) {
         if (!resp.data.success) {
           resp.data.data.forEach(function (value, index, array) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
@@ -11632,6 +10824,538 @@ var Total = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Total);
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/index.js":
+/*!***********************************************************************************!*\
+  !*** ./src/admin/js/react/components/invoice/invoice-single/tab/invoice/index.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
+/* harmony import */ var _api_invoice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../api/invoice */ "./src/admin/js/react/api/invoice.js");
+/* harmony import */ var _FromTo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FromTo */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/FromTo.js");
+/* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Items */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Items.js");
+/* harmony import */ var _Total__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Total */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Total.js");
+/* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Note */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Note.js");
+/* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Group */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Group.js");
+/* harmony import */ var _Signature__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Signature */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Signature.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../template */ "./src/admin/js/react/components/invoice/invoice-single/tab/template/index.js");
+/* harmony import */ var _preview__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../preview */ "./src/admin/js/react/components/invoice/invoice-single/tab/preview/index.js");
+/* harmony import */ var _section_Style__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./section/Style */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/section/Style.js");
+/* harmony import */ var _section_Owner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./section/Owner */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/section/Owner.js");
+/* harmony import */ var _Attachments__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Attachments */ "./src/admin/js/react/components/invoice/invoice-single/tab/invoice/Attachments.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //sidebar section
+
+
+
+
+
+
+
+var Invoice = /*#__PURE__*/function (_Component) {
+  _inherits(Invoice, _Component);
+
+  var _super = _createSuper(Invoice);
+
+  function Invoice(props) {
+    var _this;
+
+    _classCallCheck(this, Invoice);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "locale", 'en-US');
+
+    _defineProperty(_assertThisInitialized(_this), "currency", 'USD');
+
+    _defineProperty(_assertThisInitialized(_this), "updateEdit", function () {
+      var msg = _objectSpread({}, _this.state.msg);
+
+      msg.saveTxt = 'Update';
+
+      _this.setState({
+        msg: msg
+      });
+      /*
+      memory leak in your application
+      let tabs = {...this.state.tabs} 
+      tabs[1].text = 'Edit Information'; 
+      tabs[2].text = 'Update & Share'; 
+      this.setState({tabs});  */
+
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "getData", function () {
+      _api_invoice__WEBPACK_IMPORTED_MODULE_3__["default"].get(_this.props.id).then(function (resp) {
+        _this.setState({
+          invoice: resp.data.data.invoice,
+          fromData: resp.data.data.fromData,
+          toData: resp.data.data.toData // editId: this.props.id
+
+        });
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSetFrom", function (data) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.from = data.id;
+
+      _this.setState({
+        fromData: data,
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSetTo", function (data) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.to = data.id;
+
+      _this.setState({
+        toData: data,
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleTemplateChange", function (data) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.template = data;
+
+      _this.setState({
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleNoteChange", function (data) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.note = data;
+
+      _this.setState({
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleGroupChange", function (data) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.group = data;
+
+      _this.setState({
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSignatureChange", function (data) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.signature = data;
+
+      _this.setState({
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleAttachmentsChange", function (data) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.attachments.push(data);
+
+      _this.setState({
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleInvoiceChange", function (e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice[name] = value;
+
+      _this.setState({
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleLineItemChange", function (elementIndex) {
+      return function (e) {
+        var invoice = _objectSpread({}, _this.state.invoice);
+
+        var items = _this.state.invoice.items.map(function (item, i) {
+          if (elementIndex !== i) return item;
+          return _objectSpread(_objectSpread({}, item), {}, _defineProperty({}, e.target.name, e.target.value));
+        });
+
+        invoice.items = items;
+
+        _this.setState({
+          invoice: invoice
+        });
+      };
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleAddLineItem", function (e) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.items = invoice.items.concat([{
+        id: Date.now().toString(),
+        name: '',
+        desc: '',
+        qty: 0,
+        price: 0.00
+      }]);
+
+      _this.setState({
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleRemoveLineItem", function (elementIndex) {
+      return function (e) {
+        var invoice = _objectSpread({}, _this.state.invoice);
+
+        invoice.items = invoice.items.filter(function (item, i) {
+          return elementIndex !== i;
+        });
+
+        _this.setState({
+          invoice: invoice
+        });
+      };
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleReorderItems", function (newItems) {
+      var invoice = _objectSpread({}, _this.state.invoice);
+
+      invoice.items = newItems;
+
+      _this.setState({
+        invoice: invoice
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleFocusSelect", function (e) {
+      e.target.select();
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSave", function () {
+      var editId = _this.props.id;
+
+      if (!editId) {
+        _api_invoice__WEBPACK_IMPORTED_MODULE_3__["default"].create(_this.state.invoice).then(function (resp) {
+          if (resp.data.success) {
+            _this.props.routeChange(resp.data.data);
+            /* this.setState({ 
+            	editId: resp.data.data
+            }); */
+
+
+            _this.updateEdit();
+
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create);
+          } else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+            });
+          }
+        });
+      } else {
+        _api_invoice__WEBPACK_IMPORTED_MODULE_3__["default"].update(editId, _this.state.invoice).then(function (resp) {
+          if (resp.data.success) {
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
+          } else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+            });
+          }
+        });
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "formatCurrency", function (amount) {
+      return new Intl.NumberFormat(_this.locale, {
+        style: 'currency',
+        currency: _this.currency,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(amount);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "calcTaxAmount", function (c) {
+      return c * (_this.state.invoice.tax / 100);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "calcItemsTotal", function () {
+      return _this.state.invoice.items.reduce(function (prev, cur) {
+        return prev + cur.qty * cur.price;
+      }, 0);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "calcTaxTotal", function () {
+      return _this.calcItemsTotal() * (_this.state.invoice.tax / 100);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "calcGrandTotal", function () {
+      var total = _this.calcItemsTotal() + _this.calcTaxTotal();
+
+      return total;
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "backTab", function () {
+      var tab = _this.state.currentTab;
+
+      if (tab == 'info') {
+        tab = 'template';
+      } else if (tab == 'preview') {
+        tab = 'info';
+      }
+
+      _this.setState({
+        currentTab: tab
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "render", function () {
+      var _this$state = _this.state,
+          _this$state$tabs = _this$state.tabs,
+          tabs = _this$state$tabs === void 0 ? [] : _this$state$tabs,
+          currentTab = _this$state.currentTab;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+        className: "ncpi-components",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+          className: "container flex flex-wrap p-5 px-0 flex-col md:flex-row items-center",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("a", {
+            className: "flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("span", {
+              className: "font-bold text-2xl",
+              children: [_this.props.id ? 'Edit' : 'Create', " Invoice"]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("nav", {
+            className: "md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center",
+            children: tabs.map(function (tab, index) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("a", {
+                href: "#",
+                className: "inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + (currentTab == tab.id ? 'text-blue-800 border-blue-800' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300'),
+                onClick: function onClick(e) {
+                  return _this.setActiveTab(e, tab.id);
+                },
+                children: tab.text
+              }, index);
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+            className: "inline-flex items-center mt-4 md:mt-0",
+            children: [currentTab != 'template' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("button", {
+              className: "border-blue-700 text-blue-700 border hover:bg-blue-700 border hover:text-white font-medium text-base py-2 px-4 rounded mr-3",
+              onClick: _this.backTab,
+              children: "Back"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("button", {
+              className: "bg-blue-700 hover:bg-blue-800 text-white font-medium text-base py-2 px-4 rounded",
+              onClick: _this.handleSave,
+              children: [_this.state.msg.saveTxt, " & Continue"]
+            })]
+          })]
+        }), currentTab == 'template' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_template__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          changeHandler: _this.handleTemplateChange
+        }), currentTab == 'info' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+          className: "grid grid-cols-12 gap-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+            className: "col-span-9",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+              className: "mb-5 font-bold text-xl",
+              children: [_this.props.id ? 'Edit' : 'Add', " Content"]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+              className: "max-w-3xl m-auto",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_FromTo__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                setFrom: _this.handleSetFrom,
+                setTo: _this.handleSetTo,
+                fromData: _this.state.fromData,
+                toData: _this.state.toData,
+                editId: _this.props.id
+              }, _this.state.fromData), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                items: _this.state.invoice.items,
+                currencyFormatter: _this.formatCurrency,
+                addHandler: _this.handleAddLineItem,
+                changeHandler: _this.handleLineItemChange,
+                focusHandler: _this.handleFocusSelect,
+                deleteHandler: _this.handleRemoveLineItem,
+                reorderHandler: _this.handleReorderItems
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Total__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                currencyFormatter: _this.formatCurrency,
+                itemsTotal: _this.calcItemsTotal,
+                tax: _this.state.invoice.tax,
+                taxTotal: _this.calcTaxTotal,
+                grandTotal: _this.calcGrandTotal,
+                changeHandler: _this.handleInvoiceChange,
+                focusHandler: _this.handleFocusSelect
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                className: "mb-16"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                data: _this.state.invoice.note,
+                changeHandler: _this.handleNoteChange
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                className: "mb-16"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                data: _this.state.invoice.group,
+                changeHandler: _this.handleGroupChange
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                className: "mb-16"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Attachments__WEBPACK_IMPORTED_MODULE_14__["default"], {
+                data: _this.state.invoice.attachments,
+                changeHandler: _this.handleAttachmentsChange
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Signature__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                data: _this.state.invoice.signature,
+                changeHandler: _this.handleSignatureChange
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+            className: "col-span-3 pt-28",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("img", {
+              src: _this.state.invoice.template.img
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_section_Style__WEBPACK_IMPORTED_MODULE_12__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_section_Owner__WEBPACK_IMPORTED_MODULE_13__["default"], {})]
+          })]
+        }), currentTab == 'preview' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_preview__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          data: _this.state,
+          totalData: {
+            currencyFormatter: _this.formatCurrency,
+            itemsTotal: _this.calcItemsTotal,
+            taxTotal: _this.calcTaxTotal,
+            grandTotal: _this.calcGrandTotal
+          }
+        })]
+      });
+    });
+
+    _this.state = {
+      tabs: [{
+        id: 'template',
+        text: 'Select Template'
+      }, {
+        id: 'info',
+        text: 'Add Information'
+      }, {
+        id: 'preview',
+        text: 'Save & Share'
+      }],
+      currentTab: '',
+      msg: {
+        create: 'Successfully Added',
+        update: 'Successfully Updated',
+        "delete": 'Successfully Deleted',
+        confirm: 'Are you sure to delete it?',
+        saveTxt: 'Save'
+      },
+      fromData: null,
+      toData: null,
+      invoice: {
+        template: {
+          id: null,
+          img: ''
+        },
+        from: null,
+        to: null,
+        items: [{
+          id: 'initial',
+          //react-beautiful-dnd unique key
+          name: '',
+          desc: '',
+          qty: 0,
+          price: 0.00
+        }],
+        tax: 0.00,
+        paid: 0.00,
+        note: null,
+        group: null,
+        attachments: [],
+        signature: null
+      }
+    };
+    return _this;
+  }
+
+  _createClass(Invoice, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.id) {
+        this.setState({
+          currentTab: 'info'
+        });
+        this.updateEdit();
+        this.getData();
+      } else {
+        this.setState({
+          currentTab: 'template'
+        });
+      }
+    }
+  }, {
+    key: "setActiveTab",
+    value: function setActiveTab(e, id) {
+      e.preventDefault();
+      this.setState({
+        currentTab: id
+      });
+    }
+  }]);
+
+  return Invoice;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Invoice);
 
 /***/ }),
 
@@ -12041,8 +11765,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helper */ "./src/admin/js/react/components/invoice/invoice-single/helper.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -12072,7 +11795,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var Attachments = /*#__PURE__*/function (_Component) {
   _inherits(Attachments, _Component);
 
@@ -12087,11 +11809,11 @@ var Attachments = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
       var attachments = _this.props.data;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "",
         children: attachments.map(function (item, index) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
               src: item.url,
               width: "100",
               className: "inline"
@@ -12918,9 +12640,9 @@ var Preview = /*#__PURE__*/function (_Component) {
     value: function render() {
       var id = this.props.data.invoice.template.id;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: 'ncpi-invoice-preview-' + id + ' ncpi-invoice-preview',
+        className: "max-w-3xl m-auto p-5 ",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "max-w-3xl m-auto p-5 ",
+          className: 'ncpi-invoice-preview ncpi-invoice-preview-' + id,
           children: [id == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_template_1__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread({}, this.props)), id == 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_template_2__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread({}, this.props))]
         })
       });
@@ -13293,59 +13015,6 @@ var Table = function Table(props) {
 
 /***/ }),
 
-/***/ "./src/admin/js/react/components/invoice/invoice-single/tab/template/helper.js":
-/*!*************************************************************************************!*\
-  !*** ./src/admin/js/react/components/invoice/invoice-single/tab/template/helper.js ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var apiUrl = "".concat(ncpi_local.apiServerUrl, "ncpis/v1/invoices");
-var token = {
-  headers: {
-    'content-type': 'application/json',
-    'X-WP-NONCE': ncpi_local.nonce
-  }
-};
-
-var getAll = function getAll() {
-  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/?").concat(args));
-};
-
-var get = function get(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id));
-};
-
-var create = function create(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
-};
-
-var update = function update(id, data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data, token);
-};
-
-var remove = function remove(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id), token);
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getAll: getAll,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove
-});
-
-/***/ }),
-
 /***/ "./src/admin/js/react/components/invoice/invoice-single/tab/template/index.js":
 /*!************************************************************************************!*\
   !*** ./src/admin/js/react/components/invoice/invoice-single/tab/template/index.js ***!
@@ -13363,7 +13032,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/invoice/invoice-single/tab/template/helper.js");
+/* harmony import */ var _api_invoice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../api/invoice */ "./src/admin/js/react/api/invoice.js");
 /* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/invoice/invoice-single/tab/template/Table.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -13448,7 +13117,7 @@ var Template = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _helper__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_invoice__WEBPACK_IMPORTED_MODULE_5__["default"].getAllTemplate(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -14184,7 +13853,7 @@ var TableHeader = function TableHeader(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-bold text-sm",
         children: "Project"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+      }), !props.client_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
         className: "text-left py-3 px-4 font-semibold text-sm",
         children: "Client"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
@@ -14237,7 +13906,7 @@ var TableBody = function TableBody(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 px-4",
         children: row.project.name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+      }), !props.client_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
         className: "text-left py-3 px-4",
         children: row.to.first_name + ' ' + row.to.last_name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
@@ -14274,6 +13943,17 @@ var TableBody = function TableBody(props) {
       })]
     }, index);
   });
+
+  if (!props.tableData.length) {
+    rows = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "p-3",
+        colSpan: "3",
+        children: "No data found"
+      })
+    });
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
     className: "text-gray-700",
     children: rows
@@ -14284,86 +13964,27 @@ var Table = function Table(props) {
   var tableData = props.tableData,
       editEntry = props.editEntry,
       checkedBoxes = props.checkedBoxes,
-      deleteEntry = props.deleteEntry;
+      deleteEntry = props.deleteEntry,
+      client_id = props.client_id;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "shadow overflow-hidden rounded border-b border-gray-200",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
       className: "min-w-full bg-white",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TableHeader, {
-        checkedBoxes: checkedBoxes
+        checkedBoxes: checkedBoxes,
+        client_id: client_id
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TableBody, {
         tableData: tableData,
         editEntry: editEntry,
         checkedBoxes: checkedBoxes,
-        deleteEntry: deleteEntry
-      }), !tableData.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
-        className: "text-gray-700",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-            className: "p-3",
-            colSpan: 3,
-            children: "No data found"
-          })
-        })
+        deleteEntry: deleteEntry,
+        client_id: client_id
       })]
     })
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Table);
-
-/***/ }),
-
-/***/ "./src/admin/js/react/components/invoice/invoice/helper.js":
-/*!*****************************************************************!*\
-  !*** ./src/admin/js/react/components/invoice/invoice/helper.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var apiUrl = "".concat(ncpi_local.apiUrl, "ncpi/v1/invoices");
-var token = {
-  headers: {
-    'content-type': 'application/json',
-    'X-WP-NONCE': ncpi_local.nonce
-  }
-};
-
-var getAll = function getAll() {
-  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/?").concat(args));
-};
-
-var get = function get(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(apiUrl, "/").concat(id));
-};
-
-var create = function create(data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, data, token);
-};
-
-var update = function update(id, data) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(apiUrl, "/").concat(id), data, token);
-};
-
-var remove = function remove(id) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(apiUrl, "/").concat(id), token);
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getAll: getAll,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove
-});
 
 /***/ }),
 
@@ -14385,7 +14006,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/components/invoice/invoice/helper.js");
+/* harmony import */ var _api_invoice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../api/invoice */ "./src/admin/js/react/api/invoice.js");
 /* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/invoice/invoice/Form.js");
 /* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/invoice/invoice/Table.js");
 /* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/invoice/invoice/Search.js");
@@ -14462,6 +14083,10 @@ var Invoice = /*#__PURE__*/function (_Component) {
         per_page: _this.state.perPage
       };
 
+      if (_this.props.client_id) {
+        args.client_id = _this.props.client_id;
+      }
+
       if (searchArgs) {
         //Filter all falsy values ( "", 0, false, null, undefined )
         searchArgs = Object.entries(searchArgs).reduce(function (a, _ref) {
@@ -14475,7 +14100,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _helper__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_invoice__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -14495,7 +14120,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
       if (_this.state.formModalType == 'new') {
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+        _api_invoice__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
@@ -14511,7 +14136,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+        _api_invoice__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
@@ -14541,7 +14166,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
         }
 
         var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
-        _helper__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+        _api_invoice__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
             react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
 
@@ -14559,19 +14184,6 @@ var Invoice = /*#__PURE__*/function (_Component) {
           }
         });
       }
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "openForm", function () {
-      /* this.setState({ formModal: true });
-        if (type == 'new') {
-          this.setState({ formModalType: 'new' });
-      } else {
-          this.setState({ formModalType: 'edit' });
-          this.setState({ client: client });
-      } */
-
-      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'new';
-      var client = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
     });
 
     _defineProperty(_assertThisInitialized(_this), "closeForm", function () {
@@ -14709,12 +14321,12 @@ var Invoice = /*#__PURE__*/function (_Component) {
           close: this.closeForm
         }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_4__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_7__["default"], {
           tableData: this.state.clients,
-          editEntry: this.openForm,
           checkedBoxes: {
             data: checkedBoxes,
             handle: this.handleCheckbox
           },
-          deleteEntry: this.deleteEntry
+          deleteEntry: this.deleteEntry,
+          client_id: this.props.client_id
         }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_3___default()), {
           previousLabel: "Prev",
           nextLabel: "Next",
@@ -14818,6 +14430,1056 @@ var TableRows = function TableRows(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TableRows);
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/project/Form.js":
+/*!*******************************************************!*\
+  !*** ./src/admin/js/react/components/project/Form.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_select_async__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-select/async */ "./node_modules/react-select/async/dist/react-select.esm.js");
+/* harmony import */ var _api_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../.././api/client */ "./src/admin/js/react/api/client.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+var Form = /*#__PURE__*/function (_Component) {
+  _inherits(Form, _Component);
+
+  var _super = _createSuper(Form);
+
+  function Form(props) {
+    var _this;
+
+    _classCallCheck(this, Form);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function (e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+
+      _this.setState({
+        form: _objectSpread(_objectSpread({}, _this.state.form), {}, _defineProperty({}, name, value))
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleFindClient", function (val, callback) {
+      if (val.length < 3) return; //search when typing stop
+
+      if (_this.timeout) clearTimeout(_this.timeout);
+      _this.timeout = setTimeout(function () {
+        //search function
+        //TODO: pass proper client search args
+        _api_client__WEBPACK_IMPORTED_MODULE_2__["default"].getAll('first_name=' + val + '&last_name=' + val).then(function (resp) {
+          var clientData = resp.data.data.result;
+          callback(clientData);
+        });
+      }, 300);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleClientSelect", function (value) {
+      _this.setState({
+        form: _objectSpread(_objectSpread({}, _this.state.form), {}, _defineProperty({}, 'client_id', value))
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
+      e.preventDefault();
+
+      _this.props.handleSubmit(_this.state.form);
+
+      _this.setState({
+        form: _this.initialState
+      });
+    });
+
+    _this.initialState = {
+      id: null,
+      client_id: null,
+      title: '',
+      desc: '',
+      date: false
+    };
+    _this.state = {
+      clientList: [],
+      form: _this.initialState
+    };
+    _this.timeout = 0;
+    return _this;
+  }
+
+  _createClass(Form, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      //condition added to stop multiple rendering
+      if (this.props.modalType == 'edit') {
+        if (this.state.form.id != this.props.data.id) {
+          this.setState({
+            form: this.props.data
+          });
+        }
+      } else {
+        if (this.state.form.id != null) {
+          this.setState({
+            form: this.initialState
+          });
+        }
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+        children: this.props.show && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "relative w-auto my-6 mx-auto max-w-3xl",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h3", {
+                    className: "text-xl p-2 font-semibold",
+                    children: [this.props.modalType == 'new' ? 'New' : 'Edit', " Project"]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                    className: "p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none",
+                    onClick: function onClick() {
+                      return _this2.props.close();
+                    },
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                      className: "bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none",
+                      children: "\xD7"
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+                  onSubmit: this.handleSubmit,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "relative px-6 py-5 flex-auto",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                      className: "w-full max-w-lg",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                        className: "flex flex-wrap -mx-3 mb-5",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                          className: "w-full px-3 mb-6 md:mb-0",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "grid-title",
+                            children: "Client"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_select_async__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            loadOptions: this.handleFindClient,
+                            value: this.state.form.client_id,
+                            onChange: this.handleClientSelect,
+                            getOptionValue: function getOptionValue(toList) {
+                              return toList.id;
+                            },
+                            getOptionLabel: function getOptionLabel(toList) {
+                              return toList.first_name ? toList.first_name + ' ' + toList.last_name : '';
+                            }
+                          })]
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                        className: "flex flex-wrap -mx-3 mb-2",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                          className: "w-full px-3 mb-6 md:mb-0",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "grid-title",
+                            children: "Title"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                            className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                            id: "grid-title",
+                            type: "text",
+                            required: true,
+                            name: "title",
+                            value: this.state.form.title,
+                            onChange: this.handleChange
+                          })]
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                        className: "flex flex-wrap -mx-3 mb-2",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                          className: "w-full px-3 mb-6 md:mb-0",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                            className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                            htmlFor: "grid-desc",
+                            children: "Description"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                            className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                            id: "grid-desc",
+                            type: "text",
+                            required: true,
+                            name: "desc",
+                            value: this.state.form.desc,
+                            onChange: this.handleChange
+                          })]
+                        })
+                      })]
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    className: "flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                      className: "text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+                      onClick: function onClick() {
+                        return _this2.props.close();
+                      },
+                      children: "Close"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                      className: "text-white bg-gray-800 hover:bg-gray-900 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+                      type: "submit",
+                      children: "Save Changes"
+                    })]
+                  })]
+                })]
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "opacity-25 fixed inset-0 z-40 bg-black"
+          })]
+        })
+      });
+    }
+  }]);
+
+  return Form;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Form);
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/project/Search.js":
+/*!*********************************************************!*\
+  !*** ./src/admin/js/react/components/project/Search.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Form)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var Form = /*#__PURE__*/function (_Component) {
+  _inherits(Form, _Component);
+
+  var _super = _createSuper(Form);
+
+  function Form(props) {
+    var _this;
+
+    _classCallCheck(this, Form);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function (e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+
+      _this.setState({
+        form: _objectSpread(_objectSpread({}, _this.state.form), {}, _defineProperty({}, name, value))
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
+      e.preventDefault();
+
+      _this.props.handleSubmit(_this.state.form);
+    });
+
+    _this.initialState = {
+      id: null,
+      name: '',
+      job: '',
+      first_name: '',
+      last_name: '',
+      email: '',
+      company_name: '',
+      web: '',
+      mobile: '',
+      zip: '',
+      address: '',
+      date: false
+    };
+    _this.state = {
+      form: _this.initialState
+    };
+    return _this;
+  }
+
+  _createClass(Form, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+        children: this.props.show && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "ncpi-search absolute top-0 right-0",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+              onSubmit: this.handleSubmit,
+              className: "h-screen border-0 shadow-lg flex flex-col w-full bg-white",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                  className: "text-xl p-2 font-semibold",
+                  children: "Search"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                  className: "p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none",
+                  onClick: function onClick() {
+                    return _this2.props.close('search');
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    className: "bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none",
+                    children: "\xD7"
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "relative px-6 py-5 flex-auto overflow-y-auto",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "w-full max-w-lg",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "-mx-3 mb-2",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "w-full px-3 mb-6 md:mb-0",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                        className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                        htmlFor: "first_name",
+                        children: "First Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                        className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                        id: "first_name",
+                        type: "text",
+                        name: "first_name",
+                        value: this.state.form.first_name,
+                        onChange: this.handleChange
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "w-full px-3 mb-6 md:mb-0",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                        className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                        htmlFor: "last_name",
+                        children: "Last Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                        className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                        id: "last_name",
+                        type: "text",
+                        name: "last_name",
+                        value: this.state.form.last_name,
+                        onChange: this.handleChange
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "w-full px-3 mb-6 md:mb-0",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                        className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                        htmlFor: "grid_email",
+                        children: "Email"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                        className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                        id: "grid_email",
+                        type: "email",
+                        name: "email",
+                        value: this.state.form.email,
+                        onChange: this.handleChange
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "w-full px-3 mb-6 md:mb-0",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                        className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                        htmlFor: "grid-mobile",
+                        children: "Mobile Number"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                        className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                        id: "grid-mobile",
+                        type: "text",
+                        name: "mobile",
+                        value: this.state.form.mobile,
+                        onChange: this.handleChange
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "w-full px-3 mb-6 md:mb-0",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                        className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                        htmlFor: "grid-company_name",
+                        children: "Company Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                        className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                        id: "grid-company_name",
+                        type: "text",
+                        name: "company_name",
+                        value: this.state.form.company_name,
+                        onChange: this.handleChange
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "w-full px-3 mb-6 md:mb-0",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                        className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                        htmlFor: "grid-web",
+                        children: "Website"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                        className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                        id: "grid-web",
+                        type: "url",
+                        name: "web",
+                        value: this.state.form.web,
+                        onChange: this.handleChange
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "w-full px-3 mb-6 md:mb-0",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                        className: "block tracking-wide text-gray-700 text-xs font-bold mb-2",
+                        htmlFor: "grid-zip",
+                        children: "Zip Code"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                        className: "appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                        id: "grid-zip",
+                        type: "number",
+                        name: "zip",
+                        value: this.state.form.zip,
+                        onChange: this.handleChange
+                      })]
+                    })]
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                  className: "text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+                  onClick: function onClick() {
+                    return _this2.props.close('search');
+                  },
+                  children: "Close"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                  className: "text-white bg-gray-800 hover:bg-gray-900 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+                  type: "submit",
+                  children: "Search"
+                })]
+              })]
+            })
+          })
+        })
+      });
+    }
+  }]);
+
+  return Form;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/project/Table.js":
+/*!********************************************************!*\
+  !*** ./src/admin/js/react/components/project/Table.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+var TableHeader = function TableHeader(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("thead", {
+    className: "bg-gray-300 text-gray-800",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 pl-4 pr-0 font-bold text-sm",
+        style: {
+          width: '20px'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "checkbox",
+          className: "selectsingle",
+          onChange: function onChange(e) {
+            return props.checkedBoxes.handle(e, 'all');
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-bold text-sm",
+        children: "Title"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Description"
+      }), !props.client_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Client"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Date"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+        className: "text-left py-3 px-4 font-semibold text-sm",
+        children: "Action"
+      })]
+    })
+  });
+};
+
+var TableBody = function TableBody(props) {
+  var rows = props.tableData.map(function (row, index) {
+    var data = props.checkedBoxes.data;
+    var checkedCheckbox = data.indexOf(row.id) !== -1 ? true : false;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 pl-4 pr-0",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "checkbox",
+          className: "selectsingle",
+          value: row.id,
+          checked: checkedCheckbox,
+          onChange: function onChange(e) {
+            return props.checkedBoxes.handle(e, 'single', row.id);
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.title
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.desc
+      }), !props.client_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.client && row.client.first_name + ' ' + row.client.last_name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "text-left py-3 px-4",
+        children: row.date
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
+        className: "text-left py-3 px-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          onClick: function onClick() {
+            return props.editEntry('edit', row);
+          },
+          className: "bg-gray-800 hover:bg-gray-900 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2 inline-block align-middle",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+            className: "dashicons dashicons-edit-page"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          onClick: function onClick() {
+            return props.deleteEntry('single', row.id);
+          },
+          className: "bg-red-800 hover:bg-red-900 cursor-pointer text-white text-sm py-1 px-2 rounded inline-block align-middle",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+            className: "dashicons dashicons-trash"
+          })
+        })]
+      })]
+    }, index);
+  });
+
+  if (!props.tableData.length) {
+    rows = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tr", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+        className: "p-3",
+        colSpan: "3",
+        children: "No data found"
+      })
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
+    className: "text-gray-700",
+    children: rows
+  });
+};
+
+var Table = function Table(props) {
+  var tableData = props.tableData,
+      editEntry = props.editEntry,
+      checkedBoxes = props.checkedBoxes,
+      deleteEntry = props.deleteEntry,
+      client_id = props.client_id;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "shadow overflow-hidden rounded border-b border-gray-200",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("table", {
+      className: "min-w-full bg-white",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TableHeader, {
+        checkedBoxes: checkedBoxes
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TableBody, {
+        tableData: tableData,
+        editEntry: editEntry,
+        checkedBoxes: checkedBoxes,
+        deleteEntry: deleteEntry,
+        client_id: client_id
+      })]
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Table);
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/project/index.js":
+/*!********************************************************!*\
+  !*** ./src/admin/js/react/components/project/index.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Project)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
+/* harmony import */ var _api_project__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/project */ "./src/admin/js/react/api/project.js");
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/project/Form.js");
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/project/Table.js");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/project/Search.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Project = /*#__PURE__*/function (_Component) {
+  _inherits(Project, _Component);
+
+  var _super = _createSuper(Project);
+
+  function Project(props) {
+    var _this;
+
+    _classCallCheck(this, Project);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "getLists", function () {
+      var searchArgs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var args = {
+        page: _this.state.currentPage,
+        per_page: _this.state.perPage
+      };
+
+      if (_this.props.client_id) {
+        args.client_id = _this.props.client_id;
+      }
+
+      if (searchArgs) {
+        //Filter all falsy values ( "", 0, false, null, undefined )
+        searchArgs = Object.entries(searchArgs).reduce(function (a, _ref) {
+          var _ref2 = _slicedToArray(_ref, 2),
+              k = _ref2[0],
+              v = _ref2[1];
+
+          return v ? (a[k] = v, a) : a;
+        }, {});
+        args = _objectSpread(_objectSpread({}, args), searchArgs);
+      }
+
+      var params = new URLSearchParams(args).toString();
+      _api_project__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+        var result = resp.data.data.result;
+        var total = resp.data.data.total;
+
+        _this.setState({
+          clients: result
+        });
+
+        _this.setState({
+          preloader: false
+        });
+
+        _this.setState({
+          totalPage: Math.ceil(total / _this.state.perPage)
+        });
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
+      if (_this.state.formModalType == 'new') {
+        _api_project__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+          if (resp.data.success) {
+            _this.setState({
+              formModal: false
+            });
+
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create);
+
+            _this.getLists();
+          } else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+            });
+          }
+        });
+      } else {
+        _api_project__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+          if (resp.data.success) {
+            _this.setState({
+              formModal: false
+            }); // this.setState({ formModalType: 'new' });
+
+
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
+
+            _this.getLists();
+          } else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+            });
+          }
+        });
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "deleteEntry", function (type, index) {
+      if (confirm(_this.state.msg.confirm)) {
+        if (type == 'single') {
+          _this.setState({
+            clients: _this.state.clients.filter(function (client, i) {
+              return client.id !== index;
+            })
+          });
+        }
+
+        var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
+        _api_project__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+          if (resp.data.success) {
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
+
+            if (type != 'single') {
+              _this.setState({
+                checkedBoxes: []
+              });
+            }
+
+            _this.getLists();
+          } else {
+            resp.data.data.forEach(function (value, index, array) {
+              react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+            });
+          }
+        });
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "openForm", function () {
+      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'new';
+      var client = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      _this.setState({
+        formModal: true
+      });
+
+      if (type == 'new') {
+        _this.setState({
+          formModalType: 'new'
+        });
+      } else {
+        _this.setState({
+          formModalType: 'edit'
+        });
+
+        _this.setState({
+          client: client
+        });
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "closeForm", function () {
+      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'new';
+
+      if (type == 'new') {
+        _this.setState({
+          formModal: false
+        });
+      } else {
+        _this.setState({
+          searchModal: false
+        });
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleCheckbox", function (e, type) {
+      var id = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var arr = _this.state.checkedBoxes;
+
+      if (type == 'single') {
+        if (e.target.checked) {
+          arr.push(id);
+
+          _this.setState({
+            checkedBoxes: arr
+          });
+        } else {
+          arr.splice(arr.indexOf(id), 1);
+
+          _this.setState({
+            checkedBoxes: arr
+          });
+        }
+      } else {
+        //check all
+        if (e.target.checked) {
+          var ids = [];
+
+          _this.state.clients.map(function (row) {
+            ids.push(row.id);
+          });
+
+          _this.setState({
+            checkedBoxes: ids
+          });
+        } else {
+          _this.setState({
+            checkedBoxes: []
+          });
+        }
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handlePageClick", function (e) {
+      var selectedPage = e.selected + 1;
+      var offset = selectedPage * _this.state.perPage;
+
+      _this.setState({
+        currentPage: selectedPage,
+        offset: offset
+      }, function () {
+        _this.getLists();
+      });
+    });
+
+    _this.state = {
+      // clients: []
+      preloader: true,
+      formModal: false,
+      searchModal: false,
+      formModalType: 'new',
+      msg: {
+        create: 'Successfully Added',
+        update: 'Successfully Updated',
+        "delete": 'Successfully Deleted',
+        confirm: 'Are you sure to delete it?'
+      },
+      client: {
+        id: null
+      },
+      clients: [],
+      checkedBoxes: [],
+      offset: 0,
+      perPage: 10,
+      totalPage: 1,
+      currentPage: 1
+    };
+    return _this;
+  }
+
+  _createClass(Project, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getLists();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var checkedBoxes = this.state.checkedBoxes;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+        className: "ncpi-components",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+          className: "mb-5 font-bold text-2xl",
+          children: "Project"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+          className: "bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
+          onClick: function onClick() {
+            return _this2.openForm('new');
+          },
+          children: "Create New Project"
+        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+          className: "ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
+          onClick: function onClick() {
+            return _this2.deleteEntry('selected');
+          },
+          children: "Delete selected"
+        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+          className: "float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3",
+          onClick: function onClick() {
+            return _this2.setState({
+              searchModal: true
+            });
+          },
+          children: "Search"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          handleSubmit: this.handleSubmit,
+          show: this.state.formModal,
+          modalType: this.state.formModalType,
+          data: this.state.client,
+          close: this.closeForm
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          handleSubmit: this.getLists,
+          show: this.state.searchModal,
+          close: this.closeForm
+        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_4__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          tableData: this.state.clients,
+          editEntry: this.openForm,
+          checkedBoxes: {
+            data: checkedBoxes,
+            handle: this.handleCheckbox
+          },
+          deleteEntry: this.deleteEntry,
+          client_id: this.props.client_id
+        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_3___default()), {
+          previousLabel: "Prev",
+          nextLabel: "Next",
+          breakLabel: "...",
+          breakClassName: "break-me",
+          forcePage: this.state.currentPage - 1,
+          pageCount: this.state.totalPage,
+          marginPagesDisplayed: 2,
+          pageRangeDisplayed: 5,
+          onPageChange: this.handlePageClick,
+          containerClassName: "ncpi-pagination text-base mt-5 shadow",
+          activeClassName: "active"
+        })]
+      });
+    }
+  }]);
+
+  return Project;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
 
 /***/ }),
 

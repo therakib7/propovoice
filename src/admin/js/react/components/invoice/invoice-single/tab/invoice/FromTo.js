@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
-import AsyncSelect from 'react-select/async';
-import Helper from '../../helper';
+import AsyncSelect from 'react-select/async'; 
+
+import ApiBusiness from '../../../../../api/business';
+import ApiClient from '../../../../../api/client';
 
 import PropTypes from 'prop-types' 
 
@@ -23,7 +25,7 @@ class FromTo extends Component {
 
     componentDidMount() {   
 		if ( ! this.props.editId  ) {
-            Helper.getAllBusiness('default=1')
+            ApiBusiness.getAll('default=1')
             .then(resp => {
                 let fromData = resp.data.data.result;
                 if ( fromData.length ) { 
@@ -55,7 +57,7 @@ class FromTo extends Component {
         if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             //search function
-            Helper.getAllClient('first_name='+val+'&last_name='+val)
+            ApiClient.getAll('first_name='+val+'&last_name='+val)
                 .then(resp => {
                     let toData = resp.data.data.result;
                     callback( toData ); 

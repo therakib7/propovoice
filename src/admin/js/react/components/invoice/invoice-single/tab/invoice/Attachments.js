@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
-import { toast } from 'react-toastify';
-import Helper from '../../helper';
+import { toast } from 'react-toastify'; 
+
+import Api from '../../../../../api/media';
 
 class Attachments extends Component { 
 
@@ -26,7 +27,7 @@ class Attachments extends Component {
 		formData.append( 'file', file ); 
 		formData.append( 'type', 'attachment' ); 
 	    
-		Helper.createMedia(formData)
+		Api.create(formData)
             .then(resp => {  
 				// console.log(resp.data)
 				if (resp.data.success) {
@@ -42,7 +43,7 @@ class Attachments extends Component {
 	handleDelete = ( id ) => {   
         this.props.changeHandler( id )
 
-		Helper.removeMedia(id)
+		Api.remove(id)
                 .then(resp => {
                     if ( !resp.data.success ) { 
                         resp.data.data.forEach(function (value, index, array) {
