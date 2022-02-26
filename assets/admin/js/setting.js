@@ -4340,15 +4340,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Home */ "./src/admin/js/react/components/Home.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Home */ "./src/admin/js/react/components/Home.jsx");
+/* harmony import */ var _context_app_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./context/app-context */ "./src/admin/js/react/context/app-context.js");
+/* harmony import */ var _context_data_msg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./context/data/msg */ "./src/admin/js/react/context/data/msg.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
 
 
 
 
 function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components_Home__WEBPACK_IMPORTED_MODULE_0__["default"], {})
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_context_app_context__WEBPACK_IMPORTED_MODULE_2__["default"].Provider, {
+      value: {
+        user_id: null,
+        user_role: null,
+        CrudMsg: _context_data_msg__WEBPACK_IMPORTED_MODULE_3__["default"]
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Home__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+    })
   });
 }
 
@@ -5817,14 +5830,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _api_business__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/business */ "./src/admin/js/react/api/business.js");
-/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/business/Form.js");
-/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/business/Table.js");
-/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/business/Search.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _context_app_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../context/app-context */ "./src/admin/js/react/context/app-context.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
+/* harmony import */ var _api_business__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api/business */ "./src/admin/js/react/api/business.js");
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/business/Form.js");
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/business/Table.js");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/business/Search.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -5877,6 +5891,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Business = /*#__PURE__*/function (_Component) {
   _inherits(Business, _Component);
 
@@ -5909,7 +5924,7 @@ var Business = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_business__WEBPACK_IMPORTED_MODULE_6__["default"].getAll(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -5929,13 +5944,13 @@ var Business = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
       if (_this.state.formModalType == 'new') {
-        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_6__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
             });
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.create);
 
             _this.getLists();
           } else {
@@ -5945,14 +5960,14 @@ var Business = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_6__["default"].update(client.id, client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
             }); // this.setState({ formModalType: 'new' });
 
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.update);
 
             _this.getLists();
           } else {
@@ -5965,7 +5980,7 @@ var Business = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "deleteEntry", function (type, index) {
-      if (confirm(_this.state.msg.confirm)) {
+      if (confirm(_this.context.CrudMsg.confirm)) {
         if (type == 'single') {
           _this.setState({
             clients: _this.state.clients.filter(function (client, i) {
@@ -5975,9 +5990,9 @@ var Business = /*#__PURE__*/function (_Component) {
         }
 
         var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
-        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_6__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg["delete"]);
 
             if (type != 'single') {
               _this.setState({
@@ -6088,12 +6103,6 @@ var Business = /*#__PURE__*/function (_Component) {
       formModal: false,
       searchModal: false,
       formModalType: 'new',
-      msg: {
-        create: 'Successfully Added',
-        update: 'Successfully Updated',
-        "delete": 'Successfully Deleted',
-        confirm: 'Are you sure to delete it?'
-      },
       client: {
         id: null
       },
@@ -6118,24 +6127,24 @@ var Business = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var checkedBoxes = this.state.checkedBoxes;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "ncpi-components",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
           className: "mb-5 font-bold text-2xl",
           children: "Business"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.openForm('new');
           },
           children: "Create New Business"
-        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.deleteEntry('selected');
           },
           children: "Delete selected"
-        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.setState({
@@ -6143,17 +6152,17 @@ var Business = /*#__PURE__*/function (_Component) {
             });
           },
           children: "Search"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_7__["default"], {
           handleSubmit: this.handleSubmit,
           show: this.state.formModal,
           modalType: this.state.formModalType,
           data: this.state.client,
           close: this.closeForm
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_9__["default"], {
           handleSubmit: this.getLists,
           show: this.state.searchModal,
           close: this.closeForm
-        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_4__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_5__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_8__["default"], {
           tableData: this.state.clients,
           editEntry: this.openForm,
           checkedBoxes: {
@@ -6161,7 +6170,7 @@ var Business = /*#__PURE__*/function (_Component) {
             handle: this.handleCheckbox
           },
           deleteEntry: this.deleteEntry
-        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_3___default()), {
+        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_4___default()), {
           previousLabel: "Prev",
           nextLabel: "Next",
           breakLabel: "...",
@@ -6180,6 +6189,8 @@ var Business = /*#__PURE__*/function (_Component) {
 
   return Business;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+_defineProperty(Business, "contextType", _context_app_context__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
 
 
@@ -7319,14 +7330,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _api_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../api/client */ "./src/admin/js/react/api/client.js");
-/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/client/client/Form.js");
-/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/client/client/Table.js");
-/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/client/client/Search.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _context_app_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../context/app-context */ "./src/admin/js/react/context/app-context.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
+/* harmony import */ var _api_client__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../api/client */ "./src/admin/js/react/api/client.js");
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/client/client/Form.js");
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/client/client/Table.js");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/client/client/Search.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -7379,6 +7391,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Client = /*#__PURE__*/function (_Component) {
   _inherits(Client, _Component);
 
@@ -7411,7 +7424,7 @@ var Client = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _api_client__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_client__WEBPACK_IMPORTED_MODULE_6__["default"].getAll(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -7431,7 +7444,7 @@ var Client = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
       if (_this.state.formModalType == 'new') {
-        _api_client__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+        _api_client__WEBPACK_IMPORTED_MODULE_6__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             console.log(resp.data);
 
@@ -7439,7 +7452,7 @@ var Client = /*#__PURE__*/function (_Component) {
               formModal: false
             });
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.create);
 
             _this.getLists();
           } else {
@@ -7449,14 +7462,14 @@ var Client = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _api_client__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+        _api_client__WEBPACK_IMPORTED_MODULE_6__["default"].update(client.id, client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
             }); // this.setState({ formModalType: 'new' });
 
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.update);
 
             _this.getLists();
           } else {
@@ -7469,7 +7482,7 @@ var Client = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "deleteEntry", function (type, index) {
-      if (confirm(_this.state.msg.confirm)) {
+      if (confirm(_this.context.CrudMsg.confirm)) {
         if (type == 'single') {
           _this.setState({
             clients: _this.state.clients.filter(function (client, i) {
@@ -7479,9 +7492,9 @@ var Client = /*#__PURE__*/function (_Component) {
         }
 
         var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
-        _api_client__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+        _api_client__WEBPACK_IMPORTED_MODULE_6__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg["delete"]);
 
             _this.getLists();
           } else {
@@ -7586,12 +7599,6 @@ var Client = /*#__PURE__*/function (_Component) {
       formModal: false,
       searchModal: false,
       formModalType: 'new',
-      msg: {
-        create: 'Successfully Added',
-        update: 'Successfully Updated',
-        "delete": 'Successfully Deleted',
-        confirm: 'Are you sure to delete it?'
-      },
       client: {
         id: null
       },
@@ -7616,24 +7623,24 @@ var Client = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var checkedBoxes = this.state.checkedBoxes;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "ncpi-components",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
           className: "mb-5 font-bold text-2xl",
           children: "Client"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.openForm('new');
           },
           children: "Create New Client"
-        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.deleteEntry('selected');
           },
           children: "Delete selected"
-        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.setState({
@@ -7641,17 +7648,17 @@ var Client = /*#__PURE__*/function (_Component) {
             });
           },
           children: "Search"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_7__["default"], {
           handleSubmit: this.handleSubmit,
           show: this.state.formModal,
           modalType: this.state.formModalType,
           data: this.state.client,
           close: this.closeForm
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_9__["default"], {
           handleSubmit: this.getLists,
           show: this.state.searchModal,
           close: this.closeForm
-        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_4__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_5__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_8__["default"], {
           tableData: this.state.clients,
           editEntry: this.openForm,
           checkedBoxes: {
@@ -7659,7 +7666,7 @@ var Client = /*#__PURE__*/function (_Component) {
             handle: this.handleCheckbox
           },
           deleteEntry: this.deleteEntry
-        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_3___default()), {
+        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_4___default()), {
           previousLabel: "Prev",
           nextLabel: "Next",
           breakLabel: "...",
@@ -7678,6 +7685,8 @@ var Client = /*#__PURE__*/function (_Component) {
 
   return Client;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+_defineProperty(Client, "contextType", _context_app_context__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
 
 
@@ -8942,14 +8951,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _api_business__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/business */ "./src/admin/js/react/api/business.js");
-/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/estimate/Form.js");
-/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/estimate/Table.js");
-/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/estimate/Search.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _context_app_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../context/app-context */ "./src/admin/js/react/context/app-context.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
+/* harmony import */ var _api_business__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api/business */ "./src/admin/js/react/api/business.js");
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/estimate/Form.js");
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/estimate/Table.js");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/estimate/Search.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -9002,6 +9012,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Estimate = /*#__PURE__*/function (_Component) {
   _inherits(Estimate, _Component);
 
@@ -9034,7 +9045,7 @@ var Estimate = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_business__WEBPACK_IMPORTED_MODULE_6__["default"].getAll(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -9054,13 +9065,13 @@ var Estimate = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
       if (_this.state.formModalType == 'new') {
-        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_6__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
             });
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.create);
 
             _this.getLists();
           } else {
@@ -9070,14 +9081,14 @@ var Estimate = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_6__["default"].update(client.id, client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
             }); // this.setState({ formModalType: 'new' });
 
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.update);
 
             _this.getLists();
           } else {
@@ -9090,7 +9101,7 @@ var Estimate = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "deleteEntry", function (type, index) {
-      if (confirm(_this.state.msg.confirm)) {
+      if (confirm(_this.context.CrudMsg.confirm)) {
         if (type == 'single') {
           _this.setState({
             clients: _this.state.clients.filter(function (client, i) {
@@ -9100,9 +9111,9 @@ var Estimate = /*#__PURE__*/function (_Component) {
         }
 
         var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
-        _api_business__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+        _api_business__WEBPACK_IMPORTED_MODULE_6__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg["delete"]);
 
             if (type != 'single') {
               _this.setState({
@@ -9208,17 +9219,10 @@ var Estimate = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
-      // clients: []
       preloader: true,
       formModal: false,
       searchModal: false,
       formModalType: 'new',
-      msg: {
-        create: 'Successfully Added',
-        update: 'Successfully Updated',
-        "delete": 'Successfully Deleted',
-        confirm: 'Are you sure to delete it?'
-      },
       client: {
         id: null
       },
@@ -9243,24 +9247,24 @@ var Estimate = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var checkedBoxes = this.state.checkedBoxes;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "ncpi-components",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
           className: "mb-5 font-bold text-2xl",
           children: "Estimate"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.openForm('new');
           },
           children: "Create New Estimate"
-        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.deleteEntry('selected');
           },
           children: "Delete selected"
-        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.setState({
@@ -9268,17 +9272,17 @@ var Estimate = /*#__PURE__*/function (_Component) {
             });
           },
           children: "Search"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_7__["default"], {
           handleSubmit: this.handleSubmit,
           show: this.state.formModal,
           modalType: this.state.formModalType,
           data: this.state.client,
           close: this.closeForm
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_9__["default"], {
           handleSubmit: this.getLists,
           show: this.state.searchModal,
           close: this.closeForm
-        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_4__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_5__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_8__["default"], {
           tableData: this.state.clients,
           editEntry: this.openForm,
           checkedBoxes: {
@@ -9286,7 +9290,7 @@ var Estimate = /*#__PURE__*/function (_Component) {
             handle: this.handleCheckbox
           },
           deleteEntry: this.deleteEntry
-        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_3___default()), {
+        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_4___default()), {
           previousLabel: "Prev",
           nextLabel: "Next",
           breakLabel: "...",
@@ -9305,6 +9309,8 @@ var Estimate = /*#__PURE__*/function (_Component) {
 
   return Estimate;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+_defineProperty(Estimate, "contextType", _context_app_context__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
 
 
@@ -9456,13 +9462,13 @@ var Attachments = /*#__PURE__*/function (_Component) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             type: "file",
-            ref: _this.inputReference,
+            ref: _this.inputRef,
             onChange: _this.onFileChange,
             hidden: true
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             className: "border p-3 rounded",
             onClick: function onClick() {
-              return _this.inputReference.current.click();
+              return _this.inputRef.current.click();
             },
             children: "Add Attachments"
           })]
@@ -9487,7 +9493,7 @@ var Attachments = /*#__PURE__*/function (_Component) {
     _this.state = {
       edit: false
     };
-    _this.inputReference = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    _this.inputRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
     return _this;
   }
 
@@ -9495,7 +9501,7 @@ var Attachments = /*#__PURE__*/function (_Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
       /* if ( ! this.state.edit && this.props.data ) { 
-          this.setState({ edit: true });
+      	this.setState({ edit: true });
       } */
     }
   }]);
@@ -10642,13 +10648,13 @@ var Signature = /*#__PURE__*/function (_Component) {
         children: [!signature && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             type: "file",
-            ref: _this.inputReference,
+            ref: _this.inputRef,
             onChange: _this.onFileChange,
             hidden: true
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             className: "border p-3 rounded",
             onClick: function onClick() {
-              return _this.inputReference.current.click();
+              return _this.inputRef.current.click();
             },
             children: "Authorized Signature"
           })]
@@ -10673,7 +10679,7 @@ var Signature = /*#__PURE__*/function (_Component) {
     _this.state = {
       edit: false
     };
-    _this.inputReference = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    _this.inputRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
     return _this;
   }
 
@@ -13990,16 +13996,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _api_invoice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../api/invoice */ "./src/admin/js/react/api/invoice.js");
-/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/invoice/invoice/Form.js");
-/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/invoice/invoice/Table.js");
-/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/invoice/invoice/Search.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var _context_app_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../context/app-context */ "./src/admin/js/react/context/app-context.js");
+/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
+/* harmony import */ var _api_invoice__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../api/invoice */ "./src/admin/js/react/api/invoice.js");
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/invoice/invoice/Form.js");
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/invoice/invoice/Table.js");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/invoice/invoice/Search.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -14053,6 +14060,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Invoice = /*#__PURE__*/function (_Component) {
   _inherits(Invoice, _Component);
 
@@ -14089,7 +14097,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _api_invoice__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_invoice__WEBPACK_IMPORTED_MODULE_6__["default"].getAll(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -14109,13 +14117,13 @@ var Invoice = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
       if (_this.state.formModalType == 'new') {
-        _api_invoice__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+        _api_invoice__WEBPACK_IMPORTED_MODULE_6__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
             });
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.create);
 
             _this.getLists();
           } else {
@@ -14125,14 +14133,14 @@ var Invoice = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _api_invoice__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+        _api_invoice__WEBPACK_IMPORTED_MODULE_6__["default"].update(client.id, client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
             }); // this.setState({ formModalType: 'new' });
 
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.update);
 
             _this.getLists();
           } else {
@@ -14145,7 +14153,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "deleteEntry", function (type, index) {
-      if (confirm(_this.state.msg.confirm)) {
+      if (confirm(_this.context.CrudMsg.confirm)) {
         if (type == 'single') {
           _this.setState({
             clients: _this.state.clients.filter(function (client, i) {
@@ -14155,9 +14163,9 @@ var Invoice = /*#__PURE__*/function (_Component) {
         }
 
         var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
-        _api_invoice__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+        _api_invoice__WEBPACK_IMPORTED_MODULE_6__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg["delete"]);
 
             if (type != 'single') {
               _this.setState({
@@ -14245,12 +14253,6 @@ var Invoice = /*#__PURE__*/function (_Component) {
       formModal: false,
       searchModal: false,
       formModalType: 'new',
-      msg: {
-        create: 'Successfully Added',
-        update: 'Successfully Updated',
-        "delete": 'Successfully Deleted',
-        confirm: 'Are you sure to delete it?'
-      },
       client: {
         id: null
       },
@@ -14275,22 +14277,22 @@ var Invoice = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var checkedBoxes = this.state.checkedBoxes;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "ncpi-components",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
           className: "mb-5 font-bold text-2xl",
           children: "Invoice"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.NavLink, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink, {
           to: "single",
           className: "inline-block bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           children: "Create New Invoice"
-        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.deleteEntry('selected');
           },
           children: "Delete selected"
-        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.setState({
@@ -14298,17 +14300,17 @@ var Invoice = /*#__PURE__*/function (_Component) {
             });
           },
           children: "Search"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_7__["default"], {
           handleSubmit: this.handleSubmit,
           show: this.state.formModal,
           modalType: this.state.formModalType,
           data: this.state.client,
           close: this.closeForm
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_9__["default"], {
           handleSubmit: this.getLists,
           show: this.state.searchModal,
           close: this.closeForm
-        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_4__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_5__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_8__["default"], {
           tableData: this.state.clients,
           checkedBoxes: {
             data: checkedBoxes,
@@ -14316,7 +14318,7 @@ var Invoice = /*#__PURE__*/function (_Component) {
           },
           deleteEntry: this.deleteEntry,
           client_id: this.props.client_id
-        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_3___default()), {
+        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_4___default()), {
           previousLabel: "Prev",
           nextLabel: "Next",
           breakLabel: "...",
@@ -14335,6 +14337,8 @@ var Invoice = /*#__PURE__*/function (_Component) {
 
   return Invoice;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+_defineProperty(Invoice, "contextType", _context_app_context__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 
 
@@ -15114,14 +15118,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
-/* harmony import */ var _api_project__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/project */ "./src/admin/js/react/api/project.js");
-/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/project/Form.js");
-/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/project/Table.js");
-/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/project/Search.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _context_app_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../context/app-context */ "./src/admin/js/react/context/app-context.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/react-paginate.js");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _preloader_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../preloader/table */ "./src/admin/js/react/components/preloader/table.js");
+/* harmony import */ var _api_project__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api/project */ "./src/admin/js/react/api/project.js");
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/project/Form.js");
+/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Table */ "./src/admin/js/react/components/project/Table.js");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Search */ "./src/admin/js/react/components/project/Search.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -15174,6 +15179,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Project = /*#__PURE__*/function (_Component) {
   _inherits(Project, _Component);
 
@@ -15210,7 +15216,7 @@ var Project = /*#__PURE__*/function (_Component) {
       }
 
       var params = new URLSearchParams(args).toString();
-      _api_project__WEBPACK_IMPORTED_MODULE_5__["default"].getAll(params).then(function (resp) {
+      _api_project__WEBPACK_IMPORTED_MODULE_6__["default"].getAll(params).then(function (resp) {
         var result = resp.data.data.result;
         var total = resp.data.data.total;
 
@@ -15230,13 +15236,13 @@ var Project = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
       if (_this.state.formModalType == 'new') {
-        _api_project__WEBPACK_IMPORTED_MODULE_5__["default"].create(client).then(function (resp) {
+        _api_project__WEBPACK_IMPORTED_MODULE_6__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
             });
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.create);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.create);
 
             _this.getLists();
           } else {
@@ -15246,14 +15252,14 @@ var Project = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _api_project__WEBPACK_IMPORTED_MODULE_5__["default"].update(client.id, client).then(function (resp) {
+        _api_project__WEBPACK_IMPORTED_MODULE_6__["default"].update(client.id, client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
             }); // this.setState({ formModalType: 'new' });
 
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg.update);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.update);
 
             _this.getLists();
           } else {
@@ -15266,7 +15272,7 @@ var Project = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "deleteEntry", function (type, index) {
-      if (confirm(_this.state.msg.confirm)) {
+      if (confirm(_this.context.CrudMsg.confirm)) {
         if (type == 'single') {
           _this.setState({
             clients: _this.state.clients.filter(function (client, i) {
@@ -15276,9 +15282,9 @@ var Project = /*#__PURE__*/function (_Component) {
         }
 
         var ids = type == 'single' ? index : _this.state.checkedBoxes.toString();
-        _api_project__WEBPACK_IMPORTED_MODULE_5__["default"].remove(ids).then(function (resp) {
+        _api_project__WEBPACK_IMPORTED_MODULE_6__["default"].remove(ids).then(function (resp) {
           if (resp.data.success) {
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.state.msg["delete"]);
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg["delete"]);
 
             if (type != 'single') {
               _this.setState({
@@ -15389,12 +15395,6 @@ var Project = /*#__PURE__*/function (_Component) {
       formModal: false,
       searchModal: false,
       formModalType: 'new',
-      msg: {
-        create: 'Successfully Added',
-        update: 'Successfully Updated',
-        "delete": 'Successfully Deleted',
-        confirm: 'Are you sure to delete it?'
-      },
       client: {
         id: null
       },
@@ -15419,24 +15419,24 @@ var Project = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var checkedBoxes = this.state.checkedBoxes;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "ncpi-components",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
           className: "mb-5 font-bold text-2xl",
           children: "Project"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.openForm('new');
           },
           children: "Create New Project"
-        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }), checkedBoxes.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.deleteEntry('selected');
           },
           children: "Delete selected"
-        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
           className: "float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3",
           onClick: function onClick() {
             return _this2.setState({
@@ -15444,18 +15444,18 @@ var Project = /*#__PURE__*/function (_Component) {
             });
           },
           children: "Search"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_7__["default"], {
           handleSubmit: this.handleSubmit,
           show: this.state.formModal,
           modalType: this.state.formModalType,
           data: this.state.client,
           close: this.closeForm,
           client_id: this.props.client_id
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Search__WEBPACK_IMPORTED_MODULE_9__["default"], {
           handleSubmit: this.getLists,
           show: this.state.searchModal,
           close: this.closeForm
-        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_4__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        }), this.state.preloader ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_preloader_table__WEBPACK_IMPORTED_MODULE_5__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Table__WEBPACK_IMPORTED_MODULE_8__["default"], {
           tableData: this.state.clients,
           editEntry: this.openForm,
           checkedBoxes: {
@@ -15464,7 +15464,7 @@ var Project = /*#__PURE__*/function (_Component) {
           },
           deleteEntry: this.deleteEntry,
           client_id: this.props.client_id
-        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_3___default()), {
+        }), this.state.totalPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)((react_paginate__WEBPACK_IMPORTED_MODULE_4___default()), {
           previousLabel: "Prev",
           nextLabel: "Next",
           breakLabel: "...",
@@ -15483,6 +15483,8 @@ var Project = /*#__PURE__*/function (_Component) {
 
   return Project;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+_defineProperty(Project, "contextType", _context_app_context__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
 
 
@@ -16954,6 +16956,43 @@ var Account = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Account);
+
+/***/ }),
+
+/***/ "./src/admin/js/react/context/app-context.js":
+/*!***************************************************!*\
+  !*** ./src/admin/js/react/context/app-context.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext());
+
+/***/ }),
+
+/***/ "./src/admin/js/react/context/data/msg.js":
+/*!************************************************!*\
+  !*** ./src/admin/js/react/context/data/msg.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  create: 'Successfully Added',
+  update: 'Successfully Updated',
+  "delete": 'Successfully Deleted',
+  confirm: 'Are you sure to delete it?'
+});
 
 /***/ }),
 

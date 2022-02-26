@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
-
+import 'react-toastify/dist/ReactToastify.css';
+import AppContext from '../../../context/app-context';
 import ReactPaginate from 'react-paginate';
 
 import TablePreloader from '../../preloader/table';
- 
+
 import Api from '../../../api/client';
 import Form from './Form';
 import Table from './Table';
@@ -13,7 +13,7 @@ import Search from './Search';
 
 export default class Client extends Component {
     constructor(props) {
-        super(props);         
+        super(props);
 
         this.state = {
             // clients: []
@@ -21,12 +21,6 @@ export default class Client extends Component {
             formModal: false,
             searchModal: false,
             formModalType: 'new',
-            msg: {
-                create: 'Successfully Added',
-                update: 'Successfully Updated',
-                delete: 'Successfully Deleted',
-                confirm: 'Are you sure to delete it?',
-            },
             client: { id: null },
             clients: [],
             checkedBoxes: [],
@@ -34,25 +28,26 @@ export default class Client extends Component {
             perPage: 10,
             totalPage: 1,
             currentPage: 1
-        }; 
-    }   
+        };
+    }
+    static contextType = AppContext;
 
     componentDidMount() {
         this.getLists();
     }
 
-    getLists = ( searchArgs = null ) => { 
-        
+    getLists = (searchArgs = null) => {
+
         let args = {
             page: this.state.currentPage,
             per_page: this.state.perPage
         }
 
-        if ( searchArgs ) {
+        if (searchArgs) {
             //Filter all falsy values ( "", 0, false, null, undefined )
-            searchArgs = Object.entries(searchArgs).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {}) 
-            args = { ...args, ...searchArgs}
-        } 
+            searchArgs = Object.entries(searchArgs).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
+            args = { ...args, ...searchArgs }
+        }
 
         let params = new URLSearchParams(args).toString();
 
@@ -64,19 +59,19 @@ export default class Client extends Component {
                 this.setState({ preloader: false });
 
                 this.setState({
-                    totalPage: Math.ceil(total / this.state.perPage) 
+                    totalPage: Math.ceil(total / this.state.perPage)
                 })
             })
-    }; 
+    };
 
     handleSubmit = client => {
-        if (this.state.formModalType == 'new') { 
+        if (this.state.formModalType == 'new') {
             Api.create(client)
                 .then(resp => {
                     if (resp.data.success) {
                         console.log(resp.data)
                         this.setState({ formModal: false })
-                        toast.success(this.state.msg.create);
+                        toast.success(this.context.CrudMsg.create);
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -90,7 +85,7 @@ export default class Client extends Component {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
                         // this.setState({ formModalType: 'new' });
-                        toast.success(this.state.msg.update);
+                        toast.success(this.context.CrudMsg.update);
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -102,21 +97,21 @@ export default class Client extends Component {
     }
 
     deleteEntry = (type, index) => {
-        
-        if ( confirm( this.state.msg.confirm ) ) {
-            
-            if ( type == 'single' ) {
+
+        if (confirm(this.context.CrudMsg.confirm)) {
+
+            if (type == 'single') {
                 this.setState({
                     clients: this.state.clients.filter((client, i) => {
                         return client.id !== index;
                     })
                 });
-            }             
-            let ids = ( type == 'single' ) ? index : this.state.checkedBoxes.toString();
+            }
+            let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
             Api.remove(ids)
                 .then(resp => {
                     if (resp.data.success) {
-                        toast.success(this.state.msg.delete); 
+                        toast.success(this.context.CrudMsg.delete);
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -125,7 +120,7 @@ export default class Client extends Component {
                     }
                 })
         }
-    } 
+    }
 
     openForm = (type = 'new', client = null) => {
         this.setState({ formModal: true });
@@ -138,39 +133,39 @@ export default class Client extends Component {
         }
     };
 
-    closeForm = ( type = 'new' ) => {
-        if ( type == 'new' ) {
+    closeForm = (type = 'new') => {
+        if (type == 'new') {
             this.setState({ formModal: false });
         } else {
             this.setState({ searchModal: false });
         }
     };
 
-    handleCheckbox = (e, type, id = null) => {	 
+    handleCheckbox = (e, type, id = null) => {
         let arr = this.state.checkedBoxes;
-        if ( type == 'single' ) {
-            if( e.target.checked ) {
-                arr.push(id);   
-                this.setState({ checkedBoxes: arr }); 
-            } else {			
-                arr.splice(arr.indexOf(id), 1);        
-                this.setState({ checkedBoxes: arr }); 
+        if (type == 'single') {
+            if (e.target.checked) {
+                arr.push(id);
+                this.setState({ checkedBoxes: arr });
+            } else {
+                arr.splice(arr.indexOf(id), 1);
+                this.setState({ checkedBoxes: arr });
             }
         } else {
             //check all
-            if( e.target.checked ) { 
+            if (e.target.checked) {
                 let ids = [];
-                this.state.clients.map((row) => { ids.push(row.id) }); 
+                this.state.clients.map((row) => { ids.push(row.id) });
                 this.setState({ checkedBoxes: ids });
-            } else { 	           
+            } else {
                 this.setState({ checkedBoxes: [] });
             }
-        } 
+        }
     }
 
     handlePageClick = (e) => {
         const selectedPage = e.selected + 1;
-        const offset = selectedPage * this.state.perPage; 
+        const offset = selectedPage * this.state.perPage;
         this.setState({
             currentPage: selectedPage,
             offset: offset
@@ -184,7 +179,7 @@ export default class Client extends Component {
         const checkedBoxes = this.state.checkedBoxes;
         return (
             <div className="ncpi-components">
-                <ToastContainer /> 
+                <ToastContainer />
 
                 <div className='mb-5 font-bold text-2xl'>
                     Client
@@ -195,16 +190,16 @@ export default class Client extends Component {
                     onClick={() => this.openForm('new')} >
                     Create New Client
                 </button>
-                
-                { checkedBoxes.length ? <button
+
+                {checkedBoxes.length ? <button
                     className="ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.deleteEntry('selected')} >
                     Delete selected
-                </button> : ''} 
+                </button> : ''}
 
                 <button
                     className="float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
-                    onClick={() => this.setState({ searchModal: true }) } >
+                    onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button>
 
@@ -218,24 +213,24 @@ export default class Client extends Component {
 
                 <Search
                     handleSubmit={this.getLists}
-                    show={this.state.searchModal} 
+                    show={this.state.searchModal}
                     close={this.closeForm}
                 />
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox}} deleteEntry={this.deleteEntry} /> }
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
-                { this.state.totalPage > 1 && <ReactPaginate
+                {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}
                     nextLabel={"Next"}
                     breakLabel={"..."}
-                    breakClassName={"break-me"} 
+                    breakClassName={"break-me"}
                     forcePage={this.state.currentPage - 1}
                     pageCount={this.state.totalPage}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
-                    containerClassName={"ncpi-pagination text-base mt-5 shadow"} 
-                    activeClassName={"active"}/>
+                    containerClassName={"ncpi-pagination text-base mt-5 shadow"}
+                    activeClassName={"active"} />
                 }
 
             </div>
