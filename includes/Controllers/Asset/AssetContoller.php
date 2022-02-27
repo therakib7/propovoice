@@ -36,7 +36,7 @@ class AssetContoller {
 
 	function dashboard_script() {   
 		
-		if ( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi-welcome' ) {   
+		if ( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi-welcome' ) {  
 			wp_enqueue_style( 'ncpi-welcome', ncpi()->get_assets_uri( "admin/css/welcome{$this->suffix}.css" ), array(), $this->version );
 			wp_enqueue_script( 'ncpi-welcome', ncpi()->get_assets_uri( "/admin/js/welcome{$this->suffix}.js" ), array(), $this->version, true );  
 			wp_localize_script( 'ncpi-welcome', 'ncpi_local', array(

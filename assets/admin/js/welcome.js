@@ -2132,6 +2132,234 @@ var token = {
 
 /***/ }),
 
+/***/ "./src/admin/js/react/components/welcome/Form.js":
+/*!*******************************************************!*\
+  !*** ./src/admin/js/react/components/welcome/Form.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var Form = /*#__PURE__*/function (_Component) {
+  _inherits(Form, _Component);
+
+  var _super = _createSuper(Form);
+
+  function Form(props) {
+    var _this;
+
+    _classCallCheck(this, Form);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function (e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+
+      _this.setState({
+        form: _objectSpread(_objectSpread({}, _this.state.form), {}, _defineProperty({}, name, value))
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "toggleChange", function () {
+      var value = !_this.state.form["default"];
+
+      _this.setState({
+        form: _objectSpread(_objectSpread({}, _this.state.form), {}, _defineProperty({}, 'default', value))
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
+      e.preventDefault();
+
+      _this.props.handleSubmit(_this.state.form);
+    });
+
+    _this.initialState = {
+      id: null,
+      name: '',
+      web: '',
+      email: '',
+      mobile: '',
+      address: '',
+      zip: '',
+      "default": true,
+      date: false
+    };
+    _this.state = {
+      form: _this.initialState
+    };
+    return _this;
+  }
+
+  _createClass(Form, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      //condition added to stop multiple rendering
+      if (this.state.form.id != this.props.data.id) {
+        this.setState({
+          form: this.props.data
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+        onSubmit: this.handleSubmit,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "piBusinessForm",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "grid-name",
+              children: "Company Name"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              id: "grid-name",
+              type: "text",
+              required: true,
+              name: "name",
+              value: this.state.form.name,
+              onChange: this.handleChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "grid-web",
+              children: "Website"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              id: "grid-web",
+              type: "url",
+              name: "web",
+              value: this.state.form.web,
+              onChange: this.handleChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "grid-email",
+              children: "Email"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              id: "grid-email",
+              type: "email",
+              required: true,
+              name: "email",
+              value: this.state.form.email,
+              onChange: this.handleChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "grid-mobile",
+              children: "Mobile Number"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              id: "grid-mobile",
+              type: "text",
+              required: true,
+              name: "mobile",
+              value: this.state.form.mobile,
+              onChange: this.handleChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "grid-address",
+              children: "Address"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              id: "grid-address",
+              type: "text",
+              name: "address",
+              value: this.state.form.address,
+              onChange: this.handleChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "grid-zip",
+              children: "Zip Code"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              id: "grid-zip",
+              type: "number",
+              name: "zip",
+              value: this.state.form.zip,
+              onChange: this.handleChange
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+              htmlFor: "grid-address",
+              children: "Address"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              id: "grid-address",
+              type: "number",
+              name: "zip"
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "piButtons piTextCenter",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            type: "submit",
+            className: "piBgBlue piBgHoverBlue",
+            children: "Save & Continue"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            className: "piTextHoverBlue",
+            onClick: function onClick() {
+              return _this2.props.handleSkip('info');
+            },
+            children: "Skip"
+          })]
+        })]
+      });
+    }
+  }]);
+
+  return Form;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Form);
+
+/***/ }),
+
 /***/ "./src/admin/js/react/components/welcome/index.js":
 /*!********************************************************!*\
   !*** ./src/admin/js/react/components/welcome/index.js ***!
@@ -2148,24 +2376,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/admin/js/react/components/welcome/style.scss");
 /* harmony import */ var _api_business__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../api/business */ "./src/admin/js/react/api/business.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/welcome/Form.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2197,6 +2410,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Business = /*#__PURE__*/function (_Component) {
   _inherits(Business, _Component);
 
@@ -2209,55 +2423,28 @@ var Business = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
 
-    _defineProperty(_assertThisInitialized(_this), "getLists", function () {
-      var searchArgs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var args = {
-        page: _this.state.currentPage,
-        per_page: _this.state.perPage
-      };
+    _defineProperty(_assertThisInitialized(_this), "getData", function () {
+      _api_business__WEBPACK_IMPORTED_MODULE_4__["default"].getAll('default=1').then(function (resp) {
+        var businessData = resp.data.data.result;
 
-      if (searchArgs) {
-        //Filter all falsy values ( "", 0, false, null, undefined )
-        searchArgs = Object.entries(searchArgs).reduce(function (a, _ref) {
-          var _ref2 = _slicedToArray(_ref, 2),
-              k = _ref2[0],
-              v = _ref2[1];
-
-          return v ? (a[k] = v, a) : a;
-        }, {});
-        args = _objectSpread(_objectSpread({}, args), searchArgs);
-      }
-
-      var params = new URLSearchParams(args).toString();
-      _api_business__WEBPACK_IMPORTED_MODULE_4__["default"].getAll(params).then(function (resp) {
-        var result = resp.data.data.result;
-        var total = resp.data.data.total;
-
-        _this.setState({
-          clients: result
-        });
-
-        _this.setState({
-          preloader: false
-        });
-
-        _this.setState({
-          totalPage: Math.ceil(total / _this.state.perPage)
-        });
+        if (businessData.length) {
+          // console.log(businessData)
+          _this.setState({
+            client: businessData[0]
+          });
+        }
       });
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
-      if (_this.state.formModalType == 'new') {
+      if (!client.id) {
         _api_business__WEBPACK_IMPORTED_MODULE_4__["default"].create(client).then(function (resp) {
           if (resp.data.success) {
             _this.setState({
               formModal: false
-            });
+            }); // toast.success(this.context.CrudMsg.create);
+            // this.getLists();
 
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.create);
-
-            _this.getLists();
           } else {
             resp.data.data.forEach(function (value, index, array) {
               react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
@@ -2270,16 +2457,35 @@ var Business = /*#__PURE__*/function (_Component) {
             _this.setState({
               formModal: false
             }); // this.setState({ formModalType: 'new' });
+            // toast.success(this.context.CrudMsg.update);
+            // this.getLists();
 
-
-            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success(_this.context.CrudMsg.update);
-
-            _this.getLists();
           } else {
             resp.data.data.forEach(function (value, index, array) {
               react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
             });
           }
+        });
+      }
+
+      _this.setState({
+        currentTab: 'branding',
+        currentTabIndex: 2
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSkip", function () {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+      if (name == 'info') {
+        _this.setState({
+          currentTab: 'branding',
+          currentTabIndex: 2
+        });
+      } else {
+        _this.setState({
+          currentTab: 'finish',
+          currentTabIndex: 3
         });
       }
     });
@@ -2320,8 +2526,8 @@ var Business = /*#__PURE__*/function (_Component) {
 
   _createClass(Business, [{
     key: "componentDidMount",
-    value: function componentDidMount() {// this.getLists();
-      // console.log(ncpi_local.assetImgUri)
+    value: function componentDidMount() {
+      this.getData(); // console.log(ncpi_local.assetImgUri)
     }
   }, {
     key: "setActiveTab",
@@ -2341,183 +2547,111 @@ var Business = /*#__PURE__*/function (_Component) {
           tabs = _this$state$tabs === void 0 ? [] : _this$state$tabs,
           currentTab = _this$state.currentTab,
           currentTabIndex = _this$state.currentTabIndex;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "piMainContent",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "piContainer",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "piLogoContent",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
               src: ncpi_local.assetImgUri + 'logo.png',
               className: ""
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("strong", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
               className: "",
               children: "Propovoice"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "piTabsContent",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("ul", {
               className: "piTabs",
               children: tabs.map(function (tab, index) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("li", {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("li", {
                   className: 'pi-tab ' + (index <= currentTabIndex ? 'active' : ''),
                   onClick: function onClick(e) {
                     return _this2.setActiveTab(tab.id, index);
                   },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {}), tab.text]
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {}), tab.text]
                 }, index);
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
               className: "piTabContent",
-              children: [currentTab == 'welcome' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              children: [currentTab == 'welcome' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 id: "welcome",
                 className: "active",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
                   children: "A place where you can browse and share content with other Figma users. Pull text strings, avatars and icons directly into your designs."
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                   className: "piButtons piTextCenter",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                     className: "piBgBlue piBgHoverBlue",
+                    onClick: function onClick() {
+                      return _this2.setState({
+                        currentTab: 'info',
+                        currentTabIndex: 1
+                      });
+                    },
                     children: "Create Business Profile"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                     className: "piTextHoverBlue",
                     children: "Skip and Go Dashboard"
                   })]
                 })]
-              }), currentTab == 'info' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), currentTab == 'info' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 id: "business",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  className: "piBusinessForm",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "name",
-                      children: "Your Name"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-                      type: "text",
-                      id: "name",
-                      name: "name"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "email",
-                      children: "Email"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-                      type: "email",
-                      id: "email",
-                      name: "email"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "company",
-                      children: "Company Name"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-                      type: "text",
-                      id: "company",
-                      name: "company"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "website",
-                      children: "Website"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-                      type: "text",
-                      id: "website",
-                      name: "email"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "number",
-                      children: "Mobile Number"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-                      type: "number",
-                      id: "number",
-                      name: "number"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "curency",
-                      children: "Base Curency"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-                      type: "text",
-                      id: "curency",
-                      name: "curency"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: "",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                      htmlFor: "address",
-                      className: "",
-                      children: "Address"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-                      type: "text",
-                      id: "address",
-                      name: "address",
-                      placeholder: "write your full address here",
-                      className: "address-field"
-                    })]
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  className: "piButtons piTextCenter",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-                    className: "piBgBlue piBgHoverBlue",
-                    children: "Continue"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-                    className: "piTextHoverBlue",
-                    children: "Skip"
-                  })]
-                })]
-              }), currentTab == 'branding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                  handleSubmit: this.handleSubmit,
+                  handleSkip: this.handleSkip,
+                  data: this.state.client
+                })
+              }), currentTab == 'branding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 id: "brand",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("form", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("form", {
                   action: "/action_page.php",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                     className: "piTextCenter",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
                       src: "assets/img/uplode-image.png"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
                       className: "upload pi-color-blue",
                       children: "Upload Logo"
                     })]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                   className: "piButtons piTextCenter",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                     className: "piBgBlue piBgHoverBlue",
                     children: "Continue"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                     className: "piTextHoverBlue",
+                    onClick: function onClick() {
+                      return _this2.handleSkip('branding');
+                    },
                     children: "Skip"
                   })]
                 })]
-              }), currentTab == 'finish' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), currentTab == 'finish' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 id: "piFinished",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                   className: "piTextCenter",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
                     src: ncpi_local.assetImgUri + 'finish.png'
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
                     className: "upload",
                     children: "It's time to fly!"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
                     children: "Everything Done! You can create Estimate, Invoice, Proposal and Others"
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                   className: "piButtons piTextCenter",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
                     href: ncpi_local.dashboard + '',
                     className: "piBgBlack piBgHoverBlue",
                     children: "Dashboard"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
                     href: ncpi_local.dashboard + '#/client',
                     className: "piBgGreen piBgHoverBlue",
                     children: "Add Cleint"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
                     href: ncpi_local.dashboard + '#/invoice',
                     className: "piBgBlue piBgHoverBlue",
                     children: "Create Invoice"
@@ -2634,7 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".ncpi .piMainContent {\n  background-color: var(--bg-color-white);\n  margin-top: 80px;\n}\n\n.ncpi .piContainer {\n  left: 0;\n  right: 0;\n  margin: auto;\n  max-width: 657px;\n  border-radius: 40px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 65px;\n}\n\n.ncpi .piLogoContent {\n  text-align: center;\n  margin-bottom: 33px;\n}\n\n.ncpi .piLogoContent img {\n  width: 36px;\n  height: 36px;\n  margin: auto;\n}\n\n.ncpi .piLogoContent strong {\n  position: relative;\n  top: -10px;\n  left: 10px;\n  font-size: 24px;\n}\n\n.ncpi .piButtons.piTextCenter button:last-child {\n  display: block;\n  color: #000;\n  left: 0;\n  right: 0;\n  margin: auto;\n}\n\n.ncpi #piFinished .piButtons.piTextCenter button:last-child {\n  display: inline;\n  color: var(--text-color-white);\n  margin-right: 0;\n}\n\n.ncpi #piFinished .piButtons.piTextCenter button {\n  margin-right: 10px;\n}\n\n@media screen and (max-width: 500px) {\n  .ncpi #piFinished .piButtons.piTextCenter button {\n    margin-bottom: 10px;\n  }\n}\n.ncpi #piFinished h3 {\n  font-size: 36px;\n  font-weight: 500;\n  margin-bottom: 15px;\n  margin-top: 30px;\n}\n\n.ncpi #piFinished p {\n  margin-bottom: 45px;\n}\n\n@media screen and (max-width: 768px) {\n  .ncpi .ncpi .piContainer {\n    padding: 20px;\n  }\n}\n.ncpi .piTabContent #brand img {\n  text-align: center;\n  margin-bottom: 5px;\n}\n\n.ncpi .piTabContent #brand .upload {\n  font-size: 19px;\n  margin-bottom: 45px;\n  margin-top: 30px;\n}\n\n.ncpi .piTabContent #brand input {\n  display: block;\n  margin: auto;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".ncpi .piMainContent {\n  background-color: var(--bg-color-white);\n  margin-top: 80px;\n}\n\n.ncpi .piContainer {\n  left: 0;\n  right: 0;\n  margin: auto;\n  max-width: 657px;\n  border-radius: 40px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 65px;\n}\n\n.ncpi .piLogoContent {\n  text-align: center;\n  margin-bottom: 33px;\n}\n\n.ncpi .piLogoContent img {\n  width: 36px;\n  height: 36px;\n  margin: auto;\n}\n\n.ncpi .piLogoContent strong {\n  position: relative;\n  top: -10px;\n  left: 10px;\n  font-size: 24px;\n}\n\n.ncpi .piButtons.piTextCenter button:last-child {\n  display: block;\n  color: #000;\n  left: 0;\n  right: 0;\n  margin: auto;\n}\n\n.ncpi #piFinished .piButtons.piTextCenter button:last-child {\n  display: inline;\n  color: var(--text-color-white);\n  margin-right: 0;\n}\n\n.ncpi #piFinished .piButtons.piTextCenter button {\n  margin-right: 10px;\n}\n\n@media screen and (max-width: 500px) {\n  .ncpi #piFinished .piButtons.piTextCenter button {\n    margin-bottom: 10px;\n  }\n}\n.ncpi #piFinished h3 {\n  font-size: 36px;\n  font-weight: 500;\n  margin-bottom: 15px;\n  margin-top: 30px;\n}\n\n.ncpi .piTabsContent #piWelcome p {\n  margin-bottom: 70px;\n}\n\n.ncpi .piTabsContent #piFinished p {\n  margin-bottom: 45px;\n}\n\n.ncpi .piTabsContent #piFinished .piButtons a {\n  padding: 15px 20px;\n  font-weight: 600;\n  border-radius: 8px;\n  color: #fff;\n  cursor: pointer;\n  border: none;\n  font-size: 14px;\n  margin-left: 10px;\n  display: inline-block;\n}\n\n.ncpi .piTabsContent #piFinished .piButtons a:first-child {\n  margin-left: 0px;\n}\n\n@media screen and (max-width: 768px) {\n  .ncpi .ncpi .piContainer {\n    padding: 20px;\n  }\n}\n.ncpi .piTabContent #piBrand img {\n  text-align: center;\n  margin-bottom: 5px;\n}\n\n.ncpi .piTabContent #piBrand .upload {\n  font-size: 19px;\n  margin-bottom: 45px;\n  margin-top: 30px;\n  font-weight: 700;\n}\n\n.ncpi .piTabContent #piBrand input {\n  display: block;\n  margin: auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

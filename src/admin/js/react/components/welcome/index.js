@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Style from './style.scss'
 
 import Api from '../../api/business'; 
+import Form from './Form';
 
 export default class Business extends Component {
     constructor(props) {
@@ -46,46 +47,29 @@ export default class Business extends Component {
     } 
 
     componentDidMount() {
-        // this.getLists();
+        this.getData();
         // console.log(ncpi_local.assetImgUri)
     }
 
-    getLists = (searchArgs = null) => {
-
-        let args = {
-            page: this.state.currentPage,
-            per_page: this.state.perPage
-        }
-
-        if (searchArgs) {
-            //Filter all falsy values ( "", 0, false, null, undefined )
-            searchArgs = Object.entries(searchArgs).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
-            args = { ...args, ...searchArgs }
-        }
-
-        let params = new URLSearchParams(args).toString();
-
-        Api.getAll(params)
-            .then(resp => {
-                let result = resp.data.data.result;
-                let total = resp.data.data.total;
-                this.setState({ clients: result });
-                this.setState({ preloader: false });
-
-                this.setState({
-                    totalPage: Math.ceil(total / this.state.perPage)
-                })
-            })
+    getData = () => {  
+        Api.getAll('default=1')
+        .then(resp => {
+            let businessData = resp.data.data.result;
+            if ( businessData.length ) { 
+                // console.log(businessData)
+                this.setState({ client: businessData[0] });  
+            }
+        }); 
     };
 
-    handleSubmit = client => {
-        if (this.state.formModalType == 'new') {
+    handleSubmit = client => { 
+        if ( !client.id ) {
             Api.create(client)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.create);
-                        this.getLists();
+                        // toast.success(this.context.CrudMsg.create);
+                        // this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -98,8 +82,8 @@ export default class Business extends Component {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
                         // this.setState({ formModalType: 'new' });
-                        toast.success(this.context.CrudMsg.update);
-                        this.getLists();
+                        // toast.success(this.context.CrudMsg.update);
+                        // this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -107,8 +91,19 @@ export default class Business extends Component {
                     }
                 })
         }
+
+        this.setState({ currentTab: 'branding', currentTabIndex: 2 });
     }  
-    
+
+    handleSkip = ( name = null ) => { 
+        if ( name == 'info' ) {
+            this.setState({ currentTab: 'branding', currentTabIndex: 2 });
+        } else {
+            this.setState({ currentTab: 'finish', currentTabIndex: 3 });
+        }
+        
+    } 
+
     setActiveTab(id, index) { 
         this.setState({
             currentTab: id,
@@ -145,7 +140,7 @@ export default class Business extends Component {
                                     designs.
                                 </p>
                                 <div className="piButtons piTextCenter">
-                                    <button className="piBgBlue piBgHoverBlue">
+                                    <button className="piBgBlue piBgHoverBlue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
                                     Create Business Profile
                                     </button>
                                     <button className="piTextHoverBlue">Skip and Go Dashboard</button>
@@ -154,48 +149,11 @@ export default class Business extends Component {
 
                             { currentTab == 'info' &&
                             <div id="business">
-                                <div className="piBusinessForm">
-                                    <div className="">
-                                    <label htmlFor="name">Your Name</label>
-                                    <input type="text" id="name" name="name" />
-                                    </div>
-                                    <div className="">
-                                    <label htmlFor="email">Email</label>
-                                    <input type="email" id="email" name="email" />
-                                    </div>
-                                    <div className="">
-                                    <label htmlFor="company">Company Name</label>
-                                    <input type="text" id="company" name="company" />
-                                    </div>
-                                    <div className="">
-                                    <label htmlFor="website">Website</label>
-                                    <input type="text" id="website" name="email" />
-                                    </div>
-                                    <div className="">
-                                    <label htmlFor="number">Mobile Number</label>
-                                    <input type="number" id="number" name="number" />
-                                    </div>
-                                    <div className="">
-                                    <label htmlFor="curency">Base Curency</label>
-                                    <input type="text" id="curency" name="curency" />
-                                    </div>
-                                    <div className="">
-                                    <label htmlFor="address" className="">
-                                        Address
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="address"
-                                        name="address"
-                                        placeholder="write your full address here"
-                                        className="address-field"
-                                    />
-                                    </div>
-                                </div> 
-                                <div className="piButtons piTextCenter">
-                                    <button className="piBgBlue piBgHoverBlue">Continue</button>
-                                    <button className="piTextHoverBlue">Skip</button>
-                                </div>
+                                <Form
+                                    handleSubmit={this.handleSubmit} 
+                                    handleSkip={this.handleSkip} 
+                                    data={this.state.client} 
+                                /> 
                             </div>}
 
                             { currentTab == 'branding' &&
@@ -208,7 +166,7 @@ export default class Business extends Component {
                                 </form>
                                 <div className="piButtons piTextCenter">
                                     <button className="piBgBlue piBgHoverBlue">Continue</button>
-                                    <button className="piTextHoverBlue">Skip</button>
+                                    <button className="piTextHoverBlue" onClick={() => this.handleSkip('branding')}>Skip</button>
                                 </div>
                             </div>}
 
