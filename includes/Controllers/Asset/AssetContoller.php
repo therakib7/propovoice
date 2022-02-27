@@ -34,7 +34,19 @@ class AssetContoller {
 	function admin_public_script() {  
 	} 
 
-	function dashboard_script() {    
+	function dashboard_script() {   
+		
+		if ( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi-welcome' ) {   
+			wp_enqueue_style( 'ncpi-welcome', ncpi()->get_assets_uri( "admin/css/welcome{$this->suffix}.css" ), array(), $this->version );
+			wp_enqueue_script( 'ncpi-welcome', ncpi()->get_assets_uri( "/admin/js/welcome{$this->suffix}.js" ), array(), $this->version, true );  
+			wp_localize_script( 'ncpi-welcome', 'ncpi_local', array(
+				'apiUrl' => esc_url( rest_url() ), 
+				'nonce' => wp_create_nonce( 'wp_rest' ),
+				'dashboard' => menu_page_url('ncpi', false),
+				'assetImgUri' => ncpi()->get_assets_uri('admin/imgs/')
+			) );
+		}
+
 		if ( 
 			( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi' ) ||
 			is_page_template('dashboard-template.php')
@@ -42,24 +54,15 @@ class AssetContoller {
 			
 			wp_enqueue_style('dashicons');
 			  
-			// wp_enqueue_style( 'tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind{$this->suffix}.css" ), array(), $this->version ); 
 			wp_enqueue_script( 'tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind.js" ), array(), $this->version, false ); 
-			wp_enqueue_style( 'ncpi-admin-main', ncpi()->get_assets_uri( "admin/css/main{$this->suffix}.css" ), array(), $this->version ); 
-			wp_enqueue_script( 'ncpi-admin-main', ncpi()->get_assets_uri( "admin/js/main{$this->suffix}.js" ), array('jquery', 'jquery-ui-sortable'), $this->version, true ); 
-			wp_localize_script('ncpi-admin-main', 'ncpi',
-				array( 
-					'ajaxurl' => $this->ajaxurl,
-					'nonce' => wp_create_nonce('ncpi-ajax-nonce'),
-					'pro_text' => esc_html__( 'Sorry! this is a premium field. To use this field, you need to use pro plugin.', 'propovoice' ),
-				)
-			);  
-
-			wp_enqueue_script( 'ncpi-admin-setting', ncpi()->get_assets_uri( "/admin/js/setting{$this->suffix}.js" ), array(), $this->version, true ); 
+			wp_enqueue_style( 'ncpi-dashboard', ncpi()->get_assets_uri( "admin/css/dashboard{$this->suffix}.css" ), array(), $this->version );  
+			wp_enqueue_script( 'ncpi-dashboard', ncpi()->get_assets_uri( "/admin/js/dashboard{$this->suffix}.js" ), array(), $this->version, true ); 
 			
-			wp_localize_script( 'ncpi-admin-setting', 'ncpi_local', array(
+			wp_localize_script( 'ncpi-dashboard', 'ncpi_local', array(
 				'apiUrl' => esc_url( rest_url() ),
 				'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
-				'nonce' => wp_create_nonce( 'wp_rest' )
+				'nonce' => wp_create_nonce( 'wp_rest' ),
+				'assetImgUri' => ncpi()->get_assets_uri('admin/imgs/')
 			) );
 		}
 	} 
@@ -67,22 +70,13 @@ class AssetContoller {
 	function public_scripts() {  
 		$this->admin_public_script();   		
 
-		// wp_enqueue_style( 'tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind{$this->suffix}.css" ), array(), $this->version ); 
-		wp_enqueue_style( 'propovoice-main', ncpi()->get_assets_uri( "public/css/main{$this->suffix}.css" ), array(), $this->version ); 
-		wp_enqueue_script( 'propovoice-main', ncpi()->get_assets_uri( "public/js/main{$this->suffix}.js" ), array('jquery'), $this->version, true ); 
-		wp_localize_script('propovoice-main', 'css_js_specific_page',
-			array( 
-				'ajaxurl' => $this->ajaxurl,
-				'nonce' => wp_create_nonce('ncpi-ajax-nonce')
-			)
-		);  
+		//wp_enqueue_style( 'propovoice-main', ncpi()->get_assets_uri( "public/css/main{$this->suffix}.css" ), array(), $this->version ); 
 
 		$this->dashboard_script();   
 	} 
 
 	function admin_scripts() { 
 		$this->admin_public_script();   
-		$this->dashboard_script();  
-		 
+		$this->dashboard_script();   
 	}  
 }

@@ -1,9 +1,8 @@
 <?php
 
-namespace Ncpi\Controllers\Setting\Types; 
+namespace Ncpi\Controllers\Setting\Types;  
 
-
-class Setup {
+class Welcome {
 
 	public function __construct() { 
         add_action('admin_menu', [$this, 'add_settings_menu'], 30); 
@@ -26,6 +25,6 @@ class Setup {
 	} 
 
 	function main_settings() {  
-        echo '<div class="wrap"><div id="ncpi-admin-welcome" class="ncpi-admin-welcome">sdf</div></div>';
+        echo '<div class="wrap" id="ncpi-welcome"></div>'; 
     } 
 } 

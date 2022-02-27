@@ -78,21 +78,17 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
         processCssUrls: false
     });
      
-    mix.js(`src/admin/js/react/blocks/main.jsx`, `assets/admin/js/blocks/main${min}.js`).react()
-        .js(`src/public/js/main.js`, `assets/public/js/main${min}.js`)
-        .js(`src/public/js/user.js`, `assets/public/js/user${min}.js`)
-        .js(`src/admin/js/main.js`, `assets/admin/js/main${min}.js`)  
-        .sass(`src/admin/scss/main.scss`, `assets/admin/css/main${min}.css`)
-        .sass(`src/public/scss/main.scss`, `assets/public/css/main${min}.css`)
-        .sass(`src/public/scss/user.scss`, `assets/public/css/user${min}.css`)
+    mix.js(`src/admin/js/react/blocks/main.jsx`, `assets/admin/js/blocks/main${min}.js`).react() 
+        .sass(`src/admin/scss/dashboard.scss`, `assets/admin/css/dashboard${min}.css`) 
+        .sass(`src/admin/scss/welcome.scss`, `assets/admin/css/welcome${min}.css`) 
         /* .postCss('src/vendor/tailwind/tailwind.css', `assets/vendor/tailwind/tailwind${min}.css`, [
             require('tailwindcss'),
-        ]) */
-        .copyDirectory('src/public/imgs', 'assets/public/imgs')
+        ]) */ 
         .copyDirectory('src/admin/imgs', 'assets/admin/imgs')
         .copyDirectory('src/vendor', 'assets/vendor');
 
-    mix.js(`src/admin/js/react/main.jsx`, `assets/admin/js/setting${min}.js`).react()
+    mix.js(`src/admin/js/react/welcome.jsx`, `assets/admin/js/welcome${min}.js`).react()
+    mix.js(`src/admin/js/react/dashboard.jsx`, `assets/admin/js/dashboard${min}.js`).react()
 }
 
 if (process.env.NODE_ENV === 'zip') {

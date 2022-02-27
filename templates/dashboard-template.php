@@ -11,9 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>> 
-    <?php wp_body_open(); ?>
-    <?php echo '<div id="ncpi-admin-app" class="flex ncpi-frontend"></div>'; ?>
+<body <?php body_class(); ?>>  
+    <?php echo '<div id="ncpi-dashboard" class="flex ncpi-frontend"></div>'; ?>
     <?php wp_footer(); ?>
 </body>
 </html>

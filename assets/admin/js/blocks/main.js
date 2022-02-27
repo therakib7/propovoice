@@ -125,10 +125,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/admin/scss/main.scss":
-/*!**********************************!*\
-  !*** ./src/admin/scss/main.scss ***!
-  \**********************************/
+/***/ "./src/admin/scss/dashboard.scss":
+/*!***************************************!*\
+  !*** ./src/admin/scss/dashboard.scss ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -137,22 +137,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/public/scss/main.scss":
-/*!***********************************!*\
-  !*** ./src/public/scss/main.scss ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./src/public/scss/user.scss":
-/*!***********************************!*\
-  !*** ./src/public/scss/user.scss ***!
-  \***********************************/
+/***/ "./src/admin/scss/welcome.scss":
+/*!*************************************!*\
+  !*** ./src/admin/scss/welcome.scss ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -3952,9 +3940,8 @@ if (false) {} else {
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/assets/admin/js/blocks/main": 0,
-/******/ 			"assets/public/css/user": 0,
-/******/ 			"assets/public/css/main": 0,
-/******/ 			"assets/admin/css/main": 0
+/******/ 			"assets/admin/css/welcome": 0,
+/******/ 			"assets/admin/css/dashboard": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -3989,7 +3976,7 @@ if (false) {} else {
 /******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
 /******/ 					installedChunks[chunkId][0]();
 /******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
+/******/ 				installedChunks[chunkIds[i]] = 0;
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
@@ -4004,10 +3991,9 @@ if (false) {} else {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["assets/public/css/user","assets/public/css/main","assets/admin/css/main"], () => (__webpack_require__("./src/admin/js/react/blocks/main.jsx")))
-/******/ 	__webpack_require__.O(undefined, ["assets/public/css/user","assets/public/css/main","assets/admin/css/main"], () => (__webpack_require__("./src/admin/scss/main.scss")))
-/******/ 	__webpack_require__.O(undefined, ["assets/public/css/user","assets/public/css/main","assets/admin/css/main"], () => (__webpack_require__("./src/public/scss/main.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/public/css/user","assets/public/css/main","assets/admin/css/main"], () => (__webpack_require__("./src/public/scss/user.scss")))
+/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/js/react/blocks/main.jsx")))
+/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/scss/dashboard.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/scss/welcome.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

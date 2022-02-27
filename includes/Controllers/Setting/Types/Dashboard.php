@@ -2,7 +2,7 @@
 
 namespace Ncpi\Controllers\Setting\Types;  
 
-class Main { 
+class Dashboard { 
 
 	public function __construct() { 
         add_action('admin_menu', [$this, 'add_settings_menu'], 30);  
@@ -21,6 +21,6 @@ class Main {
 	} 
 
 	function main_settings() {  
-        echo '<div class="wrap"><div id="ncpi-admin-app" class="flex"></div></div>';
+        echo '<div class="wrap"><div id="ncpi-dashboard" class="flex"></div></div>';
     } 
 } 

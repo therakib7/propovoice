@@ -7,8 +7,8 @@ use Ncpi\Controllers\Installation\Types\DB;
 class InstallationController {
 
     public function __construct() { 
-        /* register_activation_hook(NCPI_FILE, array($this, 'plugin_activate'));
-        add_action('admin_init', array($this, 'plugin_redirect') ); */
+        register_activation_hook(NCPI_FILE, array($this, 'plugin_activate'));
+        add_action('admin_init', array($this, 'plugin_redirect') );
     }   
 
     function plugin_activate() { 
@@ -27,7 +27,7 @@ class InstallationController {
                 update_option( 'ncpi_roles_version', 1 );
             }
 			
-            wp_redirect( admin_url('admin.php?page=ncpi') );
+            wp_redirect( admin_url('admin.php?page=ncpi-welcome') );
         }
     } 
 }
