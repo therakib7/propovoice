@@ -2132,9 +2132,241 @@ var token = {
 
 /***/ }),
 
-/***/ "./src/admin/js/react/components/welcome/Form.js":
+/***/ "./src/admin/js/react/api/media.js":
+/*!*****************************************!*\
+  !*** ./src/admin/js/react/api/media.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/admin/js/react/api/helper.js");
+
+
+var url = _helper__WEBPACK_IMPORTED_MODULE_1__.apiUrl + 'media';
+
+var getAll = function getAll() {
+  var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/?").concat(args));
+};
+
+var get = function get(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "/").concat(id));
+};
+
+var create = function create(data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var update = function update(id, data) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(url, "/").concat(id), data, _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var remove = function remove(id) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("".concat(url, "/").concat(id), _helper__WEBPACK_IMPORTED_MODULE_1__.token);
+};
+
+var findByArg = function findByArg(title) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("".concat(url, "?title=").concat(title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getAll: getAll,
+  get: get,
+  create: create,
+  update: update,
+  remove: remove,
+  findByArg: findByArg
+});
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/welcome/Branding.js":
+/*!***********************************************************!*\
+  !*** ./src/admin/js/react/components/welcome/Branding.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var _api_media__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/media */ "./src/admin/js/react/api/media.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+var Branding = /*#__PURE__*/function (_Component) {
+  _inherits(Branding, _Component);
+
+  var _super = _createSuper(Branding);
+
+  function Branding(props) {
+    var _this;
+
+    _classCallCheck(this, Branding);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "onFileUpload", function (file) {
+      var formData = new FormData();
+      formData.append('file', file);
+      formData.append('type', 'business_logo');
+      _api_media__WEBPACK_IMPORTED_MODULE_2__["default"].create(formData).then(function (resp) {
+        if (resp.data.success) {
+          _this.props.changeHandler(resp.data.data.file_info);
+        } else {
+          resp.data.data.forEach(function (value, index, array) {
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+          });
+        }
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleDelete", function (id) {
+      _this.props.changeHandler(null);
+
+      _api_media__WEBPACK_IMPORTED_MODULE_2__["default"].remove(id).then(function (resp) {
+        if (!resp.data.success) {
+          resp.data.data.forEach(function (value, index, array) {
+            react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
+          });
+        }
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onFileChange", function (event) {
+      _this.onFileUpload(event.target.files[0]);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleUploadFile", function () {
+      var business = _this.props.data;
+
+      if (business.id) {
+        _this.inputRef.current.click();
+      } else {
+        //TODO: translation
+        react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error('Please fill up Business Info first');
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "render", function () {
+      var business = _this.props.data;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+        children: [!business.logo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "file",
+            ref: _this.inputRef,
+            onChange: _this.onFileChange,
+            className: "hidden"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "piTextCenter",
+            onClick: function onClick() {
+              return _this.handleUploadFile();
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+              src: ncpi_local.assetImgUri + 'upload-img.png'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+              className: "upload pi-color-blue",
+              children: "Upload Logo"
+            })]
+          })]
+        }), business.id && business.logo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "piTextCenter",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+            src: business.logo.url,
+            width: "100",
+            className: "inline"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            className: "",
+            onClick: function onClick() {
+              return _this.handleDelete(business.logo.id);
+            },
+            children: "x"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "piButtons piTextCenter",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+            className: "piBgBlue piBgHoverBlue",
+            onClick: function onClick() {
+              return _this.props.handleSubmit('', 'branding');
+            },
+            children: "Save & Continue"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+            className: "piTextHoverBlue",
+            onClick: function onClick() {
+              return _this.props.handleSkip('branding');
+            },
+            children: "Skip"
+          })]
+        })]
+      });
+    });
+
+    _this.state = {
+      edit: false
+    };
+    _this.inputRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    return _this;
+  }
+
+  _createClass(Branding, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (!this.state.edit && this.props.data) {
+        this.setState({
+          edit: true
+        });
+      }
+    }
+  }]);
+
+  return Branding;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Branding);
+
+/***/ }),
+
+/***/ "./src/admin/js/react/components/welcome/Info.js":
 /*!*******************************************************!*\
-  !*** ./src/admin/js/react/components/welcome/Form.js ***!
+  !*** ./src/admin/js/react/components/welcome/Info.js ***!
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2177,15 +2409,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var Form = /*#__PURE__*/function (_Component) {
-  _inherits(Form, _Component);
+var Info = /*#__PURE__*/function (_Component) {
+  _inherits(Info, _Component);
 
-  var _super = _createSuper(Form);
+  var _super = _createSuper(Info);
 
-  function Form(props) {
+  function Info(props) {
     var _this;
 
-    _classCallCheck(this, Form);
+    _classCallCheck(this, Info);
 
     _this = _super.call(this, props);
 
@@ -2220,6 +2452,7 @@ var Form = /*#__PURE__*/function (_Component) {
       email: '',
       mobile: '',
       address: '',
+      logo: null,
       zip: '',
       "default": true,
       date: false
@@ -2230,7 +2463,7 @@ var Form = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  _createClass(Form, [{
+  _createClass(Info, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       //condition added to stop multiple rendering
@@ -2250,90 +2483,95 @@ var Form = /*#__PURE__*/function (_Component) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "piBusinessForm",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              htmlFor: "grid-name",
-              children: "Company Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              id: "grid-name",
-              type: "text",
-              required: true,
-              name: "name",
-              value: this.state.form.name,
-              onChange: this.handleChange
+            className: "row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "col-md",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "field-name",
+                children: "Company Name"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                id: "field-name",
+                type: "text",
+                required: true,
+                name: "name",
+                value: this.state.form.name,
+                onChange: this.handleChange
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "col-md",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "field-web",
+                children: "Website"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                id: "field-web",
+                type: "url",
+                name: "web",
+                value: this.state.form.web,
+                onChange: this.handleChange
+              })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              htmlFor: "grid-web",
-              children: "Website"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              id: "grid-web",
-              type: "url",
-              name: "web",
-              value: this.state.form.web,
-              onChange: this.handleChange
+            className: "row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "col-md",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "field-email",
+                children: "Email"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                id: "field-email",
+                type: "email",
+                required: true,
+                name: "email",
+                value: this.state.form.email,
+                onChange: this.handleChange
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "col-md",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "field-mobile",
+                children: "Mobile Number"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                id: "field-mobile",
+                type: "text",
+                required: true,
+                name: "mobile",
+                value: this.state.form.mobile,
+                onChange: this.handleChange
+              })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              htmlFor: "grid-email",
-              children: "Email"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              id: "grid-email",
-              type: "email",
-              required: true,
-              name: "email",
-              value: this.state.form.email,
-              onChange: this.handleChange
+            className: "row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "col-md",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "field-zip",
+                children: "Zip Code"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                id: "field-zip",
+                type: "number",
+                name: "zip",
+                value: this.state.form.zip,
+                onChange: this.handleChange
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "col-md"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              htmlFor: "grid-mobile",
-              children: "Mobile Number"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              id: "grid-mobile",
-              type: "text",
-              required: true,
-              name: "mobile",
-              value: this.state.form.mobile,
-              onChange: this.handleChange
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              htmlFor: "grid-address",
-              children: "Address"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              id: "grid-address",
-              type: "text",
-              name: "address",
-              value: this.state.form.address,
-              onChange: this.handleChange
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              htmlFor: "grid-zip",
-              children: "Zip Code"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              id: "grid-zip",
-              type: "number",
-              name: "zip",
-              value: this.state.form.zip,
-              onChange: this.handleChange
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-              htmlFor: "grid-address",
-              children: "Address"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              id: "grid-address",
-              type: "number",
-              name: "zip"
-            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "row",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "col",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "field-address",
+                children: "Address"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                id: "field-address",
+                type: "text",
+                name: "address",
+                placeholder: "Write you full address here",
+                value: this.state.form.address,
+                onChange: this.handleChange
+              })]
+            })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "piButtons piTextCenter",
@@ -2341,7 +2579,7 @@ var Form = /*#__PURE__*/function (_Component) {
             type: "submit",
             className: "piBgBlue piBgHoverBlue",
             children: "Save & Continue"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
             className: "piTextHoverBlue",
             onClick: function onClick() {
               return _this2.props.handleSkip('info');
@@ -2353,10 +2591,10 @@ var Form = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return Form;
+  return Info;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Form);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Info);
 
 /***/ }),
 
@@ -2376,9 +2614,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/admin/js/react/components/welcome/style.scss");
 /* harmony import */ var _api_business__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../api/business */ "./src/admin/js/react/api/business.js");
-/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Form */ "./src/admin/js/react/components/welcome/Form.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Info__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Info */ "./src/admin/js/react/components/welcome/Info.js");
+/* harmony import */ var _Branding__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Branding */ "./src/admin/js/react/components/welcome/Branding.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2411,6 +2654,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Business = /*#__PURE__*/function (_Component) {
   _inherits(Business, _Component);
 
@@ -2428,23 +2672,40 @@ var Business = /*#__PURE__*/function (_Component) {
         var businessData = resp.data.data.result;
 
         if (businessData.length) {
-          // console.log(businessData)
           _this.setState({
-            client: businessData[0]
+            business: businessData[0]
           });
         }
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (client) {
-      if (!client.id) {
-        _api_business__WEBPACK_IMPORTED_MODULE_4__["default"].create(client).then(function (resp) {
-          if (resp.data.success) {
-            _this.setState({
-              formModal: false
-            }); // toast.success(this.context.CrudMsg.create);
-            // this.getLists();
+    _defineProperty(_assertThisInitialized(_this), "handleBrandingChange", function (data) {
+      var business = _objectSpread({}, _this.state.business);
 
+      business.logo = data;
+
+      _this.setState({
+        business: business
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (business) {
+      var tab = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (tab == 'branding') {
+        business = _this.state.business;
+      }
+
+      if (!business.id) {
+        _api_business__WEBPACK_IMPORTED_MODULE_4__["default"].create(business).then(function (resp) {
+          if (resp.data.success) {
+            var businessData = _objectSpread({}, business);
+
+            businessData.id = resp.data.data;
+
+            _this.setState({
+              business: businessData
+            });
           } else {
             resp.data.data.forEach(function (value, index, array) {
               react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
@@ -2452,15 +2713,8 @@ var Business = /*#__PURE__*/function (_Component) {
           }
         });
       } else {
-        _api_business__WEBPACK_IMPORTED_MODULE_4__["default"].update(client.id, client).then(function (resp) {
-          if (resp.data.success) {
-            _this.setState({
-              formModal: false
-            }); // this.setState({ formModalType: 'new' });
-            // toast.success(this.context.CrudMsg.update);
-            // this.getLists();
-
-          } else {
+        _api_business__WEBPACK_IMPORTED_MODULE_4__["default"].update(business.id, business).then(function (resp) {
+          if (!resp.data.success) {
             resp.data.data.forEach(function (value, index, array) {
               react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error(value);
             });
@@ -2468,10 +2722,17 @@ var Business = /*#__PURE__*/function (_Component) {
         });
       }
 
-      _this.setState({
-        currentTab: 'branding',
-        currentTabIndex: 2
-      });
+      if (tab == 'branding') {
+        _this.setState({
+          currentTab: 'finish',
+          currentTabIndex: 3
+        });
+      } else {
+        _this.setState({
+          currentTab: 'branding',
+          currentTabIndex: 2
+        });
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleSkip", function () {
@@ -2506,20 +2767,10 @@ var Business = /*#__PURE__*/function (_Component) {
       }],
       currentTab: 'welcome',
       currentTabIndex: null,
-      // clients: []
       preloader: true,
-      formModal: false,
-      searchModal: false,
-      formModalType: 'new',
-      client: {
+      business: {
         id: null
-      },
-      clients: [],
-      checkedBoxes: [],
-      offset: 0,
-      perPage: 10,
-      totalPage: 1,
-      currentPage: 1
+      }
     };
     return _this;
   }
@@ -2527,7 +2778,7 @@ var Business = /*#__PURE__*/function (_Component) {
   _createClass(Business, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getData(); // console.log(ncpi_local.assetImgUri)
+      this.getData();
     }
   }, {
     key: "setActiveTab",
@@ -2547,42 +2798,41 @@ var Business = /*#__PURE__*/function (_Component) {
           tabs = _this$state$tabs === void 0 ? [] : _this$state$tabs,
           currentTab = _this$state.currentTab,
           currentTabIndex = _this$state.currentTabIndex;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "piMainContent",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "piContainer",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "piLogoContent",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
               src: ncpi_local.assetImgUri + 'logo.png',
               className: ""
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("strong", {
               className: "",
               children: "Propovoice"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "piTabsContent",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("ul", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
               className: "piTabs",
               children: tabs.map(function (tab, index) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("li", {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("li", {
                   className: 'pi-tab ' + (index <= currentTabIndex ? 'active' : ''),
                   onClick: function onClick(e) {
                     return _this2.setActiveTab(tab.id, index);
                   },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {}), tab.text]
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {}), tab.text]
                 }, index);
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
               className: "piTabContent",
-              children: [currentTab == 'welcome' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                id: "welcome",
-                className: "active",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+              children: [currentTab == 'welcome' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                id: "piWelcome",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
                   children: "A place where you can browse and share content with other Figma users. Pull text strings, avatars and icons directly into your designs."
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                   className: "piButtons piTextCenter",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
                     className: "piBgBlue piBgHoverBlue",
                     onClick: function onClick() {
                       return _this2.setState({
@@ -2591,67 +2841,50 @@ var Business = /*#__PURE__*/function (_Component) {
                       });
                     },
                     children: "Create Business Profile"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
+                    href: ncpi_local.dashboard,
                     className: "piTextHoverBlue",
                     children: "Skip and Go Dashboard"
                   })]
                 })]
-              }), currentTab == 'info' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                id: "business",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Form__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              }), currentTab == 'info' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                id: "piBusiness",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Info__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                  data: this.state.business,
                   handleSubmit: this.handleSubmit,
-                  handleSkip: this.handleSkip,
-                  data: this.state.client
+                  handleSkip: this.handleSkip
                 })
-              }), currentTab == 'branding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                id: "brand",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("form", {
-                  action: "/action_page.php",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                    className: "piTextCenter",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-                      src: "assets/img/uplode-image.png"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                      className: "upload pi-color-blue",
-                      children: "Upload Logo"
-                    })]
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                  className: "piButtons piTextCenter",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-                    className: "piBgBlue piBgHoverBlue",
-                    children: "Continue"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-                    className: "piTextHoverBlue",
-                    onClick: function onClick() {
-                      return _this2.handleSkip('branding');
-                    },
-                    children: "Skip"
-                  })]
-                })]
-              }), currentTab == 'finish' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              }), currentTab == 'branding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                id: "piBrand",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Branding__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  data: this.state.business,
+                  changeHandler: this.handleBrandingChange,
+                  handleSubmit: this.handleSubmit,
+                  handleSkip: this.handleSkip
+                })
+              }), currentTab == 'finish' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 id: "piFinished",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                   className: "piTextCenter",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
                     src: ncpi_local.assetImgUri + 'finish.png'
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
                     className: "upload",
                     children: "It's time to fly!"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
                     children: "Everything Done! You can create Estimate, Invoice, Proposal and Others"
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                   className: "piButtons piTextCenter",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-                    href: ncpi_local.dashboard + '',
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
+                    href: ncpi_local.dashboard,
                     className: "piBgBlack piBgHoverBlue",
                     children: "Dashboard"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
                     href: ncpi_local.dashboard + '#/client',
                     className: "piBgGreen piBgHoverBlue",
                     children: "Add Cleint"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
                     href: ncpi_local.dashboard + '#/invoice',
                     className: "piBgBlue piBgHoverBlue",
                     children: "Create Invoice"
@@ -2660,7 +2893,7 @@ var Business = /*#__PURE__*/function (_Component) {
               })]
             })]
           })]
-        })
+        })]
       });
     }
   }]);
@@ -2768,7 +3001,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".ncpi .piMainContent {\n  background-color: var(--bg-color-white);\n  margin-top: 80px;\n}\n\n.ncpi .piContainer {\n  left: 0;\n  right: 0;\n  margin: auto;\n  max-width: 657px;\n  border-radius: 40px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 65px;\n}\n\n.ncpi .piLogoContent {\n  text-align: center;\n  margin-bottom: 33px;\n}\n\n.ncpi .piLogoContent img {\n  width: 36px;\n  height: 36px;\n  margin: auto;\n}\n\n.ncpi .piLogoContent strong {\n  position: relative;\n  top: -10px;\n  left: 10px;\n  font-size: 24px;\n}\n\n.ncpi .piButtons.piTextCenter button:last-child {\n  display: block;\n  color: #000;\n  left: 0;\n  right: 0;\n  margin: auto;\n}\n\n.ncpi #piFinished .piButtons.piTextCenter button:last-child {\n  display: inline;\n  color: var(--text-color-white);\n  margin-right: 0;\n}\n\n.ncpi #piFinished .piButtons.piTextCenter button {\n  margin-right: 10px;\n}\n\n@media screen and (max-width: 500px) {\n  .ncpi #piFinished .piButtons.piTextCenter button {\n    margin-bottom: 10px;\n  }\n}\n.ncpi #piFinished h3 {\n  font-size: 36px;\n  font-weight: 500;\n  margin-bottom: 15px;\n  margin-top: 30px;\n}\n\n.ncpi .piTabsContent #piWelcome p {\n  margin-bottom: 70px;\n}\n\n.ncpi .piTabsContent #piFinished p {\n  margin-bottom: 45px;\n}\n\n.ncpi .piTabsContent #piFinished .piButtons a {\n  padding: 15px 20px;\n  font-weight: 600;\n  border-radius: 8px;\n  color: #fff;\n  cursor: pointer;\n  border: none;\n  font-size: 14px;\n  margin-left: 10px;\n  display: inline-block;\n}\n\n.ncpi .piTabsContent #piFinished .piButtons a:first-child {\n  margin-left: 0px;\n}\n\n@media screen and (max-width: 768px) {\n  .ncpi .ncpi .piContainer {\n    padding: 20px;\n  }\n}\n.ncpi .piTabContent #piBrand img {\n  text-align: center;\n  margin-bottom: 5px;\n}\n\n.ncpi .piTabContent #piBrand .upload {\n  font-size: 19px;\n  margin-bottom: 45px;\n  margin-top: 30px;\n  font-weight: 700;\n}\n\n.ncpi .piTabContent #piBrand input {\n  display: block;\n  margin: auto;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".ncpi .piMainContent {\n  background-color: var(--bg-color-white);\n  margin-top: 80px;\n}\n\n.ncpi .piContainer {\n  left: 0;\n  right: 0;\n  margin: auto;\n  max-width: 657px;\n  border-radius: 40px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 45px 65px;\n}\n\n@media screen and (max-width: 768px) {\n  .ncpi .piContainer {\n    padding: 30px;\n  }\n}\n.ncpi .piLogoContent {\n  text-align: center;\n  margin-bottom: 33px;\n}\n\n.ncpi .piLogoContent img {\n  width: 36px;\n  height: 36px;\n  margin: auto;\n}\n\n.ncpi .piLogoContent strong {\n  position: relative;\n  top: -10px;\n  left: 10px;\n  font-size: 24px;\n}\n\n.ncpi .piButtons.piTextCenter a {\n  display: table;\n  color: #000;\n  left: 0;\n  right: 0;\n  margin: auto;\n  padding: 10px;\n  font-weight: 600;\n}\n\n.ncpi #piFinished .piButtons.piTextCenter a:last-child {\n  display: inline;\n  color: var(--text-color-white);\n  margin-right: 0;\n}\n\n@media screen and (max-width: 500px) {\n  .ncpi #piFinished .piButtons.piTextCenter a {\n    margin-bottom: 30px;\n  }\n}\n.ncpi #piFinished h3 {\n  font-size: 36px;\n  font-weight: 500;\n  margin-bottom: 15px;\n  margin-top: 30px;\n}\n\n.ncpi .piTabsContent #piWelcome p {\n  margin-bottom: 70px;\n}\n\n.ncpi .piTabsContent #piFinished p {\n  margin-bottom: 45px;\n}\n\n.ncpi .piTabsContent #piFinished .piButtons a {\n  padding: 15px 20px;\n  font-weight: 600;\n  border-radius: 8px;\n  color: #fff;\n  cursor: pointer;\n  border: none;\n  font-size: 14px;\n  margin-left: 10px;\n  display: inline-block;\n}\n\n.ncpi .piTabsContent #piFinished .piButtons a:first-child {\n  margin-left: 0px;\n}\n\n.ncpi .piTabContent #piBrand img {\n  text-align: center;\n  margin-bottom: 5px;\n}\n\n.ncpi .piTabContent #piBrand .upload {\n  font-size: 19px;\n  margin-top: 30px;\n  margin-bottom: 40px;\n  margin-top: 10px;\n  font-weight: 700;\n}\n\n.ncpi .piTabContent #piBrand input {\n  display: block;\n  margin: auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

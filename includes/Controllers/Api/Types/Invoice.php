@@ -282,15 +282,15 @@ class Invoice
         $from     = isset( $params['from'] ) ? $params['from'] : null;
         $to     = isset( $params['to'] ) ? $params['to'] : null;
 
-        $total    = 0;
+        $total  = 0;
         foreach ( $params['items'] as $item ) {
             $total += ( $item['qty'] * $item['price'] );
         }
         $paid     = isset( $params['paid'] ) ? $params['paid'] : null;
         $due      = $paid ? $total - $paid : null; 
 
-        $attachments   = isset( $params['attachments'] ) ? $params['attachments'] : null;
-        $signature     = isset( $params['signature'] ) ? $params['signature'] : null;       
+        $attachments = isset( $params['attachments'] ) ? $params['attachments'] : null;
+        $signature   = isset( $params['signature'] ) ? $params['signature'] : null;       
 
         if ( !$from ) {
             $reg_errors->add('field', esc_html__('Sender is missing', 'propovoice'));

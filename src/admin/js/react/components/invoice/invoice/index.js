@@ -9,9 +9,8 @@ import ReactPaginate from 'react-paginate';
 
 import TablePreloader from '../../preloader/table';
 
-import Api from '../../../api/invoice';
+import Api from '../../../api/invoice'; 
 
-import Form from './Form';
 import Table from './Table';
 import Search from './Search';
 
@@ -203,15 +202,7 @@ export default class Invoice extends Component {
                     className="float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
-                </button>
-
-                <Form
-                    handleSubmit={this.handleSubmit}
-                    show={this.state.formModal}
-                    modalType={this.state.formModalType}
-                    data={this.state.client}
-                    close={this.closeForm}
-                />
+                </button> 
 
                 <Search
                     handleSubmit={this.getLists}

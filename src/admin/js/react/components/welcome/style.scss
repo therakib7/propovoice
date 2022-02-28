@@ -1,95 +1,94 @@
 .ncpi .piMainContent {
-    background-color: var(--bg-color-white);
-    margin-top: 80px;
-  }
-  
+  background-color: var(--bg-color-white);
+  margin-top: 80px;
+}
+
+.ncpi .piContainer {
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 657px;
+  border-radius: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 45px 65px;
+}
+@media screen and (max-width: 768px) {
   .ncpi .piContainer {
-    left: 0;
-    right: 0;
-    margin: auto;
-    max-width: 657px;
-    border-radius: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 65px;
+    padding: 30px;
   }
-  .ncpi .piLogoContent {
-    text-align: center;
-    margin-bottom: 33px;
+}
+.ncpi .piLogoContent {
+  text-align: center;
+  margin-bottom: 33px;
+}
+.ncpi .piLogoContent img {
+  width: 36px;
+  height: 36px;
+  margin: auto;
+}
+.ncpi .piLogoContent strong {
+  position: relative;
+  top: -10px;
+  left: 10px;
+  font-size: 24px;
+}
+.ncpi .piButtons.piTextCenter a {
+  display: table;
+  color: #000;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 10px;
+  font-weight: 600;
+}
+.ncpi #piFinished .piButtons.piTextCenter a:last-child {
+  display: inline;
+  color: var(--text-color-white);
+  margin-right: 0;
+}
+@media screen and (max-width: 500px) {
+  .ncpi #piFinished .piButtons.piTextCenter a {
+    margin-bottom: 30px;
   }
-  .ncpi .piLogoContent img {
-    width: 36px;
-    height: 36px;
-    margin: auto;
-  }
-  .ncpi .piLogoContent strong {
-    position: relative;
-    top: -10px;
-    left: 10px;
-    font-size: 24px;
-  }
-  .ncpi .piButtons.piTextCenter button:last-child {
-    display: block;
-    color: #000;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
-  .ncpi #piFinished .piButtons.piTextCenter button:last-child {
-    display: inline;
-    color: var(--text-color-white);
-    margin-right: 0;
-  }
-  .ncpi #piFinished .piButtons.piTextCenter button {
-    margin-right: 10px;
-  }
-  @media screen and (max-width: 500px) {
-    .ncpi #piFinished .piButtons.piTextCenter button {
-      margin-bottom: 10px;
-    }
-  }
-  .ncpi #piFinished h3 {
-    font-size: 36px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    margin-top: 30px;
-  }
-  .ncpi .piTabsContent #piWelcome p {
-    margin-bottom: 70px;
-  }
-  .ncpi .piTabsContent #piFinished p {
-    margin-bottom: 45px;
-  }
-  .ncpi .piTabsContent #piFinished .piButtons a {
-    padding: 15px 20px;
-    font-weight: 600;
-    border-radius: 8px;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    font-size: 14px;
-    margin-left: 10px;
-    display: inline-block;
-  }
-  .ncpi .piTabsContent #piFinished .piButtons a:first-child {
-    margin-left: 0px;
-  }
-  @media screen and (max-width: 768px) {
-    .ncpi .ncpi .piContainer {
-      padding: 20px;
-    }
-  }
-  .ncpi .piTabContent #piBrand img {
-    text-align: center;
-    margin-bottom: 5px;
-  }
-  .ncpi .piTabContent #piBrand .upload {
-    font-size: 19px;
-    margin-bottom: 45px;
-    margin-top: 30px;
-    font-weight: 700;
-  }
-  .ncpi .piTabContent #piBrand input {
-    display: block;
-    margin: auto;
-  }
-  
+}
+.ncpi #piFinished h3 {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+.ncpi .piTabsContent #piWelcome p {
+  margin-bottom: 70px;
+}
+.ncpi .piTabsContent #piFinished p {
+  margin-bottom: 45px;
+}
+.ncpi .piTabsContent #piFinished .piButtons a {
+  padding: 15px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  margin-left: 10px;
+  display: inline-block;
+}
+.ncpi .piTabsContent #piFinished .piButtons a:first-child {
+  margin-left: 0px;
+}
+.ncpi .piTabContent #piBrand img {
+  text-align: center;
+  margin-bottom: 5px;
+}
+.ncpi .piTabContent #piBrand .upload {
+  font-size: 19px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  margin-top: 10px;
+  font-weight: 700;
+}
+.ncpi .piTabContent #piBrand input {
+  display: block;
+  margin: auto;
+}

@@ -4,7 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Style from './style.scss'
 
 import Api from '../../api/business'; 
-import Form from './Form';
+import Info from './Info';
+import Branding from './Branding';
 
 export default class Business extends Component {
     constructor(props) {
@@ -30,46 +31,44 @@ export default class Business extends Component {
                 } 
             ],
             currentTab: 'welcome',
-            currentTabIndex: null, 
-            // clients: []
-            preloader: true,
-            formModal: false,
-            searchModal: false,
-            formModalType: 'new',
-            client: { id: null },
-            clients: [],
-            checkedBoxes: [],
-            offset: 0,
-            perPage: 10,
-            totalPage: 1,
-            currentPage: 1
+            currentTabIndex: null,  
+            preloader: true, 
+            business: { id: null } 
         };
     } 
 
     componentDidMount() {
-        this.getData();
-        // console.log(ncpi_local.assetImgUri)
+        this.getData(); 
     }
 
     getData = () => {  
         Api.getAll('default=1')
         .then(resp => {
             let businessData = resp.data.data.result;
-            if ( businessData.length ) { 
-                // console.log(businessData)
-                this.setState({ client: businessData[0] });  
+            if ( businessData.length ) {  
+                this.setState({ business: businessData[0] });  
             }
         }); 
     };
 
-    handleSubmit = client => { 
-        if ( !client.id ) {
-            Api.create(client)
+    handleBrandingChange = ( data ) => {  
+		let business = {...this.state.business} 
+		business.logo = data; 
+		this.setState({business})  
+	}
+
+    handleSubmit = ( business, tab = null ) => { 
+        if ( tab == 'branding' ) {
+            business = this.state.business;
+        }
+
+        if ( !business.id ) {
+            Api.create(business)
                 .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ formModal: false })
-                        // toast.success(this.context.CrudMsg.create);
-                        // this.getLists();
+                    if ( resp.data.success ) {   
+                        let businessData = {...business} 
+                        businessData.id = resp.data.data; 
+                        this.setState({ business: businessData });
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -77,14 +76,9 @@ export default class Business extends Component {
                     }
                 })
         } else {
-            Api.update(client.id, client)
+            Api.update(business.id, business)
                 .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ formModal: false })
-                        // this.setState({ formModalType: 'new' });
-                        // toast.success(this.context.CrudMsg.update);
-                        // this.getLists();
-                    } else {
+                    if ( !resp.data.success) { 
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
                         });
@@ -92,7 +86,11 @@ export default class Business extends Component {
                 })
         }
 
-        this.setState({ currentTab: 'branding', currentTabIndex: 2 });
+        if ( tab == 'branding' ) {
+            this.setState({ currentTab: 'finish', currentTabIndex: 3 });
+        } else {
+            this.setState({ currentTab: 'branding', currentTabIndex: 2 });
+        } 
     }  
 
     handleSkip = ( name = null ) => { 
@@ -115,6 +113,7 @@ export default class Business extends Component {
         const { tabs = [], currentTab, currentTabIndex } = this.state;
         return (
             <div className="piMainContent">
+                <ToastContainer />
                 <div className="piContainer">
                     <div className="piLogoContent">
                         <img src={ncpi_local.assetImgUri+'logo.png'} className="" />
@@ -122,18 +121,18 @@ export default class Business extends Component {
                     </div>
 
                     <div className="piTabsContent">
-                        <ul className="piTabs"> 
+                        <ul className="piTabs">
                             {tabs.map((tab, index) => ( 
                                 <li className={'pi-tab ' + (index <= currentTabIndex ? 'active' : '' )} key={index} onClick={(e) => this.setActiveTab(tab.id, index)}>
                                     <span></span>
                                     {tab.text} 
                                 </li>
                             ))}
-                        </ul> 
-                        
+                        </ul>
+
                         <div className="piTabContent">
                             { currentTab == 'welcome' &&
-                            <div id="welcome" className="active">
+                            <div id="piWelcome">
                                 <p>
                                     A place where you can browse and share content with other Figma
                                     users. Pull text strings, avatars and icons directly into your
@@ -143,31 +142,27 @@ export default class Business extends Component {
                                     <button className="piBgBlue piBgHoverBlue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
                                     Create Business Profile
                                     </button>
-                                    <button className="piTextHoverBlue">Skip and Go Dashboard</button>
+                                    <a href={ncpi_local.dashboard} className="piTextHoverBlue">Skip and Go Dashboard</a>
                                 </div>
                             </div>}
 
                             { currentTab == 'info' &&
-                            <div id="business">
-                                <Form
+                            <div id="piBusiness">
+                                <Info 
+                                    data={this.state.business} 
                                     handleSubmit={this.handleSubmit} 
                                     handleSkip={this.handleSkip} 
-                                    data={this.state.client} 
                                 /> 
                             </div>}
 
                             { currentTab == 'branding' &&
-                            <div id="brand">
-                                <form action="/action_page.php">
-                                    <div className="piTextCenter">
-                                    <img src="assets/img/uplode-image.png" />
-                                    <h3 className="upload pi-color-blue">Upload Logo</h3>
-                                    </div>
-                                </form>
-                                <div className="piButtons piTextCenter">
-                                    <button className="piBgBlue piBgHoverBlue">Continue</button>
-                                    <button className="piTextHoverBlue" onClick={() => this.handleSkip('branding')}>Skip</button>
-                                </div>
+                            <div id="piBrand">
+                                <Branding 
+                                    data={this.state.business} 
+                                    changeHandler={this.handleBrandingChange}
+                                    handleSubmit={this.handleSubmit} 
+                                    handleSkip={this.handleSkip} 
+                                /> 
                             </div>}
 
                             { currentTab == 'finish' &&
@@ -176,20 +171,22 @@ export default class Business extends Component {
                                     <img src={ncpi_local.assetImgUri+'finish.png'} />
                                     <h3 className="upload">It's time to fly!</h3>
                                     <p>
-                                        Everything Done! You can create Estimate, Invoice, Proposal and
-                                        Others 
+                                    Everything Done! You can create Estimate, Invoice, Proposal and
+                                    Others 
                                     </p>
                                 </div>
                                 <div className="piButtons piTextCenter"> 
-                                    <a href={ncpi_local.dashboard + ''} className="piBgBlack piBgHoverBlue">Dashboard</a>
+                                    <a href={ncpi_local.dashboard} className="piBgBlack piBgHoverBlue">Dashboard</a>
                                     <a href={ncpi_local.dashboard + '#/client'} className="piBgGreen piBgHoverBlue">Add Cleint</a>
                                     <a href={ncpi_local.dashboard + '#/invoice'} className="piBgBlue piBgHoverBlue">Create Invoice</a>
                                 </div>
                             </div>}
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
+
+                        </div>{/* ./piTabsContent */}
+                    </div>{/* ./tabs-content */}
+                </div>{/* ./piContainer */}
+            </div>
+ 
         );
     }
 } 
