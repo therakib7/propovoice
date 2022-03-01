@@ -2345,7 +2345,7 @@ html {
   border-radius: 8px;
 }
 
-.pi-action-content {
+.pi-pi-action-content {
   position: relative;
 }
 
@@ -2452,7 +2452,7 @@ html {
 .ncpi .piFloatCenter {
   float: center;
 }
-.ncpi .piFloatRight {
+.ncpi .pi-float-right {
   float: right;
 }
 .ncpi .piFloatLeft {
@@ -2796,7 +2796,7 @@ form .icon-search {
     margin-right: 0px;
   }
 }
-.piSearchBox.piFloatRight input {
+.pi-search-box.pi-float-right input {
   color: #1A202C;
   font-size: 14px;
   padding: 14px;
@@ -2810,10 +2810,10 @@ form .icon-search {
   background: transparent;
 }
 
-.piSearchBox.piFloatRight {
+.pi-search-box.pi-float-right {
   position: relative;
 }
-.piSearchBox.piFloatRight svg {
+.pi-search-box.pi-float-right svg {
   position: absolute;
   left: 10px;
   top: 10px;
@@ -3190,7 +3190,7 @@ a:hover, a:active {
 .pi-left-sidebar ul li a .polygon {
   position: absolute;
   right: 20px;
-  top: 20px;
+  top: 23px;
   transform: rotate(90deg);
 }
 
@@ -3200,6 +3200,7 @@ a:hover, a:active {
   display: block;
   padding: 8px 25px;
   padding-left: 40px;
+  font-size: 14px;
 }
 
 .pi-left-sidebar ul li .pi-sub-menu {
@@ -3242,12 +3243,13 @@ a:hover, a:active {
   border-radius: 20px;
   padding: 25px;
 }
-.ncpi .piTextHoverBlue.piFloatRight {
+.ncpi .piTextHoverBlue.pi-float-right {
   background-color: transparent;
 }
 .ncpi .pi-cards .pi-bg-air-white span {
   font-weight: 500;
   text-transform: capitalize;
+  font-size: 14px;
 }
 .ncpi .pi-cards .pi-bg-air-white h4 {
   font-size: 24px;
@@ -3290,6 +3292,7 @@ a:hover, a:active {
 }
 .ncpi .pi-table tr td {
   padding: 15px 0;
+  font-size: 14px;
 }
 .ncpi .pi-table tr td .pi-status {
   padding: 5px 15px;
@@ -3313,8 +3316,51 @@ a:hover, a:active {
   }
 }
 @media screen and (max-width: 500px) {
-  .ncpi .piSearchBox.piFloatRight {
+  .ncpi .pi-search-box.pi-float-right {
     margin-top: 15px;
     float: left;
   }
+}
+.ncpi .pi-dropbtn {
+  padding: 7px 12px 2px;
+  position: relative;
+  top: 2px;
+  display: block;
+  border-radius: 5px;
+}
+.ncpi .pi-dropbtn:hover, .ncpi .pi-dropbtn:focus {
+  background-color: #EDF2F7;
+}
+.ncpi .pi-dropdown {
+  display: inline-block;
+}
+.ncpi .pi-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 0 10px #dfdfdf;
+  z-index: 1;
+  right: 0;
+  top: 50px;
+  border-radius: 8px;
+}
+.ncpi .pi-action-content {
+  position: relative;
+}
+.ncpi .pi-action-content button {
+  background-color: transparent;
+  border: none;
+}
+.ncpi .pi-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.ncpi .pi-dropdown a:hover {
+  background-color: #EDF2F7;
+}
+.ncpi .pi-show {
+  display: block;
 }

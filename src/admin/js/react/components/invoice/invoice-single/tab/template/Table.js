@@ -10,16 +10,16 @@ const TableBody = props => {
         /* return (
             <tr key={index}>
                  
-                <td className="text-left py-3 px-4">{row.first_name + ' ' + row.last_name}</td>
-                <td className="text-left py-3 px-4">{row.email}</td>
-                <td className="text-left py-3 px-4">{row.company_name}</td>
-                <td className="text-left py-3 px-4">{row.web}</td>
-                <td className="text-left py-3 px-4">{row.mobile}</td>
-                <td className="text-left py-3 px-4">{row.date}</td> 
-                <td className="text-left py-3 px-4">
+                <td>{row.first_name + ' ' + row.last_name}</td>
+                <td>{row.email}</td>
+                <td>{row.company_name}</td>
+                <td>{row.web}</td>
+                <td>{row.mobile}</td>
+                <td>{row.date}</td> 
+                <td>
                     <span onClick={() => handleClick(row.id)} className='bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2 inline-block align-middle'>Overview</span>
-                    <span onClick={() => props.editEntry('edit', row)} className='bg-gray-800 hover:bg-gray-900 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2 inline-block align-middle'><i className="dashicons dashicons-edit-page"></i></span>
-                    <span onClick={() => props.deleteEntry('single', row.id)} className='bg-red-800 hover:bg-red-900 cursor-pointer text-white text-sm py-1 px-2 rounded inline-block align-middle'><i className="dashicons dashicons-trash"></i></span>
+                    <span onClick={() => props.editEntry('edit', row)} ><i className="dashicons dashicons-edit-page"></i></span>
+                    <span onClick={() => props.deleteEntry('single', row.id)} ><i className="dashicons dashicons-trash"></i></span>
                 </td>
             </tr>
         ); */

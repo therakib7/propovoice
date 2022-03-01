@@ -57,7 +57,7 @@ class Send extends Component {
                     if (resp.data.success) {  
 						//this.props.routeChange(resp.data.data);  
 
-                        toast.success('Mail sucessfully send'); 
+                        toast.success('Mail sucessfully sent'); 
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);

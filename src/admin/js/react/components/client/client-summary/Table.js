@@ -2,30 +2,30 @@ import React from 'react';
 
 const TableHeader = () => {
     return (
-        <thead className="bg-gray-300 text-gray-800">
+        <thead>
             <tr>
-                <th className="text-left py-3 pl-4 pr-0 font-bold text-sm" style={{ width: '20px' }}>
+                <th>
                     <input type="checkbox" />
                 </th>
-                <th className="text-left py-3 px-4 font-bold text-sm">
+                <th>
                     Client Name
                 </th>
-                <th className="text-left py-3 px-4 font-semibold text-sm">
+                <th>
                     Email
                 </th>
-                <th className="text-left py-3 px-4 font-semibold text-sm">
+                <th>
                     Company Name
                 </th>
-                <th className="text-left py-3 px-4 font-semibold text-sm">
+                <th>
                     Website
                 </th>
-                <th className="text-left py-3 px-4 font-semibold text-sm">
+                <th>
                     Mobile
                 </th>
-                <th className="text-left py-3 px-4 font-semibold text-sm">
+                <th>
                     Date
                 </th>
-                <th className="text-left py-3 px-4 font-semibold text-sm">
+                <th>
                     Action
                 </th>
             </tr>
@@ -37,15 +37,15 @@ const TableBody = props => {
     const rows = props.tableData.map((row, index) => {
         return (
             <tr key={index}>
-                <td className="text-left py-3 pl-4 pr-0"><input type="checkbox" /></td>
-                <td className="text-left py-3 px-4">{row.first_name + ' ' + row.last_name}</td>
-                <td className="text-left py-3 px-4">{row.email}</td>
-                <td className="text-left py-3 px-4">{row.company_name}</td>
-                <td className="text-left py-3 px-4">{row.web}</td>
-                <td className="text-left py-3 px-4">{row.mobile}</td>
-                <td className="text-left py-3 px-4">{row.date}</td>
+                <td><input type="checkbox" /></td>
+                <td>{row.first_name + ' ' + row.last_name}</td>
+                <td>{row.email}</td>
+                <td>{row.company_name}</td>
+                <td>{row.web}</td>
+                <td>{row.mobile}</td>
+                <td>{row.date}</td>
                 {/* <td><button onClick={() => props.deleteEntry(index)}>Delete</button></td> */}
-                <td className="text-left py-3 px-4">
+                <td>
                     <span className='bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>View</span>
                     <span onClick={() => props.editEntry('edit', row)} className='bg-gray-800 hover:bg-gray-900 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2'>Edit</span>
                     <span onClick={() => props.deleteEntry('single', row.id)} className='bg-red-800 hover:bg-red-900 cursor-pointer text-white text-sm py-1 px-2 rounded'>Delete</span>
@@ -54,14 +54,14 @@ const TableBody = props => {
         );
     });
 
-    return <tbody className="text-gray-700">{rows}</tbody>;
+    return <tbody>{rows}</tbody>;
 }
 
 const Table = (props) => {
     const { tableData, editEntry, deleteEntry } = props;
     return (
-        <div className="shadow overflow-hidden rounded border-b border-gray-200">
-            <table className="min-w-full bg-white">
+        <div className='pi-table-wrap'>
+            <table className='pi-table'>
 
                 <TableHeader />
                 <TableBody tableData={tableData} editEntry={editEntry} deleteEntry={deleteEntry} />
