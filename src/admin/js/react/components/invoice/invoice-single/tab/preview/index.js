@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import 'react-toastify/dist/ReactToastify.css';  
-
+import { ToastContainer } from 'react-toastify';
 import Template1 from './template/1'; 
 import Template2 from './template/2';  
 
@@ -27,6 +27,7 @@ export default class Preview extends Component {
         const { id } = this.props.data.invoice.template; 
         return (
             <div className='max-w-3xl m-auto p-5 '> 
+                <ToastContainer />
                 <div className={'ncpi-invoice-preview ncpi-invoice-preview-' + id}>  
                     { id == 1 && <Template1 {...this.props} /> }
                     { id == 2 && <Template2 {...this.props} /> }
@@ -36,11 +37,13 @@ export default class Preview extends Component {
                     onClick={() => this.setState({ formModal: true }) } >
                     Send Mail
                 </button>
-                    <Send 
-                        show={this.state.formModal} 
-                        data={this.props.data.invoice}
-                        close={this.closeForm}
-                    />
+
+                {this.state.formModal &&
+                <Send 
+                    show={this.state.formModal} 
+                    data={this.props.data}
+                    close={this.closeForm}
+                />}
                 </div> 
             </div>
         );

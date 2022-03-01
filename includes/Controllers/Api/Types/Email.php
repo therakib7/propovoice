@@ -39,20 +39,7 @@ class Email
                     }
                 ),
             ),
-        ));
-
-        register_rest_route('ncpi/v1', '/emails/(?P<id>\d+)', array(
-            'methods' => 'PUT',
-            'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function ($param, $request, $key) {
-                        return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
+        )); 
 
         register_rest_route('ncpi/v1', '/emails/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
@@ -82,7 +69,7 @@ class Email
         }
 
         $args = array( 
-            'post_type' => 'ncpi_invoice',
+            'post_type' => 'ncpi_email',
             'post_status' => 'publish',
             'posts_per_page' => $per_page, 
             'offset' => $offset,
@@ -111,7 +98,7 @@ class Email
                 'last_name' => '',
                 'email' => '',
             ];  
-            $query_data['invoice'] = json_decode( get_post_meta($id, 'invoice', true) );
+            $query_data['email'] = json_decode( get_post_meta($id, 'email', true) );
             
             $query_data['total'] = get_post_meta($id, 'total', true);
             $query_data['paid'] = get_post_meta($id, 'paid', true);
@@ -143,150 +130,64 @@ class Email
         $query_data = [];
         $query_data['id'] = $id; 
           
-        $query_data['invoice'] = json_decode( get_post_meta($id, 'invoice', true) );  
+        $query_data['email'] = json_decode( get_post_meta($id, 'email', true) );  
 
         return wp_send_json_success($query_data); 
+    }
+
+    public function templateVariable( $string = '', $compnay_name, $client_name, $invoice_id, $invoice_url ) {
+        return str_replace(
+            array(
+                '{company_name}', 
+                '{client_name}',
+                '{invoice_id}',
+                '{invoice_url}'
+            ), 
+            array(
+                $compnay_name,
+                $client_name,
+                $invoice_id, 
+                $invoice_url
+            ), 
+            $string
+        );
     }
 
     public function create($req)
     { 
 
-        $params = $req->get_params(); 
-        $reg_errors             = new \WP_Error; 
-        //TODO: sanitize later
-        $invoice  = isset( $params['invoice'] ) ? $params['invoice'] : null;
-        // wp_send_json_success($invoice);
-        $total    = 0;
-        foreach ( $params['invoice']['items'] as $item ) {
-            $total += ( $item['qty'] * $item['price'] );
-        }
-        $paid     = isset( $params['invoice']['paid'] ) ? $params['invoice']['paid'] : null;
-        $due      = $paid ? $total - $paid : null; 
-
-        if (
-            //empty($total) ||
-            empty($invoice) 
-        ) {
-            $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
-        } 
-
-        if ( $reg_errors->get_error_messages() ) {
-            wp_send_json_error($reg_errors->get_error_messages());
-        } else {
+        $params = $req->get_params();  
         
-            $title = 'This is the title'; 
-            $data = array(
-                'post_type' => 'ncpi_invoice',
-                'post_title'    => $title,
-                'post_content'  => '',
-                'post_status'   => 'publish',
-                'post_author'   => get_current_user_id() 
-            ); 
-            $post_id = wp_insert_post( $data );
 
-            if ( !is_wp_error($post_id) ) {
-                
-                if ( $invoice ) {
-                    update_post_meta($post_id, 'invoice', json_encode($invoice)); 
-                }
-                 
-                if ( $total ) {
-                    update_post_meta($post_id, 'total', $total); 
-                } 
-
-                if ( $paid ) {
-                    update_post_meta($post_id, 'paid', $paid); 
-                } 
-
-                if ( $due ) {
-                    update_post_meta($post_id, 'due', $due); 
-                } 
-
-                wp_send_json_success($post_id);
-            } else {
-                wp_send_json_error();
-            }
-        }
-    }
-
-    function my_custom_email_content_type() {
-        return 'text/html';
-    }
-
-    public function update($req)
-    {  
-
-        /* $to  = 'my@email.com';
-        $subject = 'WordPress wp_mail';
-        $message = '
-        <html>
-        <body>
-            <table rules="all" style="border-color: #666;" cellpadding="10">
-            <tr>Hello WordPress '. WP_PLUGIN_DIR . '/propovoice/1.jpg'.'</tr>
-            </table>          
-        </body>
-        </html>
-        ';
-
-        $attachments = array(  WP_PLUGIN_DIR . '/propovoice/1.jpg' );
-        //  $attachments = array( WP_CONTENT_DIR . '/uploads/file_to_attach.zip' )
-        $headers[] = 'From: '.get_option( 'blogname' ).' <'.get_option( 'admin_email' ).'>';
-        add_filter( 'wp_mail_content_type', [$this, 'my_custom_email_content_type'] );
-        wp_mail( $to, $subject, $message, $headers, $attachments ); */
-
-        $params = $req->get_params(); 
-        $reg_errors = new \WP_Error;  
-        $invoice  = isset( $params['invoice'] ) ? $params['invoice'] : null; 
-        $total    = 0;
-        foreach ( $params['invoice']['items'] as $item ) {
-            $total += ( $item['qty'] * $item['price'] );
-        }
-        $paid     = isset( $params['invoice']['paid'] ) ? $params['invoice']['paid'] : null;
-        $due      = $paid ? $total - $paid : null; 
-
-        if ( 
-            empty($invoice) 
-        ) {
-            $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
-        } 
-
-        if ( $reg_errors->get_error_messages() ) {
-            wp_send_json_error($reg_errors->get_error_messages());
-        } else {
-            $url_params = $req->get_url_params();
-            $post_id    = $url_params['id'];
+        $mail_from = isset( $params['fromData'] ) ? $params['fromData']['email'] : '';
+        $mail_to = isset( $params['toData'] ) ? $params['toData']['email'] : '';
+        $invoice_id = isset( $params['invoice_id'] ) ? $params['invoice_id'] : '';
+        $mail_subject = isset( $params['subject'] ) ? $params['subject'] : '';
  
-            $data = array(
-                'ID'            => $post_id,
-                'post_title'    => '',
-                'post_content'  => ''
-            ); 
-            $post_id = wp_update_post( $data );
+        
+ 
+        $compnay_name = 'Nurency Digital';
+        $client_name = 'Ashraf Vai'; 
+        $invoice_url = 'https://nurency.com';
 
-            if ( !is_wp_error($post_id) ) {
-                
-                if ( $invoice ) {
-                    update_post_meta($post_id, 'invoice', json_encode($invoice)); 
-                }
-                 
-                if ( $total ) {
-                    update_post_meta($post_id, 'total', $total); 
-                } 
+        $subject = $this->templateVariable( $mail_subject, $compnay_name, $client_name, $invoice_id, $invoice_url );
+        $template = ncpi()->render('email/invoice', [], true);  
+        $body = $this->templateVariable( $template, $compnay_name, $client_name, $invoice_id, $invoice_url );
 
-                if ( $paid ) {
-                    update_post_meta($post_id, 'paid', $paid); 
-                } 
-
-                if ( $due ) {
-                    update_post_meta($post_id, 'due', $due); 
-                } 
-
-                wp_send_json_success($post_id);
-            } else {
-                wp_send_json_error();
-            }
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+        $headers[] = 'From: '.$compnay_name.' <'.$mail_from.'>';
+        //$headers[] = 'Cc: John Q Codex <jqc@wordpress.org>';
+        //$headers[] = 'Cc: iluvwp@wordpress.org';
+        $send_mail = wp_mail( $mail_to, $subject, $body, $headers );
+        
+        if ( $send_mail ) {
+            wp_send_json_success($send_mail);
+        } else {
+            wp_send_json_error( ['Something wrong'] );
         }
+        
     }
+
 
     public function delete($req)
     {
