@@ -52,9 +52,9 @@ class AssetContoller {
 			is_page_template('dashboard-template.php')
 		) {  
 			
-			wp_enqueue_style('dashicons');
+			// wp_enqueue_style('dashicons');
 			  
-			wp_enqueue_script( 'tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind.js" ), array(), $this->version, false ); 
+			// wp_enqueue_script( 'tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind.js" ), array(), $this->version, false ); 
 			wp_enqueue_style( 'ncpi-dashboard', ncpi()->get_assets_uri( "admin/css/dashboard{$this->suffix}.css" ), array(), $this->version );  
 			wp_enqueue_script( 'ncpi-dashboard', ncpi()->get_assets_uri( "/admin/js/dashboard{$this->suffix}.js" ), array(), $this->version, true ); 
 			
