@@ -25,7 +25,10 @@ class AssetContoller {
 	}    
 
 	function hide_admin_bar( $show ){
-		if ( is_page_template('dashboard-template.php') ) {
+		if ( 
+			is_page_template('dashboard-template.php') ||
+			is_page_template('invoice-template.php') 
+		) {
 			return false;
 		}  
 		return $show;
@@ -43,7 +46,17 @@ class AssetContoller {
 				'apiUrl' => esc_url( rest_url() ), 
 				'nonce' => wp_create_nonce( 'wp_rest' ),
 				'dashboard' => menu_page_url('ncpi', false),
-				'assetImgUri' => ncpi()->get_assets_uri('admin/imgs/')
+				'assetImgUri' => ncpi()->get_assets_uri('admin/img/')
+			) );
+		}
+
+		if ( is_page_template('invoice-template.php') ) {  
+			wp_enqueue_style( 'ncpi-invoice', ncpi()->get_assets_uri( "admin/css/invoice{$this->suffix}.css" ), array(), $this->version );
+			wp_enqueue_script( 'ncpi-invoice', ncpi()->get_assets_uri( "/admin/js/invoice{$this->suffix}.js" ), array(), $this->version, true );  
+			wp_localize_script( 'ncpi-invoice', 'ncpi_local', array(
+				'apiUrl' => esc_url( rest_url() ), 
+				'nonce' => wp_create_nonce( 'wp_rest' ), 
+				'assetImgUri' => ncpi()->get_assets_uri('admin/img/')
 			) );
 		}
 
@@ -62,7 +75,7 @@ class AssetContoller {
 				'apiUrl' => esc_url( rest_url() ),
 				'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
 				'nonce' => wp_create_nonce( 'wp_rest' ),
-				'assetImgUri' => ncpi()->get_assets_uri('admin/imgs/')
+				'assetImgUri' => ncpi()->get_assets_uri('admin/img/')
 			) );
 		}
 	} 

@@ -149,6 +149,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/admin/scss/invoice.scss":
+/*!*************************************!*\
+  !*** ./src/admin/scss/invoice.scss ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/object-assign/index.js":
 /*!*********************************************!*\
   !*** ./node_modules/object-assign/index.js ***!
@@ -3940,6 +3952,7 @@ if (false) {} else {
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/assets/admin/js/blocks/main": 0,
+/******/ 			"assets/admin/css/invoice": 0,
 /******/ 			"assets/admin/css/welcome": 0,
 /******/ 			"assets/admin/css/dashboard": 0
 /******/ 		};
@@ -3991,9 +4004,10 @@ if (false) {} else {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/js/react/blocks/main.jsx")))
-/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/scss/dashboard.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/scss/welcome.scss")))
+/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/invoice","assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/js/react/blocks/main.jsx")))
+/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/invoice","assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/scss/dashboard.scss")))
+/******/ 	__webpack_require__.O(undefined, ["assets/admin/css/invoice","assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/scss/welcome.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/admin/css/invoice","assets/admin/css/welcome","assets/admin/css/dashboard"], () => (__webpack_require__("./src/admin/scss/invoice.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

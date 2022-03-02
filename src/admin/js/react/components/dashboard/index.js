@@ -202,68 +202,38 @@ export default class Dashboard extends Component {
                             </a>
                         </li>
                     </ul>
-                </nav>
-                
-                {businesses.length > 0 &&
-                <>
-                    <div className="pi-cards">
-                        <div className="row">
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                <span className="">Total {title}</span>
-                                <h4 className="pi-color-blue">23</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                <span className="">Paid {title}</span>
-                                <h4 className="pi-color-blue">132</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                <span className="">Unpaid {title}</span>
-                                <h4 className="pi-color-blue">16</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                <span className="">Draft {title}</span>
-                                <h4 className="pi-color-blue">21</h4>
-                                </div>
+                </nav> 
+                 
+                <div className="pi-cards">
+                    <div className="row">
+                        <div className="col col-md-6 col-lg-3">
+                            <div className="pi-bg-air-white">
+                            <span className="">Total Estimate</span>
+                            <h4 className="pi-color-blue">23</h4>
                             </div>
                         </div>
-                    </div> 
-                    <div className="pi-buttons"> 
-                        <button
-                            className="pi-btn pi-bg-blue pi-bg-hover-blue"
-                            onClick={() => this.openForm('new')} >
-                            Create New {title}
-                        </button>
-
-                        {checkedBoxes.length ? <button
-                            className="pi-btn pi-bg-red pi-bg-hover-red"
-                            onClick={() => this.deleteEntry('selected')} >
-                            Delete selected
-                        </button> : ''}
-
-                        <div className="pi-search-box pi-float-right">
-                            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
-                                fill="#718096"
-                            />
-                            <path
-                                d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
-                                fill="#718096"
-                            />
-                            </svg>
-                            <input type="text" className="search-input" placeholder="Search.." />
+                        <div className="col col-md-6 col-lg-3">
+                            <div className="pi-bg-air-white">
+                            <span className="">Paid Invoice</span>
+                            <h4 className="pi-color-blue">132</h4>
+                            </div>
                         </div>
-                    </div> 
-                </>}
+                        <div className="col col-md-6 col-lg-3">
+                            <div className="pi-bg-air-white">
+                            <span className="">Total Project</span>
+                            <h4 className="pi-color-blue">16</h4>
+                            </div>
+                        </div>
+                        <div className="col col-md-6 col-lg-3">
+                            <div className="pi-bg-air-white">
+                            <span className="">Draft</span>
+                            <h4 className="pi-color-blue">21</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
 
-                {!businesses.length && <Empty title={title} clickHandler={() => this.openForm('new')} />}
+                {/* {!businesses.length && <Empty title={title} clickHandler={() => this.openForm('new')} />} */}
 
                 {/* <button
                     className="float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
@@ -285,7 +255,7 @@ export default class Dashboard extends Component {
                     close={this.closeForm}
                 /> 
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={businesses} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
+                {/* {this.state.preloader ? <TablePreloader /> : <Table tableData={businesses} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />} */}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}

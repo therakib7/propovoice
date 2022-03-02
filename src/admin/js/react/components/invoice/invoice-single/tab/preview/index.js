@@ -32,8 +32,7 @@ export default class Preview extends Component {
                     { id == 1 && <Template1 {...this.props} /> }
                     { id == 2 && <Template2 {...this.props} /> }
                
-                <button
-                    className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
+                <button 
                     onClick={() => this.setState({ formModal: true }) } >
                     Send Mail
                 </button>

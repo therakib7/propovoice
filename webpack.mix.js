@@ -81,14 +81,16 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
     mix.js(`src/admin/js/react/blocks/main.jsx`, `assets/admin/js/blocks/main${min}.js`).react() 
         .sass(`src/admin/scss/dashboard.scss`, `assets/admin/css/dashboard${min}.css`) 
         .sass(`src/admin/scss/welcome.scss`, `assets/admin/css/welcome${min}.css`) 
+        .sass(`src/admin/scss/invoice.scss`, `assets/admin/css/invoice${min}.css`) 
         /* .postCss('src/vendor/tailwind/tailwind.css', `assets/vendor/tailwind/tailwind${min}.css`, [
             require('tailwindcss'),
         ]) */ 
-        .copyDirectory('src/admin/imgs', 'assets/admin/imgs')
+        .copyDirectory('src/admin/img', 'assets/admin/img')
         .copyDirectory('src/vendor', 'assets/vendor');
 
     mix.js(`src/admin/js/react/welcome.jsx`, `assets/admin/js/welcome${min}.js`).react()
     mix.js(`src/admin/js/react/dashboard.jsx`, `assets/admin/js/dashboard${min}.js`).react()
+    mix.js(`src/admin/js/react/invoice.jsx`, `assets/admin/js/invoice${min}.js`).react()
 }
 
 if (process.env.NODE_ENV === 'zip') {

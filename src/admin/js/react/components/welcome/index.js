@@ -7,7 +7,7 @@ import Api from '../../api/business';
 import Info from './Info';
 import Branding from './Branding';
 
-export default class Business extends Component {
+export default class Welcome extends Component {
     constructor(props) {
         super(props);
 

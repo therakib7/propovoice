@@ -12,7 +12,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>  
-    <?php echo '<div id="ncpi-dashboard" class="flex ncpi-frontend"></div>'; ?>
+    <?php echo '<div id="ncpi-dashboard"></div>'; ?>
     <?php wp_footer(); ?>
 </body>
 </html>
