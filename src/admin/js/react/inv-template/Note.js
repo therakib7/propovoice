@@ -10,16 +10,11 @@ class Note extends Component {
 
         const { label, text } = this.props.data;
 
-        return (
-            <div className=''> 
-                <div className=''>
-                    {label}
-                </div>
-
-                <div>
-                    {text}
-                </div>
-            </div>
+        return ( 
+            <>
+                <h4>{label}:</h4>
+                <p>{text}</p>
+            </>
         )
     }
 } 

@@ -10,7 +10,7 @@ import Attachments from '../Attachments';
 import Signature from '../Signature';
 
 //style
-import Style from '../scss/2.scss'
+// import Style from '../scss/2.scss'
 
 export default class Two extends Component {
     constructor(props) {

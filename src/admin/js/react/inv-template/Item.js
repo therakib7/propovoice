@@ -8,17 +8,20 @@ class Item extends Component {
         const { name, desc, qty, price } = this.props.data 
         const id = this.props.id; 
 
-        return ( 
+        return (   
             <tr>
-                <td>{ id + 1 }</td>
+                <td>0{ id + 1 }.</td>
                 <td>
-                    <h6 className="text-gray-800 font-semibold lowercase">{name}</h6>
-                    <p className="">{desc}</p> 
+                    {name}<br />
+                    <span>{desc}</span>
                 </td>
                 <td>{qty}</td>
-                <td>{price}</td>
+                <td>
+                    {price}<br />
+                    <span>(Fixed price)</span>
+                </td>
                 <td>{qty * price}</td>
-            </tr> 
+            </tr>
         )
     }
 } 

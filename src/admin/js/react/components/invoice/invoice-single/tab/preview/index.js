@@ -1,11 +1,7 @@
 import React, { Component } from 'react'; 
 import 'react-toastify/dist/ReactToastify.css';  
 import { ToastContainer } from 'react-toastify';
-import Template1 from './template/1'; 
-import Template2 from './template/2';  
-
-//style
-import Style from './scss/all.scss'
+import Template from '../../../../../inv-template';  
 
 import Send from './Send';
 
@@ -21,17 +17,15 @@ export default class Preview extends Component {
     closeForm = () => {
         this.setState({ formModal: false });
     };
-    
 
     render() {   
         const { id } = this.props.data.invoice.template; 
         return (
             <div className='max-w-3xl m-auto p-5 '> 
                 <ToastContainer />
-                <div className={'ncpi-invoice-preview ncpi-invoice-preview-' + id}>  
-                    { id == 1 && <Template1 {...this.props} /> }
-                    { id == 2 && <Template2 {...this.props} /> }
-               
+
+                <Template {...this.props} />
+
                 <button 
                     onClick={() => this.setState({ formModal: true }) } >
                     Send Mail
@@ -43,7 +37,6 @@ export default class Preview extends Component {
                     data={this.props.data}
                     close={this.closeForm}
                 />}
-                </div> 
             </div>
         );
     }
