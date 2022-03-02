@@ -48,7 +48,7 @@ class Info extends Component {
         return (   
             <form onSubmit={this.handleSubmit}>   
 
-                <div className="piBusinessForm">
+                <div className="pi-business-form">
                     <div className="row">
                         <div className="col-md">
                             <label 
@@ -152,9 +152,9 @@ class Info extends Component {
                     </div>
                 </div> 
 
-                <div className="piButtons piTextCenter">
-                    <button type="submit" className="piBgBlue piBgHoverBlue">Save & Continue</button> 
-                    <a className="piTextHoverBlue" onClick={() => this.props.handleSkip('info')}>Skip</a>
+                <div className="pi-buttons pi-text-center">
+                    <button type="submit" className="pi-btn pi-bg-blue pi-bg-hover-blue">Save & Continue</button> 
+                    <a className="pi-text-hover-blue" onClick={() => this.props.handleSkip('info')}>Skip</a>
                 </div>
             </form>
         );

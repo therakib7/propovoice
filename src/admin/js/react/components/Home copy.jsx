@@ -16,7 +16,7 @@ import Proposal from './proposal';
 import Editor from './editor';
 // const Editor = lazy(() => import('./editor')); 
 import Contract from './Contract';
-import Estimate from './estimate';
+import Estimate from './invoice copy';
 import Invoice from './invoice/invoice';
 import InvoiceSingle from './invoice/invoice-single';
 import Payment from './Payment';

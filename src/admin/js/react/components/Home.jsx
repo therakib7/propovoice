@@ -7,7 +7,7 @@ import {
     NavLink
 } from "react-router-dom";
 
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard';
 import Client from './client/client';
 import Project from './project';
 import ClientSummary from './client/client-summary';

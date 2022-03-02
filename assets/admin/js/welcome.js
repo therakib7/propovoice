@@ -2296,7 +2296,7 @@ var Branding = /*#__PURE__*/function (_Component) {
             onChange: _this.onFileChange,
             className: "hidden"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "piTextCenter",
+            className: "pi-text-center",
             onClick: function onClick() {
               return _this.handleUploadFile();
             },
@@ -2308,7 +2308,7 @@ var Branding = /*#__PURE__*/function (_Component) {
             })]
           })]
         }), business.id && business.logo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "piTextCenter",
+          className: "pi-text-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
             src: business.logo.url,
             width: "100",
@@ -2321,15 +2321,15 @@ var Branding = /*#__PURE__*/function (_Component) {
             children: "x"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "piButtons piTextCenter",
+          className: "pi-buttons pi-text-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "piBgBlue piBgHoverBlue",
+            className: "pi-btn pi-bg-blue pi-bg-hover-blue",
             onClick: function onClick() {
               return _this.props.handleSubmit('', 'branding');
             },
             children: "Save & Continue"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-            className: "piTextHoverBlue",
+            className: "pi-text-hover-blue",
             onClick: function onClick() {
               return _this.props.handleSkip('branding');
             },
@@ -2481,7 +2481,7 @@ var Info = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
         onSubmit: this.handleSubmit,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "piBusinessForm",
+          className: "pi-business-form",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "row",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -2574,13 +2574,13 @@ var Info = /*#__PURE__*/function (_Component) {
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "piButtons piTextCenter",
+          className: "pi-buttons pi-text-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
             type: "submit",
-            className: "piBgBlue piBgHoverBlue",
+            className: "pi-btn pi-bg-blue pi-bg-hover-blue",
             children: "Save & Continue"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-            className: "piTextHoverBlue",
+            className: "pi-text-hover-blue",
             onClick: function onClick() {
               return _this2.props.handleSkip('info');
             },
@@ -2799,11 +2799,11 @@ var Business = /*#__PURE__*/function (_Component) {
           currentTab = _this$state.currentTab,
           currentTabIndex = _this$state.currentTabIndex;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "piMainContent",
+        className: "pi-main-content",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          className: "piContainer",
+          className: "pi-container",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: "piLogoContent",
+            className: "pi-logo-content",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
               src: ncpi_local.assetImgUri + 'logo.png',
               className: ""
@@ -2812,9 +2812,9 @@ var Business = /*#__PURE__*/function (_Component) {
               children: "Propovoice"
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: "piTabsContent",
+            className: "pi-tabs-content",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
-              className: "piTabs",
+              className: "pi-tabs",
               children: tabs.map(function (tab, index) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("li", {
                   className: 'pi-tab ' + (index <= currentTabIndex ? 'active' : ''),
@@ -2825,15 +2825,15 @@ var Business = /*#__PURE__*/function (_Component) {
                 }, index);
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-              className: "piTabContent",
+              className: "pi-tab-content",
               children: [currentTab == 'welcome' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                id: "piWelcome",
+                id: "pi-welcome",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
                   children: "A place where you can browse and share content with other Figma users. Pull text strings, avatars and icons directly into your designs."
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                  className: "piButtons piTextCenter",
+                  className: "pi-buttons pi-text-center",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-                    className: "piBgBlue piBgHoverBlue",
+                    className: "pi-btn pi-bg-blue pi-bg-hover-blue",
                     onClick: function onClick() {
                       return _this2.setState({
                         currentTab: 'info',
@@ -2843,19 +2843,19 @@ var Business = /*#__PURE__*/function (_Component) {
                     children: "Create Business Profile"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
                     href: ncpi_local.dashboard,
-                    className: "piTextHoverBlue",
+                    className: "pi-text-hover-blue",
                     children: "Skip and Go Dashboard"
                   })]
                 })]
               }), currentTab == 'info' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                id: "piBusiness",
+                id: "pi-business",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Info__WEBPACK_IMPORTED_MODULE_5__["default"], {
                   data: this.state.business,
                   handleSubmit: this.handleSubmit,
                   handleSkip: this.handleSkip
                 })
               }), currentTab == 'branding' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                id: "piBrand",
+                id: "pi-brand",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Branding__WEBPACK_IMPORTED_MODULE_6__["default"], {
                   data: this.state.business,
                   changeHandler: this.handleBrandingChange,
@@ -2863,9 +2863,9 @@ var Business = /*#__PURE__*/function (_Component) {
                   handleSkip: this.handleSkip
                 })
               }), currentTab == 'finish' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                id: "piFinished",
+                id: "pi-finished",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                  className: "piTextCenter",
+                  className: "pi-text-center",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
                     src: ncpi_local.assetImgUri + 'finish.png'
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
@@ -2875,18 +2875,18 @@ var Business = /*#__PURE__*/function (_Component) {
                     children: "Everything Done! You can create Estimate, Invoice, Proposal and Others"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                  className: "piButtons piTextCenter",
+                  className: "pi-buttons pi-text-center",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
                     href: ncpi_local.dashboard,
-                    className: "piBgBlack piBgHoverBlue",
+                    className: "pi-bg-black pi-bg-hover-blue",
                     children: "Dashboard"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
                     href: ncpi_local.dashboard + '#/client',
-                    className: "piBgGreen piBgHoverBlue",
+                    className: "pi-bg-green pi-bg-hover-blue",
                     children: "Add Cleint"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
                     href: ncpi_local.dashboard + '#/invoice',
-                    className: "piBgBlue piBgHoverBlue",
+                    className: "pi-btn pi-bg-blue pi-bg-hover-blue",
                     children: "Create Invoice"
                   })]
                 })]
@@ -3001,7 +3001,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".ncpi .piMainContent {\n  background-color: var(--bg-color-white);\n  margin-top: 80px;\n}\n\n.ncpi .piContainer {\n  left: 0;\n  right: 0;\n  margin: auto;\n  max-width: 657px;\n  border-radius: 40px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 45px 65px;\n}\n\n@media screen and (max-width: 768px) {\n  .ncpi .piContainer {\n    padding: 30px;\n  }\n}\n.ncpi .piLogoContent {\n  text-align: center;\n  margin-bottom: 33px;\n}\n\n.ncpi .piLogoContent img {\n  width: 36px;\n  height: 36px;\n  margin: auto;\n}\n\n.ncpi .piLogoContent strong {\n  position: relative;\n  top: -10px;\n  left: 10px;\n  font-size: 24px;\n}\n\n.ncpi .piButtons.piTextCenter a {\n  display: table;\n  color: #000;\n  left: 0;\n  right: 0;\n  margin: auto;\n  padding: 10px;\n  font-weight: 600;\n}\n\n.ncpi #piFinished .piButtons.piTextCenter a:last-child {\n  display: inline;\n  color: var(--text-color-white);\n  margin-right: 0;\n}\n\n@media screen and (max-width: 500px) {\n  .ncpi #piFinished .piButtons.piTextCenter a {\n    margin-bottom: 30px;\n  }\n}\n.ncpi #piFinished h3 {\n  font-size: 36px;\n  font-weight: 500;\n  margin-bottom: 15px;\n  margin-top: 30px;\n}\n\n.ncpi .piTabsContent #piWelcome p {\n  margin-bottom: 70px;\n}\n\n.ncpi .piTabsContent #piFinished p {\n  margin-bottom: 45px;\n}\n\n.ncpi .piTabsContent #piFinished .piButtons a {\n  padding: 15px 20px;\n  font-weight: 600;\n  border-radius: 8px;\n  color: #fff;\n  cursor: pointer;\n  border: none;\n  font-size: 14px;\n  margin-left: 10px;\n  display: inline-block;\n}\n\n.ncpi .piTabsContent #piFinished .piButtons a:first-child {\n  margin-left: 0px;\n}\n\n.ncpi .piTabContent #piBrand img {\n  text-align: center;\n  margin-bottom: 5px;\n}\n\n.ncpi .piTabContent #piBrand .upload {\n  font-size: 19px;\n  margin-top: 30px;\n  margin-bottom: 40px;\n  margin-top: 10px;\n  font-weight: 700;\n}\n\n.ncpi .piTabContent #piBrand input {\n  display: block;\n  margin: auto;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".ncpi .pi-main-content {\n  background-color: var(--bg-color-white);\n  margin-top: 80px;\n}\n\n.ncpi .pi-container {\n  left: 0;\n  right: 0;\n  margin: auto;\n  max-width: 657px;\n  border-radius: 40px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 45px 65px;\n}\n\n@media screen and (max-width: 768px) {\n  .ncpi .pi-container {\n    padding: 30px;\n  }\n}\n.ncpi .pi-logo-content {\n  text-align: center;\n  margin-bottom: 33px;\n}\n\n.ncpi .pi-logo-content img {\n  width: 36px;\n  height: 36px;\n  margin: auto;\n}\n\n.ncpi .pi-logo-content strong {\n  position: relative;\n  top: -10px;\n  left: 10px;\n  font-size: 24px;\n}\n\n.ncpi .pi-buttons.pi-text-center a {\n  display: table;\n  color: #000;\n  left: 0;\n  right: 0;\n  margin: auto;\n  padding: 10px;\n  font-weight: 600;\n}\n\n.ncpi #pi-finished .pi-buttons.pi-text-center a:last-child {\n  display: inline;\n  color: var(--text-color-white);\n  margin-right: 0;\n}\n\n@media screen and (max-width: 500px) {\n  .ncpi #pi-finished .pi-buttons.pi-text-center a {\n    margin-bottom: 30px;\n  }\n}\n.ncpi #pi-finished h3 {\n  font-size: 36px;\n  font-weight: 500;\n  margin-bottom: 15px;\n  margin-top: 30px;\n}\n\n.ncpi .pi-tabs-content #pi-welcome p {\n  margin-bottom: 70px;\n}\n\n.ncpi .pi-tabs-content #pi-finished p {\n  margin-bottom: 45px;\n}\n\n.ncpi .pi-tabs-content #pi-finished .pi-buttons a {\n  padding: 15px 20px;\n  font-weight: 600;\n  border-radius: 8px;\n  color: #fff;\n  cursor: pointer;\n  border: none;\n  font-size: 14px;\n  margin-left: 10px;\n  display: inline-block;\n}\n\n.ncpi .pi-tabs-content #pi-finished .pi-buttons a:first-child {\n  margin-left: 0px;\n}\n\n.ncpi .pi-tab-content #pi-brand img {\n  text-align: center;\n  margin-bottom: 5px;\n}\n\n.ncpi .pi-tab-content #pi-brand .upload {\n  font-size: 19px;\n  margin-top: 30px;\n  margin-bottom: 40px;\n  margin-top: 10px;\n  font-weight: 700;\n}\n\n.ncpi .pi-tab-content #pi-brand input {\n  display: block;\n  margin: auto;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

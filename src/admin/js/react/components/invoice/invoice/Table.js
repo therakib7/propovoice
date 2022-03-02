@@ -72,8 +72,8 @@ const TableBody = props => {
                 <td>{row.due}</td>
                 <td>{row.date}</td> 
                 <td>  
-                    <span onClick={() => handleClick(row.id)} ><i className="dashicons dashicons-edit-page"></i></span>
-                    <span onClick={() => props.deleteEntry('single', row.id)} ><i className="dashicons dashicons-trash"></i></span>
+                    <span onClick={() => handleClick(row.id)} >Edit</span>
+                    <span onClick={() => props.deleteEntry('single', row.id)} >Del</span>
                 </td>
             </tr>
         );
@@ -83,16 +83,18 @@ const TableBody = props => {
 }
 
 const Table = (props) => {
-    const { tableData, editEntry, checkedBoxes, deleteEntry, client_id } = props;
-    return (
-        <div className='pi-table-wrap'>
-            <table className='pi-table'>
-                <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} />
-                <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} /> 
-            </table>
-        </div>
-
+    const { tableData, editEntry, checkedBoxes, deleteEntry, client_id } = props; 
+    return ( 
+        <> 
+            {tableData.length > 0 && <div className='pi-table-wrap'>
+                <table className='pi-table'>
+                    <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} />
+                    <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} /> 
+                </table>
+            </div>}
+        </>
     );
 }
 
 export default Table;
+

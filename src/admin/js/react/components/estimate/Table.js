@@ -59,8 +59,8 @@ const TableBody = props => {
                 <td>{row.address}</td>
                 <td>{row.date}</td> 
                 <td> 
-                    <span onClick={() => props.editEntry('edit', row)} ><i className="dashicons dashicons-edit-page"></i></span>
-                    <span onClick={() => props.deleteEntry('single', row.id)} ><i className="dashicons dashicons-trash"></i></span>
+                    <span onClick={() => props.editEntry('edit', row)} >Edit</span>
+                    <span onClick={() => props.deleteEntry('single', row.id)} >Del</span>
                 </td>
             </tr>
         );
@@ -72,13 +72,14 @@ const TableBody = props => {
 const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
-        <div className='pi-table-wrap'>
+        <> 
+        {tableData.length > 0 && <div className='pi-table-wrap'>
             <table className='pi-table'>
                 <TableHeader checkedBoxes={checkedBoxes} />
                 <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} /> 
             </table>
-        </div>
-
+        </div>}
+        </>
     );
 }
 

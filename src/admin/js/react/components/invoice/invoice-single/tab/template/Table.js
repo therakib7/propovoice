@@ -18,8 +18,8 @@ const TableBody = props => {
                 <td>{row.date}</td> 
                 <td>
                     <span onClick={() => handleClick(row.id)} className='bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2 inline-block align-middle'>Overview</span>
-                    <span onClick={() => props.editEntry('edit', row)} ><i className="dashicons dashicons-edit-page"></i></span>
-                    <span onClick={() => props.deleteEntry('single', row.id)} ><i className="dashicons dashicons-trash"></i></span>
+                    <span onClick={() => props.editEntry('edit', row)} >Edit</span>
+                    <span onClick={() => props.deleteEntry('single', row.id)} >Del</span>
                 </td>
             </tr>
         ); */

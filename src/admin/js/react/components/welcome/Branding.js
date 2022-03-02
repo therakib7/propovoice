@@ -72,7 +72,7 @@ class Branding extends Component {
 				{ !business.logo &&
 					<>
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='hidden' />
-						<div className="piTextCenter" onClick={() => this.handleUploadFile()}>
+						<div className="pi-text-center" onClick={() => this.handleUploadFile()}>
 							<img src={ncpi_local.assetImgUri+'upload-img.png'} />
 							<h3 className="upload pi-color-blue">Upload Logo</h3>
 						</div>
@@ -80,16 +80,16 @@ class Branding extends Component {
 				}
 
 				{ business.id && business.logo &&
-				<div className="piTextCenter">
+				<div className="pi-text-center">
 					<img src={business.logo.url} width="100" className='inline' />
 					<span className='' onClick={() => this.handleDelete(business.logo.id)}>
 						x
 					</span>
 				</div>}
 
-				<div className="piButtons piTextCenter">
-					<button className="piBgBlue piBgHoverBlue" onClick={() => this.props.handleSubmit('', 'branding')}>Save & Continue</button>
-					<a className="piTextHoverBlue" onClick={() => this.props.handleSkip('branding')}>Skip</a>
+				<div className="pi-buttons pi-text-center">
+					<button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.props.handleSubmit('', 'branding')}>Save & Continue</button>
+					<a className="pi-text-hover-blue" onClick={() => this.props.handleSkip('branding')}>Skip</a>
 				</div>
 			</>
 		)

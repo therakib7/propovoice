@@ -181,27 +181,92 @@ export default class Client extends Component {
             <div className="ncpi-components">
                 <ToastContainer />
 
-                <div className='mb-5 font-bold text-2xl'>
-                    Client
+                <h1 className="">Client</h1>
+                <nav className="pi-breadcrumb">
+                    <ul className="">
+                        <li>
+                            <a href="#" className="">
+                            Home
+                            </a>
+                        </li>
+                        <li>&gt;</li>
+                        <li className="active">
+                            <a href="#" className="">
+                            Client
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div className="pi-cards">
+                    <div className="row">
+                        <div className="col col-md-6 col-lg-3">
+                            <div className="pi-bg-air-white">
+                            <span className="">Total Client</span>
+                            <h4 className="pi-color-blue">23</h4>
+                            </div>
+                        </div>
+                        <div className="col col-md-6 col-lg-3">
+                            <div className="pi-bg-air-white">
+                            <span className="">Paid Client</span>
+                            <h4 className="pi-color-blue">132</h4>
+                            </div>
+                        </div>
+                        <div className="col col-md-6 col-lg-3">
+                            <div className="pi-bg-air-white">
+                            <span className="">Unpaid Client</span>
+                            <h4 className="pi-color-blue">16</h4>
+                            </div>
+                        </div>
+                        <div className="col col-md-6 col-lg-3">
+                            <div className="pi-bg-air-white">
+                            <span className="">Draft Client</span>
+                            <h4 className="pi-color-blue">21</h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <button
-                    className="bg-gray-800 hover:bg-gray-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
-                    onClick={() => this.openForm('new')} >
-                    Create New Client
-                </button>
+                <div className="pi-buttons">  
 
-                {checkedBoxes.length ? <button
-                    className="ml-3 bg-red-800 hover:bg-red-900 text-white font-medium text-base py-2 px-4 rounded mb-3"
-                    onClick={() => this.deleteEntry('selected')} >
-                    Delete selected
-                </button> : ''}
+                    <button
+                        className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                        onClick={() => this.openForm('new')} >
+                        Create New Client
+                    </button>
 
-                <button
+                    {checkedBoxes.length ? <button
+                        className="pi-btn pi-bg-red pi-bg-hover-red"
+                        onClick={() => this.deleteEntry('selected')} >
+                        Delete selected
+                    </button> : ''}
+
+                    <div className="pi-search-box pi-float-right">
+                        <svg
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg" 
+                        >
+                        <path
+                            d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
+                            fill="#718096"
+                        />
+                        <path
+                            d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
+                            fill="#718096"
+                        />
+                        </svg>
+                        <input type="text" className="search-input" placeholder="Search.." />
+                    </div>
+                </div> 
+
+                {/* <button
                     className="float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
-                </button>
+                </button> */}
 
                 <Form
                     handleSubmit={this.handleSubmit}

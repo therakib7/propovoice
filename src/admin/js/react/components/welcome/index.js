@@ -112,16 +112,16 @@ export default class Business extends Component {
     render() {
         const { tabs = [], currentTab, currentTabIndex } = this.state;
         return (
-            <div className="piMainContent">
+            <div className="pi-main-content">
                 <ToastContainer />
-                <div className="piContainer">
-                    <div className="piLogoContent">
+                <div className="pi-container">
+                    <div className="pi-logo-content">
                         <img src={ncpi_local.assetImgUri+'logo.png'} className="" />
                         <strong className="">Propovoice</strong>
                     </div>
 
-                    <div className="piTabsContent">
-                        <ul className="piTabs">
+                    <div className="pi-tabs-content">
+                        <ul className="pi-tabs">
                             {tabs.map((tab, index) => ( 
                                 <li className={'pi-tab ' + (index <= currentTabIndex ? 'active' : '' )} key={index} onClick={(e) => this.setActiveTab(tab.id, index)}>
                                     <span></span>
@@ -130,24 +130,24 @@ export default class Business extends Component {
                             ))}
                         </ul>
 
-                        <div className="piTabContent">
+                        <div className="pi-tab-content">
                             { currentTab == 'welcome' &&
-                            <div id="piWelcome">
+                            <div id="pi-welcome">
                                 <p>
                                     A place where you can browse and share content with other Figma
                                     users. Pull text strings, avatars and icons directly into your
                                     designs.
                                 </p>
-                                <div className="piButtons piTextCenter">
-                                    <button className="piBgBlue piBgHoverBlue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
+                                <div className="pi-buttons pi-text-center">
+                                    <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
                                     Create Business Profile
                                     </button>
-                                    <a href={ncpi_local.dashboard} className="piTextHoverBlue">Skip and Go Dashboard</a>
+                                    <a href={ncpi_local.dashboard} className="pi-text-hover-blue">Skip and Go Dashboard</a>
                                 </div>
                             </div>}
 
                             { currentTab == 'info' &&
-                            <div id="piBusiness">
+                            <div id="pi-business">
                                 <Info 
                                     data={this.state.business} 
                                     handleSubmit={this.handleSubmit} 
@@ -156,7 +156,7 @@ export default class Business extends Component {
                             </div>}
 
                             { currentTab == 'branding' &&
-                            <div id="piBrand">
+                            <div id="pi-brand">
                                 <Branding 
                                     data={this.state.business} 
                                     changeHandler={this.handleBrandingChange}
@@ -166,8 +166,8 @@ export default class Business extends Component {
                             </div>}
 
                             { currentTab == 'finish' &&
-                            <div id="piFinished">
-                                <div className="piTextCenter">
+                            <div id="pi-finished">
+                                <div className="pi-text-center">
                                     <img src={ncpi_local.assetImgUri+'finish.png'} />
                                     <h3 className="upload">It's time to fly!</h3>
                                     <p>
@@ -175,11 +175,11 @@ export default class Business extends Component {
                                     Others 
                                     </p>
                                 </div>
-                                <div className="piButtons piTextCenter"> 
-                                    <a href={ncpi_local.dashboard} className="piBgBlack piBgHoverBlue">Dashboard</a>
-                                    <a href={ncpi_local.dashboard + '#/client'} className="piBgGreen piBgHoverBlue">Add Cleint</a>
-                                    <a href={ncpi_local.dashboard + '#/invoice'} className="piBgBlue piBgHoverBlue">Create Invoice</a>
-                                </div>
+                                <div className="pi-buttons pi-text-center"> 
+                                    <a href={ncpi_local.dashboard} className="pi-bg-black pi-bg-hover-blue">Dashboard</a>
+                                    <a href={ncpi_local.dashboard + '#/client'} className="pi-bg-green pi-bg-hover-blue">Add Cleint</a>
+                                    <a href={ncpi_local.dashboard + '#/invoice'} className="pi-btn pi-bg-blue pi-bg-hover-blue">Create Invoice</a>
+                                </div> 
                             </div>}
 
                         </div>{/* ./piTabsContent */}

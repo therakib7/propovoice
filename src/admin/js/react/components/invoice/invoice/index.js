@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-
-import { NavLink } from 'react-router-dom';
+ 
+import { useNavigate } from "react-router-dom";
 import AppContext from '../../../context/app-context';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -13,19 +13,21 @@ import Api from '../../../api/invoice';
 
 import Table from './Table';
 import Search from './Search';
+import Empty from '../../empty';
 
-export default class Invoice extends Component {
+const Invoice = class Invoice extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            // clients: []
+        this.state = { 
+            title: 'Invoice',
+            empty: false,
             preloader: true,
             formModal: false,
             searchModal: false,
             formModalType: 'new',
-            client: { id: null },
-            clients: [],
+            invoice: { id: null },
+            invoices: [],
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
@@ -47,8 +49,8 @@ export default class Invoice extends Component {
             per_page: this.state.perPage
         }
 
-        if (this.props.client_id) {
-            args.client_id = this.props.client_id;
+        if (this.props.invoice_id) {
+            args.invoice_id = this.props.invoice_id;
         }
 
         if (searchArgs) {
@@ -63,8 +65,8 @@ export default class Invoice extends Component {
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
-                this.setState({ clients: result });
-                this.setState({ preloader: false });
+                let empty = result.length ? false : true;
+                this.setState({ invoices: result, preloader: false, empty });  
 
                 this.setState({
                     totalPage: Math.ceil(total / this.state.perPage)
@@ -72,9 +74,9 @@ export default class Invoice extends Component {
             })
     };
 
-    handleSubmit = client => {
+    handleSubmit = invoice => {
         if (this.state.formModalType == 'new') {
-            Api.create(client)
+            Api.create(invoice)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -87,7 +89,7 @@ export default class Invoice extends Component {
                     }
                 })
         } else {
-            Api.update(client.id, client)
+            Api.update(invoice.id, invoice)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -109,8 +111,8 @@ export default class Invoice extends Component {
 
             if (type == 'single') {
                 this.setState({
-                    clients: this.state.clients.filter((client, i) => {
-                        return client.id !== index;
+                    invoices: this.state.invoices.filter((invoice, i) => {
+                        return invoice.id !== index;
                     })
                 });
             }
@@ -155,7 +157,7 @@ export default class Invoice extends Component {
             //check all
             if (e.target.checked) {
                 let ids = [];
-                this.state.clients.map((row) => { ids.push(row.id) });
+                this.state.invoices.map((row) => { ids.push(row.id) });
                 this.setState({ checkedBoxes: ids });
             } else {
                 this.setState({ checkedBoxes: [] });
@@ -171,18 +173,22 @@ export default class Invoice extends Component {
             offset: offset
         }, () => {
             this.getLists()
-        });
+        }); 
+    };
 
+    newInvoie = () => {
+        this.props.routeChange();
     };
 
     render() {
         const checkedBoxes = this.state.checkedBoxes;
-
+        const invoices = this.state.invoices;
+        const title = this.state.title;
         return (
             <div className="ncpi-components">
                 <ToastContainer />
 
-                <h1 className="">Invoice</h1>
+                <h1 className="">{title}</h1>
                 <nav className="pi-breadcrumb">
                     <ul className="">
                         <li>
@@ -193,74 +199,78 @@ export default class Invoice extends Component {
                         <li>&gt;</li>
                         <li className="active">
                             <a href="#" className="">
-                            Invoice
+                            {title}
                             </a>
                         </li>
                     </ul>
                 </nav>
-
-                <div className="pi-cards">
-                    <div className="row">
-                        <div className="col col-md-6 col-lg-3">
-                            <div className="pi-bg-air-white">
-                            <span className="">Total Invoice</span>
-                            <h4 className="pi-color-blue">23</h4>
+                
+                {invoices.length > 0 &&
+                <>
+                    <div className="pi-cards">
+                        <div className="row">
+                            <div className="col col-md-6 col-lg-3">
+                                <div className="pi-bg-air-white">
+                                <span className="">Total {title}</span>
+                                <h4 className="pi-color-blue">23</h4>
+                                </div>
+                            </div>
+                            <div className="col col-md-6 col-lg-3">
+                                <div className="pi-bg-air-white">
+                                <span className="">Paid {title}</span>
+                                <h4 className="pi-color-blue">132</h4>
+                                </div>
+                            </div>
+                            <div className="col col-md-6 col-lg-3">
+                                <div className="pi-bg-air-white">
+                                <span className="">Unpaid {title}</span>
+                                <h4 className="pi-color-blue">16</h4>
+                                </div>
+                            </div>
+                            <div className="col col-md-6 col-lg-3">
+                                <div className="pi-bg-air-white">
+                                <span className="">Draft {title}</span>
+                                <h4 className="pi-color-blue">21</h4>
+                                </div>
                             </div>
                         </div>
-                        <div className="col col-md-6 col-lg-3">
-                            <div className="pi-bg-air-white">
-                            <span className="">Paid Invoice</span>
-                            <h4 className="pi-color-blue">132</h4>
-                            </div>
-                        </div>
-                        <div className="col col-md-6 col-lg-3">
-                            <div className="pi-bg-air-white">
-                            <span className="">Unpaid Invoice</span>
-                            <h4 className="pi-color-blue">16</h4>
-                            </div>
-                        </div>
-                        <div className="col col-md-6 col-lg-3">
-                            <div className="pi-bg-air-white">
-                            <span className="">Draft Invoice</span>
-                            <h4 className="pi-color-blue">21</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div> 
+                    <div className="pi-buttons"> 
+                        <button
+                            className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                            onClick={() => this.newInvoie()} >
+                            Create New {title}
+                        </button>
 
-                <div className="pi-buttons"> 
-                    <NavLink
-                        to='single'
-                        className='pi-btn pi-bg-blue pi-bg-hover-blue'>
-                        + Create Invoice
-                    </NavLink> 
+                        {checkedBoxes.length ? <button
+                            className="pi-btn pi-bg-red pi-bg-hover-red"
+                            onClick={() => this.deleteEntry('selected')} >
+                            Delete selected
+                        </button> : ''}
 
-                    {checkedBoxes.length ? <button
-                        className="pi-btn pi-bg-red pi-bg-hover-red"
-                        onClick={() => this.deleteEntry('selected')} >
-                        Delete selected
-                    </button> : ''}
-
-                    <div className="pi-search-box pi-float-right">
-                        <svg
-                        width={24}
-                        height={24}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg" 
-                        >
-                        <path
-                            d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
-                            fill="#718096"
-                        />
-                        <path
-                            d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
-                            fill="#718096"
-                        />
-                        </svg>
-                        <input type="text" className="search-input" placeholder="Search.." />
-                    </div>
-                </div>  
+                        <div className="pi-search-box pi-float-right">
+                            <svg
+                            width={24}
+                            height={24}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg" 
+                            >
+                            <path
+                                d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
+                                fill="#718096"
+                            />
+                            <path
+                                d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
+                                fill="#718096"
+                            />
+                            </svg>
+                            <input type="text" className="search-input" placeholder="Search.." />
+                        </div>
+                    </div> 
+                </>} 
+                
+                {this.state.empty && <Empty title={title} clickHandler={() => this.newInvoie()} />}
 
                 {/* <button
                     className="float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
@@ -274,7 +284,7 @@ export default class Invoice extends Component {
                     close={this.closeForm}
                 />
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} client_id={this.props.client_id} />}
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}
@@ -293,4 +303,17 @@ export default class Invoice extends Component {
             </div>
         );
     }
-} 
+}  
+
+function InvoiceWrap() { 
+	let navigate = useNavigate();
+	const routeChange = () => {
+		navigate(`/invoice/single`, { replace: true });
+	};
+	return (
+		<>
+			<Invoice routeChange={routeChange} />
+		</>
+	);
+}
+export default InvoiceWrap; 

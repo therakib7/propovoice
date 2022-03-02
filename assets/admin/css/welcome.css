@@ -2240,6 +2240,157 @@ html {
 # Partials
 --------------------------------------------------------------*/
 /*-------------------------------------------------------------- 
+# crid
+--------------------------------------------------------------*/
+.pi-breadcrumb ul li {
+  display: inline;
+  padding: 2px;
+}
+
+.pi-breadcrumb {
+  margin-bottom: 25px;
+}
+
+.pi-breadcrumb ul li a {
+  font-size: 16px;
+}
+
+.pi-breadcrumb ul li.active {
+  color: #a7a7a7;
+}
+
+.pi-cards {
+  margin-bottom: 25px;
+}
+
+.pi-cards .pi-bg-air-white {
+  background-color: #EDF2F7;
+  border-radius: 20px;
+  padding: 25px;
+}
+
+.pi-cards .pi-bg-air-white span {
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.pi-cards .pi-bg-air-white h4 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 992px) {
+  .pi-cards .pi-bg-air-white {
+    margin-bottom: 30px;
+  }
+
+  .pi-right-content {
+    padding: 30px 30px;
+  }
+}
+.pi-table {
+  width: 100%;
+  border: 1px solid #CBD5E0;
+  margin-top: 60px;
+  border-collapse: collapse;
+  border-radius: 20px;
+  border-style: hidden;
+  box-shadow: 0 0 0 1px #CBD5E0;
+}
+
+tr {
+  text-align: left;
+  border-color: #ddd;
+}
+
+.pi-table tr th {
+  font-weight: 400;
+  font-size: 12px;
+  padding: 15px 0;
+}
+
+.pi-table tr td:first-child,
+.pi-table tr th:first-child {
+  width: 60px;
+  padding-left: 15px;
+}
+
+.pi-table tr td {
+  padding: 15px 0;
+  font-size: 14px;
+}
+
+.pi-table tr td .pi-status {
+  padding: 5px 15px;
+  font-size: 10px;
+  border-radius: 15px;
+  color: #fff;
+}
+
+input[type=checkbox] {
+  zoom: 1.5;
+  margin-top: 3px;
+}
+
+.pi-table tr {
+  border: 1px solid #CBD5E0;
+}
+
+.pi-dropbtn {
+  padding: 7px 12px 2px;
+  position: relative;
+  top: 2px;
+  display: block;
+  border-radius: 5px;
+}
+
+.pi-dropbtn:hover, .pi-dropbtn:focus {
+  background-color: #EDF2F7;
+}
+
+.pi-dropdown {
+  display: inline-block;
+}
+
+.pi-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 0 10px #dfdfdf;
+  z-index: 1;
+  right: 0;
+  top: 50px;
+  border-radius: 8px;
+}
+
+.pi-action-content {
+  position: relative;
+}
+
+.pi-action-content button {
+  background-color: transparent;
+  border: none;
+}
+
+.pi-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.pi-dropdown a:hover {
+  background-color: #EDF2F7;
+}
+
+.pi-show {
+  display: block;
+}
+
+/*-------------------------------------------------------------- 
 # popup
 --------------------------------------------------------------*/
 .ncpi .pi-modal-box {
@@ -2266,7 +2417,7 @@ html {
   opacity: 0;
 }
 
-.ncpi .pi-overlay:target {
+.ncpi .pi-overlay:target, .ncpi .pi-show {
   visibility: visible;
   opacity: 1;
 }
@@ -2384,7 +2535,7 @@ html {
   display: block;
 }
 
-.piTabs {
+.pi-tabs {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
@@ -2394,7 +2545,7 @@ html {
   margin-bottom: 50px;
 }
 
-.piTabs:before {
+.pi-tabs:before {
   content: "";
   position: absolute;
   height: 2px;
@@ -2408,6 +2559,7 @@ html {
   cursor: pointer;
   color: #718096;
   font-weight: 500;
+  font-size: 14px;
 }
 
 .pi-tab.active span {
@@ -2427,7 +2579,7 @@ html {
   color: var(--bg-color-black);
 }
 
-.piTabsContent .piTabs li span {
+.pi-tabs-content .pi-tabs li span {
   width: 45px;
   height: 45px;
   background-color: #F4F4F4;
@@ -2440,10 +2592,6 @@ html {
   left: 0;
   right: 0;
   margin: auto;
-}
-
-.piTabsContent #piWelcome p {
-  margin-bottom: 70px;
 }
 
 .ncpi .piWidth-100 {
@@ -2576,7 +2724,7 @@ h1 {
   transition: all 0.3s ease-out;
 }
 
-.ncpi .piTextHoverBlue:hover {
+.ncpi .pi-text-hover-blue:hover {
   color: #4e6de9 !important;
 }
 
@@ -2776,16 +2924,16 @@ form .icon-search {
 }
 
 /*======================   New  =============================*/
-.ncpi .piBusinessForm div {
+.ncpi .pi-business-form div {
   margin-bottom: 10px;
 }
 
-.ncpi .piBusinessForm label {
+.ncpi .pi-business-form label {
   display: block;
   margin-bottom: 5px;
 }
 
-.ncpi .piBusinessForm input {
+.ncpi .pi-business-form input {
   background-color: #EDF2F7 !important;
   border-radius: 10px;
   margin-top: 10px;
@@ -2798,21 +2946,21 @@ form .icon-search {
   line-height: 1;
 }
 
-.piBusinessForm .row > div {
+.pi-business-form .row > div {
   padding: 0;
 }
 
-.piBusinessForm .row > div:nth-child(odd) {
+.pi-business-form .row > div:nth-child(odd) {
   margin-right: 30px;
 }
 
-.piBusinessForm .row:last-child > div {
+.pi-business-form .row:last-child > div {
   margin-right: 0px !important;
   margin-bottom: 30px;
 }
 
 @media screen and (max-width: 768px) {
-  .piBusinessForm .row > div:nth-child(odd) {
+  .pi-business-form .row > div:nth-child(odd) {
     margin-right: 0px;
   }
 }
@@ -2972,7 +3120,7 @@ form .icon-search {
   background-color: var(--bg-color-blue);
 }
 
-.piBgGreen {
+.pi-bg-green {
   background-color: var(--bg-color-green);
 }
 
@@ -2984,11 +3132,11 @@ form .icon-search {
   background-color: var(--bg-color-white);
 }
 
-.piBgBlack {
+.pi-bg-black {
   background-color: var(--bg-color-black);
 }
 
-.piBgGray {
+.pi-bg-gray {
   background-color: var(--bg-color-gray);
 }
 
@@ -3150,19 +3298,9 @@ a:hover, a:active {
   transition: transform 0.3s, opacity 0.3s;
 }
 
-.left-sidebar ul li .pi-sub-menu li a {
-  font-weight: 500;
-  font-size: 14px;
-  padding: 6px 0;
-  display: block;
-}
-
 /*======================== New =============================*/
 .ncpi .pi-right-content,
 .ncpi .pi-left-sidebar {
-  top: 0px;
-  bottom: 0;
-  left: 0;
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -3184,10 +3322,9 @@ a:hover, a:active {
 }
 
 .pi-left-sidebar .pi-logo-content strong {
-  position: relative;
+  position: fixed;
   top: -10px;
   left: 5px;
-  font-size: 18px;
 }
 
 .pi-left-sidebar ul li a {
@@ -3196,6 +3333,7 @@ a:hover, a:active {
   color: #5F5F5F;
   font-weight: 500;
   position: relative;
+  font-size: 14px;
 }
 
 .pi-left-sidebar ul li a:hover {
@@ -3227,10 +3365,31 @@ a:hover, a:active {
   font-size: 14px;
 }
 
-.pi-left-sidebar ul li .pi-sub-menu {
+.pi-menubar-icon {
   display: none;
 }
 
+@media screen and (max-width: 768px) {
+  .pi-left-sidebar {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    background-color: #e5e5e5;
+  }
+
+  .pi-menubar-icon {
+    position: absolute;
+    top: 10px;
+    left: 190px;
+    display: block;
+    cursor: pointer;
+    font-size: 15px;
+  }
+}
 .ncpi .pi-right-content {
   width: 100%;
 }
@@ -3238,23 +3397,6 @@ a:hover, a:active {
 .ncpi .pi-grid-container {
   display: flex;
   grid-template-columns: auto auto auto;
-}
-
-.ncpi .pi-breadcrumb ul li {
-  display: inline;
-  padding: 2px;
-}
-
-.ncpi .pi-breadcrumb {
-  margin-bottom: 25px;
-}
-
-.ncpi .pi-breadcrumb ul li a {
-  font-size: 16px;
-}
-
-.ncpi .pi-breadcrumb ul li.active {
-  color: #a7a7a7;
 }
 
 .ncpi .pi-right-content {
@@ -3266,30 +3408,8 @@ a:hover, a:active {
   margin-top: 0;
 }
 
-.ncpi .pi-cards {
-  margin-bottom: 25px;
-}
-
-.ncpi .pi-cards .pi-bg-air-white {
-  background-color: #EDF2F7;
-  border-radius: 20px;
-  padding: 25px;
-}
-
-.ncpi .piTextHoverBlue.pi-float-right {
+.ncpi .pi-text-hover-blue.pi-float-right {
   background-color: transparent;
-}
-
-.ncpi .pi-cards .pi-bg-air-white span {
-  font-weight: 500;
-  text-transform: capitalize;
-  font-size: 14px;
-}
-
-.ncpi .pi-cards .pi-bg-air-white h4 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 5px;
 }
 
 .ncpi .pi-empty-content {
@@ -3306,61 +3426,10 @@ a:hover, a:active {
   margin-bottom: 25px;
 }
 
-.ncpi .pi-table {
-  width: 100%;
-  border: 1px solid #CBD5E0;
-  margin-top: 60px;
-  border-collapse: collapse;
-  border-radius: 20px;
-  border-style: hidden;
-  box-shadow: 0 0 0 1px #CBD5E0;
-}
-
-.ncpi tr {
-  text-align: left;
-  border-color: #ddd;
-}
-
-.ncpi .pi-table tr th {
-  font-weight: 400;
-  font-size: 12px;
-  padding: 15px 0;
-}
-
-.ncpi .pi-table tr td:first-child,
-.ncpi .pi-table tr th:first-child {
-  width: 60px;
-  padding-left: 15px;
-}
-
-.ncpi .pi-table tr td {
-  padding: 15px 0;
-  font-size: 14px;
-}
-
-.ncpi .pi-table tr td .pi-status {
-  padding: 5px 15px;
-  font-size: 10px;
-  border-radius: 15px;
-  color: #fff;
-}
-
-.ncpi input[type=checkbox] {
-  zoom: 1.5;
-  margin-top: 3px;
-}
-
-.ncpi .pi-table tr {
-  border: 1px solid #CBD5E0;
-}
-
-@media screen and (max-width: 992px) {
-  .ncpi .pi-cards .pi-bg-air-white {
-    margin-bottom: 30px;
-  }
-
+@media screen and (max-width: 768px) {
   .ncpi .pi-right-content {
-    padding: 30px 30px;
+    padding: 30px;
+    padding-top: 70px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -3369,58 +3438,6 @@ a:hover, a:active {
     float: left;
   }
 }
-.ncpi .pi-dropbtn {
-  padding: 7px 12px 2px;
-  position: relative;
-  top: 2px;
-  display: block;
-  border-radius: 5px;
-}
-
-.ncpi .pi-dropbtn:hover, .ncpi .pi-dropbtn:focus {
-  background-color: #EDF2F7;
-}
-
-.ncpi .pi-dropdown {
-  display: inline-block;
-}
-
-.ncpi .pi-dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  min-width: 160px;
-  box-shadow: 0 0 10px #dfdfdf;
-  z-index: 1;
-  right: 0;
-  top: 50px;
-  border-radius: 8px;
-}
-
-.ncpi .pi-action-content {
-  position: relative;
-}
-
-.ncpi .pi-action-content button {
-  background-color: transparent;
-  border: none;
-}
-
-.ncpi .pi-dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.ncpi .pi-dropdown a:hover {
-  background-color: #EDF2F7;
-}
-
-.ncpi .pi-show {
-  display: block;
-}
-
 body.toplevel_page_ncpi-welcome {
   margin-top: -32px;
   background: #fff;

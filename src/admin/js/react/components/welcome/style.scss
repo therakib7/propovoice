@@ -1,9 +1,9 @@
-.ncpi .piMainContent {
+.ncpi .pi-main-content {
   background-color: var(--bg-color-white);
   margin-top: 80px;
 }
 
-.ncpi .piContainer {
+.ncpi .pi-container {
   left: 0;
   right: 0;
   margin: auto;
@@ -13,26 +13,26 @@
   padding: 45px 65px;
 }
 @media screen and (max-width: 768px) {
-  .ncpi .piContainer {
+  .ncpi .pi-container {
     padding: 30px;
   }
 }
-.ncpi .piLogoContent {
+.ncpi .pi-logo-content {
   text-align: center;
   margin-bottom: 33px;
 }
-.ncpi .piLogoContent img {
+.ncpi .pi-logo-content img {
   width: 36px;
   height: 36px;
   margin: auto;
 }
-.ncpi .piLogoContent strong {
+.ncpi .pi-logo-content strong {
   position: relative;
   top: -10px;
   left: 10px;
   font-size: 24px;
 }
-.ncpi .piButtons.piTextCenter a {
+.ncpi .pi-buttons.pi-text-center a {
   display: table;
   color: #000;
   left: 0;
@@ -41,29 +41,29 @@
   padding: 10px;
   font-weight: 600;
 }
-.ncpi #piFinished .piButtons.piTextCenter a:last-child {
+.ncpi #pi-finished .pi-buttons.pi-text-center a:last-child {
   display: inline;
   color: var(--text-color-white);
   margin-right: 0;
 }
 @media screen and (max-width: 500px) {
-  .ncpi #piFinished .piButtons.piTextCenter a {
+  .ncpi #pi-finished .pi-buttons.pi-text-center a {
     margin-bottom: 30px;
   }
 }
-.ncpi #piFinished h3 {
+.ncpi #pi-finished h3 {
   font-size: 36px;
   font-weight: 500;
   margin-bottom: 15px;
   margin-top: 30px;
 }
-.ncpi .piTabsContent #piWelcome p {
+.ncpi .pi-tabs-content #pi-welcome p {
   margin-bottom: 70px;
 }
-.ncpi .piTabsContent #piFinished p {
+.ncpi .pi-tabs-content #pi-finished p {
   margin-bottom: 45px;
 }
-.ncpi .piTabsContent #piFinished .piButtons a {
+.ncpi .pi-tabs-content #pi-finished .pi-buttons a {
   padding: 15px 20px;
   font-weight: 600;
   border-radius: 8px;
@@ -74,21 +74,21 @@
   margin-left: 10px;
   display: inline-block;
 }
-.ncpi .piTabsContent #piFinished .piButtons a:first-child {
+.ncpi .pi-tabs-content #pi-finished .pi-buttons a:first-child {
   margin-left: 0px;
 }
-.ncpi .piTabContent #piBrand img {
+.ncpi .pi-tab-content #pi-brand img {
   text-align: center;
   margin-bottom: 5px;
 }
-.ncpi .piTabContent #piBrand .upload {
+.ncpi .pi-tab-content #pi-brand .upload {
   font-size: 19px;
   margin-top: 30px;
   margin-bottom: 40px;
   margin-top: 10px;
   font-weight: 700;
 }
-.ncpi .piTabContent #piBrand input {
+.ncpi .pi-tab-content #pi-brand input {
   display: block;
   margin: auto;
 }
