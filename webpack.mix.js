@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix'); 
 const fs = require("fs-extra");
 const path = require("path");
 const cliColor = require("cli-color");
@@ -10,6 +10,26 @@ const archiver = require('archiver');
 
 const package_path = path.resolve(__dirname);
 const package_slug = path.basename(path.resolve(package_path));
+  
+mix.webpackConfig({
+    output: {
+        publicPath: '/wp-content/plugins/propovoice/', 
+        chunkFilename: 'assets/admin/js/component/chunks/[chunkhash].js', //[name]
+    },
+    resolve: {
+        alias: {
+            //adding react and react-dom may not be necessary for you but it did fix some issues in my setup.
+            //'react' : path.resolve('node_modules/react'),
+            //'react-dom' : path.resolve('node_modules/react-dom'), 
+            'api' : path.resolve('src/admin/js/react/api'), 
+            'block' : path.resolve('src/admin/js/react/blocks'), 
+            'context' : path.resolve('src/admin/js/react/context'), 
+            'components' : path.resolve('src/admin/js/react/components'), 
+            'out-components' : path.resolve('src/admin/js/react/out-components'), 
+            'inv-template' : path.resolve('src/admin/js/react/inv-template'), 
+        },
+    },
+});
 
 async function getVersion() {
     let data = await fs.readFile(package_path + '/index.php', 'utf-8');
@@ -70,7 +90,8 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
                 destFile: `languages/propovoice.pot`
             });
         });
-    }
+    } 
+
     mix.options({
         terser: {
             extractComments: false,
@@ -78,8 +99,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
         processCssUrls: false
     });
      
-    mix.js(`src/admin/js/react/blocks/main.jsx`, `assets/admin/js/blocks/main${min}.js`).react() 
-        .sass(`src/admin/scss/dashboard.scss`, `assets/admin/css/dashboard${min}.css`) 
+    mix.sass(`src/admin/scss/dashboard.scss`, `assets/admin/css/dashboard${min}.css`) 
         .sass(`src/admin/scss/welcome.scss`, `assets/admin/css/welcome${min}.css`) 
         .sass(`src/admin/scss/invoice.scss`, `assets/admin/css/invoice${min}.css`) 
         /* .postCss('src/vendor/tailwind/tailwind.css', `assets/vendor/tailwind/tailwind${min}.css`, [

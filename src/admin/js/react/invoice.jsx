@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'; 
-import Invoice from './out-components/invoice'; 
+import Invoice from 'out-components/invoice'; 
 
 document.addEventListener( 'DOMContentLoaded', function() { 
     let element = document.getElementById( 'ncpi-invoice' );

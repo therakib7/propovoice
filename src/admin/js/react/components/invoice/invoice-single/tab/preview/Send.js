@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import Api from '../../../../../api/email';
+import { toast } from 'react-toastify';
+import Api from 'api/email';
 
 class Send extends Component {
     constructor(props) {

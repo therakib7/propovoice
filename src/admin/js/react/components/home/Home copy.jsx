@@ -7,22 +7,22 @@ import {
     NavLink
 } from "react-router-dom";
 
-import Dashboard from './Dashboard';
-import Client from './client/client';
-import Project from './project';
-import ClientSummary from './client/client-summary';
+import Dashboard from '../Dashboard';
+import Client from '../client/client';
+import Project from '../project';
+import ClientSummary from '../client/client-summary';
 // const Client = lazy(() => import('./client')); //TODO: need to seen path wp-content/folders root
-import Proposal from './proposal';
-import Editor from './editor';
+import Proposal from '../proposal';
+import Editor from '../editor';
 // const Editor = lazy(() => import('./editor')); 
 import Contract from './Contract';
 import Estimate from './invoice copy';
-import Invoice from './invoice/invoice';
-import InvoiceSingle from './invoice/invoice-single';
-import Payment from './Payment';
+import Invoice from '../invoice/invoice';
+import InvoiceSingle from '../invoice/invoice-single';
+import Payment from '../payment';
 import TemplateLibrary from './TemplateLibrary';
-import Business from './business';
-import Setting from './setting';
+import Business from '../business';
+import Setting from '../setting';
 import Help from './Help';
 
 const Home = () => {

@@ -266,6 +266,12 @@ class Invoice
                     update_post_meta($post_id, 'due', $due); 
                 } 
 
+                if ( true ) {
+                    //generate secret token
+                    $bytes = random_bytes(20);
+                    update_post_meta($post_id, 'token', bin2hex($bytes)); 
+                } 
+
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -329,15 +335,14 @@ class Invoice
                  
                 if ( $total ) {
                     update_post_meta($post_id, 'total', $total); 
-                } 
-
+                }  
                 if ( $paid ) {
                     update_post_meta($post_id, 'paid', $paid); 
                 } 
 
                 if ( $due ) {
                     update_post_meta($post_id, 'due', $due); 
-                } 
+                }   
 
                 wp_send_json_success($post_id);
             } else {

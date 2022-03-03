@@ -51,6 +51,9 @@ class AssetContoller {
 		}
 
 		if ( is_page_template('invoice-template.php') ) {  
+
+			//TODO: Remove all wordpress unused file from frontend
+
 			wp_enqueue_style( 'ncpi-invoice', ncpi()->get_assets_uri( "admin/css/invoice{$this->suffix}.css" ), array(), $this->version );
 			wp_enqueue_script( 'ncpi-invoice', ncpi()->get_assets_uri( "/admin/js/invoice{$this->suffix}.js" ), array(), $this->version, true );  
 			wp_localize_script( 'ncpi-invoice', 'ncpi_local', array(

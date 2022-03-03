@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { NavLink, useParams, useNavigate } from "react-router-dom"; 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';   
-import Api from '../../../../../api/invoice';
+import { toast } from 'react-toastify';
+   
+import Api from 'api/invoice';
 
 import FromTo from './FromTo';
 import Items from './Items' 
@@ -294,7 +294,7 @@ class Invoice extends Component {
 		const { tabs = [], currentTab } = this.state;
 		return ( 
 			<div className='ncpi-components'> 
-				<ToastContainer />
+				
 				<div className="container flex flex-wrap p-5 px-0 flex-col md:flex-row items-center">
 					<a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"> 
 						<span className="font-bold text-2xl">{this.props.id ? 'Edit' : 'Create'} Invoice</span>

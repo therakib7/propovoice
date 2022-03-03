@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Helper from './helper';
+import React, { useState, useEffect } from 'react'; 
 
 import { createReactEditorJS } from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "./tools";

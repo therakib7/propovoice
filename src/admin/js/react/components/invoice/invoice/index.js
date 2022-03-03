@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
  
 import { useNavigate } from "react-router-dom";
-import AppContext from '../../../context/app-context';
-import 'react-toastify/dist/ReactToastify.css';
+import AppContext from 'context/app-context';
 
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from '../../preloader/table';
+import TablePreloader from 'block/preloader/table';
 
-import Api from '../../../api/invoice'; 
+import Api from 'api/invoice'; 
 
 import Table from './Table';
 import Search from './Search';
-import Empty from '../../empty';
+import Empty from 'block/empty';
 
 const Invoice = class Invoice extends Component {
     constructor(props) {
@@ -186,7 +185,7 @@ const Invoice = class Invoice extends Component {
         const title = this.state.title;
         return (
             <div className="ncpi-components">
-                <ToastContainer />
+                
 
                 <h1 className="">{title}</h1>
                 <nav className="pi-breadcrumb">

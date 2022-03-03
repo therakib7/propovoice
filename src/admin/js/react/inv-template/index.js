@@ -11,7 +11,6 @@ export default class Preview extends Component {
 
     render() {   
         const { id } = this.props.data.invoice.template; 
-        console.log(id)
         return (
             <div className={'ncpi-invoice-preview ncpi-invoice-preview-' + id}>  
                 { id == 1 && <Template1 {...this.props} /> }

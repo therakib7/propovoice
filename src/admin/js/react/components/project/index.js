@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 import AppContext from '../../context/app-context';
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from '../preloader/table';
+import TablePreloader from 'block/preloader/table';
 
 import Api from '../../api/project';
 import Form from './Form';
@@ -186,7 +186,7 @@ export default class Project extends Component {
         const checkedBoxes = this.state.checkedBoxes;
         return (
             <div className="ncpi-components">
-                <ToastContainer />
+                
 
                 <h1 className="">Project</h1>
                 <nav className="pi-breadcrumb">

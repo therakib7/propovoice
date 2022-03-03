@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink, useParams } from "react-router-dom";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
  
 import Api from '../../../api/client';
 
@@ -84,7 +84,7 @@ class ClientSummary extends Component {
         const { id } = this.props;
         return (
             <div className="ncpi-components">
-                <ToastContainer />
+                
 
                 <div className='mb-3 text-sm'>
                     <NavLink

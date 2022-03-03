@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-import 'react-toastify/dist/ReactToastify.css';  
+  
 import { ToastContainer } from 'react-toastify';
 import Template from '../../../../../inv-template';  
 
@@ -22,7 +22,7 @@ export default class Preview extends Component {
         const { id } = this.props.data.invoice.template; 
         return (
             <div className='max-w-3xl m-auto p-5 '> 
-                <ToastContainer />
+                
 
                 <Template {...this.props} />
 

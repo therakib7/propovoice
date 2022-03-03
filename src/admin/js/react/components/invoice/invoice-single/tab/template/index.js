@@ -1,30 +1,17 @@
-import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
-
+import React, { Component } from 'react'; 
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from '../../../../preloader/table';
+import TablePreloader from 'block/preloader/table';
  
-import Api from '../../../../../api/invoice';
+import Api from 'api/invoice';
 import Table from './Table'; 
 
 export default class Template extends Component {
     constructor(props) {
         super(props);         
 
-        this.state = {
-            // clients: []
-            preloader: true,
-            formModal: false,
-            searchModal: false,
-            formModalType: 'new',
-            msg: {
-                create: 'Successfully Added',
-                update: 'Successfully Updated',
-                delete: 'Successfully Deleted',
-                confirm: 'Are you sure to delete it?',
-            },
+        this.state = { 
+            preloader: true, 
             client: { id: null },
             clients: [],
             checkedBoxes: [],
@@ -109,7 +96,7 @@ export default class Template extends Component {
         const checkedBoxes = this.state.checkedBoxes;
         return (
             <div className="ncpi-components">
-                <ToastContainer /> 
+                 
 
                 <div className='mb-5 font-bold text-xl'>
                     Selete Template

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import { toast } from 'react-toastify';
+ 
 
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from '../preloader/table';
+import TablePreloader from 'block/preloader/table';
 
 import Helper from './helper';
 import Form from './Form';
@@ -183,7 +183,7 @@ export default class Proposal extends Component {
         const checkedBoxes = this.state.checkedBoxes;
         return (
             <div className="ncpi-components">
-                <ToastContainer /> 
+                 
 
                 <div className='mb-5 font-bold text-2xl'>
                     Proposal

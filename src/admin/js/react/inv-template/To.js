@@ -6,13 +6,20 @@ class To extends Component {
         const data = this.props.data 
         return (
             <> 
-                {data ? 
+                {data ?  
                     <>
-                        <span className='font-bold'>{data.first_name} {data.last_name}</span>
-                        <p className=''>
-                            Email: {data.email}<br />
-                            Address: {data.address}<br />
-                        </p>
+                        <p>Bill to</p>
+                        <p>{data.first_name} {data.last_name}</p>
+                        <address>
+                        Address: <p>{data.address}</p>
+                        Email: 
+                        <span>
+                            <a href="#"> {data.email}</a>{" "}
+                        </span>
+                        <br />
+                        What'sApp: <span>+8801760706361</span>
+                        <br />
+                        </address>                        
                     </> : ''
                 }
             </>

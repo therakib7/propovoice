@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { toast } from 'react-toastify';
 
-import Api from '../../../../../api/media';
+import Api from 'api/media';
 
 class Attachments extends Component {
 

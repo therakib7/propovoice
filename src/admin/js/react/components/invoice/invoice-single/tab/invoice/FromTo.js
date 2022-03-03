@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async'; 
 
-import ApiBusiness from '../../../../../api/business';
-import ApiClient from '../../../../../api/client';
+import ApiBusiness from 'api/business';
+import ApiClient from 'api/client';
 
 import PropTypes from 'prop-types' 
 

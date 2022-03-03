@@ -1,5 +1,10 @@
+
+body {
+	font-family: "Inter", sans-serif;
+	background: #E5E5E5;
+  }
 :root {
-	--pi-primary: #4C6FFF;
+	--pi-primary: #0099FF;
 	--pi-secondary: #31343D;
 	--pi-text-primary:#000000;
 	--pi-text-secondary:#1A202C;
@@ -9,11 +14,6 @@
 	--pi-white:#fff;
 	--pi-medium: 16px;
 	--pi-small: 12px;
-  }
-  
-  body {
-	font-family: "Inter", sans-serif;
-	background: #E5E5E5 !important;
   }
   
   a {
@@ -37,7 +37,7 @@
   }
   
   .pi-hedear {
-	margin-top: 37px;
+	margin-top: 10px;
 	display: flex;
 	justify-content: space-between;
   }
@@ -187,6 +187,10 @@
 	width: 210px;
   }
   
+  .pi-amounting table tr.pi-before-total th, td {
+	padding-bottom: 15px;
+  }
+  
   .pi-amounting table th {
 	font-family: Inter;
 	font-style: normal;
@@ -197,7 +201,7 @@
 	padding-left: 28px;
   }
   
-  .pi-amounting .pi-table-bg th, td {
+  .pi-amounting .pi-table-bg th, .pi-amounting .pi-table-bg td {
 	color: var(--pi-white);
 	line-height: 220%;
 	padding-left: 28px;
@@ -206,6 +210,8 @@
   
   .pi-amounting .pi-table-bg td {
 	color: var(--pi-white);
+	line-height: 140%;
+	padding-top: 15px;
   }
   
   /* pi-note wrap */
@@ -213,7 +219,24 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 46px;
+  }
+  
+  .pi-terms h4 {
+	margin-top: 15px;
+	line-height: 200%;
+  }
+  
+  .pi-terms ul {
+	list-style-type: dot;
+  }
+  .pi-terms ul li {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: var(--pi-small);
+	line-height: 150%;
+	color: var(--pi-text-5th);
+	margin-left: 15px;
   }
   
   .mt-35 {
@@ -225,7 +248,7 @@
 	font-style: normal;
 	font-weight: bold;
 	font-size: var(--pi-medium);
-	line-height: 200%;
+	line-height: 150%;
 	color: var(--pi-text-secondary);
   }
   
@@ -258,8 +281,12 @@
   }
 
   /* ====template one===*/
-.pi-invoice-one .pi-top-shape img {
+.pi-invoice-one .pi-top-shape svg {
 	width: 100%;
+  }
+  
+  .pi-invoice-one .pi-top-shape svg path {
+	fill: var(--pi-primary);
   }
   
   .pi-invoice-one .pi-body {
@@ -267,8 +294,7 @@
   }
   
   .pi-invoice-one .pi-items-table table thead {
-	background: url(../img/inv/bg.svg);
-	background-color: #0099FF;
+	background-color: var(--pi-primary);
 	color: var(--pi-white);
   }
   
@@ -277,13 +303,12 @@
   }
   
   .pi-invoice-one tr.pi-table-bg {
-	background: url(../img/inv/bg.svg);
-	background-color: #0099FF;
+	background-color: var(--pi-primary);
   }
   
-  .pi-invoice-one .pi-footer-shape img {
+  .pi-invoice-one .pi-footer-shape svg path {
 	width: 100%;
-	margin-bottom: -4px;
+	fill: var(--pi-primary);
   }
   
   /* ====template two===*/
@@ -309,6 +334,6 @@
   }
   
   .pi-invoice-two .pi-note-wrap {
-	padding-bottom: 115px;
+	padding-bottom: 55px;
   }
   

@@ -23,16 +23,10 @@ class Group extends Component {
                         list_class = 'list-disc';
                     }
 
-                    return (
-                        <div className='ncpi-invoice-group' key={group_index}> 
-                            <div className='flex justify-between my-3'>
-                                <div className=''>
-                                    {group_single.label}
-                                </div> 
-                            </div>
-
-                            <div className='ncpi-invoice-group-items p-3 rounded border bg-slate-100'> 
-                                <ul className={list_class+' px-5'}>
+                    return ( 
+                        <div key={group_index}>
+                            <h4>{group_single.label}:</h4>
+                            <ul>
                                     {group_single.items.map( (item, list_index) => { 
                                         return (
                                             <li key={list_index}> 
@@ -40,8 +34,7 @@ class Group extends Component {
                                             </li>
                                         );
                                     })} 
-                                </ul> 
-                            </div> 
+                            </ul>
                         </div>
                     );
                 })} 

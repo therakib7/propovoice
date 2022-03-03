@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import AppContext from '../../../context/app-context';
+import { toast } from 'react-toastify';
+
+import AppContext from 'context/app-context';
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from '../../preloader/table';
+import TablePreloader from 'block/preloader/table';
 
-import Api from '../../../api/client';
+import Api from 'api/client';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
@@ -15,8 +15,7 @@ export default class Client extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            // clients: []
+        this.state = { 
             preloader: true,
             formModal: false,
             searchModal: false,
@@ -179,7 +178,7 @@ export default class Client extends Component {
         const checkedBoxes = this.state.checkedBoxes;
         return (
             <div className="ncpi-components">
-                <ToastContainer />
+                
 
                 <h1 className="">Client</h1>
                 <nav className="pi-breadcrumb">

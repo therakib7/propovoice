@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'; 
-import Welcome from './components/welcome'; 
+import Welcome from 'components/welcome'; 
 
 document.addEventListener( 'DOMContentLoaded', function() { 
     let element = document.getElementById( 'ncpi-welcome' );

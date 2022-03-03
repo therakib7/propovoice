@@ -1,4 +1,7 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
     HashRouter,
@@ -6,27 +9,26 @@ import {
     Route,
     NavLink
 } from "react-router-dom";
-
-import Dashboard from './dashboard';
-import Client from './client/client';
-import Project from './project';
-import ClientSummary from './client/client-summary';
-// const Client = lazy(() => import('./client')); //TODO: need to seen path wp-content/folders root
-import Proposal from './proposal';
-import Editor from './editor';
-// const Editor = lazy(() => import('./editor'));  
-import Estimate from './estimate';
-import Invoice from './invoice/invoice';
-import InvoiceSingle from './invoice/invoice-single';
-import Payment from './Payment'; 
-import Business from './business';
-import Setting from './setting'; 
+ 
+const Dashboard = lazy(() => import('components/dashboard'));  
+const Project = lazy(() => import('components/project'));  
+const ClientSummary = lazy(() => import('components/client/client-summary')); 
+const Client = lazy(() => import('components/client/client')); 
+const Proposal = lazy(() => import('components/proposal'));  
+const Editor = lazy(() => import('components/editor'));  
+const Estimate = lazy(() => import('components/estimate'));  
+const Invoice = lazy(() => import('components/invoice/invoice'));  
+const InvoiceSingle = lazy(() => import('components/invoice/invoice-single'));  
+const Payment = lazy(() => import('components/payment'));  
+const Business = lazy(() => import('components/business'));  
+const Setting = lazy(() => import('components/setting')); 
 
 const Home = () => {
 
     return (
         <>
             <HashRouter> 
+                <ToastContainer />
                 <div className="pi-grid-container">
                     <div className="pi-left-sidebar pi-bg-pearl">
                         <div className="">

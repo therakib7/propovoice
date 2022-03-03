@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 import Style from './style.scss'
 
 import Api from '../../api/business'; 
@@ -113,7 +113,7 @@ export default class Welcome extends Component {
         const { tabs = [], currentTab, currentTabIndex } = this.state;
         return (
             <div className="pi-main-content">
-                <ToastContainer />
+                
                 <div className="pi-container">
                     <div className="pi-logo-content">
                         <img src={ncpi_local.assetImgUri+'logo.png'} className="" />

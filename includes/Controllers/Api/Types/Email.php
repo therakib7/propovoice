@@ -161,14 +161,19 @@ class Email
 
         $mail_from = isset( $params['fromData'] ) ? $params['fromData']['email'] : '';
         $mail_to = isset( $params['toData'] ) ? $params['toData']['email'] : '';
-        $invoice_id = isset( $params['invoice_id'] ) ? $params['invoice_id'] : '';
-        $mail_subject = isset( $params['subject'] ) ? $params['subject'] : '';
- 
-        
+        $invoice_id = isset( $params['invoice_id'] ) ? $params['invoice_id'] : ''; 
+        $mail_subject = isset( $params['subject'] ) ? $params['subject'] : ''; 
+        $token = get_post_meta($invoice_id, 'token', true);  
  
         $compnay_name = 'Nurency Digital';
         $client_name = 'Ashraf Vai'; 
-        $invoice_url = 'https://nurency.com';
+        $invoice_url = sprintf( 
+            '%s?id=%s&token=%s',
+            //TODO: get invoice tempalte url
+            get_site_url() . '/invoice/',
+            $invoice_id,
+            $token
+        );
 
         $subject = $this->templateVariable( $mail_subject, $compnay_name, $client_name, $invoice_id, $invoice_url );
         $template = ncpi()->render('email/invoice', [], true);  

@@ -13,12 +13,30 @@
 </head>
 <body <?php body_class(); ?>>  
     <?php 
-        //Check token that send in mail
-        if ( false ) {
-            esc_html_e( 'Sorry!! You don\'t have permission to view this page', 'propovoice' );
+        
+        $id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : null; 
+        if ( $id && get_post($id) ) {
+            $token = isset( $_GET['token'] ) ? sanitize_text_field( $_GET['token'] ) : null;
+
+            //Check token that send in mail
+            $check_permission = false;
+            $post_token = get_post_meta($id, 'token', true);  
+            if ( $token == $post_token ) {
+                $check_permission = true;
+            }
+
+            if ( is_user_logged_in() ) {
+                $check_permission = true;
+            }
+
+            if ( $check_permission ) { 
+                echo '<div id="ncpi-invoice"></div>'; 
+            } else {
+                esc_html_e( 'Sorry!! You don\'t have permission to view this page', 'propovoice' );
+            }
         } else {
-            echo '<div id="ncpi-invoice"></div>'; 
-        }
+            esc_html_e( 'Sorry!! page not found', 'propovoice' );
+        } 
     ?>
     <?php wp_footer(); ?>
 </body>
