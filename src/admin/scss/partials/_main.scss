@@ -8,7 +8,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
- html {
+html {
   line-height: 1.15;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -140,7 +140,7 @@ sup {
 /* Embedded content
    ========================================================================== */
 /**
- * Remove the border on images inside links in IE 10.
+ * Remove the border on pi-single-images inside links in IE 10.
  */
 img {
   border-style: none;
@@ -2265,7 +2265,6 @@ html {
 }
 
 .pi-cards .pi-bg-air-white {
-  background-color: #EDF2F7;
   border-radius: 20px;
   padding: 25px;
 }
@@ -2585,19 +2584,95 @@ input[type=checkbox] {
   margin: auto;
 }
 
+.ncpi .pi-single-tabs .pi-tab-item {
+  background: transparent;
+  border: none;
+  width: 130px;
+  font-size: 12px;
+  font-weight: 400;
+  position: relative;
+}
+.ncpi .pi-single-tabs .pi-tab-item svg {
+  position: absolute;
+  top: 7px;
+  right: -51px;
+}
+.ncpi .pi-single-tabs .pi-tab-item.pi-active span {
+  border: 3px solid var(--bg-color-blue);
+}
+.ncpi .pi-single-tabs .pi-tab-item span:hover {
+  border: 3px solid var(--bg-color-blue);
+}
+.ncpi .pi-single-tabs .pi-tab-item:first-child {
+  margin-left: 0px;
+}
+.ncpi .pi-single-tabs {
+  margin-top: -80px;
+}
+@media screen and (max-width: 992px) {
+  .ncpi .pi-single-tabs {
+    margin-top: -10px;
+  }
+}
+.ncpi .pi-single-tabs .pi-tab-item span {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  display: block;
+  border-radius: 50%;
+  border: 3px solid #E2E8F0;
+  margin: auto;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+.ncpi pi-overflow-content {
+  margin-top: -60px;
+}
+@media screen and (max-width: 992px) {
+  .ncpi .pi-single-btn {
+    position: relative;
+    top: -75px;
+  }
+}
+.ncpi .pi-single-tab-content .city h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 55px;
+  margin-bottom: 13px;
+}
+.ncpi pi-overflow-content .pi-btn.pi-border-blue:hover {
+  color: #fff !important;
+}
+.ncpi .pi-single-btn .pi-btn.pi-border-blue {
+  margin-right: 10px;
+}
+@media screen and (max-width: 768px) {
+  .ncpi .pi-single-tabs .pi-tab-item {
+    width: 100px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .ncpi .pi-single-tabs {
+    margin-top: 85px;
+  }
+  .ncpi .pi-single-btn {
+    text-align: center !important;
+  }
+}
+
 .ncpi .piWidth-100 {
   width: 100% !important;
 }
 .ncpi .pi-text-center {
   text-align: center;
 }
-.ncpi .piTextRight {
+.ncpi .pi-text-right {
   text-align: right;
 }
-.ncpi .piTextLeft {
+.ncpi .pi-text-left {
   text-align: left;
 }
-.ncpi .piFloatCenter {
+.ncpi .pi-float-center {
   float: center;
 }
 .ncpi .pi-float-right {
@@ -2614,7 +2689,13 @@ input[type=checkbox] {
   margin-top: 5px;
   position: relative;
 }
-
+.ncpi .pi-gap > div {
+  padding: 10px;
+}
+.ncpi .pi-margin-l-r {
+  margin-right: -10px;
+  margin-left: -10px;
+}
 /*-------------------------------------------------------------- 
 # Typography 
 --------------------------------------------------------------*/
@@ -2656,6 +2737,18 @@ h1 {
   font-weight: 700;
 }
 
+@media screen and (max-width: 769px) {
+  h1 {
+    font-size: 28px !important;
+    font-weight: 700;
+  }
+}
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 22px !important;
+    font-weight: 700;
+  }
+}
 /*--------------------------------------------------------------
 # Copy
 --------------------------------------------------------------*/
@@ -2707,6 +2800,12 @@ h1 {
 }
 .ncpi .pi-text-hover-blue:hover {
   color: #4e6de9 !important;
+}
+@media screen and (max-width: 768px) {
+  .ncpi .pi-btn {
+    padding: 12px 15px;
+    font-size: 12px;
+  }
 }
 
 input[type=text]:focus,
@@ -2763,7 +2862,7 @@ form .icon-search {
   font-size: 16px;
 }
 
-/* modal image hover effect */
+/* modal pi-single-image hover effect */
 .content {
   position: relative;
 }
@@ -2785,7 +2884,7 @@ form .icon-search {
   opacity: 1;
 }
 
-.content-image {
+.content-pi-single-image {
   width: 100%;
 }
 
@@ -3087,8 +3186,17 @@ form .icon-search {
   --bg-color-blue: #4C6FFF;
   --bg-color-green: #18954D;
   --bg-color-pearl: #f8f8f8;
+  --text-color-air-white: #EDF2F7;
   --text-color-white: #fff;
   --text-color-blue: #4C6FFF;
+}
+
+.pi-bg-cold-morning {
+  background-color: #E5E5E5;
+}
+
+.pi-bg-air-white {
+  background-color: var(--text-color-air-white);
 }
 
 .pi-bg-pearl {
@@ -3104,7 +3212,11 @@ form .icon-search {
 }
 
 .pi-color-blue {
-  color: var(--text-color-blue);
+  color: var(--text-color-blue) !important;
+}
+
+.pi-border-blue {
+  border: 1px solid var(--text-color-blue) !important;
 }
 
 .pi-bg-white {
@@ -3298,9 +3410,10 @@ a:hover, a:active {
 }
 
 .pi-left-sidebar .pi-logo-content strong {
-  position: fixed;
+  position: relative;
   top: -10px;
   left: 5px;
+  font-size: 18px;
 }
 
 .pi-left-sidebar ul li a {
@@ -3350,11 +3463,11 @@ a:hover, a:active {
     position: fixed;
     top: 0px;
     bottom: 0;
-    left: 0;
+    left: -250px;
     overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: smooth;
-    background-color: #e5e5e5;
+    z-index: 9;
   }
 
   .pi-menubar-icon {
@@ -3364,45 +3477,5 @@ a:hover, a:active {
     display: block;
     cursor: pointer;
     font-size: 15px;
-  }
-}
-.ncpi .pi-right-content {
-  width: 100%;
-}
-.ncpi .pi-grid-container {
-  display: flex;
-  grid-template-columns: auto auto auto;
-}
-.ncpi .pi-right-content {
-  padding: 30px 70px;
-}
-.ncpi .pi-right-content h1 {
-  margin-bottom: 10px;
-  margin-top: 0;
-}
-.ncpi .pi-text-hover-blue.pi-float-right {
-  background-color: transparent;
-}
-.ncpi .pi-empty-content {
-  margin-top: 90px;
-}
-.ncpi .pi-empty-content img {
-  margin-bottom: 20px;
-}
-.ncpi .pi-empty-content h4 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 25px;
-}
-@media screen and (max-width: 768px) {
-  .ncpi .pi-right-content {
-    padding: 30px;
-    padding-top: 70px;
-  }
-}
-@media screen and (max-width: 500px) {
-  .ncpi .pi-search-box.pi-float-right {
-    margin-top: 15px;
-    float: left;
   }
 }

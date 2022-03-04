@@ -1,23 +1,6 @@
 @import "partials/_main.scss";
 @import "partials/_pagination.scss";
-
-body {
-    background-color: transparent;
-}
-.upgrade-btn { background: #f7f7f7; }
-.active-nav-link { color: #1947ee !important; }
  
-.ncpi-h-screen {
-    height: 94vh;
-    overflow-y: scroll;
-}
-
-.ncpi-frontend {
-    .ncpi-h-screen {
-        height: 100vh;
-        overflow-y: scroll;
-    }
-}
 
 #wpbody-content {
     padding-bottom: 0; 
@@ -29,9 +12,4 @@ body {
     max-height: 600px; //TODO: add a4 size later
     overflow: hidden;
 }
-.ce-block__content, .ce-toolbar__content { max-width:calc(100% - 80px) !important; } .cdx-block { max-width: 100% !important; }
-
-//TODO: do it only for invoice
-.list-letter  {
-    list-style-type: lower-latin;
-  }
+.ce-block__content, .ce-toolbar__content { max-width:calc(100% - 80px) !important; } .cdx-block { max-width: 100% !important; } 
