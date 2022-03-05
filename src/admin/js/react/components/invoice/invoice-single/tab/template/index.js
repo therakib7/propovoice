@@ -98,7 +98,7 @@ export default class Template extends Component {
             <div id="pi-template" className="city">
                 <h2>Select Template</h2>
                 <div className="row pi-gap pi-margin-l-r">
-                    {this.state.preloader ? <TablePreloader /> : <Single tableData={this.state.clients} selectEntry={this.selectEntry} />}
+                    {this.state.preloader ? <TablePreloader /> : <Single currentTemplate={this.props.currentTemplate} tableData={this.state.clients} selectEntry={this.selectEntry} />}
                 </div>
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}

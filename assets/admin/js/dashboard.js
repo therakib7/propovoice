@@ -66,10 +66,13 @@ var Home = function Home() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.HashRouter, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_1__.ToastContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "pi-grid-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "pi-grid-container pi-main-content",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "pi-left-sidebar pi-bg-pearl",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          id: "myDIV",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "pi-menubar-icon"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "pi-logo-content",
@@ -251,7 +254,7 @@ var Home = function Home() {
                 })
               })]
             })]
-          })
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "pi-right-content",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
@@ -34898,7 +34901,7 @@ function _extends() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "assets/admin/js/component/chunks/" + {"src_admin_js_react_components_dashboard_index_js":"7d89f068b6cc53eb","src_admin_js_react_components_project_index_js":"b10ac11023355fa3","src_admin_js_react_components_client_client-summary_index_js":"6cf071ec5a340c8e","src_admin_js_react_components_client_client_index_js":"8e77908cd8540e36","src_admin_js_react_components_proposal_index_js":"68c49b5c04c32385","src_admin_js_react_components_editor_index_jsx":"b6d2bd4cc0fbd081","src_admin_js_react_components_estimate_index_js":"b223c5a7d62c8f39","src_admin_js_react_components_invoice_invoice_index_js":"6d677082ba073af2","src_admin_js_react_components_invoice_invoice-single_index_js":"f2b88d7f830a8e0c","src_admin_js_react_components_payment_index_js":"9d631a074bb685af","src_admin_js_react_components_business_index_js":"e1cdd500f1dcaa02","src_admin_js_react_components_setting_index_js":"62c960904f61bb35"}[chunkId] + ".js";
+/******/ 			return "assets/admin/js/component/chunks/" + {"src_admin_js_react_components_dashboard_index_js":"7d89f068b6cc53eb","src_admin_js_react_components_project_index_js":"b10ac11023355fa3","src_admin_js_react_components_client_client-summary_index_js":"6cf071ec5a340c8e","src_admin_js_react_components_client_client_index_js":"8e77908cd8540e36","src_admin_js_react_components_proposal_index_js":"68c49b5c04c32385","src_admin_js_react_components_editor_index_jsx":"b6d2bd4cc0fbd081","src_admin_js_react_components_estimate_index_js":"b223c5a7d62c8f39","src_admin_js_react_components_invoice_invoice_index_js":"6d677082ba073af2","src_admin_js_react_components_invoice_invoice-single_index_js":"4960f90504b7037d","src_admin_js_react_components_payment_index_js":"9d631a074bb685af","src_admin_js_react_components_business_index_js":"e1cdd500f1dcaa02","src_admin_js_react_components_setting_index_js":"62c960904f61bb35"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

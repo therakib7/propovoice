@@ -9,12 +9,12 @@ const Single = props => {
     return props.tableData.map((row, index) => {
         return (
             <div className="col-12 col-md-6 col-lg-3" key={index}>
-                <div className="pi-single-image-content">
+                <div className={(props.currentTemplate.id == row.id) ? 'pi-single-image-current pi-active' : 'pi-single-image-content'}>
                     <img src={row.img} className="pi-single-image" />
-                    <div className="pi-overflow-content">
+                    {props.currentTemplate.id != row.id && <div className="pi-overflow-content">
                         <a className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => handleClick(row)}>Select</a>
                         <a className="pi-btn pi-bg-blue pi-bg-hover-blue">Full Preview</a>
-                    </div>
+                    </div>}
                 </div>
             </div>
         );

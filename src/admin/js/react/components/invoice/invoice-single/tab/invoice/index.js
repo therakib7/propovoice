@@ -338,18 +338,10 @@ class Invoice extends Component {
 							</button>
 						))}
 					</div>
-					
-					{(currentTab == 'template') && <Template changeHandler={this.handleTemplateChange} />}
-					
-					<div id="pi-informations" className="city" style={{ display: "none" }}>
-						<div className="pi-single-btn pi-text-right">
-							<a className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue">
-								Back
-							</a>
-							<a className="pi-btn pi-bg-blue pi-bg-hover-blue">
-								Save &amp; Continue
-							</a>
-						</div>
+
+					{(currentTab == 'template') && <Template currentTemplate={this.state.invoice.template} changeHandler={this.handleTemplateChange} />}
+
+					{(currentTab == 'info') && <div id="pi-informations" className="city">
 						<h2>Add Content</h2>
 						<div className="pi-info-content pi-bg-white">
 							<div className="pi-add-info-content pi-bg-pearl">
@@ -554,20 +546,19 @@ class Invoice extends Component {
 							{/* ./ info-table-content */}
 						</div>
 						{/* ./ pi-info-content */}
-					</div>
-					{/* ./ pi-informations */}
-					<div id="pi-share" className="city" style={{ display: "none" }}>
-						<div className="pi-single-btn pi-text-right">
-							<a className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue">
-								Back
-							</a>
-							<a className="pi-btn pi-bg-blue pi-bg-hover-blue">
-								Save &amp; Continue
-							</a>
-						</div>
-						<h2>Share</h2>
-						<p>Share is the capital of Japan.</p>
-					</div>
+					</div>}
+					{(currentTab == 'preview') &&
+						<Preview
+							data={this.state}
+							totalData={
+								{
+									currencyFormatter: this.formatCurrency,
+									itemsTotal: this.calcItemsTotal,
+									taxTotal: this.calcTaxTotal,
+									grandTotal: this.calcGrandTotal,
+								}
+							}
+						/>}
 				</div>
 			</div>
 		)

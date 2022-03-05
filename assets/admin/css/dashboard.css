@@ -2240,55 +2240,8 @@ html {
 # Partials
 --------------------------------------------------------------*/
 /*-------------------------------------------------------------- 
-# crid
+# Table
 --------------------------------------------------------------*/
-.pi-breadcrumb ul li {
-  display: inline;
-  padding: 2px;
-}
-
-.pi-breadcrumb {
-  margin-bottom: 25px;
-}
-
-.pi-breadcrumb ul li a {
-  font-size: 16px;
-}
-
-.pi-breadcrumb ul li.active {
-  color: #a7a7a7;
-}
-
-.pi-cards {
-  margin-bottom: 25px;
-}
-
-.pi-cards .pi-bg-air-white {
-  border-radius: 20px;
-  padding: 25px;
-}
-
-.pi-cards .pi-bg-air-white span {
-  font-weight: 500;
-  text-transform: capitalize;
-  font-size: 14px;
-}
-
-.pi-cards .pi-bg-air-white h4 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-@media screen and (max-width: 992px) {
-  .pi-cards .pi-bg-air-white {
-    margin-bottom: 30px;
-  }
-
-  .pi-right-content {
-    padding: 30px 30px;
-  }
-}
 .pi-table {
   width: 100%;
   border: 1px solid #CBD5E0;
@@ -2389,6 +2342,210 @@ input[type=checkbox] {
   display: block;
 }
 
+.info-table-content span {
+  padding: 5px 20px;
+  font-size: 12px;
+  border-radius: 10px 10px 0 0;
+}
+
+.info-table-content span svg {
+  color: var(--text-color-blue);
+  margin-right: 10px;
+}
+
+.info-table-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 45px;
+}
+
+.info-table-content table textarea {
+  border-radius: 5px;
+  margin-top: 10px;
+  outline: none;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.info-table-content table thead th {
+  text-align: left;
+  padding: 15px 20px;
+  width: 30%;
+}
+
+.info-table-content table tbody td {
+  padding: 30px 15px;
+}
+
+.info-table-content table thead tr {
+  background-color: #f8f8f8;
+}
+
+.info-table-content table thead tr th span {
+  font-size: 10px;
+  color: #4A5568;
+}
+
+.info-table-content table td:first-child input[type=text] {
+  width: 100%;
+}
+
+.info-table-content table tbody tr:nth-child(even) {
+  background-color: #F8F8F8;
+}
+
+.info-table-content table td input[type=number],
+.info-table-content table td input[type=text] {
+  width: 70px;
+  padding: 6px 0 8px 10px;
+  border: 1px solid #CBD5E0;
+  border-radius: 4px;
+  background-color: #fff;
+  outline: none;
+}
+
+.info-table-content table td select {
+  width: 65px;
+  padding: 8px;
+  border: 1px solid #CBD5E0;
+  font-size: 10px;
+  background-color: var(--text-color-air-white);
+  outline: none;
+  margin-left: -7px;
+}
+
+.info-table-content table tr td:last-child {
+  font-size: 12px;
+  padding: 0;
+}
+
+.info-table-content table tr td:last-child span {
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.info-table-content table tr td:nth-child(3) input[type=text],
+.info-table-content table tr td:nth-child(2) input[type=text] {
+  float: left;
+  font-size: 12px;
+}
+
+.info-table-content table tr td:nth-child(3) input[type=nunber],
+.info-table-content table tr td:nth-child(2) input[type=nunber] {
+  border-radius: 4px 0 0 4px;
+}
+
+.info-table-content table tr td:nth-child(3) select,
+.info-table-content table tr td:nth-child(2) select {
+  border-radius: 0 4px 4px 0;
+}
+
+.info-table-content button {
+  width: 100%;
+  border-radius: 0 0 15px 15px !important;
+  color: #1A202C !important;
+}
+
+/*-------------------------------------------------------------- 
+# crid
+--------------------------------------------------------------*/
+.ncpi .pi-right-content {
+  width: 100%;
+}
+
+.ncpi .pi-grid-container {
+  display: flex;
+  grid-template-columns: auto auto auto;
+}
+
+.ncpi .pi-right-content {
+  padding: 30px 70px;
+  background-color: #fbfbfb;
+}
+
+.ncpi .pi-right-content h1 {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.ncpi .pi-text-hover-blue.pi-float-right {
+  background-color: transparent;
+}
+
+.ncpi .pi-empty-content {
+  margin-top: 90px;
+}
+
+.ncpi .pi-empty-content img {
+  margin-bottom: 20px;
+}
+
+.ncpi .pi-empty-content h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+@media screen and (max-width: 992px) {
+  .ncpi .pi-right-content {
+    padding: 30px;
+    padding-top: 50px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .ncpi .pi-search-box.pi-float-right {
+    margin-top: 15px;
+    float: left;
+  }
+}
+.pi-breadcrumb ul li {
+  display: inline;
+  padding: 2px;
+}
+
+.pi-breadcrumb {
+  margin-bottom: 25px;
+}
+
+.pi-breadcrumb ul li a {
+  font-size: 16px;
+}
+
+.pi-breadcrumb ul li.active {
+  color: #a7a7a7;
+}
+
+.pi-cards {
+  margin-bottom: 25px;
+}
+
+.pi-cards .pi-bg-air-white {
+  border-radius: 20px;
+  padding: 25px;
+}
+
+.pi-cards .pi-bg-air-white span {
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.pi-cards .pi-bg-air-white h4 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 992px) {
+  .pi-cards .pi-bg-air-white {
+    margin-bottom: 30px;
+  }
+
+  .pi-right-content {
+    padding: 30px 30px;
+  }
+}
 /*-------------------------------------------------------------- 
 # popup
 --------------------------------------------------------------*/
@@ -3431,6 +3588,9 @@ a:hover, a:active {
   overflow-y: auto;
   scroll-behavior: smooth;
   height: 100vh;
+}
+
+.ncpi .pi-left-sidebar {
   width: 240px;
 }
 
