@@ -130,21 +130,22 @@
 .ncpi .pi-from-content {
   padding: 35px 30px;
 }
-.ncpi .pi-from-content .recive-title {
-  margin-top: 0;
-  margin-bottom: 4px;
+.ncpi .pi-from-content .pi-from-to {
+  width: 290px;
+}
+.ncpi .pi-from-content .pi-from-to label {
   font-size: 12px;
   font-weight: 700;
+  display: block;
 }
-.ncpi .pi-from-content .pi-to,
+.ncpi .pi-from-content .pi-to {
+  position: relative;
+  float: right;
+}
 .ncpi .pi-from-content .pi-from {
   padding: 10px 20px;
   border-radius: 15px;
   border: 1px solid #cbd5e0;
-}
-.ncpi .pi-from-content .recive-content,
-.ncpi .pi-from-content .pi-from {
-  width: 290px;
 }
 .ncpi .pi-from-content select {
   border: none;
@@ -152,24 +153,25 @@
   margin-bottom: 15px;
   font-weight: 700;
   outline: none;
+  margin-left: -3px;
 }
-.ncpi .pi-from-content .from-title {
+.ncpi .pi-from-content .pi-from-title {
   font-size: 14px;
   font-weight: 700;
 }
-.ncpi .pi-from-content .from-title span {
-  margin-left: 20px;
+.ncpi .pi-from-content .pi-from-title span {
+  float: right;
   font-size: 12px;
   font-weight: 400;
   border: 1px solid #cbd5e0;
-  padding: 6px 10px;
+  padding: 0px 10px;
   border-radius: 4px;
   position: relative;
   top: 2px;
   background-color: #fff;
   cursor: pointer;
 }
-.ncpi .pi-from-content .from-title svg {
+.ncpi .pi-from-content .pi-from-title svg {
   margin-right: 10px;
 }
 .ncpi .pi-from-content address {
@@ -179,13 +181,14 @@
 }
 
 @media screen and (max-width: 500px) {
-  .recive-content,
-.pi-from {
-    width: none;
+  .pi-to,
+.pi-from-to {
+    width: 100% !important;
+    float: none !important;
   }
 
-  .recive-content.pi-float-right {
-    float: none;
+  .pi-to {
+    margin-top: 20px;
   }
 
   .pi-from-content {

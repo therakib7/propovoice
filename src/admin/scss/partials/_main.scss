@@ -8,7 +8,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
- html {
+html {
   line-height: 1.15;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -2243,7 +2243,7 @@ html {
 /*-------------------------------------------------------------- 
 # Table
 --------------------------------------------------------------*/
-.pi-table {
+.ncpi .pi-table {
   width: 100%;
   border: 1px solid #CBD5E0;
   margin-top: 60px;
@@ -2252,62 +2252,51 @@ html {
   border-style: hidden;
   box-shadow: 0 0 0 1px #CBD5E0;
 }
-
-tr {
+.ncpi .pi-table tr {
   text-align: left;
   border-color: #ddd;
 }
-
-.pi-table tr th {
+.ncpi .pi-table .pi-table tr th {
   font-weight: 400;
   font-size: 12px;
   padding: 15px 0;
 }
-
-.pi-table tr td:first-child,
-.pi-table tr th:first-child {
+.ncpi .pi-table .pi-table tr td:first-child,
+.ncpi .pi-table .pi-table tr th:first-child {
   width: 60px;
   padding-left: 15px;
 }
-
-.pi-table tr td {
+.ncpi .pi-table .pi-table tr td {
   padding: 15px 0;
   font-size: 14px;
 }
-
-.pi-table tr td .pi-status {
+.ncpi .pi-table .pi-table tr td .pi-status {
   padding: 5px 15px;
   font-size: 10px;
   border-radius: 15px;
   color: #fff;
 }
-
-input[type=checkbox] {
+.ncpi .pi-table input[type=checkbox] {
   zoom: 1.5;
   margin-top: 3px;
 }
-
-.pi-table tr {
+.ncpi .pi-table .pi-table tr {
   border: 1px solid #CBD5E0;
 }
-
-.pi-dropbtn {
+.ncpi .pi-table .pi-dropbtn {
   padding: 7px 12px 2px;
   position: relative;
   top: 2px;
   display: block;
   border-radius: 5px;
 }
-
-.pi-dropbtn:hover, .pi-dropbtn:focus {
+.ncpi .pi-table .pi-dropbtn:hover, .ncpi .pi-table .pi-dropbtn:focus {
   background-color: #EDF2F7;
 }
-
-.pi-dropdown {
+.ncpi .pi-table .pi-dropdown {
   display: inline-block;
 }
-
-.pi-dropdown-content {
+.ncpi .pi-table .pi-dropdown-content {
   display: none;
   position: absolute;
   background-color: #fff;
@@ -2318,50 +2307,46 @@ input[type=checkbox] {
   top: 50px;
   border-radius: 8px;
 }
-
-.pi-action-content {
+.ncpi .pi-table .pi-action-content {
   position: relative;
 }
-
-.pi-action-content button {
+.ncpi .pi-table .pi-action-content button {
   background-color: transparent;
   border: none;
 }
-
-.pi-dropdown-content a {
+.ncpi .pi-table .pi-dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
-
-.pi-dropdown a:hover {
+.ncpi .pi-table .pi-dropdown a:hover {
   background-color: #EDF2F7;
 }
-
-.pi-show {
+.ncpi .pi-table .pi-show {
   display: block;
 }
-
-.info-table-content .edit-btn {
+.ncpi .info-table-content .edit-btn {
   padding: 5px 20px;
   font-size: 12px;
   border-radius: 10px 10px 0 0;
   font-weight: 600;
+  border: 1px solid #CBD5E0;
   cursor: pointer;
+  border-bottom: none;
 }
-.info-table-content .edit-btn svg path {
+.ncpi .info-table-content .edit-btn svg path {
   fill: var(--text-color-blue);
   margin-right: 10px;
 }
-.info-table-content .edit-btn svg {
+.ncpi .info-table-content .edit-btn svg {
   margin-right: 10px;
 }
-.info-table-content table {
+.ncpi .info-table-content table {
   border-collapse: collapse;
   width: 100%;
 }
-.info-table-content table textarea {
+.ncpi .info-table-content table textarea {
   border-radius: 5px;
   margin-top: 10px;
   outline: none;
@@ -2369,36 +2354,37 @@ input[type=checkbox] {
   padding: 10px;
   width: 100%;
 }
-.info-table-content table thead tr th {
+.ncpi .info-table-content table thead tr th {
   text-align: left;
   padding: 12px;
 }
-.info-table-content table thead tr th:first-child {
-  padding: 20px;
+.ncpi .info-table-content table thead tr th:first-child {
+  padding: 14px 20px;
   border-radius: 15px 0 0 0;
 }
-.info-table-content table tbody tr td {
+.ncpi .info-table-content table tbody tr td {
   padding: 12px;
 }
-.info-table-content table tbody tr td:first-child {
+.ncpi .info-table-content table tbody tr td:first-child {
   width: 35%;
   padding: 15px 20px;
 }
-.info-table-content table thead tr {
+.ncpi .info-table-content table thead tr {
   background-color: #f8f8f8;
+  border: 1px solid #CBD5E0;
 }
-.info-table-content table thead tr th span {
+.ncpi .info-table-content table thead tr th span {
   font-size: 10px;
   color: #4A5568;
 }
-.info-table-content table td:first-child input[type=text] {
+.ncpi .info-table-content table td:first-child input[type=text] {
   width: 100%;
 }
-.info-table-content table tbody tr:nth-child(even) {
+.ncpi .info-table-content table tbody tr:nth-child(even) {
   background-color: #F8F8F8;
 }
-.info-table-content table td input[type=number],
-.info-table-content table td input[type=text] {
+.ncpi .info-table-content table td input[type=number],
+.ncpi .info-table-content table td input[type=text] {
   width: 65px;
   padding: 6px 0 8px 10px;
   border: 1px solid #CBD5E0;
@@ -2406,7 +2392,7 @@ input[type=checkbox] {
   background-color: #fff;
   outline: none;
 }
-.info-table-content table td select {
+.ncpi .info-table-content table td select {
   width: 60px;
   padding: 8px;
   border: 1px solid #CBD5E0;
@@ -2415,34 +2401,71 @@ input[type=checkbox] {
   outline: none;
   margin-left: -7px;
 }
-.info-table-content table tr td:last-child {
+.ncpi .info-table-content table tr td:last-child {
   font-size: 12px;
 }
-.info-table-content table tr td:last-child span {
+.ncpi .info-table-content table tr td:last-child span {
   margin-left: 10px;
   cursor: pointer;
   padding: 10px;
 }
-.info-table-content table tr td:last-child span:hover svg path {
+.ncpi .info-table-content table tr td:last-child span:hover svg path {
   fill: var(--text-color-blue);
 }
-.info-table-content table tr td:nth-child(3) input[type=text],
-.info-table-content table tr td:nth-child(2) input[type=text] {
+.ncpi .info-table-content table tr td:nth-child(3) input[type=text],
+.ncpi .info-table-content table tr td:nth-child(2) input[type=text] {
   float: left;
   font-size: 12px;
 }
-.info-table-content table tr td:nth-child(3) input[type=nunber],
-.info-table-content table tr td:nth-child(2) input[type=nunber] {
+.ncpi .info-table-content table tr td:nth-child(3) input[type=nunber],
+.ncpi .info-table-content table tr td:nth-child(2) input[type=nunber] {
   border-radius: 4px 0 0 4px;
 }
-.info-table-content table tr td:nth-child(3) select,
-.info-table-content table tr td:nth-child(2) select {
+.ncpi .info-table-content table tr td:nth-child(3) select,
+.ncpi .info-table-content table tr td:nth-child(2) select {
   border-radius: 0 4px 4px 0;
 }
-.info-table-content button {
+.ncpi .info-table-content button {
   width: 100%;
   border-radius: 0 0 15px 15px !important;
   color: #1A202C !important;
+  border: 1px solid #CBD5E0;
+}
+.ncpi .pi-calculation {
+  width: 240px;
+  margin-left: auto;
+  margin-top: 15px;
+}
+.ncpi .pi-calculation table tr:first-child td:first-child {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+}
+.ncpi .pi-calculation table tr:last-child {
+  border-radius: 8px;
+  position: relative;
+}
+.ncpi .pi-calculation table tr:last-child td {
+  text-align: right;
+}
+.ncpi .pi-calculation table tr td {
+  font-size: 12px;
+  z-index: 2;
+  position: relative;
+  padding: 10px 15px;
+  margin-right: 10px;
+}
+.ncpi .pi-calculation table input[type=text] {
+  width: 70px;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f8f8f8;
+  padding-left: 30px;
+  margin-left: 5px;
+}
+.ncpi .pi-calculation table inputl[readonly] {
+  background-color: #edf2f7;
 }
 
 .pi-calculation {
@@ -3429,123 +3452,6 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
-.left-sidebar {
-  /* top: 0px;
-  bottom: 0;
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  height: 100vh; */
-}
-
-.left-sidebar img {
-  border-radius: 10px;
-}
-
-.left-sidebar ul li a {
-  font-weight: 500;
-  display: block;
-}
-
-.left-sidebar ul li a i {
-  margin-right: 5px;
-  font-size: 18px;
-}
-
-.left-sidebar ul li a:hover i {
-  color: #4C6FFF;
-}
-
-.border-r {
-  border-right: 1px solid #cdcccc;
-}
-
-@media screen and (max-width: 1024px) {
-  .left-sidebar {
-    position: fixed;
-    top: 0px;
-    bottom: 0;
-    left: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    background-color: #e5e5e5;
-  }
-
-  .left-sidebar {
-    transition: ease-in-out 500ms;
-  }
-
-  .exdda-toggle-btn {
-    cursor: pointer;
-    font-size: 30px;
-    color: #17191F;
-    position: fixed;
-    left: 30px;
-    top: 10px;
-    transition: ease-in-out 500ms;
-  }
-
-  .menu-btn {
-    left: 270px;
-  }
-
-  .exdda-toggle-btn:hover {
-    transform: scale(1.2);
-    text-shadow: 5px 5px 5px gray;
-  }
-
-  .left-sidebar ul .exdda-menuItem {
-    font-size: 16px;
-  }
-
-  .menu {
-    left: 0px !important;
-  }
-
-  .left-sidebar {
-    z-index: 110;
-  }
-
-  .left-sidebar.active .exdda-toggle-btn {
-    left: 285px !important;
-  }
-
-  .exdda-toggle-btn span {
-    display: block;
-    width: 30px;
-    height: 5px;
-    background: #151719;
-    margin: 5px 0px;
-    cursor: pointer;
-  }
-
-  .left-sidebar ul li:hover i {
-    transform: scale(1.1);
-  }
-}
-@media screen and (max-width: 768px) {
-  .exdda-toggle-btn {
-    left: 10px;
-    top: 20px;
-  }
-
-  .menu-btn {
-    left: 270px;
-  }
-}
-.left-sidebar ul .pi-sub-menu {
-  margin-left: 30px;
-  display: none;
-}
-
-.left-sidebar ul li:hover .pi-sub-menu {
-  display: block;
-  transition: transform 0.3s, opacity 0.3s;
-}
-
-/*======================== New =============================*/
 .ncpi .pi-right-content,
 .ncpi .pi-left-sidebar {
   overflow-x: hidden;

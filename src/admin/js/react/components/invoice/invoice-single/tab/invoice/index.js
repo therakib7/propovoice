@@ -18,6 +18,7 @@ import Preview from '../preview';
 import Style from './section/Style'
 import Owner from './section/Owner'
 import Attachments from './Attachments';
+import DateField from 'block/date-picker';
 
 
 class Invoice extends Component {
@@ -244,7 +245,7 @@ class Invoice extends Component {
 					}
 				})
 		}
-	} 
+	}
 
 	formatCurrency = (amount) => {
 		return (new Intl.NumberFormat(this.locale, {
@@ -292,7 +293,7 @@ class Invoice extends Component {
 		});
 	}
 
-	continueTab = ( param ) => { 
+	continueTab = (param) => {
 		let tab = this.state.currentTab;
 		if (param == 'template') {
 			tab = 'info';
@@ -329,32 +330,32 @@ class Invoice extends Component {
 						</nav>
 					</div>
 					<div className="col-md-6">
-						<div className="pi-single-btn pi-text-right"> 
+						<div className="pi-single-btn pi-text-right">
 							{(currentTab != 'template') &&
-							<button
-							className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
-								onClick={this.backTab} >
-								Back
-							</button>
+								<button
+									className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
+									onClick={this.backTab} >
+									Back
+								</button>
 							}
 
-							{(currentTab == 'template') &&<button
+							{(currentTab == 'template') && <button
 								className="pi-btn pi-bg-blue pi-bg-hover-blue"
-								onClick={() => this.continueTab('template') } >
+								onClick={() => this.continueTab('template')} >
 								Continue
 							</button>}
 
-							{(currentTab == 'info') &&<button
+							{(currentTab == 'info') && <button
 								className="pi-btn pi-bg-blue pi-bg-hover-blue"
 								onClick={this.handleSave} >
-								{ this.state.msg.saveTxt } & Continue
-							</button>} 
+								{this.state.msg.saveTxt} & Continue
+							</button>}
 
-							{(currentTab == 'preview') &&<button
+							{(currentTab == 'preview') && <button
 								className="pi-btn pi-bg-blue pi-bg-hover-blue"
-								onClick={ () => this.props.routeInvoice() } >
+								onClick={() => this.props.routeInvoice()} >
 								Done
-							</button>} 
+							</button>}
 						</div>
 					</div>
 				</div>{/* ./row */}
@@ -394,7 +395,7 @@ class Invoice extends Component {
 						<div className="row">
 							<div className="col-lg-9">
 								<h2>Add Content</h2>
-													
+
 								<div className="pi-info-content pi-bg-white">
 									<div className="pi-add-info-content pi-bg-pearl">
 										<h3 className="pi-color-blue pi-text-center">Invoice</h3>
@@ -404,63 +405,53 @@ class Invoice extends Component {
 													<img src={ncpi_local.assetImgUri + 'from-logo.png'} className="" />
 												</div>
 												{/* ./ pi-content */}
-											</div> 
+											</div>
 											<div className="col-12 col-md-6">
 												<div className="pi-info-form">
-												<div className="row">
-													<div className="pi-info-lavel">
-													<label htmlFor="info-number">Invoice number :</label>
+													<div className="row">
+														<div className="pi-info-lavel">
+															<label htmlFor="info-number">Invoice number :</label>
+														</div>
+														<div className="pi-info-input-field">
+															<input
+																type="number"
+																id="info-number"
+																name="firstname"
+																placeholder={1}
+															/>
+														</div>
 													</div>
-													<div className="pi-info-input-field">
-													<input
-														type="number"
-														id="info-number"
-														name="firstname"
-														placeholder={1}
-													/>
+													<div className="row">
+														<div className="pi-info-lavel">
+															<label htmlFor="date">Invoice date :</label>
+														</div>
+														<div className="pi-info-input-field">
+															<DateField />
+														</div>
 													</div>
-												</div>
-												<div className="row">
-													<div className="pi-info-lavel">
-													<label htmlFor="date">Invoice date :</label>
+													<div className="row">
+														<div className="pi-info-lavel">
+															<label htmlFor="due">Due date :</label>
+														</div>
+														<div className="pi-info-input-field">
+															<DateField />
+														</div>
 													</div>
-													<div className="pi-info-input-field">
-													<input
-														type="text"
-														id="date"
-														name="lastname"
-														placeholder="12-02-2022"
-													/>
-													</div>
-												</div>
-												<div className="row">
-													<div className="pi-info-lavel">
-													<label htmlFor="due">Due date :</label>
-													</div>
-													<div className="pi-info-input-field">
-													<input
-														type="text"
-														id="due"
-														name="lastname"
-														placeholder="12-02-2022"
-													/>
-													</div>
-												</div>
 												</div>
 												{/* ./ pi-info-form */}
-											</div> 
+											</div>
 										</div>
 									</div>{/* ./ pi-add-info-content */}
-  
-									<FromTo  
-										key={this.state.fromData} 
-										setFrom={this.handleSetFrom} 
+
+									<FromTo
+										key={this.state.fromData}
+										setFrom={this.handleSetFrom}
 										setTo={this.handleSetTo}
-										fromData={this.state.fromData} 
-										toData={this.state.toData} 
+										fromData={this.state.fromData}
+										toData={this.state.toData}
 										editId={this.props.id}
-									/> 
-									
+									/>
+
 									<div className="info-table-content">
 										<span className="edit-btn pi-float-right pi-color-blue pi-bg-air-white">
 											<svg
@@ -483,7 +474,7 @@ class Invoice extends Component {
 											</svg>
 											Edit column
 										</span>
-										
+
 										<Items
 											items={this.state.invoice.items}
 											currencyFormatter={this.formatCurrency}
@@ -492,8 +483,8 @@ class Invoice extends Component {
 											focusHandler={this.handleFocusSelect}
 											deleteHandler={this.handleRemoveLineItem}
 											reorderHandler={this.handleReorderItems}
-										/>  
-										
+										/>
+
 										<div className="pi-calculation">
 											<table>
 												<tbody>
@@ -517,30 +508,30 @@ class Invoice extends Component {
 
 									<div className="pi-group-form">
 										<Note data={this.state.invoice.note} changeHandler={this.handleNoteChange} />
-										<Group data={this.state.invoice.group} changeHandler={this.handleGroupChange} />  
+										<Group data={this.state.invoice.group} changeHandler={this.handleGroupChange} />
 
 										<div className="pi-buttons">
 											<div className="row">
 												<div className="col-md-6">
-													<Attachments data={this.state.invoice.attachments} changeHandler={this.handleAttachmentsChange}/>  
+													<Attachments data={this.state.invoice.attachments} changeHandler={this.handleAttachmentsChange} />
 												</div>
 												<div className="col-md-6">
 													<button className="pi-a-btn pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white">
-													<svg
-													width={14}
-													height={14}
-													viewBox="0 0 14 14"
-													fill="none"
-													xmlns="http://www.w3.org/2000/svg" 
-													>
-													<path
-														d="M3.668 10.09a2.7 2.7 0 01-1.779-.662 2.563 2.563 0 01-.394-3.457 2.67 2.67 0 011.587-1.03 3.199 3.199 0 01.46-2.452 3.334 3.334 0 012.1-1.417 3.395 3.395 0 012.508.45 3.26 3.26 0 011.448 2.053h.067c.826 0 1.623.299 2.236.84a3.205 3.205 0 01.45 4.35 3.34 3.34 0 01-2.02 1.26M9 8.137l-2-1.954m0 0L5.002 8.136M7 6.182V13"
-														stroke="#136ACD"
-														strokeWidth={1.5}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-													/>
-													</svg>
+														<svg
+															width={14}
+															height={14}
+															viewBox="0 0 14 14"
+															fill="none"
+															xmlns="http://www.w3.org/2000/svg"
+														>
+															<path
+																d="M3.668 10.09a2.7 2.7 0 01-1.779-.662 2.563 2.563 0 01-.394-3.457 2.67 2.67 0 011.587-1.03 3.199 3.199 0 01.46-2.452 3.334 3.334 0 012.1-1.417 3.395 3.395 0 012.508.45 3.26 3.26 0 011.448 2.053h.067c.826 0 1.623.299 2.236.84a3.205 3.205 0 01.45 4.35 3.34 3.34 0 01-2.02 1.26M9 8.137l-2-1.954m0 0L5.002 8.136M7 6.182V13"
+																stroke="#136ACD"
+																strokeWidth={1.5}
+																strokeLinecap="round"
+																strokeLinejoin="round"
+															/>
+														</svg>
 														Authorized Sign
 													</button>
 												</div>
@@ -552,7 +543,7 @@ class Invoice extends Component {
 
 							<div className="col-lg-3">
 								<div className="pi-right-sidebar">
-									<h2 className="pi-r-s-title">Preview invoice</h2> 
+									<h2 className="pi-r-s-title">Preview invoice</h2>
 									<img src={this.state.invoice.template.img} className="pi-invoice-image" />
 									{/* <Style />
 									<Owner /> */}
