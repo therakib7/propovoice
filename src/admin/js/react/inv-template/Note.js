@@ -11,10 +11,10 @@ class Note extends Component {
         const { label, text } = this.props.data;
 
         return ( 
-            <>
+            <div className="pi-note">
                 <h4>{label}:</h4>
                 <p>{text}</p>
-            </>
+            </div>
         )
     }
 } 

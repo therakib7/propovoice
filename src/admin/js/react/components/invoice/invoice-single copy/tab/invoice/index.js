@@ -9,7 +9,7 @@ import Items from './Items'
 import Total from './Total';
 import Note from './Note' 
 import Group from './Group'; 
-import Signature from './Signature';
+import Sign from './Sign';
 
 import Template from '../template'; 
 import Preview from '../preview'; 
@@ -155,7 +155,7 @@ class Invoice extends Component {
 		this.setState({invoice})  
 	} 
 
-	handleSignatureChange = ( data ) => {  
+	handleSignChange = ( data ) => {  
 		let invoice = {...this.state.invoice} 
 		invoice.signature = data; 
 		this.setState({invoice})  
@@ -373,7 +373,7 @@ class Invoice extends Component {
 							<Group data={this.state.invoice.group} changeHandler={this.handleGroupChange} />
 							<div className='mb-16'></div>
 							<Attachments data={this.state.invoice.attachments} changeHandler={this.handleAttachmentsChange}/>  
-							<Signature data={this.state.invoice.signature} changeHandler={this.handleSignatureChange}/>  
+							<Sign data={this.state.invoice.signature} changeHandler={this.handleSignChange}/>  
 
 						</div>
                     </div>

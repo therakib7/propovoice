@@ -46,11 +46,15 @@ export default class Template extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 this.setState({ clients: result });
-                this.setState({ preloader: false });
-
+                this.setState({ preloader: false }); 
                 this.setState({
                     totalPage: Math.ceil(total / this.state.perPage)
                 })
+
+                //select default template
+                if ( ! this.props.currentTemplate.id ) {
+                    this.selectEntry(result[0]);
+                }
             })
     };
 

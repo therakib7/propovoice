@@ -34901,7 +34901,7 @@ function _extends() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "assets/admin/js/component/chunks/" + {"src_admin_js_react_components_dashboard_index_js":"7d89f068b6cc53eb","src_admin_js_react_components_project_index_js":"b10ac11023355fa3","src_admin_js_react_components_client_client-summary_index_js":"6cf071ec5a340c8e","src_admin_js_react_components_client_client_index_js":"8e77908cd8540e36","src_admin_js_react_components_proposal_index_js":"68c49b5c04c32385","src_admin_js_react_components_editor_index_jsx":"b6d2bd4cc0fbd081","src_admin_js_react_components_estimate_index_js":"b223c5a7d62c8f39","src_admin_js_react_components_invoice_invoice_index_js":"6d677082ba073af2","src_admin_js_react_components_invoice_invoice-single_index_js":"7d43dfb8717895c6","src_admin_js_react_components_payment_index_js":"9d631a074bb685af","src_admin_js_react_components_business_index_js":"e1cdd500f1dcaa02","src_admin_js_react_components_setting_index_js":"62c960904f61bb35"}[chunkId] + ".js";
+/******/ 			return "assets/admin/js/component/chunks/" + {"src_admin_js_react_components_dashboard_index_js":"7d89f068b6cc53eb","src_admin_js_react_components_project_index_js":"b10ac11023355fa3","src_admin_js_react_components_client_client-summary_index_js":"6cf071ec5a340c8e","src_admin_js_react_components_client_client_index_js":"8e77908cd8540e36","src_admin_js_react_components_proposal_index_js":"68c49b5c04c32385","src_admin_js_react_components_editor_index_jsx":"b6d2bd4cc0fbd081","src_admin_js_react_components_estimate_index_js":"b223c5a7d62c8f39","src_admin_js_react_components_invoice_invoice_index_js":"6d677082ba073af2","src_admin_js_react_components_invoice_invoice-single_index_js":"3dd86ecea8b196f1","src_admin_js_react_components_payment_index_js":"9d631a074bb685af","src_admin_js_react_components_business_index_js":"e1cdd500f1dcaa02","src_admin_js_react_components_setting_index_js":"62c960904f61bb35"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -35073,7 +35073,7 @@ function _extends() {
 /******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
 /******/ 					installedChunks[chunkId][0]();
 /******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
+/******/ 				installedChunks[chunkIds[i]] = 0;
 /******/ 			}
 /******/ 		
 /******/ 		}

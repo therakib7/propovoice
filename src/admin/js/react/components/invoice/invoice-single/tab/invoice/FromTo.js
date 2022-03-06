@@ -84,64 +84,67 @@ class FromTo extends Component {
 
         const { fromList } = this.state; 
         const { fromData, toData } = this.props;
-        return (
-            <> 
-                <div className="flex justify-between mb-5">
-                    <div className="">
-                        <div className="">
-                            <label>
-                                Sender: 
-                                <Select
-                                    value={fromData}
-                                    onChange={this.handleFromChange}
-                                    getOptionValue ={(fromList)=>fromList.id}
-                                    getOptionLabel ={(fromList)=>fromList.name}
-                                    options={fromList}
-                                />
-                            </label> 
-                        </div>
-                        <div className="bg-slate-50 p-3 border rounded">
-                            {fromData && 
+        return ( 
+            <div className="pi-from-content">
+                <div className="row">
+                    <div className="col-lg-5">
+                        <h4 className="from-title">Sender</h4>
+                        <Select
+                            value={fromData}
+                            onChange={this.handleFromChange}
+                            getOptionValue ={(fromList)=>fromList.id}
+                            getOptionLabel ={(fromList)=>fromList.name}
+                            options={fromList}
+                        />
+                        <div className="pi-from pi-bg-air-white"> 
+                            {fromData ? 
                                 <>
-                                    <span className='font-bold'>{fromData.name}</span>
-                                    <p className=''>
-                                        Email: {fromData.email}<br />
-                                        Address: {fromData.address}<br />
-                                    </p>
-                                </>
-                            }
-                        </div> 
-                    </div>
-                    <div className="">
-                        
-                    </div>
-                    <div className="">
-                        <div className="">
-                            <label>
-                                Receiver: 
-                                <AsyncSelect
-                                    loadOptions={this.handleFindClient}
-                                    value={toData}
-                                    onChange={this.handleClientSelect}
-                                    getOptionValue ={(toList) => toList.id}
-                                    getOptionLabel ={(toList) => ( toList.first_name ) ? toList.first_name + ' ' + toList.last_name : ''} 
-                                />
-                            </label> 
-                        </div>
-                        <div className="bg-slate-50 p-3 border rounded">
-                                {toData ? 
-                                <>
-                                    <span className='font-bold'>{toData.first_name} {toData.last_name}</span>
-                                    <p className=''>
-                                        Email: {toData.email}<br />
-                                        Address: {toData.address}<br />
-                                    </p>
+                                    <address>
+                                        Name: {fromData.name}<br />
+                                        Email: {fromData.email}
+                                        <br />
+                                        What'sApp: +8801760706361
+                                        <br />
+                                        Asia Address:
+                                        <br />
+                                        {fromData.address}
+                                    </address>
                                 </> : 'Search & select'
                             }
-                        </div> 
+                        </div>
+                    </div>
+                    <div className="col-lg-2"></div> 
+                    <div className="col-lg-5">
+                        <div className="recive-content pi-float-right">
+                            <h4 className="recive-title">Receiver</h4>
+                            <AsyncSelect
+                                loadOptions={this.handleFindClient}
+                                value={toData}
+                                onChange={this.handleClientSelect}
+                                getOptionValue ={(toList) => toList.id}
+                                getOptionLabel ={(toList) => ( toList.first_name ) ? toList.first_name + ' ' + toList.last_name : ''} 
+                            />
+                            <div className="pi-to pi-bg-air-white"> 
+                                {toData ? 
+                                <>
+                                    <address>
+                                        Name: {toData.first_name} {toData.last_name}<br />
+                                        Email: {toData.email}
+                                        <br />
+                                        What'sApp: +8801760706361
+                                        <br />
+                                        Asia Address:
+                                        <br />
+                                        {toData.address}
+                                    </address>
+                                    </> : 'Search & select'
+                                }
+                            </div>
+                        </div>
+                        {/* ./ recive-content */}
                     </div>
                 </div>
-            </>
+            </div>  
         )
     }
 } 

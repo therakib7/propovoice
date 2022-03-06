@@ -2347,7 +2347,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var Group = /*#__PURE__*/function (_Component) {
   _inherits(Group, _Component);
 
@@ -2362,7 +2361,8 @@ var Group = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
       var groups = _this.props.data;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "pi-terms",
         children: groups.map(function (group_single, group_index) {
           var list_class = null;
 
@@ -2638,7 +2638,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var Note = /*#__PURE__*/function (_Component) {
   _inherits(Note, _Component);
 
@@ -2655,7 +2654,8 @@ var Note = /*#__PURE__*/function (_Component) {
       var _this$props$data = _this.props.data,
           label = _this$props$data.label,
           text = _this$props$data.text;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "pi-note",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h4", {
           children: [label, ":"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
@@ -2674,10 +2674,10 @@ var Note = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/admin/js/react/inv-template/Signature.js":
-/*!******************************************************!*\
-  !*** ./src/admin/js/react/inv-template/Signature.js ***!
-  \******************************************************/
+/***/ "./src/admin/js/react/inv-template/Sign.js":
+/*!*************************************************!*\
+  !*** ./src/admin/js/react/inv-template/Sign.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2715,15 +2715,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var Signature = /*#__PURE__*/function (_Component) {
-  _inherits(Signature, _Component);
+var Sign = /*#__PURE__*/function (_Component) {
+  _inherits(Sign, _Component);
 
-  var _super = _createSuper(Signature);
+  var _super = _createSuper(Sign);
 
-  function Signature(props) {
+  function Sign(props) {
     var _this;
 
-    _classCallCheck(this, Signature);
+    _classCallCheck(this, Sign);
 
     _this = _super.call(this, props);
 
@@ -2746,10 +2746,10 @@ var Signature = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  return _createClass(Signature);
+  return _createClass(Sign);
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Signature);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sign);
 
 /***/ }),
 
@@ -2910,39 +2910,33 @@ var Total = /*#__PURE__*/function (_Component) {
           taxTotal = _this$props$totalData.taxTotal,
           grandTotal = _this$props$totalData.grandTotal;
       var tax = _this.props.data.invoice.tax;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "py-2 ml-auto mt-5 w-full w-2/6",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "flex justify-between mb-3",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "text-gray-800 flex-1",
-            children: "Total"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "text-gray-800 font-medium",
-            children: currencyFormatter(itemsTotal())
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "flex justify-between mb-3",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "text-gray-800 flex-1",
-            children: ["Tax ", tax, "%"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "text-gray-800 font-medium",
-            children: currencyFormatter(taxTotal())
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "py-2 border-t border-b",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "flex justify-between",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              className: "text-xl text-gray-600 flex-1",
-              children: "Sub Total"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              className: "text-xl text-gray-800 font-bold",
-              children: currencyFormatter(grandTotal())
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "pi-amounting",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("table", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tbody", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Total:"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: currencyFormatter(itemsTotal())
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              className: "pi-before-total",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("th", {
+                children: ["Tax ", tax, "%"]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: currencyFormatter(taxTotal())
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+              className: "pi-table-bg",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+                children: "Sub Total:"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+                children: currencyFormatter(grandTotal())
+              })]
             })]
           })
-        })]
+        })
       });
     });
 
@@ -3055,9 +3049,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Note */ "./src/admin/js/react/inv-template/Note.js");
 /* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Group */ "./src/admin/js/react/inv-template/Group.js");
 /* harmony import */ var _Attachments__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Attachments */ "./src/admin/js/react/inv-template/Attachments.js");
-/* harmony import */ var _Signature__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Signature */ "./src/admin/js/react/inv-template/Signature.js");
+/* harmony import */ var _Sign__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Sign */ "./src/admin/js/react/inv-template/Sign.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3116,8 +3116,208 @@ var One = /*#__PURE__*/function (_Component) {
       var _this$props$data = this.props.data,
           fromData = _this$props$data.fromData,
           toData = _this$props$data.toData;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        className: "pi-inv pi-inv-one",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          className: "pi-body",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            className: "pi-hedear",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              className: "pi-from",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                className: "pi-from-logo",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
+                  src: "assets/img/inv/fromlogo.png",
+                  alt: ""
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("address", {
+                children: ["Address: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                  children: "377 Airport - Dakshinkhan Rd, Dhaka 1230"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "Email:", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
+                    href: "#",
+                    children: " hello@nurency.com"
+                  }), " "]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "What'sApp: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                  children: "+8801760706361"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {})]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-from-date",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+                  children: ["inv No: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                    children: "00024"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                  className: "pi-from-time",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+                    children: ["Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                      children: " 01-02-2022"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+                    children: ["Due Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                      children: " 01-02-2022"
+                    })]
+                  })]
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              className: "pi-to",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                className: "pi-to-logo",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h2", {
+                  children: "invoice"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_To__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                data: toData
+              })]
+            })]
+          }), items && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            data: items
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            className: "pi-bank-info",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              className: "pi-banking",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
+                children: "Bank Info:"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("table", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tbody", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                      children: "Name:"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                      children: "Nasir Bin Burhan"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                      children: "Account No:"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                      children: " 2311 3213 2311"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                      children: "Bank Info:"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                      children: "Estern Bank Bangladesh Limited.Dhaka Branch"
+                    })]
+                  })]
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Total__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread({}, this.props))]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            className: "pi-note-wrap",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              className: "pi-note-term",
+              children: [note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                data: note
+              }), group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                data: group
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              className: "pi-sign",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
+                src: "assets/img/inv/signature.png",
+                alt: ""
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                className: "pi-border"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
+                children: "Signature"
+              })]
+            })]
+          })]
+        })
+      });
+    }
+  }]);
+
+  return One;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./src/admin/js/react/inv-template/template/2.jsx":
+/*!********************************************************!*\
+  !*** ./src/admin/js/react/inv-template/template/2.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Two)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _From__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../From */ "./src/admin/js/react/inv-template/From.js");
+/* harmony import */ var _To__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../To */ "./src/admin/js/react/inv-template/To.js");
+/* harmony import */ var _Total__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Total */ "./src/admin/js/react/inv-template/Total.js");
+/* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Items */ "./src/admin/js/react/inv-template/Items.js");
+/* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Note */ "./src/admin/js/react/inv-template/Note.js");
+/* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Group */ "./src/admin/js/react/inv-template/Group.js");
+/* harmony import */ var _Attachments__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Attachments */ "./src/admin/js/react/inv-template/Attachments.js");
+/* harmony import */ var _Sign__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Sign */ "./src/admin/js/react/inv-template/Sign.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+
+ //style
+// import Style from '../scss/2.scss'
+
+
+
+
+var Two = /*#__PURE__*/function (_Component) {
+  _inherits(Two, _Component);
+
+  var _super = _createSuper(Two);
+
+  function Two(props) {
+    _classCallCheck(this, Two);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(Two, [{
+    key: "render",
+    value: function render() {
+      var _this$props$data$invo = this.props.data.invoice,
+          items = _this$props$data$invo.items,
+          note = _this$props$data$invo.note,
+          group = _this$props$data$invo.group,
+          attachments = _this$props$data$invo.attachments,
+          signature = _this$props$data$invo.signature;
+      var _this$props$data = this.props.data,
+          fromData = _this$props$data.fromData,
+          toData = _this$props$data.toData;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-        className: "pi-invoice pi-invoice-one",
+        className: "pi-inv pi-inv-two",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
           className: "pi-top-shape",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("svg", {
@@ -3154,7 +3354,7 @@ var One = /*#__PURE__*/function (_Component) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                 className: "pi-from-date",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-                  children: ["Invoice No: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                  children: ["inv No: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
                     children: "00024"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
@@ -3175,7 +3375,7 @@ var One = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                 className: "pi-to-logo",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h2", {
-                  children: "INVOICE"
+                  children: "invoice"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_To__WEBPACK_IMPORTED_MODULE_2__["default"], {
                 data: toData
@@ -3244,16 +3444,10 @@ var One = /*#__PURE__*/function (_Component) {
             className: "pi-note-wrap",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
               className: "pi-note-term",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-                className: "pi-note",
-                children: note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                  data: note
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-                className: "pi-terms",
-                children: group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                  data: group
-                })
+              children: [note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                data: note
+              }), group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                data: group
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
               className: "pi-sign",
@@ -3277,139 +3471,6 @@ var One = /*#__PURE__*/function (_Component) {
               d: "M0 39.6L19.8333 46.2C39.6667 52.8 79.3333 66 119 61.5862C158.667 57.3375 198.333 35.0625 238 35.1862C277.667 35.0625 317.333 57.3375 357 70.4137C396.667 83.7375 436.333 87.8625 476 74.7862C515.667 61.4625 555.333 30.9375 575.167 15.3862L595 0V118.8H575.167C555.333 118.8 515.667 118.8 476 118.8C436.333 118.8 396.667 118.8 357 118.8C317.333 118.8 277.667 118.8 238 118.8C198.333 118.8 158.667 118.8 119 118.8C79.3333 118.8 39.6667 118.8 19.8333 118.8H0L0 39.6Z"
             })
           })
-        })]
-      });
-    }
-  }]);
-
-  return One;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-
-
-/***/ }),
-
-/***/ "./src/admin/js/react/inv-template/template/2.jsx":
-/*!********************************************************!*\
-  !*** ./src/admin/js/react/inv-template/template/2.jsx ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Two)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _From__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../From */ "./src/admin/js/react/inv-template/From.js");
-/* harmony import */ var _To__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../To */ "./src/admin/js/react/inv-template/To.js");
-/* harmony import */ var _Total__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Total */ "./src/admin/js/react/inv-template/Total.js");
-/* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Items */ "./src/admin/js/react/inv-template/Items.js");
-/* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Note */ "./src/admin/js/react/inv-template/Note.js");
-/* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Group */ "./src/admin/js/react/inv-template/Group.js");
-/* harmony import */ var _Attachments__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Attachments */ "./src/admin/js/react/inv-template/Attachments.js");
-/* harmony import */ var _Signature__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Signature */ "./src/admin/js/react/inv-template/Signature.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-
-
-
-
-
- //style
-// import Style from '../scss/2.scss'
-
-
-
-
-var Two = /*#__PURE__*/function (_Component) {
-  _inherits(Two, _Component);
-
-  var _super = _createSuper(Two);
-
-  function Two(props) {
-    _classCallCheck(this, Two);
-
-    return _super.call(this, props);
-  }
-
-  _createClass(Two, [{
-    key: "render",
-    value: function render() {
-      var _this$props$data$invo = this.props.data.invoice,
-          items = _this$props$data$invo.items,
-          note = _this$props$data$invo.note,
-          group = _this$props$data$invo.group,
-          attachments = _this$props$data$invo.attachments,
-          signature = _this$props$data$invo.signature;
-      var _this$props$data = this.props.data,
-          fromData = _this$props$data.fromData,
-          toData = _this$props$data.toData;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-        className: "",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-          className: "flex justify-between mb-5",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-            className: "",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-              className: "",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_From__WEBPACK_IMPORTED_MODULE_1__["default"], {
-                data: fromData
-              })
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-            className: ""
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-            className: "",
-            children: ["Bill To:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-              className: "",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_To__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                data: toData
-              })
-            })]
-          })]
-        }), items && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          data: items
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Total__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread({}, this.props)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-          className: "mb-10"
-        }), note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          data: note
-        }), group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          data: group
-        }), attachments && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Attachments__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          data: attachments
-        }), signature && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Signature__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          data: signature
         })]
       });
     }
@@ -3661,7 +3722,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  font-family: \"Inter\", sans-serif;\n  background: #E5E5E5;\n}\n\n:root {\n  --pi-primary: #0099FF;\n  --pi-secondary: #31343D;\n  --pi-text-primary:#000000;\n  --pi-text-secondary:#1A202C;\n  --pi-text-3th:#2D3748;\n  --pi-text-4th:#31343D;\n  --pi-text-5th:#4A5568;\n  --pi-white:#fff;\n  --pi-medium: 16px;\n  --pi-small: 12px;\n}\n\na {\n  text-decoration: none;\n  color: inherit;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n.pi-invoice {\n  background-color: #fff;\n}\n\n.pi-invoice {\n  max-width: 794px;\n  margin: 0 auto;\n}\n\n.pi-hedear {\n  margin-top: 10px;\n  display: flex;\n  justify-content: space-between;\n}\n\n.pi-from address {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-small);\n  line-height: 200%;\n  color: var(--pi-text-4th);\n  margin-bottom: 36px;\n  margin-top: 18px;\n}\n\n.pi-from address span, .pi-from address a {\n  font-weight: 500;\n}\n\n.pi-from-date p {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-small);\n  line-height: 200%;\n}\n\n.pi-from-date p span {\n  font-weight: 500;\n}\n\n.pi-from-time {\n  display: flex;\n  -moz-column-gap: 18px;\n  column-gap: 18px;\n}\n\n/* ==== invoece to address */\n.pi-to-logo h2 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 30px;\n  line-height: 100%;\n  color: var(--pi-secondary);\n  margin-bottom: 18px;\n}\n\n.pi-to p {\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-small);\n  line-height: 200%;\n  color: var(--pi-text-3th);\n}\n\n.pi-to address {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-small);\n  line-height: 200%;\n  color: var(--pi-text-3th);\n  margin-bottom: 36px;\n  margin-top: 5px;\n}\n\n.pi-to address p, .pi-to address a {\n  font-weight: 500;\n  margin-top: -5px;\n}\n\n.pi-items-table table {\n  border-spacing: 0;\n  width: 100%;\n  margin-top: 30px;\n  margin-bottom: 24px;\n}\n\n.pi-items-table table thead th {\n  padding: 10px;\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-small);\n  line-height: 140%;\n  text-align: left;\n}\n\n.pi-items-table table td {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-small);\n  line-height: 150%;\n  padding: 15px 10px;\n  color: var(--pi-text-3th);\n}\n\n.pi-items-table table td span {\n  color: var(--pi-text-5th);\n  font-weight: 500;\n}\n\n/* pi-banking wrap */\n.pi-bank-info {\n  margin-bottom: 35px;\n}\n\n.pi-bank-info {\n  display: flex;\n  justify-content: space-between;\n}\n\n.pi-bank-info h4 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-medium);\n  line-height: 140%;\n  color: #1A202C;\n}\n\n.pi-bank-info table {\n  margin-top: 18px;\n}\n\n.pi-bank-info table th {\n  text-align: left;\n  padding-left: 0;\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-small);\n  line-height: 150%;\n  color: var(--pi-text-primary);\n}\n\n.pi-bank-info table td {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-small);\n  line-height: 150%;\n  color: var(--pi-text-primary);\n  text-align: left;\n}\n\n.pi-amounting table {\n  border-spacing: 0;\n  width: 210px;\n}\n\n.pi-amounting table tr.pi-before-total th, td {\n  padding-bottom: 15px;\n}\n\n.pi-amounting table th {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-medium);\n  line-height: 140%;\n  color: var(--pi-text-primary);\n  padding-left: 28px;\n}\n\n.pi-amounting .pi-table-bg th, .pi-amounting .pi-table-bg td {\n  color: var(--pi-white);\n  line-height: 220%;\n  padding-left: 28px;\n  padding-right: 10px;\n}\n\n.pi-amounting .pi-table-bg td {\n  color: var(--pi-white);\n  line-height: 140%;\n  padding-top: 15px;\n}\n\n/* pi-note wrap */\n.pi-note-wrap {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.pi-terms h4 {\n  margin-top: 15px;\n  line-height: 200%;\n}\n\n.pi-terms ul {\n  list-style-type: dot;\n}\n\n.pi-terms ul li {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-small);\n  line-height: 150%;\n  color: var(--pi-text-5th);\n  margin-left: 15px;\n}\n\n.mt-35 {\n  margin-top: 35px;\n}\n\n.pi-note h4 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-medium);\n  line-height: 150%;\n  color: var(--pi-text-secondary);\n}\n\n.pi-note p {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-small);\n  line-height: 200%;\n  color: var(--pi-text-5th);\n}\n\n.pi-sign {\n  text-align: center;\n  margin-right: 60px;\n}\n\n.pi-sign h4 {\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-medium);\n  line-height: 200%;\n  color: var(--pi-text-secondary);\n}\n\n.pi-border {\n  border: 0.5px solid #A0AEC0;\n  margin: 0 -30px;\n  margin-top: 8px;\n}\n\n/* ====template one===*/\n.pi-invoice-one .pi-top-shape svg {\n  width: 100%;\n}\n\n.pi-invoice-one .pi-top-shape svg path {\n  fill: var(--pi-primary);\n}\n\n.pi-invoice-one .pi-body {\n  margin: 0 35px;\n}\n\n.pi-invoice-one .pi-items-table table thead {\n  background-color: var(--pi-primary);\n  color: var(--pi-white);\n}\n\n.pi-invoice-one .pi-items-table table tbody tr:nth-child(even) {\n  background-color: #EDF2F7;\n}\n\n.pi-invoice-one tr.pi-table-bg {\n  background-color: var(--pi-primary);\n}\n\n.pi-invoice-one .pi-footer-shape svg path {\n  width: 100%;\n  fill: var(--pi-primary);\n}\n\n/* ====template two===*/\n.pi-invoice-two .pi-body {\n  margin: 0 35px;\n}\n\n.pi-invoice-two .pi-hedear {\n  padding-top: 80px;\n}\n\n.pi-invoice-two .pi-items-table table thead {\n  background: #E6E6E6;\n}\n\n.pi-invoice-two .pi-items-table table tbody tr:nth-child(odd) {\n  background-color: #F9F9F9;\n}\n\n.pi-invoice-two tr.pi-table-bg {\n  background: #4F4F4F;\n  color: var(--pi-white);\n}\n\n.pi-invoice-two .pi-note-wrap {\n  padding-bottom: 55px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  --pi-inv-primary: #0099FF;\n  --pi-inv-secondary: #4C6FFF;\n  --pi-inv-text-primary:#000000;\n  --pi-inv-text-secondary:#1A202C;\n  --pi-inv-text-3th:#2D3748;\n  --pi-inv-text-4th:#31343D;\n  --pi-inv-text-5th:#4A5568;\n  --pi-inv-white:#fff;\n  --pi-inv-medium: 16px;\n  --pi-inv-small: 12px;\n}\n\n.pi-inv-wrapper {\n  background-color: #E5E5E5;\n}\n\n.pi-inv-wrapper a {\n  text-decoration: none;\n  color: inherit;\n}\n\n.pi-inv-wrapper * {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n.pi-inv {\n  background-color: #fff;\n}\n\n.pi-inv {\n  max-width: 794px;\n  margin: 0 auto;\n}\n\n.pi-hedear {\n  margin-top: 10px;\n  display: flex;\n  justify-content: space-between;\n}\n\n.pi-from address {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-4th);\n  margin-bottom: 36px;\n  margin-top: 18px;\n}\n\n.pi-from address span, .pi-from address a {\n  font-weight: 500;\n}\n\n.pi-from-date p {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n}\n\n.pi-from-date p span {\n  font-weight: 500;\n}\n\n.pi-from-time {\n  display: flex;\n  -moz-column-gap: 18px;\n  column-gap: 18px;\n}\n\n/* ==== invoece to address */\n.pi-to-logo h2 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 30px;\n  line-height: 100%;\n  color: var(--pi-inv-secondary);\n  margin-bottom: 18px;\n  text-transform: uppercase;\n}\n\n.pi-to p {\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-3th);\n}\n\n.pi-to address {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-3th);\n  margin-bottom: 36px;\n  margin-top: 5px;\n}\n\n.pi-to address p, .pi-to address a {\n  font-weight: 500;\n  margin-top: -5px;\n}\n\n.pi-items-table table {\n  border-spacing: 0;\n  width: 100%;\n  margin-top: 30px;\n  margin-bottom: 24px;\n}\n\n.pi-items-table table thead th {\n  padding: 10px;\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 140%;\n  text-align: left;\n}\n\n.pi-items-table table td {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  padding: 15px 10px;\n  color: var(--pi-inv-text-3th);\n}\n\n.pi-items-table table td span {\n  color: var(--pi-inv-text-5th);\n  font-weight: 500;\n}\n\n/* pi-banking wrap */\n.pi-bank-info {\n  margin-bottom: 35px;\n}\n\n.pi-bank-info {\n  display: flex;\n  justify-content: space-between;\n  -moz-column-gap: 30px;\n  column-gap: 30px;\n}\n\n.pi-bank-info h4 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 140%;\n  color: #1A202C;\n}\n\n.pi-bank-info table {\n  margin-top: 18px;\n}\n\n.pi-bank-info table th {\n  text-align: left;\n  padding-right: 20px;\n  padding-left: 0;\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  color: var(--pi-inv-text-primary);\n  padding-bottom: 4px;\n}\n\n.pi-bank-info table td {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  color: var(--pi-inv-text-primary);\n  text-align: left;\n  padding-bottom: 4px;\n}\n\n.pi-amounting table {\n  border-spacing: 0;\n  width: 210px;\n}\n\n.pi-amounting table tr.pi-before-total th {\n  padding-bottom: 10px;\n}\n\n.pi-amounting table th {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 140%;\n  color: var(--pi-inv-text-primary);\n  padding-left: 28px;\n}\n\n.pi-amounting .pi-table-bg th {\n  color: var(--pi-inv-white);\n  padding: 6px;\n  padding-left: 28px;\n  padding-right: 10px;\n}\n\n.pi-amounting .pi-table-bg td {\n  color: var(--pi-inv-white);\n  line-height: 140%;\n  padding: 6px;\n}\n\n/* pi-note wrap */\n.pi-note-wrap {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.pi-terms h4 {\n  margin-top: 15px;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 200%;\n  color: var(--pi-inv-text-secondary);\n}\n\n.pi-terms ul {\n  list-style-type: dot;\n}\n\n.pi-terms ul li {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  color: var(--pi-inv-text-5th);\n  margin-left: 15px;\n}\n\n.mt-35 {\n  margin-top: 35px;\n}\n\n.pi-note h4 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 150%;\n  color: var(--pi-inv-text-secondary);\n}\n\n.pi-note p {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-5th);\n}\n\n.pi-sign {\n  text-align: center;\n  margin-right: 60px;\n}\n\n.pi-sign h4 {\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 200%;\n  color: var(--pi-inv-text-secondary);\n}\n\n.pi-border {\n  border: 0.5px solid #A0AEC0;\n  margin: 0 -30px;\n  margin-top: 8px;\n}\n\n/* ====template one===*/\n.pi-inv-one .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv-one .pi-hedear {\n  padding-top: 80px;\n}\n\n.pi-inv-one .pi-to-logo h2 {\n  color: var(--pi-inv-text-4th);\n}\n\n.pi-inv-one .pi-items-table table thead {\n  background: #E6E6E6;\n}\n\n.pi-inv-one .pi-items-table table tbody tr:nth-child(odd) {\n  background-color: #F9F9F9;\n}\n\n.pi-inv-one tr.pi-table-bg {\n  background: #4F4F4F;\n  color: var(--pi-inv-white);\n}\n\n.pi-inv-one .pi-note-wrap {\n  padding-bottom: 55px;\n}\n\n/* ====template two===*/\n.pi-inv-two .pi-top-shape svg {\n  width: 100%;\n}\n\n.pi-inv-two .pi-top-shape svg path {\n  fill: var(--pi-inv-primary);\n}\n\n.pi-inv-two .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv-two .pi-to-logo h2 {\n  color: var(--pi-inv-text-4th);\n}\n\n.pi-inv-two .pi-items-table table thead {\n  background-color: var(--pi-inv-primary);\n  color: var(--pi-inv-white);\n}\n\n.pi-inv-two .pi-items-table table tbody tr:nth-child(even) {\n  background-color: #EDF2F7;\n}\n\n.pi-inv-two tr.pi-table-bg {\n  background-color: var(--pi-inv-primary);\n}\n\n.pi-inv-two .pi-footer-shape svg {\n  margin-bottom: -4px;\n}\n\n.pi-inv-two .pi-footer-shape svg path {\n  width: 100%;\n  fill: var(--pi-inv-primary);\n}\n\n/* ====template three===*/\n.pi-inv-three .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv-three .pi-top-shape {\n  padding-bottom: 11px;\n  position: relative;\n}\n\n.pi-inv-three .pi-top-shape .pi-shape1 {\n  -webkit-clip-path: polygon(1% 1%, 100% 0, 85% 12%, 12% 12%, 12% 86%, 0 100%);\n  clip-path: polygon(1% 1%, 100% 0, 85% 12%, 12% 12%, 12% 86%, 0 100%);\n  background-color: var(--pi-inv-secondary);\n  width: 170px;\n  height: 170px;\n  position: absolute;\n  top: 0px;\n  left: -35px;\n  z-index: 10;\n}\n\n.pi-inv-three .pi-top-shape .pi-shape2 {\n  -webkit-clip-path: circle(50% at 25% 30%);\n  clip-path: circle(50% at 25% 30%);\n  background-color: var(--pi-inv-secondary);\n  width: 33px;\n  height: 33px;\n  position: absolute;\n  top: 8px;\n  left: -25px;\n  z-index: 10;\n}\n\n.pi-inv-three .pi-top-shape .pi-shape3 {\n  -webkit-clip-path: polygon(1% 1%, 100% 0, 85% 12%, 12% 12%, 12% 86%, 0 100%);\n  clip-path: polygon(1% 1%, 100% 0, 85% 12%, 12% 12%, 12% 86%, 0 100%);\n  background-color: #E2E8F0;\n  width: 187px;\n  height: 187px;\n  position: absolute;\n  top: 0px;\n  left: -35px;\n  z-index: 0;\n}\n\n.pi-inv-three .pi-hedear {\n  margin-top: 50px;\n}\n\n.pi-inv-three .pi-items-table table thead {\n  background-color: #E2E8F0;\n}\n\n.pi-inv-three .pi-items-table table tbody tr:nth-child(even) {\n  background-color: #E2E8F0;\n}\n\n.pi-inv-three tr.pi-table-bg {\n  background-color: var(--pi-inv-secondary);\n}\n\n.pi-inv-three .pi-to-logo {\n  margin-top: -40px;\n}\n\n.pi-inv-three .pi-footer-shape {\n  position: relative;\n  right: 35px;\n  bottom: 0;\n  transform: rotate(180deg);\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

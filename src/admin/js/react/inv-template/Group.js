@@ -12,7 +12,7 @@ class Group extends Component {
         const groups = this.props.data; 
 
         return (
-            <>  
+            <div className="pi-terms">  
                 {groups.map( (group_single, group_index) => { 
                     let list_class = null;
                     if ( group_single.list_type == 'letter' ) {
@@ -38,7 +38,7 @@ class Group extends Component {
                         </div>
                     );
                 })} 
-            </>
+            </div>
         )
     }
 }

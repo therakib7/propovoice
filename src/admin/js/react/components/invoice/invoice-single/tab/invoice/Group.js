@@ -72,7 +72,7 @@ class Group extends Component {
         const { groups } = this.state; 
 
         return (
-            <div className='ncpi-invoice-groups'>  
+            <>  
                 {groups.map( (group_single, group_index) => { 
                     let list_class = null;
                     if ( group_single.list_type == 'letter' ) {
@@ -84,52 +84,112 @@ class Group extends Component {
                     }
 
                     return (
-                        <div className='ncpi-invoice-group' key={group_index}>
-                            
-                            <div className='flex justify-between my-3'>
-                                <div className=''>
-                                    <input type="text" id={group_index+'-group-label'} onChange={ this.handleGroupInfo(group_index) } name="label" value={group_single.label} className='w-auto border-none focus:border' />
-
-                                    <label htmlFor={group_index+'-group-label'}>
-                                        <span><i className="dashicons dashicons-edit-page pt-1"></i></span>
+                        <div className="pi-add-term" key={group_index}>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label htmlFor="fname">
+                                        Add Terms 
+                                        <span>
+                                        <svg
+                                        width={23}
+                                        height={12}
+                                        viewBox="0 0 13 13"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        >
+                                        <path
+                                            d="M12.524.476a1.625 1.625 0 00-2.298 0L4.062 6.64v2.297H6.36l6.164-6.163a1.625 1.625 0 000-2.298z"
+                                            fill="#A0AEC0"
+                                        />
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M0 3.25a1.625 1.625 0 011.625-1.625h3.25a.813.813 0 110 1.625h-3.25v8.125H9.75v-3.25a.813.813 0 011.625 0v3.25A1.625 1.625 0 019.75 13H1.625A1.625 1.625 0 010 11.375V3.25z"
+                                            fill="#A0AEC0"
+                                        />
+                                        </svg>
+                                        </span>
                                     </label>
                                 </div>
+                                <div className="col-md-6">
+                                    <div className="pi-radio-group">
+                                        <span>Term List Serial</span> 
+                                        <input id={group_index+'-list-letter'} onChange={ this.handleGroupInfo(group_index) } name="list_type" value="letter" type="radio" />
+                                        <label htmlFor={group_index+'-list-letter'}>1. Letter</label>
 
-                                <div className="">
-                                    <span className='font-medium'>List Type:</span>
-                                    <input id={group_index+'-list-letter'} onChange={ this.handleGroupInfo(group_index) } name="list_type" value="letter" className='w-auto min-w-0 mr-1 ml-5' type="radio" />
-                                    <label htmlFor={group_index+'-list-letter'}>1. Letter</label>
+                                        <input id={group_index+'-list-text'} onChange={ this.handleGroupInfo(group_index) } name="list_type" value="text" type="radio" />
+                                        <label htmlFor={group_index+'-list-text'}>a. Text</label>
 
-                                    <input id={group_index+'-list-text'} onChange={ this.handleGroupInfo(group_index) } name="list_type" value="text" className='w-auto min-w-0 mr-1 ml-5' type="radio" />
-                                    <label htmlFor={group_index+'-list-text'}>a. Text</label>
-
-                                    <input id={group_index+'-list-dot'} onChange={ this.handleGroupInfo(group_index) }  name="list_type" value="dot" className='w-auto min-w-0 mr-1 ml-5' type="radio" />
-                                    <label htmlFor={group_index+'-list-dot'}>●. Dot</label>
+                                        <input id={group_index+'-list-dot'} onChange={ this.handleGroupInfo(group_index) }  name="list_type" value="dot" type="radio" />
+                                        <label htmlFor={group_index+'-list-dot'}>●. Dot</label>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className='ncpi-invoice-group-items p-3 rounded border bg-slate-50'>
-                                
-                                <ul className={list_class+' px-5'}>
+                            <div className="pi-group-item pi-bg-air-white">
+                                <ul> 
                                     {group_single.items.map( (item, list_index) => { 
                                         return (
                                             <li key={list_index}> 
-                                                <input className='appearance-none border-0 bg-transparent focus:outline-none' 
+                                                <input 
                                                 type="text" 
                                                 name="text" 
                                                 value={item.text} 
                                                 onChange={ this.handleChange(group_index, list_index) } />
                                             </li>
                                         );
-                                    })} 
+                                    })}
                                 </ul>
-                                <button onClick={() => this.addList(group_index)} className="bg-slate-200 hover:bg-slate-300 text-gray-700 font-medium text-base py-1 px-3 rounded my-3 ml-1"><span className="dashicons dashicons-plus pt-1"></span> Add Item</button>
-                            </div> 
+                                <button 
+                                className="pi-group-btn"
+                                onClick={() => this.addList(group_index)}
+                                >
+                                    <span>
+                                        <svg
+                                        width={10}
+                                        height={10}
+                                        viewBox="0 0 10 10"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        >
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M5 0a1 1 0 011 1v3h3a1 1 0 010 2H6v3a1 1 0 01-2 0V6H1a1 1 0 010-2h3V1a1 1 0 011-1z"
+                                            fill="#2D3748"
+                                        />
+                                        </svg>
+                                    </span>
+                                    Add New Term
+                                </button>
+                            </div>
                         </div>
                     );
                 })}
-                <button onClick={() => this.addGroup()} className="bg-slate-200 hover:bg-slate-300 text-gray-700 font-medium text-base py-1 px-3 rounded my-3 ml-1"><span className="dashicons dashicons-plus pt-1"></span> Add Group</button>
-            </div>
+                
+                <button 
+                className="pi-group-btn pi-ml-10"
+                onClick={() => this.addGroup()}
+                >
+                    <span>
+                    <svg
+                    width={10}
+                    height={10}
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg" 
+                    >
+                    <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M5 0a1 1 0 011 1v3h3a1 1 0 010 2H6v3a1 1 0 01-2 0V6H1a1 1 0 010-2h3V1a1 1 0 011-1z"
+                        fill="#2D3748"
+                    />
+                    </svg>
+                    </span>
+                    Add New Group
+                </button>
+            </>
         )
     }
 }

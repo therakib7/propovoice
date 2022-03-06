@@ -9,7 +9,7 @@ import Items from './Items'
 import Total from './Total';
 import Note from './Note'
 import Group from './Group';
-import Signature from './Signature';
+import Sign from './Sign';
 
 import Template from '../template';
 import Preview from '../preview';
@@ -155,7 +155,7 @@ class Invoice extends Component {
 		this.setState({ invoice })
 	}
 
-	handleSignatureChange = (data) => {
+	handleSignChange = (data) => {
 		let invoice = { ...this.state.invoice }
 		invoice.signature = data;
 		this.setState({ invoice })

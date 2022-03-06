@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { toast } from 'react-toastify';
 import Api from 'api/media';
 
-class Signature extends Component {
+class Sign extends Component {
 
 	constructor(props) {
 		super(props);
@@ -69,7 +69,7 @@ class Signature extends Component {
 					<div>
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} hidden />
 						<button className='border p-3 rounded' onClick={() => this.inputRef.current.click()}>
-							Authorized Signature
+							Authorized Sign
 						</button>
 					</div>
 				}
@@ -90,4 +90,4 @@ class Signature extends Component {
 	}
 }
 
-export default Signature
+export default Sign

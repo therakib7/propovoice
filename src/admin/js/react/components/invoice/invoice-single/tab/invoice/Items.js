@@ -36,86 +36,78 @@ class Items extends Component {
         const { items, addHandler, reorderHandler, ...functions } = this.props
 
         return ( 
-            <div className=''>
-                <div className="flex gap-3 border-b py-2 items-start">
-                    <div className="px-1 w-5">
-                        <p className="text-gray-800 uppercase tracking-wide text-sm font-bold">
-                        SL
-                        </p>
-                    </div>
-                    <div className="flex-1 px-1">
-                        <p className="text-gray-800 uppercase tracking-wide text-sm font-bold">
-                        Description
-                        </p>
-                    </div>
-                    <div className="px-1 w-20">
-                        <p className="text-gray-800 uppercase tracking-wide text-sm font-bold">
-                        Units
-                        </p>
-                    </div>
-                    <div className="px-1 w-32">
-                        <p className="leading-none">
-                        <span className="block uppercase tracking-wide text-sm font-bold text-gray-800">
-                            Unit Price
-                        </span>
-                        <span className="font-medium text-xs text-gray-500">USD ($)</span>
-                        </p>
-                    </div>
-                    <div className="px-1 w-32">
-                        <p className="leading-none">
-                        <span className="block uppercase tracking-wide text-sm font-bold text-gray-800">
-                            Amount
-                        </span>
-                        <span className="font-medium text-xs text-gray-500"></span>
-                        </p>
-                    </div>
-                    <div className="px-1 w-10 text-center"></div>
-                </div> 
-                 
-                <DragDropContext onDragEnd={this.handleDragEnd}>
-                    <Droppable droppableId="droppable">
-                        {(provided, snapshot) => (
-                            <div
-                                ref={provided.innerRef}
-                                className={snapshot.isDraggingOver ? styles.listDraggingOver : ''}
-                            >
-                                {this.props.items.map((item, i) => (
-                                    <Draggable key={item.id} draggableId={item.id} index={i}>
-                                        {(provided, snapshot) => (
-                                            <div
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                style={provided.draggableProps.style}
-                                                className={snapshot.isDragging ? styles.listItemDragging : ''}
-                                            >
-                                                <Item
-                                                    style={{ color: 'red' }}
-                                                    key={i + item.id} 
-                                                    index={i} 
-                                                    name={item.name}
-                                                    desc={item.desc} 
-                                                    qty={item.qty} 
-                                                    price={item.price}
-                                                    {...functions}
-                                                />
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>  
+            <> 
+                <table className="info-table">
+                    <thead>
+                        <tr className="">
+                            <th>Name &amp; Details </th>
+                            <th>Unit</th>
+                            <th>
+                                Rate <span>USD ($)</span>
+                            </th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <DragDropContext onDragEnd={this.handleDragEnd}>
+                        <Droppable droppableId="droppable">
+                            {(provided, snapshot) => (
+                                <tbody
+                                    ref={provided.innerRef}
+                                    className={snapshot.isDraggingOver ? styles.listDraggingOver : ''}
+                                >
+                                    {this.props.items.map((item, i) => (
+                                        <Draggable key={item.id} draggableId={item.id} index={i}>
+                                            {(provided, snapshot) => (
+                                                <tr
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    style={provided.draggableProps.style}
+                                                    className={snapshot.isDragging ? styles.listItemDragging : ''}
+                                                >
+                                                    <Item
+                                                        style={{ color: 'red' }}
+                                                        key={i + item.id} 
+                                                        index={i} 
+                                                        name={item.name}
+                                                        desc={item.desc} 
+                                                        qty={item.qty} 
+                                                        price={item.price}
+                                                        {...functions}
+                                                    />
+                                                </tr>
+                                            )}
+                                        </Draggable>
+                                    ))}
+                                    {provided.placeholder}
+                                </tbody>
+                            )}
+                        </Droppable>
+                    </DragDropContext>  
+                </table> 
 
-                <div> 
-                    <button onClick={addHandler} className="bg-slate-300 w-full align-center py-2 text-gray-900 font-medium" type="button">
-                        <span className="dashicons dashicons-insert pt-1"></span> Add Item
-                    </button>
-                </div>
+                <button className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                onClick={addHandler}  
+                >
+                    <svg
+                        width={10}
+                        height={10}
+                        viewBox="0 0 10 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M5 0C5.26522 0 5.51957 0.105357 5.70711 0.292893C5.89464 0.48043 6 0.734784 6 1V4H9C9.26522 4 9.51957 4.10536 9.70711 4.29289C9.89464 4.48043 10 4.73478 10 5C10 5.26522 9.89464 5.51957 9.70711 5.70711C9.51957 5.89464 9.26522 6 9 6H6V9C6 9.26522 5.89464 9.51957 5.70711 9.70711C5.51957 9.89464 5.26522 10 5 10C4.73478 10 4.48043 9.89464 4.29289 9.70711C4.10536 9.51957 4 9.26522 4 9V6H1C0.734784 6 0.48043 5.89464 0.292893 5.70711C0.105357 5.51957 0 5.26522 0 5C0 4.73478 0.105357 4.48043 0.292893 4.29289C0.48043 4.10536 0.734784 4 1 4H4V1C4 0.734784 4.10536 0.48043 4.29289 0.292893C4.48043 0.105357 4.73478 0 5 0Z"
+                            fill="#2D3748"
+                        />
+                    </svg>
+                    &nbsp;Add New Item
+                </button>
 
-            </div> 
+            </> 
         )
     }
 }

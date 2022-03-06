@@ -8,7 +8,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
-html {
+ html {
   line-height: 1.15;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -2367,14 +2367,22 @@ input[type=checkbox] {
   outline: none;
   border: 1px solid #ddd;
   padding: 10px;
+  width: 100%;
 }
-.info-table-content table thead th {
+.info-table-content table thead tr th {
   text-align: left;
-  padding: 15px 20px;
-  width: 30%;
+  padding: 12px;
 }
-.info-table-content table tbody td {
-  padding: 30px 15px;
+.info-table-content table thead tr th:first-child {
+  padding: 20px;
+  border-radius: 15px 0 0 0;
+}
+.info-table-content table tbody tr td {
+  padding: 12px;
+}
+.info-table-content table tbody tr td:first-child {
+  width: 35%;
+  padding: 15px 20px;
 }
 .info-table-content table thead tr {
   background-color: #f8f8f8;
@@ -2409,12 +2417,14 @@ input[type=checkbox] {
 }
 .info-table-content table tr td:last-child {
   font-size: 12px;
-  padding: 0;
 }
 .info-table-content table tr td:last-child span {
   margin-left: 10px;
   cursor: pointer;
   padding: 10px;
+}
+.info-table-content table tr td:last-child span:hover svg path {
+  fill: var(--text-color-blue);
 }
 .info-table-content table tr td:nth-child(3) input[type=text],
 .info-table-content table tr td:nth-child(2) input[type=text] {
@@ -2434,9 +2444,18 @@ input[type=checkbox] {
   border-radius: 0 0 15px 15px !important;
   color: #1A202C !important;
 }
-.info-table-content .pi-amounting {
-  width: 260px;
+
+.pi-calculation {
+  width: 280px;
   margin-left: auto;
+  margin-top: 15px;
+}
+.pi-calculation table tr td:first-child {
+  font-size: 14px;
+  font-weight: 700;
+}
+.pi-calculation table tr td {
+  padding: 10px 15px;
 }
 
 /*-------------------------------------------------------------- 
@@ -2451,7 +2470,6 @@ input[type=checkbox] {
 }
 .ncpi .pi-right-content {
   padding: 30px 70px;
-  background-color: #fbfbfb;
 }
 .ncpi .pi-right-content h1 {
   margin-bottom: 10px;
@@ -2759,7 +2777,6 @@ input[type=checkbox] {
 .ncpi .pi-single-tabs .pi-tab-item span {
   width: 20px;
   height: 20px;
-  background-color: white;
   display: block;
   border-radius: 50%;
   border: 3px solid #E2E8F0;
@@ -2785,7 +2802,7 @@ input[type=checkbox] {
 }
 @media screen and (max-width: 500px) {
   .ncpi .pi-single-tabs {
-    margin-top: 85px;
+    margin-top: 40px;
   }
   .ncpi .pi-single-btn {
     text-align: center !important;
@@ -2864,8 +2881,8 @@ h1, h2, h3, h4, h5, h6 {
   clear: both;
 }
 
-h1, h2, h3 {
-  color: #000;
+h1, h2, h3, h4, h5, h6, p {
+  font-family: "Inter", sans-serif;
 }
 
 h1, h2, h3, h4 {

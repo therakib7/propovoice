@@ -19,7 +19,7 @@ class To extends Component {
                         <br />
                         What'sApp: <span>+8801760706361</span>
                         <br />
-                        </address>                        
+                        </address>           
                     </> : ''
                 }
             </>

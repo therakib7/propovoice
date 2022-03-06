@@ -7,7 +7,7 @@ import Items from '../Items'
 import Note from '../Note' 
 import Group from '../Group'; 
 import Attachments from '../Attachments';
-import Signature from '../Signature';
+import Sign from '../Sign';
 
 //style
 import Style from '../scss/1.scss'
@@ -43,7 +43,7 @@ export default class One extends Component {
                 {note && <Note data={note} />}  
                 {group && <Group data={group} />}
                 {attachments && <Attachments data={attachments} />}
-                {signature && <Signature data={signature} />}
+                {signature && <Sign data={signature} />}
             </div>
         );
     }
