@@ -81,7 +81,7 @@ class Branding extends Component {
 
 				{ business.id && business.logo &&
 				<div className="pi-text-center">
-					<img src={business.logo.url} width="100" className='inline' />
+					<img src={business.logo.img} width="100" className='inline' />
 					<span className='' onClick={() => this.handleDelete(business.logo.id)}>
 						x
 					</span>

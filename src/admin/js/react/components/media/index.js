@@ -13,6 +13,7 @@ export default class Template extends Component {
 
         this.state = {
             selectedItem: { id: null },
+            currentTab: 'upload',
             preloader: true, 
             templates: [], 
             offset: 0,
@@ -20,7 +21,7 @@ export default class Template extends Component {
             totalPage: 1,
             currentPage: 1
         };
-    }
+    } 
 
     componentDidMount() {
         this.getLists();
@@ -49,12 +50,7 @@ export default class Template extends Component {
                 this.setState({ preloader: false }); 
                 this.setState({
                     totalPage: Math.ceil(total / this.state.perPage)
-                })
-
-                //select default template
-                /* if ( ! this.props.selectedItem.id ) {
-                    this.selectEntry(result[0]);
-                } */
+                }) 
             })
     };
 
@@ -62,6 +58,15 @@ export default class Template extends Component {
         this.setState({
             selectedItem: data
         })
+    }
+
+    newMedia = (data) => {  
+        let templates = this.state.templates
+        templates.unshift(data); 
+        this.setState({
+            currentTab: 'gallery',
+            templates
+        });
     }
 
     insertMedia = () => { 
@@ -98,7 +103,10 @@ export default class Template extends Component {
                     </div> 
                     <div className="pi-content">
 
-                        <button className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white">
+                        <button 
+                            className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'upload' ? 'pi-bg-blue pi-color-white' : '')} 
+                            onClick={() => this.setState({ currentTab: 'upload' })}
+                        >
                             <svg
                                 width={14}
                                 height={14}
@@ -117,9 +125,9 @@ export default class Template extends Component {
                             Upload
                         </button>
 
-                        <button 
-                        className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
-                        onClick={() => this.setState({ media: true })}
+                        <button  
+                            className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'gallery' ? 'pi-bg-blue pi-color-white' : '')}
+                            onClick={() => this.setState({ currentTab: 'gallery' })}
                         >
                             <svg
                             width={12}
@@ -138,9 +146,11 @@ export default class Template extends Component {
                             Gallery
                         </button>
 
-                        <Dropzone />
+                        {this.state.currentTab == 'upload' && <div className="pi-media-upload"> 
+                            <Dropzone newMedia={this.newMedia} />
+                        </div>}
 
-                        <div id="pi-media-gallery"> 
+                        {this.state.currentTab == 'gallery' && <div className="pi-media-gallery"> 
                             <div className="row pi-gap pi-margin-l-r">
                                 
                                 {this.state.preloader && <TablePreloader />}
@@ -173,7 +183,7 @@ export default class Template extends Component {
                                 containerClassName={"ncpi-pagination text-base mt-5 shadow"}
                                 activeClassName={"active"} />
                             }
-                        </div>
+                        </div>}
                     </div>
                     <div className="pi-footer-content">  
                         <button

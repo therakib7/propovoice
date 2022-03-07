@@ -1,32 +1,52 @@
-import React, {useCallback} from 'react'
-import {useDropzone} from 'react-dropzone'
+import React, { useState } from "react";
+import { toast } from 'react-toastify';
+import "./style.css";
 
-export default function Dropzone() {
-    const onDrop = useCallback((acceptedFiles) => {
-        acceptedFiles.forEach((file) => {
-          const reader = new FileReader()
-    
-          reader.onabort = () => console.log('file reading was aborted')
-          reader.onerror = () => console.log('file reading has failed')
-          reader.onload = () => {
-          // Do whatever you want with the file contents
-            const binaryStr = reader.result
-            console.log(binaryStr)
-          }
-          reader.readAsArrayBuffer(file)
-        })
-        
-    }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop}) 
+import Dropzone from "react-dropzone";
+import Api from 'api/media';
 
-    return (
-    <div {...getRootProps()}>
-        <input {...getInputProps()} />
-        {
-        isDragActive ?
-            <p>Drop the files here ...</p> :
-            <p>Drag 'n' drop some files here, or click to select files</p>
-        }
-    </div>
-  )
+export default function Index(props) {
+	const [fileNames, setFileNames] = useState([]);
+	const handleDrop = ( acceptedFiles ) => { 
+		acceptedFiles.map(file => onFileUpload(file) );		
+	}
+
+	const onFileUpload = (file) => {
+		const formData = new FormData();
+		formData.append('file', file);
+		formData.append('type', 'sign');
+
+		Api.create(formData)
+			.then(resp => { 
+				if (resp.data.success) {
+					props.newMedia(resp.data.data); 
+				} else {
+					resp.data.data.forEach(function (value, index, array) {
+						toast.error(value);
+					});
+				}
+			});
+	};
+
+  return (
+    <>
+		<Dropzone
+			onDrop={handleDrop}
+			accept="image/*"
+			minSize={1024}
+			maxSize={3072000}
+		>
+		{({ getRootProps, getInputProps, isDragActive }) => (
+			<div {...getRootProps({ className: "pi-dropzone" })}>
+			<input {...getInputProps()} />
+			{
+				isDragActive ?
+				<p>Drop the files here ...</p> :
+				<p>Drag & drop some files here, or click to select files</p>
+			}
+			</div>
+		)}
+		</Dropzone> 
+    </>
+  );
 }

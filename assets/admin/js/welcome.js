@@ -2310,7 +2310,7 @@ var Branding = /*#__PURE__*/function (_Component) {
         }), business.id && business.logo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "pi-text-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-            src: business.logo.url,
+            src: business.logo.img,
             width: "100",
             className: "inline"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
