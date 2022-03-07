@@ -30,10 +30,10 @@ export default class Preview extends Component {
                     </div>
 
                     <div className='col-md-4'>
-                        <button
+                        {/* <button
                             onClick={() => this.setState({ formModal: true })} >
                             Send Mail
-                        </button>
+                        </button> */}
 
                         {this.state.formModal &&
                             <Send

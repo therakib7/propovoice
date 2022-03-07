@@ -3115,113 +3115,116 @@ var One = /*#__PURE__*/function (_Component) {
           fromData = _this$props$data.fromData,
           toData = _this$props$data.toData;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-        className: "pi-inv pi-inv-one",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-          className: "pi-body",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-            className: "pi-hedear",
+        className: "pi-inv",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+          className: "pi-inv-one",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            className: "pi-body",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-from",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-                className: "pi-from-logo",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
-                  src: "assets/img/inv/fromlogo.png",
-                  alt: ""
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("address", {
-                children: ["Address: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                  children: "377 Airport - Dakshinkhan Rd, Dhaka 1230"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "Email:", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
-                    href: "#",
-                    children: " hello@nurency.com"
-                  }), " "]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "What'sApp: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                  children: "+8801760706361"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {})]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-                className: "pi-from-date",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-                  children: ["inv No: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                    children: "00024"
-                  })]
+              className: "pi-hedear",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-from",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  className: "pi-from-logo",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
+                    src: "assets/img/inv/fromlogo.png",
+                    alt: ""
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("address", {
+                  children: ["Address: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                    children: "377 Airport - Dakshinkhan Rd, Dhaka 1230"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "Email:", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
+                      href: "#",
+                      children: " hello@nurency.com"
+                    }), " "]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "What'sApp: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                    children: "+8801760706361"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {})]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-                  className: "pi-from-time",
+                  className: "pi-from-date",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-                    children: ["Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                      children: " 01-02-2022"
+                    children: ["inv No: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                      children: "00024"
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-                    children: ["Due Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                      children: " 01-02-2022"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                    className: "pi-from-time",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+                      children: ["Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                        children: " 01-02-2022"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+                      children: ["Due Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                        children: " 01-02-2022"
+                      })]
                     })]
                   })]
                 })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-to",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  className: "pi-to-logo",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h2", {
+                    children: "invoice"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_To__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                  data: toData
+                })]
               })]
+            }), items && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              data: items
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-to",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-                className: "pi-to-logo",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h2", {
-                  children: "invoice"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_To__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                data: toData
+              className: "pi-bank-info",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-banking",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
+                  children: "Bank Info:"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("table", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tbody", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                        children: "Name:"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                        children: "Nasir Bin Burhan"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                        children: "Account No:"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                        children: " 2311 3213 2311"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                        children: "Bank Info:"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                        children: "Estern Bank Bangladesh Limited.Dhaka Branch"
+                      })]
+                    })]
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Total__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread({}, this.props))]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              className: "pi-note-wrap",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-note-term",
+                children: [note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                  data: note
+                }), group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  data: group
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-sign",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
+                  src: "assets/img/inv/sign.png",
+                  alt: ""
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  className: "pi-border"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
+                  children: "Signature"
+                })]
               })]
             })]
-          }), items && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            data: items
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-            className: "pi-bank-info",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-banking",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
-                children: "Bank Info:"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("table", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tbody", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
-                      children: "Name:"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
-                      children: "Nasir Bin Burhan"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
-                      children: "Account No:"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
-                      children: " 2311 3213 2311"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
-                      children: "Bank Info:"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
-                      children: "Estern Bank Bangladesh Limited.Dhaka Branch"
-                    })]
-                  })]
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Total__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread({}, this.props))]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-            className: "pi-note-wrap",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-note-term",
-              children: [note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                data: note
-              }), group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                data: group
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-sign",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
-                src: "assets/img/inv/sign.png",
-                alt: ""
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-                className: "pi-border"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
-                children: "Signature"
-              })]
-            })]
-          })]
+          })
         })
       });
     }
@@ -3314,162 +3317,165 @@ var Two = /*#__PURE__*/function (_Component) {
       var _this$props$data = this.props.data,
           fromData = _this$props$data.fromData,
           toData = _this$props$data.toData;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-        className: "pi-inv pi-inv-two",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-          className: "pi-top-shape",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("svg", {
-            viewBox: "0 0 595 69",
-            fill: "none",
-            xmlns: "http://www.w3.org/2000/svg",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("path", {
-              d: "M595 29.2L575.167 22.6C555.333 16 515.667 2.80004 476 7.21378C436.333 11.4625 396.667 33.7375 357 33.6138C317.333 33.7375 277.667 10.0762 238 -3C219.166 -9.32618 198.87 -10.7301 178.5 -10.5162C155.968 -10.2796 133.347 -7.36757 112.514 -0.499996C72.8471 12.8237 39.6666 37.8625 19.8333 53.4137L0 68.8L6.01468e-06 1.38921e-06L19.8333 3.12309e-06C39.6667 4.85698e-06 72.8471 -0.5 112.514 -0.499996C152.18 -0.499993 198.333 -3 238 -3C277.667 -3 308.614 -1.61374 348.28 -1.61374C387.947 -1.61373 427.614 -1.61373 467.28 -1.61373C506.947 -1.61372 555.333 -1.61374 575.167 -1.61374L595 -1.61372L595 29.2Z"
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        className: "pi-inv",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          className: "pi-inv-two",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+            className: "pi-top-shape",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("svg", {
+              viewBox: "0 0 595 69",
+              fill: "none",
+              xmlns: "http://www.w3.org/2000/svg",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("path", {
+                d: "M595 29.2L575.167 22.6C555.333 16 515.667 2.80004 476 7.21378C436.333 11.4625 396.667 33.7375 357 33.6138C317.333 33.7375 277.667 10.0762 238 -3C219.166 -9.32618 198.87 -10.7301 178.5 -10.5162C155.968 -10.2796 133.347 -7.36757 112.514 -0.499996C72.8471 12.8237 39.6666 37.8625 19.8333 53.4137L0 68.8L6.01468e-06 1.38921e-06L19.8333 3.12309e-06C39.6667 4.85698e-06 72.8471 -0.5 112.514 -0.499996C152.18 -0.499993 198.333 -3 238 -3C277.667 -3 308.614 -1.61374 348.28 -1.61374C387.947 -1.61373 427.614 -1.61373 467.28 -1.61373C506.947 -1.61372 555.333 -1.61374 575.167 -1.61374L595 -1.61372L595 29.2Z"
+              })
             })
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-          className: "pi-body",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-            className: "pi-hedear",
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            className: "pi-body",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-from",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-                className: "pi-from-logo",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
-                  src: "assets/img/inv/fromlogo.png",
-                  alt: ""
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("address", {
-                children: ["Address: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                  children: "377 Airport - Dakshinkhan Rd, Dhaka 1230"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "Email:", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
-                    href: "#",
-                    children: " hello@nurency.com"
-                  }), " "]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "What'sApp: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                  children: "+8801760706361"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {})]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-                className: "pi-from-date",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-                  children: ["inv No: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                    children: "00024"
-                  })]
+              className: "pi-hedear",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-from",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  className: "pi-from-logo",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
+                    src: "assets/img/inv/fromlogo.png",
+                    alt: ""
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("address", {
+                  children: ["Address: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                    children: "377 Airport - Dakshinkhan Rd, Dhaka 1230"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "Email:", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("a", {
+                      href: "#",
+                      children: " hello@nurency.com"
+                    }), " "]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {}), "What'sApp: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                    children: "+8801760706361"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("br", {})]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-                  className: "pi-from-time",
+                  className: "pi-from-date",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-                    children: ["Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                      children: " 01-02-2022"
+                    children: ["inv No: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                      children: "00024"
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-                    children: ["Due Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-                      children: " 01-02-2022"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                    className: "pi-from-time",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+                      children: ["Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                        children: " 01-02-2022"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+                      children: ["Due Date:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
+                        children: " 01-02-2022"
+                      })]
                     })]
                   })]
                 })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-to",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  className: "pi-to-logo",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h2", {
+                    children: "invoice"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_To__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                  data: toData
+                })]
               })]
+            }), items && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              data: items
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-to",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-                className: "pi-to-logo",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h2", {
-                  children: "invoice"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_To__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                data: toData
-              })]
-            })]
-          }), items && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Items__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            data: items
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-            className: "pi-bank-info",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-banking",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
-                children: "Bank Info:"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("table", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tbody", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
-                      children: "Name:"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
-                      children: "Nasir Bin Burhan"
+              className: "pi-bank-info",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-banking",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
+                  children: "Bank Info:"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("table", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tbody", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                        children: "Name:"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                        children: "Nasir Bin Burhan"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                        children: "Account No:"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                        children: " 2311 3213 2311"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                        children: "Bank Info:"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                        children: "Estern Bank Bangladesh Limited.Dhaka Branch"
+                      })]
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
-                      children: "Account No:"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
-                      children: " 2311 3213 2311"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
-                      children: "Bank Info:"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
-                      children: "Estern Bank Bangladesh Limited.Dhaka Branch"
-                    })]
-                  })]
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-              className: "pi-amounting",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("table", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tbody", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
-                      children: "Subtotal:"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
-                      children: "57397.7 $"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
-                    className: "pi-before-total",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
-                      children: "Tax:"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
-                      children: "397.7 $"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
-                    className: "pi-table-bg",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
-                      children: "Total:"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
-                      children: "63397.7 $"
-                    })]
-                  })]
-                })
-              })
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-            className: "pi-note-wrap",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-note-term",
-              children: [note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                data: note
-              }), group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                data: group
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "pi-sign",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
-                src: "assets/img/inv/sign.png",
-                alt: ""
+                  })
+                })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-                className: "pi-border"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
-                children: "Signature"
+                className: "pi-amounting",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("table", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tbody", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                        children: "Subtotal:"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                        children: "57397.7 $"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                      className: "pi-before-total",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                        children: "Tax:"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                        children: "397.7 $"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                      className: "pi-table-bg",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                        children: "Total:"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                        children: "63397.7 $"
+                      })]
+                    })]
+                  })
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              className: "pi-note-wrap",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-note-term",
+                children: [note && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Note__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                  data: note
+                }), group && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Group__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  data: group
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                className: "pi-sign",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
+                  src: "assets/img/inv/sign.png",
+                  alt: ""
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  className: "pi-border"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
+                  children: "Signature"
+                })]
               })]
             })]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-          className: "pi-footer-shape",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("svg", {
-            viewBox: "0 0 595 93",
-            fill: "none",
-            xmlns: "http://www.w3.org/2000/svg",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("path", {
-              d: "M0 39.6L19.8333 46.2C39.6667 52.8 79.3333 66 119 61.5862C158.667 57.3375 198.333 35.0625 238 35.1862C277.667 35.0625 317.333 57.3375 357 70.4137C396.667 83.7375 436.333 87.8625 476 74.7862C515.667 61.4625 555.333 30.9375 575.167 15.3862L595 0V118.8H575.167C555.333 118.8 515.667 118.8 476 118.8C436.333 118.8 396.667 118.8 357 118.8C317.333 118.8 277.667 118.8 238 118.8C198.333 118.8 158.667 118.8 119 118.8C79.3333 118.8 39.6667 118.8 19.8333 118.8H0L0 39.6Z"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+            className: "pi-footer-shape",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("svg", {
+              viewBox: "0 0 595 93",
+              fill: "none",
+              xmlns: "http://www.w3.org/2000/svg",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("path", {
+                d: "M0 39.6L19.8333 46.2C39.6667 52.8 79.3333 66 119 61.5862C158.667 57.3375 198.333 35.0625 238 35.1862C277.667 35.0625 317.333 57.3375 357 70.4137C396.667 83.7375 436.333 87.8625 476 74.7862C515.667 61.4625 555.333 30.9375 575.167 15.3862L595 0V118.8H575.167C555.333 118.8 515.667 118.8 476 118.8C436.333 118.8 396.667 118.8 357 118.8C317.333 118.8 277.667 118.8 238 118.8C198.333 118.8 158.667 118.8 119 118.8C79.3333 118.8 39.6667 118.8 19.8333 118.8H0L0 39.6Z"
+              })
             })
-          })
-        })]
+          })]
+        })
       });
     }
   }]);
@@ -3720,7 +3726,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  --pi-inv-primary: #0099FF;\n  --pi-inv-secondary: #4C6FFF;\n  --pi-inv-text-primary:#000000;\n  --pi-inv-text-secondary:#1A202C;\n  --pi-inv-text-3th:#2D3748;\n  --pi-inv-text-4th:#31343D;\n  --pi-inv-text-5th:#4A5568;\n  --pi-inv-white:#fff;\n  --pi-inv-medium: 16px;\n  --pi-inv-small: 12px;\n}\n\n.pi-inv-wrapper {\n  background-color: #E5E5E5;\n}\n\n.pi-inv-wrapper a {\n  text-decoration: none;\n  color: inherit;\n}\n\n.pi-inv-wrapper * {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n.pi-inv {\n  background-color: #fff;\n}\n\n.pi-inv {\n  max-width: 794px;\n  margin: 0 auto;\n}\n\n.pi-hedear {\n  margin-top: 10px;\n  display: flex;\n  justify-content: space-between;\n}\n\n.pi-from address {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-4th);\n  margin-bottom: 36px;\n  margin-top: 18px;\n}\n\n.pi-from address span, .pi-from address a {\n  font-weight: 500;\n}\n\n.pi-from-date p {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n}\n\n.pi-from-date p span {\n  font-weight: 500;\n}\n\n.pi-from-time {\n  display: flex;\n  -moz-column-gap: 18px;\n  column-gap: 18px;\n}\n\n/* ==== invoece to address */\n.pi-to-logo h2 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 30px;\n  line-height: 100%;\n  color: var(--pi-inv-secondary);\n  margin-bottom: 18px;\n  text-transform: uppercase;\n}\n\n.pi-to p {\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-3th);\n}\n\n.pi-to address {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-3th);\n  margin-bottom: 36px;\n  margin-top: 5px;\n}\n\n.pi-to address p, .pi-to address a {\n  font-weight: 500;\n  margin-top: -5px;\n}\n\n.pi-items-table table {\n  border-spacing: 0;\n  width: 100%;\n  margin-top: 30px;\n  margin-bottom: 24px;\n}\n\n.pi-items-table table thead th {\n  padding: 10px;\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 140%;\n  text-align: left;\n}\n\n.pi-items-table table td {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  padding: 15px 10px;\n  color: var(--pi-inv-text-3th);\n}\n\n.pi-items-table table td span {\n  color: var(--pi-inv-text-5th);\n  font-weight: 500;\n}\n\n/* pi-banking wrap */\n.pi-bank-info {\n  margin-bottom: 35px;\n}\n\n.pi-bank-info {\n  display: flex;\n  justify-content: space-between;\n  -moz-column-gap: 30px;\n  column-gap: 30px;\n}\n\n.pi-bank-info h4 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 140%;\n  color: #1A202C;\n}\n\n.pi-bank-info table {\n  margin-top: 18px;\n}\n\n.pi-bank-info table th {\n  text-align: left;\n  padding-right: 20px;\n  padding-left: 0;\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  color: var(--pi-inv-text-primary);\n  padding-bottom: 4px;\n}\n\n.pi-bank-info table td {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  color: var(--pi-inv-text-primary);\n  text-align: left;\n  padding-bottom: 4px;\n}\n\n.pi-amounting table {\n  border-spacing: 0;\n  width: 210px;\n}\n\n.pi-amounting table tr.pi-before-total th {\n  padding-bottom: 10px;\n}\n\n.pi-amounting table th {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 140%;\n  color: var(--pi-inv-text-primary);\n  padding-left: 28px;\n}\n\n.pi-amounting .pi-table-bg th {\n  color: var(--pi-inv-white);\n  padding: 6px;\n  padding-left: 28px;\n  padding-right: 10px;\n}\n\n.pi-amounting .pi-table-bg td {\n  color: var(--pi-inv-white);\n  line-height: 140%;\n  padding: 6px;\n}\n\n/* pi-note wrap */\n.pi-note-wrap {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.pi-terms h4 {\n  margin-top: 15px;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 200%;\n  color: var(--pi-inv-text-secondary);\n}\n\n.pi-terms ul {\n  list-style-type: dot;\n}\n\n.pi-terms ul li {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  color: var(--pi-inv-text-5th);\n  margin-left: 15px;\n}\n\n.mt-35 {\n  margin-top: 35px;\n}\n\n.pi-note h4 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 150%;\n  color: var(--pi-inv-text-secondary);\n}\n\n.pi-note p {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-5th);\n}\n\n.pi-sign {\n  text-align: center;\n  margin-right: 60px;\n}\n\n.pi-sign h4 {\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 200%;\n  color: var(--pi-inv-text-secondary);\n}\n\n.pi-border {\n  border: 0.5px solid #A0AEC0;\n  margin: 0 -30px;\n  margin-top: 8px;\n}\n\n/* ====template one===*/\n.pi-inv-one .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv-one .pi-hedear {\n  padding-top: 80px;\n}\n\n.pi-inv-one .pi-to-logo h2 {\n  color: var(--pi-inv-text-4th);\n}\n\n.pi-inv-one .pi-items-table table thead {\n  background: #E6E6E6;\n}\n\n.pi-inv-one .pi-items-table table tbody tr:nth-child(odd) {\n  background-color: #F9F9F9;\n}\n\n.pi-inv-one tr.pi-table-bg {\n  background: #4F4F4F;\n  color: var(--pi-inv-white);\n}\n\n.pi-inv-one .pi-note-wrap {\n  padding-bottom: 55px;\n}\n\n/* ====template two===*/\n.pi-inv-two .pi-top-shape svg {\n  width: 100%;\n}\n\n.pi-inv-two .pi-top-shape svg path {\n  fill: var(--pi-inv-primary);\n}\n\n.pi-inv-two .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv-two .pi-to-logo h2 {\n  color: var(--pi-inv-text-4th);\n}\n\n.pi-inv-two .pi-items-table table thead {\n  background-color: var(--pi-inv-primary);\n  color: var(--pi-inv-white);\n}\n\n.pi-inv-two .pi-items-table table tbody tr:nth-child(even) {\n  background-color: #EDF2F7;\n}\n\n.pi-inv-two tr.pi-table-bg {\n  background-color: var(--pi-inv-primary);\n}\n\n.pi-inv-two .pi-footer-shape svg {\n  margin-bottom: -4px;\n}\n\n.pi-inv-two .pi-footer-shape svg path {\n  width: 100%;\n  fill: var(--pi-inv-primary);\n}\n\n/* ====template three===*/\n.pi-inv-three .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv-three .pi-top-shape {\n  padding-bottom: 11px;\n  position: relative;\n}\n\n.pi-inv-three .pi-top-shape .pi-shape1 {\n  -webkit-clip-path: polygon(1% 1%, 100% 0, 85% 12%, 12% 12%, 12% 86%, 0 100%);\n  clip-path: polygon(1% 1%, 100% 0, 85% 12%, 12% 12%, 12% 86%, 0 100%);\n  background-color: var(--pi-inv-secondary);\n  width: 170px;\n  height: 170px;\n  position: absolute;\n  top: 0px;\n  left: -35px;\n  z-index: 10;\n}\n\n.pi-inv-three .pi-top-shape .pi-shape2 {\n  -webkit-clip-path: circle(50% at 25% 30%);\n  clip-path: circle(50% at 25% 30%);\n  background-color: var(--pi-inv-secondary);\n  width: 33px;\n  height: 33px;\n  position: absolute;\n  top: 8px;\n  left: -25px;\n  z-index: 10;\n}\n\n.pi-inv-three .pi-top-shape .pi-shape3 {\n  -webkit-clip-path: polygon(1% 1%, 100% 0, 85% 12%, 12% 12%, 12% 86%, 0 100%);\n  clip-path: polygon(1% 1%, 100% 0, 85% 12%, 12% 12%, 12% 86%, 0 100%);\n  background-color: #E2E8F0;\n  width: 187px;\n  height: 187px;\n  position: absolute;\n  top: 0px;\n  left: -35px;\n  z-index: 0;\n}\n\n.pi-inv-three .pi-hedear {\n  margin-top: 50px;\n}\n\n.pi-inv-three .pi-items-table table thead {\n  background-color: #E2E8F0;\n}\n\n.pi-inv-three .pi-items-table table tbody tr:nth-child(even) {\n  background-color: #E2E8F0;\n}\n\n.pi-inv-three tr.pi-table-bg {\n  background-color: var(--pi-inv-secondary);\n}\n\n.pi-inv-three .pi-to-logo {\n  margin-top: -40px;\n}\n\n.pi-inv-three .pi-footer-shape {\n  position: relative;\n  right: 35px;\n  bottom: 0;\n  transform: rotate(180deg);\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  --pi-inv-primary: #0099FF;\n  --pi-inv-secondary: #4C6FFF;\n  --pi-inv-text-primary:#000000;\n  --pi-inv-text-secondary:#1A202C;\n  --pi-inv-text-3th:#2D3748;\n  --pi-inv-text-4th:#31343D;\n  --pi-inv-text-5th:#4A5568;\n  --pi-inv-white:#fff;\n  --pi-inv-medium: 16px;\n  --pi-inv-small: 12px;\n}\n\n.pi-inv-wrapper {\n  background-color: #E5E5E5;\n}\n\n.pi-inv-wrapper a {\n  text-decoration: none;\n  color: inherit;\n}\n\n.pi-inv-wrapper * {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n.pi-inv {\n  max-width: 794px;\n  margin: 0 auto;\n  background-color: #fff;\n  /* ==== invoece to address */\n  /* pi-banking wrap */\n  /* pi-note wrap */\n}\n\n.pi-inv .pi-bg-one {\n  background-color: #8EB538;\n}\n\n.pi-inv .pi-bg-two {\n  background-color: #424449;\n}\n\n.pi-inv .pi-bg-4th {\n  background-color: var(--pi-inv-text-4th);\n}\n\n.pi-inv .pi-hedear {\n  margin-top: 10px;\n  display: flex;\n  justify-content: space-between;\n}\n\n.pi-inv .pi-from address {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-4th);\n  margin-bottom: 36px;\n  margin-top: 18px;\n}\n\n.pi-inv .pi-from address span, .pi-inv .pi-from address a {\n  font-weight: 500;\n}\n\n.pi-inv .pi-from-date p {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n}\n\n.pi-inv .pi-from-date p span {\n  font-weight: 400;\n}\n\n.pi-inv .pi-from-time {\n  display: flex;\n  -moz-column-gap: 18px;\n  column-gap: 18px;\n}\n\n.pi-inv .pi-inv-title h2 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 30px;\n  line-height: 100%;\n  color: var(--pi-inv-text-4th);\n  margin-bottom: 18px;\n  text-transform: uppercase;\n}\n\n.pi-inv .pi-to p {\n  font-style: normal;\n  font-weight: 500;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-3th);\n  font-family: Inter;\n  letter-spacing: 0.07px;\n}\n\n.pi-inv .pi-to h6 {\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-3th);\n  font-family: Inter;\n  letter-spacing: 0.07px;\n}\n\n.pi-inv .pi-to address {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-3th);\n  margin-bottom: 36px;\n  margin-top: 5px;\n}\n\n.pi-inv .pi-to address p, .pi-inv .pi-to address a, .pi-inv .pi-to address span {\n  font-weight: 400;\n  margin-top: -5px;\n}\n\n.pi-inv .pi-items-table table {\n  border-spacing: 0;\n  width: 100%;\n  margin-top: 30px;\n  margin-bottom: 24px;\n}\n\n.pi-inv .pi-items-table table thead th {\n  padding: 10px;\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 140%;\n  text-align: left;\n}\n\n.pi-inv .pi-items-table table td {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  padding: 15px 10px;\n  color: var(--pi-inv-text-3th);\n}\n\n.pi-inv .pi-items-table table td span {\n  color: var(--pi-inv-text-5th);\n  font-weight: 400;\n}\n\n.pi-inv .pi-bank-info {\n  margin-bottom: 35px;\n}\n\n.pi-inv .pi-bank-info {\n  display: flex;\n  justify-content: space-between;\n  -moz-column-gap: 30px;\n  column-gap: 30px;\n}\n\n.pi-inv .pi-bank-info h4 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 140%;\n  color: #1A202C;\n}\n\n.pi-inv .pi-bank-info table {\n  margin-top: 18px;\n}\n\n.pi-inv .pi-bank-info table th {\n  text-align: left;\n  padding-right: 20px;\n  padding-left: 0;\n  font-family: Inter;\n  font-style: normal;\n  font-weight: 600;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  color: var(--pi-inv-text-primary);\n  padding-bottom: 4px;\n}\n\n.pi-inv .pi-bank-info table td {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  color: var(--pi-inv-text-primary);\n  text-align: left;\n  padding-bottom: 4px;\n}\n\n.pi-inv .pi-amounting table {\n  border-spacing: 0;\n  width: 210px;\n}\n\n.pi-inv .pi-amounting table tr.pi-before-total th {\n  padding-bottom: 10px;\n}\n\n.pi-inv .pi-amounting table th {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 140%;\n  color: var(--pi-inv-text-primary);\n  padding-left: 28px;\n}\n\n.pi-inv .pi-amounting .pi-table-bg th {\n  color: var(--pi-inv-white);\n  padding: 6px;\n  padding-left: 28px;\n  padding-right: 10px;\n}\n\n.pi-inv .pi-amounting .pi-table-bg td {\n  color: var(--pi-inv-white);\n  line-height: 140%;\n}\n\n.pi-inv .pi-note-wrap {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.pi-inv .pi-terms h4 {\n  margin-top: 15px;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 200%;\n  color: var(--pi-inv-text-secondary);\n}\n\n.pi-inv .pi-terms ul {\n  list-style-type: dot;\n}\n\n.pi-inv .pi-terms ul li {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-inv-small);\n  line-height: 150%;\n  color: var(--pi-inv-text-5th);\n  margin-left: 15px;\n}\n\n.pi-inv .mt-35 {\n  margin-top: 35px;\n}\n\n.pi-inv .pi-note h4 {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 150%;\n  color: var(--pi-inv-text-secondary);\n}\n\n.pi-inv .pi-note p {\n  font-family: Inter;\n  font-style: normal;\n  font-weight: normal;\n  font-size: var(--pi-inv-small);\n  line-height: 200%;\n  color: var(--pi-inv-text-5th);\n}\n\n.pi-inv .pi-sign {\n  text-align: center;\n  margin-right: 60px;\n}\n\n.pi-inv .pi-sign h4 {\n  font-style: normal;\n  font-weight: bold;\n  font-size: var(--pi-inv-medium);\n  line-height: 200%;\n  color: var(--pi-inv-text-secondary);\n}\n\n.pi-inv .pi-border {\n  border: 0.5px solid #A0AEC0;\n  margin: 0 -30px;\n  margin-top: 8px;\n}\n\n.pi-inv {\n  /* ====template one===*/\n  /* ====template two===*/\n  /* ====template three===*/\n  /* ====template four===*/\n  /* ====template five===*/\n}\n\n.pi-inv .pi-inv-one .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv .pi-inv-one .pi-hedear {\n  padding-top: 80px;\n}\n\n.pi-inv .pi-inv-one .pi-items-table table thead {\n  background: #E6E6E6;\n}\n\n.pi-inv .pi-inv-one .pi-items-table table tbody tr:nth-child(odd) {\n  background-color: #F9F9F9;\n}\n\n.pi-inv .pi-inv-one tr.pi-table-bg {\n  background: #4F4F4F;\n  color: var(--pi-inv-white);\n}\n\n.pi-inv .pi-inv-one .pi-note-wrap {\n  padding-bottom: 55px;\n}\n\n.pi-inv .pi-inv-two .pi-top-shape svg {\n  width: 100%;\n}\n\n.pi-inv .pi-inv-two .pi-top-shape svg path {\n  fill: var(--pi-inv-primary);\n}\n\n.pi-inv .pi-inv-two .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv .pi-inv-two .pi-items-table table thead {\n  background-color: var(--pi-inv-primary);\n  color: var(--pi-inv-white);\n}\n\n.pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(even) {\n  background-color: #EDF2F7;\n}\n\n.pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(odd) {\n  background-color: #F7FAFC;\n}\n\n.pi-inv .pi-inv-two tr.pi-table-bg {\n  background-color: var(--pi-inv-primary);\n}\n\n.pi-inv .pi-inv-two .pi-footer-shape svg {\n  margin-bottom: -4px;\n}\n\n.pi-inv .pi-inv-two .pi-footer-shape svg path {\n  width: 100%;\n  fill: var(--pi-inv-primary);\n}\n\n.pi-inv .pi-inv-three .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv .pi-inv-three .pi-hedear {\n  margin-top: 10px;\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n}\n\n.pi-inv .pi-inv-three .pi-top-shape {\n  padding-bottom: 11px;\n  position: relative;\n}\n\n.pi-inv .pi-inv-three .pi-top-shape .pi-shape1 {\n  -webkit-clip-path: polygon(1% 1%, 100% 0, 85% 12%, 13% 12%, 12% 86%, 0 100%);\n  clip-path: polygon(1% 1%, 100% 0, 85% 12%, 13% 12%, 12% 86%, 0 100%);\n  background-color: var(--pi-inv-secondary);\n  width: 170px;\n  height: 170px;\n  position: absolute;\n  top: -2px;\n  z-index: 10;\n  left: -36px;\n}\n\n.pi-inv .pi-inv-three .pi-top-shape .pi-shape2 {\n  -webkit-clip-path: circle(50% at 25% 30%);\n  clip-path: circle(50% at 25% 30%);\n  background-color: var(--pi-inv-secondary);\n  width: 33px;\n  height: 33px;\n  position: absolute;\n  top: 8px;\n  left: -22px;\n  z-index: 10;\n}\n\n.pi-inv .pi-inv-three .pi-top-shape .pi-shape3 {\n  -webkit-clip-path: polygon(1% 1%, 100% 0, 85% 11%, 11% 11%, 11% 86%, 0 100%);\n  clip-path: polygon(1% 1%, 100% 0, 85% 11%, 11% 11%, 11% 86%, 0 100%);\n  background-color: #E2E8F0;\n  width: 187px;\n  height: 187px;\n  position: absolute;\n  top: -2px;\n  z-index: 0;\n  left: -36px;\n}\n\n.pi-inv .pi-inv-three .pi-hedear {\n  margin-top: 50px;\n}\n\n.pi-inv .pi-inv-three .pi-inv-title h2 {\n  color: var(--pi-inv-secondary);\n  text-align: center;\n}\n\n.pi-inv .pi-inv-three .pi-items-table table thead {\n  background-color: #E2E8F0;\n}\n\n.pi-inv .pi-inv-three .pi-items-table table tbody tr:nth-child(even) {\n  background-color: #E2E8F0;\n}\n\n.pi-inv .pi-inv-three tr.pi-table-bg {\n  background-color: var(--pi-inv-secondary);\n}\n\n.pi-inv .pi-inv-three .pi-inv-title {\n  margin-top: -40px;\n}\n\n.pi-inv .pi-inv-three .pi-footer-shape {\n  position: relative;\n  right: 34px;\n  bottom: 0;\n  transform: rotate(180deg);\n}\n\n.pi-inv .pi-inv-three .pi-note-wrap {\n  margin-bottom: 40px;\n}\n\n.pi-inv .pi-inv-four .pi-body {\n  margin: 0 35px;\n}\n\n.pi-inv .pi-inv-four .pi-from-logo {\n  display: inline-block;\n  padding: 16px 40px;\n  margin-left: -36px;\n}\n\n.pi-inv .pi-inv-four .pi-hedear {\n  display: flex;\n  justify-content: space-between;\n  padding-top: 53px;\n}\n\n.pi-inv .pi-inv-four .pi-to {\n  margin-top: -30px;\n}\n\n.pi-inv .pi-inv-four .pi-items-table table {\n  width: 106%;\n  margin-left: -23px;\n}\n\n.pi-inv .pi-inv-four .pi-to-bg {\n  margin-right: -36px;\n  padding: 16px 36px 16px 20px;\n}\n\n.pi-inv .pi-inv-four .pi-to-bg address {\n  color: var(--pi-inv-white);\n}\n\n.pi-inv .pi-inv-four .pi-to-bg p {\n  color: var(--pi-inv-white);\n}\n\n.pi-inv .pi-inv-four .pi-to-bg h6 {\n  color: var(--pi-inv-white);\n}\n\n.pi-inv .pi-inv-four .pi-items-table table thead th {\n  color: var(--pi-inv-white);\n  padding-left: 20px;\n}\n\n.pi-inv .pi-inv-four .pi-items-table table td {\n  padding-left: 20px;\n}\n\n.pi-inv .pi-inv-four .pi-items-table table tbody tr :first-child {\n  padding-left: 15px;\n  text-align: left;\n}\n\n.pi-inv .pi-inv-four tr.pi-table-bg :last-child {\n  margin-right: -35px;\n  display: block;\n  padding: 10px 20px;\n  margin-left: -20px;\n}\n\n.pi-inv .pi-inv-four .pi-footer-shape {\n  display: flex;\n  margin-top: 40px;\n}\n\n.pi-inv .pi-inv-four .pi-footer-shape .pi-shape1 {\n  width: 33.3%;\n  height: 10px;\n}\n\n.pi-inv .pi-inv-four .pi-footer-shape .pi-shape2 {\n  width: 33.3%;\n  opacity: 0.8;\n  height: 10px;\n}\n\n.pi-inv .pi-inv-four .pi-footer-shape .pi-shape3 {\n  width: 33.4%;\n  opacity: 0.6;\n  height: 10px;\n}\n\n.pi-inv .pi-inv-five .pi-body {\n  margin: -90px 35px;\n}\n\n.pi-inv .pi-inv-five .pi-hedear {\n  margin-top: 10px;\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n}\n\n.pi-inv .pi-inv-five .pi-hedear .pi-inv-title {\n  margin-top: -45px;\n}\n\n.pi-inv .pi-inv-five .pi-top-shape svg {\n  width: 100%;\n  fill: #D7CA9C;\n}\n\n.pi-inv .pi-inv-five .pi-footer-shape svg {\n  fill: #D7CA9C;\n  margin-bottom: -4px;\n}\n\n.pi-inv .pi-inv-five .pi-items-table table thead {\n  background-color: #D7CA9C;\n  color: var(--pi-inv-white);\n}\n\n.pi-inv .pi-inv-five .pi-items-table table tbody tr:nth-child(even) {\n  background-color: #EDF2F7;\n}\n\n.pi-inv .pi-inv-five .pi-items-table table tbody tr:nth-child(odd) {\n  background-color: #F7FAFC;\n}\n\n.pi-inv .pi-inv-five tr.pi-table-bg {\n  background-color: #D7CA9C;\n}\n\n.pi-inv .pi-inv-five .pi-inv-title h2 {\n  text-align: center;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
