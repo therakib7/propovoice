@@ -25,8 +25,8 @@ export default class Invoice extends Component {
 				paid: 0.00, 
 				note: null,
 				group: null,
-				attachments: [],
-				signature: null 
+				attach: [],
+				sign: null 
 			},
 		};  
     } 

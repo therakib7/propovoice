@@ -24,7 +24,7 @@ class Sign extends Component {
 	onFileUpload = (file) => {
 		const formData = new FormData();
 		formData.append('file', file);
-		formData.append('type', 'signature');
+		formData.append('type', 'sign');
 
 		Api.create(formData)
 			.then(resp => {
@@ -62,10 +62,10 @@ class Sign extends Component {
 	};
 
 	render = () => {
-		const signature = this.props.data;
+		const sign = this.props.data;
 		return (
 			<div className='text-right'>
-				{!signature &&
+				{!sign &&
 					<div>
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} hidden />
 						<button className='border p-3 rounded' onClick={() => this.inputRef.current.click()}>
@@ -74,11 +74,11 @@ class Sign extends Component {
 					</div>
 				}
 
-				{signature &&
+				{sign &&
 					<>
 						<div>
-							<img src={signature.url} width="100" className='inline' />
-							<button className='border p-3 rounded' onClick={() => this.handleDelete(signature.id)}>
+							<img src={sign.url} width="100" className='inline' />
+							<button className='border p-3 rounded' onClick={() => this.handleDelete(sign.id)}>
 								x
 							</button>
 						</div>

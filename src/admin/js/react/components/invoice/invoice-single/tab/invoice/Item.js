@@ -31,8 +31,10 @@ class Item extends Component {
                     onChange={this.props.changeHandler(index)} 
                     onFocus={this.props.focusHandler} />
                 <select name="qty_type">
-                    <option value="page">Page</option>
                     <option value="unit">Unit</option> 
+                    <option value="hour">Hour</option>
+                    <option value="week">Week</option>
+                    <option value="page">Page</option>
                 </select>
             </td>
             <td>
@@ -45,11 +47,7 @@ class Item extends Component {
                     value={price} 
                     onChange={this.props.changeHandler(index)} 
                     onFocus={this.props.focusHandler} 
-                />
-                <select name="price_type">
-                    <option value="fixed">Fixed Price</option>
-                    <option value="nego">Negotiable</option> 
-                </select>
+                /> 
             </td>
 
             <td>

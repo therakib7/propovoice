@@ -37,7 +37,7 @@ class Items extends Component {
 
         return ( 
             <> 
-                <table className="info-table">
+                <table className="pi-info-table">
                     <thead>
                         <tr className="">
                             <th>Name &amp; Details </th>

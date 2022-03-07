@@ -65,6 +65,7 @@
 		"react-beautiful-dnd": "latest",
 		"react-content-loader": "^6.1.0",
 		"react-datepicker": "^4.7.0",
+		"react-dropzone": "^12.0.4",
 		"react-editor-js": "latest",
 		"react-paginate": "^8.1.0",
 		"react-router-dom": "^6.2.1",

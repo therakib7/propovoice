@@ -2139,10 +2139,10 @@ var findByArg = function findByArg(title) {
 
 /***/ }),
 
-/***/ "./src/admin/js/react/inv-template/Attachments.js":
-/*!********************************************************!*\
-  !*** ./src/admin/js/react/inv-template/Attachments.js ***!
-  \********************************************************/
+/***/ "./src/admin/js/react/inv-template/Attach.js":
+/*!***************************************************!*\
+  !*** ./src/admin/js/react/inv-template/Attach.js ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2182,28 +2182,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var Attachments = /*#__PURE__*/function (_Component) {
-  _inherits(Attachments, _Component);
+var Attach = /*#__PURE__*/function (_Component) {
+  _inherits(Attach, _Component);
 
-  var _super = _createSuper(Attachments);
+  var _super = _createSuper(Attach);
 
-  function Attachments(props) {
+  function Attach(props) {
     var _this;
 
-    _classCallCheck(this, Attachments);
+    _classCallCheck(this, Attach);
 
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
-      var attachments = _this.props.data;
+      var attach = _this.props.data;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "",
-        children: attachments.map(function (item, index) {
+        children: attach.map(function (item, index) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              src: item.url,
-              width: "100",
-              className: "inline"
+              src: item.img,
+              width: "100"
             })
           }, index);
         })
@@ -2213,10 +2212,10 @@ var Attachments = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  return _createClass(Attachments);
+  return _createClass(Attach);
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Attachments);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Attach);
 
 /***/ }),
 
@@ -2728,15 +2727,14 @@ var Sign = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
-      var signature = _this.props.data;
+      var sign = _this.props.data;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "text-right",
-        children: signature && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+        children: sign && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-              src: signature.url,
-              width: "100",
-              className: "inline"
+              src: sign.img,
+              width: "100"
             })
           })
         })
@@ -3048,7 +3046,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Items */ "./src/admin/js/react/inv-template/Items.js");
 /* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Note */ "./src/admin/js/react/inv-template/Note.js");
 /* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Group */ "./src/admin/js/react/inv-template/Group.js");
-/* harmony import */ var _Attachments__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Attachments */ "./src/admin/js/react/inv-template/Attachments.js");
+/* harmony import */ var _Attach__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Attach */ "./src/admin/js/react/inv-template/Attach.js");
 /* harmony import */ var _Sign__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Sign */ "./src/admin/js/react/inv-template/Sign.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -3111,8 +3109,8 @@ var One = /*#__PURE__*/function (_Component) {
           items = _this$props$data$invo.items,
           note = _this$props$data$invo.note,
           group = _this$props$data$invo.group,
-          attachments = _this$props$data$invo.attachments,
-          signature = _this$props$data$invo.signature;
+          attach = _this$props$data$invo.attach,
+          sign = _this$props$data$invo.sign;
       var _this$props$data = this.props.data,
           fromData = _this$props$data.fromData,
           toData = _this$props$data.toData;
@@ -3215,7 +3213,7 @@ var One = /*#__PURE__*/function (_Component) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
               className: "pi-sign",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
-                src: "assets/img/inv/signature.png",
+                src: "assets/img/inv/sign.png",
                 alt: ""
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                 className: "pi-border"
@@ -3254,7 +3252,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Items */ "./src/admin/js/react/inv-template/Items.js");
 /* harmony import */ var _Note__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Note */ "./src/admin/js/react/inv-template/Note.js");
 /* harmony import */ var _Group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Group */ "./src/admin/js/react/inv-template/Group.js");
-/* harmony import */ var _Attachments__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Attachments */ "./src/admin/js/react/inv-template/Attachments.js");
+/* harmony import */ var _Attach__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Attach */ "./src/admin/js/react/inv-template/Attach.js");
 /* harmony import */ var _Sign__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Sign */ "./src/admin/js/react/inv-template/Sign.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -3311,8 +3309,8 @@ var Two = /*#__PURE__*/function (_Component) {
           items = _this$props$data$invo.items,
           note = _this$props$data$invo.note,
           group = _this$props$data$invo.group,
-          attachments = _this$props$data$invo.attachments,
-          signature = _this$props$data$invo.signature;
+          attach = _this$props$data$invo.attach,
+          sign = _this$props$data$invo.sign;
       var _this$props$data = this.props.data,
           fromData = _this$props$data.fromData,
           toData = _this$props$data.toData;
@@ -3452,7 +3450,7 @@ var Two = /*#__PURE__*/function (_Component) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
               className: "pi-sign",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
-                src: "assets/img/inv/signature.png",
+                src: "assets/img/inv/sign.png",
                 alt: ""
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                 className: "pi-border"
@@ -3606,8 +3604,8 @@ var Invoice = /*#__PURE__*/function (_Component) {
         paid: 0.00,
         note: null,
         group: null,
-        attachments: [],
-        signature: null
+        attach: [],
+        sign: null
       }
     };
     return _this;

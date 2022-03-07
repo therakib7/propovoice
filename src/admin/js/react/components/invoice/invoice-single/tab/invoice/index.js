@@ -17,7 +17,7 @@ import Preview from '../preview';
 //sidebar section
 import Style from './section/Style'
 import Owner from './section/Owner'
-import Attachments from './Attachments';
+import Attach from './Attach';
 import DateField from 'block/date-picker';
 
 
@@ -43,7 +43,7 @@ class Invoice extends Component {
 					id: 'preview',
 					text: 'Save & Share'
 				},
-			],
+			], 
 			currentTab: '',
 			msg: {
 				create: 'Successfully Added',
@@ -74,8 +74,8 @@ class Invoice extends Component {
 				paid: 0.00,
 				note: null,
 				group: null,
-				attachments: [],
-				signature: null
+				attach: [],
+				sign: null
 
 			},
 		};
@@ -156,15 +156,22 @@ class Invoice extends Component {
 		this.setState({ invoice })
 	}
 
-	handleSignChange = (data) => {
+	handleSignChange = (data, type = null) => {
 		let invoice = { ...this.state.invoice }
-		invoice.signature = data;
+		invoice.sign = data;
 		this.setState({ invoice })
 	}
 
-	handleAttachmentsChange = (data) => {
+	handleAttachChange = (data, type = null) => {
 		let invoice = { ...this.state.invoice }
-		invoice.attachments.push(data);
+		if ( type == 'delete' ) { 
+			let index = invoice.attach.findIndex(function(o){
+				return o.id === data;
+			})
+			if (index !== -1) invoice.attach.splice(index, 1);  
+		} else {
+			invoice.attach.push(data);
+		}  
 		this.setState({ invoice })
 	}
 
@@ -414,10 +421,10 @@ class Invoice extends Component {
 														</div>
 														<div className="pi-info-input-field">
 															<input
-																type="number"
-																id="info-number"
-																name="firstname"
-																placeholder={1}
+																type="number" 
+																name="invoice_id" 
+																value={23423}
+																readOnly
 															/>
 														</div>
 													</div>
@@ -452,8 +459,8 @@ class Invoice extends Component {
 										editId={this.props.id}
 									/>
 
-									<div className="info-table-content">
-										<span className="edit-btn pi-float-right pi-color-blue pi-bg-air-white">
+									<div className="pi-info-table-content">
+										<span className="pi-edit-btn pi-float-right pi-color-blue pi-bg-air-white">
 											<svg
 												width={10}
 												height={10}
@@ -483,28 +490,19 @@ class Invoice extends Component {
 											focusHandler={this.handleFocusSelect}
 											deleteHandler={this.handleRemoveLineItem}
 											reorderHandler={this.handleReorderItems}
-										/>
-
-										<div className="pi-calculation">
-											<table>
-												<tbody>
-													<tr>
-														<td>Subtotal</td>
-														<td>57397.7 $</td>
-													</tr>
-													<tr>
-														<td>Tax</td>
-														<td>13%</td>
-														<td>397.7 $%</td>
-													</tr>
-													<tr>
-														<td>Total</td>
-														<td>58797.7 $</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
+										/> 
+										 
 									</div>{/* ./ info-table-content */}
+
+									<Total
+										currencyFormatter={this.formatCurrency}
+										itemsTotal={this.calcItemsTotal}
+										tax={this.state.invoice.tax}
+										taxTotal={this.calcTaxTotal}
+										grandTotal={this.calcGrandTotal} 
+										changeHandler={this.handleInvoiceChange}
+										focusHandler={this.handleFocusSelect}
+									/> 
 
 									<div className="pi-group-form">
 										<Note data={this.state.invoice.note} changeHandler={this.handleNoteChange} />
@@ -513,27 +511,10 @@ class Invoice extends Component {
 										<div className="pi-buttons">
 											<div className="row">
 												<div className="col-md-6">
-													<Attachments data={this.state.invoice.attachments} changeHandler={this.handleAttachmentsChange} />
+													<Attach data={this.state.invoice.attach} changeHandler={this.handleAttachChange} />
 												</div>
 												<div className="col-md-6">
-													<button className="pi-a-btn pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white">
-														<svg
-															width={14}
-															height={14}
-															viewBox="0 0 14 14"
-															fill="none"
-															xmlns="http://www.w3.org/2000/svg"
-														>
-															<path
-																d="M3.668 10.09a2.7 2.7 0 01-1.779-.662 2.563 2.563 0 01-.394-3.457 2.67 2.67 0 011.587-1.03 3.199 3.199 0 01.46-2.452 3.334 3.334 0 012.1-1.417 3.395 3.395 0 012.508.45 3.26 3.26 0 011.448 2.053h.067c.826 0 1.623.299 2.236.84a3.205 3.205 0 01.45 4.35 3.34 3.34 0 01-2.02 1.26M9 8.137l-2-1.954m0 0L5.002 8.136M7 6.182V13"
-																stroke="#136ACD"
-																strokeWidth={1.5}
-																strokeLinecap="round"
-																strokeLinejoin="round"
-															/>
-														</svg>
-														Authorized Sign
-													</button>
+													<Sign data={this.state.invoice.sign} changeHandler={this.handleSignChange} />
 												</div>
 											</div>
 										</div>

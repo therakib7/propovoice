@@ -2,19 +2,19 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types' 
 import { toast } from 'react-toastify';
 
-class Attachments extends Component { 
+class Attach extends Component { 
 
 	constructor(props) {
 		super(props);
 	} 
 
     render = () => { 
-        const attachments = this.props.data; 
+        const attach = this.props.data; 
         return (
             <div className=''>   
-				{attachments.map((item, index) => ( 
+				{attach.map((item, index) => ( 
 					<div key={index}> 
-						<img src={item.url} width="100" className='inline' /> 
+						<img src={item.img} width="100" /> 
 					</div>   
 				))}
             </div>
@@ -22,6 +22,6 @@ class Attachments extends Component {
     }
 } 
 
-export default Attachments
+export default Attach
 
 

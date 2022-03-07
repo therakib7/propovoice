@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import Api from 'api/media';
 
-class Attachments extends Component {
+class Attach extends Component {
 
 	constructor(props) {
 		super(props);
@@ -63,17 +63,17 @@ class Attachments extends Component {
 	};
 
 	render = () => {
-		const attachments = this.props.data;
+		const attach = this.props.data;
 		return (
 			<div className=''>
 				<div>
 					<input type="file" ref={this.inputRef} onChange={this.onFileChange} hidden />
 					<button className='border p-3 rounded' onClick={() => this.inputRef.current.click()}>
-						Add Attachments
+						Add Attach
 					</button>
 				</div>
 
-				{attachments.map((item, index) => (
+				{attach.map((item, index) => (
 					<div key={index}>
 						<img src={item.url} width="100" className='inline' />
 						<button className='border p-3 rounded' onClick={() => this.handleDelete(index)}>
@@ -86,4 +86,4 @@ class Attachments extends Component {
 	}
 }
 
-export default Attachments
+export default Attach

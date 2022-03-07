@@ -84,74 +84,73 @@ class FromTo extends Component {
 
         const { fromList } = this.state;
         const { fromData, toData } = this.props;
-        return (
+        return ( 
             <div className="pi-from-content">
                 <div className="row">
                     <div className="col-lg-6">
-                        <div className="pi-from-to">
-                            <label>Sender:</label>
-                            <Select
-                                value={fromData}
-                                onChange={this.handleFromChange}
-                                getOptionValue={(fromList) => fromList.id}
-                                getOptionLabel={(fromList) => fromList.name}
-                                options={fromList}
-                            />
-                            <div className="pi-from pi-bg-air-white">
-                                {fromData ?
-                                    <>
-                                        <h4 className="pi-from-title">
-                                            {fromData.name}
-                                        </h4>
-                                        <address>
-                                            Email: {fromData.email}
-                                            <br />
-                                            What'sApp: +8801760706361
-                                            <br />
-                                            Asia Address:
-                                            <br />
-                                            {fromData.address}
-                                        </address>
-                                    </> : 'Search & select'
-                                }
-                            </div>
+                    <div className="pi-from-to">
+                        <label>Sender :</label>
+                        <Select
+                            value={fromData}
+                            onChange={this.handleFromChange}
+                            getOptionValue={(fromList) => fromList.id}
+                            getOptionLabel={(fromList) => fromList.name}
+                            options={fromList}
+                        />
+                        <div className="pi-from pi-bg-air-white">
+                            {fromData ?
+                                <>
+                                    <h4 className="pi-from-title">
+                                        {fromData.name}
+                                    </h4>
+                                    <address>
+                                        Email: {fromData.email}
+                                        <br />
+                                        What'sApp: +8801760706361
+                                        <br />
+                                        Asia Address:
+                                        <br />
+                                        {fromData.address}
+                                    </address>
+                                </> : 'Search & select'
+                            }
                         </div>
-                        {/* ./ pi-from-to */}
+                    </div>
+                    {/* ./ pi-from-to */}
                     </div>
                     <div className="col-lg-6">
-                        <div className="pi-from-to pi-to">
-                            <label>Receiver:</label>
-
-                            <AsyncSelect
-                                loadOptions={this.handleFindClient}
-                                value={toData}
-                                onChange={this.handleClientSelect}
-                                getOptionValue={(toList) => toList.id}
-                                getOptionLabel={(toList) => (toList.first_name) ? toList.first_name + ' ' + toList.last_name : ''}
-                            />
-                            <div className="pi-from pi-bg-air-white">
-                                {toData ?
-                                    <>
-                                        <h4 className="pi-from-title">
-                                            {toData.first_name} {toData.last_name}
-                                        </h4>
-                                        <address>
-                                            Email: {toData.email}
-                                            <br />
-                                            What'sApp: +8801760706361
-                                            <br />
-                                            Asia Address:
-                                            <br />
-                                            {toData.address}
-                                        </address>
-                                    </> : 'Search & select'
-                                }
-                            </div>
+                    <div className="pi-from-to pi-to">
+                        <label>Receiver</label>
+                        <AsyncSelect
+                            loadOptions={this.handleFindClient}
+                            value={toData}
+                            onChange={this.handleClientSelect}
+                            getOptionValue={(toList) => toList.id}
+                            getOptionLabel={(toList) => (toList.first_name) ? toList.first_name + ' ' + toList.last_name : ''}
+                        />
+                        <div className="pi-from pi-bg-air-white">
+                            {toData ?
+                                <>
+                                    <h4 className="pi-from-title">
+                                        {toData.first_name} {toData.last_name}
+                                    </h4>
+                                    <address>
+                                        Email: {toData.email}
+                                        <br />
+                                        What'sApp: +8801760706361
+                                        <br />
+                                        Asia Address:
+                                        <br />
+                                        {toData.address}
+                                    </address>
+                                </> : 'Search & select'
+                            }
                         </div>
-                        {/* ./ pi-from-to */}
+                    </div>
+                    {/* ./ pi-from-to */}
                     </div>
                 </div>
-            </div>
+            </div> 
         )
     }
 }

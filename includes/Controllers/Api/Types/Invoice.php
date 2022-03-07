@@ -295,8 +295,8 @@ class Invoice
         $paid     = isset( $params['paid'] ) ? $params['paid'] : null;
         $due      = $paid ? $total - $paid : null; 
 
-        $attachments = isset( $params['attachments'] ) ? $params['attachments'] : null;
-        $signature   = isset( $params['signature'] ) ? $params['signature'] : null;       
+        $attach = isset( $params['attach'] ) ? $params['attach'] : null;
+        $sign   = isset( $params['sign'] ) ? $params['sign'] : null;       
 
         if ( !$from ) {
             $reg_errors->add('field', esc_html__('Sender is missing', 'propovoice'));

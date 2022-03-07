@@ -9,7 +9,8 @@
   transition: 0.5s ease;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  border-radius: 10px;
+  border-radius: 10px !important;
+  border: 1px solid #cbd5e0;
 }
 .ncpi .pi-single-image-content.pi-active {
   border: 5px solid var(--bg-color-blue);
@@ -17,9 +18,6 @@
 }
 .ncpi .pi-single-image-content.pi-active:hover .pi-single-image {
   opacity: 1;
-  border-radius: 0;
-}
-.ncpi .pi-single-image-content.pi-active .pi-single-image {
   border-radius: 0;
 }
 .ncpi .pi-overflow-content {
@@ -33,7 +31,7 @@
   text-align: center;
   width: 100%;
   height: 100%;
-  background-color: #0a0a0a61;
+  background-color: #0a0a0a47;
   border-radius: 10px;
 }
 .ncpi .pi-single-image-content:hover .pi-single-image {
@@ -229,11 +227,6 @@
 .ncpi .pi-group-form .pi-group-btn.pi-ml-10 {
   margin-top: 10px;
 }
-.ncpi .pi-group-form .pi-buttons svg {
-  margin-right: 3px;
-  position: relative;
-  top: 2px;
-}
 .ncpi .pi-group-form .pi-buttons p {
   margin-top: 5px;
   font-size: 11px;
@@ -271,12 +264,17 @@
   margin: 0;
   padding-left: 20px;
   list-style-type: lower-alpha;
+  margin-bottom: 15px;
+}
+.ncpi .pi-add-term .pi-group-item ul li {
+  width: 90%;
 }
 .ncpi .pi-add-term .pi-group-item ul li input[type=text] {
   background: none;
   border: none;
   font-size: 16px;
   padding: 4px;
+  width: 90%;
 }
 .ncpi .pi-add-term .pi-radio-group {
   float: right;
@@ -301,21 +299,20 @@
   height: 10px;
 }
 .ncpi .pi-add-term .pi-radio-group input[type=radio]:checked:after {
-  width: 15px;
-  height: 15px;
-  border-radius: 15px;
-  top: -2px;
-  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 74px;
+  top: -3px;
+  left: 2px;
   position: relative;
   background-color: #000;
   content: "";
   display: inline-block;
   visibility: visible;
-  border: 2px solid white;
 }
 
 .pi-right-sidebar .pi-invoice-image {
-  border: 1px solid;
+  border: 1px solid #718096;
   border-radius: 10px;
   width: 100%;
 }

@@ -17,7 +17,7 @@ import Preview from '../preview';
 //sidebar section
 import Style from './section/Style'
 import Owner from './section/Owner'
-import Attachments from './Attachments';
+import Attach from './Attach';
 
 
 class Invoice extends Component {
@@ -73,8 +73,8 @@ class Invoice extends Component {
 				paid: 0.00,
 				note: null,
 				group: null,
-				attachments: [],
-				signature: null
+				attach: [],
+				sign: null
 
 			},
 		};
@@ -157,13 +157,13 @@ class Invoice extends Component {
 
 	handleSignChange = (data) => {
 		let invoice = { ...this.state.invoice }
-		invoice.signature = data;
+		invoice.sign = data;
 		this.setState({ invoice })
 	}
 
-	handleAttachmentsChange = (data) => {
+	handleAttachChange = (data) => {
 		let invoice = { ...this.state.invoice }
-		invoice.attachments.push(data);
+		invoice.attach.push(data);
 		this.setState({ invoice })
 	}
 

@@ -7,13 +7,13 @@ class Sign extends Component {
 	} 
 
     render = () => { 
-        const signature = this.props.data; 
+        const sign = this.props.data; 
         return (
             <div className='text-right'>   
-				{ signature &&
+				{ sign &&
 					<>
 						<div> 
-							<img src={signature.url} width="100" className='inline'/> 
+							<img src={sign.img} width="100" /> 
 						</div>  
 					</>
 				}

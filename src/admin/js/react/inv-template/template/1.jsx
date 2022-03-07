@@ -6,7 +6,7 @@ import Total from '../Total';
 import Items from '../Items' 
 import Note from '../Note' 
 import Group from '../Group'; 
-import Attachments from '../Attachments';
+import Attach from '../Attach';
 import Sign from '../Sign';
 
 //style
@@ -18,7 +18,7 @@ export default class One extends Component {
     }    
 
     render() { 
-        const { items, note, group, attachments, signature } = this.props.data.invoice; 
+        const { items, note, group, attach, sign } = this.props.data.invoice; 
         const { fromData, toData } = this.props.data; 
         return ( 
             <div className="pi-inv pi-inv-one">
@@ -89,7 +89,7 @@ export default class One extends Component {
                             {group && <Group data={group} />}  
                         </div>
                         <div className="pi-sign">
-                            <img src="assets/img/inv/signature.png" alt="" />
+                            <img src="assets/img/inv/sign.png" alt="" />
                             <div className="pi-border" />
                             <h4>Signature</h4>
                         </div>

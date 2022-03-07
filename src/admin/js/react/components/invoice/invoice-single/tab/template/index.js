@@ -3,18 +3,15 @@ import ReactPaginate from 'react-paginate';
 
 import TablePreloader from 'block/preloader/table';
 
-import Api from 'api/invoice';
-import Single from './Single';
+import Api from 'api/invoice'; 
 
 export default class Template extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            preloader: true,
-            client: { id: null },
-            clients: [],
-            checkedBoxes: [],
+            preloader: true, 
+            templates: [], 
             offset: 0,
             perPage: 10,
             totalPage: 1,
@@ -45,7 +42,7 @@ export default class Template extends Component {
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
-                this.setState({ clients: result });
+                this.setState({ templates: result });
                 this.setState({ preloader: false }); 
                 this.setState({
                     totalPage: Math.ceil(total / this.state.perPage)
@@ -60,29 +57,7 @@ export default class Template extends Component {
 
     selectEntry = (data) => {
         this.props.changeHandler(data);
-    }
-
-    handleCheckbox = (e, type, id = null) => {
-        let arr = this.state.checkedBoxes;
-        if (type == 'single') {
-            if (e.target.checked) {
-                arr.push(id);
-                this.setState({ checkedBoxes: arr });
-            } else {
-                arr.splice(arr.indexOf(id), 1);
-                this.setState({ checkedBoxes: arr });
-            }
-        } else {
-            //check all
-            if (e.target.checked) {
-                let ids = [];
-                this.state.clients.map((row) => { ids.push(row.id) });
-                this.setState({ checkedBoxes: ids });
-            } else {
-                this.setState({ checkedBoxes: [] });
-            }
-        }
-    }
+    } 
 
     handlePageClick = (e) => {
         const selectedPage = e.selected + 1;
@@ -96,13 +71,29 @@ export default class Template extends Component {
 
     };
 
-    render() {
-        const checkedBoxes = this.state.checkedBoxes;
+    render() { 
         return (
             <div id="pi-template" className="city">
                 <h2>Select Template</h2>
                 <div className="row pi-gap pi-margin-l-r">
-                    {this.state.preloader ? <TablePreloader /> : <Single currentTemplate={this.props.currentTemplate} tableData={this.state.clients} selectEntry={this.selectEntry} />}
+                    
+                    {this.state.preloader && <TablePreloader />}
+
+                    {!this.state.preloader &&
+                        this.state.templates.map((row, index) => { 
+                            return (
+                                <div className="col-12 col-md-6 col-lg-3" key={index}>
+                                    <div className={(this.props.currentTemplate.id == row.id) ? 'pi-single-image-content pi-active' : 'pi-single-image-content'}>
+                                        <img src={row.img} className="pi-single-image" />
+                                        { ( this.props.currentTemplate.id != row.id ) && <div className="pi-overflow-content">
+                                            <a className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
+                                            <a className="pi-btn pi-bg-blue pi-bg-hover-blue">Full Preview</a>
+                                        </div>}
+                                    </div>
+                                </div>
+                            );
+                        })
+                    }
                 </div>
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}

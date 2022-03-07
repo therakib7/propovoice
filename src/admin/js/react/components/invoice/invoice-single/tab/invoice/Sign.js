@@ -1,93 +1,78 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { toast } from 'react-toastify';
-import Api from 'api/media';
+ 
+import Media from 'components/media';
 
-class Sign extends Component {
+class Attach extends Component {
 
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			media: false,
 			edit: false,
-		};
-
-		this.inputRef = React.createRef();
+		}; 
 	}
 
 	componentDidUpdate() {
-		if (!this.state.edit && this.props.data) {
+		/* if ( ! this.state.edit && this.props.data ) { 
 			this.setState({ edit: true });
-		}
-	}
+		} */
+	} 
 
-	onFileUpload = (file) => {
-		const formData = new FormData();
-		formData.append('file', file);
-		formData.append('type', 'signature');
-
-		Api.create(formData)
-			.then(resp => {
-				// console.log(resp.data)
-				if (resp.data.success) {
-					this.handlePros(resp.data.data.file_info);
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});
-	};
-
-	handleDelete = (id) => {
-		this.props.changeHandler(null)
-
-		Api.remove(id)
-			.then(resp => {
-				if (!resp.data.success) {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			})
+	handleDelete = () => {
+		this.props.changeHandler(null) 
 	};
 
 	handlePros = (data) => {
 		this.props.changeHandler(data);
 	};
 
-	// On file select (from the pop up) 
-	onFileChange = event => {
-		this.onFileUpload(event.target.files[0]);
-	};
-
 	render = () => {
-		const signature = this.props.data;
+		const sign = this.props.data; 
 		return (
-			<div className='text-right'>
-				{!signature &&
-					<div>
-						<input type="file" ref={this.inputRef} onChange={this.onFileChange} hidden />
-						<button className='border p-3 rounded' onClick={() => this.inputRef.current.click()}>
-							Authorized Sign
-						</button>
-					</div>
-				}
+			<>   
+				<Media
+                    insertHandler={this.handlePros}
+                    show={this.state.media}  
+                    close={() => this.setState({ media: false })}
+                /> 
 
-				{signature &&
+				<button 
+				className="pi-a-btn pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+				onClick={() => this.setState({ media: true })}
+				>
+					<svg
+						width={14}
+						height={14}
+						viewBox="0 0 14 14"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M3.668 10.09a2.7 2.7 0 01-1.779-.662 2.563 2.563 0 01-.394-3.457 2.67 2.67 0 011.587-1.03 3.199 3.199 0 01.46-2.452 3.334 3.334 0 012.1-1.417 3.395 3.395 0 012.508.45 3.26 3.26 0 011.448 2.053h.067c.826 0 1.623.299 2.236.84a3.205 3.205 0 01.45 4.35 3.34 3.34 0 01-2.02 1.26M9 8.137l-2-1.954m0 0L5.002 8.136M7 6.182V13"
+							stroke="#136ACD"
+							strokeWidth={1.5}
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						/>
+					</svg>
+					Authorized Signature
+				</button>				
+
+				{sign &&
 					<>
 						<div>
-							<img src={signature.url} width="100" className='inline' />
-							<button className='border p-3 rounded' onClick={() => this.handleDelete(signature.id)}>
+							<img src={sign.img} width="100" />
+							<span onClick={() => this.handleDelete()}>
 								x
-							</button>
+							</span>
 						</div>
 
 					</>
-				}
-			</div>
+				} 
+			</>
 		)
 	}
 }
 
-export default Sign
+export default Attach
