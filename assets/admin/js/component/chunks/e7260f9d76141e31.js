@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpropovoice=self.webpackChunkpropovoice||[]).push([[838],{3838:(e,n,o)=>{o.r(n),o.d(n,{default:()=>c});o(7294);var r=o(5893);const c=function(){return(0,r.jsx)(r.Fragment,{children:"Hello Payment"})}}}]);
