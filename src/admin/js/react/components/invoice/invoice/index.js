@@ -184,8 +184,7 @@ const Invoice = class Invoice extends Component {
         const invoices = this.state.invoices;
         const title = this.state.title;
         return (
-            <div className="ncpi-components">
-                
+            <div className="ncpi-components">                
 
                 <h1 className="">{title}</h1>
                 <nav className="pi-breadcrumb">

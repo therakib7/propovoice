@@ -21,7 +21,7 @@ export default class One extends Component {
         const { items, note, group, attach, sign } = this.props.data.invoice; 
         const { fromData, toData } = this.props.data; 
         return ( 
-            <div className="pi-inv">
+            <div className="pi-inv" id="ncpi-invoice-download">
                 <div className="pi-inv-one">
                     <div className="pi-body">
                         <div className="pi-hedear">

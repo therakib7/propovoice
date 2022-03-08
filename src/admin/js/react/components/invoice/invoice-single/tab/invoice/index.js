@@ -37,11 +37,11 @@ class Invoice extends Component {
 				},
 				{
 					id: 'info',
-					text: 'Add Information'
+					text: 'Add Content'
 				},
 				{
 					id: 'preview',
-					text: 'Save & Share'
+					text: 'Preview & Share'
 				},
 			], 
 			currentTab: '',
@@ -82,6 +82,7 @@ class Invoice extends Component {
 	}
 
 	componentDidMount() {
+		
 		if (this.props.id) {
 			this.setState({
 				currentTab: 'info',
@@ -93,7 +94,25 @@ class Invoice extends Component {
 				currentTab: 'template'
 			});
 		}
+
+		this.bgColor();
 	}
+
+	componentDidUpdate() {
+		this.bgColor();
+	}
+
+	componentWillUnmount() {
+		document.body.style.backgroundColor = "#fff";
+	}
+
+	bgColor = () => {
+		if ( this.state.currentTab == 'info') { 
+			document.body.style.backgroundColor = "#f1f1f7";
+		} else {
+			document.body.style.backgroundColor = "#fff";
+		}
+	};
 
 	updateEdit = () => {
 		let msg = { ...this.state.msg }
