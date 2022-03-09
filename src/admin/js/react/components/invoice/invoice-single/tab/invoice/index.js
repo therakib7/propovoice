@@ -52,6 +52,7 @@ class Invoice extends Component {
 				confirm: 'Are you sure to delete it?',
 				saveTxt: 'Save'
 			},
+			emailModal: false,
 			fromData: null,
 			toData: null,
 			invoice: {
@@ -330,7 +331,7 @@ class Invoice extends Component {
 		this.setState({
 			currentTab: tab
 		});
-	}
+	} 
 
 	render = () => {
 		const { tabs = [], currentTab } = this.state;
@@ -377,11 +378,20 @@ class Invoice extends Component {
 								{this.state.msg.saveTxt} & Continue
 							</button>}
 
-							{(currentTab == 'preview') && <button
-								className="pi-btn pi-bg-blue pi-bg-hover-blue"
+							{(currentTab == 'preview') && 
+							<>
+								<button
+								className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
 								onClick={() => this.props.routeInvoice()} >
-								Done
-							</button>}
+								Back to Invoice
+								</button>
+								<button
+									className="pi-btn pi-bg-blue pi-bg-hover-blue"
+									onClick={() => this.setState({ emailModal: true })} >
+									Send Email
+								</button>
+							</>
+							}
 						</div>
 					</div>
 				</div>{/* ./row */}
@@ -555,6 +565,9 @@ class Invoice extends Component {
 					{(currentTab == 'preview') &&
 						<Preview
 							data={this.state}
+							emailModal={this.state.emailModal}
+							showEmailModal={() => this.setState({ emailModal: true })}
+							closeEmailModal={() => this.setState({ emailModal: false })}
 							totalData={
 								{
 									currencyFormatter: this.formatCurrency,

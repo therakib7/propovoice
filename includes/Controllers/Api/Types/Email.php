@@ -163,6 +163,7 @@ class Email
         $mail_to = isset( $params['toData'] ) ? $params['toData']['email'] : '';
         $invoice_id = isset( $params['invoice_id'] ) ? $params['invoice_id'] : ''; 
         $mail_subject = isset( $params['subject'] ) ? $params['subject'] : ''; 
+        $mail_invoice_img = isset( $params['invoice_img'] ) ? $params['invoice_img'] : ''; 
         $token = get_post_meta($invoice_id, 'token', true);  
  
         $compnay_name = 'Nurency Digital';
@@ -179,11 +180,60 @@ class Email
         $template = ncpi()->render('email/invoice', [], true);  
         $body = $this->templateVariable( $template, $compnay_name, $client_name, $invoice_id, $invoice_url );
 
-        $headers = array('Content-Type: text/html; charset=UTF-8');
+        $headers = array('Content-Type: text/html; charset=UTF-8'); 
         $headers[] = 'From: '.$compnay_name.' <'.$mail_from.'>';
-        //$headers[] = 'Cc: John Q Codex <jqc@wordpress.org>';
-        //$headers[] = 'Cc: iluvwp@wordpress.org';
-        $send_mail = wp_mail( $mail_to, $subject, $body, $headers );
+        $headers[] = 'Cc: Rakib <rakib@wordpress.org>';
+        $headers[] = 'Cc: iluvwp@wordpress.org'; // note you can just use a simple email address
+
+        //attachment
+        $attachments = [];
+        if ( $mail_invoice_img ) {
+            ob_start();
+            ?>    
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <title>PDF</title>
+            <style type="text/css">
+            @page{ margin: 0;} 
+            .page{
+                width: 803px; 
+                /* height: 1132px; */
+                height: 1110px;
+                overflow: hidden; 
+                font-family: Arial, Helvetica; 
+                position: relative; 
+                color: #545554;
+                page-break-after: always;
+            } 
+            </style>
+            </head>
+            <body>
+                <div class="page" style="background-image: url(<?php echo $mail_invoice_img; ?>);"></div> 
+            </body>
+            </html>
+            <?php
+            $invoice_html = ob_get_clean(); 
+            $dompdf = new \Dompdf\Dompdf();
+            $dompdf->set_option('enable_css_float', true);
+            $dompdf->set_option('enable_remote', true); 
+            $dompdf->setPaper('A4', 'portrait');
+            $invoice_html = preg_replace('/>\s+</', "><", $invoice_html);
+            $dompdf->loadHtml( $invoice_html );
+            $dompdf->render(); 
+            //TODO: change directory later
+            $filename = WP_PLUGIN_DIR . '/propovoice/propovoice/test.pdf';
+ 
+            $output = $dompdf->output();
+            file_put_contents($filename, $output);  
+
+            $attachments = array(  
+                $filename 
+            ); 
+        }  
+        
+        $send_mail = wp_mail( $mail_to, $subject, $body, $headers, $attachments );
         
         if ( $send_mail ) {
             wp_send_json_success($send_mail);
