@@ -21,8 +21,7 @@ export default class Preview extends Component {
 
     exportPdf = () => {
 
-        html2canvas(document.querySelector(".pi-inv")).then(canvas => {
-           //document.body.appendChild(canvas);  // if you want see your screenshot in body.
+        html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
            const imgData = canvas.toDataURL('image/png');
            const pdf = new jsPDF();
            pdf.addImage(imgData, 'PNG', 0, 0);
@@ -31,28 +30,22 @@ export default class Preview extends Component {
    
     }
 
-    printPdf = () => {
-
-        html2canvas(document.querySelector("#ncpi-invoice-download")).then(canvas => { 
-            const imgData = canvas.toDataURL('image/png'); 
+    printPdf = () => { 
+        html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
+            const imgData = canvas.toDataURL('image/png');  
             let pri = document.getElementById("ncpi-invoice-print").contentWindow; 
-            pri.document.open();
-            pri.document.write('sdfds');
-            // pri.document.write('<img src="'+imgData+'" />');
+            pri.document.open(); 
+            pri.document.write('<img src="'+imgData+'" onload="window.print()"/>');
             pri.document.close();
-            pri.focus();
- 
-            pri.print();
-       });
-   
-    }
+            pri.focus(); 
+       }); 
+    } 
 
     render() {
         const { id } = this.props.data.invoice.template;
         return (
-            <div id="pi-share" className="city">
-                <iframe id="ncpi-invoice-print" ></iframe>
-                {/* <iframe id="ncpi-invoice-print" style={{height: 0, width: 0, position: 'absolute'}}></iframe> */}
+            <div id="pi-share" className="city"> 
+                <iframe id="ncpi-invoice-print" style={{height: 0, width: 0, position: 'absolute'}}></iframe>
                 <div className='row justify-content-md-center'> 
                     <div className='col-md-8' style={{margin: '50px 0 30px 0'}}> 
                      
