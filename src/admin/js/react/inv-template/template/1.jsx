@@ -10,7 +10,7 @@ import Attach from '../Attach';
 import Sign from '../Sign';
 
 //style
-// import Style from '../scss/1.scss'
+import Style from '../scss/1.scoped.scss'
 
 export default class One extends Component {
     constructor(props) {
@@ -42,7 +42,7 @@ export default class One extends Component {
                                 </address>
                                 <div className="pi-from-date">
                                     <p>
-                                        inv No: <span>00024</span>
+                                        Invoice No: <span>00024</span>
                                     </p>
 
                                     <div className="pi-from-time">

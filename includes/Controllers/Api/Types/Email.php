@@ -235,6 +235,7 @@ class Email
         $send_mail = wp_mail( $mail_to, $subject, $body, $headers, $attachments );
         
         if ( $send_mail ) {
+            update_post_meta($invoice_id, 'status', 'sent');
             wp_send_json_success($send_mail);
         } else {
             wp_send_json_error( ['Something wrong'] );

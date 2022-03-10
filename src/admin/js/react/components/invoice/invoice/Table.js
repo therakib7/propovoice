@@ -62,6 +62,10 @@ const TableBody = props => {
                 status = <span className='pi-status pi-bg-pink'>Draft</span>
                 break;
 
+            case 'sent':
+                status = <span className='pi-status pi-bg-pink'>Sent</span>
+                break;
+
             case 'viewed':
                 status = <span className='pi-status pi-bg-pink'>Viewed</span>
                 break;
