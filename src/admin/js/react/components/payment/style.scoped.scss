@@ -1,0 +1,80 @@
+.ncpi .pi-tab-content .pi-title-content h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+.ncpi .pi-tab-content .pi-title-content h5 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.ncpi .pi-tab-content #pi-stripe .pi-btn {
+  width: 100%;
+  background: #E1E8FF;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+.ncpi .pi-tab-content #pi-bank ul {
+  margin: 0;
+}
+.ncpi .pi-tab-content #pi-bank ul li {
+  display: flex;
+  padding: 15px;
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.ncpi .pi-tab-content #pi-bank ul li .pi-edit {
+  right: 8px;
+  position: absolute;
+  right: 0;
+  position: absolute;
+  background: #fff;
+  top: 0;
+  border-radius: 25px;
+  box-shadow: 3px 3px 4px 0px rgba(205, 202, 205, 0.12);
+}
+.ncpi .pi-tab-content #pi-bank ul li .pi-edit span {
+  background: #fff;
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.ncpi .pi-tab-content #pi-bank ul li .pi-edit span:last-child svg path {
+  fill: red;
+}
+.ncpi .pi-tab-content #pi-bank ul li .pi-edit span:hover {
+  box-shadow: 3px 3px 4px 3px rgba(205, 202, 205, 0.18);
+}
+.ncpi .pi-tab-content #pi-bank ul li .pi-edit span:hover svg path {
+  fill: var(--bg-color-blue);
+}
+.ncpi .pi-tab-content #pi-bank ul li .pi-bank-image svg {
+  margin-top: 50%;
+}
+.ncpi .pi-tab-content #pi-bank ul li .bank-text-content {
+  margin-left: 20px;
+}
+.ncpi .pi-tab-content #pi-bank ul li .bank-text-content .pi-bank-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+.ncpi .pi-tab-content #pi-bank ul li .bank-text-content .pi-bank-subtitle {
+  font-size: 15px;
+  font-weight: 500;
+}
+.ncpi .pi-tab-content #pi-bank .pi-btn {
+  display: flex;
+  margin: auto;
+  margin-top: 30px;
+}
+.ncpi .pi-tab-content #pi-bank .pi-btn svg {
+  margin-top: 2px;
+  margin-right: 5px;
+}
+.ncpi .pi-tab-content #pi-bank .pi-btn svg path {
+  margin-top: 2px;
+  margin-right: 5px;
+  fill: var(--text-color-white);
+}
