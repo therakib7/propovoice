@@ -80,7 +80,7 @@ export default class One extends Component {
                                     </tr>
                                 </tbody>
                                 </table>
-                            </div>
+                            </div> 
                             <Total {...this.props} /> 
                         </div>
 

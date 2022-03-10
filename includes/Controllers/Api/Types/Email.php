@@ -156,8 +156,7 @@ class Email
     public function create($req)
     { 
 
-        $params = $req->get_params();  
-        
+        $params = $req->get_params();   
 
         $mail_from = isset( $params['fromData'] ) ? $params['fromData']['email'] : '';
         $mail_to = isset( $params['toData'] ) ? $params['toData']['email'] : '';

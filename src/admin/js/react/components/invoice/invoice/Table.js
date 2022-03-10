@@ -35,6 +35,9 @@ const TableHeader = props => {
                     Date
                 </th>
                 <th>
+                    Status
+                </th>
+                <th>
                     Action
                 </th>
             </tr>
@@ -52,6 +55,25 @@ const TableBody = props => {
     let rows = props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = ( data.indexOf(row.id) !== -1 ) ? true : false; 
+
+        let status;
+        switch(row.status) {
+            case 'draft':
+                status = <span className='pi-status pi-bg-pink'>Draft</span>
+                break;
+
+            case 'viewed':
+                status = <span className='pi-status pi-bg-pink'>Viewed</span>
+                break;
+            
+            case 'paid':
+                status = <span className='pi-status pi-bg-pink'>Paid</span>
+                break;
+
+            default:
+                status = <span className='pi-status pi-bg-pink'>Draft</span>
+        }
+
         return (
             <tr key={index}>
                 <td>
@@ -71,6 +93,7 @@ const TableBody = props => {
                 <td>{row.paid}</td>
                 <td>{row.due}</td>
                 <td>{row.date}</td> 
+                <td>{status}</td> 
                 <td>  
                     <span onClick={() => handleClick(row.id)} ><svg
                                 width={13}

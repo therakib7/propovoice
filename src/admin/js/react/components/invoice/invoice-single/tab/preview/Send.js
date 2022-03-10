@@ -51,12 +51,13 @@ class Send extends Component {
         formState.subject = '{company_name} sent you a Invoice #{invoice_id}';
 
         this.setState({ form: formState }); 
+        // console.log(data);
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        // send with attachment pdf
+        // TODO: send with attachment pdf
         if ( true ) {
             html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
                 const imgData = canvas.toDataURL('image/jpg'); 

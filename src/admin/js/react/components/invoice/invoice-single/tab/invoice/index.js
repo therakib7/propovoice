@@ -56,6 +56,7 @@ class Invoice extends Component {
 			fromData: null,
 			toData: null,
 			invoice: {
+				id: null,
 				template: {
 					id: null,
 					img: ''
@@ -131,8 +132,11 @@ class Invoice extends Component {
 	getData = () => {
 		Api.get(this.props.id)
 			.then(resp => {
+				
+				let invoice = resp.data.data.invoice;
+				invoice.id = parseInt(resp.data.data.id); 
 				this.setState({
-					invoice: resp.data.data.invoice,
+					invoice,
 					fromData: resp.data.data.fromData,
 					toData: resp.data.data.toData,
 					// editId: this.props.id
@@ -567,15 +571,7 @@ class Invoice extends Component {
 							data={this.state}
 							emailModal={this.state.emailModal}
 							showEmailModal={() => this.setState({ emailModal: true })}
-							closeEmailModal={() => this.setState({ emailModal: false })}
-							totalData={
-								{
-									currencyFormatter: this.formatCurrency,
-									itemsTotal: this.calcItemsTotal,
-									taxTotal: this.calcTaxTotal,
-									grandTotal: this.calcGrandTotal,
-								}
-							}
+							closeEmailModal={() => this.setState({ emailModal: false })} 
 						/>}
 				</div>
 			</>

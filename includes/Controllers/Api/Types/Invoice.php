@@ -147,7 +147,8 @@ class Invoice
                 $query_data['due'] = 0;
             }
 
-            $query_data['date'] = get_the_time('j-M-Y h:m a');;
+            $query_data['status'] = get_post_meta($id, 'status', true);  
+            $query_data['date'] = get_the_time('j-M-Y h:m a');
             $data[] = $query_data;
 
         } 
@@ -241,7 +242,8 @@ class Invoice
             $post_id = wp_insert_post( $data );
 
             if ( !is_wp_error($post_id) ) {
-
+                update_post_meta($post_id, 'status', 'draft'); 
+                
                 if ( $from ) {
                     update_post_meta($post_id, 'from', $from); 
                 }

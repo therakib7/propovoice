@@ -120,7 +120,7 @@ export default class Welcome extends Component {
                         <strong className="">Propovoice</strong>
                     </div>
 
-                    <div className="pi-tabs-content">
+                    <div className="pi-welcome-tabs-content">
                         <ul className="pi-tabs">
                             {tabs.map((tab, index) => ( 
                                 <li className={'pi-tab ' + (index <= currentTabIndex ? 'active' : '' )} key={index} onClick={(e) => this.setActiveTab(tab.id, index)}>

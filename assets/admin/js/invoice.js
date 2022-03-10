@@ -2858,11 +2858,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -2890,24 +2890,43 @@ var Total = /*#__PURE__*/function (_Component) {
 
   var _super = _createSuper(Total);
 
-  function Total() {
+  function Total(props) {
     var _this;
 
     _classCallCheck(this, Total);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    _this = _super.call(this, props);
 
-    _this = _super.call.apply(_super, [this].concat(args));
+    _defineProperty(_assertThisInitialized(_this), "locale", 'en-US');
+
+    _defineProperty(_assertThisInitialized(_this), "currency", 'USD');
+
+    _defineProperty(_assertThisInitialized(_this), "formatCurrency", function (amount) {
+      return new Intl.NumberFormat(_this.locale, {
+        style: 'currency',
+        currency: _this.currency,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(amount);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "calcItemsTotal", function () {
+      return _this.state.invoice.items.reduce(function (prev, cur) {
+        return prev + cur.qty * cur.price;
+      }, 0);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "calcTaxTotal", function () {
+      return _this.calcItemsTotal() * (_this.state.invoice.tax / 100);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "calcGrandTotal", function () {
+      var total = _this.calcItemsTotal() + _this.calcTaxTotal();
+
+      return total;
+    });
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
-      var _this$props$totalData = _this.props.totalData,
-          currencyFormatter = _this$props$totalData.currencyFormatter,
-          itemsTotal = _this$props$totalData.itemsTotal,
-          taxTotal = _this$props$totalData.taxTotal,
-          grandTotal = _this$props$totalData.grandTotal;
-      var tax = _this.props.data.invoice.tax;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "pi-amounting",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("table", {
@@ -2916,21 +2935,21 @@ var Total = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
                 children: "Total:"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: currencyFormatter(itemsTotal())
+                children: _this.formatCurrency(_this.calcItemsTotal())
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
               className: "pi-before-total",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("th", {
-                children: ["Tax ", tax, "%"]
+                children: ["Tax ", _this.state.invoice.tax, "%"]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: currencyFormatter(taxTotal())
+                children: _this.formatCurrency(_this.calcTaxTotal())
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
               className: "pi-table-bg",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
-                children: "Sub Total:"
+                children: "Subtotal:"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-                children: currencyFormatter(grandTotal())
+                children: _this.formatCurrency(_this.calcGrandTotal())
               })]
             })]
           })
@@ -2938,10 +2957,32 @@ var Total = /*#__PURE__*/function (_Component) {
       });
     });
 
+    _this.state = {
+      invoice: {
+        items: [{
+          id: null,
+          name: '',
+          desc: '',
+          qty: 0,
+          price: 0.00
+        }],
+        tax: 0.00,
+        paid: 0.00
+      }
+    };
     return _this;
   }
 
-  return _createClass(Total);
+  _createClass(Total, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        invoice: this.props.data.invoice
+      });
+    }
+  }]);
+
+  return Total;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Total);
