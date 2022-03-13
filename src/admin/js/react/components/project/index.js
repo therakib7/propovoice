@@ -16,13 +16,13 @@ export default class Project extends Component {
         super(props);
 
         this.state = {
-            // clients: []
+            // projects: []
             preloader: true,
             formModal: false,
             searchModal: false,
             formModalType: 'new',
-            client: { id: null },
-            clients: [],
+            project: { id: null },
+            projects: [],
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
@@ -44,8 +44,8 @@ export default class Project extends Component {
             per_page: this.state.perPage
         }
 
-        if (this.props.client_id) {
-            args.client_id = this.props.client_id;
+        if (this.props.project_id) {
+            args.project_id = this.props.project_id;
         }
 
         if (searchArgs) {
@@ -60,7 +60,7 @@ export default class Project extends Component {
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
-                this.setState({ clients: result });
+                this.setState({ projects: result });
                 this.setState({ preloader: false });
 
                 this.setState({
@@ -69,9 +69,9 @@ export default class Project extends Component {
             })
     };
 
-    handleSubmit = client => {
+    handleSubmit = project => {
         if (this.state.formModalType == 'new') {
-            Api.create(client)
+            Api.create(project)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -84,7 +84,7 @@ export default class Project extends Component {
                     }
                 })
         } else {
-            Api.update(client.id, client)
+            Api.update(project.id, project)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -106,8 +106,8 @@ export default class Project extends Component {
 
             if (type == 'single') {
                 this.setState({
-                    clients: this.state.clients.filter((client, i) => {
-                        return client.id !== index;
+                    projects: this.state.projects.filter((project, i) => {
+                        return project.id !== index;
                     })
                 });
             }
@@ -129,14 +129,14 @@ export default class Project extends Component {
         }
     }
 
-    openForm = (type = 'new', client = null) => {
+    openForm = (type = 'new', project = null) => {
         this.setState({ formModal: true });
 
         if (type == 'new') {
             this.setState({ formModalType: 'new' });
         } else {
             this.setState({ formModalType: 'edit' });
-            this.setState({ client: client });
+            this.setState({ project: project });
         }
     };
 
@@ -162,7 +162,7 @@ export default class Project extends Component {
             //check all
             if (e.target.checked) {
                 let ids = [];
-                this.state.clients.map((row) => { ids.push(row.id) });
+                this.state.projects.map((row) => { ids.push(row.id) });
                 this.setState({ checkedBoxes: ids });
             } else {
                 this.setState({ checkedBoxes: [] });
@@ -279,9 +279,9 @@ export default class Project extends Component {
                     handleSubmit={this.handleSubmit}
                     show={this.state.formModal}
                     modalType={this.state.formModalType}
-                    data={this.state.client}
+                    data={this.state.project}
                     close={this.closeForm}
-                    client_id={this.props.client_id}
+                    project_id={this.props.project_id}
                 />
 
                 <Search
@@ -290,7 +290,7 @@ export default class Project extends Component {
                     close={this.closeForm}
                 />
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} client_id={this.props.client_id} />}
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.projects} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} project_id={this.props.project_id} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}
