@@ -18,6 +18,7 @@ class Send extends Component {
                 }, 
                 toData: {
                     id: '',
+                    name: '',
                     email: ''
                 },
                 subject: '',
@@ -36,7 +37,9 @@ class Send extends Component {
         let data = this.props.data; 
         let formState = {...this.state.form}
 
-        formState.invoice_id = data.invoice.id;
+        let invoice_id = data.invoice.id;
+        let company_name = data.fromData.name;
+        formState.invoice_id = invoice_id;
 
         formState.fromData = {
             id: data.fromData.id,
@@ -45,13 +48,25 @@ class Send extends Component {
 
         formState.toData = {
             id: data.toData.id,
+            name: data.toData.first_name + ' ' + data.toData.last_name,
             email: data.toData.email,
         }; 
         
-        formState.subject = '{company_name} sent you a Invoice #{invoice_id}';
+        formState.subject = `${company_name} sent you a Invoice #${invoice_id}`;
+        formState.msg = `Hi,
+Please find attached invoice #${invoice_id}. Due Date was {invoice_due_date}.
 
-        this.setState({ form: formState }); 
-        // console.log(data);
+Invoice No: #${invoice_id}
+Invoice Date: {invoice_date}
+Due Date: {invoice_due_date}
+Due Amount: USD {invoice_due_amount}
+
+Thank you for your business.
+
+Regards,
+${company_name}`;
+
+        this.setState({ form: formState });  
     }
 
     handleSubmit = (e) => {
@@ -73,8 +88,7 @@ class Send extends Component {
             this.sendEmail();
         }
 
-        // this.props.handleSubmit(this.state.form);
-        
+        // this.props.handleSubmit(this.state.form); 
     }
 
     sendEmail = () => {
@@ -107,90 +121,97 @@ class Send extends Component {
                         <div className="pi-overlay pi-show">
                             <div className="pi-popup-content">
                                 <div className="pi-modal-header">
-                                    <h2 className="pi-modal-title">Send To</h2>
-                                    <span className="pi-close" onClick={() => this.props.close()}>
-                                    ×
-                                    </span>
+                                    <h2 className="pi-modal-title pi-text-center">Send To</h2>
+                                    <span className="pi-close" onClick={() => this.props.close()}>×</span>
                                 </div>
-                                <form onSubmit={this.handleSubmit}>
-                                    <div className="pi-content">
-                                        <div className='pi-business-form'> 
-                                            <div className="row">
 
-<div className="col">
-    <label
-        htmlFor="form-email">
-        Email
-    </label>
+                                <div className="pi-content">
+                                    <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two">
+                                        <div className="row">
+                                            <div className="col-lg">
+                                                <label
+                                                    htmlFor="form-name">
+                                                    Client Name
+                                                </label>
 
-    <input
-        id="form-email"
-        type="email"
-        required
-        readOnly
-        name="email"
-        value={this.state.form.toData.email}
-        onChange={this.handleChange}
-    />
-</div> 
-
+                                                <input
+                                                    id="form-name"
+                                                    type="text"
+                                                    required
+                                                    readOnly
+                                                    name="name"
+                                                    value={this.state.form.toData.name}
+                                                    onChange={this.handleChange}
+                                                />
                                             </div>
 
-                                            <div className="row">
-                                                <div className="col">
-                                                    <label
-                                                        htmlFor="form-company_name">
-                                                        Subject
-                                                    </label>
+                                            <div className="col-lg">
+                                                <label
+                                                    htmlFor="form-email">
+                                                    Email
+                                                </label>
 
-                                                    <input
-                                                        id="form-company_name"
-                                                        type="text"
-                                                        required
-                                                        name="company_name"
-                                                        value={this.state.form.subject}
-                                                        onChange={this.handleChange}
-                                                    /> 
-                                                </div> 
-                                            </div> 
+                                                <input
+                                                    id="form-email"
+                                                    type="text"
+                                                    required
+                                                    readOnly
+                                                    name="email"
+                                                    value={this.state.form.toData.email}
+                                                    onChange={this.handleChange}
+                                                />
+                                            </div>
+                                        </div> 
 
-                                            <div className="row">
-                                                <div className="col">
-                                                    <label
-                                                        htmlFor="form-company_name">
-                                                        Subject Preview
-                                                    </label> 
-                                                    {this.subjectLook()}
-                                                </div> 
-                                            </div> 
+                                        <div className="row">
+                                            <div className="col">
+                                                <label
+                                                    htmlFor="form-subject">
+                                                    Subject
+                                                </label>
 
-                                            <div className="row">
-                                                <div className="col">
-                                                    <label
-                                                        htmlFor="form-company_name">
-                                                        Private Message
-                                                    </label>
-
-                                                    <textarea
-                                                        id="form-company_name"
-                                                        type="text" 
-                                                        name="company_name"
-                                                        value={this.state.form.msg}
-                                                        onChange={this.handleChange}
-                                                    /> 
-                                                </div> 
+                                                <input
+                                                    id="form-subject"
+                                                    type="text"
+                                                    required
+                                                    name="subject"
+                                                    value={this.state.form.subject}
+                                                    onChange={this.handleChange}
+                                                /> 
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="pi-footer-content">  
-                                        <button
-                                            className="pi-btn pi-bg-black pi-bg-hover-blue pi-float-right"
-                                            type="submit">
-                                            Send
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+
+                                        <div className="pi-textarea-content">
+                                            <div className="row">
+                                                <div className="col"> 
+                                                    <h4
+                                                        htmlFor="form-msg">
+                                                        Message
+                                                    </h4>
+                                                </div> 
+                                            </div>
+
+                                            <div className="row">
+                                                <div className="col">  
+                                                    <textarea
+                                                        id="form-msg" 
+                                                        rows={8}
+                                                        name="msg"
+                                                        value={this.state.form.msg}
+                                                        onChange={this.handleChange}
+                                                    />   
+                                                </div>
+                                            </div> 
+                                        </div> 
+
+                                        <div className="pi-footer-content pi-text-center">
+                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                                                Send Email
+                                            </button>
+                                        </div>
+                                    </form> 
+                                </div>
+                            </div> 
                         </div>
                     </>
                 )

@@ -7,6 +7,7 @@ use Ncpi\Controllers\Api\Types\Client;
 use Ncpi\Controllers\Api\Types\Email;
 use Ncpi\Controllers\Api\Types\Invoice;
 use Ncpi\Controllers\Api\Types\Media;
+use Ncpi\Controllers\Api\Types\Payment;
 use Ncpi\Controllers\Api\Types\Project;
 use Ncpi\Controllers\Api\Types\Setting;
 
@@ -19,6 +20,7 @@ class ApiController {
 		new Business();
 		new Email();
 		new Media();
+		new Payment();
 		new Setting();
 	} 
 }

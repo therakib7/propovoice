@@ -89,79 +89,74 @@ class Form extends Component {
                     <div className="pi-overlay pi-show">
                         <div className="pi-popup-content">
                             <div className="pi-modal-header">
-                                <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Business</h2>
-                                <span className="pi-close" onClick={() => this.props.close()}>
-                                ×
-                                </span>
+                                <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Project</h2>
+                                <span className="pi-close" onClick={() => this.props.close()}>×</span>
                             </div>
-                            <form onSubmit={this.handleSubmit}>
-                                <div className="pi-content">
-                                    <div className='pi-business-form'> 
-                                    
-                                        {!this.props.client_id && 
-                                        <div className="row">
-                                            <div className="col">
-                                                <label
-                                                    htmlFor="form-title">
-                                                    Client
-                                                </label> 
-                                                <AsyncSelect
-                                                    loadOptions={this.handleFindClient}
-                                                    value={this.state.form.client}
-                                                    onChange={this.handleClientSelect}
-                                                    isClearable={true}
-                                                    getOptionValue ={(toList) => toList.id}
-                                                    getOptionLabel ={(toList) => ( toList.first_name ) ? toList.first_name + ' ' + toList.last_name : ''} 
-                                                />
-                                            </div> 
-                                        </div>} 
 
-                                        <div className="row">
-                                            <div className="col">
-                                                <label
-                                                    htmlFor="form-title">
-                                                    Title
-                                                </label>
+                            <div className="pi-content">
+                                <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two">
+                                    {!this.props.client_id && 
+                                    <div className="row">
+                                        <div className="col">
+                                            <label
+                                                htmlFor="form-title">
+                                                Client
+                                            </label> 
+                                            <AsyncSelect
+                                                loadOptions={this.handleFindClient}
+                                                value={this.state.form.client}
+                                                onChange={this.handleClientSelect}
+                                                isClearable={true}
+                                                getOptionValue ={(toList) => toList.id}
+                                                getOptionLabel ={(toList) => ( toList.first_name ) ? toList.first_name + ' ' + toList.last_name : ''} 
+                                            />
+                                        </div> 
+                                    </div>} 
 
-                                                <input
-                                                    id="form-title"
-                                                    type="text"
-                                                    required
-                                                    name="title"
-                                                    value={this.state.form.title}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div> 
-                                        </div>
+                                    <div className="row">
+                                        <div className="col">
+                                            <label
+                                                htmlFor="form-title">
+                                                Title
+                                            </label>
 
-                                        <div className="row">
-                                            <div className="col">
-                                                <label
-                                                    htmlFor="form-desc">
-                                                    Description
-                                                </label>
-
-                                                <input
-                                                    id="form-desc"
-                                                    type="text"
-                                                    required
-                                                    name="desc"
-                                                    value={this.state.form.desc}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div> 
+                                            <input
+                                                id="form-title"
+                                                type="text"
+                                                required
+                                                name="title"
+                                                value={this.state.form.title}
+                                                onChange={this.handleChange}
+                                            />
                                         </div> 
                                     </div>
-                                </div>
-                                <div className="pi-footer-content">  
-                                    <button
-                                        className="pi-btn pi-bg-black pi-bg-hover-blue pi-float-right"
-                                        type="submit">
-                                        Save Changes
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+
+                                    <div className="row">
+                                        <div className="col">
+                                            <label
+                                                htmlFor="form-desc">
+                                                Description
+                                            </label>
+
+                                            <input
+                                                id="form-desc"
+                                                type="text"
+                                                required
+                                                name="desc"
+                                                value={this.state.form.desc}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div> 
+                                    </div>   
+
+                                    <div className="pi-footer-content pi-text-center">
+                                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                                        Submit
+                                        </button>
+                                    </div>
+                                </form> 
+                            </div>
+                        </div> 
                     </div>  
                 )}
             </>

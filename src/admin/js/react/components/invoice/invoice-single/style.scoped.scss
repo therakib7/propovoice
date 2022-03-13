@@ -55,7 +55,7 @@
   color: var(--bg-color-white);
 }
 .ncpi .pi-single-image-content a:last-child {
-  background-color: var(--bg-color-white);
+  background-color: var(--bg-color-white) !important;
   color: var(--bg-color-black);
   margin-top: 10px;
 }
@@ -129,7 +129,7 @@
   padding: 35px 30px;
 }
 .ncpi .pi-from-content .pi-from-to {
-  width: 290px;
+  max-width: 290px;
 }
 .ncpi .pi-from-content .pi-from-to label {
   font-size: 12px;
@@ -311,14 +311,9 @@
   display: inline-block;
   visibility: visible;
 }
-
-.pi-right-sidebar .pi-invoice-image {
+.ncpi .pi-right-sidebar .pi-invoice-image {
   border: 1px solid #718096;
   border-radius: 10px;
   width: 100%;
 }
-
-/* .pi-right-content {
-  background-color: #f1f1f7;
-}
- */
+ 

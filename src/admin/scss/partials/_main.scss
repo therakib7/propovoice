@@ -2245,12 +2245,12 @@ html {
 --------------------------------------------------------------*/
 .ncpi .pi-table {
   width: 100%;
-  border: 1px solid #CBD5E0;
+  border: 1px solid #cbd5e0;
   margin-top: 60px;
   border-collapse: collapse;
   border-radius: 20px;
   border-style: hidden;
-  box-shadow: 0 0 0 1px #CBD5E0;
+  box-shadow: 0 0 0 1px #cbd5e0;
 }
 .ncpi .pi-table tr {
   text-align: left;
@@ -2275,14 +2275,13 @@ html {
   font-size: 10px;
   border-radius: 15px;
   color: #fff;
-  cursor: pointer;
 }
 .ncpi .pi-table input[type=checkbox] {
   zoom: 1.5;
   margin-top: 3px;
 }
 .ncpi .pi-table tr {
-  border: 1px solid #CBD5E0;
+  border: 1px solid #cbd5e0;
 }
 .ncpi .pi-table .pi-dropbtn {
   padding: 7px 12px 2px;
@@ -2291,8 +2290,9 @@ html {
   display: block;
   border-radius: 5px;
 }
-.ncpi .pi-table .pi-dropbtn:hover, .ncpi .pi-table .pi-dropbtn:focus {
-  background-color: #EDF2F7;
+.ncpi .pi-table .pi-dropbtn:hover,
+.ncpi .pi-table .pi-dropbtn:focus {
+  background-color: #edf2f7;
 }
 .ncpi .pi-table .pi-dropdown {
   display: inline-block;
@@ -2322,7 +2322,7 @@ html {
   display: block;
 }
 .ncpi .pi-table .pi-dropdown a:hover {
-  background-color: #EDF2F7;
+  background-color: #edf2f7;
 }
 .ncpi .pi-table .pi-show {
   display: block;
@@ -2367,8 +2367,7 @@ html {
   border-radius: 15px 0 0 0;
 }
 .ncpi .pi-info-table-content table tbody tr td {
-  padding: 12px;
-  width: 160px;
+  width: 140px;
 }
 .ncpi .pi-info-table-content table tbody tr td:last-child {
   padding: 12px;
@@ -2376,6 +2375,9 @@ html {
 }
 .ncpi .pi-info-table-content table tbody tr td:nth-last-child(2) {
   width: 105px !important;
+}
+.ncpi .pi-info-table-content table tbody tr td:nth-child(3) {
+  text-align: center;
 }
 .ncpi .pi-info-table-content table tbody tr td:nth-child(3) input[type=number] {
   width: 100px;
@@ -2388,23 +2390,23 @@ html {
 }
 .ncpi .pi-info-table-content table thead tr {
   background-color: #f8f8f8;
-  border: 1px solid #CBD5E0;
+  border: 1px solid #cbd5e0;
 }
 .ncpi .pi-info-table-content table thead tr th span {
   font-size: 10px;
-  color: #4A5568;
+  color: #4a5568;
 }
 .ncpi .pi-info-table-content table td:first-child input[type=text] {
   width: 100%;
 }
 .ncpi .pi-info-table-content table tbody tr:nth-child(even) {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 .ncpi .pi-info-table-content table td input[type=number],
 .ncpi .pi-info-table-content table td input[type=text] {
   width: 68px;
   padding: 6px 0 8px 10px;
-  border: 1px solid #CBD5E0;
+  border: 1px solid #cbd5e0;
   border-radius: 4px;
   background-color: #fff;
   outline: none;
@@ -2412,7 +2414,7 @@ html {
 .ncpi .pi-info-table-content table td select {
   width: 70px;
   padding: 8px;
-  border: 1px solid #CBD5E0;
+  border: 1px solid #cbd5e0;
   font-size: 10px;
   background-color: var(--bg-color-air-white);
   outline: none;
@@ -2444,8 +2446,8 @@ html {
 .ncpi .pi-info-table-content button {
   width: 100%;
   border-radius: 0 0 15px 15px !important;
-  color: #1A202C !important;
-  border: 1px solid #CBD5E0;
+  color: #1a202c !important;
+  border: 1px solid #cbd5e0;
 }
 .ncpi .pi-calculation {
   width: 240px;
@@ -2561,12 +2563,14 @@ html {
   .ncpi .pi-cards .pi-bg-air-white {
     margin-bottom: 30px;
   }
+}
+@media screen and (max-width: 768px) {
   .ncpi .pi-right-content {
-    padding: 30px 30px;
+    padding: 45px 30px;
   }
 }
 .ncpi .pi-search-box.pi-float-right .search-input {
-  color: #1A202C;
+  color: #1a202c;
   font-size: 14px;
   padding: 14px;
   width: 150px;
@@ -2595,55 +2599,70 @@ html {
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: -17px;
   background: rgba(54, 54, 54, 0.7);
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
 }
-.ncpi .pi-overlay:target, .ncpi .pi-show {
+.ncpi .pi-overlay:target,
+.ncpi .pi-show {
   visibility: visible;
   opacity: 1;
   z-index: 99;
 }
+.ncpi .pi-overlay {
+  visibility: visible;
+  opacity: 1;
+  z-index: 99;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 .ncpi .pi-popup-content {
-  margin: 70px auto;
+  margin: 30px auto;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 40%;
   position: relative;
 }
 .ncpi .pi-popup-content .pi-modal-title {
-  margin-top: 0;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #CBD5E0;
-  padding: 20px;
-  font-size: 20px;
-  font-weight: 500;
+  padding-top: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 .ncpi .pi-popup-content .pi-close {
+  background: #fff;
   position: absolute;
-  top: 24px;
-  right: 20px;
-  font-size: 25px;
+  top: -9px;
+  right: -7px;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 8px;
+  text-align: center;
+  cursor: pointer;
 }
 .ncpi .pi-popup-content .pi-close:hover {
   color: #4e6de9;
 }
 .ncpi .pi-popup-content .pi-content {
-  max-height: 30%;
   overflow: auto;
   padding: 20px;
-}
-.ncpi .pi-popup-content .pi-footer-content {
-  padding: 20px;
-  border-top: 1px solid #CBD5E0;
-  display: flow-root;
+  padding: 30px 35px 35px;
 }
 .ncpi .pi-popup-content .pi-footer-content .pi-btn {
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-size: 12px;
   display: inline-block;
+  width: inherit !important;
+  margin-top: 30px !important;
+  border-radius: 10px !important;
+}
+.ncpi .pi-popup-content .pi-form-content {
+  margin-top: -25px;
 }
 @media screen and (max-width: 700px) {
   .ncpi .pi-modal-box {
@@ -2652,6 +2671,44 @@ html {
   .ncpi .pi-popup-content {
     width: 70%;
   }
+}
+.ncpi .pi-popup-content .pi-form-content label {
+  top: 9px !important;
+}
+.ncpi .pi-popup-content .pi-form-content .row > div {
+  margin-bottom: -10px !important;
+}
+.ncpi .pi-popup-content .pi-form-content select,
+.ncpi .pi-popup-content .pi-form-content input[type=text] {
+  margin-top: 0;
+  padding: 7px;
+}
+.ncpi .pi-popup-content .pi-form-content .pi-textarea-content {
+  margin-top: 7px;
+}
+.ncpi .pi-popup-content .pi-form-content .pi-textarea-content h4 {
+  font-weight: 600;
+  font-size: 15px;
+}
+.ncpi .pi-popup-content .pi-form-content .pi-textarea-content select {
+  background-color: #fff !important;
+  text-align: right;
+  float: right;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ncpi .pi-popup-content .pi-form-content .pi-textarea-content textarea {
+  margin-bottom: 5px;
+}
+.ncpi .pi-popup-content .pi-form-content .pi-textarea-content label {
+  top: -1px !important;
+  left: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: transparent;
+  color: #1a202c;
+  text-transform: capitalize;
 }
 
 /*-------------------------------------------------------------- 
@@ -2677,7 +2734,7 @@ html {
   position: absolute;
   height: 2px;
   width: 92%;
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   top: 30%;
   left: 5%;
 }
@@ -2688,14 +2745,14 @@ html {
   font-size: 14px;
 }
 .ncpi .pi-welcome-tabs-content .pi-tab.active span {
-  border: 2px solid #4C6FFF !important;
+  border: 2px solid #4c6fff !important;
 }
 .ncpi .pi-welcome-tabs-content .pi-tab.active {
   color: var(--bg-color-black);
   font-weight: 700;
 }
 .ncpi .pi-welcome-tabs-content .pi-tab span:hover {
-  border: 2px solid #4C6FFF !important;
+  border: 2px solid #4c6fff !important;
 }
 .ncpi .pi-welcome-tabs-content .pi-tab:hover {
   color: var(--bg-color-black);
@@ -2703,11 +2760,11 @@ html {
 .ncpi .pi-welcome-tabs-content .pi-tabs li span {
   width: 45px;
   height: 45px;
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   display: block;
   border-radius: 50%;
   margin-bottom: 12px !important;
-  border: 2px solid #F4F4F4;
+  border: 2px solid #f4f4f4;
   position: relative;
   z-index: 2;
   left: 0;
@@ -2751,7 +2808,7 @@ html {
   height: 20px;
   display: block;
   border-radius: 50%;
-  border: 3px solid #E2E8F0;
+  border: 3px solid #e2e8f0;
   margin: auto;
   margin-bottom: 15px;
 }
@@ -2785,7 +2842,9 @@ html {
   font-weight: 700;
   padding: 10px;
 }
-.ncpi .pi-accordion-wrapper p, .ncpi .pi-accordion-wrapper ul li i:before, .ncpi .pi-accordion-wrapper ul li i:after {
+.ncpi .pi-accordion-wrapper p,
+.ncpi .pi-accordion-wrapper ul li i:before,
+.ncpi .pi-accordion-wrapper ul li i:after {
   transition: all 0.25s ease-in-out;
 }
 .ncpi .pi-accordion-wrapper ul {
@@ -2854,23 +2913,23 @@ html {
   -webkit-animation: bounceInUp 1s ease both;
           animation: bounceInUp 1s ease both;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style h4 {
+.ncpi .pi-edit-content h4 {
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 8px;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style span {
+.ncpi .pi-edit-content span {
   width: 32px;
   height: 32px;
   display: inline-block;
   border-radius: 8px;
   margin-right: 7px;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style .pi-edit-content .pi-edit-text {
+.ncpi .pi-edit-content .pi-edit-text {
   margin-top: 2px;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style .pi-edit-content .pi-edit-text select {
-  background-color: #EDF2F7 !important;
+.ncpi .pi-edit-content .pi-edit-text select {
+  background-color: #edf2f7 !important;
   border-radius: 6px;
   font-size: 14px;
   padding: 8px;
@@ -2879,7 +2938,7 @@ html {
   outline: none;
   line-height: 11;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style .pi-edit-content .pi-edit-text label {
+.ncpi .pi-edit-content .pi-edit-text label {
   font-size: 10px;
   padding: 0px 5px;
   background: #fff;
@@ -2887,27 +2946,27 @@ html {
   top: 10px;
   left: 8px;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style .pi-edit-content .pi-edit-text .pi-select-content {
+.ncpi .pi-edit-content .pi-edit-text .pi-select-content {
   float: left;
   width: 50%;
   margin-top: -20px;
   margin-bottom: 20px;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style .pi-edit-content .pi-edit-text .pi-select-content:last-child {
+.ncpi .pi-edit-content .pi-edit-text .pi-select-content:last-child {
   position: relative;
   left: 5px;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style .pi-edit-content .pi-edit-buttons {
+.ncpi .pi-edit-content .pi-edit-buttons {
   margin-bottom: 10px;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style .pi-edit-content .pi-edit-buttons .pi-btn {
-  color: #4C6FFF;
+.ncpi .pi-edit-content .pi-edit-buttons .pi-btn {
+  color: #4c6fff;
   padding: 12px 15px;
   border-radius: 6px;
   font-size: 12px;
-  background: #E1E8FF;
+  background: #e1e8ff;
 }
-.ncpi .pi-accordion-wrapper .pi-edit-style .pi-edit-content .pi-edit-buttons .pi-btn:first-child {
+.ncpi .pi-edit-content .pi-edit-buttons .pi-btn:first-child {
   margin-right: 8px;
 }
 .ncpi [data-tab-content] {
@@ -2916,16 +2975,16 @@ html {
 .ncpi .active[data-tab-content] {
   display: block;
 }
-.ncpi .pi-pament-tab .pi-tabs {
+.ncpi .pi-payment-tab .pi-tabs {
   display: inline-flex;
 }
-.ncpi .pi-pament-tab [data-tab-content] {
+.ncpi .pi-payment-tab [data-tab-content] {
   display: none;
 }
-.ncpi .pi-pament-tab .active[data-tab-content] {
+.ncpi .pi-payment-tab .active[data-tab-content] {
   display: block;
 }
-.ncpi .pi-pament-tab .pi-tab {
+.ncpi .pi-payment-tab .pi-tab {
   cursor: pointer;
   padding: 12px 15px;
   margin-right: 15px;
@@ -2933,25 +2992,25 @@ html {
   border-radius: 8px;
   border-top: 3px solid var(--bg-color-air-white);
 }
-.ncpi .pi-pament-tab .pi-tab svg {
+.ncpi .pi-payment-tab .pi-tab svg {
   display: block;
   font-size: 12px;
   font-weight: 500;
   margin-bottom: 5px !important;
   margin: auto;
 }
-.ncpi .pi-pament-tab .pi-tab span {
+.ncpi .pi-payment-tab .pi-tab span {
   font-size: 18px;
   font-weight: 700;
   line-height: 50px;
 }
-.ncpi .pi-pament-tab .pi-tab:hover,
-.ncpi .pi-pament-tab .pi-tab.active {
+.ncpi .pi-payment-tab .pi-tab:hover,
+.ncpi .pi-payment-tab .pi-tab.active {
   border-top: 3px solid var(--bg-color-blue);
   position: relative;
 }
-.ncpi .pi-pament-tab .pi-tab:hover:before,
-.ncpi .pi-pament-tab .pi-tab.active:before {
+.ncpi .pi-payment-tab .pi-tab:hover:before,
+.ncpi .pi-payment-tab .pi-tab.active:before {
   position: absolute;
   content: "";
   width: 0;
@@ -2964,28 +3023,68 @@ html {
   right: 0;
   bottom: -11px;
 }
-.ncpi .pi-pament-tab .pi-tab-content {
+.ncpi .pi-payment-tab .pi-tab-content {
   width: 65%;
   height: 500px;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #e2e8f0;
   position: relative;
   margin-top: 12px;
   border-radius: 8px;
 }
-.ncpi .pi-pament-tab #pi-paypal {
+@media screen and (max-width: 500px) {
+  .ncpi .pi-payment-tab .pi-tab-content {
+    width: 100%;
+  }
+}
+.ncpi .pi-payment-tab #pi-paypal {
   text-align: center;
   margin: auto;
   top: 50%;
   position: relative;
   transform: translate(0, -50%);
 }
-.ncpi .pi-pament-tab #pi-paypal img {
+.ncpi .pi-payment-tab #pi-paypal img {
   display: block;
   margin: auto;
   margin-bottom: 20px;
 }
-.ncpi .pi-pament-tab #pi-paypal svg path {
+.ncpi .pi-payment-tab #pi-paypal .paypal-image-content span {
+  background: var(--bg-color-air-white);
+  padding: 16px;
+  display: inline-block;
+  padding: 30px 15px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.ncpi .pi-payment-tab #pi-paypal .paypal-image-content span:before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: 0;
+  border-top: 35px solid white;
+  border-left: 35px solid var(--bg-color-air-white);
+}
+.ncpi .pi-payment-tab #pi-paypal .paypal-image-content span:after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+}
+.ncpi .pi-payment-tab #pi-paypal .paypal-image-content svg {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.ncpi .pi-payment-tab #pi-paypal .pi-btn svg path {
   fill: var(--text-color-white);
+}
+.ncpi .pi-form-content.pi-form-style-two .pi-btn {
+  width: 100%;
+  margin-top: 30px;
+  border-radius: 5px;
 }
 
 .ncpi .piWidth-100 {
@@ -3051,6 +3150,10 @@ body {
   word-wrap: break-word;
   overflow-x: hidden;
   margin: 0;
+}
+
+.ncpi {
+  background-color: #fff;
 }
 
 /*--------------------------------------------------------------
@@ -3170,178 +3273,6 @@ select {
   font-weight: 400 !important;
 }
 
-form .icon-search {
-  /*  position: absolute;
-   top: 11px;
-   right: 10px;
-   font-size: 20px; */
-}
-
-.search.relative input {
-  background: none;
-  color: #4A5568;
-  font-weight: 400;
-}
-
-.modal-search input {
-  width: 230px;
-  background: none;
-  border: 1px solid #14202c;
-  color: #4A5568;
-  font-weight: 400;
-}
-.modal-search .icon-search {
-  position: absolute;
-  top: 9px;
-  right: 0px;
-  font-size: 16px;
-}
-
-/* modal pi-single-image hover effect */
-.content {
-  position: relative;
-}
-
-.content .content-overlay {
-  background: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  opacity: 0;
-  transition: all 0.4s ease-in-out 0s;
-}
-
-.content:hover .content-overlay {
-  opacity: 1;
-}
-
-.content-pi-single-image {
-  width: 100%;
-}
-
-.content-details {
-  position: absolute;
-  text-align: center;
-  padding-left: 1em;
-  padding-right: 1em;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  transition: all 0.3s ease-in-out 0s;
-}
-
-.content:hover .content-details {
-  top: 50%;
-  left: 50%;
-  opacity: 1;
-}
-
-.content-details h3 {
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  margin-bottom: 0.5em;
-  text-transform: uppercase;
-}
-
-.content-details p {
-  color: #fff;
-  font-size: 0.8em;
-}
-
-.fadeIn-left {
-  left: 20%;
-}
-
-/* css tabs */
-.tab {
-  cursor: pointer;
-  display: inline-block;
-}
-
-.panel {
-  display: none;
-  -webkit-animation: fadein 0.8s;
-          animation: fadein 0.8s;
-}
-
-.panel-title {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.radio {
-  display: none;
-}
-
-#one:checked ~ .panels #one-panel,
-#two:checked ~ .panels #two-panel,
-#three:checked ~ .panels #three-panel {
-  display: block;
-}
-
-#one:checked ~ .tabs #one-tab,
-#two:checked ~ .tabs #two-tab,
-#three:checked ~ .tabs #three-tab {
-  background: #4C6FFF;
-  color: #fff;
-}
-
-/* Invoice tab */
-.tabs-content::before {
-  content: "";
-  width: 310px;
-  height: 3px;
-  background: #E2E8F0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  top: 0;
-  position: absolute;
-}
-
-.b-tab {
-  padding: 20px;
-  border: 1px solid #000;
-  display: none;
-}
-
-.b-tab.active {
-  display: block;
-}
-
-.tabs-content a.active::before {
-  content: "";
-  width: 30px;
-  height: 3px;
-  background: #E2E8F0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  position: absolute;
-}
-
-.b-nav-tab {
-  display: inline-block;
-  padding: 20px;
-  position: relative;
-}
-
-.b-nav-tab.active {
-  color: #ff4200;
-}
-
-/*======================   New  =============================*/
-.ncpi {
-  display: block;
-  margin-bottom: 5px;
-}
 .ncpi .pi-business-form div {
   margin-bottom: 10px;
 }
@@ -3360,13 +3291,17 @@ form .icon-search {
     margin-right: 0px;
   }
 }
+.ncpi .pi-form-content textarea,
 .ncpi .pi-form-content select,
-.ncpi .pi-form-content input,
-.ncpi .pi-business-form input {
-  background-color: #EDF2F7;
+.ncpi .pi-form-content input[type=number],
+.ncpi .pi-form-content input[type=text],
+.ncpi .pi-business-form input[type=number],
+.ncpi .pi-business-form input[type=email],
+.ncpi .pi-business-form input[type=text] {
+  background-color: #edf2f7;
   border-radius: 10px;
   margin-top: 10px;
-  color: #1A202C;
+  color: #1a202c;
   font-size: 14px;
   padding: 14px;
   width: 100%;
@@ -3374,10 +3309,13 @@ form .icon-search {
   outline: none;
   line-height: 1;
 }
+.ncpi .pi-form-content textarea,
 .ncpi .pi-form-content select,
-.ncpi .pi-form-content input {
+.ncpi .pi-form-content input[type=email],
+.ncpi .pi-form-content input[type=number],
+.ncpi .pi-form-content input[type=text] {
   border-radius: 5px;
-  background-color: #F7FAFC !important;
+  background-color: #f7fafc !important;
 }
 .ncpi .pi-form-content .row > div {
   padding: 5px;
@@ -3388,7 +3326,7 @@ form .icon-search {
 }
 .ncpi .pi-form-content.pi-form-style-two label {
   font-size: 10px;
-  background-color: #EDF2F7;
+  background-color: #edf2f7;
   padding: 3px 5px;
   border-radius: 3px;
   color: #777777;
@@ -3396,12 +3334,15 @@ form .icon-search {
   top: 20px;
   left: 12px;
 }
-.ncpi .pi-pament-tab .pi-tab-content {
+.ncpi .pi-payment-tab .pi-tab-content {
   padding: 25px;
 }
 .ncpi .pi-form-content {
   padding: 0 10px;
   margin-top: 15px;
+}
+.select-options {
+  padding: 10px;
 }
 
 /*-------------------------------------------------------------- 
@@ -3411,11 +3352,11 @@ form .icon-search {
 # Background Color 
 --------------------------------------------------------------*/
 .bg-black {
-  background-color: #1A202C;
+  background-color: #1a202c;
 }
 
 .bg-cold-morning {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 }
 
 .bg-bray-black {
@@ -3423,7 +3364,7 @@ form .icon-search {
 }
 
 .bg-w-stone {
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
 }
 
 .bg-w-stone:hover {
@@ -3431,13 +3372,13 @@ form .icon-search {
 }
 
 .bg-l-gray {
-  background-color: #F7FAFC !important;
+  background-color: #f7fafc !important;
 }
 
 /* new */
 .bg-air-white:hover {
-  background-color: #EDF2F7;
-  color: #4C6FFF;
+  background-color: #edf2f7;
+  color: #4c6fff;
 }
 
 /* padding */
@@ -3449,7 +3390,7 @@ form .icon-search {
 # Color 
 --------------------------------------------------------------*/
 .color-property {
-  color: #4A5568;
+  color: #4a5568;
 }
 
 .ml-15 {
@@ -3462,15 +3403,15 @@ form .icon-search {
   }
 }
 .color-blue-plaza {
-  color: #31343D;
+  color: #31343d;
 }
 
 .border-blue {
-  border: 1px solid #4C6FFF;
+  border: 1px solid #4c6fff;
 }
 
 .color-property {
-  color: #4A5568;
+  color: #4a5568;
 }
 
 .position {
@@ -3511,28 +3452,29 @@ form .icon-search {
 }
 
 .border-e-blue {
-  border: 1px solid #CBD5E0;
+  border: 1px solid #cbd5e0;
 }
 
 /*======================   New  =============================*/
 :root {
   --bg-color-white: #fff;
-  --bg-color-pink: #FF92AE;
-  --bg-color-orange: #F7B06F;
-  --bg-color-gray: #A0AEC0;
-  --bg-color-black: #4A5568;
-  --bg-color-blue: #4C6FFF;
+  --bg-color-pink: #ff92ae;
+  --bg-color-orange: #f7b06f;
+  --bg-color-gray: #a0aec0;
+  --bg-color-black: #4a5568;
+  --bg-color-blue: #4c6fff;
   --bg-color-red: #f10606;
-  --bg-color-green: #18954D;
+  --bg-color-green: #18954d;
   --bg-color-pearl: #f8f8f8;
-  --bg-color-air-white: #EDF2F7;
+  --bg-color-husky: #e1e8ff;
+  --bg-color-air-white: #edf2f7;
   --text-color-white: #fff;
-  --text-color-blue: #4C6FFF;
-  --border-color-gray: #CBD5E0;
+  --text-color-blue: #4c6fff;
+  --border-color-gray: #cbd5e0;
 }
 
 .pi-bg-cold-morning {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 }
 
 .pi-bg-air-white {
@@ -3543,8 +3485,12 @@ form .icon-search {
   background-color: var(--bg-color-pearl);
 }
 
+.pi-bg-husky {
+  background-color: var(--bg-color-husky);
+}
+
 .pi-bg-blue {
-  background-color: var(--bg-color-blue);
+  background-color: var(--bg-color-blue) !important;
 }
 
 .pi-bg-green {
@@ -3589,24 +3535,28 @@ form .icon-search {
 /*--------------------------------------------------------------
 ## Links
 --------------------------------------------------------------*/
-ol, ul {
+.ncpi select {
+  /*   -webkit-appearance: none;
+  appearance: none; */
+}
+.ncpi ol,
+.ncpi ul {
   padding: 0;
   list-style: none;
 }
-
-a {
+.ncpi a {
   cursor: pointer;
   color: inherit;
   text-decoration: none;
 }
-a:hover, a:focus, a:active {
+.ncpi a:hover, .ncpi a:focus, .ncpi a:active {
   text-decoration: none;
   color: inherit;
 }
-a:focus {
+.ncpi a:focus {
   outline: none;
 }
-a:hover, a:active {
+.ncpi a:hover, .ncpi a:active {
   outline: 0;
   text-decoration: none;
 }
@@ -3622,7 +3572,7 @@ a:hover, a:active {
   height: 100vh;
 }
 .ncpi .pi-left-sidebar {
-  width: 240px;
+  width: 245px;
 }
 .ncpi .pi-logo-content {
   padding: 35px 25px 0;
@@ -3644,7 +3594,7 @@ a:hover, a:active {
 .ncpi .pi-left-sidebar ul li a {
   padding: 12px 25px;
   display: block;
-  color: #5F5F5F;
+  color: #5f5f5f;
   font-weight: 500;
   position: relative;
   font-size: 14px;
@@ -3681,18 +3631,28 @@ a:hover, a:active {
     position: fixed;
     top: 0px;
     bottom: 0;
-    left: -250px;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow-x: visible;
+    overflow-y: visible;
     scroll-behavior: smooth;
     z-index: 9;
+    left: -250px;
+    transition: all 0.3s ease-out;
   }
   .ncpi .pi-menubar-icon {
     position: absolute;
-    top: 10px;
-    left: 190px;
+    top: 12px;
+    left: 280px;
     display: block;
     cursor: pointer;
     font-size: 15px;
+  }
+  .ncpi .pi-left-sidebar {
+    width: 220px;
+  }
+  .ncpi .bg-red {
+    left: 0 !important;
+  }
+  .ncpi .pi-left-sidebar.bg-red .pi-menubar-icon {
+    left: 235px;
   }
 }
