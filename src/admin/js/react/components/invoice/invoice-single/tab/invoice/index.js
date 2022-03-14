@@ -20,7 +20,6 @@ import Owner from './section/Owner'
 import Attach from './Attach';
 import DateField from 'block/date-picker';
 
-
 class Invoice extends Component {
 
 	locale = 'en-US'
@@ -57,6 +56,8 @@ class Invoice extends Component {
 			toData: null,
 			invoice: {
 				id: null,
+				date: new Date(),
+				due_date: new Date(),
 				template: {
 					id: null,
 					img: ''
@@ -143,6 +144,17 @@ class Invoice extends Component {
 				});
 			})
 	};
+
+	onDateChange = (date, type = null) => {
+		let invoice = { ...this.state.invoice }
+		
+		if ( type == 'date' ) {
+			invoice.date = date;
+		} else {
+			invoice.due_date = date;
+		}
+		this.setState({ invoice });
+	}
 
 	handleSetFrom = (data) => {
 		let invoice = { ...this.state.invoice }
@@ -463,18 +475,18 @@ class Invoice extends Component {
 													</div>
 													<div className="row">
 														<div className="pi-info-lavel">
-															<label htmlFor="date">Invoice date :</label>
+															<label htmlFor="date">Invoice date:</label>
 														</div>
 														<div className="pi-info-input-field">
-															<DateField />
+															<DateField date={this.state.invoice.date} type='date' onDateChange={this.onDateChange} />
 														</div>
 													</div>
 													<div className="row">
 														<div className="pi-info-lavel">
-															<label htmlFor="due">Due date :</label>
+															<label htmlFor="due">Due date:</label>
 														</div>
 														<div className="pi-info-input-field">
-															<DateField />
+															<DateField date={this.state.invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
 														</div>
 													</div>
 												</div>

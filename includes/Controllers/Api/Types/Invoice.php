@@ -208,6 +208,8 @@ class Invoice
         $reg_errors             = new \WP_Error; 
         //TODO: sanitize later
         $invoice  = isset( $params ) ? $params : null;
+        $date     = isset( $params['date'] ) ? $params['date'] : null; 
+        $due_date = isset( $params['due_date'] ) ? $params['due_date'] : null; 
         // wp_send_json_success($invoice);
         $total    = 0;
         foreach ( $params['items'] as $item ) {
@@ -243,6 +245,14 @@ class Invoice
 
             if ( !is_wp_error($post_id) ) {
                 update_post_meta($post_id, 'status', 'draft'); 
+
+                if ( $date ) {
+                    update_post_meta($post_id, 'date', $date); 
+                }
+
+                if ( $due_date ) {
+                    update_post_meta($post_id, 'due_date', $due_date); 
+                }
                 
                 if ( $from ) {
                     update_post_meta($post_id, 'from', $from); 

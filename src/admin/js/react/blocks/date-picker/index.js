@@ -6,10 +6,10 @@ import "react-datepicker/dist/react-datepicker.css";
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-const DateField = () => {
-	const [startDate, setStartDate] = useState(new Date());
+const DateField = (props) => {
+	// const [startDate, setStartDate] = useState(new Date());
 	return (
-		<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+		<DatePicker selected={props.date} onChange={(date) => props.onDateChange(date, props.type)} />
 	);
 };
 
