@@ -258,8 +258,10 @@ class Payment
         $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null;  
         $logo = isset( $params['logo'] ) && isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
 
-        if ( empty( $name ) ) {
-            $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));
+        if ( 
+            empty( $bank_name )  
+        ) {
+            $reg_errors->add('field', esc_html__('Bank name is missing', 'propovoice'));
         } 
 
         if ( $reg_errors->get_error_messages() ) {

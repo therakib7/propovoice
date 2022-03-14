@@ -56,7 +56,7 @@ class Invoice extends Component {
 			toData: null,
 			invoice: {
 				id: null,
-				date: new Date(),
+				date: new Date(), 
 				due_date: new Date(),
 				template: {
 					id: null,
@@ -78,13 +78,12 @@ class Invoice extends Component {
 				note: null,
 				group: null,
 				attach: [],
-				sign: null
-
+				sign: null 
 			},
 		};
 	}
 
-	componentDidMount() {
+	componentDidMount() { 
 		
 		if (this.props.id) {
 			this.setState({
@@ -136,6 +135,8 @@ class Invoice extends Component {
 				
 				let invoice = resp.data.data.invoice;
 				invoice.id = parseInt(resp.data.data.id); 
+				invoice.date = new Date(resp.data.data.invoice.date); 
+				invoice.due_date = new Date(resp.data.data.invoice.due_date); 
 				this.setState({
 					invoice,
 					fromData: resp.data.data.fromData,

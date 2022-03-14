@@ -33,14 +33,24 @@ class Send extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
+    convertDate = str => {
+        let date = new Date(str),
+          mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+          day = ("0" + date.getDate()).slice(-2);
+        return [date.getFullYear(), mnth, day].join("-");
+    }
+
     componentDidMount() {  
         let data = this.props.data; 
+        console.log(data)
         let formState = {...this.state.form}
 
         let invoice_id = data.invoice.id;
+        let invoice_date = this.convertDate(data.invoice.date);
+        let invoice_due_date = this.convertDate(data.invoice.due_date);
         let company_name = data.fromData.name;
-        formState.invoice_id = invoice_id;
 
+        formState.invoice_id = invoice_id;
         formState.fromData = {
             id: data.fromData.id,
             email: data.fromData.email,
@@ -54,11 +64,11 @@ class Send extends Component {
         
         formState.subject = `${company_name} sent you a Invoice #${invoice_id}`;
         formState.msg = `Hi,
-Please find attached invoice #${invoice_id}. Due Date was {invoice_due_date}.
+Please find attached invoice #${invoice_id}. Due Date was ${invoice_due_date}.
 
 Invoice No: #${invoice_id}
-Invoice Date: {invoice_date}
-Due Date: {invoice_due_date}
+Invoice Date: ${invoice_date}
+Due Date: ${invoice_due_date}
 Due Amount: USD {invoice_due_amount}
 
 Thank you for your business.

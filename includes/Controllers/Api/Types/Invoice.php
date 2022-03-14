@@ -167,16 +167,18 @@ class Invoice
      
         $query_data = [];
         $query_data['id'] = $id; 
-          
+        $query_data['date'] = null;
+        // $query_data['date'] = get_post_meta($id, 'date', true);
+        $query_data['due_date'] = null;
+        // $query_data['due_date'] = get_post_meta($id, 'due_date', true);
+        $from_id = get_post_meta($id, 'from', true);
         $query_data['invoice'] = json_decode( get_post_meta($id, 'invoice', true) ); 
 
         $from_id = get_post_meta($id, 'from', true);
         $fromData = []; 
         if ( $from_id ) {
             $fromData['id'] = $from_id;
-
             $fromMeta = get_post_meta($from_id); 
-
             $fromData['name'] = isset( $fromMeta['name'] ) ? $fromMeta['name'][0] : '';
             $fromData['email'] = isset( $fromMeta['email'] ) ? $fromMeta['email'][0] : '';
             $fromData['web'] = isset( $fromMeta['web'] ) ? $fromMeta['web'][0] : '';
@@ -297,6 +299,9 @@ class Invoice
         $reg_errors             = new \WP_Error;  
         $invoice  = isset( $params ) ? $params : null; 
 
+        $date     = isset( $params['date'] ) ? $params['date'] : null; 
+        $due_date = isset( $params['due_date'] ) ? $params['due_date'] : null; 
+
         $from     = isset( $params['from'] ) ? $params['from'] : null;
         $to     = isset( $params['to'] ) ? $params['to'] : null;
 
@@ -333,6 +338,14 @@ class Invoice
 
             if ( !is_wp_error($post_id) ) {
                 
+                if ( $date ) {
+                    update_post_meta($post_id, 'date', $date); 
+                }
+
+                if ( $due_date ) {
+                    update_post_meta($post_id, 'due_date', $due_date); 
+                }
+
                 if ( $from ) {
                     update_post_meta($post_id, 'from', $from); 
                 }

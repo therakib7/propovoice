@@ -9,8 +9,8 @@ class Form extends Component {
             type: 'bank',
             country: '', 
             bank_name: '',
-            routing_no: '', 
             bank_branch: '',
+            routing_no: '', 
             account_no: '',
             confirm_account_no: '', 
             default: false, 
@@ -100,23 +100,7 @@ class Form extends Component {
                                         </div> 
                                     </div> 
 
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-routing_no">
-                                                Routing No
-                                            </label>
-
-                                            <input
-                                                id="form-routing_no"
-                                                type="text"
-                                                required
-                                                name="routing_no"
-                                                value={this.state.form.routing_no}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div> 
-
+                                    <div className="row">  
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="form-bank_branch">
@@ -129,6 +113,22 @@ class Form extends Component {
                                                 required
                                                 name="bank_branch"
                                                 value={this.state.form.bank_branch}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div> 
+
+                                        <div className="col-lg">
+                                            <label
+                                                htmlFor="form-routing_no">
+                                                Routing No
+                                            </label>
+
+                                            <input
+                                                id="form-routing_no"
+                                                type="text"
+                                                required
+                                                name="routing_no"
+                                                value={this.state.form.routing_no}
                                                 onChange={this.handleChange}
                                             />
                                         </div> 
