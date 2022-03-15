@@ -135,19 +135,21 @@ class Email
         return wp_send_json_success($query_data); 
     }
 
-    public function templateVariable( $string = '', $compnay_name, $client_name, $invoice_id, $invoice_url ) {
+    public function templateVariable( $string = '', $compnay_name, $client_name, $invoice_id, $invoice_url, $msg = '' ) {
         return str_replace(
             array(
                 '{company_name}', 
                 '{client_name}',
                 '{invoice_id}',
-                '{invoice_url}'
+                '{invoice_url}',
+                '{msg}'
             ), 
             array(
                 $compnay_name,
                 $client_name,
                 $invoice_id, 
-                $invoice_url
+                $invoice_url,
+                $msg,
             ), 
             $string
         );
@@ -162,6 +164,7 @@ class Email
         $mail_to = isset( $params['toData'] ) ? $params['toData']['email'] : '';
         $invoice_id = isset( $params['invoice_id'] ) ? $params['invoice_id'] : ''; 
         $mail_subject = isset( $params['subject'] ) ? $params['subject'] : ''; 
+        $msg = isset( $params['msg'] ) ? nl2br($params['msg']) : ''; 
         $mail_invoice_img = isset( $params['invoice_img'] ) ? $params['invoice_img'] : ''; 
         $token = get_post_meta($invoice_id, 'token', true);  
  
@@ -177,7 +180,7 @@ class Email
 
         $subject = $this->templateVariable( $mail_subject, $compnay_name, $client_name, $invoice_id, $invoice_url );
         $template = ncpi()->render('email/invoice', [], true);  
-        $body = $this->templateVariable( $template, $compnay_name, $client_name, $invoice_id, $invoice_url );
+        $body = $this->templateVariable( $template, $compnay_name, $client_name, $invoice_id, $invoice_url, $msg );
 
         $headers = array('Content-Type: text/html; charset=UTF-8'); 
         $headers[] = 'From: '.$compnay_name.' <'.$mail_from.'>';
@@ -222,7 +225,7 @@ class Email
             $dompdf->loadHtml( $invoice_html );
             $dompdf->render(); 
             //TODO: change directory later
-            $filename = WP_PLUGIN_DIR . '/propovoice/propovoice/test.pdf';
+            $filename = WP_PLUGIN_DIR . '/propovoice/propovoice/invoice.pdf';
  
             $output = $dompdf->output();
             file_put_contents($filename, $output);  

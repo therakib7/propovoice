@@ -111,7 +111,7 @@
 	margin-bottom: 24px;
   }
   .pi-inv .pi-items-table table thead th {
-	padding: 10px;
+	padding: 10px 35px;
 	font-family: Inter;
 	font-style: normal;
 	font-weight: 600;
@@ -125,12 +125,18 @@
 	font-weight: 600;
 	font-size: var(--pi-inv-small);
 	line-height: 150%;
-	padding: 10px 0;
+	padding: 10px 0px 10px 35px;
 	color: var(--pi-inv-text-3th);
   }
   .pi-inv .pi-items-table table td span {
 	color: var(--pi-inv-text-5th);
 	font-weight: 400;
+  }
+  .pi-inv .pi-items-table table tr th:first-child {
+	padding: 10px 0px 10px 20px;
+  }
+  .pi-inv .pi-items-table table tr td:first-child {
+	padding: 10px 0px 10px 20px;
   }
   .pi-inv .pi-bank-info {
 	display: flex;

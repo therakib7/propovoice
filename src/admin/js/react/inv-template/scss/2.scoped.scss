@@ -1,39 +1,38 @@
 :root {
-    --pi-inv-primary: #0099FF;
-    --pi-inv-even: #EDF2F7;
-    --pi-inv-odd: #F7FAFC;
-  }
-  
-  .pi-inv {
-    /* ====template one===*/
-  }
-  .pi-inv .pi-inv-two .pi-top-shape svg {
-    width: 100%;
-  }
-  .pi-inv .pi-inv-two .pi-top-shape svg path {
-    fill: var(--pi-inv-primary);
-  }
-  .pi-inv .pi-inv-two .pi-body {
-    margin: 0 35px;
-  }
-  .pi-inv .pi-inv-two .pi-items-table table thead {
-    background-color: var(--pi-inv-primary);
-    color: var(--pi-inv-white);
-  }
-  .pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(even) {
-    background-color: var(--pi-inv-even);
-  }
-  .pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(odd) {
-    background-color: var(--pi-inv-odd);
-  }
-  .pi-inv .pi-inv-two tr.pi-table-bg {
-    background-color: var(--pi-inv-primary);
-  }
-  .pi-inv .pi-inv-two .pi-footer-shape svg {
-    margin-bottom: -4px;
-  }
-  .pi-inv .pi-inv-two .pi-footer-shape svg path {
-    width: 100%;
-    fill: var(--pi-inv-primary);
-  }
-  
+  --pi-inv-primary: #0099FF;
+  --pi-inv-even: #EDF2F7;
+  --pi-inv-odd: #F7FAFC;
+}
+
+.pi-inv {
+  /* ====template one===*/
+}
+.pi-inv .pi-inv-two .pi-top-shape svg {
+  width: 100%;
+}
+.pi-inv .pi-inv-two .pi-top-shape svg path {
+  fill: var(--pi-inv-primary);
+}
+.pi-inv .pi-inv-two .pi-body {
+  margin: 0 35px;
+}
+.pi-inv .pi-inv-two .pi-items-table table thead {
+  background-color: var(--pi-inv-primary);
+  color: var(--pi-inv-white);
+}
+.pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(even) {
+  background-color: var(--pi-inv-even);
+}
+.pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(odd) {
+  background-color: var(--pi-inv-odd);
+}
+.pi-inv .pi-inv-two tr.pi-table-bg {
+  background-color: var(--pi-inv-primary);
+}
+.pi-inv .pi-inv-two .pi-footer-shape svg {
+  margin-bottom: -4px;
+}
+.pi-inv .pi-inv-two .pi-footer-shape svg path {
+  width: 100%;
+  fill: var(--pi-inv-primary);
+}

@@ -82,7 +82,7 @@ export default class One extends Component {
                                 </table>
                             </div> 
                             <Total {...this.props} /> 
-                        </div>
+                        </div> 
 
                         <div className="pi-note-wrap">
                             <div className="pi-note-term">

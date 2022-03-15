@@ -40,15 +40,35 @@ class Send extends Component {
         return [date.getFullYear(), mnth, day].join("-");
     }
 
+    //try to call it from invoice to avoid duplication code
+    calcTaxAmount = (c) => {
+		return c * (this.props.data.invoice.tax / 100)
+	}
+
+	calcItemsTotal = () => {
+		return this.props.data.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
+	}
+
+	calcTaxTotal = () => {
+		return this.calcItemsTotal() * (this.props.data.invoice.tax / 100)
+	}
+
+	calcGrandTotal = () => {
+		return this.calcItemsTotal() + this.calcTaxTotal(); 
+	}
+    //end try to call it from invoice to avoid duplication code
+
     componentDidMount() {  
         let data = this.props.data; 
-        console.log(data)
+        // console.log(data)
         let formState = {...this.state.form}
 
         let invoice_id = data.invoice.id;
         let invoice_date = this.convertDate(data.invoice.date);
         let invoice_due_date = this.convertDate(data.invoice.due_date);
+        let invoice_due_amount = this.calcGrandTotal();
         let company_name = data.fromData.name;
+        let client_name = data.toData.first_name + ' ' + data.toData.last_name;
 
         formState.invoice_id = invoice_id;
         formState.fromData = {
@@ -58,18 +78,18 @@ class Send extends Component {
 
         formState.toData = {
             id: data.toData.id,
-            name: data.toData.first_name + ' ' + data.toData.last_name,
+            name: client_name,
             email: data.toData.email,
         }; 
         
         formState.subject = `${company_name} sent you a Invoice #${invoice_id}`;
-        formState.msg = `Hi,
+        formState.msg = `Hi <b>${client_name}</b>,
 Please find attached invoice #${invoice_id}. Due Date was ${invoice_due_date}.
 
 Invoice No: #${invoice_id}
 Invoice Date: ${invoice_date}
 Due Date: ${invoice_due_date}
-Due Amount: USD {invoice_due_amount}
+Due Amount: USD ${invoice_due_amount}
 
 Thank you for your business.
 

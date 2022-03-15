@@ -2569,6 +2569,11 @@ html {
     padding: 45px 30px;
   }
 }
+@media screen and (max-width: 450px) {
+  .ncpi .pi-right-content {
+    padding: 45px 15px;
+  }
+}
 .ncpi .pi-search-box.pi-float-right .search-input {
   color: #1a202c;
   font-size: 14px;
@@ -2634,8 +2639,8 @@ html {
 .ncpi .pi-popup-content .pi-close {
   background: #fff;
   position: absolute;
-  top: -9px;
-  right: -7px;
+  top: -8px;
+  right: -5px;
   font-size: 15px;
   padding: 5px;
   border-radius: 50%;
@@ -2644,6 +2649,7 @@ html {
   line-height: 8px;
   text-align: center;
   cursor: pointer;
+  box-shadow: rgba(23, 10, 18, 0.18) 0px 0px 4px;
 }
 .ncpi .pi-popup-content .pi-close:hover {
   color: #4e6de9;
@@ -2653,13 +2659,27 @@ html {
   padding: 20px;
   padding: 30px 35px 35px;
 }
-.ncpi .pi-popup-content .pi-footer-content .pi-btn {
+.ncpi .pi-popup-content .pi-popup-footer-content {
+  margin-top: 10px;
+}
+.ncpi .pi-popup-content .pi-popup-footer-content .pi-btn {
   text-transform: capitalize;
   font-size: 12px;
-  display: inline-block;
-  width: inherit !important;
+  width: auto !important;
   margin-top: 30px !important;
   border-radius: 10px !important;
+  margin: auto;
+  display: block;
+}
+.ncpi .pi-popup-content .pi-popup-footer-content label {
+  top: -1px !important;
+  left: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: transparent;
+  color: #1a202c;
+  text-transform: capitalize;
+  position: relative;
 }
 .ncpi .pi-popup-content .pi-form-content {
   margin-top: -25px;
@@ -2679,6 +2699,9 @@ html {
   margin-bottom: -10px !important;
 }
 .ncpi .pi-popup-content .pi-form-content select,
+.ncpi .pi-popup-content .pi-form-content input[type=number],
+.ncpi .pi-popup-content .pi-form-content input[type=url],
+.ncpi .pi-popup-content .pi-form-content input[type=email],
 .ncpi .pi-popup-content .pi-form-content input[type=text] {
   margin-top: 0;
   padding: 7px;
@@ -2700,15 +2723,7 @@ html {
 }
 .ncpi .pi-popup-content .pi-form-content .pi-textarea-content textarea {
   margin-bottom: 5px;
-}
-.ncpi .pi-popup-content .pi-form-content .pi-textarea-content label {
-  top: -1px !important;
-  left: 5px;
-  font-size: 14px;
-  font-weight: 600;
-  background-color: transparent;
-  color: #1a202c;
-  text-transform: capitalize;
+  line-height: 20px;
 }
 
 /*-------------------------------------------------------------- 
@@ -2743,6 +2758,11 @@ html {
   color: #718096;
   font-weight: 500;
   font-size: 14px;
+}
+@media screen and (max-width: 500px) {
+  .ncpi .pi-welcome-tabs-content .pi-tab {
+    font-size: 12px;
+  }
 }
 .ncpi .pi-welcome-tabs-content .pi-tab.active span {
   border: 2px solid #4c6fff !important;
@@ -2881,17 +2901,19 @@ html {
 }
 .ncpi .pi-accordion-wrapper ul li i:before {
   transform: translate(2px, 0) rotate(45deg);
+  margin-top: 5px;
 }
 .ncpi .pi-accordion-wrapper ul li i:after {
   transform: translate(2px, 0) rotate(-45deg);
+  margin-top: 5px;
 }
 .ncpi .pi-accordion-wrapper ul li input[type=checkbox] {
   position: absolute;
   cursor: pointer;
   width: 100%;
-  height: 100%;
-  z-index: 1;
+  z-index: 9;
   opacity: 0;
+  height: 50px;
 }
 .ncpi .pi-accordion-wrapper ul li input[type=checkbox]:checked ~ div {
   margin-top: -20px;
@@ -2946,13 +2968,13 @@ html {
   top: 10px;
   left: 8px;
 }
-.ncpi .pi-edit-content .pi-edit-text .pi-select-content {
+.ncpi .pi-edit-content .pi-edit-text .pi-edit-content {
   float: left;
   width: 50%;
   margin-top: -20px;
   margin-bottom: 20px;
 }
-.ncpi .pi-edit-content .pi-edit-text .pi-select-content:last-child {
+.ncpi .pi-edit-content .pi-edit-text .pi-edit-content:last-child {
   position: relative;
   left: 5px;
 }
@@ -3025,61 +3047,13 @@ html {
 }
 .ncpi .pi-payment-tab .pi-tab-content {
   width: 65%;
-  height: 500px;
-  border: 1px solid #e2e8f0;
   position: relative;
   margin-top: 12px;
-  border-radius: 8px;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 992px) {
   .ncpi .pi-payment-tab .pi-tab-content {
     width: 100%;
   }
-}
-.ncpi .pi-payment-tab #pi-paypal {
-  text-align: center;
-  margin: auto;
-  top: 50%;
-  position: relative;
-  transform: translate(0, -50%);
-}
-.ncpi .pi-payment-tab #pi-paypal img {
-  display: block;
-  margin: auto;
-  margin-bottom: 20px;
-}
-.ncpi .pi-payment-tab #pi-paypal .paypal-image-content span {
-  background: var(--bg-color-air-white);
-  padding: 16px;
-  display: inline-block;
-  padding: 30px 15px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 16px;
-  margin-bottom: 20px;
-  position: relative;
-}
-.ncpi .pi-payment-tab #pi-paypal .paypal-image-content span:before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  right: 0;
-  border-top: 35px solid white;
-  border-left: 35px solid var(--bg-color-air-white);
-}
-.ncpi .pi-payment-tab #pi-paypal .paypal-image-content span:after {
-  content: "";
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-}
-.ncpi .pi-payment-tab #pi-paypal .paypal-image-content svg {
-  display: block;
-  margin: auto;
-  margin-bottom: 10px;
-}
-.ncpi .pi-payment-tab #pi-paypal .pi-btn svg path {
-  fill: var(--text-color-white);
 }
 .ncpi .pi-form-content.pi-form-style-two .pi-btn {
   width: 100%;
@@ -3295,8 +3269,9 @@ select {
 .ncpi .pi-form-content select,
 .ncpi .pi-form-content input[type=number],
 .ncpi .pi-form-content input[type=text],
+.ncpi .pi-form-content input[type=email],
+.ncpi .pi-form-content input[type=url],
 .ncpi .pi-business-form input[type=number],
-.ncpi .pi-business-form input[type=email],
 .ncpi .pi-business-form input[type=text] {
   background-color: #edf2f7;
   border-radius: 10px;
@@ -3312,6 +3287,7 @@ select {
 .ncpi .pi-form-content textarea,
 .ncpi .pi-form-content select,
 .ncpi .pi-form-content input[type=email],
+.ncpi .pi-form-content input[type=url],
 .ncpi .pi-form-content input[type=number],
 .ncpi .pi-form-content input[type=text] {
   border-radius: 5px;
@@ -3334,17 +3310,10 @@ select {
   top: 20px;
   left: 12px;
 }
-.ncpi .pi-payment-tab .pi-tab-content {
-  padding: 25px;
-}
 .ncpi .pi-form-content {
   padding: 0 10px;
   margin-top: 15px;
 }
-.select-options {
-  padding: 10px;
-}
-
 /*-------------------------------------------------------------- 
 # Color 
 --------------------------------------------------------------*/
@@ -3649,10 +3618,23 @@ select {
   .ncpi .pi-left-sidebar {
     width: 220px;
   }
-  .ncpi .bg-red {
+  .ncpi .pi-menu-left {
     left: 0 !important;
   }
-  .ncpi .pi-left-sidebar.bg-red .pi-menubar-icon {
+  .ncpi .pi-left-sidebar.pi-menu-left .pi-menubar-icon {
     left: 235px;
   }
+}
+@media screen and (max-width: 450px) {
+  .ncpi .pi-menubar-icon {
+    left: 265px;
+  }
+}
+
+.pi-sub-menu {
+  display: none;
+}
+
+.pi-sub-menu-show {
+  display: block;
 }

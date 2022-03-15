@@ -313,8 +313,7 @@ class Invoice extends Component {
 	}
 
 	calcGrandTotal = () => {
-		let total = this.calcItemsTotal() + this.calcTaxTotal();
-		return total;
+		return this.calcItemsTotal() + this.calcTaxTotal(); 
 	}
 
 	setActiveTab(e, id) {
@@ -335,6 +334,13 @@ class Invoice extends Component {
 		this.setState({
 			currentTab: tab
 		});
+	}
+
+	editTab = () => {
+		this.setState({
+			currentTab: 'info'
+		});
+		window.scrollTo(0, 0);
 	}
 
 	continueTab = (param) => {
@@ -585,6 +591,7 @@ class Invoice extends Component {
 							emailModal={this.state.emailModal}
 							showEmailModal={() => this.setState({ emailModal: true })}
 							closeEmailModal={() => this.setState({ emailModal: false })} 
+							editTab={this.editTab}
 						/>}
 				</div>
 			</>
