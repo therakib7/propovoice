@@ -22,7 +22,7 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: ../includes/Controllers/Installation/InstallationController.php:26
+#: ../includes/Controllers/Installation/InstallationController.php:27
 msgid "Client"
 msgstr ""
 
@@ -30,7 +30,7 @@ msgstr ""
 msgid "Propovoice Dashboard"
 msgstr ""
 
-#: ../includes/Controllers/Template/PageTemplater.php:20, ../views/template/ddinvoice-template.php:3, ../views/template/invoice-template.php:3
+#: ../includes/Controllers/Template/PageTemplater.php:20, ../views/template/invoice-template.php:3
 msgid "Propovoice Invoice"
 msgstr ""
 
@@ -50,11 +50,11 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:222, ../includes/Controllers/Api/Types/Invoice.php:302
+#: ../includes/Controllers/Api/Types/Invoice.php:227, ../includes/Controllers/Api/Types/Invoice.php:319
 msgid "Sender is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:226, ../includes/Controllers/Api/Types/Invoice.php:306
+#: ../includes/Controllers/Api/Types/Invoice.php:231, ../includes/Controllers/Api/Types/Invoice.php:323
 msgid "Receiver is missing"
 msgstr ""
 
@@ -64,6 +64,10 @@ msgstr ""
 
 #: ../includes/Controllers/Api/Types/Media.php:224
 msgid "File is too large. Max. upload file size is %s"
+msgstr ""
+
+#: ../includes/Controllers/Api/Types/Payment.php:183, ../includes/Controllers/Api/Types/Payment.php:264
+msgid "Bank name is missing"
 msgstr ""
 
 #: ../includes/Controllers/Api/Types/Project.php:179
@@ -158,10 +162,10 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: ../views/template/ddinvoice-template.php:38
+#: ../views/template/invoice-template.php:56
 msgid "Sorry!! page not found"
 msgstr ""
 
-#: ../views/template/ddinvoice-template.php:35
+#: ../views/template/invoice-template.php:53
 msgid "Sorry!! You don't have permission to view this page"
 msgstr ""

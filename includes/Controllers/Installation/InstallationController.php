@@ -22,6 +22,7 @@ class InstallationController {
 			// new DB();
             
             // add custom role
+            //TODO: check by plugin version
             if ( get_option( 'ncpi_role_version' ) < 1 ) { 
                 add_role('client', esc_html__( 'Client', 'propovoice' ), ['subscriber']);
 
