@@ -22,9 +22,13 @@ class InstallationController {
 			// new DB();
             
             // add custom role
-            if ( get_option( 'ncpi_roles_version' ) < 1 ) { 
+            if ( get_option( 'ncpi_role_version' ) < 1 ) { 
                 add_role('client', esc_html__( 'Client', 'propovoice' ), ['subscriber']);
-                update_option( 'ncpi_roles_version', 1 );
+
+                $uploads_dir = trailingslashit( wp_upload_dir()['basedir'] ) . 'propovoice';
+                wp_mkdir_p( $uploads_dir );
+
+                update_option( 'ncpi_role_version', 1 );
             }
 			
             wp_redirect( admin_url('admin.php?page=ncpi-welcome') );

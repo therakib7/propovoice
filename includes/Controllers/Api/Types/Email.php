@@ -155,6 +155,19 @@ class Email
         );
     }
 
+    /* get url by page template */
+    public function invoice_page_url() {
+        $page = get_pages(array(
+            'meta_key' => '_wp_page_template',
+            'meta_value' => 'invoice-template.php'
+        ));
+        if ( !empty($page) ) {
+            return get_permalink( $page[0]->ID );
+        } else {
+            return '#';
+        }
+    }
+
     public function create($req)
     { 
 
@@ -166,14 +179,14 @@ class Email
         $mail_subject = isset( $params['subject'] ) ? $params['subject'] : ''; 
         $msg = isset( $params['msg'] ) ? nl2br($params['msg']) : ''; 
         $mail_invoice_img = isset( $params['invoice_img'] ) ? $params['invoice_img'] : ''; 
-        $token = get_post_meta($invoice_id, 'token', true);  
  
-        $compnay_name = 'Nurency Digital';
-        $client_name = 'Ashraf Vai'; 
+        $compnay_name = isset( $params['fromData'] ) ? $params['fromData']['name'] : '';
+        $client_name = isset( $params['toData'] ) ? $params['toData']['name'] : '';
+
+        $token = get_post_meta($invoice_id, 'token', true); 
         $invoice_url = sprintf( 
-            '%s?id=%s&token=%s',
-            //TODO: get invoice tempalte url
-            get_site_url() . '/invoice/',
+            '%s?id=%s&token=%s', 
+            $this->invoice_page_url(),
             $invoice_id,
             $token
         );
@@ -225,7 +238,8 @@ class Email
             $dompdf->loadHtml( $invoice_html );
             $dompdf->render(); 
             //TODO: change directory later
-            $filename = WP_PLUGIN_DIR . '/propovoice/propovoice/invoice.pdf';
+            $uploads_dir = trailingslashit( wp_upload_dir()['basedir'] ) . 'propovoice';
+            $filename = $uploads_dir . '/invoice.pdf';
  
             $output = $dompdf->output();
             file_put_contents($filename, $output);  

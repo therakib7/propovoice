@@ -59,8 +59,7 @@ class Send extends Component {
     //end try to call it from invoice to avoid duplication code
 
     componentDidMount() {  
-        let data = this.props.data; 
-        // console.log(data)
+        let data = this.props.data;  
         let formState = {...this.state.form}
 
         let invoice_id = data.invoice.id;
@@ -73,6 +72,7 @@ class Send extends Component {
         formState.invoice_id = invoice_id;
         formState.fromData = {
             id: data.fromData.id,
+            name: company_name,
             email: data.fromData.email,
         };
 

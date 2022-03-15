@@ -205,10 +205,9 @@
 	line-height: 140%;
   }
   .pi-inv .pi-note-wrap {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	align-items: end;
-	justify-items: end;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
   }
   .pi-inv .pi-terms h4 {
 	margin-top: 10px;
