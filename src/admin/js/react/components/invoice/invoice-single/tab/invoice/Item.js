@@ -5,7 +5,7 @@ class Item extends Component {
 
     render = () => {
 
-        const { index, name, desc, qty, price } = this.props
+        const { index, name, desc, qty, qty_type, price } = this.props
 
         return (
             <> 
@@ -30,11 +30,14 @@ class Item extends Component {
                     value={qty} 
                     onChange={this.props.changeHandler(index)} 
                     onFocus={this.props.focusHandler} />
-                <select name="qty_type">
-                    <option value="unit">Unit</option> 
+                    
+                <select name="qty_type"  
+                    value={qty_type} 
+                    onChange={this.props.changeHandler(index)} >
+                    <option value="page">Page</option>
                     <option value="hour">Hour</option>
                     <option value="week">Week</option>
-                    <option value="page">Page</option>
+                    <option value="unit">Unit</option> 
                 </select>
             </td>
             <td>

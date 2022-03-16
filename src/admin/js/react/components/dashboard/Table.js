@@ -76,7 +76,7 @@ const TableBody = props => {
                                 fill="#A0AEC0"
                                 />
                             </svg></span>
-                                                <span onClick={() => props.deleteEntry('single', row.id)} ><svg
+                            <span onClick={() => props.deleteEntry('single', row.id)} ><svg
                             width={15}
                             height={15}
                             viewBox="0 0 9 9"

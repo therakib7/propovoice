@@ -2347,7 +2347,7 @@ html {
   margin-right: 10px;
 }
 .ncpi .pi-info-table-content table {
-  border-collapse: collapse;
+  border-spacing: 0;
   width: 100%;
 }
 .ncpi .pi-info-table-content table textarea {
@@ -2361,10 +2361,25 @@ html {
 .ncpi .pi-info-table-content table thead tr th {
   text-align: left;
   padding: 12px;
+  border-top: 1px solid #cbd5e0;
+  border-bottom: 1px solid #cbd5e0;
+  font-size: 14px;
+  line-height: 20px;
+}
+.ncpi .pi-info-table-content table thead tr {
+  background-color: #f8f8f8;
+}
+.ncpi .pi-info-table-content table thead tr th span {
+  font-size: 10px;
+  color: #4a5568;
 }
 .ncpi .pi-info-table-content table thead tr th:first-child {
   padding: 14px 20px;
+  border-left: 1px solid #cbd5e0;
   border-radius: 15px 0 0 0;
+}
+.ncpi .pi-info-table-content table thead tr th:last-child {
+  border-right: 1px solid #cbd5e0;
 }
 .ncpi .pi-info-table-content table tbody tr td {
   width: 140px;
@@ -2387,14 +2402,6 @@ html {
   width: -moz-fit-content;
   width: fit-content;
   padding: 15px 20px;
-}
-.ncpi .pi-info-table-content table thead tr {
-  background-color: #f8f8f8;
-  border: 1px solid #cbd5e0;
-}
-.ncpi .pi-info-table-content table thead tr th span {
-  font-size: 10px;
-  color: #4a5568;
 }
 .ncpi .pi-info-table-content table td:first-child input[type=text] {
   width: 100%;
@@ -2659,27 +2666,25 @@ html {
   padding: 20px;
   padding: 30px 35px 35px;
 }
-.ncpi .pi-popup-content .pi-popup-footer-content {
+.ncpi .pi-form-checkbox {
   margin-top: 10px;
 }
-.ncpi .pi-popup-content .pi-popup-footer-content .pi-btn {
+.ncpi .pi-form-checkbox .pi-btn {
   text-transform: capitalize;
   font-size: 12px;
-  width: auto !important;
   margin-top: 30px !important;
   border-radius: 10px !important;
   margin: auto;
   display: block;
 }
-.ncpi .pi-popup-content .pi-popup-footer-content label {
+.ncpi .pi-form-checkbox label {
   top: -1px !important;
-  left: 5px;
-  font-size: 14px;
+  left: 5px !important;
+  font-size: 14px !important;
   font-weight: 600;
-  background-color: transparent;
-  color: #1a202c;
+  background-color: transparent !important;
+  color: #1a202c !important;
   text-transform: capitalize;
-  position: relative;
 }
 .ncpi .pi-popup-content .pi-form-content {
   margin-top: -25px;
@@ -3054,11 +3059,6 @@ html {
   .ncpi .pi-payment-tab .pi-tab-content {
     width: 100%;
   }
-}
-.ncpi .pi-form-content.pi-form-style-two .pi-btn {
-  width: 100%;
-  margin-top: 30px;
-  border-radius: 5px;
 }
 
 .ncpi .piWidth-100 {
@@ -3557,37 +3557,45 @@ select {
 .ncpi .pi-left-sidebar .pi-logo-content strong {
   position: relative;
   top: -10px;
-  left: 5px;
+  left: 10px;
   font-size: 18px;
+}
+.ncpi .pi-left-sidebar ul li {
+  display: block;
+  position: relative;
 }
 .ncpi .pi-left-sidebar ul li a {
   padding: 12px 25px;
-  display: block;
+  display: table;
   color: #5f5f5f;
   font-weight: 500;
-  position: relative;
   font-size: 14px;
+  width: 100%;
+  position: relative;
 }
-.ncpi .pi-left-sidebar ul li a:hover {
+.ncpi .pi-left-sidebar ul li .pi-active,
+.ncpi .pi-left-sidebar ul li:hover {
   background-color: #fff;
   color: var(--text-color-blue);
+  color: #000;
 }
+.ncpi .pi-left-sidebar ul li .pi-active svg path,
 .ncpi .pi-left-sidebar ul li a:hover svg path {
   fill: var(--text-color-blue);
 }
 .ncpi .pi-left-sidebar ul li a svg {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .ncpi .pi-left-sidebar ul li a .polygon {
   position: absolute;
-  right: 20px;
-  top: 23px;
+  right: 10px;
+  top: 20px;
   transform: rotate(90deg);
 }
 .ncpi .pi-left-sidebar ul li .pi-sub-menu li a {
   font-weight: 500;
   font-size: 12px;
-  display: block;
+  display: table;
   padding: 8px 25px;
   padding-left: 40px;
   font-size: 14px;
@@ -3636,5 +3644,41 @@ select {
 }
 
 .pi-sub-menu-show {
+  display: block;
+}
+
+.pi-collapse-menu {
+  transition: all 0.1s ease-out;
+  width: 80px !important;
+}
+.pi-collapse-menu .pi-logo-content strong {
+  display: none;
+}
+.pi-collapse-menu ul li a span {
+  position: absolute;
+  display: table-cell;
+  vertical-align: middle;
+  display: none;
+  top: 30%;
+  left: 30%;
+  transition: all 0.9s ease-out;
+}
+.pi-collapse-menu ul li a .polygon {
+  display: none;
+}
+
+.pi-collapse-menu:hover {
+  width: 245px !important;
+}
+.pi-collapse-menu:hover .pi-logo-content {
+  display: table;
+}
+.pi-collapse-menu:hover .pi-logo-content strong {
+  display: table-cell;
+}
+.pi-collapse-menu:hover ul li a span {
+  display: table-cell;
+}
+.pi-collapse-menu:hover ul li a .polygon {
   display: block;
 }

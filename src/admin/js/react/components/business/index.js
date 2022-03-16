@@ -197,9 +197,7 @@ export default class Business extends Component {
                         </li>
                         <li>&gt;</li>
                         <li className="active">
-                            <a href="#" className="">
                             {title}
-                            </a>
                         </li>
                     </ul>
                 </nav>

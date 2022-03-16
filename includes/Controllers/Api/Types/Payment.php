@@ -90,7 +90,17 @@ class Payment
 
         $args['meta_query'] = array(
             'relation' => 'OR'
-        ); 
+        );  
+
+        if ( isset( $request['bank_name'] ) ) { 
+            $args['meta_query'][] = array( 
+                array(
+                    'key'     => 'bank_name',
+                    'value'   => $request['bank_name'],
+                    'compare' => 'LIKE'
+                )
+            );
+        } 
 
         if ( isset( $request['default'] ) ) { 
             $args['meta_query'][] = array( 
@@ -258,9 +268,7 @@ class Payment
         $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null;  
         $logo = isset( $params['logo'] ) && isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
 
-        if ( 
-            empty( $bank_name )  
-        ) {
+        if ( empty( $bank_name ) ) {
             $reg_errors->add('field', esc_html__('Bank name is missing', 'propovoice'));
         } 
 

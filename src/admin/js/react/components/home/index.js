@@ -1,10 +1,9 @@
-import React, { Suspense, lazy } from 'react';
-
+import React, { Suspense, lazy } from 'react'; 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {
-    HashRouter,
+    HashRouter, 
     Routes,
     Route,
     NavLink
@@ -23,8 +22,7 @@ const Payment = lazy(() => import('components/payment'));
 const Business = lazy(() => import('components/business'));
 const Setting = lazy(() => import('components/setting'));
 
-const Home = () => {
-
+const Home = () => { 
     return (
         <>
             <HashRouter>
@@ -65,7 +63,7 @@ const Home = () => {
                                                 fill="#5F5F5F"
                                             />
                                         </svg>
-                                        Dashboard
+                                        <span>Dashboard</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -85,7 +83,7 @@ const Home = () => {
                                                 fill="#5F5F5F"
                                             />
                                         </svg>
-                                        Client
+                                        <span>Client</span>
                                     </NavLink>
                                     <ul className='pi-sub-menu'>
                                         <li>
@@ -117,7 +115,7 @@ const Home = () => {
                                                 fill="#5F5F5F"
                                             />
                                         </svg>
-                                        Estimate
+                                        <span>Estimate</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -138,7 +136,7 @@ const Home = () => {
                                                 fill="#5F5F5F"
                                             />
                                         </svg>
-                                        Invoice
+                                        <span>Invoice</span>
                                     </NavLink>
                                 </li>
                                 {/* <li><NavLink
@@ -174,7 +172,7 @@ const Home = () => {
                                             fill="#5F5F5F"
                                         />
                                     </svg>
-                                    Payment
+                                    <span>Payment</span>
                                 </NavLink></li>
                                 <li><NavLink
                                     to='business'
@@ -192,7 +190,7 @@ const Home = () => {
                                             fill="#5F5F5F"
                                         />
                                     </svg>
-                                    Business
+                                    <span>Business</span>
                                 </NavLink></li>
                                 <li><NavLink
                                     to='setting'
@@ -216,7 +214,7 @@ const Home = () => {
                                             fill="#5F5F5F"
                                         />
                                     </svg>
-                                    Settings
+                                    <span>Settings</span>
                                 </NavLink></li>
                                 {/* <li><NavLink
                                     to='help'
@@ -234,7 +232,10 @@ const Home = () => {
                                 <Route path="/" element={<Dashboard />} />
                                 <Route path="/proposal" element={<Proposal />} />
                                 <Route path="/editor" element={<Editor />} />
-                                <Route path="/estimate" element={<Estimate />} />
+                                {/* <Route path="/estimate" element={<Estimate />} /> */}
+                                <Route path="/estimate" element={<Invoice />} />
+                                <Route path="/estimate/single" element={<InvoiceSingle />} />
+                                <Route path="/estimate/single/:id" element={<InvoiceSingle />} />
                                 <Route path="/invoice" element={<Invoice />} />
                                 <Route path="/invoice/single" element={<InvoiceSingle />} />
                                 <Route path="/invoice/single/:id" element={<InvoiceSingle />} />

@@ -49,7 +49,8 @@ const TableBody = props => {
      
     let navigate = useNavigate();
     function handleClick( id ) { 
-        navigate(`/invoice/single/${id}`, { replace: true });
+        let path = props.path;  
+        navigate(`${path}/single/${id}`, { replace: true });
     }
 
     let rows = props.tableData.map((row, index) => {
@@ -138,13 +139,13 @@ const TableBody = props => {
 }
 
 const Table = (props) => {
-    const { tableData, editEntry, checkedBoxes, deleteEntry, client_id } = props; 
+    const { tableData, editEntry, checkedBoxes, deleteEntry, client_id, path } = props; 
     return ( 
         <> 
             {tableData.length > 0 && <div className='pi-table-wrap'>
                 <table className='pi-table'>
                     <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} />
-                    <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} /> 
+                    <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} path={path} /> 
                 </table>
             </div>}
         </>

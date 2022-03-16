@@ -6,6 +6,7 @@ import Api from 'api/invoice';
 
 import FromTo from './FromTo';
 import Items from './Items'
+import Payment from './Payment';
 import Total from './Total';
 import Note from './Note'
 import Group from './Group';
@@ -29,6 +30,7 @@ class Invoice extends Component {
 		super(props);
 
 		this.state = {
+			title: '',
 			tabs: [
 				{
 					id: 'template',
@@ -54,6 +56,7 @@ class Invoice extends Component {
 			emailModal: false,
 			fromData: null,
 			toData: null,
+			paymentData: null,
 			invoice: {
 				id: null,
 				date: new Date(), 
@@ -70,11 +73,13 @@ class Invoice extends Component {
 						name: '',
 						desc: '',
 						qty: 0,
+						qty_type: 'page',
 						price: 0.00,
 					},
 				],
 				tax: 0.00,
 				paid: 0.00,
+				payment_id: null,
 				note: null,
 				group: null,
 				attach: [],
@@ -84,15 +89,18 @@ class Invoice extends Component {
 	}
 
 	componentDidMount() { 
-		
+		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
+
 		if (this.props.id) {
 			this.setState({
-				currentTab: 'info',
+				title,
+				currentTab: 'info'
 			});
 			this.updateEdit();
 			this.getData();
 		} else {
 			this.setState({
+				title,
 				currentTab: 'template'
 			});
 		}
@@ -357,12 +365,12 @@ class Invoice extends Component {
 	} 
 
 	render = () => {
-		const { tabs = [], currentTab } = this.state;
+		const { tabs = [], currentTab, title } = this.state;
 		return (
 			<>
 				<div className="row">
 					<div className="col-md-6">
-						<h1 className="">Create Invoice</h1>
+						<h1 className="">Create {title}</h1>
 						<nav className="pi-breadcrumb">
 							<ul className="">
 								<li>
@@ -372,9 +380,7 @@ class Invoice extends Component {
 								</li>
 								<li>&gt;</li>
 								<li className="active">
-									<a href="#" className="">
-										Invoice
-									</a>
+									{title}
 								</li>
 							</ul>
 						</nav>
@@ -457,19 +463,18 @@ class Invoice extends Component {
 
 								<div className="pi-info-content pi-bg-white">
 									<div className="pi-add-info-content pi-bg-pearl">
-										<h3 className="pi-color-blue pi-text-center">Invoice</h3>
+										<h3 className="pi-color-blue pi-text-center">{title}</h3>
 										<div className="row">
 											<div className="col-12 col-md-6">
 												<div className="pi-info-logo">
 													<img src={ncpi_local.assetImgUri + 'from-logo.png'} className="" />
-												</div>
-												{/* ./ pi-content */}
+												</div> 
 											</div>
 											<div className="col-12 col-md-6">
 												<div className="pi-info-form">
 													<div className="row">
 														<div className="pi-info-lavel">
-															<label htmlFor="info-number">Invoice number :</label>
+															<label htmlFor="info-number">{title} number :</label>
 														</div>
 														<div className="pi-info-input-field">
 															<input
@@ -482,7 +487,7 @@ class Invoice extends Component {
 													</div>
 													<div className="row">
 														<div className="pi-info-lavel">
-															<label htmlFor="date">Invoice date:</label>
+															<label htmlFor="date">{title} date:</label>
 														</div>
 														<div className="pi-info-input-field">
 															<DateField date={this.state.invoice.date} type='date' onDateChange={this.onDateChange} />
@@ -502,8 +507,7 @@ class Invoice extends Component {
 										</div>
 									</div>{/* ./ pi-add-info-content */}
 
-									<FromTo
-										key={this.state.fromData}
+									<FromTo 
 										setFrom={this.handleSetFrom}
 										setTo={this.handleSetTo}
 										fromData={this.state.fromData}
@@ -544,17 +548,31 @@ class Invoice extends Component {
 											reorderHandler={this.handleReorderItems}
 										/> 
 										 
-									</div>{/* ./ info-table-content */}
+									</div>{/* ./ info-table-content */}  
 
-									<Total
-										currencyFormatter={this.formatCurrency}
-										itemsTotal={this.calcItemsTotal}
-										tax={this.state.invoice.tax}
-										taxTotal={this.calcTaxTotal}
-										grandTotal={this.calcGrandTotal} 
-										changeHandler={this.handleInvoiceChange}
-										focusHandler={this.handleFocusSelect}
-									/> 
+									<div className="row">
+										<div className="col-lg-6">
+											<Payment 
+												setFrom={this.handleSetFrom}
+												setTo={this.handleSetTo}
+												fromData={this.state.fromData}
+												toData={this.state.toData}
+												editId={this.props.id}
+											/>
+										</div> 
+
+										<div className="col-lg-6">
+											<Total
+												currencyFormatter={this.formatCurrency}
+												itemsTotal={this.calcItemsTotal}
+												tax={this.state.invoice.tax}
+												taxTotal={this.calcTaxTotal}
+												grandTotal={this.calcGrandTotal} 
+												changeHandler={this.handleInvoiceChange}
+												focusHandler={this.handleFocusSelect}
+											/> 
+										</div> 
+									</div> 
 
 									<div className="pi-group-form">
 										<Note data={this.state.invoice.note} changeHandler={this.handleNoteChange} />
@@ -576,7 +594,7 @@ class Invoice extends Component {
 
 							<div className="col-lg-3">
 								<div className="pi-right-sidebar">
-									<h2 className="pi-r-s-title">Preview invoice</h2>
+									<h2 className="pi-r-s-title">Preview {title}</h2>
 									<img src={this.state.invoice.template.img} className="pi-invoice-image" />
 									{/* <Style />
 									<Owner /> */}

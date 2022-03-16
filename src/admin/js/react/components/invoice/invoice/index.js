@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
  
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from 'context/app-context';
 
 import ReactPaginate from 'react-paginate';
@@ -19,7 +19,7 @@ const Invoice = class Invoice extends Component {
         super(props);
 
         this.state = { 
-            title: 'Invoice',
+            title: '',
             empty: false,
             preloader: true,
             formModal: false,
@@ -37,7 +37,9 @@ const Invoice = class Invoice extends Component {
 
     static contextType = AppContext;
 
-    componentDidMount() {
+    componentDidMount() {  
+        let title = this.props.path == '/invoice' ? 'Invoice' : 'Estimate';
+        this.setState({ title }); 
         this.getLists();
     }
 
@@ -282,7 +284,7 @@ const Invoice = class Invoice extends Component {
                     close={this.closeForm}
                 />
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} />}
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.props.path} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}
@@ -304,13 +306,17 @@ const Invoice = class Invoice extends Component {
 }  
 
 function InvoiceWrap() { 
+    const location = useLocation();
+    const path = location.pathname;
+
 	let navigate = useNavigate();
-	const routeChange = () => {
-		navigate(`/invoice/single`, { replace: true });
-	};
+	const routeChange = () => { 
+		navigate(`${path}/single`, { replace: true });
+	};     
+
 	return (
 		<>
-			<Invoice routeChange={routeChange} />
+			<Invoice routeChange={routeChange} path={path} key={path} />
 		</>
 	);
 }

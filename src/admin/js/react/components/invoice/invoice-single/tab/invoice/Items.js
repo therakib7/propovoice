@@ -73,6 +73,7 @@ class Items extends Component {
                                                         name={item.name}
                                                         desc={item.desc} 
                                                         qty={item.qty} 
+                                                        qty_type={item.qty_type} 
                                                         price={item.price}
                                                         {...functions}
                                                     />

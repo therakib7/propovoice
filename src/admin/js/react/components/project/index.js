@@ -198,9 +198,7 @@ export default class Project extends Component {
                         </li>
                         <li>&gt;</li>
                         <li className="active">
-                            <a href="#" className="">
                             Project
-                            </a>
                         </li>
                     </ul>
                 </nav>
