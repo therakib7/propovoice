@@ -65,7 +65,8 @@ class AssetContoller {
 
 		if ( 
 			( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi' ) ||
-			is_page_template('dashboard-template.php')
+			is_page_template('dashboard-template.php') ||
+			is_page_template('invoice-template.php') 
 		) {  
 			
 			// wp_enqueue_style('dashicons');

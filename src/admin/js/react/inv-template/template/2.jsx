@@ -60,10 +60,10 @@ export default class Two extends Component {
                                 </div>
                             </div>
                             <div className="pi-to">
-                                <div className="pi-to-logo">
+                                <div className="pi-inv-title">
                                     <h2>invoice</h2>
                                 </div>
-                                <To data={toData} />
+                                <To data={toData} /> 
                             </div>
                         </div>
                         

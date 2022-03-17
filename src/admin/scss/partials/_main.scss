@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*-------------------------------------------------------------- 
 #  Normalize
 --------------------------------------------------------------*/
@@ -8,7 +9,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
- html {
+html {
   line-height: 1.15;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -2666,16 +2667,16 @@ html {
   padding: 20px;
   padding: 30px 35px 35px;
 }
-.ncpi .pi-form-checkbox {
-  margin-top: 10px;
-}
-.ncpi .pi-form-checkbox .pi-btn {
+.ncpi .pi-popup-content .pi-content .pi-btn {
   text-transform: capitalize;
   font-size: 12px;
   margin-top: 30px !important;
   border-radius: 10px !important;
   margin: auto;
   display: block;
+}
+.ncpi .pi-form-checkbox {
+  margin-top: 10px;
 }
 .ncpi .pi-form-checkbox label {
   top: -1px !important;
@@ -2729,6 +2730,7 @@ html {
 .ncpi .pi-popup-content .pi-form-content .pi-textarea-content textarea {
   margin-bottom: 5px;
   line-height: 20px;
+  margin-top: 10px;
 }
 
 /*-------------------------------------------------------------- 
@@ -2868,16 +2870,16 @@ html {
   padding: 10px;
 }
 .ncpi .pi-accordion-wrapper p,
-.ncpi .pi-accordion-wrapper ul li i:before,
-.ncpi .pi-accordion-wrapper ul li i:after {
+.ncpi .pi-accordion-wrapper > ul > li i:before,
+.ncpi .pi-accordion-wrapper > ul > li i:after {
   transition: all 0.25s ease-in-out;
 }
-.ncpi .pi-accordion-wrapper ul {
+.ncpi .pi-accordion-wrapper > ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.ncpi .pi-accordion-wrapper ul li > div {
+.ncpi .pi-accordion-wrapper > ul li > div {
   border-top: 1px solid var(--border-color-gray);
   padding: 10px;
   position: relative;
@@ -2885,34 +2887,34 @@ html {
   max-height: 800px;
   z-index: 2;
 }
-.ncpi .pi-accordion-wrapper ul li {
+.ncpi .pi-accordion-wrapper > ul > li {
   background-color: #fff;
   margin-bottom: 15px;
   border-radius: 5px;
   margin-top: 15px;
 }
-.ncpi .pi-accordion-wrapper ul li i {
+.ncpi .pi-accordion-wrapper > ul > li i {
   position: absolute;
   transform: translate(-6px, 0);
   margin-top: 12px;
   right: 35px;
 }
-.ncpi .pi-accordion-wrapper ul li i:before, .ncpi .pi-accordion-wrapper ul li i:after {
+.ncpi .pi-accordion-wrapper > ul > li i:before, .ncpi .pi-accordion-wrapper > ul > li i:after {
   content: "";
   position: absolute;
   background-color: #000;
   width: 3px;
   height: 16px;
 }
-.ncpi .pi-accordion-wrapper ul li i:before {
+.ncpi .pi-accordion-wrapper > ul > li i:before {
   transform: translate(2px, 0) rotate(45deg);
   margin-top: 5px;
 }
-.ncpi .pi-accordion-wrapper ul li i:after {
+.ncpi .pi-accordion-wrapper > ul > li i:after {
   transform: translate(2px, 0) rotate(-45deg);
   margin-top: 5px;
 }
-.ncpi .pi-accordion-wrapper ul li input[type=checkbox] {
+.ncpi .pi-accordion-wrapper > ul > li > input[type=checkbox] {
   position: absolute;
   cursor: pointer;
   width: 100%;
@@ -2920,23 +2922,23 @@ html {
   opacity: 0;
   height: 50px;
 }
-.ncpi .pi-accordion-wrapper ul li input[type=checkbox]:checked ~ div {
+.ncpi .pi-accordion-wrapper > ul > li > input[type=checkbox]:checked ~ div {
   margin-top: -20px;
   max-height: 0;
   opacity: 0;
   transform: translate(0, 50%);
 }
-.ncpi .pi-accordion-wrapper ul li input[type=checkbox]:checked ~ i:before {
+.ncpi .pi-accordion-wrapper > ul > li > input[type=checkbox]:checked ~ i:before {
   margin-top: 9px;
   height: 9px;
   transform: translate(2px, 0) rotate(45deg);
 }
-.ncpi .pi-accordion-wrapper ul li input[type=checkbox]:checked ~ i:after {
+.ncpi .pi-accordion-wrapper > ul > li > input[type=checkbox]:checked ~ i:after {
   margin-top: 9px;
   height: 9px;
   transform: translate(-2px, 0) rotate(-45deg);
 }
-.ncpi .pi-accordion-wrapper li {
+.ncpi .pi-accordion-wrapper > li {
   -webkit-animation: bounceInUp 1s ease both;
           animation: bounceInUp 1s ease both;
 }
@@ -3061,6 +3063,138 @@ html {
   }
 }
 
+.pi-payment-accrodion {
+  /* Accordion styles */
+}
+.pi-payment-accrodion .tab {
+  width: 100%;
+  overflow: hidden;
+  margin-top: -15px;
+  margin-bottom: 10px;
+}
+.pi-payment-accrodion .tab-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 10px 32px;
+  background-color: var(--bg-color-air-white);
+  font-weight: 500;
+  cursor: pointer;
+  color: #000;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.pi-payment-accrodion .tab-label::after {
+  content: "❯";
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  transition: all 0.35s;
+}
+.pi-payment-accrodion .tab-content {
+  max-height: 0;
+  color: #000;
+  background-color: #f7fafc;
+  transition: all 0.35s;
+  border-radius: 0 0 5px 5px;
+}
+.pi-payment-accrodion .tab-close {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
+  font-size: 0.75em;
+  background: #000;
+  cursor: pointer;
+}
+.pi-payment-accrodion .tab-close:hover {
+  background: #000;
+}
+.pi-payment-accrodion .tab input[type=checkbox] {
+  margin-bottom: 12px;
+  margin-right: 5px;
+  border-radius: 0;
+  position: relative;
+  top: 1px;
+}
+.pi-payment-accrodion .tab input[type=radio] {
+  position: relative;
+  top: 31px;
+  left: 12px;
+  color: #000;
+}
+.pi-payment-accrodion .tab .pi-payment-btn {
+  padding: 10px 25px;
+  border: 1px solid #dddddda8;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-weight: 600;
+  background: none;
+  cursor: pointer;
+}
+.pi-payment-accrodion .tab .pi-payment-bank-content {
+  position: relative;
+  display: flex;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 4px 10px 7px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.pi-payment-accrodion .tab .pi-payment-bank-content .bank-text-content span {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.pi-payment-accrodion .tab .pi-payment-bank-content .pi-bank-image {
+  margin-right: 5px;
+}
+.pi-payment-accrodion .tab .pi-payment-bank-content .pi-bank-image span {
+  background-color: var(--bg-color-air-white);
+  padding: 12px 7px 5px;
+  border-radius: 3px;
+  position: relative;
+  top: 30%;
+}
+.pi-payment-accrodion .tab .pi-payment-bank-content .pi-bank-title {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17px;
+  margin-top: 5px;
+}
+.pi-payment-accrodion .tab .pi-payment-bank-content .pi-bank-subtitle {
+  margin: 0;
+  font-size: 10px;
+}
+.pi-payment-accrodion .tab input[type=radio]:checked {
+  background-color: #93e026;
+}
+.pi-payment-accrodion .pi-arrow-none:after {
+  content: "" !important;
+}
+.pi-payment-accrodion input:checked + .tab-label {
+  color: #000;
+}
+.pi-payment-accrodion input:checked + .tab-label::after {
+  transform: rotate(90deg);
+}
+.pi-payment-accrodion input:checked ~ .tab-content {
+  max-height: 100vh;
+  padding: 15px 15px 25px;
+}
+.pi-payment-accrodion .pi-payment-buttons button:first-child {
+  margin-right: 7px;
+}
+.pi-payment-accrodion .pi-payment-buttons button:last-child {
+  margin-right: 0;
+}
+.pi-payment-accrodion .pi-payment-buttons button {
+  padding: 12px 42px;
+  font-size: 12px;
+  border-radius: 5px;
+  background-color: #e1e8ff;
+  margin-top: 5px;
+}
+
 .ncpi .piWidth-100 {
   width: 100% !important;
 }
@@ -3082,7 +3216,7 @@ html {
 .ncpi .piFloatLeft {
   float: left;
 }
-.ncpi .mt-3 {
+.ncpi .pi-mt-3 {
   position: relative;
   top: 3px;
 }
@@ -3092,6 +3226,9 @@ html {
 }
 .ncpi .pi-ml-10 {
   margin-left: 10px;
+}
+.ncpi .pi-p-40 {
+  padding: 40px 30px !important;
 }
 .ncpi .pi-gap > div {
   padding: 10px;
@@ -3206,6 +3343,9 @@ body {
   font-size: 14px;
   display: inline-block;
 }
+.ncpi .pi-btn svg {
+  margin-right: 5px;
+}
 .ncpi .pi-bg-hover-blue:hover {
   background-color: #4e6de9 !important;
   transition: all 0.3s ease-out;
@@ -3265,7 +3405,22 @@ select {
     margin-right: 0px;
   }
 }
-.ncpi .pi-form-content textarea,
+.ncpi #pi-stripe .pi-form-content textarea {
+  margin-top: 30px;
+}
+.ncpi .pi-form-content textarea {
+  background-color: #edf2f7;
+  border-radius: 10px;
+  color: #1a202c;
+  font-size: 14px;
+  padding: 14px;
+  width: 100%;
+  border: 1px solid #dddddda8;
+  outline: none;
+  line-height: 1;
+  border-radius: 5px;
+  background-color: #f7fafc !important;
+}
 .ncpi .pi-form-content select,
 .ncpi .pi-form-content input[type=number],
 .ncpi .pi-form-content input[type=text],
@@ -3284,7 +3439,6 @@ select {
   outline: none;
   line-height: 1;
 }
-.ncpi .pi-form-content textarea,
 .ncpi .pi-form-content select,
 .ncpi .pi-form-content input[type=email],
 .ncpi .pi-form-content input[type=url],
@@ -3623,9 +3777,6 @@ select {
     cursor: pointer;
     font-size: 15px;
   }
-  .ncpi .pi-left-sidebar {
-    width: 220px;
-  }
   .ncpi .pi-menu-left {
     left: 0 !important;
   }
@@ -3653,6 +3804,7 @@ select {
 }
 .pi-collapse-menu .pi-logo-content strong {
   display: none;
+  transition: all 0.9s ease-out;
 }
 .pi-collapse-menu ul li a span {
   position: absolute;
@@ -3681,4 +3833,21 @@ select {
 }
 .pi-collapse-menu:hover ul li a .polygon {
   display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .pi-collapse-menu {
+    width: 70px !important;
+  }
+
+  .pi-collapse-menu:hover {
+    width: 220px !important;
+  }
+
+  .pi-left-sidebar ul li a {
+    padding: 10px 21px !important;
+  }
+  .pi-left-sidebar ul li a span {
+    left: 22%;
+  }
 }

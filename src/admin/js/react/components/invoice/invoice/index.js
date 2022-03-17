@@ -198,9 +198,7 @@ const Invoice = class Invoice extends Component {
                         </li>
                         <li>&gt;</li>
                         <li className="active">
-                            <a href="#" className="">
                             {title}
-                            </a>
                         </li>
                     </ul>
                 </nav>

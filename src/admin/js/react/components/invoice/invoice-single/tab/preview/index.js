@@ -98,13 +98,39 @@ export default class Preview extends Component {
     printInvoice = () => { 
         html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
             const imgData = canvas.toDataURL('image/jpg');   
-            // console.log(imgData)
             let pri = document.getElementById("ncpi-invoice-print").contentWindow; 
-            pri.document.open(); 
-            pri.document.write('<img src="'+imgData+'" onload="window.print()"/>');
+            pri.document.open();  
+            pri.document.write(`<!DOCTYPE html>
+            <html>
+            <head>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <title>PDF</title>
+            <style type="text/css">
+            @media print {  
+              * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+              }
+              @page{ margin: 0;} 
+                .page{
+                    width: 100%; 
+                    /* height: 1132px; */
+                    height: 1110px; 
+                    page-break-after: always; 
+                } 
+            } 
+            </style>
+            </head>
+            <body> 
+                <div class="page">  
+                    <img src="${imgData}" onload="window.print()"/>
+                </div> 
+            </body>
+            </html>`);
             pri.document.close();
-            pri.focus(); 
-       }); 
+            pri.focus();  
+        }); 
     } 
 
     render() {

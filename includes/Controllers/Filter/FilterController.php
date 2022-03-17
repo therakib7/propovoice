@@ -11,7 +11,8 @@ class FilterController {
 	
 	function body_class( $classes ) {
 		if (  
-			is_page_template('dashboard-template.php')
+			is_page_template('dashboard-template.php') ||
+			is_page_template('invoice-template.php')
 		) { 
 			$classes[] = 'ncpi';
 		}

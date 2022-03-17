@@ -211,16 +211,19 @@ class Email
             <meta http-equiv="content-type" content="text/html; charset=UTF-8">
             <title>PDF</title>
             <style type="text/css">
-            @page{ margin: 0;} 
-            .page{
-                width: 803px; 
-                /* height: 1132px; */
-                height: 1110px;
-                overflow: hidden; 
-                font-family: Arial, Helvetica; 
-                position: relative; 
-                color: #545554;
-                page-break-after: always;
+            @media print {  
+              * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+              }
+              @page{ margin: 0;} 
+                .page{
+                    width: 803px; 
+                    /* height: 1132px; */
+                    height: 1110px; 
+                    page-break-after: always; 
+                } 
             } 
             </style>
             </head>

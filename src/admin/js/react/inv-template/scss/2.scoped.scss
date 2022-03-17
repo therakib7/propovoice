@@ -9,6 +9,7 @@
 }
 .pi-inv .pi-inv-two .pi-top-shape svg {
   width: 100%;
+  display: block;
 }
 .pi-inv .pi-inv-two .pi-top-shape svg path {
   fill: var(--pi-inv-primary);
@@ -30,7 +31,7 @@
   background-color: var(--pi-inv-primary);
 }
 .pi-inv .pi-inv-two .pi-footer-shape svg {
-  margin-bottom: -4px;
+  display: block;
 }
 .pi-inv .pi-inv-two .pi-footer-shape svg path {
   width: 100%;

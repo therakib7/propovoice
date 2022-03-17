@@ -50,9 +50,9 @@ export default class One extends Component {
                                         <p>Due Date:<span> 01-02-2022</span></p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                             <div className="pi-to">
-                                <div className="pi-to-logo">
+                                <div className="pi-inv-title">
                                     <h2>invoice</h2>
                                 </div>
                                 <To data={toData} /> 
