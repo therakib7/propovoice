@@ -18,7 +18,7 @@ const Invoice = class Invoice extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { 
+        this.state = {  
             title: '',
             empty: false,
             preloader: true,
@@ -50,6 +50,10 @@ const Invoice = class Invoice extends Component {
             per_page: this.state.perPage
         }
 
+        //invoice, estimate
+        let path = this.props.path == '/invoice' ? 'invoice' : 'estimate';
+        args.path = path;
+
         if (this.props.invoice_id) {
             args.invoice_id = this.props.invoice_id;
         }
@@ -76,7 +80,7 @@ const Invoice = class Invoice extends Component {
     };
 
     handleSubmit = invoice => {
-        if (this.state.formModalType == 'new') {
+        if (this.state.formModalType == 'new') {  
             Api.create(invoice)
                 .then(resp => {
                     if (resp.data.success) {

@@ -101,6 +101,15 @@ class Invoice
             );
         }
 
+        if ( isset( $request['path'] ) ) {   
+            $args['meta_query'][] = array( 
+                array(
+                    'key'     => 'path',
+                    'value'   => $request['path'] 
+                )
+            );
+        }
+
         $query = new WP_Query( $args );
         $total_data = $query->get_total(); //use this for pagination 
         $result = $data = [];
@@ -211,6 +220,7 @@ class Invoice
         //TODO: sanitize later
         $invoice  = isset( $params ) ? $params : null;
         $date     = isset( $params['date'] ) ? $params['date'] : null; 
+        $path     = isset( $params['path'] ) ? $params['path'] : ''; 
         $due_date = isset( $params['due_date'] ) ? $params['due_date'] : null; 
         // wp_send_json_success($invoice);
         $total    = 0;
@@ -225,6 +235,10 @@ class Invoice
 
         if ( !$from ) {
             $reg_errors->add('field', esc_html__('Sender is missing', 'propovoice'));
+        } 
+
+        if ( !$path ) {
+            $reg_errors->add('field', esc_html__('Path is missing', 'propovoice'));
         } 
 
         if ( !$to ) {
@@ -247,6 +261,7 @@ class Invoice
 
             if ( !is_wp_error($post_id) ) {
                 update_post_meta($post_id, 'status', 'draft'); 
+                update_post_meta($post_id, 'path', $path); 
 
                 if ( $date ) {
                     update_post_meta($post_id, 'date', $date); 

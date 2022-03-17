@@ -7,6 +7,9 @@ import Template from 'inv-template';
 import Send from './Send'; 
 
 const EditDownload = props => { 
+
+    let title = props.path == 'invoice' ? 'Invoice' : 'Estimate';
+
     return (
         <>
             <button 
@@ -30,7 +33,7 @@ const EditDownload = props => {
                     fill="#4C6FFF"
                 />
                 </svg>
-                Edit Invoice
+                Edit {title}
             </button>	
 
             <button 
@@ -141,7 +144,7 @@ export default class Preview extends Component {
                 <div className='row justify-content-md-center'> 
                     <div className='col-md-8' style={{margin: '50px 0 30px 0'}}> 
                         <div className='' style={{maxWidth: '794px', margin: '0 auto'}}>
-                            <EditDownload handleEdit={this.props.editTab} handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
+                            <EditDownload path={this.props.path} handleEdit={this.props.editTab} handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
                         </div>
                         
                     </div>  
@@ -152,7 +155,7 @@ export default class Preview extends Component {
 
                     <div className='col-md-8' style={{margin: '50px 0 30px 0'}}> 
                         <div className='' style={{maxWidth: '794px', margin: '0 auto'}}>
-                            <EditDownload handleEdit={this.props.editTab} handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
+                            <EditDownload path={this.props.path} handleEdit={this.props.editTab} handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
                             <button 
                                 className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white" 
                                 style={{float: 'right'}}
