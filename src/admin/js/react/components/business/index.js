@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
-import AppContext from '../../context/app-context';
+import AppContext from 'context/app-context';
 import ReactPaginate from 'react-paginate';
 
 import TablePreloader from 'block/preloader/table';
 
-import Api from '../../api/business';
+import Api from 'api/business';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
@@ -59,11 +59,7 @@ export default class Business extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total; 
                 let empty = result.length ? false : true;
-                this.setState({ businesses: result, preloader: false, empty }); 
-
-                this.setState({
-                    totalPage: Math.ceil(total / this.state.perPage)
-                })
+                this.setState({ businesses: result, preloader: false, empty, totalPage: Math.ceil(total / this.state.perPage) });  
             })
     };
 
