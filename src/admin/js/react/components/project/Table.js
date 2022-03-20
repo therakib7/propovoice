@@ -53,7 +53,7 @@ const TableBody = props => {
                     {row.client && row.client.first_name + ' ' + row.client.last_name}
                 </td>}
                 <td>{row.date}</td> 
-                <td> 
+                <td className="pi-action"> 
                     <span onClick={() => props.editEntry('edit', row)} ><svg
                                 width={13}
                                 height={13}

@@ -260,7 +260,7 @@ export default class Client extends Component {
                 </div> 
 
                 {/* <button
-                    className="float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
+                    className=""
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button> */}

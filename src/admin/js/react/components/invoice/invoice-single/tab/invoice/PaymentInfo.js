@@ -4,10 +4,6 @@ class PaymentInfo extends Component {
 
     constructor(props) {
         super(props); 
-    }
-
-    componentDidMount() {
-        
     } 
 
     render = () => {
@@ -25,7 +21,9 @@ class PaymentInfo extends Component {
                                     </h4>
                                     <address>
                                         <b>Account Name:</b> {bank_info.account_name} <br />
-                                        <b>Account No:</b> {bank_info.account_no}
+                                        <b>Account No:</b> {bank_info.account_no} <br />
+                                        <b>Routing No:</b> {bank_info.routing_no} <br />
+                                        <b>Branch Name:</b> {bank_info.bank_branch} <br /> 
                                     </address>
                                 </>
                             </div>

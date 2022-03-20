@@ -157,7 +157,7 @@ class Invoice
             }
 
             $query_data['status'] = get_post_meta($id, 'status', true);  
-            $query_data['date'] = get_the_time('j-M-Y h:m a');
+            $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
 
         } 

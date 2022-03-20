@@ -94,7 +94,7 @@ class Form extends Component {
                             </div>
 
                             <div className="pi-content">
-                                <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two">
+                                <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two pi-form-style-three">
                                     {!this.props.client_id && 
                                     <div className="row">
                                         <div className="col">

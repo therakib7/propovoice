@@ -66,8 +66,8 @@ const TableBody = props => {
                 <td>{row.web}</td>
                 <td>{row.mobile}</td>
                 <td>{row.date}</td> 
-                <td>
-                    <span onClick={() => handleOverview(row.id)} className='bg-gray-700 hover:bg-gray-800 cursor-pointer text-white text-sm py-1 px-2 rounded mr-2 inline-block align-middle'>Overview</span>
+                <td className="pi-action">
+                    <span onClick={() => handleOverview(row.id)} className=''>Overview</span>
                     <span onClick={() => props.editEntry('edit', row)} ><svg
                                 width={13}
                                 height={13}

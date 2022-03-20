@@ -471,7 +471,7 @@ class Invoice extends Component {
 
 					{(currentTab == 'template') && <Template currentTemplate={this.state.invoice.template} changeHandler={this.handleTemplateChange} />}
 
-					{(currentTab == 'info') && <div id="pi-informations" className="city">
+					{(currentTab == 'info') && <div id="pi-informations" className="pi-invoice-tab-content">
 						<div className="row">
 							<div className="col-lg-9">
 								<h2>Add Content</h2>
@@ -611,56 +611,19 @@ class Invoice extends Component {
 										<ul>
 											<li className="pi-edit-style">
 												<input type="checkbox" defaultChecked="checked" />
-												<i />
-												<h3>Edit Style</h3>
-												<div className="pi-edit-content">
-													<h4>Edit clolor</h4>
-													<a href="">
+													<i />
+													<h3>Edit Style</h3>
+													<div className="pi-edit-content">
+													<h4>Edit Color (Upcoming)</h4>
 													<span className="pi-bg-red" />
-													</a>
-													<a href="">
 													<span className="pi-bg-pink" />
-													</a>
-													<a href="">
 													<span className="pi-bg-blue" />
-													</a>
-													<a href="">
-													<span className="pi-bg-green" />
-													</a>
-													<div className="pi-edit-text">
-													<h4>Edit Text</h4>
-													<div className="pi-edit-content">
-														<label htmlFor="">Title Text</label>
-														<select name="edit-text">
-														<option value="volvo">Inter</option>
-														<option value="saab">Saab</option>
-														<option value="opel">Opel</option>
-														<option value="audi">Audi</option>
-														</select>
-													</div>
-													<div className="pi-edit-content">
-														<label htmlFor="">Body Text</label>
-														<select name="edit-text">
-														<option value="volvo">Inter</option>
-														<option value="saab">Saab</option>
-														<option value="opel">Opel</option>
-														<option value="audi">Audi</option>
-														</select>
-													</div>
-													</div>
-													<div className="pi-edit-buttons">
-													<button className="pi-btn pi-color-blue pi-bg-hover-blue pi-hover-color-white">
-														Save
-													</button>
-													<button className="pi-btn pi-color-blue pi-bg-hover-blue pi-hover-color-white">
-														Clear
-													</button>
-													</div>
+													<span className="pi-bg-green" /> 
 												</div>
-											</li>
+											</li> 
 
 											<Suspense fallback={<div>Loading...</div>}>
-												<Payment handleChange={this.onPaymentChange} /> 
+												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} /> 
 												{/* Others sidebar section */}
 											</Suspense>
 											

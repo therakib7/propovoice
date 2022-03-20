@@ -110,7 +110,7 @@ class Email
                 $query_data['due'] = 0;
             }
 
-            $query_data['date'] = get_the_time('j-M-Y h:m a');
+            $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
 
         } 
@@ -168,10 +168,19 @@ class Email
         }
     }
 
-    public function create($req)
-    { 
+    public function create($req) { 
 
         $params = $req->get_params();   
+        $type = isset( $params['type'] ) ? $params['type'] : '';
+        if ( $type == 'sent' ) {
+            $this->sent($params);
+        } else if ( $type == 'feedback' ) {
+            $this->feedback($params);
+        } 
+        
+    }
+
+    public function sent($params) {  
 
         $mail_from = isset( $params['fromData'] ) ? $params['fromData']['email'] : '';
         $mail_to = isset( $params['toData'] ) ? $params['toData']['email'] : '';
@@ -260,6 +269,23 @@ class Email
         } else {
             wp_send_json_error( ['Something wrong'] );
         }
+        
+    }
+
+    public function feedback($params) {  
+ 
+        $invoice_id = isset( $params['invoice_id'] ) ? $params['invoice_id'] : '';  
+        $type = isset( $params['type'] ) ? nl2br($params['type']) : '';  
+        $note = isset( $params['note'] ) ? nl2br($params['note']) : '';  
+        
+
+        if ( $invoice_id ) {
+            update_post_meta($invoice_id, 'feedback', $type); 
+            update_post_meta($invoice_id, 'feedback_time', current_time( 'timestamp' )); 
+            update_post_meta($invoice_id, 'feedback_note', $note); 
+        }
+
+        wp_send_json_success();
         
     }
 

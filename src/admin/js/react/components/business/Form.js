@@ -63,7 +63,7 @@ class Form extends Component {
                             </div>
 
                             <div className="pi-content">
-                                <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two">
+                                <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two pi-form-style-three">
                                     <div className="row">
                                         <div className="col-lg">
                                             <label
@@ -161,17 +161,20 @@ class Form extends Component {
 
                                     <div className="row"> 
                                         <div className="col">
-                                            <label
-                                                htmlFor="form-default">
-                                                Default?   
+                                            <div className="pi-form-checkbox">
                                                 <input 
                                                     id="form-default"
-                                                    className="ml-3"
                                                     type="checkbox"
                                                     defaultChecked={this.state.form.default}
                                                     onChange={this.toggleChange}
                                                 />
-                                            </label> 
+                                                <label
+                                                    htmlFor="form-default"
+                                                    className="pi-m-10"
+                                                >
+                                                Default?    
+                                                </label>  
+                                            </div>
                                         </div> 
                                     </div>
 

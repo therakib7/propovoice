@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; 
 
-const TableHeader = props => { 
+const TableHeader = props => {  
     return (
         <thead>
             <tr>
@@ -25,12 +25,13 @@ const TableHeader = props => {
                 <th>
                     Total
                 </th>
-                <th>
-                    Paid
-                </th>
-                <th>
-                    Due
-                </th>
+                
+                {(props.path == 'invoice') && 
+                    <>
+                        <th>Paid</th>
+                        <th>Due</th>
+                    </>
+                }
                 <th>
                     Date
                 </th>
@@ -50,7 +51,7 @@ const TableBody = props => {
     let navigate = useNavigate();
     function handleClick( id ) { 
         let path = props.path;  
-        navigate(`${path}/single/${id}`, { replace: true });
+        navigate(`/${path}/single/${id}`, { replace: true });
     }
 
     let rows = props.tableData.map((row, index) => {
@@ -95,11 +96,15 @@ const TableBody = props => {
                     {row.to.first_name + ' ' + row.to.last_name}
                 </td>}
                 <td>{row.total}</td>
-                <td>{row.paid}</td>
-                <td>{row.due}</td>
-                <td>{row.date}</td> 
+                {(props.path == 'invoice') && 
+                    <>
+                        <td>{row.paid}</td>
+                        <td>{row.due}</td> 
+                    </>
+                }
+                <td>{row.date}</td>
                 <td>{status}</td> 
-                <td>  
+                <td className="pi-action">  
                     <span onClick={() => handleClick(row.id)} ><svg
                                 width={13}
                                 height={13}
@@ -144,7 +149,7 @@ const Table = (props) => {
         <> 
             {tableData.length > 0 && <div className='pi-table-wrap'>
                 <table className='pi-table'>
-                    <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} />
+                    <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} path={path} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} path={path} /> 
                 </table>
             </div>}

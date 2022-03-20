@@ -57,7 +57,7 @@ const TableBody = props => {
                 <td>{row.mobile}</td>
                 <td>{row.address}</td>
                 <td>{row.date}</td> 
-                <td> 
+                <td className="pi-action"> 
                     <span onClick={() => props.editEntry('edit', row)} ><svg
                                 width={13}
                                 height={13}

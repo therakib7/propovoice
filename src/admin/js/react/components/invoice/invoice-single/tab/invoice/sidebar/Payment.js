@@ -55,6 +55,7 @@ class Payment extends Component {
     }
 
     render() {
+        const { payment_id } = this.props.data
         return (
             <li>
                 <input type="checkbox" defaultChecked="checked" />
@@ -62,12 +63,12 @@ class Payment extends Component {
                 <h3>Payment</h3>
                 <div className="pi-payment-accrodion">
                     
-                    <div className="tab">
+                    <div className="pi-tab">
                         <input type="radio" id="pi-payment-bank" name="pi-payment-type" />
-                        <label className="tab-label" htmlFor="pi-payment-bank">
+                        <label className="pi-tab-label" htmlFor="pi-payment-bank">
                             Bank Payment
                         </label>
-                        <div className="tab-content">
+                        <div className="pi-tab-content">
                             {this.state.payments.map( (row, index) => { 
                                 if ( row.type != 'bank' ) return;
                                 return ( 
@@ -90,20 +91,20 @@ class Payment extends Component {
                                         </div>
         
                                         <div className="bank-text-content">
-                                            <span>
-                                            <svg
-                                                width={20}
-                                                height={20}
-                                                id="Layer_1"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                xmlnsXlink="http://www.w3.org/1999/xlink"
-                                                viewBox="3.4 5.6 17.6 13.4"
-                                                enableBackground="new 3.4 5.6 17.6 13.4"
-                                                xmlSpace="preserve"
-                                            >
-                                                <path d="M9,16.2L4.8,12l-1.4,1.4L9,19L21,7l-1.4-1.4L9,16.2z" />
-                                            </svg>
-                                            </span>
+                                            {row.id == payment_id && <span>
+                                                <svg
+                                                    width={20}
+                                                    height={20}
+                                                    id="Layer_1"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                                                    viewBox="3.4 5.6 17.6 13.4"
+                                                    enableBackground="new 3.4 5.6 17.6 13.4"
+                                                    xmlSpace="preserve"
+                                                >
+                                                    <path d="M9,16.2L4.8,12l-1.4,1.4L9,19L21,7l-1.4-1.4L9,16.2z" />
+                                                </svg>
+                                            </span>}
                                             <h4 className="pi-bank-title">{row.bank_name}</h4>
                                             <p className="pi-bank-subtitle">Ac No. {row.account_no}</p>
                                         </div>
@@ -133,9 +134,9 @@ class Payment extends Component {
                         </div>
                     </div>
 
-                    <div className="tab">
+                    <div className="pi-tab">
                         <input type="radio" id="pi-payment-none" onClick={() => this.setPayment(null)} name="pi-payment-type" />
-                        <label className="tab-label pi-arrow-none" htmlFor="pi-payment-none">
+                        <label className="pi-tab-label pi-arrow-none" htmlFor="pi-payment-none">
                             None
                         </label>
                     </div>

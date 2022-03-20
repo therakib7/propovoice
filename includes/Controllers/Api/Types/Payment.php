@@ -142,7 +142,7 @@ class Payment
             } 
             $query_data['logo'] = $logoData;
 
-            $query_data['date'] = get_the_time('j-M-Y h:m a');
+            $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data; 
         } 
         wp_reset_postdata(); 

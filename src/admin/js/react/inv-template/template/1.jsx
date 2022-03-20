@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import From from '../From';
 import To from '../To';
+import Payment from '../Payment';
 import Total from '../Total';
 import Items from '../Items' 
 import Note from '../Note' 
@@ -62,25 +63,7 @@ export default class One extends Component {
                         {items && <Items data={items} />} 
 
                         <div className="pi-bank-info">
-                            <div className="pi-banking">
-                                <h4>Bank Info:</h4>
-                                <table>
-                                <tbody>
-                                    <tr>
-                                    <th>Name:</th>
-                                    <td>Nasir Bin Burhan</td>
-                                    </tr>
-                                    <tr>
-                                    <th>Account No:</th>
-                                    <td> 2311 3213 2311</td>
-                                    </tr>
-                                    <tr>
-                                    <th>Bank Info:</th>
-                                    <td>Estern Bank Bangladesh Limited.Dhaka Branch</td>
-                                    </tr>
-                                </tbody>
-                                </table>
-                            </div> 
+                            <Payment {...this.props} />  
                             <Total {...this.props} /> 
                         </div> 
 

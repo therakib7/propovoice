@@ -2284,6 +2284,10 @@ html {
 .ncpi .pi-table tr {
   border: 1px solid #cbd5e0;
 }
+.ncpi .pi-table .pi-action span {
+  padding: 7px;
+  cursor: pointer;
+}
 .ncpi .pi-table .pi-dropbtn {
   padding: 7px 12px 2px;
   position: relative;
@@ -2413,20 +2417,23 @@ html {
 .ncpi .pi-info-table-content table td input[type=number],
 .ncpi .pi-info-table-content table td input[type=text] {
   width: 68px;
-  padding: 6px 0 8px 10px;
+  padding: 8px;
   border: 1px solid #cbd5e0;
   border-radius: 4px;
   background-color: #fff;
   outline: none;
 }
 .ncpi .pi-info-table-content table td select {
-  width: 70px;
-  padding: 8px;
+  background-color: var(--bg-color-air-white);
   border: 1px solid #cbd5e0;
   font-size: 10px;
-  background-color: var(--bg-color-air-white);
+  margin-left: -5px;
   outline: none;
-  margin-left: -7px;
+  padding: 8px;
+  width: 70px;
+  height: 38px;
+  position: relative;
+  top: -3px;
 }
 .ncpi .pi-info-table-content table tr td:last-child {
   font-size: 12px;
@@ -2540,6 +2547,7 @@ html {
 .ncpi .pi-breadcrumb ul li {
   display: inline;
   padding: 2px;
+  font-size: 16px;
 }
 .ncpi .pi-breadcrumb {
   margin-bottom: 25px;
@@ -2601,7 +2609,7 @@ html {
 .ncpi .pi-search-box.pi-float-right svg {
   position: absolute;
   left: 10px;
-  top: 10px;
+  top: 12px;
 }
 
 /*-------------------------------------------------------------- 
@@ -2672,8 +2680,6 @@ html {
   font-size: 12px;
   margin-top: 30px !important;
   border-radius: 10px !important;
-  margin: auto;
-  display: block;
 }
 .ncpi .pi-form-checkbox {
   margin-top: 10px;
@@ -2698,8 +2704,8 @@ html {
     width: 70%;
   }
 }
-.ncpi .pi-popup-content .pi-form-content label {
-  top: 9px !important;
+.ncpi .pi-popup-content .pi-form-content.pi-form-style-three label {
+  top: 9px;
 }
 .ncpi .pi-popup-content .pi-form-content .row > div {
   margin-bottom: -10px !important;
@@ -2811,7 +2817,7 @@ html {
 .ncpi .pi-single-tabs .pi-tab-item svg {
   position: absolute;
   top: 7px;
-  right: -51px;
+  right: -48px;
 }
 .ncpi .pi-single-tabs .pi-tab-item.pi-active span {
   border: 3px solid var(--bg-color-blue);
@@ -2839,7 +2845,7 @@ html {
   margin: auto;
   margin-bottom: 15px;
 }
-.ncpi .pi-single-tab-content .city h2 {
+.ncpi .pi-single-tab-content .pi-invoice-tab-content h2 {
   font-size: 20px;
   font-weight: 700;
   margin-top: 55px;
@@ -2850,6 +2856,7 @@ html {
 }
 .ncpi .pi-single-btn .pi-btn.pi-border-blue {
   margin-right: 10px;
+  background: none;
 }
 @media screen and (max-width: 768px) {
   .ncpi .pi-single-tabs .pi-tab-item {
@@ -2953,11 +2960,12 @@ html {
   display: inline-block;
   border-radius: 8px;
   margin-right: 7px;
+  cursor: pointer;
 }
-.ncpi .pi-edit-content .pi-edit-text {
+.ncpi .pi-edit-content .pi-pi-edit-text {
   margin-top: 2px;
 }
-.ncpi .pi-edit-content .pi-edit-text select {
+.ncpi .pi-edit-content .pi-pi-edit-text select {
   background-color: #edf2f7 !important;
   border-radius: 6px;
   font-size: 14px;
@@ -2967,7 +2975,7 @@ html {
   outline: none;
   line-height: 11;
 }
-.ncpi .pi-edit-content .pi-edit-text label {
+.ncpi .pi-edit-content .pi-pi-edit-text label {
   font-size: 10px;
   padding: 0px 5px;
   background: #fff;
@@ -2975,13 +2983,13 @@ html {
   top: 10px;
   left: 8px;
 }
-.ncpi .pi-edit-content .pi-edit-text .pi-edit-content {
+.ncpi .pi-edit-content .pi-pi-edit-text .pi-edit-content {
   float: left;
   width: 50%;
   margin-top: -20px;
   margin-bottom: 20px;
 }
-.ncpi .pi-edit-content .pi-edit-text .pi-edit-content:last-child {
+.ncpi .pi-edit-content .pi-pi-edit-text .pi-edit-content:last-child {
   position: relative;
   left: 5px;
 }
@@ -3020,6 +3028,8 @@ html {
   background-color: var(--bg-color-air-white);
   border-radius: 8px;
   border-top: 3px solid var(--bg-color-air-white);
+  font-size: 14px;
+  font-weight: 500;
 }
 .ncpi .pi-payment-tab .pi-tab svg {
   display: block;
@@ -3066,13 +3076,13 @@ html {
 .pi-payment-accrodion {
   /* Accordion styles */
 }
-.pi-payment-accrodion .tab {
+.pi-payment-accrodion .pi-tab {
   width: 100%;
   overflow: hidden;
   margin-top: -15px;
   margin-bottom: 10px;
 }
-.pi-payment-accrodion .tab-label {
+.pi-payment-accrodion .pi-tab-label {
   display: flex;
   justify-content: space-between;
   padding: 10px 10px 10px 32px;
@@ -3083,45 +3093,33 @@ html {
   border-radius: 5px;
   font-size: 15px;
 }
-.pi-payment-accrodion .tab-label::after {
+.pi-payment-accrodion .pi-tab-label::after {
   content: "❯";
   width: 1em;
   height: 1em;
-  text-align: center;
   transition: all 0.35s;
 }
-.pi-payment-accrodion .tab-content {
+.pi-payment-accrodion .pi-tab-content {
   max-height: 0;
   color: #000;
   background-color: #f7fafc;
   transition: all 0.35s;
   border-radius: 0 0 5px 5px;
 }
-.pi-payment-accrodion .tab-close {
-  display: flex;
-  justify-content: flex-end;
-  padding: 1em;
-  font-size: 0.75em;
-  background: #000;
-  cursor: pointer;
-}
-.pi-payment-accrodion .tab-close:hover {
-  background: #000;
-}
-.pi-payment-accrodion .tab input[type=checkbox] {
+.pi-payment-accrodion .pi-tab input[type=checkbox] {
   margin-bottom: 12px;
   margin-right: 5px;
   border-radius: 0;
   position: relative;
   top: 1px;
 }
-.pi-payment-accrodion .tab input[type=radio] {
+.pi-payment-accrodion .pi-tab input[type=radio] {
   position: relative;
-  top: 31px;
+  top: 36px;
   left: 12px;
   color: #000;
 }
-.pi-payment-accrodion .tab .pi-payment-btn {
+.pi-payment-accrodion .pi-tab .pi-payment-btn {
   padding: 10px 25px;
   border: 1px solid #dddddda8;
   border-radius: 5px;
@@ -3129,8 +3127,9 @@ html {
   font-weight: 600;
   background: none;
   cursor: pointer;
+  font-size: 14px;
 }
-.pi-payment-accrodion .tab .pi-payment-bank-content {
+.pi-payment-accrodion .pi-tab .pi-payment-bank-content {
   position: relative;
   display: flex;
   background-color: #fff;
@@ -3139,45 +3138,46 @@ html {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.pi-payment-accrodion .tab .pi-payment-bank-content .bank-text-content span {
+.pi-payment-accrodion .pi-tab .pi-payment-bank-content .bank-text-content span {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
 }
-.pi-payment-accrodion .tab .pi-payment-bank-content .pi-bank-image {
+.pi-payment-accrodion .pi-tab .pi-payment-bank-content .pi-bank-image {
   margin-right: 5px;
 }
-.pi-payment-accrodion .tab .pi-payment-bank-content .pi-bank-image span {
+.pi-payment-accrodion .pi-tab .pi-payment-bank-content .pi-bank-image span {
   background-color: var(--bg-color-air-white);
   padding: 12px 7px 5px;
   border-radius: 3px;
   position: relative;
   top: 30%;
 }
-.pi-payment-accrodion .tab .pi-payment-bank-content .pi-bank-title {
+.pi-payment-accrodion .pi-tab .pi-payment-bank-content .pi-bank-title {
   font-size: 12px;
   font-weight: 500;
   line-height: 17px;
   margin-top: 5px;
 }
-.pi-payment-accrodion .tab .pi-payment-bank-content .pi-bank-subtitle {
+.pi-payment-accrodion .pi-tab .pi-payment-bank-content .pi-bank-subtitle {
   margin: 0;
   font-size: 10px;
 }
-.pi-payment-accrodion .tab input[type=radio]:checked {
+.pi-payment-accrodion .pi-tab input[type=radio]:checked {
   background-color: #93e026;
 }
 .pi-payment-accrodion .pi-arrow-none:after {
   content: "" !important;
 }
-.pi-payment-accrodion input:checked + .tab-label {
+.pi-payment-accrodion input:checked + .pi-tab-label {
   color: #000;
 }
-.pi-payment-accrodion input:checked + .tab-label::after {
+.pi-payment-accrodion input:checked + .pi-tab-label::after {
   transform: rotate(90deg);
+  margin-top: 5px;
 }
-.pi-payment-accrodion input:checked ~ .tab-content {
+.pi-payment-accrodion input:checked ~ .pi-tab-content {
   max-height: 100vh;
   padding: 15px 15px 25px;
 }
@@ -3220,12 +3220,19 @@ html {
   position: relative;
   top: 3px;
 }
-.ncpi .mt-5 {
+.ncpi .pi-m-auto {
+  margin: auto;
+  display: block !important;
+}
+.ncpi .pi-mt-5 {
   margin-top: 5px;
   position: relative;
 }
 .ncpi .pi-ml-10 {
   margin-left: 10px;
+}
+.ncpi .pi-m-10 {
+  margin-top: -10px !important;
 }
 .ncpi .pi-p-40 {
   padding: 40px 30px !important;
@@ -3427,6 +3434,7 @@ select {
 .ncpi .pi-form-content input[type=email],
 .ncpi .pi-form-content input[type=url],
 .ncpi .pi-business-form input[type=number],
+.ncpi .pi-business-form input[type=email],
 .ncpi .pi-business-form input[type=text] {
   background-color: #edf2f7;
   border-radius: 10px;
@@ -3739,6 +3747,8 @@ select {
 }
 .ncpi .pi-left-sidebar ul li a svg {
   margin-right: 10px;
+  position: relative;
+  top: 3px;
 }
 .ncpi .pi-left-sidebar ul li a .polygon {
   position: absolute;

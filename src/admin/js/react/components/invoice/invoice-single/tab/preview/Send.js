@@ -122,7 +122,9 @@ ${company_name}`;
     }
 
     sendEmail = () => {
-        Api.create(this.state.form)
+        let form = { ...this.state.form }
+			form.type = 'sent'; 
+        Api.create(form)
                 .then(resp => {
                     if (resp.data.success) {  
 						//this.props.routeChange(resp.data.data);  
@@ -156,7 +158,7 @@ ${company_name}`;
                                 </div>
 
                                 <div className="pi-content">
-                                    <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two">
+                                    <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two pi-form-style-three">
                                         <div className="row">
                                             <div className="col-lg">
                                                 <label

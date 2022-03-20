@@ -139,7 +139,7 @@ export default class Preview extends Component {
     render() {
         const { id } = this.props.data.invoice.template;
         return (
-            <div id="pi-share" className="city"> 
+            <div id="pi-share" className="pi-invoice-tab-content"> 
                 <iframe id="ncpi-invoice-print" style={{height: 0, width: 0, position: 'absolute'}}></iframe>
                 <div className='row justify-content-md-center'> 
                     <div className='col-md-8' style={{margin: '50px 0 30px 0'}}> 

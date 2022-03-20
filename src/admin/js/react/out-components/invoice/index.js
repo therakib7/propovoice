@@ -6,7 +6,7 @@ import html2canvas from 'html2canvas';
 import Api from 'api/invoice';  
 import Preview from 'inv-template';
 
-import Send from './Send'; 
+import FeedBack from './FeedBack'; 
 
 const EditDownload = props => { 
     return (
@@ -64,6 +64,7 @@ export default class Invoice extends Component {
 
         this.state = {   
             emailModal: false,
+            feedback: 'accept',
 			fromData: null,
 			toData: null,  
 			invoice: { 
@@ -163,9 +164,17 @@ export default class Invoice extends Component {
                             <button 
                                 className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white" 
                                 style={{float: 'right'}}
-                                onClick={() => this.setState({ emailModal: true })}
+                                onClick={() => this.setState({ emailModal: true, feedback: 'accept' })}
                                 >  
                                 Accept
+                            </button>
+
+                            <button 
+                                className="pi-btn pi-bg-air-white pi-color-white pi-bg-hover-blue pi-hover-color-white" 
+                                style={{float: 'right', color: '#000', marginRight: '5px'}}
+                                onClick={() => this.setState({ emailModal: true, feedback: 'decline' })}
+                                >  
+                                Decline
                             </button>
                         </div>
                         
@@ -178,12 +187,22 @@ export default class Invoice extends Component {
                     <div className='col-md-8' style={{margin: '50px 0 30px 0'}}> 
                         <div className='' style={{maxWidth: '794px', margin: '0 auto'}}>
                             <EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
+                            
+
                             <button 
                                 className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white" 
                                 style={{float: 'right'}}
-                                onClick={() => this.setState({ emailModal: true })}
+                                onClick={() => this.setState({ emailModal: true, feedback: 'accept' })}
                                 >  
                                 Accept
+                            </button>
+
+                            <button 
+                                className="pi-btn pi-bg-air-white pi-color-white pi-bg-hover-blue pi-hover-color-white" 
+                                style={{float: 'right', color: '#000', marginRight: '5px'}}
+                                onClick={() => this.setState({ emailModal: true, feedback: 'decline' })}
+                                >  
+                                Decline
                             </button>
                         </div> 
                     </div>
@@ -191,7 +210,7 @@ export default class Invoice extends Component {
 
                 {/* TODO: check this step for every component or pass show props */}
                 {this.state.emailModal &&
-                <Send
+                <FeedBack
                     show={this.state.emailModal}
                     data={this.state}
                     close={() => this.setState({ emailModal: false })}

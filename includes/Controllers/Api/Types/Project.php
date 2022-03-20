@@ -127,7 +127,7 @@ class Project
             $query_data['client_id'] = $client_id;
             $query_data['client'] = $clientData;
 
-            $query_data['date'] = get_the_time('j-M-Y h:m a');
+            $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
 
         } 

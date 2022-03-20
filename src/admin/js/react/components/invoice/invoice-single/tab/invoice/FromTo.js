@@ -89,7 +89,7 @@ class FromTo extends Component {
                 <div className="row">
                     <div className="col-lg-6">
                     <div className="pi-from-to">
-                        <label>Sender :</label>
+                        <label>Sender:</label>
                         <Select
                             value={fromData}
                             onChange={this.handleFromChange}
@@ -120,7 +120,7 @@ class FromTo extends Component {
                     </div>
                     <div className="col-lg-6">
                     <div className="pi-from-to pi-to">
-                        <label>Receiver</label>
+                        <label>Receiver:</label>
                         <AsyncSelect
                             loadOptions={this.handleFindClient}
                             value={toData}

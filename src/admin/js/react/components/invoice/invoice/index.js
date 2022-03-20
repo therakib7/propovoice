@@ -20,6 +20,7 @@ const Invoice = class Invoice extends Component {
 
         this.state = {  
             title: '',
+            path: '',
             empty: false,
             preloader: true,
             formModal: false,
@@ -39,8 +40,11 @@ const Invoice = class Invoice extends Component {
 
     componentDidMount() {  
         let title = this.props.path == '/invoice' ? 'Invoice' : 'Estimate';
-        this.setState({ title }); 
-        this.getLists();
+        let path = this.props.path == '/invoice' ? 'invoice' : 'estimate';        
+
+        this.setState({ title, path }, () => {
+            this.getLists();
+        });
     }
 
     getLists = (searchArgs = null) => {
@@ -49,10 +53,8 @@ const Invoice = class Invoice extends Component {
             page: this.state.currentPage,
             per_page: this.state.perPage
         }
-
-        //invoice, estimate
-        let path = this.props.path == '/invoice' ? 'invoice' : 'estimate';
-        args.path = path;
+ 
+        args.path = this.state.path;
 
         if (this.props.invoice_id) {
             args.invoice_id = this.props.invoice_id;
@@ -275,7 +277,7 @@ const Invoice = class Invoice extends Component {
                 {this.state.empty && <Empty title={title} clickHandler={() => this.newInvoie()} />}
 
                 {/* <button
-                    className="float-right bg-gray-700 hover:bg-gray-800 text-white font-medium text-base py-2 px-4 rounded mb-3"
+                    className=""
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button>  */}
@@ -286,7 +288,7 @@ const Invoice = class Invoice extends Component {
                     close={this.closeForm}
                 />
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.props.path} />}
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}
