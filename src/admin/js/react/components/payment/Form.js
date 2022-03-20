@@ -11,6 +11,7 @@ class Form extends Component {
             bank_name: '',
             bank_branch: '',
             routing_no: '', 
+            account_name: '',
             account_no: '',
             confirm_account_no: '', 
             default: false, 
@@ -132,6 +133,24 @@ class Form extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div> 
+                                    </div> 
+
+                                    <div className="row">
+                                        <div className="col-lg">
+                                            <label
+                                                htmlFor="form-account_name">
+                                                Account Name
+                                            </label>
+
+                                            <input
+                                                id="form-account_name"
+                                                type="text"
+                                                required
+                                                name="account_name"
+                                                value={this.state.form.account_name}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>  
                                     </div> 
 
                                     <div className="row">

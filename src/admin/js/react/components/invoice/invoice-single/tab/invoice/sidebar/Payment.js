@@ -50,6 +50,10 @@ class Payment extends Component {
         // this.setState({ form: this.initialState });
     }
 
+    setPayment = ( data ) => {
+        this.props.handleChange(data);
+    }
+
     render() {
         return (
             <li>
@@ -59,15 +63,15 @@ class Payment extends Component {
                 <div className="pi-payment-accrodion">
                     
                     <div className="tab">
-                        <input type="radio" id="rd2" name="rd" />
-                        <label className="tab-label" htmlFor="rd2">
+                        <input type="radio" id="pi-payment-bank" name="pi-payment-type" />
+                        <label className="tab-label" htmlFor="pi-payment-bank">
                             Bank Payment
                         </label>
                         <div className="tab-content">
                             {this.state.payments.map( (row, index) => { 
                                 if ( row.type != 'bank' ) return;
                                 return ( 
-                                    <div className="pi-payment-bank-content" key={index}>
+                                    <div className="pi-payment-bank-content" key={index} onClick={() => this.setPayment(row)} >
                                         <div className="pi-bank-image">
                                             <span>
                                             <svg
@@ -130,8 +134,8 @@ class Payment extends Component {
                     </div>
 
                     <div className="tab">
-                        <input type="radio" id="rd3" name="rd" />
-                        <label className="tab-label pi-arrow-none" htmlFor="rd3">
+                        <input type="radio" id="pi-payment-none" onClick={() => this.setPayment(null)} name="pi-payment-type" />
+                        <label className="tab-label pi-arrow-none" htmlFor="pi-payment-none">
                             None
                         </label>
                     </div>

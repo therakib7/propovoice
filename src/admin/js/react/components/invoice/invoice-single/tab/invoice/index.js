@@ -6,7 +6,7 @@ import Api from 'api/invoice';
 
 import FromTo from './FromTo';
 import Items from './Items'
-// import Payment from './dPayment';
+import PaymentInfo from './PaymentInfo';
 import Total from './Total';
 import Note from './Note'
 import Group from './Group';
@@ -151,6 +151,7 @@ class Invoice extends Component {
 					invoice,
 					fromData: resp.data.data.fromData,
 					toData: resp.data.data.toData,
+					paymentData: resp.data.data.paymentData,
 					// editId: this.props.id
 				});
 			})
@@ -367,6 +368,17 @@ class Invoice extends Component {
 		});
 	} 
 
+	onPaymentChange = ( data ) => { 
+		let invoice = { ...this.state.invoice }		
+		if ( data ) {
+			invoice.payment_id = data.id;
+		} else {
+			invoice.payment_id = null;
+		}
+		
+		this.setState({ invoice, paymentData: data });
+	}
+
 	render = () => {
 		const { tabs = [], currentTab, title } = this.state;
 		return (
@@ -555,13 +567,7 @@ class Invoice extends Component {
 
 									<div className="row">
 										<div className="col-lg-6">
-											{/* <Payment 
-												setFrom={this.handleSetFrom}
-												setTo={this.handleSetTo}
-												fromData={this.state.fromData}
-												toData={this.state.toData}
-												editId={this.props.id}
-											/> */}
+											<PaymentInfo data={this.state.paymentData} />
 										</div> 
 
 										<div className="col-lg-6">
@@ -654,7 +660,7 @@ class Invoice extends Component {
 											</li>
 
 											<Suspense fallback={<div>Loading...</div>}>
-												<Payment /> 
+												<Payment handleChange={this.onPaymentChange} /> 
 												{/* Others sidebar section */}
 											</Suspense>
 											

@@ -127,6 +127,7 @@ class Payment
             $query_data['bank_name'] = get_post_meta($id, 'bank_name', true);
             $query_data['routing_no'] = get_post_meta($id, 'routing_no', true);
             $query_data['bank_branch'] = get_post_meta($id, 'bank_branch', true);
+            $query_data['account_name'] = get_post_meta($id, 'account_name', true);  
             $query_data['account_no'] = get_post_meta($id, 'account_no', true);  
             $query_data['confirm_account_no'] = get_post_meta($id, 'account_no', true);  
             $query_data['default'] = (bool) get_post_meta($id, 'default', true); 
@@ -182,6 +183,7 @@ class Payment
         $bank_name = isset( $params['bank_name'] ) ? sanitize_text_field( $params['bank_name'] ) : null; 
         $routing_no = isset( $params['routing_no'] ) ? sanitize_text_field( $params['routing_no'] ) : null; 
         $bank_branch = isset( $params['bank_branch'] ) ? sanitize_text_field( $params['bank_branch'] ) : null; 
+        $account_name = isset( $params['account_name'] ) ? sanitize_text_field( $params['account_name'] ) : null; 
         $account_no = isset( $params['account_no'] ) ? sanitize_text_field( $params['account_no'] ) : null; 
         $confirm_account_no = isset( $params['confirm_account_no'] ) ? sanitize_text_field( $params['confirm_account_no'] ) : null; 
         $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null;  
@@ -228,6 +230,10 @@ class Payment
                     update_post_meta($post_id, 'bank_branch', $bank_branch); 
                 }
 
+                if ( $account_name ) {
+                    update_post_meta($post_id, 'account_name', $account_name); 
+                } 
+
                 if ( $account_no ) {
                     update_post_meta($post_id, 'account_no', $account_no); 
                 } 
@@ -263,6 +269,7 @@ class Payment
         $bank_name = isset( $params['bank_name'] ) ? sanitize_text_field( $params['bank_name'] ) : null; 
         $routing_no = isset( $params['routing_no'] ) ? sanitize_text_field( $params['routing_no'] ) : null; 
         $bank_branch = isset( $params['bank_branch'] ) ? sanitize_text_field( $params['bank_branch'] ) : null; 
+        $account_name = isset( $params['account_name'] ) ? sanitize_text_field( $params['account_name'] ) : null; 
         $account_no = isset( $params['account_no'] ) ? sanitize_text_field( $params['account_no'] ) : null; 
         $confirm_account_no = isset( $params['confirm_account_no'] ) ? sanitize_text_field( $params['confirm_account_no'] ) : null; 
         $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null;  
@@ -306,6 +313,10 @@ class Payment
                 if ( $bank_branch ) {
                     update_post_meta($post_id, 'bank_branch', $bank_branch); 
                 }
+
+                if ( $account_name ) {
+                    update_post_meta($post_id, 'account_name', $account_name); 
+                } 
 
                 if ( $account_no ) {
                     update_post_meta($post_id, 'account_no', $account_no); 

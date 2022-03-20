@@ -209,6 +209,17 @@ class Invoice
         } 
         $query_data['toData'] = $toData; 
 
+        $payment_id = get_post_meta($id, 'payment_id', true);
+        $paymentData = null; 
+        if ( $payment_id ) {
+            $paymentData['id'] = $payment_id;
+            $paymentMeta = get_post_meta($payment_id); 
+            $paymentData['bank_name'] = isset( $paymentMeta['bank_name'] ) ? $paymentMeta['bank_name'][0] : '';
+            $paymentData['account_name'] = isset( $paymentMeta['account_name'] ) ? $paymentMeta['account_name'][0] : ''; 
+            $paymentData['account_no'] = isset( $paymentMeta['account_no'] ) ? $paymentMeta['account_no'][0] : ''; 
+        } 
+        $query_data['paymentData'] = $paymentData; 
+
         return wp_send_json_success($query_data); 
     }
 
@@ -222,6 +233,7 @@ class Invoice
         $date     = isset( $params['date'] ) ? $params['date'] : null; 
         $path     = isset( $params['path'] ) ? $params['path'] : ''; 
         $due_date = isset( $params['due_date'] ) ? $params['due_date'] : null; 
+        $payment_id = isset( $params['payment_id'] ) ? $params['payment_id'] : null; 
         // wp_send_json_success($invoice);
         $total    = 0;
         foreach ( $params['items'] as $item ) {
@@ -295,6 +307,10 @@ class Invoice
                     update_post_meta($post_id, 'due', $due); 
                 } 
 
+                if ( $payment_id ) {
+                    update_post_meta($post_id, 'payment_id', $payment_id); 
+                } 
+
                 if ( true ) {
                     //generate secret token
                     $bytes = random_bytes(20);
@@ -316,6 +332,7 @@ class Invoice
 
         $date     = isset( $params['date'] ) ? $params['date'] : null; 
         $due_date = isset( $params['due_date'] ) ? $params['due_date'] : null; 
+        $payment_id = isset( $params['payment_id'] ) ? $params['payment_id'] : null; 
 
         $from     = isset( $params['from'] ) ? $params['from'] : null;
         $to     = isset( $params['to'] ) ? $params['to'] : null;
@@ -383,6 +400,8 @@ class Invoice
                 if ( $due ) {
                     update_post_meta($post_id, 'due', $due); 
                 }   
+
+                update_post_meta($post_id, 'payment_id', $payment_id); 
 
                 wp_send_json_success($post_id);
             } else {

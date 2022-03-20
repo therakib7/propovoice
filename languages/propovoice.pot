@@ -50,11 +50,15 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:227, ../includes/Controllers/Api/Types/Invoice.php:319
+#: ../includes/Controllers/Api/Types/Invoice.php:237, ../includes/Controllers/Api/Types/Invoice.php:334
 msgid "Sender is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:231, ../includes/Controllers/Api/Types/Invoice.php:323
+#: ../includes/Controllers/Api/Types/Invoice.php:241
+msgid "Path is missing"
+msgstr ""
+
+#: ../includes/Controllers/Api/Types/Invoice.php:245, ../includes/Controllers/Api/Types/Invoice.php:338
 msgid "Receiver is missing"
 msgstr ""
 
@@ -66,7 +70,7 @@ msgstr ""
 msgid "File is too large. Max. upload file size is %s"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Payment.php:183, ../includes/Controllers/Api/Types/Payment.php:264
+#: ../includes/Controllers/Api/Types/Payment.php:193, ../includes/Controllers/Api/Types/Payment.php:272
 msgid "Bank name is missing"
 msgstr ""
 
@@ -162,10 +166,10 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: ../views/template/invoice-template.php:56
+#: ../views/template/invoice-template.php:61
 msgid "Sorry!! page not found"
 msgstr ""
 
-#: ../views/template/invoice-template.php:53
+#: ../views/template/invoice-template.php:58
 msgid "Sorry!! You don't have permission to view this page"
 msgstr ""
