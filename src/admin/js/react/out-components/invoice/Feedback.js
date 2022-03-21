@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import Api from 'api/email';
 
@@ -36,12 +36,14 @@ class Feedback extends Component {
         Api.create(form)
             .then(resp => {
                 if (resp.data.success) {
+                    this.props.close();
 
                     if (form.feedback == 'accept') {
                         toast.success('Thanks for accepting');
                     } else {
                         toast.success('Sorry for declining');
                     }
+
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -54,7 +56,6 @@ class Feedback extends Component {
             <>
                 {this.props.show && (
                     <>
-                        <ToastContainer />
                         <div className="pi-overlay pi-show">
                             <div className="pi-popup-content">
                                 <div className="pi-modal-header">

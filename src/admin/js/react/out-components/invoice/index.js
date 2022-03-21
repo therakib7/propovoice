@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -64,7 +65,7 @@ export default class Invoice extends Component {
 
         this.state = {
             emailModal: false,
-            feedback: 'accept',
+            feedback: '',
             fromData: null,
             toData: null,
             invoice: {
@@ -156,6 +157,7 @@ export default class Invoice extends Component {
     render() {
         return (
             <div>
+                <ToastContainer />
                 <iframe id="ncpi-invoice-print" style={{ margin: 0, padding: 0, height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8' style={{ margin: '50px 0' }}>
