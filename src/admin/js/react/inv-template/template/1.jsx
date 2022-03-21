@@ -22,6 +22,7 @@ export default class One extends Component {
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData } = this.props.data;
+        let title = this.props.data.invoice.path == 'invoice' ? 'Invoice' : 'Estimate';
         return (
             <div className="pi-inv">
                 <div className="pi-inv-one">
@@ -35,7 +36,7 @@ export default class One extends Component {
                                 <From data={fromData} />
                                 <div className="pi-from-date">
                                     <p>
-                                        Invoice No: <span>{id}</span>
+                                        {title} No: <span>{id}</span>
                                     </p>
 
                                     <div className="pi-from-time">
@@ -47,7 +48,7 @@ export default class One extends Component {
                             </div>
                             <div className="pi-to">
                                 <div className="pi-inv-title">
-                                    <h2>invoice</h2>
+                                    <h2>{title}</h2>
                                 </div>
                                 <To data={toData} />
                             </div>

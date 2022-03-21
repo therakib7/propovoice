@@ -8,6 +8,7 @@ import Api from 'api/invoice';
 import Preview from 'inv-template';
 
 import Feedback from './Feedback';
+import Payment from './Payment';
 
 const EditDownload = props => {
     return (
@@ -59,12 +60,52 @@ const EditDownload = props => {
     );
 }
 
+const InvoiceBtn = props => {
+    if (!props.type) return null;
+    return (
+        <>
+            {props.type == 'estimate' &&
+                <>
+                    <button
+                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
+                        style={{ float: 'right' }}
+                        onClick={() => props.handleChange('feedback', 'accept')}
+                    >
+                        Accept
+                    </button>
+
+                    <button
+                        className="pi-btn pi-bg-air-white pi-color-white pi-bg-hover-blue pi-hover-color-white"
+                        style={{ float: 'right', color: '#000', marginRight: '5px' }}
+                        onClick={() => props.handleChange('feedback', 'decline')}
+                    >
+                        Decline
+                    </button>
+                </>
+            }
+
+            {props.type == 'invoice' &&
+                <>
+                    <button
+                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
+                        style={{ float: 'right' }}
+                        onClick={() => props.handleChange('payment')}
+                    >
+                        Payment
+                    </button>
+                </>
+            }
+        </>
+    );
+}
+
 export default class Invoice extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             emailModal: false,
+            paymentModal: false,
             feedback: '',
             fromData: null,
             toData: null,
@@ -154,6 +195,14 @@ export default class Invoice extends Component {
         });
     }
 
+    handleClick = (type, feedback = null) => {
+        if (type == 'feedback') {
+            this.setState({ emailModal: true, feedback });
+        } else {
+            this.setState({ paymentModal: true });
+        }
+    }
+
     render() {
         return (
             <div>
@@ -163,21 +212,7 @@ export default class Invoice extends Component {
                     <div className='col-md-8' style={{ margin: '50px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
-                            <button
-                                className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                                style={{ float: 'right' }}
-                                onClick={() => this.setState({ emailModal: true, feedback: 'accept' })}
-                            >
-                                Accept
-                            </button>
-
-                            <button
-                                className="pi-btn pi-bg-air-white pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                                style={{ float: 'right', color: '#000', marginRight: '5px' }}
-                                onClick={() => this.setState({ emailModal: true, feedback: 'decline' })}
-                            >
-                                Decline
-                            </button>
+                            <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} />
                         </div>
 
                     </div>
@@ -189,23 +224,7 @@ export default class Invoice extends Component {
                     <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
-
-
-                            <button
-                                className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                                style={{ float: 'right' }}
-                                onClick={() => this.setState({ emailModal: true, feedback: 'accept' })}
-                            >
-                                Accept
-                            </button>
-
-                            <button
-                                className="pi-btn pi-bg-air-white pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                                style={{ float: 'right', color: '#000', marginRight: '5px' }}
-                                onClick={() => this.setState({ emailModal: true, feedback: 'decline' })}
-                            >
-                                Decline
-                            </button>
+                            <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} />
                         </div>
                     </div>
                 </div>
@@ -216,6 +235,13 @@ export default class Invoice extends Component {
                         show={this.state.emailModal}
                         data={this.state}
                         close={() => this.setState({ emailModal: false })}
+                    />}
+
+                {this.state.paymentModal &&
+                    <Payment
+                        show={this.state.paymentModal}
+                        data={this.state}
+                        close={() => this.setState({ paymentModal: false })}
                     />}
             </div>
         );
