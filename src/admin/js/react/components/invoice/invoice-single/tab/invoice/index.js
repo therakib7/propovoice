@@ -13,14 +13,14 @@ import Group from './Group';
 import Sign from './Sign';
 
 import Template from '../template';
-import Preview from '../preview'; 
+import Preview from '../preview';
 
 import Attach from './Attach';
 import DateField from 'block/date-picker';
 
 //sidebar section
 import Style from './sidebar/Style'
-import Owner from './sidebar/Owner' 
+import Owner from './sidebar/Owner'
 const Payment = lazy(() => import('./sidebar/Payment'));
 
 class Invoice extends Component {
@@ -46,7 +46,7 @@ class Invoice extends Component {
 					id: 'preview',
 					text: 'Preview & Share'
 				},
-			], 
+			],
 			currentTab: '',
 			msg: {
 				create: 'Successfully Added',
@@ -61,7 +61,7 @@ class Invoice extends Component {
 			paymentData: null,
 			invoice: {
 				id: null,
-				date: new Date(), 
+				date: new Date(),
 				due_date: new Date(),
 				template: {
 					id: null,
@@ -85,12 +85,12 @@ class Invoice extends Component {
 				note: null,
 				group: null,
 				attach: [],
-				sign: null 
+				sign: null
 			},
 		};
 	}
 
-	componentDidMount() { 
+	componentDidMount() {
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
 		if (this.props.id) {
@@ -119,7 +119,7 @@ class Invoice extends Component {
 	}
 
 	bgColor = () => {
-		if ( this.state.currentTab == 'info') { 
+		if (this.state.currentTab == 'info') {
 			document.body.style.backgroundColor = "#f1f1f7";
 		} else {
 			document.body.style.backgroundColor = "#fff";
@@ -142,11 +142,11 @@ class Invoice extends Component {
 	getData = () => {
 		Api.get(this.props.id)
 			.then(resp => {
-				
+
 				let invoice = resp.data.data.invoice;
-				invoice.id = parseInt(resp.data.data.id); 
-				invoice.date = new Date(resp.data.data.invoice.date); 
-				invoice.due_date = new Date(resp.data.data.invoice.due_date); 
+				invoice.id = parseInt(resp.data.data.id);
+				invoice.date = new Date(resp.data.data.invoice.date);
+				invoice.due_date = new Date(resp.data.data.invoice.due_date);
 				this.setState({
 					invoice,
 					fromData: resp.data.data.fromData,
@@ -159,8 +159,8 @@ class Invoice extends Component {
 
 	onDateChange = (date, type = null) => {
 		let invoice = { ...this.state.invoice }
-		
-		if ( type == 'date' ) {
+
+		if (type == 'date') {
 			invoice.date = date;
 		} else {
 			invoice.due_date = date;
@@ -212,14 +212,14 @@ class Invoice extends Component {
 
 	handleAttachChange = (data, type = null) => {
 		let invoice = { ...this.state.invoice }
-		if ( type == 'delete' ) { 
-			let index = invoice.attach.findIndex(function(o){
+		if (type == 'delete') {
+			let index = invoice.attach.findIndex(function (o) {
 				return o.id === data;
 			})
-			if (index !== -1) invoice.attach.splice(index, 1);  
+			if (index !== -1) invoice.attach.splice(index, 1);
 		} else {
 			invoice.attach.push(data);
-		}  
+		}
 		this.setState({ invoice })
 	}
 
@@ -269,9 +269,9 @@ class Invoice extends Component {
 	handleSave = () => {
 		let editId = this.props.id;
 		if (!editId) {
-			let path = this.props.path == 'invoice' ? 'invoice' : 'estimate';  
+			let path = this.props.path == 'invoice' ? 'invoice' : 'estimate';
 			let invoice = { ...this.state.invoice }
-			invoice.path = path; 
+			invoice.path = path;
 
 			Api.create(invoice)
 				.then(resp => {
@@ -325,7 +325,7 @@ class Invoice extends Component {
 	}
 
 	calcGrandTotal = () => {
-		return this.calcItemsTotal() + this.calcTaxTotal(); 
+		return this.calcItemsTotal() + this.calcTaxTotal();
 	}
 
 	setActiveTab(e, id) {
@@ -366,16 +366,16 @@ class Invoice extends Component {
 		this.setState({
 			currentTab: tab
 		});
-	} 
+	}
 
-	onPaymentChange = ( data ) => { 
-		let invoice = { ...this.state.invoice }		
-		if ( data ) {
+	onPaymentChange = (data) => {
+		let invoice = { ...this.state.invoice }
+		if (data) {
 			invoice.payment_id = data.id;
 		} else {
 			invoice.payment_id = null;
 		}
-		
+
 		this.setState({ invoice, paymentData: data });
 	}
 
@@ -422,19 +422,19 @@ class Invoice extends Component {
 								{this.state.msg.saveTxt} & Continue
 							</button>}
 
-							{(currentTab == 'preview') && 
-							<>
-								<button
-								className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
-								onClick={() => this.props.routeInvoice()} >
-								Back to Invoice
-								</button>
-								<button
-									className="pi-btn pi-bg-blue pi-bg-hover-blue"
-									onClick={() => this.setState({ emailModal: true })} >
-									Send Email
-								</button>
-							</>
+							{(currentTab == 'preview') &&
+								<>
+									<button
+										className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
+										onClick={() => this.props.routeInvoice()} >
+										Back to Invoice
+									</button>
+									<button
+										className="pi-btn pi-bg-blue pi-bg-hover-blue"
+										onClick={() => this.setState({ emailModal: true })} >
+										Send Email
+									</button>
+								</>
 							}
 						</div>
 					</div>
@@ -483,19 +483,19 @@ class Invoice extends Component {
 											<div className="col-12 col-md-6">
 												<div className="pi-info-logo">
 													<img src={ncpi_local.assetImgUri + 'from-logo.png'} className="" />
-												</div> 
+												</div>
 											</div>
 											<div className="col-12 col-md-6">
 												<div className="pi-info-form">
 													<div className="row">
 														<div className="pi-info-lavel">
-															<label htmlFor="info-number">{title} number :</label>
+															<label htmlFor="info-number">{title} number:</label>
 														</div>
 														<div className="pi-info-input-field">
 															<input
-																type="number" 
-																name="invoice_id" 
-																value={23423}
+																type="number"
+																name="invoice_id"
+																value={this.props.id}
 																readOnly
 															/>
 														</div>
@@ -522,7 +522,7 @@ class Invoice extends Component {
 										</div>
 									</div>{/* ./ pi-add-info-content */}
 
-									<FromTo 
+									<FromTo
 										setFrom={this.handleSetFrom}
 										setTo={this.handleSetTo}
 										fromData={this.state.fromData}
@@ -561,14 +561,14 @@ class Invoice extends Component {
 											focusHandler={this.handleFocusSelect}
 											deleteHandler={this.handleRemoveLineItem}
 											reorderHandler={this.handleReorderItems}
-										/> 
-										 
-									</div>{/* ./ info-table-content */}  
+										/>
+
+									</div>{/* ./ info-table-content */}
 
 									<div className="row">
 										<div className="col-lg-6">
 											<PaymentInfo data={this.state.paymentData} />
-										</div> 
+										</div>
 
 										<div className="col-lg-6">
 											<Total
@@ -576,12 +576,12 @@ class Invoice extends Component {
 												itemsTotal={this.calcItemsTotal}
 												tax={this.state.invoice.tax}
 												taxTotal={this.calcTaxTotal}
-												grandTotal={this.calcGrandTotal} 
+												grandTotal={this.calcGrandTotal}
 												changeHandler={this.handleInvoiceChange}
 												focusHandler={this.handleFocusSelect}
-											/> 
-										</div> 
-									</div> 
+											/>
+										</div>
+									</div>
 
 									<div className="pi-group-form">
 										<Note data={this.state.invoice.note} changeHandler={this.handleNoteChange} />
@@ -611,22 +611,22 @@ class Invoice extends Component {
 										<ul>
 											<li className="pi-edit-style">
 												<input type="checkbox" defaultChecked="checked" />
-													<i />
-													<h3>Edit Style</h3>
-													<div className="pi-edit-content">
+												<i />
+												<h3>Edit Style</h3>
+												<div className="pi-edit-content">
 													<h4>Edit Color (Upcoming)</h4>
 													<span className="pi-bg-red" />
 													<span className="pi-bg-pink" />
 													<span className="pi-bg-blue" />
-													<span className="pi-bg-green" /> 
+													<span className="pi-bg-green" />
 												</div>
-											</li> 
+											</li>
 
 											<Suspense fallback={<div>Loading...</div>}>
-												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} /> 
+												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} />
 												{/* Others sidebar section */}
 											</Suspense>
-											
+
 											<li>
 												<input type="checkbox" defaultChecked="checked" />
 												<i />
@@ -688,7 +688,7 @@ class Invoice extends Component {
 							data={this.state}
 							emailModal={this.state.emailModal}
 							showEmailModal={() => this.setState({ emailModal: true })}
-							closeEmailModal={() => this.setState({ emailModal: false })} 
+							closeEmailModal={() => this.setState({ emailModal: false })}
 							editTab={this.editTab}
 							path={this.props.path}
 						/>}
