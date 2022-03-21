@@ -1,32 +1,30 @@
-.ncpi .pi-tab-content .pi-title-content h2 {
+.ncpi .pi-payment-tab-content .pi-title-content h2 {
   font-size: 20px;
   font-weight: 500;
 }
-.ncpi .pi-tab-content .pi-title-content h5 {
+.ncpi .pi-payment-tab-content .pi-title-content h5 {
   font-size: 14px;
   font-weight: 500;
   margin-top: 5px;
   margin-bottom: 0;
 }
-.ncpi .pi-tab-content .pi-payment-empty-content > div {
+.ncpi .pi-payment-tab-content .pi-payment-empty-content > div {
   top: 50%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.ncpi .pi-tab-content .pi-payment-empty-content {
+.ncpi .pi-payment-tab-content .pi-payment-empty-content {
   position: relative;
   border-radius: 8px;
-  padding: 25px;
-  height: 500px;
-  border: 1px solid #e2e8f0;
+  padding: 20px 0 25px;
 }
-.ncpi .pi-tab-content .pi-payment-empty-content img {
+.ncpi .pi-payment-tab-content .pi-payment-empty-content img {
   display: block;
   margin: auto;
   margin-bottom: 20px;
 }
-.ncpi .pi-tab-content .pi-payment-empty-content span {
+.ncpi .pi-payment-tab-content .pi-payment-empty-content span {
   background: var(--bg-color-air-white);
   padding: 16px;
   display: inline-block;
@@ -34,10 +32,9 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
-  margin-bottom: 20px;
   position: relative;
 }
-.ncpi .pi-tab-content .pi-payment-empty-content span:before {
+.ncpi .pi-payment-tab-content .pi-payment-empty-content span:before {
   content: "";
   position: absolute;
   top: -1px;
@@ -45,41 +42,36 @@
   border-top: 35px solid white;
   border-left: 35px solid var(--bg-color-air-white);
 }
-.ncpi .pi-tab-content .pi-payment-empty-content span:after {
+.ncpi .pi-payment-tab-content .pi-payment-empty-content span:after {
   content: "";
   position: absolute;
   bottom: 0px;
   left: 0;
 }
-.ncpi .pi-tab-content .pi-payment-empty-content span svg {
+.ncpi .pi-payment-tab-content .pi-payment-empty-content span svg {
   display: block;
   margin: auto;
   margin-bottom: 10px;
 }
-.ncpi .pi-tab-content .pi-payment-empty-content .pi-btn {
+.ncpi .pi-payment-tab-content .pi-btn {
   display: block;
   margin: auto;
+  margin-top: 25px;
 }
-.ncpi .pi-tab-content .pi-payment-empty-content .pi-btn svg path {
+.ncpi .pi-payment-tab-content .pi-btn svg path {
   fill: var(--text-color-white);
 }
-.ncpi .pi-tab-content #pi-stripe,
-.ncpi .pi-tab-content #pi-bank {
-  border: 1px solid #e2e8f0;
-  padding: 25px;
-  border-radius: 8px;
-}
-.ncpi .pi-tab-content #pi-bank ul {
+.ncpi .pi-payment-tab-content ul {
   margin: 0;
 }
-.ncpi .pi-tab-content #pi-bank ul li {
+.ncpi .pi-payment-tab-content ul li {
   display: flex;
   padding: 15px;
   position: relative;
   border-radius: 10px;
   margin-bottom: 10px;
 }
-.ncpi .pi-tab-content #pi-bank ul li .pi-edit {
+.ncpi .pi-payment-tab-content ul li .pi-edit {
   right: 8px;
   position: absolute;
   right: 0;
@@ -89,52 +81,53 @@
   border-radius: 25px;
   box-shadow: 3px 3px 4px 0px rgba(205, 202, 205, 0.12);
 }
-.ncpi .pi-tab-content #pi-bank ul li .pi-edit span {
+.ncpi .pi-payment-tab-content ul li .pi-edit span {
   background: #fff;
   display: inline-block;
   padding: 0px 7px;
   border-radius: 50%;
   cursor: pointer;
 }
-.ncpi .pi-tab-content #pi-bank ul li .pi-edit span:last-child svg path {
+.ncpi .pi-payment-tab-content ul li .pi-edit span:last-child svg path {
   fill: red;
 }
-.ncpi .pi-tab-content #pi-bank ul li .pi-edit span:hover {
+.ncpi .pi-payment-tab-content ul li .pi-edit span:hover {
   box-shadow: 3px 3px 4px 3px rgba(205, 202, 205, 0.18);
 }
-.ncpi .pi-tab-content #pi-bank ul li .pi-edit span:hover svg path {
+.ncpi .pi-payment-tab-content ul li .pi-edit span:hover svg path {
   fill: var(--bg-color-blue);
 }
-.ncpi .pi-tab-content #pi-bank ul li .pi-bank-image svg {
+.ncpi .pi-payment-tab-content ul li .pi-bank-image svg {
   margin-top: 50%;
 }
-.ncpi .pi-tab-content #pi-bank ul li .bank-text-content {
+.ncpi .pi-payment-tab-content ul li .bank-text-content {
   margin-left: 20px;
 }
-.ncpi .pi-tab-content #pi-bank ul li .bank-text-content .pi-bank-title {
+.ncpi .pi-payment-tab-content ul li .bank-text-content .pi-bank-title {
   font-size: 18px;
   font-weight: 600;
 }
-.ncpi .pi-tab-content #pi-bank ul li .bank-text-content .pi-bank-subtitle {
+.ncpi .pi-payment-tab-content ul li .bank-text-content .pi-bank-subtitle {
   font-size: 15px;
   font-weight: 500;
 }
-.ncpi .pi-tab-content #pi-bank .pi-btn {
+.ncpi .pi-payment-tab-content ul .pi-btn {
   display: flex;
   margin: auto;
   margin-top: 30px;
 }
-.ncpi .pi-tab-content #pi-bank .pi-btn svg {
+.ncpi .pi-payment-tab-content ul .pi-btn svg {
   margin-top: 2px;
   margin-right: 5px;
 }
-.ncpi .pi-tab-content #pi-bank .pi-btn svg path {
+.ncpi .pi-payment-tab-content ul .pi-btn svg path {
   margin-top: 2px;
   margin-right: 5px;
   fill: var(--text-color-white);
 }
-.ncpi #pi-stripe .pi-form-content.pi-form-style-two .pi-btn {
+.ncpi .pi-form-content.pi-form-style-two .pi-btn {
   background: #e1e8ff;
-  margin-top: 30px;
+  margin-top: 15px;
   border-radius: 5px;
+  display: inline-block;
 }

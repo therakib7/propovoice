@@ -2363,9 +2363,11 @@ html {
   padding: 10px;
   width: 100%;
 }
+.ncpi .pi-info-table-content table thead tr th:nth-child(3) {
+  padding: 10px 20px;
+}
 .ncpi .pi-info-table-content table thead tr th {
   text-align: left;
-  padding: 12px;
   border-top: 1px solid #cbd5e0;
   border-bottom: 1px solid #cbd5e0;
   font-size: 14px;
@@ -2388,6 +2390,7 @@ html {
 }
 .ncpi .pi-info-table-content table tbody tr td {
   width: 140px;
+  font-size: 14px;
 }
 .ncpi .pi-info-table-content table tbody tr td:last-child {
   padding: 12px;
@@ -3062,13 +3065,16 @@ html {
   right: 0;
   bottom: -11px;
 }
-.ncpi .pi-payment-tab .pi-tab-content {
+.ncpi .pi-payment-tab .pi-payment-tab-content {
   width: 65%;
   position: relative;
   margin-top: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 25px;
+  border-radius: 8px;
 }
 @media screen and (max-width: 992px) {
-  .ncpi .pi-payment-tab .pi-tab-content {
+  .ncpi .pi-payment-tab .pi-payment-tab-content {
     width: 100%;
   }
 }
@@ -3177,7 +3183,7 @@ html {
   transform: rotate(90deg);
   margin-top: 5px;
 }
-.pi-payment-accrodion input:checked ~ .pi-tab-content {
+.pi-payment-accrodion input:checked ~ .pi-payment-tab-content {
   max-height: 100vh;
   padding: 15px 15px 25px;
 }

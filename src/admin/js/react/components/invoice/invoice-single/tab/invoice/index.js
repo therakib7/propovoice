@@ -662,14 +662,6 @@ class Invoice extends Component {
 											<li>
 												<input type="checkbox" defaultChecked="checked" />
 												<i />
-												<h3>Payment</h3>
-												<div>
-													<p>Upcoming</p>
-												</div>
-											</li>
-											<li>
-												<input type="checkbox" defaultChecked="checked" />
-												<i />
 												<h3>Crarge or Late Fee</h3>
 												<div>
 													<p>Upcoming</p>

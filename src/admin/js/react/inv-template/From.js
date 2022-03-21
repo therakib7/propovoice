@@ -1,26 +1,25 @@
-import React, { Component } from 'react' 
+import React, { Component } from 'react'
 
-class From extends Component {  
+class From extends Component {
 
-    render = () => { 
+    render = () => {
 
-        const data = this.props.data  
+        const data = this.props.data
         return (
-            <> 
-                {data && 
-                    <>
-                        <span className='font-bold'>{data.name}</span>
-                        <p className=''>
-                            Email: {data.email}<br />
-                            Address: {data.address}<br />
-                        </p>
-                    </>
+            <>
+                {data &&
+                    <address>
+                        Address: <span>{data.address}</span>
+                        <br />
+                        Email: {data.email}
+                        <br />
+                        What'sApp: <span>+8801760706361</span>
+                        <br />
+                    </address>
                 }
             </>
         )
     }
-} 
+}
 
 export default From
-
-

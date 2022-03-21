@@ -297,12 +297,13 @@
 }
 .ncpi .pi-add-term .pi-radio-group input[type=radio] {
   height: 10px;
+  margin-right: 5px;
 }
 .ncpi .pi-add-term .pi-radio-group input[type=radio]:checked:after {
   width: 9px;
   height: 9px;
   border-radius: 74px;
-  top: -3px;
+  top: -7px;
   left: 2px;
   position: relative;
   background-color: #000;
@@ -314,4 +315,4 @@
   border: 1px solid #718096;
   border-radius: 10px;
   width: 100%;
-} 
+}

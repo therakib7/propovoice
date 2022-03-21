@@ -5,25 +5,26 @@ class Item extends Component {
 
     render = () => {
 
-        const { name, desc, qty, price } = this.props.data 
-        const id = this.props.id; 
+        const { name, desc, qty, qty_type, price } = this.props.data
+        const id = this.props.id;
 
-        return (   
+        return (
             <tr>
-                <td>0{ id + 1 }.</td>
+                <td>0{id + 1}.</td>
                 <td>
                     {name}<br />
                     <span>{desc}</span>
                 </td>
-                <td>{qty}</td>
                 <td>
-                    {price}<br />
-                    <span>(Fixed price)</span>
+                    {qty} <span>({qty_type})</span>
+                </td>
+                <td>
+                    {price}
                 </td>
                 <td>{qty * price}</td>
             </tr>
         )
     }
-} 
+}
 
 export default Item 
