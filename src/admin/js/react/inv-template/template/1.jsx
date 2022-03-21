@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 
 import From from '../From';
 import To from '../To';
@@ -19,7 +20,7 @@ export default class One extends Component {
     }
 
     render() {
-        const { items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
+        const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData } = this.props.data;
         return (
             <div className="pi-inv">
@@ -34,13 +35,13 @@ export default class One extends Component {
                                 <From data={fromData} />
                                 <div className="pi-from-date">
                                     <p>
-                                        Invoice No: <span>00024</span>
+                                        Invoice No: <span>{id}</span>
                                     </p>
 
                                     <div className="pi-from-time">
                                         {/* TODO: use moment js */}
-                                        <p>Date:<span> {date.toLocaleDateString('sv-SE')}</span></p>
-                                        <p>Due Date:<span> {due_date.toLocaleDateString('sv-SE')}</span></p>
+                                        <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                        <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                     </div>
                                 </div>
                             </div>

@@ -3183,7 +3183,7 @@ html {
   transform: rotate(90deg);
   margin-top: 5px;
 }
-.pi-payment-accrodion input:checked ~ .pi-payment-tab-content {
+.pi-payment-accrodion input:checked ~ .pi-tab-content {
   max-height: 100vh;
   padding: 15px 15px 25px;
 }
@@ -3784,6 +3784,7 @@ select {
     z-index: 9;
     left: -250px;
     transition: all 0.3s ease-out;
+    width: 220px;
   }
   .ncpi .pi-menubar-icon {
     position: absolute;
