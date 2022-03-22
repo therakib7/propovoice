@@ -86,7 +86,7 @@ const TableBody = props => {
                 break;
 
             case 'paid':
-                status = <span className='pi-status pi-bg-pink'>Paid</span>
+                status = <span className='pi-status pi-bg-blue' onClick={() => props.infoModal(row)}>Paid</span>
                 break;
 
             default:
@@ -160,10 +160,12 @@ const Table = (props) => {
     const [infoModal, setInfoModal] = useState(false);
     const [infoData, setInfoData] = useState(null);
 
-    const dinfoModal = (data) => {
+    const handleinfoModal = (data) => {
         setInfoData(data); 
         setInfoModal(true);
     }
+
+     
 
     const { tableData, editEntry, checkedBoxes, deleteEntry, client_id, path } = props;
 
@@ -173,11 +175,20 @@ const Table = (props) => {
                 {infoModal && <Info
                     data={infoData}
                     show={infoModal}
+                    reload={props.reload}
                     close={() => setInfoModal(false)}
                 />}
                 <table className='pi-table'>
                     <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} path={path} />
-                    <TableBody infoModal={dinfoModal} tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} path={path} />
+                    <TableBody 
+                        infoModal={handleinfoModal} 
+                        tableData={tableData} 
+                        editEntry={editEntry} 
+                        checkedBoxes={checkedBoxes} 
+                        deleteEntry={deleteEntry} 
+                        client_id={client_id} 
+                        path={path} 
+                    />
                 </table>
             </div>}
         </>

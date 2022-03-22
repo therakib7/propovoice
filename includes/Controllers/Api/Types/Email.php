@@ -314,7 +314,12 @@ class Email
             $payment['type'] = $payment_type;
             
             if ( $payment_type == 'bank' ) {
-                update_post_meta($invoice_id, 'status', 'paid_req');
+                $mark_as_paid = isset($params['mark_as_paid']) ? $params['mark_as_paid'] : false;
+                if ( $mark_as_paid ) {
+                    update_post_meta($invoice_id, 'status', 'paid');
+                } else {
+                    update_post_meta($invoice_id, 'status', 'paid_req');
+                }
 
                 $country = isset($params['country']) ? $params['country'] : '';
                 $bank_name = isset($params['bank_name']) ? $params['bank_name'] : '';
