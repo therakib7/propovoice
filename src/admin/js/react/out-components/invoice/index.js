@@ -91,7 +91,7 @@ const InvoiceBtn = props => {
                         style={{ float: 'right' }}
                         onClick={() => props.handleChange('payment')}
                     >
-                        Payment
+                        Add Payment Info
                     </button>
                 </>
             }
