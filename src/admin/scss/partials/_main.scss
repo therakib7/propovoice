@@ -2271,6 +2271,11 @@ html {
   padding: 15px 0;
   font-size: 14px;
 }
+@media screen and (max-width: 500px) {
+  .ncpi .pi-table tr td {
+    font-size: 12px;
+  }
+}
 .ncpi .pi-table tr td .pi-status {
   padding: 5px 15px;
   font-size: 10px;
@@ -2332,6 +2337,11 @@ html {
 .ncpi .pi-table .pi-show {
   display: block;
 }
+@media screen and (max-width: 500px) {
+  .ncpi .pi-table {
+    width: 170%;
+  }
+}
 .ncpi .pi-info-table-content {
   margin-top: 20px;
 }
@@ -2351,11 +2361,11 @@ html {
 .ncpi .pi-info-table-content .pi-edit-btn svg {
   margin-right: 10px;
 }
-.ncpi .pi-info-table-content table {
+.ncpi .pi-info-table-content .pi-info-table {
   border-spacing: 0;
   width: 100%;
 }
-.ncpi .pi-info-table-content table textarea {
+.ncpi .pi-info-table-content .pi-info-table textarea {
   border-radius: 5px;
   margin-top: 10px;
   outline: none;
@@ -2363,62 +2373,67 @@ html {
   padding: 10px;
   width: 100%;
 }
-.ncpi .pi-info-table-content table thead tr th:nth-child(3) {
+@media screen and (max-width: 500px) {
+  .ncpi .pi-info-table-content .pi-info-table textarea {
+    width: auto;
+  }
+}
+.ncpi .pi-info-table-content .pi-info-table thead tr th:nth-child(3) {
   padding: 10px 20px;
 }
-.ncpi .pi-info-table-content table thead tr th {
+.ncpi .pi-info-table-content .pi-info-table thead tr th {
   text-align: left;
   border-top: 1px solid #cbd5e0;
   border-bottom: 1px solid #cbd5e0;
   font-size: 14px;
   line-height: 20px;
 }
-.ncpi .pi-info-table-content table thead tr {
+.ncpi .pi-info-table-content .pi-info-table thead tr {
   background-color: #f8f8f8;
 }
-.ncpi .pi-info-table-content table thead tr th span {
+.ncpi .pi-info-table-content .pi-info-table thead tr th span {
   font-size: 10px;
   color: #4a5568;
 }
-.ncpi .pi-info-table-content table thead tr th:first-child {
+.ncpi .pi-info-table-content .pi-info-table thead tr th:first-child {
   padding: 14px 20px;
   border-left: 1px solid #cbd5e0;
   border-radius: 15px 0 0 0;
 }
-.ncpi .pi-info-table-content table thead tr th:last-child {
+.ncpi .pi-info-table-content .pi-info-table thead tr th:last-child {
   border-right: 1px solid #cbd5e0;
 }
-.ncpi .pi-info-table-content table tbody tr td {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td {
   width: 140px;
   font-size: 14px;
 }
-.ncpi .pi-info-table-content table tbody tr td:last-child {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td:last-child {
   padding: 12px;
   width: 20px !important;
 }
-.ncpi .pi-info-table-content table tbody tr td:nth-last-child(2) {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td:nth-last-child(2) {
   width: 105px !important;
 }
-.ncpi .pi-info-table-content table tbody tr td:nth-child(3) {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td:nth-child(3) {
   text-align: center;
 }
-.ncpi .pi-info-table-content table tbody tr td:nth-child(3) input[type=number] {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td:nth-child(3) input[type=number] {
   width: 100px;
 }
-.ncpi .pi-info-table-content table tbody tr td:first-child {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td:first-child {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 15px 20px;
 }
-.ncpi .pi-info-table-content table td:first-child input[type=text] {
+.ncpi .pi-info-table-content .pi-info-table td:first-child input[type=text] {
   width: 100%;
 }
-.ncpi .pi-info-table-content table tbody tr:nth-child(even) {
+.ncpi .pi-info-table-content .pi-info-table tbody tr:nth-child(even) {
   background-color: #f8f8f8;
 }
-.ncpi .pi-info-table-content table td input[type=number],
-.ncpi .pi-info-table-content table td input[type=text] {
+.ncpi .pi-info-table-content .pi-info-table td input[type=number],
+.ncpi .pi-info-table-content .pi-info-table td input[type=text] {
   width: 68px;
   padding: 8px;
   border: 1px solid #cbd5e0;
@@ -2426,7 +2441,13 @@ html {
   background-color: #fff;
   outline: none;
 }
-.ncpi .pi-info-table-content table td select {
+@media screen and (max-width: 500px) {
+  .ncpi .pi-info-table-content .pi-info-table td input[type=number],
+.ncpi .pi-info-table-content .pi-info-table td input[type=text] {
+    width: 65px;
+  }
+}
+.ncpi .pi-info-table-content .pi-info-table td select {
   background-color: var(--bg-color-air-white);
   border: 1px solid #cbd5e0;
   font-size: 10px;
@@ -2438,27 +2459,32 @@ html {
   position: relative;
   top: -3px;
 }
-.ncpi .pi-info-table-content table tr td:last-child {
+@media screen and (max-width: 500px) {
+  .ncpi .pi-info-table-content .pi-info-table td select {
+    width: 60px;
+  }
+}
+.ncpi .pi-info-table-content .pi-info-table tr td:last-child {
   font-size: 12px;
 }
-.ncpi .pi-info-table-content table tr td:last-child span {
+.ncpi .pi-info-table-content .pi-info-table tr td:last-child span {
   cursor: pointer;
   padding: 10px;
 }
-.ncpi .pi-info-table-content table tr td:last-child span:hover svg path {
+.ncpi .pi-info-table-content .pi-info-table tr td:last-child span:hover svg path {
   fill: var(--text-color-blue);
 }
-.ncpi .pi-info-table-content table tr td:nth-child(3) input[type=text],
-.ncpi .pi-info-table-content table tr td:nth-child(2) input[type=text] {
+.ncpi .pi-info-table-content .pi-info-table tr td:nth-child(3) input[type=text],
+.ncpi .pi-info-table-content .pi-info-table tr td:nth-child(2) input[type=text] {
   float: left;
   font-size: 12px;
 }
-.ncpi .pi-info-table-content table tr td:nth-child(3) input[type=nunber],
-.ncpi .pi-info-table-content table tr td:nth-child(2) input[type=nunber] {
+.ncpi .pi-info-table-content .pi-info-table tr td:nth-child(3) input[type=nunber],
+.ncpi .pi-info-table-content .pi-info-table tr td:nth-child(2) input[type=nunber] {
   border-radius: 4px 0 0 4px;
 }
-.ncpi .pi-info-table-content table tr td:nth-child(3) select,
-.ncpi .pi-info-table-content table tr td:nth-child(2) select {
+.ncpi .pi-info-table-content .pi-info-table tr td:nth-child(3) select,
+.ncpi .pi-info-table-content .pi-info-table tr td:nth-child(2) select {
   border-radius: 0 4px 4px 0;
 }
 .ncpi .pi-info-table-content button {
@@ -2466,6 +2492,19 @@ html {
   border-radius: 0 0 15px 15px !important;
   color: #1a202c !important;
   border: 1px solid #cbd5e0;
+}
+@media screen and (max-width: 500px) {
+  .ncpi .pi-info-table-content {
+    width: 175%;
+    background: #fff;
+    z-index: 9;
+    position: relative;
+    padding-right: 20px;
+    border-radius: 10px;
+  }
+  .ncpi .pi-info-table-content .pi-info-table tbody tr td {
+    font-size: 12px;
+  }
 }
 .ncpi .pi-calculation {
   width: 240px;
@@ -2509,6 +2548,8 @@ html {
 --------------------------------------------------------------*/
 .ncpi .pi-right-content {
   width: 100%;
+  overflow: auto;
+  height: 100vh;
 }
 .ncpi .pi-grid-container {
   display: flex;
@@ -2541,12 +2582,6 @@ html {
     padding-top: 50px;
   }
 }
-@media screen and (max-width: 500px) {
-  .ncpi .pi-search-box.pi-float-right {
-    margin-top: 15px;
-    float: left;
-  }
-}
 .ncpi .pi-breadcrumb ul li {
   display: inline;
   padding: 2px;
@@ -2563,6 +2598,11 @@ html {
 }
 .ncpi .pi-cards {
   margin-bottom: 25px;
+}
+@media screen and (max-width: 500px) {
+  .ncpi .pi-cards {
+    margin-bottom: 0px;
+  }
 }
 .ncpi .pi-cards .pi-bg-air-white {
   border-radius: 20px;
@@ -2614,6 +2654,15 @@ html {
   left: 10px;
   top: 12px;
 }
+@media screen and (max-width: 450px) {
+  .ncpi .pi-search-box.pi-float-right .search-input {
+    padding: 10px;
+    padding-left: 40px;
+  }
+  .ncpi .pi-search-box.pi-float-right svg {
+    top: 8px;
+  }
+}
 
 /*-------------------------------------------------------------- 
 # popup
@@ -2636,7 +2685,6 @@ html {
   z-index: 99;
 }
 .ncpi .pi-overlay {
-  visibility: visible;
   opacity: 1;
   z-index: 99;
   overflow-x: hidden;
@@ -3413,7 +3461,7 @@ select {
   margin-right: 0px !important;
   margin-bottom: 30px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 500px) {
   .ncpi .pi-business-form .row > div:nth-child(odd) {
     margin-right: 0px;
   }
@@ -3701,7 +3749,6 @@ select {
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
-.ncpi .pi-right-content,
 .ncpi .pi-left-sidebar {
   overflow-x: hidden;
   overflow-y: auto;
@@ -3782,14 +3829,14 @@ select {
     overflow-y: visible;
     scroll-behavior: smooth;
     z-index: 9;
-    left: -250px;
+    left: -220px;
     transition: all 0.3s ease-out;
     width: 220px;
   }
   .ncpi .pi-menubar-icon {
     position: absolute;
     top: 12px;
-    left: 280px;
+    left: 250px;
     display: block;
     cursor: pointer;
     font-size: 15px;
@@ -3803,7 +3850,7 @@ select {
 }
 @media screen and (max-width: 450px) {
   .ncpi .pi-menubar-icon {
-    left: 265px;
+    left: 235px;
   }
 }
 
