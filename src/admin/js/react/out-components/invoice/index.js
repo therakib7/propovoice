@@ -89,7 +89,7 @@ const InvoiceBtn = props => {
                     <button
                         className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
                         style={{ float: 'right' }}
-                        onClick={() => props.handleChange('payment')}
+                        onClick={() => props.handleChange('payment', 'bank')}
                     >
                         Add Payment Info
                     </button>
@@ -195,11 +195,11 @@ export default class Invoice extends Component {
         });
     }
 
-    handleClick = (type, feedback = null) => {
+    handleClick = (type, data = null) => {
         if (type == 'feedback') {
-            this.setState({ emailModal: true, feedback });
+            this.setState({ emailModal: true, feedback_type: data });
         } else {
-            this.setState({ paymentModal: true });
+            this.setState({ paymentModal: true, payment_type: data });
         }
     }
 

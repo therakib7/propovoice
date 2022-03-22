@@ -178,6 +178,8 @@ class Email
             $this->sent($params);
         } else if ($type == 'feedback') {
             $this->feedback($params);
+        } else if ($type == 'payment') {
+            $this->payment($params);
         }
     }
 
@@ -249,7 +251,7 @@ class Email
             </body>
 
             </html>
-<?php
+        <?php
             $invoice_html = ob_get_clean();
             $dompdf = new \Dompdf\Dompdf();
             $dompdf->set_option('enable_css_float', true);
@@ -284,13 +286,56 @@ class Email
     {
 
         $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
-        $feedback = isset($params['feedback']) ? $params['feedback'] : '';
+        $feedback_type = isset($params['feedback_type']) ? $params['feedback_type'] : '';
         $note = isset($params['note']) ? nl2br($params['note']) : '';
 
         if ($invoice_id) {
-            update_post_meta($invoice_id, 'status', $feedback);
-            update_post_meta($invoice_id, 'feedback_time', current_time('timestamp'));
-            update_post_meta($invoice_id, 'feedback_note', $note);
+            update_post_meta($invoice_id, 'status', $feedback_type);
+            $feedback = [];
+            $feedback['note'] = $note;
+            $feedback['type'] = $feedback_type;
+            $feedback['time'] = current_time('timestamp'); 
+            update_post_meta($invoice_id, 'feedback', $feedback);
+        }
+
+        wp_send_json_success();
+    }
+
+    public function payment($params)
+    {
+
+        $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
+        $payment_type = isset($params['payment_type']) ? $params['payment_type'] : '';
+        $note = isset($params['note']) ? nl2br($params['note']) : '';
+
+        if ($invoice_id) {
+            
+            $payment = [];
+            $payment['type'] = $payment_type;
+            
+            if ( $payment_type == 'bank' ) {
+                update_post_meta($invoice_id, 'status', 'paid_req');
+
+                $country = isset($params['country']) ? $params['country'] : '';
+                $bank_name = isset($params['bank_name']) ? $params['bank_name'] : '';
+                $account_name = isset($params['account_name']) ? $params['account_name'] : '';
+                $account_no = isset($params['account_no']) ? $params['account_no'] : '';
+                $amount = isset($params['amount']) ? $params['amount'] : '';
+                $date = isset($params['date']) ? $params['date'] : '';
+
+                $payment['country'] = $country;
+                $payment['bank_name'] = $bank_name;
+                $payment['account_name'] = $account_name;
+                $payment['account_no'] = $account_no;
+                $payment['amount'] = $amount;
+                $payment['date'] = $date; 
+            } else if ( $payment_type == 'paypal' ) {
+                update_post_meta($invoice_id, 'status', 'paid');
+                
+            }
+            $payment['note'] = $note;
+            $payment['time'] = current_time('timestamp'); 
+            update_post_meta($invoice_id, 'payment', $payment);
         }
 
         wp_send_json_success();

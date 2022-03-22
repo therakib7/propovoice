@@ -10,7 +10,7 @@ class Feedback extends Component {
         this.state = {
             form: {
                 invoice_id: null,
-                feedback: '',
+                feedback_type: '',
                 note: '',
             },
         };
@@ -24,7 +24,7 @@ class Feedback extends Component {
     componentDidMount() {
         let form = { ...this.state.form }
         form.invoice_id = this.props.data.invoice.id;
-        form.feedback = this.props.data.feedback;
+        form.feedback_type = this.props.data.feedback_type;
         this.setState({ form });
     }
 
@@ -38,7 +38,7 @@ class Feedback extends Component {
                 if (resp.data.success) {
                     this.props.close();
 
-                    if (form.feedback == 'accept') {
+                    if (form.feedback_type == 'accept') {
                         toast.success('Thanks for accepting');
                     } else {
                         toast.success('Sorry for declining');
@@ -59,7 +59,7 @@ class Feedback extends Component {
                         <div className="pi-overlay pi-show">
                             <div className="pi-popup-content">
                                 <div className="pi-modal-header">
-                                    <h2 className="pi-modal-title pi-text-center">{this.props.data.feedback == 'accept' ? 'Accept' : 'Decline'} Estimate</h2>
+                                    <h2 className="pi-modal-title pi-text-center">{this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'} Estimate</h2>
                                     <span className="pi-close" onClick={() => this.props.close()}>×</span>
                                 </div>
 
@@ -70,12 +70,11 @@ class Feedback extends Component {
                                             <div className="col-lg">
                                                 <label
                                                     htmlFor="form-note">
-                                                    {this.props.data.feedback == 'accept' ? 'Additional Note' : 'Can we know the reason?'}
+                                                    Additional Note
                                                 </label> 
                                                 <textarea
                                                     id="form-note"
-                                                    rows={5}
-                                                    required
+                                                    rows={5} 
                                                     name="note"
                                                     value={this.state.form.note}
                                                     onChange={this.handleChange}
@@ -111,7 +110,7 @@ class Feedback extends Component {
 
                                         <div className="pi-footer-content pi-text-center">
                                             <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                                {this.props.data.feedback == 'accept' ? 'Accept' : 'Decline'}
+                                                {this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'}
                                             </button>
                                         </div>
                                     </form>

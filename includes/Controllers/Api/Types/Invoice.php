@@ -155,9 +155,9 @@ class Invoice
             if (!$query_data['due']) {
                 $query_data['due'] = 0;
             }
-
-            $query_data['feedback_time'] = get_post_meta($id, 'feedback_time', true);
-            $query_data['feedback_note'] = get_post_meta($id, 'feedback_note', true);
+ 
+            $query_data['feedback'] = get_post_meta($id, 'feedback', true);
+            $query_data['payment'] = get_post_meta($id, 'payment', true);
             $query_data['status'] = get_post_meta($id, 'status', true);
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;

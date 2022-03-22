@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Feedback from './Feedback';
+import Info from './Info';
 
 const TableHeader = props => {
     return (
@@ -71,18 +71,22 @@ const TableBody = props => {
 
             case 'viewed':
                 status = <span className='pi-status piBgOrange'>Viewed</span>
+                break; 
+
+            case 'accept':
+                status = <span className='pi-status pi-bg-blue' onClick={() => props.infoModal(row)}>Accepted</span>
+                break;
+
+            case 'decline':
+                status = <span className='pi-status pi-bg-red' onClick={() => props.infoModal(row)}>Declined</span>
+                break;
+
+            case 'paid_req':
+                status = <span className='pi-status piBgOrange' onClick={() => props.infoModal(row)}>Paid Request</span>
                 break;
 
             case 'paid':
                 status = <span className='pi-status pi-bg-pink'>Paid</span>
-                break;
-
-            case 'accept':
-                status = <span className='pi-status pi-bg-blue' onClick={() => props.feedbackModal(row)}>Accepted</span>
-                break;
-
-            case 'decline':
-                status = <span className='pi-status pi-bg-red' onClick={() => props.feedbackModal(row)}>Declined</span>
                 break;
 
             default:
@@ -153,20 +157,12 @@ const TableBody = props => {
 }
 
 const Table = (props) => {
-    const [feedbackModal, setFeedbackModal] = useState(false);
-    const [feedbackData, setFeedbackData] = useState({
-        status: '',
-        note: '',
-        date: ''
-    });
+    const [infoModal, setInfoModal] = useState(false);
+    const [infoData, setInfoData] = useState(null);
 
-    const dfeedbackModal = (data) => {
-        setFeedbackData({
-            status: data.status,
-            note: data.feedback_note,
-            date: data.feedback_time
-        });
-        setFeedbackModal(true);
+    const dinfoModal = (data) => {
+        setInfoData(data); 
+        setInfoModal(true);
     }
 
     const { tableData, editEntry, checkedBoxes, deleteEntry, client_id, path } = props;
@@ -174,14 +170,14 @@ const Table = (props) => {
     return (
         <>
             {tableData.length > 0 && <div className='pi-table-wrap'>
-                <Feedback
-                    data={feedbackData}
-                    show={feedbackModal}
-                    close={() => setFeedbackModal(false)}
-                />
+                {infoModal && <Info
+                    data={infoData}
+                    show={infoModal}
+                    close={() => setInfoModal(false)}
+                />}
                 <table className='pi-table'>
                     <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} path={path} />
-                    <TableBody feedbackModal={dfeedbackModal} tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} path={path} />
+                    <TableBody infoModal={dinfoModal} tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} client_id={client_id} path={path} />
                 </table>
             </div>}
         </>
