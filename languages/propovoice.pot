@@ -50,15 +50,15 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:237, ../includes/Controllers/Api/Types/Invoice.php:334
+#: ../includes/Controllers/Api/Types/Invoice.php:261, ../includes/Controllers/Api/Types/Invoice.php:363
 msgid "Sender is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:241
+#: ../includes/Controllers/Api/Types/Invoice.php:265
 msgid "Path is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:245, ../includes/Controllers/Api/Types/Invoice.php:338
+#: ../includes/Controllers/Api/Types/Invoice.php:269, ../includes/Controllers/Api/Types/Invoice.php:367
 msgid "Receiver is missing"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "File is too large. Max. upload file size is %s"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Payment.php:193, ../includes/Controllers/Api/Types/Payment.php:272
+#: ../includes/Controllers/Api/Types/Payment.php:195, ../includes/Controllers/Api/Types/Payment.php:279
 msgid "Bank name is missing"
 msgstr ""
 
