@@ -65,7 +65,7 @@ class Invoice extends Component {
 				due_date: new Date(),
 				template: {
 					id: null,
-					img: ''
+					src: ''
 				},
 				from: null,
 				to: null,
@@ -481,9 +481,10 @@ class Invoice extends Component {
 										<h3 className="pi-color-blue pi-text-center">{title}</h3>
 										<div className="row">
 											<div className="col-12 col-md-6">
+												{this.state.fromData && this.state.fromData.logo &&
 												<div className="pi-info-logo">
-													<img src={ncpi_local.assetImgUri + 'from-logo.png'} className="" />
-												</div>
+													<img src={this.state.fromData.logo.src} className="" />
+												</div>}
 											</div>
 											<div className="col-12 col-md-6">
 												<div className="pi-info-form">
@@ -604,7 +605,7 @@ class Invoice extends Component {
 							<div className="col-lg-3">
 								<div className="pi-right-sidebar">
 									<h2 className="pi-r-s-title">Preview {title}</h2>
-									<img src={this.state.invoice.template.img} className="pi-invoice-image" />
+									<img src={this.state.invoice.template.src} className="pi-invoice-image" />
 									{/* <Style />
 									<Owner /> */}
 									<div className="pi-accordion-wrapper">

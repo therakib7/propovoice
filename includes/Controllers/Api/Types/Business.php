@@ -125,8 +125,8 @@ class Business
             if ( $logo_id ) {
                 $logoData = []; 
                 $logoData['id'] = $logo_id; 
-                $logo_url = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
-                $logoData['url'] = $logo_url[0]; 
+                $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+                $logoData['src'] = $logo_src[0]; 
             } 
             $query_data['logo'] = $logoData;
 

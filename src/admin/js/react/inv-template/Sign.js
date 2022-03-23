@@ -9,15 +9,16 @@ class Sign extends Component {
     render = () => { 
         const sign = this.props.data; 
         return (
-            <div className='text-right'>   
+             
+			<div className="pi-sign">
 				{ sign &&
 					<>
-						<div> 
-							<img src={sign.img} width="100" /> 
-						</div>  
+						<img src={sign.src} alt="" />
+						<div className="pi-border" />
+						<h4>Signature</h4> 
 					</>
-				}
-            </div>
+				} 
+			</div>
         )
     }
 } 

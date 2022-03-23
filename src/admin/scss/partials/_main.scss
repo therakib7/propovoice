@@ -2247,7 +2247,7 @@ html {
 .ncpi .pi-table {
   width: 100%;
   border: 1px solid #cbd5e0;
-  margin-top: 60px;
+  margin-top: 30px;
   border-collapse: collapse;
   border-radius: 20px;
   border-style: hidden;
@@ -2339,7 +2339,11 @@ html {
 }
 @media screen and (max-width: 500px) {
   .ncpi .pi-table {
-    width: 170%;
+    width: 190%;
+  }
+  .ncpi .pi-table-wrap {
+    overflow: scroll;
+    padding: 1px;
   }
 }
 .ncpi .pi-info-table-content {
@@ -2499,7 +2503,7 @@ html {
     background: #fff;
     z-index: 9;
     position: relative;
-    padding-right: 20px;
+    padding-left: 0;
     border-radius: 10px;
   }
   .ncpi .pi-info-table-content .pi-info-table tbody tr td {
@@ -2796,7 +2800,7 @@ html {
 .ncpi .pi-welcome-tabs-content [data-tab-content] {
   display: none;
 }
-.ncpi .pi-welcome-tabs-content .active[data-tab-content] {
+.ncpi .pi-welcome-tabs-content .pi-active[data-tab-content] {
   display: block;
 }
 .ncpi .pi-welcome-tabs-content .pi-tabs {
@@ -2828,10 +2832,10 @@ html {
     font-size: 12px;
   }
 }
-.ncpi .pi-welcome-tabs-content .pi-tab.active span {
+.ncpi .pi-welcome-tabs-content .pi-tab.pi-active span {
   border: 2px solid #4c6fff !important;
 }
-.ncpi .pi-welcome-tabs-content .pi-tab.active {
+.ncpi .pi-welcome-tabs-content .pi-tab.pi-active {
   color: var(--bg-color-black);
   font-weight: 700;
 }
@@ -2869,6 +2873,12 @@ html {
   position: absolute;
   top: 7px;
   right: -48px;
+}
+@media screen and (max-width: 500px) {
+  .ncpi .pi-single-tabs .pi-tab-item svg {
+    width: 75px;
+    right: -40px;
+  }
 }
 .ncpi .pi-single-tabs .pi-tab-item.pi-active span {
   border: 3px solid var(--bg-color-blue);
@@ -3267,8 +3277,11 @@ html {
 .ncpi .pi-float-right {
   float: right;
 }
-.ncpi .piFloatLeft {
+.ncpi .pi-float-left {
   float: left;
+}
+.ncpi .pi-cursor-pointer {
+  cursor: pointer;
 }
 .ncpi .pi-mt-3 {
   position: relative;
@@ -3750,7 +3763,6 @@ select {
 ## Menus
 --------------------------------------------------------------*/
 .ncpi .pi-left-sidebar {
-  overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
   height: 100vh;
@@ -3823,9 +3835,6 @@ select {
 @media screen and (max-width: 768px) {
   .ncpi .pi-left-sidebar {
     position: fixed;
-    top: 0px;
-    bottom: 0;
-    overflow-x: visible;
     overflow-y: visible;
     scroll-behavior: smooth;
     z-index: 9;
@@ -3863,7 +3872,7 @@ select {
 }
 
 .pi-collapse-menu {
-  transition: all 0.1s ease-out;
+  transition: all 0.2s ease-out;
   width: 80px !important;
 }
 .pi-collapse-menu .pi-logo-content strong {

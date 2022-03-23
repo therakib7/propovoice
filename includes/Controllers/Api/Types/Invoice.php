@@ -193,6 +193,17 @@ class Invoice
             $fromData['email'] = isset($fromMeta['email']) ? $fromMeta['email'][0] : '';
             $fromData['web'] = isset($fromMeta['web']) ? $fromMeta['web'][0] : '';
             $fromData['address'] = isset($fromMeta['address']) ? $fromMeta['address'][0] : '';
+
+            $logo_id = get_post_meta($from_id, 'logo', true);
+            $logoData = null; 
+            if ( $logo_id ) {
+                $logoData = []; 
+                $logoData['id'] = $logo_id; 
+                $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+                $logoData['src'] = $logo_src[0]; 
+            } 
+            $fromData['logo'] = $logoData;
+
         }
         $query_data['fromData'] = $fromData;
 
@@ -208,7 +219,7 @@ class Invoice
             $toData['web'] = get_user_meta($to_id, 'web', true);
             $toData['address'] = get_user_meta($to_id, 'address', true);
         }
-        $query_data['toData'] = $toData;
+        $query_data['toData'] = $toData;         
 
         $payment_id = get_post_meta($id, 'payment_id', true);
         $paymentData = null;

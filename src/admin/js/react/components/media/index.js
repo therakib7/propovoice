@@ -103,8 +103,8 @@ export default class Template extends Component {
 
                         <div className="pi-content">  
                             <button 
-                                className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'upload' ? 'pi-bg-blue pi-color-white' : '')} 
-                                onClick={() => this.setState({ currentTab: 'upload' })}
+                                className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'upload' ? 'pi-bg-blue pi-color-white' : '')}  
+                                onClick={(e) => { e.preventDefault(); this.setState({ currentTab: 'upload' }) } }
                             >
                                 <svg
                                     width={14}
@@ -125,8 +125,8 @@ export default class Template extends Component {
                             </button>
 
                             <button  
-                                className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'gallery' ? 'pi-bg-blue pi-color-white' : '')}
-                                onClick={() => this.setState({ currentTab: 'gallery' })}
+                                className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'gallery' ? 'pi-bg-blue pi-color-white' : '')} 
+                                onClick={(e) => { e.preventDefault(); this.setState({ currentTab: 'gallery' }) } }
                             >
                                 <svg
                                 width={12}
@@ -161,7 +161,7 @@ export default class Template extends Component {
                                                 return (
                                                     <div className="col-12 col-md-6 col-lg-3" key={index}>
                                                         <div className={(this.state.selectedItem.id == row.id) ? 'pi-single-image-content pi-active' : 'pi-single-image-content'}>
-                                                            <img src={row.img} className="pi-single-image" />
+                                                            <img src={row.src} className="pi-single-image" />
                                                             { ( this.state.selectedItem.id != row.id ) && <div className="pi-overflow-content">
                                                                 <a className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a> 
                                                             </div>}
@@ -186,7 +186,9 @@ export default class Template extends Component {
                                     }
                                 </div>
                                 <div className="pi-footer-content pi-text-center">
-                                    <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.insertMedia()}>
+                                    <button className="pi-btn pi-bg-blue pi-bg-hover-blue"  
+                                    onClick={(e) => { e.preventDefault(); this.insertMedia() } }
+                                    >
                                     Insert
                                     </button>
                                 </div>

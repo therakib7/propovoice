@@ -2,7 +2,7 @@ import React, { Component } from 'react'
  
 import Media from 'components/media';
 
-class Sign extends Component {
+class Logo extends Component {
 
 	constructor(props) {
 		super(props);
@@ -28,7 +28,7 @@ class Sign extends Component {
 	};
 
 	render = () => {
-		const sign = this.props.data; 
+		const logo = this.props.data; 
 		return (
 			<>   
 				<Media
@@ -38,8 +38,9 @@ class Sign extends Component {
                 /> 
 
 				<button 
-				className="pi-a-btn pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white pi-p-40"
-				onClick={() => this.setState({ media: true })}
+				className="pi-a-btn pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+				onClick={(e) => { e.preventDefault(); this.setState({ media: true }) } }
+				style={{color: '#000'}}
 				>
 					<svg
 					width={14}
@@ -57,13 +58,13 @@ class Sign extends Component {
 						fill="#4C6FFF"
 					/>
 					</svg>
-					Authorized Signature
+					Logo
 				</button>				
 
-				{sign &&
+				{logo &&
 					<>
 						<div>
-							<img src={sign.src} width="100" />
+							<img src={logo.src} width="100" />
 							<span onClick={() => this.handleDelete()}>
 								x
 							</span>
@@ -76,4 +77,4 @@ class Sign extends Component {
 	}
 }
 
-export default Sign
+export default Logo

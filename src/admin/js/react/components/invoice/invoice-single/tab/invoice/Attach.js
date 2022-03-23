@@ -59,7 +59,7 @@ class Attach extends Component {
 
 				{attach.map((item, index) => (
 					<div key={index}>
-						<img src={item.img} width="100" />
+						<img src={item.src} width="100" />
 						<span onClick={() => this.handleDelete(item.id)}>
 							x
 						</span>

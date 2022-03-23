@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react' 
 import PropTypes from 'prop-types' 
+
+import Editable from './Editable';
 
 class Group extends Component { 
 
@@ -25,9 +27,18 @@ class Group extends Component {
 	}
 
     handleGroupInfo = (index) => (e) => {
-        const { name, value } = e.target;
-		let items = this.state.groups[index]; 
-        items[name] = value;  
+        const { value } = e.target;
+		let items = this.state.groups[index];         
+        items['list_type'] = value;         
+        let groups = this.state.groups;
+        this.setState({ groups: groups });
+        this.handlePros();
+	}
+
+    handleGroupLabel = (index, value = null) => { 
+		let items = this.state.groups[index];  
+        items['label'] = value;  
+        
         let groups = this.state.groups;
         this.setState({ groups: groups });
         this.handlePros();
@@ -65,7 +76,11 @@ class Group extends Component {
 
     handlePros = () => {
         this.props.changeHandler( this.state.groups );
-    };  
+    }; 
+    
+    testRakib = (index) => {
+        console.log(index)
+    }; 
 
     render = () => { 
 
@@ -74,60 +89,64 @@ class Group extends Component {
         return (
             <>  
                 {groups.map( (group_single, group_index) => { 
-                    let list_class = null;
+                    let list_style = 'decimal';
                     if ( group_single.list_type == 'letter' ) {
-                        list_class = 'list-decimal';
+                        list_style = 'decimal';
                     } else if ( group_single.list_type == 'text' ) {
-                        list_class = 'list-letter';
+                        list_style = 'lower-alpha';
                     } else if ( group_single.list_type == 'dot' ) {
-                        list_class = 'list-disc';
+                        list_style = 'disc';
                     }
 
                     return (
                         <div className="pi-add-term" key={group_index}>
                             <div className="row">
                                 <div className="col-md-6">
-                                    <label htmlFor="fname">
-                                        Add Terms 
-                                        <span>
-                                        <svg
-                                        width={23}
-                                        height={12}
-                                        viewBox="0 0 13 13"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        >
-                                        <path
-                                            d="M12.524.476a1.625 1.625 0 00-2.298 0L4.062 6.64v2.297H6.36l6.164-6.163a1.625 1.625 0 000-2.298z"
-                                            fill="#A0AEC0"
-                                        />
-                                        <path
-                                            fillRule="evenodd"
-                                            clipRule="evenodd"
-                                            d="M0 3.25a1.625 1.625 0 011.625-1.625h3.25a.813.813 0 110 1.625h-3.25v8.125H9.75v-3.25a.813.813 0 011.625 0v3.25A1.625 1.625 0 019.75 13H1.625A1.625 1.625 0 010 11.375V3.25z"
-                                            fill="#A0AEC0"
-                                        />
-                                        </svg>
-                                        </span>
-                                    </label>
+                                    <Editable 
+                                        key={group_index}
+                                        value={group_single.label}
+                                        index={group_index}
+                                        changeHandler={ this.handleGroupLabel }  
+                                    /> 
                                 </div>
                                 <div className="col-md-6">
                                     <div className="pi-radio-group">
-                                        <span>Term List Serial</span> 
-                                        <input id={group_index+'-list-letter'} onChange={ this.handleGroupInfo(group_index) } name="list_type" value="letter" type="radio" />
-                                        <label htmlFor={group_index+'-list-letter'}>1. Letter</label>
+                                        <span>Term List Serial</span>     
+                                        <input 
+                                            id={'list-letter-'+group_index} 
+                                            onChange={ this.handleGroupInfo(group_index) }  
+                                            name={'list_type_'+group_index} 
+                                            value="letter" 
+                                            type="radio" 
+                                            checked={group_single.list_type == 'letter' ? 'checked' : ''} 
+                                        />
+                                        <label htmlFor={'list-letter-'+group_index}>1. Letter</label>
 
-                                        <input id={group_index+'-list-text'} onChange={ this.handleGroupInfo(group_index) } name="list_type" value="text" type="radio" />
-                                        <label htmlFor={group_index+'-list-text'}>a. Text</label>
+                                        <input 
+                                            id={'list-text-'+group_index} 
+                                            onChange={ this.handleGroupInfo(group_index) } 
+                                            name={'list_type_'+group_index} 
+                                            value="text" 
+                                            type="radio" 
+                                            checked={group_single.list_type == 'text' ? 'checked' : ''} 
+                                        />
+                                        <label htmlFor={'list-text-'+group_index}>a. Text</label>
 
-                                        <input id={group_index+'-list-dot'} onChange={ this.handleGroupInfo(group_index) }  name="list_type" value="dot" type="radio" />
-                                        <label htmlFor={group_index+'-list-dot'}>●. Dot</label>
+                                        <input 
+                                            id={'list-dot-'+group_index} 
+                                            onChange={ this.handleGroupInfo(group_index) }  
+                                            name={'list_type_'+group_index} 
+                                            value="dot" 
+                                            type="radio" 
+                                            checked={group_single.list_type == 'dot' ? 'checked' : ''} 
+                                        />
+                                        <label htmlFor={'list-dot-'+group_index}>●. Dot</label>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="pi-group-item pi-bg-air-white">
-                                <ul> 
+                                <ul style={ { listStyleType: list_style } }> 
                                     {group_single.items.map( (item, list_index) => { 
                                         return (
                                             <li key={list_index}> 

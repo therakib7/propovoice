@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 
 import From from '../From';
 import To from '../To';
+import Payment from '../Payment';
 import Total from '../Total';
 import Items from '../Items'
 import Note from '../Note'
@@ -19,7 +20,7 @@ export default class Two extends Component {
     }
 
     render() {
-        const { items, note, group, attach, sign } = this.props.data.invoice;
+        const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData } = this.props.data;
         let title = this.props.data.invoice.path == 'invoice' ? 'Invoice' : 'Estimate';
         return (
@@ -33,22 +34,19 @@ export default class Two extends Component {
                     <div className="pi-body">
                         <div className="pi-hedear">
                             <div className="pi-from">
+                                {fromData && fromData.logo &&
                                 <div className="pi-from-logo">
-                                    <img src="assets/img/inv/fromlogo.png" alt="" />
-                                </div>
+                                    <img src={fromData.logo.src}  alt="" />
+                                </div>}
                                 <From data={fromData} />
 
                                 <div className="pi-from-date">
                                     <p>
-                                        Invoice No: <span>00024</span>
+                                        {title} No: <span>{id}</span>
                                     </p>
                                     <div className="pi-from-time">
-                                        <p>
-                                            Date:<span> 01-02-2022</span>
-                                        </p>
-                                        <p>
-                                            Due Date:<span> 01-02-2022</span>
-                                        </p>
+                                        <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                        <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -64,43 +62,8 @@ export default class Two extends Component {
                         {items && <Items data={items} />}
 
                         <div className="pi-bank-info">
-                            <div className="pi-banking">
-                                <h4>Bank Info:</h4>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th>Name:</th>
-                                            <td>Nasir Bin Burhan</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Account No:</th>
-                                            <td> 2311 3213 2311</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Bank Info:</th>
-                                            <td>Estern Bank Bangladesh Limited.Dhaka Branch</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="pi-amounting">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th>Subtotal:</th>
-                                            <td>57397.7 $</td>
-                                        </tr>
-                                        <tr className="pi-before-total">
-                                            <th>Tax:</th>
-                                            <td>397.7 $</td>
-                                        </tr>
-                                        <tr className="pi-table-bg">
-                                            <th>Total:</th>
-                                            <td>63397.7 $</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <Payment {...this.props} />
+                            <Total {...this.props} />
                         </div>
                         <div className="pi-note-wrap">
 
@@ -109,11 +72,7 @@ export default class Two extends Component {
                                 {group && <Group data={group} />}
                             </div>
 
-                            <div className="pi-sign">
-                                <img src="assets/img/inv/sign.png" alt="" />
-                                <div className="pi-border" />
-                                <h4>Signature</h4>
-                            </div>
+                            {sign && <Sign data={sign} />}
                         </div>
                     </div>
                     <div className="pi-footer-shape">

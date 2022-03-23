@@ -261,7 +261,7 @@ class Media
     
                         $file_info = [
                             'id'  => $attach_id,
-                            'img' => wp_get_attachment_image_url($attach_id, 'thumbnail'),
+                            'src' => wp_get_attachment_image_url($attach_id, 'thumbnail'),
                         ];
                     }
     

@@ -94,8 +94,7 @@ class Payment extends Component {
                                             {row.id == payment_id && <span>
                                                 <svg
                                                     width={20}
-                                                    height={20}
-                                                    id="Layer_1"
+                                                    height={20} 
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     xmlnsXlink="http://www.w3.org/1999/xlink"
                                                     viewBox="3.4 5.6 17.6 13.4"

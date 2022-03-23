@@ -30,9 +30,11 @@ export default class One extends Component {
                         <div className="pi-hedear">
                             <div className="pi-from">
 
+                                {fromData && fromData.logo &&
                                 <div className="pi-from-logo">
-                                    <img src="assets/img/inv/fromlogo.png" alt="" />
-                                </div>
+                                    <img src={fromData.logo.src}  alt="" />
+                                </div>}
+
                                 <From data={fromData} />
                                 <div className="pi-from-date">
                                     <p>
@@ -66,11 +68,7 @@ export default class One extends Component {
                                 {note && <Note data={note} />}
                                 {group && <Group data={group} />}
                             </div>
-                            <div className="pi-sign">
-                                <img src="assets/img/inv/sign.png" alt="" />
-                                <div className="pi-border" />
-                                <h4>Signature</h4>
-                            </div>
+                            {sign && <Sign data={sign} />} 
                         </div>
                     </div>
                 </div>

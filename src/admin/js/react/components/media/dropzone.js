@@ -33,8 +33,8 @@ export default function Index(props) {
 		<Dropzone
 			onDrop={handleDrop}
 			accept="image/*"
-			minSize={1024}
-			maxSize={3072000}
+			// minSize={1024}
+			// maxSize={3072000}
 		>
 		{({ getRootProps, getInputProps, isDragActive }) => (
 			<div {...getRootProps({ className: "pi-dropzone" })}>

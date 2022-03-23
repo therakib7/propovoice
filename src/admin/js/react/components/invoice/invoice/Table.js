@@ -74,19 +74,19 @@ const TableBody = props => {
                 break; 
 
             case 'accept':
-                status = <span className='pi-status pi-bg-blue' onClick={() => props.infoModal(row)}>Accepted</span>
+                status = <span className='pi-status pi-bg-blue pi-cursor-pointer' onClick={() => props.infoModal(row)}>Accepted</span>
                 break;
 
             case 'decline':
-                status = <span className='pi-status pi-bg-red' onClick={() => props.infoModal(row)}>Declined</span>
+                status = <span className='pi-status pi-bg-red pi-cursor-pointer' onClick={() => props.infoModal(row)}>Declined</span>
                 break;
 
             case 'paid_req':
-                status = <span className='pi-status piBgOrange' onClick={() => props.infoModal(row)}>Paid Request</span>
+                status = <span className='pi-status piBgOrange pi-cursor-pointer' onClick={() => props.infoModal(row)}>Paid Request</span>
                 break;
 
             case 'paid':
-                status = <span className='pi-status pi-bg-blue' onClick={() => props.infoModal(row)}>Paid</span>
+                status = <span className='pi-status pi-bg-blue pi-cursor-pointer' onClick={() => props.infoModal(row)}>Paid</span>
                 break;
 
             default:

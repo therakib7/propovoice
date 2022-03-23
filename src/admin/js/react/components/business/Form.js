@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Logo from './Logo';
+
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -13,6 +15,7 @@ class Form extends Component {
             address: '',
             zip: '',
             default: false,
+            logo: null,
             date: false
         };
 
@@ -48,8 +51,14 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
-        // this.setState({ form: this.initialState });
+        //this.setState({ form: this.initialState });
     } 
+
+    handleLogoChange = (data, type = null) => { 
+		let form = { ...this.state.form }
+		form.logo = data;
+		this.setState({ form })
+	}
 
     render() {
         return (
@@ -161,6 +170,10 @@ class Form extends Component {
 
                                     <div className="row"> 
                                         <div className="col">
+                                            <Logo data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                                        </div> 
+
+                                        <div className="col">
                                             <div className="pi-form-checkbox">
                                                 <input 
                                                     id="form-default"
@@ -176,12 +189,12 @@ class Form extends Component {
                                                 </label>  
                                             </div>
                                         </div> 
-                                    </div>
+                                    </div> 
 
                                     <div className="pi-footer-content pi-text-center">
                                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                        Submit
-                                        </button>
+                                        Submitd
+                                        </button> 
                                     </div>
                                 </form> 
                             </div>
