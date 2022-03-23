@@ -41,9 +41,7 @@ export default class Two extends Component {
                                 <From data={fromData} />
 
                                 <div className="pi-from-date">
-                                    <p>
-                                        {title} No: <span>{id}</span>
-                                    </p>
+                                    <p>{title} No: <span>{id}</span></p>
                                     <div className="pi-from-time">
                                         <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
                                         <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
@@ -56,8 +54,7 @@ export default class Two extends Component {
                                 </div>
                                 <To data={toData} />
                             </div>
-                        </div>
-
+                        </div> 
 
                         {items && <Items data={items} />}
 

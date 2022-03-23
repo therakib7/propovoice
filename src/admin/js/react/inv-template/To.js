@@ -9,16 +9,16 @@ class To extends Component {
                 {data ?  
                     <>
                         <p>Bill to</p>
-                        <p>{data.first_name} {data.last_name}</p>
+                        <h6>{data.first_name} {data.last_name}</h6>
                         <address>
-                        Address: <p>{data.address}</p>
-                        Email: 
-                        <span>
-                            <a href="#"> {data.email}</a>{" "}
-                        </span>
-                        <br />
-                        What'sApp: <span>+8801760706361</span>
-                        <br />
+                            Address: <p>{data.address}</p>
+                            Email: 
+                            <span>
+                                <a href="#"> {data.email}</a>{" "}
+                            </span>
+                            <br />
+                            What'sApp: <span>+8801760706361</span>
+                            <br />
                         </address>           
                     </> : ''
                 }
