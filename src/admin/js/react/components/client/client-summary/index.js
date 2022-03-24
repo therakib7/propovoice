@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import { NavLink, useParams } from "react-router-dom";
-
-import { toast } from 'react-toastify';
-
+import { NavLink, useParams } from "react-router-dom";  
  
-import Api from '../../../api/client';
+import Api from 'api/client';
 
 import Overview from './tab/overview';
-import Project from '../../project';
-import Estimate from '../../estimate';
-import Invoice from '../../invoice/invoice';
+import Project from 'components/project'; 
+import Estimate from 'components/invoice/invoice';
+import Invoice from 'components/invoice/invoice';
 import Receipt from './tab/receipt';
 
 class ClientSummary extends Component {

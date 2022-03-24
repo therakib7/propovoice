@@ -13,7 +13,7 @@ class From extends Component {
                         <br />
                         Email: {data.email}
                         <br />
-                        What'sApp: <span>+8801760706361</span>
+                        Mobile: <span>+8801760706361</span>
                         <br />
                     </address>
                 }

@@ -1,4 +1,5 @@
-import React, { Suspense, lazy } from 'react'; 
+import React, { Suspense, lazy } from 'react';  
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,15 +15,14 @@ const Project = lazy(() => import('components/project'));
 const ClientSummary = lazy(() => import('components/client/client-summary'));
 const Client = lazy(() => import('components/client/client'));
 const Proposal = lazy(() => import('components/proposal'));
-const Editor = lazy(() => import('components/editor'));
-const Estimate = lazy(() => import('components/estimate'));
+const Editor = lazy(() => import('components/editor')); 
 const Invoice = lazy(() => import('components/invoice/invoice'));
 const InvoiceSingle = lazy(() => import('components/invoice/invoice-single'));
 const Payment = lazy(() => import('components/payment'));
 const Business = lazy(() => import('components/business'));
 const Setting = lazy(() => import('components/setting'));
 
-const Home = () => { 
+const Home = () => {  
     return (
         <>
             <HashRouter>
@@ -84,8 +84,8 @@ const Home = () => {
                                             />
                                         </svg>
                                         <span>Client</span>
-                                    </NavLink>
-                                    <ul className='pi-sub-menu'>
+                                    </NavLink> 
+                                    {/* <ul className='pi-sub-menu'>
                                         <li>
                                             <NavLink
                                                 to='project'
@@ -94,7 +94,28 @@ const Home = () => {
                                                 Project
                                             </NavLink>
                                         </li>
-                                    </ul>
+                                    </ul> */}
+                                </li>
+                                <li>
+                                    <NavLink
+                                        to='project'
+                                        className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                        <svg
+                                            width={18}
+                                            height={18}
+                                            viewBox="0 0 18 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                clipRule="evenodd"
+                                                d="M0 3a3 3 0 013-3h6.879A3 3 0 0112 .879L17.121 6A3 3 0 0118 8.121V21a3 3 0 01-3 3H3a3 3 0 01-3-3V3zm3 9a1.5 1.5 0 011.5-1.5h9a1.5 1.5 0 110 3h-9A1.5 1.5 0 013 12zm1.5 4.5a1.5 1.5 0 100 3h9a1.5 1.5 0 100-3h-9z"
+                                                fill="#5F5F5F"
+                                            />
+                                        </svg>
+                                        <span>Project</span>
+                                    </NavLink>
                                 </li>
 
                                 <li>
@@ -231,8 +252,7 @@ const Home = () => {
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
                                 <Route path="/proposal" element={<Proposal />} />
-                                <Route path="/editor" element={<Editor />} />
-                                {/* <Route path="/estimate" element={<Estimate />} /> */}
+                                <Route path="/editor" element={<Editor />} /> 
                                 <Route path="/estimate" element={<Invoice />} />
                                 <Route path="/estimate/single" element={<InvoiceSingle />} />
                                 <Route path="/estimate/single/:id" element={<InvoiceSingle />} />

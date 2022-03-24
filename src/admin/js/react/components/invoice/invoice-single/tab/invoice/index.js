@@ -19,7 +19,8 @@ import Attach from './Attach';
 import DateField from 'block/date-picker';
 
 //sidebar section
-import Style from './sidebar/Style'
+const InvTemplate = lazy(() => import('inv-template'));
+const Style = lazy(() => import('./sidebar/Style'));
 import Owner from './sidebar/Owner'
 const Payment = lazy(() => import('./sidebar/Payment'));
 
@@ -61,6 +62,11 @@ class Invoice extends Component {
 			paymentData: null,
 			invoice: {
 				id: null,
+				style: {
+					primary_color: '#4c6fff',
+					body_font: '',
+					title_font: '',
+				},
 				date: new Date(),
 				due_date: new Date(),
 				template: {
@@ -107,7 +113,7 @@ class Invoice extends Component {
 			});
 		}
 
-		this.bgColor();
+		this.bgColor(); 
 	}
 
 	componentDidUpdate() {
@@ -368,6 +374,13 @@ class Invoice extends Component {
 		});
 	}
 
+	onStyleChange = ( data ) => {
+		let invoice = { ...this.state.invoice }
+		invoice.style = data;
+
+		this.setState({ invoice });
+	}
+
 	onPaymentChange = (data) => {
 		let invoice = { ...this.state.invoice }
 		if (data) {
@@ -380,7 +393,7 @@ class Invoice extends Component {
 	}
 
 	render = () => {
-		const { tabs = [], currentTab, title } = this.state;
+		const { tabs = [], currentTab, title } = this.state; 
 		return (
 			<>
 				<div className="row">
@@ -474,7 +487,7 @@ class Invoice extends Component {
 					{(currentTab == 'info') && <div id="pi-informations" className="pi-invoice-tab-content">
 						<div className="row">
 							<div className="col-lg-9">
-								<h2>Add Content</h2>
+								<h2 className='pi-tab-content-title'>Add Content</h2>
 
 								<div className="pi-info-content pi-bg-white">
 									<div className="pi-add-info-content pi-bg-pearl">
@@ -604,26 +617,17 @@ class Invoice extends Component {
 
 							<div className="col-lg-3">
 								<div className="pi-right-sidebar">
-									<h2 className="pi-r-s-title">Preview {title}</h2>
-									<img src={this.state.invoice.template.src} className="pi-invoice-image" />
+									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2>
+									{/* <img src={this.state.invoice.template.src} className="pi-invoice-image" /> */}
 									{/* <Style />
 									<Owner /> */}
+									<div className='pi-inv-sidebar-preview' id='test-div' >
+										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} />
+									</div>
 									<div className="pi-accordion-wrapper">
-										<ul>
-											<li className="pi-edit-style">
-												<input type="checkbox" defaultChecked="checked" />
-												<i />
-												<h3>Edit Style</h3>
-												<div className="pi-edit-content">
-													<h4>Edit Color (Upcoming)</h4>
-													<span className="pi-bg-red" />
-													<span className="pi-bg-pink" />
-													<span className="pi-bg-blue" />
-													<span className="pi-bg-green" />
-												</div>
-											</li>
-
-											<Suspense fallback={<div>Loading...</div>}>
+										<ul> 
+											<Suspense fallback={<div>Loading...</div>}> 
+												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} />
 												{/* Others sidebar section */}
 											</Suspense>

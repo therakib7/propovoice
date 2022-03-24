@@ -105,12 +105,19 @@ class FromTo extends Component {
                                         </h4>
                                         <address>
                                             Email: {fromData.email}
-                                            <br />
-                                            What'sApp: +8801760706361
-                                            <br />
-                                            Address:
-                                            <br />
-                                            {fromData.address}
+                                            {fromData.mobile &&
+                                                <>
+                                                    <br />
+                                                    Mobile: {fromData.mobile}
+                                                </>
+                                            }
+
+                                            {fromData.address &&
+                                                <>
+                                                    <br />
+                                                    Address: {fromData.address}
+                                                </>
+                                            }
                                         </address>
                                     </> : 'Search & select'
                                 }
@@ -136,12 +143,19 @@ class FromTo extends Component {
                                         </h4>
                                         <address>
                                             Email: {toData.email}
-                                            <br />
-                                            What'sApp: +8801760706361
-                                            <br />
-                                            Address:
-                                            <br />
-                                            {toData.address}
+                                            {toData.mobile &&
+                                                <>
+                                                    <br />
+                                                    Mobile: {toData.mobile}
+                                                </>
+                                            }
+
+                                            {toData.address &&
+                                                <>
+                                                    <br />
+                                                    Address: {toData.address}
+                                                </>
+                                            }
                                         </address>
                                     </> : 'Search & select'
                                 }

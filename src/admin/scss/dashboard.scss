@@ -22,3 +22,37 @@ h4.from-title {
 .pi-inv {
     border: 1px solid #dfdfdf; 
 }
+.ncpi .pi-from-content .pi-from {
+    margin-top: 10px;
+}
+
+.pi-inv-sidebar-preview {
+    -moz-transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    transform: scale(0.5);
+    transform-origin: left top; 
+    height: 344px;
+    .pi-inv {
+        width: 740px;
+    }
+}
+
+.ncpi .pi-edit-content span { 
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 10%), inset 0 0 0 1px rgb(0 0 0 / 10%);
+}
+.ncpi .pi-style-color {
+    display: flex;
+    gap: 4px;
+    span {
+        width: 32px;
+        height: 32px;
+        line-height: 24px;
+        border: 3px solid #fff;
+        box-shadow: 0 0 0 1px rgb(0 0 0 / 10%), inset 0 0 0 1px rgb(0 0 0 / 10%);
+        border-radius: 8px;
+        cursor: pointer;
+    }
+}

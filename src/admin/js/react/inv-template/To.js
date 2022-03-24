@@ -14,10 +14,10 @@ class To extends Component {
                             Address: <p>{data.address}</p>
                             Email: 
                             <span>
-                                <a href="#"> {data.email}</a>{" "}
+                                <a href="#"> {data.email}</a>
                             </span>
                             <br />
-                            What'sApp: <span>+8801760706361</span>
+                            Mobile: <span>{data.mobile}</span>
                             <br />
                         </address>           
                     </> : ''

@@ -74,7 +74,7 @@ export default class Template extends Component {
     render() { 
         return (
             <div id="pi-template" className="pi-invoice-tab-content">
-                <h2>Select Template</h2>
+                <h2 className='pi-tab-content-title'>Select Template</h2>
                 <div className="row pi-gap pi-margin-l-r">
                     
                     {this.state.preloader && <TablePreloader />}

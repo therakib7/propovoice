@@ -191,6 +191,7 @@ class Invoice
             $fromMeta = get_post_meta($from_id);
             $fromData['name'] = isset($fromMeta['name']) ? $fromMeta['name'][0] : '';
             $fromData['email'] = isset($fromMeta['email']) ? $fromMeta['email'][0] : '';
+            $fromData['mobile'] = isset($fromMeta['mobile']) ? $fromMeta['mobile'][0] : '';
             $fromData['web'] = isset($fromMeta['web']) ? $fromMeta['web'][0] : '';
             $fromData['address'] = isset($fromMeta['address']) ? $fromMeta['address'][0] : '';
 
@@ -216,6 +217,7 @@ class Invoice
             $toData['first_name'] = $to_obj->first_name;
             $toData['last_name'] = $to_obj->last_name;
             $toData['email'] = $to_obj->user_email;
+            $toData['mobile'] = get_user_meta($to_id, 'mobile', true);
             $toData['web'] = get_user_meta($to_id, 'web', true);
             $toData['address'] = get_user_meta($to_id, 'address', true);
         }

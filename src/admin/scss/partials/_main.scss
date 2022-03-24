@@ -2826,6 +2826,29 @@ html {
   color: #718096;
   font-weight: 500;
   font-size: 14px;
+  position: relative;
+}
+.ncpi .pi-welcome-tabs-content .pi-tab .pi-done {
+  position: absolute;
+  top: 0px;
+  background: #4c6fff;
+  text-align: center;
+  line-height: 47px;
+  border: 2px solid #4c6fff !important;
+  opacity: 0;
+}
+.ncpi .pi-welcome-tabs-content .pi-tab .pi-done svg path {
+  fill: var(--text-color-white);
+}
+.ncpi .pi-welcome-tabs-content .pi-tab .pi-done svg {
+  margin-left: -2px;
+}
+.ncpi .pi-welcome-tabs-content .pi-tab .pi-done:hover {
+  opacity: 1;
+}
+.ncpi .pi-welcome-tabs-content .pi-tab.pi-active .pi-done {
+  opacity: 1;
+  z-index: 6;
 }
 @media screen and (max-width: 500px) {
   .ncpi .pi-welcome-tabs-content .pi-tab {
@@ -2906,7 +2929,7 @@ html {
   margin: auto;
   margin-bottom: 15px;
 }
-.ncpi .pi-single-tab-content .pi-invoice-tab-content h2 {
+.ncpi .pi-single-tab-content .pi-invoice-tab-content .pi-tab-content-title {
   font-size: 20px;
   font-weight: 700;
   margin-top: 55px;
@@ -3070,7 +3093,7 @@ html {
 .ncpi [data-tab-content] {
   display: none;
 }
-.ncpi .active[data-tab-content] {
+.ncpi .pi-active[data-tab-content] {
   display: block;
 }
 .ncpi .pi-payment-tab .pi-tabs {
@@ -3079,7 +3102,7 @@ html {
 .ncpi .pi-payment-tab [data-tab-content] {
   display: none;
 }
-.ncpi .pi-payment-tab .active[data-tab-content] {
+.ncpi .pi-payment-tab .pi-active[data-tab-content] {
   display: block;
 }
 .ncpi .pi-payment-tab .pi-tab {
@@ -3105,12 +3128,12 @@ html {
   line-height: 50px;
 }
 .ncpi .pi-payment-tab .pi-tab:hover,
-.ncpi .pi-payment-tab .pi-tab.active {
+.ncpi .pi-payment-tab .pi-tab.pi-active {
   border-top: 3px solid var(--bg-color-blue);
   position: relative;
 }
 .ncpi .pi-payment-tab .pi-tab:hover:before,
-.ncpi .pi-payment-tab .pi-tab.active:before {
+.ncpi .pi-payment-tab .pi-tab.pi-active:before {
   position: absolute;
   content: "";
   width: 0;
@@ -3257,6 +3280,30 @@ html {
   border-radius: 5px;
   background-color: #e1e8ff;
   margin-top: 5px;
+}
+
+.ncpi .reminder span {
+  font-size: 13px;
+  padding-top: 20px;
+  display: block;
+}
+.ncpi .reminder .reminder-time {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.ncpi .reminder .reminder-time input[type=number] {
+  width: 60px !important;
+  padding: 7px 0 7px 10px !important;
+}
+.ncpi .reminder .reminder-time select {
+  width: 65px !important;
+  margin-left: -7px;
+  padding: 8px 0 6px 10px !important;
+  font-size: 12px !important;
+  border-radius: 0px 4px 4px 0 !important;
+}
+.ncpi .reminder textarea {
+  margin-top: 10px;
 }
 
 .ncpi .piWidth-100 {
@@ -3543,47 +3590,37 @@ select {
   padding: 0 10px;
   margin-top: 15px;
 }
+.ncpi .pi-form-style-four label {
+  top: 1px !important;
+}
+.ncpi .pi-form-style-four select,
+.ncpi .pi-form-style-four input[type=number],
+.ncpi .pi-form-style-four input[type=text],
+.ncpi .pi-form-style-four input[type=email],
+.ncpi .pi-form-style-four input[type=url] {
+  margin-top: -15px;
+  padding: 9px;
+}
+.ncpi .pi-form-style-four {
+  margin-top: -5px;
+}
+.ncpi .pi-form-style-four .pi-btn {
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.ncpi .pi-form-content.pi-form-style-four .row > div {
+  margin-bottom: -5px;
+}
+.ncpi .pi-form-style-four textarea {
+  margin-top: 10px;
+}
+
 /*-------------------------------------------------------------- 
 # Color 
 --------------------------------------------------------------*/
-/*-------------------------------------------------------------- 
-# Background Color 
---------------------------------------------------------------*/
-.bg-black {
-  background-color: #1a202c;
-}
-
-.bg-cold-morning {
-  background-color: #e5e5e5;
-}
-
-.bg-bray-black {
-  background-color: #425466;
-}
-
-.bg-w-stone {
-  background-color: #c4c4c4;
-}
-
-.bg-w-stone:hover {
-  background-color: #adadad !important;
-}
-
-.bg-l-gray {
-  background-color: #f7fafc !important;
-}
-
-/* new */
-.bg-air-white:hover {
-  background-color: #edf2f7;
-  color: #4c6fff;
-}
-
-/* padding */
-.p-70 {
-  padding: 30px 70px;
-}
-
 /*-------------------------------------------------------------- 
 # Color 
 --------------------------------------------------------------*/
@@ -3649,10 +3686,6 @@ select {
   right: 55px;
 }
 
-.border-e-blue {
-  border: 1px solid #cbd5e0;
-}
-
 /*======================   New  =============================*/
 :root {
   --bg-color-white: #fff;
@@ -3666,9 +3699,11 @@ select {
   --bg-color-pearl: #f8f8f8;
   --bg-color-husky: #e1e8ff;
   --bg-color-air-white: #edf2f7;
+  --bg-color-deutzia-white: #f7fafc;
+  --text-color-black: #000;
   --text-color-white: #fff;
   --text-color-blue: #4c6fff;
-  --border-color-gray: #cbd5e0;
+  --border-color-gray: #dddddda8;
 }
 
 .pi-bg-cold-morning {
@@ -3677,6 +3712,10 @@ select {
 
 .pi-bg-air-white {
   background-color: var(--bg-color-air-white);
+}
+
+.pi-bg-deutzia-white {
+  background-color: var(--bg-color-deutzia-white);
 }
 
 .pi-bg-pearl {
@@ -3703,6 +3742,10 @@ select {
   color: var(--text-color-blue) !important;
 }
 
+.pi-color-black {
+  color: var(--bg-color-black) !important;
+}
+
 .pi-border-blue {
   border: 1px solid var(--text-color-blue) !important;
 }
@@ -3725,6 +3768,10 @@ select {
 
 .piBgOrange {
   background-color: var(--bg-color-orange);
+}
+
+.pi-border-e-blue {
+  border: 1px solid var(--border-color-gray) !important;
 }
 
 /*-------------------------------------------------------------- 

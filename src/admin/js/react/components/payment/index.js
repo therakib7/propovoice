@@ -193,7 +193,7 @@ export default class Payment extends Component {
                             </a>
                         </li>
                         <li>&gt;</li>
-                        <li className="active">
+                        <li className="pi-active">
                             {title}
                         </li>
                     </ul>
@@ -201,7 +201,7 @@ export default class Payment extends Component {
 
                 <div className="pi-payment-tab">
                     <ul className="pi-tabs">
-                        <li data-tab-target="#pi-bank" className="active pi-tab">
+                        <li data-tab-target="#pi-bank" className="pi-active pi-tab">
                             <svg
                                 width={25}
                                 height={25}
@@ -254,7 +254,7 @@ export default class Payment extends Component {
                     </ul>
                     <div className="pi-payment-tab-content">
 
-                        <div id="pi-bank" data-tab-content="" className="active">
+                        <div id="pi-bank" data-tab-content="" className="pi-active">
                             <Form
                                 handleSubmit={this.handleSubmit}
                                 show={this.state.formModal}

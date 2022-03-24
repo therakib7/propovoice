@@ -19,6 +19,10 @@ export default class Three extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        document.documentElement.style.setProperty('--pi-inv-primary', this.props.data.invoice.style.primary_color);
+    } 
+
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData } = this.props.data;
@@ -56,7 +60,7 @@ export default class Three extends Component {
                         </div>
                         
                         {items && <Items data={items} />}
-                        
+
                         <div className="pi-bank-info">
                             <Payment {...this.props} />
                             <Total {...this.props} />

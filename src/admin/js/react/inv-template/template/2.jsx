@@ -19,12 +19,21 @@ export default class Two extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        document.documentElement.style.setProperty('--pi-inv-primary', this.props.data.invoice.style.primary_color);
+    } 
+
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData } = this.props.data;
         let title = this.props.data.invoice.path == 'invoice' ? 'Invoice' : 'Estimate';
         return (
             <div className="pi-inv">
+                {/* <style>
+                    :root {
+                        --pi-inv-primary: this.props.data.invoice.style.primary_color;
+                    }
+                </style> */}
                 <div className="pi-inv-two">
                     <div className="pi-top-shape">
                         <svg viewBox="0 0 595 69" fill="none" xmlns="http://www.w3.org/2000/svg">
