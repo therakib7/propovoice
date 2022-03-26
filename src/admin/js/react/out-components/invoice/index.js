@@ -8,7 +8,9 @@ import Api from 'api/invoice';
 import Preview from 'inv-template';
 
 import Feedback from './Feedback';
-import Payment from './Payment';
+//payment
+import Bank from './payment/Bank';
+import Stripe from './payment/Stripe';
 
 const EditDownload = props => {
     return (
@@ -86,12 +88,19 @@ const InvoiceBtn = props => {
 
             {props.type == 'invoice' &&
                 <>
-                    <button
+                    {/* <button
                         className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
                         style={{ float: 'right' }}
                         onClick={() => props.handleChange('payment', 'bank')}
                     >
                         Add Payment Info
+                    </button> */}
+                    <button
+                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
+                        style={{ float: 'right' }}
+                        onClick={() => props.handleChange('payment', 'stripe')}
+                    >
+                        Pay with Stripe
                     </button>
                 </>
             }
@@ -238,11 +247,17 @@ export default class Invoice extends Component {
                     />}
 
                 {this.state.paymentModal &&
-                    <Payment
+                    // <Bank
+                    //     show={this.state.paymentModal}
+                    //     data={this.state}
+                    //     close={() => this.setState({ paymentModal: false })}
+                    // />
+                    <Stripe
                         show={this.state.paymentModal}
                         data={this.state}
                         close={() => this.setState({ paymentModal: false })}
-                    />}
+                    />
+                }
             </div>
         );
     }
