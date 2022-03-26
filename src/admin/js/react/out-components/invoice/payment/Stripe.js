@@ -2,7 +2,7 @@
 // Learn how to accept a payment using the official Stripe docs.
 // https://stripe.com/docs/payments/accept-a-payment#web
 
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js';
@@ -16,7 +16,7 @@ const CARD_OPTIONS = {
     style: {
         base: {
             iconColor: '#c4f0ff',
-            color: '#fff',
+            color: '#000',
             fontWeight: 500,
             fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
             fontSize: '16px',
@@ -41,41 +41,17 @@ const CardField = ({ onChange }) => (
     </div>
 );
 
-const Field = ({
-    label,
-    id,
-    type,
-    placeholder,
-    required,
-    autoComplete,
-    value,
-    onChange,
-}) => (
-    <div className="FormRow">
-        <label htmlFor={id} className="FormRowLabel">
-            {label}
-        </label>
-        <input
-            className="FormRowInput"
-            id={id}
-            type={type}
-            placeholder={placeholder}
-            required={required}
-            autoComplete={autoComplete}
-            value={value}
-            onChange={onChange}
-        />
-    </div>
-);
-
 const SubmitButton = ({ processing, error, children, disabled }) => (
-    <button
-        className={`SubmitButton ${error ? 'SubmitButton--error' : ''}`}
-        type="submit"
-        disabled={processing || disabled}
-    >
-        {processing ? 'Processing...' : children}
-    </button>
+
+    <div className="pi-footer-content pi-text-center">
+        <button
+            className={`pi-btn pi-bg-blue pi-bg-hover-blue SubmitButton ${error ? 'SubmitButton--error' : ''}`}
+            type="submit"
+            disabled={processing || disabled}
+        >
+            {processing ? 'Processing...' : children}
+        </button>
+    </div>
 );
 
 const ErrorMessage = ({ children }) => (
@@ -94,25 +70,34 @@ const ErrorMessage = ({ children }) => (
     </div>
 );
 
-class CheckoutForm extends React.Component {
+class CheckoutForm extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             error: null,
             cardComplete: false,
             processing: false,
             paymentMethod: null,
-            email: '',
-            phone: '',
-            name: '',
+            form: {
+                email: '',
+                phone: '',
+                name: '',
+            }
         };
+    }
+
+    handleChange = e => {
+        const { name, value } = e.target;
+        this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
     handleSubmit = async (event) => {
         event.preventDefault();
 
         const { stripe, elements } = this.props;
-        const { email, phone, name, error, cardComplete } = this.state;
+        const { error, cardComplete } = this.state;
+        const { email, phone, name } = this.state.form;
 
         if (!stripe || !elements) {
             // Stripe.js has not loaded yet. Make sure to disable
@@ -131,9 +116,9 @@ class CheckoutForm extends React.Component {
             return;
         }
 
-        if (cardComplete) {
-            this.setState({ processing: true });
-        }
+        //if (cardComplete) {
+        this.setState({ processing: true });
+        //}
 
         let client_secret = null;
         const url = apiUrl + 'payment-process';
@@ -171,98 +156,102 @@ class CheckoutForm extends React.Component {
         if (confirmPayment.error) {
             this.setState({ error: confirmPayment.error });
             return;
-        }
-        //after payment success
-        this.setState({ processing: false });
-        console.log('success')
-        /* 
-
-        if (payload.error) {
-            this.setState({ error: payload.error });
         } else {
-            this.setState({ paymentMethod: payload.paymentMethod });
-        } */
+            this.setState({ processing: false, paymentMethod: confirmPayment });
+        }
     };
 
     render() {
-        const { error, processing, paymentMethod, name, email, phone } = this.state;
+        const { error, processing, paymentMethod } = this.state;
         const { stripe } = this.props;
-        return paymentMethod ? (
-            <div className="Result">
-                <div className="ResultTitle" role="alert">
-                    Payment successful
-                </div>
-                <div className="ResultMessage">
-                    Thanks for trying Stripe Elements. No money was charged, but we
-                    generated a PaymentMethod: {paymentMethod.id}
+
+        return (
+            <div className="pi-overlay pi-show">
+                {/* TODO: fixed reponsive width in mobile */}
+                <div className="pi-popup-content" style={{ width: '25%' }}>
+                    <div className="pi-modal-header">
+                        <h2 className="pi-modal-title pi-text-center">Stripe Payment Info</h2>
+                        <span className="pi-close" onClick={() => this.props.close()}>×</span>
+                    </div>
+
+                    <div className="pi-content">
+                        {paymentMethod ? (
+                            <div className="Result">
+                                <div className="ResultTitle" role="alert">
+                                    Payment successful
+                                </div>
+                                <div className="ResultMessage">
+                                    Thanks for trying Stripe payment.
+                                </div>
+                            </div>
+                        ) : (
+                            <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two pi-form-style-three">
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label htmlFor="form-name">Name</label>
+                                        <input
+                                            id="form-name"
+                                            type="text"
+                                            required
+                                            name="name"
+                                            value={this.state.form.name}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label htmlFor="form-name">Email</label>
+                                        <input
+                                            id="form-email"
+                                            type="email"
+                                            required
+                                            name="email"
+                                            value={this.state.form.email}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label htmlFor="form-name">Phone</label>
+                                        <input
+                                            id="form-phone"
+                                            type="text"
+                                            required
+                                            name="phone"
+                                            value={this.state.form.phone}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <CardElement options={CARD_OPTIONS} />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        {error && <ErrorMessage>{error.message}</ErrorMessage>}
+                                    </div>
+                                </div>
+
+                                <SubmitButton processing={processing} error={error} disabled={!stripe}>
+                                    Pay $25
+                                </SubmitButton>
+                            </form>
+                        )}
+                    </div>
                 </div>
             </div>
-        ) : (
-            <form className="Form" onSubmit={this.handleSubmit}>
-                <fieldset className="FormGroup">
-                    <Field
-                        label="Name"
-                        id="name"
-                        type="text"
-                        placeholder="Jane Doe"
-                        required
-                        autoComplete="name"
-                        value={name}
-                        onChange={(event) => {
-                            this.setState({ name: event.target.value });
-                        }}
-                    />
-                    <Field
-                        label="Email"
-                        id="email"
-                        type="email"
-                        placeholder="janedoe@gmail.com"
-                        required
-                        autoComplete="email"
-                        value={email}
-                        onChange={(event) => {
-                            this.setState({ email: event.target.value });
-                        }}
-                    />
-                    <Field
-                        label="Phone"
-                        id="phone"
-                        type="tel"
-                        placeholder="(941) 555-0123"
-                        required
-                        autoComplete="tel"
-                        value={phone}
-                        onChange={(event) => {
-                            this.setState({ phone: event.target.value });
-                        }}
-                    />
-                </fieldset>
-                <fieldset className="FormGroup">
-                    <CardField
-                        onChange={(event) => {
-                            this.setState({
-                                error: event.error,
-                                cardComplete: event.complete,
-                            });
-                        }}
-                    />
-                </fieldset>
-                {error && <ErrorMessage>{error.message}</ErrorMessage>}
-                <SubmitButton processing={processing} error={error} disabled={!stripe}>
-                    Pay $25
-                </SubmitButton>
-            </form>
         );
     }
 }
-
-const InjectedCheckoutForm = () => (
-    <ElementsConsumer>
-        {({ stripe, elements }) => (
-            <CheckoutForm stripe={stripe} elements={elements} />
-        )}
-    </ElementsConsumer>
-);
 
 const ELEMENTS_OPTIONS = {
     fonts: [
@@ -276,14 +265,28 @@ const ELEMENTS_OPTIONS = {
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe('pk_test_n5dMNMi4zcaMIcamYh2gMQAo');
 
-const Stripe = () => {
-    return (
-        <div className="stripe-wrapper">
-            <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-                <InjectedCheckoutForm />
-            </Elements>
-        </div>
-    );
-};
+class Stripe extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-export default Stripe;
+    render() {
+        return (
+            <>
+                {this.props.show && (
+                    // <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
+                    <Elements stripe={stripePromise} >
+                        <ElementsConsumer>
+                            {({ stripe, elements }) => (
+                                <CheckoutForm stripe={stripe} elements={elements} close={this.props.close} />
+                            )}
+                        </ElementsConsumer>
+                    </Elements>
+                )
+                }
+            </>
+        );
+    }
+}
+
+export default Stripe; 

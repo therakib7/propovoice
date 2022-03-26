@@ -9,14 +9,14 @@ class Payment extends Component {
 
         this.state = {
             form: {
-                invoice_id: null, 
+                invoice_id: null,
                 payment_type: '',
                 country: '',
                 bank_name: '',
                 account_name: '',
                 account_no: '',
                 amount: '',
-                date: '', 
+                date: '',
                 note: '',
             },
         };
@@ -66,9 +66,9 @@ class Payment extends Component {
                                 </div>
 
                                 <div className="pi-content">
-                                    <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two pi-form-style-three"> 
+                                    <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two pi-form-style-three">
 
-                                        <div className="row"> 
+                                        <div className="row">
                                             <div className="col-lg">
                                                 <label htmlFor="form-country">
                                                     Country
@@ -87,7 +87,7 @@ class Payment extends Component {
                                             <div className="col-lg">
                                                 <label htmlFor="form-bank_name">
                                                     Bank Name
-                                                </label> 
+                                                </label>
                                                 <input
                                                     id="form-bank_name"
                                                     type="text"
@@ -96,10 +96,10 @@ class Payment extends Component {
                                                     value={this.state.form.bank_name}
                                                     onChange={this.handleChange}
                                                 />
-                                            </div> 
-                                        </div> 
+                                            </div>
+                                        </div>
 
-                                        <div className="row"> 
+                                        <div className="row">
                                             <div className="col-lg">
                                                 <label htmlFor="form-account_name">
                                                     Account Name
@@ -118,7 +118,7 @@ class Payment extends Component {
                                             <div className="col-lg">
                                                 <label htmlFor="form-account_no">
                                                     Account No
-                                                </label> 
+                                                </label>
                                                 <input
                                                     id="form-account_no"
                                                     type="text"
@@ -127,10 +127,10 @@ class Payment extends Component {
                                                     value={this.state.form.account_no}
                                                     onChange={this.handleChange}
                                                 />
-                                            </div> 
-                                        </div> 
+                                            </div>
+                                        </div>
 
-                                        <div className="row"> 
+                                        <div className="row">
                                             <div className="col-lg">
                                                 <label htmlFor="form-amount">
                                                     Amount Sent
@@ -149,7 +149,7 @@ class Payment extends Component {
                                             <div className="col-lg">
                                                 <label htmlFor="form-date">
                                                     Payment Date
-                                                </label> 
+                                                </label>
                                                 <input
                                                     id="form-date"
                                                     type="text"
@@ -158,24 +158,24 @@ class Payment extends Component {
                                                     value={this.state.form.date}
                                                     onChange={this.handleChange}
                                                 />
-                                            </div> 
+                                            </div>
                                         </div>
 
-                                        <div className="row"> 
+                                        <div className="row">
                                             <div className="col-lg">
                                                 <label htmlFor="form-note">
                                                     Additional Note
-                                                </label> 
+                                                </label>
                                                 <textarea
                                                     id="form-note"
-                                                    rows={5} 
+                                                    rows={5}
                                                     name="note"
                                                     value={this.state.form.note}
                                                     onChange={this.handleChange}
                                                 />
-                                            </div> 
-                                        </div> 
-                                    
+                                            </div>
+                                        </div>
+
                                         <div className="row">
                                             <div className="col">
                                                 <button

@@ -49,7 +49,7 @@ class PaymentProcess
             $paymentIntents = $stripe->paymentIntents->create([
                 'amount' => ($amount * 100),
                 'currency' => 'USD',
-                'description' => 'This is a dda test invoice', //TODO: check it
+                'description' => 'This is a propovoice invoice', //TODO: check it
                 // 'customer' => $customer,
                 // 'receipt_email' => $user->user_email,
                 // 'payment_method_types' => ['card'],
