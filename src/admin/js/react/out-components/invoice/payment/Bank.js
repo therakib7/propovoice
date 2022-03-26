@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import Api from 'api/email';
 
-class Payment extends Component {
+class Bank extends Component {
     constructor(props) {
         super(props);
 
@@ -218,5 +218,4 @@ class Payment extends Component {
         );
     }
 }
-
-export default Payment; 
+export default Bank; 

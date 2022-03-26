@@ -11,6 +11,7 @@ import Feedback from './Feedback';
 //payment
 import Bank from './payment/Bank';
 import Stripe from './payment/Stripe';
+import Paypal from './payment/Paypal';
 
 const EditDownload = props => {
     return (
@@ -88,19 +89,28 @@ const InvoiceBtn = props => {
 
             {props.type == 'invoice' &&
                 <>
-                    {/* <button
+                    <button
                         className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
                         style={{ float: 'right' }}
                         onClick={() => props.handleChange('payment', 'bank')}
                     >
                         Add Payment Info
-                    </button> */}
+                    </button>
+
                     <button
                         className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                        style={{ float: 'right' }}
+                        style={{ float: 'right', marginRight: '3px' }}
                         onClick={() => props.handleChange('payment', 'stripe')}
                     >
                         Pay with Stripe
+                    </button>
+
+                    <button
+                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
+                        style={{ float: 'right', marginRight: '3px' }}
+                        onClick={() => props.handleChange('payment', 'paypal')}
+                    >
+                        Pay with Paypal
                     </button>
                 </>
             }
@@ -115,6 +125,7 @@ export default class Invoice extends Component {
         this.state = {
             emailModal: false,
             paymentModal: false,
+            payment_type: '',
             feedback: '',
             fromData: null,
             toData: null,
@@ -247,16 +258,25 @@ export default class Invoice extends Component {
                     />}
 
                 {this.state.paymentModal &&
-                    // <Bank
-                    //     show={this.state.paymentModal}
-                    //     data={this.state}
-                    //     close={() => this.setState({ paymentModal: false })}
-                    // />
-                    <Stripe
-                        show={this.state.paymentModal}
-                        data={this.state}
-                        close={() => this.setState({ paymentModal: false })}
-                    />
+                    <>
+                        {this.state.payment_type == 'bank' && <Bank
+                            show={this.state.paymentModal}
+                            data={this.state}
+                            close={() => this.setState({ paymentModal: false })}
+                        />}
+
+                        {this.state.payment_type == 'stripe' && <Stripe
+                            show={this.state.paymentModal}
+                            data={this.state}
+                            close={() => this.setState({ paymentModal: false })}
+                        />}
+
+                        {this.state.payment_type == 'paypal' && <Paypal
+                            show={this.state.paymentModal}
+                            data={this.state}
+                            close={() => this.setState({ paymentModal: false })}
+                        />}
+                    </>
                 }
             </div>
         );

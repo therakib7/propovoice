@@ -170,7 +170,7 @@ class CheckoutForm extends Component {
                 {/* TODO: fixed reponsive width in mobile */}
                 <div className="pi-popup-content" style={{ width: '25%' }}>
                     <div className="pi-modal-header">
-                        <h2 className="pi-modal-title pi-text-center">Stripe Payment Info</h2>
+                        <h2 className="pi-modal-title pi-text-center">Pay With Stripe</h2>
                         <span className="pi-close" onClick={() => this.props.close()}>×</span>
                     </div>
 
