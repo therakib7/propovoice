@@ -7,7 +7,7 @@ import ReactPaginate from 'react-paginate';
 import TablePreloader from 'block/preloader/table';
 import Style from './style.scoped.scss'
 import Api from '../../api/payment';
-import Form from './Form';
+import FormBank from './FormBank';
 import Table from './Table';
 import Search from './Search';
 import Empty from 'block/empty';
@@ -18,6 +18,8 @@ export default class Payment extends Component {
 
         this.state = {
             title: 'Payment',
+            currentTab: 'bank',
+            currentTabTitle: 'Bank',
             empty: false,
             preloader: true,
             formModal: false,
@@ -38,7 +40,7 @@ export default class Payment extends Component {
     componentDidMount() {
         this.getLists();
     }
-
+    
     getLists = (searchArgs = null) => {
 
         let args = {
@@ -126,6 +128,31 @@ export default class Payment extends Component {
         }
     }
 
+    setActiveTab(e, id) {
+		e.preventDefault();
+        
+        let title;
+        switch ( id ) {
+            case 'bank':
+                title = 'Bank'
+                break; 
+
+            case 'paypal':
+                title = 'Paypal'
+                break; 
+
+            case 'stripe':
+                title = 'Stripe'
+                break; 
+             
+        }
+
+		this.setState({
+			currentTab: id,
+			currentTabTitle: title
+		});
+	}
+
     openForm = (type = 'new', payment = null) => {
         this.setState({ formModal: true });
 
@@ -180,8 +207,7 @@ export default class Payment extends Component {
     };
 
     render() {
-        const payments = this.state.payments;
-        const title = this.state.title;
+        const {payments, title, currentTab, currentTabTitle} = this.state; 
         return (
             <div className="ncpi-components">
                 <h1 className="">{title}</h1>
@@ -201,7 +227,7 @@ export default class Payment extends Component {
 
                 <div className="pi-payment-tab">
                     <ul className="pi-tabs">
-                        <li data-tab-target="#pi-bank" className="pi-active pi-tab">
+                        <li data-tab-target="#pi-bank" className={'pi-tab ' + ( currentTab == 'bank' ? 'pi-active' : '' )} onClick={(e) => this.setActiveTab(e, 'bank')}>
                             <svg
                                 width={25}
                                 height={25}
@@ -216,7 +242,7 @@ export default class Payment extends Component {
                             </svg>
                             Bank Account
                         </li>
-                        <li data-tab-target="#pi-paypal" className="pi-tab">
+                        <li data-tab-target="#pi-paypal" className={'pi-tab ' + ( currentTab == 'paypal' ? 'pi-active' : '' )} onClick={(e) => this.setActiveTab(e, 'paypal')}>
                             <svg
                                 width={24}
                                 height={24}
@@ -248,17 +274,19 @@ export default class Payment extends Component {
                             Paypal
                         </li>
 
-                        <li data-tab-target="#pi-stripe" className="pi-tab">
+                        <li data-tab-target="#pi-stripe" className={'pi-tab ' + ( currentTab == 'stripe' ? 'pi-active' : '' )} onClick={(e) => this.setActiveTab(e, 'stripe')}>
                             <span className="pi-color-blue">stripe</span>
                         </li>
                     </ul>
                     <div className="pi-payment-tab-content">
 
                         <div id="pi-bank" data-tab-content="" className="pi-active">
-                            <Form
+                            <FormBank
                                 handleSubmit={this.handleSubmit}
                                 show={this.state.formModal}
                                 modalType={this.state.formModalType}
+                                currentTab={currentTab}
+                                currentTabTitle={currentTabTitle}
                                 data={this.state.payment}
                                 close={this.closeForm}
                             />
@@ -277,7 +305,7 @@ export default class Payment extends Component {
                                             fill="#4A5568"
                                         />
                                     </svg>
-                                    No Bank <br />
+                                    No {currentTabTitle} <br />
                                     Account Found
                                 </span>
                             </div>}
@@ -302,7 +330,7 @@ export default class Payment extends Component {
                                         fill="#2D3748"
                                     />
                                 </svg>
-                                Add Bank Account
+                                Add {currentTabTitle} Account
                             </button>
                         </div>
                     </div>
