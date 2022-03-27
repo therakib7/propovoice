@@ -17,12 +17,12 @@ class Payment
 
         register_rest_route('ncpi/v1', '/payments', [
             [
-                'methods' => 'GET', 
+                'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'], 
+                'permission_callback' => [$this, 'get_permission'],
             ],
             [
-                'methods' => 'POST', 
+                'methods' => 'POST',
                 'callback' => [$this, 'create'],
                 'permission_callback' => [$this, 'create_permission']
             ],
@@ -66,44 +66,54 @@ class Payment
         ));
     }
 
-    public function get( $req )
+    public function get($req)
     {
         $request = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if ( isset($request['per_page']) ) {
+        if (isset($request['per_page'])) {
             $per_page = $request['per_page'];
         }
 
-        if ( isset($request['page']) && $request['page'] > 1 ) {
-            $offset = ( $per_page * $request['page'] ) - $per_page;
+        if (isset($request['page']) && $request['page'] > 1) {
+            $offset = ($per_page * $request['page']) - $per_page;
         }
 
-        $args = array( 
+        $args = array(
             'post_type' => 'ncpi_payment',
             'post_status' => 'publish',
-            'posts_per_page' => $per_page, 
+            'posts_per_page' => $per_page,
             'offset' => $offset,
-        ); 
+        );
 
         $args['meta_query'] = array(
             'relation' => 'OR'
-        );  
+        );
 
-        if ( isset( $request['bank_name'] ) ) { 
-            $args['meta_query'][] = array( 
+        if (isset($request['type'])) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'     => 'type',
+                    'value'   => $request['type'],
+                    'compare' => 'LIKE'
+                )
+            );
+        }
+
+        if (isset($request['bank_name'])) {
+            $args['meta_query'][] = array(
                 array(
                     'key'     => 'bank_name',
                     'value'   => $request['bank_name'],
                     'compare' => 'LIKE'
                 )
             );
-        } 
+        }
 
-        if ( isset( $request['default'] ) ) { 
-            $args['meta_query'][] = array( 
+        if (isset($request['default'])) {
+            $args['meta_query'][] = array(
                 array(
                     'key'     => 'default',
                     'value'   => 1,
@@ -112,230 +122,283 @@ class Payment
             );
         }
 
-        $query = new WP_Query( $args );
+        $query = new WP_Query($args);
         $total_data = $query->get_total(); //use this for pagination 
         $result = $data = [];
-        while ( $query->have_posts() ) {
+        while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
 
             $query_data = [];
-            $query_data['id'] = $id; 
-            
-            $query_data['type'] = get_post_meta($id, 'type', true);
-            $query_data['country'] = get_post_meta($id, 'country', true);
-            $query_data['bank_name'] = get_post_meta($id, 'bank_name', true);
-            $query_data['routing_no'] = get_post_meta($id, 'routing_no', true);
-            $query_data['bank_branch'] = get_post_meta($id, 'bank_branch', true);
-            $query_data['account_name'] = get_post_meta($id, 'account_name', true);  
-            $query_data['account_no'] = get_post_meta($id, 'account_no', true);  
-            $query_data['confirm_account_no'] = get_post_meta($id, 'account_no', true);  
-            $query_data['default'] = (bool) get_post_meta($id, 'default', true); 
+            $query_data['id'] = $id;
 
-            $logo_id = get_post_meta($id, 'logo', true);
-            $logoData = null; 
-            if ( $logo_id ) {
-                $logoData = []; 
-                $logoData['id'] = $logo_id; 
-                $logo_url = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
-                $logoData['url'] = $logo_url[0]; 
-            } 
-            $query_data['logo'] = $logoData;
+            $type = get_post_meta($id, 'type', true);
+            $query_data['type'] = $type;
+
+            if ($type == 'bank') {
+
+                $query_data['country'] = get_post_meta($id, 'country', true);
+                $query_data['bank_name'] = get_post_meta($id, 'bank_name', true);
+                $query_data['routing_no'] = get_post_meta($id, 'routing_no', true);
+                $query_data['bank_branch'] = get_post_meta($id, 'bank_branch', true);
+                $query_data['account_name'] = get_post_meta($id, 'account_name', true);
+                $query_data['account_no'] = get_post_meta($id, 'account_no', true);
+                $query_data['confirm_account_no'] = get_post_meta($id, 'account_no', true);
+                $query_data['default'] = (bool) get_post_meta($id, 'default', true);
+            } elseif ($type == 'paypal') {
+
+                $query_data['client_id'] = get_post_meta($id, 'client_id', true);
+                $query_data['secret_id'] = get_post_meta($id, 'secret_id', true);
+                $query_data['default'] = (bool) get_post_meta($id, 'default', true);
+            } elseif ($type == 'stripe') {
+
+                $query_data['public_key'] = get_post_meta($id, 'public_key', true);
+                $query_data['secret_key'] = get_post_meta($id, 'secret_key', true);
+                $query_data['default'] = (bool) get_post_meta($id, 'default', true);
+            }
 
             $query_data['date'] = get_the_time('j-M-Y');
-            $data[] = $query_data; 
-        } 
-        wp_reset_postdata(); 
+            $data[] = $query_data;
+        }
+        wp_reset_postdata();
 
         $result['result'] = $data;
-        $result['total'] = $total_data; 
+        $result['total'] = $total_data;
 
-        return wp_send_json_success($result); 
+        return wp_send_json_success($result);
     }
 
-    public function get_single( $req )
-    {  
+    public function get_single($req)
+    {
         $url_params = $req->get_url_params();
-        $id    = $url_params['id'];  
+        $id    = $url_params['id'];
         $query_data = [];
-        $query_data['id'] = $id; 
-          
+        $query_data['id'] = $id;
+
         $query_data['type'] = get_post_meta($id, 'type', true);
         $query_data['country'] = get_post_meta($id, 'country', true);
         $query_data['bank_name'] = get_post_meta($id, 'bank_name', true);
         $query_data['routing_no'] = get_post_meta($id, 'routing_no', true);
         $query_data['bank_branch'] = get_post_meta($id, 'bank_branch', true);
-        $query_data['account_no'] = get_post_meta($id, 'account_no', true);  
-        $query_data['confirm_account_no'] = get_post_meta($id, 'account_no', true);  
-        $query_data['default'] = (bool) get_post_meta($id, 'default', true);  
+        $query_data['account_no'] = get_post_meta($id, 'account_no', true);
+        $query_data['confirm_account_no'] = get_post_meta($id, 'account_no', true);
+        $query_data['default'] = (bool) get_post_meta($id, 'default', true);
 
-        return wp_send_json_success($query_data); 
+        return wp_send_json_success($query_data);
     }
 
     public function create($req)
-    { 
+    {
 
-        $params = $req->get_params(); 
-        $reg_errors = new \WP_Error;  
-        
-        $type = isset( $params['type'] ) ? sanitize_text_field( $params['type'] ) : null; 
-        $country = isset( $params['country'] ) ? sanitize_text_field( $params['country'] ) : null; 
-        $bank_name = isset( $params['bank_name'] ) ? sanitize_text_field( $params['bank_name'] ) : null; 
-        $routing_no = isset( $params['routing_no'] ) ? sanitize_text_field( $params['routing_no'] ) : null; 
-        $bank_branch = isset( $params['bank_branch'] ) ? sanitize_text_field( $params['bank_branch'] ) : null; 
-        $account_name = isset( $params['account_name'] ) ? sanitize_text_field( $params['account_name'] ) : null; 
-        $account_no = isset( $params['account_no'] ) ? sanitize_text_field( $params['account_no'] ) : null; 
-        $confirm_account_no = isset( $params['confirm_account_no'] ) ? sanitize_text_field( $params['confirm_account_no'] ) : null; 
-        $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null;  
-        $logo = isset( $params['logo'] ) && isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
+        $params = $req->get_params();
+        $reg_errors = new \WP_Error;
 
-        if ( 
-            empty( $bank_name )  
+        $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
+        //bank form
+        $country = isset($params['country']) ? sanitize_text_field($params['country']) : null;
+        $bank_name = isset($params['bank_name']) ? sanitize_text_field($params['bank_name']) : null;
+        $routing_no = isset($params['routing_no']) ? sanitize_text_field($params['routing_no']) : null;
+        $bank_branch = isset($params['bank_branch']) ? sanitize_text_field($params['bank_branch']) : null;
+        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
+        $account_no = isset($params['account_no']) ? sanitize_text_field($params['account_no']) : null;
+        $confirm_account_no = isset($params['confirm_account_no']) ? sanitize_text_field($params['confirm_account_no']) : null;
+        $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
+
+        //paypal form
+        $client_id = isset($params['client_id']) ? sanitize_text_field($params['client_id']) : null;
+        $secret_id = isset($params['secret_id']) ? sanitize_text_field($params['secret_id']) : null;
+
+        //stripe form
+        $public_key = isset($params['public_key']) ? sanitize_text_field($params['public_key']) : null;
+        $secret_key = isset($params['secret_key']) ? sanitize_text_field($params['secret_key']) : null;
+
+        /* if (
+            empty($bank_name)
         ) {
             $reg_errors->add('field', esc_html__('Bank name is missing', 'propovoice'));
-        } 
+        } */
 
-        if ( $reg_errors->get_error_messages() ) {
+        if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-         
+
             $data = array(
                 'post_type' => 'ncpi_payment',
                 'post_title'    => $type,
                 'post_content'  => '',
                 'post_status'   => 'publish',
-                'post_author'   => get_current_user_id() 
-            ); 
-            $post_id = wp_insert_post( $data );
+                'post_author'   => get_current_user_id()
+            );
+            $post_id = wp_insert_post($data);
 
-            if ( !is_wp_error($post_id) ) {
-                
-                if ( $type ) {
-                    update_post_meta($post_id, 'type', $type); 
+            if (!is_wp_error($post_id)) {
+
+                if ($type) {
+                    update_post_meta($post_id, 'type', $type);
                 }
 
-                if ( $country ) {
-                    update_post_meta($post_id, 'country', $country); 
+                if ($type == 'bank') {
+
+                    if ($country) {
+                        update_post_meta($post_id, 'country', $country);
+                    }
+
+                    if ($bank_name) {
+                        update_post_meta($post_id, 'bank_name', $bank_name);
+                    }
+
+                    if ($routing_no) {
+                        update_post_meta($post_id, 'routing_no', $routing_no);
+                    }
+
+                    if ($bank_branch) {
+                        update_post_meta($post_id, 'bank_branch', $bank_branch);
+                    }
+
+                    if ($account_name) {
+                        update_post_meta($post_id, 'account_name', $account_name);
+                    }
+
+                    if ($account_no) {
+                        update_post_meta($post_id, 'account_no', $account_no);
+                    }
+
+                    if ($confirm_account_no) {
+                        update_post_meta($post_id, 'confirm_account_no', $confirm_account_no);
+                    }
+                } elseif ($type == 'paypal') {
+
+                    if ($client_id) {
+                        update_post_meta($post_id, 'client_id', $client_id);
+                    }
+
+                    if ($secret_id) {
+                        update_post_meta($post_id, 'secret_id', $secret_id);
+                    }
+                } elseif ($type == 'stripe') {
+
+                    if ($public_key) {
+                        update_post_meta($post_id, 'public_key', $public_key);
+                    }
+
+                    if ($secret_key) {
+                        update_post_meta($post_id, 'secret_key', $secret_key);
+                    }
                 }
-                 
-                if ( $bank_name ) {
-                    update_post_meta($post_id, 'bank_name', $bank_name); 
-                } 
 
-                if ( $routing_no ) {
-                    update_post_meta($post_id, 'routing_no', $routing_no); 
-                } 
-
-                if ( $bank_branch ) {
-                    update_post_meta($post_id, 'bank_branch', $bank_branch); 
-                }
-
-                if ( $account_name ) {
-                    update_post_meta($post_id, 'account_name', $account_name); 
-                } 
-
-                if ( $account_no ) {
-                    update_post_meta($post_id, 'account_no', $account_no); 
-                } 
-
-                if ( $confirm_account_no ) {
-                    update_post_meta($post_id, 'confirm_account_no', $confirm_account_no); 
-                } 
-
-                if ( $default ) {
-                    update_post_meta($post_id, 'default', true); 
+                if ($default) {
+                    update_post_meta($post_id, 'default', true);
                 } else {
-                    update_post_meta($post_id, 'default', false); 
+                    update_post_meta($post_id, 'default', false);
                 }
-
-                if ( $logo ) {
-                    update_post_meta($post_id, 'logo', $logo); 
-                }  
 
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
             }
         }
-    } 
+    }
 
     public function update($req)
-    {  
-        $params = $req->get_params(); 
-        $reg_errors = new \WP_Error;  
+    {
+        $params = $req->get_params();
+        $reg_errors = new \WP_Error;
 
-        $type = isset( $params['type'] ) ? sanitize_text_field( $params['type'] ) : null; 
-        $country = isset( $params['country'] ) ? sanitize_text_field( $params['country'] ) : null; 
-        $bank_name = isset( $params['bank_name'] ) ? sanitize_text_field( $params['bank_name'] ) : null; 
-        $routing_no = isset( $params['routing_no'] ) ? sanitize_text_field( $params['routing_no'] ) : null; 
-        $bank_branch = isset( $params['bank_branch'] ) ? sanitize_text_field( $params['bank_branch'] ) : null; 
-        $account_name = isset( $params['account_name'] ) ? sanitize_text_field( $params['account_name'] ) : null; 
-        $account_no = isset( $params['account_no'] ) ? sanitize_text_field( $params['account_no'] ) : null; 
-        $confirm_account_no = isset( $params['confirm_account_no'] ) ? sanitize_text_field( $params['confirm_account_no'] ) : null; 
-        $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null;  
-        $logo = isset( $params['logo'] ) && isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
+        $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
+        //bank form
+        $country = isset($params['country']) ? sanitize_text_field($params['country']) : null;
+        $bank_name = isset($params['bank_name']) ? sanitize_text_field($params['bank_name']) : null;
+        $routing_no = isset($params['routing_no']) ? sanitize_text_field($params['routing_no']) : null;
+        $bank_branch = isset($params['bank_branch']) ? sanitize_text_field($params['bank_branch']) : null;
+        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
+        $account_no = isset($params['account_no']) ? sanitize_text_field($params['account_no']) : null;
+        $confirm_account_no = isset($params['confirm_account_no']) ? sanitize_text_field($params['confirm_account_no']) : null;
+        $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
 
-        if ( empty( $bank_name ) ) {
+        //paypal form
+        $client_id = isset($params['client_id']) ? sanitize_text_field($params['client_id']) : null;
+        $secret_id = isset($params['secret_id']) ? sanitize_text_field($params['secret_id']) : null;
+
+        //stripe form
+        $public_key = isset($params['public_key']) ? sanitize_text_field($params['public_key']) : null;
+        $secret_key = isset($params['secret_key']) ? sanitize_text_field($params['secret_key']) : null;
+
+        /* if (empty($bank_name)) {
             $reg_errors->add('field', esc_html__('Bank name is missing', 'propovoice'));
-        } 
+        } */
 
-        if ( $reg_errors->get_error_messages() ) {
+        if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $url_params = $req->get_url_params();
             $post_id    = $url_params['id'];
- 
+
             $data = array(
-                'ID'            => $post_id,  
-                'post_title'    => $type, 
-                'post_author'   => get_current_user_id() 
-            ); 
-            $post_id = wp_update_post( $data );
+                'ID'            => $post_id,
+                'post_title'    => $type,
+                'post_author'   => get_current_user_id()
+            );
+            $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) {
-                
-                if ( $type ) {
-                    update_post_meta($post_id, 'type', $type); 
+            if (!is_wp_error($post_id)) {
+
+                if ($type) {
+                    update_post_meta($post_id, 'type', $type);
                 }
 
-                if ( $country ) {
-                    update_post_meta($post_id, 'country', $country); 
+                if ($type == 'bank') {
+
+                    if ($country) {
+                        update_post_meta($post_id, 'country', $country);
+                    }
+
+                    if ($bank_name) {
+                        update_post_meta($post_id, 'bank_name', $bank_name);
+                    }
+
+                    if ($routing_no) {
+                        update_post_meta($post_id, 'routing_no', $routing_no);
+                    }
+
+                    if ($bank_branch) {
+                        update_post_meta($post_id, 'bank_branch', $bank_branch);
+                    }
+
+                    if ($account_name) {
+                        update_post_meta($post_id, 'account_name', $account_name);
+                    }
+
+                    if ($account_no) {
+                        update_post_meta($post_id, 'account_no', $account_no);
+                    }
+
+                    if ($confirm_account_no) {
+                        update_post_meta($post_id, 'confirm_account_no', $confirm_account_no);
+                    }
+                } elseif ($type == 'paypal') {
+
+                    if ($client_id) {
+                        update_post_meta($post_id, 'client_id', $client_id);
+                    }
+
+                    if ($secret_id) {
+                        update_post_meta($post_id, 'secret_id', $secret_id);
+                    }
+                } elseif ($type == 'stripe') {
+
+                    if ($public_key) {
+                        update_post_meta($post_id, 'public_key', $public_key);
+                    }
+
+                    if ($secret_key) {
+                        update_post_meta($post_id, 'secret_key', $secret_key);
+                    }
                 }
-                 
-                if ( $bank_name ) {
-                    update_post_meta($post_id, 'bank_name', $bank_name); 
-                } 
 
-                if ( $routing_no ) {
-                    update_post_meta($post_id, 'routing_no', $routing_no); 
-                }  
-
-                if ( $bank_branch ) {
-                    update_post_meta($post_id, 'bank_branch', $bank_branch); 
-                }
-
-                if ( $account_name ) {
-                    update_post_meta($post_id, 'account_name', $account_name); 
-                } 
-
-                if ( $account_no ) {
-                    update_post_meta($post_id, 'account_no', $account_no); 
-                } 
-
-                if ( $confirm_account_no ) {
-                    update_post_meta($post_id, 'confirm_account_no', $confirm_account_no); 
-                } 
-
-                if ( $default ) {
-                    update_post_meta($post_id, 'default', true); 
+                if ($default) {
+                    update_post_meta($post_id, 'default', true);
                 } else {
-                    update_post_meta($post_id, 'default', false); 
-                }
-
-                if ( $logo ) {
-                    update_post_meta($post_id, 'logo', $logo); 
-                } else {
-                    delete_post_meta($post_id, 'logo'); 
+                    update_post_meta($post_id, 'default', false);
                 }
 
                 wp_send_json_success($post_id);
@@ -343,14 +406,14 @@ class Payment
                 wp_send_json_error();
             }
         }
-    } 
+    }
 
     public function delete($req)
     {
         $url_params = $req->get_url_params();
 
         $ids = explode(',', $url_params['id']);
-        foreach ($ids as $id) { 
+        foreach ($ids as $id) {
             wp_delete_post($id);
         }
         wp_send_json_success($ids);

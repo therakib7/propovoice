@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 
-class Form extends Component {
+class FormBank extends Component {
     constructor(props) {
         super(props);
 
         this.initialState = {
             id: null,
             type: 'bank',
-            country: '', 
+            country: '',
             bank_name: '',
             bank_branch: '',
-            routing_no: '', 
+            routing_no: '',
             account_name: '',
             account_no: '',
-            confirm_account_no: '', 
-            default: false, 
+            confirm_account_no: '',
+            default: false,
             date: false
         };
 
@@ -28,7 +28,7 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
-    toggleChange = () => {  
+    toggleChange = () => {
         let value = !this.state.form.default;
         this.setState({ form: { ...this.state.form, ['default']: value } });
     }
@@ -36,7 +36,7 @@ class Form extends Component {
     componentDidUpdate() {
         //condition added to stop multiple rendering
         if (this.props.modalType == 'edit') {
-            
+
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
             }
@@ -51,12 +51,12 @@ class Form extends Component {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
         // this.setState({ form: this.initialState });
-    } 
+    }
 
     render() {
         return (
             <>
-                {this.props.show && ( 
+                {this.props.show && (
                     <div className="pi-overlay pi-show">
                         <div className="pi-popup-content">
                             <div className="pi-modal-header">
@@ -65,7 +65,7 @@ class Form extends Component {
                             </div>
 
                             <div className="pi-content">
-                                <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two pi-form-style-three"> 
+                                <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two pi-form-style-three">
 
                                     <div className="row">
                                         <div className="col-lg">
@@ -82,7 +82,7 @@ class Form extends Component {
                                                 value={this.state.form.country}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
+                                        </div>
 
                                         <div className="col-lg">
                                             <label
@@ -98,10 +98,10 @@ class Form extends Component {
                                                 value={this.state.form.bank_name}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
-                                    </div> 
+                                        </div>
+                                    </div>
 
-                                    <div className="row">  
+                                    <div className="row">
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="form-bank_branch">
@@ -116,7 +116,7 @@ class Form extends Component {
                                                 value={this.state.form.bank_branch}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
+                                        </div>
 
                                         <div className="col-lg">
                                             <label
@@ -132,8 +132,8 @@ class Form extends Component {
                                                 value={this.state.form.routing_no}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
-                                    </div> 
+                                        </div>
+                                    </div>
 
                                     <div className="row">
                                         <div className="col-lg">
@@ -150,8 +150,8 @@ class Form extends Component {
                                                 value={this.state.form.account_name}
                                                 onChange={this.handleChange}
                                             />
-                                        </div>  
-                                    </div> 
+                                        </div>
+                                    </div>
 
                                     <div className="row">
                                         <div className="col-lg">
@@ -168,7 +168,7 @@ class Form extends Component {
                                                 value={this.state.form.account_no}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
+                                        </div>
 
                                         <div className="col-lg">
                                             <label
@@ -184,22 +184,22 @@ class Form extends Component {
                                                 value={this.state.form.confirm_account_no}
                                                 onChange={this.handleChange}
                                             />
-                                        </div>  
-                                    </div> 
+                                        </div>
+                                    </div>
 
                                     <div className="pi-footer-content pi-text-center">
                                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
                                             Save
                                         </button>
                                     </div>
-                                </form> 
+                                </form>
                             </div>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
                 )}
             </>
         );
     }
 }
 
-export default Form;
+export default FormBank;
