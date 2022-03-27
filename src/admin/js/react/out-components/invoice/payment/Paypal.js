@@ -6,7 +6,7 @@ import {
 } from "@paypal/react-paypal-js";
 
 // This values are the props in the UI
-const amount = "2";
+const amount = "20";
 const currency = "USD";
 const style = { "layout": "vertical" };
 
@@ -52,7 +52,7 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
                         return orderId;
                     });
             }}
-            onApprove={function(data, actions) {
+            onApprove={function (data, actions) {
                 return actions.order.capture().then((details) => {
                     console.log(details)
                     const name = details.payer.name.given_name;
@@ -90,7 +90,7 @@ class Paypal extends Component {
                                             <div className="col-lg">
                                                 <PayPalScriptProvider
                                                     options={{
-                                                        "client-id": "test",
+                                                        "client-id": "AWSCZzuM_fnlSmcoIMVIBVy7Ccb3PgbE_i_9LNFfSwBQIhPURIwvQfsMUb-GHy3Lxy-OQpUFWIn_BymV",
                                                         components: "buttons",
                                                         currency: "USD"
                                                     }}
