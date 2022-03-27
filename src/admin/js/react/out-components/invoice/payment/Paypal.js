@@ -48,12 +48,15 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
                     })
                     .then((orderId) => {
                         // Your code here after create the order
+                        console.log(orderId)
                         return orderId;
                     });
             }}
-            onApprove={function (data, actions) {
-                return actions.order.capture().then(function () {
-                    // Your code here after capture the order
+            onApprove={function(data, actions) {
+                return actions.order.capture().then((details) => {
+                    console.log(details)
+                    const name = details.payer.name.given_name;
+                    console.log(`Transaction completed by ${name}`);
                 });
             }}
         />

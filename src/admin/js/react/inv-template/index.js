@@ -9,17 +9,21 @@ import Style from './scss/all.scoped.scss'
 export default class Preview extends Component {
     constructor(props) {
         super(props);   
-    }   
+    }    
+
+    isPreviewLoaded = () => { 
+		// this.props.isPreviewLoaded();
+	}; 
 
     render() {   
         const { id } = this.props.data.invoice.template; 
         return (
-            <div className={'ncpi-invoice-preview ncpi-invoice-preview-' + id}>   
+            <div className={'ncpi-invoice-preview ncpi-invoice-preview-' + id}>    
                 <Suspense fallback={<div>Loading...</div>}>
-                { id == 1 && <Template1 {...this.props} /> }
-                { id == 2 && <Template2 {...this.props} /> } 
-                { id == 3 && <Template3 {...this.props} /> } 
-                { id == 4 && <Template4 {...this.props} /> }  
+                { id == 1 && <Template1 {...this.props} isPreviewLoaded={this.isPreviewLoaded} /> }
+                { id == 2 && <Template2 {...this.props} isPreviewLoaded={this.isPreviewLoaded} /> } 
+                { id == 3 && <Template3 {...this.props} isPreviewLoaded={this.isPreviewLoaded} /> } 
+                { id == 4 && <Template4 {...this.props} isPreviewLoaded={this.isPreviewLoaded} /> }  
                 </Suspense>
             </div> 
         );

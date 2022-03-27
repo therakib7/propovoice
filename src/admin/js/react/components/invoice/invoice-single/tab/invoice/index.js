@@ -93,10 +93,31 @@ class Invoice extends Component {
 				attach: [],
 				sign: null
 			},
+			// isPreviewLoaded: false,
+			previewHeight: '',
 		};
+
+		this.previewRef = React.createRef();
 	}
 
-	componentDidMount() {
+	isPreviewLoaded = () => {  
+		let elHegiht = this.previewRef.current.clientHeight; 
+		if ( !this.state.previewHeight ) {
+			const height = elHegiht/2;
+			this.setState({ previewHeight: height });
+		} else {
+			// console.log(elHegiht)
+			// console.log(this.state.previewHeight)
+			//TODO: need to fixed preview height
+			// if ( this.state.previewHeight != elHegiht ) {
+			// 	const height = elHegiht;
+			// 	this.setState({ previewHeight: height });
+			// }
+		} 
+	};
+
+	componentDidMount() {		
+
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
 		if (this.props.id) {
@@ -116,7 +137,7 @@ class Invoice extends Component {
 		this.bgColor(); 
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate() { 	 
 		this.bgColor();
 	}
 
@@ -621,8 +642,8 @@ class Invoice extends Component {
 									{/* <img src={this.state.invoice.template.src} className="pi-invoice-image" /> */}
 									{/* <Style />
 									<Owner /> */}
-									<div className='pi-inv-sidebar-preview' id='test-div' >
-										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} />
+									<div className='pi-inv-sidebar-preview' ref={this.previewRef} style={{height: this.state.previewHeight }}>  
+										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded } />
 									</div>
 									<div className="pi-accordion-wrapper">
 										<ul> 
