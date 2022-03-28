@@ -21,22 +21,22 @@ export default class Three extends Component {
         this.state = {
             old_value: ''
         }
-    } 
+    }
 
     componentDidMount() {
         document.documentElement.style.setProperty('--pi-inv-primary', this.props.data.invoice.style.primary_color);
 
         // this.props.isPreviewLoaded();
-        
-    } 
 
-    componentDidUpdate() { 
-        let value = JSON.stringify(this.props.data.invoice); 
-        if ( value != this.state.old_value ) {
-            this.setState({ old_value: value }); 
+    }
+
+    componentDidUpdate() {
+        let value = JSON.stringify(this.props.data.invoice);
+        if (value != this.state.old_value) {
+            this.setState({ old_value: value });
             // this.props.isPreviewLoaded(); 
-        } 
-    } 
+        }
+    }
 
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
@@ -47,9 +47,23 @@ export default class Three extends Component {
                 <div className="pi-inv-three">
                     <div className="pi-body">
                         <div className="pi-top-shape">
-                            <div className="pi-shape1" />
-                            <div className="pi-shape2" />
-                            <div className="pi-shape3" />
+                            <div className="pi-shape1">
+                                <svg width="165" height="19" viewBox="0 0 165 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0L8.30517e-07 19L142.676 19L165 -7.21238e-06L0 0Z" />
+                                </svg>
+                            </div>
+                            <div className="pi-shape2">
+                                <svg width="19" height="165" viewBox="0 0 19 165" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0H19V142.676L0 165V0Z" />
+                                </svg>
+
+                            </div>
+                            <div className="pi-shape3">
+                                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="16.5" cy="16.5" r="16.5" />
+                                </svg>
+
+                            </div>
                         </div>
                         <div className="pi-inv-title">
                             <h2>invoice</h2>
@@ -57,9 +71,9 @@ export default class Three extends Component {
                         <div className="pi-hedear">
                             <div className="pi-from">
                                 {fromData && fromData.logo &&
-                                <div className="pi-from-logo">
-                                    <img src={fromData.logo.src}  alt="" />
-                                </div>}
+                                    <div className="pi-from-logo">
+                                        <img src={fromData.logo.src} alt="" />
+                                    </div>}
                                 <From data={fromData} />
                                 <div className="pi-from-date">
                                     <p>{title} No: <span>{id}</span></p>
@@ -73,7 +87,7 @@ export default class Three extends Component {
                                 <To data={toData} />
                             </div>
                         </div>
-                        
+
                         {items && <Items data={items} />}
 
                         <div className="pi-bank-info">
@@ -91,12 +105,26 @@ export default class Three extends Component {
                         </div>
                     </div>
                     <div className="pi-top-shape pi-footer-shape">
-                        <div className="pi-shape1" />
-                        <div className="pi-shape2" />
-                        <div className="pi-shape3" />
+                        <div className="pi-shape1">
+                            <svg width="165" height="19" viewBox="0 0 165 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0L8.30517e-07 19L142.676 19L165 -7.21238e-06L0 0Z" />
+                            </svg>
+                        </div>
+                        <div className="pi-shape2">
+                            <svg width="19" height="165" viewBox="0 0 19 165" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0H19V142.676L0 165V0Z" />
+                            </svg>
+
+                        </div>
+                        <div className="pi-shape3">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="16.5" cy="16.5" r="16.5" />
+                            </svg>
+
+                        </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         );
     }
 } 

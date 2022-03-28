@@ -8,7 +8,8 @@ import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js';
 import './stripe.css';
 
-import Api from 'api/payment-process';
+import ApiEnauk from 'api/email';
+// import Api from 'api/payment-process';
 import { apiUrl } from 'api/helper'
 
 const CARD_OPTIONS = {

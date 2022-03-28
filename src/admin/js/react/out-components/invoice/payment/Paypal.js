@@ -5,6 +5,8 @@ import {
     usePayPalScriptReducer
 } from "@paypal/react-paypal-js";
 
+import Api from 'api/email';
+
 // This values are the props in the UI
 const amount = "20";
 const currency = "USD";
