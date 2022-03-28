@@ -185,7 +185,6 @@ class Email
 
     public function sent($params)
     {
-
         $mail_from = isset($params['fromData']) ? $params['fromData']['email'] : '';
         $mail_to = isset($params['toData']) ? $params['toData']['email'] : '';
         $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
@@ -217,7 +216,7 @@ class Email
         $attachments = [];
         if ($mail_invoice_img) {
             ob_start();
-?>
+            ?>
             <!DOCTYPE html>
             <html>
 
@@ -251,7 +250,7 @@ class Email
             </body>
 
             </html>
-        <?php
+            <?php
             $invoice_html = ob_get_clean();
             $dompdf = new \Dompdf\Dompdf();
             $dompdf->set_option('enable_css_float', true);
@@ -294,7 +293,7 @@ class Email
             $feedback = [];
             $feedback['note'] = $note;
             $feedback['type'] = $feedback_type;
-            $feedback['time'] = current_time('timestamp'); 
+            $feedback['time'] = current_time('timestamp');
             update_post_meta($invoice_id, 'feedback', $feedback);
         }
 
@@ -309,13 +308,13 @@ class Email
         $note = isset($params['note']) ? nl2br($params['note']) : '';
 
         if ($invoice_id) {
-            
+
             $payment = [];
             $payment['type'] = $payment_type;
-            
-            if ( $payment_type == 'bank' ) {
+
+            if ($payment_type == 'bank') {
                 $mark_as_paid = isset($params['mark_as_paid']) ? $params['mark_as_paid'] : false;
-                if ( $mark_as_paid ) {
+                if ($mark_as_paid) {
                     update_post_meta($invoice_id, 'status', 'paid');
                 } else {
                     update_post_meta($invoice_id, 'status', 'paid_req');
@@ -333,19 +332,29 @@ class Email
                 $payment['account_name'] = $account_name;
                 $payment['account_no'] = $account_no;
                 $payment['amount'] = $amount;
-                $payment['date'] = $date; 
-            } else if ( $payment_type == 'paypal' ) {
+                $payment['date'] = $date;
+            } else if ($payment_type == 'paypal') {
+
+                $name = isset($params['name']) ? $params['name'] : '';
+                $email = isset($params['email']) ? $params['email'] : ''; 
+                $address = isset($params['address']) ? $params['address'] : ''; 
+
                 update_post_meta($invoice_id, 'status', 'paid');
+            } else if ($payment_type == 'stripe') {
+
+                $name = isset($params['name']) ? $params['name'] : '';
+                $email = isset($params['email']) ? $params['email'] : ''; 
+                $address = isset($params['address']) ? $params['address'] : ''; 
                 
+                update_post_meta($invoice_id, 'status', 'paid');
             }
             $payment['note'] = $note;
-            $payment['time'] = current_time('timestamp'); 
+            $payment['time'] = current_time('timestamp');
             update_post_meta($invoice_id, 'payment', $payment);
         }
 
         wp_send_json_success();
     }
-
 
     public function delete($req)
     {

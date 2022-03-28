@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas'; 
 
 // import Template from 'inv-template';
 import Api from 'api/invoice';
+import ApiEmail from 'api/email';
 import Preview from 'inv-template';
 
 import Feedback from './Feedback';
@@ -173,7 +174,7 @@ export default class Invoice extends Component {
             const pdf = new jsPDF();
             pdf.addImage(imgData, 'JPG', 0, 0);
             pdf.save("invoice.pdf");
-        });
+        }); 
 
     }
 

@@ -1,25 +1,19 @@
- 
- 
- 
-
-.FormRowInput:-webkit-autofill {
-  -webkit-text-fill-color: #fce883;
-  /* Hack to hide the default webkit autofill */
-  transition: background-color 100000000s;
-  animation: 1ms void-animation-out;
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: scale3D(0.95, 0.95, 0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale3D(1, 1, 1);
+  }
 }
 
-.FormRowInput {
-  font-size: 16px;
-  width: 100%;
-  padding: 11px 15px 11px 0;
-  color: #fff;
-  background-color: transparent;
-  animation: 1ms void-animation-out;
-}
-
-.FormRowInput::placeholder {
-  color: #87bbfd;
+@keyframes void-animation-out {
+  0%,
+  to {
+    opacity: 1;
+  }
 }
 
 .StripeElement--webkit-autofill {
@@ -46,7 +40,7 @@
 }
 
 .ErrorMessage {
-  /* color: #fff; */
+  color: #000;
   position: absolute;
   display: flex;
   justify-content: center;

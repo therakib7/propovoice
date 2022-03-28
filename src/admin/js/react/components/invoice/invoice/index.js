@@ -239,6 +239,7 @@ const Invoice = class Invoice extends Component {
                             </div>
                         </div>
                     </div> 
+                    
                     <div className="pi-buttons"> 
                         <button
                             className="pi-btn pi-bg-blue pi-bg-hover-blue"
