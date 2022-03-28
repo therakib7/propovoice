@@ -160,7 +160,7 @@ class CheckoutForm extends Component {
                         id: paymentIntent.id,
                         amount: paymentIntent.amount,
                         currency: paymentIntent.currency,
-                        billing_details: this.state.form,
+                        billing_address: this.state.form,
                         created: paymentIntent.created,
                     },
                 }

@@ -66,7 +66,7 @@ const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
                             id: details.id,
                             // amount: details.amount,
                             // currency: details.currency,
-                            billing_details: details.payer,
+                            billing_address: details.payer,
                             created: details.create_time,
                         },
                     }

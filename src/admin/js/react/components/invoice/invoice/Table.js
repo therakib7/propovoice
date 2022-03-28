@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BankInfo from './BankInfo';
+
+import Feedback from './feedback';
+
+//payment
+import Bank from './payment/Bank';
+import Paypal from './payment/Paypal';
+import Stripe from './payment/Stripe';
 
 const TableHeader = props => {
     return (
@@ -79,11 +85,11 @@ const TableBody = props => {
                 break;
 
             case 'accept':
-                status = <span className='pi-status pi-bg-blue'>Accepted</span>
+                status = <span className='pi-status pi-bg-blue pi-cursor-pointer' onClick={() => props.infoModal(row, 'feedback')}>Accepted</span>
                 break;
 
             case 'decline':
-                status = <span className='pi-status pi-bg-red'>Declined</span>
+                status = <span className='pi-status pi-bg-red pi-cursor-pointer' onClick={() => props.infoModal(row, 'feedback')}>Declined</span>
                 break;
 
             case 'paid_req':
@@ -98,15 +104,15 @@ const TableBody = props => {
         let payment_type;
         switch (row.payment_type) {
             case 'bank':
-                payment_type = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#4A5568' }} onClick={() => props.bankInfoModal(row)}>Bank</span>
+                payment_type = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank</span>
                 break;
 
             case 'paypal':
-                payment_type = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#009cde' }} onClick={() => props.bankInfoModal(row)}>Paypal</span>
+                payment_type = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#009cde' }} onClick={() => props.infoModal(row, 'paypal')}>Paypal</span>
                 break;
 
             case 'stripe':
-                payment_type = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#5433FF' }} onClick={() => props.bankInfoModal(row)}>Stripe</span>
+                payment_type = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#5433FF' }} onClick={() => props.infoModal(row, 'stripe')}>Stripe</span>
                 break;
         }
 
@@ -175,12 +181,12 @@ const TableBody = props => {
 }
 
 const Table = (props) => {
-    const [bankInfoModal, setBankInfoModal] = useState(false);
-    const [bankInfoData, setBankInfoData] = useState(null);
 
-    const handlebankInfoModal = (data) => {
-        setBankInfoData(data);
-        setBankInfoModal(true);
+    const [infoModal, setInfoModal] = useState(false);
+    const [infoData, setInfoData] = useState(null);
+    const handleInfoModal = (data) => {
+        setInfoData(data);
+        setInfoModal(true);
     }
 
     const { tableData, editEntry, checkedBoxes, deleteEntry, client_id, path } = props;
@@ -188,16 +194,43 @@ const Table = (props) => {
     return (
         <>
             {tableData.length > 0 && <div className='pi-table-wrap'>
-                {bankInfoModal && <BankInfo
-                    data={bankInfoData}
-                    show={bankInfoModal}
-                    reload={props.reload}
-                    close={() => setBankInfoModal(false)}
-                />}
+
+                {infoModal &&
+                    <>
+                        {(infoData.status == 'accept' || infoData.status == 'decline') && <Feedback
+                            data={infoData}
+                            show={infoModal}
+                            reload={props.reload}
+                            close={() => setInfoModal(false)}
+                        />}
+
+                        {infoData.payment_type == 'bank' && <Bank
+                            data={infoData}
+                            show={infoModal}
+                            reload={props.reload}
+                            close={() => setInfoModal(false)}
+                        />}
+
+                        {infoData.payment_type == 'paypal' && <Paypal
+                            data={infoData}
+                            show={infoModal}
+                            reload={props.reload}
+                            close={() => setInfoModal(false)}
+                        />}
+
+                        {infoData.payment_type == 'stripe' && <Stripe
+                            data={infoData}
+                            show={infoModal}
+                            reload={props.reload}
+                            close={() => setInfoModal(false)}
+                        />}
+                    </>
+                }
+
                 <table className='pi-table'>
                     <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} path={path} />
                     <TableBody
-                        bankInfoModal={handlebankInfoModal}
+                        infoModal={handleInfoModal}
                         tableData={tableData}
                         editEntry={editEntry}
                         checkedBoxes={checkedBoxes}
