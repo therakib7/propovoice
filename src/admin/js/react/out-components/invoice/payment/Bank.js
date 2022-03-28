@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
-import Api from 'api/email';
+import Api from 'api/payment-process'; 
 
 class Bank extends Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class Bank extends Component {
         this.state = {
             form: {
                 invoice_id: null,
-                payment_type: '',
+                payment_type: 'bank',
                 country: '',
                 bank_name: '',
                 account_name: '',
@@ -29,16 +29,14 @@ class Bank extends Component {
 
     componentDidMount() {
         let form = { ...this.state.form }
-        form.invoice_id = this.props.data.invoice.id;
-        form.payment_type = this.props.data.payment_type;
+        form.invoice_id = this.props.invoice_id; 
         this.setState({ form });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let form = { ...this.state.form }
-        form.type = 'payment';
+        let form = { ...this.state.form } 
         Api.create(form)
             .then(resp => {
                 if (resp.data.success) {

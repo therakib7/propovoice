@@ -6,11 +6,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js';
-import './stripe.css';
+import { toast } from 'react-toastify';
 
-import ApiEnauk from 'api/email';
-// import Api from 'api/payment-process';
+import './stripe.css';
+ 
 import { apiUrl } from 'api/helper'
+
+import Api from 'api/payment-process'; 
 
 const CARD_OPTIONS = {
     iconStyle: 'solid',
@@ -19,7 +21,7 @@ const CARD_OPTIONS = {
             iconColor: '#c4f0ff',
             color: '#000',
             fontWeight: 500,
-            fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+            // fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
             fontSize: '16px',
             fontSmoothing: 'antialiased',
             ':-webkit-autofill': {
@@ -150,6 +152,23 @@ class CheckoutForm extends Component {
                 this.setState({ processing: false, error: confirmPayment.error }); 
             } else {
                 this.setState({ processing: false, paymentMethod: confirmPayment });
+
+                let form = { 
+                    invoice_id: this.props.invoice_id,
+                    payment_type: 'stripe',
+                    details: confirmPayment
+                } 
+                Api.create(form).then(resp => {
+                    if (resp.data.success) {
+                        // close(); 
+                        // toast.success('Thanks for payment');
+
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                })
             }
         } 
     };
@@ -276,7 +295,7 @@ class Stripe extends Component {
                     <Elements stripe={stripePromise} >
                         <ElementsConsumer>
                             {({ stripe, elements }) => (
-                                <CheckoutForm stripe={stripe} elements={elements} close={this.props.close} />
+                                <CheckoutForm stripe={stripe} elements={elements} {...this.props} />
                             )}
                         </ElementsConsumer>
                     </Elements>

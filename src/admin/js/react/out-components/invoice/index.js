@@ -4,8 +4,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas'; 
 
 // import Template from 'inv-template';
-import Api from 'api/invoice';
-import ApiEmail from 'api/email';
+import Api from 'api/invoice'; 
 import Preview from 'inv-template';
 
 import Feedback from './Feedback';
@@ -219,7 +218,7 @@ export default class Invoice extends Component {
     handleClick = (type, data = null) => {
         if (type == 'feedback') {
             this.setState({ emailModal: true, feedback_type: data });
-        } else {
+        } else { 
             this.setState({ paymentModal: true, payment_type: data });
         }
     }
@@ -262,19 +261,19 @@ export default class Invoice extends Component {
                     <>
                         {this.state.payment_type == 'bank' && <Bank
                             show={this.state.paymentModal}
-                            data={this.state}
+                            invoice_id={this.state.invoice.id}
+                            close={() => this.setState({ paymentModal: false })}
+                        />} 
+
+                        {this.state.payment_type == 'paypal' && <Paypal
+                            show={this.state.paymentModal}
+                            invoice_id={this.state.invoice.id}
                             close={() => this.setState({ paymentModal: false })}
                         />}
 
                         {this.state.payment_type == 'stripe' && <Stripe
                             show={this.state.paymentModal}
-                            data={this.state}
-                            close={() => this.setState({ paymentModal: false })}
-                        />}
-
-                        {this.state.payment_type == 'paypal' && <Paypal
-                            show={this.state.paymentModal}
-                            data={this.state}
+                            invoice_id={this.state.invoice.id}
                             close={() => this.setState({ paymentModal: false })}
                         />}
                     </>

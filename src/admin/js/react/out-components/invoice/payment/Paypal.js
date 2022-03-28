@@ -4,21 +4,24 @@ import {
     PayPalButtons,
     usePayPalScriptReducer
 } from "@paypal/react-paypal-js";
+import { toast } from 'react-toastify';
 
-import Api from 'api/email';
+import './paypal.css';
+
+import Api from 'api/payment-process'; 
 
 // This values are the props in the UI
-const amount = "20";
+const amount = "1";
 const currency = "USD";
 const style = { "layout": "vertical" };
 
 // Custom component to wrap the PayPalButtons and handle currency changes
-const ButtonWrapper = ({ currency, showSpinner }) => {
+const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
     // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
     // This is the main reason to wrap the PayPalButtons in a new component
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
-
-    useEffect(() => {
+    // const invoice_id = data.invoice.id; 
+    useEffect(() => { 
         dispatch({
             type: "resetOptions",
             value: {
@@ -30,7 +33,7 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
 
 
     return (<>
-        {(showSpinner && isPending) && <div className="spinner" />}
+        {(showSpinner && isPending) && <div className="spinner loading" />}
         <PayPalButtons
             style={style}
             disabled={false}
@@ -50,22 +53,38 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
                     })
                     .then((orderId) => {
                         // Your code here after create the order
-                        console.log(orderId)
+                        // console.log(orderId)
                         return orderId;
                     });
             }}
             onApprove={function (data, actions) {
                 return actions.order.capture().then((details) => {
-                    console.log(details)
-                    const name = details.payer.name.given_name;
-                    console.log(`Transaction completed by ${name}`);
+                    // console.log(details)
+                    // const name = details.payer.name.given_name;
+                    // console.log(`Transaction completed by ${name}`);
+                    let form = { 
+                        invoice_id,
+                        payment_type: 'paypal',
+                        details
+                    } 
+                    Api.create(form).then(resp => {
+                        if (resp.data.success) {
+                            close();
+
+                            toast.success('Thanks for payment');
+
+                        } else {
+                            resp.data.data.forEach(function (value, index, array) {
+                                toast.error(value);
+                            });
+                        }
+                    })
                 });
             }}
         />
     </>
     );
-}
-
+} 
 
 class Paypal extends Component {
     constructor(props) {
@@ -97,9 +116,10 @@ class Paypal extends Component {
                                                         currency: "USD"
                                                     }}
                                                 >
-                                                    <ButtonWrapper
+                                                    <ButtonWrapper 
+                                                        {...this.props}
                                                         currency={currency}
-                                                        showSpinner={false}
+                                                        showSpinner={true}
                                                     />
                                                 </PayPalScriptProvider>
                                             </div>

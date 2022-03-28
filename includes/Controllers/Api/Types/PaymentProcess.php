@@ -66,89 +66,64 @@ class PaymentProcess
 
     public function create($req)
     {
-
         $params = $req->get_params();
-        $reg_errors = new \WP_Error;
 
-        $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
-        $country = isset($params['country']) ? sanitize_text_field($params['country']) : null;
-        $bank_name = isset($params['bank_name']) ? sanitize_text_field($params['bank_name']) : null;
-        $routing_no = isset($params['routing_no']) ? sanitize_text_field($params['routing_no']) : null;
-        $bank_branch = isset($params['bank_branch']) ? sanitize_text_field($params['bank_branch']) : null;
-        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
-        $account_no = isset($params['account_no']) ? sanitize_text_field($params['account_no']) : null;
-        $confirm_account_no = isset($params['confirm_account_no']) ? sanitize_text_field($params['confirm_account_no']) : null;
-        $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
-        $logo = isset($params['logo']) && isset($params['logo']['id']) ? absint($params['logo']['id']) : null;
+        $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
+        $payment_type = isset($params['payment_type']) ? $params['payment_type'] : '';        
 
-        if (
-            empty($bank_name)
-        ) {
-            $reg_errors->add('field', esc_html__('Bank name is missing', 'propovoice'));
-        }
+        if ($invoice_id) {
 
-        if ($reg_errors->get_error_messages()) {
-            wp_send_json_error($reg_errors->get_error_messages());
-        } else {
+            $payment = [];
+            $payment['type'] = $payment_type;
 
-            $data = array(
-                'post_type' => 'ncpi_payment',
-                'post_title'    => $type,
-                'post_content'  => '',
-                'post_status'   => 'publish',
-                'post_author'   => get_current_user_id()
-            );
-            $post_id = wp_insert_post($data);
+            update_post_meta($invoice_id, 'payment_type', $payment_type);
 
-            if (!is_wp_error($post_id)) {
-
-                if ($type) {
-                    update_post_meta($post_id, 'type', $type);
-                }
-
-                if ($country) {
-                    update_post_meta($post_id, 'country', $country);
-                }
-
-                if ($bank_name) {
-                    update_post_meta($post_id, 'bank_name', $bank_name);
-                }
-
-                if ($routing_no) {
-                    update_post_meta($post_id, 'routing_no', $routing_no);
-                }
-
-                if ($bank_branch) {
-                    update_post_meta($post_id, 'bank_branch', $bank_branch);
-                }
-
-                if ($account_name) {
-                    update_post_meta($post_id, 'account_name', $account_name);
-                }
-
-                if ($account_no) {
-                    update_post_meta($post_id, 'account_no', $account_no);
-                }
-
-                if ($confirm_account_no) {
-                    update_post_meta($post_id, 'confirm_account_no', $confirm_account_no);
-                }
-
-                if ($default) {
-                    update_post_meta($post_id, 'default', true);
+            if ($payment_type == 'bank') {
+                $mark_as_paid = isset($params['mark_as_paid']) ? $params['mark_as_paid'] : false;
+                if ($mark_as_paid) {
+                    update_post_meta($invoice_id, 'status', 'paid');
                 } else {
-                    update_post_meta($post_id, 'default', false);
+                    update_post_meta($invoice_id, 'status', 'paid_req');
                 }
 
-                if ($logo) {
-                    update_post_meta($post_id, 'logo', $logo);
-                }
+                $country = isset($params['country']) ? $params['country'] : '';
+                $bank_name = isset($params['bank_name']) ? $params['bank_name'] : '';
+                $account_name = isset($params['account_name']) ? $params['account_name'] : '';
+                $account_no = isset($params['account_no']) ? $params['account_no'] : '';
+                $amount = isset($params['amount']) ? $params['amount'] : '';
+                $date = isset($params['date']) ? $params['date'] : '';
+                $note = isset($params['note']) ? nl2br($params['note']) : '';
+                
 
-                wp_send_json_success($post_id);
-            } else {
-                wp_send_json_error();
-            }
+                $payment['country'] = $country;
+                $payment['bank_name'] = $bank_name;
+                $payment['account_name'] = $account_name;
+                $payment['account_no'] = $account_no;
+                $payment['amount'] = $amount;
+                $payment['date'] = $date;
+                $payment['note'] = $note;
+                $payment['time'] = current_time('timestamp');
+
+                update_post_meta($invoice_id, 'payment_info', $payment);
+            } else if ($payment_type == 'paypal') {
+
+                $name = isset($params['name']) ? $params['name'] : '';
+                $email = isset($params['email']) ? $params['email'] : ''; 
+                $address = isset($params['address']) ? $params['address'] : ''; 
+
+                update_post_meta($invoice_id, 'status', 'paid');
+            } else if ($payment_type == 'stripe') {
+
+                $name = isset($params['name']) ? $params['name'] : '';
+                $email = isset($params['email']) ? $params['email'] : ''; 
+                $address = isset($params['address']) ? $params['address'] : ''; 
+                
+                update_post_meta($invoice_id, 'status', 'paid');
+            }  
+            
         }
+
+        wp_send_json_success();
     }
 
     // check permission
