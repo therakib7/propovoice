@@ -69,12 +69,9 @@ class PaymentProcess
         $params = $req->get_params();
 
         $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
-        $payment_type = isset($params['payment_type']) ? $params['payment_type'] : '';        
+        $payment_type = isset($params['payment_type']) ? $params['payment_type'] : '';
 
         if ($invoice_id) {
-
-            $payment = [];
-            $payment['type'] = $payment_type;
 
             update_post_meta($invoice_id, 'payment_type', $payment_type);
 
@@ -93,34 +90,29 @@ class PaymentProcess
                 $amount = isset($params['amount']) ? $params['amount'] : '';
                 $date = isset($params['date']) ? $params['date'] : '';
                 $note = isset($params['note']) ? nl2br($params['note']) : '';
-                
 
-                $payment['country'] = $country;
-                $payment['bank_name'] = $bank_name;
-                $payment['account_name'] = $account_name;
-                $payment['account_no'] = $account_no;
-                $payment['amount'] = $amount;
-                $payment['date'] = $date;
-                $payment['note'] = $note;
-                $payment['time'] = current_time('timestamp');
+                $bank_info = [];
+                $bank_info['country'] = $country;
+                $bank_info['bank_name'] = $bank_name;
+                $bank_info['account_name'] = $account_name;
+                $bank_info['account_no'] = $account_no;
+                $bank_info['amount'] = $amount;
+                $bank_info['date'] = $date;
+                $bank_info['note'] = $note;
+                $bank_info['time'] = current_time('timestamp');
 
-                update_post_meta($invoice_id, 'payment_info', $payment);
+                update_post_meta($invoice_id, 'payment_info', $bank_info);
             } else if ($payment_type == 'paypal') {
 
-                $name = isset($params['name']) ? $params['name'] : '';
-                $email = isset($params['email']) ? $params['email'] : ''; 
-                $address = isset($params['address']) ? $params['address'] : ''; 
-
                 update_post_meta($invoice_id, 'status', 'paid');
+                $payment_info = isset($params['payment_info']) ? $params['payment_info'] : '';
+                update_post_meta($invoice_id, 'payment_info', $payment_info);
             } else if ($payment_type == 'stripe') {
 
-                $name = isset($params['name']) ? $params['name'] : '';
-                $email = isset($params['email']) ? $params['email'] : ''; 
-                $address = isset($params['address']) ? $params['address'] : ''; 
-                
                 update_post_meta($invoice_id, 'status', 'paid');
-            }  
-            
+                $payment_info = isset($params['payment_info']) ? $params['payment_info'] : '';
+                update_post_meta($invoice_id, 'payment_info', $payment_info);
+            }
         }
 
         wp_send_json_success();

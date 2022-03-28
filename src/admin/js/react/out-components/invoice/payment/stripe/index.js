@@ -152,12 +152,19 @@ class CheckoutForm extends Component {
                 this.setState({ processing: false, error: confirmPayment.error });
             } else {
                 this.setState({ processing: false, paymentMethod: confirmPayment });
-
+                let paymentIntent = confirmPayment.paymentIntent;
                 let form = {
                     invoice_id: this.props.invoice_id,
                     payment_type: 'stripe',
-                    details: confirmPayment
+                    payment_info: {
+                        id: paymentIntent.id,
+                        amount: paymentIntent.amount,
+                        currency: paymentIntent.currency,
+                        billing_details: this.state.form,
+                        created: paymentIntent.created,
+                    },
                 }
+
                 Api.create(form).then(resp => {
                     if (resp.data.success) {
                         // close(); 

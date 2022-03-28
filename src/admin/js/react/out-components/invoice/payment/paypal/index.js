@@ -59,19 +59,21 @@ const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
             }}
             onApprove={function (data, actions) {
                 return actions.order.capture().then((details) => {
-                    // console.log(details)
-                    // const name = details.payer.name.given_name;
-                    // console.log(`Transaction completed by ${name}`);
                     let form = {
                         invoice_id,
                         payment_type: 'paypal',
-                        details
+                        payment_info: {
+                            id: details.id,
+                            // amount: details.amount,
+                            // currency: details.currency,
+                            billing_details: details.payer,
+                            created: details.create_time,
+                        },
                     }
                     Api.create(form).then(resp => {
                         if (resp.data.success) {
-                            close();
-
-                            toast.success('Thanks for payment');
+                            // close(); 
+                            // toast.success('Thanks for payment');
 
                         } else {
                             resp.data.data.forEach(function (value, index, array) {
