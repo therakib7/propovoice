@@ -6,9 +6,9 @@ import {
 } from "@paypal/react-paypal-js";
 import { toast } from 'react-toastify';
 
-import './paypal.css';
+import './style.css';
 
-import Api from 'api/payment-process'; 
+import Api from 'api/payment-process';
 
 // This values are the props in the UI
 const amount = "1";
@@ -21,7 +21,7 @@ const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
     // This is the main reason to wrap the PayPalButtons in a new component
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
     // const invoice_id = data.invoice.id; 
-    useEffect(() => { 
+    useEffect(() => {
         dispatch({
             type: "resetOptions",
             value: {
@@ -62,11 +62,11 @@ const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
                     // console.log(details)
                     // const name = details.payer.name.given_name;
                     // console.log(`Transaction completed by ${name}`);
-                    let form = { 
+                    let form = {
                         invoice_id,
                         payment_type: 'paypal',
                         details
-                    } 
+                    }
                     Api.create(form).then(resp => {
                         if (resp.data.success) {
                             close();
@@ -84,7 +84,7 @@ const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
         />
     </>
     );
-} 
+}
 
 class Paypal extends Component {
     constructor(props) {
@@ -116,7 +116,7 @@ class Paypal extends Component {
                                                         currency: "USD"
                                                     }}
                                                 >
-                                                    <ButtonWrapper 
+                                                    <ButtonWrapper
                                                         {...this.props}
                                                         currency={currency}
                                                         showSpinner={true}

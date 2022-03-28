@@ -8,35 +8,35 @@ import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js';
 import { toast } from 'react-toastify';
 
-import './stripe.css';
- 
+import './style.css';
+
 import { apiUrl } from 'api/helper'
 
-import Api from 'api/payment-process'; 
+import Api from 'api/payment-process';
 
 const CARD_OPTIONS = {
     iconStyle: 'solid',
     style: {
         base: {
-            iconColor: '#c4f0ff',
+            iconColor: '#4e6de9',
             color: '#000',
             fontWeight: 500,
             // fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
             fontSize: '16px',
             fontSmoothing: 'antialiased',
             ':-webkit-autofill': {
-                color: '#fce883',
+                color: '#1a202c',
             },
             '::placeholder': {
-                color: '#87BBFD',
+                color: '#777777',
             },
         },
         invalid: {
-            iconColor: '#FFC7EE',
-            color: '#FFC7EE',
+            iconColor: '#b30000',
+            color: '#b30000',
         },
     },
-}; 
+};
 
 const SubmitButton = ({ processing, error, children, disabled }) => (
 
@@ -141,23 +141,23 @@ class CheckoutForm extends Component {
             },
         });
 
-        if ( paymentPayload.error ) {
-            this.setState({ error: paymentPayload.error }); 
+        if (paymentPayload.error) {
+            this.setState({ error: paymentPayload.error });
         } else {
             const confirmPayment = await stripe.confirmCardPayment(client_secret, {
                 payment_method: paymentPayload.paymentMethod.id
             });
-    
+
             if (confirmPayment.error) {
-                this.setState({ processing: false, error: confirmPayment.error }); 
+                this.setState({ processing: false, error: confirmPayment.error });
             } else {
                 this.setState({ processing: false, paymentMethod: confirmPayment });
 
-                let form = { 
+                let form = {
                     invoice_id: this.props.invoice_id,
                     payment_type: 'stripe',
                     details: confirmPayment
-                } 
+                }
                 Api.create(form).then(resp => {
                     if (resp.data.success) {
                         // close(); 
@@ -170,7 +170,7 @@ class CheckoutForm extends Component {
                     }
                 })
             }
-        } 
+        }
     };
 
     render() {
@@ -248,7 +248,7 @@ class CheckoutForm extends Component {
                                                 error: event.error,
                                                 cardComplete: event.complete,
                                             });
-                                            }} />
+                                        }} />
                                     </div>
                                 </div>
 

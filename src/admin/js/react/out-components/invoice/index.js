@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas'; 
+import html2canvas from 'html2canvas';
 
 // import Template from 'inv-template';
-import Api from 'api/invoice'; 
+import Api from 'api/invoice';
 import Preview from 'inv-template';
 
 import Feedback from './Feedback';
 //payment
-import Bank from './payment/Bank';
-import Stripe from './payment/Stripe';
-import Paypal from './payment/Paypal';
+import Bank from './payment/bank';
+import Stripe from './payment/stripe';
+import Paypal from './payment/paypal';
 
 const EditDownload = props => {
     return (
@@ -173,7 +173,7 @@ export default class Invoice extends Component {
             const pdf = new jsPDF();
             pdf.addImage(imgData, 'JPG', 0, 0);
             pdf.save("invoice.pdf");
-        }); 
+        });
 
     }
 
@@ -218,7 +218,7 @@ export default class Invoice extends Component {
     handleClick = (type, data = null) => {
         if (type == 'feedback') {
             this.setState({ emailModal: true, feedback_type: data });
-        } else { 
+        } else {
             this.setState({ paymentModal: true, payment_type: data });
         }
     }
@@ -263,7 +263,7 @@ export default class Invoice extends Component {
                             show={this.state.paymentModal}
                             invoice_id={this.state.invoice.id}
                             close={() => this.setState({ paymentModal: false })}
-                        />} 
+                        />}
 
                         {this.state.payment_type == 'paypal' && <Paypal
                             show={this.state.paymentModal}
