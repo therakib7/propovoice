@@ -95,25 +95,15 @@ class Invoice extends Component {
 			},
 			// isPreviewLoaded: false,
 			previewHeight: '',
-		};
+		}; 
 
 		this.previewRef = React.createRef();
 	}
 
-	isPreviewLoaded = () => {  
-		let elHegiht = this.previewRef.current.clientHeight; 
-		if ( !this.state.previewHeight ) {
-			const height = elHegiht/2;
-			this.setState({ previewHeight: height });
-		} else {
-			// console.log(elHegiht)
-			// console.log(this.state.previewHeight)
-			//TODO: need to fixed preview height
-			// if ( this.state.previewHeight != elHegiht ) {
-			// 	const height = elHegiht;
-			// 	this.setState({ previewHeight: height });
-			// }
-		} 
+	isPreviewLoaded = () => {   
+		let previewHegiht = this.previewRef.current.clientHeight; 
+		const height = previewHegiht/2; 
+		this.setState({ previewHeight: height }); 
 	};
 
 	componentDidMount() {		
@@ -637,12 +627,15 @@ class Invoice extends Component {
 							</div>{/* ./ col-lg-9 */}
 
 							<div className="col-lg-3">
-								<div className="pi-right-sidebar">
-									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2>
-									{/* <img src={this.state.invoice.template.src} className="pi-invoice-image" /> */}
-									{/* <Style />
-									<Owner /> */}
-									<div className='pi-inv-sidebar-preview' ref={this.previewRef} style={{height: this.state.previewHeight }}>  
+								<div className="pi-right-sidebar" >
+									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2> 
+
+									{/* TODO: try to remove duplicate */}
+									<div ref={this.previewRef} style={{position: 'absolute', left: '-99999px'}}>  
+										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded } />
+									</div>
+
+									<div className='pi-inv-sidebar-preview' style={{height: this.state.previewHeight }}>  
 										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded } />
 									</div>
 									<div className="pi-accordion-wrapper">

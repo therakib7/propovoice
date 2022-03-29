@@ -13,10 +13,10 @@ const ColorPicker = ({ color, onChange }) => {
 	return (
 		<>
 			<div className='pi-style-color'>
-				<span className="pi-bg-blue" onClick={() => onChange('#4c6fff')} />
-				<span className="pi-bg-green" onClick={() => onChange('#18954d')} />
-				<span className="pi-bg-red" onClick={() => onChange('#f10606')} />
-				<span className="pi-bg-pink" onClick={() => onChange('#ff92ae')} />
+				<span style={{backgroundColor: '#4c6fff'}} onClick={() => onChange('#4c6fff')} />
+				<span style={{backgroundColor: '#18954d'}} onClick={() => onChange('#18954d')} />
+				<span style={{backgroundColor: '#F16063'}} onClick={() => onChange('#F16063')} />
+				<span style={{backgroundColor: '#F7936F'}} onClick={() => onChange('#F7936F')} />
 
 				<span 
 					style={{ backgroundColor: color }}

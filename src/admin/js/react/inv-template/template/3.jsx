@@ -26,7 +26,7 @@ export default class Three extends Component {
     componentDidMount() {
         document.documentElement.style.setProperty('--pi-inv-primary', this.props.data.invoice.style.primary_color);
 
-        // this.props.isPreviewLoaded();
+        this.props.isPreviewLoaded();
 
     }
 
@@ -34,7 +34,7 @@ export default class Three extends Component {
         let value = JSON.stringify(this.props.data.invoice);
         if (value != this.state.old_value) {
             this.setState({ old_value: value });
-            // this.props.isPreviewLoaded(); 
+            this.props.isPreviewLoaded(); 
         }
     }
 
