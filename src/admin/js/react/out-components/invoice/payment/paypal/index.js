@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import {
     PayPalScriptProvider,
     PayPalButtons,
@@ -11,7 +11,7 @@ import './style.css';
 import Api from 'api/payment-process';
 
 // This values are the props in the UI
-const amount = "11";
+const amount = "1";
 const currency = "USD";
 const style = { "layout": "vertical" };
 
@@ -19,8 +19,10 @@ const style = { "layout": "vertical" };
 const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
     // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
     // This is the main reason to wrap the PayPalButtons in a new component
-    const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
-    // const invoice_id = data.invoice.id; 
+    const [{ options, isPending }, dispatch] = usePayPalScriptReducer(); 
+
+    const [details, setDetails] = useState(null);
+
     useEffect(() => {
         dispatch({
             type: "resetOptions",
@@ -34,56 +36,73 @@ const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
 
     return (<>
         {(showSpinner && isPending) && <div className="spinner loading" />}
-        <PayPalButtons
-            style={style}
-            disabled={false}
-            forceReRender={[amount, currency, style]}
-            fundingSource={undefined}
-            createOrder={(data, actions) => {
-                return actions.order
-                    .create({
-                        purchase_units: [
-                            {
-                                amount: {
-                                    currency_code: currency,
-                                    value: amount,
-                                },
-                            },
-                        ],
-                    })
-                    .then((orderId) => {
-                        // Your code here after create the order
-                        // console.log(orderId)
-                        return orderId;
-                    });
-            }}
-            onApprove={function (data, actions) {
-                return actions.order.capture().then((details) => {
-                    let form = {
-                        invoice_id,
-                        payment_method: 'paypal',
-                        payment_info: {
-                            id: details.id,
-                            // amount: details.amount,
-                            // currency: details.currency,
-                            billing_address: details.payer,
-                            created: details.create_time,
-                        },
-                    }
-                    Api.create(form).then(resp => {
-                        if (resp.data.success) {
-                            // close(); 
-                            // toast.success('Thanks for payment');
 
-                        } else {
-                            resp.data.data.forEach(function (value, index, array) {
-                                toast.error(value);
-                            });
+        {details ? (
+            <div className="Result">
+                <div className="ResultTitle" role="alert">
+                    Payment successful
+                </div>
+                <div className="ResultMessage">
+                    Thanks for trying paypal payment.
+                    <div style={{marginTop: '7px', color: '#000'}}>
+                        <b>Transection ID:</b> {details.id}
+                    </div>
+                </div>
+            </div>
+        ) : ( 
+            <PayPalButtons
+                style={style}
+                disabled={false}
+                forceReRender={[amount, currency, style]}
+                fundingSource={undefined}
+                createOrder={(data, actions) => {
+                    return actions.order
+                        .create({
+                            purchase_units: [
+                                {
+                                    amount: {
+                                        currency_code: currency,
+                                        value: amount,
+                                    },
+                                },
+                            ],
+                        })
+                        .then((orderId) => {
+                            // Your code here after create the order
+                            // console.log(orderId)
+                            return orderId;
+                        });
+                }}
+                onApprove={function (data, actions) {
+                    return actions.order.capture().then((details) => {
+                        
+                        let form = {
+                            invoice_id,
+                            payment_method: 'paypal',
+                            payment_info: {
+                                id: details.id,
+                                // amount: details.amount,
+                                // currency: details.currency,
+                                billing_address: details.payer,
+                                created: details.create_time,
+                            },
                         }
-                    })
-                });
-            }}
-        />
+                        Api.create(form).then(resp => {
+                            if (resp.data.success) {
+                                setDetails(details);
+                                // close(); 
+                                // toast.success('Thanks for payment');
+
+                            } else {
+                                resp.data.data.forEach(function (value, index, array) {
+                                    toast.error(value);
+                                });
+                            }
+                        })
+                    });
+                }}
+            />
+        )}
     </>
     );
 }

@@ -200,7 +200,10 @@ class CheckoutForm extends Component {
                                     Payment successful
                                 </div>
                                 <div className="ResultMessage">
-                                    Thanks for trying Stripe payment.
+                                    Thanks for trying Stripe payment. 
+                                    <div style={{marginTop: '7px', color: '#000'}}>
+                                        <b>Transection ID:</b> {paymentMethod.paymentIntent.id}
+                                    </div>
                                 </div>
                             </div>
                         ) : (
@@ -266,7 +269,7 @@ class CheckoutForm extends Component {
                                 </div>
 
                                 <SubmitButton processing={processing} error={error} disabled={!stripe}>
-                                    Pay $25
+                                    Pay
                                 </SubmitButton>
                             </form>
                         )}

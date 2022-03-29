@@ -135,7 +135,7 @@ export default class Invoice extends Component {
                 },
                 {
                     id: 'stripe',
-                    label: 'Stirpe',
+                    label: 'Stripe',
                 },
                 {
                     id: 'bank',
