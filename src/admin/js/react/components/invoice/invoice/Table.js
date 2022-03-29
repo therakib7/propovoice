@@ -47,7 +47,7 @@ const TableHeader = props => {
                 </th>
                 {(props.path == 'invoice') &&
                     <th>
-                        Payment Type
+                        Payment Method
                     </th>
                 }
                 <th>

@@ -69,13 +69,13 @@ class PaymentProcess
         $params = $req->get_params();
 
         $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
-        $payment_type = isset($params['payment_type']) ? $params['payment_type'] : '';
+        $payment_method = isset($params['payment_method']) ? $params['payment_method'] : '';
 
         if ($invoice_id) {
 
-            update_post_meta($invoice_id, 'payment_type', $payment_type);
+            update_post_meta($invoice_id, 'payment_method', $payment_method);
 
-            if ($payment_type == 'bank') {
+            if ($payment_method == 'bank') {
                 $mark_as_paid = isset($params['mark_as_paid']) ? $params['mark_as_paid'] : false;
                 if ($mark_as_paid) {
                     update_post_meta($invoice_id, 'status', 'paid');
@@ -102,12 +102,12 @@ class PaymentProcess
                 $bank_info['time'] = current_time('timestamp');
 
                 update_post_meta($invoice_id, 'payment_info', $bank_info);
-            } else if ($payment_type == 'paypal') {
+            } else if ($payment_method == 'paypal') {
 
                 update_post_meta($invoice_id, 'status', 'paid');
                 $payment_info = isset($params['payment_info']) ? $params['payment_info'] : '';
                 update_post_meta($invoice_id, 'payment_info', $payment_info);
-            } else if ($payment_type == 'stripe') {
+            } else if ($payment_method == 'stripe') {
 
                 update_post_meta($invoice_id, 'status', 'paid');
                 $payment_info = isset($params['payment_info']) ? $params['payment_info'] : '';

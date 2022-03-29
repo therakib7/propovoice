@@ -11,7 +11,7 @@ import './style.css';
 import Api from 'api/payment-process';
 
 // This values are the props in the UI
-const amount = "1";
+const amount = "11";
 const currency = "USD";
 const style = { "layout": "vertical" };
 

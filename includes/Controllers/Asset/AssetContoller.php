@@ -39,6 +39,15 @@ class AssetContoller {
 
 	function dashboard_script() {   
 		
+		//font family
+		if ( 
+			( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi-welcome' ) ||
+			( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi' ) ||
+			is_page_template('dashboard-template.php') ||
+			is_page_template('invoice-template.php')  
+		) {  
+			wp_enqueue_style( 'ncpi-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), $this->version );  
+		}
 		if ( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi-welcome' ) {  
 			wp_enqueue_style( 'ncpi-welcome', ncpi()->get_assets_uri( "admin/css/welcome{$this->suffix}.css" ), array(), $this->version );
 			wp_enqueue_script( 'ncpi-welcome', ncpi()->get_assets_uri( "/admin/js/welcome{$this->suffix}.js" ), array(), $this->version, true );  

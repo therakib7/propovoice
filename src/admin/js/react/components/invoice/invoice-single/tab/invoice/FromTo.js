@@ -85,7 +85,8 @@ class FromTo extends Component {
         const { fromList } = this.state;
         const { fromData, toData } = this.props;
         return (
-            <div className="pi-from-content">
+            <div className="pi-from-content" style={{ padding: '17px 30px 10px'}} >
+                {/* TODO: move parent style to css */}
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="pi-from-to">

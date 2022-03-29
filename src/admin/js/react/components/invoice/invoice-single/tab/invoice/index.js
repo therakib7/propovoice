@@ -566,7 +566,7 @@ class Invoice extends Component {
 									/>
 
 									<div className="pi-info-table-content">
-										<span className="pi-edit-btn pi-float-right pi-color-blue pi-bg-air-white">
+										<span className="pi-edit-btn pi-float-right pi-color-blue pi-bg-air-white d-none">
 											<svg
 												width={10}
 												height={10}

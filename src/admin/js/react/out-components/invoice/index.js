@@ -71,7 +71,6 @@ const InvoiceBtn = props => {
                 <>
                     <button
                         className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                        style={{ float: 'right' }}
                         onClick={() => props.handleChange('feedback', 'accept')}
                     >
                         Accept
@@ -79,7 +78,7 @@ const InvoiceBtn = props => {
 
                     <button
                         className="pi-btn pi-bg-air-white pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                        style={{ float: 'right', color: '#000', marginRight: '5px' }}
+                        style={{ color: '#000', marginRight: '5px' }}
                         onClick={() => props.handleChange('feedback', 'decline')}
                     >
                         Decline
@@ -88,29 +87,35 @@ const InvoiceBtn = props => {
             }
 
             {props.type == 'invoice' &&
-                <>
+                <>  
+                    <span style={{ marginRight: '10px' }}>Pay With:</span>
+
+                    <select style={{ border: '1px solid #dfdfdf', padding: '5px', marginRight: '10px' }}>
+                        <option>Paypal</option> 
+                        <option>Stripe</option> 
+                    </select>
+
                     <button
                         className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                        style={{ float: 'right' }}
+                        style={{ marginRight: '10px' }}
+                        onClick={() => props.handleChange('payment', 'paypal')}
+                    >
+                        Paypal
+                    </button>
+
+                    <button
+                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
+                        style={{ marginRight: '3px' }}
+                        onClick={() => props.handleChange('payment', 'stripe')}
+                    >
+                        Stripe
+                    </button>
+
+                    <button
+                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
                         onClick={() => props.handleChange('payment', 'bank')}
                     >
                         Add Payment Info
-                    </button>
-
-                    <button
-                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                        style={{ float: 'right', marginRight: '3px' }}
-                        onClick={() => props.handleChange('payment', 'stripe')}
-                    >
-                        Pay with Stripe
-                    </button>
-
-                    <button
-                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                        style={{ float: 'right', marginRight: '3px' }}
-                        onClick={() => props.handleChange('payment', 'paypal')}
-                    >
-                        Pay with Paypal
                     </button>
                 </>
             }
@@ -229,10 +234,12 @@ export default class Invoice extends Component {
                 <ToastContainer />
                 <iframe id="ncpi-invoice-print" style={{ margin: 0, padding: 0, height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
-                    <div className='col-md-8' style={{ margin: '50px 0' }}>
+                    <div className='col-md-8' style={{ margin: '40px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
-                            <EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
-                            <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} />
+                            <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
+                            <div className='pi-float-right'>
+                                <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} />
+                            </div>
                         </div>
 
                     </div>
@@ -241,10 +248,12 @@ export default class Invoice extends Component {
                         {this.state.fromData && <Preview data={this.state} />}
                     </div>
 
-                    <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
+                    <div className='col-md-8' style={{ margin: '40px 0 30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
-                            <EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
-                            <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} />
+                            <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
+                            <div className='pi-float-right'>
+                                <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} />
+                            </div>
                         </div>
                     </div>
                 </div>
