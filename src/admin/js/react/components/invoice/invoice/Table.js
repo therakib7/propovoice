@@ -101,18 +101,18 @@ const TableBody = props => {
                 break;
         }
 
-        let payment_type;
-        switch (row.payment_type) {
+        let payment_method;
+        switch (row.payment_method) {
             case 'bank':
-                payment_type = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank</span>
+                payment_method = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank</span>
                 break;
 
             case 'paypal':
-                payment_type = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#009cde' }} onClick={() => props.infoModal(row, 'paypal')}>Paypal</span>
+                payment_method = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#009cde' }} onClick={() => props.infoModal(row, 'paypal')}>Paypal</span>
                 break;
 
             case 'stripe':
-                payment_type = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#5433FF' }} onClick={() => props.infoModal(row, 'stripe')}>Stripe</span>
+                payment_method = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#5433FF' }} onClick={() => props.infoModal(row, 'stripe')}>Stripe</span>
                 break;
         }
 
@@ -140,7 +140,7 @@ const TableBody = props => {
                 }
                 <td>{row.date}</td>
                 <td>{status}</td>
-                {(props.path == 'invoice') && <td>{payment_type}</td>}
+                {(props.path == 'invoice') && <td>{payment_method}</td>}
                 <td className="pi-action">
                     <span onClick={() => handleClick(row.id)} ><svg
                         width={13}
@@ -204,21 +204,21 @@ const Table = (props) => {
                             close={() => setInfoModal(false)}
                         />}
 
-                        {infoData.payment_type == 'bank' && <Bank
+                        {infoData.payment_method == 'bank' && <Bank
                             data={infoData}
                             show={infoModal}
                             reload={props.reload}
                             close={() => setInfoModal(false)}
                         />}
 
-                        {infoData.payment_type == 'paypal' && <Paypal
+                        {infoData.payment_method == 'paypal' && <Paypal
                             data={infoData}
                             show={infoModal}
                             reload={props.reload}
                             close={() => setInfoModal(false)}
                         />}
 
-                        {infoData.payment_type == 'stripe' && <Stripe
+                        {infoData.payment_method == 'stripe' && <Stripe
                             data={infoData}
                             show={infoModal}
                             reload={props.reload}

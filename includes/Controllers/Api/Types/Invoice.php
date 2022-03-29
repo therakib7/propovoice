@@ -157,7 +157,7 @@ class Invoice
             }
  
             $query_data['feedback'] = get_post_meta($id, 'feedback', true);
-            $query_data['payment_type'] = get_post_meta($id, 'payment_type', true);
+            $query_data['payment_method'] = get_post_meta($id, 'payment_method', true);
             $query_data['payment_info'] = get_post_meta($id, 'payment_info', true);
             $query_data['status'] = get_post_meta($id, 'status', true);
             $query_data['date'] = get_the_time('j-M-Y');

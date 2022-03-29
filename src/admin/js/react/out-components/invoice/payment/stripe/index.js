@@ -155,7 +155,7 @@ class CheckoutForm extends Component {
                 let paymentIntent = confirmPayment.paymentIntent;
                 let form = {
                     invoice_id: this.props.invoice_id,
-                    payment_type: 'stripe',
+                    payment_method: 'stripe',
                     payment_info: {
                         id: paymentIntent.id,
                         amount: paymentIntent.amount,

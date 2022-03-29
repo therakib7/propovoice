@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
+import Select from 'react-select';
+
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -64,8 +66,13 @@ const EditDownload = props => {
 }
 
 const InvoiceBtn = props => {
-    if (!props.type) return null;
-    return (
+    if (!props.type) return null; 
+
+    const payment_methods = props.payment_methods.list;
+    const selected_method = props.payment_methods.selected;
+    const changeMethod = props.payment_methods.changeMethod;
+
+    return ( 
         <>
             {props.type == 'estimate' &&
                 <>
@@ -88,35 +95,25 @@ const InvoiceBtn = props => {
 
             {props.type == 'invoice' &&
                 <>  
-                    <span style={{ marginRight: '10px' }}>Pay With:</span>
+                    <span style={{ marginRight: '10px' }}>Pay with:</span> 
 
-                    <select style={{ border: '1px solid #dfdfdf', padding: '5px', marginRight: '10px' }}>
-                        <option>Paypal</option> 
-                        <option>Stripe</option> 
-                    </select>
-
-                    <button
-                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                        style={{ marginRight: '10px' }}
-                        onClick={() => props.handleChange('payment', 'paypal')}
-                    >
-                        Paypal
-                    </button>
+                    <div style={{width: '150px', display: 'inline-block'}}>
+                        <Select
+                            value={selected_method}
+                            onChange={changeMethod}
+                            getOptionValue={(payment_methods) => payment_methods.id}
+                            getOptionLabel={(payment_methods) => payment_methods.label}
+                            options={payment_methods}
+                        />
+                    </div>
 
                     <button
                         className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                        style={{ marginRight: '3px' }}
-                        onClick={() => props.handleChange('payment', 'stripe')}
+                        style={{ marginLeft: '10px' }}
+                        onClick={() => props.handleChange('payment', selected_method.id)}
                     >
-                        Stripe
-                    </button>
-
-                    <button
-                        className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
-                        onClick={() => props.handleChange('payment', 'bank')}
-                    >
-                        Add Payment Info
-                    </button>
+                        Pay
+                    </button> 
                 </>
             }
         </>
@@ -130,7 +127,25 @@ export default class Invoice extends Component {
         this.state = {
             emailModal: false,
             paymentModal: false,
-            payment_type: '',
+            payment_method: '',
+            payment_methods: [
+                {
+                    id: 'paypal',
+                    label: 'Paypal',
+                },
+                {
+                    id: 'stripe',
+                    label: 'Stirpe',
+                },
+                {
+                    id: 'bank',
+                    label: 'Bank',
+                }
+            ],
+            selected_payment_method: {
+                id: 'paypal',
+                label: 'Paypal',
+            },
             feedback: '',
             fromData: null,
             toData: null,
@@ -171,15 +186,13 @@ export default class Invoice extends Component {
             })
     };
 
-    downloadInvoice = () => {
-
+    downloadInvoice = () => { 
         html2canvas(document.querySelector(".pi-inv")).then(canvas => {
             const imgData = canvas.toDataURL('image/jpg');
             const pdf = new jsPDF();
             pdf.addImage(imgData, 'JPG', 0, 0);
             pdf.save("invoice.pdf");
-        });
-
+        }); 
     }
 
     printInvoice = () => {
@@ -224,8 +237,12 @@ export default class Invoice extends Component {
         if (type == 'feedback') {
             this.setState({ emailModal: true, feedback_type: data });
         } else {
-            this.setState({ paymentModal: true, payment_type: data });
+            this.setState({ paymentModal: true, payment_method: data });
         }
+    }
+
+    changePaymentMethod = ( data ) => { 
+        this.setState({ selected_payment_method: data }); 
     }
 
     render() {
@@ -238,7 +255,7 @@ export default class Invoice extends Component {
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
                             <div className='pi-float-right'>
-                                <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} />
+                                <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod}} />
                             </div>
                         </div>
 
@@ -252,7 +269,7 @@ export default class Invoice extends Component {
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
                             <div className='pi-float-right'>
-                                <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} />
+                                <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod}} />
                             </div>
                         </div>
                     </div>
@@ -268,19 +285,19 @@ export default class Invoice extends Component {
 
                 {this.state.paymentModal &&
                     <>
-                        {this.state.payment_type == 'bank' && <Bank
+                        {this.state.payment_method == 'bank' && <Bank
                             show={this.state.paymentModal}
                             invoice_id={this.state.invoice.id}
                             close={() => this.setState({ paymentModal: false })}
                         />}
 
-                        {this.state.payment_type == 'paypal' && <Paypal
+                        {this.state.payment_method == 'paypal' && <Paypal
                             show={this.state.paymentModal}
                             invoice_id={this.state.invoice.id}
                             close={() => this.setState({ paymentModal: false })}
                         />}
 
-                        {this.state.payment_type == 'stripe' && <Stripe
+                        {this.state.payment_method == 'stripe' && <Stripe
                             show={this.state.paymentModal}
                             invoice_id={this.state.invoice.id}
                             close={() => this.setState({ paymentModal: false })}

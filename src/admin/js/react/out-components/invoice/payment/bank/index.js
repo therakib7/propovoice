@@ -10,7 +10,7 @@ class Bank extends Component {
         this.state = {
             form: {
                 invoice_id: null,
-                payment_type: 'bank',
+                payment_method: 'bank',
                 country: '',
                 bank_name: '',
                 account_name: '',

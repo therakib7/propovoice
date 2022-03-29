@@ -61,7 +61,7 @@ const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
                 return actions.order.capture().then((details) => {
                     let form = {
                         invoice_id,
-                        payment_type: 'paypal',
+                        payment_method: 'paypal',
                         payment_info: {
                             id: details.id,
                             // amount: details.amount,

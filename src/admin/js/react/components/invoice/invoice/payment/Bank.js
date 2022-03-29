@@ -36,7 +36,7 @@ class Bank extends Component {
         e.preventDefault();
 
         let form = { ...this.state.form }
-        form.payment_type = 'bank';
+        form.payment_method = 'bank';
         form.invoice_id = this.props.data.id;
         form.mark_as_paid = true;
         Api.create(form)
