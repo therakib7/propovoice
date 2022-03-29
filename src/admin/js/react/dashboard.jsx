@@ -23,7 +23,12 @@ document.addEventListener( 'DOMContentLoaded', function() {
     // document.body.className+=' folded';  
     let element = document.getElementById( 'ncpi-dashboard' );
     if( typeof element !== 'undefined' && element !== null ) {
-        ReactDOM.render( <Dashboard />, element );
+        ReactDOM.render( 
+            <React.StrictMode>
+                <Dashboard />
+            </React.StrictMode>, 
+            element 
+        );
     }
 } );
 

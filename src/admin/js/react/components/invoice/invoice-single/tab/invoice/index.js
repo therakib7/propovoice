@@ -92,8 +92,7 @@ class Invoice extends Component {
 				group: null,
 				attach: [],
 				sign: null
-			},
-			// isPreviewLoaded: false,
+			}, 
 			previewHeight: '',
 		}; 
 
@@ -101,9 +100,12 @@ class Invoice extends Component {
 	}
 
 	isPreviewLoaded = () => {   
-		let previewHegiht = this.previewRef.current.clientHeight; 
-		const height = previewHegiht/2; 
-		this.setState({ previewHeight: height }); 
+		let current = this.previewRef.current;
+		if ( current ) {
+			let previewHegiht = current.clientHeight; 
+			const height = previewHegiht/2; 
+			this.setState({ previewHeight: height });
+		}
 	};
 
 	componentDidMount() {		
@@ -701,7 +703,7 @@ class Invoice extends Component {
 							showEmailModal={() => this.setState({ emailModal: true })}
 							closeEmailModal={() => this.setState({ emailModal: false })}
 							editTab={this.editTab}
-							path={this.props.path}
+							path={this.props.path} 
 						/>}
 				</div>
 			</>

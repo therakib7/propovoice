@@ -12,7 +12,9 @@ export default class Preview extends Component {
     }    
 
     isPreviewLoaded = () => { 
-		this.props.isPreviewLoaded();
+        if ( this.props.isPreviewLoaded ) {
+            this.props.isPreviewLoaded();
+        }
 	}; 
 
     render() {   
