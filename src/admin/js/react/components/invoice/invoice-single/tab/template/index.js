@@ -20,6 +20,7 @@ export default class Template extends Component {
     }
 
     componentDidMount() {
+        //TODO: do not render it multiple time
         this.getLists();
     }
 

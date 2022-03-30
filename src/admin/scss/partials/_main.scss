@@ -2271,7 +2271,7 @@ html {
   padding: 15px 0;
   font-size: 14px;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-table tr td {
     font-size: 12px;
   }
@@ -2337,7 +2337,7 @@ html {
 .ncpi .pi-table .pi-show {
   display: block;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-table {
     width: 190%;
   }
@@ -2377,7 +2377,7 @@ html {
   padding: 10px;
   width: 100%;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-info-table-content .pi-info-table textarea {
     width: auto;
   }
@@ -2457,13 +2457,11 @@ html {
   font-size: 10px;
   margin-left: -5px;
   outline: none;
-  padding: 8px;
-  width: 70px;
-  height: 38px;
+  padding: 6px 8px 10px;
   position: relative;
   top: -3px;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-info-table-content .pi-info-table td select {
     width: 60px;
   }
@@ -2497,10 +2495,10 @@ html {
   color: #1a202c !important;
   border: 1px solid #cbd5e0;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-info-table-content {
-    width: 175%;
-    background: #fff;
+    width: 200%;
+    margin-bottom: 20px;
     z-index: 9;
     position: relative;
     padding-left: 0;
@@ -2543,31 +2541,23 @@ html {
   margin-left: 5px;
   outline: none;
 }
-.ncpi input[type=number][readonly] {
-  background-color: #cbd5e0 !important;
-}
 
 /*-------------------------------------------------------------- 
 # crid
 --------------------------------------------------------------*/
-.ncpi .pi-right-content {
-  width: 100%;
-  overflow: auto;
-  height: 100vh;
-}
 .ncpi .pi-grid-container {
   display: flex;
   grid-template-columns: auto auto auto;
 }
 .ncpi .pi-right-content {
+  width: 100%;
+  overflow: auto;
+  height: 100vh;
   padding: 30px 70px;
 }
 .ncpi .pi-right-content h1 {
   margin-bottom: 10px;
   margin-top: 0;
-}
-.ncpi .pi-text-hover-blue.pi-float-right {
-  background-color: transparent;
 }
 .ncpi .pi-empty-content {
   margin-top: 90px;
@@ -2586,6 +2576,17 @@ html {
     padding-top: 50px;
   }
 }
+@media screen and (max-width: 768px) {
+  .ncpi .pi-right-content {
+    padding: 45px 30px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .ncpi .pi-right-content {
+    padding: 45px 15px;
+    overflow-x: hidden;
+  }
+}
 .ncpi .pi-breadcrumb ul li {
   display: inline;
   padding: 2px;
@@ -2602,11 +2603,6 @@ html {
 }
 .ncpi .pi-cards {
   margin-bottom: 25px;
-}
-@media screen and (max-width: 500px) {
-  .ncpi .pi-cards {
-    margin-bottom: 0px;
-  }
 }
 .ncpi .pi-cards .pi-bg-air-white {
   border-radius: 20px;
@@ -2627,14 +2623,9 @@ html {
     margin-bottom: 30px;
   }
 }
-@media screen and (max-width: 768px) {
-  .ncpi .pi-right-content {
-    padding: 45px 30px;
-  }
-}
-@media screen and (max-width: 450px) {
-  .ncpi .pi-right-content {
-    padding: 45px 15px;
+@media screen and (max-width: 500px) {
+  .ncpi .pi-cards {
+    margin-bottom: 0px;
   }
 }
 .ncpi .pi-search-box.pi-float-right .search-input {
@@ -2659,11 +2650,11 @@ html {
   top: 12px;
 }
 @media screen and (max-width: 450px) {
-  .ncpi .pi-search-box.pi-float-right .search-input {
+  .ncpi .pi-search-box .search-input {
     padding: 10px;
     padding-left: 40px;
   }
-  .ncpi .pi-search-box.pi-float-right svg {
+  .ncpi .pi-search-box svg {
     top: 8px;
   }
 }
@@ -2689,6 +2680,7 @@ html {
   z-index: 99;
 }
 .ncpi .pi-overlay {
+  visibility: visible;
   opacity: 1;
   z-index: 99;
   overflow-x: hidden;
@@ -2727,7 +2719,6 @@ html {
 }
 .ncpi .pi-popup-content .pi-content {
   overflow: auto;
-  padding: 20px;
   padding: 30px 35px 35px;
 }
 .ncpi .pi-popup-content .pi-content .pi-btn {
@@ -2793,6 +2784,72 @@ html {
   line-height: 20px;
   margin-top: 10px;
 }
+.ncpi .pi-social-content {
+  margin-top: 35px;
+  text-align: center;
+}
+.ncpi .pi-social-content .pi-social-icon {
+  display: inline-block;
+  width: 72px;
+  text-align: center;
+}
+.ncpi .pi-social-content .pi-social-icon p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 15px;
+}
+.ncpi .pi-social-content .pi-social-icon span {
+  width: 60px;
+  height: 60px;
+  background: #dddd;
+  display: block;
+  border-radius: 50%;
+  line-height: 87px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.ncpi .pi-social-content .pi-social-icon .pi-whatsapp {
+  background-color: #e9fbef;
+}
+.ncpi .pi-social-content .pi-social-icon .pi-messenger {
+  background-color: #007bff1a;
+}
+.ncpi .pi-social-content .pi-social-icon .pi-discord {
+  background-color: rgba(88, 101, 242, 0.08);
+}
+.ncpi .pi-social-content .pi-social-icon .pi-email {
+  background-color: #fdecea;
+}
+.ncpi .pi-social-content .pi-social-icon .pi-telegrame {
+  background-color: rgba(64, 179, 224, 0.08);
+}
+.ncpi .pi-social-content .pi-social-icon .pi-skype {
+  background-color: rgba(0, 175, 240, 0.08);
+}
+.ncpi .pi-share-popup input[type=text] {
+  position: relative;
+  padding: 9px !important;
+  padding-right: 55px !important;
+}
+.ncpi .pi-share-popup .pi-copy {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  padding: 5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--bg-color-blue);
+  cursor: pointer;
+  font-size: 14px;
+}
+.ncpi .pi-popup-style-big {
+  width: 50% !important;
+}
+.ncpi .pi-popup-style-small {
+  width: 25% !important;
+}
 
 /*-------------------------------------------------------------- 
 # tabs
@@ -2834,8 +2891,9 @@ html {
   background: #4c6fff;
   text-align: center;
   line-height: 47px;
-  border: 2px solid #4c6fff !important;
+  z-index: 6;
   opacity: 0;
+  border: 2px solid #4c6fff !important;
 }
 .ncpi .pi-welcome-tabs-content .pi-tab .pi-done svg path {
   fill: var(--text-color-white);
@@ -2843,14 +2901,10 @@ html {
 .ncpi .pi-welcome-tabs-content .pi-tab .pi-done svg {
   margin-left: -2px;
 }
-.ncpi .pi-welcome-tabs-content .pi-tab .pi-done:hover {
-  opacity: 1;
-}
-.ncpi .pi-welcome-tabs-content .pi-tab.pi-active .pi-done {
-  opacity: 1;
+.ncpi .pi-welcome-tabs-content .pi-tab .pi-done {
   z-index: 6;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-welcome-tabs-content .pi-tab {
     font-size: 12px;
   }
@@ -2929,6 +2983,7 @@ html {
   margin: auto;
   margin-bottom: 15px;
 }
+.ncpi .pi-right-sidebar .pi-r-s-title,
 .ncpi .pi-single-tab-content .pi-invoice-tab-content .pi-tab-content-title {
   font-size: 20px;
   font-weight: 700;
@@ -2947,7 +3002,7 @@ html {
     width: 100px;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-single-tabs {
     margin-top: 40px;
   }
@@ -2988,7 +3043,7 @@ html {
   position: absolute;
   transform: translate(-6px, 0);
   margin-top: 12px;
-  right: 35px;
+  right: 30px;
 }
 .ncpi .pi-accordion-wrapper > ul > li i:before, .ncpi .pi-accordion-wrapper > ul > li i:after {
   content: "";
@@ -3049,24 +3104,6 @@ html {
 .ncpi .pi-edit-content .pi-pi-edit-text {
   margin-top: 2px;
 }
-.ncpi .pi-edit-content .pi-pi-edit-text select {
-  background-color: #edf2f7 !important;
-  border-radius: 6px;
-  font-size: 14px;
-  padding: 8px;
-  width: 95%;
-  border: 1px solid #dddddda8;
-  outline: none;
-  line-height: 11;
-}
-.ncpi .pi-edit-content .pi-pi-edit-text label {
-  font-size: 10px;
-  padding: 0px 5px;
-  background: #fff;
-  position: relative;
-  top: 10px;
-  left: 8px;
-}
 .ncpi .pi-edit-content .pi-pi-edit-text .pi-edit-content {
   float: left;
   width: 50%;
@@ -3081,11 +3118,11 @@ html {
   margin-bottom: 10px;
 }
 .ncpi .pi-edit-content .pi-edit-buttons .pi-btn {
-  color: #4c6fff;
   padding: 12px 15px;
   border-radius: 6px;
   font-size: 12px;
   background: #e1e8ff;
+  width: inherit;
 }
 .ncpi .pi-edit-content .pi-edit-buttons .pi-btn:first-child {
   margin-right: 8px;
@@ -3114,6 +3151,7 @@ html {
   border-top: 3px solid var(--bg-color-air-white);
   font-size: 14px;
   font-weight: 500;
+  display: grid;
 }
 .ncpi .pi-payment-tab .pi-tab svg {
   display: block;
@@ -3160,16 +3198,19 @@ html {
   }
 }
 
-.pi-payment-accrodion {
+.pi-form-accrodion,
+.pi-form-accordion {
   /* Accordion styles */
 }
-.pi-payment-accrodion .pi-tab {
+.pi-form-accrodion .pi-tab,
+.pi-form-accordion .pi-tab {
   width: 100%;
   overflow: hidden;
   margin-top: -15px;
   margin-bottom: 10px;
 }
-.pi-payment-accrodion .pi-tab-label {
+.pi-form-accrodion .pi-tab-label,
+.pi-form-accordion .pi-tab-label {
   display: flex;
   justify-content: space-between;
   padding: 10px 10px 10px 32px;
@@ -3180,33 +3221,38 @@ html {
   border-radius: 5px;
   font-size: 15px;
 }
-.pi-payment-accrodion .pi-tab-label::after {
+.pi-form-accrodion .pi-tab-label::after,
+.pi-form-accordion .pi-tab-label::after {
   content: "❯";
   width: 1em;
   height: 1em;
   transition: all 0.35s;
 }
-.pi-payment-accrodion .pi-tab-content {
+.pi-form-accrodion .pi-tab-content,
+.pi-form-accordion .pi-tab-content {
   max-height: 0;
   color: #000;
   background-color: #f7fafc;
   transition: all 0.35s;
   border-radius: 0 0 5px 5px;
 }
-.pi-payment-accrodion .pi-tab input[type=checkbox] {
+.pi-form-accrodion .pi-tab input[type=checkbox],
+.pi-form-accordion .pi-tab input[type=checkbox] {
   margin-bottom: 12px;
   margin-right: 5px;
   border-radius: 0;
   position: relative;
   top: 1px;
 }
-.pi-payment-accrodion .pi-tab input[type=radio] {
+.pi-form-accrodion .pi-tab input[type=radio],
+.pi-form-accordion .pi-tab input[type=radio] {
   position: relative;
   top: 36px;
   left: 12px;
   color: #000;
 }
-.pi-payment-accrodion .pi-tab .pi-payment-btn {
+.pi-form-accrodion .pi-tab .pi-payment-btn,
+.pi-form-accordion .pi-tab .pi-payment-btn {
   padding: 10px 25px;
   border: 1px solid #dddddda8;
   border-radius: 5px;
@@ -3216,7 +3262,8 @@ html {
   cursor: pointer;
   font-size: 14px;
 }
-.pi-payment-accrodion .pi-tab .pi-payment-bank-content {
+.pi-form-accrodion .pi-tab .pi-payment-bank-content,
+.pi-form-accordion .pi-tab .pi-payment-bank-content {
   position: relative;
   display: flex;
   background-color: #fff;
@@ -3225,56 +3272,69 @@ html {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.pi-payment-accrodion .pi-tab .pi-payment-bank-content .bank-text-content span {
+.pi-form-accrodion .pi-tab .pi-payment-bank-content .bank-text-content span,
+.pi-form-accordion .pi-tab .pi-payment-bank-content .bank-text-content span {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
 }
-.pi-payment-accrodion .pi-tab .pi-payment-bank-content .pi-bank-image {
+.pi-form-accrodion .pi-tab .pi-payment-bank-content .pi-bank-image,
+.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-image {
   margin-right: 5px;
 }
-.pi-payment-accrodion .pi-tab .pi-payment-bank-content .pi-bank-image span {
+.pi-form-accrodion .pi-tab .pi-payment-bank-content .pi-bank-image span,
+.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-image span {
   background-color: var(--bg-color-air-white);
   padding: 12px 7px 5px;
   border-radius: 3px;
   position: relative;
   top: 30%;
 }
-.pi-payment-accrodion .pi-tab .pi-payment-bank-content .pi-bank-title {
+.pi-form-accrodion .pi-tab .pi-payment-bank-content .pi-bank-title,
+.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-title {
   font-size: 12px;
   font-weight: 500;
   line-height: 17px;
   margin-top: 5px;
 }
-.pi-payment-accrodion .pi-tab .pi-payment-bank-content .pi-bank-subtitle {
+.pi-form-accrodion .pi-tab .pi-payment-bank-content .pi-bank-subtitle,
+.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-subtitle {
   margin: 0;
   font-size: 10px;
 }
-.pi-payment-accrodion .pi-tab input[type=radio]:checked {
+.pi-form-accrodion .pi-tab input[type=radio]:checked,
+.pi-form-accordion .pi-tab input[type=radio]:checked {
   background-color: #93e026;
 }
-.pi-payment-accrodion .pi-arrow-none:after {
+.pi-form-accrodion .pi-arrow-none:after,
+.pi-form-accordion .pi-arrow-none:after {
   content: "" !important;
 }
-.pi-payment-accrodion input:checked + .pi-tab-label {
+.pi-form-accrodion input:checked + .pi-tab-label,
+.pi-form-accordion input:checked + .pi-tab-label {
   color: #000;
 }
-.pi-payment-accrodion input:checked + .pi-tab-label::after {
+.pi-form-accrodion input:checked + .pi-tab-label::after,
+.pi-form-accordion input:checked + .pi-tab-label::after {
   transform: rotate(90deg);
   margin-top: 5px;
 }
-.pi-payment-accrodion input:checked ~ .pi-tab-content {
+.pi-form-accrodion input:checked ~ .pi-tab-content,
+.pi-form-accordion input:checked ~ .pi-tab-content {
   max-height: 100vh;
   padding: 15px 15px 25px;
 }
-.pi-payment-accrodion .pi-payment-buttons button:first-child {
+.pi-form-accrodion .pi-payment-buttons button:first-child,
+.pi-form-accordion .pi-payment-buttons button:first-child {
   margin-right: 7px;
 }
-.pi-payment-accrodion .pi-payment-buttons button:last-child {
+.pi-form-accrodion .pi-payment-buttons button:last-child,
+.pi-form-accordion .pi-payment-buttons button:last-child {
   margin-right: 0;
 }
-.pi-payment-accrodion .pi-payment-buttons button {
+.pi-form-accrodion .pi-payment-buttons button,
+.pi-form-accordion .pi-payment-buttons button {
   padding: 12px 42px;
   font-size: 12px;
   border-radius: 5px;
@@ -3282,33 +3342,105 @@ html {
   margin-top: 5px;
 }
 
-.ncpi .reminder span {
+.ncpi .pi-reminder .pi-reminder-time {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.ncpi .pi-charge span,
+.ncpi .pi-reminder span {
   font-size: 13px;
   padding-top: 20px;
   display: block;
 }
-.ncpi .reminder .reminder-time {
-  margin-top: 20px;
-  margin-bottom: 8px;
+.ncpi .pi-charge .pi-reminder-time,
+.ncpi .pi-reminder .pi-reminder-time {
+  margin-bottom: 10px;
 }
-.ncpi .reminder .reminder-time input[type=number] {
-  width: 60px !important;
+.ncpi .pi-charge .pi-reminder-time input[type=number],
+.ncpi .pi-reminder .pi-reminder-time input[type=number] {
+  width: 70px !important;
   padding: 7px 0 7px 10px !important;
 }
-.ncpi .reminder .reminder-time select {
+.ncpi .pi-charge .pi-reminder-time select,
+.ncpi .pi-reminder .pi-reminder-time select {
   width: 65px !important;
   margin-left: -7px;
   padding: 8px 0 6px 10px !important;
   font-size: 12px !important;
   border-radius: 0px 4px 4px 0 !important;
 }
-.ncpi .reminder textarea {
+.ncpi .pi-charge textarea,
+.ncpi .pi-reminder textarea {
   margin-top: 10px;
 }
-
-.ncpi .piWidth-100 {
-  width: 100% !important;
+.ncpi .pi-charge .pi-btn,
+.ncpi .pi-reminder .pi-btn {
+  margin-top: 5px !important;
 }
+.ncpi .pi-form-style-four .pi-checkbox-content {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.ncpi .pi-form-style-four .pi-checkbox-content label {
+  left: 5px !important;
+  background-color: transparent !important;
+  font-size: 12px !important;
+  top: -5px !important;
+  font-weight: 500;
+  line-height: 18px;
+}
+.ncpi .pi-form-accrodion input:checked ~ .pi-tab-content {
+  padding: 15px 5px 15px !important;
+}
+.ncpi .pi-form-accrodion .pi-tab {
+  padding-bottom: 5px !important;
+  margin-top: -23px !important;
+}
+.ncpi .pi-form-accrodion .pi-tab input[type=checkbox] {
+  top: 38px !important;
+  left: 12px !important;
+}
+.ncpi .pi-charge .pi-reminder-time {
+  margin-bottom: 20px !important;
+}
+.ncpi .pi-charge .pi-radio-content label,
+.ncpi .pi-form-accrodion .pi-radio-content label {
+  font-size: 15px !important;
+  background-color: transparent !important;
+  left: 0 !important;
+  top: 0 !important;
+  font-weight: 500;
+}
+.ncpi .pi-charge .pi-radio-content .pi-radio-group,
+.ncpi .pi-form-accrodion .pi-radio-content .pi-radio-group {
+  margin-bottom: 30px;
+}
+.ncpi .pi-charge .pi-radio-content .pi-radio-group h4,
+.ncpi .pi-form-accrodion .pi-radio-content .pi-radio-group h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.ncpi .pi-charge .pi-radio-content .pi-radio-group input[type=radio],
+.ncpi .pi-form-accrodion .pi-radio-content .pi-radio-group input[type=radio] {
+  position: relative;
+  top: 1px;
+  left: 0;
+}
+.ncpi .pi-charge .pi-radio-content span,
+.ncpi .pi-form-accrodion .pi-radio-content span {
+  font-size: 13px;
+  position: relative;
+  top: -1px;
+}
+.ncpi .pi-charge .pi-radio-content input[type=number],
+.ncpi .pi-form-accrodion .pi-radio-content input[type=number] {
+  width: 90px !important;
+  background-color: #fff !important;
+  margin-bottom: 5px;
+}
+
 .ncpi .pi-text-center {
   text-align: center;
 }
@@ -3330,9 +3462,16 @@ html {
 .ncpi .pi-cursor-pointer {
   cursor: pointer;
 }
+.ncpi .pi-mt-15 {
+  margin-top: 15px;
+}
 .ncpi .pi-mt-3 {
   position: relative;
   top: 3px;
+}
+.ncpi .pi-mt-6 {
+  position: relative !important;
+  top: 6px !important;
 }
 .ncpi .pi-m-auto {
   margin: auto;
@@ -3358,6 +3497,13 @@ html {
   margin-right: -10px;
   margin-left: -10px;
 }
+.ncpi .pi-bg-hover-blue:hover {
+  background-color: #4e6de9 !important;
+  transition: all 0.3s ease-out;
+}
+.ncpi .pi-text-hover-blue:hover {
+  color: #4e6de9 !important;
+}
 .ncpi .pi-hover-color-white:hover {
   color: white !important;
 }
@@ -3365,6 +3511,7 @@ html {
   fill: white !important;
   transition: all 0.3s ease-out;
 }
+
 /*-------------------------------------------------------------- 
 # Typography 
 --------------------------------------------------------------*/
@@ -3467,13 +3614,6 @@ body {
 .ncpi .pi-btn svg {
   margin-right: 5px;
 }
-.ncpi .pi-bg-hover-blue:hover {
-  background-color: #4e6de9 !important;
-  transition: all 0.3s ease-out;
-}
-.ncpi .pi-text-hover-blue:hover {
-  color: #4e6de9 !important;
-}
 @media screen and (max-width: 768px) {
   .ncpi .pi-btn {
     padding: 12px 15px;
@@ -3521,7 +3661,7 @@ select {
   margin-right: 0px !important;
   margin-bottom: 30px;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-business-form .row > div:nth-child(odd) {
     margin-right: 0px;
   }
@@ -3561,13 +3701,13 @@ select {
   outline: none;
   line-height: 1;
 }
-.ncpi .pi-form-content select,
-.ncpi .pi-form-content input[type=email],
-.ncpi .pi-form-content input[type=url],
-.ncpi .pi-form-content input[type=number],
-.ncpi .pi-form-content input[type=text] {
+.ncpi .pi-form-content.pi-form-style-two select,
+.ncpi .pi-form-content.pi-form-style-two input[type=email],
+.ncpi .pi-form-content.pi-form-style-two input[type=url],
+.ncpi .pi-form-content.pi-form-style-two input[type=number],
+.ncpi .pi-form-content.pi-form-style-two input[type=text] {
   border-radius: 5px;
-  background-color: #f7fafc !important;
+  background-color: #f7fafc;
 }
 .ncpi .pi-form-content .row > div {
   padding: 5px;
@@ -3617,6 +3757,9 @@ select {
 .ncpi .pi-form-style-four textarea {
   margin-top: 10px;
 }
+.ncpi input[type=number][readonly] {
+  background-color: var(--bg-color-air-white);
+}
 
 /*-------------------------------------------------------------- 
 # Color 
@@ -3624,69 +3767,6 @@ select {
 /*-------------------------------------------------------------- 
 # Color 
 --------------------------------------------------------------*/
-.color-property {
-  color: #4a5568;
-}
-
-.ml-15 {
-  margin-left: -15px !important;
-}
-
-@media screen and (max-width: 414px) {
-  .margin-right {
-    right: -160px !important;
-  }
-}
-.color-blue-plaza {
-  color: #31343d;
-}
-
-.border-blue {
-  border: 1px solid #4c6fff;
-}
-
-.color-property {
-  color: #4a5568;
-}
-
-.position {
-  left: -78px !important;
-  top: 15px !important;
-}
-
-#triangle-bottom {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 8px solid #fff;
-  margin-left: 12px;
-  margin-top: 3px;
-}
-
-#triangle-bottom-angle {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 8px solid #718096;
-  margin-left: 12px;
-  margin-top: 3px;
-}
-
-#triangle-up {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 15px solid #fff;
-  position: absolute;
-  right: 0;
-  top: -15px;
-  right: 55px;
-}
-
-/*======================   New  =============================*/
 :root {
   --bg-color-white: #fff;
   --bg-color-pink: #ff92ae;
@@ -3719,7 +3799,7 @@ select {
 }
 
 .pi-bg-pearl {
-  background-color: var(--bg-color-pearl);
+  background-color: var(--bg-color-pearl) !important;
 }
 
 .pi-bg-husky {
@@ -3736,14 +3816,6 @@ select {
 
 .pi-bg-red {
   background-color: var(--bg-color-red);
-}
-
-.pi-color-blue {
-  color: var(--text-color-blue) !important;
-}
-
-.pi-color-black {
-  color: var(--bg-color-black) !important;
 }
 
 .pi-border-blue {
@@ -3766,8 +3838,16 @@ select {
   background-color: var(--bg-color-pink);
 }
 
-.piBgOrange {
+.pi-bg-orange {
   background-color: var(--bg-color-orange);
+}
+
+.pi-color-blue {
+  color: var(--text-color-blue) !important;
+}
+
+.pi-color-black {
+  color: var(--bg-color-black) !important;
 }
 
 .pi-border-e-blue {
@@ -3811,13 +3891,14 @@ select {
 --------------------------------------------------------------*/
 .ncpi .pi-left-sidebar {
   overflow-y: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   height: 100vh;
 }
 .ncpi .pi-left-sidebar {
   width: 245px;
 }
-.ncpi .pi-logo-content {
+.ncpi .pi-left-sidebar .pi-logo-content {
   padding: 35px 25px 0;
 }
 @media screen and (max-width: 768px) {
@@ -3883,6 +3964,7 @@ select {
   .ncpi .pi-left-sidebar {
     position: fixed;
     overflow-y: visible;
+    overflow-x: visible;
     scroll-behavior: smooth;
     z-index: 9;
     left: -220px;
@@ -3918,56 +4000,41 @@ select {
   display: block;
 }
 
-.pi-collapse-menu {
-  transition: all 0.2s ease-out;
-  width: 80px !important;
-}
-.pi-collapse-menu .pi-logo-content strong {
-  display: none;
-  transition: all 0.9s ease-out;
-}
-.pi-collapse-menu ul li a span {
-  position: absolute;
-  display: table-cell;
-  vertical-align: middle;
-  display: none;
-  top: 30%;
-  left: 30%;
-  transition: all 0.9s ease-out;
-}
-.pi-collapse-menu ul li a .polygon {
-  display: none;
-}
-
-.pi-collapse-menu:hover {
-  width: 245px !important;
-}
-.pi-collapse-menu:hover .pi-logo-content {
-  display: table;
-}
-.pi-collapse-menu:hover .pi-logo-content strong {
-  display: table-cell;
-}
-.pi-collapse-menu:hover ul li a span {
-  display: table-cell;
-}
-.pi-collapse-menu:hover ul li a .polygon {
-  display: block;
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .pi-collapse-menu {
-    width: 70px !important;
+    transition: all 0.2s ease-out;
+    width: 80px !important;
+  }
+  .pi-collapse-menu .pi-logo-content strong {
+    display: none;
+    transition: all 0.9s ease-out;
+  }
+  .pi-collapse-menu ul li a span {
+    position: absolute;
+    display: table-cell;
+    vertical-align: middle;
+    display: none;
+    top: 30%;
+    left: 30%;
+    transition: all 0.9s ease-out;
+  }
+  .pi-collapse-menu ul li a .polygon {
+    display: none;
   }
 
   .pi-collapse-menu:hover {
-    width: 220px !important;
+    width: 245px !important;
   }
-
-  .pi-left-sidebar ul li a {
-    padding: 10px 21px !important;
+  .pi-collapse-menu:hover .pi-logo-content {
+    display: table;
   }
-  .pi-left-sidebar ul li a span {
-    left: 22%;
+  .pi-collapse-menu:hover .pi-logo-content strong {
+    display: table-cell;
+  }
+  .pi-collapse-menu:hover ul li a span {
+    display: table-cell;
+  }
+  .pi-collapse-menu:hover ul li a .polygon {
+    display: block;
   }
 }

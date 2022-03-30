@@ -14,7 +14,16 @@
 }
 @media screen and (max-width: 768px) {
   .ncpi .pi-container {
-    padding: 30px;
+    padding: 30px !important;
+  }
+}
+@media screen and (max-width: 500px) {
+  .ncpi .pi-container {
+    padding: 15px;
+  }
+  .ncpi .pi-main-content {
+    margin-top: 30px;
+    padding: 15px;
   }
 }
 .ncpi .pi-logo-content {
@@ -42,13 +51,12 @@
   font-weight: 600;
 }
 .ncpi #pi-finished .pi-buttons.pi-text-center a:last-child {
-  display: inline;
   color: var(--text-color-white);
   margin-right: 0;
 }
 @media screen and (max-width: 500px) {
   .ncpi #pi-finished .pi-buttons.pi-text-center a {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
   }
 }
 .ncpi #pi-finished h3 {

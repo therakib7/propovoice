@@ -156,14 +156,25 @@ export default class Preview extends Component {
 
                     <div className='col-md-8' style={{margin: '50px 0 30px 0'}}> 
                         <div className='' style={{maxWidth: '794px', margin: '0 auto'}}>
-                            <EditDownload path={this.props.path} handleEdit={this.props.editTab} handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
-                            <button 
-                                className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white" 
-                                style={{float: 'right'}}
-                                onClick={() => this.props.showEmailModal()}
-                                >  
-                                Send Mail
-                            </button>
+                            <div className='pi-float-left'>
+                                <EditDownload path={this.props.path} handleEdit={this.props.editTab} handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /> 
+                            </div>
+
+                            <div className='pi-float-right'>
+                                <button 
+                                    className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"  
+                                    style={{color: '#000', marginRight: '5px'}}
+                                    onClick={() => this.props.showShareModal()}
+                                    >  
+                                    Share
+                                </button>
+                                <button 
+                                    className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"  
+                                    onClick={() => this.props.showEmailModal()}
+                                    >  
+                                    Send Mail
+                                </button>
+                            </div>
                         </div> 
                     </div>
                 </div>  

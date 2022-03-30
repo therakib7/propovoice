@@ -429,13 +429,13 @@ class Invoice extends Component {
 					</div>
 					<div className="col-md-6">
 						<div className="pi-single-btn pi-text-right">
-							{(currentTab != 'template') &&
+							{/* {(currentTab != 'template') &&
 								<button
 									className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
 									onClick={this.backTab} >
 									Back
 								</button>
-							} 
+							}  */}
 
 							{(currentTab == 'template') && <button
 								className="pi-btn pi-bg-blue pi-bg-hover-blue"
