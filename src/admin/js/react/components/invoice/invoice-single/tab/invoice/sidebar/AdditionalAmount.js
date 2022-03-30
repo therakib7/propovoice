@@ -10,50 +10,7 @@ class AdditionalAmount extends Component {
         this.state = {
             preloader: true,
             payment: { id: null },
-            payments: [
-                {
-                    method_name: 'Paypal',
-                    method_id: 'paypal',
-                    list: [
-                        {
-                            id: 1,
-                            name: 'Rakib' 
-                        },
-                        {
-                            id: 2,
-                            name: 'Hasan' 
-                        }
-                    ]
-                },
-                {
-                    method_name: 'Stripe',
-                    method_id: 'stripe',
-                    list: [
-                        {
-                            id: 3,
-                            name: 'Hasan' 
-                        },
-                        {
-                            id: 4,
-                            name: 'Rakib' 
-                        }
-                    ]
-                },
-                {
-                    method_name: 'Bank',
-                    method_id: 'bank',
-                    list: [
-                        {
-                            id: 5,
-                            name: 'City Bank' 
-                        },
-                        {
-                            id: 6,
-                            name: 'DBBL' 
-                        }
-                    ]
-                }
-            ],
+            payments: [],
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
@@ -62,7 +19,7 @@ class AdditionalAmount extends Component {
     }
 
     componentDidMount() {
-        // this.getLists();
+        this.getLists();
     }
 
     getLists = (searchArgs = null) => {
@@ -98,12 +55,12 @@ class AdditionalAmount extends Component {
     }
 
     render() {
-        const { payment_id } = this.props.data
+        const { payment_id } = this.props.data 
         return (
             <li>
                 <input type="checkbox" defaultChecked="checked" />
                 <i />
-                <h3>Payment</h3>
+                <h3>Additional Amount</h3>
                 <div className="pi-form-accrodion">
                     <div className="pi-tab">
                         <input type="checkbox" id="rd4" name="rd" />

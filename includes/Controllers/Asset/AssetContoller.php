@@ -8,7 +8,7 @@ class AssetContoller {
 	private $version; 
 
 	function __construct() { 
-		$this->suffix  = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';    
+		$this->suffix  = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';   
 		$this->version = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? time() : ncpi()->version(); 
 		$this->ajaxurl = admin_url( 'admin-ajax.php' ); 
 
@@ -66,7 +66,7 @@ class AssetContoller {
 			wp_enqueue_style( 'ncpi-invoice', ncpi()->get_assets_uri( "admin/css/invoice{$this->suffix}.css" ), array(), $this->version );
 			wp_enqueue_script( 'ncpi-invoice', ncpi()->get_assets_uri( "/admin/js/invoice{$this->suffix}.js" ), array(), $this->version, true );  
 			wp_localize_script( 'ncpi-invoice', 'ncpi_local', array(
-				'apiUrl' => esc_url( rest_url() ), 
+				'apiUrl' => esc_url( rest_url() ),  
 				'nonce' => wp_create_nonce( 'wp_rest' ), 
 				'assetImgUri' => ncpi()->get_assets_uri('admin/img/')
 			) );
@@ -85,13 +85,13 @@ class AssetContoller {
 			wp_enqueue_script( 'ncpi-dashboard', ncpi()->get_assets_uri( "/admin/js/dashboard{$this->suffix}.js" ), array(), $this->version, true ); 
 			
 			wp_localize_script( 'ncpi-dashboard', 'ncpi_local', array(
-				'apiUrl' => esc_url( rest_url() ), 
+				'apiUrl' => esc_url( rest_url() ),  
 				'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
 				// 'apiServerUrl' => 'https://appux.co/propovoice-server/wp-json/', //TODO: change server URL later
 				'nonce' => wp_create_nonce( 'wp_rest' ),
 				'assetImgUri' => ncpi()->get_assets_uri('admin/img/')
 			) );
-		}
+		} 
 	} 
 
 	function public_scripts() {  

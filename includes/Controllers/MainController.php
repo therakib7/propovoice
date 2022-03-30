@@ -24,8 +24,8 @@ class MainController {
             new SettingController(); 
             new MarketingController();
         //}
-        new PageTemplater();
         new AssetContoller();
+        new PageTemplater();
         new WidgetController(); 
         new AjaxController();
         new FilterController();

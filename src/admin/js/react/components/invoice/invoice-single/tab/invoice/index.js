@@ -23,6 +23,7 @@ const InvTemplate = lazy(() => import('inv-template'));
 const Style = lazy(() => import('./sidebar/Style'));
 import Owner from './sidebar/Owner'
 const Payment = lazy(() => import('./sidebar/Payment'));
+const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
 
 class Invoice extends Component {
 
@@ -652,6 +653,7 @@ class Invoice extends Component {
 											<Suspense fallback={<div>Loading...</div>}> 
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} />
+												{ (wage.length) && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />}
 												{/* Others sidebar section */}
 											</Suspense>
 

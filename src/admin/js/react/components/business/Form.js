@@ -193,7 +193,7 @@ class Form extends Component {
 
                                     <div className="pi-footer-content pi-text-center">
                                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                        Submitd
+                                            Submit
                                         </button> 
                                     </div>
                                 </form> 

@@ -2,7 +2,7 @@
 
 namespace Ncpi\Helpers;  
 
-class Functions {  
+class Functions {   
 
     public static function locate_template($name) {
         // Look within passed path within the theme - this is priority.
@@ -362,7 +362,7 @@ class Functions {
             }
         } 
         return ob_get_clean();
-    }
+    } 
 
     /**
      *  NCPI Project Entity Star Icon
