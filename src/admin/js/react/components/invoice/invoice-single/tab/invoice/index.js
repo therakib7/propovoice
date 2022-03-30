@@ -94,23 +94,23 @@ class Invoice extends Component {
 				group: null,
 				attach: [],
 				sign: null
-			}, 
+			},
 			previewHeight: '',
-		}; 
+		};
 
 		this.previewRef = React.createRef();
 	}
 
-	isPreviewLoaded = () => {   
+	isPreviewLoaded = () => {
 		let current = this.previewRef.current;
-		if ( current ) {
-			let previewHegiht = current.clientHeight; 
-			const height = previewHegiht/2; 
+		if (current) {
+			let previewHegiht = current.clientHeight;
+			const height = previewHegiht / 2;
 			this.setState({ previewHeight: height });
 		}
 	};
 
-	componentDidMount() {		
+	componentDidMount() {
 
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
@@ -128,10 +128,10 @@ class Invoice extends Component {
 			});
 		}
 
-		this.bgColor(); 
+		this.bgColor();
 	}
 
-	componentDidUpdate() { 	 
+	componentDidUpdate() {
 		this.bgColor();
 	}
 
@@ -389,7 +389,7 @@ class Invoice extends Component {
 		});
 	}
 
-	onStyleChange = ( data ) => {
+	onStyleChange = (data) => {
 		let invoice = { ...this.state.invoice }
 		invoice.style = data;
 
@@ -408,7 +408,7 @@ class Invoice extends Component {
 	}
 
 	render = () => {
-		const { tabs = [], currentTab, title } = this.state; 
+		const { tabs = [], currentTab, title } = this.state;
 		return (
 			<>
 				<div className="row">
@@ -516,9 +516,9 @@ class Invoice extends Component {
 										<div className="row">
 											<div className="col-12 col-md-6">
 												{this.state.fromData && this.state.fromData.logo &&
-												<div className="pi-info-logo">
-													<img src={this.state.fromData.logo.src} className="" />
-												</div>}
+													<div className="pi-info-logo">
+														<img src={this.state.fromData.logo.src} className="" />
+													</div>}
 											</div>
 											<div className="col-12 col-md-6">
 												<div className="pi-info-form">
@@ -638,22 +638,22 @@ class Invoice extends Component {
 
 							<div className="col-lg-3">
 								<div className="pi-right-sidebar" >
-									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2> 
+									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2>
 
 									{/* TODO: try to remove duplicate */}
-									<div ref={this.previewRef} style={{position: 'absolute', left: '-99999px'}}>  
-										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded } />
+									<div ref={this.previewRef} style={{ position: 'absolute', left: '-99999px' }}>
+										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
 
-									<div className='pi-inv-sidebar-preview' style={{height: this.state.previewHeight }}>  
-										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded } />
+									<div className='pi-inv-sidebar-preview' style={{ height: this.state.previewHeight }}>
+										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
 									<div className="pi-accordion-wrapper">
-										<ul> 
-											<Suspense fallback={<div>Loading...</div>}> 
+										<ul>
+											<Suspense fallback={<div>Loading...</div>}>
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} />
-												{ (wage.length) && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />}
+												{!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />}
 												{/* Others sidebar section */}
 											</Suspense>
 
@@ -715,7 +715,7 @@ class Invoice extends Component {
 							showEmailModal={() => this.setState({ emailModal: true })}
 							closeEmailModal={() => this.setState({ emailModal: false })}
 							editTab={this.editTab}
-							path={this.props.path} 
+							path={this.props.path}
 						/>}
 				</div>
 			</>
