@@ -20,6 +20,7 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@babel/preset-react": "^7.14.5",
+		"@wordpress/babel-preset-default": "^6.7.0",
 		"archiver": "^5.2.0",
 		"autoprefixer": "^10.4.0",
 		"cli-color": "^2.0.0",
@@ -61,8 +62,9 @@
 		"@react-pdf/renderer": "^2.1.1",
 		"@stripe/react-stripe-js": "^1.7.0",
 		"@stripe/stripe-js": "^1.25.0",
+		"@wordpress/i18n": "^4.5.0",
 		"@wordpress/react-i18n": "^3.1.1",
-		"axios": "^0.21.4", 
+		"axios": "^0.21.4",
 		"editorjs-text-alignment-blocktune": "^1.0.3",
 		"editorjs-text-color-plugin": "^1.1.22",
 		"html2canvas": "^1.4.1",
