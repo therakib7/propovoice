@@ -235,21 +235,7 @@ class CheckoutForm extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-name">Phone</label>
-                                        <input
-                                            id="form-phone"
-                                            type="text"
-                                            required
-                                            name="phone"
-                                            value={this.state.form.phone}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
+                                </div> 
 
                                 <div className="row">
                                     <div className="col-lg">

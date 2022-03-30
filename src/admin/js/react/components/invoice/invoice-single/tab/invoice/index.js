@@ -56,6 +56,7 @@ class Invoice extends Component {
 				confirm: 'Are you sure to delete it?',
 				saveTxt: 'Save'
 			},
+			shareModal: false,
 			emailModal: false,
 			fromData: null,
 			toData: null,
@@ -434,7 +435,7 @@ class Invoice extends Component {
 									onClick={this.backTab} >
 									Back
 								</button>
-							}
+							} 
 
 							{(currentTab == 'template') && <button
 								className="pi-btn pi-bg-blue pi-bg-hover-blue"
@@ -450,10 +451,16 @@ class Invoice extends Component {
 
 							{(currentTab == 'preview') &&
 								<>
-									<button
+									{/* <button
 										className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
 										onClick={() => this.props.routeInvoice()} >
 										Back to Invoice
+									</button> */}
+
+									<button
+										className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
+										onClick={() => this.setState({ shareModal: true })} >
+										Share
 									</button>
 									<button
 										className="pi-btn pi-bg-blue pi-bg-hover-blue"
@@ -699,6 +706,9 @@ class Invoice extends Component {
 					{(currentTab == 'preview') &&
 						<Preview
 							data={this.state}
+							shareModal={this.state.shareModal}
+							showShareModal={() => this.setState({ shareModal: true })}
+							closeShareModal={() => this.setState({ shareModal: false })}
 							emailModal={this.state.emailModal}
 							showEmailModal={() => this.setState({ emailModal: true })}
 							closeEmailModal={() => this.setState({ emailModal: false })}

@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 
 import Template from 'inv-template';
 
+import Share from './Share'; 
 import Send from './Send'; 
 
 const EditDownload = props => { 
@@ -168,6 +169,13 @@ export default class Preview extends Component {
                 </div>  
 
                 {/* TODO: check this step for every component or pass show props */}
+                {this.props.shareModal &&
+                <Share
+                    show={this.props.shareModal}
+                    data={this.props.data}
+                    close={this.props.closeShareModal}
+                />}
+
                 {this.props.emailModal &&
                 <Send
                     show={this.props.emailModal}
