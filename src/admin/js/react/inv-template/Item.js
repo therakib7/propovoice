@@ -11,7 +11,7 @@ class Item extends Component {
 
         return (
             <tr>
-                {__('hat test', 'propovoice')}{sprintf(_n('%d hat', '%d hats', 4, 'propovoice'), 4)}
+                {/* {__('hat test', 'propovoice')}{sprintf(_n('%d hat', '%d hats', 4, 'propovoice'), 4)} */}
                 <td>{id + 1}.</td>
                 <td>
                     {name}<br />

@@ -23,9 +23,9 @@ const TableHeader = props => {
                 <th>
                     {props.path == 'invoice' ? 'Invoice' : 'Estimate'} ID
                 </th>
-                <th>
+                {/* <th>
                     Project
-                </th>
+                </th> */}
                 {!props.client_id && <th>
                     Client
                 </th>}
@@ -127,7 +127,7 @@ const TableBody = props => {
                     />
                 </td>
                 <td>INV{row.id}</td>
-                <td>{row.project.name}</td>
+                {/* <td>{row.project.name}</td>*/}
                 {!props.client_id && <td>
                     {row.to.first_name + ' ' + row.to.last_name}
                 </td>}

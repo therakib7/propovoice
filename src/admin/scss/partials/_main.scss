@@ -3763,8 +3763,8 @@ select {
 .ncpi .pi-form-style-four textarea {
   margin-top: 10px;
 }
-.ncpi input[type=number][readonly] {
-  background-color: var(--bg-color-air-white);
+.ncpi input[readonly] {
+  background-color: var(--bg-color-air-white) !important;
 }
 
 /*-------------------------------------------------------------- 

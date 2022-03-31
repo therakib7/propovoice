@@ -196,7 +196,7 @@ export default class Dashboard extends Component {
                             </a>
                         </li>
                         <li>&gt;</li>
-                        <li className="active">
+                        <li className="pi-active">
                             {title}
                         </li>
                     </ul>
@@ -210,21 +210,24 @@ export default class Dashboard extends Component {
                             <h4 className="pi-color-blue">23</h4>
                             </div>
                         </div>
+
                         <div className="col col-md-6 col-lg-3">
                             <div className="pi-bg-air-white">
-                            <span className="">Paid Invoice</span>
+                            <span className="">Total Invoice</span>
                             <h4 className="pi-color-blue">132</h4>
                             </div>
                         </div>
+
                         <div className="col col-md-6 col-lg-3">
                             <div className="pi-bg-air-white">
-                            <span className="">Total Project</span>
+                            <span className="">Total Client</span>
                             <h4 className="pi-color-blue">16</h4>
                             </div>
                         </div>
+
                         <div className="col col-md-6 col-lg-3">
                             <div className="pi-bg-air-white">
-                            <span className="">Draft</span>
+                            <span className="">Total Proposal</span>
                             <h4 className="pi-color-blue">21</h4>
                             </div>
                         </div>

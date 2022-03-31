@@ -28,13 +28,13 @@ const Home = () => {
             <HashRouter>
                 <ToastContainer />
                 <div className="pi-grid-container pi-main-content">
-                    <div className="pi-left-sidebar pi-bg-pearl" id="myDIV">
+                    <div className="pi-left-sidebar pi-bg-pearl dd-none" id="myDIV">
                         <div className="pi-menubar-icon" >
-                            {/* <svg viewBox="0 0 100 80" width="span0" height="span0">
-                            <rect width="100" height="20"></rect>
-                            <rect y="30" width="100" height="20"></rect>
-                            <rect y="60" width="100" height="20"></rect>
-                        </svg> */}
+                            <svg viewBox="0 0 100 80" width="20" height="25">
+                                <rect width="100" height="11"></rect>
+                                <rect y="29" width="100" height="12"></rect>
+                                <rect y="57" width="100" height="12"></rect>
+                            </svg>
                         </div>
                         <div className="">
                             <div className="pi-logo-content">

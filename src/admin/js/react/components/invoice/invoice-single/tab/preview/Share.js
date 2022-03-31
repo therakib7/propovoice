@@ -24,13 +24,15 @@ class Share extends Component {
                                     <div className="pi-form-content pi-form-style-two">
                                         <div className="row">
                                             <div className="col-lg">
-                                                <input
-                                                    type="text"
-                                                    id="name"
-                                                    name="name"
-                                                    placeholder="https://invoice.design/8n3lV3dE890"
-                                                />
-                                                <span className="pi-copy">Copy</span>
+                                                <div className="pi-field-copy">
+                                                    <input
+                                                        type="text"
+                                                        id="name"
+                                                        name="name"
+                                                        placeholder="https://invoice.design/8n3lV3dE890"
+                                                    />
+                                                    <span className="pi-copy">Copy</span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="pi-social-content">

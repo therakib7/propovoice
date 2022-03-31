@@ -185,8 +185,7 @@ export default class Project extends Component {
     render() {
         const checkedBoxes = this.state.checkedBoxes;
         return (
-            <div className="ncpi-components">
-                
+            <div className="ncpi-components">                
 
                 <h1 className="">Project</h1>
                 <nav className="pi-breadcrumb">
@@ -197,13 +196,13 @@ export default class Project extends Component {
                             </a>
                         </li>
                         <li>&gt;</li>
-                        <li className="active">
+                        <li className="pi-active">
                             Project
                         </li>
                     </ul>
                 </nav>
 
-                <div className="pi-cards">
+                {!wage.length && <div className="pi-cards">
                     <div className="row">
                         <div className="col col-md-6 col-lg-3">
                             <div className="pi-bg-air-white">
@@ -230,7 +229,7 @@ export default class Project extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>}
 
                 <div className="pi-buttons">  
 

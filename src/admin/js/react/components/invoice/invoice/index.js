@@ -203,7 +203,7 @@ const Invoice = class Invoice extends Component {
                             </a>
                         </li>
                         <li>&gt;</li>
-                        <li className="active">
+                        <li className="pi-active">
                             {title}
                         </li>
                     </ul>
@@ -211,7 +211,7 @@ const Invoice = class Invoice extends Component {
                 
                 {invoices.length > 0 &&
                 <>
-                    <div className="pi-cards">
+                    {!wage.length && <div className="pi-cards">
                         <div className="row">
                             <div className="col col-md-6 col-lg-3">
                                 <div className="pi-bg-air-white">
@@ -238,7 +238,7 @@ const Invoice = class Invoice extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>} 
                     
                     <div className="pi-buttons"> 
                         <button

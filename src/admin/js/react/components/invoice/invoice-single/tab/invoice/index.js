@@ -422,7 +422,7 @@ class Invoice extends Component {
 									</a>
 								</li>
 								<li>&gt;</li>
-								<li className="active">
+								<li className="pi-active">
 									{title}
 								</li>
 							</ul>
@@ -653,11 +653,7 @@ class Invoice extends Component {
 											<Suspense fallback={<div>Loading...</div>}>
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} />
-<<<<<<< HEAD
-												{ wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />}
-=======
 												{!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />}
->>>>>>> f121f0547c906cead08bcf20a22ea8e42369d75d
 												{/* Others sidebar section */}
 											</Suspense>
 
