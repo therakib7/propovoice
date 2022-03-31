@@ -22,7 +22,7 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: ../includes/Controllers/Installation/InstallationController.php:27
+#: ../includes/Controllers/Installation/InstallationController.php:27, ../includes/Controllers/Setting/Types/Dashboard.php:33, ../includes/Controllers/Setting/Types/Dashboard.php:34
 msgid "Client"
 msgstr ""
 
@@ -74,7 +74,7 @@ msgstr ""
 msgid "Title is missing"
 msgstr ""
 
-#: ../includes/Controllers/Marketing/Types/Link.php:22
+#: ../includes/Controllers/Marketing/Types/Link.php:22, ../includes/Controllers/Setting/Types/Dashboard.php:87, ../includes/Controllers/Setting/Types/Dashboard.php:88
 msgid "Settings"
 msgstr ""
 
@@ -144,6 +144,30 @@ msgstr ""
 
 #: ../includes/Controllers/Setting/Types/Dashboard.php:13, ../includes/Controllers/Setting/Types/Dashboard.php:14
 msgid "Propovoice"
+msgstr ""
+
+#: ../includes/Controllers/Setting/Types/Dashboard.php:24, ../includes/Controllers/Setting/Types/Dashboard.php:25
+msgid "Dashboard"
+msgstr ""
+
+#: ../includes/Controllers/Setting/Types/Dashboard.php:42, ../includes/Controllers/Setting/Types/Dashboard.php:43
+msgid "Project"
+msgstr ""
+
+#: ../includes/Controllers/Setting/Types/Dashboard.php:51, ../includes/Controllers/Setting/Types/Dashboard.php:52
+msgid "Estimate"
+msgstr ""
+
+#: ../includes/Controllers/Setting/Types/Dashboard.php:60, ../includes/Controllers/Setting/Types/Dashboard.php:61
+msgid "Invoice"
+msgstr ""
+
+#: ../includes/Controllers/Setting/Types/Dashboard.php:69, ../includes/Controllers/Setting/Types/Dashboard.php:70
+msgid "Payment"
+msgstr ""
+
+#: ../includes/Controllers/Setting/Types/Dashboard.php:78, ../includes/Controllers/Setting/Types/Dashboard.php:79
+msgid "Business"
 msgstr ""
 
 #: ../includes/Controllers/Setting/Types/Welcome.php:13, ../includes/Controllers/Setting/Types/Welcome.php:14

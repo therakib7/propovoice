@@ -73,7 +73,7 @@ class Info extends Component {
 
                             <input 
                                 id="field-web"
-                                type="url"
+                                type="text"
                                 name="web"
                                 value={this.state.form.web}
                                 onChange={this.handleChange}

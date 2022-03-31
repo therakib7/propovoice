@@ -156,6 +156,16 @@ class Business
         $query_data['zip'] = get_post_meta($id, 'zip', true);  
         $query_data['default'] = (bool) get_post_meta($id, 'default', true);  
 
+        $logo_id = get_post_meta($id, 'logo', true);
+        $logoData = null; 
+        if ( $logo_id ) {
+            $logoData = []; 
+            $logoData['id'] = $logo_id; 
+            $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+            $logoData['src'] = $logo_src[0]; 
+        } 
+        $query_data['logo'] = $logoData;
+
         return wp_send_json_success($query_data); 
     }
 

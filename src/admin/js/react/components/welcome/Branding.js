@@ -1,6 +1,6 @@
 import React, { Component } from 'react' 
 import { toast } from 'react-toastify';
-import Api from '../../api/media';
+import Api from 'api/media';
 
 class Branding extends Component {
 
@@ -28,7 +28,7 @@ class Branding extends Component {
 		Api.create(formData)
 			.then(resp => { 
 				if (resp.data.success) { 
-					this.props.changeHandler(resp.data.data.file_info);
+					this.props.changeHandler(resp.data.data);
 				} else {
 					resp.data.data.forEach(function (value, index, array) {
 						toast.error(value);
@@ -74,11 +74,11 @@ class Branding extends Component {
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='hidden' />
 						<div className="pi-text-center" onClick={() => this.handleUploadFile()}>
 							<img src={ncpi_local.assetImgUri+'upload-img.png'} />
-							<h3 className="upload pi-color-blue">Upload Logo</h3>
+							<h3 className="pi-upload pi-color-blue">Upload Logo</h3>
 						</div>
 					</>
 				}
-
+				
 				{ business.id && business.logo &&
 				<div className="pi-text-center">
 					<img src={business.logo.src} width="100" className='inline' />

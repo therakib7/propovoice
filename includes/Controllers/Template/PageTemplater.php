@@ -59,10 +59,10 @@ class PageTemplater
 	 */
 	function wage_scripts()
 	{
-		// wp_localize_script('ncpi-dashboard', 'wage', ['PT97']);
-		// wp_localize_script('ncpi-invoice', 'wage', ['PT97']);
-		wp_localize_script('ncpi-dashboard', 'wage', []);
-		wp_localize_script('ncpi-invoice', 'wage', []);
+		wp_localize_script('ncpi-dashboard', 'wage', ['PT97']);
+		wp_localize_script('ncpi-invoice', 'wage', ['PT97']);
+		// wp_localize_script('ncpi-dashboard', 'wage', []);
+		// wp_localize_script('ncpi-invoice', 'wage', []);
 	}
 
 	public function single_template($single)

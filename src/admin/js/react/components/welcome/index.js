@@ -123,7 +123,7 @@ export default class Welcome extends Component {
                     <div className="pi-welcome-tabs-content">
                         <ul className="pi-tabs">
                             {tabs.map((tab, index) => ( 
-                                <li className={'pi-tab ' + (index <= currentTabIndex ? 'active' : '' )} key={index} onClick={(e) => this.setActiveTab(tab.id, index)}>
+                                <li className={'pi-tab ' + (index <= currentTabIndex ? 'pi-active' : '' )} key={index} onClick={(e) => this.setActiveTab(tab.id, index)}>
                                     <span></span>
                                     {tab.text} 
                                 </li>
