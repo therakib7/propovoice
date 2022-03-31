@@ -22,10 +22,6 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: ../includes/Controllers/Installation/InstallationController.php:27, ../includes/Controllers/Setting/Types/Dashboard.php:33, ../includes/Controllers/Setting/Types/Dashboard.php:34
-msgid "Client"
-msgstr ""
-
 #: ../includes/Controllers/Template/PageTemplater.php:26, ../views/template/dashboard-template.php:3
 msgid "Propovoice Dashboard"
 msgstr ""
@@ -34,19 +30,19 @@ msgstr ""
 msgid "Propovoice Invoice"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Business.php:178, ../includes/Controllers/Api/Types/Business.php:252, ../includes/Controllers/Api/Types/Project.php:218
+#: ../includes/Controllers/Api/Types/Business.php:188, ../includes/Controllers/Api/Types/Business.php:262, ../includes/Controllers/Api/Types/Project.php:218
 msgid "Name is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:227, ../includes/Controllers/Api/Types/Client.php:280
+#: ../includes/Controllers/Api/Types/Client.php:234, ../includes/Controllers/Api/Types/Client.php:287
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:231, ../includes/Controllers/Api/Types/Client.php:284
+#: ../includes/Controllers/Api/Types/Client.php:238, ../includes/Controllers/Api/Types/Client.php:291
 msgid "Email id is not valid!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:235, ../includes/Controllers/Api/Types/Client.php:292
+#: ../includes/Controllers/Api/Types/Client.php:242, ../includes/Controllers/Api/Types/Client.php:299
 msgid "Email Already exist!"
 msgstr ""
 
@@ -80,6 +76,18 @@ msgstr ""
 
 #: ../includes/Controllers/Marketing/Types/Link.php:27
 msgid "Documentation"
+msgstr ""
+
+#: ../includes/Controllers/Meta/User/User.php:19, ../includes/Controllers/Setting/Types/Dashboard.php:13, ../includes/Controllers/Setting/Types/Dashboard.php:14
+msgid "Propovoice"
+msgstr ""
+
+#: ../includes/Controllers/Meta/User/User.php:23
+msgid "Propovoice Member?"
+msgstr ""
+
+#: ../includes/Controllers/Meta/User/User.php:27
+msgid "Show member in Propovoice"
 msgstr ""
 
 #: ../includes/Controllers/PostType/Types/Proposal.php:20
@@ -142,12 +150,12 @@ msgstr ""
 msgid "No proposal found in Trash."
 msgstr ""
 
-#: ../includes/Controllers/Setting/Types/Dashboard.php:13, ../includes/Controllers/Setting/Types/Dashboard.php:14
-msgid "Propovoice"
-msgstr ""
-
 #: ../includes/Controllers/Setting/Types/Dashboard.php:24, ../includes/Controllers/Setting/Types/Dashboard.php:25
 msgid "Dashboard"
+msgstr ""
+
+#: ../includes/Controllers/Setting/Types/Dashboard.php:33, ../includes/Controllers/Setting/Types/Dashboard.php:34
+msgid "Client"
 msgstr ""
 
 #: ../includes/Controllers/Setting/Types/Dashboard.php:42, ../includes/Controllers/Setting/Types/Dashboard.php:43

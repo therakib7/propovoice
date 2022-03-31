@@ -14,7 +14,7 @@ const package_slug = path.basename(path.resolve(package_path));
 mix.webpackConfig({
     output: {
         publicPath: '/wp-content/plugins/propovoice/',
-        chunkFilename: 'assets/admin/js/component/chunks/[chunkhash].js', //[name]
+        chunkFilename: 'assets/admin/js/component/chunks/[chunkhash].js', //[name][chunkhash]
     },
     resolve: {
         alias: {
