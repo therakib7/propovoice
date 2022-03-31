@@ -1,4 +1,4 @@
-const mix = require('laravel-mix'); 
+const mix = require('laravel-mix');
 const fs = require("fs-extra");
 const path = require("path");
 const cliColor = require("cli-color");
@@ -10,10 +10,10 @@ const archiver = require('archiver');
 
 const package_path = path.resolve(__dirname);
 const package_slug = path.basename(path.resolve(package_path));
-  
+
 mix.webpackConfig({
     output: {
-        publicPath: '/wp-content/plugins/propovoice/', 
+        publicPath: '/wp-content/plugins/propovoice/',
         chunkFilename: 'assets/admin/js/component/chunks/[chunkhash].js', //[name]
     },
     resolve: {
@@ -21,12 +21,12 @@ mix.webpackConfig({
             //adding react and react-dom may not be necessary for you but it did fix some issues in my setup.
             //'react' : path.resolve('node_modules/react'),
             //'react-dom' : path.resolve('node_modules/react-dom'), 
-            'api' : path.resolve('src/admin/js/react/api'), 
-            'block' : path.resolve('src/admin/js/react/blocks'), 
-            'context' : path.resolve('src/admin/js/react/context'), 
-            'components' : path.resolve('src/admin/js/react/components'), 
-            'out-components' : path.resolve('src/admin/js/react/out-components'), 
-            'inv-template' : path.resolve('src/admin/js/react/inv-template'), 
+            'api': path.resolve('src/admin/js/react/api'),
+            'block': path.resolve('src/admin/js/react/blocks'),
+            'context': path.resolve('src/admin/js/react/context'),
+            'components': path.resolve('src/admin/js/react/components'),
+            'out-components': path.resolve('src/admin/js/react/out-components'),
+            'inv-template': path.resolve('src/admin/js/react/inv-template'),
         },
     },
 });
@@ -51,7 +51,7 @@ if (process.env.NODE_ENV === 'package') {
         const copyTo = path.resolve(`${package_slug}`);
         // Select All file then paste on list
         let includes = [
-            'includes', 
+            'includes',
             'assets',
             'languages',
             'templates',
@@ -74,7 +74,7 @@ if (process.env.NODE_ENV === 'package') {
         });
     });
 
-    return;
+    // return;
 }
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
 
@@ -90,7 +90,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
                 destFile: `languages/propovoice.pot`
             });
         });
-    } 
+    }
 
     mix.options({
         terser: {
@@ -98,13 +98,13 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
         },
         processCssUrls: false
     });
-     
-    mix.sass(`src/admin/scss/dashboard.scss`, `assets/admin/css/dashboard${min}.css`) 
-        .sass(`src/admin/scss/welcome.scss`, `assets/admin/css/welcome${min}.css`) 
-        .sass(`src/admin/scss/invoice.scss`, `assets/admin/css/invoice${min}.css`) 
+
+    mix.sass(`src/admin/scss/dashboard.scss`, `assets/admin/css/dashboard${min}.css`)
+        .sass(`src/admin/scss/welcome.scss`, `assets/admin/css/welcome${min}.css`)
+        .sass(`src/admin/scss/invoice.scss`, `assets/admin/css/invoice${min}.css`)
         /* .postCss('src/vendor/tailwind/tailwind.css', `assets/vendor/tailwind/tailwind${min}.css`, [
             require('tailwindcss'),
-        ]) */ 
+        ]) */
         .copyDirectory('src/admin/img', 'assets/admin/img')
         .copyDirectory('src/vendor', 'assets/vendor');
 

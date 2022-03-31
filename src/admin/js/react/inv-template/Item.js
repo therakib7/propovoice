@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { sprintf, _n, __ } from '@wordpress/i18n';
 
 class Item extends Component {
 
@@ -10,7 +11,8 @@ class Item extends Component {
 
         return (
             <tr>
-                <td>0{id + 1}.</td>
+                {__('hat test', 'propovoice')}{sprintf(_n('%d hat', '%d hats', 4, 'propovoice'), 4)}
+                <td>{id + 1}.</td>
                 <td>
                     {name}<br />
                     <span>{desc}</span>
