@@ -1,7 +1,6 @@
 @import "partials/_main.scss";
 @import "partials/_pagination.scss";
  
-
 #wpbody-content {
     padding-bottom: 0; 
 }
@@ -30,6 +29,12 @@ h4.from-title {
     font-family: "Inter", sans-serif !important;
 } 
 
+.ncpi .pi-popup-content {
+    margin: 65px auto;
+}
+.ncpi .pi-form-content.pi-form-style-two label {
+    z-index: 99;
+}
 .pi-inv {
     border: 1px solid #dfdfdf; 
 }
@@ -38,11 +43,11 @@ h4.from-title {
 }
 
 .pi-inv-sidebar-preview {
-    -moz-transform: scale(0.5);
-    -webkit-transform: scale(0.5);
-    -o-transform: scale(0.5);
-    -ms-transform: scale(0.5);
-    transform: scale(0.5);
+    -moz-transform: scale(0.45);
+    -webkit-transform: scale(0.45);
+    -o-transform: scale(0.45);
+    -ms-transform: scale(0.45);
+    transform: scale(0.45);
     transform-origin: left top; 
     // height: 344px;
     .pi-inv {
@@ -50,6 +55,9 @@ h4.from-title {
     }
 }
 
+.wp-admin .pi-left-sidebar {
+    display: none;
+}
 .ncpi .pi-edit-content span { 
     border: 3px solid #fff;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 10%), inset 0 0 0 1px rgb(0 0 0 / 10%);

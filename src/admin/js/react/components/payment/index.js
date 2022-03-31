@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 import TablePreloader from 'block/preloader/table';
 import Style from './style.scoped.scss'
-import Api from '../../api/payment';
+import Api from 'api/payment';
 
 //form
 import FormBank from './FormBank';

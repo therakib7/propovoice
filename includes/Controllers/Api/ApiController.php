@@ -4,6 +4,7 @@ namespace Ncpi\Controllers\Api;
 
 use Ncpi\Controllers\Api\Types\Business;
 use Ncpi\Controllers\Api\Types\Client;
+use Ncpi\Controllers\Api\Types\Dashbaord;
 use Ncpi\Controllers\Api\Types\Email;
 use Ncpi\Controllers\Api\Types\Invoice;
 use Ncpi\Controllers\Api\Types\Media;
@@ -25,6 +26,7 @@ class ApiController
 		new Media();
 		new Payment();
 		new PaymentProcess();
+		new Dashbaord();
 		new Setting();
 	}
 }

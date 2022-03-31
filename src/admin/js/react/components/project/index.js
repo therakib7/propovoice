@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 import TablePreloader from 'block/preloader/table';
 
-import Api from '../../api/project';
+import Api from 'api/project';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';

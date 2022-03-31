@@ -8,7 +8,8 @@ use Ncpi\Controllers\Asset\AssetContoller;
 use Ncpi\Controllers\Template\PageTemplater;
 use Ncpi\Controllers\Filter\FilterController;
 use Ncpi\Controllers\Hook\HookController;
-use Ncpi\Controllers\Marketing\MarketingController; 
+use Ncpi\Controllers\Marketing\MarketingController;
+use Ncpi\Controllers\Meta\MetaController;
 use Ncpi\Controllers\Setting\SettingController;
 use Ncpi\Controllers\PostType\PostTypeController;
 use Ncpi\Controllers\Taxonomy\TaxonomyController; 
@@ -30,6 +31,7 @@ class MainController {
         new AjaxController();
         new FilterController();
         new HookController(); 
+        new MetaController();
         new ApiController();
     } 
 }

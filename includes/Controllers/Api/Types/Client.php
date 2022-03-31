@@ -83,8 +83,7 @@ class Client
 
         $args = array(
             'number' => $per_page, 
-            'offset' => $offset, 
-            'role'    => 'client',
+            'offset' => $offset,  
             'orderby' => 'registered',
             'order'   => 'DESC'
         );
@@ -101,6 +100,14 @@ class Client
 
         $args['meta_query'] = array(
             'relation' => 'OR'
+        );
+
+        $args['meta_query'][] = array( 
+            array(
+                'key'     => 'ncpi_member',
+                'value'   => '1',
+                'compare' => 'LIKE'
+            )
         );
 
         if ( isset( $request['first_name'] ) ) { 
@@ -248,12 +255,12 @@ class Client
             $user_id = wp_insert_user($userdata);
 
             if (!is_wp_error($user_id)) {
+                //set as propovoice member
+                update_user_meta($user_id, 'ncpi_member', true );
+
                 update_user_meta($user_id, 'company_name', $company_name);
                 update_user_meta($user_id, 'web', $web);
-                update_user_meta($user_id, 'mobile', $mobile);
-
-                $user = new \WP_User($user_id);
-                $user->set_role('client');
+                update_user_meta($user_id, 'mobile', $mobile); 
 
                 wp_send_json_success($user_id);
             } else {

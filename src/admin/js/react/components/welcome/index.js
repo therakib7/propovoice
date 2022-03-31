@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import Style from './style.scss'
 
-import Api from '../../api/business'; 
+import Api from 'api/business'; 
 import Info from './Info';
 import Branding from './Branding';
 

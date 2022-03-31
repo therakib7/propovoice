@@ -24,7 +24,7 @@ class InstallationController {
             // add custom role
             //TODO: check by plugin version
             if ( get_option( 'ncpi_role_version' ) < 1 ) { 
-                add_role('client', esc_html__( 'Client', 'propovoice' ), ['subscriber']);
+                // add_role('client', esc_html__( 'Client', 'propovoice' ), ['subscriber']);
 
                 $uploads_dir = trailingslashit( wp_upload_dir()['basedir'] ) . 'propovoice';
                 wp_mkdir_p( $uploads_dir );
