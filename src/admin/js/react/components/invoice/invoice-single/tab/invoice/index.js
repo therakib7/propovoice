@@ -653,7 +653,7 @@ class Invoice extends Component {
 											<Suspense fallback={<div>Loading...</div>}> 
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} />
-												{ (wage.length) && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />}
+												{ wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />}
 												{/* Others sidebar section */}
 											</Suspense>
 
