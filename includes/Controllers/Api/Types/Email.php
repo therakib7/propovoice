@@ -178,7 +178,9 @@ class Email
             $this->sent($params);
         } else if ($type == 'feedback') {
             $this->feedback($params);
-        }  
+        } else if ($type == 'dashboard') {
+            $this->dashboard($params);
+        }
     }
 
     public function sent($params)
@@ -214,7 +216,7 @@ class Email
         $attachments = [];
         if ($mail_invoice_img) {
             ob_start();
-            ?>
+?>
             <!DOCTYPE html>
             <html>
 
@@ -248,7 +250,7 @@ class Email
             </body>
 
             </html>
-            <?php
+<?php
             $invoice_html = ob_get_clean();
             $dompdf = new \Dompdf\Dompdf();
             $dompdf->set_option('enable_css_float', true);
@@ -296,7 +298,39 @@ class Email
         }
 
         wp_send_json_success();
-    } 
+    }
+
+    public function dashboard($params)
+    {
+        $feedback_type = isset($params['feedback_type']) ? $params['feedback_type'] : '';
+        $feedback_title = '';
+        if ($feedback_type == 'features') {
+            $feedback_title = 'Features Request: ';
+        } else {
+            $feedback_title = 'Bug Information: ';
+        }
+
+        //TODO: change name email
+        $name = isset($params['name']) ? $params['name'] : 'Propovoice';
+        $from = isset($params['from']) ? $params['from'] : 'propovoice@gmail.com';
+        $subject = isset($params['subject']) ? $params['subject'] : '';
+        $details = isset($params['details']) ? nl2br($params['details']) : '';
+        $propovoice_mail = 'therakib7@gmail.com';
+
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+        $headers[] = 'From: ' . $name . ' <' . $from . '>';
+
+        //attachment
+        $attachments = [];
+        $subject = $feedback_title . $subject;
+        $send_mail = wp_mail($propovoice_mail, $subject, $details, $headers, $attachments);
+
+        if ($send_mail) {
+            wp_send_json_success($send_mail);
+        } else {
+            wp_send_json_error(['Something wrong']);
+        }
+    }
 
     public function delete($req)
     {

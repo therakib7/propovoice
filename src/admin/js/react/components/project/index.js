@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
-import AppContext from '../../context/app-context';
+import AppContext from 'context/app-context';
 import ReactPaginate from 'react-paginate';
 
 import TablePreloader from 'block/preloader/table';
@@ -10,13 +10,15 @@ import Api from 'api/project';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
+import Empty from 'block/empty';
 
 export default class Project extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            // projects: []
+            title: 'Project',
+            empty: false,
             preloader: true,
             formModal: false,
             searchModal: false,
@@ -44,10 +46,6 @@ export default class Project extends Component {
             per_page: this.state.perPage
         }
 
-        if (this.props.project_id) {
-            args.project_id = this.props.project_id;
-        }
-
         if (searchArgs) {
             //Filter all falsy values ( "", 0, false, null, undefined )
             searchArgs = Object.entries(searchArgs).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
@@ -60,12 +58,8 @@ export default class Project extends Component {
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
-                this.setState({ projects: result });
-                this.setState({ preloader: false });
-
-                this.setState({
-                    totalPage: Math.ceil(total / this.state.perPage)
-                })
+                let empty = result.length ? false : true;
+                this.setState({ projects: result, preloader: false, empty, totalPage: Math.ceil(total / this.state.perPage) });
             })
     };
 
@@ -88,7 +82,6 @@ export default class Project extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        // this.setState({ formModalType: 'new' });
                         toast.success(this.context.CrudMsg.update);
                         this.getLists();
                     } else {
@@ -184,87 +177,94 @@ export default class Project extends Component {
 
     render() {
         const checkedBoxes = this.state.checkedBoxes;
+        const projects = this.state.projects;
+        const title = this.state.title;
         return (
-            <div className="ncpi-components">                
+            <div className="ncpi-components">
 
-                <h1 className="">Project</h1>
+
+                <h1 className="">{title}</h1>
                 <nav className="pi-breadcrumb">
                     <ul className="">
                         <li>
                             <a href="#" className="">
-                            Home
+                                Home
                             </a>
                         </li>
                         <li>&gt;</li>
                         <li className="pi-active">
-                            Project
+                            {title}
                         </li>
                     </ul>
                 </nav>
 
-                {!wage.length && <div className="pi-cards">
-                    <div className="row">
-                        <div className="col col-md-6 col-lg-3">
-                            <div className="pi-bg-air-white">
-                            <span className="">Total Project</span>
-                            <h4 className="pi-color-blue">23</h4>
+                {projects.length > 0 &&
+                    <>
+                        {!wage.length && <div className="pi-cards">
+                            <div className="row">
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span className="">Total {title}</span>
+                                        <h4 className="pi-color-blue">23</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span className="">Paid {title}</span>
+                                        <h4 className="pi-color-blue">132</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span className="">Unpaid {title}</span>
+                                        <h4 className="pi-color-blue">16</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span className="">Draft {title}</span>
+                                        <h4 className="pi-color-blue">21</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>}
+
+                        <div className="pi-buttons">
+                            <button
+                                className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                                onClick={() => this.openForm('new')} >
+                                Create New {title}
+                            </button>
+
+                            {checkedBoxes.length ? <button
+                                className="pi-btn pi-bg-red pi-bg-hover-red"
+                                onClick={() => this.deleteEntry('selected')} >
+                                Delete selected
+                            </button> : ''}
+
+                            <div className="pi-search-box pi-float-right">
+                                <svg
+                                    width={24}
+                                    height={24}
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
+                                        fill="#718096"
+                                    />
+                                    <path
+                                        d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
+                                        fill="#718096"
+                                    />
+                                </svg>
+                                <input type="text" className="search-input" placeholder="Search.." />
                             </div>
                         </div>
-                        <div className="col col-md-6 col-lg-3">
-                            <div className="pi-bg-air-white">
-                            <span className="">Paid Project</span>
-                            <h4 className="pi-color-blue">132</h4>
-                            </div>
-                        </div>
-                        <div className="col col-md-6 col-lg-3">
-                            <div className="pi-bg-air-white">
-                            <span className="">Unpaid Project</span>
-                            <h4 className="pi-color-blue">16</h4>
-                            </div>
-                        </div>
-                        <div className="col col-md-6 col-lg-3">
-                            <div className="pi-bg-air-white">
-                            <span className="">Draft Project</span>
-                            <h4 className="pi-color-blue">21</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>}
+                    </>}
 
-                <div className="pi-buttons">  
-
-                    <button
-                        className="pi-btn pi-bg-blue pi-bg-hover-blue"
-                        onClick={() => this.openForm('new')} >
-                        Create New Project
-                    </button>
-
-                    {checkedBoxes.length ? <button
-                        className="pi-btn pi-bg-red pi-bg-hover-red"
-                        onClick={() => this.deleteEntry('selected')} >
-                        Delete selected
-                    </button> : ''}
-
-                    <div className="pi-search-box pi-float-right">
-                        <svg
-                        width={24}
-                        height={24}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg" 
-                        >
-                        <path
-                            d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
-                            fill="#718096"
-                        />
-                        <path
-                            d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
-                            fill="#718096"
-                        />
-                        </svg>
-                        <input type="text" className="search-input" placeholder="Search.." />
-                    </div>
-                </div>
+                {this.state.empty && <Empty title={title} clickHandler={() => this.openForm('new')} />}
 
                 {/* <button
                     className=""
@@ -278,7 +278,6 @@ export default class Project extends Component {
                     modalType={this.state.formModalType}
                     data={this.state.project}
                     close={this.closeForm}
-                    project_id={this.props.project_id}
                 />
 
                 <Search
@@ -287,7 +286,7 @@ export default class Project extends Component {
                     close={this.closeForm}
                 />
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={this.state.projects} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} project_id={this.props.project_id} />}
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={projects} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}

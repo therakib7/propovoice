@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 
 import Api from 'api/dashboard';
+import Feedback from './Feedback';
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -12,6 +13,8 @@ export default class Dashboard extends Component {
 
         this.state = {
             preloader: true,
+            feedbackModal: false,
+            feedbackModalType: '',
             summary: {
                 total_client: 0,
                 total_estimate: 0,
@@ -382,7 +385,10 @@ export default class Dashboard extends Component {
                             <div className="pi-feedback-content pi-request pi-bg-blue">
                                 <h2>Have any feature request?</h2>
                                 <p>Generate actionable insights with built-in reporting system.</p>
-                                <button className="pi-btn pi-bg-white pi-color-blue pi-bg-hover-blue pi-hover-color-white">
+                                <button
+                                    className="pi-btn pi-bg-white pi-color-blue pi-bg-hover-blue pi-hover-color-white"
+                                    onClick={() => this.setState({ feedbackModal: true, feedbackModalType: 'features' })}
+                                >
                                     Submit Request
                                 </button>
                                 <svg
@@ -407,12 +413,22 @@ export default class Dashboard extends Component {
                                     If you experience any problems or have any feature requests, I would
                                     be
                                 </p>
-                                <button className="pi-btn pi-bg-white pi-color-red pi-bg-hover-blue pi-hover-color-white">
+                                <button
+                                    className="pi-btn pi-bg-white pi-color-red pi-bg-hover-blue pi-hover-color-white"
+                                    onClick={() => this.setState({ feedbackModal: true, feedbackModalType: 'bug' })}
+                                >
                                     Submit
                                 </button>
                             </div>
                         </div>
                     </div>
+
+                    {this.state.feedbackModal &&
+                        <Feedback
+                            show={this.state.feedbackModal}
+                            type={this.state.feedbackModalType}
+                            close={() => this.setState({ feedbackModal: false })}
+                        />}
                 </div>
             </div>
         );
