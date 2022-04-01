@@ -1,16 +1,17 @@
-<?php 
+<?php
 
 /**
  * SingletonTrait 
  * 
- * @since 1.0.0 
+ * @since 0.1.0 
  * @package NCPI Project
  * @author NurCreation
  */
 
-namespace Ncpi\Traits; 
+namespace Ncpi\Traits;
 
-trait SingletonTrait {
+trait SingletonTrait
+{
     /**
      * Store the singleton object.
      */
@@ -19,8 +20,9 @@ trait SingletonTrait {
     /**
      * Fetch an instance of the class.
      */
-    public static function getInstance() {
-        if ( self::$singleton === false ) {
+    public static function getInstance()
+    {
+        if (self::$singleton === false) {
             self::$singleton = new self();
         }
 

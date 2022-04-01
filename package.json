@@ -1,6 +1,6 @@
 {
 	"name": "propovoice",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"description": "",
 	"main": "index.js",
 	"repository": {
@@ -55,7 +55,7 @@
 		"@editorjs/raw": "latest",
 		"@editorjs/simple-image": "latest",
 		"@editorjs/table": "latest",
-		"@editorjs/underline": "^1.0.0",
+		"@editorjs/underline": "^0.1.0",
 		"@editorjs/warning": "latest",
 		"@emotion/core": "^10.1.1",
 		"@paypal/react-paypal-js": "^7.6.0",

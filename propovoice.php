@@ -1,5 +1,7 @@
-<?php 
-if ( ! defined( 'ABSPATH' ) ) { die; } // Cannot access directly.
+<?php
+if (!defined('ABSPATH')) {
+    die;
+} // Cannot access directly.
 /**
  *
  * @package   NurCreation - Propovoice
@@ -11,18 +13,18 @@ if ( ! defined( 'ABSPATH' ) ) { die; } // Cannot access directly.
  * Plugin URI: https://nurcreation.com/plugins/propovoice
  * Author: NurCreation
  * Author URI: https://nurcreation.com
- * Version: 1.0.0
+ * Version: 0.1.0
  * Description: A complete proposal and invoice management system for the client.
  * Text Domain: propovoice
  * Domain Path: /languages
  *
- */ 
+ */
 
-if ( !class_exists('Ncpi') ) { 
-    
-    if ( !defined('NCPI_FILE') ) {
+if (!class_exists('Ncpi')) {
+
+    if (!defined('NCPI_FILE')) {
         define('NCPI_FILE', __FILE__);
-    } 
+    }
 
-    require_once plugin_dir_path( __FILE__ ) .'includes/Ncpi.php';
-}    
+    require_once plugin_dir_path(__FILE__) . 'includes/Ncpi.php';
+}

@@ -4,7 +4,7 @@ Donate link:
 Tags: proposal, invoice, client, template, project, payment, transeciton
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 1.0.0
+Stable tag: 0.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,5 +49,5 @@ By this plugin you can easily send proposal and invoice to your client and manag
 
 == Changelog == 
 
-= 1.0.0 =
+= 0.1.0 =
 * Initial load of the plugin.
