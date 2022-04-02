@@ -67,7 +67,7 @@ const TableBody = props => {
                 <td>{row.mobile}</td>
                 <td>{row.date}</td>
                 <td className="pi-action">
-                    <span onClick={() => handleOverview(row.id)} className=''>Overview</span>
+                    {!wage.length && <span onClick={() => handleOverview(row.id)} className=''>Overview</span>}
                     <span onClick={() => props.editEntry('edit', row)} ><svg
                         width={13}
                         height={13}

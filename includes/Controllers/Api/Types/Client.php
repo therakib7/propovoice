@@ -18,7 +18,7 @@ class Client
                 'methods' => 'GET',
                 // 'methods' => \WP_REST_Server::READABLE,
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'], 
+                'permission_callback' => [$this, 'get_permission'],
             ],
             [
                 'methods' => 'POST',
@@ -66,30 +66,42 @@ class Client
         ));
     }
 
-    public function get( $req )
+    public function get($req)
     {
         $request = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if ( isset($request['per_page']) ) {
+        if (isset($request['per_page'])) {
             $per_page = $request['per_page'];
         }
 
-        if ( isset($request['page']) && $request['page'] > 1 ) {
-            $offset = ( $per_page * $request['page'] ) - $per_page;
+        if (isset($request['page']) && $request['page'] > 1) {
+            $offset = ($per_page * $request['page']) - $per_page;
         }
 
+        $search_value = isset($request['s'] ) ? trim($request['s']) : false;
+
         $args = array(
-            'number' => $per_page, 
-            'offset' => $offset,  
+            'number' => $per_page,
+            'offset' => $offset,
             'orderby' => 'registered',
             'order'   => 'DESC'
         );
 
-        if ( isset( $request['email'] ) ) {
+        if (isset($request['email'])) {
             $args['search'] = $request['email']; //check email field
+            $args['search_columns'] = array(
+                'user_login',
+                'user_nicename',
+                'user_email',
+                'user_url',
+            );
+        }
+
+        if ( $search_value ) {
+            $args['search'] = "*{$search_value}*"; //check email field
             $args['search_columns'] = array(
                 'user_login',
                 'user_nicename',
@@ -102,16 +114,26 @@ class Client
             'relation' => 'OR'
         );
 
-        $args['meta_query'][] = array( 
+        $args['meta_query'][] = array(
             array(
                 'key'     => 'ncpi_member',
-                'value'   => '1',
+                'value'   => 1,
                 'compare' => 'LIKE'
             )
         );
 
-        if ( isset( $request['first_name'] ) ) { 
-            $args['meta_query'][] = array( 
+        if ( $search_value ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'     => 'first_name',
+                    'value'   => $search_value,
+                    'compare' => 'LIKE'
+                )
+            );
+        }
+
+        if (isset($request['first_name'])) {
+            $args['meta_query'][] = array(
                 array(
                     'key'     => 'first_name',
                     'value'   => $request['first_name'],
@@ -120,8 +142,8 @@ class Client
             );
         }
 
-        if ( isset( $request['last_name'] ) ) {   
-            $args['meta_query'][] = array( 
+        if (isset($request['last_name'])) {
+            $args['meta_query'][] = array(
                 array(
                     'key'     => 'last_name',
                     'value'   => $request['last_name'],
@@ -130,18 +152,18 @@ class Client
             );
         }
 
-        if ( isset( $request['mobile'] ) ) {   
-            $args['meta_query'][] = array( 
+        if (isset($request['mobile'])) {
+            $args['meta_query'][] = array(
                 array(
                     'key'     => 'mobile',
                     'value'   => $request['mobile'],
                     'compare' => 'LIKE'
                 )
             );
-        } 
+        }
 
-        if ( isset( $request['company_name'] ) ) { 
-            $args['meta_query'][] = array( 
+        if (isset($request['company_name'])) {
+            $args['meta_query'][] = array(
                 array(
                     'key'     => 'company_name',
                     'value'   => $request['company_name'],
@@ -150,8 +172,8 @@ class Client
             );
         }
 
-        if ( isset( $request['web'] ) ) { 
-            $args['meta_query'][] = array( 
+        if (isset($request['web'])) {
+            $args['meta_query'][] = array(
                 array(
                     'key'     => 'web',
                     'value'   => $request['web'],
@@ -160,64 +182,64 @@ class Client
             );
         }
 
-        $all_users = new \WP_User_Query( $args );
+        $all_users = new \WP_User_Query($args);
         $total_users = $all_users->get_total(); //use this for pagination
         $filtered = count($all_users->get_results()); //use this for determining if you have any users, although it seems unnecessary
         $result = [];
 
         //if ( $filtered > 0 ) {
-            $data = [];
-            foreach ( $all_users->get_results() as $user ) {
-                $user_data = [];
+        $data = [];
+        foreach ($all_users->get_results() as $user) {
+            $user_data = [];
 
-                $user_data['id'] = $user->ID;
-                $user_data['first_name'] = $user->first_name;
-                $user_data['last_name'] = $user->last_name;
-                $user_data['email'] = $user->user_email;
-                $user_data['company_name'] = get_user_meta($user->ID, 'company_name', true);
-                $user_data['web'] = get_user_meta($user->ID, 'web', true);
-                $user_data['mobile'] = get_user_meta($user->ID, 'mobile', true);
-                $user_data['zip'] = '1245';
-                $user_data['date'] = $user->user_registered;
+            $user_data['id'] = $user->ID;
+            $user_data['first_name'] = $user->first_name;
+            $user_data['last_name'] = $user->last_name;
+            $user_data['email'] = $user->user_email;
+            $user_data['company_name'] = get_user_meta($user->ID, 'company_name', true);
+            $user_data['web'] = get_user_meta($user->ID, 'web', true);
+            $user_data['mobile'] = get_user_meta($user->ID, 'mobile', true);
+            $user_data['zip'] = '1245';
+            $user_data['date'] = $user->user_registered;
 
-                $data[] = $user_data;
-            }
+            $data[] = $user_data;
+        }
 
-            $result['result'] = $data;
-            $result['total'] = $total_users;
+        $result['result'] = $data;
+        $result['total'] = $total_users;
         //}
 
-        return wp_send_json_success($result); 
+        return wp_send_json_success($result);
     }
 
-    public function get_single( $req )
-    { 
-         
+    public function get_single($req)
+    {
+
         $url_params = $req->get_url_params();
         $user_id      = $url_params['id'];
 
-        $user = get_user_by('id', $user_id );
+        $user = get_user_by('id', $user_id);
 
-        $data = []; 
+        $data = [];
 
-            $field = []; 
-            $field['id'] = $user->ID;
-            $field['first_name'] = $user->first_name;
-            $field['last_name'] = $user->last_name;
-            $field['email'] = $user->user_email;
-            $field['company_name'] = get_user_meta($user->ID, 'company_name', true);
-            $field['web'] = get_user_meta($user->ID, 'web', true);
-            $field['mobile'] = get_user_meta($user->ID, 'mobile', true);
-            $field['zip'] = '';
-            $field['date'] = $user->user_registered;
+        $field = [];
+        $field['id'] = $user->ID;
+        $field['first_name'] = $user->first_name;
+        $field['last_name'] = $user->last_name;
+        $field['email'] = $user->user_email;
+        $field['company_name'] = get_user_meta($user->ID, 'company_name', true);
+        $field['web'] = get_user_meta($user->ID, 'web', true);
+        $field['mobile'] = get_user_meta($user->ID, 'mobile', true);
+        $field['zip'] = '';
+        $field['date'] = $user->user_registered;
 
-        $data['user'] = $field; 
+        $data['user'] = $field;
 
         return wp_send_json_success($data);
     }
 
     public function create($req)
-    { 
+    {
 
         $reg_errors             = new \WP_Error;
         $first_name             = sanitize_text_field($req['first_name']);
@@ -225,11 +247,11 @@ class Client
         $useremail              = strtolower(sanitize_email($req['email']));
         $company_name           = sanitize_text_field($req['company_name']);
         $web                    = esc_url_raw($req['web']);
-        $mobile                 = sanitize_text_field($req['mobile']); 
+        $mobile                 = sanitize_text_field($req['mobile']);
 
         if (
             empty($first_name) ||
-            empty($useremail) 
+            empty($useremail)
         ) {
             $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
         }
@@ -240,15 +262,15 @@ class Client
 
         if (email_exists($useremail)) {
             $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
-        } 
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $userdata = [
                 'user_login' => $useremail,
-                'user_email' => $useremail, 
-                'user_pass'  => wp_generate_password(8, true, true), 
+                'user_email' => $useremail,
+                'user_pass'  => wp_generate_password(8, true, true),
                 'first_name' => $first_name,
                 'last_name'  => $last_name,
             ];
@@ -256,21 +278,21 @@ class Client
 
             if (!is_wp_error($user_id)) {
                 //set as propovoice member
-                update_user_meta($user_id, 'ncpi_member', true );
+                update_user_meta($user_id, 'ncpi_member', true);
 
                 update_user_meta($user_id, 'company_name', $company_name);
                 update_user_meta($user_id, 'web', $web);
-                update_user_meta($user_id, 'mobile', $mobile); 
+                update_user_meta($user_id, 'mobile', $mobile);
 
                 wp_send_json_success($user_id);
             } else {
                 wp_send_json_error();
             }
         }
-    } 
+    }
 
     public function update($req)
-    { 
+    {
         $params = $req->get_params();
         $reg_errors            = new \WP_Error;
         $first_name             = sanitize_text_field($params['first_name']);
@@ -278,7 +300,7 @@ class Client
         $useremail              = strtolower(sanitize_email($params['email']));
         $company_name           = sanitize_text_field($params['company_name']);
         $web                    = esc_url_raw($params['web']);
-        $mobile                 = sanitize_text_field($params['mobile']); 
+        $mobile                 = sanitize_text_field($params['mobile']);
 
         if (
             empty($useremail) ||

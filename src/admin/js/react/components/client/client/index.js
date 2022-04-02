@@ -28,9 +28,12 @@ export default class Client extends Component {
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
+            total: 1,
             totalPage: 1,
-            currentPage: 1
+            currentPage: 1,
+            searchVal: ''
         };
+        this.timeout = 0;
     }
 
     static contextType = AppContext;
@@ -59,9 +62,32 @@ export default class Client extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ clients: result, preloader: false, empty, totalPage: Math.ceil(total / this.state.perPage) });
+                this.setState({ clients: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
             })
     };
+
+    handleSearch = (e) => {
+        const { value } = e.target;
+
+        this.setState({ searchVal: value }, () => {
+            // if (this.state.searchVal.length < 3) return;
+
+            //search when typing stop
+            if (this.timeout) clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                this.getLists({
+                    s: this.state.searchVal
+                });
+            }, 300);
+        });
+    }
+
+    showItem = (e) => {
+        const { value } = e.target;
+        this.setState({ perPage: value }, () => {
+            this.getLists();
+        });
+    }
 
     handleSubmit = client => {
         if (this.state.formModalType == 'new') {
@@ -259,7 +285,14 @@ export default class Client extends Component {
                                         fill="#718096"
                                     />
                                 </svg>
-                                <input type="text" className="search-input" placeholder="Search.." />
+
+                                <input
+                                    type="text"
+                                    className="search-input"
+                                    placeholder="Search..."
+                                    value={this.state.searchVal}
+                                    onChange={this.handleSearch}
+                                />
                             </div>
                         </div>
                     </>}
@@ -286,6 +319,18 @@ export default class Client extends Component {
                     close={this.closeForm}
                 />
 
+                {clients.length > 0 && <div className='pi-table-wrap'>
+                    <p>
+                        {clients.length} Client Showing from {this.state.total}
+                        <select name="pi-edit-text" onChange={this.showItem}>
+                            <option value="10">Show item 10</option>
+                            <option value="20">Show item 20</option>
+                            <option value="30">Show item 30</option>
+                            <option value="50">Show item 50</option>
+                            <option value="100">Show item 100</option>
+                        </select>
+                    </p>
+                </div>}
                 {this.state.preloader ? <TablePreloader /> : <Table tableData={clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate

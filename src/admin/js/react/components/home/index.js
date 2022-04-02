@@ -96,7 +96,7 @@ const Home = () => {
                                         </li>
                                     </ul> */}
                                 </li>
-                                <li>
+                                {!wage.length &&<li>
                                     <NavLink
                                         to='project'
                                         className={({ isActive }) => isActive ? 'pi-active' : ''}>
@@ -116,7 +116,7 @@ const Home = () => {
                                         </svg>
                                         <span>Project</span>
                                     </NavLink>
-                                </li>
+                                </li>}
 
                                 <li>
                                     <NavLink
