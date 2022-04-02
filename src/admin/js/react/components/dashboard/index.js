@@ -414,7 +414,7 @@ export default class Dashboard extends Component {
                                     be
                                 </p>
                                 <button
-                                    className="pi-btn pi-bg-white pi-color-red pi-bg-hover-blue pi-hover-color-white"
+                                    className="pi-btn pi-bg-white pi-color-red pi-bg-hover-red pi-hover-color-white"
                                     onClick={() => this.setState({ feedbackModal: true, feedbackModalType: 'bug' })}
                                 >
                                     Submit

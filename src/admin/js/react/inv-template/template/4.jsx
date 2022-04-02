@@ -21,7 +21,17 @@ export default class Four extends Component {
 
     componentDidMount() {
         document.documentElement.style.setProperty('--pi-inv-primary', this.props.data.invoice.style.primary_color);
-    } 
+
+        this.props.isPreviewLoaded();
+    }
+
+    componentDidUpdate() {
+        let value = JSON.stringify(this.props.data.invoice);
+        if (value != this.state.old_value) {
+            this.setState({ old_value: value });
+            this.props.isPreviewLoaded();
+        }
+    }
 
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
@@ -32,11 +42,11 @@ export default class Four extends Component {
                 <div className="pi-inv-four">
                     <div className="pi-body">
                         <div className="pi-hedear">
-                            <div className="pi-from"> 
+                            <div className="pi-from">
                                 {fromData && fromData.logo &&
-                                <div className="pi-from-logo pi-bg-one">
-                                    <img src={fromData.logo.src}  alt="" />
-                                </div>}
+                                    <div className="pi-from-logo pi-bg-one">
+                                        <img src={fromData.logo.src} alt="" />
+                                    </div>}
                                 <From data={fromData} />
                                 <div className="pi-from-date">
                                     <p>{title} No: <span>{id}</span></p>
@@ -60,55 +70,55 @@ export default class Four extends Component {
                             <table>
                                 <thead>
                                     <tr>
-                                    <th className="pi-bg-one">SL</th>
-                                    <th className="pi-bg-one">Item Description</th>
-                                    <th className="pi-bg-4th">Unit</th>
-                                    <th className="pi-bg-two">Rate</th>
-                                    <th className="pi-bg-4th">Amount</th>
+                                        <th className="pi-bg-one">SL</th>
+                                        <th className="pi-bg-one">Item Description</th>
+                                        <th className="pi-bg-4th">Unit</th>
+                                        <th className="pi-bg-two">Rate</th>
+                                        <th className="pi-bg-4th">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <td>01.</td>
-                                    <td>
-                                        Saas Landing page design <br />
-                                        <span>Designed a saas landing page for a local client</span>
-                                    </td>
-                                    <td>5 pages</td>
-                                    <td>
-                                        10$ <br />
-                                        <span> (Fixed price)</span>
-                                    </td>
-                                    <td>10$</td>
+                                        <td>01.</td>
+                                        <td>
+                                            Saas Landing page design <br />
+                                            <span>Designed a saas landing page for a local client</span>
+                                        </td>
+                                        <td>5 pages</td>
+                                        <td>
+                                            10$ <br />
+                                            <span> (Fixed price)</span>
+                                        </td>
+                                        <td>10$</td>
                                     </tr>
                                     <tr>
-                                    <td>02.</td>
-                                    <td>
-                                        Saas Landing page design <br />
-                                        <span>
-                                        Designed a saas landing page for a local <br /> client for his
-                                        business
-                                        </span>
-                                    </td>
-                                    <td>5 pages</td>
-                                    <td>
-                                        10$ <br />
-                                        <span> (Fixed price)</span>
-                                    </td>
-                                    <td>10$</td>
+                                        <td>02.</td>
+                                        <td>
+                                            Saas Landing page design <br />
+                                            <span>
+                                                Designed a saas landing page for a local <br /> client for his
+                                                business
+                                            </span>
+                                        </td>
+                                        <td>5 pages</td>
+                                        <td>
+                                            10$ <br />
+                                            <span> (Fixed price)</span>
+                                        </td>
+                                        <td>10$</td>
                                     </tr>
                                     <tr>
-                                    <td>03.</td>
-                                    <td>
-                                        Saas Landing page design <br />
-                                        <span>Designed a saas landing page for a local client</span>
-                                    </td>
-                                    <td>5 pages</td>
-                                    <td>
-                                        10$ <br />
-                                        <span> (Fixed price)</span>
-                                    </td>
-                                    <td>10$</td>
+                                        <td>03.</td>
+                                        <td>
+                                            Saas Landing page design <br />
+                                            <span>Designed a saas landing page for a local client</span>
+                                        </td>
+                                        <td>5 pages</td>
+                                        <td>
+                                            10$ <br />
+                                            <span> (Fixed price)</span>
+                                        </td>
+                                        <td>10$</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -130,9 +140,9 @@ export default class Four extends Component {
 
                     </div>
                     <div className="pi-footer-shape">
-                    <div className="pi-shape1 pi-bg-one" />
-                    <div className="pi-shape2 pi-bg-one" />
-                    <div className="pi-shape3 pi-bg-one" />
+                        <div className="pi-shape1 pi-bg-one" />
+                        <div className="pi-shape2 pi-bg-one" />
+                        <div className="pi-shape3 pi-bg-one" />
                     </div>
                 </div>
             </div>

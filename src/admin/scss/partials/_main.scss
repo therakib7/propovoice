@@ -2244,14 +2244,14 @@ html {
 /*-------------------------------------------------------------- 
 # Table
 --------------------------------------------------------------*/
-.ncpi .pi-table-wrap {
-  margin-top: 45px;
+.ncpi .pi-table-showing {
+  margin-top: 20px;
 }
-.ncpi .pi-table-wrap h3 {
+.ncpi .pi-table-showing p {
   font-size: 16px;
   font-weight: 500;
 }
-.ncpi .pi-table-wrap select {
+.ncpi .pi-table-showing select {
   border-radius: 6px;
   margin-top: 10px;
   color: #4a5568;
@@ -2665,7 +2665,7 @@ html {
     margin-bottom: 0px;
   }
 }
-.ncpi .pi-search-box.pi-float-right .search-input {
+.ncpi .pi-search-box.pi-float-right .pi-search-input {
   color: #1a202c;
   font-size: 14px;
   padding: 14px;
@@ -2687,7 +2687,7 @@ html {
   top: 12px;
 }
 @media screen and (max-width: 450px) {
-  .ncpi .pi-search-box .search-input {
+  .ncpi .pi-search-box .pi-search-input {
     padding: 10px;
     padding-left: 40px;
   }
@@ -2710,8 +2710,7 @@ html {
   margin-bottom: 20px;
 }
 .ncpi .pi-add-item-main-content .pi-item-content {
-  min-height: 135px;
-  display: flex;
+  display: -webkit-box;
   padding: 20px 35px;
   border: 3px solid #edf2f7;
   border-radius: 15px 15px 0 0;
@@ -3066,7 +3065,6 @@ html {
   background: #4c6fff;
   text-align: center;
   line-height: 47px;
-  z-index: 6;
   opacity: 0;
   border: 2px solid #4c6fff !important;
 }
@@ -3075,9 +3073,6 @@ html {
 }
 .ncpi .pi-welcome-tabs-content .pi-tab .pi-done svg {
   margin-left: -2px;
-}
-.ncpi .pi-welcome-tabs-content .pi-tab .pi-done {
-  z-index: 6;
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-welcome-tabs-content .pi-tab {
@@ -3121,22 +3116,38 @@ html {
   position: relative;
   cursor: pointer;
 }
-.ncpi .pi-single-tabs .pi-tab-item svg {
+.ncpi .pi-single-tabs .pi-tab-item .pi-single-tab-done svg {
+  opacity: 0;
+}
+.ncpi .pi-single-tabs .pi-tab-item .pi-arrow {
   position: absolute;
   top: 7px;
   right: -48px;
 }
-@media screen and (max-width: 500px) {
-  .ncpi .pi-single-tabs .pi-tab-item svg {
-    width: 75px;
-    right: -40px;
+.ncpi .pi-single-tabs .pi-tab-item.pi-active svg path {
+  fill: var(--text-color-blue);
+}
+@media screen and (max-width: 768px) {
+  .ncpi .pi-single-tabs .pi-tab-item .pi-arrow {
+    width: 60px;
+    right: -31px;
   }
 }
-.ncpi .pi-single-tabs .pi-tab-item.pi-active span {
+.ncpi .pi-single-tabs .pi-tab-item:hover .pi-single-tab-done svg,
+.ncpi .pi-single-tabs .pi-tab-item.pi-active .pi-single-tab-done svg {
+  opacity: 1;
+}
+.ncpi .pi-single-tabs .pi-tab-item.pi-active .pi-single-tab-done {
+  background-color: var(--bg-color-blue);
   border: 3px solid var(--bg-color-blue);
 }
-.ncpi .pi-single-tabs .pi-tab-item:hover span {
+.ncpi .pi-single-tabs .pi-tab-item:hover .pi-single-tab-done {
+  background-color: var(--bg-color-blue);
   border: 3px solid var(--bg-color-blue);
+  opacity: 1;
+}
+.ncpi .pi-single-tabs .pi-tab-item .pi-single-tab-done svg path {
+  fill: var(--text-color-white);
 }
 .ncpi .pi-single-tabs .pi-tab-item:first-child {
   margin-left: 0px;
@@ -3149,14 +3160,16 @@ html {
     margin-top: -10px;
   }
 }
-.ncpi .pi-single-tabs .pi-tab-item span {
-  width: 20px;
-  height: 20px;
+.ncpi .pi-single-tabs .pi-tab-item .pi-single-tab-done {
+  width: 22px;
+  height: 22px;
   display: block;
   border-radius: 50%;
   border: 3px solid #e2e8f0;
   margin: auto;
   margin-bottom: 15px;
+  position: relative;
+  line-height: 20px;
 }
 .ncpi .pi-right-sidebar .pi-r-s-title,
 .ncpi .pi-single-tab-content .pi-invoice-tab-content .pi-tab-content-title {
@@ -3164,6 +3177,12 @@ html {
   font-weight: 700;
   margin-top: 55px;
   margin-bottom: 13px;
+}
+@media screen and (max-width: 768px) {
+  .ncpi .pi-right-sidebar .pi-r-s-title,
+.ncpi .pi-single-tab-content .pi-invoice-tab-content .pi-tab-content-title {
+    margin-top: 35px;
+  }
 }
 .ncpi .pi-overflow-content .pi-btn.pi-border-blue:hover {
   color: #fff !important;
@@ -3655,6 +3674,10 @@ html {
 }
 .ncpi .pi-bg-hover-blue:hover {
   background-color: #4e6de9 !important;
+  transition: all 0.3s ease-out;
+}
+.ncpi .pi-bg-hover-red:hover {
+  background-color: #d51212 !important;
   transition: all 0.3s ease-out;
 }
 .ncpi .pi-text-hover-blue:hover {

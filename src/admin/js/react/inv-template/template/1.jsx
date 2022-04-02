@@ -21,7 +21,17 @@ export default class One extends Component {
 
     componentDidMount() {
         document.documentElement.style.setProperty('--pi-inv-primary', this.props.data.invoice.style.primary_color);
-    } 
+
+        this.props.isPreviewLoaded();
+    }
+
+    componentDidUpdate() {
+        let value = JSON.stringify(this.props.data.invoice);
+        if (value != this.state.old_value) {
+            this.setState({ old_value: value });
+            this.props.isPreviewLoaded();
+        }
+    }
 
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
@@ -35,9 +45,9 @@ export default class One extends Component {
                             <div className="pi-from">
 
                                 {fromData && fromData.logo &&
-                                <div className="pi-from-logo">
-                                    <img src={fromData.logo.src}  alt="" />
-                                </div>}
+                                    <div className="pi-from-logo">
+                                        <img src={fromData.logo.src} alt="" />
+                                    </div>}
 
                                 <From data={fromData} />
                                 <div className="pi-from-date">
@@ -45,7 +55,7 @@ export default class One extends Component {
                                         {title} No: <span>{id}</span>
                                     </p>
 
-                                    <div className="pi-from-time"> 
+                                    <div className="pi-from-time">
                                         <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
                                         <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                     </div>
@@ -71,7 +81,7 @@ export default class One extends Component {
                                 {note && <Note data={note} />}
                                 {group && <Group data={group} />}
                             </div>
-                            {sign && <Sign data={sign} />} 
+                            {sign && <Sign data={sign} />}
                         </div>
                     </div>
                 </div>

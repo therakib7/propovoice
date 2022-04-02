@@ -202,9 +202,7 @@ export default class Client extends Component {
     };
 
     render() {
-        const checkedBoxes = this.state.checkedBoxes;
-        const clients = this.state.clients;
-        const title = this.state.title;
+        const { title, clients, checkedBoxes, searchVal } = this.state;
         return (
             <div className="ncpi-components">
 
@@ -224,7 +222,7 @@ export default class Client extends Component {
                     </ul>
                 </nav>
 
-                {clients.length > 0 &&
+                {(clients.length > 0 || this.state.searchVal.length > 0) &&
                     <>
                         {!wage.length && <div className="pi-cards">
                             <div className="row">
@@ -263,7 +261,7 @@ export default class Client extends Component {
                             </button>
 
                             {checkedBoxes.length ? <button
-                                className="pi-btn pi-bg-red pi-bg-hover-red"
+                                style={{ marginLeft: '5px' }} className="pi-btn pi-bg-red pi-bg-hover-red"
                                 onClick={() => this.deleteEntry('selected')} >
                                 Delete selected
                             </button> : ''}
@@ -288,7 +286,7 @@ export default class Client extends Component {
 
                                 <input
                                     type="text"
-                                    className="search-input"
+                                    className="pi-search-input"
                                     placeholder="Search..."
                                     value={this.state.searchVal}
                                     onChange={this.handleSearch}
@@ -297,7 +295,7 @@ export default class Client extends Component {
                         </div>
                     </>}
 
-                {this.state.empty && <Empty title={title} clickHandler={() => this.openForm('new')} />}
+                {this.state.empty && <Empty title={title} searchVal={this.state.searchVal} clickHandler={() => this.openForm('new')} />}
 
                 {/* <button
                     className=""
@@ -319,7 +317,7 @@ export default class Client extends Component {
                     close={this.closeForm}
                 />
 
-                {clients.length > 0 && <div className='pi-table-wrap'>
+                {clients.length > 0 && <div className='pi-table-showing'>
                     <p>
                         {clients.length} Client Showing from {this.state.total}
                         <select name="pi-edit-text" onChange={this.showItem}>
@@ -331,7 +329,7 @@ export default class Client extends Component {
                         </select>
                     </p>
                 </div>}
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={clients} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={clients} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"Prev"}

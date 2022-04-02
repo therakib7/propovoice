@@ -26,17 +26,16 @@ export default class Two extends Component {
     componentDidMount() {
         document.documentElement.style.setProperty('--pi-inv-primary', this.props.data.invoice.style.primary_color);
 
-        // this.props.isPreviewLoaded();
-    } 
+        this.props.isPreviewLoaded();
+    }
 
-    componentDidUpdate() { 
-        let value = JSON.stringify(this.props.data.invoice); 
-        if ( value != this.state.old_value ) {
-            this.setState({ old_value: value }); 
-            // this.props.isPreviewLoaded(); 
-        } 
-    } 
-
+    componentDidUpdate() {
+        let value = JSON.stringify(this.props.data.invoice);
+        if (value != this.state.old_value) {
+            this.setState({ old_value: value });
+            this.props.isPreviewLoaded();
+        }
+    }
 
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
@@ -59,9 +58,9 @@ export default class Two extends Component {
                         <div className="pi-hedear">
                             <div className="pi-from">
                                 {fromData && fromData.logo &&
-                                <div className="pi-from-logo">
-                                    <img src={fromData.logo.src}  alt="" />
-                                </div>}
+                                    <div className="pi-from-logo">
+                                        <img src={fromData.logo.src} alt="" />
+                                    </div>}
                                 <From data={fromData} />
 
                                 <div className="pi-from-date">
@@ -78,7 +77,7 @@ export default class Two extends Component {
                                 </div>
                                 <To data={toData} />
                             </div>
-                        </div> 
+                        </div>
 
                         {items && <Items data={items} />}
 

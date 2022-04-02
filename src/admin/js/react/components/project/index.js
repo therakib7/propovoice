@@ -237,7 +237,7 @@ export default class Project extends Component {
                             </button>
 
                             {checkedBoxes.length ? <button
-                                className="pi-btn pi-bg-red pi-bg-hover-red"
+                                style={{ marginLeft: '5px' }} className="pi-btn pi-bg-red pi-bg-hover-red"
                                 onClick={() => this.deleteEntry('selected')} >
                                 Delete selected
                             </button> : ''}
@@ -259,7 +259,7 @@ export default class Project extends Component {
                                         fill="#718096"
                                     />
                                 </svg>
-                                <input type="text" className="search-input" placeholder="Search.." />
+                                <input type="text" className="pi-search-input" placeholder="Search.." />
                             </div>
                         </div>
                     </>}

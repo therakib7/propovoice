@@ -16,7 +16,7 @@ export default class Business extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { 
+        this.state = {
             title: 'Business',
             empty: false,
             preloader: true,
@@ -57,9 +57,9 @@ export default class Business extends Component {
         Api.getAll(params)
             .then(resp => {
                 let result = resp.data.data.result;
-                let total = resp.data.data.total; 
+                let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ businesses: result, preloader: false, empty, totalPage: Math.ceil(total / this.state.perPage) });  
+                this.setState({ businesses: result, preloader: false, empty, totalPage: Math.ceil(total / this.state.perPage) });
             })
     };
 
@@ -81,7 +81,7 @@ export default class Business extends Component {
             Api.update(business.id, business)
                 .then(resp => {
                     if (resp.data.success) {
-                        this.setState({ formModal: false }) 
+                        this.setState({ formModal: false })
                         toast.success(this.context.CrudMsg.update);
                         this.getLists();
                     } else {
@@ -181,14 +181,14 @@ export default class Business extends Component {
         const title = this.state.title;
         return (
             <div className="ncpi-components">
-                
+
 
                 <h1 className="">{title}</h1>
                 <nav className="pi-breadcrumb">
                     <ul className="">
                         <li>
                             <a href="#" className="">
-                            Home
+                                Home
                             </a>
                         </li>
                         <li>&gt;</li>
@@ -197,72 +197,72 @@ export default class Business extends Component {
                         </li>
                     </ul>
                 </nav>
-                
+
                 {businesses.length > 0 &&
-                <>
-                    {!wage.length && <div className="pi-cards">
-                        <div className="row">
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                <span className="">Total {title}</span>
-                                <h4 className="pi-color-blue">23</h4>
+                    <>
+                        {!wage.length && <div className="pi-cards">
+                            <div className="row">
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span className="">Total {title}</span>
+                                        <h4 className="pi-color-blue">23</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span className="">Paid {title}</span>
+                                        <h4 className="pi-color-blue">132</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span className="">Unpaid {title}</span>
+                                        <h4 className="pi-color-blue">16</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span className="">Draft {title}</span>
+                                        <h4 className="pi-color-blue">21</h4>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                <span className="">Paid {title}</span>
-                                <h4 className="pi-color-blue">132</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                <span className="">Unpaid {title}</span>
-                                <h4 className="pi-color-blue">16</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                <span className="">Draft {title}</span>
-                                <h4 className="pi-color-blue">21</h4>
-                                </div>
+                        </div>}
+
+                        <div className="pi-buttons">
+                            <button
+                                className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                                onClick={() => this.openForm('new')} >
+                                Create New {title}
+                            </button>
+
+                            {checkedBoxes.length ? <button
+                                style={{ marginLeft: '5px' }} className="pi-btn pi-bg-red pi-bg-hover-red"
+                                onClick={() => this.deleteEntry('selected')} >
+                                Delete selected
+                            </button> : ''}
+
+                            <div className="pi-search-box pi-float-right">
+                                <svg
+                                    width={24}
+                                    height={24}
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
+                                        fill="#718096"
+                                    />
+                                    <path
+                                        d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
+                                        fill="#718096"
+                                    />
+                                </svg>
+                                <input type="text" className="pi-search-input" placeholder="Search.." />
                             </div>
                         </div>
-                    </div>}
-
-                    <div className="pi-buttons"> 
-                        <button
-                            className="pi-btn pi-bg-blue pi-bg-hover-blue"
-                            onClick={() => this.openForm('new')} >
-                            Create New {title}
-                        </button>
-
-                        {checkedBoxes.length ? <button
-                            className="pi-btn pi-bg-red pi-bg-hover-red"
-                            onClick={() => this.deleteEntry('selected')} >
-                            Delete selected
-                        </button> : ''}
-
-                        <div className="pi-search-box pi-float-right">
-                            <svg
-                            width={24}
-                            height={24}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg" 
-                            >
-                            <path
-                                d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
-                                fill="#718096"
-                            />
-                            <path
-                                d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
-                                fill="#718096"
-                            />
-                            </svg>
-                            <input type="text" className="search-input" placeholder="Search.." />
-                        </div>
-                    </div> 
-                </>}
+                    </>}
 
                 {this.state.empty && <Empty title={title} clickHandler={() => this.openForm('new')} />}
 
@@ -284,7 +284,7 @@ export default class Business extends Component {
                     handleSubmit={this.getLists}
                     show={this.state.searchModal}
                     close={this.closeForm}
-                /> 
+                />
 
                 {this.state.preloader ? <TablePreloader /> : <Table tableData={businesses} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 

@@ -482,17 +482,19 @@ class Invoice extends Component {
 								className={"pi-tab-item tablink " + (currentTab == tab.id ? 'pi-active' : '')}
 								onClick={(e) => this.setActiveTab(e, tab.id)}
 							>
-								<span />
-								{tab.text}
-								{index < 2 && <svg
-									width={95}
-									height={10}
-									viewBox="0 0 95 10"
-									fill="none"
+								{<span className="pi-single-tab-done"><svg
+									width={12}
+									height={12}
 									xmlns="http://www.w3.org/2000/svg"
+									viewBox="3.4 5.6 17.6 13.4"
+									xmlSpace="preserve"
 								>
+									<path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+								</svg></span>}
+								{tab.text}
+								{index < 2 && <svg width={95} height={10} className="pi-arrow">
 									<path
-										d="M89.5 1L93.5 5M93.5 5L89.5 9M93.5 5H1"
+										d="M89.5 1l4 4m0 0l-4 4m4-4H1"
 										stroke="#E2E8F0"
 										strokeWidth={2}
 										strokeLinecap="round"
