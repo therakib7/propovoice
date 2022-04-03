@@ -146,8 +146,7 @@ export default class Preview extends Component {
                     <div className='col-md-8' style={{margin: '50px 0 30px 0'}}> 
                         <div className='' style={{maxWidth: '794px', margin: '0 auto'}}>
                             <EditDownload path={this.props.path} handleEdit={this.props.editTab} handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
-                        </div>
-                        
+                        </div>                        
                     </div>  
                     
                     <div className='col-md-8'> 

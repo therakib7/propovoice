@@ -59,7 +59,9 @@ class Send extends Component {
     //end try to call it from invoice to avoid duplication code
 
     componentDidMount() {  
-        let data = this.props.data;  
+        let data = this.props.data;   
+        let path = this.props.data.invoice.path; 
+        let module = path == 'invoice' ? 'Invoice' : 'Estimate'; 
         let formState = {...this.state.form}
 
         let invoice_id = data.invoice.id;
@@ -82,12 +84,12 @@ class Send extends Component {
             email: data.toData.email,
         }; 
         
-        formState.subject = `${company_name} sent you a Invoice #${invoice_id}`;
+        formState.subject = `${company_name} sent you a ${module} #${invoice_id}`;
         formState.msg = `Hi <b>${client_name}</b>,
-Please find attached invoice #${invoice_id}. Due Date was ${invoice_due_date}.
+Please find attached ${path} #${invoice_id}. Due Date was ${invoice_due_date}.
 
-Invoice No: #${invoice_id}
-Invoice Date: ${invoice_date}
+${module} No: #${invoice_id}
+${module} Date: ${invoice_date}
 Due Date: ${invoice_due_date}
 Due Amount: USD ${invoice_due_amount}
 
@@ -103,7 +105,7 @@ ${company_name}`;
         e.preventDefault();
 
         // TODO: send with attachment pdf
-        if ( true ) {
+        if ( false ) {
             html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
                 const imgData = canvas.toDataURL('image/jpg'); 
                 
@@ -126,10 +128,9 @@ ${company_name}`;
 			form.type = 'sent'; 
         Api.create(form)
                 .then(resp => {
-                    if (resp.data.success) {  
-						//this.props.routeChange(resp.data.data);  
-
+                    if (resp.data.success) {   
                         toast.success('Mail sucessfully sent'); 
+                        this.props.close();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);

@@ -604,7 +604,6 @@ class Invoice extends Component {
 											deleteHandler={this.handleRemoveLineItem}
 											reorderHandler={this.handleReorderItems}
 										/>
-
 									</div>{/* ./ info-table-content */}
 
 									<div className="row">

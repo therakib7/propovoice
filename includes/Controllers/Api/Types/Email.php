@@ -277,7 +277,7 @@ class Email
             update_post_meta($invoice_id, 'status', 'sent');
             wp_send_json_success($send_mail);
         } else {
-            wp_send_json_error(['Something wrong']);
+            wp_send_json_error(['Something wrong: Email not sent']);
         }
     }
 
