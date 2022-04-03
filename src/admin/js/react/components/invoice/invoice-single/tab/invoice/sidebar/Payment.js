@@ -17,11 +17,11 @@ class AdditionalAmount extends Component {
                     list: [
                         {
                             id: 1,
-                            name: 'Rakib' 
+                            name: 'Rakib'
                         },
                         {
                             id: 2,
-                            name: 'Hasan' 
+                            name: 'Hasan'
                         }
                     ]
                 },
@@ -31,11 +31,11 @@ class AdditionalAmount extends Component {
                     list: [
                         {
                             id: 3,
-                            name: 'Hasan' 
+                            name: 'Hasan'
                         },
                         {
                             id: 4,
-                            name: 'Rakib' 
+                            name: 'Rakib'
                         }
                     ]
                 },
@@ -45,11 +45,11 @@ class AdditionalAmount extends Component {
                     list: [
                         {
                             id: 5,
-                            name: 'City Bank' 
+                            name: 'City Bank'
                         },
                         {
                             id: 6,
-                            name: 'DBBL' 
+                            name: 'DBBL'
                         }
                     ]
                 }
@@ -104,13 +104,13 @@ class AdditionalAmount extends Component {
                 <input type="checkbox" defaultChecked="checked" />
                 <i />
                 <h3>Payment</h3>
-                <div className="pi-form-accrodion">
+                <div className="pi-form-accordion pi-additional">
                     <div className="pi-tab">
                         <input type="checkbox" id="rd4" name="rd" />
                         <label className="pi-tab-label" htmlFor="rd4">
                             Tax
                         </label>
-                        <div className="pi-tab-content pi-bg-pearl">
+                        <div className="pi-tab-content">
                             <div className="pi-form-content pi-form-style-two pi-form-style-four">
                                 <div className="pi-radio-content">
                                     <div className="pi-radio-group">
@@ -131,7 +131,7 @@ class AdditionalAmount extends Component {
                         <label className="pi-tab-label" htmlFor="rd5">
                             Discount Price
                         </label>
-                        <div className="pi-tab-content pi-bg-pearl">
+                        <div className="pi-tab-content">
                             <div className="pi-form-content pi-form-style-two pi-form-style-four">
                                 <div className="pi-radio-content">
                                     <div className="pi-radio-group">
@@ -148,11 +148,11 @@ class AdditionalAmount extends Component {
                         </div>
                     </div>
                     {/* <div class="pi-tab">
-                    <input type="radio" id="rd6" name="rd" />
-                    <label class="pi-tab-label pi-arrow-none" for="rd6"
-                        >None</label
-                    >
-                    </div> */}
+                  <input type="radio" id="rd6" name="rd" />
+                  <label class="pi-tab-label pi-arrow-none" for="rd6"
+                    >None</label
+                  >
+                </div> */}
                     <div className="pi-payment-buttons">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-hover-color-white">
                             Save
@@ -162,6 +162,7 @@ class AdditionalAmount extends Component {
                         </button>
                     </div>
                 </div>
+
             </li>
         );
     }

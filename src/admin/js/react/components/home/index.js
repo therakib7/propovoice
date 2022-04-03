@@ -28,7 +28,7 @@ const Home = () => {
             <HashRouter>
                 <ToastContainer />
                 <div className="pi-grid-container pi-main-content">
-                    <div className="pi-left-sidebar pi-bg-pearl dd-none" id="myDIV">
+                    <div className="pi-left-sidebar pi-bg-pearl" id="myDIV">
                         <div className="pi-menubar-icon" >
                             <svg viewBox="0 0 100 80" width="20" height="25">
                                 <rect width="100" height="11"></rect>

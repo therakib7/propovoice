@@ -86,8 +86,8 @@ class AssetContoller {
 			
 			wp_localize_script( 'ncpi-dashboard', 'ncpi_local', array(
 				'apiUrl' => esc_url( rest_url() ),  
-				'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
-				// 'apiServerUrl' => 'https://appux.co/propovoice-server/wp-json/', //TODO: change server URL later
+				//'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
+				'apiServerUrl' => 'https://appux.co/propovoice-server/wp-json/', //TODO: change server URL later
 				'nonce' => wp_create_nonce( 'wp_rest' ),
 				'assetImgUri' => ncpi()->get_assets_uri('admin/img/')
 			) );

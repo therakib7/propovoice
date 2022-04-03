@@ -11,7 +11,8 @@ class Send extends Component {
 
         this.state = {
             form: {
-                invoice_id: null,  
+                invoice_id: null, 
+                path: '', 
                 fromData: {
                     id: '',
                     email: ''
@@ -20,7 +21,7 @@ class Send extends Component {
                     id: '',
                     name: '',
                     email: ''
-                },
+                }, 
                 subject: '',
                 msg: '',
                 invoice_img: null,
@@ -61,7 +62,7 @@ class Send extends Component {
     componentDidMount() {  
         let data = this.props.data;   
         let path = this.props.data.invoice.path; 
-        let module = path == 'invoice' ? 'Invoice' : 'Estimate'; 
+        let path_title = path == 'invoice' ? 'Invoice' : 'Estimate'; 
         let formState = {...this.state.form}
 
         let invoice_id = data.invoice.id;
@@ -72,6 +73,7 @@ class Send extends Component {
         let client_name = data.toData.first_name + ' ' + data.toData.last_name;
 
         formState.invoice_id = invoice_id;
+        formState.path = path_title;
         formState.fromData = {
             id: data.fromData.id,
             name: company_name,
@@ -84,12 +86,12 @@ class Send extends Component {
             email: data.toData.email,
         }; 
         
-        formState.subject = `${company_name} sent you a ${module} #${invoice_id}`;
+        formState.subject = `${company_name} sent you a ${path_title} #${invoice_id}`;
         formState.msg = `Hi <b>${client_name}</b>,
 Please find attached ${path} #${invoice_id}. Due Date was ${invoice_due_date}.
 
-${module} No: #${invoice_id}
-${module} Date: ${invoice_date}
+${path_title} No: #${invoice_id}
+${path_title} Date: ${invoice_date}
 Due Date: ${invoice_due_date}
 Due Amount: USD ${invoice_due_amount}
 
@@ -118,25 +120,23 @@ ${company_name}`;
             });
         } else {
             this.sendEmail();
-        }
-
-        // this.props.handleSubmit(this.state.form); 
+        } 
     }
 
     sendEmail = () => {
         let form = { ...this.state.form }
 			form.type = 'sent'; 
         Api.create(form)
-                .then(resp => {
-                    if (resp.data.success) {   
-                        toast.success('Mail sucessfully sent'); 
-                        this.props.close();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                }) 
+            .then(resp => {
+                if (resp.data.success) {   
+                    toast.success('Mail sucessfully sent'); 
+                    this.props.close();
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            }) 
     }
 
     subjectLook = () => {

@@ -134,7 +134,7 @@ class Email
         return wp_send_json_success($query_data);
     }
 
-    public function templateVariable($string = '', $compnay_name, $client_name, $invoice_id, $invoice_url, $msg = '')
+    public function templateVariable($string = '', $compnay_name, $client_name, $invoice_id, $invoice_url, $msg = '', $path = '')
     {
         return str_replace(
             array(
@@ -142,7 +142,8 @@ class Email
                 '{client_name}',
                 '{invoice_id}',
                 '{invoice_url}',
-                '{msg}'
+                '{msg}',
+                '{path}'
             ),
             array(
                 $compnay_name,
@@ -150,6 +151,7 @@ class Email
                 $invoice_id,
                 $invoice_url,
                 $msg,
+                $path
             ),
             $string
         );
@@ -188,6 +190,7 @@ class Email
         $mail_from = isset($params['fromData']) ? $params['fromData']['email'] : '';
         $mail_to = isset($params['toData']) ? $params['toData']['email'] : '';
         $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
+        $path = isset($params['path']) ? $params['path'] : '';
         $mail_subject = isset($params['subject']) ? $params['subject'] : '';
         $msg = isset($params['msg']) ? nl2br($params['msg']) : '';
         $mail_invoice_img = isset($params['invoice_img']) ? $params['invoice_img'] : '';
@@ -205,7 +208,7 @@ class Email
 
         $subject = $this->templateVariable($mail_subject, $compnay_name, $client_name, $invoice_id, $invoice_url);
         $template = ncpi()->render('email/invoice', [], true);
-        $body = $this->templateVariable($template, $compnay_name, $client_name, $invoice_id, $invoice_url, $msg);
+        $body = $this->templateVariable($template, $compnay_name, $client_name, $invoice_id, $invoice_url, $msg, $path);
 
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $headers[] = 'From: ' . $compnay_name . ' <' . $mail_from . '>';

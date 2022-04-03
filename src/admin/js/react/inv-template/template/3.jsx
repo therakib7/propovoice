@@ -66,7 +66,7 @@ export default class Three extends Component {
                             </div>
                         </div>
                         <div className="pi-inv-title">
-                            <h2>invoice</h2>
+                            <h2>{title}</h2>
                         </div>
                         <div className="pi-hedear">
                             <div className="pi-from">

@@ -70,7 +70,7 @@
 .ncpi .pi-add-info-content input[type=number],
 .ncpi .pi-add-info-content input[type=text] {
   width: 100%;
-  padding: 10px;
+  padding: 6px;
   border: 1px solid var(--border-color-gray);
   border-radius: 4px;
   font-size: 10px;
@@ -90,7 +90,7 @@
 .ncpi .pi-add-info-content .pi-info-input-field {
   float: left;
   width: 50%;
-  margin-top: 6px;
+  margin-top: 7px;
   text-align: right;
 }
 .ncpi .pi-add-info-content h3 {
@@ -300,15 +300,23 @@
   margin-right: 10px;
 }
 .ncpi .pi-add-term .pi-radio-group input[type=radio] {
-  height: 10px;
+  height: 9px;
   margin-right: 5px;
+  min-width: 9px;
+  width: 9px;
+  margin-top: 0px;
+}
+.ncpi .pi-add-term .pi-radio-group input[type=radio]:checked:before {
+  top: -3px;
+  position: relative;
+  left: -3px;
 }
 .ncpi .pi-add-term .pi-radio-group input[type=radio]:checked:after {
   width: 9px;
   height: 9px;
   border-radius: 74px;
-  top: -7px;
-  left: 2px;
+  top: -15px;
+  left: -1px;
   position: relative;
   background-color: #000;
   content: "";

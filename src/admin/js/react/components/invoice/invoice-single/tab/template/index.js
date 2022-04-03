@@ -88,7 +88,11 @@ export default class Template extends Component {
                                         <img src={row.src} className="pi-single-image" />
                                         { ( this.props.currentTemplate.id != row.id ) && <div className="pi-overflow-content">
                                             <a className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
-                                            <a className="pi-btn pi-bg-blue pi-bg-hover-blue">Full Preview</a>
+                                            <a 
+                                            href={'https://appux.co/ncpi/preview/inv'+row.id+'.html'} 
+                                            target="_blank"
+                                            className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                                            >Full Preview</a>
                                         </div>}
                                     </div>
                                 </div>
