@@ -34,15 +34,15 @@ msgstr ""
 msgid "Name is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:234, ../includes/Controllers/Api/Types/Client.php:287
+#: ../includes/Controllers/Api/Types/Client.php:256, ../includes/Controllers/Api/Types/Client.php:309
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:238, ../includes/Controllers/Api/Types/Client.php:291
+#: ../includes/Controllers/Api/Types/Client.php:260, ../includes/Controllers/Api/Types/Client.php:313
 msgid "Email id is not valid!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:242, ../includes/Controllers/Api/Types/Client.php:299
+#: ../includes/Controllers/Api/Types/Client.php:264, ../includes/Controllers/Api/Types/Client.php:321
 msgid "Email Already exist!"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Title is missing"
 msgstr ""
 
-#: ../includes/Controllers/Marketing/Types/Link.php:22, ../includes/Controllers/Setting/Types/Dashboard.php:87, ../includes/Controllers/Setting/Types/Dashboard.php:88
+#: ../includes/Controllers/Marketing/Types/Link.php:22, ../includes/Controllers/Setting/Types/Dashboard.php:90, ../includes/Controllers/Setting/Types/Dashboard.php:91
 msgid "Settings"
 msgstr ""
 
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: ../includes/Controllers/Meta/User/User.php:19, ../includes/Controllers/Setting/Types/Dashboard.php:13, ../includes/Controllers/Setting/Types/Dashboard.php:14
+#: ../includes/Controllers/Meta/User/User.php:19, ../includes/Controllers/Setting/Types/Dashboard.php:16, ../includes/Controllers/Setting/Types/Dashboard.php:17
 msgid "Propovoice"
 msgstr ""
 
@@ -150,31 +150,27 @@ msgstr ""
 msgid "No proposal found in Trash."
 msgstr ""
 
-#: ../includes/Controllers/Setting/Types/Dashboard.php:24, ../includes/Controllers/Setting/Types/Dashboard.php:25
+#: ../includes/Controllers/Setting/Types/Dashboard.php:27, ../includes/Controllers/Setting/Types/Dashboard.php:28
 msgid "Dashboard"
 msgstr ""
 
-#: ../includes/Controllers/Setting/Types/Dashboard.php:33, ../includes/Controllers/Setting/Types/Dashboard.php:34
+#: ../includes/Controllers/Setting/Types/Dashboard.php:36, ../includes/Controllers/Setting/Types/Dashboard.php:37
 msgid "Client"
 msgstr ""
 
-#: ../includes/Controllers/Setting/Types/Dashboard.php:42, ../includes/Controllers/Setting/Types/Dashboard.php:43
-msgid "Project"
-msgstr ""
-
-#: ../includes/Controllers/Setting/Types/Dashboard.php:51, ../includes/Controllers/Setting/Types/Dashboard.php:52
+#: ../includes/Controllers/Setting/Types/Dashboard.php:54, ../includes/Controllers/Setting/Types/Dashboard.php:55
 msgid "Estimate"
 msgstr ""
 
-#: ../includes/Controllers/Setting/Types/Dashboard.php:60, ../includes/Controllers/Setting/Types/Dashboard.php:61
+#: ../includes/Controllers/Setting/Types/Dashboard.php:63, ../includes/Controllers/Setting/Types/Dashboard.php:64
 msgid "Invoice"
 msgstr ""
 
-#: ../includes/Controllers/Setting/Types/Dashboard.php:69, ../includes/Controllers/Setting/Types/Dashboard.php:70
+#: ../includes/Controllers/Setting/Types/Dashboard.php:72, ../includes/Controllers/Setting/Types/Dashboard.php:73
 msgid "Payment"
 msgstr ""
 
-#: ../includes/Controllers/Setting/Types/Dashboard.php:78, ../includes/Controllers/Setting/Types/Dashboard.php:79
+#: ../includes/Controllers/Setting/Types/Dashboard.php:81, ../includes/Controllers/Setting/Types/Dashboard.php:82
 msgid "Business"
 msgstr ""
 

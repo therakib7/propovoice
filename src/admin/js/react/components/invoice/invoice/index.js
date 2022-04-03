@@ -32,8 +32,10 @@ const Invoice = class Invoice extends Component {
             offset: 0,
             perPage: 10,
             totalPage: 1,
-            currentPage: 1
+            currentPage: 1,
+            searchVal: ''
         };
+        this.timeout = 0;
     }
 
     static contextType = AppContext;
@@ -187,10 +189,8 @@ const Invoice = class Invoice extends Component {
         this.props.routeChange();
     };
 
-    render() {
-        const checkedBoxes = this.state.checkedBoxes;
-        const invoices = this.state.invoices;
-        const title = this.state.title;
+    render() { 
+        const { title, invoices, checkedBoxes, searchVal } = this.state;
         return (
             <div className="ncpi-components">
 
@@ -275,7 +275,7 @@ const Invoice = class Invoice extends Component {
                         </div>
                     </>}
 
-                {this.state.empty && <Empty title={title} clickHandler={() => this.newInvoie()} />}
+                {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.newInvoie()} />}
 
                 {/* <button
                     className=""

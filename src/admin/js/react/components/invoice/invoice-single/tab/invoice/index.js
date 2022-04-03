@@ -49,7 +49,8 @@ class Invoice extends Component {
 					text: 'Preview & Share'
 				},
 			],
-			currentTab: '',
+			currentTab: '', 
+			currentTabIndex: null, 
 			msg: {
 				create: 'Successfully Added',
 				update: 'Successfully Updated',
@@ -117,14 +118,16 @@ class Invoice extends Component {
 		if (this.props.id) {
 			this.setState({
 				title,
-				currentTab: 'info'
+				currentTab: 'info',
+				currentTabIndex: 1
 			});
 			this.updateEdit();
 			this.getData();
 		} else {
 			this.setState({
 				title,
-				currentTab: 'template'
+				currentTab: 'template',
+				currentTabIndex: 0
 			});
 		}
 
@@ -349,12 +352,13 @@ class Invoice extends Component {
 		return this.calcItemsTotal() + this.calcTaxTotal();
 	}
 
-	setActiveTab(e, id) {
-		e.preventDefault();
+	setActiveTab(e, id, index) {
+		e.preventDefault(); 
 		this.setState({
-			currentTab: id
-		});
-	}
+            currentTab: id,
+            currentTabIndex: index
+        });
+	} 
 
 	backTab = () => {
 		let tab = this.state.currentTab;
@@ -371,7 +375,8 @@ class Invoice extends Component {
 
 	editTab = () => {
 		this.setState({
-			currentTab: 'info'
+			currentTab: 'info',
+			currentTabIndex: 1,
 		});
 		window.scrollTo(0, 0);
 	}
@@ -408,7 +413,7 @@ class Invoice extends Component {
 	}
 
 	render = () => {
-		const { tabs = [], currentTab, title } = this.state;
+		const {title, tabs = [], currentTab, currentTabIndex} = this.state; 
 		return (
 			<>
 				<div className="row">
@@ -477,10 +482,10 @@ class Invoice extends Component {
 				<div className="pi-single-tab-content">
 					<div className="pi-single-tabs pi-text-center">
 						{tabs.map((tab, index) => (
-							<button
+							<button 
 								key={index}
-								className={"pi-tab-item tablink " + (currentTab == tab.id ? 'pi-active' : '')}
-								onClick={(e) => this.setActiveTab(e, tab.id)}
+								className={"pi-tab-item tablink " + (index <= currentTabIndex ? 'pi-active' : '' )}
+								onClick={(e) => this.setActiveTab(e, tab.id, index)}
 							>
 								{<span className="pi-single-tab-done"><svg
 									width={12}
@@ -495,7 +500,7 @@ class Invoice extends Component {
 								{index < 2 && <svg width={95} height={10} className="pi-arrow">
 									<path
 										d="M89.5 1l4 4m0 0l-4 4m4-4H1"
-										stroke="#E2E8F0"
+										stroke={(index < currentTabIndex ? '#4c6fff' : '#E2E8F0' )}
 										strokeWidth={2}
 										strokeLinecap="round"
 										strokeLinejoin="round"
@@ -721,7 +726,6 @@ class Invoice extends Component {
 						/>}
 				</div>
 			</>
-
 		)
 	}
 }

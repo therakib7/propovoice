@@ -17,6 +17,10 @@ import Style from '../scss/4.scoped.scss'
 export default class Four extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            old_value: ''
+        }
     }
 
     componentDidMount() {

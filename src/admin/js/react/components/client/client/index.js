@@ -295,7 +295,7 @@ export default class Client extends Component {
                         </div>
                     </>}
 
-                {this.state.empty && <Empty title={title} searchVal={this.state.searchVal} clickHandler={() => this.openForm('new')} />}
+                {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.openForm('new')} />}
 
                 {/* <button
                     className=""

@@ -17,6 +17,10 @@ import Style from '../scss/1.scoped.scss'
 export default class One extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            old_value: ''
+        }
     }
 
     componentDidMount() {
