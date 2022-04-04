@@ -3,7 +3,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Style from './style.scoped.scss'
 import Invoice from './tab/invoice';
 
-function InvoiceWrap() { 
+export default function InvoiceWrap() { 
 
 	const { id } = useParams();
 	let navigate = useNavigate();
@@ -30,5 +30,4 @@ function InvoiceWrap() {
 			<Invoice id={id} routeChange={routeChange}  routeInvoice={routeInvoice} path={path} key={path} />
 		</>
 	);
-}
-export default InvoiceWrap; 
+} 

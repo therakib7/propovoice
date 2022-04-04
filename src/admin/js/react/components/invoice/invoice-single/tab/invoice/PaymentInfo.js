@@ -14,7 +14,7 @@ class PaymentInfo extends Component {
                     <>
                         <div className="pi-from-to"> 
                             <label>Bank Info:</label>
-                            <div className="">
+                            <div >
                                 <>
                                     <h4 className="pi-from-title">
                                         {bank_info.bank_name}

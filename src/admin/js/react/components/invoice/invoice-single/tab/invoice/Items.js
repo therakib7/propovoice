@@ -39,7 +39,7 @@ class Items extends Component {
             <> 
                 <table className="pi-info-table">
                     <thead>
-                        <tr className="">
+                        <tr >
                             <th>Name &amp; Details </th>
                             <th>Unit</th>
                             <th>

@@ -416,13 +416,14 @@ class Invoice extends Component {
 		const {title, tabs = [], currentTab, currentTabIndex} = this.state; 
 		return (
 			<>
+			
 				<div className="row">
 					<div className="col-md-6">
-						<h1 className="">Create {title}</h1>
+						<h1>Create {title}</h1>
 						<nav className="pi-breadcrumb">
-							<ul className="">
+							<ul>
 								<li>
-									<a href="#" className="">
+									<a href="#" >
 										Home
 									</a>
 								</li>
@@ -496,6 +497,7 @@ class Invoice extends Component {
 								>
 									<path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
 								</svg></span>}
+								<span></span>
 								{tab.text}
 								{index < 2 && <svg width={95} height={10} className="pi-arrow">
 									<path
@@ -524,7 +526,7 @@ class Invoice extends Component {
 											<div className="col-12 col-md-6">
 												{this.state.fromData && this.state.fromData.logo &&
 													<div className="pi-info-logo">
-														<img src={this.state.fromData.logo.src} className="" />
+														<img src={this.state.fromData.logo.src}  />
 													</div>}
 											</div>
 											<div className="col-12 col-md-6">

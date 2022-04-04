@@ -14,8 +14,8 @@ const Dashboard = lazy(() => import('components/dashboard'));
 const Project = lazy(() => import('components/project'));
 const ClientSummary = lazy(() => import('components/client/client-summary'));
 const Client = lazy(() => import('components/client/client'));
-const Proposal = lazy(() => import('components/proposal'));
-const Editor = lazy(() => import('components/editor')); 
+//const Proposal = lazy(() => import('components/proposal'));
+//const Editor = lazy(() => import('components/editor')); 
 const Invoice = lazy(() => import('components/invoice/invoice'));
 const InvoiceSingle = lazy(() => import('components/invoice/invoice-single'));
 const Payment = lazy(() => import('components/payment'));
@@ -36,10 +36,10 @@ const Home = () => {
                                 <rect y="57" width="100" height="12"></rect>
                             </svg>
                         </div>
-                        <div className="">
+                        <div >
                             <div className="pi-logo-content">
-                                <img src={ncpi_local.assetImgUri + 'logo.png'} className="" />
-                                <strong className="">Propovoice</strong>
+                                <img src={ncpi_local.assetImgUri + 'logo.png'}  />
+                                <strong >Propovoice</strong>
                             </div>
                             <ul>
                                 <li>
@@ -251,9 +251,9 @@ const Home = () => {
                         <Suspense fallback={<div>Loading...</div>}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
-                                <Route path="/proposal" element={<Proposal />} />
-                                <Route path="/editor" element={<Editor />} /> 
+                                {/* <Route path="/proposal" element={<Proposal />} />  */}
                                 <Route path="/estimate" element={<Invoice />} />
+                                {/* <Route path="/editor" element={<Editor />} /> */}
                                 <Route path="/estimate/single" element={<InvoiceSingle />} />
                                 <Route path="/estimate/single/:id" element={<InvoiceSingle />} />
                                 <Route path="/invoice" element={<Invoice />} />
@@ -265,6 +265,7 @@ const Home = () => {
                                 <Route path="/client/:id" exact element={<ClientSummary />} />
                                 <Route path="/business" element={<Business />} />
                                 <Route path="/setting" element={<Setting />} />
+                                <Route path="/setting/:tab" element={<Setting />} />
                                 {/* <Route path="/help" element={<Help />} /> */}
                             </Routes>
                         </Suspense>

@@ -183,11 +183,11 @@ export default class Business extends Component {
             <div className="ncpi-components">
 
 
-                <h1 className="">{title}</h1>
+                <h1>{title}</h1>
                 <nav className="pi-breadcrumb">
-                    <ul className="">
+                    <ul>
                         <li>
-                            <a href="#" className="">
+                            <a href="#" >
                                 Home
                             </a>
                         </li>
@@ -204,25 +204,25 @@ export default class Business extends Component {
                             <div className="row">
                                 <div className="col col-md-6 col-lg-3">
                                     <div className="pi-bg-air-white">
-                                        <span className="">Total {title}</span>
+                                        <span >Total {title}</span>
                                         <h4 className="pi-color-blue">23</h4>
                                     </div>
                                 </div>
                                 <div className="col col-md-6 col-lg-3">
                                     <div className="pi-bg-air-white">
-                                        <span className="">Paid {title}</span>
+                                        <span >Paid {title}</span>
                                         <h4 className="pi-color-blue">132</h4>
                                     </div>
                                 </div>
                                 <div className="col col-md-6 col-lg-3">
                                     <div className="pi-bg-air-white">
-                                        <span className="">Unpaid {title}</span>
+                                        <span >Unpaid {title}</span>
                                         <h4 className="pi-color-blue">16</h4>
                                     </div>
                                 </div>
                                 <div className="col col-md-6 col-lg-3">
                                     <div className="pi-bg-air-white">
-                                        <span className="">Draft {title}</span>
+                                        <span >Draft {title}</span>
                                         <h4 className="pi-color-blue">21</h4>
                                     </div>
                                 </div>
@@ -267,7 +267,7 @@ export default class Business extends Component {
                 {this.state.empty && <Empty title={title} clickHandler={() => this.openForm('new')} />}
 
                 {/* <button
-                    className=""
+                    
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button> */}

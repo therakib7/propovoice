@@ -38,10 +38,10 @@ const Home = () => {
                             <rect y="60" width="100" height="20"></rect>
                         </svg> */}
                         </div>
-                        <div className="">
+                        <div >
                             <div className="pi-logo-content">
-                                <img src={ncpi_local.assetImgUri + 'logo.png'} className="" />
-                                <strong className="">Propovoice</strong>
+                                <img src={ncpi_local.assetImgUri + 'logo.png'}  />
+                                <strong >Propovoice</strong>
                             </div>
                             <ul>
                                 <li>

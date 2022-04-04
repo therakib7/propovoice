@@ -86,7 +86,7 @@ class ClientSummary extends Component {
                 <div className='mb-3 text-sm'>
                     <NavLink
                         to='/client'
-                        className="">
+                        >
                         <span className="dashicons dashicons-arrow-left-alt2"></span> Back to Client
                     </NavLink>
                 </div>

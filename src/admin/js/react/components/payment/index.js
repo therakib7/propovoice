@@ -223,11 +223,11 @@ export default class Payment extends Component {
         const { payments, title, currentTab, currentTabTitle } = this.state;
         return (
             <div className="ncpi-components">
-                <h1 className="">{title}</h1>
+                <h1>{title}</h1>
                 <nav className="pi-breadcrumb">
-                    <ul className="">
+                    <ul>
                         <li>
-                            <a href="#" className="">
+                            <a href="#" >
                                 Home
                             </a>
                         </li>

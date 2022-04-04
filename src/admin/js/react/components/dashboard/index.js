@@ -55,7 +55,7 @@ export default class Dashboard extends Component {
         const { total_client, total_estimate, accepted_estimate, total_invoice, paid_invoice } = this.state.summary;
         return (
             <div className="ncpi-components">
-                <h1 className="">
+                <h1>
                     Dashboard<sup>Alpha</sup>
                 </h1>
                 <div className="pi-add-item-main-content pi-m-40">
@@ -204,31 +204,31 @@ export default class Dashboard extends Component {
                     <div className="row">
                         <div className="col-md-4 col-lg">
                             <div className="pi-cards-content pi-bg-husky">
-                                <span className="">Total Client</span>
+                                <span >Total Client</span>
                                 <h4 className="pi-color-blue">{total_client}</h4>
                             </div>
                         </div>
                         <div className="col-md-4 col-lg">
                             <div className="pi-cards-content pi-bg-clear-moon">
-                                <span className="">Total Estiamte</span>
+                                <span >Total Estiamte</span>
                                 <h4 className="pi-color-red">{total_estimate}</h4>
                             </div>
                         </div>
                         <div className="col-md-4 col-lg">
                             <div className="pi-cards-content pi-bg-air-mint">
-                                <span className="">Accepted Estiamte</span>
+                                <span >Accepted Estiamte</span>
                                 <h4 className="pi-color-green">{accepted_estimate}</h4>
                             </div>
                         </div>
                         <div className="col-md-4 col-lg">
                             <div className="pi-cards-content pi-bg-clear-petal">
-                                <span className="">Total Invoice</span>
+                                <span >Total Invoice</span>
                                 <h4 className="pi-color-red">{total_invoice}</h4>
                             </div>
                         </div>
                         <div className="col-md-4 col-lg">
                             <div className="pi-cards-content pi-bg-clear-winter-mist">
-                                <span className="">Paid Invoice</span>
+                                <span >Paid Invoice</span>
                                 <h4 className="pi-color-green">{paid_invoice}</h4>
                             </div>
                         </div>

@@ -116,8 +116,8 @@ export default class Welcome extends Component {
                 
                 <div className="pi-container">
                     <div className="pi-logo-content">
-                        <img src={ncpi_local.assetImgUri+'logo.png'} className="" />
-                        <strong className="">Propovoice</strong>
+                        <img src={ncpi_local.assetImgUri+'logo.png'}  />
+                        <strong >Propovoice</strong>
                     </div>
 
                     <div className="pi-welcome-tabs-content">
