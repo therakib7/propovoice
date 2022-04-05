@@ -62,7 +62,7 @@ export default class Client extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ clients: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
+                this.setState({ clients: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
             })
     };
 
@@ -331,16 +331,16 @@ export default class Client extends Component {
                 {this.state.preloader ? <TablePreloader /> : <Table tableData={clients} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
-                    previousLabel={"Prev"}
-                    nextLabel={"Next"}
+                    previousLabel={"<"}
+                    nextLabel={">"}
                     breakLabel={"..."}
-                    breakClassName={"break-me"}
+                    breakClassName={"break"}
                     forcePage={this.state.currentPage - 1}
                     pageCount={this.state.totalPage}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
-                    containerClassName={"ncpi-pagination text-base mt-5 shadow"}
+                    containerClassName={"pi-pagination"}
                     activeClassName={"active"} />
                 }
 

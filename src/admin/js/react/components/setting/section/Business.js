@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+import AppContext from 'context/app-context';
 
 import Logo from './Logo';
+import Api from 'api/business'; 
 
 export default class Business extends Component {
     constructor(props) {
@@ -24,6 +27,8 @@ export default class Business extends Component {
         };
     }
 
+    static contextType = AppContext;
+
     handleChange = e => {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } });
@@ -34,7 +39,7 @@ export default class Business extends Component {
         this.setState({ form: { ...this.state.form, ['default']: value } });
     }
 
-    componentDidUpdate() {
+    /* componentDidUpdate() {
         //condition added to stop multiple rendering
         if (this.props.modalType == 'edit') {
             
@@ -46,13 +51,51 @@ export default class Business extends Component {
                 this.setState({ form: this.initialState });
             }
         }
+    } */
+
+    componentDidMount() {
+        this.getData(); 
     }
 
-    handleSubmit = (e) => {
+    getData = () => {  
+        Api.getAll('default=1')
+        .then(resp => {
+            let businessData = resp.data.data.result; 
+            if ( businessData.length ) {  
+                this.setState({ form: businessData[0] });  
+            }
+        }); 
+    };
+
+    handleSubmit = (e) => { 
         e.preventDefault();
-        this.props.handleSubmit(this.state.form);
-        //this.setState({ form: this.initialState });
-    } 
+
+        let business = this.state.form;
+
+        if ( !business.id ) {
+            Api.create(business)
+                .then(resp => {
+                    if ( resp.data.success ) {    
+                        toast.success(this.context.CrudMsg.create);
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                })
+        } else {
+            Api.update(business.id, business)
+                .then(resp => {
+                    if ( resp.data.success) {  
+                        toast.success(this.context.CrudMsg.update);
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                })
+        } 
+    }
 
     handleLogoChange = (data, type = null) => { 
 		let form = { ...this.state.form }
@@ -62,7 +105,7 @@ export default class Business extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={{maxWidth: '500px'}} className="pi-form-content pi-form-style-two pi-form-style-three">
+            <form onSubmit={this.handleSubmit} style={{maxWidth: '700px'}} className="pi-form-content">
                 <div className="row">
                         <div className="col-md">
                             <label 
@@ -142,9 +185,11 @@ export default class Business extends Component {
                                 value={this.state.form.zip}
                                 onChange={this.handleChange}
                             />
-                        </div>
-                        <div className="col-md"> 
-                        </div>
+                        </div> 
+                        
+                        <div className="col-md">
+                            <Logo data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                        </div> 
                     </div>
 
                     <div className="row">

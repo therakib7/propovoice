@@ -1,5 +1,4 @@
 @import "partials/_main.scss";
-@import "partials/_pagination.scss";
  
 #wpbody-content {
     padding-bottom: 0; 
@@ -62,7 +61,7 @@ h4.from-title {
     top: 3em;
 }
 
-.ncpi .pi-settings-tab .pi-tabs .pi-tab {
+.ncpi .pi-settings-tab .pi-settings-tabs .pi-tab {
     margin: 0;
 }
 .ncpi .pi-edit-content span { 

@@ -292,16 +292,16 @@ const Invoice = class Invoice extends Component {
                 {this.state.preloader ? <TablePreloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
-                    previousLabel={"Prev"}
-                    nextLabel={"Next"}
+                    previousLabel={"<"}
+                    nextLabel={">"}
                     breakLabel={"..."}
-                    breakClassName={"break-me"}
+                    breakClassName={"break"}
                     forcePage={this.state.currentPage - 1}
                     pageCount={this.state.totalPage}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
-                    containerClassName={"ncpi-pagination text-base mt-5 shadow"}
+                    containerClassName={"pi-pagination"}
                     activeClassName={"active"} />
                 }
 

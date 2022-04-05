@@ -1,4 +1,3 @@
-.ncpi .pi-setting-tab-content,
 .ncpi .pi-payment-tab-content {
   width: 65%;
   position: relative;
@@ -8,43 +7,36 @@
   border-radius: 8px;
 }
 @media screen and (max-width: 992px) {
-  .ncpi .pi-setting-tab-content,
-.ncpi .pi-payment-tab-content {
+  .ncpi .pi-payment-tab-content {
     width: 100%;
   }
 }
-.ncpi .pi-setting-tab-content .pi-title-content h2,
 .ncpi .pi-payment-tab-content .pi-title-content h2 {
   font-size: 20px;
   font-weight: 500;
 }
-.ncpi .pi-setting-tab-content .pi-title-content h5,
 .ncpi .pi-payment-tab-content .pi-title-content h5 {
   font-size: 14px;
   font-weight: 500;
   margin-top: 5px;
   margin-bottom: 0;
 }
-.ncpi .pi-setting-tab-content .pi-payment-empty-content > div,
 .ncpi .pi-payment-tab-content .pi-payment-empty-content > div {
   top: 50%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.ncpi .pi-setting-tab-content .pi-payment-empty-content,
 .ncpi .pi-payment-tab-content .pi-payment-empty-content {
   position: relative;
   border-radius: 8px;
   padding: 20px 0 25px;
 }
-.ncpi .pi-setting-tab-content .pi-payment-empty-content img,
 .ncpi .pi-payment-tab-content .pi-payment-empty-content img {
   display: block;
   margin: auto;
   margin-bottom: 20px;
 }
-.ncpi .pi-setting-tab-content .pi-payment-empty-content span,
 .ncpi .pi-payment-tab-content .pi-payment-empty-content span {
   background: var(--bg-color-air-white);
   padding: 16px;
@@ -55,7 +47,6 @@
   line-height: 16px;
   position: relative;
 }
-.ncpi .pi-setting-tab-content .pi-payment-empty-content span:before,
 .ncpi .pi-payment-tab-content .pi-payment-empty-content span:before {
   content: "";
   position: absolute;
@@ -64,34 +55,28 @@
   border-top: 35px solid white;
   border-left: 35px solid var(--bg-color-air-white);
 }
-.ncpi .pi-setting-tab-content .pi-payment-empty-content span:after,
 .ncpi .pi-payment-tab-content .pi-payment-empty-content span:after {
   content: "";
   position: absolute;
   bottom: 0px;
   left: 0;
 }
-.ncpi .pi-setting-tab-content .pi-payment-empty-content span svg,
 .ncpi .pi-payment-tab-content .pi-payment-empty-content span svg {
   display: block;
   margin: auto;
   margin-bottom: 10px;
 }
-.ncpi .pi-setting-tab-content .pi-btn,
 .ncpi .pi-payment-tab-content .pi-btn {
   display: block;
   margin: auto;
   margin-top: 25px;
 }
-.ncpi .pi-setting-tab-content .pi-btn svg path,
 .ncpi .pi-payment-tab-content .pi-btn svg path {
   fill: var(--text-color-white);
 }
-.ncpi .pi-setting-tab-content ul,
 .ncpi .pi-payment-tab-content ul {
   margin: 0;
 }
-.ncpi .pi-setting-tab-content ul li,
 .ncpi .pi-payment-tab-content ul li {
   display: flex;
   padding: 15px;
@@ -99,16 +84,14 @@
   border-radius: 10px;
   margin-bottom: 10px;
 }
-.ncpi .pi-setting-tab-content ul li .pi-edit,
 .ncpi .pi-payment-tab-content ul li .pi-edit {
   right: 0px;
   position: absolute;
   background: #fff;
-  top: -2px;
+  top: 0;
   border-radius: 25px;
   box-shadow: 3px 3px 4px 0px rgba(205, 202, 205, 0.12);
 }
-.ncpi .pi-setting-tab-content ul li .pi-edit span,
 .ncpi .pi-payment-tab-content ul li .pi-edit span {
   background: #fff;
   display: inline-block;
@@ -116,48 +99,38 @@
   border-radius: 50%;
   cursor: pointer;
 }
-.ncpi .pi-setting-tab-content ul li .pi-edit span:last-child svg path,
 .ncpi .pi-payment-tab-content ul li .pi-edit span:last-child svg path {
   fill: red;
 }
-.ncpi .pi-setting-tab-content ul li .pi-edit span:hover,
 .ncpi .pi-payment-tab-content ul li .pi-edit span:hover {
   box-shadow: 3px 3px 4px 3px rgba(205, 202, 205, 0.18);
 }
-.ncpi .pi-setting-tab-content ul li .pi-edit span:hover svg path,
 .ncpi .pi-payment-tab-content ul li .pi-edit span:hover svg path {
   fill: var(--bg-color-blue);
 }
-.ncpi .pi-setting-tab-content ul li .pi-bank-image svg,
 .ncpi .pi-payment-tab-content ul li .pi-bank-image svg {
   margin-top: 50%;
 }
-.ncpi .pi-setting-tab-content ul li .bank-text-content,
 .ncpi .pi-payment-tab-content ul li .bank-text-content {
   margin-left: 20px;
 }
-.ncpi .pi-setting-tab-content ul li .bank-text-content .pi-bank-title,
 .ncpi .pi-payment-tab-content ul li .bank-text-content .pi-bank-title {
   font-size: 18px;
   font-weight: 600;
 }
-.ncpi .pi-setting-tab-content ul li .bank-text-content .pi-bank-subtitle,
 .ncpi .pi-payment-tab-content ul li .bank-text-content .pi-bank-subtitle {
   font-size: 15px;
   font-weight: 500;
 }
-.ncpi .pi-setting-tab-content ul .pi-btn,
 .ncpi .pi-payment-tab-content ul .pi-btn {
   display: flex;
   margin: auto;
   margin-top: 30px;
 }
-.ncpi .pi-setting-tab-content ul .pi-btn svg,
 .ncpi .pi-payment-tab-content ul .pi-btn svg {
   margin-top: 2px;
   margin-right: 5px;
 }
-.ncpi .pi-setting-tab-content ul .pi-btn svg path,
 .ncpi .pi-payment-tab-content ul .pi-btn svg path {
   margin-top: 2px;
   margin-right: 5px;

@@ -62,12 +62,12 @@ export default class General extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={{maxWidth: '500px'}} className="pi-form-content pi-form-style-two pi-form-style-three">
+            <form onSubmit={this.handleSubmit} style={{maxWidth: '500px'}} className="pi-form-content">
                 <div className="row">
                     <div className="col">
                         <label
                             htmlFor="form-name">
-                            Company Name
+                            Test Field
                         </label>
 
                         <input
@@ -85,7 +85,7 @@ export default class General extends Component {
                     <div className="col">
                         <label
                             htmlFor="form-web">
-                            Website
+                            Test Field
                         </label>
 
                         <input

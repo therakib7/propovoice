@@ -42,7 +42,7 @@ class Invoice extends Component {
 				},
 				{
 					id: 'info',
-					text: 'Add Content'
+					text: 'Add Information'
 				},
 				{
 					id: 'preview',
@@ -383,14 +383,18 @@ class Invoice extends Component {
 
 	continueTab = (param) => {
 		let tab = this.state.currentTab;
+		let tabIndex = 0;
 		if (param == 'template') {
 			tab = 'info';
+			tabIndex = 1;
 		} else if (param == 'info') {
 			tab = 'preview';
+			tabIndex = 2;
 		}
 
 		this.setState({
-			currentTab: tab
+			currentTab: tab,
+			currentTabIndex: tabIndex,
 		});
 	}
 
@@ -435,14 +439,7 @@ class Invoice extends Component {
 						</nav>
 					</div>
 					<div className="col-md-6">
-						<div className="pi-single-btn pi-text-right">
-							{/* {(currentTab != 'template') &&
-								<button
-									className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
-									onClick={this.backTab} >
-									Back
-								</button>
-							}  */}
+						<div className="pi-single-btn pi-text-right"> 
 
 							{(currentTab == 'template') && <button
 								className="pi-btn pi-bg-blue pi-bg-hover-blue"
@@ -662,49 +659,52 @@ class Invoice extends Component {
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} />
 												{!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />}
+												{!wage.length && 
+												<>
+													<li>
+														<input type="checkbox" defaultChecked="checked" />
+														<i />
+														<h3>Edit or create Client</h3>
+														<div>
+															<p>Upcoming</p>
+														</div>
+													</li>
+													<li>
+														<input type="checkbox" defaultChecked="checked" />
+														<i />
+														<h3>Additional Amount</h3>
+														<div>
+															<p>Upcoming</p>
+														</div>
+													</li>
+													<li>
+														<input type="checkbox" defaultChecked="checked" />
+														<i />
+														<h3>Reminder</h3>
+														<div>
+															<p>Upcoming</p>
+														</div>
+													</li>
+													<li>
+														<input type="checkbox" defaultChecked="checked" />
+														<i />
+														<h3>Recuring</h3>
+														<div>
+															<p>Upcoming</p>
+														</div>
+													</li>
+													<li>
+														<input type="checkbox" defaultChecked="checked" />
+														<i />
+														<h3>Crarge or Late Fee</h3>
+														<div>
+															<p>Upcoming</p>
+														</div>
+													</li>
+												</>
+												}
 												{/* Others sidebar section */}
-											</Suspense>
-
-											<li>
-												<input type="checkbox" defaultChecked="checked" />
-												<i />
-												<h3>Edit or create Client</h3>
-												<div>
-													<p>Upcoming</p>
-												</div>
-											</li>
-											<li>
-												<input type="checkbox" defaultChecked="checked" />
-												<i />
-												<h3>Additional Amount</h3>
-												<div>
-													<p>Upcoming</p>
-												</div>
-											</li>
-											<li>
-												<input type="checkbox" defaultChecked="checked" />
-												<i />
-												<h3>Reminder</h3>
-												<div>
-													<p>Upcoming</p>
-												</div>
-											</li>
-											<li>
-												<input type="checkbox" defaultChecked="checked" />
-												<i />
-												<h3>Recuring</h3>
-												<div>
-													<p>Upcoming</p>
-												</div>
-											</li>
-											<li>
-												<input type="checkbox" defaultChecked="checked" />
-												<i />
-												<h3>Crarge or Late Fee</h3>
-												<div>
-													<p>Upcoming</p>
-												</div>
-											</li>
+											</Suspense> 
 										</ul>
 									</div>
 

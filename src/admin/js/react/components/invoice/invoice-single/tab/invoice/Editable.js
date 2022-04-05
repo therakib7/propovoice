@@ -40,7 +40,7 @@ class Editable extends Component {
 								name="text"
 								value={text}
 							/>
-							<span className='pi-cursor-pointer'>
+							<span className='pi-cursor-pointer' style={{marginLeft: '5px'}}>
 								<svg
 									width={20}
 									height={20}

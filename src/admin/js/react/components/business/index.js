@@ -183,9 +183,9 @@ export default class Business extends Component {
             <div className="ncpi-components">
 
 
-                <h1>{title}</h1>
+                <h1 >{title}</h1>
                 <nav className="pi-breadcrumb">
-                    <ul>
+                    <ul >
                         <li>
                             <a href="#" >
                                 Home
@@ -289,19 +289,18 @@ export default class Business extends Component {
                 {this.state.preloader ? <TablePreloader /> : <Table tableData={businesses} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
-                    previousLabel={"Prev"}
-                    nextLabel={"Next"}
+                    previousLabel={"<"}
+                    nextLabel={">"}
                     breakLabel={"..."}
-                    breakClassName={"break-me"}
+                    breakClassName={"break"}
                     forcePage={this.state.currentPage - 1}
                     pageCount={this.state.totalPage}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
-                    containerClassName={"ncpi-pagination text-base mt-5 shadow"}
+                    containerClassName={"pi-pagination"}
                     activeClassName={"active"} />
                 }
-
             </div>
         );
     }

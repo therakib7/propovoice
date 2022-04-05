@@ -59,7 +59,7 @@ export default function SettingWrap() {
             </nav>
 
             <div className="pi-settings-tab">
-                <ul className="pi-tabs">
+                <ul className="pi-settings-tabs">
                     {tabs.map((tab, index) => (
                         <li 
                             key={index}

@@ -166,14 +166,6 @@ msgstr ""
 msgid "Invoice"
 msgstr ""
 
-#: ../includes/Controllers/Setting/Types/Dashboard.php:72, ../includes/Controllers/Setting/Types/Dashboard.php:73
-msgid "Payment"
-msgstr ""
-
-#: ../includes/Controllers/Setting/Types/Dashboard.php:81, ../includes/Controllers/Setting/Types/Dashboard.php:82
-msgid "Business"
-msgstr ""
-
 #: ../includes/Controllers/Setting/Types/Welcome.php:13, ../includes/Controllers/Setting/Types/Welcome.php:14
 msgid "Propovoice Welcome"
 msgstr ""

@@ -2253,7 +2253,7 @@ html {
 }
 .ncpi .pi-table-showing select {
   border-radius: 5px;
-  margin-top: 10px;
+  margin-top: 1px;
   color: #4a5568;
   font-size: 12px;
   padding: 5px 5px;
@@ -2317,7 +2317,10 @@ html {
 }
 .ncpi .pi-table input[type=checkbox] {
   zoom: 1.5;
-  margin-top: 3px;
+  border-radius: 3px;
+  transform: scale(0.8);
+  border: 1px solid #939393f0;
+  box-shadow: none;
 }
 .ncpi .pi-table tr {
   border: 1px solid #cbd5e0;
@@ -2409,11 +2412,6 @@ html {
   border: 1px solid #ddd;
   padding: 10px;
   width: 100%;
-}
-@media screen and (max-width: 550px) {
-  .ncpi .pi-info-table-content .pi-info-table textarea {
-    width: auto;
-  }
 }
 .ncpi .pi-info-table-content .pi-info-table thead tr th:nth-child(3) {
   padding: 10px 20px;
@@ -2625,9 +2623,9 @@ html {
     padding: 45px 30px;
   }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-right-content {
-    padding: 45px 15px;
+    padding: 45px 15px !important;
     overflow-x: hidden;
   }
 }
@@ -2650,6 +2648,11 @@ html {
 }
 .ncpi .pi-cards .row > div {
   padding-right: 7px;
+}
+@media screen and (max-width: 550px) {
+  .ncpi .pi-cards .row > div {
+    padding-right: 15px;
+  }
 }
 .ncpi .pi-cards h2 {
   font-size: 24px;
@@ -2689,7 +2692,6 @@ html {
   outline: none;
   line-height: 1;
   padding-left: 40px;
-  position: relative;
   border-radius: 10px;
   background: transparent;
 }
@@ -2760,6 +2762,12 @@ html {
 .ncpi .pi-featurs-main-content .row > div {
   padding-right: 10px;
   padding-left: 10px;
+}
+@media screen and (max-width: 550px) {
+  .ncpi .pi-featurs-main-content {
+    margin-top: 15px;
+    padding: 30px 20px 20px;
+  }
 }
 .ncpi .pi-featurs-main-content .pi-featurs-title {
   font-size: 20px;
@@ -2841,6 +2849,30 @@ html {
   padding: 12px 15px;
   z-index: 1;
   position: relative;
+}
+.ncpi .pi-pagination {
+  display: inline-flex;
+  float: right;
+  margin-top: 30px;
+}
+.ncpi .pi-pagination li:first-child a {
+  border-radius: 8px;
+  margin-right: 5px;
+}
+.ncpi .pi-pagination li:last-child a {
+  border-radius: 8px;
+  margin-left: 5px;
+}
+.ncpi .pi-pagination li:nth-child(2) a {
+  border-radius: 8px;
+  margin-left: 5px;
+  border-radius: 8px;
+}
+.ncpi .pi-pagination li a {
+  padding: 10px 15px;
+  border: 1px solid #cbd5e0;
+  font-size: 16px;
+  color: #4a5568;
 }
 
 /*-------------------------------------------------------------- 
@@ -2948,7 +2980,7 @@ html {
   padding: 7px;
 }
 .ncpi .pi-popup-content .pi-form-content .pi-textarea-content {
-  margin-top: 7px;
+  margin-top: 20px;
 }
 .ncpi .pi-popup-content .pi-form-content .pi-textarea-content h4 {
   font-weight: 600;
@@ -3183,7 +3215,7 @@ html {
   margin-left: 0px;
 }
 .ncpi .pi-single-tabs {
-  margin-top: -80px;
+  margin-top: -88px;
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-single-tabs {
@@ -3324,6 +3356,7 @@ html {
   border-radius: 8px;
   margin-right: 7px;
   cursor: pointer;
+  box-shadow: none !important;
 }
 .ncpi .pi-edit-content .pi-pi-edit-text {
   margin-top: 2px;
@@ -3408,15 +3441,12 @@ html {
   right: 0;
   bottom: -11px;
 }
-.ncpi .pi-setting-tab-content {
-  border-radius: 25px !important;
-}
-.ncpi .pi-settings-tab .pi-tabs {
+.ncpi .pi-settings-tab .pi-settings-tabs {
   display: inline-flex;
   width: 100%;
   border-bottom: 1px solid #e2e8f0;
 }
-.ncpi .pi-settings-tab .pi-tabs .pi-tab {
+.ncpi .pi-settings-tab .pi-settings-tabs .pi-tab {
   padding: 10px 15px;
   border-bottom: 3px solid #fff;
   font-size: 14px;
@@ -3424,8 +3454,8 @@ html {
   border-radius: 4px 4px 0 0;
   cursor: pointer;
 }
-.ncpi .pi-settings-tab .pi-tabs .pi-tab.pi-active,
-.ncpi .pi-settings-tab .pi-tabs .pi-tab:hover {
+.ncpi .pi-settings-tab .pi-settings-tabs .pi-tab.pi-active,
+.ncpi .pi-settings-tab .pi-settings-tabs .pi-tab:hover {
   background-color: var(--bg-color-deutzia-white);
   border-bottom: 3px solid var(--bg-color-blue);
 }
@@ -3481,12 +3511,18 @@ html {
   border-radius: 0;
   position: relative;
   top: 1px;
+  width: 14px;
+  min-width: 14px;
+  height: 14px;
 }
 .pi-form-accordion .pi-tab input[type=radio] {
   position: relative;
   top: 36px;
   left: 12px;
   color: #000;
+  width: 14px;
+  min-width: 14px;
+  height: 14px;
 }
 .pi-form-accordion .pi-tab .pi-payment-btn {
   padding: 10px 25px;
@@ -3557,7 +3593,7 @@ html {
   margin-right: 0;
 }
 .pi-form-accordion .pi-payment-buttons .pi-btn {
-  padding: 12px 42px;
+  padding: 12px 40px;
   font-size: 12px;
   border-radius: 5px;
   background-color: #e1e8ff;
@@ -3620,15 +3656,18 @@ html {
   margin-top: -23px !important;
 }
 .ncpi .pi-form-accordion.pi-additional .pi-tab input[type=checkbox] {
-  top: 38px !important;
+  top: 39px !important;
   left: 12px !important;
+  transform: scale(0.8);
+  border: 1px solid #1a1a1aeb;
+  box-shadow: none !important;
 }
 .ncpi .pi-charge .pi-reminder-time {
   margin-bottom: 20px !important;
 }
 .ncpi .pi-charge .pi-radio-content label,
 .ncpi .pi-form-accordion .pi-radio-content label {
-  font-size: 15px !important;
+  font-size: 14px !important;
   background-color: transparent !important;
   left: 0 !important;
   top: 0 !important;
@@ -3877,26 +3916,31 @@ select {
   font-weight: 400 !important;
 }
 
-.ncpi .pi-business-form div {
+.ncpi .pi-form-content div {
   margin-bottom: 10px;
 }
-.ncpi .pi-business-form .row > div {
+.ncpi .pi-form-content .row > div {
   padding: 0;
 }
-.ncpi .pi-business-form .row > div:nth-child(odd) {
+.ncpi .pi-form-content .row > div:nth-child(odd) {
   margin-right: 30px;
 }
-.ncpi .pi-business-form .row:last-child > div {
+.ncpi .pi-form-content .row > div:nth-child(odd):last-child {
+  margin-right: 0px;
+}
+.ncpi .pi-form-content .row:last-child > div {
   margin-right: 0px !important;
   margin-bottom: 30px;
 }
 @media screen and (max-width: 550px) {
-  .ncpi .pi-business-form .row > div:nth-child(odd) {
+  .ncpi .pi-form-content .row > div:nth-child(odd) {
     margin-right: 0px;
   }
 }
+.ncpi .pi-form-content.pi-form-style-three textarea,
 .ncpi .pi-form-content.pi-form-style-two textarea {
   margin-top: 30px;
+  background-color: #f7fafc;
 }
 .ncpi .pi-form-content textarea {
   background-color: #edf2f7;
@@ -3909,16 +3953,13 @@ select {
   outline: none;
   line-height: 1;
   border-radius: 5px;
-  background-color: #f7fafc !important;
+  margin-top: 15px;
 }
 .ncpi .pi-form-content select,
-.ncpi .pi-form-content input[type=number],
-.ncpi .pi-form-content input[type=text],
-.ncpi .pi-form-content input[type=email],
 .ncpi .pi-form-content input[type=url],
-.ncpi .pi-business-form input[type=number],
-.ncpi .pi-business-form input[type=email],
-.ncpi .pi-business-form input[type=text] {
+.ncpi .pi-form-content input[type=number],
+.ncpi .pi-form-content input[type=email],
+.ncpi .pi-form-content input[type=text] {
   background-color: #edf2f7;
   border-radius: 10px;
   margin-top: 10px;
@@ -3930,6 +3971,11 @@ select {
   outline: none;
   line-height: 1;
 }
+.ncpi .pi-form-content.pi-form-style-three select,
+.ncpi .pi-form-content.pi-form-style-three input[type=email],
+.ncpi .pi-form-content.pi-form-style-three input[type=url],
+.ncpi .pi-form-content.pi-form-style-three input[type=number],
+.ncpi .pi-form-content.pi-form-style-three input[type=text],
 .ncpi .pi-form-content.pi-form-style-two select,
 .ncpi .pi-form-content.pi-form-style-two input[type=email],
 .ncpi .pi-form-content.pi-form-style-two input[type=url],
@@ -3938,13 +3984,16 @@ select {
   border-radius: 5px;
   background-color: #f7fafc;
 }
-.ncpi .pi-form-content .row > div {
+.ncpi .pi-form-content.pi-form-style-three .row > div,
+.ncpi .pi-form-content.pi-form-style-two .row > div {
   padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: -20px !important;
+  margin-right: 0px;
 }
 .ncpi .pi-form-content.pi-form-style-two .row > div {
   margin-bottom: 0px;
 }
+.ncpi .pi-form-content.pi-form-style-three label,
 .ncpi .pi-form-content.pi-form-style-two label {
   font-size: 10px;
   background-color: #edf2f7;
