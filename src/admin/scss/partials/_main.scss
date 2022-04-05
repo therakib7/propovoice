@@ -2855,24 +2855,29 @@ html {
   float: right;
   margin-top: 30px;
 }
-.ncpi .pi-pagination li:first-child a {
+.ncpi .pi-pagination li.previous a {
   border-radius: 8px;
-  margin-right: 5px;
+  margin-right: 7px;
 }
-.ncpi .pi-pagination li:last-child a {
+.ncpi .pi-pagination li.next a {
   border-radius: 8px;
-  margin-left: 5px;
+  margin-left: 7px;
 }
 .ncpi .pi-pagination li:nth-child(2) a {
-  border-radius: 8px;
-  margin-left: 5px;
-  border-radius: 8px;
+  border-radius: 8px 0 0 8px;
+}
+.ncpi .pi-pagination li:nth-last-of-type(2) a {
+  border-radius: 0 8px 8px 0;
 }
 .ncpi .pi-pagination li a {
   padding: 10px 15px;
   border: 1px solid #cbd5e0;
+  margin-left: -1px;
   font-size: 16px;
   color: #4a5568;
+}
+.ncpi .pi-pagination li a:hover {
+  color: var(--text-color-blue) !important;
 }
 
 /*-------------------------------------------------------------- 
@@ -2896,6 +2901,7 @@ html {
   z-index: 99;
 }
 .ncpi .pi-overlay {
+  visibility: visible;
   opacity: 1;
   z-index: 99;
   overflow-x: hidden;
@@ -2967,9 +2973,6 @@ html {
 }
 .ncpi .pi-popup-content .pi-form-content.pi-form-style-three label {
   top: 9px;
-}
-.ncpi .pi-popup-content .pi-form-content .row > div {
-  margin-bottom: -10px !important;
 }
 .ncpi .pi-popup-content .pi-form-content select,
 .ncpi .pi-popup-content .pi-form-content input[type=number],
@@ -3895,6 +3898,7 @@ input[type=url]:focus,
 input[type=password]:focus,
 input[type=search]:focus {
   outline: none;
+  box-shadow: none;
 }
 
 select {
@@ -3919,11 +3923,18 @@ select {
 .ncpi .pi-form-content div {
   margin-bottom: 10px;
 }
+.ncpi .pi-form-style-two > .row {
+  margin-right: -5px;
+  margin-left: -5px;
+}
 .ncpi .pi-form-content .row > div {
   padding: 0;
 }
 .ncpi .pi-form-content .row > div:nth-child(odd) {
   margin-right: 30px;
+}
+.ncpi .pi-form-style-three .row > div:nth-child(odd) {
+  margin-right: 0px;
 }
 .ncpi .pi-form-content .row > div:nth-child(odd):last-child {
   margin-right: 0px;
@@ -3937,11 +3948,13 @@ select {
     margin-right: 0px;
   }
 }
-.ncpi .pi-form-content.pi-form-style-three textarea,
-.ncpi .pi-form-content.pi-form-style-two textarea {
-  margin-top: 30px;
-  background-color: #f7fafc;
+.ncpi .pi-form-style-three textarea,
+.ncpi .pi-form-style-two textarea {
+  margin-top: 30px !important;
+  background-color: #f7fafc !important;
 }
+.ncpi .pi-form-style-three textarea,
+.ncpi .pi-form-style-two textarea,
 .ncpi .pi-form-content textarea {
   background-color: #edf2f7;
   border-radius: 10px;
@@ -3971,30 +3984,45 @@ select {
   outline: none;
   line-height: 1;
 }
-.ncpi .pi-form-content.pi-form-style-three select,
-.ncpi .pi-form-content.pi-form-style-three input[type=email],
-.ncpi .pi-form-content.pi-form-style-three input[type=url],
-.ncpi .pi-form-content.pi-form-style-three input[type=number],
-.ncpi .pi-form-content.pi-form-style-three input[type=text],
-.ncpi .pi-form-content.pi-form-style-two select,
-.ncpi .pi-form-content.pi-form-style-two input[type=email],
-.ncpi .pi-form-content.pi-form-style-two input[type=url],
-.ncpi .pi-form-content.pi-form-style-two input[type=number],
-.ncpi .pi-form-content.pi-form-style-two input[type=text] {
+.ncpi .pi-form-style-three select,
+.ncpi .pi-form-style-three input[type=email],
+.ncpi .pi-form-style-three input[type=url],
+.ncpi .pi-form-style-three input[type=number],
+.ncpi .pi-form-style-three input[type=text],
+.ncpi .pi-form-style-two select,
+.ncpi .pi-form-style-two input[type=email],
+.ncpi .pi-form-style-two input[type=url],
+.ncpi .pi-form-style-two input[type=number],
+.ncpi .pi-form-style-two input[type=text] {
   border-radius: 5px;
   background-color: #f7fafc;
+  margin-top: 10px;
+  color: #1a202c;
+  font-size: 14px;
+  padding: 14px;
+  width: 100%;
+  border: 1px solid #dddddda8;
+  outline: none;
+  line-height: 1;
 }
-.ncpi .pi-form-content.pi-form-style-three .row > div,
-.ncpi .pi-form-content.pi-form-style-two .row > div {
+.ncpi .pi-form-style-three select,
+.ncpi .pi-form-style-three input[type=email],
+.ncpi .pi-form-style-three input[type=url],
+.ncpi .pi-form-style-three input[type=number],
+.ncpi .pi-form-style-three input[type=text] {
+  padding: 8px;
+}
+.ncpi .pi-form-style-three .row > div,
+.ncpi .pi-form-style-two .row > div {
   padding: 5px;
   margin-bottom: -20px !important;
   margin-right: 0px;
 }
-.ncpi .pi-form-content.pi-form-style-two .row > div {
+.ncpi .pi-form-style-two .row > div {
   margin-bottom: 0px;
 }
-.ncpi .pi-form-content.pi-form-style-three label,
-.ncpi .pi-form-content.pi-form-style-two label {
+.ncpi .pi-form-style-three label,
+.ncpi .pi-form-style-two label {
   font-size: 10px;
   background-color: #edf2f7;
   padding: 3px 5px;

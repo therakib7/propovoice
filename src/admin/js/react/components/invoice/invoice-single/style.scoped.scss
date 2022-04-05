@@ -273,12 +273,17 @@
 .ncpi .pi-add-term .pi-group-item ul li {
   width: 90%;
 }
+.ncpi .pi-add-term .pi-group-item ul li input[type=text]:focus {
+  border: 1px solid #cbd5e0;
+}
 .ncpi .pi-add-term .pi-group-item ul li input[type=text] {
   background: none;
+  border-radius: 4px;
   border: none;
   font-size: 16px;
   padding: 4px;
   width: 90%;
+  height: 30px;
 }
 .ncpi .pi-add-term .pi-radio-group {
   float: right;

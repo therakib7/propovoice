@@ -318,8 +318,8 @@ export default class Client extends Component {
 
                 {clients.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {clients.length} Client Showing from {this.state.total}
-                        <select name="pi-edit-text" onChange={this.showItem}>
+                        {clients.length} slient Showing from {this.state.total}
+                        <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
                             <option value="30">Show item 30</option>
