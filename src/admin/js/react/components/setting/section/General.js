@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-import Logo from './Logo';
+import React, { Component } from 'react'; 
 
 export default class General extends Component {
     constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Logo from './Logo';
+import Upload from 'block/field/upload';
 
 class Form extends Component {
     constructor(props) {
@@ -170,7 +170,7 @@ class Form extends Component {
 
                                     <div className="row"> 
                                         <div className="col">
-                                            <Logo data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                                            <Upload data={this.state.form.logo} changeHandler={this.handleLogoChange} />
                                         </div> 
 
                                         <div className="col">

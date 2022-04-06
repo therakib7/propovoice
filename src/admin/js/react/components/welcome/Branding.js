@@ -61,7 +61,7 @@ class Branding extends Component {
 			this.inputRef.current.click();
 		} else { 
 			//TODO: translation
-			toast.error('Please fill up Business Info first');
+			toast.error('Please fill up Business info first');
 		} 
 	};
 
@@ -80,11 +80,11 @@ class Branding extends Component {
 				}
 				
 				{ business.id && business.logo &&
-				<div className="pi-text-center">
-					<img src={business.logo.src} width="100" className='inline' />
-					<span className='' onClick={() => this.handleDelete(business.logo.id)}>
-						x
-					</span>
+				<div className="pi-field-logo-wrap pi-text-center">
+					<div className='pi-field-logo'>
+						<img src={business.logo.src} width="100" /> 
+						<span className='pi-field-logo-close' onClick={() => this.handleDelete(business.logo.id)}>×</span>
+					</div> 
 				</div>}
 
 				<div className="pi-buttons pi-text-center">

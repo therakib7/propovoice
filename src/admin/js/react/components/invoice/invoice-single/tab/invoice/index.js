@@ -9,14 +9,14 @@ import Items from './Items'
 import PaymentInfo from './PaymentInfo';
 import Total from './Total';
 import Note from './Note'
-import Group from './Group';
-import Sign from './Sign';
+import Group from './Group'; 
 
 import Template from '../template';
 import Preview from '../preview';
 
 import Attach from './Attach';
 import DateField from 'block/date-picker';
+import Upload from 'block/field/upload';
 
 //sidebar section
 const InvTemplate = lazy(() => import('inv-template'));
@@ -304,7 +304,9 @@ class Invoice extends Component {
 
 						this.updateEdit();
 
-						toast.success(this.state.msg.create);
+						toast.success(this.state.msg.create, {
+							position: toast.POSITION.BOTTOM_RIGHT
+						});
 						this.continueTab('info');
 					} else {
 						resp.data.data.forEach(function (value, index, array) {
@@ -316,7 +318,9 @@ class Invoice extends Component {
 			Api.update(editId, this.state.invoice)
 				.then(resp => {
 					if (resp.data.success) {
-						toast.success(this.state.msg.update);
+						toast.success(this.state.msg.update, {
+							position: toast.POSITION.BOTTOM_RIGHT
+						});
 						this.continueTab('info');
 					} else {
 						resp.data.data.forEach(function (value, index, array) {
@@ -633,7 +637,7 @@ class Invoice extends Component {
 													<Attach data={this.state.invoice.attach} changeHandler={this.handleAttachChange} />
 												</div>
 												<div className="col-md-6">
-													<Sign data={this.state.invoice.sign} changeHandler={this.handleSignChange} />
+													<Upload label={'Authorized Signature'} btnClass={'pi-a-btn pi-p-40'} imgClass={'pi-text-right'} data={this.state.invoice.sign} changeHandler={this.handleSignChange} />
 												</div>
 											</div>
 										</div>

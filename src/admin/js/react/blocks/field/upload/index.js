@@ -2,7 +2,7 @@ import React, { Component } from 'react'
  
 import Media from 'components/media';
 
-class Logo extends Component {
+class Upload extends Component {
 
 	constructor(props) {
 		super(props);
@@ -29,18 +29,26 @@ class Logo extends Component {
 
 	render = () => {
 		const logo = this.props.data; 
+		let label = this.props.label; 
+		label = label ? label : 'Upload';
+
+		let btnClass = this.props.btnClass; 
+		btnClass = btnClass ? btnClass : '';
+
+		let imgClass = this.props.imgClass; 
+		imgClass = imgClass ? imgClass : '';
 		return (
-			<>   
-				<Media
+			<div className={'pi-field-logo-wrap ' + imgClass}>   
+				{this.state.media && <Media
                     insertHandler={this.handlePros}
                     show={this.state.media}  
                     close={() => this.setState({ media: false })}
-                /> 
+                />} 
 
-				<button 
-				className="pi-a-btn pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
-				onClick={(e) => { e.preventDefault(); this.setState({ media: true }) } }
-				style={{color: '#000'}}
+				{!logo &&<button 
+					className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + btnClass}
+					onClick={(e) => { e.preventDefault(); this.setState({ media: true }) } }
+					style={{color: '#000'}}
 				>
 					<svg
 					width={14}
@@ -58,23 +66,20 @@ class Logo extends Component {
 						fill="#4C6FFF"
 					/>
 					</svg>
-					Logo
-				</button>				
+					{label}
+				</button>}			 
 
 				{logo &&
 					<>
-						<div>
+						<div className='pi-field-logo'>
 							<img src={logo.src} width="100" />
-							<span onClick={() => this.handleDelete()}>
-								x
-							</span>
-						</div>
-
+							<span className='pi-field-logo-close' onClick={() => this.handleDelete()}>×</span>
+						</div> 
 					</>
 				} 
-			</>
+			</div>
 		)
 	}
 }
 
-export default Logo
+export default Upload

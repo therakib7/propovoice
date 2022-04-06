@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-
-import Logo from './Logo';
+ 
+import Upload from 'block/field/upload';
 import Api from 'api/business'; 
 
 export default class Business extends Component {
@@ -107,108 +107,116 @@ export default class Business extends Component {
         return (
             <form onSubmit={this.handleSubmit} style={{maxWidth: '700px'}} className="pi-form-content">
                 <div className="row">
-                        <div className="col-md">
-                            <label 
-                                htmlFor="field-name">
-                                Company Name
-                            </label>
+                    <div className="col-md">
+                        <label 
+                            htmlFor="field-name">
+                            Company Name
+                        </label>
 
-                            <input 
-                                id="field-name"
-                                type="text"
-                                required
-                                name="name"
-                                value={this.state.form.name}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="col-md">
-                            <label 
-                                htmlFor="field-web">
-                                Website
-                            </label>
-
-                            <input 
-                                id="field-web"
-                                type="text"
-                                name="web"
-                                value={this.state.form.web}
-                                onChange={this.handleChange}
-                            />
-                        </div>
+                        <input 
+                            id="field-name"
+                            type="text"
+                            required
+                            name="name"
+                            value={this.state.form.name}
+                            onChange={this.handleChange}
+                        />
                     </div>
+                    <div className="col-md">
+                        <label 
+                            htmlFor="field-web">
+                            Website
+                        </label>
 
-                    <div className="row">
-                        <div className="col-md">
-                            <label 
-                                htmlFor="field-email">
-                                Email
-                            </label>
-
-                            <input 
-                                id="field-email"
-                                type="email"
-                                required
-                                name="email"
-                                value={this.state.form.email}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="col-md">
-                            <label 
-                                htmlFor="field-mobile">
-                                Mobile Number
-                            </label>
-
-                            <input 
-                                id="field-mobile"
-                                type="text"
-                                required
-                                name="mobile"
-                                value={this.state.form.mobile}
-                                onChange={this.handleChange}
-                            />
-                        </div>
+                        <input 
+                            id="field-web"
+                            type="text"
+                            name="web"
+                            value={this.state.form.web}
+                            onChange={this.handleChange}
+                        />
                     </div>
+                </div>
 
-                    <div className="row"> 
-                        <div className="col-md">
-                            <label 
-                                htmlFor="field-zip">
-                                Zip Code
-                            </label>
+                <div className="row">
+                    <div className="col-md">
+                        <label 
+                            htmlFor="field-email">
+                            Email
+                        </label>
 
-                            <input 
-                                id="field-zip"
-                                type="number"
-                                name="zip"
-                                value={this.state.form.zip}
-                                onChange={this.handleChange}
-                            />
-                        </div> 
+                        <input 
+                            id="field-email"
+                            type="email"
+                            required
+                            name="email"
+                            value={this.state.form.email}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div className="col-md">
+                        <label 
+                            htmlFor="field-mobile">
+                            Mobile Number
+                        </label>
+
+                        <input 
+                            id="field-mobile"
+                            type="text"
+                            required
+                            name="mobile"
+                            value={this.state.form.mobile}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                </div>
+
+                <div className="row"> 
+                    <div className="col-md">
+                        <label 
+                            htmlFor="field-zip">
+                            Zip Code
+                        </label>
+
+                        <input 
+                            id="field-zip"
+                            type="number"
+                            name="zip"
+                            value={this.state.form.zip}
+                            onChange={this.handleChange}
+                        />
+                    </div>  
+                    <div className="col-md">
                         
-                        <div className="col-md">
-                            <Logo data={this.state.form.logo} changeHandler={this.handleLogoChange} />
-                        </div> 
-                    </div>
+                    </div>                         
+                </div>
 
-                    <div className="row">
-                        <div className="col">
-                            <label 
-                                htmlFor="field-address">
-                                Address
-                            </label>
+                <div className="row">
+                    <div className="col">
+                        <label 
+                            htmlFor="field-address">
+                            Address
+                        </label>
 
-                            <input 
-                                id="field-address"
-                                type="text"
-                                name="address"
-                                placeholder='Write you full address here'
-                                value={this.state.form.address}
-                                onChange={this.handleChange}
-                            />
-                        </div>
+                        <input 
+                            id="field-address"
+                            type="text"
+                            name="address"
+                            placeholder='Write you full address here'
+                            value={this.state.form.address}
+                            onChange={this.handleChange}
+                        />
                     </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-md">
+                        <label htmlFor="field-logo">
+                            Upload Logo
+                        </label>
+                        <Upload label={'Logo'} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                    </div> 
+                </div>
 
                 <div className="row" style={{marginTop: '10px'}}>
                     <div className="col">
