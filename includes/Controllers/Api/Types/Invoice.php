@@ -261,7 +261,7 @@ class Invoice
         $to     = isset($params['to']) ? $params['to'] : null;
 
         if (!$from) {
-            $reg_errors->add('field', esc_html__('Sender is missing', 'propovoice'));
+            $reg_errors->add('field', esc_html__('Business is missing', 'propovoice'));
         }
 
         if (!$path) {
@@ -326,13 +326,15 @@ class Invoice
                     update_post_meta($post_id, 'payment_id', $payment_id);
                 }
 
-                if (true) {
-                    //generate secret token
-                    $bytes = random_bytes(20);
-                    update_post_meta($post_id, 'token', bin2hex($bytes));
-                }
+                //generate secret token
+                $bytes = random_bytes(20);
+                $token = bin2hex($bytes);
+                update_post_meta($post_id, 'token', $token );
 
-                wp_send_json_success($post_id);
+                wp_send_json_success([
+                    'id' => $post_id,
+                    'token' => $token
+                ]);
             } else {
                 wp_send_json_error();
             }
@@ -363,7 +365,7 @@ class Invoice
         $sign   = isset($params['sign']) ? $params['sign'] : null;
 
         if (!$from) {
-            $reg_errors->add('field', esc_html__('Sender is missing', 'propovoice'));
+            $reg_errors->add('field', esc_html__('Business is missing', 'propovoice'));
         }
 
         if (!$to) {

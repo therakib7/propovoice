@@ -14,7 +14,7 @@ import Group from './Group';
 import Template from '../template';
 import Preview from '../preview';
 
-import Attach from './Attach';
+// import Attach from './Attach';
 import DateField from 'block/date-picker';
 import Upload from 'block/field/upload';
 
@@ -65,6 +65,7 @@ class Invoice extends Component {
 			paymentData: null,
 			invoice: {
 				id: null,
+				token: '',
 				style: {
 					primary_color: '#4c6fff',
 					body_font: '',
@@ -150,10 +151,17 @@ class Invoice extends Component {
 		}
 	};
 
-	updateEdit = () => {
+	updateEdit = (data = '') => {
 		let msg = { ...this.state.msg }
 		msg.saveTxt = 'Update';
-		this.setState({ msg });
+		if ( data ) {
+			let invoice = { ...this.state.invoice } 
+			invoice.id = data.id;
+			invoice.token = data.token;
+			this.setState({ msg, invoice }); 
+		} else {
+			this.setState({ msg }); 
+		}
 
 		/*
 		memory leak in your application
@@ -299,10 +307,10 @@ class Invoice extends Component {
 
 			Api.create(invoice)
 				.then(resp => {
-					if (resp.data.success) {
-						this.props.routeChange(resp.data.data);
+					if (resp.data.success) { 
 
-						this.updateEdit();
+						this.updateEdit(resp.data.data);
+						this.props.routeChange(resp.data.data.id);  						
 
 						toast.success(this.state.msg.create, {
 							position: toast.POSITION.BOTTOM_RIGHT
@@ -634,10 +642,10 @@ class Invoice extends Component {
 										<div className="pi-buttons">
 											<div className="row">
 												<div className="col-md-6">
-													<Attach data={this.state.invoice.attach} changeHandler={this.handleAttachChange} />
+													{/* <Attach data={this.state.invoice.attach} changeHandler={this.handleAttachChange} /> */}
 												</div>
 												<div className="col-md-6">
-													<Upload label={'Authorized Signature'} btnClass={'pi-a-btn pi-p-40'} imgClass={'pi-text-right'} data={this.state.invoice.sign} changeHandler={this.handleSignChange} />
+													<Upload label={'Authorized Signature'} btnClass={'pi-a-btn pi-p-40'} imgClass={'pi-text-right pi-signature'} data={this.state.invoice.sign} changeHandler={this.handleSignChange} />
 												</div>
 											</div>
 										</div>

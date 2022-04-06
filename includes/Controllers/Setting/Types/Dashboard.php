@@ -90,7 +90,7 @@ class Dashboard
             esc_html__('Settings', 'propovoice'),
             esc_html__('Settings', 'propovoice'),
             'manage_options',
-            'ncpi#/setting/general',
+            'ncpi#/setting/business',
             array($this, 'render')
         );
 

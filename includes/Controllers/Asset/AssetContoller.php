@@ -2,6 +2,8 @@
 
 namespace Ncpi\Controllers\Asset;
 
+use Ncpi\Helpers\Functions;
+
 class AssetContoller {
 
 	private $suffix;
@@ -77,15 +79,18 @@ class AssetContoller {
 			is_page_template('dashboard-template.php') ||
 			is_page_template('invoice-template.php') 
 		) {  
-			
-			// wp_enqueue_style('dashicons');
-			  
-			// wp_enqueue_script( 'tailwind', ncpi()->get_assets_uri( "vendor/tailwind/tailwind.js" ), array(), $this->version, false ); 
+
 			wp_enqueue_style( 'ncpi-dashboard', ncpi()->get_assets_uri( "admin/css/dashboard{$this->suffix}.css" ), array(), $this->version );  
 			wp_enqueue_script( 'ncpi-dashboard', ncpi()->get_assets_uri( "/admin/js/dashboard{$this->suffix}.js" ), array(), $this->version, true ); 
 			
 			wp_localize_script( 'ncpi-dashboard', 'ncpi_local', array(
 				'apiUrl' => esc_url( rest_url() ),  
+				'invoice_page_url' => sprintf(
+					'%s?id=%s&token=%s',
+					Functions::invoice_page_url(),
+					'invoice_id',
+					'invoice_token'
+				),  
 				//'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
 				'apiServerUrl' => 'https://appux.co/propovoice-server/wp-json/', //TODO: change server URL later
 				'nonce' => wp_create_nonce( 'wp_rest' ),

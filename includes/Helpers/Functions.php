@@ -16,6 +16,19 @@ class Functions {
 
         return apply_filters('ncpi_locate_template', $template_file, $name);
     }
+
+     /* get url by page template */
+    public static function invoice_page_url() {
+        $page = get_pages(array(
+            'meta_key' => '_wp_page_template',
+            'meta_value' => 'invoice-template.php'
+        ));
+        if (!empty($page)) {
+            return get_permalink($page[0]->ID);
+        } else {
+            return '#';
+        }
+    }
     
     /**
      * Get template part (for templates like the shop-loop).

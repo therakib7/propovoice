@@ -17,6 +17,7 @@ export default function InvoiceWrap() {
 		path = location.pathname.slice(0, location.pathname.lastIndexOf('/')) == '/invoice/single' ? 'invoice' : 'estimate';
 	}
 
+	// console.log(path)
 	const routeChange = id => {
 		navigate(`/${path}/single/${id}`, { replace: true });
 	};

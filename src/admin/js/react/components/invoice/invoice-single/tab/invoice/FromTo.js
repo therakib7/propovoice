@@ -90,7 +90,7 @@ class FromTo extends Component {
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="pi-from-to">
-                            <label>Sender:</label>
+                            <label>Business:</label>
                             <Select
                                 value={fromData}
                                 onChange={this.handleFromChange}

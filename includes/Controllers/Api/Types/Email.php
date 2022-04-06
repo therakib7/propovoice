@@ -2,6 +2,7 @@
 
 namespace Ncpi\Controllers\Api\Types;
 
+use Ncpi\Helpers\Functions;
 use WP_Query;
 
 class Email
@@ -155,21 +156,7 @@ class Email
             ),
             $string
         );
-    }
-
-    /* get url by page template */
-    public function invoice_page_url()
-    {
-        $page = get_pages(array(
-            'meta_key' => '_wp_page_template',
-            'meta_value' => 'invoice-template.php'
-        ));
-        if (!empty($page)) {
-            return get_permalink($page[0]->ID);
-        } else {
-            return '#';
-        }
-    }
+    } 
 
     public function create($req)
     {
@@ -201,7 +188,7 @@ class Email
         $token = get_post_meta($invoice_id, 'token', true);
         $invoice_url = sprintf(
             '%s?id=%s&token=%s',
-            $this->invoice_page_url(),
+            Functions::invoice_page_url(),
             $invoice_id,
             $token
         );

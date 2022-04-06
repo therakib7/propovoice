@@ -18,10 +18,10 @@ export default function SettingWrap() {
 	} 
 
     const tabs = [
-        {
+        /* {
             id: 'general',
             text: 'General'
-        },
+        }, */
         {
             id: 'business',
             text: 'Business Info'
@@ -30,10 +30,10 @@ export default function SettingWrap() {
             id: 'payment',
             text: 'Payment'
         },
-        {
+        /* {
             id: 'email',
             text: 'Email Template'
-        }, 
+        },  */
     ];
     const [ currentTab, setCurrentTab ]   = useState(section); 
 
