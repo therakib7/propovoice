@@ -66,7 +66,7 @@ class Bank extends Component {
                             </div>
 
                             <div className="pi-content">
-                                <div className="pi-form-content pi-form-style-two pi-form-style-three">
+                                <div className="pi-form-style-one">
                                     <form onSubmit={this.handleSubmit} >
                                         <div className="row">
                                             <div className="col-lg">

@@ -116,7 +116,7 @@ export default class Welcome extends Component {
                 
                 <div className="pi-container">
                     <div className="pi-logo-content">
-                        <img src={ncpi_local.assetImgUri+'logo.png'}  />
+                        <img src={ncpi.assetImgUri+'logo.png'}  />
                         <strong >Propovoice</strong>
                     </div>
 
@@ -155,7 +155,7 @@ export default class Welcome extends Component {
                                     <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
                                     Create Business Profile
                                     </button>
-                                    <a href={ncpi_local.dashboard} className="pi-text-hover-blue">Skip and Go Dashboard</a>
+                                    <a href={ncpi.dashboard} className="pi-text-hover-blue">Skip and Go Dashboard</a>
                                 </div>
                             </div>}
 
@@ -181,7 +181,7 @@ export default class Welcome extends Component {
                             { currentTab == 'finish' &&
                             <div id="pi-finished">
                                 <div className="pi-text-center">
-                                    <img src={ncpi_local.assetImgUri+'finish.png'} />
+                                    <img src={ncpi.assetImgUri+'finish.png'} />
                                     <h3 className="upload">It's time to fly!</h3>
                                     <p>
                                     Everything Done! You can create Estimate, Invoice, Proposal and
@@ -189,9 +189,9 @@ export default class Welcome extends Component {
                                     </p>
                                 </div>
                                 <div className="pi-buttons pi-text-center"> 
-                                    <a href={ncpi_local.dashboard} className="pi-bg-black pi-bg-hover-blue">Dashboard</a>
-                                    <a href={ncpi_local.dashboard + '#/client'} className="pi-bg-green pi-bg-hover-blue">Add Cleint</a>
-                                    <a href={ncpi_local.dashboard + '#/invoice'} className="pi-btn pi-bg-blue pi-bg-hover-blue">Create Invoice</a>
+                                    <a href={ncpi.dashboard} className="pi-bg-black pi-bg-hover-blue">Dashboard</a>
+                                    <a href={ncpi.dashboard + '#/client'} className="pi-bg-green pi-bg-hover-blue">Add Cleint</a>
+                                    <a href={ncpi.dashboard + '#/invoice'} className="pi-btn pi-bg-blue pi-bg-hover-blue">Create Invoice</a>
                                 </div> 
                             </div>}
 

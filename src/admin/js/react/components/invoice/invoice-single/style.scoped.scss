@@ -260,6 +260,16 @@
   margin-top: 10px;
   border: 1px solid var(--border-color-gray);
 }
+.ncpi .pi-add-term .pi-group-item .pi-close-icon {
+  float: right;
+  position: relative;
+  top: 8px;
+  left: -5px;
+  cursor: pointer;
+}
+.ncpi .pi-add-term .pi-group-item .pi-close-icon:hover {
+  color: var(--bg-color-blue);
+}
 .ncpi .pi-add-term .pi-group-item ol {
   list-style-type: circle;
   margin: 0;
@@ -276,6 +286,9 @@
 .ncpi .pi-add-term .pi-group-item ul li input[type=text]:focus {
   border: 1px solid #cbd5e0;
 }
+.ncpi .pi-add-term .pi-group-item ul li input[type=text]:focus {
+  border: none;
+}
 .ncpi .pi-add-term .pi-group-item ul li input[type=text] {
   background: none;
   border-radius: 4px;
@@ -287,6 +300,11 @@
 }
 .ncpi .pi-add-term .pi-radio-group {
   float: right;
+}
+.ncpi .pi-add-term .pi-radio-group .pi-delate {
+  position: relative;
+  top: 3px;
+  cursor: pointer;
 }
 .ncpi .pi-add-term .pi-radio-group label {
   font-size: 11px;

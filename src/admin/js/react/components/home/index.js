@@ -38,7 +38,7 @@ const Home = () => {
                         </div>
                         <div >
                             <div className="pi-logo-content">
-                                <img src={ncpi_local.assetImgUri + 'logo.png'}  />
+                                <img src={ncpi.assetImgUri + 'logo.png'}  />
                                 <strong >Propovoice</strong>
                             </div>
                             <ul>

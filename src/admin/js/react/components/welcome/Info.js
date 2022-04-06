@@ -48,7 +48,7 @@ class Info extends Component {
         return (   
             <form onSubmit={this.handleSubmit}>   
 
-                <div className="pi-form-content">
+                <div className="pi-form-style-one">
                     <div className="row">
                         <div className="col-md">
                             <label 

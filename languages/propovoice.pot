@@ -14,11 +14,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %s template
-#: ../includes/Helpers/Functions.php:82
+#: ../includes/Helpers/Functions.php:95
 msgid "%s does not exist."
 msgstr ""
 
-#: ../includes/Helpers/Functions.php:171, ../includes/Helpers/Functions.php:242
+#: ../includes/Helpers/Functions.php:184, ../includes/Helpers/Functions.php:255
 msgid "Select"
 msgstr ""
 
@@ -46,15 +46,15 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:264, ../includes/Controllers/Api/Types/Invoice.php:366
-msgid "Sender is missing"
+#: ../includes/Controllers/Api/Types/Invoice.php:264, ../includes/Controllers/Api/Types/Invoice.php:368
+msgid "Business is missing"
 msgstr ""
 
 #: ../includes/Controllers/Api/Types/Invoice.php:268
 msgid "Path is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:272, ../includes/Controllers/Api/Types/Invoice.php:370
+#: ../includes/Controllers/Api/Types/Invoice.php:272, ../includes/Controllers/Api/Types/Invoice.php:372
 msgid "Receiver is missing"
 msgstr ""
 

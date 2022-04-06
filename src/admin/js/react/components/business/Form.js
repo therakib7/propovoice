@@ -72,7 +72,7 @@ class Form extends Component {
                             </div>
 
                             <div className="pi-content">
-                                <form onSubmit={this.handleSubmit} className="pi-form-content pi-form-style-two pi-form-style-three">
+                                <form onSubmit={this.handleSubmit} className="pi-form-style-one">
                                     <div className="row">
                                         <div className="col-lg">
                                             <label

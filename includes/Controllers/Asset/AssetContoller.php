@@ -53,7 +53,7 @@ class AssetContoller {
 		if ( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi-welcome' ) {  
 			wp_enqueue_style( 'ncpi-welcome', ncpi()->get_assets_uri( "admin/css/welcome{$this->suffix}.css" ), array(), $this->version );
 			wp_enqueue_script( 'ncpi-welcome', ncpi()->get_assets_uri( "/admin/js/welcome{$this->suffix}.js" ), array(), $this->version, true );  
-			wp_localize_script( 'ncpi-welcome', 'ncpi_local', array(
+			wp_localize_script( 'ncpi-welcome', 'ncpi', array(
 				'apiUrl' => esc_url( rest_url() ), 
 				'nonce' => wp_create_nonce( 'wp_rest' ),
 				'dashboard' => menu_page_url('ncpi', false),
@@ -67,7 +67,7 @@ class AssetContoller {
 
 			wp_enqueue_style( 'ncpi-invoice', ncpi()->get_assets_uri( "admin/css/invoice{$this->suffix}.css" ), array(), $this->version );
 			wp_enqueue_script( 'ncpi-invoice', ncpi()->get_assets_uri( "/admin/js/invoice{$this->suffix}.js" ), array(), $this->version, true );  
-			wp_localize_script( 'ncpi-invoice', 'ncpi_local', array(
+			wp_localize_script( 'ncpi-invoice', 'ncpi', array(
 				'apiUrl' => esc_url( rest_url() ),  
 				'nonce' => wp_create_nonce( 'wp_rest' ), 
 				'assetImgUri' => ncpi()->get_assets_uri('admin/img/')
@@ -83,7 +83,7 @@ class AssetContoller {
 			wp_enqueue_style( 'ncpi-dashboard', ncpi()->get_assets_uri( "admin/css/dashboard{$this->suffix}.css" ), array(), $this->version );  
 			wp_enqueue_script( 'ncpi-dashboard', ncpi()->get_assets_uri( "/admin/js/dashboard{$this->suffix}.js" ), array(), $this->version, true ); 
 			
-			wp_localize_script( 'ncpi-dashboard', 'ncpi_local', array(
+			wp_localize_script( 'ncpi-dashboard', 'ncpi', array(
 				'apiUrl' => esc_url( rest_url() ),  
 				'invoice_page_url' => sprintf(
 					'%s?id=%s&token=%s',

@@ -1,3 +1,29 @@
+//TODO: do it like main 
+.ncpi .pi-field-logo-wrap {
+  margin-top: 10px;
+  .pi-field-logo {
+      position: relative;
+      display: inline-block;
+      img {
+          border-radius: 4px;
+      }
+  }
+  .pi-field-logo-close {
+      background: #fff;
+      position: absolute;
+      top: -8px;
+      right: -5px;
+      font-size: 15px;
+      padding: 5px;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      line-height: 8px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: rgb(23 10 18 / 18%) 0px 0px 4px;
+  }
+}
 .ncpi .pi-main-content {
   background-color: var(--bg-color-white);
   margin-top: 80px;
@@ -99,31 +125,4 @@
 .ncpi .pi-tab-content #pi-brand input {
   display: block;
   margin: auto;
-}
-
-//TODO: do it like main 
-.ncpi .pi-field-logo-wrap {
-  margin-top: 10px;
-  .pi-field-logo {
-      position: relative;
-      display: inline-block;
-      img {
-          border-radius: 4px;
-      }
-  }
-  .pi-field-logo-close {
-      background: #fff;
-      position: absolute;
-      top: -8px;
-      right: -5px;
-      font-size: 15px;
-      padding: 5px;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      line-height: 8px;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: rgb(23 10 18 / 18%) 0px 0px 4px;
-  }
 }

@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const apiUrl = `${ncpi_local.apiUrl}ncpi/v1/proposals`;
+const apiUrl = `${ncpi.apiUrl}ncpi/v1/proposals`;
 
 const token = {
     headers: {
         'content-type': 'application/json',
-        'X-WP-NONCE': ncpi_local.nonce
+        'X-WP-NONCE': ncpi.nonce
     }
 };
 

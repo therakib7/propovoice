@@ -10,7 +10,7 @@ const SettingCopy = () => {
     const [ email, setEmail ]         = useState( '' );
     const [ loader, setLoader ] = useState( 'Save Settings' );
 
-    const url = `${ncpi_local.apiUrl}ncpi/v1/settings`;
+    const url = `${ncpi.apiUrl}ncpi/v1/settings`;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ const SettingCopy = () => {
         }, {
             headers: {
                 'content-type': 'application/json',
-                'X-WP-NONCE': ncpi_local.nonce
+                'X-WP-NONCE': ncpi.nonce
             }
         } )
         .then( ( res ) => {

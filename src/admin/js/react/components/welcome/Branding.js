@@ -73,7 +73,7 @@ class Branding extends Component {
 					<>
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='hidden' />
 						<div className="pi-text-center" onClick={() => this.handleUploadFile()}>
-							<img src={ncpi_local.assetImgUri+'upload-img.png'} />
+							<img src={ncpi.assetImgUri+'upload-img.png'} width="120" />
 							<h3 className="pi-upload pi-color-blue">Upload Logo</h3>
 						</div>
 					</>
@@ -82,7 +82,7 @@ class Branding extends Component {
 				{ business.id && business.logo &&
 				<div className="pi-field-logo-wrap pi-text-center">
 					<div className='pi-field-logo'>
-						<img src={business.logo.src} width="100" /> 
+						<img src={business.logo.src} width="120" /> 
 						<span className='pi-field-logo-close' onClick={() => this.handleDelete(business.logo.id)}>×</span>
 					</div> 
 				</div>}

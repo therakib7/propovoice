@@ -2855,11 +2855,11 @@ html {
   float: right;
   margin-top: 30px;
 }
-.ncpi .pi-pagination li.previous a {
+.ncpi .pi-pagination li.pi-previous a {
   border-radius: 8px;
   margin-right: 7px;
 }
-.ncpi .pi-pagination li.next a {
+.ncpi .pi-pagination li.pi-next a {
   border-radius: 8px;
   margin-left: 7px;
 }
@@ -2873,9 +2873,11 @@ html {
   padding: 10px 15px;
   border: 1px solid #cbd5e0;
   margin-left: -1px;
-  font-size: 16px;
+  font-size: 18px;
   color: #4a5568;
+  font-weight: 500;
 }
+.ncpi .pi-pagination li.pi-active,
 .ncpi .pi-pagination li a:hover {
   color: var(--text-color-blue) !important;
 }
@@ -2940,16 +2942,13 @@ html {
 }
 .ncpi .pi-popup-content .pi-content {
   overflow: auto;
-  padding: 30px 35px 35px;
+  padding: 5px 35px 50px;
 }
 .ncpi .pi-popup-content .pi-content .pi-btn {
   text-transform: capitalize;
   font-size: 12px;
   margin-top: 30px !important;
   border-radius: 10px !important;
-}
-.ncpi .pi-form-checkbox {
-  margin-top: 10px;
 }
 .ncpi .pi-form-checkbox label {
   top: -1px !important;
@@ -2960,9 +2959,6 @@ html {
   color: #1a202c !important;
   text-transform: capitalize;
 }
-.ncpi .pi-popup-content .pi-form-content {
-  margin-top: -25px;
-}
 @media screen and (max-width: 700px) {
   .ncpi .pi-modal-box {
     width: 70%;
@@ -2971,36 +2967,34 @@ html {
     width: 70%;
   }
 }
-.ncpi .pi-popup-content .pi-form-content.pi-form-style-three label {
+.ncpi .pi-popup-content .pi-form-style-two label {
   top: 9px;
 }
-.ncpi .pi-popup-content .pi-form-content select,
-.ncpi .pi-popup-content .pi-form-content input[type=number],
-.ncpi .pi-popup-content .pi-form-content input[type=url],
-.ncpi .pi-popup-content .pi-form-content input[type=email],
-.ncpi .pi-popup-content .pi-form-content input[type=text] {
+.ncpi .pi-popup-content .pi-form-style-two select,
+.ncpi .pi-popup-content .pi-form-style-two input[type=number],
+.ncpi .pi-popup-content .pi-form-style-two input[type=url],
+.ncpi .pi-popup-content .pi-form-style-two input[type=email],
+.ncpi .pi-popup-content .pi-form-style-two input[type=text] {
   margin-top: 0;
-  padding: 7px;
+  padding: 8px;
+  margin-bottom: 10px;
 }
-.ncpi .pi-popup-content .pi-form-content .pi-textarea-content {
-  margin-top: 20px;
+.ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content {
+  padding: 20px 10px;
 }
-.ncpi .pi-popup-content .pi-form-content .pi-textarea-content h4 {
+.ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content select {
+  background: none;
+  border: none;
+  text-align: right;
+}
+.ncpi .pi-popup-content .pi-form-style-two h4 {
   font-weight: 600;
   font-size: 15px;
 }
-.ncpi .pi-popup-content .pi-form-content .pi-textarea-content select {
-  background-color: #fff !important;
-  text-align: right;
-  float: right;
-  border: none;
-  font-size: 14px;
-  font-weight: 500;
-}
-.ncpi .pi-popup-content .pi-form-content .pi-textarea-content textarea {
+.ncpi .pi-popup-content .pi-form-style-two textarea {
   margin-bottom: 5px;
   line-height: 20px;
-  margin-top: 10px;
+  margin-top: 10px !important;
 }
 .ncpi .pi-social-content {
   margin-top: 35px;
@@ -3114,7 +3108,7 @@ html {
   top: 0px;
   background: #4c6fff;
   text-align: center;
-  line-height: 47px;
+  line-height: 45px;
   z-index: 6;
   opacity: 1;
   border: 2px solid #4c6fff !important;
@@ -3378,6 +3372,7 @@ html {
   margin-bottom: 10px;
 }
 .ncpi .pi-edit-content .pi-edit-buttons .pi-btn {
+  width: auto !important;
   padding: 12px 15px;
   border-radius: 6px;
   font-size: 12px;
@@ -3596,7 +3591,7 @@ html {
   margin-right: 0;
 }
 .pi-form-accordion .pi-payment-buttons .pi-btn {
-  padding: 12px 40px;
+  padding: 12px 42px;
   font-size: 12px;
   border-radius: 5px;
   background-color: #e1e8ff;
@@ -3638,12 +3633,12 @@ html {
 .ncpi .pi-reminder .pi-btn {
   margin-top: 5px !important;
 }
-.ncpi .pi-form-style-four .pi-checkbox-content {
+.ncpi .pi-accordion-wrapper .pi-form-style-two .pi-checkbox-content {
   display: flex;
   margin-top: 20px;
   margin-bottom: 10px;
 }
-.ncpi .pi-form-style-four .pi-checkbox-content label {
+.ncpi .pi-accordion-wrapper .pi-form-style-two .pi-checkbox-content label {
   left: 5px !important;
   background-color: transparent !important;
   font-size: 12px !important;
@@ -3679,6 +3674,11 @@ html {
 .ncpi .pi-charge .pi-radio-content .pi-radio-group,
 .ncpi .pi-form-accordion .pi-radio-content .pi-radio-group {
   margin-bottom: 30px;
+}
+.ncpi .pi-charge .pi-radio-content .pi-radio-group .pi-delate,
+.ncpi .pi-form-accordion .pi-radio-content .pi-radio-group .pi-delate {
+  top: 3px;
+  position: relative;
 }
 .ncpi .pi-charge .pi-radio-content .pi-radio-group h4,
 .ncpi .pi-form-accordion .pi-radio-content .pi-radio-group h4 {
@@ -3920,42 +3920,37 @@ select {
   font-weight: 400 !important;
 }
 
-.ncpi .pi-form-content div {
+.ncpi .pi-form-style-one div {
   margin-bottom: 10px;
 }
 .ncpi .pi-form-style-two > .row {
   margin-right: -5px;
   margin-left: -5px;
 }
-.ncpi .pi-form-content .row > div {
+.ncpi .pi-form-style-one .row > div {
   padding: 0;
 }
-.ncpi .pi-form-content .row > div:nth-child(odd) {
+.ncpi .pi-form-style-one .row > div:nth-child(odd) {
   margin-right: 30px;
 }
-.ncpi .pi-form-style-three .row > div:nth-child(odd) {
+.ncpi .pi-form-style-one .row > div:nth-child(odd):last-child {
   margin-right: 0px;
 }
-.ncpi .pi-form-content .row > div:nth-child(odd):last-child {
-  margin-right: 0px;
-}
-.ncpi .pi-form-content .row:last-child > div {
+.ncpi .pi-form-style-one .row:last-child > div {
   margin-right: 0px !important;
   margin-bottom: 30px;
 }
 @media screen and (max-width: 550px) {
-  .ncpi .pi-form-content .row > div:nth-child(odd) {
+  .ncpi .pi-form-style-one .row > div:nth-child(odd) {
     margin-right: 0px;
   }
 }
-.ncpi .pi-form-style-three textarea,
 .ncpi .pi-form-style-two textarea {
   margin-top: 30px !important;
   background-color: #f7fafc !important;
 }
-.ncpi .pi-form-style-three textarea,
 .ncpi .pi-form-style-two textarea,
-.ncpi .pi-form-content textarea {
+.ncpi .pi-form-style-one textarea {
   background-color: #edf2f7;
   border-radius: 10px;
   color: #1a202c;
@@ -3968,27 +3963,22 @@ select {
   border-radius: 5px;
   margin-top: 15px;
 }
-.ncpi .pi-form-content select,
-.ncpi .pi-form-content input[type=url],
-.ncpi .pi-form-content input[type=number],
-.ncpi .pi-form-content input[type=email],
-.ncpi .pi-form-content input[type=text] {
+.ncpi .pi-form-style-one select,
+.ncpi .pi-form-style-one input[type=url],
+.ncpi .pi-form-style-one input[type=number],
+.ncpi .pi-form-style-one input[type=email],
+.ncpi .pi-form-style-one input[type=text] {
   background-color: #edf2f7;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
   color: #1a202c;
   font-size: 14px;
-  padding: 14px;
+  padding: 10px;
   width: 100%;
   border: 1px solid #dddddda8;
   outline: none;
   line-height: 1;
 }
-.ncpi .pi-form-style-three select,
-.ncpi .pi-form-style-three input[type=email],
-.ncpi .pi-form-style-three input[type=url],
-.ncpi .pi-form-style-three input[type=number],
-.ncpi .pi-form-style-three input[type=text],
 .ncpi .pi-form-style-two select,
 .ncpi .pi-form-style-two input[type=email],
 .ncpi .pi-form-style-two input[type=url],
@@ -3996,23 +3986,15 @@ select {
 .ncpi .pi-form-style-two input[type=text] {
   border-radius: 5px;
   background-color: #f7fafc;
-  margin-top: 10px;
+  margin-top: 5px;
   color: #1a202c;
   font-size: 14px;
-  padding: 14px;
+  padding: 10px;
   width: 100%;
   border: 1px solid #dddddda8;
   outline: none;
   line-height: 1;
 }
-.ncpi .pi-form-style-three select,
-.ncpi .pi-form-style-three input[type=email],
-.ncpi .pi-form-style-three input[type=url],
-.ncpi .pi-form-style-three input[type=number],
-.ncpi .pi-form-style-three input[type=text] {
-  padding: 8px;
-}
-.ncpi .pi-form-style-three .row > div,
 .ncpi .pi-form-style-two .row > div {
   padding: 5px;
   margin-bottom: -20px !important;
@@ -4021,7 +4003,6 @@ select {
 .ncpi .pi-form-style-two .row > div {
   margin-bottom: 0px;
 }
-.ncpi .pi-form-style-three label,
 .ncpi .pi-form-style-two label {
   font-size: 10px;
   background-color: #edf2f7;
@@ -4029,39 +4010,30 @@ select {
   border-radius: 3px;
   color: #777777;
   position: relative;
-  top: 20px;
+  top: 16px;
   left: 12px;
 }
-.ncpi .pi-form-content {
+.ncpi .pi-form-style-one {
   padding: 0 10px;
   margin-top: 15px;
 }
-.ncpi .pi-form-style-four label {
-  top: 1px !important;
-}
-.ncpi .pi-form-style-four select,
-.ncpi .pi-form-style-four input[type=number],
-.ncpi .pi-form-style-four input[type=text],
-.ncpi .pi-form-style-four input[type=email],
-.ncpi .pi-form-style-four input[type=url] {
+.ncpi .pi-accordion-wrapper .pi-form-style-two {
   margin-top: -15px;
+  margin-bottom: 15px;
+}
+.ncpi .pi-accordion-wrapper .pi-form-style-two select,
+.ncpi .pi-accordion-wrapper .pi-form-style-two input[type=number],
+.ncpi .pi-accordion-wrapper .pi-form-style-two input[type=text],
+.ncpi .pi-accordion-wrapper .pi-form-style-two input[type=email],
+.ncpi .pi-accordion-wrapper .pi-form-style-two input[type=url] {
   padding: 9px;
 }
-.ncpi .pi-form-style-four {
-  margin-top: 0px;
-}
-.ncpi .pi-form-style-four .pi-btn {
+.ncpi .pi-accordion-wrapper .pi-form-style-two .pi-btn {
   width: 100%;
   padding: 12px 20px;
-  margin-top: 10px;
+  margin-top: 25px !important;
   border-radius: 5px;
   font-size: 12px;
-}
-.ncpi .pi-form-content.pi-form-style-four .row > div {
-  margin-bottom: -5px;
-}
-.ncpi .pi-form-style-four textarea {
-  margin-top: 10px;
 }
 .ncpi input[readonly] {
   background-color: var(--bg-color-air-white) !important;
