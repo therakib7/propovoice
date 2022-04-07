@@ -1,7 +1,7 @@
 <?php
 /*
- * Template Name: Propovoice Invoice
- * Description: Template for Invoice Client View
+ * Template Name: Propovoice Estimate
+ * Description: Template for Estimate Client View
  */  
 ?>
 <!DOCTYPE html>

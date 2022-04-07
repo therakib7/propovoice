@@ -128,23 +128,15 @@ export default class Invoice extends Component {
             emailModal: false,
             paymentModal: false,
             payment_method: '',
-            payment_methods: [
-                {
-                    id: 'paypal',
-                    label: 'Paypal',
-                },
-                {
-                    id: 'stripe',
-                    label: 'Stripe',
-                },
+            payment_methods: [ 
                 {
                     id: 'bank',
                     label: 'Bank',
                 }
             ],
             selected_payment_method: {
-                id: 'paypal',
-                label: 'Paypal',
+                id: 'bank',
+                label: 'Bank',
             },
             feedback: '',
             fromData: null,
@@ -169,6 +161,28 @@ export default class Invoice extends Component {
     }
 
     componentDidMount() {
+        if ( !wage.length ) {
+            let payment_methods = [
+                {
+                    id: 'paypal',
+                    label: 'Paypal',
+                },
+                {
+                    id: 'stripe',
+                    label: 'Stripe',
+                },
+                {
+                    id: 'bank',
+                    label: 'Bank',
+                }
+            ]
+
+            let selected_payment_method = {
+                id: 'paypal',
+                label: 'Paypal',
+            }
+        }
+
         this.getData();
     }
 

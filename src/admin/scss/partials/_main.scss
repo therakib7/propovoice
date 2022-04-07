@@ -2942,13 +2942,21 @@ html {
 }
 .ncpi .pi-popup-content .pi-content {
   overflow: auto;
-  padding: 5px 35px 50px;
+  padding: 5px 35px 20px;
+}
+@media screen and (max-width: 550px) {
+  .ncpi .pi-popup-content .pi-content {
+    padding: 5px 20px 20px;
+  }
 }
 .ncpi .pi-popup-content .pi-content .pi-btn {
   text-transform: capitalize;
   font-size: 12px;
   margin-top: 30px !important;
   border-radius: 10px !important;
+}
+.ncpi .pi-popup-content .pi-form-style-two .pi-btn {
+  margin-bottom: 35px;
 }
 .ncpi .pi-form-checkbox label {
   top: -1px !important;
@@ -2979,22 +2987,36 @@ html {
   padding: 8px;
   margin-bottom: 10px;
 }
-.ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content {
-  padding: 20px 10px;
+.ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content textarea {
+  margin-bottom: 5px;
+  line-height: 20px;
+  margin-top: 10px !important;
 }
+.ncpi .pi-popup-content .pi-form-style-one .pi-textarea-content select {
+  margin-top: -5px;
+}
+.ncpi .pi-popup-content .pi-form-style-one .pi-textarea-content textarea {
+  margin-top: -10px;
+}
+.ncpi .pi-popup-content .pi-form-style-one .pi-form-checkbox {
+  margin-top: -10px;
+}
+.ncpi .pi-popup-content .pi-form-style-one .pi-form-checkbox label {
+  margin-left: 5px;
+}
+.ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content {
+  padding: 15px 10px;
+}
+.ncpi .pi-popup-content .pi-form-style-one .pi-textarea-content select,
 .ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content select {
   background: none;
   border: none;
   text-align: right;
 }
+.ncpi .pi-popup-content .pi-form-style-one h4,
 .ncpi .pi-popup-content .pi-form-style-two h4 {
   font-weight: 600;
   font-size: 15px;
-}
-.ncpi .pi-popup-content .pi-form-style-two textarea {
-  margin-bottom: 5px;
-  line-height: 20px;
-  margin-top: 10px !important;
 }
 .ncpi .pi-social-content {
   margin-top: 35px;
@@ -3599,7 +3621,7 @@ html {
 }
 
 .ncpi .pi-reminder .pi-reminder-time {
-  margin-top: 20px;
+  margin-top: 7px;
   margin-bottom: 8px;
 }
 .ncpi .pi-charge span,
@@ -3647,7 +3669,7 @@ html {
   line-height: 18px;
 }
 .ncpi .pi-form-accordion.pi-additional input:checked ~ .pi-tab-content {
-  padding: 15px 5px 15px !important;
+  padding: 15px 15px 15px !important;
 }
 .ncpi .pi-form-accordion.pi-additional .pi-tab {
   padding-bottom: 5px !important;
@@ -3659,6 +3681,11 @@ html {
   transform: scale(0.8);
   border: 1px solid #1a1a1aeb;
   box-shadow: none !important;
+  z-index: 10;
+}
+.ncpi .pi-form-accordion.pi-additional .pi-tab-label {
+  z-index: 9;
+  position: relative;
 }
 .ncpi .pi-charge .pi-reminder-time {
   margin-bottom: 20px !important;
@@ -3673,7 +3700,7 @@ html {
 }
 .ncpi .pi-charge .pi-radio-content .pi-radio-group,
 .ncpi .pi-form-accordion .pi-radio-content .pi-radio-group {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .ncpi .pi-charge .pi-radio-content .pi-radio-group .pi-delate,
 .ncpi .pi-form-accordion .pi-radio-content .pi-radio-group .pi-delate {
@@ -3750,6 +3777,9 @@ html {
 }
 .ncpi .pi-ml-10 {
   margin-left: 10px;
+}
+.ncpi .pi-mb-30 {
+  margin-bottom: 30px !important;
 }
 .ncpi .pi-m-10 {
   margin-top: -10px !important;
@@ -3933,12 +3963,16 @@ select {
 .ncpi .pi-form-style-one .row > div:nth-child(odd) {
   margin-right: 30px;
 }
+@media screen and (max-width: 912px) {
+  .ncpi .pi-content .pi-form-style-one .row > div:nth-child(odd) {
+    margin-right: 0px;
+  }
+}
+.ncpi .pi-form-style-one .row > div:nth-child(odd) {
+  margin-right: 20px;
+}
 .ncpi .pi-form-style-one .row > div:nth-child(odd):last-child {
   margin-right: 0px;
-}
-.ncpi .pi-form-style-one .row:last-child > div {
-  margin-right: 0px !important;
-  margin-bottom: 30px;
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-form-style-one .row > div:nth-child(odd) {
@@ -4018,7 +4052,7 @@ select {
   margin-top: 15px;
 }
 .ncpi .pi-accordion-wrapper .pi-form-style-two {
-  margin-top: -15px;
+  margin-top: -5px;
   margin-bottom: 15px;
 }
 .ncpi .pi-accordion-wrapper .pi-form-style-two select,

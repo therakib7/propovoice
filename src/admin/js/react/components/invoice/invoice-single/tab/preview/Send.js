@@ -213,29 +213,21 @@ ${company_name}`;
                                                 /> 
                                             </div>
                                         </div>
-
-                                        <div className="pi-textarea-content">
-                                            <div className="row">
-                                                <div className="col"> 
-                                                    <h4
-                                                        htmlFor="form-msg">
-                                                        Message
-                                                    </h4>
-                                                </div> 
-                                            </div>
-
-                                            <div className="row">
-                                                <div className="col">  
-                                                    <textarea
-                                                        id="form-msg" 
-                                                        rows={8}
-                                                        name="msg"
-                                                        value={this.state.form.msg}
-                                                        onChange={this.handleChange}
-                                                    />   
-                                                </div>
+ 
+                                        <div className="row">
+                                            <div className="col"> 
+                                                <label htmlFor="form-msg">
+                                                    Message
+                                                </label>
+                                                <textarea
+                                                    id="form-msg" 
+                                                    rows={8}
+                                                    name="msg"
+                                                    value={this.state.form.msg}
+                                                    onChange={this.handleChange}
+                                                />   
                                             </div> 
-                                        </div> 
+                                        </div>
 
                                         <div className="pi-footer-content pi-text-center">
                                             <button className="pi-btn pi-bg-blue pi-bg-hover-blue">

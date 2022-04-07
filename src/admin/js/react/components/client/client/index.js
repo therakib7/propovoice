@@ -27,7 +27,7 @@ export default class Client extends Component {
             clients: [],
             checkedBoxes: [],
             offset: 0,
-            perPage: 1,
+            perPage: 10,
             total: 1,
             totalPage: 1,
             currentPage: 1,
