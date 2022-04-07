@@ -6,26 +6,26 @@ class Share extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            invoice_url: '',
+            client_url: '',
         }
-
-        this.invoice_url = React.createRef();
+        this.client_url = React.createRef();
     }
 
-    componentDidMount() {
+    componentDidMount() { 
+        let invoice_path = this.props.data.invoice.path;
         let invoice_id = this.props.data.invoice.id;
         let invoice_token = this.props.data.invoice.token; 
-        let url = ncpi.invoice_page_url;
+        let url = invoice_path == 'invoice' ? ncpi.invoice_page_url : ncpi.estimate_page_url;
 
         //replace text with id and token
         let result = url.replace('invoice_id', invoice_id);
-        let invoice_url = result.replace('invoice_token', invoice_token);
+        let client_url = result.replace('invoice_token', invoice_token);
 
-        this.setState({ invoice_url });
+        this.setState({ client_url });
     }
 
     copyToClipboard = (e) => {
-        this.invoice_url.select();
+        this.client_url.select();
         document.execCommand('copy');
         // This is just personal preference.
         // I prefer to not show the whole text area selected. 
@@ -55,8 +55,8 @@ class Share extends Component {
                                                         type="text"
                                                         id="name"
                                                         name="name"
-                                                        value={this.state.invoice_url}
-                                                        ref={(invoice_url) => this.invoice_url = invoice_url}
+                                                        value={this.state.client_url}
+                                                        ref={(client_url) => this.client_url = client_url}
                                                         readOnly
                                                     />
                                                     <span className="pi-copy" onClick={this.copyToClipboard}>Copy</span>

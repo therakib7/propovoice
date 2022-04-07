@@ -14,11 +14,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %s template
-#: ../includes/Helpers/Functions.php:95
+#: ../includes/Helpers/Fns.php:95
 msgid "%s does not exist."
 msgstr ""
 
-#: ../includes/Helpers/Functions.php:184, ../includes/Helpers/Functions.php:255
+#: ../includes/Helpers/Fns.php:184, ../includes/Helpers/Fns.php:255
 msgid "Select"
 msgstr ""
 

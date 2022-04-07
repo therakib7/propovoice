@@ -2,7 +2,7 @@
 
 namespace Ncpi\Controllers\Asset;
 
-use Ncpi\Helpers\Functions;
+use Ncpi\Helpers\Fns;
 
 class AssetContoller {
 
@@ -28,8 +28,11 @@ class AssetContoller {
 
 	function hide_admin_bar( $show ){
 		if ( 
-			is_page_template('dashboard-template.php') ||
-			is_page_template('invoice-template.php') 
+			is_page_template( [
+				'dashboard-template.php', 
+				'invoice-template.php',
+				'estimate-template.php'
+			] ) 
 		) {
 			return false;
 		}  
@@ -45,8 +48,11 @@ class AssetContoller {
 		if ( 
 			( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi-welcome' ) ||
 			( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi' ) ||
-			is_page_template('dashboard-template.php') ||
-			is_page_template('invoice-template.php')  
+			is_page_template( [
+				'dashboard-template.php', 
+				'invoice-template.php',
+				'estimate-template.php'
+			] ) 
 		) {  
 			wp_enqueue_style( 'ncpi-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), $this->version );  
 		}
@@ -61,7 +67,12 @@ class AssetContoller {
 			) );
 		}
 
-		if ( is_page_template('invoice-template.php') ) {  
+		if ( 
+			is_page_template( [
+				'invoice-template.php',
+				'estimate-template.php'
+			] ) 
+		) {  
 
 			//TODO: Remove all wordpress unused file from frontend
 
@@ -76,8 +87,11 @@ class AssetContoller {
 
 		if ( 
 			( isset( $_GET['page'] ) && $_GET['page'] == 'ncpi' ) ||
-			is_page_template('dashboard-template.php') ||
-			is_page_template('invoice-template.php') 
+			is_page_template( [
+				'dashboard-template.php', 
+				'invoice-template.php',
+				'estimate-template.php'
+			] ) 
 		) {  
 
 			wp_enqueue_style( 'ncpi-dashboard', ncpi()->get_assets_uri( "admin/css/dashboard{$this->suffix}.css" ), array(), $this->version );  
@@ -87,7 +101,13 @@ class AssetContoller {
 				'apiUrl' => esc_url( rest_url() ),  
 				'invoice_page_url' => sprintf(
 					'%s?id=%s&token=%s',
-					Functions::invoice_page_url(),
+					Fns::client_page_url('invoice'),
+					'invoice_id',
+					'invoice_token'
+				),  
+				'estimate_page_url' => sprintf(
+					'%s?id=%s&token=%s',
+					Fns::client_page_url('estimate'),
 					'invoice_id',
 					'invoice_token'
 				),  

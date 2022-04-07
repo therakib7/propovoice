@@ -2,7 +2,7 @@
 
 namespace Ncpi\Controllers\Api\Types;
 
-use Ncpi\Helpers\Functions;
+use Ncpi\Helpers\Fns;
 use WP_Query;
 
 class Email
@@ -188,7 +188,7 @@ class Email
         $token = get_post_meta($invoice_id, 'token', true);
         $invoice_url = sprintf(
             '%s?id=%s&token=%s',
-            Functions::invoice_page_url(),
+            Fns::client_page_url($path),
             $invoice_id,
             $token
         );

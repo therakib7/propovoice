@@ -5,7 +5,7 @@ require_once __DIR__ . './../vendor/autoload.php';
 use Ncpi\Controllers\Installation\InstallationController;
 use Ncpi\Traits\SingletonTrait;
 use Ncpi\Helpers\Constant; 
-use Ncpi\Helpers\Functions; 
+use Ncpi\Helpers\Fns; 
 use Ncpi\Controllers\MainController;   
 
 /**
@@ -107,7 +107,7 @@ final class Ncpi {
      * @return string
      */
     public function get_partial_path( $path = null, $args = []) {
-        Functions::get_template_part( 'partials/' . $path, $args ); 
+        Fns::get_template_part( 'partials/' . $path, $args ); 
     } 
 
     /**

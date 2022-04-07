@@ -2,7 +2,7 @@
 
 namespace Ncpi\Helpers;  
 
-class Functions {   
+class Fns {   
 
     public static function locate_template($name) {
         // Look within passed path within the theme - this is priority.
@@ -18,10 +18,10 @@ class Functions {
     }
 
      /* get url by page template */
-    public static function invoice_page_url() {
+    public static function client_page_url( $slug ) {
         $page = get_pages(array(
             'meta_key' => '_wp_page_template',
-            'meta_value' => 'invoice-template.php'
+            'meta_value' => $slug . '-template.php'
         ));
         if (!empty($page)) {
             return get_permalink($page[0]->ID);

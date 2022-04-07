@@ -211,10 +211,8 @@ export default class Business extends Component {
 
                 <div className="row">
                     <div className="col-md">
-                        <label htmlFor="field-logo">
-                            Upload Logo
-                        </label>
-                        <Upload label={'Logo'} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                        <label htmlFor="field-logo">Upload Logo</label>
+                        <Upload label={'Logo'} library={false} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
                     </div> 
                 </div>
 

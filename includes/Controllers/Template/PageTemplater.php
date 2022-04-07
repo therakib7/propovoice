@@ -24,7 +24,8 @@ class PageTemplater
 
 		// Add custom template named dashboard-template.php to select dropdown 
 		$post_templates['dashboard-template.php'] = esc_html__('Propovoice Dashboard', 'propovoice');
-		$post_templates['invoice-template.php'] = esc_html__('Propovoice Invoice', 'propovoice');
+		$post_templates['invoice-template.php'] = esc_html__('Propovoice Client Invoice', 'propovoice');
+		$post_templates['estimate-template.php'] = esc_html__('Propovoice Client Estimate', 'propovoice');
 		return $post_templates;
 	}
 
@@ -41,8 +42,13 @@ class PageTemplater
 			if (file_exists($custom_template)) {
 				return $custom_template;
 			}
-		} else if (get_page_template_slug() === 'invoice-template.php') {
+		} else if ( get_page_template_slug() === 'invoice-template.php' ) {
 			$custom_template = ncpi()->plugin_path() . '/views/template/invoice-template.php';
+			if (file_exists($custom_template)) {
+				return $custom_template;
+			}
+		} else if ( get_page_template_slug() === 'estimate-template.php' ) {
+			$custom_template = ncpi()->plugin_path() . '/views/template/estimate-template.php';
 			if (file_exists($custom_template)) {
 				return $custom_template;
 			}

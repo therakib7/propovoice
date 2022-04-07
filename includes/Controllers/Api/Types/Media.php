@@ -2,7 +2,7 @@
 
 namespace Ncpi\Controllers\Api\Types;
 
-use Ncpi\Helpers\Functions;
+use Ncpi\Helpers\Fns;
 use WP_Query;
 
 class Media
@@ -222,7 +222,7 @@ class Media
                     'field', 
                     sprintf(
                         esc_html__('File is too large. Max. upload file size is %s', 'propovoice'), 
-                        Functions::format_bytes($allowed_file_size)
+                        Fns::format_bytes($allowed_file_size)
                     )
                 );
 			} 
