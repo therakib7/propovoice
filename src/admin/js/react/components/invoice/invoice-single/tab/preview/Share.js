@@ -1,14 +1,40 @@
 import React, { Component } from 'react';
 
-import Api from 'api/email';
+import { toast } from 'react-toastify';
 
 class Share extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            invoice_url: '',
+        }
 
+        this.invoice_url = React.createRef();
     }
 
+    componentDidMount() {
+        let invoice_id = this.props.data.invoice.id;
+        let invoice_token = this.props.data.invoice.token; 
+        let url = ncpi.invoice_page_url;
+
+        //replace text with id and token
+        let result = url.replace('invoice_id', invoice_id);
+        let invoice_url = result.replace('invoice_token', invoice_token);
+
+        this.setState({ invoice_url });
+    }
+
+    copyToClipboard = (e) => {
+        this.invoice_url.select();
+        document.execCommand('copy');
+        // This is just personal preference.
+        // I prefer to not show the whole text area selected. 
+        e.target.focus();
+        toast.success('Copied!');  
+    };
+
     render() {
+        
         return (
             <>
                 {this.props.show && (
@@ -29,14 +55,16 @@ class Share extends Component {
                                                         type="text"
                                                         id="name"
                                                         name="name"
-                                                        placeholder="https://invoice.design/8n3lV3dE890"
+                                                        value={this.state.invoice_url}
+                                                        ref={(invoice_url) => this.invoice_url = invoice_url}
+                                                        readOnly
                                                     />
-                                                    <span className="pi-copy">Copy</span>
+                                                    <span className="pi-copy" onClick={this.copyToClipboard}>Copy</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="pi-social-content">
-                                            <a href="#" className="pi-social-icon">
+                                            <a href="https://web.whatsapp.com" target="_blank" className="pi-social-icon">
                                                 <span className="pi-whatsapp">
                                                     <svg
                                                         width={40}
@@ -57,7 +85,7 @@ class Share extends Component {
                                                 </span>
                                                 <p>Whatsapp</p>
                                             </a>
-                                            <a href="#" className="pi-social-icon">
+                                            <a href="https://messenger.com" target="_blank" className="pi-social-icon">
                                                 <span className="pi-messenger">
                                                     <svg
                                                         width={35}
@@ -74,7 +102,7 @@ class Share extends Component {
                                                 </span>
                                                 <p>Messenger</p>
                                             </a> 
-                                            <a href="#" className="pi-social-icon">
+                                            <a href="https://web.telegram.org/z/" target="_blank" className="pi-social-icon">
                                                 <span className="pi-telegrame">
                                                     <svg
                                                         width={35}
@@ -95,7 +123,7 @@ class Share extends Component {
                                                 </span>
                                                 <p>Telegrame</p>
                                             </a>
-                                            <a href="#" className="pi-social-icon">
+                                            <a href="https://web.skype.com/" target="_blank" className="pi-social-icon">
                                                 <span className="pi-skype">
                                                     <svg
                                                         width={35}

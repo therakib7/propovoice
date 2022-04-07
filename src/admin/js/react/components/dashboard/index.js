@@ -55,9 +55,7 @@ export default class Dashboard extends Component {
         const { total_client, total_estimate, accepted_estimate, total_invoice, paid_invoice } = this.state.summary;
         return (
             <div className="ncpi-components">
-                <h1>
-                    Dashboard<sup>Alpha</sup>
-                </h1>
+                <h1>Dashboard<sup>Alpha</sup></h1>
                 <div className="pi-add-item-main-content pi-m-40">
                     <div className="row">
                         <div className="col-md-6 col-lg-4">

@@ -178,16 +178,18 @@ class Invoice
 
         $query_data = [];
         $query_data['id'] = $id;
+        $query_data['token'] = get_post_meta($id, 'token', true);
         $query_data['date'] = null;
-        // $query_data['date'] = get_post_meta($id, 'date', true);
+        //$query_data['date'] = get_post_meta($id, 'date', true);
         $query_data['due_date'] = null;
-        // $query_data['due_date'] = get_post_meta($id, 'due_date', true);
+        //$query_data['due_date'] = get_post_meta($id, 'due_date', true);
         $from_id = get_post_meta($id, 'from', true);
         $query_data['invoice'] = json_decode(get_post_meta($id, 'invoice', true));
 
         $from_id = get_post_meta($id, 'from', true);
         $fromData = [];
-        if ($from_id) {
+        
+        if ( $from_id ) {
             $fromData['id'] = $from_id;
             $fromMeta = get_post_meta($from_id);
             $fromData['name'] = isset($fromMeta['name']) ? $fromMeta['name'][0] : '';

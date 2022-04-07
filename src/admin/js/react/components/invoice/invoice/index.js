@@ -277,8 +277,7 @@ const Invoice = class Invoice extends Component {
 
                 {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.newInvoie()} />}
 
-                {/* <button
-                    
+                {/* <button 
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button>  */}

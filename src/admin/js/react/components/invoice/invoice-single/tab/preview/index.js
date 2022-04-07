@@ -88,6 +88,7 @@ export default class Preview extends Component {
     constructor(props) {
         super(props); 
     } 
+
     downloadInvoice = () => {
 
         html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
@@ -137,7 +138,7 @@ export default class Preview extends Component {
         }); 
     } 
 
-    render() {
+    render() { 
         const { id } = this.props.data.invoice.template;
         return (
             <div id="pi-share" className="pi-invoice-tab-content"> 

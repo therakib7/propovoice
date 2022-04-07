@@ -176,7 +176,9 @@ class Invoice extends Component {
 			.then(resp => {
 
 				let invoice = resp.data.data.invoice;
+				// console.log(resp.data.data)
 				invoice.id = parseInt(resp.data.data.id);
+				invoice.token =resp.data.data.token;
 				invoice.date = new Date(resp.data.data.invoice.date);
 				invoice.due_date = new Date(resp.data.data.invoice.due_date);
 				this.setState({
