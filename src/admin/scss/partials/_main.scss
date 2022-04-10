@@ -2282,7 +2282,7 @@ html {
   border: 1px solid #cbd5e0;
   margin-top: 20px;
   border-collapse: collapse;
-  border-radius: 20px;
+  border-radius: 10px;
   border-style: hidden;
   box-shadow: 0 0 0 1px #cbd5e0;
 }
@@ -2692,7 +2692,7 @@ html {
   outline: none;
   line-height: 1;
   padding-left: 40px;
-  border-radius: 10px;
+  border-radius: 8px;
   background: transparent;
 }
 .ncpi .pi-search-box.pi-float-right {
@@ -2903,7 +2903,6 @@ html {
   z-index: 99;
 }
 .ncpi .pi-overlay {
-  visibility: visible;
   opacity: 1;
   z-index: 99;
   overflow-x: hidden;
@@ -2997,6 +2996,7 @@ html {
 }
 .ncpi .pi-popup-content .pi-form-style-one .pi-textarea-content textarea {
   margin-top: -10px;
+  line-height: 18px;
 }
 .ncpi .pi-popup-content .pi-form-style-one .pi-form-checkbox {
   margin-top: -10px;
@@ -3024,8 +3024,8 @@ html {
 }
 .ncpi .pi-social-content .pi-social-icon {
   display: inline-block;
-  width: 72px;
   text-align: center;
+  padding: 0 10px;
 }
 .ncpi .pi-social-content .pi-social-icon p {
   margin: 0;
@@ -3072,6 +3072,7 @@ html {
   border: 1px solid #dddddda8;
   border-radius: 5px;
   background-color: #f7fafc;
+  padding-right: 65px !important;
 }
 .ncpi .pi-field-copy .pi-copy {
   position: absolute;
@@ -3368,6 +3369,9 @@ html {
   font-weight: 500;
   margin-bottom: 8px;
 }
+.ncpi .pi-edit-content .pi-edit-text h4 {
+  margin-bottom: -15px;
+}
 .ncpi .pi-edit-content span {
   width: 32px;
   height: 32px;
@@ -3376,19 +3380,7 @@ html {
   margin-right: 7px;
   cursor: pointer;
   box-shadow: none !important;
-}
-.ncpi .pi-edit-content .pi-pi-edit-text {
-  margin-top: 2px;
-}
-.ncpi .pi-edit-content .pi-pi-edit-text .pi-edit-content {
-  float: left;
-  width: 50%;
-  margin-top: -20px;
-  margin-bottom: 20px;
-}
-.ncpi .pi-edit-content .pi-pi-edit-text .pi-edit-content:last-child {
-  position: relative;
-  left: 5px;
+  margin-bottom: 5px;
 }
 .ncpi .pi-edit-content .pi-edit-buttons {
   margin-bottom: 10px;
@@ -3620,6 +3612,14 @@ html {
   margin-top: 5px;
 }
 
+.pi-accordion-wrapper .pi-form-style-two .pi-btn {
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 25px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
 .ncpi .pi-reminder .pi-reminder-time {
   margin-top: 7px;
   margin-bottom: 8px;
@@ -3650,10 +3650,6 @@ html {
 .ncpi .pi-charge textarea,
 .ncpi .pi-reminder textarea {
   margin-top: 10px;
-}
-.ncpi .pi-charge .pi-btn,
-.ncpi .pi-reminder .pi-btn {
-  margin-top: 5px !important;
 }
 .ncpi .pi-accordion-wrapper .pi-form-style-two .pi-checkbox-content {
   display: flex;
@@ -3730,6 +3726,10 @@ html {
   width: 90px !important;
   background-color: #fff !important;
   margin-bottom: 5px;
+}
+.ncpi .pi-charge .pi-btn,
+.ncpi .pi-form-accordion .pi-btn {
+  margin-top: 10px !important;
 }
 
 .ncpi .pi-text-center {
@@ -3951,7 +3951,7 @@ select {
 }
 
 .ncpi .pi-form-style-one div {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .ncpi .pi-form-style-two > .row {
   margin-right: -5px;
@@ -4003,7 +4003,7 @@ select {
 .ncpi .pi-form-style-one input[type=email],
 .ncpi .pi-form-style-one input[type=text] {
   background-color: #edf2f7;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-top: 5px;
   color: #1a202c;
   font-size: 14px;
@@ -4051,6 +4051,9 @@ select {
   padding: 0 10px;
   margin-top: 15px;
 }
+.ncpi .pi-form-style-one label {
+  font-size: 14px;
+}
 .ncpi .pi-accordion-wrapper .pi-form-style-two {
   margin-top: -5px;
   margin-bottom: 15px;
@@ -4062,15 +4065,9 @@ select {
 .ncpi .pi-accordion-wrapper .pi-form-style-two input[type=url] {
   padding: 9px;
 }
-.ncpi .pi-accordion-wrapper .pi-form-style-two .pi-btn {
-  width: 100%;
-  padding: 12px 20px;
-  margin-top: 25px !important;
-  border-radius: 5px;
-  font-size: 12px;
-}
 .ncpi input[readonly] {
   background-color: var(--bg-color-air-white) !important;
+  cursor: not-allowed;
 }
 
 /*-------------------------------------------------------------- 
@@ -4099,7 +4096,7 @@ select {
   --text-color-black: #000;
   --text-color-white: #fff;
   --text-color-blue: #4c6fff;
-  --text-color-red: #f16063;
+  --text-color-red: #fa181c;
   --text-color-green: #45ac9d;
   --border-color-gray: #dddddda8;
 }
