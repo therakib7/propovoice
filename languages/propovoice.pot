@@ -26,8 +26,12 @@ msgstr ""
 msgid "Propovoice Dashboard"
 msgstr ""
 
-#: ../includes/Controllers/Template/PageTemplater.php:27, ../views/template/invoice-template.php:3
-msgid "Propovoice Invoice"
+#: ../includes/Controllers/Template/PageTemplater.php:27
+msgid "Propovoice Client Invoice"
+msgstr ""
+
+#: ../includes/Controllers/Template/PageTemplater.php:28
+msgid "Propovoice Client Estimate"
 msgstr ""
 
 #: ../includes/Controllers/Api/Types/Business.php:188, ../includes/Controllers/Api/Types/Business.php:262, ../includes/Controllers/Api/Types/Project.php:218
@@ -182,10 +186,18 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: ../views/template/invoice-template.php:61
+#: ../views/template/estimate-template.php:3
+msgid "Propovoice Estimate"
+msgstr ""
+
+#: ../views/template/estimate-template.php:61, ../views/template/invoice-template.php:61
 msgid "Sorry!! page not found"
 msgstr ""
 
-#: ../views/template/invoice-template.php:58
+#: ../views/template/estimate-template.php:58, ../views/template/invoice-template.php:58
 msgid "Sorry!! You don't have permission to view this page"
+msgstr ""
+
+#: ../views/template/invoice-template.php:3
+msgid "Propovoice Invoice"
 msgstr ""
