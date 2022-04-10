@@ -144,6 +144,7 @@ class Payment
                 $query_data['account_name'] = get_post_meta($id, 'account_name', true);
                 $query_data['account_no'] = get_post_meta($id, 'account_no', true);
                 $query_data['confirm_account_no'] = get_post_meta($id, 'account_no', true);
+                $query_data['additional_note'] = get_post_meta($id, 'additional_note', true);
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
             } elseif ($type == 'paypal') {
 
@@ -155,12 +156,18 @@ class Payment
                 $query_data['public_key'] = get_post_meta($id, 'public_key', true);
                 $query_data['secret_key'] = get_post_meta($id, 'secret_key', true);
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
-            }
-
+            } 
+            
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
         }
         wp_reset_postdata();
+
+        $data_from = isset( $params['data_from'] ) ? sanitize_text_field( $params['data_from'] ) : null;
+
+        if ( $data_from == 'single_invoice' ) {
+            
+        }
 
         $result['result'] = $data;
         $result['total'] = $total_data;
@@ -182,6 +189,7 @@ class Payment
         $query_data['bank_branch'] = get_post_meta($id, 'bank_branch', true);
         $query_data['account_no'] = get_post_meta($id, 'account_no', true);
         $query_data['confirm_account_no'] = get_post_meta($id, 'account_no', true);
+        $query_data['additional_note'] = get_post_meta($id, 'additional_note', true);
         $query_data['default'] = (bool) get_post_meta($id, 'default', true);
 
         return wp_send_json_success($query_data);
@@ -202,6 +210,7 @@ class Payment
         $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
         $account_no = isset($params['account_no']) ? sanitize_text_field($params['account_no']) : null;
         $confirm_account_no = isset($params['confirm_account_no']) ? sanitize_text_field($params['confirm_account_no']) : null;
+        $additional_note = isset($params['additional_note']) ? nl2br($params['additional_note']) : null;
         $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
 
         //paypal form
@@ -266,6 +275,10 @@ class Payment
                     if ($confirm_account_no) {
                         update_post_meta($post_id, 'confirm_account_no', $confirm_account_no);
                     }
+
+                    if ($additional_note) {
+                        update_post_meta($post_id, 'additional_note', $additional_note);
+                    }
                 } elseif ($type == 'paypal') {
 
                     if ($client_id) {
@@ -313,6 +326,7 @@ class Payment
         $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
         $account_no = isset($params['account_no']) ? sanitize_text_field($params['account_no']) : null;
         $confirm_account_no = isset($params['confirm_account_no']) ? sanitize_text_field($params['confirm_account_no']) : null;
+        $additional_note = isset($params['additional_note']) ? nl2br($params['additional_note']) : null;
         $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
 
         //paypal form
@@ -374,6 +388,10 @@ class Payment
 
                     if ($confirm_account_no) {
                         update_post_meta($post_id, 'confirm_account_no', $confirm_account_no);
+                    }
+
+                    if ($additional_note) {
+                        update_post_meta($post_id, 'additional_note', $additional_note);
                     }
                 } elseif ($type == 'paypal') {
 

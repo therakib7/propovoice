@@ -206,28 +206,32 @@ export default class Dashboard extends Component {
                                 <h4 className="pi-color-blue">{total_client}</h4>
                             </div>
                         </div>
+
                         <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content pi-bg-clear-moon">
+                            <div className="pi-cards-content" style={{backgroundColor: '#f9f6ea'}}>
                                 <span >Total Estiamte</span>
-                                <h4 className="pi-color-red">{total_estimate}</h4>
+                                <h4 style={{color: '#c66542'}}>{total_estimate}</h4>
                             </div>
                         </div>
+
                         <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content pi-bg-air-mint">
+                            <div className="pi-cards-content" style={{backgroundColor: '#d7f4f1'}}>
                                 <span >Accepted Estiamte</span>
-                                <h4 className="pi-color-green">{accepted_estimate}</h4>
+                                <h4 style={{color: '#45ac9d'}}>{accepted_estimate}</h4>
                             </div>
                         </div>
+
                         <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content pi-bg-clear-petal">
+                            <div className="pi-cards-content" style={{backgroundColor: '#f7dfec'}}>
                                 <span >Total Invoice</span>
-                                <h4 className="pi-color-red">{total_invoice}</h4>
+                                <h4 style={{color: '#b66490'}}>{total_invoice}</h4>
                             </div>
                         </div>
+
                         <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content pi-bg-clear-winter-mist">
+                            <div className="pi-cards-content" style={{backgroundColor: '#e6ffe7'}}>
                                 <span >Paid Invoice</span>
-                                <h4 className="pi-color-green">{paid_invoice}</h4>
+                                <h4 style={{color: '#43ad47'}}>{paid_invoice}</h4>
                             </div>
                         </div>
                     </div>

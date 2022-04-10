@@ -2470,7 +2470,7 @@ html {
 .ncpi .pi-info-table-content .pi-info-table td input[type=number],
 .ncpi .pi-info-table-content .pi-info-table td input[type=text] {
   width: 68px;
-  padding: 2px 8px;
+  padding: 6px 8px;
   border: 1px solid #cbd5e0;
   border-radius: 4px;
   background-color: #fff;
@@ -2486,7 +2486,7 @@ html {
   background-color: var(--bg-color-air-white);
   border: 1px solid #cbd5e0;
   font-size: 10px;
-  margin-left: -5px;
+  margin-left: -6px;
   outline: none;
   padding: 6px 8px 6px;
   position: relative;
@@ -2629,13 +2629,13 @@ html {
     overflow-x: hidden;
   }
 }
+.ncpi .pi-breadcrumb {
+  margin-bottom: 25px;
+}
 .ncpi .pi-breadcrumb ul li {
   display: inline;
   padding: 2px;
   font-size: 16px;
-}
-.ncpi .pi-breadcrumb {
-  margin-bottom: 25px;
 }
 .ncpi .pi-breadcrumb ul li a {
   font-size: 16px;
@@ -2882,6 +2882,18 @@ html {
   color: var(--text-color-blue) !important;
 }
 
+.wp-admin .pi-info-table td input[type=number],
+.wp-admin .pi-info-table td input[type=text] {
+  padding: 2px 8px !important;
+}
+.wp-admin .pi-radio-group input[type=radio]:checked:after {
+  top: -15px !important;
+  left: -1px !important;
+}
+.wp-admin .pi-group-item ul li {
+  margin-bottom: 0 !important;
+}
+
 /*-------------------------------------------------------------- 
 # popup
 --------------------------------------------------------------*/
@@ -2903,6 +2915,7 @@ html {
   z-index: 99;
 }
 .ncpi .pi-overlay {
+  visibility: visible;
   opacity: 1;
   z-index: 99;
   overflow-x: hidden;
@@ -2915,29 +2928,20 @@ html {
   width: 40%;
   position: relative;
 }
+.ncpi .pi-popup-content .pi-form-style-two select,
+.ncpi .pi-popup-content .pi-form-style-two input[type=number],
+.ncpi .pi-popup-content .pi-form-style-two input[type=url],
+.ncpi .pi-popup-content .pi-form-style-two input[type=email],
+.ncpi .pi-popup-content .pi-form-style-two input[type=text] {
+  margin-top: 0;
+  padding: 8px;
+  margin-bottom: 10px;
+}
 .ncpi .pi-popup-content .pi-modal-title {
   padding-top: 30px;
   font-size: 18px;
   font-weight: 600;
   text-transform: capitalize;
-}
-.ncpi .pi-popup-content .pi-close {
-  background: #fff;
-  position: absolute;
-  top: -8px;
-  right: -5px;
-  font-size: 15px;
-  padding: 5px;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  line-height: 8px;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: rgba(23, 10, 18, 0.18) 0px 0px 4px;
-}
-.ncpi .pi-popup-content .pi-close:hover {
-  color: #4e6de9;
 }
 .ncpi .pi-popup-content .pi-content {
   overflow: auto;
@@ -2957,7 +2961,25 @@ html {
 .ncpi .pi-popup-content .pi-form-style-two .pi-btn {
   margin-bottom: 35px;
 }
-.ncpi .pi-form-checkbox label {
+.ncpi .pi-popup-content .pi-close {
+  background: #fff;
+  position: absolute;
+  top: -8px;
+  right: -5px;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 8px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: rgba(23, 10, 18, 0.18) 0px 0px 4px;
+}
+.ncpi .pi-popup-content .pi-close:hover {
+  color: #4e6de9;
+}
+.ncpi .pi-popup-content .pi-form-checkbox label {
   top: -1px !important;
   left: 5px !important;
   font-size: 14px !important;
@@ -2965,26 +2987,6 @@ html {
   background-color: transparent !important;
   color: #1a202c !important;
   text-transform: capitalize;
-}
-@media screen and (max-width: 700px) {
-  .ncpi .pi-modal-box {
-    width: 70%;
-  }
-  .ncpi .pi-popup-content {
-    width: 70%;
-  }
-}
-.ncpi .pi-popup-content .pi-form-style-two label {
-  top: 9px;
-}
-.ncpi .pi-popup-content .pi-form-style-two select,
-.ncpi .pi-popup-content .pi-form-style-two input[type=number],
-.ncpi .pi-popup-content .pi-form-style-two input[type=url],
-.ncpi .pi-popup-content .pi-form-style-two input[type=email],
-.ncpi .pi-popup-content .pi-form-style-two input[type=text] {
-  margin-top: 0;
-  padding: 8px;
-  margin-bottom: 10px;
 }
 .ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content textarea {
   margin-bottom: 5px;
@@ -2999,13 +3001,16 @@ html {
   line-height: 18px;
 }
 .ncpi .pi-popup-content .pi-form-style-one .pi-form-checkbox {
-  margin-top: -10px;
+  margin-top: 0px;
 }
 .ncpi .pi-popup-content .pi-form-style-one .pi-form-checkbox label {
   margin-left: 5px;
 }
 .ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content {
   padding: 15px 10px;
+}
+.ncpi .pi-popup-content .pi-form-style-two label {
+  top: 9px;
 }
 .ncpi .pi-popup-content .pi-form-style-one .pi-textarea-content select,
 .ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content select {
@@ -3018,23 +3023,23 @@ html {
   font-weight: 600;
   font-size: 15px;
 }
-.ncpi .pi-social-content {
+.ncpi .pi-popup-content .pi-social-content {
   margin-top: 35px;
   text-align: center;
 }
-.ncpi .pi-social-content .pi-social-icon {
+.ncpi .pi-popup-content .pi-social-content .pi-social-icon {
   display: inline-block;
   text-align: center;
   padding: 0 10px;
 }
-.ncpi .pi-social-content .pi-social-icon p {
+.ncpi .pi-popup-content .pi-social-content .pi-social-icon p {
   margin: 0;
   font-size: 13px;
   font-weight: 500;
   color: #4a5568;
   margin-bottom: 15px;
 }
-.ncpi .pi-social-content .pi-social-icon span {
+.ncpi .pi-popup-content .pi-social-content .pi-social-icon span {
   width: 60px;
   height: 60px;
   background: #dddd;
@@ -3044,23 +3049,31 @@ html {
   margin: auto;
   margin-bottom: 10px;
 }
-.ncpi .pi-social-content .pi-social-icon .pi-whatsapp {
+.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-whatsapp {
   background-color: #e9fbef;
 }
-.ncpi .pi-social-content .pi-social-icon .pi-messenger {
+.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-messenger {
   background-color: #007bff1a;
 }
-.ncpi .pi-social-content .pi-social-icon .pi-discord {
+.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-discord {
   background-color: rgba(88, 101, 242, 0.08);
 }
-.ncpi .pi-social-content .pi-social-icon .pi-email {
+.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-email {
   background-color: #fdecea;
 }
-.ncpi .pi-social-content .pi-social-icon .pi-telegrame {
+.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-telegrame {
   background-color: rgba(64, 179, 224, 0.08);
 }
-.ncpi .pi-social-content .pi-social-icon .pi-skype {
+.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-skype {
   background-color: rgba(0, 175, 240, 0.08);
+}
+@media screen and (max-width: 700px) {
+  .ncpi .pi-modal-box {
+    width: 70%;
+  }
+  .ncpi .pi-popup-content {
+    width: 70%;
+  }
 }
 .ncpi .pi-field-copy {
   position: relative;
@@ -3475,7 +3488,8 @@ html {
   margin-top: 10px;
 }
 .ncpi .pi-settings-tab .pi-setting-heading-content h3 {
-  font-weight: inherit;
+  font-weight: 500;
+  font-size: 18px;
   line-height: 30px;
 }
 .ncpi .pi-settings-tab .pi-setting-heading-content p {
@@ -3995,7 +4009,19 @@ select {
   outline: none;
   line-height: 1;
   border-radius: 5px;
+}
+.ncpi .pi-content .pi-form-style-one textarea {
+  margin-top: 5px;
+}
+.ncpi .pi-content .pi-form-style-two textarea {
+  margin-top: 0px !important;
+}
+.ncpi .pi-form-style-one {
+  padding: 0 10px;
   margin-top: 15px;
+}
+.ncpi .pi-form-style-one label {
+  font-size: 14px;
 }
 .ncpi .pi-form-style-one select,
 .ncpi .pi-form-style-one input[type=url],
@@ -4012,6 +4038,9 @@ select {
   border: 1px solid #dddddda8;
   outline: none;
   line-height: 1;
+}
+.ncpi .pi-form-style-one textarea {
+  margin-top: 10px;
 }
 .ncpi .pi-form-style-two select,
 .ncpi .pi-form-style-two input[type=email],
@@ -4046,13 +4075,6 @@ select {
   position: relative;
   top: 16px;
   left: 12px;
-}
-.ncpi .pi-form-style-one {
-  padding: 0 10px;
-  margin-top: 15px;
-}
-.ncpi .pi-form-style-one label {
-  font-size: 14px;
 }
 .ncpi .pi-accordion-wrapper .pi-form-style-two {
   margin-top: -5px;
@@ -4089,10 +4111,6 @@ select {
   --bg-color-husky: #e1e8ff;
   --bg-color-air-white: #edf2f7;
   --bg-color-deutzia-white: #f7fafc;
-  --bg-color-clear-moon: #f9f6ea;
-  --bg-color-air-mint: #d7f4f1;
-  --bg-color-petal: #f7dfec;
-  --bg-color-winter-mist: #e6ffe7;
   --text-color-black: #000;
   --text-color-white: #fff;
   --text-color-blue: #4c6fff;
@@ -4233,8 +4251,6 @@ select {
   overflow-x: hidden;
   scroll-behavior: smooth;
   height: 100vh;
-}
-.ncpi .pi-left-sidebar {
   width: 245px;
 }
 .ncpi .pi-left-sidebar .pi-logo-content {
@@ -4267,16 +4283,6 @@ select {
   width: 100%;
   position: relative;
 }
-.ncpi .pi-left-sidebar ul li .pi-active,
-.ncpi .pi-left-sidebar ul li:hover {
-  background-color: #fff;
-  color: var(--text-color-blue);
-  color: #000;
-}
-.ncpi .pi-left-sidebar ul li .pi-active svg path,
-.ncpi .pi-left-sidebar ul li a:hover svg path {
-  fill: var(--text-color-blue);
-}
 .ncpi .pi-left-sidebar ul li a svg {
   margin-right: 10px;
   position: relative;
@@ -4287,6 +4293,16 @@ select {
   right: 10px;
   top: 20px;
   transform: rotate(90deg);
+}
+.ncpi .pi-left-sidebar ul li .pi-active,
+.ncpi .pi-left-sidebar ul li:hover {
+  background-color: #fff;
+  color: var(--text-color-blue);
+  color: #000;
+}
+.ncpi .pi-left-sidebar ul li .pi-active svg path,
+.ncpi .pi-left-sidebar ul li a:hover svg path {
+  fill: var(--text-color-blue);
 }
 .ncpi .pi-left-sidebar ul li .pi-sub-menu li a {
   font-weight: 500;

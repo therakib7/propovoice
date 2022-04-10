@@ -20,11 +20,6 @@
 .pi-inv .pi-inv-four .pi-bg-4th {
   background-color: var(--pi-inv-text-4th);
 }
-.pi-inv .pi-inv-four .pi-from-logo {
-  display: inline-block;
-  padding: 16px 40px;
-  margin-left: -36px;
-}
 .pi-inv .pi-inv-four .pi-hedear {
   display: flex;
   justify-content: space-between;
@@ -63,11 +58,15 @@
 .pi-inv .pi-inv-four .pi-items-table table tbody tr:nth-child(odd) {
   background-color: var(--pi-inv-even);
 }
+.pi-inv .pi-inv-four tr.pi-table-bg {
+  background-color: var(--pi-inv-primary);
+}
 .pi-inv .pi-inv-four tr.pi-table-bg :last-child {
   margin-right: -35px;
   display: block;
   padding: 10px 20px;
   margin-left: -20px;
+  background-color: var(--pi-inv-primary);
 }
 .pi-inv .pi-inv-four .pi-footer-shape {
   display: flex;

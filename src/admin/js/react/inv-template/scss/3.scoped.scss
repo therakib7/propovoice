@@ -1,7 +1,8 @@
 :root {
   --pi-inv-primary: #4C6FFF;
-  --pi-inv-secondary: #E2E8F0;
-  --pi-inv-even: #E2E8F0;
+  --pi-inv-secondary: #cadffa;
+  --pi-inv-even: #EDF2F7;
+  --pi-inv-odd: #e4e4e8aa;
 }
 
 .pi-inv {
@@ -49,11 +50,17 @@
   color: var(--pi-inv-primary);
   text-align: center;
 }
+.pi-inv .pi-items-table table thead th {
+  color: #000;
+}
 .pi-inv .pi-inv-three .pi-items-table table thead {
-  background-color: var(--pi-inv-even);
+  background-color: var(--pi-inv-secondary);
 }
 .pi-inv .pi-inv-three .pi-items-table table tbody tr:nth-child(even) {
   background-color: var(--pi-inv-even);
+}
+.pi-inv .pi-inv-three .pi-items-table table tbody tr:nth-child(odd) {
+  background-color: var(--pi-inv-odd);
 }
 .pi-inv .pi-inv-three tr.pi-table-bg {
   background-color: var(--pi-inv-primary);

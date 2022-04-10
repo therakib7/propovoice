@@ -14,6 +14,7 @@ class FormBank extends Component {
             account_name: '',
             account_no: '',
             confirm_account_no: '',
+            additional_note: '',
             default: false,
             date: false
         };
@@ -105,7 +106,7 @@ class FormBank extends Component {
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="form-bank_branch">
-                                                Bank Branch
+                                                Branch Name
                                             </label>
 
                                             <input
@@ -185,6 +186,21 @@ class FormBank extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col"> 
+                                            <label htmlFor="form-additional_note">
+                                                Additional Note
+                                            </label>
+                                            <textarea
+                                                id="form-additional_note" 
+                                                rows={4}
+                                                name="additional_note"
+                                                value={this.state.form.additional_note}
+                                                onChange={this.handleChange}
+                                            />   
+                                        </div> 
                                     </div>
 
                                     <div className="pi-footer-content pi-text-center">

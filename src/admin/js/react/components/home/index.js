@@ -15,7 +15,7 @@ const Project = lazy(() => import('components/project'));
 const ClientSummary = lazy(() => import('components/client/client-summary'));
 const Client = lazy(() => import('components/client/client'));
 //const Proposal = lazy(() => import('components/proposal'));
-//const Editor = lazy(() => import('components/editor')); 
+// const Editor = lazy(() => import('components/editor')); 
 const Invoice = lazy(() => import('components/invoice/invoice'));
 const InvoiceSingle = lazy(() => import('components/invoice/invoice-single'));
 const Payment = lazy(() => import('components/payment'));
@@ -253,7 +253,7 @@ const Home = () => {
                                 <Route path="/" element={<Dashboard />} />
                                 {/* <Route path="/proposal" element={<Proposal />} />  */}
                                 <Route path="/estimate" element={<Invoice />} />
-                                {/* <Route path="/editor" element={<Editor />} /> */}
+                                {/* <Route path="/proposal" element={<Editor />} /> */}
                                 <Route path="/estimate/single" element={<InvoiceSingle />} />
                                 <Route path="/estimate/single/:id" element={<InvoiceSingle />} />
                                 <Route path="/invoice" element={<Invoice />} />

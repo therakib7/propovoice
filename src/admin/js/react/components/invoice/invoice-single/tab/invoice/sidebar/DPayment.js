@@ -61,7 +61,7 @@ class Payment extends Component {
                 <input type="checkbox" defaultChecked="checked" />
                 <i />
                 <h3>Payment</h3>
-                <div className="pi-payment-accrodion">
+                <div className="pi-form-accordion">
 
                     <div className="pi-tab">
                         <input type="radio" id="pi-payment-paypal" name="pi-payment-type" />

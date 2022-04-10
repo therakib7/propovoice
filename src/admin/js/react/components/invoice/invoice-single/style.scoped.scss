@@ -260,14 +260,15 @@
   margin-top: 10px;
   border: 1px solid var(--border-color-gray);
 }
-.ncpi .pi-add-term .pi-group-item .pi-close-icon {
+.ncpi .pi-add-term .pi-group-item .pi-list-delete {
   float: right;
   position: relative;
   top: 8px;
   left: -5px;
   cursor: pointer;
+  font-size: 20px;
 }
-.ncpi .pi-add-term .pi-group-item .pi-close-icon:hover {
+.ncpi .pi-add-term .pi-group-item .pi-list-delete:hover {
   color: var(--bg-color-blue);
 }
 .ncpi .pi-add-term .pi-group-item ol {
@@ -281,7 +282,7 @@
   margin-bottom: 7px;
 }
 .ncpi .pi-add-term .pi-group-item ul li {
-  width: 90%;
+  width: 100%;
 }
 .ncpi .pi-add-term .pi-group-item ul li input[type=text]:focus {
   border: 1px solid #cbd5e0;
@@ -338,8 +339,8 @@
   width: 9px;
   height: 9px;
   border-radius: 74px;
-  top: -15px;
-  left: -1px;
+  top: -8px;
+  left: 0px;
   position: relative;
   background-color: #000;
   content: "";
@@ -350,4 +351,4 @@
   border: 1px solid #718096;
   border-radius: 10px;
   width: 100%;
-} 
+}

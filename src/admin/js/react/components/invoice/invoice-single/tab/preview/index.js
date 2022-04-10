@@ -138,7 +138,7 @@ export default class Preview extends Component {
         }); 
     } 
 
-    render() { 
+    render() {  
         const { id } = this.props.data.invoice.template;
         return (
             <div id="pi-share" className="pi-invoice-tab-content"> 
@@ -184,6 +184,7 @@ export default class Preview extends Component {
                 <Share
                     show={this.props.shareModal}
                     data={this.props.data}
+                    path={this.props.path}
                     close={this.props.closeShareModal}
                 />}
 
@@ -191,6 +192,7 @@ export default class Preview extends Component {
                 <Send
                     show={this.props.emailModal}
                     data={this.props.data}
+                    path={this.props.path}
                     close={this.props.closeEmailModal}
                 />}
             </div>

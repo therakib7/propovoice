@@ -60,8 +60,14 @@ class Send extends Component {
     //end try to call it from invoice to avoid duplication code
 
     componentDidMount() {  
-        let data = this.props.data;   
-        let path = this.props.data.invoice.path; 
+        let data = this.props.data;    
+         
+        if ( data.fromData == null || data.toData == null ) {
+            toast.error('First fill up necessary information, From information tab'); 
+            return;
+        }
+
+        let path = this.props.path; 
         let path_title = path == 'invoice' ? 'Invoice' : 'Estimate'; 
         let formState = {...this.state.form}
 
