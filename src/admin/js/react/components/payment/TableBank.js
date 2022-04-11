@@ -58,7 +58,7 @@ const TableBody = props => {
                 </div>
                 <div className="bank-text-content">
                     <h2 className="pi-bank-title">{row.bank_name}</h2>
-                    <h4 className="pi-bank-subtitle">Ac No. {row.account_no}</h4>
+                    {/* <h4 className="pi-bank-subtitle">Ac No. {row.account_no}</h4> */}
                 </div>
             </li>
         );

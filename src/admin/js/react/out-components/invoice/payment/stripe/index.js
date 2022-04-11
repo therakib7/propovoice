@@ -38,16 +38,17 @@ const CARD_OPTIONS = {
     },
 };
 
-const SubmitButton = ({ processing, error, children, disabled }) => (
-
-    <div className="pi-footer-content pi-text-center">
-        <button
-            className={`pi-btn pi-bg-blue pi-bg-hover-blue SubmitButton ${error ? 'SubmitButton--error' : ''}`}
-            type="submit"
-            disabled={processing || disabled}
-        >
-            {processing ? 'Processing...' : children}
-        </button>
+const SubmitButton = ({ processing, error, children, disabled }) => (     
+    <div className="row">
+        <div className="col">
+            <button
+                className={`pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto SubmitButton ${error ? 'SubmitButton--error' : ''}`}
+                type="submit"
+                disabled={processing || disabled}
+            >
+                {processing ? 'Processing...' : children}
+            </button>
+        </div>
     </div>
 );
 

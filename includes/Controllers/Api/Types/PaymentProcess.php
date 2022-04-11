@@ -83,19 +83,15 @@ class PaymentProcess
                     update_post_meta($invoice_id, 'status', 'paid_req');
                 }
 
-                $country = isset($params['country']) ? $params['country'] : '';
-                $bank_name = isset($params['bank_name']) ? $params['bank_name'] : '';
-                $account_name = isset($params['account_name']) ? $params['account_name'] : '';
-                $account_no = isset($params['account_no']) ? $params['account_no'] : '';
+                $payment_details = isset($params['payment_details']) ? $params['payment_details'] : '';
+                $receipt = isset($params['receipt']) ? $params['receipt'] : ''; 
                 $amount = isset($params['amount']) ? $params['amount'] : '';
                 $date = isset($params['date']) ? $params['date'] : '';
                 $note = isset($params['note']) ? nl2br($params['note']) : '';
 
                 $bank_info = [];
-                $bank_info['country'] = $country;
-                $bank_info['bank_name'] = $bank_name;
-                $bank_info['account_name'] = $account_name;
-                $bank_info['account_no'] = $account_no;
+                $bank_info['payment_details'] = $payment_details;
+                $bank_info['receipt'] = $receipt; 
                 $bank_info['amount'] = $amount;
                 $bank_info['date'] = $date;
                 $bank_info['note'] = $note;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context';
- 
+import AppContext from 'context/app-context'; 
 import Upload from 'block/field/upload';
 import Api from 'api/business'; 
 

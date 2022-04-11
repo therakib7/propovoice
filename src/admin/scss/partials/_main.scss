@@ -2378,8 +2378,9 @@ html {
     width: 190%;
   }
   .ncpi .pi-table-wrap {
-    overflow: scroll;
+    overflow-x: scroll;
     padding: 1px;
+    width: 100%;
   }
 }
 .ncpi .pi-info-table-content {
@@ -2918,7 +2919,6 @@ html {
   z-index: 99;
 }
 .ncpi .pi-overlay {
-  visibility: visible;
   opacity: 1;
   z-index: 99;
   overflow-x: hidden;
@@ -2958,7 +2958,6 @@ html {
 .ncpi .pi-popup-content .pi-content .pi-btn {
   text-transform: capitalize;
   font-size: 12px;
-  margin-top: 30px !important;
   border-radius: 10px !important;
 }
 .ncpi .pi-popup-content .pi-form-style-two .pi-btn {
@@ -3001,7 +3000,6 @@ html {
 }
 .ncpi .pi-popup-content .pi-form-style-one .pi-textarea-content textarea {
   margin-top: -10px;
-  line-height: 18px;
 }
 .ncpi .pi-popup-content .pi-form-style-one .pi-form-checkbox {
   margin-top: 0px;
@@ -3092,9 +3090,9 @@ html {
 }
 .ncpi .pi-field-copy .pi-copy {
   position: absolute;
-  right: 8px;
-  top: 4px;
-  padding: 5px;
+  right: 0px;
+  top: 0px;
+  padding: 9px 15px;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--bg-color-blue);
@@ -3562,13 +3560,14 @@ html {
   background: none;
   cursor: pointer;
   font-size: 14px;
+  width: 100%;
 }
 .pi-form-accordion .pi-tab .pi-payment-bank-content {
   position: relative;
   display: flex;
   background-color: #fff;
   border-radius: 5px;
-  padding: 4px 10px 7px;
+  padding: 10px;
   margin-bottom: 10px;
   cursor: pointer;
 }
@@ -3583,20 +3582,15 @@ html {
 }
 .pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-image span {
   background-color: var(--bg-color-air-white);
-  padding: 12px 7px 5px;
+  padding: 5px 5px 2px;
   border-radius: 3px;
-  position: relative;
-  top: 30%;
+  display: block;
 }
 .pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-title {
   font-size: 12px;
   font-weight: 500;
   line-height: 17px;
-  margin-top: 5px;
-}
-.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-subtitle {
-  margin: 0;
-  font-size: 10px;
+  margin-top: 12px;
 }
 .pi-form-accordion .pi-tab input[type=radio]:checked {
   background-color: #93e026;
@@ -3787,6 +3781,7 @@ html {
 .ncpi .pi-m-auto {
   margin: auto;
   display: block !important;
+  margin-top: 30px;
 }
 .ncpi .pi-mt-5 {
   margin-top: 5px;
@@ -3861,6 +3856,9 @@ body {
 }
 .ncpi h1, .ncpi h2, .ncpi h3, .ncpi h4, .ncpi h5, .ncpi h6, .ncpi p {
   font-family: "Inter", sans-serif;
+}
+.ncpi p {
+  font-size: 14px;
 }
 .ncpi h1, .ncpi h2, .ncpi h3, .ncpi h4 {
   font-weight: inherit;
@@ -4010,7 +4008,7 @@ select {
   width: 100%;
   border: 1px solid #dddddda8;
   outline: none;
-  line-height: 1;
+  line-height: 20px;
   border-radius: 5px;
 }
 .ncpi .pi-content .pi-form-style-one textarea {

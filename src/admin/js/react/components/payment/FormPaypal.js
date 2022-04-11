@@ -7,6 +7,9 @@ class FormPaypal extends Component {
         this.initialState = {
             id: null,
             type: 'paypal',
+            account_type: 'business',
+            account_name: '',
+            account_email: '',
             client_id: '',
             secret_id: '',
             default: false,
@@ -60,6 +63,76 @@ class FormPaypal extends Component {
 
                             <div className="pi-content">
                                 <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                                    
+                                    <div className="row d-none">
+                                        <div className="col-lg">
+                                            <label
+                                                htmlFor="form-account_type">
+                                                Account Type
+                                            </label>
+
+                                            <div>
+                                                <label
+                                                    htmlFor="form-account_type_personal">
+                                                    Personal
+                                                </label> 
+                                                <input
+                                                    id="form-account_type_personal"
+                                                    type="radio" 
+                                                    name="account_type"
+                                                    value='personal'
+                                                    onChange={this.handleChange}
+                                                />
+
+                                                <label
+                                                    htmlFor="form-account_type_business">
+                                                    Business
+                                                </label>  
+                                                <input
+                                                    id="form-account_type_business"
+                                                    type="radio" 
+                                                    name="account_type"
+                                                    value='business'
+                                                    onChange={this.handleChange}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col-lg">
+                                            <label
+                                                htmlFor="form-account_name">
+                                                Account Name
+                                            </label>
+
+                                            <input
+                                                id="form-account_name"
+                                                type="text"
+                                                required
+                                                name="account_name"
+                                                value={this.state.form.account_name}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {this.state.form.account_type == 'personal' && <div className="row">
+                                        <div className="col-lg">
+                                            <label
+                                                htmlFor="form-account_email">
+                                                Account Email
+                                            </label>
+
+                                            <input
+                                                id="form-account_email"
+                                                type="email" 
+                                                name="account_email"
+                                                value={this.state.form.account_email}
+                                                // onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>}
 
                                     <div className="row">
                                         <div className="col-lg">
@@ -95,12 +168,14 @@ class FormPaypal extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div>
-                                    </div>
-
-                                    <div className="pi-footer-content pi-text-center">
-                                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                            Save
-                                        </button>
+                                    </div> 
+                                    
+                                    <div className="row">
+                                        <div className="col"> 
+                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                                Save
+                                            </button> 
+                                        </div> 
                                     </div>
                                 </form>
                             </div>

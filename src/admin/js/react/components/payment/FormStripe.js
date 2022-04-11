@@ -7,6 +7,7 @@ class FormStripe extends Component {
         this.initialState = {
             id: null,
             type: 'stripe',
+            account_name: '',
             public_key: '',
             secret_key: '',
             default: false,
@@ -60,6 +61,24 @@ class FormStripe extends Component {
 
                             <div className="pi-content">
                                 <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                                    
+                                    <div className="row">
+                                        <div className="col-lg">
+                                            <label
+                                                htmlFor="form-account_name">
+                                                Account Name
+                                            </label>
+
+                                            <input
+                                                id="form-account_name"
+                                                type="text"
+                                                required
+                                                name="account_name"
+                                                value={this.state.form.account_name}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
 
                                     <div className="row">
                                         <div className="col-lg">
@@ -97,10 +116,12 @@ class FormStripe extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="pi-footer-content pi-text-center">
-                                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                            Save
-                                        </button>
+                                    <div className="row">
+                                        <div className="col"> 
+                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                                Save
+                                            </button> 
+                                        </div> 
                                     </div>
                                 </form>
                             </div>

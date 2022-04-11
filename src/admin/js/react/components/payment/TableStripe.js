@@ -46,9 +46,7 @@ const TableBody = props => {
                     <span className="pi-color-blue">stripe</span>
                 </div>
                 <div className="bank-text-content">
-                    {/* <h2 className="pi-bank-title">{row.bank_name}</h2> */}
-                    <h4 className="pi-bank-subtitle">Public Key: {row.public_key}</h4>
-                    <h4 className="pi-bank-subtitle">Secret Key: {row.secret_key}</h4>
+                    <h2 className="pi-bank-title">{row.account_name}</h2> 
                 </div>
             </li>
         );

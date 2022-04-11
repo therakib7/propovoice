@@ -136,23 +136,22 @@ class Payment
             $query_data['type'] = $type;
 
             if ($type == 'bank') {
-
-                $query_data['country'] = get_post_meta($id, 'country', true);
-                $query_data['bank_name'] = get_post_meta($id, 'bank_name', true);
-                $query_data['routing_no'] = get_post_meta($id, 'routing_no', true);
-                $query_data['bank_branch'] = get_post_meta($id, 'bank_branch', true);
-                $query_data['account_name'] = get_post_meta($id, 'account_name', true);
-                $query_data['account_no'] = get_post_meta($id, 'account_no', true);
-                $query_data['confirm_account_no'] = get_post_meta($id, 'account_no', true);
-                $query_data['additional_note'] = get_post_meta($id, 'additional_note', true);
+ 
+                $query_data['bank_name'] = get_post_meta($id, 'bank_name', true); 
+                $query_data['bank_details'] = get_post_meta($id, 'bank_details', true);
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
+
             } elseif ($type == 'paypal') {
 
+                $query_data['account_type'] = get_post_meta($id, 'account_type', true);
+                $query_data['account_name'] = get_post_meta($id, 'account_name', true);
+                $query_data['account_email'] = get_post_meta($id, 'account_email', true);
                 $query_data['client_id'] = get_post_meta($id, 'client_id', true);
                 $query_data['secret_id'] = get_post_meta($id, 'secret_id', true);
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
+                
             } elseif ($type == 'stripe') {
-
+                $query_data['account_name'] = get_post_meta($id, 'account_name', true);
                 $query_data['public_key'] = get_post_meta($id, 'public_key', true);
                 $query_data['secret_key'] = get_post_meta($id, 'secret_key', true);
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
@@ -163,16 +162,33 @@ class Payment
         }
         wp_reset_postdata();
 
-        $data_from = isset( $params['data_from'] ) ? sanitize_text_field( $params['data_from'] ) : null;
+        $data_from = isset( $request['data_from'] ) ? sanitize_text_field( $request['data_from'] ) : null;
 
         if ( $data_from == 'single_invoice' ) {
-            
+            $data = $this->formatArray($data, 'type'); 
         }
 
         $result['result'] = $data;
         $result['total'] = $total_data;
 
         return wp_send_json_success($result);
+    } 
+
+    function formatArray($array, $key) {
+        $custom_array = $new_array = [];
+        foreach($array as $v ) {
+            $custom_array[$v[$key]][] = $v;
+        }
+
+        foreach ( $custom_array as $key => $value ) {
+            $temp_array = [];
+            $temp_array['method_name'] = ucfirst( $key );
+            $temp_array['method_id'] = $key;
+            $temp_array['list'] = $value;
+
+            $new_array[] = $temp_array;
+        }
+        return $new_array;
     }
 
     public function get_single($req)
@@ -182,14 +198,9 @@ class Payment
         $query_data = [];
         $query_data['id'] = $id;
 
-        $query_data['type'] = get_post_meta($id, 'type', true);
-        $query_data['country'] = get_post_meta($id, 'country', true);
-        $query_data['bank_name'] = get_post_meta($id, 'bank_name', true);
-        $query_data['routing_no'] = get_post_meta($id, 'routing_no', true);
-        $query_data['bank_branch'] = get_post_meta($id, 'bank_branch', true);
-        $query_data['account_no'] = get_post_meta($id, 'account_no', true);
-        $query_data['confirm_account_no'] = get_post_meta($id, 'account_no', true);
-        $query_data['additional_note'] = get_post_meta($id, 'additional_note', true);
+        $query_data['type'] = get_post_meta($id, 'type', true); 
+        $query_data['bank_name'] = get_post_meta($id, 'bank_name', true); 
+        $query_data['bank_details'] = get_post_meta($id, 'bank_details', true);
         $query_data['default'] = (bool) get_post_meta($id, 'default', true);
 
         return wp_send_json_success($query_data);
@@ -202,22 +213,20 @@ class Payment
         $reg_errors = new \WP_Error;
 
         $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
-        //bank form
-        $country = isset($params['country']) ? sanitize_text_field($params['country']) : null;
-        $bank_name = isset($params['bank_name']) ? sanitize_text_field($params['bank_name']) : null;
-        $routing_no = isset($params['routing_no']) ? sanitize_text_field($params['routing_no']) : null;
-        $bank_branch = isset($params['bank_branch']) ? sanitize_text_field($params['bank_branch']) : null;
-        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
-        $account_no = isset($params['account_no']) ? sanitize_text_field($params['account_no']) : null;
-        $confirm_account_no = isset($params['confirm_account_no']) ? sanitize_text_field($params['confirm_account_no']) : null;
-        $additional_note = isset($params['additional_note']) ? nl2br($params['additional_note']) : null;
+        //bank form 
+        $bank_name = isset($params['bank_name']) ? sanitize_text_field($params['bank_name']) : null; 
+        $bank_details = isset($params['bank_details']) ? sanitize_textarea_field($params['bank_details']) : null;
         $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
 
         //paypal form
+        $account_type = isset($params['account_type']) ? sanitize_text_field($params['account_type']) : null;
+        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
+        $account_email = isset($params['account_email']) ? sanitize_email($params['account_email']) : null;
         $client_id = isset($params['client_id']) ? sanitize_text_field($params['client_id']) : null;
         $secret_id = isset($params['secret_id']) ? sanitize_text_field($params['secret_id']) : null;
 
         //stripe form
+        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
         $public_key = isset($params['public_key']) ? sanitize_text_field($params['public_key']) : null;
         $secret_key = isset($params['secret_key']) ? sanitize_text_field($params['secret_key']) : null;
 
@@ -246,40 +255,28 @@ class Payment
                     update_post_meta($post_id, 'type', $type);
                 }
 
-                if ($type == 'bank') {
-
-                    if ($country) {
-                        update_post_meta($post_id, 'country', $country);
-                    }
+                if ($type == 'bank') { 
 
                     if ($bank_name) {
                         update_post_meta($post_id, 'bank_name', $bank_name);
-                    }
+                    } 
 
-                    if ($routing_no) {
-                        update_post_meta($post_id, 'routing_no', $routing_no);
+                    if ($bank_details) {
+                        update_post_meta($post_id, 'bank_details', $bank_details);
                     }
+                } elseif ($type == 'paypal') {
 
-                    if ($bank_branch) {
-                        update_post_meta($post_id, 'bank_branch', $bank_branch);
+                    if ($account_type) {
+                        update_post_meta($post_id, 'account_type', $account_type);
                     }
 
                     if ($account_name) {
                         update_post_meta($post_id, 'account_name', $account_name);
                     }
-
-                    if ($account_no) {
-                        update_post_meta($post_id, 'account_no', $account_no);
+                    
+                    if ($account_email) {
+                        update_post_meta($post_id, 'account_email', $account_email);
                     }
-
-                    if ($confirm_account_no) {
-                        update_post_meta($post_id, 'confirm_account_no', $confirm_account_no);
-                    }
-
-                    if ($additional_note) {
-                        update_post_meta($post_id, 'additional_note', $additional_note);
-                    }
-                } elseif ($type == 'paypal') {
 
                     if ($client_id) {
                         update_post_meta($post_id, 'client_id', $client_id);
@@ -289,7 +286,9 @@ class Payment
                         update_post_meta($post_id, 'secret_id', $secret_id);
                     }
                 } elseif ($type == 'stripe') {
-
+                    if ($account_name) {
+                        update_post_meta($post_id, 'account_name', $account_name);
+                    }
                     if ($public_key) {
                         update_post_meta($post_id, 'public_key', $public_key);
                     }
@@ -318,22 +317,20 @@ class Payment
         $reg_errors = new \WP_Error;
 
         $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
-        //bank form
-        $country = isset($params['country']) ? sanitize_text_field($params['country']) : null;
-        $bank_name = isset($params['bank_name']) ? sanitize_text_field($params['bank_name']) : null;
-        $routing_no = isset($params['routing_no']) ? sanitize_text_field($params['routing_no']) : null;
-        $bank_branch = isset($params['bank_branch']) ? sanitize_text_field($params['bank_branch']) : null;
-        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
-        $account_no = isset($params['account_no']) ? sanitize_text_field($params['account_no']) : null;
-        $confirm_account_no = isset($params['confirm_account_no']) ? sanitize_text_field($params['confirm_account_no']) : null;
-        $additional_note = isset($params['additional_note']) ? nl2br($params['additional_note']) : null;
+        //bank form 
+        $bank_name = isset($params['bank_name']) ? sanitize_text_field($params['bank_name']) : null; 
+        $bank_details = isset($params['bank_details']) ? sanitize_textarea_field($params['bank_details']) : null;
         $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
 
         //paypal form
+        $account_type = isset($params['account_type']) ? sanitize_text_field($params['account_type']) : null;
+        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
+        $account_email = isset($params['account_email']) ? sanitize_email($params['account_email']) : null;
         $client_id = isset($params['client_id']) ? sanitize_text_field($params['client_id']) : null;
         $secret_id = isset($params['secret_id']) ? sanitize_text_field($params['secret_id']) : null;
 
         //stripe form
+        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
         $public_key = isset($params['public_key']) ? sanitize_text_field($params['public_key']) : null;
         $secret_key = isset($params['secret_key']) ? sanitize_text_field($params['secret_key']) : null;
 
@@ -360,40 +357,28 @@ class Payment
                     update_post_meta($post_id, 'type', $type);
                 }
 
-                if ($type == 'bank') {
-
-                    if ($country) {
-                        update_post_meta($post_id, 'country', $country);
-                    }
+                if ($type == 'bank') { 
 
                     if ($bank_name) {
                         update_post_meta($post_id, 'bank_name', $bank_name);
-                    }
+                    } 
 
-                    if ($routing_no) {
-                        update_post_meta($post_id, 'routing_no', $routing_no);
+                    if ($bank_details) {
+                        update_post_meta($post_id, 'bank_details', $bank_details);
                     }
+                } elseif ($type == 'paypal') {
 
-                    if ($bank_branch) {
-                        update_post_meta($post_id, 'bank_branch', $bank_branch);
+                    if ($account_type) {
+                        update_post_meta($post_id, 'account_type', $account_type);
                     }
 
                     if ($account_name) {
                         update_post_meta($post_id, 'account_name', $account_name);
                     }
-
-                    if ($account_no) {
-                        update_post_meta($post_id, 'account_no', $account_no);
+                    
+                    if ($account_email) {
+                        update_post_meta($post_id, 'account_email', $account_email);
                     }
-
-                    if ($confirm_account_no) {
-                        update_post_meta($post_id, 'confirm_account_no', $confirm_account_no);
-                    }
-
-                    if ($additional_note) {
-                        update_post_meta($post_id, 'additional_note', $additional_note);
-                    }
-                } elseif ($type == 'paypal') {
 
                     if ($client_id) {
                         update_post_meta($post_id, 'client_id', $client_id);
@@ -403,6 +388,10 @@ class Payment
                         update_post_meta($post_id, 'secret_id', $secret_id);
                     }
                 } elseif ($type == 'stripe') {
+
+                    if ($account_name) {
+                        update_post_meta($post_id, 'account_name', $account_name);
+                    }
 
                     if ($public_key) {
                         update_post_meta($post_id, 'public_key', $public_key);

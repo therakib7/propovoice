@@ -6,15 +6,9 @@ class FormBank extends Component {
 
         this.initialState = {
             id: null,
-            type: 'bank',
-            country: '',
-            bank_name: '',
-            bank_branch: '',
-            routing_no: '',
-            account_name: '',
-            account_no: '',
-            confirm_account_no: '',
-            additional_note: '',
+            type: 'bank', 
+            bank_name: '', 
+            bank_details: '',
             default: false,
             date: false
         };
@@ -68,23 +62,7 @@ class FormBank extends Component {
                             <div className="pi-content">
                                 <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-country">
-                                                Country
-                                            </label>
-
-                                            <input
-                                                id="form-country"
-                                                type="text"
-                                                required
-                                                name="country"
-                                                value={this.state.form.country}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-
+                                    <div className="row"> 
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="form-bank_name">
@@ -100,113 +78,30 @@ class FormBank extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-bank_branch">
-                                                Branch Name
-                                            </label>
-
-                                            <input
-                                                id="form-bank_branch"
-                                                type="text"
-                                                required
-                                                name="bank_branch"
-                                                value={this.state.form.bank_branch}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-routing_no">
-                                                Routing No
-                                            </label>
-
-                                            <input
-                                                id="form-routing_no"
-                                                type="text"
-                                                required
-                                                name="routing_no"
-                                                value={this.state.form.routing_no}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-account_name">
-                                                Account Name
-                                            </label>
-
-                                            <input
-                                                id="form-account_name"
-                                                type="text"
-                                                required
-                                                name="account_name"
-                                                value={this.state.form.account_name}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-account_no">
-                                                Account No
-                                            </label>
-
-                                            <input
-                                                id="form-account_no"
-                                                type="text"
-                                                required
-                                                name="account_no"
-                                                value={this.state.form.account_no}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-confirm_account_no">
-                                                Confirm Account No
-                                            </label>
-
-                                            <input
-                                                id="form-confirm_account_no"
-                                                type="text"
-                                                required
-                                                name="confirm_account_no"
-                                                value={this.state.form.confirm_account_no}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-                                    </div>
+                                    </div> 
 
                                     <div className="row">
                                         <div className="col"> 
-                                            <label htmlFor="form-additional_note">
-                                                Additional Note
+                                            <label htmlFor="form-bank_details">
+                                                Bank Details
                                             </label>
                                             <textarea
-                                                id="form-additional_note" 
+                                                id="form-bank_details" 
                                                 rows={4}
-                                                name="additional_note"
-                                                value={this.state.form.additional_note}
+                                                name="bank_details"
+                                                value={this.state.form.bank_details}
                                                 onChange={this.handleChange}
-                                            />   
+                                            />  
+                                            <p className='pi-field-desc'>You need to mention bank details here, Like: Name, Routing No. etc</p> 
                                         </div> 
                                     </div>
-
-                                    <div className="pi-footer-content pi-text-center">
-                                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                            Save
-                                        </button>
+ 
+                                    <div className="row">
+                                        <div className="col"> 
+                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                                Save
+                                            </button> 
+                                        </div> 
                                     </div>
                                 </form>
                             </div>

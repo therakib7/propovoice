@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
-
+import { toast } from 'react-toastify'; 
+import Upload from 'block/field/upload'; 
 import Api from 'api/payment-process'; 
 
 class Bank extends Component {
@@ -10,17 +10,12 @@ class Bank extends Component {
         this.state = {
             form: {
                 invoice_id: null,
-                payment_method: 'bank',
-                country: '',
-                bank_name: '',
-                account_name: '',
-                account_no: '',
-                amount: '',
-                date: '',
-                note: '',
+                payment_method: 'bank', 
+                payment_details: '', 
+                receipt: null,
             },
         };
-    }
+    } 
 
     handleChange = e => {
         const { name, value } = e.target;
@@ -51,6 +46,13 @@ class Bank extends Component {
                 }
             })
     }
+
+    handleUploadChange = (data, type = null) => { 
+		let form = { ...this.state.form }
+		form.receipt = data;
+		this.setState({ form })
+	}
+
     render() {
         return (
             <>
@@ -64,147 +66,39 @@ class Bank extends Component {
                                 </div>
 
                                 <div className="pi-content">
-                                    <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                                    <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
 
                                         <div className="row">
                                             <div className="col-lg">
-                                                <label htmlFor="form-country">
-                                                    Country
-                                                </label>
-
-                                                <input
-                                                    id="form-country"
-                                                    type="text"
-                                                    required
-                                                    name="country"
-                                                    value={this.state.form.country}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
-
-                                            <div className="col-lg">
-                                                <label htmlFor="form-bank_name">
-                                                    Bank Name
-                                                </label>
-                                                <input
-                                                    id="form-bank_name"
-                                                    type="text"
-                                                    required
-                                                    name="bank_name"
-                                                    value={this.state.form.bank_name}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="row">
-                                            <div className="col-lg">
-                                                <label htmlFor="form-account_name">
-                                                    Account Name
-                                                </label>
-
-                                                <input
-                                                    id="form-account_name"
-                                                    type="text"
-                                                    required
-                                                    name="account_name"
-                                                    value={this.state.form.account_name}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
-
-                                            <div className="col-lg">
-                                                <label htmlFor="form-account_no">
-                                                    Account No
-                                                </label>
-                                                <input
-                                                    id="form-account_no"
-                                                    type="text"
-                                                    required
-                                                    name="account_no"
-                                                    value={this.state.form.account_no}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="row">
-                                            <div className="col-lg">
-                                                <label htmlFor="form-amount">
-                                                    Amount Sent
-                                                </label>
-
-                                                <input
-                                                    id="form-amount"
-                                                    type="text"
-                                                    required
-                                                    name="amount"
-                                                    value={this.state.form.amount}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
-
-                                            <div className="col-lg">
-                                                <label htmlFor="form-date">
-                                                    Payment Date
-                                                </label>
-                                                <input
-                                                    id="form-date"
-                                                    type="text"
-                                                    required
-                                                    name="date"
-                                                    value={this.state.form.date}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="row">
-                                            <div className="col-lg">
-                                                <label htmlFor="form-note">
-                                                    Additional Note
+                                                <label htmlFor="form-payment_details">
+                                                    Payment Details
                                                 </label>
                                                 <textarea
-                                                    id="form-note"
-                                                    rows={5}
-                                                    name="note"
-                                                    value={this.state.form.note}
+                                                    id="form-payment_details"
+                                                    rows={4}
+                                                    name="payment_details"
+                                                    value={this.state.form.payment_details}
                                                     onChange={this.handleChange}
                                                 />
+                                                <p className='pi-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p> 
                                             </div>
+                                        </div> 
+
+                                        <div className="row">
+                                            <div className="col-md">
+                                                <label htmlFor="field-receipt">Payment Receipt</label>
+                                                <Upload label={'Upload'} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
+                                            </div> 
                                         </div>
 
                                         <div className="row">
-                                            <div className="col">
-                                                <button
-                                                    className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
-                                                    // onClick={() => this.setState({ media: true })}
-                                                    style={{ color: '#000' }}
-                                                >
-                                                    <svg
-                                                        width={12}
-                                                        height={12}
-                                                        viewBox="0 0 12 12"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M7.976 1.903a1.5 1.5 0 112.121 2.12l-2.25 2.25a1.5 1.5 0 01-2.12 0 .75.75 0 00-1.061 1.061 3 3 0 004.242 0l2.25-2.25A3 3 0 006.916.842L5.79 1.967a.75.75 0 101.06 1.06l1.125-1.124zm-3.75 3.75a1.5 1.5 0 012.121 0 .75.75 0 101.06-1.06 3 3 0 00-4.241 0l-2.25 2.25a3 3 0 104.242 4.241L6.283 9.96a.75.75 0 10-1.06-1.06l-1.126 1.125a1.5 1.5 0 11-2.12-2.121l2.25-2.25z"
-                                                            fill="#18181B"
-                                                        />
-                                                    </svg>
-                                                    Add Attachment
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div className="pi-footer-content pi-text-center">
-                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                                Payment
-                                            </button>
-                                        </div>
+                                            <div className="col-md"> 
+                                                <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                                    Payment
+                                                </button> 
+                                            </div> 
+                                        </div> 
+                                        
                                     </form>
                                 </div>
                             </div>

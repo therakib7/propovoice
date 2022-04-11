@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Api from 'api/payment-process';
+import Upload from 'block/field/upload'; 
 
 class Bank extends Component {
     constructor(props) {
@@ -9,10 +10,8 @@ class Bank extends Component {
         this.state = {
             form: {
                 invoice_id: null,
-                country: '',
-                bank_name: '',
-                account_name: '',
-                account_no: '',
+                payment_details: '',
+                receipt: '', 
                 amount: '',
                 date: '',
                 note: '',
@@ -67,67 +66,29 @@ class Bank extends Component {
 
                             <div className="pi-content">
                                 <div className="pi-form-style-one">
-                                    <form onSubmit={this.handleSubmit} >
-                                        <div className="row">
-                                            <div className="col-lg">
-                                                <label htmlFor="form-country">
-                                                    Country
-                                                </label>
-
-                                                <input
-                                                    id="form-country"
-                                                    type="text"
-                                                    required
-                                                    name="country"
-                                                    value={this.state.form.country}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
-
-                                            <div className="col-lg">
-                                                <label htmlFor="form-bank_name">
-                                                    Bank Name
-                                                </label>
-                                                <input
-                                                    id="form-bank_name"
-                                                    type="text"
-                                                    required
-                                                    name="bank_name"
-                                                    value={this.state.form.bank_name}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
-                                        </div>
+                                    <form onSubmit={this.handleSubmit} >  
 
                                         <div className="row">
                                             <div className="col-lg">
-                                                <label htmlFor="form-account_name">
-                                                    Account Name
+                                                <label htmlFor="form-payment_details">
+                                                    Payment Details
                                                 </label>
-
-                                                <input
-                                                    id="form-account_name"
-                                                    type="text"
-                                                    required
-                                                    name="account_name"
-                                                    value={this.state.form.account_name}
+                                                <textarea
+                                                    id="form-payment_details"
+                                                    rows={4}
+                                                    name="payment_details"
+                                                    value={this.state.form.payment_details}
                                                     onChange={this.handleChange}
                                                 />
+                                                <p className='pi-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p> 
                                             </div>
+                                        </div> 
 
-                                            <div className="col-lg">
-                                                <label htmlFor="form-account_no">
-                                                    Account No
-                                                </label>
-                                                <input
-                                                    id="form-account_no"
-                                                    type="text"
-                                                    required
-                                                    name="account_no"
-                                                    value={this.state.form.account_no}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
+                                        <div className="row">
+                                            <div className="col-md">
+                                                <label htmlFor="field-receipt">Payment Receipt</label>
+                                                <Upload label={'Upload'} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
+                                            </div> 
                                         </div>
 
                                         <div className="row">
@@ -168,18 +129,20 @@ class Bank extends Component {
                                                 </label>
                                                 <textarea
                                                     id="form-note"
-                                                    rows={5}
+                                                    rows={3}
                                                     name="note"
                                                     value={this.state.form.note}
                                                     onChange={this.handleChange}
                                                 />
                                             </div>
-                                        </div>
-
-                                        <div className="pi-footer-content pi-text-center">
-                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                                Mark As Paid
-                                            </button>
+                                        </div> 
+                                         
+                                        <div className="row">
+                                            <div className="col-lg"> 
+                                                <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                                    Mark As Paid
+                                                </button> 
+                                            </div> 
                                         </div>
                                     </form>
                                 </div>

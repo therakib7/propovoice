@@ -24,7 +24,7 @@ class Upload extends Component {
 		} */
 	} 
 
-	handleDelete = ( id ) => { 
+	handleDelete = ( id ) => {  
 		if ( confirm(this.context.CrudMsg.confirm) ) {
 			this.props.changeHandler(null) 
              
@@ -97,7 +97,7 @@ class Upload extends Component {
 
 				{!logo &&
 					<>
-					<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='hidden' />
+					<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='d-none' />
 					<button 
 						className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + btnClass}
 						onClick={(e) => this.handleUploadFile(e) }

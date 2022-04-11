@@ -416,10 +416,7 @@ export default class Dashboard extends Component {
                         <div className="col-md-6">
                             <div className="pi-feedback-content" style={{backgroundColor: '#f16063'}}>
                                 <h2>If you experience any problems?</h2>
-                                <p>
-                                    If you experience any problems or have any feature requests, I would
-                                    be
-                                </p>
+                                <p>If you experience any problems or have any feature requests, I would be</p>
 
                                 <button
                                     className="pi-btn pi-bg-white pi-color-red pi-bg-hover-red pi-hover-color-white"

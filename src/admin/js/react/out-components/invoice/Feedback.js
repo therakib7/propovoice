@@ -106,13 +106,16 @@ class Feedback extends Component {
                                                     Add Attachment
                                                 </button>
                                             </div>
+                                        </div> 
+
+                                        <div className="row">
+                                            <div className="col"> 
+                                                <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                                    {this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'}
+                                                </button> 
+                                            </div> 
                                         </div>
 
-                                        <div className="pi-footer-content pi-text-center">
-                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                                {this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'}
-                                            </button>
-                                        </div>
                                     </form>
                                 </div>
                             </div>

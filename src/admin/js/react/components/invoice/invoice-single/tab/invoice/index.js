@@ -62,7 +62,7 @@ class Invoice extends Component {
 			emailModal: false,
 			fromData: null,
 			toData: null,
-			paymentData: null,
+			paymentBankData: null,
 			invoice: {
 				id: null,
 				token: '',
@@ -73,6 +73,7 @@ class Invoice extends Component {
 				},
 				date: new Date(),
 				due_date: new Date(),
+				currency: 'USD',
 				template: {
 					id: null,
 					src: ''
@@ -91,7 +92,7 @@ class Invoice extends Component {
 				],
 				tax: 0.00,
 				paid: 0.00,
-				payment_id: null,
+				payment_methods: {},
 				note: null,
 				group: null,
 				attach: [],
@@ -143,6 +144,10 @@ class Invoice extends Component {
 		document.body.style.backgroundColor = "#fff";
 	}
 
+	changeCurrency = () => {
+		 
+	};
+
 	bgColor = () => {
 		if (this.state.currentTab == 'info') {
 			document.body.style.backgroundColor = "#f1f1f7";
@@ -180,12 +185,12 @@ class Invoice extends Component {
 				invoice.id = parseInt(resp.data.data.id);
 				invoice.token =resp.data.data.token;
 				invoice.date = new Date(resp.data.data.invoice.date);
-				invoice.due_date = new Date(resp.data.data.invoice.due_date);
+				invoice.due_date = new Date(resp.data.data.invoice.due_date); 
 				this.setState({
 					invoice,
 					fromData: resp.data.data.fromData,
 					toData: resp.data.data.toData,
-					paymentData: resp.data.data.paymentData,
+					paymentBankData: resp.data.data.paymentBankData,
 					// editId: this.props.id
 				});
 			})
@@ -419,15 +424,43 @@ class Invoice extends Component {
 		this.setState({ invoice });
 	}
 
-	onPaymentChange = (data) => {
-		let invoice = { ...this.state.invoice }
+	onPaymentChange = (data, type) => {
+
+		let invoice = { ...this.state.invoice } 
+		if ( type == 'method' ) {  
+			if ( invoice.payment_methods.hasOwnProperty(data) ) { // if payment method exist 
+				delete invoice.payment_methods[data]; 
+				this.setState({ invoice });
+			} else {  
+				invoice.payment_methods[data] = null; 
+				this.setState({ invoice });
+			}
+		} else { //type id		
+			
+			invoice.payment_methods[data.type] = data.id; 
+			this.setState({ invoice });
+			if ( data.type == 'bank' ) {
+
+			}
+		}
+		console.log(invoice.payment_methods)
+		/* 
+		payment_methods = {
+			bank: 56;
+			paypal: 28
+			stripe: null,
+		}
+		*/
+		/* let invoice = { ...this.state.invoice }
 		if (data) {
-			invoice.payment_id = data.id;
+			invoice.payment_methods = data.id;
 		} else {
-			invoice.payment_id = null;
+			invoice.payment_methods = null;
 		}
 
-		this.setState({ invoice, paymentData: data });
+		 */
+		// this.setState({ invoice, paymentBankData: data });
+		
 	}
 
 	render = () => {
@@ -555,6 +588,7 @@ class Invoice extends Component {
 															/>
 														</div>
 													</div>
+
 													<div className="row">
 														<div className="pi-info-lavel">
 															<label htmlFor="date">{title} date:</label>
@@ -563,6 +597,7 @@ class Invoice extends Component {
 															<DateField date={this.state.invoice.date} type='date' onDateChange={this.onDateChange} />
 														</div>
 													</div>
+
 													<div className="row">
 														<div className="pi-info-lavel">
 															<label htmlFor="due">Due date:</label>
@@ -571,6 +606,23 @@ class Invoice extends Component {
 															<DateField date={this.state.invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
 														</div>
 													</div>
+
+													<div className="row">
+														<div className="pi-info-lavel">
+															<label htmlFor="info-currency">Currency:</label>
+														</div>
+														<div className="pi-info-input-field">
+															<input
+																type="text"
+																name="currency"
+																// value={this.state.invoice.currency}
+																value='USD'
+																readOnly
+																// onChange={() => this.changeCurrency}
+															/>
+														</div>
+													</div>
+
 												</div>
 												{/* ./ pi-info-form */}
 											</div>
@@ -621,7 +673,7 @@ class Invoice extends Component {
 
 									<div className="row">
 										<div className="col-lg-6">
-											<PaymentInfo data={this.state.paymentData} />
+											<PaymentInfo data={this.state.paymentBankData} />
 										</div>
 
 										<div className="col-lg-6">
@@ -672,7 +724,7 @@ class Invoice extends Component {
 											<Suspense fallback={<div>Loading...</div>}>
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} />  
-												{!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />}
+												{/* {!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />} */}
 												{!wage.length && 
 												<>
 													<li>

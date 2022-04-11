@@ -235,10 +235,12 @@ ${company_name}`;
                                             </div> 
                                         </div>
 
-                                        <div className="pi-footer-content pi-text-center">
-                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                                Send Email
-                                            </button>
+                                        <div className="row">
+                                            <div className="col"> 
+                                                <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                                    Send Email
+                                                </button> 
+                                            </div> 
                                         </div>
                                     </form> 
                                 </div>

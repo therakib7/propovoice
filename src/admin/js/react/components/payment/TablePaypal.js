@@ -73,9 +73,8 @@ const TableBody = props => {
                     </svg>
                 </div>
                 <div className="bank-text-content">
-                    {/* <h2 className="pi-bank-title">{row.bank_name}</h2> */}
-                    <h4 className="pi-bank-subtitle">Clinet ID: {row.client_id}</h4>
-                    <h4 className="pi-bank-subtitle">Secret ID: {row.secret_id}</h4>
+                    <h2 className="pi-bank-title">{row.account_name}</h2>
+                    {/* <h4 className="pi-bank-subtitle">Secret ID: {row.secret_id}</h4> */}
                 </div>
             </li>
         );

@@ -9,7 +9,53 @@ class AdditionalAmount extends Component {
 
         this.state = {
             preloader: true,
-            payment: { id: null }, 
+            payment: { id: null },
+            ddpayments: [
+                {
+                    method_name: 'Paypal',
+                    method_id: 'paypal',
+                    list: [
+                        {
+                            id: 1,
+                            name: 'Rakib'
+                        },
+                        {
+                            id: 2,
+                            name: 'Hasan'
+                        }
+                    ]
+                },
+                {
+                    method_name: 'Stripe',
+                    method_id: 'stripe',
+                    list: [
+                        {
+                            id: 3,
+                            name: 'Hasan'
+                        },
+                        {
+                            id: 4,
+                            name: 'Rakib'
+                        }
+                    ]
+                },
+                {
+                    method_name: 'Bank',
+                    method_id: 'bank',
+                    list: [
+                        {
+                            id: 5,
+                            bank_name: 'City Bank',
+                            account_no: '3453454534',
+                        },
+                        {
+                            id: 6,
+                            bank_name: 'DBBL',
+                            account_no: '4545343453',
+                        }
+                    ]
+                }, 
+            ],
             payments: [],
             checkedBoxes: [],
             offset: 0,
@@ -51,12 +97,12 @@ class AdditionalAmount extends Component {
         // this.setState({ form: this.initialState });
     }
 
-    setPayment = (data, type) => {
-        this.props.handleChange(data, type);
+    setPayment = (data) => {
+        this.props.handleChange(data);
     }
 
     render() {
-        const { payment_methods } = this.props.data
+        const { payment_id } = this.props.data
         return (
             <li>
                 <input type="checkbox" defaultChecked="checked" />
@@ -70,14 +116,14 @@ class AdditionalAmount extends Component {
                         
                         return (
                         <div className="pi-tab" key={index}>
-                            <input type="checkbox" id={"pi-payment-"+row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pi-payment-type" />
+                            <input type="checkbox" id={"pi-payment-"+row.method_id} name="pi-payment-type" />
                             <label className="pi-tab-label" htmlFor={"pi-payment-"+row.method_id}>
                                 {row.method_name}
                             </label>
                             <div className="pi-tab-content">
                                 {row.list.map((single, index_single) => { 
                                     return (
-                                        <div className="pi-payment-bank-content" key={index_single} onClick={() => this.setPayment(single, 'id')} >
+                                        <div className="pi-payment-bank-content" key={index_single} onClick={() => this.setPayment(single)} >
                                             <div className="pi-bank-image">
                                                 <span>
                                                     <svg
@@ -96,7 +142,7 @@ class AdditionalAmount extends Component {
                                             </div>
 
                                             <div className="bank-text-content">
-                                                {Object.values(payment_methods).indexOf(single.id) > -1 && <span>
+                                                {single.id == payment_id && <span>
                                                     <svg
                                                         width={20}
                                                         height={20}
@@ -112,14 +158,15 @@ class AdditionalAmount extends Component {
 
                                                 { ( row.method_id == 'paypal' || row.method_id == 'stripe' ) &&
                                                     <>
-                                                        <h4 className="pi-bank-title">{single.account_name}</h4> 
+                                                        <h4 className="pi-bank-title">{single.name}</h4>
+                                                        <p className="pi-bank-subtitle"></p>
                                                     </>
                                                 }
 
                                                 {row.method_id == 'bank' &&
                                                     <>
                                                         <h4 className="pi-bank-title">{single.bank_name}</h4>
-                                                        {/* <p className="pi-bank-subtitle">Ac No. {single.account_no}</p> */}
+                                                        <p className="pi-bank-subtitle">Ac No. {single.account_no}</p>
                                                     </>
                                                 }
                                             </div>
