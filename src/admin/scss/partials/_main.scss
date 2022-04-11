@@ -2893,6 +2893,9 @@ html {
 .wp-admin .pi-group-item ul li {
   margin-bottom: 0 !important;
 }
+.wp-admin .pi-form-accordion .pi-payment-buttons .pi-btn {
+  padding: 12px 40px !important;
+}
 
 /*-------------------------------------------------------------- 
 # popup
@@ -3813,7 +3816,7 @@ html {
   transition: all 0.3s ease-out;
 }
 .ncpi .pi-bg-hover-red:hover {
-  background-color: #d51212 !important;
+  background-color: #e72626 !important;
   transition: all 0.3s ease-out;
 }
 .ncpi .pi-text-hover-blue:hover {
