@@ -1,9 +1,3 @@
-:root {
-  --pi-inv-primary: #D7CA9C;
-  --pi-inv-secondary: #F7FAFC;
-  --pi-inv-even: #EDF2F7;
-}
-
 .pi-inv {
   /* ====template five===*/
 }
@@ -22,6 +16,11 @@
   width: 100%;
   fill: var(--pi-inv-primary);
 }
+.pi-inv .pi-inv-five .pi-footer-shape {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 .pi-inv .pi-inv-five .pi-footer-shape svg {
   fill: var(--pi-inv-primary);
   display: block;
@@ -34,7 +33,7 @@
   background-color: var(--pi-inv-even);
 }
 .pi-inv .pi-inv-five .pi-items-table table tbody tr:nth-child(odd) {
-  background-color: var(--pi-inv-secondary);
+  background-color: var(--pi-inv-odd);
 }
 .pi-inv .pi-inv-five tr.pi-table-bg {
   background-color: var(--pi-inv-primary);

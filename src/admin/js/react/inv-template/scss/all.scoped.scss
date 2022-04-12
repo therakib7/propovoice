@@ -1,19 +1,26 @@
 :root {
-  --pi-inv-secondary: #4C6FFF;
-  --pi-inv-text-primary:#000000;
-  --pi-inv-text-secondary:#1A202C;
-  --pi-inv-text-3th:#2D3748;
-  --pi-inv-text-4th:#31343D;
-  --pi-inv-text-5th:#4A5568;
-  --pi-inv-white:#fff;
+  --pi-inv-secondary: #4c6fff;
+  --pi-inv-text-primary: #000000;
+  --pi-inv-text-secondary: #1a202c;
+  --pi-inv-text-3th: #2d3748;
+  --pi-inv-text-4th: #31343d;
+  --pi-inv-text-5th: #4a5568;
+  --pi-inv-white: #fff;
   --pi-inv-medium: 16px;
   --pi-inv-small: 12px;
+  --pi-inv-primary: #4c6fff;
+  --pi-inv-odd: #f7fafc;
+  --pi-inv-even: #edf2f7;
 }
 
 .pi-inv {
+  width: 210mm;
+  height: 296mm;
+  overflow: hidden;
   // max-width: 794px;
-  margin: 0 auto;
+  // margin: 0 auto;
   background-color: var(--pi-inv-white);
+  position: relative;
   /* ==== invoece to address */
   /* pi-banking wrap */
 }
@@ -43,7 +50,8 @@
   margin-bottom: 15px;
   margin-top: 18px;
 }
-.pi-inv .pi-from address span, .pi-inv .pi-from address a {
+.pi-inv .pi-from address span,
+.pi-inv .pi-from address a {
   font-weight: 500;
 }
 .pi-inv .pi-from-date p {
@@ -101,7 +109,9 @@
   color: var(--pi-inv-text-3th);
   margin-top: 5px;
 }
-.pi-inv .pi-to address p, .pi-inv .pi-to address a, .pi-inv .pi-to address span {
+.pi-inv .pi-to address p,
+.pi-inv .pi-to address a,
+.pi-inv .pi-to address span {
   font-weight: 400;
   margin-top: -5px;
 }
@@ -153,7 +163,7 @@
   font-weight: bold;
   font-size: var(--pi-inv-medium);
   line-height: 140%;
-  color: #1A202C;
+  color: #1a202c;
 }
 .pi-inv .pi-bank-info table {
   margin-top: 10px;
@@ -262,7 +272,7 @@
   color: var(--pi-inv-text-secondary);
 }
 .pi-inv .pi-border {
-  border: 0.5px solid #A0AEC0;
+  border: 0.5px solid #a0aec0;
   margin: 0 -30px;
   margin-top: 8px;
 }
@@ -270,11 +280,4 @@
   .pi-inv .pi-body {
     margin: 0 15px;
   }
-}
-
-.pi-inv {
-  // width: 842px;
-  height: 296mm; // in online height found height:297mm;
-  width: 210mm;
-  overflow: hidden;
 }

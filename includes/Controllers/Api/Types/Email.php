@@ -240,7 +240,7 @@ class Email
             </body>
 
             </html>
-<?php
+        <?php
             $invoice_html = ob_get_clean();
             $dompdf = new \Dompdf\Dompdf();
             $dompdf->set_option('enable_css_float', true);
