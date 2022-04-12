@@ -99,17 +99,25 @@ class Invoice extends Component {
 				sign: null
 			},
 			previewHeight: '',
+			previewScale: ''
 		};
 
 		this.previewRef = React.createRef();
+		this.sidebarRef = React.createRef();
 	}
 
 	isPreviewLoaded = () => {
-		let current = this.previewRef.current;
-		if (current) {
-			let previewHegiht = current.clientHeight;
-			const height = previewHegiht / 2;
-			this.setState({ previewHeight: height });
+		let previewRef = this.previewRef.current;
+		let sidebarRef = this.sidebarRef.current;
+		if ( previewRef && sidebarRef ) { 
+			let scale = Math.min( 
+				sidebarRef.clientWidth / previewRef.clientWidth, 
+				sidebarRef.clientHeight / previewRef.clientHeight 
+			);
+			
+			let previewHegiht = previewRef.clientHeight;
+			const height = ( previewHegiht / 2.05 );
+			this.setState({ previewHeight: height, previewScale: scale }); 
 		}
 	};
 
@@ -695,7 +703,7 @@ class Invoice extends Component {
 							</div>{/* ./ col-lg-9 */}
 
 							<div className="col-lg-3">
-								<div className="pi-right-sidebar" >
+								<div className="pi-right-sidebar" ref={this.sidebarRef} >
 									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2>
 
 									{/* TODO: try to remove duplicate */}
@@ -703,7 +711,7 @@ class Invoice extends Component {
 										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
 
-									<div className='pi-inv-sidebar-preview' style={{ height: this.state.previewHeight }}>
+									<div className='pi-inv-sidebar-preview' style={{ height: this.state.previewHeight, transform: 'scale('+this.state.previewScale+')' }}>
 										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
 									<div className="pi-accordion-wrapper">

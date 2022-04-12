@@ -80,7 +80,7 @@ class Branding extends Component {
 				}
 				
 				{ business.id && business.logo &&
-				<div className="pi-field-logo-wrap pi-text-center">
+				<div className="pi-field-logo-wrap pi-text-center pi-mb-30">
 					<div className='pi-field-logo'>
 						<img src={business.logo.src} width="120" /> 
 						<span className='pi-field-logo-close' onClick={() => this.handleDelete(business.logo.id)}>×</span>

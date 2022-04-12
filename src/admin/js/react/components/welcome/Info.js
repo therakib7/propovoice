@@ -133,7 +133,7 @@ class Info extends Component {
                         </div>
                     </div>
 
-                    <div className="row">
+                    <div className="row pi-mb-30">
                         <div className="col">
                             <label 
                                 htmlFor="field-address">

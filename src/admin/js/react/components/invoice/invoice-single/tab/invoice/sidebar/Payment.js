@@ -43,13 +43,7 @@ class AdditionalAmount extends Component {
                 let result = resp.data.data.result;
                 this.setState({ payments: result, preloader: false });
             })
-    };
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        // this.props.handleSubmit(this.state.form);
-        // this.setState({ form: this.initialState });
-    }
+    }; 
 
     setPayment = (data, type) => {
         this.props.handleChange(data, type);
