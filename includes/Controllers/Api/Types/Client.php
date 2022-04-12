@@ -198,8 +198,8 @@ class Client
             $user_data['email'] = $user->user_email;
             $user_data['company_name'] = get_user_meta($user->ID, 'company_name', true);
             $user_data['web'] = get_user_meta($user->ID, 'web', true);
-            $user_data['mobile'] = get_user_meta($user->ID, 'mobile', true);
-            $user_data['zip'] = '1245';
+            $user_data['mobile'] = get_user_meta($user->ID, 'mobile', true); 
+            $user_data['address'] = get_user_meta($user->ID, 'address', true); 
             $user_data['date'] = $user->user_registered;
 
             $data[] = $user_data;
@@ -230,7 +230,7 @@ class Client
         $field['company_name'] = get_user_meta($user->ID, 'company_name', true);
         $field['web'] = get_user_meta($user->ID, 'web', true);
         $field['mobile'] = get_user_meta($user->ID, 'mobile', true);
-        $field['zip'] = '';
+        $field['address'] = get_user_meta($user->ID, 'address', true); 
         $field['date'] = $user->user_registered;
 
         $data['user'] = $field;
@@ -248,6 +248,7 @@ class Client
         $company_name           = sanitize_text_field($req['company_name']);
         $web                    = esc_url_raw($req['web']);
         $mobile                 = sanitize_text_field($req['mobile']);
+        $address                = sanitize_text_field($req['address']);
 
         if (
             empty($first_name) ||
@@ -283,6 +284,7 @@ class Client
                 update_user_meta($user_id, 'company_name', $company_name);
                 update_user_meta($user_id, 'web', $web);
                 update_user_meta($user_id, 'mobile', $mobile);
+                update_user_meta($user_id, 'address', $address);
 
                 wp_send_json_success($user_id);
             } else {
@@ -301,6 +303,7 @@ class Client
         $company_name           = sanitize_text_field($params['company_name']);
         $web                    = esc_url_raw($params['web']);
         $mobile                 = sanitize_text_field($params['mobile']);
+        $address                = sanitize_text_field($req['address']);
 
         if (
             empty($useremail) ||
@@ -338,6 +341,7 @@ class Client
                 update_user_meta($user_id, 'company_name', $company_name);
                 update_user_meta($user_id, 'web', $web);
                 update_user_meta($user_id, 'mobile', $mobile);
+                update_user_meta($user_id, 'address', $address);
                 wp_send_json_success($user_id);
             } else {
                 wp_send_json_error();

@@ -11,7 +11,7 @@
 }
 
 .pi-inv {
-  max-width: 794px;
+  // max-width: 794px;
   margin: 0 auto;
   background-color: var(--pi-inv-white);
   /* ==== invoece to address */
@@ -270,4 +270,11 @@
   .pi-inv .pi-body {
     margin: 0 15px;
   }
+}
+
+.pi-inv {
+  // width: 842px;
+  height: 296mm; // in online height found height:297mm;
+  width: 210mm;
+  overflow: hidden;
 }

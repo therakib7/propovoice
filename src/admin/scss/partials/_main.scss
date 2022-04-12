@@ -3571,26 +3571,28 @@ html {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.pi-form-accordion .pi-tab .pi-payment-bank-content .bank-text-content span {
+.pi-form-accordion .pi-tab .pi-payment-bank-content .payment-text-content span {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
 }
-.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-image {
+.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-payment-image {
   margin-right: 5px;
 }
-.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-image span {
+.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-payment-image span {
   background-color: var(--bg-color-air-white);
   padding: 5px 5px 2px;
   border-radius: 3px;
   display: block;
 }
-.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-bank-title {
+.pi-form-accordion .pi-tab .pi-payment-bank-content .pi-payment-title {
   font-size: 12px;
   font-weight: 500;
   line-height: 17px;
-  margin-top: 12px;
+  top: 50%;
+  transform: translate(0, -50%);
+  position: absolute;
 }
 .pi-form-accordion .pi-tab input[type=radio]:checked {
   background-color: #93e026;

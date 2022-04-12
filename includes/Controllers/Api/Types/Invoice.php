@@ -226,16 +226,15 @@ class Invoice
         }
         $query_data['toData'] = $toData;         
 
-        $payment_id = get_post_meta($id, 'payment_id', true);
+        $payment_methods = get_post_meta($id, 'payment_methods', true);
         $paymentData = null;
-        if ($payment_id) {
-            $paymentData['id'] = $payment_id;
-            $paymentMeta = get_post_meta($payment_id);
+        if ( isset( $payment_methods['bank'] ) ) {
+            $paymentData['id'] = $payment_methods['bank'];
+            $paymentMeta = get_post_meta($payment_methods['bank']);
             $paymentData['bank_name'] = isset($paymentMeta['bank_name']) ? $paymentMeta['bank_name'][0] : '';
-            $paymentData['account_name'] = isset($paymentMeta['account_name']) ? $paymentMeta['account_name'][0] : '';
-            $paymentData['account_no'] = isset($paymentMeta['account_no']) ? $paymentMeta['account_no'][0] : '';
+            $paymentData['bank_details'] = isset($paymentMeta['bank_details']) ? $paymentMeta['bank_details'][0] : ''; 
         }
-        $query_data['paymentData'] = $paymentData;
+        $query_data['paymentBankData'] = $paymentData;
 
         return wp_send_json_success($query_data);
     }
@@ -250,16 +249,16 @@ class Invoice
         $date     = isset($params['date']) ? $params['date'] : null;
         $path     = isset($params['path']) ? $params['path'] : '';
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
-        $payment_id = isset($params['payment_id']) ? $params['payment_id'] : null;
+        $payment_methods = isset($params['payment_methods']) ? $params['payment_methods'] : null;
         // wp_send_json_success($invoice);
         $total    = 0;
         foreach ($params['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
         }
-        $paid     = isset($params['paid']) ? $params['paid'] : null;
-        $due      = $paid ? $total - $paid : null;
+        $paid   = isset($params['paid']) ? $params['paid'] : null;
+        $due    = $paid ? $total - $paid : null;
 
-        $from     = isset($params['from']) ? $params['from'] : null;
+        $from   = isset($params['from']) ? $params['from'] : null;
         $to     = isset($params['to']) ? $params['to'] : null;
 
         if (!$from) {
@@ -267,7 +266,7 @@ class Invoice
         }
 
         if (!$path) {
-            $reg_errors->add('field', esc_html__('Path is missing', 'propovoice'));
+            $reg_errors->add('field', esc_html__('Module is missing', 'propovoice'));
         }
 
         if (!$to) {
@@ -324,8 +323,8 @@ class Invoice
                     update_post_meta($post_id, 'due', $due);
                 }
 
-                if ($payment_id) {
-                    update_post_meta($post_id, 'payment_id', $payment_id);
+                if ($payment_methods) {
+                    update_post_meta($post_id, 'payment_methods', $payment_methods);
                 }
 
                 //generate secret token
@@ -351,7 +350,7 @@ class Invoice
 
         $date     = isset($params['date']) ? $params['date'] : null;
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
-        $payment_id = isset($params['payment_id']) ? $params['payment_id'] : null;
+        $payment_methods = isset($params['payment_methods']) ? $params['payment_methods'] : null;
 
         $from     = isset($params['from']) ? $params['from'] : null;
         $to     = isset($params['to']) ? $params['to'] : null;
@@ -420,7 +419,7 @@ class Invoice
                     update_post_meta($post_id, 'due', $due);
                 }
 
-                update_post_meta($post_id, 'payment_id', $payment_id);
+                update_post_meta($post_id, 'payment_methods', $payment_methods);
 
                 wp_send_json_success($post_id);
             } else {

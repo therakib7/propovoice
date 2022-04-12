@@ -42,11 +42,11 @@ const TableBody = props => {
                         </svg>
                     </span>
                 </div>
-                <div className="pi-bank-image">
+                <div className="pi-payment-image">
                     <span className="pi-color-blue">stripe</span>
                 </div>
-                <div className="bank-text-content">
-                    <h2 className="pi-bank-title">{row.account_name}</h2> 
+                <div className="payment-text-content">
+                    <h2 className="pi-payment-title">{row.account_name}</h2> 
                 </div>
             </li>
         );

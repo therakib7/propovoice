@@ -425,42 +425,29 @@ class Invoice extends Component {
 	}
 
 	onPaymentChange = (data, type) => {
-
 		let invoice = { ...this.state.invoice } 
 		if ( type == 'method' ) {  
 			if ( invoice.payment_methods.hasOwnProperty(data) ) { // if payment method exist 
-				delete invoice.payment_methods[data]; 
-				this.setState({ invoice });
+				delete invoice.payment_methods[data];  
+
+				if ( data == 'bank' ) {				
+					this.setState({ invoice, paymentBankData: null });
+				} else {
+					this.setState({ invoice });
+				}
 			} else {  
-				invoice.payment_methods[data] = null; 
-				this.setState({ invoice });
+				invoice.payment_methods[data] = null;   
+				this.setState({ invoice }); 
 			}
 		} else { //type id		
 			
-			invoice.payment_methods[data.type] = data.id; 
-			this.setState({ invoice });
-			if ( data.type == 'bank' ) {
-
+			invoice.payment_methods[data.type] = data.id;
+			if ( data.type == 'bank' ) {				
+				this.setState({ invoice, paymentBankData: data });
+			} else {
+				this.setState({ invoice });
 			}
-		}
-		console.log(invoice.payment_methods)
-		/* 
-		payment_methods = {
-			bank: 56;
-			paypal: 28
-			stripe: null,
-		}
-		*/
-		/* let invoice = { ...this.state.invoice }
-		if (data) {
-			invoice.payment_methods = data.id;
-		} else {
-			invoice.payment_methods = null;
-		}
-
-		 */
-		// this.setState({ invoice, paymentBankData: data });
-		
+		}  
 	}
 
 	render = () => {

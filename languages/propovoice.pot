@@ -38,27 +38,27 @@ msgstr ""
 msgid "Name is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:256, ../includes/Controllers/Api/Types/Client.php:309
+#: ../includes/Controllers/Api/Types/Client.php:257, ../includes/Controllers/Api/Types/Client.php:312
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:260, ../includes/Controllers/Api/Types/Client.php:313
+#: ../includes/Controllers/Api/Types/Client.php:261, ../includes/Controllers/Api/Types/Client.php:316
 msgid "Email id is not valid!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Client.php:264, ../includes/Controllers/Api/Types/Client.php:321
+#: ../includes/Controllers/Api/Types/Client.php:265, ../includes/Controllers/Api/Types/Client.php:324
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:266, ../includes/Controllers/Api/Types/Invoice.php:370
+#: ../includes/Controllers/Api/Types/Invoice.php:265, ../includes/Controllers/Api/Types/Invoice.php:369
 msgid "Business is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:270
-msgid "Path is missing"
+#: ../includes/Controllers/Api/Types/Invoice.php:269
+msgid "Module is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:274, ../includes/Controllers/Api/Types/Invoice.php:374
+#: ../includes/Controllers/Api/Types/Invoice.php:273, ../includes/Controllers/Api/Types/Invoice.php:373
 msgid "Receiver is missing"
 msgstr ""
 

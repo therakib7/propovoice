@@ -64,13 +64,13 @@ class AdditionalAmount extends Component {
                 <h3>Payment</h3>
                 <div className="pi-form-accordion pi-additional"> 
                     {this.state.payments.map((row, index) => { 
-                        /* if ( wage.length > 0 ) {
+                        if ( wage.length > 0 ) {
                             if ( row.method_id !== 'bank') return;
-                        } */
+                        }
                         
                         return (
                         <div className="pi-tab" key={index}>
-                            <input type="checkbox" id={"pi-payment-"+row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pi-payment-type" />
+                            <input type="checkbox" defaultChecked={payment_methods.hasOwnProperty(row.method_id)} id={"pi-payment-"+row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pi-payment-type" />
                             <label className="pi-tab-label" htmlFor={"pi-payment-"+row.method_id}>
                                 {row.method_name}
                             </label>
@@ -78,7 +78,7 @@ class AdditionalAmount extends Component {
                                 {row.list.map((single, index_single) => { 
                                     return (
                                         <div className="pi-payment-bank-content" key={index_single} onClick={() => this.setPayment(single, 'id')} >
-                                            <div className="pi-bank-image">
+                                            <div className="pi-payment-image">
                                                 <span>
                                                     <svg
                                                         width={20}
@@ -95,7 +95,7 @@ class AdditionalAmount extends Component {
                                                 </span>
                                             </div>
 
-                                            <div className="bank-text-content">
+                                            <div className="payment-text-content">
                                                 {Object.values(payment_methods).indexOf(single.id) > -1 && <span>
                                                     <svg
                                                         width={20}
@@ -112,14 +112,13 @@ class AdditionalAmount extends Component {
 
                                                 { ( row.method_id == 'paypal' || row.method_id == 'stripe' ) &&
                                                     <>
-                                                        <h4 className="pi-bank-title">{single.account_name}</h4> 
+                                                        <h4 className="pi-payment-title">{single.account_name}</h4> 
                                                     </>
                                                 }
 
                                                 {row.method_id == 'bank' &&
                                                     <>
                                                         <h4 className="pi-bank-title">{single.bank_name}</h4>
-                                                        {/* <p className="pi-bank-subtitle">Ac No. {single.account_no}</p> */}
                                                     </>
                                                 }
                                             </div>

@@ -13,8 +13,7 @@ class Form extends Component {
             email: '',
             company_name: '',
             web: '',
-            mobile: '',
-            zip: '',
+            mobile: '', 
             address: '',
             date: false
         };
@@ -157,24 +156,24 @@ class Form extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div>
-                                    </div>
+                                    </div> 
 
                                     <div className="row"> 
                                         <div className="col">
                                             <label
-                                                htmlFor="form-zip">
-                                                Zip Code
+                                                htmlFor="form-address">
+                                                Address
                                             </label>
 
                                             <input
-                                                id="form-zip"
-                                                type="number"
-                                                name="zip"
-                                                value={this.state.form.zip}
+                                                id="form-address"
+                                                type="text"
+                                                name="address"
+                                                value={this.state.form.address}
                                                 onChange={this.handleChange}
                                             />
                                         </div>
-                                    </div>  
+                                    </div> 
 
                                     <div className="row">
                                         <div className="col"> 
