@@ -17,7 +17,6 @@ const ColorPicker = ({ color, onChange }) => {
 				<span style={{backgroundColor: '#8A39E1'}} onClick={() => onChange('#8A39E1')} />
 				<span style={{backgroundColor: '#18954d'}} onClick={() => onChange('#18954d')} />
 				<span style={{backgroundColor: '#22577E'}} onClick={() => onChange('#22577E')} />
-
 				<span 
 					style={{ backgroundColor: color }}
 					onClick={() => toggle(true)}

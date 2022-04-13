@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import {
+    useLocation,
+    useNavigate,
+    useParams,
+} from "react-router-dom";
 
 import Api from 'api/payment';
 
-class AdditionalAmount extends Component {
+class Payment extends Component {
 
     constructor(props) {
         super(props);
@@ -49,13 +54,25 @@ class AdditionalAmount extends Component {
         this.props.handleChange(data, type);
     }
 
+    goToPayment = () => { 
+        if ( confirm('Before going payment, Do you want to save current changes?') ) {
+            this.props.handleSave(); 
+        } 
+
+        if ( !wage.length ) {
+            this.props.router.navigate(`/payment`, { replace: true }); 
+        } else {
+            this.props.router.navigate(`/setting/payment`, { replace: true }); 
+        }
+    } 
+
     render() {
         const { payment_methods } = this.props.data
         return (
             <li>
                 <input type="checkbox" defaultChecked="checked" />
                 <i />
-                <h3>Payment</h3>
+                <h3>Accepted Payment</h3>
                 <div className="pi-form-accordion pi-additional"> 
                     {this.state.payments.map((row, index) => { 
                         if ( wage.length > 0 ) {
@@ -119,13 +136,21 @@ class AdditionalAmount extends Component {
                                         </div>
                                     );
                                 })} 
-
                             </div>
                         </div>
                         );
-                    })} 
-
-                    {!this.state.payments.length && <button className='pi-btn pi-bg-hover-blue pi-hover-color-white'>Add New Account</button>} 
+                    })}  
+                    
+                    {!this.state.payments.length && 
+                        <div className='pi-payment-buttons'> 
+                            <button 
+                                className='pi-btn pi-bg-blue pi-bg-hover-blue pi-hover-color-white'
+                                onClick={this.goToPayment}
+                                >
+                                Add New Payment
+                            </button>   
+                        </div>
+                    } 
                 </div>
 
             </li>
@@ -133,4 +158,19 @@ class AdditionalAmount extends Component {
     }
 }
 
-export default AdditionalAmount;
+function withRouter(Component) {
+    function ComponentWithRouterProp(props) {
+        let location = useLocation();
+        let navigate = useNavigate();
+        let params = useParams();
+        return (
+            <Component
+                {...props}
+                router={{ location, navigate, params }}
+            />
+        );
+    } 
+    return ComponentWithRouterProp;
+}
+
+export default withRouter(Payment); 
