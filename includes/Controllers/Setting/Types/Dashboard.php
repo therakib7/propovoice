@@ -67,7 +67,7 @@ class Dashboard
             array($this, 'render')
         );
 
-        /* add_submenu_page(
+        add_submenu_page(
             'ncpi',
             esc_html__('Payment', 'propovoice'),
             esc_html__('Payment', 'propovoice'),
@@ -83,7 +83,7 @@ class Dashboard
             'manage_options',
             'ncpi#/business',
             array($this, 'render')
-        ); */
+        );
 
         add_submenu_page(
             'ncpi',

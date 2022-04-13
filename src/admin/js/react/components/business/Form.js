@@ -34,19 +34,39 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['default']: value } });
     }
 
+    componentDidMount() {
+        //added this multiple place, because not working in invoice single
+        this.editData();
+    }
+
     componentDidUpdate() {
-        //condition added to stop multiple rendering
-        if (this.props.modalType == 'edit') {
-            
+        this.editData();
+    }
+
+    editData = () => {
+        //condition added to stop multiple rendering 
+        if ( this.props.modalType == 'edit' ) {
             if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
+                if ( !wage.length ) { 
+                    this.setState({ form: this.props.data });
+                } else {
+                    let data = this.props.data;
+                    data.default = true;
+                    this.setState({ form: data });
+                }
             }
         } else {
             if (this.state.form.id != null) {
-                this.setState({ form: this.initialState });
+                if ( !wage.length ) { 
+                    this.setState({ form: this.initialState });
+                } else {
+                    let data = this.initialState;
+                    data.default = true;
+                    this.setState({ form: data });
+                }
             }
         }
-    }
+    } 
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -60,7 +80,7 @@ class Form extends Component {
 		this.setState({ form })
 	}
 
-    render() {
+    render() { 
         return (
             <>
                 {this.props.show && ( 
@@ -174,7 +194,7 @@ class Form extends Component {
                                         </div> 
 
                                         <div className="col">
-                                            <div className="pi-form-checkbox">
+                                            {!wage.length &&<div className="pi-form-checkbox">
                                                 <input 
                                                     id="form-default"
                                                     type="checkbox"
@@ -187,7 +207,7 @@ class Form extends Component {
                                                 >
                                                 Default?    
                                                 </label>  
-                                            </div>
+                                            </div>}
                                         </div> 
                                     </div> 
 

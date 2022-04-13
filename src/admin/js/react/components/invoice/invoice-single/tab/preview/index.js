@@ -112,12 +112,12 @@ export default class Preview extends Component {
             <title>PDF</title>
             <style type="text/css">
             @media print {  
-              * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-              }
-              @page{ margin: 0;} 
+                * {
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                }
+                @page{ margin: 0;} 
                 .page{
                     width: 100%; 
                     /* height: 1132px; */

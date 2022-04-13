@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 import Api from 'api/invoice';
 
+//self component
 import FromTo from './FromTo';
 import Items from './Items'
 import PaymentInfo from './PaymentInfo';
@@ -16,7 +17,7 @@ import Preview from '../preview';
 
 // import Attach from './Attach';
 import DateField from 'block/date-picker';
-import Upload from 'block/field/upload';
+import Upload from 'block/field/upload'; 
 
 //sidebar section
 const InvTemplate = lazy(() => import('inv-template'));
@@ -57,7 +58,7 @@ class Invoice extends Component {
 				delete: 'Successfully Deleted',
 				confirm: 'Are you sure to delete it?',
 				saveTxt: 'Save'
-			},
+			}, 
 			shareModal: false,
 			emailModal: false,
 			fromData: null,
@@ -456,7 +457,7 @@ class Invoice extends Component {
 				this.setState({ invoice });
 			}
 		}  
-	}
+	} 
 
 	render = () => {
 		const {title, tabs = [], currentTab, currentTabIndex} = this.state; 
@@ -555,9 +556,8 @@ class Invoice extends Component {
 
 					{(currentTab == 'info') && <div id="pi-informations" className="pi-invoice-tab-content">
 						<div className="row">
-							<div className="col-lg-9">
+							<div className="col-lg-9"> 
 								<h2 className='pi-tab-content-title'>Add Content</h2>
-
 								<div className="pi-info-content pi-bg-white">
 									<div className="pi-add-info-content pi-bg-pearl">
 										<h3 className="pi-color-blue pi-text-center">{title}</h3>

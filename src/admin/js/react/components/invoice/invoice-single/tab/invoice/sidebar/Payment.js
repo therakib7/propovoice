@@ -118,15 +118,14 @@ class AdditionalAmount extends Component {
                                             </div>
                                         </div>
                                     );
-                                })}
-
-                                {!row.list.length && <button className='pi-payment-btn pi-bg-hover-blue pi-hover-color-white'>Add New Account</button>}
+                                })} 
 
                             </div>
                         </div>
                         );
                     })} 
-                     
+
+                    {!this.state.payments.length && <button className='pi-btn pi-bg-hover-blue pi-hover-color-white'>Add New Account</button>} 
                 </div>
 
             </li>

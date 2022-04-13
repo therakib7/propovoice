@@ -4,10 +4,8 @@ import ColorPicker from 'block/color-picker';
 
 class Style extends Component {
     constructor(props) {
-        super(props); 
-         
+        super(props);          
     }
-
      
     handleChange = ( val ) => { 
         let style = { ...this.props.data.style }

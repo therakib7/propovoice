@@ -28,9 +28,12 @@ export default class Business extends Component {
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
+            total: 1,
             totalPage: 1,
-            currentPage: 1
+            currentPage: 1,
+            searchVal: ''
         };
+        this.timeout = 0;
     }
 
     static contextType = AppContext;
@@ -59,9 +62,32 @@ export default class Business extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ businesses: result, preloader: false, empty, totalPage: Math.ceil(total / this.state.perPage) });
+                this.setState({ businesses: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
             })
     };
+
+    handleSearch = (e) => {
+        const { value } = e.target;
+
+        this.setState({ searchVal: value }, () => {
+            // if (this.state.searchVal.length < 3) return;
+
+            //search when typing stop
+            if (this.timeout) clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                this.getLists({
+                    s: this.state.searchVal
+                });
+            }, 300);
+        });
+    }
+
+    showItem = (e) => {
+        const { value } = e.target;
+        this.setState({ perPage: value }, () => {
+            this.getLists();
+        });
+    }
 
     handleSubmit = business => {
         if (this.state.formModalType == 'new') {
@@ -122,14 +148,11 @@ export default class Business extends Component {
         }
     }
 
-    openForm = (type = 'new', business = null) => {
-        this.setState({ formModal: true });
-
+    openForm = (type = 'new', business = null) => { 
         if (type == 'new') {
-            this.setState({ formModalType: 'new' });
+            this.setState({ formModal: true, formModalType: 'new' });
         } else {
-            this.setState({ formModalType: 'edit' });
-            this.setState({ business: business });
+            this.setState({ formModal: true, formModalType: 'edit', business: business });
         }
     };
 
@@ -176,16 +199,12 @@ export default class Business extends Component {
     };
 
     render() {
-        const checkedBoxes = this.state.checkedBoxes;
-        const businesses = this.state.businesses;
-        const title = this.state.title;
+        const { title, businesses, checkedBoxes, searchVal } = this.state;
         return (
-            <div className="ncpi-components">
-
-
-                <h1 >{title}</h1>
+            <div className="ncpi-components"> 
+                <h1>{title}</h1>
                 <nav className="pi-breadcrumb">
-                    <ul >
+                    <ul>
                         <li>
                             <a href="#" >
                                 Home
@@ -199,75 +218,80 @@ export default class Business extends Component {
                 </nav>
 
                 {businesses.length > 0 &&
-                    <>
-                        {!wage.length && <div className="pi-cards">
-                            <div className="row">
-                                <div className="col col-md-6 col-lg-3">
-                                    <div className="pi-bg-air-white">
-                                        <span >Total {title}</span>
-                                        <h4 className="pi-color-blue">23</h4>
-                                    </div>
-                                </div>
-                                <div className="col col-md-6 col-lg-3">
-                                    <div className="pi-bg-air-white">
-                                        <span >Paid {title}</span>
-                                        <h4 className="pi-color-blue">132</h4>
-                                    </div>
-                                </div>
-                                <div className="col col-md-6 col-lg-3">
-                                    <div className="pi-bg-air-white">
-                                        <span >Unpaid {title}</span>
-                                        <h4 className="pi-color-blue">16</h4>
-                                    </div>
-                                </div>
-                                <div className="col col-md-6 col-lg-3">
-                                    <div className="pi-bg-air-white">
-                                        <span >Draft {title}</span>
-                                        <h4 className="pi-color-blue">21</h4>
-                                    </div>
+                    <>{!wage.length && <div className="pi-cards">
+                        <div className="row">
+                            <div className="col col-md-6 col-lg-3">
+                                <div className="pi-bg-air-white">
+                                    <span >Total {title}</span>
+                                    <h4 className="pi-color-blue">23</h4>
                                 </div>
                             </div>
-                        </div>}
-
-                        <div className="pi-buttons">
-                            <button
-                                className="pi-btn pi-bg-blue pi-bg-hover-blue"
-                                onClick={() => this.openForm('new')} >
-                                Create New {title}
-                            </button>
-
-                            {checkedBoxes.length ? <button
-                                style={{ marginLeft: '5px' }} className="pi-btn pi-bg-red pi-bg-hover-red"
-                                onClick={() => this.deleteEntry('selected')} >
-                                Delete selected
-                            </button> : ''}
-
-                            <div className="pi-search-box pi-float-right">
-                                <svg
-                                    width={24}
-                                    height={24}
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
-                                        fill="#718096"
-                                    />
-                                    <path
-                                        d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
-                                        fill="#718096"
-                                    />
-                                </svg>
-                                <input type="text" className="pi-search-input" placeholder="Search.." />
+                            <div className="col col-md-6 col-lg-3">
+                                <div className="pi-bg-air-white">
+                                    <span >Paid {title}</span>
+                                    <h4 className="pi-color-blue">132</h4>
+                                </div>
+                            </div>
+                            <div className="col col-md-6 col-lg-3">
+                                <div className="pi-bg-air-white">
+                                    <span >Unpaid {title}</span>
+                                    <h4 className="pi-color-blue">16</h4>
+                                </div>
+                            </div>
+                            <div className="col col-md-6 col-lg-3">
+                                <div className="pi-bg-air-white">
+                                    <span >Draft {title}</span>
+                                    <h4 className="pi-color-blue">21</h4>
+                                </div>
                             </div>
                         </div>
-                    </>}
+                    </div>}  
+                </>}
 
-                {this.state.empty && <Empty title={title} clickHandler={() => this.openForm('new')} />}
+                <div className="pi-buttons">
+                    <button
+                        className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                        onClick={() => this.openForm('new')} >
+                        Create New {title}
+                    </button>
 
-                {/* <button
-                    
+                    {checkedBoxes.length ? <button
+                        style={{ marginLeft: '5px' }} className="pi-btn pi-bg-red pi-bg-hover-red"
+                        onClick={() => this.deleteEntry('selected')} >
+                        Delete selected
+                    </button> : ''}
+
+                    <div className="pi-search-box pi-float-right">
+                        <svg
+                            width={24}
+                            height={24}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
+                                fill="#718096"
+                            />
+                            <path
+                                d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
+                                fill="#718096"
+                            />
+                        </svg>
+
+                        <input
+                            type="text"
+                            className="pi-search-input"
+                            placeholder="Search..."
+                            value={this.state.searchVal}
+                            onChange={this.handleSearch}
+                        />
+                    </div>
+                </div>
+
+                {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.openForm('new')} />}
+
+                {/* <button                    
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button> */}
@@ -286,7 +310,19 @@ export default class Business extends Component {
                     close={this.closeForm}
                 />
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={businesses} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
+                {businesses.length > 0 && <div className='pi-table-showing'>
+                    <p>
+                        {businesses.length} Business Showing from {this.state.total}
+                        <select onChange={this.showItem}>
+                            <option value="10">Show item 10</option>
+                            <option value="20">Show item 20</option>
+                            <option value="30">Show item 30</option>
+                            <option value="50">Show item 50</option>
+                            <option value="100">Show item 100</option>
+                        </select>
+                    </p>
+                </div>}
+                {this.state.preloader ? <TablePreloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousLabel={"<"}
@@ -301,6 +337,7 @@ export default class Business extends Component {
                     containerClassName={"pi-pagination"}
                     activeClassName={"active"} />
                 }
+
             </div>
         );
     }

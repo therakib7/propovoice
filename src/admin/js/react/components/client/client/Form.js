@@ -26,10 +26,19 @@ class Form extends Component {
     handleChange = e => {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } });
+    } 
+
+    componentDidMount() {
+        //added this multiple place, because not working in invoice single
+        this.editData();
     }
 
     componentDidUpdate() {
-        //condition added to stop multiple rendering
+        this.editData();
+    }
+
+    editData = () => {
+        //condition added to stop multiple rendering 
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
@@ -39,7 +48,7 @@ class Form extends Component {
                 this.setState({ form: this.initialState });
             }
         }
-    }
+    } 
 
     handleSubmit = (e) => {
         e.preventDefault();
