@@ -22,15 +22,11 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: ../includes/Controllers/Template/PageTemplater.php:26, ../views/template/dashboard-template.php:3
-msgid "Propovoice Dashboard"
-msgstr ""
-
-#: ../includes/Controllers/Template/PageTemplater.php:27
+#: ../includes/Controllers/Template/PageTemplater.php:24
 msgid "Propovoice Client Invoice"
 msgstr ""
 
-#: ../includes/Controllers/Template/PageTemplater.php:28
+#: ../includes/Controllers/Template/PageTemplater.php:25
 msgid "Propovoice Client Estimate"
 msgstr ""
 
@@ -94,6 +90,66 @@ msgstr ""
 msgid "Show member in Propovoice"
 msgstr ""
 
+#: ../includes/Controllers/PostType/Types/Invoice.php:20
+msgctxt "Post type general name"
+msgid "Invoices"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:21
+msgctxt "Post type singular name"
+msgid "Invoice"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:22
+msgctxt "Admin Menu text"
+msgid "Invoices"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:23
+msgctxt "Add New on Toolbar"
+msgid "Invoice"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:24, ../includes/Controllers/PostType/Types/Proposal.php:24
+msgid "Add New"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:25
+msgid "Add New Invoice"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:26
+msgid "New Invoice"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:27
+msgid "Edit Invoice"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:28
+msgid "View Invoice"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:29
+msgid "All Invoices"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:30
+msgid "Search Invoices"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:31
+msgid "Parent Invoices:"
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:32
+msgid "No ncpi_invoices found."
+msgstr ""
+
+#: ../includes/Controllers/PostType/Types/Invoice.php:33
+msgid "No ncpi_invoices found in Trash."
+msgstr ""
+
 #: ../includes/Controllers/PostType/Types/Proposal.php:20
 msgctxt "Post type general name"
 msgid "Proposal"
@@ -112,10 +168,6 @@ msgstr ""
 #: ../includes/Controllers/PostType/Types/Proposal.php:23
 msgctxt "Add New on Toolbar"
 msgid "Proposal"
-msgstr ""
-
-#: ../includes/Controllers/PostType/Types/Proposal.php:24
-msgid "Add New"
 msgstr ""
 
 #: ../includes/Controllers/PostType/Types/Proposal.php:25
@@ -186,16 +238,20 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
+#: ../views/template/dashboard-template.php:3
+msgid "Propovoice Dashboard"
+msgstr ""
+
+#: ../views/template/dashboard-template.php:19, ../views/template/estimate-template.php:58, ../views/template/invoice-template.php:58
+msgid "Sorry!! You don't have permission to view this page"
+msgstr ""
+
 #: ../views/template/estimate-template.php:3
 msgid "Propovoice Estimate"
 msgstr ""
 
 #: ../views/template/estimate-template.php:61, ../views/template/invoice-template.php:61
 msgid "Sorry!! page not found"
-msgstr ""
-
-#: ../views/template/estimate-template.php:58, ../views/template/invoice-template.php:58
-msgid "Sorry!! You don't have permission to view this page"
 msgstr ""
 
 #: ../views/template/invoice-template.php:3

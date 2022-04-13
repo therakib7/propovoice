@@ -241,9 +241,8 @@ class Invoice
 
     public function create($req)
     {
-
         $params = $req->get_params();
-        $reg_errors             = new \WP_Error;
+        $reg_errors  = new \WP_Error;
         //TODO: sanitize later
         $invoice  = isset($params) ? $params : null;
         $date     = isset($params['date']) ? $params['date'] : null;
@@ -251,7 +250,8 @@ class Invoice
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
         $payment_methods = isset($params['payment_methods']) ? $params['payment_methods'] : null;
         // wp_send_json_success($invoice);
-        $total    = 0;
+
+        $total  = 0;
         foreach ($params['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
         }
@@ -280,7 +280,7 @@ class Invoice
             $title = '';
             $data = array(
                 'post_type' => 'ncpi_invoice',
-                'post_title'    => $title,
+                'post_title'   => $title,
                 'post_content'  => '',
                 'post_status'   => 'publish',
                 'post_author'   => get_current_user_id()

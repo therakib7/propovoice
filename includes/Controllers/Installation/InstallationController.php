@@ -2,7 +2,8 @@
 
 namespace Ncpi\Controllers\Installation;
 
-use Ncpi\Controllers\Installation\Types\DB;
+// use Ncpi\Controllers\Installation\Types\DB;
+use Ncpi\Controllers\Installation\Types\Page;
 
 class InstallationController {
 
@@ -17,20 +18,17 @@ class InstallationController {
 
     function plugin_redirect() {
         if ( get_option('ncpi_activation_redirect', false) ) {
-            delete_option('ncpi_activation_redirect'); 
-
-			// new DB();
+            delete_option('ncpi_activation_redirect');  
             
-            // add custom role
             //TODO: check by plugin version
             if ( get_option( 'ncpi_role_version' ) < 1 ) { 
-                // add_role('client', esc_html__( 'Client', 'propovoice' ), ['subscriber']);
+                new Page();
 
                 $uploads_dir = trailingslashit( wp_upload_dir()['basedir'] ) . 'propovoice';
                 wp_mkdir_p( $uploads_dir );
 
-                update_option( 'ncpi_role_version', 1 );
             }
+            update_option( 'ncpi_role_version', 1 );
 			
             wp_redirect( admin_url('admin.php?page=ncpi-welcome') );
         }
