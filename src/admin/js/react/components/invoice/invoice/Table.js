@@ -126,7 +126,7 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>INV{row.id}</td>
+                <td>{row.id}</td>
                 {/* <td>{row.project.name}</td>*/}
                 {!props.client_id && <td>
                     {row.to.first_name + ' ' + row.to.last_name}

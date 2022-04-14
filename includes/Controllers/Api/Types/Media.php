@@ -70,7 +70,7 @@ class Media
         }
 
         $args = array( 
-            'post_type' => 'ncpi_invoice',
+            'post_type' => 'ncpi_estvoice',
             'post_status' => 'publish',
             'posts_per_page' => $per_page, 
             'offset' => $offset,

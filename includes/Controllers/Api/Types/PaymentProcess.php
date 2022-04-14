@@ -35,11 +35,12 @@ class PaymentProcess
 
         $type = isset($request['type']) ? sanitize_text_field($request['type']) : '';
 
+        //TODO: dynamic price need to mention here
         $amount = 22.5;
         // Create a stripe payment intent
 
         try {
-
+            //TODO: dynamic stipe key
             $stripe = new \Stripe\StripeClient('sk_test_q0ZQwYU7J53zk2ebhFzV9JB7');
 
             /* $customer = $stripe->customers->create([

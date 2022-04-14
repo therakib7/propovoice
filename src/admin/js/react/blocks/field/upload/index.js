@@ -87,6 +87,8 @@ class Upload extends Component {
 
 		let imgClass = this.props.imgClass; 
 		imgClass = imgClass ? imgClass : '';
+ 
+		let remove = this.props.remove !== undefined ? false : true;
 		return (
 			<div className={'pi-field-logo-wrap ' + imgClass}>   
 				{this.props.library && this.state.media && <Media
@@ -127,7 +129,7 @@ class Upload extends Component {
 					<>
 						<div className='pi-field-logo'>
 							<img src={logo.src} width="100" />
-							<span className='pi-field-logo-close' onClick={() => this.handleDelete(logo.id)}>×</span>
+							{remove &&<span className='pi-field-logo-close' onClick={() => this.handleDelete(logo.id)}>×</span>}
 						</div> 
 					</>
 				} 

@@ -10,11 +10,11 @@ class Invoice {
 
     public function create_post_type() {
         
-        if ( !is_blog_installed() || post_type_exists( 'ncpi_invoice' ) ) {
+        if ( !is_blog_installed() || post_type_exists( 'ncpi_estvoice' ) ) {
             return;
         }
          
-        do_action('ncpi_ncpi_invoice_post_type');
+        do_action('ncpi_ncpi_estvoice_post_type');
 
         $labels = array(
             'name'                  => esc_html_x( 'Invoices', 'Post type general name', 'propovoice' ),
@@ -29,8 +29,8 @@ class Invoice {
             'all_items'             => esc_html__( 'All Invoices', 'propovoice' ),
             'search_items'          => esc_html__( 'Search Invoices', 'propovoice' ),
             'parent_item_colon'     => esc_html__( 'Parent Invoices:', 'propovoice' ),
-            'not_found'             => esc_html__( 'No ncpi_invoices found.', 'propovoice' ),
-            'not_found_in_trash'    => esc_html__( 'No ncpi_invoices found in Trash.', 'propovoice' ), 
+            'not_found'             => esc_html__( 'No ncpi_estvoices found.', 'propovoice' ),
+            'not_found_in_trash'    => esc_html__( 'No ncpi_estvoices found in Trash.', 'propovoice' ), 
         );
      
         $args = array(
@@ -46,8 +46,8 @@ class Invoice {
             'supports'           => array('title'),
         );
      
-        register_post_type( 'ncpi_invoice', apply_filters('ncpi_ncpi_invoice_post_type_args', $args) );
+        register_post_type( 'ncpi_estvoice', apply_filters('ncpi_ncpi_estvoice_post_type_args', $args) );
         
-        do_action('ncpi_after_ncpi_invoice_post_type'); 
+        do_action('ncpi_after_ncpi_estvoice_post_type'); 
     }   
 }

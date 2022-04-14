@@ -303,8 +303,16 @@ class Payment
                 } else {
                     update_post_meta($post_id, 'default', false);
                 }
+                
+                //TODO: when add new bank, but not for all payment
+                $paymentData = [];
+                $paymentData['id'] = $post_id;
+                $paymentData['type'] = 'bank';
+                $paymentMeta = get_post_meta($post_id);
+                $paymentData['bank_name'] = isset($paymentMeta['bank_name']) ? $paymentMeta['bank_name'][0] : '';
+                $paymentData['bank_details'] = isset($paymentMeta['bank_details']) ? $paymentMeta['bank_details'][0] : '';  
 
-                wp_send_json_success($post_id);
+                wp_send_json_success($paymentData);
             } else {
                 wp_send_json_error();
             }

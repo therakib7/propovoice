@@ -143,11 +143,11 @@ msgid "Parent Invoices:"
 msgstr ""
 
 #: ../includes/Controllers/PostType/Types/Invoice.php:32
-msgid "No ncpi_invoices found."
+msgid "No ncpi_estvoices found."
 msgstr ""
 
 #: ../includes/Controllers/PostType/Types/Invoice.php:33
-msgid "No ncpi_invoices found in Trash."
+msgid "No ncpi_estvoices found in Trash."
 msgstr ""
 
 #: ../includes/Controllers/PostType/Types/Proposal.php:20

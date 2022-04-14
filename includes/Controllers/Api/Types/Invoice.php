@@ -81,12 +81,18 @@ class Invoice
             $offset = ($per_page * $request['page']) - $per_page;
         }
 
+        $search_value = isset($request['s'] ) ? trim($request['s']) : false;
+
         $args = array(
-            'post_type' => 'ncpi_invoice',
+            'post_type' => 'ncpi_estvoice',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
         );
+
+        if ( $search_value ) {
+            $args['p'] = $search_value;
+        }
 
         $args['meta_query'] = array(
             'relation' => 'OR'
@@ -174,8 +180,7 @@ class Invoice
     public function get_single($req)
     {
         $url_params = $req->get_url_params();
-        $id    = $url_params['id'];
-
+        $id    = absint( $url_params['id'] ); 
         $query_data = [];
         $query_data['id'] = $id;
         $query_data['token'] = get_post_meta($id, 'token', true);
@@ -279,7 +284,7 @@ class Invoice
             //TODO: give proper title
             $title = '';
             $data = array(
-                'post_type' => 'ncpi_invoice',
+                'post_type' => 'ncpi_estvoice',
                 'post_title'   => $title,
                 'post_content'  => '',
                 'post_status'   => 'publish',

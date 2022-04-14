@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import {
+import { toast } from 'react-toastify';
+/* import {
     useLocation,
     useNavigate,
     useParams,
-} from "react-router-dom";
+} from "react-router-dom"; */
+import AppContext from 'context/app-context';
 
 import Api from 'api/payment';
+
+//others component
+import FormBank from 'components/payment/FormBank';  
 
 class Payment extends Component {
 
@@ -14,6 +19,7 @@ class Payment extends Component {
 
         this.state = {
             preloader: true,
+            bankModal: false,
             payment: { id: null }, 
             payments: [],
             checkedBoxes: [],
@@ -22,6 +28,8 @@ class Payment extends Component {
             currentPage: 1
         };
     }
+
+    static contextType = AppContext;
 
     componentDidMount() {
         this.getLists();
@@ -52,19 +60,24 @@ class Payment extends Component {
 
     setPayment = (data, type) => {
         this.props.handleChange(data, type);
+    } 
+
+    handleSubmit = payment => {
+        Api.create(payment)
+            .then(resp => {
+                if (resp.data.success) {
+                    this.setState({ bankModal: false })
+                    toast.success(this.context.CrudMsg.create);
+                    this.props.handleChange(resp.data.data, 'bank');
+                    this.getLists();
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            }) 
     }
 
-    goToPayment = () => { 
-        if ( confirm('Before going payment, Do you want to save current changes?') ) {
-            this.props.handleSave(); 
-        } 
-
-        if ( !wage.length ) {
-            this.props.router.navigate(`/payment`, { replace: true }); 
-        } else {
-            this.props.router.navigate(`/setting/payment`, { replace: true }); 
-        }
-    } 
 
     render() {
         const { payment_methods } = this.props.data
@@ -73,7 +86,7 @@ class Payment extends Component {
                 <input type="checkbox" defaultChecked="checked" />
                 <i />
                 <h3>Accepted Payment</h3>
-                <div className="pi-form-accordion pi-additional"> 
+                <div className="pi-form-accordion pi-additional">  
                     {this.state.payments.map((row, index) => { 
                         if ( wage.length > 0 ) {
                             if ( row.method_id !== 'bank') return;
@@ -143,9 +156,17 @@ class Payment extends Component {
                     
                     {!this.state.payments.length && 
                         <div className='pi-payment-buttons'> 
+                            {this.state.bankModal && <FormBank
+                                handleSubmit={this.handleSubmit}
+                                show={this.state.bankModal}
+                                modalType={'new'}
+                                // data={this.state.businessData}
+                                close={() => this.setState({ bankModal: false })}
+                            />}
                             <button 
                                 className='pi-btn pi-bg-blue pi-bg-hover-blue pi-hover-color-white'
-                                onClick={this.goToPayment}
+                                // onClick={this.goToPayment}
+                                onClick={() => this.setState({ bankModal: true })}
                                 >
                                 Add New Payment
                             </button>   
@@ -158,7 +179,7 @@ class Payment extends Component {
     }
 }
 
-function withRouter(Component) {
+/* function withRouter(Component) {
     function ComponentWithRouterProp(props) {
         let location = useLocation();
         let navigate = useNavigate();
@@ -171,6 +192,7 @@ function withRouter(Component) {
         );
     } 
     return ComponentWithRouterProp;
-}
+} */
 
-export default withRouter(Payment); 
+// export default withRouter(Payment); 
+export default Payment; 

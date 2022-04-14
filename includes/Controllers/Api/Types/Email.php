@@ -277,12 +277,14 @@ class Email
         $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
         $feedback_type = isset($params['feedback_type']) ? $params['feedback_type'] : '';
         $note = isset($params['note']) ? nl2br($params['note']) : '';
+        $attachment = isset($params['attachment']) ? $params['attachment'] : '';
 
         if ($invoice_id) {
             update_post_meta($invoice_id, 'status', $feedback_type);
             $feedback = [];
-            $feedback['note'] = $note;
             $feedback['type'] = $feedback_type;
+            $feedback['note'] = $note;
+            $feedback['attachment'] = $attachment;
             $feedback['time'] = current_time('timestamp');
             update_post_meta($invoice_id, 'feedback', $feedback);
         }
