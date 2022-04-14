@@ -117,7 +117,7 @@ class Invoice
         }
 
         $query = new WP_Query($args);
-        $total_data = $query->get_total(); //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination 
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();

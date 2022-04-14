@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import "./style.css";
+import "./style.scss";
 import useClickOutside from "./useClickOutside";
 
 const ColorPicker = ({ color, onChange }) => {
@@ -44,7 +44,7 @@ const ColorPicker = ({ color, onChange }) => {
 			{isOpen && (
 				<div className="pi-popover" ref={popover}>
 					<HexColorPicker color={color} onChange={onChange} />
-					<HexColorInput color={color} onChange={onChange} />
+					<span style={{marginRight: '2px', width: 'auto'}}>#</span><HexColorInput color={color} onChange={onChange} />
 				</div>
 			)}
 		</>

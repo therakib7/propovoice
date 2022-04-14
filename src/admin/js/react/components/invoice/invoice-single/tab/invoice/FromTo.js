@@ -64,7 +64,7 @@ class FromTo extends Component {
     }
 
     handleFindClient = (val, callback) => {
-        if (val.length < 3) return;
+        if (val.length < 2) return;
 
         //search when typing stop
         if (this.timeout) clearTimeout(this.timeout);

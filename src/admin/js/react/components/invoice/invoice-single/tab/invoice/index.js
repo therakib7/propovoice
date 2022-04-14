@@ -718,7 +718,7 @@ class Invoice extends Component {
 										<ul>
 											<Suspense fallback={<div>Loading...</div>}>
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
-												<Payment handleChange={this.onPaymentChange} data={this.state.invoice} handleSave={this.handleSave}/>  
+												{this.props.path == 'invoice' && <Payment handleChange={this.onPaymentChange} data={this.state.invoice} handleSave={this.handleSave}/>} 
 												{/* {!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />} */}
 												{!wage.length && 
 												<>

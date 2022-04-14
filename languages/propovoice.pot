@@ -46,15 +46,15 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:265, ../includes/Controllers/Api/Types/Invoice.php:369
+#: ../includes/Controllers/Api/Types/Invoice.php:270, ../includes/Controllers/Api/Types/Invoice.php:374
 msgid "Business is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:269
+#: ../includes/Controllers/Api/Types/Invoice.php:274
 msgid "Module is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:273, ../includes/Controllers/Api/Types/Invoice.php:373
+#: ../includes/Controllers/Api/Types/Invoice.php:278, ../includes/Controllers/Api/Types/Invoice.php:378
 msgid "Receiver is missing"
 msgstr ""
 

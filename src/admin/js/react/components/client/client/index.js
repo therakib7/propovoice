@@ -318,7 +318,7 @@ export default class Client extends Component {
 
                 {clients.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {clients.length} slient Showing from {this.state.total}
+                        {clients.length} client showing from {this.state.total}
                         <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
@@ -328,6 +328,7 @@ export default class Client extends Component {
                         </select>
                     </p>
                 </div>}
+
                 {this.state.preloader ? <TablePreloader /> : <Table tableData={clients} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate

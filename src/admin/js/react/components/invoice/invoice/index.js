@@ -31,6 +31,7 @@ const Invoice = class Invoice extends Component {
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
+            total: 1,
             totalPage: 1,
             currentPage: 1,
             searchVal: ''
@@ -75,11 +76,7 @@ const Invoice = class Invoice extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ invoices: result, preloader: false, empty });
-
-                this.setState({
-                    totalPage: Math.ceil(total / this.state.perPage)
-                })
+                this.setState({ invoices: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
             })
     };
 
@@ -286,6 +283,19 @@ const Invoice = class Invoice extends Component {
                     show={this.state.searchModal}
                     close={this.closeForm}
                 />
+
+                {invoices.length > 0 && <div className='pi-table-showing'>
+                    <p>
+                        {invoices.length} {title} showing from {this.state.total}
+                        <select onChange={this.showItem}>
+                            <option value="10">Show item 10</option>
+                            <option value="20">Show item 20</option>
+                            <option value="30">Show item 30</option>
+                            <option value="50">Show item 50</option>
+                            <option value="100">Show item 100</option>
+                        </select>
+                    </p>
+                </div>}
 
                 {this.state.preloader ? <TablePreloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} />}
 
