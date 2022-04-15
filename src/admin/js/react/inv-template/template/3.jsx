@@ -10,6 +10,7 @@ import Note from '../Note'
 import Group from '../Group';
 import Attach from '../Attach';
 import Sign from '../Sign';
+import Seal from '../Seal';
 
 //style
 import Style from '../scss/3.scoped.scss'
@@ -34,7 +35,7 @@ export default class Three extends Component {
         let value = JSON.stringify(this.props.data.invoice);
         if (value != this.state.old_value) {
             this.setState({ old_value: value });
-            this.props.isPreviewLoaded(); 
+            this.props.isPreviewLoaded();
         }
     }
 

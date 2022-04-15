@@ -10,6 +10,7 @@ import Note from '../Note'
 import Group from '../Group';
 import Attach from '../Attach';
 import Sign from '../Sign';
+import Seal from '../Seal';
 
 //style
 import Style from '../scss/2.scoped.scss'

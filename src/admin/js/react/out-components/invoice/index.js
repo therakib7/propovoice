@@ -72,7 +72,16 @@ const InvoiceBtn = props => {
     const payment_methods = props.payment_methods.list;
     const selected_method = props.payment_methods.selected;
     const changeMethod = props.payment_methods.changeMethod;
-
+    let status = props.status;
+    if (
+        status == 'accept' ||
+        status == 'decline' ||
+        status == 'overdue' ||
+        status == 'paid_req' ||
+        status == 'paid'
+    ) {
+        return null;
+    }
     return (
         <>
             {props.type == 'estimate' &&
@@ -128,6 +137,7 @@ export default class Invoice extends Component {
 
         this.state = {
             id: null,
+            status: null,
             emailModal: false,
             paymentModal: false,
             payment_method: '',
@@ -194,9 +204,10 @@ export default class Invoice extends Component {
         const urlParams = new URLSearchParams(queryString);
         const id = urlParams.get('id')
         Api.get(id)
-            .then(resp => { 
+            .then(resp => {
                 this.setState({
                     id: resp.data.data.id,
+                    status: resp.data.data.status,
                     invoice: resp.data.data.invoice,
                     fromData: resp.data.data.fromData,
                     toData: resp.data.data.toData,
@@ -263,6 +274,10 @@ export default class Invoice extends Component {
         this.setState({ selected_payment_method: data });
     }
 
+    handleSubmit = (status) => {
+        this.setState({ status });
+    }
+
     render() {
         return (
             <div>
@@ -273,7 +288,7 @@ export default class Invoice extends Component {
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
                             <div className='pi-float-right'>
-                                <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{ list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod }} />
+                                <InvoiceBtn status={this.state.status} handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{ list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod }} />
                             </div>
                         </div>
 
@@ -287,7 +302,7 @@ export default class Invoice extends Component {
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
                             <div className='pi-float-right'>
-                                <InvoiceBtn handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{ list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod }} />
+                                <InvoiceBtn status={this.state.status} handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{ list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod }} />
                             </div>
                         </div>
                     </div>
@@ -307,6 +322,7 @@ export default class Invoice extends Component {
                         {this.state.payment_method == 'bank' && <Bank
                             show={this.state.paymentModal}
                             invoice_id={this.state.id}
+                            handleSubmit={this.handleSubmit}
                             close={() => this.setState({ paymentModal: false })}
                         />}
 

@@ -2375,7 +2375,7 @@ html {
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-table {
-    width: 190%;
+    width: 205%;
   }
   .ncpi .pi-table-wrap {
     overflow-x: scroll;
@@ -2896,6 +2896,22 @@ html {
 }
 .wp-admin .pi-form-accordion .pi-payment-buttons .pi-btn {
   padding: 12px 40px !important;
+}
+@media screen and (max-width: 768px) {
+  .wp-admin .pi-radio-group input[type=radio]:checked:after {
+    left: 0px !important;
+    top: -25px !important;
+  }
+  .wp-admin .pi-radio-group input[type=radio]:checked:before {
+    top: -8px !important;
+    left: -8px !important;
+  }
+  .wp-admin .pi-add-info-content input[type=number] {
+    min-height: 30px;
+  }
+  .wp-admin .pi-accordion-wrapper {
+    margin-top: -190px;
+  }
 }
 
 /*-------------------------------------------------------------- 
@@ -3577,6 +3593,9 @@ html {
   top: 50%;
   transform: translateY(-50%);
 }
+.pi-form-accordion .pi-tab .pi-payment-bank-content .payment-text-content .pi-bank-title {
+  line-height: 20px;
+}
 .pi-form-accordion .pi-tab .pi-payment-bank-content .pi-payment-image {
   margin-right: 5px;
 }
@@ -3768,6 +3787,9 @@ html {
 }
 .ncpi .pi-mt-15 {
   margin-top: 15px;
+}
+.ncpi .pi-mt-00 {
+  margin-top: 60px;
 }
 .ncpi .pi-m-40 {
   margin: 40px 0px 20px;

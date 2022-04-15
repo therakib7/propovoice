@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify'; 
-import Upload from 'block/field/upload'; 
-import Api from 'api/payment-process'; 
+import { toast } from 'react-toastify';
+import Upload from 'block/field/upload';
+import Api from 'api/payment-process';
 
 class Bank extends Component {
     constructor(props) {
@@ -10,12 +10,12 @@ class Bank extends Component {
         this.state = {
             form: {
                 invoice_id: null,
-                payment_method: 'bank', 
-                payment_details: '', 
+                payment_method: 'bank',
+                payment_details: '',
                 receipt: null,
             },
         };
-    } 
+    }
 
     handleChange = e => {
         const { name, value } = e.target;
@@ -24,20 +24,21 @@ class Bank extends Component {
 
     componentDidMount() {
         let form = { ...this.state.form }
-        form.invoice_id = this.props.invoice_id; 
+        form.invoice_id = this.props.invoice_id;
         this.setState({ form });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let form = { ...this.state.form } 
+        let form = { ...this.state.form }
         Api.create(form)
             .then(resp => {
                 if (resp.data.success) {
                     this.props.close();
+                    this.props.handleSubmit('paid_req');
 
-                    toast.success('Thanks for payment');
+                    toast.success('Thanks for payment request');
 
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
@@ -47,11 +48,11 @@ class Bank extends Component {
             })
     }
 
-    handleUploadChange = (data, type = null) => { 
-		let form = { ...this.state.form }
-		form.receipt = data;
-		this.setState({ form })
-	}
+    handleUploadChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.receipt = data;
+        this.setState({ form })
+    }
 
     render() {
         return (
@@ -66,7 +67,7 @@ class Bank extends Component {
                                 </div>
 
                                 <div className="pi-content">
-                                    <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
+                                    <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
                                         <div className="row">
                                             <div className="col-lg">
@@ -80,25 +81,25 @@ class Bank extends Component {
                                                     value={this.state.form.payment_details}
                                                     onChange={this.handleChange}
                                                 />
-                                                <p className='pi-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p> 
+                                                <p className='pi-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p>
                                             </div>
-                                        </div> 
+                                        </div>
 
                                         <div className="row">
                                             <div className="col-md">
                                                 <label htmlFor="field-receipt">Payment Receipt</label>
                                                 <Upload label={'Upload'} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
-                                            </div> 
+                                            </div>
                                         </div>
 
                                         <div className="row">
-                                            <div className="col-md"> 
+                                            <div className="col-md">
                                                 <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
                                                     Payment
-                                                </button> 
-                                            </div> 
-                                        </div> 
-                                        
+                                                </button>
+                                            </div>
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>

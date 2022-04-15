@@ -10,6 +10,7 @@ import Note from '../Note'
 import Group from '../Group';
 import Attach from '../Attach';
 import Sign from '../Sign';
+import Seal from '../Seal';
 
 //style
 import Style from '../scss/4.scoped.scss'
@@ -43,14 +44,15 @@ export default class Four extends Component {
         let title = this.props.data.invoice.path == 'invoice' ? 'Invoice' : 'Estimate';
         return (
             <div className="pi-inv ">
+                <Seal />
                 <div className="pi-inv-four">
                     <div className="pi-body">
                         <div className="pi-hedear">
                             <div className="pi-from">
                                 {fromData && fromData.logo &&
-                                <div className="pi-from-logo pi-bg-one">
-                                    <img src={fromData.logo.src} alt="" />
-                                </div>}
+                                    <div className="pi-from-logo pi-bg-one">
+                                        <img src={fromData.logo.src} alt="" />
+                                    </div>}
                                 <From data={fromData} />
                                 <div className="pi-from-date">
                                     <p>{title} No: <span>{id}</span></p>

@@ -81,7 +81,7 @@ class Invoice
             $offset = ($per_page * $request['page']) - $per_page;
         }
 
-        $search_value = isset($request['s'] ) ? trim($request['s']) : false;
+        $search_value = isset($request['s']) ? trim($request['s']) : false;
 
         $args = array(
             'post_type' => 'ncpi_estvoice',
@@ -90,7 +90,7 @@ class Invoice
             'offset' => $offset,
         );
 
-        if ( $search_value ) {
+        if ($search_value) {
             $args['p'] = $search_value;
         }
 
@@ -161,7 +161,7 @@ class Invoice
             if (!$query_data['due']) {
                 $query_data['due'] = 0;
             }
- 
+
             $query_data['feedback'] = get_post_meta($id, 'feedback', true);
             $query_data['payment_method'] = get_post_meta($id, 'payment_method', true);
             $query_data['payment_info'] = get_post_meta($id, 'payment_info', true);
@@ -180,7 +180,7 @@ class Invoice
     public function get_single($req)
     {
         $url_params = $req->get_url_params();
-        $id    = absint( $url_params['id'] ); 
+        $id    = absint($url_params['id']);
         $query_data = [];
         $query_data['id'] = $id;
         $query_data['token'] = get_post_meta($id, 'token', true);
@@ -192,9 +192,10 @@ class Invoice
         $query_data['invoice'] = json_decode(get_post_meta($id, 'invoice', true));
 
         $from_id = get_post_meta($id, 'from', true);
+        $query_data['status'] = get_post_meta($id, 'status', true);
         $fromData = [];
-        
-        if ( $from_id ) {
+
+        if ($from_id) {
             $fromData['id'] = $from_id;
             $fromMeta = get_post_meta($from_id);
             $fromData['name'] = isset($fromMeta['name']) ? $fromMeta['name'][0] : '';
@@ -204,15 +205,14 @@ class Invoice
             $fromData['address'] = isset($fromMeta['address']) ? $fromMeta['address'][0] : '';
 
             $logo_id = get_post_meta($from_id, 'logo', true);
-            $logoData = null; 
-            if ( $logo_id ) {
-                $logoData = []; 
-                $logoData['id'] = $logo_id; 
-                $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
-                $logoData['src'] = $logo_src[0]; 
-            } 
+            $logoData = null;
+            if ($logo_id) {
+                $logoData = [];
+                $logoData['id'] = $logo_id;
+                $logo_src = wp_get_attachment_image_src($logo_id, 'thumbnail');
+                $logoData['src'] = $logo_src[0];
+            }
             $fromData['logo'] = $logoData;
-
         }
         $query_data['fromData'] = $fromData;
 
@@ -229,15 +229,15 @@ class Invoice
             $toData['web'] = get_user_meta($to_id, 'web', true);
             $toData['address'] = get_user_meta($to_id, 'address', true);
         }
-        $query_data['toData'] = $toData;         
+        $query_data['toData'] = $toData;
 
         $payment_methods = get_post_meta($id, 'payment_methods', true);
         $paymentData = null;
-        if ( isset( $payment_methods['bank'] ) ) {
+        if (isset($payment_methods['bank'])) {
             $paymentData['id'] = $payment_methods['bank'];
             $paymentMeta = get_post_meta($payment_methods['bank']);
             $paymentData['bank_name'] = isset($paymentMeta['bank_name']) ? $paymentMeta['bank_name'][0] : '';
-            $paymentData['bank_details'] = isset($paymentMeta['bank_details']) ? $paymentMeta['bank_details'][0] : ''; 
+            $paymentData['bank_details'] = isset($paymentMeta['bank_details']) ? $paymentMeta['bank_details'][0] : '';
         }
         $query_data['paymentBankData'] = $paymentData;
 
@@ -335,7 +335,7 @@ class Invoice
                 //generate secret token
                 $bytes = random_bytes(20);
                 $token = bin2hex($bytes);
-                update_post_meta($post_id, 'token', $token );
+                update_post_meta($post_id, 'token', $token);
 
                 wp_send_json_success([
                     'id' => $post_id,
