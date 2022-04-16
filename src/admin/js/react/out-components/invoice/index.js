@@ -220,7 +220,7 @@ export default class Invoice extends Component {
             const imgData = canvas.toDataURL('image/jpg');
             const pdf = new jsPDF();
             pdf.addImage(imgData, 'JPG', 0, 0);
-            pdf.save("invoice.pdf");
+            pdf.save(this.state.invoice.path + '.pdf');
         });
     }
 
@@ -314,6 +314,7 @@ export default class Invoice extends Component {
                         show={this.state.emailModal}
                         data={this.state}
                         invoice_id={this.state.id}
+                        handleSubmit={this.handleSubmit}
                         close={() => this.setState({ emailModal: false })}
                     />}
 

@@ -40,8 +40,10 @@ class Feedback extends Component {
                     this.props.close();
 
                     if (form.feedback_type == 'accept') {
+                        this.props.handleSubmit('accept');
                         toast.success('Thanks for accepting');
                     } else {
+                        this.props.handleSubmit('decline');
                         toast.success('Sorry for declining');
                     }
 
