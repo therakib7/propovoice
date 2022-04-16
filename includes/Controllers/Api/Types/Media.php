@@ -18,12 +18,12 @@ class Media
 
         register_rest_route('ncpi/v1', '/media', [
             [
-                'methods' => 'GET', 
+                'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'], 
+                'permission_callback' => [$this, 'get_permission'],
             ],
             [
-                'methods' => 'POST', 
+                'methods' => 'POST',
                 'callback' => [$this, 'create'],
                 'permission_callback' => [$this, 'create_permission']
             ],
@@ -40,7 +40,7 @@ class Media
                     }
                 ),
             ),
-        )); 
+        ));
 
         register_rest_route('ncpi/v1', '/media/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
@@ -54,36 +54,36 @@ class Media
         ));
     }
 
-    public function get( $req )
+    public function get($req)
     {
         $request = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if ( isset($request['per_page']) ) {
+        if (isset($request['per_page'])) {
             $per_page = $request['per_page'];
         }
 
-        if ( isset($request['page']) && $request['page'] > 1 ) {
-            $offset = ( $per_page * $request['page'] ) - $per_page;
+        if (isset($request['page']) && $request['page'] > 1) {
+            $offset = ($per_page * $request['page']) - $per_page;
         }
 
-        $args = array( 
+        $args = array(
             'post_type' => 'ncpi_estvoice',
             'post_status' => 'publish',
-            'posts_per_page' => $per_page, 
+            'posts_per_page' => $per_page,
             'offset' => $offset,
-        ); 
+        );
 
         $args['meta_query'] = array(
             'relation' => 'OR'
-        ); 
+        );
 
-        $query = new WP_Query( $args );
+        $query = new WP_Query($args);
         $total_data = $query->get_total(); //use this for pagination 
         $result = $data = [];
-        while ( $query->have_posts() ) {
+        while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
 
@@ -93,153 +93,153 @@ class Media
             $query_data['project'] = [
                 'name' => ''
             ];
-            
+
             $from_id = get_post_meta($id, 'from', true);
-            $fromData = []; 
-            if ( $from_id ) {
+            $fromData = [];
+            if ($from_id) {
                 $fromData['id'] = $from_id;
-                $fromData['name'] = get_post_meta($from_id, 'name', true); 
-            } 
-            $query_data['from'] = $fromData; 
+                $fromData['name'] = get_post_meta($from_id, 'name', true);
+            }
+            $query_data['from'] = $fromData;
 
             $to_id = get_post_meta($id, 'to', true);
-            $toData = []; 
-            if ( $to_id ) {
+            $toData = [];
+            if ($to_id) {
                 $toData['id'] = $to_id;
                 $to_obj = get_user_by('id', $to_id);
-                
+
                 $toData['first_name'] = $to_obj->first_name;
-                $toData['last_name'] = $to_obj->last_name; 
-                $toData['email'] = $to_obj->user_email; 
-            } 
+                $toData['last_name'] = $to_obj->last_name;
+                $toData['email'] = $to_obj->user_email;
+            }
             $query_data['to'] = $toData;
-            
-            $query_data['invoice'] = json_decode( get_post_meta($id, 'invoice', true) );
-            
+
+            $query_data['invoice'] = json_decode(get_post_meta($id, 'invoice', true));
+
             $query_data['total'] = get_post_meta($id, 'total', true);
             $query_data['paid'] = get_post_meta($id, 'paid', true);
-            if ( !$query_data['paid'] ) {
+            if (!$query_data['paid']) {
                 $query_data['paid'] = 0;
             }
-            $query_data['due'] = get_post_meta($id, 'due', true);  
-            if ( !$query_data['due'] ) {
+            $query_data['due'] = get_post_meta($id, 'due', true);
+            if (!$query_data['due']) {
                 $query_data['due'] = 0;
             }
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
-
-        } 
-        wp_reset_postdata(); 
+        }
+        wp_reset_postdata();
 
         $result['result'] = $data;
-        $result['total'] = $total_data; 
+        $result['total'] = $total_data;
 
-        return wp_send_json_success($result); 
+        return wp_send_json_success($result);
     }
 
-    public function get_single( $req )
-    {  
+    public function get_single($req)
+    {
         $url_params = $req->get_url_params();
-        $id    = $url_params['id']; 
-     
+        $id    = $url_params['id'];
+
         $query_data = [];
-        $query_data['id'] = $id; 
-          
-        $query_data['invoice'] = json_decode( get_post_meta($id, 'invoice', true) ); 
+        $query_data['id'] = $id;
+
+        $query_data['invoice'] = json_decode(get_post_meta($id, 'invoice', true));
 
         $from_id = get_post_meta($id, 'from', true);
-        $fromData = []; 
-        if ( $from_id ) {
+        $fromData = [];
+        if ($from_id) {
             $fromData['id'] = $from_id;
 
-            $fromMeta = get_post_meta($from_id); 
+            $fromMeta = get_post_meta($from_id);
 
-            $fromData['name'] = isset( $fromMeta['name'] ) ? $fromMeta['name'][0] : '';
-            $fromData['email'] = isset( $fromMeta['email'] ) ? $fromMeta['email'][0] : '';
-            $fromData['web'] = isset( $fromMeta['web'] ) ? $fromMeta['web'][0] : '';
-            $fromData['address'] = isset( $fromMeta['address'] ) ? $fromMeta['address'][0] : ''; 
-        } 
-        $query_data['fromData'] = $fromData; 
+            $fromData['name'] = isset($fromMeta['name']) ? $fromMeta['name'][0] : '';
+            $fromData['email'] = isset($fromMeta['email']) ? $fromMeta['email'][0] : '';
+            $fromData['web'] = isset($fromMeta['web']) ? $fromMeta['web'][0] : '';
+            $fromData['address'] = isset($fromMeta['address']) ? $fromMeta['address'][0] : '';
+        }
+        $query_data['fromData'] = $fromData;
 
         $to_id = get_post_meta($id, 'to', true);
-        $toData = []; 
-        if ( $to_id ) {
+        $toData = [];
+        if ($to_id) {
             $toData['id'] = $to_id;
             $to_obj = get_user_by('id', $to_id);
-            
+
             $toData['first_name'] = $to_obj->first_name;
-            $toData['last_name'] = $to_obj->last_name; 
+            $toData['last_name'] = $to_obj->last_name;
             $toData['email'] = $to_obj->user_email;
             $toData['web'] = get_user_meta($to_id, 'web', true);
-            $toData['address'] = get_user_meta($to_id, 'address', true); 
-        } 
-        $query_data['toData'] = $toData; 
+            $toData['address'] = get_user_meta($to_id, 'address', true);
+        }
+        $query_data['toData'] = $toData;
 
-        return wp_send_json_success($query_data); 
+        return wp_send_json_success($query_data);
     }
 
-    public function create($req) { 
-        
-		$params = $req->get_file_params(); 
-		// $file_params = $req->get_file_params(); 
-        $file_data     = isset( $params['file'] ) ? $params['file'] : '';
+    public function create($req)
+    {
 
-       /*  wp_send_json_success([
+        $params = $req->get_file_params();
+        // $file_params = $req->get_file_params(); 
+        $file_data     = isset($params['file']) ? $params['file'] : '';
+
+        /*  wp_send_json_success([
             'params' => $params,
             'file_params' => $file_params,
             'file' => $file,
         ]); */
-        $reg_errors  = new \WP_Error; 
+        $reg_errors  = new \WP_Error;
 
-		$img_max_size = 1024; //1024KB
+        $img_max_size = 1024; //1024KB
 
-		// $file               = $_FILES['file'];
-		$file               = $file_data;
-		$allowed_file_types = ['image/jpg', 'image/jpeg', 'image/png'];
-		// Allowed file size -> 1MB
-		$allowed_file_size = $img_max_size * 1024;
+        // $file               = $_FILES['file'];
+        $file               = $file_data;
+        $allowed_file_types = ['image/jpg', 'image/jpeg', 'image/png'];
+        // Allowed file size -> 1MB
+        $allowed_file_size = $img_max_size * 1024;
 
-		if (! empty($file['name'])) {
-			// Check file type
-			if (! in_array($file['type'], $allowed_file_types)) {
-				$valid_file_type = str_replace('image/', '', implode(', ', $allowed_file_types));
-				$error_file_type = str_replace('image/', '', $file['type']); 
+        if (!empty($file['name'])) {
+            // Check file type
+            if (!in_array($file['type'], $allowed_file_types)) {
+                $valid_file_type = str_replace('image/', '', implode(', ', $allowed_file_types));
+                $error_file_type = str_replace('image/', '', $file['type']);
 
                 $reg_errors->add(
-                    'field', 
-                    sprintf( 
-                        esc_html__('Invalid file type: %s. Supported file types: %s', 'propovoice'), 
-                        $error_file_type, 
-                        $valid_file_type 
+                    'field',
+                    sprintf(
+                        esc_html__('Invalid file type: %s. Supported file types: %s', 'propovoice'),
+                        $error_file_type,
+                        $valid_file_type
                     )
                 );
-			}
+            }
 
-			// Check file size
-			if ( $file['size'] > $allowed_file_size ) {  
+            // Check file size
+            if ($file['size'] > $allowed_file_size) {
                 $reg_errors->add(
-                    'field', 
+                    'field',
                     sprintf(
-                        esc_html__('File is too large. Max. upload file size is %s', 'propovoice'), 
+                        esc_html__('File is too large. Max. upload file size is %s', 'propovoice'),
                         Fns::format_bytes($allowed_file_size)
                     )
                 );
-			} 
+            }
 
-            if ( $reg_errors->get_error_messages() ) {
-                wp_send_json_error( $reg_errors->get_error_messages() );
-            } else { 
-                if (! function_exists('wp_handle_upload')) {
+            if ($reg_errors->get_error_messages()) {
+                wp_send_json_error($reg_errors->get_error_messages());
+            } else {
+                if (!function_exists('wp_handle_upload')) {
                     require_once ABSPATH . 'wp-admin/includes/file.php';
                 }
                 $upload_overrides = ['test_form' => false];
                 $uploaded         = wp_handle_upload($file, $upload_overrides);
-    
-                if ($uploaded && ! isset($uploaded['error'])) {
+
+                if ($uploaded && !isset($uploaded['error'])) {
                     $filename = $uploaded['file'];
                     $filetype = wp_check_filetype(basename($filename), null);
-    
+
                     $attach_id = wp_insert_attachment(
                         [
                             'guid'            => $uploaded['url'],
@@ -253,36 +253,36 @@ class Media
                         $uploaded['file'],
                         0
                     );
-    
+
                     $file_info = [];
-                    if ( ! is_wp_error($attach_id) ) {
+                    if (!is_wp_error($attach_id)) {
                         // wp_update_attachment_metadata($attach_id, wp_generate_attachment_metadata($attach_id, $filename));
                         update_post_meta($attach_id, 'attach_type', 'ncpi');
-    
+
                         $file_info = [
                             'id'  => $attach_id,
                             'src' => wp_get_attachment_image_url($attach_id, 'thumbnail'),
                         ];
                     }
-    
+
                     wp_send_json_success($file_info);
                 } else {
                     /*
                      * Error generated by _wp_handle_upload()
                      * @see _wp_handle_upload() in wp-admin/includes/file.php
                      */
-                    wp_send_json_error( [ $uploaded['error'] ]);
+                    wp_send_json_error([$uploaded['error']]);
                 }
             }
-		}
-	} 
+        }
+    }
 
     public function delete($req)
     {
         $url_params = $req->get_url_params();
 
         $ids = explode(',', $url_params['id']);
-        foreach ($ids as $id) { 
+        foreach ($ids as $id) {
             wp_delete_post($id);
         }
         wp_send_json_success($ids);
@@ -294,10 +294,11 @@ class Media
         return true;
     }
 
-    public function create_permission()
+    public function create_permission($req)
     {
-        return current_user_can('publish_posts');
-    } 
+        $params = $req->get_params();
+        return isset($params['permission']) ? true : current_user_can('publish_posts');
+    }
 
     public function delete_permission()
     {

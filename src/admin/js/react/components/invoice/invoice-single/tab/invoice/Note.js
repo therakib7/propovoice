@@ -1,67 +1,66 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types' 
+import PropTypes from 'prop-types'
 
 import Editable from './Editable';
 
 class Note extends Component {
     state = {
         edit: false,
-		note: {
-            label: 'Note', 
+        note: {
+            label: 'Note',
             text: ''
-        }, 
-	}
+        },
+    }
 
     handleChange = e => {
         const { name, value } = e.target;
-        this.setState({ note: { ...this.state.note, [name]: value } });
-        this.handlePros();
+        this.setState({ note: { ...this.state.note, [name]: value } }, () => {
+            this.handlePros();
+        });
     }
 
-    handleChangeLabel = (value) => {  
+    handleChangeLabel = (value) => {
         this.setState({ note: { ...this.state.note, ['label']: value } }, () => {
             this.handlePros();
-        });        
-	}
+        });
+    }
 
-    componentDidUpdate() {   
-        if ( ! this.state.edit && this.props.data ) { 
+    componentDidUpdate() {
+        if (!this.state.edit && this.props.data) {
             this.setState({ edit: true, note: this.props.data });
         }
-	}
+    }
 
-    handlePros = () => { 
-        this.props.changeHandler( this.state.note );
-    }; 
+    handlePros = () => {
+        this.props.changeHandler(this.state.note);
+    };
 
     render = () => {
 
         const { label, text } = this.state.note;
 
-        return (  
+        return (
             <>
-                <Editable 
+                <Editable
                     key={'note'}
-                    value={label} 
-                    changeHandler={ this.handleChangeLabel }  
-                /> 
+                    value={label}
+                    changeHandler={this.handleChangeLabel}
+                />
                 <div className="pi-group-input">
-                    <input 
-                        name="text" 
-                        type="text" 
+                    <input
+                        name="text"
+                        type="text"
                         value={text}
-                        onChange={ this.handleChange } 
-                        />
+                        onChange={this.handleChange}
+                    />
                 </div>
             </>
         )
     }
 }
 
-Note.propTypes = { 
-    title: PropTypes.string, 
+Note.propTypes = {
+    title: PropTypes.string,
 }
 
 export default Note
-
-

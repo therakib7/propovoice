@@ -40,11 +40,11 @@ export default class Four extends Component {
 
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
-        const { fromData, toData } = this.props.data;
+        const { fromData, toData, status } = this.props.data;
         let title = this.props.data.invoice.path == 'invoice' ? 'Invoice' : 'Estimate';
         return (
             <div className="pi-inv ">
-                <Seal />
+                <Seal status={status} />
                 <div className="pi-inv-four">
                     <div className="pi-body">
                         <div className="pi-hedear">

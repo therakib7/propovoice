@@ -23,7 +23,7 @@ class Feedback extends Component {
     }
 
     componentDidMount() {
-        let form = { ...this.state.form }  
+        let form = { ...this.state.form }
         form.invoice_id = this.props.invoice_id;
         form.feedback_type = this.props.data.feedback_type;
         this.setState({ form });
@@ -53,11 +53,11 @@ class Feedback extends Component {
             })
     }
 
-    handleUploadChange = (data, type = null) => { 
-		let form = { ...this.state.form }
-		form.attachment = data;
-		this.setState({ form })
-	}
+    handleUploadChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.attachment = data;
+        this.setState({ form })
+    }
 
     render() {
         return (
@@ -74,35 +74,35 @@ class Feedback extends Component {
                                 <div className="pi-content">
                                     <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
-                                        <div className="row"> 
+                                        <div className="row">
                                             <div className="col-lg">
                                                 <label
                                                     htmlFor="form-note">
                                                     Additional Note
-                                                </label> 
+                                                </label>
                                                 <textarea
                                                     id="form-note"
-                                                    rows={4} 
+                                                    rows={4}
                                                     name="note"
                                                     value={this.state.form.note}
                                                     onChange={this.handleChange}
                                                 />
-                                            </div> 
-                                        </div> 
+                                            </div>
+                                        </div>
 
                                         <div className="row">
                                             <div className="col-md">
                                                 <label htmlFor="field-receipt">Additional Attachment</label>
-                                                <Upload label={'Upload'} library={false} data={this.state.form.attachment} changeHandler={this.handleUploadChange} />
-                                            </div> 
-                                        </div> 
+                                                <Upload label={'Upload'} permission={true} library={false} data={this.state.form.attachment} changeHandler={this.handleUploadChange} />
+                                            </div>
+                                        </div>
 
                                         <div className="row">
-                                            <div className="col"> 
+                                            <div className="col">
                                                 <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
                                                     {this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'}
-                                                </button> 
-                                            </div> 
+                                                </button>
+                                            </div>
                                         </div>
 
                                     </form>

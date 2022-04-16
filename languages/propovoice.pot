@@ -242,16 +242,12 @@ msgstr ""
 msgid "Propovoice Dashboard"
 msgstr ""
 
-#: ../views/template/dashboard-template.php:19, ../views/template/estimate-template.php:58, ../views/template/invoice-template.php:58
+#: ../views/template/dashboard-template.php:19
 msgid "Sorry!! You don't have permission to view this page"
 msgstr ""
 
 #: ../views/template/estimate-template.php:3
 msgid "Propovoice Estimate"
-msgstr ""
-
-#: ../views/template/estimate-template.php:61, ../views/template/invoice-template.php:61
-msgid "Sorry!! page not found"
 msgstr ""
 
 #: ../views/template/invoice-template.php:3

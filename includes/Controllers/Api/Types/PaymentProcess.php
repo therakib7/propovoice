@@ -85,18 +85,18 @@ class PaymentProcess
                 }
 
                 $payment_details = isset($params['payment_details']) ? $params['payment_details'] : '';
-                $receipt = isset($params['receipt']) ? $params['receipt'] : ''; 
+                $receipt = isset($params['receipt']) ? $params['receipt'] : '';
                 $amount = isset($params['amount']) ? $params['amount'] : '';
                 $date = isset($params['date']) ? $params['date'] : '';
                 $note = isset($params['note']) ? nl2br($params['note']) : '';
 
                 $bank_info = [];
                 $bank_info['payment_details'] = $payment_details;
-                $bank_info['receipt'] = $receipt; 
-                $bank_info['amount'] = $amount;
-                $bank_info['date'] = $date;
+                $bank_info['receipt'] = $receipt;
+                // $bank_info['amount'] = $amount;
+                // $bank_info['date'] = $date;
                 $bank_info['note'] = $note;
-                $bank_info['time'] = current_time('timestamp');
+                $bank_info['date'] = current_time('timestamp');
 
                 update_post_meta($invoice_id, 'payment_info', $bank_info);
             } else if ($payment_method == 'paypal') {
@@ -123,6 +123,7 @@ class PaymentProcess
 
     public function create_permission()
     {
-        return current_user_can('publish_posts');
+        return true;
+        // return current_user_can('publish_posts');
     }
 }

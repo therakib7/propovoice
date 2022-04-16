@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Api from 'api/payment-process';
-import Upload from 'block/field/upload'; 
+import Upload from 'block/field/upload';
 
 class Bank extends Component {
     constructor(props) {
@@ -11,10 +11,10 @@ class Bank extends Component {
             form: {
                 invoice_id: null,
                 payment_details: '',
-                receipt: '', 
-                amount: '',
-                date: '',
+                receipt: '',
+                // amount: '',
                 note: '',
+                date: '',
             },
         };
     }
@@ -66,7 +66,7 @@ class Bank extends Component {
 
                             <div className="pi-content">
                                 <div className="pi-form-style-one">
-                                    <form onSubmit={this.handleSubmit} >  
+                                    <form onSubmit={this.handleSubmit} >
 
                                         <div className="row">
                                             <div className="col-lg">
@@ -80,45 +80,14 @@ class Bank extends Component {
                                                     value={this.state.form.payment_details}
                                                     onChange={this.handleChange}
                                                 />
-                                                <p className='pi-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p> 
+                                                <p className='pi-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p>
                                             </div>
-                                        </div> 
+                                        </div>
 
                                         <div className="row">
                                             <div className="col-md">
                                                 <label htmlFor="field-receipt">Payment Receipt</label>
-                                                <Upload label={'Upload'} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
-                                            </div> 
-                                        </div>
-
-                                        <div className="row">
-                                            <div className="col-lg">
-                                                <label htmlFor="form-amount">
-                                                    Amount Sent
-                                                </label>
-
-                                                <input
-                                                    id="form-amount"
-                                                    type="text"
-                                                    required
-                                                    name="amount"
-                                                    value={this.state.form.amount}
-                                                    onChange={this.handleChange}
-                                                />
-                                            </div>
-
-                                            <div className="col-lg">
-                                                <label htmlFor="form-date">
-                                                    Payment Date
-                                                </label>
-                                                <input
-                                                    id="form-date"
-                                                    type="text"
-                                                    required
-                                                    name="date"
-                                                    value={this.state.form.date}
-                                                    onChange={this.handleChange}
-                                                />
+                                                <Upload label={'Upload'} permission={true} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
                                             </div>
                                         </div>
 
@@ -135,14 +104,14 @@ class Bank extends Component {
                                                     onChange={this.handleChange}
                                                 />
                                             </div>
-                                        </div> 
-                                         
+                                        </div>
+
                                         <div className="row">
-                                            <div className="col-lg"> 
+                                            <div className="col-lg">
                                                 <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
                                                     Mark As Paid
-                                                </button> 
-                                            </div> 
+                                                </button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
