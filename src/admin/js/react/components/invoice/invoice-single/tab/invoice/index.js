@@ -10,20 +10,20 @@ import Items from './Items'
 import PaymentInfo from './PaymentInfo';
 import Total from './Total';
 import Note from './Note'
-import Group from './Group'; 
+import Group from './Group';
 
 import Template from '../template';
 import Preview from '../preview';
 
 // import Attach from './Attach';
 import DateField from 'block/date-picker';
-import Upload from 'block/field/upload'; 
+import Upload from 'block/field/upload';
 
 //sidebar section
 const InvTemplate = lazy(() => import('inv-template'));
 const Style = lazy(() => import('./sidebar/Style'));
 import Owner from './sidebar/Owner'
-const Payment = lazy(() => import('./sidebar/Payment')); 
+const Payment = lazy(() => import('./sidebar/Payment'));
 const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
 
 class Invoice extends Component {
@@ -50,15 +50,15 @@ class Invoice extends Component {
 					text: 'Preview & Share'
 				},
 			],
-			currentTab: '', 
-			currentTabIndex: null, 
+			currentTab: '',
+			currentTabIndex: null,
 			msg: {
 				create: 'Successfully Added',
 				update: 'Successfully Updated',
 				delete: 'Successfully Deleted',
 				confirm: 'Are you sure to delete it?',
 				saveTxt: 'Save'
-			}, 
+			},
 			shareModal: false,
 			emailModal: false,
 			fromData: null,
@@ -110,15 +110,13 @@ class Invoice extends Component {
 	isPreviewLoaded = () => {
 		let previewRef = this.previewRef.current;
 		let sidebarRef = this.sidebarRef.current;
-		if ( previewRef && sidebarRef ) { 
-			let scale = Math.min( 
-				sidebarRef.clientWidth / previewRef.clientWidth, 
-				sidebarRef.clientHeight / previewRef.clientHeight 
+		if (previewRef && sidebarRef) {
+			let scale = Math.min(
+				sidebarRef.clientWidth / previewRef.clientWidth,
+				sidebarRef.clientHeight / previewRef.clientHeight
 			);
-			
-			let previewHegiht = previewRef.clientHeight;
-			const height = ( previewHegiht / 2.05 );
-			this.setState({ previewHeight: height, previewScale: scale }); 
+
+			this.setState({ previewScale: scale });
 		}
 	};
 
@@ -154,7 +152,7 @@ class Invoice extends Component {
 	}
 
 	changeCurrency = () => {
-		 
+
 	};
 
 	bgColor = () => {
@@ -168,13 +166,13 @@ class Invoice extends Component {
 	updateEdit = (data = '') => {
 		let msg = { ...this.state.msg }
 		msg.saveTxt = 'Update';
-		if ( data ) {
-			let invoice = { ...this.state.invoice } 
+		if (data) {
+			let invoice = { ...this.state.invoice }
 			invoice.id = data.id;
 			invoice.token = data.token;
-			this.setState({ msg, invoice }); 
+			this.setState({ msg, invoice });
 		} else {
-			this.setState({ msg }); 
+			this.setState({ msg });
 		}
 
 		/*
@@ -192,9 +190,9 @@ class Invoice extends Component {
 				let invoice = resp.data.data.invoice;
 				// console.log(resp.data.data)
 				invoice.id = parseInt(resp.data.data.id);
-				invoice.token =resp.data.data.token;
+				invoice.token = resp.data.data.token;
 				invoice.date = new Date(resp.data.data.invoice.date);
-				invoice.due_date = new Date(resp.data.data.invoice.due_date); 
+				invoice.due_date = new Date(resp.data.data.invoice.due_date);
 				this.setState({
 					invoice,
 					fromData: resp.data.data.fromData,
@@ -323,10 +321,10 @@ class Invoice extends Component {
 
 			Api.create(invoice)
 				.then(resp => {
-					if (resp.data.success) { 
+					if (resp.data.success) {
 
 						this.updateEdit(resp.data.data);
-						this.props.routeChange(resp.data.data.id);  						
+						this.props.routeChange(resp.data.data.id);
 
 						toast.success(this.state.msg.create, {
 							position: toast.POSITION.BOTTOM_RIGHT
@@ -381,12 +379,12 @@ class Invoice extends Component {
 	}
 
 	setActiveTab(e, id, index) {
-		e.preventDefault(); 
+		e.preventDefault();
 		this.setState({
-            currentTab: id,
-            currentTabIndex: index
-        });
-	} 
+			currentTab: id,
+			currentTabIndex: index
+		});
+	}
 
 	backTab = () => {
 		let tab = this.state.currentTab;
@@ -434,36 +432,36 @@ class Invoice extends Component {
 	}
 
 	onPaymentChange = (data, type) => {
-		let invoice = { ...this.state.invoice } 
-		if ( type == 'method' ) {  
-			if ( invoice.payment_methods.hasOwnProperty(data) ) { // if payment method exist 
-				delete invoice.payment_methods[data];  
+		let invoice = { ...this.state.invoice }
+		if (type == 'method') {
+			if (invoice.payment_methods.hasOwnProperty(data)) { // if payment method exist 
+				delete invoice.payment_methods[data];
 
-				if ( data == 'bank' ) {				
+				if (data == 'bank') {
 					this.setState({ invoice, paymentBankData: null });
 				} else {
 					this.setState({ invoice });
 				}
-			} else {  
-				invoice.payment_methods[data] = null;   
-				this.setState({ invoice }); 
+			} else {
+				invoice.payment_methods[data] = null;
+				this.setState({ invoice });
 			}
 		} else { //type id		
-			
+
 			invoice.payment_methods[data.type] = data.id;
-			if ( data.type == 'bank' ) {				
+			if (data.type == 'bank') {
 				this.setState({ invoice, paymentBankData: data });
 			} else {
 				this.setState({ invoice });
 			}
-		}  
-	} 
+		}
+	}
 
 	render = () => {
-		const {title, tabs = [], currentTab, currentTabIndex} = this.state; 
+		const { title, tabs = [], currentTab, currentTabIndex } = this.state;
 		return (
 			<>
-			
+
 				<div className="row">
 					<div className="col-md-6">
 						<h1>Create {title}</h1>
@@ -482,7 +480,7 @@ class Invoice extends Component {
 						</nav>
 					</div>
 					<div className="col-md-6">
-						<div className="pi-single-btn pi-text-right"> 
+						<div className="pi-single-btn pi-text-right">
 
 							{(currentTab == 'template') && <button
 								className="pi-btn pi-bg-blue pi-bg-hover-blue"
@@ -523,9 +521,9 @@ class Invoice extends Component {
 				<div className="pi-single-tab-content">
 					<div className="pi-single-tabs pi-text-center">
 						{tabs.map((tab, index) => (
-							<button 
+							<button
 								key={index}
-								className={"pi-tab-item tablink " + (index <= currentTabIndex ? 'pi-active' : '' )}
+								className={"pi-tab-item tablink " + (index <= currentTabIndex ? 'pi-active' : '')}
 								onClick={(e) => this.setActiveTab(e, tab.id, index)}
 							>
 								{<span className="pi-single-tab-done"><svg
@@ -542,7 +540,7 @@ class Invoice extends Component {
 								{index < 2 && <svg width={95} height={10} className="pi-arrow">
 									<path
 										d="M89.5 1l4 4m0 0l-4 4m4-4H1"
-										stroke={(index < currentTabIndex ? '#4c6fff' : '#E2E8F0' )}
+										stroke={(index < currentTabIndex ? '#4c6fff' : '#E2E8F0')}
 										strokeWidth={2}
 										strokeLinecap="round"
 										strokeLinejoin="round"
@@ -556,7 +554,7 @@ class Invoice extends Component {
 
 					{(currentTab == 'info') && <div id="pi-informations" className="pi-invoice-tab-content">
 						<div className="row">
-							<div className="col-lg-9"> 
+							<div className="col-lg-9">
 								<h2 className='pi-tab-content-title'>Add Content</h2>
 								<div className="pi-info-content pi-bg-white">
 									<div className="pi-add-info-content pi-bg-pearl">
@@ -565,7 +563,7 @@ class Invoice extends Component {
 											<div className="col-12 col-md-6">
 												{this.state.fromData && this.state.fromData.logo &&
 													<div className="pi-info-logo">
-														<img src={this.state.fromData.logo.src}  />
+														<img src={this.state.fromData.logo.src} />
 													</div>}
 											</div>
 											<div className="col-12 col-md-6">
@@ -613,7 +611,7 @@ class Invoice extends Component {
 																// value={this.state.invoice.currency}
 																value='USD'
 																readOnly
-																// onChange={() => this.changeCurrency}
+															// onChange={() => this.changeCurrency}
 															/>
 														</div>
 													</div>
@@ -711,61 +709,61 @@ class Invoice extends Component {
 										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
 
-									<div className='pi-inv-sidebar-preview' style={{ height: this.state.previewHeight, transform: 'scale('+this.state.previewScale+')' }}>
+									<div style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
 										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
 									<div className="pi-accordion-wrapper">
 										<ul>
 											<Suspense fallback={<div>Loading...</div>}>
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
-												{this.props.path == 'invoice' && <Payment handleChange={this.onPaymentChange} data={this.state.invoice} handleSave={this.handleSave}/>} 
+												{this.props.path == 'invoice' && <Payment handleChange={this.onPaymentChange} data={this.state.invoice} handleSave={this.handleSave} />}
 												{/* {!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />} */}
-												{!wage.length && 
-												<>
-													<li>
-														<input type="checkbox" defaultChecked="checked" />
-														<i />
-														<h3>Edit or create Client</h3>
-														<div>
-															<p>Upcoming</p>
-														</div>
-													</li>
-													<li>
-														<input type="checkbox" defaultChecked="checked" />
-														<i />
-														<h3>Additional Amount</h3>
-														<div>
-															<p>Upcoming</p>
-														</div>
-													</li>
-													<li>
-														<input type="checkbox" defaultChecked="checked" />
-														<i />
-														<h3>Reminder</h3>
-														<div>
-															<p>Upcoming</p>
-														</div>
-													</li>
-													<li>
-														<input type="checkbox" defaultChecked="checked" />
-														<i />
-														<h3>Recuring</h3>
-														<div>
-															<p>Upcoming</p>
-														</div>
-													</li>
-													<li>
-														<input type="checkbox" defaultChecked="checked" />
-														<i />
-														<h3>Crarge or Late Fee</h3>
-														<div>
-															<p>Upcoming</p>
-														</div>
-													</li>
-												</>
+												{!wage.length &&
+													<>
+														<li>
+															<input type="checkbox" defaultChecked="checked" />
+															<i />
+															<h3>Edit or create Client</h3>
+															<div>
+																<p>Upcoming</p>
+															</div>
+														</li>
+														<li>
+															<input type="checkbox" defaultChecked="checked" />
+															<i />
+															<h3>Additional Amount</h3>
+															<div>
+																<p>Upcoming</p>
+															</div>
+														</li>
+														<li>
+															<input type="checkbox" defaultChecked="checked" />
+															<i />
+															<h3>Reminder</h3>
+															<div>
+																<p>Upcoming</p>
+															</div>
+														</li>
+														<li>
+															<input type="checkbox" defaultChecked="checked" />
+															<i />
+															<h3>Recuring</h3>
+															<div>
+																<p>Upcoming</p>
+															</div>
+														</li>
+														<li>
+															<input type="checkbox" defaultChecked="checked" />
+															<i />
+															<h3>Crarge or Late Fee</h3>
+															<div>
+																<p>Upcoming</p>
+															</div>
+														</li>
+													</>
 												}
 												{/* Others sidebar section */}
-											</Suspense> 
+											</Suspense>
 										</ul>
 									</div>
 
