@@ -11,6 +11,7 @@ use Ncpi\Controllers\Api\Types\Media;
 use Ncpi\Controllers\Api\Types\Payment;
 use Ncpi\Controllers\Api\Types\PaymentProcess;
 use Ncpi\Controllers\Api\Types\Project;
+use Ncpi\Controllers\Api\Types\Proposal;
 use Ncpi\Controllers\Api\Types\Setting;
 
 class ApiController
@@ -20,6 +21,7 @@ class ApiController
 	{
 		new Client();
 		new Project();
+		new Proposal();
 		new Invoice();
 		new Business();
 		new Email();

@@ -1,0 +1,29 @@
+.pi-proposal-pages {
+  margin-top: 30px;
+
+  .pi-proposal-page {
+    background-color: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    width: 800px;
+    // height: 1120px;
+    // overflow: hidden;
+    margin: auto;
+  }
+
+  .pi-add-proposal-page {
+    text-align: center;
+    margin: 20px 0;
+
+    button {
+      background-color: #fbfcfd;
+      padding: 8px 15px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #4a5568;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 1px solid #dddddda8;
+    }
+  }
+}

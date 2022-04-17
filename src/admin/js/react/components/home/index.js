@@ -1,10 +1,10 @@
-import React, { Suspense, lazy } from 'react';  
+import React, { Suspense, lazy } from 'react';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {
-    HashRouter, 
+    HashRouter,
     Routes,
     Route,
     NavLink
@@ -15,14 +15,19 @@ const Project = lazy(() => import('components/project'));
 const ClientSummary = lazy(() => import('components/client/client-summary'));
 const Client = lazy(() => import('components/client/client'));
 //const Proposal = lazy(() => import('components/proposal'));
-// const Editor = lazy(() => import('components/editor')); 
+// const Editor = lazy(() => import('components/editor'));
+
+const Proposal = lazy(() => import('components/proposal/proposal'));
+const ProposalSingle = lazy(() => import('components/proposal/proposal-single'));
+
 const Invoice = lazy(() => import('components/invoice/invoice'));
 const InvoiceSingle = lazy(() => import('components/invoice/invoice-single'));
+
 const Payment = lazy(() => import('components/payment'));
 const Business = lazy(() => import('components/business'));
 const Setting = lazy(() => import('components/setting'));
 
-const Home = () => {  
+const Home = () => {
     return (
         <>
             <HashRouter>
@@ -38,7 +43,7 @@ const Home = () => {
                         </div>
                         <div >
                             <div className="pi-logo-content">
-                                <img src={ncpi.assetImgUri + 'logo.png'}  />
+                                <img src={ncpi.assetImgUri + 'logo.png'} />
                                 <strong >Propovoice</strong>
                             </div>
                             <ul>
@@ -84,7 +89,7 @@ const Home = () => {
                                             />
                                         </svg>
                                         <span>Client</span>
-                                    </NavLink> 
+                                    </NavLink>
                                     {/* <ul className='pi-sub-menu'>
                                         <li>
                                             <NavLink
@@ -96,7 +101,7 @@ const Home = () => {
                                         </li>
                                     </ul> */}
                                 </li>
-                                {!wage.length &&<li>
+                                {!wage.length && <li>
                                     <NavLink
                                         to='project'
                                         className={({ isActive }) => isActive ? 'pi-active' : ''}>
@@ -252,13 +257,20 @@ const Home = () => {
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
                                 {/* <Route path="/proposal" element={<Proposal />} />  */}
-                                <Route path="/estimate" element={<Invoice />} />
                                 {/* <Route path="/proposal" element={<Editor />} /> */}
+
+                                <Route path="/proposal" element={<Proposal />} />
+                                <Route path="/proposal/single" element={<ProposalSingle />} />
+                                <Route path="/proposal/single/:id" element={<ProposalSingle />} />
+
+                                <Route path="/estimate" element={<Invoice />} />
                                 <Route path="/estimate/single" element={<InvoiceSingle />} />
                                 <Route path="/estimate/single/:id" element={<InvoiceSingle />} />
+
                                 <Route path="/invoice" element={<Invoice />} />
                                 <Route path="/invoice/single" element={<InvoiceSingle />} />
                                 <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
+
                                 <Route path="/payment" element={<Payment />} />
                                 <Route path="/client" exact element={<Client />} />
                                 <Route path="/project" exact element={<Project />} />
