@@ -104,7 +104,7 @@ const TableBody = props => {
         let payment_method;
         switch (row.payment_method) {
             case 'bank':
-                payment_method = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank</span>
+                payment_method = <span className='pi-status pi-cursor-pointer' style={{ backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank & Others</span>
                 break;
 
             case 'paypal':

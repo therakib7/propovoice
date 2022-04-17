@@ -41,7 +41,7 @@ class Items extends Component {
                     <thead>
                         <tr >
                             <th>Name &amp; Details </th>
-                            <th>Unit</th>
+                            <th>Quantity</th>
                             <th>
                                 Rate <span>USD ($)</span>
                             </th>

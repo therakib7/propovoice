@@ -57,7 +57,7 @@ const TableBody = props => {
                     </svg>
                 </div>
                 <div className="payment-text-content">
-                    <h2 className="pi-payment-title">{row.bank_name}</h2> 
+                    <h2 className="pi-payment-title">{row.name}</h2> 
                 </div>
             </li>
         );

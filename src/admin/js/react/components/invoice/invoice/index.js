@@ -295,7 +295,7 @@ const Invoice = class Invoice extends Component {
                     <p>
                         {checkedBoxes.length} {title} selected
                         <button
-                            style={{ marginLeft: '5px', backgroundColor: '#edf2f7' }} className="pi-btn"
+                            style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
                             onClick={() => this.deleteEntry('selected')} >
                             Delete
                         </button>

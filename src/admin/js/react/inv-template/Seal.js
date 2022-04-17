@@ -10,21 +10,7 @@ class Seal extends Component {
 		let status = false;
 		let title, desc;
 		let extraClass = '';
-		switch (this.props.status) {
-
-			case 'accept':
-				status = true;
-				title = 'Accepted';
-				desc = 'Thanks for accepting';
-				extraClass = 'pi-green-color';
-				break;
-
-			case 'decline':
-				status = true;
-				title = 'Declined';
-				desc = 'Sorry for the decline';
-				break;
-
+		switch (this.props.status) { 
 			case 'overdue':
 				status = true;
 				title = 'Overdue';
@@ -44,6 +30,8 @@ class Seal extends Component {
 				desc = 'Thanks, We have received the payment';
 				break;
 		}
+
+		if ( this.props.status =='accept' || this.props.status =='decline' ) return null;
 		return (
 			<>
 				{status && <div className="pi-inv-seal"> 

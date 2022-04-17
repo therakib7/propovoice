@@ -92,6 +92,26 @@
   width: 50%;
   margin-top: 7px;
   text-align: right;
+  position: relative;
+}
+.ncpi .pi-add-info-content .pi-info-input-field span {
+  position: absolute;
+  top: 0px;
+  right: 1px;
+  width: 15px;
+  z-index: 99;
+  background-color: var(--bg-color-air-white);
+  padding: 5px;
+  width: 27px;
+  height: 25px;
+  border: 1px solid var(--border-color-gray);
+  cursor: pointer;
+}
+.ncpi .pi-add-info-content .pi-info-input-field span svg {
+  width: 15px;
+  fill: #8f8f8f;
+  position: relative;
+  top: -1px;
 }
 .ncpi .pi-add-info-content h3 {
   font-size: 24px;
@@ -197,7 +217,7 @@
     padding: 35px 0px !important;
   }
 }
-.ncpi .pi-group-form .pi-group-input input[type=text] {
+.ncpi .pi-group-form .pi-group-input textarea {
   background-color: #edf2f7 !important;
   border-radius: 6px;
   color: #1a202c;
@@ -228,6 +248,9 @@
   background-color: #fff;
   cursor: pointer;
 }
+.ncpi .pi-group-form .pi-group-btn span {
+  margin-right: 5px;
+}
 .ncpi .pi-group-form .pi-group-btn.pi-ml-10 {
   margin-top: 10px;
 }
@@ -241,7 +264,6 @@
   border: 1px solid var(--border-color-gray);
 }
 .ncpi .pi-group-form .pi-buttons .pi-a-btn {
-  // margin-top: 130px !important;
   float: right;
   border-radius: 12px;
   border: 1px solid var(--border-color-gray);
@@ -351,4 +373,4 @@
   border: 1px solid #718096;
   border-radius: 10px;
   width: 100%;
-}
+} 

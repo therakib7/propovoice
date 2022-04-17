@@ -157,6 +157,7 @@ class Invoice
             if (!$query_data['paid']) {
                 $query_data['paid'] = 0;
             }
+            
             $query_data['due'] = get_post_meta($id, 'due', true);
             if (!$query_data['due']) {
                 $query_data['due'] = 0;
@@ -236,8 +237,8 @@ class Invoice
         if (isset($payment_methods['bank'])) {
             $paymentData['id'] = $payment_methods['bank'];
             $paymentMeta = get_post_meta($payment_methods['bank']);
-            $paymentData['bank_name'] = isset($paymentMeta['bank_name']) ? $paymentMeta['bank_name'][0] : '';
-            $paymentData['bank_details'] = isset($paymentMeta['bank_details']) ? $paymentMeta['bank_details'][0] : '';
+            $paymentData['name'] = isset($paymentMeta['name']) ? $paymentMeta['name'][0] : '';
+            $paymentData['details'] = isset($paymentMeta['details']) ? $paymentMeta['details'][0] : '';
         }
         $query_data['paymentBankData'] = $paymentData;
 

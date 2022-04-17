@@ -102,11 +102,11 @@ class Payment
             );
         }
 
-        if (isset($request['bank_name'])) {
+        if (isset($request['name'])) {
             $args['meta_query'][] = array(
                 array(
-                    'key'     => 'bank_name',
-                    'value'   => $request['bank_name'],
+                    'key'     => 'name',
+                    'value'   => $request['name'],
                     'compare' => 'LIKE'
                 )
             );
@@ -137,8 +137,8 @@ class Payment
 
             if ($type == 'bank') {
  
-                $query_data['bank_name'] = get_post_meta($id, 'bank_name', true); 
-                $query_data['bank_details'] = get_post_meta($id, 'bank_details', true);
+                $query_data['name'] = get_post_meta($id, 'name', true); 
+                $query_data['details'] = get_post_meta($id, 'details', true);
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
 
             } elseif ($type == 'paypal') {
@@ -182,7 +182,7 @@ class Payment
 
         foreach ( $custom_array as $key => $value ) {
             $temp_array = [];
-            $temp_array['method_name'] = ucfirst( $key );
+            $temp_array['method_name'] = ($key == 'bank') ? __( 'Bank & Others', 'propovoice' ) : ucfirst( $key );
             $temp_array['method_id'] = $key;
             $temp_array['list'] = $value;
 
@@ -199,8 +199,8 @@ class Payment
         $query_data['id'] = $id;
 
         $query_data['type'] = get_post_meta($id, 'type', true); 
-        $query_data['bank_name'] = get_post_meta($id, 'bank_name', true); 
-        $query_data['bank_details'] = get_post_meta($id, 'bank_details', true);
+        $query_data['name'] = get_post_meta($id, 'name', true); 
+        $query_data['details'] = get_post_meta($id, 'details', true);
         $query_data['default'] = (bool) get_post_meta($id, 'default', true);
 
         return wp_send_json_success($query_data);
@@ -214,8 +214,8 @@ class Payment
 
         $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
         //bank form 
-        $bank_name = isset($params['bank_name']) ? sanitize_text_field($params['bank_name']) : null; 
-        $bank_details = isset($params['bank_details']) ? sanitize_textarea_field($params['bank_details']) : null;
+        $name = isset($params['name']) ? sanitize_text_field($params['name']) : null; 
+        $details = isset($params['details']) ? sanitize_textarea_field($params['details']) : null;
         $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
 
         //paypal form
@@ -231,7 +231,7 @@ class Payment
         $secret_key = isset($params['secret_key']) ? sanitize_text_field($params['secret_key']) : null;
 
         /* if (
-            empty($bank_name)
+            empty($name)
         ) {
             $reg_errors->add('field', esc_html__('Bank name is missing', 'propovoice'));
         } */
@@ -257,12 +257,12 @@ class Payment
 
                 if ($type == 'bank') { 
 
-                    if ($bank_name) {
-                        update_post_meta($post_id, 'bank_name', $bank_name);
+                    if ($name) {
+                        update_post_meta($post_id, 'name', $name);
                     } 
 
-                    if ($bank_details) {
-                        update_post_meta($post_id, 'bank_details', $bank_details);
+                    if ($details) {
+                        update_post_meta($post_id, 'details', $details);
                     }
                 } elseif ($type == 'paypal') {
 
@@ -309,8 +309,8 @@ class Payment
                 $paymentData['id'] = $post_id;
                 $paymentData['type'] = 'bank';
                 $paymentMeta = get_post_meta($post_id);
-                $paymentData['bank_name'] = isset($paymentMeta['bank_name']) ? $paymentMeta['bank_name'][0] : '';
-                $paymentData['bank_details'] = isset($paymentMeta['bank_details']) ? $paymentMeta['bank_details'][0] : '';  
+                $paymentData['name'] = isset($paymentMeta['name']) ? $paymentMeta['name'][0] : '';
+                $paymentData['details'] = isset($paymentMeta['details']) ? $paymentMeta['details'][0] : '';  
 
                 wp_send_json_success($paymentData);
             } else {
@@ -326,8 +326,8 @@ class Payment
 
         $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
         //bank form 
-        $bank_name = isset($params['bank_name']) ? sanitize_text_field($params['bank_name']) : null; 
-        $bank_details = isset($params['bank_details']) ? sanitize_textarea_field($params['bank_details']) : null;
+        $name = isset($params['name']) ? sanitize_text_field($params['name']) : null; 
+        $details = isset($params['details']) ? sanitize_textarea_field($params['details']) : null;
         $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
 
         //paypal form
@@ -342,7 +342,7 @@ class Payment
         $public_key = isset($params['public_key']) ? sanitize_text_field($params['public_key']) : null;
         $secret_key = isset($params['secret_key']) ? sanitize_text_field($params['secret_key']) : null;
 
-        /* if (empty($bank_name)) {
+        /* if (empty($name)) {
             $reg_errors->add('field', esc_html__('Bank name is missing', 'propovoice'));
         } */
 
@@ -367,12 +367,12 @@ class Payment
 
                 if ($type == 'bank') { 
 
-                    if ($bank_name) {
-                        update_post_meta($post_id, 'bank_name', $bank_name);
+                    if ($name) {
+                        update_post_meta($post_id, 'name', $name);
                     } 
 
-                    if ($bank_details) {
-                        update_post_meta($post_id, 'bank_details', $bank_details);
+                    if ($details) {
+                        update_post_meta($post_id, 'details', $details);
                     }
                 } elseif ($type == 'paypal') {
 

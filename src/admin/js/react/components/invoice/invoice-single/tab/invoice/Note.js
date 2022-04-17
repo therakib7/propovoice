@@ -47,9 +47,8 @@ class Note extends Component {
                     changeHandler={this.handleChangeLabel}
                 />
                 <div className="pi-group-input">
-                    <input
-                        name="text"
-                        type="text"
+                    <textarea
+                        name="text" 
                         value={text}
                         onChange={this.handleChange}
                     />

@@ -4,6 +4,8 @@ const Template2 = lazy(() => import('./template/2'));
 const Template3 = lazy(() => import('./template/3'));
 const Template4 = lazy(() => import('./template/4'));
 
+const Feedback = lazy(() => import('./Feedback'));
+
 import Style from './scss/all.scoped.scss'
 import './scss/loading.css';
 
@@ -34,14 +36,15 @@ export default class Preview extends Component {
     render() {
         const { id } = this.props.data.invoice.template;
         return (
-            <div className={'ncpi-invoice-preview ncpi-invoice-preview-' + id}>
-                <Suspense fallback={<div className="spinner loading" style={{ padding: 0 }} />}>
+            <Suspense fallback={<div className="spinner loading" style={{ padding: 0 }} />}>
+                <Feedback status={this.props.data.status} />
+                <div className={'ncpi-invoice-preview ncpi-invoice-preview-' + id}>
                     {id == 1 && <Template1 {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
                     {id == 2 && <Template2 {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
                     {id == 3 && <Template3 {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
                     {id == 4 && <Template4 {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
-                </Suspense>
-            </div>
+                </div>
+            </Suspense>
         );
     }
 } 

@@ -50,14 +50,14 @@ export default class Template extends Component {
                 })
 
                 //select default template
-                if ( ! this.props.currentTemplate.id ) {
-                    this.selectEntry(result[0]);
+                if ( ! this.props.currentTemplate.id ) { 
+                    this.props.changeHandler(result[0]);
                 }
             })
     };
 
     selectEntry = (data) => {
-        this.props.changeHandler(data);
+        this.props.changeHandler(data, true);
     } 
 
     handlePageClick = (e) => {

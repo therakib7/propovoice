@@ -129,7 +129,7 @@ export default class Preview extends Component {
             </head>
             <body> 
                 <div class="page">  
-                    <img src="${imgData}" onload="window.print()"/>
+                    <img src="${imgData}" width="794" onload="window.print()"/>
                 </div> 
             </body>
             </html>`);

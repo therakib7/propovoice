@@ -264,7 +264,7 @@ export default class Payment extends Component {
                                     fill="#4A5568"
                                 />
                             </svg>
-                            Bank Account
+                            Bank & Others Account
                         </li>
                         {!wage.length &&
                             <>
@@ -410,7 +410,7 @@ export default class Payment extends Component {
                                         fill="#2D3748"
                                     />
                                 </svg>
-                                Add {currentTabTitle} Account
+                                Add Account
                             </button>
                         </div>
                     </div>

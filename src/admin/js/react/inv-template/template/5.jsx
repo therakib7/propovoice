@@ -78,7 +78,7 @@ export default class Four extends Component {
                                     <tr>
                                         <th className="pi-bg-one">SL</th>
                                         <th className="pi-bg-one">Item Description</th>
-                                        <th className="pi-bg-4th">Unit</th>
+                                        <th className="pi-bg-4th">Quantity</th>
                                         <th className="pi-bg-two">Rate</th>
                                         <th className="pi-bg-4th">Amount</th>
                                     </tr>

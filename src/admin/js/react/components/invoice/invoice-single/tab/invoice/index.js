@@ -232,10 +232,18 @@ class Invoice extends Component {
 		})
 	}
 
-	handleTemplateChange = (data) => {
+	handleTemplateChange = (data, click = false) => {
 		let invoice = { ...this.state.invoice }
-		invoice.template = data;
-		this.setState({ invoice })
+		invoice.template = data;  
+		if ( click ) {
+			this.setState({
+				currentTab: 'info',
+				currentTabIndex: 1,
+				invoice
+			});
+		} else {
+			this.setState({ invoice });
+		}
 	}
 
 	handleNoteChange = (data) => {
@@ -289,7 +297,7 @@ class Invoice extends Component {
 	handleAddLineItem = (e) => {
 		let invoice = { ...this.state.invoice }
 		invoice.items = invoice.items.concat(
-			[{ id: Date.now().toString(), name: '', desc: '', qty: 0, price: 0.00 }]
+			[{ id: Date.now().toString(), name: '', desc: '', qty: 0, qty_type: 'unit', price: 0.00 }]
 		);
 		this.setState({ invoice })
 	}

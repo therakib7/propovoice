@@ -142,7 +142,7 @@ class Payment extends Component {
 
                                                 {row.method_id == 'bank' &&
                                                     <>
-                                                        <h4 className="pi-bank-title">{single.bank_name}</h4>
+                                                        <h4 className="pi-payment-title">{single.name}</h4>
                                                     </>
                                                 }
                                             </div>

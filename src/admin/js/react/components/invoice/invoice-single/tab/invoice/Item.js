@@ -34,10 +34,11 @@ class Item extends Component {
                 <select name="qty_type"  
                     value={qty_type} 
                     onChange={this.props.changeHandler(index)} >
+                    <option value="unit">Unit</option> 
                     <option value="page">Page</option>
                     <option value="hour">Hour</option>
                     <option value="week">Week</option>
-                    <option value="unit">Unit</option> 
+                    <option value="month">Month</option> 
                 </select>
             </td>
             <td>

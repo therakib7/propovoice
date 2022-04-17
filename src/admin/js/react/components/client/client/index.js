@@ -327,7 +327,7 @@ export default class Client extends Component {
                     <p>
                         {checkedBoxes.length} client selected
                         <button
-                            style={{ marginLeft: '5px', backgroundColor: '#edf2f7' }} className="pi-btn"
+                            style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
                             onClick={() => this.deleteEntry('selected')} >
                             Delete
                         </button>

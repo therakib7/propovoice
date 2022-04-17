@@ -12,7 +12,7 @@ class Items extends Component {
                         <tr>
                         <th>SL</th>
                         <th>Item Description</th>
-                        <th>Unit</th>
+                        <th>Quantity</th>
                         <th>Rate</th>
                         <th>Amount</th>
                         </tr>

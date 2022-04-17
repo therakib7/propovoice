@@ -7,8 +7,8 @@ class FormBank extends Component {
         this.initialState = {
             id: null,
             type: 'bank', 
-            bank_name: '', 
-            bank_details: '',
+            name: '', 
+            details: '',
             default: false,
             date: false
         };
@@ -55,7 +55,7 @@ class FormBank extends Component {
                     <div className="pi-overlay pi-show">
                         <div className="pi-popup-content">
                             <div className="pi-modal-header">
-                                <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Bank</h2>
+                                <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Account</h2>
                                 <span className="pi-close" onClick={() => this.props.close()}>×</span>
                             </div>
 
@@ -65,16 +65,16 @@ class FormBank extends Component {
                                     <div className="row"> 
                                         <div className="col-lg">
                                             <label
-                                                htmlFor="form-bank_name">
-                                                Bank Name
+                                                htmlFor="form-name">
+                                                Name
                                             </label>
 
                                             <input
-                                                id="form-bank_name"
+                                                id="form-name"
                                                 type="text"
                                                 required
-                                                name="bank_name"
-                                                value={this.state.form.bank_name}
+                                                name="name"
+                                                value={this.state.form.name}
                                                 onChange={this.handleChange}
                                             />
                                         </div>
@@ -82,14 +82,14 @@ class FormBank extends Component {
 
                                     <div className="row">
                                         <div className="col"> 
-                                            <label htmlFor="form-bank_details">
-                                                Bank Details
+                                            <label htmlFor="form-details">
+                                                Details
                                             </label>
                                             <textarea
-                                                id="form-bank_details" 
+                                                id="form-details" 
                                                 rows={4}
-                                                name="bank_details"
-                                                value={this.state.form.bank_details}
+                                                name="details"
+                                                value={this.state.form.details}
                                                 onChange={this.handleChange}
                                             />  
                                             <p className='pi-field-desc'>You need to mention bank details here, Like: Name, Routing No. etc</p> 

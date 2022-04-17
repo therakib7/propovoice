@@ -14,7 +14,7 @@ class PaymentInfo extends Component {
                     <>
                         <div className="pi-from-to"> 
                             <label>Payment Info:</label> 
-                            <div className="pi-bank-info" dangerouslySetInnerHTML={{__html: bank_info.bank_details.replaceAll('\n', '<br />')}}></div>
+                            <div className="pi-bank-info" dangerouslySetInnerHTML={{__html: bank_info.details.replaceAll('\n', '<br />')}}></div>
                         </div> 
                     </> : ''
                 } 

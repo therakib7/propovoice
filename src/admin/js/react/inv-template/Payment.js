@@ -11,7 +11,7 @@ class Payment extends Component {
         return (   
             <div className="pi-banking"> 
                 {paymentBankData ? <><h4>Payment Info:</h4>
-                <div className="pi-bank-info" dangerouslySetInnerHTML={{__html: paymentBankData.bank_details.replaceAll('\n', '<br />')}}></div></> : '' }
+                <div className="pi-bank-info" dangerouslySetInnerHTML={{__html: paymentBankData.details.replaceAll('\n', '<br />')}}></div></> : '' }
             </div>
         )
     }
