@@ -30,7 +30,7 @@ msgstr ""
 msgid "Propovoice Client Estimate"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Business.php:188, ../includes/Controllers/Api/Types/Business.php:262, ../includes/Controllers/Api/Types/Project.php:218
+#: ../includes/Controllers/Api/Types/Business.php:192, ../includes/Controllers/Api/Types/Business.php:266, ../includes/Controllers/Api/Types/Project.php:218
 msgid "Name is missing"
 msgstr ""
 

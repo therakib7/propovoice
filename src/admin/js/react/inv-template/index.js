@@ -18,6 +18,19 @@ export default class Preview extends Component {
         }
     };
 
+    updateDimensions = () => {
+        // this.setState({ width: window.innerWidth, height: window.innerHeight });
+        // console.log(window.innerWidth)
+    };
+
+    componentDidMount() {
+        window.addEventListener('resize', this.updateDimensions);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateDimensions);
+    }
+
     render() {
         const { id } = this.props.data.invoice.template;
         return (

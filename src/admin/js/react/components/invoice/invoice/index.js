@@ -235,13 +235,7 @@ const Invoice = class Invoice extends Component {
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.newInvoie()} >
                         Create New {title}
-                    </button>
-
-                    {checkedBoxes.length ? <button
-                        style={{ marginLeft: '5px' }} className="pi-btn pi-bg-red pi-bg-hover-red"
-                        onClick={() => this.deleteEntry('selected')} >
-                        Delete selected
-                    </button> : ''}
+                    </button> 
 
                     <div className="pi-search-box pi-float-right">
                         <svg
@@ -295,22 +289,36 @@ const Invoice = class Invoice extends Component {
                             <option value="100">Show item 100</option>
                         </select>
                     </p>
-                </div>}
+                </div>} 
+
+                {checkedBoxes.length > 0 && <div className='pi-table-showing'>
+                    <p>
+                        {checkedBoxes.length} {title} selected
+                        <button
+                            style={{ marginLeft: '5px', backgroundColor: '#edf2f7' }} className="pi-btn"
+                            onClick={() => this.deleteEntry('selected')} >
+                            Delete
+                        </button>
+                    </p>
+                </div>}  
 
                 {this.state.preloader ? <TablePreloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
+                    previousClassName='pi-previous'
+                    nextClassName='pi-next'
+                    disabledClassName='pi-disabled'
                     previousLabel={"<"}
                     nextLabel={">"}
                     breakLabel={"..."}
-                    breakClassName={"break"}
+                    breakClassName='break'
                     forcePage={this.state.currentPage - 1}
                     pageCount={this.state.totalPage}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
                     containerClassName={"pi-pagination"}
-                    activeClassName={"active"} />
+                    activeClassName='pi-active' />
                 }
 
             </div>

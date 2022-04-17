@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
  * Author: NurCreation
  * Author URI: https://nurcreation.com
  * Version: 0.1.0
- * Description: A complete proposal and invoice management system for the client.
+ * Description: A complete proposal, estimate and invoice management system for the WordPress.
  * Text Domain: propovoice
  * Domain Path: /languages
  *

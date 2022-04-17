@@ -216,7 +216,7 @@ export default class Invoice extends Component {
     };
 
     downloadInvoice = () => {
-        html2canvas(document.querySelector(".pi-inv")).then(canvas => {
+        html2canvas(document.querySelector('.pi-inv')).then(canvas => {
             const imgData = canvas.toDataURL('image/jpg');
             const pdf = new jsPDF();
             pdf.addImage(imgData, 'JPG', 0, 0);
@@ -225,7 +225,7 @@ export default class Invoice extends Component {
     }
 
     printInvoice = () => {
-        html2canvas(document.querySelector(".pi-inv")).then(canvas => {
+        html2canvas(document.querySelector('.pi-inv')).then(canvas => {
             const imgData = canvas.toDataURL('image/jpg');
             let pri = document.getElementById("ncpi-invoice-print").contentWindow;
             pri.document.open();
@@ -243,7 +243,7 @@ export default class Invoice extends Component {
               }
               @page{ margin: 0;} 
                 .page{
-                    width: 100%; 
+                    width: 100%;  
                     /* height: 1132px; */
                     height: 1110px; 
                     page-break-after: always; 
@@ -253,7 +253,7 @@ export default class Invoice extends Component {
             </head>
             <body> 
                 <div class="page">  
-                    <img src="${imgData}" onload="window.print()"/>
+                    <img src="${imgData}" width="794" onload="window.print()"/>
                 </div> 
             </body>
             </html>`);
@@ -284,21 +284,20 @@ export default class Invoice extends Component {
                 <ToastContainer />
                 <iframe id="ncpi-invoice-print" style={{ margin: 0, padding: 0, height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
-                    <div className='col-md-8' style={{ margin: '40px 0' }}>
+                    <div className='col-md-8' style={{ margin: '30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
                             <div className='pi-float-right'>
                                 <InvoiceBtn status={this.state.status} handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{ list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod }} />
                             </div>
                         </div>
-
                     </div>
 
                     <div className='col-md-8'>
                         {this.state.fromData && <Preview data={this.state} />}
                     </div>
 
-                    <div className='col-md-8' style={{ margin: '40px 0 30px 0' }}>
+                    <div className='col-md-8' style={{ margin: '30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
                             <div className='pi-float-right'>

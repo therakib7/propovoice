@@ -325,17 +325,20 @@ export default class Business extends Component {
                 {this.state.preloader ? <TablePreloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
+                    previousClassName='pi-previous'
+                    nextClassName='pi-next'
+                    disabledClassName='pi-disabled'
                     previousLabel={"<"}
                     nextLabel={">"}
                     breakLabel={"..."}
-                    breakClassName={"break"}
+                    breakClassName='break'
                     forcePage={this.state.currentPage - 1}
                     pageCount={this.state.totalPage}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
                     containerClassName={"pi-pagination"}
-                    activeClassName={"active"} />
+                    activeClassName='pi-active' />
                 }
 
             </div>

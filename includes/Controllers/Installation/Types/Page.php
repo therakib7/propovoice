@@ -16,7 +16,8 @@ class Page {
 
         if ( get_page_by_title( 'estimate' ) == null ) {
             $args = array(
-                'post_title'    => 'Estimate', 
+                'post_title'    => 'Propovoice Estimate', 
+                'post_name'     => 'estimate',
                 'post_status'   => 'publish',
                 'post_author'   => 1,
                 'post_type'     => 'page',
@@ -27,7 +28,8 @@ class Page {
 
         if ( get_page_by_title( 'invoice' ) == null ) {
             $args = array(
-                'post_title'    => 'Invoice', 
+                'post_title'    => 'Propovoice Invoice', 
+                'post_name'     => 'invoice',
                 'post_status'   => 'publish',
                 'post_author'   => 1,
                 'post_type'     => 'page',

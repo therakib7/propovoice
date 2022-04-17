@@ -8,13 +8,14 @@ Stable tag: 0.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-A complete proposal and invoice management system for the client.
+A complete proposal, estimate and invoice management system for the WordPress
 
 == Description ==
 
-By this plugin you can easily send proposal and invoice to your client and manage everything from Dashboard.
+By this plugin you can easily send estimate, proposal and invoice to your client and manage everything from Dashboard.
 
 = Features = 
+* Send estimate to client
 * Send invoice to client
 * Send proposal to client
 * Receive payment from client

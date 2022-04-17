@@ -91,7 +91,7 @@ export default class Preview extends Component {
 
     downloadInvoice = () => {
 
-        html2canvas(document.querySelector(".pi-inv")).then(canvas => {
+        html2canvas(document.querySelector('.pi-inv')).then(canvas => {
             const imgData = canvas.toDataURL('image/jpg');
             const pdf = new jsPDF();
             pdf.addImage(imgData, 'JPG', 0, 0);
@@ -101,7 +101,7 @@ export default class Preview extends Component {
     }
 
     printInvoice = () => {
-        html2canvas(document.querySelector(".pi-inv")).then(canvas => {
+        html2canvas(document.querySelector('.pi-inv')).then(canvas => {
             const imgData = canvas.toDataURL('image/jpg');
             let pri = document.getElementById("ncpi-invoice-print").contentWindow;
             pri.document.open();
@@ -154,7 +154,7 @@ export default class Preview extends Component {
                         <Template {...this.props} />
                     </div>
 
-                    <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
+                    <div className='col-md-8' style={{ margin: '30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <div className='pi-float-left'>
                                 <EditDownload path={this.props.path} handleEdit={this.props.editTab} handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} />
