@@ -5,10 +5,16 @@
     background-color: white;
     padding: 30px 20px;
     border-radius: 10px;
-    width: 800px;
-    // height: 1120px;
-    // overflow: hidden;
+    max-width: 800px;
+    height: 1120px;
+    overflow: hidden;
     margin: auto;
+    position: relative;
+
+    .pi-proposal-page-number {
+      position: absolute;
+      bottom: 15px;
+    }
   }
 
   .pi-add-proposal-page {

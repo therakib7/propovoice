@@ -60,8 +60,16 @@ const Editor = () => {
             {proposals.content && proposals.content.map((proposal, index) => (
                 <div key={index}>
                     <div className="pi-proposal-page">
-                        <ReactEditorJS holder={`ncpi-editor-${index}`} tools={EDITOR_JS_TOOLS} defaultValue={{ time: new Date().getTime(), blocks: proposal.default }} />
-                        <span className='pi-text-right'>Page {index + 1}</span>
+                        <ReactEditorJS
+                            holder={`ncpi-editor-${index}`}
+                            maxHeight={1120}
+                            tools={EDITOR_JS_TOOLS}
+                            defaultValue={{
+                                time: new Date().getTime(),
+                                blocks: proposal.default
+                            }}
+                        />
+                        <span className='pi-proposal-page-number'>Page {index + 1}</span>
                     </div>
 
                     <div className="pi-add-proposal-page">

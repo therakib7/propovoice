@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { toast } from 'react-toastify';
+
 import AppContext from 'context/app-context';
 import Api from 'api/media';
 import Media from 'components/media';

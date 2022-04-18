@@ -605,22 +605,6 @@ class Invoice extends Component {
 														</div>
 													</div>
 
-													<div className="row">
-														<div className="pi-info-lavel">
-															<label htmlFor="info-currency">Currency:</label>
-														</div>
-														<div className="pi-info-input-field">
-															<input
-																type="text"
-																name="currency"
-																// value={this.state.invoice.currency}
-																value='USD'
-																readOnly
-															// onChange={() => this.changeCurrency}
-															/>
-														</div>
-													</div>
-
 												</div>
 												{/* ./ pi-info-form */}
 											</div>
@@ -634,16 +618,7 @@ class Invoice extends Component {
 
 							<div className="col-lg-3">
 								<div className="pi-right-sidebar" ref={this.sidebarRef} >
-									<h2 className="pi-r-s-title pi-tab-content-title">Preview Proposal</h2>
-
-									{/* TODO: try to remove duplicate */}
-									<div ref={this.previewRef} style={{ position: 'absolute', left: '-99999px' }}>
-										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
-									</div>
-
-									<div style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
-										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
-									</div>
+									<h2 className="pi-r-s-title pi-tab-content-title">Setings</h2>
 									<div className="pi-accordion-wrapper">
 										<ul>
 											<Suspense fallback={<div>Loading...</div>}>
