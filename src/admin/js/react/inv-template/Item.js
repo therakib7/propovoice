@@ -15,7 +15,7 @@ class Item extends Component {
                 <td>{id + 1}.</td>
                 <td>
                     {name}<br />
-                    <span>{desc}</span>
+                    <span dangerouslySetInnerHTML={{__html: desc.replaceAll('\n', '<br />')}}></span>
                 </td>
                 <td>
                     {qty} <span>({qty_type})</span>

@@ -213,7 +213,10 @@ export default class Invoice extends Component {
         html2canvas(document.querySelector('.pi-inv')).then(canvas => {
             const imgData = canvas.toDataURL('image/jpg');
             const pdf = new jsPDF();
-            pdf.addImage(imgData, 'JPG', 0, 0);
+            const imgProps= pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            pdf.addImage(imgData, 'JPG', 0, 0, pdfWidth, pdfHeight);
             pdf.save(this.state.invoice.path + '.pdf');
         });
     }

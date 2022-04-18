@@ -150,7 +150,7 @@ class Invoice
             }
             $query_data['to'] = $toData;
 
-            $query_data['invoice'] = json_decode(get_post_meta($id, 'invoice', true));
+            $query_data['invoice'] = get_post_meta($id, 'invoice', true);
 
             $query_data['total'] = get_post_meta($id, 'total', true);
             $query_data['paid'] = get_post_meta($id, 'paid', true);
@@ -190,7 +190,7 @@ class Invoice
         $query_data['due_date'] = null;
         //$query_data['due_date'] = get_post_meta($id, 'due_date', true);
         $from_id = get_post_meta($id, 'from', true);
-        $query_data['invoice'] = json_decode(get_post_meta($id, 'invoice', true));
+        $query_data['invoice'] = get_post_meta($id, 'invoice', true);
 
         $from_id = get_post_meta($id, 'from', true);
         $query_data['status'] = get_post_meta($id, 'status', true);
@@ -314,7 +314,7 @@ class Invoice
                 }
 
                 if ($invoice) {
-                    update_post_meta($post_id, 'invoice', json_encode($invoice));
+                    update_post_meta($post_id, 'invoice', $invoice);
                 }
 
                 if ($total) {
@@ -411,7 +411,7 @@ class Invoice
                 }
 
                 if ($invoice) {
-                    update_post_meta($post_id, 'invoice', json_encode($invoice));
+                    update_post_meta($post_id, 'invoice', $invoice);
                 }
 
                 if ($total) {

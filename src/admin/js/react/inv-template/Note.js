@@ -12,7 +12,7 @@ class Note extends Component {
             <>
                 {text && <div className="pi-note">
                     <h4>{label}:</h4>
-                    <p>{text}</p>
+                    <p dangerouslySetInnerHTML={{__html: text.replaceAll('\n', '<br />')}}></p>
                 </div>}
             </>
         )
