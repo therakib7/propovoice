@@ -8,7 +8,7 @@ import ReactPaginate from 'react-paginate';
 
 import TablePreloader from 'block/preloader/table';
 
-import Api from 'api/invoice';
+import Api from 'api/proposal';
 
 import Table from './Table';
 import Search from './Search';
@@ -50,7 +50,7 @@ const Invoice = class Invoice extends Component {
         let args = {
             page: this.state.currentPage,
             per_page: this.state.perPage
-        } 
+        }
 
         if (this.props.invoice_id) {
             args.invoice_id = this.props.invoice_id;
@@ -69,7 +69,7 @@ const Invoice = class Invoice extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ invoices: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
+                this.setState({ invoices: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
             })
     };
 
@@ -171,7 +171,7 @@ const Invoice = class Invoice extends Component {
         this.props.routeChange();
     };
 
-    render() { 
+    render() {
         const { title, invoices, checkedBoxes, searchVal } = this.state;
         return (
             <div className="ncpi-components">
@@ -192,43 +192,43 @@ const Invoice = class Invoice extends Component {
                 </nav>
 
                 {invoices.length > 0 &&
-                <>
-                    {!wage.length && <div className="pi-cards">
-                        <div className="row">
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Total {title}</span>
-                                    <h4 className="pi-color-blue">23</h4>
+                    <>
+                        {!wage.length && <div className="pi-cards">
+                            <div className="row">
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span >Total {title}</span>
+                                        <h4 className="pi-color-blue">23</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span >Paid {title}</span>
+                                        <h4 className="pi-color-blue">132</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span >Unpaid {title}</span>
+                                        <h4 className="pi-color-blue">16</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span >Draft {title}</span>
+                                        <h4 className="pi-color-blue">21</h4>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Paid {title}</span>
-                                    <h4 className="pi-color-blue">132</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Unpaid {title}</span>
-                                    <h4 className="pi-color-blue">16</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Draft {title}</span>
-                                    <h4 className="pi-color-blue">21</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>} 
-                </>}
+                        </div>}
+                    </>}
 
-                <div className="pi-buttons"> 
+                <div className="pi-buttons">
                     <button
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.newInvoie()} >
                         Create New {title}
-                    </button> 
+                    </button>
 
                     <div className="pi-search-box pi-float-right">
                         <svg
@@ -282,7 +282,7 @@ const Invoice = class Invoice extends Component {
                             <option value="100">Show item 100</option>
                         </select>
                     </p>
-                </div>} 
+                </div>}
 
                 {checkedBoxes.length > 0 && <div className='pi-table-showing'>
                     <p>
@@ -293,7 +293,7 @@ const Invoice = class Invoice extends Component {
                             Delete
                         </button>
                     </p>
-                </div>}  
+                </div>}
 
                 {this.state.preloader ? <TablePreloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} />}
 
