@@ -92,8 +92,8 @@ export default class Preview extends Component {
     downloadInvoice = () => {
 
         html2canvas(document.querySelector('.pi-inv')).then(canvas => {
-            const imgData = canvas.toDataURL('image/jpg');
-            const pdf = new jsPDF();
+            const imgData = canvas.toDataURL('image/jpg'); 
+            const pdf = new jsPDF(); 
             pdf.addImage(imgData, 'JPG', 0, 0);
             pdf.save(this.props.path + '.pdf');
         });
@@ -150,7 +150,7 @@ export default class Preview extends Component {
                         </div>
                     </div>
 
-                    <div className='col-md-8'>
+                    <div className='col-md-8'> 
                         <Template {...this.props} />
                     </div>
 

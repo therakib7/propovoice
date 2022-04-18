@@ -9,7 +9,7 @@ class Seal extends Component {
 	render = () => {
 		let status = false;
 		let title, desc;
-		let extraClass = '';
+		let extraClass = ''; 
 		switch (this.props.status) { 
 			case 'overdue':
 				status = true;

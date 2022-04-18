@@ -11,14 +11,16 @@ class To extends Component {
                         <p>Bill to</p>
                         <h6>{data.first_name} {data.last_name}</h6>
                         <address>
-                            Address: <p>{data.address}</p>
-                            Email: 
-                            <span>
-                                <a href="#"> {data.email}</a>
-                            </span>
-                            <br />
-                            Mobile: <span>{data.mobile}</span>
-                            <br />
+                            <p>
+                                {data.address &&
+                                    <>{data.address}.<br /></>
+                                }   
+                                {data.email},
+
+                                {data.mobile &&
+                                    <><br />{data.mobile}</>
+                                }
+                            </p>
                         </address>           
                     </> : ''
                 }

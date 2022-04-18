@@ -25,6 +25,12 @@ class Note extends Component {
         });
     }
 
+    componentDidMount() {
+        if (!this.state.edit && this.props.data) {
+            this.setState({ edit: true, note: this.props.data });
+        }
+    }
+    
     componentDidUpdate() {
         if (!this.state.edit && this.props.data) {
             this.setState({ edit: true, note: this.props.data });

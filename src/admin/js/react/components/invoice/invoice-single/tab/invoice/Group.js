@@ -20,6 +20,12 @@ class Group extends Component {
         };
     }
 
+    componentDidMount() {
+        if (!this.state.edit && this.props.data) {
+            this.setState({ edit: true, groups: this.props.data });
+        }
+    }
+
     componentDidUpdate() {
         if (!this.state.edit && this.props.data) {
             this.setState({ edit: true, groups: this.props.data });

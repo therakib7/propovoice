@@ -46,15 +46,15 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:270, ../includes/Controllers/Api/Types/Invoice.php:374
+#: ../includes/Controllers/Api/Types/Invoice.php:271, ../includes/Controllers/Api/Types/Invoice.php:375, ../includes/Controllers/Api/Types/Proposal.php:262, ../includes/Controllers/Api/Types/Proposal.php:366
 msgid "Business is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:274
+#: ../includes/Controllers/Api/Types/Invoice.php:275, ../includes/Controllers/Api/Types/Proposal.php:266
 msgid "Module is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:278, ../includes/Controllers/Api/Types/Invoice.php:378
+#: ../includes/Controllers/Api/Types/Invoice.php:279, ../includes/Controllers/Api/Types/Invoice.php:379, ../includes/Controllers/Api/Types/Proposal.php:270, ../includes/Controllers/Api/Types/Proposal.php:370
 msgid "Receiver is missing"
 msgstr ""
 
@@ -64,6 +64,10 @@ msgstr ""
 
 #: ../includes/Controllers/Api/Types/Media.php:224
 msgid "File is too large. Max. upload file size is %s"
+msgstr ""
+
+#: ../includes/Controllers/Api/Types/Payment.php:185
+msgid "Bank & Others"
 msgstr ""
 
 #: ../includes/Controllers/Api/Types/Project.php:179

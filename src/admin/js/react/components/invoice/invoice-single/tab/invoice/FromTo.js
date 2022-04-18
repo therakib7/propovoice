@@ -220,18 +220,15 @@ class FromTo extends Component {
                                                 Edit
                                             </span>
                                         </h4>
-                                        <address>
-                                            Email: {fromData.email}
-                                            {fromData.mobile &&
-                                                <> 
-                                                    <br />Mobile: {fromData.mobile}
-                                                </>
-                                            }
-
+                                        <address> 
                                             {fromData.address &&
-                                                <> 
-                                                    <br />Address: {fromData.address}
-                                                </>
+                                                <>{fromData.address}.<br /></>
+                                            }      
+
+                                            {fromData.email},
+
+                                            {fromData.mobile &&
+                                                <><br />{fromData.mobile}</>
                                             }
                                         </address>
                                     </> : <>
@@ -283,18 +280,15 @@ class FromTo extends Component {
                                                 Edit
                                             </span>
                                         </h4>
-                                        <address>
-                                            Email: {toData.email}
-                                            {toData.mobile &&
-                                                <>
-                                                    <br />Mobile: {toData.mobile}
-                                                </>
-                                            }
-
+                                        <address> 
                                             {toData.address &&
-                                                <>
-                                                    <br />Address: {toData.address}
-                                                </>
+                                                <>{toData.address}.<br /></>
+                                            }      
+
+                                            {toData.email},
+
+                                            {toData.mobile &&
+                                                <><br />{toData.mobile}</>
                                             }
                                         </address>
                                     </> : <>

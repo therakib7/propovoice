@@ -42,8 +42,8 @@ class Editable extends Component {
 							/>
 							<span className='pi-cursor-pointer' style={{marginLeft: '5px'}}>
 								<svg
-									width={20}
-									height={20}
+									width={15}
+									height={15}
 									onClick={this.done}
 									xmlns="http://www.w3.org/2000/svg"
 									xmlnsXlink="http://www.w3.org/1999/xlink"

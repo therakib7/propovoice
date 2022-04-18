@@ -3179,7 +3179,8 @@ html {
   fill: var(--text-color-white);
 }
 .ncpi .pi-welcome-tabs-content .pi-tab .pi-done svg {
-  margin-left: -2px;
+  margin-left: 3px;
+  margin-top: 10px;
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-welcome-tabs-content .pi-tab {

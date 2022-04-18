@@ -188,17 +188,16 @@ class Invoice extends Component {
 			.then(resp => {
 
 				let invoice = resp.data.data.invoice;
-				// console.log(resp.data.data)
 				invoice.id = parseInt(resp.data.data.id);
 				invoice.token = resp.data.data.token;
 				invoice.date = new Date(resp.data.data.invoice.date);
 				invoice.due_date = new Date(resp.data.data.invoice.due_date);
 				this.setState({
 					invoice,
+					status: resp.data.data.status,
 					fromData: resp.data.data.fromData,
 					toData: resp.data.data.toData,
-					paymentBankData: resp.data.data.paymentBankData,
-					// editId: this.props.id
+					paymentBankData: resp.data.data.paymentBankData, 
 				});
 			})
 	};
@@ -596,6 +595,16 @@ class Invoice extends Component {
 														</div>
 														<div className="pi-info-input-field">
 															<DateField date={this.state.invoice.date} type='date' onDateChange={this.onDateChange} />
+															{false &&<span>
+																<svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	x="0px"
+																	y="0px"
+																	viewBox="0 0 1000 1000"
+																	>
+																	<path d="M867.2 131.4h-58.5V53.6c0-24.6-20.2-44.8-44.8-44.8h-2.4c-24.6 0-44.8 20.2-44.8 44.8v77.8h-430V53.6c0-24.6-20.2-44.8-44.8-44.8h-2.4c-24.6 0-44.8 20.2-44.8 44.8v77.8h-61.9C65.3 131.4 10 186.7 10 254.2v614.1c0 67.6 55.3 122.8 122.8 122.8h734.4c67.6 0 122.8-55.3 122.8-122.8V254.2c0-67.5-55.3-122.8-122.8-122.8zM900.4 899H100.8V407.8h799.6V899zm0-584.6H100.8V221h799.6v93.4z" />
+																</svg>
+															</span>}
 														</div>
 													</div>
 
@@ -717,7 +726,7 @@ class Invoice extends Component {
 										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
 
-									<div style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
+									<div className='pi-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
 										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
 									<div className="pi-accordion-wrapper">

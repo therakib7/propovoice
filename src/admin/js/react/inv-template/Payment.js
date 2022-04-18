@@ -7,7 +7,7 @@ class Payment extends Component {
     } 
 
     render = () => {
-        const {paymentBankData} = this.props.data; 
+        const {paymentBankData} = this.props.data;  
         return (   
             <div className="pi-banking"> 
                 {paymentBankData ? <><h4>Payment Info:</h4>

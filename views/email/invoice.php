@@ -129,16 +129,16 @@
       </div>
 
       <div class="ncpi-footer"> 
-            <span>Propovoice</span>
-            <p>Follow on</p>
-            <div class="ncpi-social">
-                <a href="#"><img src="https://appux.co/wp-content/plugins/propovoice-server/assets/email/f.png" alt=""></a>
+         <span>Propovoice</span>
+         <p>Follow on</p>
+         <div class="ncpi-social">
+            <a href="https://www.facebook.com/nurencydigital/"><img src="https://appux.co/wp-content/plugins/propovoice-server/assets/email/f.png" alt=""></a>
 
-                <a href="#"><img src="https://appux.co/wp-content/plugins/propovoice-server/assets/email/t.png" alt=""></a>
+            <a href="https://twitter.com/nasirbinburhan"><img src="https://appux.co/wp-content/plugins/propovoice-server/assets/email/t.png" alt=""></a>
 
-                <a href="#"><img src="https://appux.co/wp-content/plugins/propovoice-server/assets/email/i.png" alt=""></a>    
-            </div>
-            <div class="ncpi-footer-shape"></div>
+            <a href="#"><img src="https://appux.co/wp-content/plugins/propovoice-server/assets/email/i.png" alt=""></a>    
+         </div>
+         <div class="ncpi-footer-shape"></div>
       </div> 
    </div>
 </body> 

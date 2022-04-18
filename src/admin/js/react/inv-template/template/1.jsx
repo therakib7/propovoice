@@ -40,8 +40,8 @@ export default class One extends Component {
 
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
-        const { fromData, toData, status } = this.props.data;
-        let title = this.props.data.invoice.path == 'invoice' ? 'Invoice' : 'Estimate';
+        const { fromData, toData, status } = this.props.data; 
+        let title = this.props.data.title;
         return (
             <div className="pi-inv">
                 <Seal status={status} />
@@ -51,15 +51,13 @@ export default class One extends Component {
                             <div className="pi-from">
 
                                 {fromData && fromData.logo &&
-                                    <div className="pi-from-logo">
-                                        <img src={fromData.logo.src} alt="" />
-                                    </div>}
+                                <div className="pi-from-logo">
+                                    <img src={fromData.logo.src} alt="" />
+                                </div>}
 
                                 <From data={fromData} />
                                 <div className="pi-from-date">
-                                    <p>
-                                        {title} No: <span>{id}</span>
-                                    </p>
+                                    <p>{title} No: <span>{id}</span></p>
 
                                     <div className="pi-from-time">
                                         <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
@@ -67,6 +65,7 @@ export default class One extends Component {
                                     </div>
                                 </div>
                             </div>
+
                             <div className="pi-to">
                                 <div className="pi-inv-title">
                                     <h2>{title}</h2>

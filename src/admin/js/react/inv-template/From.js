@@ -9,12 +9,17 @@ class From extends Component {
             <>
                 {data &&
                     <address>
-                        Address: <span>{data.address}</span>
-                        <br />
-                        Email: {data.email}
-                        <br />
-                        Mobile: <span>+8801760706361</span>
-                        <br />
+                        <span>
+                            {data.address &&
+                                <>{data.address}.<br /></>
+                            }      
+
+                            {data.email},
+
+                            {data.mobile &&
+                                <><br />{data.mobile}</>
+                            }
+                        </span>
                     </address>
                 }
             </>

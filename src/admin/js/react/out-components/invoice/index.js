@@ -205,13 +205,7 @@ export default class Invoice extends Component {
         const id = urlParams.get('id')
         Api.get(id)
             .then(resp => {
-                this.setState({
-                    id: resp.data.data.id,
-                    status: resp.data.data.status,
-                    invoice: resp.data.data.invoice,
-                    fromData: resp.data.data.fromData,
-                    toData: resp.data.data.toData,
-                });
+                this.setState(resp.data.data);
             })
     };
 

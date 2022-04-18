@@ -159,7 +159,7 @@ class Form extends Component {
 
                                             <input
                                                 id="form-web"
-                                                type="url"
+                                                type="text"
                                                 name="web"
                                                 value={this.state.form.web}
                                                 onChange={this.handleChange}
