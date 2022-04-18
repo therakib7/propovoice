@@ -56,6 +56,20 @@ class FromTo extends Component {
                 });
             }
         }
+
+        let args = {
+            page: 1,
+            per_page: 10
+        }
+        let params = new URLSearchParams(args).toString();
+
+        ApiClient.getAll(params)
+            .then(resp => {
+                if (resp.data.success) {
+                    let toList = resp.data.data.result;
+                    this.setState({ toList });
+                }
+            });
     }
 
     handleFromChange = val => {
@@ -101,7 +115,7 @@ class FromTo extends Component {
                         this.setState({ businessModal: false })
                         toast.success(this.context.CrudMsg.create);
                         business.id = resp.data.data;
-                        this.props.setFrom(business); 
+                        this.props.setFrom(business);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -113,8 +127,8 @@ class FromTo extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ businessModal: false })
-                        toast.success(this.context.CrudMsg.update); 
-                        this.props.setFrom(business);  
+                        toast.success(this.context.CrudMsg.update);
+                        this.props.setFrom(business);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -132,7 +146,7 @@ class FromTo extends Component {
                         this.setState({ clientModal: false })
                         toast.success(this.context.CrudMsg.create);
                         client.id = resp.data.data;
-                        this.props.setTo(client); 
+                        this.props.setTo(client);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -145,7 +159,7 @@ class FromTo extends Component {
                     if (resp.data.success) {
                         this.setState({ clientModal: false })
                         toast.success(this.context.CrudMsg.update);
-                        this.props.setTo(client); 
+                        this.props.setTo(client);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -157,7 +171,7 @@ class FromTo extends Component {
 
     render = () => {
 
-        const { fromList } = this.state;
+        const { fromList, toList } = this.state;
         const { fromData, toData } = this.props;
         return (
             <div className="pi-from-content" style={{ padding: '17px 30px 10px' }} >
@@ -178,7 +192,7 @@ class FromTo extends Component {
                     data={this.state.clientData}
                     close={() => this.setState({ clientModal: false })}
                 />}
-                
+
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="pi-from-to">
@@ -197,33 +211,33 @@ class FromTo extends Component {
                                             {fromData.name}
 
                                             <span
-                                                onClick={() => this.setState({ businessData: fromData, businessModal: true, businessModalType: 'edit'  })}
+                                                onClick={() => this.setState({ businessData: fromData, businessModal: true, businessModalType: 'edit' })}
                                             >
                                                 <svg
-                                                width={11}
-                                                height={11}
-                                                viewBox="0 0 13 13"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg" 
+                                                    width={11}
+                                                    height={11}
+                                                    viewBox="0 0 13 13"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
                                                 >
-                                                <path
-                                                    d="M12.524.476a1.625 1.625 0 00-2.298 0L4.062 6.64v2.297H6.36l6.164-6.163a1.625 1.625 0 000-2.298z"
-                                                    fill="#A0AEC0"
-                                                />
-                                                <path
-                                                    fillRule="evenodd"
-                                                    clipRule="evenodd"
-                                                    d="M0 3.25a1.625 1.625 0 011.625-1.625h3.25a.813.813 0 110 1.625h-3.25v8.125H9.75v-3.25a.813.813 0 011.625 0v3.25A1.625 1.625 0 019.75 13H1.625A1.625 1.625 0 010 11.375V3.25z"
-                                                    fill="#A0AEC0"
-                                                />
+                                                    <path
+                                                        d="M12.524.476a1.625 1.625 0 00-2.298 0L4.062 6.64v2.297H6.36l6.164-6.163a1.625 1.625 0 000-2.298z"
+                                                        fill="#A0AEC0"
+                                                    />
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        clipRule="evenodd"
+                                                        d="M0 3.25a1.625 1.625 0 011.625-1.625h3.25a.813.813 0 110 1.625h-3.25v8.125H9.75v-3.25a.813.813 0 011.625 0v3.25A1.625 1.625 0 019.75 13H1.625A1.625 1.625 0 010 11.375V3.25z"
+                                                        fill="#A0AEC0"
+                                                    />
                                                 </svg>
                                                 Edit
                                             </span>
                                         </h4>
-                                        <address> 
+                                        <address>
                                             {fromData.address &&
                                                 <>{fromData.address}.<br /></>
-                                            }      
+                                            }
 
                                             {fromData.email},
 
@@ -246,6 +260,7 @@ class FromTo extends Component {
                             <AsyncSelect
                                 loadOptions={this.handleFindClient}
                                 value={toData}
+                                defaultOptions={toList}
                                 onChange={this.handleClientSelect}
                                 getOptionValue={(toList) => toList.id}
                                 getOptionLabel={(toList) => (toList.first_name) ? toList.first_name + ' ' + toList.last_name : ''}
@@ -257,33 +272,33 @@ class FromTo extends Component {
                                             {toData.first_name} {toData.last_name}
 
                                             <span
-                                                onClick={() => this.setState({ clientData: toData, clientModal: true, clientModalType: 'edit'  })}
+                                                onClick={() => this.setState({ clientData: toData, clientModal: true, clientModalType: 'edit' })}
                                             >
                                                 <svg
-                                                width={11}
-                                                height={11}
-                                                viewBox="0 0 13 13"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg" 
+                                                    width={11}
+                                                    height={11}
+                                                    viewBox="0 0 13 13"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
                                                 >
-                                                <path
-                                                    d="M12.524.476a1.625 1.625 0 00-2.298 0L4.062 6.64v2.297H6.36l6.164-6.163a1.625 1.625 0 000-2.298z"
-                                                    fill="#A0AEC0"
-                                                />
-                                                <path
-                                                    fillRule="evenodd"
-                                                    clipRule="evenodd"
-                                                    d="M0 3.25a1.625 1.625 0 011.625-1.625h3.25a.813.813 0 110 1.625h-3.25v8.125H9.75v-3.25a.813.813 0 011.625 0v3.25A1.625 1.625 0 019.75 13H1.625A1.625 1.625 0 010 11.375V3.25z"
-                                                    fill="#A0AEC0"
-                                                />
+                                                    <path
+                                                        d="M12.524.476a1.625 1.625 0 00-2.298 0L4.062 6.64v2.297H6.36l6.164-6.163a1.625 1.625 0 000-2.298z"
+                                                        fill="#A0AEC0"
+                                                    />
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        clipRule="evenodd"
+                                                        d="M0 3.25a1.625 1.625 0 011.625-1.625h3.25a.813.813 0 110 1.625h-3.25v8.125H9.75v-3.25a.813.813 0 011.625 0v3.25A1.625 1.625 0 019.75 13H1.625A1.625 1.625 0 010 11.375V3.25z"
+                                                        fill="#A0AEC0"
+                                                    />
                                                 </svg>
                                                 Edit
                                             </span>
                                         </h4>
-                                        <address> 
+                                        <address>
                                             {toData.address &&
                                                 <>{toData.address}.<br /></>
-                                            }      
+                                            }
 
                                             {toData.email},
 
