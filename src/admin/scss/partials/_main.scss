@@ -2413,6 +2413,7 @@ html {
   border: 1px solid #ddd;
   padding: 10px;
   width: 100%;
+  background-color: #edf2f7;
 }
 .ncpi .pi-info-table-content .pi-info-table thead tr th:nth-child(3) {
   padding: 10px 20px;
@@ -2464,6 +2465,7 @@ html {
 }
 .ncpi .pi-info-table-content .pi-info-table td:first-child input[type=text] {
   width: 100%;
+  background-color: #edf2f7;
 }
 .ncpi .pi-info-table-content .pi-info-table tbody tr:nth-child(even) {
   background-color: #f8f8f8;
@@ -3274,8 +3276,10 @@ html {
 .ncpi .pi-single-tabs .pi-tab-item:first-child {
   margin-left: 0px;
 }
-.ncpi .pi-single-tabs {
-  margin-top: -88px;
+@media screen and (min-width: 1025px) {
+  .ncpi .pi-single-tabs {
+    margin-top: -88px;
+  }
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-single-tabs {
