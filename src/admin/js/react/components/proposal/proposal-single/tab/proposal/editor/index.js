@@ -1,4 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+
+import AppContext from 'context/app-context';
+
+import TablePreloader from 'block/preloader/table';
+
+import Api from 'api/proposal';
 
 import Style from './editor.scoped.scss'
 
@@ -9,78 +16,126 @@ import { EDITOR_EMPTY_VALUE } from "./empty-default";
 
 const ReactEditorJS = createReactEditorJS();
 
-const Editor = () => {
+export default class Editor extends Component {
+    constructor(props) {
+        super(props);
 
-    const initialProposalState = {
-        id: null,
-        title: '',
-        content: [
-            {
-                default: EDITOR_VALUE,
-                value: 'sdf'
+        this.state = {
+            title: 'Editor',
+            empty: false,
+            preloader: true,
+            proposals: {
+                id: null,
+                title: '',
+                pages: [
+                    /* {
+                        default: EDITOR_VALUE,
+                        value: 'sdf'
+                    }, */
+                    {
+                        default: EDITOR_EMPTY_VALUE,
+                        value: null
+                    }
+                ],
+                date: false
             },
-            {
-                default: EDITOR_EMPTY_VALUE,
-                value: null
-            }
-        ],
-        date: false
-    };
+        };
 
-    const [proposals, setProposals] = useState(initialProposalState);
-
-    useEffect(() => {
-
-    }, []);
-
-    function addAfter(array, index, newItem) {
-        return [
-            ...array.slice(0, index),
-            newItem,
-            ...array.slice(index)
-        ];
+        this.instanceRef = React.createRef(null);
     }
 
-    const addNewPage = (page_index) => {
-        console.log(page_index);
+    static contextType = AppContext;
 
-        const new_proposals = { ...proposals };
+    componentDidMount() {
+    }
 
-        let data = addAfter(new_proposals.content, page_index + 1, {
-            default: EDITOR_VALUE,
-            value: 'sdf'
-        });
-        new_proposals.content = data;
-
-        setProposals(new_proposals);
+    openForm = (type = 'new', business = null) => {
+        if (type == 'new') {
+            this.setState({ formModal: true, formModalType: 'new' });
+        } else {
+            this.setState({ formModal: true, formModalType: 'edit', business: business });
+        }
     };
 
-    return (
-        <div className="pi-proposal-pages">
-            {proposals.content && proposals.content.map((proposal, index) => (
-                <div key={index}>
-                    <div className="pi-proposal-page">
-                        <ReactEditorJS
-                            holder={`ncpi-editor-${index}`}
-                            maxHeight={1120}
-                            tools={EDITOR_JS_TOOLS}
-                            defaultValue={{
-                                time: new Date().getTime(),
-                                blocks: proposal.default
-                            }}
-                        />
-                        <span className='pi-proposal-page-number'>Page {index + 1}</span>
-                    </div>
+    addNewPage = (index) => {
+        let newItem = {
+            default: EDITOR_EMPTY_VALUE,
+            value: null
+        }
 
-                    <div className="pi-add-proposal-page">
-                        <button onClick={() => { addNewPage(index); }}>
-                            <i className="dashicons dashicons-plus-alt"></i>
-                        </button>
-                    </div>
-                </div>
-            ))}
-        </div>
-    )
-}
+        let pages = [
+            ...this.state.proposals.pages.slice(0, index),
+            newItem,
+            ...this.state.proposals.pages.slice(index)
+        ];
 
-export default Editor;
+        let proposals = { ...this.state.proposals };
+        proposals.pages = pages;
+        console.log(index)
+        this.setState({ proposals });
+
+    };
+
+    handleChange = (instance) => {
+        console.log(instance)
+        this.instanceRef.current = instance
+        // const { name, value } = e.target;
+        // this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    handleChange = (instance) => {
+        console.log(instance)
+        this.instanceRef.current = instance
+        // const { name, value } = e.target;
+        // this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    handleChange = (instance) => {
+        console.log(instance)
+        this.instanceRef.current = instance
+        // const { name, value } = e.target;
+        // this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    async onSave() {
+        // const savedData = await this.instanceRef.current.save()
+        const savedData = await this.instanceRef.current.save();
+        console.log(savedData)
+    }
+
+    render() {
+        const { proposals } = this.state;
+        return (
+            <div className="pi-proposal-pages">
+                {proposals.pages && proposals.pages.map((single, index) => (
+                    <div key={index}>
+                        <div className="pi-proposal-page">
+                            <ReactEditorJS
+                                holder={`ncpi-editor-${index}`}
+                                maxHeight={1120}
+                                onInitialize={this.handleChange}
+                                tools={EDITOR_JS_TOOLS}
+                                // onChange={this.onSave.bind(this)}
+                                defaultValue={{
+                                    time: new Date().getTime(),
+                                    blocks: single.default
+                                }}
+                            />
+                            <span className='pi-proposal-page-number'>Page {index + 1}</span>
+                        </div>
+
+                        <div className="pi-add-proposal-page">
+                            {/* <button onClick={() => { this.onSave(); }}>
+                                render
+                            </button> */}
+
+                            <button onClick={() => { this.addNewPage(index); }}>
+                                <i className="dashicons dashicons-plus-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        );
+    }
+} 
