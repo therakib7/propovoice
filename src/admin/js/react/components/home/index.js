@@ -262,14 +262,17 @@ const Home = () => {
                                 <Route path="/proposal" element={<Proposal />} />
                                 <Route path="/proposal/single" element={<ProposalSingle />} />
                                 <Route path="/proposal/single/:id" element={<ProposalSingle />} />
+                                <Route path="/proposal/single/:id/tab/:tab" element={<ProposalSingle />} />
 
                                 <Route path="/estimate" element={<Invoice />} />
                                 <Route path="/estimate/single" element={<InvoiceSingle />} />
                                 <Route path="/estimate/single/:id" element={<InvoiceSingle />} />
+                                <Route path="/estimate/single/:id/tab/:tab" element={<InvoiceSingle />} />
 
                                 <Route path="/invoice" element={<Invoice />} />
                                 <Route path="/invoice/single" element={<InvoiceSingle />} />
                                 <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
+                                <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} />
 
                                 <Route path="/payment" element={<Payment />} />
                                 <Route path="/client" exact element={<Client />} />

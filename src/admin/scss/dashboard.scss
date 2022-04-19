@@ -125,6 +125,12 @@ h4.from-title {
     font-size: 12px;
 }
 
+//remove it from main file
 .ncpi .pi-right-content {
+    overflow: inherit;
     height: auto;
+}
+
+.ncpi .pi-table .pi-dropdown-content {
+    top: 45px;
 }

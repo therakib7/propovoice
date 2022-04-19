@@ -259,6 +259,17 @@ export default class Invoice extends Component {
         });
     }
 
+    dprintInvoice = (divName) => {
+        var printContents = document.querySelector('.pi-inv').innerHTML;
+        var originalContents = document.body.innerHTML;
+   
+        document.body.innerHTML = printContents;
+   
+        window.print();
+   
+        // document.body.innerHTML = originalContents;
+   }
+
     handleClick = (type, data = null) => {
         if (type == 'feedback') {
             this.setState({ emailModal: true, feedback_type: data });

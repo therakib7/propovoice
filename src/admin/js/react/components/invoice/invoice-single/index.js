@@ -5,7 +5,7 @@ import Invoice from './tab/invoice';
 
 export default function InvoiceWrap() { 
 
-	const { id } = useParams();
+	const { id, tab } = useParams();
 	let navigate = useNavigate();
 
 	const location = useLocation(); 
@@ -27,7 +27,7 @@ export default function InvoiceWrap() {
 
 	return (
 		<>
-			<Invoice id={id} routeChange={routeChange}  routeInvoice={routeInvoice} path={path} key={path} />
+			<Invoice id={id} tab={tab} routeChange={routeChange}  routeInvoice={routeInvoice} path={path} key={path} />
 		</>
 	);
 } 

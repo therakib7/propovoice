@@ -16,13 +16,11 @@ class Share extends Component {
         if ( data.fromData == null || data.toData == null ) {
             toast.error('First fill up necessary information, From information tab'); 
             return;
-        }
-
-        let invoice_path = this.props.path;
+        } 
         
         let invoice_id = this.props.data.invoice.id;
         let invoice_token = this.props.data.invoice.token; 
-        let url = invoice_path == 'invoice' ? ncpi.invoice_page_url : ncpi.estimate_page_url;
+        let url = this.props.path == 'invoice' ? ncpi.invoice_page_url : ncpi.estimate_page_url;
 
         //replace text with id and token
         let result = url.replace('invoice_id', invoice_id);

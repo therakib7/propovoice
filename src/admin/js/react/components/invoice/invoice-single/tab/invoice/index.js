@@ -124,12 +124,21 @@ class Invoice extends Component {
 
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
-		if (this.props.id) {
-			this.setState({
-				title,
-				currentTab: 'info',
-				currentTabIndex: 1
-			});
+		if (this.props.id) { 
+			if ( this.props.tab == 'view' ) {
+				this.setState({
+					title,
+					currentTab: 'preview',
+					currentTabIndex: 2
+				});
+			} else {
+				this.setState({
+					title,
+					currentTab: 'info',
+					currentTabIndex: 1
+				});
+			}
+			
 			this.updateEdit();
 			this.getData();
 		} else {

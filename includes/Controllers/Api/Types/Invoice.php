@@ -125,6 +125,8 @@ class Invoice
 
             $query_data = [];
             $query_data['id'] = $id;
+            $query_data['token'] = get_post_meta($id, 'token', true);
+            $query_data['path'] = get_post_meta($id, 'path', true);
 
             $query_data['project'] = [
                 'name' => ''
