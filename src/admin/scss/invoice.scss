@@ -1,37 +1,25 @@
-.pi-inv .pi-sign  {
+.pi-inv .pi-sign {
   margin-top: 30px;
+
   img {
-      max-width: 190px;
-      max-height: 60px;
-  } 
+    max-width: 190px;
+    max-height: 60px;
+  }
 }
 
 .pi-inv .pi-bank-info {
   font-size: 12px;
 }
-/* 
-.pi-inv .pi-inv-three .pi-items-table table thead {
-  background: var(--pi-inv-primary);
-  -webkit-print-color-adjust: exact;
+
+//print css for dashboard and frontend
+@media print {
+  .pi-note-wrap {
+    page-break-before: always;
+  }
 }
 
-@media print
-{    
-  .pi-no-print, .pi-no-print *
-  {
-      display: none !important;
+.pi-inv-preview {
+  .pi-inv {
+    height: auto !important;
   }
-
-  .pi-amounting { 
-    table {page-break-before: always;}
-  }
-  .pi-inv .pi-bank-info {
-    display: inherit;
-  } 
 }
-
-.pi-inv {
-  padding: 50px;
-  height: auto  !important; 
-} */
-

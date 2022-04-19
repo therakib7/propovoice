@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import Select from 'react-select';
-
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import ReactToPrint from 'react-to-print';
 
 // import Template from 'inv-template';
 import Api from 'api/invoice';
-import Preview from 'inv-template';
+import InvTemplate from 'inv-template';
 
 import Feedback from './Feedback';
 //payment
@@ -19,49 +17,55 @@ import Paypal from './payment/paypal';
 const EditDownload = props => {
     return (
         <>
-            <button
-                className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
-                style={{ color: '#000', marginRight: '5px' }}
-                onClick={() => props.handleDownload()}
-            >
-                <svg
-                    width={16}
-                    height={13}
-                    viewBox="0 0 16 13"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+            <ReactToPrint
+                content={() => props.componentRef}
+                trigger={() => <button
+                    className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                    style={{ color: '#000', marginRight: '5px' }}
+                // onClick={() => props.handleDownload()}
                 >
-                    <path
-                        d="M10.037 9.553H8.69v-4.32a.144.144 0 00-.146-.142h-1.09a.144.144 0 00-.146.142v4.32H5.965c-.122 0-.19.137-.115.23l2.036 2.526a.143.143 0 00.115.055.148.148 0 00.114-.055l2.036-2.526c.075-.093.008-.23-.114-.23z"
-                        fill="#4C6FFF"
-                    />
-                    <path
-                        d="M13.346 3.675A5.715 5.715 0 008.004 0 5.714 5.714 0 002.66 3.673 3.56 3.56 0 000 7.11a3.562 3.562 0 003.57 3.556h.716a.143.143 0 00.143-.143V9.458a.143.143 0 00-.143-.142H3.57a2.206 2.206 0 01-.565-4.34l.677-.176.248-.65a4.378 4.378 0 011.573-2.014 4.337 4.337 0 012.5-.787 4.337 4.337 0 013.436 1.673 4.3 4.3 0 01.638 1.127l.246.65.675.177a2.216 2.216 0 011.645 2.135c0 .589-.23 1.143-.648 1.56a2.198 2.198 0 01-1.565.645h-.716a.143.143 0 00-.143.142v1.066c0 .079.065.143.143.143h.716A3.562 3.562 0 0016 7.11a3.559 3.559 0 00-2.654-3.436z"
-                        fill="#4C6FFF"
-                    />
-                </svg>
-                Download
-            </button>
+                    <svg
+                        width={16}
+                        height={13}
+                        viewBox="0 0 16 13"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M10.037 9.553H8.69v-4.32a.144.144 0 00-.146-.142h-1.09a.144.144 0 00-.146.142v4.32H5.965c-.122 0-.19.137-.115.23l2.036 2.526a.143.143 0 00.115.055.148.148 0 00.114-.055l2.036-2.526c.075-.093.008-.23-.114-.23z"
+                            fill="#4C6FFF"
+                        />
+                        <path
+                            d="M13.346 3.675A5.715 5.715 0 008.004 0 5.714 5.714 0 002.66 3.673 3.56 3.56 0 000 7.11a3.562 3.562 0 003.57 3.556h.716a.143.143 0 00.143-.143V9.458a.143.143 0 00-.143-.142H3.57a2.206 2.206 0 01-.565-4.34l.677-.176.248-.65a4.378 4.378 0 011.573-2.014 4.337 4.337 0 012.5-.787 4.337 4.337 0 013.436 1.673 4.3 4.3 0 01.638 1.127l.246.65.675.177a2.216 2.216 0 011.645 2.135c0 .589-.23 1.143-.648 1.56a2.198 2.198 0 01-1.565.645h-.716a.143.143 0 00-.143.142v1.066c0 .079.065.143.143.143h.716A3.562 3.562 0 0016 7.11a3.559 3.559 0 00-2.654-3.436z"
+                            fill="#4C6FFF"
+                        />
+                    </svg>
+                    Download
+                </button>}
+            />
 
-            <button
-                className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
-                onClick={() => props.handlePrint()}
-                style={{ color: '#000' }}
-            >
-                <svg
-                    width={16}
-                    height={14}
-                    viewBox="0 0 16 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+            <ReactToPrint
+                content={() => props.componentRef}
+                trigger={() => <button
+                    className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                    // onClick={() => props.handlePrint()}
+                    style={{ color: '#000' }}
                 >
-                    <path
-                        d="M3.429 1.75c0-.464.18-.91.502-1.237A1.697 1.697 0 015.143 0h5.714c.455 0 .89.184 1.212.513.322.328.502.773.502 1.237v.583h1.143c.606 0 1.188.246 1.617.684.428.437.669 1.03.669 1.65v5.25c0 .464-.18.909-.502 1.237a1.697 1.697 0 01-1.212.513h-1.6v.583c0 .464-.18.91-.502 1.237A1.697 1.697 0 0110.97 14H5.143c-.455 0-.89-.184-1.212-.513a1.769 1.769 0 01-.502-1.237v-.583H1.714c-.454 0-.89-.185-1.212-.513A1.769 1.769 0 010 9.917v-5.25c0-.62.24-1.213.67-1.65a2.262 2.262 0 011.616-.684h1.143V1.75zm8 .583V1.75a.59.59 0 00-.168-.412.566.566 0 00-.404-.171H5.143a.566.566 0 00-.404.17.59.59 0 00-.168.413v.583h6.858zm-8 1.167H2.286c-.303 0-.594.123-.808.342a1.18 1.18 0 00-.335.825v5.25c0 .154.06.303.167.412.107.11.253.171.404.171H3.43v-.583c0-.464.18-.91.502-1.238a1.697 1.697 0 011.212-.512h5.828c.455 0 .891.184 1.213.512.321.328.502.774.502 1.238v.583h1.6a.566.566 0 00.404-.17.59.59 0 00.167-.413v-5.25c0-.31-.12-.606-.335-.825a1.131 1.131 0 00-.808-.342H3.43zm1.714 5.833a.566.566 0 00-.404.171.59.59 0 00-.168.413v2.333c0 .155.06.303.168.412.107.11.252.171.404.171h5.828a.566.566 0 00.405-.17.59.59 0 00.167-.413V9.917a.59.59 0 00-.167-.413.566.566 0 00-.405-.17H5.143z"
-                        fill="#4C6FFF"
-                    />
-                </svg>
-                Print
-            </button>
+                    <svg
+                        width={16}
+                        height={14}
+                        viewBox="0 0 16 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M3.429 1.75c0-.464.18-.91.502-1.237A1.697 1.697 0 015.143 0h5.714c.455 0 .89.184 1.212.513.322.328.502.773.502 1.237v.583h1.143c.606 0 1.188.246 1.617.684.428.437.669 1.03.669 1.65v5.25c0 .464-.18.909-.502 1.237a1.697 1.697 0 01-1.212.513h-1.6v.583c0 .464-.18.91-.502 1.237A1.697 1.697 0 0110.97 14H5.143c-.455 0-.89-.184-1.212-.513a1.769 1.769 0 01-.502-1.237v-.583H1.714c-.454 0-.89-.185-1.212-.513A1.769 1.769 0 010 9.917v-5.25c0-.62.24-1.213.67-1.65a2.262 2.262 0 011.616-.684h1.143V1.75zm8 .583V1.75a.59.59 0 00-.168-.412.566.566 0 00-.404-.171H5.143a.566.566 0 00-.404.17.59.59 0 00-.168.413v.583h6.858zm-8 1.167H2.286c-.303 0-.594.123-.808.342a1.18 1.18 0 00-.335.825v5.25c0 .154.06.303.167.412.107.11.253.171.404.171H3.43v-.583c0-.464.18-.91.502-1.238a1.697 1.697 0 011.212-.512h5.828c.455 0 .891.184 1.213.512.321.328.502.774.502 1.238v.583h1.6a.566.566 0 00.404-.17.59.59 0 00.167-.413v-5.25c0-.31-.12-.606-.335-.825a1.131 1.131 0 00-.808-.342H3.43zm1.714 5.833a.566.566 0 00-.404.171.59.59 0 00-.168.413v2.333c0 .155.06.303.168.412.107.11.252.171.404.171h5.828a.566.566 0 00.405-.17.59.59 0 00.167-.413V9.917a.59.59 0 00-.167-.413.566.566 0 00-.405-.17H5.143z"
+                            fill="#4C6FFF"
+                        />
+                    </svg>
+                    Print
+                </button>}
+            />
         </>
     );
 }
@@ -171,6 +175,7 @@ export default class Invoice extends Component {
                 sign: null
             },
         };
+
     }
 
     componentDidMount() {
@@ -208,68 +213,6 @@ export default class Invoice extends Component {
                 this.setState(resp.data.data);
             })
     };
-
-    downloadInvoice = () => {
-        html2canvas(document.querySelector('.pi-inv')).then(canvas => {
-            const imgData = canvas.toDataURL('image/jpg');
-            const pdf = new jsPDF();
-            const imgProps= pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            pdf.addImage(imgData, 'JPG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save(this.state.invoice.path + '.pdf');
-        });
-    }
-
-    printInvoice = () => {
-        html2canvas(document.querySelector('.pi-inv')).then(canvas => {
-            const imgData = canvas.toDataURL('image/jpg');
-            let pri = document.getElementById("ncpi-invoice-print").contentWindow;
-            pri.document.open();
-            pri.document.write(`<!DOCTYPE html>
-            <html>
-            <head>
-            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-            <title>PDF</title>
-            <style type="text/css">
-            @media print {  
-              * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-              }
-              @page{ margin: 0;} 
-                .page{
-                    width: 100%;  
-                    /* height: 1132px; */
-                    height: 1110px; 
-                    page-break-after: always; 
-                } 
-            } 
-            </style>
-            </head>
-            <body> 
-                <div class="page">  
-                    <img src="${imgData}" width="794" onload="window.print()"/>
-                </div> 
-            </body>
-            </html>`);
-            pri.document.close();
-            pri.focus();
-        });
-    }
-
-    dprintInvoice = (divName) => {
-        var printContents = document.querySelector('.pi-inv').innerHTML;
-        var originalContents = document.body.innerHTML;
-   
-        document.body.innerHTML = printContents;
-   
-        window.print();
-   
-        // document.body.innerHTML = originalContents;
-   }
-
     handleClick = (type, data = null) => {
         if (type == 'feedback') {
             this.setState({ emailModal: true, feedback_type: data });
@@ -294,20 +237,22 @@ export default class Invoice extends Component {
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8 pi-no-print' style={{ margin: '30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
-                            <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
+                            <div className='pi-float-left'><EditDownload componentRef={this.componentRef} /></div>
                             <div className='pi-float-right'>
                                 <InvoiceBtn status={this.state.status} handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{ list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod }} />
                             </div>
                         </div>
-                    </div> 
+                    </div>
 
                     <div className='col-md-8'>
-                        {this.state.fromData && <Preview data={this.state} />}
+                        <div className='pi-inv-preview' ref={(response) => (this.componentRef = response)} >
+                            {this.state.fromData && <InvTemplate data={this.state} />}
+                        </div>
                     </div>
 
                     <div className='col-md-8 pi-no-print' style={{ margin: '30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
-                            <div className='pi-float-left'><EditDownload handleDownload={this.downloadInvoice} handlePrint={this.printInvoice} /></div>
+                            <div className='pi-float-left'><EditDownload componentRef={this.componentRef} /></div>
                             <div className='pi-float-right'>
                                 <InvoiceBtn status={this.state.status} handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{ list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod }} />
                             </div>

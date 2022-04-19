@@ -39,7 +39,7 @@ export default class Preview extends Component {
         return (
             <Suspense fallback={<div className="spinner loading" style={{ padding: 0 }} />}>
                 <Feedback status={this.props.data.status} />
-                <div className={'ncpi-invoice-preview ncpi-invoice-preview-' + id}> 
+                <div className={'ncpi-invoice-preview ncpi-invoice-preview-' + id} style={{ height: this.props.height }}>
                     {id == 1 && <Template1 {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
                     {id == 2 && <Template2 {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
                     {id == 3 && <Template3 {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
