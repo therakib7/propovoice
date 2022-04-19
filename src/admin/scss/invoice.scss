@@ -9,3 +9,29 @@
 .pi-inv .pi-bank-info {
   font-size: 12px;
 }
+/* 
+.pi-inv .pi-inv-three .pi-items-table table thead {
+  background: var(--pi-inv-primary);
+  -webkit-print-color-adjust: exact;
+}
+
+@media print
+{    
+  .pi-no-print, .pi-no-print *
+  {
+      display: none !important;
+  }
+
+  .pi-amounting { 
+    table {page-break-before: always;}
+  }
+  .pi-inv .pi-bank-info {
+    display: inherit;
+  } 
+}
+
+.pi-inv {
+  padding: 50px;
+  height: auto  !important; 
+} */
+
