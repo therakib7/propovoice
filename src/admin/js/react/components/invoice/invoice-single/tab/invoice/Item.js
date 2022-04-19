@@ -5,20 +5,22 @@ class Item extends Component {
 
     render = () => {
 
-        const { index, name, desc, qty, qty_type, price } = this.props
+        const { index, title, desc, qty, qty_type, price } = this.props
 
         return (
             <> 
             <td>
                 <input 
-                    name="name" 
+                    name="title" 
                     type="text"  
-                    value={name} 
+                    placeholder='Title' 
+                    value={title} 
                     onChange={this.props.changeHandler(index)} /> <br />
 
                 <textarea 
                     name="desc" 
                     type="text"  
+                    placeholder='Description'
                     value={desc} 
                     onChange={this.props.changeHandler(index)} />
             </td>

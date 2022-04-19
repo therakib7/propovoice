@@ -84,10 +84,10 @@ class Invoice extends Component {
 				items: [
 					{
 						id: 'initial', //react-beautiful-dnd unique key
-						name: '',
+						title: '',
 						desc: '',
 						qty: 0,
-						qty_type: 'page',
+						qty_type: 'unit',
 						price: 0.00,
 					},
 				],
@@ -296,7 +296,7 @@ class Invoice extends Component {
 	handleAddLineItem = (e) => {
 		let invoice = { ...this.state.invoice }
 		invoice.items = invoice.items.concat(
-			[{ id: Date.now().toString(), name: '', desc: '', qty: 0, qty_type: 'unit', price: 0.00 }]
+			[{ id: Date.now().toString(), title: '', desc: '', qty: 0, qty_type: 'unit', price: 0.00 }]
 		);
 		this.setState({ invoice })
 	}

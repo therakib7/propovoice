@@ -79,8 +79,7 @@ class Bank extends Component {
                                                     name="payment_details"
                                                     value={this.state.form.payment_details}
                                                     onChange={this.handleChange}
-                                                />
-                                                <p className='pi-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p>
+                                                /> 
                                             </div>
                                         </div>
 

@@ -10,8 +10,8 @@ class Payment extends Component {
         const {paymentBankData} = this.props.data;  
         return (   
             <div className="pi-banking"> 
-                {paymentBankData ? <><h4>Payment Info:</h4>
-                <div className="pi-bank-info" dangerouslySetInnerHTML={{__html: paymentBankData.details.replaceAll('\n', '<br />')}}></div></> : '' }
+                {paymentBankData ? <><h4>Payment Info:</h4> 
+                <div className="pi-bank-info" dangerouslySetInnerHTML={{__html: paymentBankData.name + '<br />' + paymentBankData.details.replaceAll('\n', '<br />')}}></div></> : '' }
             </div>
         )
     }

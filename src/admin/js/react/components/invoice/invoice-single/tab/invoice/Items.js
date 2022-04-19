@@ -40,7 +40,7 @@ class Items extends Component {
                 <table className="pi-info-table">
                     <thead>
                         <tr >
-                            <th>Name &amp; Details </th>
+                            <th>Title &amp; Description </th>
                             <th>Quantity</th>
                             <th>
                                 Rate <span>USD ($)</span>
@@ -70,7 +70,7 @@ class Items extends Component {
                                                         style={{ color: 'red' }}
                                                         key={i + item.id} 
                                                         index={i} 
-                                                        name={item.name}
+                                                        title={item.title}
                                                         desc={item.desc} 
                                                         qty={item.qty} 
                                                         qty_type={item.qty_type} 

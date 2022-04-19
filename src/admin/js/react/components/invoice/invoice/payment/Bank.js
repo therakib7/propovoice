@@ -75,12 +75,12 @@ class Bank extends Component {
                                                 </label>
                                                 <textarea
                                                     id="form-payment_details"
+                                                    readOnly
                                                     rows={4}
                                                     name="payment_details"
                                                     value={this.state.form.payment_details}
                                                     onChange={this.handleChange}
                                                 />
-                                                <p className='pi-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p>
                                             </div>
                                         </div>
 

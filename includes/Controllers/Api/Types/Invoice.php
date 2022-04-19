@@ -192,6 +192,8 @@ class Invoice
         $from_id = get_post_meta($id, 'from', true);
         $query_data['invoice'] = get_post_meta($id, 'invoice', true);
 
+        $query_data['title'] = ucwords( get_post_meta($id, 'path', true) );
+
         $from_id = get_post_meta($id, 'from', true);
         $query_data['status'] = get_post_meta($id, 'status', true);
         $fromData = [];

@@ -21,8 +21,9 @@ export default class Preview extends Component {
     };
 
     updateDimensions = () => {
-        // this.setState({ width: window.innerWidth, height: window.innerHeight });
-        // console.log(window.innerWidth)
+        if (this.props.isPreviewLoaded) {
+            this.props.isPreviewLoaded();
+        }
     };
 
     componentDidMount() {
