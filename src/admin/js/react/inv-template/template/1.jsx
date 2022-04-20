@@ -18,10 +18,6 @@ import Style from '../scss/1.scoped.scss'
 export default class One extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            old_value: ''
-        }
     }
 
     componentDidMount() {
@@ -30,17 +26,9 @@ export default class One extends Component {
         this.props.isPreviewLoaded();
     }
 
-    componentDidUpdate() {
-        let value = JSON.stringify(this.props.data.invoice);
-        if (value != this.state.old_value) {
-            this.setState({ old_value: value });
-            this.props.isPreviewLoaded();
-        }
-    }
-
     render() {
         const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
-        const { fromData, toData, status } = this.props.data;  
+        const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
         return (
             <div className="pi-inv">
@@ -51,9 +39,9 @@ export default class One extends Component {
                             <div className="pi-from">
 
                                 {fromData && fromData.logo &&
-                                <div className="pi-from-logo">
-                                    <img src={fromData.logo.src} alt="" />
-                                </div>}
+                                    <div className="pi-from-logo">
+                                        <img src={fromData.logo.src} alt="" />
+                                    </div>}
 
                                 <From data={fromData} />
                                 <div className="pi-from-date">

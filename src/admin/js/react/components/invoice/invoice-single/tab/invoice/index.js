@@ -103,17 +103,15 @@ class Invoice extends Component {
 			previewScale: ''
 		};
 
-		this.previewRef = React.createRef();
 		this.sidebarRef = React.createRef();
 	}
 
 	isPreviewLoaded = () => {
-		let previewRef = this.previewRef.current;
 		let sidebarRef = this.sidebarRef.current;
-		if (previewRef && sidebarRef) {
+		if (sidebarRef) {
 			let scale = Math.min(
-				sidebarRef.clientWidth / previewRef.clientWidth,
-				sidebarRef.clientHeight / previewRef.clientHeight
+				sidebarRef.clientWidth / 796,
+				sidebarRef.clientHeight / 1122
 			);
 
 			this.setState({ previewScale: scale });
@@ -124,8 +122,8 @@ class Invoice extends Component {
 
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
-		if (this.props.id) { 
-			if ( this.props.tab == 'view' ) {
+		if (this.props.id) {
+			if (this.props.tab == 'view') {
 				this.setState({
 					title,
 					currentTab: 'preview',
@@ -138,7 +136,7 @@ class Invoice extends Component {
 					currentTabIndex: 1
 				});
 			}
-			
+
 			this.updateEdit();
 			this.getData();
 		} else {
@@ -206,7 +204,7 @@ class Invoice extends Component {
 					status: resp.data.data.status,
 					fromData: resp.data.data.fromData,
 					toData: resp.data.data.toData,
-					paymentBankData: resp.data.data.paymentBankData, 
+					paymentBankData: resp.data.data.paymentBankData,
 				});
 			})
 	};
@@ -242,8 +240,8 @@ class Invoice extends Component {
 
 	handleTemplateChange = (data, click = false) => {
 		let invoice = { ...this.state.invoice }
-		invoice.template = data;  
-		if ( click ) {
+		invoice.template = data;
+		if (click) {
 			this.setState({
 				currentTab: 'info',
 				currentTabIndex: 1,
@@ -604,13 +602,13 @@ class Invoice extends Component {
 														</div>
 														<div className="pi-info-input-field">
 															<DateField date={this.state.invoice.date} type='date' onDateChange={this.onDateChange} />
-															{false &&<span>
+															{false && <span>
 																<svg
 																	xmlns="http://www.w3.org/2000/svg"
 																	x="0px"
 																	y="0px"
 																	viewBox="0 0 1000 1000"
-																	>
+																>
 																	<path d="M867.2 131.4h-58.5V53.6c0-24.6-20.2-44.8-44.8-44.8h-2.4c-24.6 0-44.8 20.2-44.8 44.8v77.8h-430V53.6c0-24.6-20.2-44.8-44.8-44.8h-2.4c-24.6 0-44.8 20.2-44.8 44.8v77.8h-61.9C65.3 131.4 10 186.7 10 254.2v614.1c0 67.6 55.3 122.8 122.8 122.8h734.4c67.6 0 122.8-55.3 122.8-122.8V254.2c0-67.5-55.3-122.8-122.8-122.8zM900.4 899H100.8V407.8h799.6V899zm0-584.6H100.8V221h799.6v93.4z" />
 																</svg>
 															</span>}
@@ -730,14 +728,10 @@ class Invoice extends Component {
 								<div className="pi-right-sidebar" ref={this.sidebarRef} >
 									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2>
 
-									{/* TODO: try to remove duplicate */}
-									<div ref={this.previewRef} style={{ position: 'absolute', left: '-99999px' }}>
-										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
-									</div>
-
 									<div className='pi-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
 										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
+
 									<div className="pi-accordion-wrapper">
 										<ul>
 											<Suspense fallback={<div>Loading...</div>}>
