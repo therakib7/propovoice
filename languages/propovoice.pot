@@ -58,11 +58,11 @@ msgstr ""
 msgid "Receiver is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Media.php:212
+#: ../includes/Controllers/Api/Types/Media.php:208
 msgid "Invalid file type: %s. Supported file types: %s"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Media.php:224
+#: ../includes/Controllers/Api/Types/Media.php:220
 msgid "File is too large. Max. upload file size is %s"
 msgstr ""
 

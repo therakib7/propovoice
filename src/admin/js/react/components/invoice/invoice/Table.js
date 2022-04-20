@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Feedback from './feedback';
-import useClickOutside from 'block/color-picker/useClickOutside';
+import useClickOutside from 'block/outside-click';
 
 //payment
 import Bank from './payment/Bank';
@@ -170,7 +170,7 @@ const TableBody = props => {
                 <td className="pi-action"> 
                     <div className="pi-action-content" >
                         <div className="pi-dropdown">
-                            <button className="pi-dropbtn" onClick={() => showDropdown(row.id) }>
+                            <button className={'pi-dropbtn ' + ( row.id == dropdown ? 'pi-active': '') } onClick={() => showDropdown(row.id) }>
                                 <svg width={4} height={20}>
                                     <circle cx={2} cy={2} r={2} fill="#A0AEC0" />
                                     <circle cx={2} cy={10} r={2} fill="#A0AEC0" />

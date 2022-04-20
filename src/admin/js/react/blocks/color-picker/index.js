@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import "./style.scss";
-import useClickOutside from "./useClickOutside";
+import useClickOutside from 'block/outside-click';
 
 const ColorPicker = ({ color, onChange }) => {
 	const popover = useRef();

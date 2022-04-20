@@ -181,15 +181,11 @@ class Media
     public function create($req)
     {
 
-        $params = $req->get_file_params();
-        // $file_params = $req->get_file_params(); 
-        $file_data     = isset($params['file']) ? $params['file'] : '';
-
-        /*  wp_send_json_success([
-            'params' => $params,
-            'file_params' => $file_params,
-            'file' => $file,
-        ]); */
+        $file_params = $req->get_file_params();
+        $params = $req->get_params(); 
+        $file_data     = isset($file_params['file']) ? $file_params['file'] : '';
+        $attach_type   = isset($params['attach_type']) ? $params['attach_type'] : ''; 
+        
         $reg_errors  = new \WP_Error;
 
         $img_max_size = 1024; //1024KB
@@ -256,8 +252,8 @@ class Media
 
                     $file_info = [];
                     if (!is_wp_error($attach_id)) {
-                        // wp_update_attachment_metadata($attach_id, wp_generate_attachment_metadata($attach_id, $filename));
-                        update_post_meta($attach_id, 'attach_type', 'ncpi');
+                        // wp_update_attachment_metadata($attach_id, wp_generate_attachment_metadata($attach_id, $filename)); 
+                        update_post_meta($attach_id, 'ncpi_attach_type', $attach_type); 
 
                         $file_info = [
                             'id'  => $attach_id,

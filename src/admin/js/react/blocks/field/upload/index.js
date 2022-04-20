@@ -65,7 +65,12 @@ class Upload extends Component {
 	onFileUpload = (file) => {
 		const formData = new FormData();
 		formData.append('file', file);
-		formData.append('type', 'business_logo');
+		if ( this.props.attach_type ) {
+			formData.append('attach_type', this.props.attach_type);
+		} else {
+			formData.append('attach_type', 'ncpi');
+		}
+		
 		let permission = this.props.permission !== undefined ? true : false;
 		formData.append('permission', permission);
 
@@ -92,9 +97,9 @@ class Upload extends Component {
 		let imgClass = this.props.imgClass;
 		imgClass = imgClass ? imgClass : '';
 
-		let remove = this.props.remove !== undefined ? false : true;
+		let remove = this.props.remove !== undefined ? false : true; 
 		return (
-			<div className={'pi-field-logo-wrap ' + imgClass}>
+			<div className={'pi-field-logo-wrap ' + imgClass}> 
 				{this.props.library && this.state.media && <Media
 					insertHandler={this.handlePros}
 					show={this.state.media}

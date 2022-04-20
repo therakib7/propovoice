@@ -90,11 +90,11 @@
 .ncpi .pi-add-info-content .pi-info-input-field {
   float: left;
   width: 50%;
-  margin-top: 7px;
+  margin-top: 8px;
   text-align: right;
   position: relative;
 }
-.ncpi .pi-add-info-content .pi-info-input-field span {
+.ncpi .pi-add-info-content .pi-info-input-field .pi-calendar {
   position: absolute;
   top: 0px;
   right: 1px;
@@ -107,7 +107,7 @@
   border: 1px solid var(--border-color-gray);
   cursor: pointer;
 }
-.ncpi .pi-add-info-content .pi-info-input-field span svg {
+.ncpi .pi-add-info-content .pi-info-input-field .pi-calendar svg {
   width: 15px;
   fill: #8f8f8f;
   position: relative;
@@ -285,9 +285,9 @@
 }
 .ncpi .pi-add-term .pi-group-item .pi-list-delete {
   float: right;
-  position: relative;
-  top: 8px;
-  left: -5px;
+  right: 0px;
+  position: absolute;
+  top: -3px;
   cursor: pointer;
   font-size: 20px;
 }
@@ -306,12 +306,14 @@
 }
 .ncpi .pi-add-term .pi-group-item ul li {
   width: 100%;
+  position: relative;
 }
 .ncpi .pi-add-term .pi-group-item ul li input[type=text]:focus {
   border: 1px solid #cbd5e0;
 }
 .ncpi .pi-add-term .pi-group-item ul li input[type=text]:focus {
   border: none;
+  background: none;
 }
 .ncpi .pi-add-term .pi-group-item ul li input[type=text] {
   background: none;
