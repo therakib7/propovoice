@@ -67,7 +67,7 @@ class Feedback extends Component {
                                     <div className="row">
                                         <div className="col-md">
                                             <label htmlFor="field-receipt">Additional Attachment</label>
-                                            <Upload label={'Upload'} library={false} data={data.feedback.attachment} changeHandler={this.handleUploadChange} remove={false} />
+                                            <Upload label={'Upload'} attach_type='secret' library={false} data={data.feedback.attachment} changeHandler={this.handleUploadChange} remove={false} />
                                         </div> 
                                     </div> 
 

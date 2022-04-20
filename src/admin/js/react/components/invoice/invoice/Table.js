@@ -62,9 +62,7 @@ const TableHeader = props => {
 const TableBody = props => {
     
     const [dropdown, setDropdown] = useState(null);
-
-    const close = useCallback(() => setDropdown(null), []);
-	
+    // const close = useCallback(() => setDropdown(null), []);	
 
     const showDropdown = ( id ) => {
         if ( dropdown == id ) {
@@ -82,8 +80,8 @@ const TableBody = props => {
 
     let rows = props.tableData.map((row, index) => {
 
-        const popover = useRef();
-        useClickOutside(popover, close);
+        // const popover = useRef();
+        // useClickOutside(popover, close);
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
@@ -177,10 +175,18 @@ const TableBody = props => {
                                     <circle cx={2} cy={18} r={2} fill="#A0AEC0" />
                                 </svg>
                             </button>
-                            {row.id == dropdown && <div className="pi-dropdown-content pi-show" ref={popover}> 
-                                <a onClick={() => handleClick(row.id, '/tab/preview')}>View</a>
-                                <a target='_blank' href={client_url}>Client View</a>
+                            {row.id == dropdown && <div className="pi-dropdown-content pi-show" 
+                            // ref={popover}
+                            > 
+                                <a onClick={() => handleClick(row.id, '/tab/preview')}>Preview</a>
+                                <a target='_blank' href={client_url}>Client Preview</a>
+                                <a onClick={() => handleClick(row.id)}>Mark As Sent</a>
+                                {row.path == 'invoice' && <a onClick={() => handleClick(row.id)}>Mark As Paid</a>} 
+                                {row.path == 'estimate' && <a onClick={() => handleClick(row.id)}>Mark As Accepted</a>}
+                                {row.path == 'estimate' && <a onClick={() => handleClick(row.id)}>Mark As Declined</a>}
                                 <a onClick={() => handleClick(row.id)}>Edit</a>
+                                <a onClick={() => handleClick(row.id)}>Copy</a> 
+                                {row.path == 'estimate' && <a onClick={() => handleClick(row.id)}>Copy To Invoice</a>}
                                 <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
                             </div>}
                         </div>

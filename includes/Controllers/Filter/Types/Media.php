@@ -28,7 +28,7 @@ class Media {
 			],
 			[
 				'key'     => 'ncpi_attach_type',
-				'value'   => 'receipt',
+				'value'   => 'secret',
 				'compare' => '!=',
 			],
 		];

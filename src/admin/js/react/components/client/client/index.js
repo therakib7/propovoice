@@ -124,11 +124,11 @@ export default class Client extends Component {
         if (confirm(this.context.CrudMsg.confirm)) {
 
             if (type == 'single') {
-                this.setState({
+                /* this.setState({
                     clients: this.state.clients.filter((client, i) => {
                         return client.id !== index;
                     })
-                });
+                }); */ 
             }
             let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
             Api.remove(ids)

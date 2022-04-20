@@ -6,7 +6,7 @@ import useClickOutside from 'block/outside-click';
 const ColorPicker = ({ color, onChange }) => {
 	const popover = useRef();
 	const [isOpen, toggle] = useState(false);
-
+	
 	const close = useCallback(() => toggle(false), []);
 	useClickOutside(popover, close);
 
