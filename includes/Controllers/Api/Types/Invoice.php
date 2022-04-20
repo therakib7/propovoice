@@ -81,7 +81,13 @@ class Invoice
             $offset = ($per_page * $request['page']) - $per_page;
         }
 
-        $search_value = isset($request['s']) ? trim($request['s']) : false;
+        $search_value = false; //empty value showing data
+        if ( isset($request['s']) ) {
+            /* $find = ['est', 'Est', 'inv', 'Inv'];
+            $replace = ['', '', '', '']; 
+            $search_value = str_replace($find, $replace, trim($request['s'])); */
+            $search_value = preg_replace('/[^0-9.]+/', '',$request['s']);
+        } 
 
         $args = array(
             'post_type' => 'ncpi_estvoice',

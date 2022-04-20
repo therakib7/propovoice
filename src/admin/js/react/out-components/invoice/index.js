@@ -46,6 +46,7 @@ const EditDownload = props => {
 
             <ReactToPrint
                 content={() => props.componentRef}
+                // pageStyle="@page { size: 2.5in 4in }"
                 trigger={() => <button
                     className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
                     // onClick={() => props.handlePrint()}

@@ -123,7 +123,7 @@ class Invoice extends Component {
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
 		if (this.props.id) {
-			if (this.props.tab == 'view') {
+			if (this.props.tab == 'preview') {
 				this.setState({
 					title,
 					currentTab: 'preview',
@@ -588,9 +588,9 @@ class Invoice extends Component {
 														</div>
 														<div className="pi-info-input-field">
 															<input
-																type="number"
+																type="text"
 																name="invoice_id"
-																value={this.props.id}
+																value={ this.props.id ? ( this.props.path == 'invoice' ? 'Inv' : 'Est' ) + this.props.id : ''}
 																readOnly
 															/>
 														</div>

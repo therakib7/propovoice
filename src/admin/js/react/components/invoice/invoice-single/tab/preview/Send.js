@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+// import jsPDF from 'jspdf';
+// import html2canvas from 'html2canvas';
 
 import Api from 'api/email';
 
@@ -114,7 +114,7 @@ ${company_name}`;
 
         // TODO: send with attachment pdf
         if ( false ) {
-            html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
+            /* html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
                 const imgData = canvas.toDataURL('image/jpg'); 
                 
                 let formState = {...this.state.form} 
@@ -123,7 +123,7 @@ ${company_name}`;
                 this.setState({ form: formState }, () => {
                     this.sendEmail();
                 });
-            });
+            }); */
         } else {
             this.sendEmail();
         } 

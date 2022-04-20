@@ -12,14 +12,15 @@
 }
 
 //print css for dashboard and frontend
-@media print {
+/* @media print {
   .pi-note-wrap {
     page-break-before: always;
   }
-}
+} */
 
 .pi-inv-preview {
   .pi-inv {
+    min-height: 1120px;
     height: auto !important;
   }
 }

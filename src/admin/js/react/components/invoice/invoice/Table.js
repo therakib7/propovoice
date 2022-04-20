@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Feedback from './feedback';
+import useClickOutside from 'block/color-picker/useClickOutside';
 
 //payment
 import Bank from './payment/Bank';
@@ -59,7 +60,11 @@ const TableHeader = props => {
 }
 
 const TableBody = props => {
+    
     const [dropdown, setDropdown] = useState(null);
+
+    const close = useCallback(() => setDropdown(null), []);
+	
 
     const showDropdown = ( id ) => {
         if ( dropdown == id ) {
@@ -76,6 +81,10 @@ const TableBody = props => {
     }
 
     let rows = props.tableData.map((row, index) => {
+
+        const popover = useRef();
+        useClickOutside(popover, close);
+
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
 
@@ -143,8 +152,8 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>{row.id}</td>
-                {/* <td>{row.project.name}</td>*/}
+                <td>{ ( row.path == 'invoice' ? 'Inv' : 'Est' ) + row.id}</td>
+                {/*<td>{row.project.name}</td>*/}
                 {!props.client_id && <td>
                     {row.to.first_name + ' ' + row.to.last_name}
                 </td>}
@@ -159,7 +168,7 @@ const TableBody = props => {
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
                 <td className="pi-action"> 
-                    <div className="pi-action-content">
+                    <div className="pi-action-content" >
                         <div className="pi-dropdown">
                             <button className="pi-dropbtn" onClick={() => showDropdown(row.id) }>
                                 <svg width={4} height={20}>
@@ -168,15 +177,14 @@ const TableBody = props => {
                                     <circle cx={2} cy={18} r={2} fill="#A0AEC0" />
                                 </svg>
                             </button>
-                            {row.id == dropdown && <div className="pi-dropdown-content pi-show"> 
-                                <a onClick={() => handleClick(row.id, '/tab/view')}>View</a>
+                            {row.id == dropdown && <div className="pi-dropdown-content pi-show" ref={popover}> 
+                                <a onClick={() => handleClick(row.id, '/tab/preview')}>View</a>
                                 <a target='_blank' href={client_url}>Client View</a>
                                 <a onClick={() => handleClick(row.id)}>Edit</a>
                                 <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
                             </div>}
                         </div>
-                    </div>
-
+                    </div> 
                 </td>
             </tr>
         );

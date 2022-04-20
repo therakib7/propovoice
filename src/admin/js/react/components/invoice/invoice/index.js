@@ -108,11 +108,11 @@ const Invoice = class Invoice extends Component {
         if (confirm(this.context.CrudMsg.confirm)) {
 
             if (type == 'single') {
-                this.setState({
+                /* this.setState({
                     invoices: this.state.invoices.filter((invoice, i) => {
                         return invoice.id !== index;
                     })
-                });
+                }); */
             }
             let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
             Api.remove(ids)

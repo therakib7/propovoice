@@ -65,7 +65,7 @@ export default class Three extends Component {
                                     </div>}
                                 <From data={fromData} />
                                 <div className="pi-from-date">
-                                    <p>{title} No: <span>{id}</span></p>
+                                    <p>{title} No: <span>{id ? ( title == 'Invoice' ? 'Inv' : 'Est' ) + id : ''}</span></p>
                                     <div className="pi-from-time">
                                         <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
                                         <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>

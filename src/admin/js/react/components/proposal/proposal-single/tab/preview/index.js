@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+// import jsPDF from 'jspdf';
+// import html2canvas from 'html2canvas';
 
 import Template from 'inv-template';
 
@@ -91,54 +91,54 @@ export default class Preview extends Component {
 
     downloadInvoice = () => {
 
-        html2canvas(document.querySelector('.pi-inv')).then(canvas => {
-            const imgData = canvas.toDataURL('image/jpg');
-            const pdf = new jsPDF();
-            const imgProps= pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            pdf.addImage(imgData, 'JPG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save(this.props.path + '.pdf');
-        });
+        // html2canvas(document.querySelector('.pi-inv')).then(canvas => {
+        //     const imgData = canvas.toDataURL('image/jpg');
+        //     const pdf = new jsPDF();
+        //     const imgProps= pdf.getImageProperties(imgData);
+        //     const pdfWidth = pdf.internal.pageSize.getWidth();
+        //     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        //     pdf.addImage(imgData, 'JPG', 0, 0, pdfWidth, pdfHeight);
+        //     pdf.save(this.props.path + '.pdf');
+        // });
 
     }
 
     printInvoice = () => {
-        html2canvas(document.querySelector('.pi-inv')).then(canvas => {
-            const imgData = canvas.toDataURL('image/jpg');
-            let pri = document.getElementById("ncpi-invoice-print").contentWindow;
-            pri.document.open();
-            pri.document.write(`<!DOCTYPE html>
-            <html>
-            <head>
-            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-            <title>PDF</title>
-            <style type="text/css">
-            @media print {  
-                * {
-                    box-sizing: border-box;
-                    margin: 0;
-                    padding: 0;
-                }
-                @page{ margin: 0;} 
-                .page{
-                    width: 100%; 
-                    /* height: 1132px; */
-                    height: 1110px; 
-                    page-break-after: always; 
-                } 
-            } 
-            </style>
-            </head>
-            <body> 
-                <div class="page">  
-                    <img src="${imgData}" width="794" onload="window.print()"/>
-                </div> 
-            </body>
-            </html>`);
-            pri.document.close();
-            pri.focus();
-        });
+        // html2canvas(document.querySelector('.pi-inv')).then(canvas => {
+        //     const imgData = canvas.toDataURL('image/jpg');
+        //     let pri = document.getElementById("ncpi-invoice-print").contentWindow;
+        //     pri.document.open();
+        //     pri.document.write(`<!DOCTYPE html>
+        //     <html>
+        //     <head>
+        //     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        //     <title>PDF</title>
+        //     <style type="text/css">
+        //     @media print {  
+        //         * {
+        //             box-sizing: border-box;
+        //             margin: 0;
+        //             padding: 0;
+        //         }
+        //         @page{ margin: 0;} 
+        //         .page{
+        //             width: 100%; 
+        //             /* height: 1132px; */
+        //             height: 1110px; 
+        //             page-break-after: always; 
+        //         } 
+        //     } 
+        //     </style>
+        //     </head>
+        //     <body> 
+        //         <div class="page">  
+        //             <img src="${imgData}" width="794" onload="window.print()"/>
+        //         </div> 
+        //     </body>
+        //     </html>`);
+        //     pri.document.close();
+        //     pri.focus();
+        // });
     }
 
     render() {
