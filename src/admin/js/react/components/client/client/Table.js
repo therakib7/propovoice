@@ -61,7 +61,7 @@ const TableBody = props => {
     let rows = props.tableData.map((row, index) => {
 
         // const popover = useRef();
-        // useClickOutside(popover, close);
+        // useClickOutside(, close);
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false; 
