@@ -178,14 +178,14 @@ const TableBody = props => {
                             {row.id == dropdown && <div className="pi-dropdown-content pi-show" 
                             // ref={popover}
                             > 
+                                <a onClick={() => { showDropdown(row.id); handleClick(row.id); } }>Edit</a>
                                 <a onClick={() => handleClick(row.id, '/tab/preview')}>Preview</a>
                                 <a target='_blank' href={client_url}>Client Preview</a>
                                 <a onClick={() => { showDropdown(row.id); props.action('sent', row.id); } }>Mark As Sent</a>
                                 {row.path == 'invoice' && <a onClick={() => { showDropdown(row.id); props.action('paid', row.id); } }>Mark As Paid</a>} 
                                 {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('accept', row.id); } }>Mark As Accepted</a>}
-                                {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); } }>Mark As Declined</a>}
-                                <a onClick={() => { showDropdown(row.id); handleClick(row.id); } }>Edit</a>
-                                <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); } }>Copy</a> 
+                                {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); } }>Mark As Declined</a>} 
+                                <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); } }>Duplicate</a> 
                                 {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); } }>Copy To Invoice</a>}
                                 <a onClick={() => { showDropdown(row.id); props.deleteEntry('single', row.id);} }>Delete</a>
                             </div>}

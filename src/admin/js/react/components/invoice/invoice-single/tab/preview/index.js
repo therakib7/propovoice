@@ -41,7 +41,31 @@ const EditDownload = props => {
 export default class Preview extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            previewHeight: 'auto',
+        };
+
+        this.previewRef = React.createRef();
     }
+
+    componentDidMount() {
+        this.isPreviewLoaded();
+    }
+
+    isPreviewLoaded = () => {
+        let previewRef = this.previewRef.current; 
+		if (previewRef) { 
+            let height = 'auto';
+
+            if ( previewRef.clientHeight > 1123 ) { 
+                height = ( Math.ceil(previewRef.clientHeight/1123) * 1123 ) + 'px';
+            } else {
+                height = '1123px';
+            }
+			this.setState({ previewHeight: height });
+		}
+	}
 
     render() {
         const { id } = this.props.data.invoice.template;
@@ -106,8 +130,17 @@ export default class Preview extends Component {
                     </div>
 
                     <div className='col-md-8'>
-                        <div className='pi-inv-preview' ref={(response) => (this.componentRef = response)} >
+                        {/*<div className='pi-inv-preview' ref={(response) => (this.componentRef = response)} >
                             <InvTemplate {...this.props} />
+                        </div>*/}
+                        <div className='pi-inv-hidden-preview' style={{position: 'absolute', left: 9999}} ref={this.previewRef} >
+                            {this.props.data.fromData && <InvTemplate {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
+                        </div>
+
+                        <div className='pi-inv-preview-wrap'>
+                            <div className='pi-inv-preview' ref={(response) => (this.componentRef = response)} >
+                                {this.props.data.fromData && <InvTemplate {...this.props} height={this.state.previewHeight} />}
+                            </div>
                         </div>
                     </div>
 
@@ -120,7 +153,7 @@ export default class Preview extends Component {
                                     trigger={() => <button
                                         className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
                                         style={{ color: '#000', marginRight: '5px' }}
-                                    // onClick={() => props.handleDownload()}
+                                        //onClick={() => props.handleDownload()}
                                     >
                                         <svg
                                             width={16}

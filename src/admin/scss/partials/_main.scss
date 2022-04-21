@@ -2295,13 +2295,17 @@ html {
   font-size: 12px;
   padding: 15px 0;
 }
+.ncpi .pi-table tbody tr td:last-child,
+.ncpi .pi-table tr th:last-child {
+  text-align: center;
+}
 .ncpi .pi-table tr td:first-child,
 .ncpi .pi-table tr th:first-child {
   width: 60px;
   padding-left: 15px;
 }
 .ncpi .pi-table tr td {
-  padding: 15px 0;
+  padding: 10px 0;
   font-size: 14px;
 }
 @media screen and (max-width: 550px) {
@@ -2351,11 +2355,11 @@ html {
   display: none;
   position: absolute;
   background-color: #fff;
-  min-width: 170px;
+  min-width: 210px;
   box-shadow: 0 0 4px 2px #dddddd6b;
   z-index: 1;
   right: 0;
-  top: 40px;
+  top: 45px;
   border-radius: 8px;
 }
 .ncpi .pi-table .pi-dropdown-content svg {
@@ -2368,6 +2372,8 @@ html {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 4px;
 }
 .ncpi .pi-table .pi-dropdown-content a {
   color: black;
@@ -2376,6 +2382,7 @@ html {
   display: block;
   font-size: 14px;
   font-weight: 500;
+  text-align: left;
 }
 .ncpi .pi-table .pi-dropdown a:hover {
   background-color: #edf2f7;
@@ -2745,10 +2752,11 @@ html {
   border: 3px solid #edf2f7;
   border-radius: 15px 15px 0 0;
   border-bottom: 0;
-  height: 120px;
+  height: 130px;
 }
 .ncpi .pi-add-item-main-content .pi-item-content .pi-add-item-text {
   margin-left: 20px;
+  padding-right: 15px;
 }
 .ncpi .pi-add-item-main-content .pi-item-content .pi-add-item-text h3 {
   font-size: 18px;
@@ -2869,6 +2877,11 @@ html {
   float: right;
   margin-top: 30px;
 }
+@media screen and (max-width: 450px) {
+  .ncpi .pi-pagination {
+    float: none;
+  }
+}
 .ncpi .pi-pagination .pi-disabled span {
   cursor: not-allowed;
   color: #4a5568;
@@ -2899,7 +2912,7 @@ html {
   padding: 10px 15px;
   border: 1px solid #cbd5e0;
   margin-left: -1px;
-  font-size: 18px;
+  font-size: 15px;
   color: #4a5568;
   font-weight: 500;
 }

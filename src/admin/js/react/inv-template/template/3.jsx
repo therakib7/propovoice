@@ -31,7 +31,7 @@ export default class Three extends Component {
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
         return (
-            <div className="pi-inv ">
+            <div className="pi-inv" style={{height: this.props.height}}>
                 <Seal status={status} />
                 <div className="pi-inv-three">
                     <div className="pi-body">

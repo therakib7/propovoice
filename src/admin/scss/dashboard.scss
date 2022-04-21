@@ -53,13 +53,7 @@ h4.from-title {
 
 .ncpi .pi-form-style-two label {
     z-index: 99;
-}
-
-.ncpi-invoice-preview {
-    border: 1px solid #dfdfdf;
-    margin: auto;
-    display: table;
-}
+} 
 
 .ncpi .pi-from-content .pi-from {
     margin-top: 10px;
@@ -156,9 +150,14 @@ h4.from-title {
     height: auto;
 } 
 
-.pi-inv-preview {
-    .pi-inv {
-        min-height: 1120px;
-        height: auto !important;
-    }
+.pi-inv-preview-wrap {
+    border: 1px solid #dfdfdf;
+    margin: auto;
+    display: table;
 }
+
+.pi-inv-hidden-preview {
+    .pi-inv {
+      height: auto !important;
+    }
+  }

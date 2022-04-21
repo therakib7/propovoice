@@ -175,11 +175,15 @@ export default class Invoice extends Component {
                 attach: [],
                 sign: null
             },
+            previewHeight: 'auto',
         };
+
+        this.previewRef = React.createRef();
 
     }
 
-    componentDidMount() {
+    componentDidMount() { 
+
         if (!wage.length) {
             /* let payment_methods = [
                 {
@@ -204,6 +208,20 @@ export default class Invoice extends Component {
 
         this.getData();
     }
+
+    isPreviewLoaded = () => {
+		let previewRef = this.previewRef.current;
+		if (previewRef) { 
+            let height;
+
+            if ( previewRef.clientHeight > 1123 ) { 
+                height = ( Math.ceil(previewRef.clientHeight/1123) * 1123 ) + 'px';
+            } else {
+                height = '1123px';
+            }
+			this.setState({ previewHeight: height });
+		}
+	}
 
     getData = () => {
         const queryString = window.location.search;
@@ -246,8 +264,14 @@ export default class Invoice extends Component {
                     </div>
 
                     <div className='col-md-8'>
-                        <div className='pi-inv-preview' ref={(response) => (this.componentRef = response)} >
-                            {this.state.fromData && <InvTemplate data={this.state} />}
+                        <div className='pi-inv-hidden-preview' style={{position: 'absolute', left: 9999}} ref={this.previewRef} >
+                            {this.state.fromData && <InvTemplate data={this.state} isPreviewLoaded={this.isPreviewLoaded} />}
+                        </div>
+
+                        <div className='pi-inv-preview-wrap'>
+                            <div className='pi-inv-preview' ref={(response) => (this.componentRef = response)} >
+                                {this.state.fromData && <InvTemplate data={this.state} height={this.state.previewHeight} />}
+                            </div>
                         </div>
                     </div>
 

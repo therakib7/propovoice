@@ -216,7 +216,7 @@ const Invoice = class Invoice extends Component {
                             toast.success(`Successfully copied`);
                             this.getLists();
                         } else if ( type == 'copy-to-inv' ) {
-                            toast.success(`Successfully copied to invoice`);
+                            toast.success(`Successfully convert to invoice`);
                         } 
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
