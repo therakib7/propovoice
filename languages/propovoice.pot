@@ -30,6 +30,10 @@ msgstr ""
 msgid "Propovoice Client Estimate"
 msgstr ""
 
+#: ../includes/Controllers/Api/Types/Action.php:97, ../includes/Controllers/Api/Types/Action.php:160
+msgid "Required field is missing"
+msgstr ""
+
 #: ../includes/Controllers/Api/Types/Business.php:192, ../includes/Controllers/Api/Types/Business.php:266, ../includes/Controllers/Api/Types/Project.php:218
 msgid "Name is missing"
 msgstr ""
