@@ -183,7 +183,7 @@ class Invoice
         $result['result'] = $data;
         $result['total'] = $total_data;
 
-        return wp_send_json_success($result);
+        wp_send_json_success($result);
     }
 
     public function get_single($req)
@@ -252,7 +252,7 @@ class Invoice
         }
         $query_data['paymentBankData'] = $paymentData;
 
-        return wp_send_json_success($query_data);
+        wp_send_json_success($query_data);
     }
 
     public function create($req)

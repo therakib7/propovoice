@@ -60,7 +60,7 @@ class PaymentProcess
             // wp_send_json($e->jsonBody);
         }
 
-        return wp_send_json_success([
+        wp_send_json_success([
             'intent_obj' => $paymentIntents
         ]);
     }

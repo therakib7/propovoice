@@ -91,7 +91,7 @@ class Dashbaord
         $summary['total_invoice'] = $total_invoice;
         $summary['paid_invoice'] = $paid_invoice;
 
-        return wp_send_json_success(['summary' => $summary ]); 
+        wp_send_json_success(['summary' => $summary ]); 
     }
 
     // check permission

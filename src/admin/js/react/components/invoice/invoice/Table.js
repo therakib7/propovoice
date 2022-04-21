@@ -153,7 +153,7 @@ const TableBody = props => {
                 <td>{ ( row.path == 'invoice' ? 'Inv' : 'Est' ) + row.id}</td>
                 {/*<td>{row.project.name}</td>*/}
                 {!props.client_id && <td>
-                    {row.to.first_name + ' ' + row.to.last_name}
+                    { (row.to.first_name) ? row.to.first_name + ' ' + row.to.last_name : ''}
                 </td>}
                 <td>{row.total}</td>
                 {(props.path == 'invoice') &&
@@ -180,14 +180,14 @@ const TableBody = props => {
                             > 
                                 <a onClick={() => handleClick(row.id, '/tab/preview')}>Preview</a>
                                 <a target='_blank' href={client_url}>Client Preview</a>
-                                <a onClick={() => handleClick(row.id)}>Mark As Sent</a>
-                                {row.path == 'invoice' && <a onClick={() => handleClick(row.id)}>Mark As Paid</a>} 
-                                {row.path == 'estimate' && <a onClick={() => handleClick(row.id)}>Mark As Accepted</a>}
-                                {row.path == 'estimate' && <a onClick={() => handleClick(row.id)}>Mark As Declined</a>}
-                                <a onClick={() => handleClick(row.id)}>Edit</a>
-                                <a onClick={() => handleClick(row.id)}>Copy</a> 
-                                {row.path == 'estimate' && <a onClick={() => handleClick(row.id)}>Copy To Invoice</a>}
-                                <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
+                                <a onClick={() => { showDropdown(row.id); props.action('sent', row.id); } }>Mark As Sent</a>
+                                {row.path == 'invoice' && <a onClick={() => { showDropdown(row.id); props.action('paid', row.id); } }>Mark As Paid</a>} 
+                                {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('accept', row.id); } }>Mark As Accepted</a>}
+                                {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); } }>Mark As Declined</a>}
+                                <a onClick={() => { showDropdown(row.id); handleClick(row.id); } }>Edit</a>
+                                <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); } }>Copy</a> 
+                                {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); } }>Copy To Invoice</a>}
+                                <a onClick={() => { showDropdown(row.id); props.deleteEntry('single', row.id);} }>Delete</a>
                             </div>}
                         </div>
                     </div> 
@@ -208,7 +208,7 @@ const Table = (props) => {
         setInfoModal(true);
     }
 
-    const { tableData, editEntry, checkedBoxes, deleteEntry, client_id, path } = props;
+    const { tableData, editEntry, checkedBoxes, deleteEntry, client_id, path, action } = props;
 
     return (
         <>
@@ -256,6 +256,7 @@ const Table = (props) => {
                         deleteEntry={deleteEntry}
                         client_id={client_id}
                         path={path}
+                        action={action}
                     />
                 </table>
             </div>}

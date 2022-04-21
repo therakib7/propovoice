@@ -576,10 +576,11 @@ class Invoice extends Component {
 										<div className="row">
 											<div className="col-12 col-md-6">
 												{this.state.fromData && this.state.fromData.logo &&
-													<div className="pi-info-logo">
-														<img src={this.state.fromData.logo.src} />
-													</div>}
+												<div className="pi-info-logo">
+													<img src={this.state.fromData.logo.src} />
+												</div>}
 											</div>
+
 											<div className="col-12 col-md-6">
 												<div className="pi-info-form">
 													<div className="row">

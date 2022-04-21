@@ -171,7 +171,7 @@ class Payment
         $result['result'] = $data;
         $result['total'] = $total_data;
 
-        return wp_send_json_success($result);
+        wp_send_json_success($result);
     } 
 
     function formatArray($array, $key) {
@@ -203,7 +203,7 @@ class Payment
         $query_data['details'] = get_post_meta($id, 'details', true);
         $query_data['default'] = (bool) get_post_meta($id, 'default', true);
 
-        return wp_send_json_success($query_data);
+        wp_send_json_success($query_data);
     }
 
     public function create($req)

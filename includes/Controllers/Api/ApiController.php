@@ -2,6 +2,7 @@
 
 namespace Ncpi\Controllers\Api;
 
+use Ncpi\Controllers\Api\Types\Action;
 use Ncpi\Controllers\Api\Types\Business;
 use Ncpi\Controllers\Api\Types\Client;
 use Ncpi\Controllers\Api\Types\Dashbaord;
@@ -29,6 +30,7 @@ class ApiController
 		new Payment();
 		new PaymentProcess();
 		new Dashbaord();
+		new Action();
 		new Setting();
 	}
 }

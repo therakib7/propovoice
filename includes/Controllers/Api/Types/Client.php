@@ -209,7 +209,7 @@ class Client
         $result['total'] = $total_users;
         //}
 
-        return wp_send_json_success($result);
+        wp_send_json_success($result);
     }
 
     public function get_single($req)
@@ -235,7 +235,7 @@ class Client
 
         $data['user'] = $field;
 
-        return wp_send_json_success($data);
+        wp_send_json_success($data);
     }
 
     public function create($req)

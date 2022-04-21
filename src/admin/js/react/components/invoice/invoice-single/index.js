@@ -14,7 +14,8 @@ export default function InvoiceWrap() {
 	if ( id === undefined ) {
 		path = location.pathname == '/invoice/single' ? 'invoice' : 'estimate';
 	} else {
-		path = location.pathname.slice(0, location.pathname.lastIndexOf('/')) == '/invoice/single' ? 'invoice' : 'estimate';
+		let url_path = location.pathname.slice(0, location.pathname.lastIndexOf('/'));		
+		path = url_path.includes('invoice') ? 'invoice' : 'estimate';
 	}
  
 	const routeChange = id => {

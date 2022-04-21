@@ -119,7 +119,7 @@ class Email
         $result['result'] = $data;
         $result['total'] = $total_data;
 
-        return wp_send_json_success($result);
+        wp_send_json_success($result);
     }
 
     public function get_single($req)
@@ -132,7 +132,7 @@ class Email
 
         $query_data['email'] = json_decode(get_post_meta($id, 'email', true));
 
-        return wp_send_json_success($query_data);
+        wp_send_json_success($query_data);
     }
 
     public function templateVariable($string = '', $compnay_name, $client_name, $invoice_id, $invoice_url, $msg = '', $path = '')

@@ -9,6 +9,7 @@ import ReactPaginate from 'react-paginate';
 import TablePreloader from 'block/preloader/table';
 
 import Api from 'api/invoice';
+import ApiAction from 'api/action';
 
 import Table from './Table';
 import Search from './Search';
@@ -178,6 +179,54 @@ const Invoice = class Invoice extends Component {
         this.props.routeChange();
     };
 
+    handleAction = (type, id) => {
+        if ( 
+            type == 'sent' ||
+            type == 'paid' ||
+            type == 'accept' ||
+            type == 'decline' 
+        ) {
+            ApiAction.update(id, {type})
+                .then(resp => {
+                    if (resp.data.success) { 
+                        if ( type == 'sent' ) {
+                            toast.success(`Successfully mark as Sent`);
+                        } else if ( type == 'paid' ) {
+                            toast.success(`Successfully mark as Paid`);
+                        } else if ( type == 'accept' ) {
+                            toast.success(`Successfully mark as Accepted`);
+                        } else if ( type == 'decline' ) {
+                            toast.success(`Successfully mark as Declined`);
+                        }                         
+                        this.getLists();
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                })
+        } else if (
+            type == 'copy' ||
+            type == 'copy-to-inv' 
+        ) {
+            ApiAction.create({id, type})
+                .then(resp => {
+                    if (resp.data.success) {
+                        if ( type == 'copy' ) {
+                            toast.success(`Successfully copied`);
+                            this.getLists();
+                        } else if ( type == 'copy-to-inv' ) {
+                            toast.success(`Successfully copied to invoice`);
+                        } 
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                })
+        } 
+    }
+
     render() { 
         const { title, invoices, checkedBoxes, searchVal } = this.state;
         return (
@@ -272,11 +321,11 @@ const Invoice = class Invoice extends Component {
                     Search
                 </button>  */}
 
-                <Search
+                {/* <Search
                     handleSubmit={this.getLists}
                     show={this.state.searchModal}
                     close={this.closeForm}
-                />
+                /> */}
 
                 {invoices.length > 0 && <div className='pi-table-showing'>
                     <p>
@@ -302,7 +351,7 @@ const Invoice = class Invoice extends Component {
                     </p>
                 </div>}  
 
-                {this.state.preloader ? <TablePreloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} />}
+                {this.state.preloader ? <TablePreloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} action={this.handleAction} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'
