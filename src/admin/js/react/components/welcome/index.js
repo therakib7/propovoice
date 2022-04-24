@@ -147,9 +147,7 @@ export default class Welcome extends Component {
                             { currentTab == 'welcome' &&
                             <div id="pi-welcome">
                                 <p>
-                                    A place where you can browse and share content with other Figma
-                                    users. Pull text strings, avatars and icons directly into your
-                                    designs.
+                                Welcome to Propovice. Propovice help you to create professional invoice and estimate for your client. You can send and track easily. 
                                 </p>
                                 <div className="pi-buttons pi-text-center">
                                     <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
@@ -184,8 +182,7 @@ export default class Welcome extends Component {
                                     <img src={ncpi.assetImgUri+'finish.png'} />
                                     <h3 className="upload">It's time to fly!</h3>
                                     <p>
-                                    Everything Done! You can create Estimate, Invoice, Proposal and
-                                    Others 
+                                    Everything Done! You can add your client, create and send estimate and invoice.   
                                     </p>
                                 </div>
                                 <div className="pi-buttons pi-text-center"> 

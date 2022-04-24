@@ -40,7 +40,7 @@ class Invoice extends Component {
 				},
 				{
 					id: 'info',
-					text: 'Add Information'
+					text: 'Add Content '
 				},
 				{
 					id: 'preview',

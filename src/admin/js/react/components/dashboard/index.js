@@ -272,7 +272,7 @@ export default class Dashboard extends Component {
                                 </div>
                                 <div className="pi-featurs-text">
                                     <h4>Report</h4>
-                                    <p>Generate actionable insights with built-in reporting system.</p>
+                                    <p>It will allow seeing a real-time overview of sales and activity with graphs and charts.</p>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +306,7 @@ export default class Dashboard extends Component {
                                 </div>
                                 <div className="pi-featurs-text">
                                     <h4>Proposal</h4>
-                                    <p>Generate actionable insights with built-in reporting system.</p>
+                                    <p>Proposal will work for you to send a written document outlining everything. </p>
                                 </div>
                             </div>
                         </div>
@@ -340,7 +340,7 @@ export default class Dashboard extends Component {
                                 </div>
                                 <div className="pi-featurs-text">
                                     <h4>Contract</h4>
-                                    <p>Generate actionable insights with built-in reporting system.</p>
+                                    <p>It will allow you to create project agreement between you and the client.</p>
                                 </div>
                             </div>
                         </div>
@@ -374,7 +374,7 @@ export default class Dashboard extends Component {
                                 </div>
                                 <div className="pi-featurs-text">
                                     <h4>Project</h4>
-                                    <p>Generate actionable insights with built-in reporting system.</p>
+                                    <p>Create estimate & estimate according to the client's project and manage the project easily.</p>
                                 </div>
                             </div>
                         </div>

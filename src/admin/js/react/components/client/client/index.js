@@ -257,7 +257,7 @@ export default class Client extends Component {
                     <button
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.openForm('new')} >
-                        Create New {title}
+                        Add New {title}
                     </button> 
 
                     <div className="pi-search-box pi-float-right">
