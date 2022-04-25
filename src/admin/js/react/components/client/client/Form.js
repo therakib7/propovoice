@@ -144,8 +144,7 @@ class Form extends Component {
 
                                             <input
                                                 id="form-company_name"
-                                                type="text"
-                                                required
+                                                type="text" 
                                                 name="company_name"
                                                 value={this.state.form.company_name}
                                                 onChange={this.handleChange}

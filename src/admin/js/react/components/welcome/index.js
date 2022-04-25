@@ -187,7 +187,7 @@ export default class Welcome extends Component {
                                 </div>
                                 <div className="pi-buttons pi-text-center"> 
                                     <a href={ncpi.dashboard} className="pi-bg-black pi-bg-hover-blue">Dashboard</a>
-                                    <a href={ncpi.dashboard + '#/client'} className="pi-bg-green pi-bg-hover-blue">Add Cleint</a>
+                                    <a href={ncpi.dashboard + '#/client'} className="pi-bg-green pi-bg-hover-blue">Add Client</a>
                                     <a href={ncpi.dashboard + '#/invoice'} className="pi-btn pi-bg-blue pi-bg-hover-blue">Create Invoice</a>
                                 </div> 
                             </div>}
