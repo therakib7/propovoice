@@ -22,7 +22,6 @@ export default class One extends Component {
 
     componentDidMount() {
         document.documentElement.style.setProperty('--pi-inv-primary', this.props.data.invoice.style.primary_color);
-
         this.props.isPreviewLoaded();
     }
 

@@ -107,8 +107,10 @@ class Invoice extends Component {
 	}
 
 	isPreviewLoaded = () => {
-		let sidebarRef = this.sidebarRef.current;
-		if (sidebarRef) {
+		// let sidebarRef = this.sidebarRef.current; 
+		//TODO: ref not working
+		let sidebarRef = document.getElementById('pi-right-sidebar')
+		if (sidebarRef) { 
 			let scale = Math.min(
 				sidebarRef.clientWidth / 796,
 				sidebarRef.clientHeight / 1122
@@ -118,8 +120,7 @@ class Invoice extends Component {
 		}
 	};
 
-	componentDidMount() {
-
+	componentDidMount() { 
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
 		if (this.props.id) {
@@ -726,7 +727,7 @@ class Invoice extends Component {
 							</div>{/* ./ col-lg-9 */}
 
 							<div className="col-lg-3">
-								<div className="pi-right-sidebar" ref={this.sidebarRef} >
+								<div id="pi-right-sidebar" className="pi-right-sidebar" ref={this.sidebarRef} >
 									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2>
 
 									<div className='pi-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
