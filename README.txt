@@ -1,7 +1,7 @@
 === Propovoice ===
 Contributors: nurcreation, therakib7
 Donate link:
-Tags: proposal, invoice, client, template, project, payment, transeciton
+Tags: proposal, invoice, client, template, project, payment, transaction
 Requires at least: 4.9
 Tested up to: 5.8
 Stable tag: 0.1.0
@@ -12,20 +12,36 @@ A complete estimate and invoice management system for the WordPress
 
 == Description ==
 
-👉 [Documentation](https://propovoice.com/docs) | [Support](https://nurency.com/contact/) 👈
+👉 [Documentation](https://propovoice.com/docs) 👈
 
-By this plugin you can easily send estimate and invoice to your client and manage everything from Dashboard.
+A complete estimate and invoice management system for WordPress. With this plugin you can easily create, send estimates and invoices to your client and manage everything from Dashboard.
 
-= Features = 
-* 🏆 Send estimate to client
-* 🏆 Send invoice to client 
-* 🏆 Receive payment from client 
-* 🏆 Advanced template for invoice
-* 🏆 Advanced template for proposal
-* 🏆 Advance dashboard
+== 🏆 Advance Dashboard ==
+This plugin has a beautiful Dashboard. Where you can see and manage your last summary.
 
-= Fully translatable =
-* POT files included (/languages/)
+== 🏆 Manage Client ==
+This plugin has Client managing features. Where you can easily manage your client.
+
+== 🏆 Manage Estimate ==
+You can create beautiful Estimate for your client and you can send it easily to your client.
+
+== 🏆 Manage Invoice ==
+You can create beautiful Invoices for your client and you can send it easily to your client and also received payment.
+
+== 🏆 Manage Business ==
+You can manage multiple businesses together using this plugin.
+
+== 🏆 Estimate Template ==
+There are lots of Estimate Templates where you can choose it.
+
+== 🏆 Invoice Template ==
+There are lots of Invoice Templates where you can choose it.
+
+== 🏆 Payment Getway == 
+You can receive money from your client by different payment getaway.
+
+== 🏆 Send Mail == 
+You can send Estimates and Invoices easily to your client.
 
 == Installation ==
 
@@ -41,12 +57,13 @@ By this plugin you can easily send estimate and invoice to your client and manag
 
 = How to use this plugin =
  
-* Go to Propovoice menu from dashboard.
-* Add you content as you want
+* Go to Dashboard > Propovoice.
+* Add your necessary content as you want
+* Or  follow the [Documentation](https://propovoice.com/docs)
 
 = Need Any Help? =
 
-* Please mail us at `support@nurcreation.com` 
+* Please mail us at `support@propovice.com` 
 
 == Changelog == 
 

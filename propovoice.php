@@ -5,16 +5,16 @@ if (!defined('ABSPATH')) {
 /**
  *
  * @package   NurCreation - Propovoice
- * @author    NurCreation <info@nurcreation.com>
- * @link      https://nurcreation.com
+ * @author    NurCreation <support@propovice.com>
+ * @link      https://propovoice.com
  * @copyright 2022 NurCreation 
  *
  * Plugin Name: Propovoice
- * Plugin URI: https://nurcreation.com/plugins/propovoice
- * Author: NurCreation
- * Author URI: https://nurcreation.com
+ * Plugin URI: https://wordpress.org/plugins/propovoice
+ * Author: Propovoice
+ * Author URI: https://propovoice.com
  * Version: 0.1.0
- * Description: A complete proposal, estimate and invoice management system for the WordPress.
+ * Description: A complete estimate and invoice management system for the WordPress.
  * Text Domain: propovoice
  * Domain Path: /languages
  *
