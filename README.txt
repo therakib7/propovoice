@@ -2,8 +2,8 @@
 Contributors: nurcreation, therakib7
 Donate link:
 Tags: proposal, invoice, client, template, project, payment, transaction
-Requires at least: 4.9
-Tested up to: 5.8
+Requires at least: 5.0
+Tested up to: 5.9
 Stable tag: 0.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -50,7 +50,7 @@ You can send Estimates and Invoices easily to your client.
 3. Activate `Propovoice` from Plugins page
 
 = Requirements =
-* **WordPress version:** >= 4.5
+* **WordPress version:** >= 5.0
 * **PHP version:** >= 7.4
 
 == Frequently Asked Questions ==
@@ -63,7 +63,7 @@ You can send Estimates and Invoices easily to your client.
 
 = Need Any Help? =
 
-* Please mail us at `support@propovice.com` 
+* Please mail us at `support@propovoice.com` 
 
 == Changelog == 
 

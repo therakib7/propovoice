@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) {
 /**
  *
  * @package   NurCreation - Propovoice
- * @author    NurCreation <support@propovice.com>
+ * @author    NurCreation <support@propovoice.com>
  * @link      https://propovoice.com
  * @copyright 2022 NurCreation 
  *
