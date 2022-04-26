@@ -418,11 +418,9 @@ class Invoice extends Component {
 		if ( extra_field.hasOwnProperty('tax') ) {
 			total += this.calcTaxTotal();
 		}
-
 		if ( extra_field.hasOwnProperty('discount') ) {
 			total -= this.calcDiscountTotal();
 		} 
-
 		return total;
 	}
 

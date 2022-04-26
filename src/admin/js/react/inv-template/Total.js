@@ -7,29 +7,13 @@ class Total extends Component {
 	currency = 'USD'
 
     constructor(props) {
-		super(props);
-
-		this.state = { 
-			invoice: { 
-				items: [
-					{
-						id: null, 
-						name: '',
-						desc: '',
-						qty: 0,
-						price: 0.00,
-					},
-				],
-				tax: 0.00,
-				paid: 0.00, 
-			},
-		};
+		super(props); 
 	}
 
     componentDidMount() {  
-		this.setState({
+		/* this.setState({
             invoice: this.props.data.invoice
-        });
+        }); */
 	}
 
     formatCurrency = (amount) => {
@@ -42,19 +26,41 @@ class Total extends Component {
 	}
 
     calcItemsTotal = () => {
-		return this.state.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
+		return this.props.data.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
 	}
 
 	calcTaxTotal = () => {
-		return this.calcItemsTotal() * (this.state.invoice.tax / 100)
+		let extra_field = this.props.data.invoice.extra_field;
+		if ( extra_field.hasOwnProperty('tax') && extra_field.tax == 'percent' ) {
+			return this.calcItemsTotal() * (this.props.data.invoice.tax / 100)
+		} else {
+			return this.props.data.invoice.tax;
+		} 
 	}
 
-	calcGrandTotal = () => {
-		let total = this.calcItemsTotal() + this.calcTaxTotal();
+	calcDiscountTotal = () => {
+		let extra_field = this.props.data.invoice.extra_field;
+		if ( extra_field.hasOwnProperty('discount') && extra_field.discount == 'percent' ) {
+			return this.calcItemsTotal() * (this.props.data.invoice.discount / 100)
+		} else {
+			return this.props.data.invoice.discount;
+		} 
+	}
+
+	calcGrandTotal = () => { 
+		let total = this.calcItemsTotal();
+		let extra_field = this.props.data.invoice.extra_field;
+		if ( extra_field.hasOwnProperty('tax') ) {
+			total += this.calcTaxTotal();
+		}
+		if ( extra_field.hasOwnProperty('discount') ) {
+			total -= this.calcDiscountTotal();
+		} 
 		return total;
 	}
 
     render = () => { 
+		const extra_field = this.props.data.invoice.extra_field;
         return ( 
             <div className="pi-amounting">
                 <table>
@@ -63,10 +69,17 @@ class Total extends Component {
                             <th>Total:</th>
                             <td>{this.formatCurrency(this.calcItemsTotal())}</td>
                         </tr>
-                        <tr className="pi-before-total">
-                            <th>Tax {this.state.invoice.tax}%</th>
+
+                        {extra_field.hasOwnProperty('tax') && <tr>
+                            <th>Tax {this.props.data.invoice.tax}{extra_field.tax == 'percent' ? '%' : '$'}</th>
                             <td>{this.formatCurrency(this.calcTaxTotal())}</td>
-                        </tr>
+                        </tr>}
+
+						{extra_field.hasOwnProperty('discount') && <tr className="pi-before-total">
+                            <th>Discount {this.props.data.invoice.discount}{extra_field.discount == 'percent' ? '%' : '$'}</th>
+                            <td>{this.formatCurrency(this.calcDiscountTotal())}</td>
+                        </tr>}
+
                         <tr className="pi-table-bg">
                             <th>Subtotal:</th>
                             <td>{this.formatCurrency(this.calcGrandTotal())}</td>

@@ -2561,9 +2561,11 @@ html {
   }
 }
 .ncpi .pi-calculation {
-  width: 240px;
-  margin-left: auto;
   margin-top: 15px;
+}
+.ncpi .pi-calculation table {
+  margin-left: auto;
+  text-align: right;
 }
 .ncpi .pi-calculation table tr:first-child td:first-child {
   font-size: 14px;
@@ -2576,6 +2578,7 @@ html {
 .ncpi .pi-calculation table tr:last-child td {
   position: relative;
   right: 2px;
+  font-weight: bold;
 }
 .ncpi .pi-calculation table tr td {
   font-size: 12px;
@@ -2953,6 +2956,12 @@ html {
 }
 .wp-admin .pi-table input[type=checkbox] {
   zoom: 1.2;
+}
+.wp-admin .pi-add-info-content input[type=text] {
+  padding: 6px !important;
+}
+.wp-admin .pi-calculation table input[type=number] {
+  padding: 3px 6px !important;
 }
 
 /*-------------------------------------------------------------- 
@@ -3606,10 +3615,6 @@ html {
   position: relative;
   top: 36px;
   left: 12px;
-  color: #000;
-  width: 14px;
-  min-width: 14px;
-  height: 14px;
 }
 .pi-form-accordion .pi-tab .pi-payment-btn {
   padding: 10px 25px;
@@ -3656,9 +3661,6 @@ html {
   top: 50%;
   transform: translate(0, -50%);
   position: absolute;
-}
-.pi-form-accordion .pi-tab input[type=radio]:checked {
-  background-color: #93e026;
 }
 .pi-form-accordion .pi-arrow-none:after {
   content: "" !important;

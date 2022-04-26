@@ -70,7 +70,7 @@
 .ncpi .pi-add-info-content input[type=number],
 .ncpi .pi-add-info-content input[type=text] {
   width: 100%;
-  padding: 6px;
+  padding: 10px 6px;
   border: 1px solid var(--border-color-gray);
   border-radius: 4px;
   font-size: 10px;
@@ -98,17 +98,16 @@
   position: absolute;
   top: 0px;
   right: 1px;
-  width: 15px;
   z-index: 99;
   background-color: var(--bg-color-air-white);
-  padding: 5px;
-  width: 27px;
-  height: 25px;
+  padding: 8px 5px;
+  width: 30px;
+  height: 33px;
   border: 1px solid var(--border-color-gray);
   cursor: pointer;
 }
 .ncpi .pi-add-info-content .pi-info-input-field .pi-calendar svg {
-  width: 15px;
+  width: 17px;
   fill: #8f8f8f;
   position: relative;
   top: -1px;

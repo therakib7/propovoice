@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Editable from './Editable';
+import { Editor } from "@tinymce/tinymce-react";
 
 class Note extends Component {
     state = {
@@ -18,6 +19,13 @@ class Note extends Component {
             this.handlePros();
         });
     }
+
+    handleEditorChange(content, editor) { 
+        let name = 'text';
+        this.setState({ note: { ...this.state.note, [name]: content } }, () => {
+            this.handlePros();
+        });
+      }
 
     handleChangeLabel = (value) => {
         this.setState({ note: { ...this.state.note, ['label']: value } }, () => {
@@ -58,6 +66,24 @@ class Note extends Component {
                         value={text}
                         onChange={this.handleChange}
                     />
+
+                    {/* <Editor
+                        apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
+                        value={text}
+                        init={{
+                            height: 200,
+                            menubar: false,
+                            // plugins: [
+                            //     'advlist autolink lists link image charmap print preview anchor',
+                            //     'searchreplace visualblocks code fullscreen',
+                            //     'insertdatetime media table paste code help wordcount'
+                            // ],
+                            // toolbar:'undo redo | formatselect | bold italic backcolor | \
+                            //      alignleft aligncenter alignright alignjustify | \
+                            //      bullist numlist outdent indent | removeformat | help'
+                        }}
+                        onEditorChange={this.handleEditorChange}
+                    /> */}
                 </div>
             </>
         )

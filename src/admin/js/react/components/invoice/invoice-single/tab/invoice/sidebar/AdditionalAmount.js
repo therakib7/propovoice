@@ -25,7 +25,7 @@ class AdditionalAmount extends Component {
                 <h3>Additional Amount</h3>
                 <div className="pi-form-accordion pi-additional">
                     <div className="pi-tab">
-                        <input defaultChecked={extra_field.hasOwnProperty('tax')} onChange={() => this.setAdditional('tax', 'field')} type="checkbox" id="additional-tax" name="additional-tax" />
+                        <input checked={extra_field.hasOwnProperty('tax') ? 'checked' : ''} onChange={() => this.setAdditional('tax', 'field')} type="checkbox" id="additional-tax" name="additional-tax" />
                         <label className="pi-tab-label" htmlFor="additional-tax">
                             Tax
                         </label>
@@ -44,7 +44,7 @@ class AdditionalAmount extends Component {
                         </div>
                     </div>
                     <div className="pi-tab">
-                        <input defaultChecked={extra_field.hasOwnProperty('discount')} onChange={() => this.setAdditional('discount', 'field')} type="checkbox" id="additional-discount" name="additional-discount" />
+                        <input checked={extra_field.hasOwnProperty('discount') ? 'checked' : ''} onChange={() => this.setAdditional('discount', 'field')} type="checkbox" id="additional-discount" name="additional-discount" />
                         <label className="pi-tab-label" htmlFor="additional-discount">
                             Discount
                         </label>
