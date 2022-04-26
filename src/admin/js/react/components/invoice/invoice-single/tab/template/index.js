@@ -50,7 +50,7 @@ export default class Template extends Component {
                 })
 
                 //select default template
-                if ( ! this.props.currentTemplate.id ) { 
+                if ( ! this.props.currentTemplate ) { 
                     this.props.changeHandler(result[0]);
                 }
             })
@@ -84,9 +84,9 @@ export default class Template extends Component {
                         this.state.templates.map((row, index) => { 
                             return (
                                 <div className="col-12 col-md-6 col-lg-3" key={index}>
-                                    <div className={(this.props.currentTemplate.id == row.id) ? 'pi-single-image-content pi-active' : 'pi-single-image-content'}>
+                                    <div className={(this.props.currentTemplate == row.id) ? 'pi-single-image-content pi-active' : 'pi-single-image-content'}>
                                         <img src={row.src} className="pi-single-image" />
-                                        { ( this.props.currentTemplate.id != row.id ) && <div className="pi-overflow-content">
+                                        { ( this.props.currentTemplate != row.id ) && <div className="pi-overflow-content">
                                             <a className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
                                             <a 
                                             href={'https://appux.co/ncpi/preview/inv'+row.id+'.html'} 

@@ -75,10 +75,7 @@ class Invoice extends Component {
 				date: new Date(),
 				due_date: new Date(),
 				currency: 'USD',
-				template: {
-					id: null,
-					src: ''
-				},
+				template: null,
 				from: null,
 				to: null,
 				item_label: {
@@ -92,7 +89,7 @@ class Invoice extends Component {
 				}, 
 				items: [
 					{
-						id: 'initial', //react-beautiful-dnd unique key
+						id: 'init', //react-beautiful-dnd unique key
 						title: '',
 						desc: '',
 						qty: 0,
@@ -253,7 +250,7 @@ class Invoice extends Component {
 
 	handleTemplateChange = (data, click = false) => {
 		let invoice = { ...this.state.invoice }
-		invoice.template = data;
+		invoice.template = data.id;
 		if (click) {
 			this.setState({
 				currentTab: 'info',

@@ -35,7 +35,7 @@ export default class Preview extends Component {
     }
 
     render() {
-        const { id } = this.props.data.invoice.template;
+        const id = this.props.data.invoice.template;
         return (
             <Suspense fallback={<div className="spinner loading" style={{ padding: 0 }} />}>
                 <>
