@@ -81,6 +81,15 @@ class Invoice extends Component {
 				},
 				from: null,
 				to: null,
+				item_label: {
+					id: 'ID', 
+					title: 'Title', 
+					desc: 'Description', 
+					qty: 'Quantity',
+					price: 'Rate', 
+					tax: 'Tax',
+					amount: 'Amount',
+				}, 
 				items: [
 					{
 						id: 'initial', //react-beautiful-dnd unique key
@@ -88,11 +97,14 @@ class Invoice extends Component {
 						desc: '',
 						qty: 0,
 						qty_type: 'unit',
-						price: 0.00,
+						price: 0,
+						tax: 0,
+						tax_type: 'fixed',
 					},
 				],
-				tax: 0.00,
-				paid: 0.00,
+				tax: 0,
+				discount: 0,
+				paid: 0,
 				payment_methods: {},
 				note: null,
 				group: null,
@@ -304,7 +316,7 @@ class Invoice extends Component {
 	handleAddLineItem = (e) => {
 		let invoice = { ...this.state.invoice }
 		invoice.items = invoice.items.concat(
-			[{ id: Date.now().toString(), title: '', desc: '', qty: 0, qty_type: 'unit', price: 0.00 }]
+			[{ id: Date.now().toString(), title: '', desc: '', qty: 0, qty_type: 'unit', price: 0, tax: 0, tax_type: 'fixed' }]
 		);
 		this.setState({ invoice })
 	}

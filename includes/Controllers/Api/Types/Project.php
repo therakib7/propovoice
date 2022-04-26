@@ -136,7 +136,7 @@ class Project
         $result['result'] = $data;
         $result['total'] = $total_data; 
 
-        wp_send_json_success($result); 
+        return wp_send_json_success($result); 
     }
 
     public function get_single( $req )
@@ -162,7 +162,7 @@ class Project
         $query_data['client_id'] = $client_id;
         $query_data['client'] = $clientData;
 
-        wp_send_json_success($query_data); 
+        return wp_send_json_success($query_data); 
     }
 
     public function create($req)
