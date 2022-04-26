@@ -297,7 +297,7 @@ class Invoice extends Component {
 		this.setState({ invoice })
 	}
 
-	handleInvoiceChange = (e) => {
+	handleTotalChange = (e) => {
 		const { name, value } = e.target;
 		let invoice = { ...this.state.invoice }
 		invoice[name] = value;
@@ -390,20 +390,40 @@ class Invoice extends Component {
 		}).format(amount))
 	}
 
-	calcTaxAmount = (c) => {
-		return c * (this.state.invoice.tax / 100)
-	}
-
 	calcItemsTotal = () => {
 		return this.state.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
 	}
 
 	calcTaxTotal = () => {
-		return this.calcItemsTotal() * (this.state.invoice.tax / 100)
+		let extra_field = this.state.invoice.extra_field;
+		if ( extra_field.hasOwnProperty('tax') && extra_field.tax == 'percent' ) {
+			return this.calcItemsTotal() * (this.state.invoice.tax / 100)
+		} else {
+			return this.state.invoice.tax;
+		} 
 	}
 
-	calcGrandTotal = () => {
-		return this.calcItemsTotal() + this.calcTaxTotal();
+	calcDiscountTotal = () => {
+		let extra_field = this.state.invoice.extra_field;
+		if ( extra_field.hasOwnProperty('discount') && extra_field.discount == 'percent' ) {
+			return this.calcItemsTotal() * (this.state.invoice.discount / 100)
+		} else {
+			return this.state.invoice.discount;
+		} 
+	}
+
+	calcGrandTotal = () => { 
+		let total = this.calcItemsTotal();
+		let extra_field = this.state.invoice.extra_field;
+		if ( extra_field.hasOwnProperty('tax') ) {
+			total += this.calcTaxTotal();
+		}
+
+		if ( extra_field.hasOwnProperty('discount') ) {
+			total -= this.calcDiscountTotal();
+		} 
+
+		return total;
 	}
 
 	setActiveTab(e, id, index) {
@@ -733,10 +753,13 @@ class Invoice extends Component {
 											<Total
 												currencyFormatter={this.formatCurrency}
 												itemsTotal={this.calcItemsTotal}
+												extra_field={this.state.invoice.extra_field}
 												tax={this.state.invoice.tax}
+												discount={this.state.invoice.discount}
 												taxTotal={this.calcTaxTotal}
+												discountTotal={this.calcDiscountTotal}
 												grandTotal={this.calcGrandTotal}
-												changeHandler={this.handleInvoiceChange}
+												changeHandler={this.handleTotalChange}
 												focusHandler={this.handleFocusSelect}
 											/>
 										</div>

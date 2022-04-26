@@ -42,9 +42,6 @@ class Send extends Component {
     }
 
     //try to call it from invoice to avoid duplication code
-    calcTaxAmount = (c) => {
-		return c * (this.props.data.invoice.tax / 100)
-	}
 
 	calcItemsTotal = () => {
 		return this.props.data.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)

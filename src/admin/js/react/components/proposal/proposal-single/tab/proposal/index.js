@@ -367,10 +367,6 @@ class Invoice extends Component {
 		}).format(amount))
 	}
 
-	calcTaxAmount = (c) => {
-		return c * (this.state.invoice.tax / 100)
-	}
-
 	calcItemsTotal = () => {
 		return this.state.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
 	}

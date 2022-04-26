@@ -28,7 +28,9 @@ class Item extends Component {
                 <input 
                     name="qty" 
                     type="number"  
+                    min="0.00" 
                     step="1" 
+                    max="9999999.99" 
                     value={qty} 
                     onChange={this.props.changeHandler(index)} 
                     onFocus={this.props.focusHandler} />

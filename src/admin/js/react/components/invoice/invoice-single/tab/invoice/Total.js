@@ -5,7 +5,7 @@ class Total extends Component {
 
     render = () => {
 
-        const { currencyFormatter, itemsTotal, tax, changeHandler, focusHandler, taxTotal, grandTotal } = this.props
+        const { currencyFormatter, itemsTotal, extra_field, tax, discount, changeHandler, focusHandler, taxTotal, discountTotal, grandTotal } = this.props
 
         return ( 
             <div className="pi-calculation">
@@ -14,23 +14,42 @@ class Total extends Component {
                     <tr>
                         <td>SubTotal</td>
                         <td>{currencyFormatter(itemsTotal())}</td>
-                    </tr>
-                    <tr>
+                    </tr> 
+
+                    {extra_field.hasOwnProperty('tax') && <tr>
                         <td>
                         Tax 
                         <input 
                             name="tax" 
-                            type="number" 
-                            className='w-20 border mx-3 pl-2 rounded'
-                            step="0.01" 
+                            type="number"  
+                            step="1" 
+                            min="0.00" 
                             value={tax} 
                             onChange={changeHandler} 
                             onFocus={focusHandler} 
                         />
-                        %
+                        {extra_field.tax == 'percent' ? '%' : '$'}
                         </td>
                         <td>{currencyFormatter(taxTotal())}</td>
-                    </tr>
+                    </tr>}
+
+                    {extra_field.hasOwnProperty('discount') &&<tr>
+                        <td>
+                        Discount 
+                        <input 
+                            name="discount" 
+                            type="number"  
+                            step="1" 
+                            min="0.00" 
+                            value={discount} 
+                            onChange={changeHandler} 
+                            onFocus={focusHandler} 
+                        />
+                        {extra_field.discount == 'percent' ? '%' : '$'}
+                        </td>
+                        <td>{currencyFormatter(discountTotal())}</td>
+                    </tr>}
+
                     <tr>
                         <td>Total</td>
                         <td>{currencyFormatter(grandTotal())}</td>
