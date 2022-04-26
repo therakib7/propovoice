@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Editable from 'block/editable';
-import Editor from 'block/editor';
 
 class Note extends Component {
 
@@ -15,7 +14,7 @@ class Note extends Component {
                 label: 'Note',
                 text: ''
             },
-        };
+        }
     }
 
     handleChange = e => {
@@ -25,7 +24,7 @@ class Note extends Component {
         });
     }
 
-    handleEditorChange = (content) => {
+    handleEditorChange(content, editor) {
         let name = 'text';
         this.setState({ note: { ...this.state.note, [name]: content } }, () => {
             this.handlePros();
@@ -39,7 +38,6 @@ class Note extends Component {
     }
 
     componentDidMount() {
-
         if (!this.state.edit && this.props.data) {
             this.setState({ edit: true, note: this.props.data });
         }
@@ -67,9 +65,10 @@ class Note extends Component {
                     changeHandler={this.handleChangeLabel}
                 />
                 <div className="pi-group-input">
-                    <Editor
+                    <textarea
+                        name="text"
                         value={text}
-                        changeHandler={this.handleEditorChange}
+                        onChange={this.handleChange}
                     />
                 </div>
             </>

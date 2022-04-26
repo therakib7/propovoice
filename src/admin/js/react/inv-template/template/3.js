@@ -27,11 +27,11 @@ export default class Three extends Component {
     }
 
     render() {
-        const { id, items, note, group, attach, sign, date, due_date } = this.props.data.invoice;
+        const { id, items, note, groups, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
         return (
-            <div className="pi-inv" style={{height: this.props.height}}>
+            <div className="pi-inv" style={{ height: this.props.height }}>
                 <Seal status={status} />
                 <div className="pi-inv-three">
                     <div className="pi-body">
@@ -65,7 +65,7 @@ export default class Three extends Component {
                                     </div>}
                                 <From data={fromData} />
                                 <div className="pi-from-date">
-                                    <p>{title} No: <span>{id ? ( title == 'Invoice' ? 'Inv' : 'Est' ) + id : ''}</span></p>
+                                    <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
                                     <div className="pi-from-time">
                                         <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
                                         <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
@@ -87,7 +87,7 @@ export default class Three extends Component {
 
                             <div className="pi-note-term">
                                 {note && <Note data={note} />}
-                                {group && <Group data={group} />}
+                                {groups && <Group data={groups} />}
                             </div>
 
                             {sign && <Sign data={sign} />}

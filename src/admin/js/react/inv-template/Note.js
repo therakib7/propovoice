@@ -8,11 +8,12 @@ class Note extends Component {
 
     render = () => {
         const { label, text } = this.props.data;
+        return null;
         return (
             <>
                 {text && <div className="pi-note">
                     <h4>{label}:</h4>
-                    <p dangerouslySetInnerHTML={{__html: text.replaceAll('\n', '<br />')}}></p>
+                    <p dangerouslySetInnerHTML={{ __html: text.replaceAll('\n', '<br />') }}></p>
                 </div>}
             </>
         )

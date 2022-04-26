@@ -9,8 +9,10 @@ import FromTo from './FromTo';
 import Items from './Items'
 import PaymentInfo from './PaymentInfo';
 import Total from './Total';
-import Note from './Note'
-import Group from './Group';
+// import Note from './Note'
+// const Note = lazy(() => import('./Note'));
+const Group = lazy(() => import('./Group'));
+// import Group from './Group';
 
 import Template from '../template';
 import Preview from '../preview';
@@ -79,14 +81,14 @@ class Invoice extends Component {
 				from: null,
 				to: null,
 				item_label: {
-					id: 'ID', 
-					title: 'Title', 
-					desc: 'Description', 
+					id: 'ID',
+					title: 'Title',
+					desc: 'Description',
 					qty: 'Quantity',
-					price: 'Rate', 
+					price: 'Rate',
 					tax: 'Tax',
 					amount: 'Amount',
-				}, 
+				},
 				items: [
 					{
 						id: 'init', //react-beautiful-dnd unique key
@@ -94,12 +96,12 @@ class Invoice extends Component {
 						desc: '',
 						qty: 0,
 						qty_type: 'unit',
-						price: 0, 
+						price: 0,
 						tax: 0,
 						tax_type: 'fixed',
 					},
-				], 
-				tax: 0, 
+				],
+				tax: 0,
 				discount: 0,
 				paid: 0,
 				extra_field: {
@@ -109,6 +111,7 @@ class Invoice extends Component {
 				payment_methods: {},
 				note: null,
 				group: null,
+				groups: null,
 				attach: [],
 				sign: null
 			},
@@ -123,7 +126,7 @@ class Invoice extends Component {
 		// let sidebarRef = this.sidebarRef.current; 
 		//TODO: ref not working
 		let sidebarRef = document.getElementById('pi-right-sidebar')
-		if (sidebarRef) { 
+		if (sidebarRef) {
 			let scale = Math.min(
 				sidebarRef.clientWidth / 796,
 				sidebarRef.clientHeight / 1122
@@ -133,7 +136,7 @@ class Invoice extends Component {
 		}
 	};
 
-	componentDidMount() { 
+	componentDidMount() {
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
 		if (this.props.id) {
@@ -274,7 +277,7 @@ class Invoice extends Component {
 
 	handleGroupChange = (data) => {
 		let invoice = { ...this.state.invoice }
-		invoice.group = data;
+		invoice.groups = data;
 		this.setState({ invoice })
 	}
 
@@ -396,31 +399,31 @@ class Invoice extends Component {
 
 	calcTaxTotal = () => {
 		let extra_field = this.state.invoice.extra_field;
-		if ( extra_field.hasOwnProperty('tax') && extra_field.tax == 'percent' ) {
+		if (extra_field.hasOwnProperty('tax') && extra_field.tax == 'percent') {
 			return this.calcItemsTotal() * (this.state.invoice.tax / 100)
 		} else {
 			return this.state.invoice.tax;
-		} 
+		}
 	}
 
 	calcDiscountTotal = () => {
 		let extra_field = this.state.invoice.extra_field;
-		if ( extra_field.hasOwnProperty('discount') && extra_field.discount == 'percent' ) {
+		if (extra_field.hasOwnProperty('discount') && extra_field.discount == 'percent') {
 			return this.calcItemsTotal() * (this.state.invoice.discount / 100)
 		} else {
 			return this.state.invoice.discount;
-		} 
+		}
 	}
 
-	calcGrandTotal = () => { 
+	calcGrandTotal = () => {
 		let total = this.calcItemsTotal();
 		let extra_field = this.state.invoice.extra_field;
-		if ( extra_field.hasOwnProperty('tax') ) {
+		if (extra_field.hasOwnProperty('tax')) {
 			total += this.calcTaxTotal();
 		}
-		if ( extra_field.hasOwnProperty('discount') ) {
+		if (extra_field.hasOwnProperty('discount')) {
 			total -= this.calcDiscountTotal();
-		} 
+		}
 		return total;
 	}
 
@@ -507,10 +510,10 @@ class Invoice extends Component {
 		let invoice = { ...this.state.invoice }
 		if (type == 'field') {
 			if (invoice.extra_field.hasOwnProperty(data)) { // if payment method exist 
-				delete invoice.extra_field[data]; 
+				delete invoice.extra_field[data];
 				this.setState({ invoice });
 			} else {
-				if ( data == 'tax' ) {
+				if (data == 'tax') {
 					invoice.extra_field[data] = 'percent';
 				} else {
 					invoice.extra_field[data] = 'fixed';
@@ -629,9 +632,9 @@ class Invoice extends Component {
 										<div className="row">
 											<div className="col-12 col-md-6">
 												{this.state.fromData && this.state.fromData.logo &&
-												<div className="pi-info-logo">
-													<img src={this.state.fromData.logo.src} />
-												</div>}
+													<div className="pi-info-logo">
+														<img src={this.state.fromData.logo.src} />
+													</div>}
 											</div>
 
 											<div className="col-12 col-md-6">
@@ -644,7 +647,7 @@ class Invoice extends Component {
 															<input
 																type="text"
 																name="invoice_id"
-																value={ this.props.id ? ( this.props.path == 'invoice' ? 'Inv' : 'Est' ) + this.props.id : ''}
+																value={this.props.id ? (this.props.path == 'invoice' ? 'Inv' : 'Est') + this.props.id : ''}
 																readOnly
 															/>
 														</div>
@@ -764,8 +767,10 @@ class Invoice extends Component {
 									</div>
 
 									<div className="pi-group-form">
-										<Note data={this.state.invoice.note} changeHandler={this.handleNoteChange} />
-										<Group data={this.state.invoice.group} changeHandler={this.handleGroupChange} />
+										<Suspense fallback={<div>Loading...</div>}>
+											{/* <Note data={this.state.invoice.note} changeHandler={this.handleNoteChange} /> */}
+											<Group data={this.state.invoice.groups} changeHandler={this.handleGroupChange} />
+										</Suspense>
 
 										<div className="pi-buttons">
 											<div className="row">
