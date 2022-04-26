@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Editable from './Editable';
-import { Editor } from "@tinymce/tinymce-react";
+// import { Editor } from "@tinymce/tinymce-react";
 
 class Note extends Component {
     state = {
@@ -20,12 +20,12 @@ class Note extends Component {
         });
     }
 
-    handleEditorChange(content, editor) { 
+    handleEditorChange(content, editor) {
         let name = 'text';
         this.setState({ note: { ...this.state.note, [name]: content } }, () => {
             this.handlePros();
         });
-      }
+    }
 
     handleChangeLabel = (value) => {
         this.setState({ note: { ...this.state.note, ['label']: value } }, () => {
@@ -38,7 +38,7 @@ class Note extends Component {
             this.setState({ edit: true, note: this.props.data });
         }
     }
-    
+
     componentDidUpdate() {
         if (!this.state.edit && this.props.data) {
             this.setState({ edit: true, note: this.props.data });
@@ -62,7 +62,7 @@ class Note extends Component {
                 />
                 <div className="pi-group-input">
                     <textarea
-                        name="text" 
+                        name="text"
                         value={text}
                         onChange={this.handleChange}
                     />
