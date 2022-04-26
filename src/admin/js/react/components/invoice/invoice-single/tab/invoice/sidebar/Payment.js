@@ -76,8 +76,7 @@ class Payment extends Component {
                     });
                 }
             }) 
-    }
-
+    } 
 
     render() {
         const { payment_methods } = this.props.data

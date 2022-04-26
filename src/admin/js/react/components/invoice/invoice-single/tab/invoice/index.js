@@ -94,14 +94,18 @@ class Invoice extends Component {
 						desc: '',
 						qty: 0,
 						qty_type: 'unit',
-						price: 0,
+						price: 0, 
 						tax: 0,
 						tax_type: 'fixed',
 					},
-				],
-				tax: 0,
+				], 
+				tax: 0, 
 				discount: 0,
 				paid: 0,
+				extra_field: {
+					tax: 'percent',
+					discount: 'fixed'
+				},
 				payment_methods: {},
 				note: null,
 				group: null,
@@ -481,6 +485,27 @@ class Invoice extends Component {
 		}
 	}
 
+	onAdditionalAmountChange = (data, type) => {
+		let invoice = { ...this.state.invoice }
+		if (type == 'field') {
+			if (invoice.extra_field.hasOwnProperty(data)) { // if payment method exist 
+				delete invoice.extra_field[data]; 
+				this.setState({ invoice });
+			} else {
+				if ( data == 'tax' ) {
+					invoice.extra_field[data] = 'percent';
+				} else {
+					invoice.extra_field[data] = 'fixed';
+				}
+				this.setState({ invoice });
+			}
+		} else { //type		
+
+			invoice.extra_field[data.field] = data.type;
+			this.setState({ invoice });
+		}
+	}
+
 	render = () => {
 		const { title, tabs = [], currentTab, currentTabIndex } = this.state;
 		return (
@@ -748,6 +773,7 @@ class Invoice extends Component {
 											<Suspense fallback={<div>Loading...</div>}>
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												{this.props.path == 'invoice' && <Payment handleChange={this.onPaymentChange} data={this.state.invoice} handleSave={this.handleSave} />}
+												<AdditionalAmount handleChange={this.onAdditionalAmountChange} data={this.state.invoice} />
 												{/* {!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />} */}
 												{!wage.length &&
 													<>
