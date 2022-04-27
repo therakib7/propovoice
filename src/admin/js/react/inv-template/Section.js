@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Group extends Component {
+class Section extends Component {
 
     constructor(props) {
         super(props);
@@ -16,8 +16,8 @@ class Group extends Component {
                 {groups.map((group_single, group_index) => {
                     return (
                         <div key={group_index}>
-                            <h4 className='pi-group-label'>{group_single.label}:</h4>
-                            <div className='pi-group-content'>{group_single.content}</div>
+                            <h4 className='pi-group-label'>{group_single.label}:</h4> 
+                            <div className="pi-group-content" dangerouslySetInnerHTML={{__html: group_single.content}}></div>
                         </div>
                     );
                 })}
@@ -26,8 +26,8 @@ class Group extends Component {
     }
 }
 
-Group.propTypes = {
+Section.propTypes = {
     title: PropTypes.string,
 }
 
-export default Group
+export default Section

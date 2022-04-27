@@ -11,8 +11,8 @@ import PaymentInfo from './PaymentInfo';
 import Total from './Total';
 // import Note from './Note'
 // const Note = lazy(() => import('./Note'));
-const Group = lazy(() => import('./Group'));
-// import Group from './Group';
+const Section = lazy(() => import('./Section'));
+// import Section from './Section';
 
 import Template from '../template';
 import Preview from '../preview';
@@ -109,9 +109,8 @@ class Invoice extends Component {
 					discount: 'fixed'
 				},
 				payment_methods: {},
-				note: null,
-				group: null,
-				groups: null,
+				note: null, 
+				sections: null,
 				attach: [],
 				sign: null
 			},
@@ -267,17 +266,11 @@ class Invoice extends Component {
 		} else {
 			this.setState({ invoice });
 		}
-	}
+	} 
 
-	handleNoteChange = (data) => {
+	handleSectionChange = (data) => {
 		let invoice = { ...this.state.invoice }
-		invoice.note = data;
-		this.setState({ invoice })
-	}
-
-	handleGroupChange = (data) => {
-		let invoice = { ...this.state.invoice }
-		invoice.groups = data;
+		invoice.sections = data;
 		this.setState({ invoice })
 	}
 
@@ -767,9 +760,8 @@ class Invoice extends Component {
 									</div>
 
 									<div className="pi-group-form">
-										<Suspense fallback={<div>Loading...</div>}>
-											{/* <Note data={this.state.invoice.note} changeHandler={this.handleNoteChange} /> */}
-											<Group data={this.state.invoice.groups} changeHandler={this.handleGroupChange} />
+										<Suspense fallback={<div>Loading...</div>}> 
+											<Section data={this.state.invoice.sections} changeHandler={this.handleSectionChange} />
 										</Suspense>
 
 										<div className="pi-buttons">

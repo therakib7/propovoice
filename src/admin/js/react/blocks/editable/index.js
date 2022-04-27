@@ -32,7 +32,7 @@ class Editable extends Component {
 			<>
 				{edit &&
 					<>
-						<div className='pi-editable'>
+						<div className='pi-editable' style={{marginBottom: '10px'}}>
 							<input
 								type="text"
 								style={{ border: '1px solid var(--border-color-gray)' }}

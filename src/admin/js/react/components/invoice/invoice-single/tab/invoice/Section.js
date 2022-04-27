@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 import Editable from 'block/editable';
 import Editor from 'block/editor';
 
-class Group extends Component {
+class Section extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
             edit: false,
-            groups: [
+            sections: [
                 {
                     label: 'Note',
                     content: '',
@@ -26,69 +26,69 @@ class Group extends Component {
 
     componentDidMount() {
         if (!this.state.edit && this.props.data) {
-            this.setState({ edit: true, groups: this.props.data });
+            this.setState({ edit: true, sections: this.props.data });
         }
     }
 
     componentDidUpdate() {
         if (!this.state.edit && this.props.data) {
-            this.setState({ edit: true, groups: this.props.data });
+            this.setState({ edit: true, sections: this.props.data });
         }
     }
 
-    handleGroupLabel = (index, value = null) => {
-        let items = this.state.groups[index];
+    handleSectionLabel = (index, value = null) => {
+        let items = this.state.sections[index];
         items['label'] = value;
 
-        let groups = this.state.groups;
-        this.setState({ groups });
+        let sections = this.state.sections;
+        this.setState({ sections });
         this.handlePros();
     }
 
-    handleGroupContent = (index, value = null) => {
-        let items = this.state.groups[index];
+    handleSectionContent = (index, value = null) => {
+        let items = this.state.sections[index];
         items['content'] = value;
-        let groups = this.state.groups;
-        this.setState({ groups }, () => {
+        let sections = this.state.sections;
+        this.setState({ sections }, () => {
             this.handlePros();
         });
     }
 
-    addGroup = () => {
-        let groups = this.state.groups;
-        groups.push({
-            label: 'Group Label',
+    addSection = () => {
+        let sections = this.state.sections;
+        sections.push({
+            label: 'Section Label',
             content: '',
         });
-        this.setState({ groups: groups });
+        this.setState({ sections: sections });
     };
 
     handlePros = () => {
-        this.props.changeHandler(this.state.groups);
+        this.props.changeHandler(this.state.sections);
     };
 
-    deleteHandler = (group_index) => {
-        let array = [...this.state.groups];
-        array.splice(group_index, 1);
-        this.setState({ groups: array }, () => {
+    deleteHandler = (section_index) => {
+        let array = [...this.state.sections];
+        array.splice(section_index, 1);
+        this.setState({ sections: array }, () => {
             this.handlePros();
         });
     }
 
     render = () => {
-        const { groups } = this.state;
+        const { sections } = this.state;
         return (
             <>
-                {groups.map((group_single, group_index) => {
+                {sections.map((section_single, section_index) => {
                     return (
-                        <div className="pi-add-term" key={group_index}>
+                        <div className="pi-add-term" key={section_index}>
                             <div className="row">
                                 <div className="col-md-6">
                                     <Editable
-                                        key={group_index}
-                                        value={group_single.label}
-                                        index={group_index}
-                                        changeHandler={this.handleGroupLabel}
+                                        key={section_index}
+                                        value={section_single.label}
+                                        index={section_index}
+                                        changeHandler={this.handleSectionLabel}
                                     />
                                 </div>
                                 <div className="col-md-6">
@@ -96,8 +96,8 @@ class Group extends Component {
 
                                         <span
                                             className='pi-delate'
-                                            title='Delete this group'
-                                            onClick={() => this.deleteHandler(group_index)}
+                                            title='Delete this section'
+                                            onClick={() => this.deleteHandler(section_index)}
                                         >
                                             <svg
                                                 width={18}
@@ -116,12 +116,12 @@ class Group extends Component {
                                 </div>
                             </div>
 
-                            <div className="dpi-group-item dpi-bg-air-white">
+                            <div className="pi-editor">
                                 <Editor
-                                    key={group_index}
-                                    value={group_single.content}
-                                    index={group_index}
-                                    changeHandler={this.handleGroupContent}
+                                    key={section_index}
+                                    value={section_single.content}
+                                    index={section_index}
+                                    changeHandler={this.handleSectionContent}
                                 />
                             </div>
                         </div>
@@ -130,7 +130,7 @@ class Group extends Component {
 
                 <button
                     className="pi-group-btn pi-ml-10"
-                    onClick={() => this.addGroup()}
+                    onClick={() => this.addSection()}
                 >
                     <span>
                         <svg
@@ -148,15 +148,15 @@ class Group extends Component {
                             />
                         </svg>
                     </span>
-                    Add New Group
+                    Add New Section
                 </button>
             </>
         )
     }
 }
 
-Group.propTypes = {
+Section.propTypes = {
     title: PropTypes.string,
 }
 
-export default Group
+export default Section

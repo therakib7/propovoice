@@ -14,7 +14,8 @@ class BlockEditor extends Component {
 		super(props);
 
 		this.state = {
-			edit: false,
+			loaded: false,
+			value: '',
 			content: '',
 		};
 
@@ -31,7 +32,13 @@ class BlockEditor extends Component {
 		});
 	};
 
-	componentDidMount() {
+	componentDidMount() { 
+	}
+
+	componentDidUpdate() {
+		if ( this.state.loaded == false && this.props.value ) {
+			this.setState({ loaded: true, content: this.props.value }); 
+		} 
 	}
 
 	render = () => {
@@ -42,10 +49,10 @@ class BlockEditor extends Component {
 			<>
 				<Editor
 					onInit={(evt, editor) => this.editorRef.current = editor}
-					initialValue={value}
+					// initialValue={value}
 					// initialValue="<p>This is the initial content of the editor</p>"
 					init={{
-						skin: false,
+						skin: false, 
 						content_css: false,
 						height: 200,
 						menubar: false,

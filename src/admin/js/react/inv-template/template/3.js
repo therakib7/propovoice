@@ -7,7 +7,7 @@ import Payment from '../Payment';
 import Total from '../Total';
 import Items from '../Items'
 import Note from '../Note'
-import Group from '../Group';
+import Section from '../Section';
 import Attach from '../Attach';
 import Sign from '../Sign';
 import Seal from '../Seal';
@@ -27,7 +27,7 @@ export default class Three extends Component {
     }
 
     render() {
-        const { id, items, note, groups, attach, sign, date, due_date } = this.props.data.invoice;
+        const { id, items, note, sections, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
         return (
@@ -87,7 +87,7 @@ export default class Three extends Component {
 
                             <div className="pi-note-term">
                                 {note && <Note data={note} />}
-                                {groups && <Group data={groups} />}
+                                {sections && <Section data={sections} />}
                             </div>
 
                             {sign && <Sign data={sign} />}
