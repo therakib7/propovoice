@@ -25,6 +25,12 @@ class Editable extends Component {
 		this.setState({ edit: false });
 	};
 
+	handleKeyEnter = (e) => {
+		if (e.key === 'Enter') {
+			this.done();
+		}
+	};
+
 	render = () => {
 		const { value } = this.props;
 		const { edit, text } = this.state;
@@ -35,8 +41,9 @@ class Editable extends Component {
 						<div className='pi-editable' style={{marginBottom: '10px'}}>
 							<input
 								type="text"
-								style={{ border: '1px solid var(--border-color-gray)' }}
+								style={{ padding: '2px 10px', border: '1px solid var(--border-color-gray)' }}
 								onChange={this.handleChange}
+								onKeyDown={this.handleKeyEnter}
 								name="text"
 								value={text}
 							/>

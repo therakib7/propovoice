@@ -12,7 +12,7 @@ const EditDownload = props => {
     return (
         <>
             <button
-                className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                className="pi-btn pi-bg-white pi-bg-hover-blue pi-hover-color-white"
                 style={{ color: '#000', marginRight: '5px' }}
                 onClick={() => props.handleEdit()}
             >
@@ -80,7 +80,7 @@ export default class Preview extends Component {
                             <ReactToPrint
                                 content={() => this.componentRef}
                                 trigger={() => <button
-                                    className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                                    className="pi-btn pi-bg-white pi-bg-hover-blue pi-hover-color-white"
                                     style={{ color: '#000', marginRight: '5px' }}
                                 // onClick={() => props.handleDownload()}
                                 >
@@ -107,7 +107,7 @@ export default class Preview extends Component {
                             <ReactToPrint
                                 content={() => this.componentRef}
                                 trigger={() => <button
-                                    className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                                    className="pi-btn pi-bg-white pi-bg-hover-blue pi-hover-color-white"
                                     style={{ color: '#000', marginRight: '5px' }}
                                 // onClick={() => props.handlePrint()}
                                 >
@@ -151,7 +151,7 @@ export default class Preview extends Component {
                                 <ReactToPrint
                                     content={() => this.componentRef}
                                     trigger={() => <button
-                                        className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                                        className="pi-btn pi-bg-white pi-bg-hover-blue pi-hover-color-white"
                                         style={{ color: '#000', marginRight: '5px' }}
                                         //onClick={() => props.handleDownload()}
                                     >
@@ -178,7 +178,7 @@ export default class Preview extends Component {
                                 <ReactToPrint
                                     content={() => this.componentRef}
                                     trigger={() => <button
-                                        className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                                        className="pi-btn pi-bg-white pi-bg-hover-blue pi-hover-color-white"
                                         style={{ color: '#000', marginRight: '5px' }}
                                     // onClick={() => props.handlePrint()}
                                     >
@@ -201,7 +201,7 @@ export default class Preview extends Component {
 
                             <div className='pi-float-right'>
                                 <button
-                                    className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                                    className="pi-btn pi-bg-white pi-bg-hover-blue pi-hover-color-white"
                                     style={{ color: '#000', marginRight: '5px' }}
                                     onClick={() => this.props.showShareModal()}
                                 >

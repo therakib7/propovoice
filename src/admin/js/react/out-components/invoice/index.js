@@ -20,7 +20,7 @@ const EditDownload = props => {
             <ReactToPrint
                 content={() => props.componentRef}
                 trigger={() => <button
-                    className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                    className="pi-btn pi-bg-white pi-bg-hover-blue pi-hover-color-white"
                     style={{ color: '#000', marginRight: '5px' }}
                 // onClick={() => props.handleDownload()}
                 >
@@ -48,7 +48,7 @@ const EditDownload = props => {
                 content={() => props.componentRef}
                 // pageStyle="@page { size: 2.5in 4in }"
                 trigger={() => <button
-                    className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+                    className="pi-btn pi-bg-white pi-bg-hover-blue pi-hover-color-white"
                     // onClick={() => props.handlePrint()}
                     style={{ color: '#000' }}
                 >
@@ -100,7 +100,7 @@ const InvoiceBtn = props => {
                     </button>
 
                     <button
-                        className="pi-btn pi-bg-air-white pi-color-white pi-bg-hover-blue pi-hover-color-white"
+                        className="pi-btn pi-bg-white pi-color-white pi-bg-hover-blue pi-hover-color-white"
                         style={{ color: '#000' }}
                         onClick={() => props.handleChange('feedback', 'decline')}
                     >

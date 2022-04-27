@@ -210,6 +210,7 @@ class Invoice
             $fromData['id'] = $from_id;
             $fromMeta = get_post_meta($from_id);
             $fromData['name'] = isset($fromMeta['name']) ? $fromMeta['name'][0] : '';
+            $fromData['company_name'] = isset($fromMeta['company_name']) ? $fromMeta['company_name'][0] : '';
             $fromData['email'] = isset($fromMeta['email']) ? $fromMeta['email'][0] : '';
             $fromData['mobile'] = isset($fromMeta['mobile']) ? $fromMeta['mobile'][0] : '';
             $fromData['web'] = isset($fromMeta['web']) ? $fromMeta['web'][0] : '';

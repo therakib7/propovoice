@@ -5,13 +5,11 @@ class Form extends Component {
         super(props);
 
         this.initialState = {
-            id: null,
-            name: '',
-            job: '',
+            id: null, 
             first_name: '',
             last_name: '',
-            email: '',
             company_name: '',
+            email: '',
             web: '',
             mobile: '', 
             address: '',
@@ -79,7 +77,6 @@ class Form extends Component {
                                             <input
                                                 id="first_name"
                                                 type="text"
-                                                required
                                                 name="first_name"
                                                 value={this.state.form.first_name}
                                                 onChange={this.handleChange}
@@ -94,42 +91,8 @@ class Form extends Component {
                                             <input
                                                 id="last_name"
                                                 type="text"
-                                                required
                                                 name="last_name"
                                                 value={this.state.form.last_name}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div> 
-                                    </div>
-
-                                    <div className="row"> 
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-email">
-                                                Email
-                                            </label>
-
-                                            <input
-                                                id="form-email"
-                                                type="email"
-                                                required
-                                                name="email"
-                                                value={this.state.form.email}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div> 
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-mobile">
-                                                Mobile Number
-                                            </label>
-
-                                            <input
-                                                id="form-mobile"
-                                                type="text"
-                                                required
-                                                name="mobile"
-                                                value={this.state.form.mobile}
                                                 onChange={this.handleChange}
                                             />
                                         </div> 
@@ -164,6 +127,39 @@ class Form extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div>
+                                    </div> 
+
+                                    <div className="row"> 
+                                        <div className="col-lg">
+                                            <label
+                                                htmlFor="form-email">
+                                                Email
+                                            </label>
+
+                                            <input
+                                                id="form-email"
+                                                type="email"
+                                                required
+                                                name="email"
+                                                value={this.state.form.email}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div> 
+                                        <div className="col-lg">
+                                            <label
+                                                htmlFor="form-mobile">
+                                                Mobile Number
+                                            </label>
+
+                                            <input
+                                                id="form-mobile"
+                                                type="text"
+                                                required
+                                                name="mobile"
+                                                value={this.state.form.mobile}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div> 
                                     </div> 
 
                                     <div className="row"> 

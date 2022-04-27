@@ -113,6 +113,7 @@ class Business
             $query_data['id'] = $id; 
             
             $query_data['name'] = get_post_meta($id, 'name', true);
+            $query_data['company_name'] = get_post_meta($id, 'company_name', true);
             $query_data['web'] = get_post_meta($id, 'web', true);
             $query_data['email'] = get_post_meta($id, 'email', true);
             $query_data['mobile'] = get_post_meta($id, 'mobile', true);
@@ -151,6 +152,7 @@ class Business
         $query_data['id'] = $id; 
           
         $query_data['name'] = get_post_meta($id, 'name', true);
+        $query_data['company_name'] = get_post_meta($id, 'company_name', true);
         $query_data['web'] = get_post_meta($id, 'web', true);
         $query_data['email'] = get_post_meta($id, 'email', true);
         $query_data['mobile'] = get_post_meta($id, 'mobile', true);
@@ -180,6 +182,7 @@ class Business
         $reg_errors = new \WP_Error;  
 
         $name = isset( $params['name'] ) ? sanitize_text_field( $params['name'] ) : null; 
+        $company_name = isset( $params['company_name'] ) ? sanitize_text_field( $params['company_name'] ) : null; 
         $web = isset( $params['web'] ) ? esc_url_raw( $params['web'] ) : null; 
         $email = isset( $params['email'] ) ? strtolower( sanitize_email( $params['email'] ) ) : null; 
         $mobile = isset( $params['mobile'] ) ? sanitize_text_field( $params['mobile'] ) : null; 
@@ -209,6 +212,10 @@ class Business
                 
                 if ( $name ) {
                     update_post_meta($post_id, 'name', $name); 
+                }
+
+                if ( $company_name ) {
+                    update_post_meta($post_id, 'company_name', $company_name); 
                 }
                  
                 if ( $web ) {
@@ -254,6 +261,7 @@ class Business
         $reg_errors = new \WP_Error;  
 
         $name = isset( $params['name'] ) ? sanitize_text_field( $params['name'] ) : null; 
+        $company_name = isset( $params['company_name'] ) ? sanitize_text_field( $params['company_name'] ) : null; 
         $web = isset( $params['web'] ) ? esc_url_raw( $params['web'] ) : null; 
         $email = isset( $params['email'] ) ? strtolower( sanitize_email( $params['email'] ) ) : null; 
         $mobile = isset( $params['mobile'] ) ? sanitize_text_field( $params['mobile'] ) : null; 
@@ -283,6 +291,10 @@ class Business
                 
                 if ( $name ) {
                     update_post_meta($post_id, 'name', $name); 
+                }
+
+                if ( $company_name ) {
+                    update_post_meta($post_id, 'company_name', $company_name); 
                 }
                  
                 if ( $web ) {

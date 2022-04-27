@@ -6,7 +6,7 @@ import To from '../To';
 import Payment from '../Payment';
 import Total from '../Total';
 import Items from '../Items'
-import Note from '../Note'
+
 import Group from '../Group';
 import Attach from '../Attach';
 import Sign from '../Sign';
@@ -126,7 +126,7 @@ export default class Four extends Component {
                         <div className="pi-note-wrap">
 
                             <div className="pi-note-term">
-                                {note && <Note data={note} />}
+                                
                                 {groups && <Group data={groups} />}
                             </div>
 

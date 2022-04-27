@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context'; 
+import AppContext from 'context/app-context';
 import Upload from 'block/field/upload';
-import Api from 'api/business'; 
+import Api from 'api/business';
 
 export default class Business extends Component {
     constructor(props) {
@@ -10,9 +10,10 @@ export default class Business extends Component {
 
         this.initialState = {
             id: null,
-            name: '', 
+            name: '',
+            company_name: '',
             web: '',
-            email: '', 
+            email: '',
             mobile: '',
             address: '',
             logo: null,
@@ -33,7 +34,7 @@ export default class Business extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
-    toggleChange = () => {  
+    toggleChange = () => {
         let value = !this.state.form.default;
         this.setState({ form: { ...this.state.form, ['default']: value } });
     }
@@ -53,28 +54,28 @@ export default class Business extends Component {
     } */
 
     componentDidMount() {
-        this.getData(); 
+        this.getData();
     }
 
-    getData = () => {  
+    getData = () => {
         Api.getAll('default=1')
-        .then(resp => {
-            let businessData = resp.data.data.result; 
-            if ( businessData.length ) {  
-                this.setState({ form: businessData[0] });  
-            }
-        }); 
+            .then(resp => {
+                let businessData = resp.data.data.result;
+                if (businessData.length) {
+                    this.setState({ form: businessData[0] });
+                }
+            });
     };
 
-    handleSubmit = (e) => { 
+    handleSubmit = (e) => {
         e.preventDefault();
 
         let business = this.state.form;
 
-        if ( !business.id ) {
+        if (!business.id) {
             Api.create(business)
                 .then(resp => {
-                    if ( resp.data.success ) {    
+                    if (resp.data.success) {
                         toast.success(this.context.CrudMsg.create);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -85,7 +86,7 @@ export default class Business extends Component {
         } else {
             Api.update(business.id, business)
                 .then(resp => {
-                    if ( resp.data.success) {  
+                    if (resp.data.success) {
                         toast.success(this.context.CrudMsg.update);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -93,41 +94,59 @@ export default class Business extends Component {
                         });
                     }
                 })
-        } 
+        }
     }
 
-    handleLogoChange = (data, type = null) => { 
-		let form = { ...this.state.form }
-		form.logo = data;
-		this.setState({ form })
-	}
+    handleLogoChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.logo = data;
+        this.setState({ form })
+    }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={{maxWidth: '700px'}} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} style={{ maxWidth: '700px' }} className="pi-form-style-one">
                 <div className="row">
                     <div className="col-md">
-                        <label 
+                        <label
                             htmlFor="field-name">
-                            Company Name
+                            Name
                         </label>
 
-                        <input 
+                        <input
                             id="field-name"
-                            type="text"
-                            required
+                            type="text" 
                             name="name"
                             value={this.state.form.name}
                             onChange={this.handleChange}
                         />
                     </div>
+
                     <div className="col-md">
-                        <label 
+                        <label
+                            htmlFor="field-company_name">
+                            Company Name
+                        </label>
+
+                        <input
+                            id="field-company_name"
+                            type="text" 
+                            name="company_name"
+                            value={this.state.form.company_name}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+
+                </div>
+
+                <div className="row">
+                    <div className="col-md">
+                        <label
                             htmlFor="field-web">
                             Website
                         </label>
 
-                        <input 
+                        <input
                             id="field-web"
                             type="text"
                             name="web"
@@ -135,16 +154,13 @@ export default class Business extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                </div>
-
-                <div className="row">
                     <div className="col-md">
-                        <label 
+                        <label
                             htmlFor="field-email">
                             Email
                         </label>
 
-                        <input 
+                        <input
                             id="field-email"
                             type="email"
                             required
@@ -153,13 +169,17 @@ export default class Business extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
+
+                </div>
+
+                <div className="row">
                     <div className="col-md">
-                        <label 
+                        <label
                             htmlFor="field-mobile">
                             Mobile Number
                         </label>
 
-                        <input 
+                        <input
                             id="field-mobile"
                             type="text"
                             required
@@ -168,36 +188,30 @@ export default class Business extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                </div>
-
-                <div className="row"> 
                     <div className="col-md">
-                        <label 
+                        <label
                             htmlFor="field-zip">
                             Zip Code
                         </label>
 
-                        <input 
+                        <input
                             id="field-zip"
                             type="number"
                             name="zip"
                             value={this.state.form.zip}
                             onChange={this.handleChange}
                         />
-                    </div>  
-                    <div className="col-md">
-                        
-                    </div>                         
+                    </div>
                 </div>
 
                 <div className="row">
                     <div className="col">
-                        <label 
+                        <label
                             htmlFor="field-address">
                             Address
                         </label>
 
-                        <input 
+                        <input
                             id="field-address"
                             type="text"
                             name="address"
@@ -212,16 +226,16 @@ export default class Business extends Component {
                     <div className="col-md">
                         <label htmlFor="field-logo">Upload Logo</label>
                         <Upload label={'Logo'} library={false} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
-                    </div> 
+                    </div>
                 </div>
 
-                <div className="row" style={{marginTop: '10px'}}>
+                <div className="row" style={{ marginTop: '10px' }}>
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
                             Save
-                        </button> 
+                        </button>
                     </div>
-                </div> 
+                </div>
             </form>
         );
     }

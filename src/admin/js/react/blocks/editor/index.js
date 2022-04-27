@@ -30,20 +30,15 @@ class BlockEditor extends Component {
 				this.props.changeHandler(this.props.index, this.state.content);
 			}
 		});
-	};
-
-	componentDidMount() { 
-	}
+	}; 
 
 	componentDidUpdate() {
-		if ( this.state.loaded == false && this.props.value ) {
-			this.setState({ loaded: true, content: this.props.value }); 
-		} 
+		if (this.state.loaded == false && this.props.value) {
+			this.setState({ loaded: true, content: this.props.value });
+		}
 	}
 
 	render = () => {
-
-		const { value } = this.props;
 		const { content } = this.state;
 		return (
 			<>
@@ -52,12 +47,24 @@ class BlockEditor extends Component {
 					// initialValue={value}
 					// initialValue="<p>This is the initial content of the editor</p>"
 					init={{
-						skin: false, 
+						skin: false,
+						branding: false,
 						content_css: false,
 						height: 200,
 						menubar: false,
 						plugins: ['lists'],
-						toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist'
+						toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
+						/* setup: function (ed) {
+							ed.on('init', function () {
+								this.getDoc().body.style.fontSize = '14';
+								this.getDoc().body.style.fontFamily = 'Inter';
+							});
+						}, */
+						/* setup: function (ed) {
+							ed.on('init', function (e) {
+								ed.execCommand("fontName", false, "Inter");
+							});
+						} */
 					}}
 					value={content}
 					onEditorChange={this.handleEditorChange}

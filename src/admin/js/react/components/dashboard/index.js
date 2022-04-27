@@ -208,30 +208,30 @@ export default class Dashboard extends Component {
                         </div>
 
                         <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content" style={{backgroundColor: '#f9f6ea'}}>
+                            <div className="pi-cards-content" style={{ backgroundColor: '#f9f6ea' }}>
                                 <span >Total Estiamte</span>
-                                <h4 style={{color: '#c66542'}}>{total_estimate}</h4>
+                                <h4 style={{ color: '#c66542' }}>{total_estimate}</h4>
                             </div>
                         </div>
 
                         <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content" style={{backgroundColor: '#d7f4f1'}}>
+                            <div className="pi-cards-content" style={{ backgroundColor: '#d7f4f1' }}>
                                 <span >Accepted Estiamte</span>
-                                <h4 style={{color: '#45ac9d'}}>{accepted_estimate}</h4>
+                                <h4 style={{ color: '#45ac9d' }}>{accepted_estimate}</h4>
                             </div>
                         </div>
 
                         <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content" style={{backgroundColor: '#f7dfec'}}>
+                            <div className="pi-cards-content" style={{ backgroundColor: '#f7dfec' }}>
                                 <span >Total Invoice</span>
-                                <h4 style={{color: '#b66490'}}>{total_invoice}</h4>
+                                <h4 style={{ color: '#b66490' }}>{total_invoice}</h4>
                             </div>
                         </div>
 
                         <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content" style={{backgroundColor: '#e6ffe7'}}>
+                            <div className="pi-cards-content" style={{ backgroundColor: '#e6ffe7' }}>
                                 <span >Paid Invoice</span>
-                                <h4 style={{color: '#43ad47'}}>{paid_invoice}</h4>
+                                <h4 style={{ color: '#43ad47' }}>{paid_invoice}</h4>
                             </div>
                         </div>
                     </div>
@@ -247,25 +247,17 @@ export default class Dashboard extends Component {
                                 <div className="pi-featurs-image">
                                     <svg
                                         width={36}
-                                        height={32}
-                                        viewBox="0 0 36 32"
+                                        height={36}
+                                        viewBox="0 0 36 36"
                                         fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
                                     >
                                         <path
-                                            d="M18 12.234A6.117 6.117 0 1018 0a6.117 6.117 0 000 12.234z"
+                                            d="M28.07 18H21a3 3 0 01-3-3V7.911a4.5 4.5 0 00-1.749-3.575 4.306 4.306 0 00-3.722-.8C3.71 5.724-1.665 14.648.526 23.467a16.453 16.453 0 0012.834 12.189c8.586 1.643 16.963-3.695 19.101-12.171a4.314 4.314 0 00-.8-3.728A4.582 4.582 0 0028.07 18z"
                                             fill="#4C6FFF"
                                         />
                                         <path
-                                            d="M30.375 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM5.625 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM9.435 15.707c-1.522-1.247-2.9-1.082-4.66-1.082C2.141 14.625 0 16.755 0 19.37v7.68c0 1.136.927 2.06 2.068 2.06 4.924 0 4.33.088 4.33-.213 0-5.441-.644-9.431 3.037-13.19z"
-                                            fill="#C1CDFF"
-                                        />
-                                        <path
-                                            d="M19.674 14.653c-3.074-.256-5.746.003-8.051 1.905-3.858 3.09-3.115 7.25-3.115 12.339a2.466 2.466 0 002.462 2.462c14.842 0 15.432.48 16.313-1.47.288-.659.21-.45.21-6.755 0-5.008-4.337-8.48-7.819-8.48z"
-                                            fill="#4C6FFF"
-                                        />
-                                        <path
-                                            d="M31.226 14.625c-1.77 0-3.141-.164-4.661 1.082 3.653 3.73 3.037 7.449 3.037 13.19 0 .303-.493.212 4.256.212A2.14 2.14 0 0036 26.976V19.37c0-2.616-2.142-4.745-4.774-4.745z"
+                                            d="M35.477 11.169a14.885 14.885 0 00-1.517-3.633A15.135 15.135 0 0024.873.558C24.621.49 24.057.45 24.057.45c-.201 0-1.07 0-1.756.557-1.01.794-1.169 1.698-1.184 1.768-.052.221-.08.448-.081.675v7.05a4.5 4.5 0 004.5 4.5h7.078a2.942 2.942 0 002.38-1.2 3.057 3.057 0 00.6-1.921 3.172 3.172 0 00-.117-.71z"
                                             fill="#C1CDFF"
                                         />
                                     </svg>
@@ -281,32 +273,31 @@ export default class Dashboard extends Component {
                                 <div className="pi-featurs-image">
                                     <svg
                                         width={36}
-                                        height={32}
-                                        viewBox="0 0 36 32"
+                                        height={36}
+                                        viewBox="0 0 36 36"
                                         fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
                                     >
-                                        <path
-                                            d="M18 12.234A6.117 6.117 0 1018 0a6.117 6.117 0 000 12.234z"
-                                            fill="#4C6FFF"
-                                        />
-                                        <path
-                                            d="M30.375 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM5.625 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM9.435 15.707c-1.522-1.247-2.9-1.082-4.66-1.082C2.141 14.625 0 16.755 0 19.37v7.68c0 1.136.927 2.06 2.068 2.06 4.924 0 4.33.088 4.33-.213 0-5.441-.644-9.431 3.037-13.19z"
-                                            fill="#C1CDFF"
-                                        />
-                                        <path
-                                            d="M19.674 14.653c-3.074-.256-5.746.003-8.051 1.905-3.858 3.09-3.115 7.25-3.115 12.339a2.466 2.466 0 002.462 2.462c14.842 0 15.432.48 16.313-1.47.288-.659.21-.45.21-6.755 0-5.008-4.337-8.48-7.819-8.48z"
-                                            fill="#4C6FFF"
-                                        />
-                                        <path
-                                            d="M31.226 14.625c-1.77 0-3.141-.164-4.661 1.082 3.653 3.73 3.037 7.449 3.037 13.19 0 .303-.493.212 4.256.212A2.14 2.14 0 0036 26.976V19.37c0-2.616-2.142-4.745-4.774-4.745z"
-                                            fill="#C1CDFF"
-                                        />
+                                        <g clipPath="url(#clip0_2928_27439)">
+                                            <path
+                                                d="M31.5 10.5v18A7.51 7.51 0 0124 36H12a7.51 7.51 0 01-7.5-7.5v-21A7.509 7.509 0 0112 0h9v7.5a3 3 0 003 3h7.5zm-6.288 15.62a1.501 1.501 0 00-2.1-.334A6.878 6.878 0 0119.702 27a2.02 2.02 0 01-1.296-.517 4.538 4.538 0 00-2.747-.983 8.792 8.792 0 00-4.57 1.809 1.5 1.5 0 101.822 2.382 5.927 5.927 0 012.748-1.191c.368 0 .556.117 1.05.45a4.878 4.878 0 003 1.05 9.696 9.696 0 005.183-1.79 1.5 1.5 0 00.32-2.09zM25.5 21a1.5 1.5 0 00-1.5-1.5H12a1.5 1.5 0 100 3h12a1.5 1.5 0 001.5-1.5zm0-6a1.5 1.5 0 00-1.5-1.5H12a1.5 1.5 0 100 3h12a1.5 1.5 0 001.5-1.5z"
+                                                fill="#4C6FFF"
+                                            />
+                                            <path
+                                                d="M26.819 2.196A7.452 7.452 0 0024 .45V7.5h7.05a7.431 7.431 0 00-1.748-2.817L26.82 2.196z"
+                                                fill="#C1CDFF"
+                                            />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_2928_27439">
+                                                <path fill="#fff" d="M0 0H36V36H0z" />
+                                            </clipPath>
+                                        </defs>
                                     </svg>
                                 </div>
                                 <div className="pi-featurs-text">
                                     <h4>Proposal</h4>
-                                    <p>Proposal will work for you to send a written document outlining everything. </p>
+                                    <p>Proposal will work for you to send a written document outlining everything.</p>
                                 </div>
                             </div>
                         </div>
@@ -315,27 +306,26 @@ export default class Dashboard extends Component {
                                 <div className="pi-featurs-image">
                                     <svg
                                         width={36}
-                                        height={32}
-                                        viewBox="0 0 36 32"
+                                        height={36}
+                                        viewBox="0 0 36 36"
                                         fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
                                     >
-                                        <path
-                                            d="M18 12.234A6.117 6.117 0 1018 0a6.117 6.117 0 000 12.234z"
-                                            fill="#4C6FFF"
-                                        />
-                                        <path
-                                            d="M30.375 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM5.625 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM9.435 15.707c-1.522-1.247-2.9-1.082-4.66-1.082C2.141 14.625 0 16.755 0 19.37v7.68c0 1.136.927 2.06 2.068 2.06 4.924 0 4.33.088 4.33-.213 0-5.441-.644-9.431 3.037-13.19z"
-                                            fill="#C1CDFF"
-                                        />
-                                        <path
-                                            d="M19.674 14.653c-3.074-.256-5.746.003-8.051 1.905-3.858 3.09-3.115 7.25-3.115 12.339a2.466 2.466 0 002.462 2.462c14.842 0 15.432.48 16.313-1.47.288-.659.21-.45.21-6.755 0-5.008-4.337-8.48-7.819-8.48z"
-                                            fill="#4C6FFF"
-                                        />
-                                        <path
-                                            d="M31.226 14.625c-1.77 0-3.141-.164-4.661 1.082 3.653 3.73 3.037 7.449 3.037 13.19 0 .303-.493.212 4.256.212A2.14 2.14 0 0036 26.976V19.37c0-2.616-2.142-4.745-4.774-4.745z"
-                                            fill="#C1CDFF"
-                                        />
+                                        <g clipPath="url(#clip0_2928_27450)">
+                                            <path
+                                                d="M31.5 10.5v18A7.51 7.51 0 0124 36H12a7.51 7.51 0 01-7.5-7.5v-21A7.509 7.509 0 0112 0h9v7.5a3 3 0 003 3h7.5zm-6.288 15.62a1.501 1.501 0 00-2.1-.334A6.878 6.878 0 0119.702 27a2.02 2.02 0 01-1.296-.517 4.538 4.538 0 00-2.747-.983 8.792 8.792 0 00-4.57 1.809 1.5 1.5 0 101.822 2.382 5.927 5.927 0 012.748-1.191c.368 0 .556.117 1.05.45a4.878 4.878 0 003 1.05 9.696 9.696 0 005.183-1.79 1.5 1.5 0 00.32-2.09zM25.5 21a1.5 1.5 0 00-1.5-1.5H12a1.5 1.5 0 100 3h12a1.5 1.5 0 001.5-1.5zm0-6a1.5 1.5 0 00-1.5-1.5H12a1.5 1.5 0 100 3h12a1.5 1.5 0 001.5-1.5z"
+                                                fill="#4C6FFF"
+                                            />
+                                            <path
+                                                d="M26.819 2.196A7.452 7.452 0 0024 .45V7.5h7.05a7.431 7.431 0 00-1.748-2.817L26.82 2.196z"
+                                                fill="#C1CDFF"
+                                            />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_2928_27450">
+                                                <path fill="#fff" d="M0 0H36V36H0z" />
+                                            </clipPath>
+                                        </defs>
                                     </svg>
                                 </div>
                                 <div className="pi-featurs-text">
@@ -349,25 +339,22 @@ export default class Dashboard extends Component {
                                 <div className="pi-featurs-image">
                                     <svg
                                         width={36}
-                                        height={32}
-                                        viewBox="0 0 36 32"
+                                        height={36}
+                                        viewBox="0 0 36 36"
                                         fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
                                     >
                                         <path
-                                            d="M18 12.234A6.117 6.117 0 1018 0a6.117 6.117 0 000 12.234z"
+                                            d="M21.422 20.184L35.129 6.477c1.139-1.137 1.333-3.373-.638-4.595-1.687-.83-2.991-.122-3.599.587L17.741 17.035a7.509 7.509 0 013.68 3.149z"
+                                            fill="#4C6FFF"
+                                        />
+                                        <path d="M7.5 28.5H15a4.5 4.5 0 100-9c-6 0-7.5 9-7.5 9z" fill="#C1CDFF" />
+                                        <path
+                                            d="M24 28.5a4.5 4.5 0 014.5-4.5H36V9.847l-13.56 13.56c.016.2.06.39.06.593a7.51 7.51 0 01-7.5 7.5H7.5a3 3 0 01-2.96-3.494c.681-4.082 3.462-10.85 9.59-11.448L28.657.47c.143-.143.293-.28.45-.408C28.905.045 28.71 0 28.5 0h-21A7.51 7.51 0 000 7.5v21A7.51 7.51 0 007.5 36H24v-7.5z"
                                             fill="#4C6FFF"
                                         />
                                         <path
-                                            d="M30.375 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM5.625 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM9.435 15.707c-1.522-1.247-2.9-1.082-4.66-1.082C2.141 14.625 0 16.755 0 19.37v7.68c0 1.136.927 2.06 2.068 2.06 4.924 0 4.33.088 4.33-.213 0-5.441-.644-9.431 3.037-13.19z"
-                                            fill="#C1CDFF"
-                                        />
-                                        <path
-                                            d="M19.674 14.653c-3.074-.256-5.746.003-8.051 1.905-3.858 3.09-3.115 7.25-3.115 12.339a2.466 2.466 0 002.462 2.462c14.842 0 15.432.48 16.313-1.47.288-.659.21-.45.21-6.755 0-5.008-4.337-8.48-7.819-8.48z"
-                                            fill="#4C6FFF"
-                                        />
-                                        <path
-                                            d="M31.226 14.625c-1.77 0-3.141-.164-4.661 1.082 3.653 3.73 3.037 7.449 3.037 13.19 0 .303-.493.212 4.256.212A2.14 2.14 0 0036 26.976V19.37c0-2.616-2.142-4.745-4.774-4.745z"
+                                            d="M28.5 27a1.5 1.5 0 00-1.5 1.5v7.05a7.446 7.446 0 002.817-1.746l3.987-3.987A7.446 7.446 0 0035.55 27H28.5z"
                                             fill="#C1CDFF"
                                         />
                                     </svg>
@@ -414,7 +401,7 @@ export default class Dashboard extends Component {
                             </div>
                         </div>
                         <div className="col-md-6">
-                            <div className="pi-feedback-content" style={{backgroundColor: '#f16063'}}>
+                            <div className="pi-feedback-content" style={{ backgroundColor: '#f16063' }}>
                                 <h2>If you experience any problems?</h2>
                                 <p>If you experience any problems or have any feature requests, I would be</p>
 

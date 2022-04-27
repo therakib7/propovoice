@@ -306,11 +306,12 @@ class Email
         }
 
         //TODO: change name email
-        $name = isset($params['name']) ? $params['name'] : 'Propovoice';
-        $from = isset($params['from']) ? $params['from'] : 'propovoice@gmail.com';
+        $current_user = wp_get_current_user(); 
+        $name = isset($params['name']) ? $params['name'] : $current_user->display_name;
+        $from = isset($params['from']) ? $params['from'] : $current_user->user_email;
         $subject = isset($params['subject']) ? $params['subject'] : '';
         $details = isset($params['details']) ? nl2br($params['details']) : '';
-        $propovoice_mail = 'therakib7@gmail.com';
+        $propovoice_mail = 'support@propovoice.com';
 
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $headers[] = 'From: ' . $name . ' <' . $from . '>';

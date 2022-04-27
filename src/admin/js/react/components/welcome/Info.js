@@ -6,9 +6,10 @@ class Info extends Component {
 
         this.initialState = {
             id: null,
-            name: '', 
+            name: '',
+            company_name: '',
             web: '',
-            email: '', 
+            email: '',
             mobile: '',
             address: '',
             logo: null,
@@ -27,7 +28,7 @@ class Info extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
-    toggleChange = () => {  
+    toggleChange = () => {
         let value = !this.state.form.default;
         this.setState({ form: { ...this.state.form, ['default']: value } });
     }
@@ -36,46 +37,46 @@ class Info extends Component {
         //condition added to stop multiple rendering
         if (this.state.form.id != this.props.data.id) {
             this.setState({ form: this.props.data });
-        } 
+        }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.form); 
-    } 
+        this.props.handleSubmit(this.state.form);
+    }
 
     render() {
-        return (   
-            <form onSubmit={this.handleSubmit}>   
+        return (
+            <form onSubmit={this.handleSubmit}>
 
                 <div className="pi-form-style-one">
                     <div className="row">
                         <div className="col-md">
-                            <label 
+                            <label
                                 htmlFor="field-name">
-                                Company Name
+                                Name
                             </label>
 
-                            <input 
+                            <input
                                 id="field-name"
-                                type="text"
-                                required
+                                type="text" 
                                 name="name"
                                 value={this.state.form.name}
                                 onChange={this.handleChange}
                             />
                         </div>
+
                         <div className="col-md">
-                            <label 
-                                htmlFor="field-web">
-                                Website
+                            <label
+                                htmlFor="field-company_name">
+                                Company Name
                             </label>
 
-                            <input 
-                                id="field-web"
-                                type="text"
-                                name="web"
-                                value={this.state.form.web}
+                            <input
+                                id="field-company_name"
+                                type="text" 
+                                name="company_name"
+                                value={this.state.form.company_name}
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -83,12 +84,27 @@ class Info extends Component {
 
                     <div className="row">
                         <div className="col-md">
-                            <label 
+                            <label
+                                htmlFor="field-web">
+                                Website
+                            </label>
+
+                            <input
+                                id="field-web"
+                                type="text"
+                                name="web"
+                                value={this.state.form.web}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+
+                        <div className="col-md">
+                            <label
                                 htmlFor="field-email">
                                 Email
                             </label>
 
-                            <input 
+                            <input
                                 id="field-email"
                                 type="email"
                                 required
@@ -97,13 +113,16 @@ class Info extends Component {
                                 onChange={this.handleChange}
                             />
                         </div>
+                    </div>
+
+                    <div className="row">
                         <div className="col-md">
-                            <label 
+                            <label
                                 htmlFor="field-mobile">
                                 Mobile Number
                             </label>
 
-                            <input 
+                            <input
                                 id="field-mobile"
                                 type="text"
                                 required
@@ -112,16 +131,13 @@ class Info extends Component {
                                 onChange={this.handleChange}
                             />
                         </div>
-                    </div>
-
-                    <div className="row"> 
                         <div className="col-md">
-                            <label 
+                            <label
                                 htmlFor="field-zip">
                                 Zip Code
                             </label>
 
-                            <input 
+                            <input
                                 id="field-zip"
                                 type="number"
                                 name="zip"
@@ -129,18 +145,16 @@ class Info extends Component {
                                 onChange={this.handleChange}
                             />
                         </div>
-                        <div className="col-md"> 
-                        </div>
                     </div>
 
                     <div className="row pi-mb-30">
                         <div className="col">
-                            <label 
+                            <label
                                 htmlFor="field-address">
                                 Address
                             </label>
 
-                            <input 
+                            <input
                                 id="field-address"
                                 type="text"
                                 name="address"
@@ -150,10 +164,10 @@ class Info extends Component {
                             />
                         </div>
                     </div>
-                </div> 
+                </div>
 
                 <div className="pi-buttons pi-text-center">
-                    <button type="submit" className="pi-btn pi-bg-blue pi-bg-hover-blue">Save & Continue</button> 
+                    <button type="submit" className="pi-btn pi-bg-blue pi-bg-hover-blue">Save & Continue</button>
                     <a className="pi-text-hover-blue" onClick={() => this.props.handleSkip('info')}>Skip</a>
                 </div>
             </form>

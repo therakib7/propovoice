@@ -8,9 +8,10 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
-            name: '', 
+            name: '',
+            company_name: '',
             web: '',
-            email: '', 
+            email: '',
             mobile: '',
             address: '',
             zip: '',
@@ -29,7 +30,7 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
-    toggleChange = () => {  
+    toggleChange = () => {
         let value = !this.state.form.default;
         this.setState({ form: { ...this.state.form, ['default']: value } });
     }
@@ -45,9 +46,9 @@ class Form extends Component {
 
     editData = () => {
         //condition added to stop multiple rendering 
-        if ( this.props.modalType == 'edit' ) {
+        if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
-                if ( !wage.length ) { 
+                if (!wage.length) {
                     this.setState({ form: this.props.data });
                 } else {
                     let data = this.props.data;
@@ -57,7 +58,7 @@ class Form extends Component {
             }
         } else {
             if (this.state.form.id != null) {
-                if ( !wage.length ) { 
+                if (!wage.length) {
                     this.setState({ form: this.initialState });
                 } else {
                     let data = this.initialState;
@@ -66,24 +67,24 @@ class Form extends Component {
                 }
             }
         }
-    } 
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
         //this.setState({ form: this.initialState });
-    } 
+    }
 
-    handleLogoChange = (data, type = null) => { 
-		let form = { ...this.state.form }
-		form.logo = data;
-		this.setState({ form })
-	}
+    handleLogoChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.logo = data;
+        this.setState({ form })
+    }
 
-    render() { 
+    render() {
         return (
             <>
-                {this.props.show && ( 
+                {this.props.show && (
                     <div className="pi-overlay pi-show">
                         <div className="pi-popup-content">
                             <div className="pi-modal-header">
@@ -94,46 +95,61 @@ class Form extends Component {
                             <div className="pi-content">
                                 <form onSubmit={this.handleSubmit} className="pi-form-style-one">
                                     <div className="row">
-                                        <div className="col-lg">
+                                        <div className="col-md">
                                             <label
-                                                htmlFor="form-name">
-                                                Company Name
+                                                htmlFor="field-name">
+                                                Name
                                             </label>
 
                                             <input
-                                                id="form-name"
-                                                type="text"
-                                                required
+                                                id="field-name"
+                                                type="text" 
                                                 name="name"
                                                 value={this.state.form.name}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
-                                        <div className="col-lg">
+                                        </div>
+
+                                        <div className="col-md">
                                             <label
-                                                htmlFor="form-web">
+                                                htmlFor="field-company_name">
+                                                Company Name
+                                            </label>
+
+                                            <input
+                                                id="field-company_name"
+                                                type="text" 
+                                                name="company_name"
+                                                value={this.state.form.company_name}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col-md">
+                                            <label
+                                                htmlFor="field-web">
                                                 Website
                                             </label>
 
                                             <input
-                                                id="form-web"
-                                                type="url"
+                                                id="field-web"
+                                                type="text"
                                                 name="web"
                                                 value={this.state.form.web}
                                                 onChange={this.handleChange}
                                             />
                                         </div>
-                                    </div>
-
-                                    <div className="row"> 
-                                        <div className="col-lg">
+                                        <div className="col-md">
                                             <label
-                                                htmlFor="form-email">
+                                                htmlFor="field-email">
                                                 Email
                                             </label>
 
                                             <input
-                                                id="form-email"
+                                                id="field-email"
                                                 type="email"
                                                 required
                                                 name="email"
@@ -142,44 +158,32 @@ class Form extends Component {
                                             />
                                         </div>
 
-                                        <div className="col-lg">
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col-md">
                                             <label
-                                                htmlFor="form-mobile">
+                                                htmlFor="field-mobile">
                                                 Mobile Number
                                             </label>
 
                                             <input
-                                                id="form-mobile"
+                                                id="field-mobile"
                                                 type="text"
                                                 required
                                                 name="mobile"
                                                 value={this.state.form.mobile}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
-                                    </div> 
-
-                                    <div className="row"> 
-                                        <div className="col-lg">
+                                        </div>
+                                        <div className="col-md">
                                             <label
-                                                htmlFor="form-address">
-                                                Address
-                                            </label> 
-                                            <input
-                                                id="form-address"
-                                                type="text"
-                                                name="address"
-                                                value={this.state.form.address}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div> 
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-zip">
+                                                htmlFor="field-zip">
                                                 Zip Code
-                                            </label> 
+                                            </label>
+
                                             <input
-                                                id="form-zip"
+                                                id="field-zip"
                                                 type="number"
                                                 name="zip"
                                                 value={this.state.form.zip}
@@ -188,14 +192,32 @@ class Form extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="row"> 
+                                    <div className="row">
+                                        <div className="col">
+                                            <label
+                                                htmlFor="field-address">
+                                                Address
+                                            </label>
+
+                                            <input
+                                                id="field-address"
+                                                type="text"
+                                                name="address"
+                                                placeholder='Write you full address here'
+                                                value={this.state.form.address}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
                                         <div className="col">
                                             <Upload data={this.state.form.logo} changeHandler={this.handleLogoChange} />
-                                        </div> 
+                                        </div>
 
                                         <div className="col">
-                                            {!wage.length &&<div className="pi-form-checkbox">
-                                                <input 
+                                            {!wage.length && <div className="pi-form-checkbox">
+                                                <input
                                                     id="form-default"
                                                     type="checkbox"
                                                     defaultChecked={this.state.form.default}
@@ -205,23 +227,23 @@ class Form extends Component {
                                                     htmlFor="form-default"
                                                     className="pi-m-10"
                                                 >
-                                                Default?    
-                                                </label>  
+                                                    Default?
+                                                </label>
                                             </div>}
-                                        </div> 
-                                    </div> 
+                                        </div>
+                                    </div>
 
                                     <div className="row">
-                                        <div className="col"> 
+                                        <div className="col">
                                             <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
                                                 Submit
-                                            </button> 
-                                        </div> 
+                                            </button>
+                                        </div>
                                     </div>
-                                </form> 
+                                </form>
                             </div>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
                 )}
             </>
         );

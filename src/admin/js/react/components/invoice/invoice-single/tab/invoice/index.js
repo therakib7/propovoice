@@ -8,11 +8,8 @@ import Api from 'api/invoice';
 import FromTo from './FromTo';
 import Items from './Items'
 import PaymentInfo from './PaymentInfo';
-import Total from './Total';
-// import Note from './Note'
-// const Note = lazy(() => import('./Note'));
-const Section = lazy(() => import('./Section'));
-// import Section from './Section';
+import Total from './Total'; 
+const Section = lazy(() => import('./Section')); 
 
 import Template from '../template';
 import Preview from '../preview';
@@ -24,7 +21,6 @@ import Upload from 'block/field/upload';
 //sidebar section
 const InvTemplate = lazy(() => import('inv-template'));
 const Style = lazy(() => import('./sidebar/Style'));
-import Owner from './sidebar/Owner'
 const Payment = lazy(() => import('./sidebar/Payment'));
 const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
 
@@ -108,8 +104,7 @@ class Invoice extends Component {
 					tax: 'percent',
 					discount: 'fixed'
 				},
-				payment_methods: {},
-				note: null, 
+				payment_methods: {}, 
 				sections: null,
 				attach: [],
 				sign: null
@@ -179,7 +174,7 @@ class Invoice extends Component {
 	};
 
 	bgColor = () => {
-		if (this.state.currentTab == 'info') {
+		if (this.state.currentTab == 'info' || this.state.currentTab == 'preview') {
 			document.body.style.backgroundColor = "#f1f1f7";
 		} else {
 			document.body.style.backgroundColor = "#fff";

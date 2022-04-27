@@ -6,7 +6,7 @@ import To from '../To';
 import Payment from '../Payment';
 import Total from '../Total';
 import Items from '../Items'
-import Note from '../Note'
+
 import Section from '../Section';
 import Attach from '../Attach';
 import Sign from '../Sign';
@@ -26,7 +26,7 @@ export default class One extends Component {
     }
 
     render() {
-        const { id, items, note, sections, attach, sign, date, due_date } = this.props.data.invoice;
+        const { id, items, sections, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
         return (
@@ -69,8 +69,7 @@ export default class One extends Component {
                         </div>
 
                         <div className="pi-note-wrap">
-                            <div className="pi-note-term">
-                                {note && <Note data={note} />}
+                            <div className="pi-note-term"> 
                                 {sections && <Section data={sections} />}
                             </div>
                             {sign && <Sign data={sign} />}

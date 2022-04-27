@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react' 
+// const Editor = lazy(() => import('block/editor'));
 
 class FormBank extends Component {
     constructor(props) {
@@ -21,6 +22,12 @@ class FormBank extends Component {
     handleChange = e => {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    handleDesc = (value = null) => {
+        let form = this.state.form;
+        form['details'] = value; 
+        this.setState({ form });
     }
 
     toggleChange = () => {
@@ -92,6 +99,14 @@ class FormBank extends Component {
                                                 value={this.state.form.details}
                                                 onChange={this.handleChange}
                                             />  
+                                           {/*<Suspense fallback={<div>Loading...</div>}> 
+                                                <Editor
+                                                    key={'pi-bank-details'}
+                                                    value={this.state.form.details} 
+                                                    changeHandler={this.handleDesc}
+                                                />
+                                            </Suspense> */}
+                                            
                                             <p className='pi-field-desc'>You need to mention bank details here, Like: Name, Routing No. etc</p> 
                                         </div> 
                                     </div>
