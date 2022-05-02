@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ContentLoader from 'react-content-loader'
 
-const TableRows = props => {
+const Table = props => {
   const { rows = 5 } = props
   const rowHeight = 60
 
@@ -56,6 +56,6 @@ const TableRows = props => {
       })}
     </ContentLoader>
   )
-} 
+}
 
-export default TableRows
+export default Table

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from 'block/preloader/table';
+import Preloader from 'block/preloader/template';
 
-import Api from 'api/invoice'; 
+import Api from 'api/invoice';
 
 export default class Template extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            preloader: true, 
-            templates: [], 
+            preloader: true,
+            templates: [],
             offset: 0,
             perPage: 10,
             totalPage: 1,
@@ -44,13 +44,13 @@ export default class Template extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 this.setState({ templates: result });
-                this.setState({ preloader: false }); 
+                this.setState({ preloader: false });
                 this.setState({
                     totalPage: Math.ceil(total / this.state.perPage)
                 })
 
                 //select default template
-                if ( ! this.props.currentTemplate ) { 
+                if (!this.props.currentTemplate) {
                     this.props.changeHandler(result[0]);
                 }
             })
@@ -58,7 +58,7 @@ export default class Template extends Component {
 
     selectEntry = (data) => {
         this.props.changeHandler(data, true);
-    } 
+    }
 
     handlePageClick = (e) => {
         const selectedPage = e.selected + 1;
@@ -72,26 +72,26 @@ export default class Template extends Component {
 
     };
 
-    render() { 
+    render() {
         return (
             <div id="pi-template" className="pi-invoice-tab-content">
                 <h2 className='pi-tab-content-title'>Select Template</h2>
                 <div className="row pi-gap pi-margin-l-r">
-                    
-                    {this.state.preloader && <TablePreloader />}
+
+                    {this.state.preloader && <Preloader />}
 
                     {!this.state.preloader &&
-                        this.state.templates.map((row, index) => { 
+                        this.state.templates.map((row, index) => {
                             return (
                                 <div className="col-12 col-md-6 col-lg-3" key={index}>
                                     <div className={(this.props.currentTemplate == row.id) ? 'pi-single-image-content pi-active' : 'pi-single-image-content'}>
                                         <img src={row.src} className="pi-single-image" />
-                                        { ( this.props.currentTemplate != row.id ) && <div className="pi-overflow-content">
+                                        {(this.props.currentTemplate != row.id) && <div className="pi-overflow-content">
                                             <a className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
-                                            <a 
-                                            href={'https://appux.co/ncpi/preview/inv'+row.id+'.html'} 
-                                            target="_blank"
-                                            className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                                            <a
+                                                href={'https://appux.co/ncpi/preview/inv' + row.id + '.html'}
+                                                target="_blank"
+                                                className="pi-btn pi-bg-blue pi-bg-hover-blue"
                                             >Full Preview</a>
                                         </div>}
                                     </div>
