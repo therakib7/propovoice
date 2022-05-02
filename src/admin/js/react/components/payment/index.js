@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import AppContext from '../../context/app-context';
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from 'block/preloader/table';
+import Preloader from 'block/preloader/table';
 import Style from './style.scoped.scss'
 import Api from 'api/payment';
 
@@ -223,32 +223,32 @@ export default class Payment extends Component {
         const { payments, title, currentTab, currentTabTitle } = this.state;
         return (
             <div className="ncpi-components">
-                {!wage.length && 
-                <>
-                    <h1>{title}</h1>
-                    <nav className="pi-breadcrumb">
-                        <ul>
-                            <li>
-                                <a href="#" >
-                                    Home
-                                </a>
-                            </li>
-                            <li>&gt;</li>
-                            <li className="pi-active">
-                                {title}
-                            </li>
-                        </ul>
-                    </nav>
-                </>}
+                {!wage.length &&
+                    <>
+                        <h1>{title}</h1>
+                        <nav className="pi-breadcrumb">
+                            <ul>
+                                <li>
+                                    <a href="#" >
+                                        Home
+                                    </a>
+                                </li>
+                                <li>&gt;</li>
+                                <li className="pi-active">
+                                    {title}
+                                </li>
+                            </ul>
+                        </nav>
+                    </>}
 
-                {wage.length > 0 && 
-                <>
-                    <div className="pi-setting-heading-content">
-                        <h3>Payment Info</h3>
-                        <p><b>Note:</b> In this version, You can add only bank info</p>
-                    </div>
-                </>} 
-                
+                {wage.length > 0 &&
+                    <>
+                        <div className="pi-setting-heading-content">
+                            <h3>Payment Info</h3>
+                            <p><b>Note:</b> In this version, You can add only bank info</p>
+                        </div>
+                    </>}
+
                 <div className="pi-payment-tab">
                     <ul className="pi-tabs">
                         <li data-tab-target="#pi-bank" className={'pi-tab ' + (currentTab == 'bank' ? 'pi-active' : '')} onClick={(e) => this.setActiveTab(e, 'bank')}>
@@ -383,7 +383,7 @@ export default class Payment extends Component {
                             </div>}
 
                             {this.state.preloader ? (
-                                <TablePreloader />
+                                <Preloader />
                             ) : (
                                 <>
                                     {currentTab == 'bank' && <TableBank tableData={payments} editEntry={this.openForm} deleteEntry={this.deleteEntry} />}

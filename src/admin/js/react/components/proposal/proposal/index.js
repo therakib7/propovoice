@@ -6,7 +6,7 @@ import AppContext from 'context/app-context';
 
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from 'block/preloader/table';
+import Preloader from 'block/preloader/table';
 
 import Api from 'api/proposal';
 
@@ -295,7 +295,7 @@ const Invoice = class Invoice extends Component {
                     </p>
                 </div>}
 
-                {this.state.preloader ? <TablePreloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} />}
+                {this.state.preloader ? <Preloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'

@@ -6,7 +6,7 @@ import AppContext from 'context/app-context';
 
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from 'block/preloader/table';
+import Preloader from 'block/preloader/table';
 
 import Api from 'api/invoice';
 import ApiAction from 'api/action';
@@ -77,7 +77,7 @@ const Invoice = class Invoice extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ invoices: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
+                this.setState({ invoices: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
             })
     };
 
@@ -180,24 +180,24 @@ const Invoice = class Invoice extends Component {
     };
 
     handleAction = (type, id) => {
-        if ( 
+        if (
             type == 'sent' ||
             type == 'paid' ||
             type == 'accept' ||
-            type == 'decline' 
+            type == 'decline'
         ) {
-            ApiAction.update(id, {type})
+            ApiAction.update(id, { type })
                 .then(resp => {
-                    if (resp.data.success) { 
-                        if ( type == 'sent' ) {
+                    if (resp.data.success) {
+                        if (type == 'sent') {
                             toast.success(`Successfully mark as Sent`);
-                        } else if ( type == 'paid' ) {
+                        } else if (type == 'paid') {
                             toast.success(`Successfully mark as Paid`);
-                        } else if ( type == 'accept' ) {
+                        } else if (type == 'accept') {
                             toast.success(`Successfully mark as Accepted`);
-                        } else if ( type == 'decline' ) {
+                        } else if (type == 'decline') {
                             toast.success(`Successfully mark as Declined`);
-                        }                         
+                        }
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -207,27 +207,27 @@ const Invoice = class Invoice extends Component {
                 })
         } else if (
             type == 'copy' ||
-            type == 'copy-to-inv' 
+            type == 'copy-to-inv'
         ) {
-            ApiAction.create({id, type})
+            ApiAction.create({ id, type })
                 .then(resp => {
                     if (resp.data.success) {
-                        if ( type == 'copy' ) {
+                        if (type == 'copy') {
                             toast.success(`Successfully copied`);
                             this.getLists();
-                        } else if ( type == 'copy-to-inv' ) {
+                        } else if (type == 'copy-to-inv') {
                             toast.success(`Successfully convert to invoice`);
-                        } 
+                        }
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
                         });
                     }
                 })
-        } 
+        }
     }
 
-    render() { 
+    render() {
         const { title, invoices, checkedBoxes, searchVal } = this.state;
         return (
             <div className="ncpi-components">
@@ -248,43 +248,43 @@ const Invoice = class Invoice extends Component {
                 </nav>
 
                 {invoices.length > 0 &&
-                <>
-                    {!wage.length && <div className="pi-cards">
-                        <div className="row">
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Total {title}</span>
-                                    <h4 className="pi-color-blue">23</h4>
+                    <>
+                        {!wage.length && <div className="pi-cards">
+                            <div className="row">
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span >Total {title}</span>
+                                        <h4 className="pi-color-blue">23</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span >Paid {title}</span>
+                                        <h4 className="pi-color-blue">132</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span >Unpaid {title}</span>
+                                        <h4 className="pi-color-blue">16</h4>
+                                    </div>
+                                </div>
+                                <div className="col col-md-6 col-lg-3">
+                                    <div className="pi-bg-air-white">
+                                        <span >Draft {title}</span>
+                                        <h4 className="pi-color-blue">21</h4>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Paid {title}</span>
-                                    <h4 className="pi-color-blue">132</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Unpaid {title}</span>
-                                    <h4 className="pi-color-blue">16</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Draft {title}</span>
-                                    <h4 className="pi-color-blue">21</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>} 
-                </>}
+                        </div>}
+                    </>}
 
-                <div className="pi-buttons"> 
+                <div className="pi-buttons">
                     <button
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.newInvoie()} >
                         Create New {title}
-                    </button> 
+                    </button>
 
                     <div className="pi-search-box pi-float-right">
                         <svg
@@ -338,7 +338,7 @@ const Invoice = class Invoice extends Component {
                             <option value="100">Show item 100</option>
                         </select>
                     </p>
-                </div>} 
+                </div>}
 
                 {checkedBoxes.length > 0 && <div className='pi-table-showing'>
                     <p>
@@ -349,9 +349,9 @@ const Invoice = class Invoice extends Component {
                             Delete
                         </button>
                     </p>
-                </div>}  
+                </div>}
 
-                {this.state.preloader ? <TablePreloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} action={this.handleAction} />}
+                {this.state.preloader ? <Preloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} action={this.handleAction} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'

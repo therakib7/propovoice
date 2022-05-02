@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from 'block/preloader/table';
+import Preloader from 'block/preloader/table';
 
 import Api from 'api/business';
 import Form from './Form';
@@ -62,7 +62,7 @@ export default class Business extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ businesses: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
+                this.setState({ businesses: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
             })
     };
 
@@ -148,7 +148,7 @@ export default class Business extends Component {
         }
     }
 
-    openForm = (type = 'new', business = null) => { 
+    openForm = (type = 'new', business = null) => {
         if (type == 'new') {
             this.setState({ formModal: true, formModalType: 'new' });
         } else {
@@ -201,7 +201,7 @@ export default class Business extends Component {
     render() {
         const { title, businesses, checkedBoxes, searchVal } = this.state;
         return (
-            <div className="ncpi-components"> 
+            <div className="ncpi-components">
                 <h1>{title}</h1>
                 <nav className="pi-breadcrumb">
                     <ul>
@@ -245,8 +245,8 @@ export default class Business extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>}  
-                </>}
+                    </div>}
+                    </>}
 
                 <div className="pi-buttons">
                     <button
@@ -322,7 +322,7 @@ export default class Business extends Component {
                         </select>
                     </p>
                 </div>}
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
+                {this.state.preloader ? <Preloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'

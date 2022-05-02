@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import ReactPaginate from 'react-paginate';
 
-import TablePreloader from 'block/preloader/table';
+import Preloader from 'block/preloader/table';
 
 import Api from 'api/client';
 import Form from './Form';
@@ -334,7 +334,7 @@ export default class Client extends Component {
                     </p>
                 </div>} 
 
-                {this.state.preloader ? <TablePreloader /> : <Table tableData={clients} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
+                {this.state.preloader ? <Preloader /> : <Table tableData={clients} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'

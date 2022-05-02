@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import AppContext from 'context/app-context';
 
-import TablePreloader from 'block/preloader/table';
+import Preloader from 'block/preloader/table';
 
 import Api from 'api/proposal';
 
