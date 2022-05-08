@@ -9,8 +9,8 @@ export default function InvoiceWrap() {
 	let navigate = useNavigate();
 
 	const location = useLocation(); 
-	let path = '';
- 
+	let path = ''; 
+	
 	if ( id === undefined ) {
 		path = location.pathname == '/invoice/single' ? 'invoice' : 'estimate';
 	} else {

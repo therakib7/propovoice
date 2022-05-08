@@ -68,12 +68,12 @@ export default class Preview extends Component {
 	}
 
     render() {
-        const { id } = this.props.data.invoice.template;
+        // const { id } = this.props.data.invoice.template;
         return (
             <div id="pi-share" className="pi-invoice-tab-content">
                 <iframe id="ncpi-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
-                    <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
+                    <div className='col-md-8' style={{ margin: '50px 0 30px 0'}}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
                             <EditDownload componentRef={this.componentRef} path={this.props.path} handleEdit={this.props.editTab} />
 

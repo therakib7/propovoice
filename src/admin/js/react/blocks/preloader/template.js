@@ -1,32 +1,53 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import ContentLoader from 'react-content-loader'
 
 const Template = props => {
+  // Get values from props
+  // const { rows, columns, coverHeight, coverWidth, padding, speed } = props;
+
+  // Hardcoded values
+  const rows = 2
+  const columns = 5
+  const coverHeight = 105
+  const coverWidth = 85
+  const padding = 8
+  const speed = 1
+
+  const coverHeightWithPadding = coverHeight + padding
+  const coverWidthWithPadding = coverWidth + padding
+  const initial = 0
+  const covers = Array(columns * rows).fill(1)
+
   return (
     <div style={{ width: "100%" }}>
       <ContentLoader
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-        viewBox="0 0 700 575"
+        speed={speed}
+        // width={columns * coverWidthWithPadding}
+        // height={rows * coverHeightWithPadding}
+        viewBox="0 0 500 220"
+        primaryColor="#242b34"
+        secondaryColor="#343d4c"
         {...props}
       >
-        <rect x="537" y="9" rx="2" ry="2" width="140" height="10" />
-        <rect x="14" y="30" rx="2" ry="2" width="667" height="11" />
-        <rect x="12" y="58" rx="2" ry="2" width="211" height="211" />
-        <rect x="240" y="57" rx="2" ry="2" width="211" height="211" />
-        <rect x="467" y="56" rx="2" ry="2" width="211" height="211" />
-        <rect x="12" y="283" rx="2" ry="2" width="211" height="211" />
-        <rect x="240" y="281" rx="2" ry="2" width="211" height="211" />
-        <rect x="468" y="279" rx="2" ry="2" width="211" height="211" />
-        <circle cx="286" cy="536" r="12" />
-        <circle cx="319" cy="535" r="12" />
-        <circle cx="353" cy="535" r="12" />
-        <rect x="378" y="524" rx="0" ry="0" width="52" height="24" />
-        <rect x="210" y="523" rx="0" ry="0" width="52" height="24" />
-        <circle cx="210" cy="535" r="12" />
-        <circle cx="428" cy="536" r="12" />
+
+        {covers.map((g, i) => {
+          let vy = Math.floor(i / columns) * coverHeightWithPadding + initial
+          let vx = (i * coverWidthWithPadding) % (columns * coverWidthWithPadding)
+          return (
+            <rect
+              key={i}
+              x={vx}
+              y={vy}
+              rx="0"
+              ry="0"
+              width={coverWidth}
+              height={coverHeight}
+            />
+          )
+        })}
       </ContentLoader>
     </div>
+
   )
 }
 

@@ -4,7 +4,7 @@ Donate link:
 Tags: proposal, estimate, invoice, payment, crm, project, client, template, transaction, billing, automation, management
 Requires at least: 5.0
 Tested up to: 5.9
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -67,6 +67,11 @@ You can send Estimates and Invoices easily to your client.
 * Please mail us at `support@propovoice.com` 
 
 == Changelog == 
+
+= 0.1.3 =
+* Update: Preloader
+* Fixed: Preview option loading
+* Fixed: Functional issues
 
 = 0.1.2 =
 * Update: CSS Issues
