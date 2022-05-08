@@ -71,7 +71,7 @@ class Form extends Component {
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="first_name">
-                                                First Name
+                                                Full Name
                                             </label>
 
                                             <input
@@ -82,7 +82,7 @@ class Form extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div> 
-                                        <div className="col-lg">
+                                        {/* <div className="col-lg">
                                             <label
                                                 htmlFor="last_name">
                                                 Last Name
@@ -95,14 +95,14 @@ class Form extends Component {
                                                 value={this.state.form.last_name}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
+                                        </div>  */}
                                     </div>
 
                                     <div className="row">
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="form-company_name">
-                                                Company Name
+                                                Company/Organization Name
                                             </label>
 
                                             <input

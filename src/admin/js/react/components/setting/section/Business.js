@@ -125,7 +125,7 @@ export default class Business extends Component {
                     <div className="col-md">
                         <label
                             htmlFor="field-company_name">
-                            Company Name
+                            Company/Organization Name
                         </label>
 
                         <input
