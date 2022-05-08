@@ -14,8 +14,8 @@ const Section = lazy(() => import('./Section'));
 import Template from '../template';
 import Preview from '../preview';
 
-// import Attach from './Attach';
-import DateField from 'block/date-picker';
+// import Attach from './Attach'; 
+const DateField = lazy(() => import('block/date-picker'));
 import Upload from 'block/field/upload';
 
 //sidebar section
@@ -23,6 +23,9 @@ const InvTemplate = lazy(() => import('inv-template'));
 const Style = lazy(() => import('./sidebar/Style'));
 const Payment = lazy(() => import('./sidebar/Payment'));
 const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
+const Reminder = lazy(() => import('./sidebar/Reminder'));
+const Recurring = lazy(() => import('./sidebar/Recurring'));
+const LateFee = lazy(() => import('./sidebar/LateFee'));
 
 class Invoice extends Component {
 
@@ -105,6 +108,28 @@ class Invoice extends Component {
 					discount: 'fixed'
 				},
 				payment_methods: {}, 
+				reminder: {
+					status: false,
+					after: 0,
+					after_type: 'day',
+					every: 0,
+					every_type: 'day',
+					end_after: 5
+				},
+				recurring: {
+					status: false,
+					every: 0,
+					every_type: 'day',
+					end_after: 5
+				},
+				late_fee: {
+					status: false,
+					auto: false,
+					after: 0,
+					after_type: 'day',
+					fee: 0,
+					fee_type: 'fixed', //fixed, percent
+				},
 				sections: null,
 				attach: [],
 				sign: null
@@ -494,7 +519,7 @@ class Invoice extends Component {
 		}
 	}
 
-	onAdditionalAmountChange = (data, type) => {
+	onExtraFieldChange = (data, type) => {
 		let invoice = { ...this.state.invoice }
 		if (type == 'field') {
 			if (invoice.extra_field.hasOwnProperty(data)) { // if payment method exist 
@@ -513,6 +538,18 @@ class Invoice extends Component {
 			invoice.extra_field[data.field] = data.type;
 			this.setState({ invoice });
 		}
+	} 
+
+	onReminderChange = (e) => {
+		const { name, value } = e.target; 
+	}
+
+	onRecurringChange = (e) => {
+		const { name, value } = e.target; 
+	}
+
+	onlateFeeChange = (e) => {
+		const { name, value } = e.target; 
 	}
 
 	render = () => {
@@ -786,50 +823,13 @@ class Invoice extends Component {
 											<Suspense fallback={<div>Loading...</div>}>
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												{this.props.path == 'invoice' && <Payment handleChange={this.onPaymentChange} data={this.state.invoice} handleSave={this.handleSave} />}
-												<AdditionalAmount handleChange={this.onAdditionalAmountChange} data={this.state.invoice} />
+												<AdditionalAmount handleChange={this.onExtraFieldChange} data={this.state.invoice.extra_field} />
 												{/* {!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />} */}
-												{!wage.length &&
+												{!wage.length && this.props.path == 'invoice' &&
 													<>
-														<li>
-															<input type="checkbox" defaultChecked="checked" />
-															<i />
-															<h3>Edit or create Client</h3>
-															<div>
-																<p>Upcoming</p>
-															</div>
-														</li>
-														<li>
-															<input type="checkbox" defaultChecked="checked" />
-															<i />
-															<h3>Additional Amount</h3>
-															<div>
-																<p>Upcoming</p>
-															</div>
-														</li>
-														<li>
-															<input type="checkbox" defaultChecked="checked" />
-															<i />
-															<h3>Reminder</h3>
-															<div>
-																<p>Upcoming</p>
-															</div>
-														</li>
-														<li>
-															<input type="checkbox" defaultChecked="checked" />
-															<i />
-															<h3>Recuring</h3>
-															<div>
-																<p>Upcoming</p>
-															</div>
-														</li>
-														<li>
-															<input type="checkbox" defaultChecked="checked" />
-															<i />
-															<h3>Crarge or Late Fee</h3>
-															<div>
-																<p>Upcoming</p>
-															</div>
-														</li>
+														<Reminder handleChange={this.onReminderChange} data={this.state.invoice.reminder} />
+														<Recurring handleChange={this.onRecurringChange} data={this.state.invoice.recurring} />
+														<LateFee handleChange={this.onlateFeeChange} data={this.state.invoice.late_fee} />
 													</>
 												}
 												{/* Others sidebar section */}

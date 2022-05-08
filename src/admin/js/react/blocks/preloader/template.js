@@ -11,7 +11,6 @@ const Template = props => {
   const coverHeight = 105
   const coverWidth = 85
   const padding = 8
-  const speed = 1
 
   const coverHeightWithPadding = coverHeight + padding
   const coverWidthWithPadding = coverWidth + padding
@@ -21,12 +20,7 @@ const Template = props => {
   return (
     <div style={{ width: "100%" }}>
       <ContentLoader
-        speed={speed}
-        // width={columns * coverWidthWithPadding}
-        // height={rows * coverHeightWithPadding}
         viewBox="0 0 500 220"
-        primaryColor="#242b34"
-        secondaryColor="#343d4c"
         {...props}
       >
 

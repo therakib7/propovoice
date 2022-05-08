@@ -29,6 +29,13 @@ const Invoice = class Invoice extends Component {
             formModalType: 'new',
             invoice: { id: null },
             invoices: [],
+            summary: {
+                total: 0,
+                paid: 0,
+                unpaid: 0,
+                draft: 0,
+                sent: 0
+            },
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
@@ -229,6 +236,7 @@ const Invoice = class Invoice extends Component {
 
     render() {
         const { title, invoices, checkedBoxes, searchVal } = this.state;
+        const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
             <div className="ncpi-components">
 
@@ -249,30 +257,40 @@ const Invoice = class Invoice extends Component {
 
                 {invoices.length > 0 &&
                     <>
-                        {!wage.length && <div className="pi-cards">
+                        {!wage.length && <div className="pi-cards"> 
                             <div className="row">
-                                <div className="col col-md-6 col-lg-3">
-                                    <div className="pi-bg-air-white">
-                                        <span >Total {title}</span>
-                                        <h4 className="pi-color-blue">23</h4>
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content pi-bg-husky">
+                                        <span>Total {title}</span>
+                                        <h4 className="pi-color-blue">{total}</h4>
                                     </div>
                                 </div>
-                                <div className="col col-md-6 col-lg-3">
-                                    <div className="pi-bg-air-white">
-                                        <span >Paid {title}</span>
-                                        <h4 className="pi-color-blue">132</h4>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#f9f6ea' }}>
+                                        <span>Paid {title}</span>
+                                        <h4 style={{ color: '#c66542' }}>{paid}</h4>
                                     </div>
                                 </div>
-                                <div className="col col-md-6 col-lg-3">
-                                    <div className="pi-bg-air-white">
-                                        <span >Unpaid {title}</span>
-                                        <h4 className="pi-color-blue">16</h4>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#d7f4f1' }}>
+                                        <span>Unpaid {title}</span>
+                                        <h4 style={{ color: '#45ac9d' }}>{unpaid}</h4>
                                     </div>
                                 </div>
-                                <div className="col col-md-6 col-lg-3">
-                                    <div className="pi-bg-air-white">
-                                        <span >Draft {title}</span>
-                                        <h4 className="pi-color-blue">21</h4>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#f7dfec' }}>
+                                        <span>Draft {title}</span>
+                                        <h4 style={{ color: '#b66490' }}>{draft}</h4>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#e6ffe7' }}>
+                                        <span>Sent {title}</span>
+                                        <h4 style={{ color: '#43ad47' }}>{sent}</h4>
                                     </div>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@ class AdditionalAmount extends Component {
     } 
 
     render() {
-        const { extra_field } = this.props.data;
+        const extra_field = this.props.data;
         return (
             <li>
                 <input type="checkbox" defaultChecked="checked" />
