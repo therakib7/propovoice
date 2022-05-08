@@ -21,7 +21,7 @@ Propovoice is a WordPress plugin. It's a complete and simple solution to create 
 This plugin has a beautiful Dashboard. Where you can see top statistics at a glance with charts and graphs and manage activities.
 
 == 🏆 Manage Client ==
-This plugin has Client managing features. Where you can easily manage your clients.Managing clients in a great way gains their satisfaction that grows your business. Propovoice made client management flawless. 
+This plugin has Client managing features. Where you can easily manage your client.
 
 == 🏆 Manage Estimate ==
 You can create beautiful Estimates for your clients  and you can send it easily to them. Propovoice helps you create and send professional estimates that clients can’t refuse. 
@@ -30,7 +30,7 @@ You can create beautiful Estimates for your clients  and you can send it easily 
 You can create Invoices looking beautiful and professional for your client and you can send it easily to your client and also receive payment.
 
 == 🏆 Manage Business ==
-You can manage your businesses easily using this plugin. Multiple business management has also been made simple here with Propovoice. 
+You can manage multiple businesses together using this plugin.
 
 == 🏆 Estimate Template ==
 There are lots of Estimate Templates. To choose the best one you can see full preview by clicking the Full Preview button. You can choose any one of them as per your requirements and preferences.
@@ -39,7 +39,7 @@ There are lots of Estimate Templates. To choose the best one you can see full pr
 There are lots of Invoice Templates where you can choose it.
 
 == 🏆 Payment Getway == 
-You can receive money from your client by different payment gateways. We have integrated almost all of popular payment gateways. 
+You can receive money from your client by different payment getaway.
 
 == 🏆 Send Mail == 
 You can send Estimates and Invoices easily to your client.
