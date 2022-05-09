@@ -25,15 +25,12 @@ class Form extends Component {
         };
     }
 
-    handleChange = e => {
-        const { name, value } = e.target;
+    handleChange = e => { 
+        const target = e.target;
+		const name = target.name;
+		const value = target.type === 'checkbox' ? target.checked : target.value; 
         this.setState({ form: { ...this.state.form, [name]: value } });
-    }
-
-    toggleChange = () => {
-        let value = !this.state.form.default;
-        this.setState({ form: { ...this.state.form, ['default']: value } });
-    }
+    } 
 
     componentDidMount() {
         //added this multiple place, because not working in invoice single
@@ -216,20 +213,26 @@ class Form extends Component {
                                         </div>
 
                                         <div className="col">
-                                            {!wage.length && <div className="pi-form-checkbox">
-                                                <input
-                                                    id="form-default"
-                                                    type="checkbox"
-                                                    defaultChecked={this.state.form.default}
-                                                    onChange={this.toggleChange}
-                                                />
+                                            {!wage.length && <> 
                                                 <label
                                                     htmlFor="form-default"
                                                     className="pi-m-10"
                                                 >
                                                     Default?
                                                 </label>
-                                            </div>}
+
+                                                <br />
+
+                                                <label className='pi-switch'>
+                                                    <input type='checkbox'
+                                                        id="form-default"
+                                                        name='default'  
+                                                        checked={this.state.form.default ? 'checked' : ''}
+                                                        onChange={this.handleChange}
+                                                    /> 
+                                                    <span className='pi-switch-slider round'></span>
+                                                </label>
+                                            </>}
                                         </div>
                                     </div>
 

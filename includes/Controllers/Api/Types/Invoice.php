@@ -253,6 +253,34 @@ class Invoice
         }
         $query_data['paymentBankData'] = $paymentData;
 
+        $reminder = get_post_meta($id, 'reminder', true);
+        $reminderData = [];
+        if ( $reminder ) { 
+            $reminderData = $reminder; 
+        } else { 
+            $reminderData['status'] = false;
+            $reminderData['interval'] = 1;
+            $reminderData['interval_type'] = 'day';
+            $reminderData['start_day'] = '';
+            $reminderData['start_time'] = '';
+            $reminderData['limit'] = 5;
+        }
+        $query_data['reminder'] = $reminderData;
+
+        $recurring = get_post_meta($id, 'recurring', true);
+        $recurringData = [];
+        if ( $recurring ) { 
+            $recurringData = $recurring; 
+        } else { 
+            $recurringData['status'] = false;
+            $recurringData['interval'] = 1;
+            $recurringData['interval_type'] = 'day';
+            $recurringData['start_day'] = '';
+            $recurringData['start_time'] = '';
+            $recurringData['limit'] = 5;
+        }
+        $query_data['recurring'] = $recurringData;
+
         wp_send_json_success($query_data);
     }
 
@@ -277,6 +305,9 @@ class Invoice
 
         $from   = isset($params['from']) ? $params['from'] : null;
         $to     = isset($params['to']) ? $params['to'] : null;
+
+        $reminder = isset($params['reminder']) ? $params['reminder'] : null;
+        $recurring = isset($params['recurring']) ? $params['recurring'] : null;
 
         if (!$from) {
             $reg_errors->add('field', esc_html__('Business is missing', 'propovoice'));
@@ -344,6 +375,14 @@ class Invoice
                     update_post_meta($post_id, 'payment_methods', $payment_methods);
                 }
 
+                if ($reminder) {
+                    update_post_meta($post_id, 'reminder', $reminder);
+                }
+
+                if ($recurring) {
+                    update_post_meta($post_id, 'recurring', $recurring);
+                }
+
                 //generate secret token
                 $bytes = random_bytes(20);
                 $token = bin2hex($bytes);
@@ -378,6 +417,9 @@ class Invoice
         }
         $paid     = isset($params['paid']) ? $params['paid'] : null;
         $due      = $paid ? $total - $paid : null;
+
+        $reminder = isset($params['reminder']) ? $params['reminder'] : null;
+        $recurring = isset($params['recurring']) ? $params['recurring'] : null;
 
         $attach = isset($params['attach']) ? $params['attach'] : null;
         $sign   = isset($params['sign']) ? $params['sign'] : null;
@@ -434,6 +476,14 @@ class Invoice
 
                 if ($due) {
                     update_post_meta($post_id, 'due', $due);
+                }
+
+                if ($reminder) {
+                    update_post_meta($post_id, 'reminder', $reminder);
+                }
+
+                if ($recurring) {
+                    update_post_meta($post_id, 'recurring', $recurring);
                 }
 
                 update_post_meta($post_id, 'payment_methods', $payment_methods);

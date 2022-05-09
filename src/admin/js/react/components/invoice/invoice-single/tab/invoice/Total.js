@@ -5,7 +5,7 @@ class Total extends Component {
 
     render = () => {
 
-        const { currencyFormatter, itemsTotal, extra_field, tax, discount, changeHandler, focusHandler, taxTotal, discountTotal, grandTotal } = this.props
+        const { currencyFormatter, itemsTotal, extra_field, tax, discount, late_fee, changeHandler, focusHandler, taxTotal, discountTotal, lateFeeTotal, grandTotal } = this.props
 
         return ( 
             <div className="pi-calculation">
@@ -48,6 +48,23 @@ class Total extends Component {
                         {extra_field.discount == 'percent' ? '%' : '$'}
                         </td>
                         <td>{currencyFormatter(discountTotal())}</td>
+                    </tr>}
+
+                    {extra_field.hasOwnProperty('late_fee') &&<tr>
+                        <td>
+                        Late Fee 
+                        <input 
+                            name="late_fee" 
+                            type="number"  
+                            step="1" 
+                            min="0.00" 
+                            value={late_fee} 
+                            onChange={changeHandler} 
+                            onFocus={focusHandler} 
+                        />
+                        {extra_field.late_fee == 'percent' ? '%' : '$'}
+                        </td>
+                        <td>{currencyFormatter(lateFeeTotal())}</td>
                     </tr>}
 
                     <tr>

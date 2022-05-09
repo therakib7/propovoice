@@ -24,8 +24,7 @@ const Style = lazy(() => import('./sidebar/Style'));
 const Payment = lazy(() => import('./sidebar/Payment'));
 const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
 const Reminder = lazy(() => import('./sidebar/Reminder'));
-const Recurring = lazy(() => import('./sidebar/Recurring'));
-const LateFee = lazy(() => import('./sidebar/LateFee'));
+const Recurring = lazy(() => import('./sidebar/Recurring')); 
 
 class Invoice extends Component {
 
@@ -102,34 +101,29 @@ class Invoice extends Component {
 				],
 				tax: 0,
 				discount: 0,
+				late_fee: 0,
 				paid: 0,
 				extra_field: {
 					tax: 'percent',
-					discount: 'fixed'
+					discount: 'fixed' 
 				},
 				payment_methods: {}, 
 				reminder: {
 					status: false,
-					after: 0,
-					after_type: 'day',
-					every: 0,
-					every_type: 'day',
-					end_after: 5
+					interval: 1,
+					interval_type: 'day',
+					start_day: '',
+					start_time: '',
+					limit: 5
 				},
 				recurring: {
 					status: false,
-					every: 0,
-					every_type: 'day',
-					end_after: 5
-				},
-				late_fee: {
-					status: false,
-					auto: false,
-					after: 0,
-					after_type: 'day',
-					fee: 0,
-					fee_type: 'fixed', //fixed, percent
-				},
+					interval: 1,
+					interval_type: 'day',
+					start_day: '',
+					start_time: '',
+					limit: 5
+				}, 
 				sections: null,
 				attach: [],
 				sign: null
@@ -223,23 +217,24 @@ class Invoice extends Component {
 		let tabs = {...this.state.tabs} 
 		tabs[1].text = 'Edit Information'; 
 		tabs[2].text = 'Update & Share'; 
-		this.setState({tabs});  */
+		this.setState({tabs});*/
 	};
 
 	getData = () => {
 		Api.get(this.props.id)
 			.then(resp => {
-
 				let invoice = resp.data.data.invoice;
 				invoice.id = parseInt(resp.data.data.id);
 				invoice.token = resp.data.data.token;
+				invoice.reminder = resp.data.data.reminder;
+				invoice.recurring = resp.data.data.recurring;
 				invoice.date = new Date(resp.data.data.invoice.date);
 				invoice.due_date = new Date(resp.data.data.invoice.due_date);
 				this.setState({
 					invoice,
 					status: resp.data.data.status,
 					fromData: resp.data.data.fromData,
-					toData: resp.data.data.toData,
+					toData: resp.data.data.toData, 
 					paymentBankData: resp.data.data.paymentBankData,
 				});
 			})
@@ -428,14 +423,26 @@ class Invoice extends Component {
 		}
 	}
 
+	calcLateFeeTotal = () => {
+		let extra_field = this.state.invoice.extra_field;
+		if (extra_field.hasOwnProperty('late_fee') && extra_field.late_fee == 'percent') {
+			return this.calcItemsTotal() * (this.state.invoice.late_fee / 100)
+		} else {
+			return parseFloat(this.state.invoice.late_fee);
+		}
+	}
+
 	calcGrandTotal = () => {
 		let total = this.calcItemsTotal();
 		let extra_field = this.state.invoice.extra_field;
-		if (extra_field.hasOwnProperty('tax')) {
+		if (extra_field.hasOwnProperty('tax')) { 
 			total += this.calcTaxTotal();
 		}
 		if (extra_field.hasOwnProperty('discount')) {
 			total -= this.calcDiscountTotal();
+		}
+		if (extra_field.hasOwnProperty('late_fee')) { 
+			total += this.calcLateFeeTotal();
 		}
 		return total;
 	}
@@ -540,17 +547,23 @@ class Invoice extends Component {
 		}
 	} 
 
-	onReminderChange = (e) => {
-		const { name, value } = e.target; 
+	onReminderChange = (e) => { 
+		let invoice = { ...this.state.invoice } 
+		const target = e.target;
+		const name = target.name;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
+		invoice.reminder[name] = value; 
+		this.setState({ invoice })  
 	}
 
 	onRecurringChange = (e) => {
-		const { name, value } = e.target; 
-	}
-
-	onlateFeeChange = (e) => {
-		const { name, value } = e.target; 
-	}
+		let invoice = { ...this.state.invoice } 
+		const target = e.target;
+		const name = target.name;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
+		invoice.recurring[name] = value; 
+		this.setState({ invoice })  
+	} 
 
 	render = () => {
 		const { title, tabs = [], currentTab, currentTabIndex } = this.state;
@@ -782,8 +795,10 @@ class Invoice extends Component {
 												extra_field={this.state.invoice.extra_field}
 												tax={this.state.invoice.tax}
 												discount={this.state.invoice.discount}
+												late_fee={this.state.invoice.late_fee}
 												taxTotal={this.calcTaxTotal}
 												discountTotal={this.calcDiscountTotal}
+												lateFeeTotal={this.calcLateFeeTotal}
 												grandTotal={this.calcGrandTotal}
 												changeHandler={this.handleTotalChange}
 												focusHandler={this.handleFocusSelect}
@@ -828,11 +843,9 @@ class Invoice extends Component {
 												{!wage.length && this.props.path == 'invoice' &&
 													<>
 														<Reminder handleChange={this.onReminderChange} data={this.state.invoice.reminder} />
-														<Recurring handleChange={this.onRecurringChange} data={this.state.invoice.recurring} />
-														<LateFee handleChange={this.onlateFeeChange} data={this.state.invoice.late_fee} />
+														<Recurring handleChange={this.onRecurringChange} data={this.state.invoice.recurring} /> 
 													</>
-												}
-												{/* Others sidebar section */}
+												} 
 											</Suspense>
 										</ul>
 									</div>
