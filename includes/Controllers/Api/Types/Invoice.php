@@ -259,11 +259,11 @@ class Invoice
             $reminderData = $reminder; 
         } else { 
             $reminderData['status'] = false;
-            $reminderData['interval'] = 1;
-            $reminderData['interval_type'] = 'day';
-            $reminderData['start_day'] = '';
-            $reminderData['start_time'] = '';
-            $reminderData['limit'] = 5;
+            $reminderData['due_date'] =false;
+            $reminderData['before'] = [];
+            $reminderData['after'] = [];
+            $reminderData['time'] = '';
+            $reminderData['timezone'] = ''; 
         }
         $query_data['reminder'] = $reminderData;
 

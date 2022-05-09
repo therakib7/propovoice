@@ -5,6 +5,7 @@ namespace Ncpi\Controllers;
 use Ncpi\Controllers\Ajax\AjaxController;
 use Ncpi\Controllers\Api\ApiController;
 use Ncpi\Controllers\Asset\AssetContoller;
+use Ncpi\Controllers\Cron\CronController;
 use Ncpi\Controllers\Template\PageTemplater;
 use Ncpi\Controllers\Filter\FilterController;
 use Ncpi\Controllers\Hook\HookController;
@@ -33,5 +34,6 @@ class MainController {
         new HookController(); 
         new MetaController();
         new ApiController();
+        new CronController();
     } 
 }

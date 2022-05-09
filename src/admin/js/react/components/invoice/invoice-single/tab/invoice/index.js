@@ -1,5 +1,4 @@
-import React, { Component, Suspense, lazy } from 'react'
-import { NavLink, useParams, useNavigate } from "react-router-dom";
+import React, { Component, Suspense, lazy } from 'react' 
 import { toast } from 'react-toastify';
 
 import Api from 'api/invoice';
@@ -110,11 +109,11 @@ class Invoice extends Component {
 				payment_methods: {}, 
 				reminder: {
 					status: false,
-					interval: 1,
-					interval_type: 'day',
-					start_day: '',
-					start_time: '',
-					limit: 5
+					due_date: false, 
+					before: [],
+					after: [],
+					time: '',
+					timezone: '',
 				},
 				recurring: {
 					status: false,
@@ -551,7 +550,7 @@ class Invoice extends Component {
 		let invoice = { ...this.state.invoice } 
 		const target = e.target;
 		const name = target.name;
-		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const value = name === 'status' ? target.checked : target.value;
 		invoice.reminder[name] = value; 
 		this.setState({ invoice })  
 	}
@@ -560,7 +559,7 @@ class Invoice extends Component {
 		let invoice = { ...this.state.invoice } 
 		const target = e.target;
 		const name = target.name;
-		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const value = name === 'status' ? target.checked : target.value;
 		invoice.recurring[name] = value; 
 		this.setState({ invoice })  
 	} 
@@ -836,15 +835,19 @@ class Invoice extends Component {
 									<div className="pi-accordion-wrapper">
 										<ul>
 											<Suspense fallback={<div>Loading...</div>}>
+
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
+
 												{this.props.path == 'invoice' && <Payment handleChange={this.onPaymentChange} data={this.state.invoice} handleSave={this.handleSave} />}
+
 												<AdditionalAmount handleChange={this.onExtraFieldChange} data={this.state.invoice.extra_field} />
-												{/* {!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />} */}
+
+												{!wage.length && 
+													<Reminder handleChange={this.onReminderChange} data={this.state.invoice.reminder} />  
+												} 
+
 												{!wage.length && this.props.path == 'invoice' &&
-													<>
-														<Reminder handleChange={this.onReminderChange} data={this.state.invoice.reminder} />
-														<Recurring handleChange={this.onRecurringChange} data={this.state.invoice.recurring} /> 
-													</>
+													<Recurring handleChange={this.onRecurringChange} data={this.state.invoice.recurring} />
 												} 
 											</Suspense>
 										</ul>
