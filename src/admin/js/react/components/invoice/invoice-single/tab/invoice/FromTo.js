@@ -37,16 +37,39 @@ class FromTo extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        if (!this.props.editId) {
-            ApiBusiness.getAll('default=1')
-                .then(resp => {
-                    let fromData = resp.data.data.result;
-                    if (fromData.length) {
-                        this.setState({ from: fromData[0] });
+        /**
+         * for free version default selected without list
+         * for pro default delected with list
+         * if don't have default selected first one
+         */
+        ApiBusiness.getAll().then(resp => {
+            let fromData = resp.data.data.result;
+            if (fromData.length) {
+                let stateValue = {}
+
+                if ( !wage.length ) {
+                    stateValue.fromList = fromData;
+                }  
+
+                if ( !this.props.editId ) {  
+                    let filteredArray = fromData.filter(function(itm){
+                        return itm.default == true;
+                    });
+
+                    if (filteredArray.length) { 
+                        stateValue.from = filteredArray[0];
+                        this.props.setFrom(filteredArray[0]);
+                    } else {
+                        stateValue.from = fromData[0];
                         this.props.setFrom(fromData[0]);
-                    }
-                });
-        } else {
+                    } 
+                }   
+                
+                this.setState( stateValue );
+            }
+        });
+
+        if ( this.props.editId ) { 
             let fromData = this.props.fromData;
             let toData = this.props.toData;
             if (fromData && toData) {

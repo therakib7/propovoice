@@ -15,7 +15,7 @@ class Form extends Component {
             mobile: '',
             address: '',
             zip: '',
-            default: false,
+            default: true,
             logo: null,
             date: false
         };
