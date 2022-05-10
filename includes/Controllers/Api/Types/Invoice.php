@@ -252,7 +252,6 @@ class Invoice
             $paymentData['details'] = isset($paymentMeta['details']) ? $paymentMeta['details'][0] : '';
         }
         $query_data['paymentBankData'] = $paymentData;
-
         $reminder = get_post_meta($id, 'reminder', true);
         $reminderData = [];
         if ( $reminder ) { 
@@ -261,7 +260,7 @@ class Invoice
             $reminderData['status'] = false;
             $reminderData['due_date'] =false;
             $reminderData['before'] = [];
-            $reminderData['after'] = [];
+            $reminderData['after'] = [15];
             $reminderData['time'] = '';
             $reminderData['timezone'] = ''; 
         }

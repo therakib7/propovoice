@@ -546,12 +546,22 @@ class Invoice extends Component {
 		}
 	} 
 
-	onReminderChange = (e) => { 
+	onReminderChange = (e, type) => { 
 		let invoice = { ...this.state.invoice } 
 		const target = e.target;
 		const name = target.name;
-		const value = name === 'status' ? target.checked : target.value;
-		invoice.reminder[name] = value; 
+		const value = ( name === 'status' || name === 'due_date') ? target.checked : target.value; 
+		if ( type ) {
+			let arr = invoice.reminder[type]; 
+			if (target.checked) {
+				arr.push(parseInt(value)); 
+			} else { 
+				arr.splice(arr.indexOf(parseInt(value)), 1);  
+			}
+		} else { 
+			invoice.reminder[name] = value;
+		}
+
 		this.setState({ invoice })  
 	}
 

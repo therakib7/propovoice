@@ -9,17 +9,12 @@ class Reminder extends Component {
  
     }
 
-    handleChange = e => {
-        this.props.handleChange(e);
-    }
-
-    onDateChange = e => {
-        this.props.handleChange(e);
-    }
+    handleChange = (e, type = null) => {
+        this.props.handleChange(e, type);
+    } 
 
     render() {
-        const reminder = this.props.data;
-        console.log(reminder)
+        const reminder = this.props.data; 
         return (
             <li>
                 <input type="checkbox" defaultChecked="checked" />
@@ -73,8 +68,8 @@ class Reminder extends Component {
                                                         id="reminder-before-1"
                                                         name='before'
                                                         value={1}
-                                                        checked={reminder.before.includes(1) !== -1 ? 'checked' : ''}
-                                                        onChange={this.handleChange}
+                                                        checked={reminder.before.includes(1) ? 'checked' : ''}
+                                                        onChange={(e) => this.handleChange(e, 'before')}
                                                     />
                                                     <label htmlFor="reminder-before-1">Before 1 day</label>
                                                     <br />
@@ -82,8 +77,8 @@ class Reminder extends Component {
                                                         id="reminder-before-7"
                                                         name='before'
                                                         value={7}
-                                                        checked={reminder.before.includes(7) !== -1 ? 'checked' : ''}
-                                                        onChange={this.handleChange}
+                                                        checked={reminder.before.includes(7) ? 'checked' : ''}
+                                                        onChange={(e) => this.handleChange(e, 'before')}
                                                     />
                                                     <label htmlFor="reminder-before-7">Before 7 days</label>
 
@@ -92,8 +87,8 @@ class Reminder extends Component {
                                                         id="reminder-before-15"
                                                         name='before'
                                                         value={15}
-                                                        checked={reminder.before.includes(15) !== -1 ? 'checked' : ''}
-                                                        onChange={this.handleChange}
+                                                        checked={reminder.before.includes(15) ? 'checked' : ''}
+                                                        onChange={(e) => this.handleChange(e, 'before')}
                                                     />
                                                     <label htmlFor="reminder-before-15">Before 15 days</label>
                                                 </td>
@@ -108,8 +103,8 @@ class Reminder extends Component {
                                                         id="reminder-after-1"
                                                         name='after'
                                                         value={1}
-                                                        checked={reminder.before.includes(1) !== -1 ? 'checked' : ''}
-                                                        onChange={this.handleChange}
+                                                        checked={reminder.after.includes(1) ? 'checked' : ''}
+                                                        onChange={(e) => this.handleChange(e, 'after')}
                                                     />
                                                     <label htmlFor="reminder-after-1">After 1 day</label>
                                                     <br />
@@ -117,18 +112,18 @@ class Reminder extends Component {
                                                         id="reminder-after-7"
                                                         name='after'
                                                         value={7}
-                                                        checked={reminder.before.includes(7) !== -1 ? 'checked' : ''}
-                                                        onChange={this.handleChange}
+                                                        checked={reminder.after.includes(7) ? 'checked' : ''}
+                                                        onChange={(e) => this.handleChange(e, 'after')}
                                                     />
                                                     <label htmlFor="reminder-after-7">After 7 days</label>
 
-                                                    <br />
+                                                    <br /> 
                                                     <input type='checkbox'
                                                         id="reminder-after-15"
                                                         name='after'
                                                         value={15}
-                                                        checked={reminder.before.includes(15) !== -1 ? 'checked' : ''}
-                                                        onChange={this.handleChange}
+                                                        checked={reminder.after.includes(15) ? 'checked' : ''}
+                                                        onChange={(e) => this.handleChange(e, 'after')}
                                                     />
                                                     <label htmlFor="reminder-after-15">After 15 days</label>
                                                 </td>
