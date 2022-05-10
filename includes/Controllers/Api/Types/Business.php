@@ -175,6 +175,32 @@ class Business
         wp_send_json_success($query_data); 
     }
 
+    public function set_default() {
+        $args = array( 
+            'post_type' => 'ncpi_business',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'fields' => 'ids'
+        );  
+        
+        $args['meta_query'] = array(
+            'relation' => 'OR'
+        ); 
+        
+        $args['meta_query'][] = array( 
+            array(
+                'key'     => 'default',
+                'value'   => 1,
+                'compare' => 'LIKE'
+            )
+        );
+        
+        $query = new WP_Query( $args ); 
+        foreach( $query->posts as $id ) {
+            update_post_meta($id, 'default', false); 
+        }
+    }
+
     public function create($req)
     { 
 
@@ -239,7 +265,8 @@ class Business
                 } 
 
                 if ( $default ) {
-                    update_post_meta($post_id, 'default', true); 
+                    $this->set_default(); 
+                    update_post_meta($post_id, 'default', true);
                 } else {
                     update_post_meta($post_id, 'default', false); 
                 }
@@ -318,7 +345,8 @@ class Business
                 } 
 
                 if ( $default ) {
-                    update_post_meta($post_id, 'default', true); 
+                    $this->set_default(); 
+                    update_post_meta($post_id, 'default', true);  
                 } else {
                     update_post_meta($post_id, 'default', false); 
                 }

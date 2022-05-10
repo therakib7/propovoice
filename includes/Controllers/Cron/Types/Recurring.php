@@ -5,7 +5,7 @@ namespace Ncpi\Controllers\Cron\Types;
 use Ncpi\Helpers\Fns;
 use WP_Query;
 
-class Invoice
+class Recurring
 {
 
     public function __construct()

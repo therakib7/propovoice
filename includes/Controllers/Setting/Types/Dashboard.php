@@ -67,23 +67,25 @@ class Dashboard
             array($this, 'render')
         );
 
-        /* add_submenu_page(
-            'ncpi',
-            esc_html__('Payment', 'propovoice'),
-            esc_html__('Payment', 'propovoice'),
-            'manage_options',
-            'ncpi#/payment',
-            array($this, 'render')
-        );
-
-        add_submenu_page(
-            'ncpi',
-            esc_html__('Business', 'propovoice'),
-            esc_html__('Business', 'propovoice'),
-            'manage_options',
-            'ncpi#/business',
-            array($this, 'render')
-        ); */
+        if ( function_exists('ncpip') ) {
+            add_submenu_page(
+                'ncpi',
+                esc_html__('Business', 'propovoice'),
+                esc_html__('Business', 'propovoice'),
+                'manage_options',
+                'ncpi#/business',
+                array($this, 'render')
+            );
+    
+            add_submenu_page(
+                'ncpi',
+                esc_html__('Payment', 'propovoice'),
+                esc_html__('Payment', 'propovoice'),
+                'manage_options',
+                'ncpi#/payment',
+                array($this, 'render')
+            );
+        }
 
         add_submenu_page(
             'ncpi',

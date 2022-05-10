@@ -42,8 +42,7 @@ const TableHeader = props => {
 
 const TableBody = props => {
 
-    const [dropdown, setDropdown] = useState(null);
-    // const close = useCallback(() => setDropdown(null), []);
+    const [dropdown, setDropdown] = useState(null); 
 
     const showDropdown = ( id ) => {
         if ( dropdown == id ) {

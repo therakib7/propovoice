@@ -2,15 +2,15 @@
 
 namespace Ncpi\Controllers\Cron;
  
-use Ncpi\Controllers\Cron\Types\Email;
-use Ncpi\Controllers\Cron\Types\Invoice; 
+use Ncpi\Controllers\Cron\Types\Reminder; 
+use Ncpi\Controllers\Cron\Types\Recurring;
 
 class CronController
 {
 
 	public function __construct()
 	{ 
-		new Invoice(); 
-		new Email(); 
+		new Recurring(); 
+		new Reminder(); 
 	}
 }

@@ -9,10 +9,34 @@ class InstallationController {
 
     public function __construct() { 
         register_activation_hook(NCPI_FILE, array($this, 'plugin_activate'));
-        add_action('admin_init', array($this, 'plugin_redirect') );
-    }   
+        add_filter( 'cron_schedules', array($this, 'custom_schedule' ) );
+        register_activation_hook(NCPI_FILE, array($this, 'schedule_my_cron') ); 
 
-    function plugin_activate() { 
+        add_action('admin_init', array($this, 'plugin_redirect') );
+    }    
+    
+    function custom_schedule( $schedules ) {
+        $schedules['one_minute'] = array(
+            'interval'  => 60,
+            'display'   => esc_html__( 'Every 1 Minute', 'propovoice' )
+        );
+        return $schedules;
+    }
+
+    function schedule_my_cron() {  
+         
+        //set cron job
+        if ( !wp_next_scheduled ( 'ncpi_hourly_event' ) ) {
+            wp_schedule_event(time(), 'hourly', 'ncpi_hourly_event');
+        } 
+
+        if ( !wp_next_scheduled ( 'ncpi_one_minute_event' ) ) {
+            wp_schedule_event(time(), 'one_minute', 'ncpi_one_minute_event');
+        } 
+         
+    }
+
+    function plugin_activate() {  
         add_option('ncpi_activation_redirect', true);
     }
 

@@ -215,38 +215,7 @@ export default class Business extends Component {
                             {title}
                         </li>
                     </ul>
-                </nav>
-
-                {businesses.length > 0 &&
-                    <>{!wage.length && <div className="pi-cards">
-                        <div className="row">
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Total {title}</span>
-                                    <h4 className="pi-color-blue">23</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Paid {title}</span>
-                                    <h4 className="pi-color-blue">132</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Unpaid {title}</span>
-                                    <h4 className="pi-color-blue">16</h4>
-                                </div>
-                            </div>
-                            <div className="col col-md-6 col-lg-3">
-                                <div className="pi-bg-air-white">
-                                    <span >Draft {title}</span>
-                                    <h4 className="pi-color-blue">21</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>}
-                    </>}
+                </nav> 
 
                 <div className="pi-buttons">
                     <button
@@ -312,7 +281,7 @@ export default class Business extends Component {
 
                 {businesses.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {businesses.length} Business Showing from {this.state.total}
+                        {businesses.length} Business showing from {this.state.total}
                         <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>

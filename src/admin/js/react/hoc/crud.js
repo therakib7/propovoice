@@ -312,7 +312,7 @@ export default class Crud extends Component {
 
                 {businesses.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {businesses.length} Crud Showing from {this.state.total}
+                        {businesses.length} Crud showing from {this.state.total}
                         <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
