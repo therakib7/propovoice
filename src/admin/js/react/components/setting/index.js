@@ -5,9 +5,13 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 const General = lazy(() => import('./tab/General'));
 
+//subtab: invoice
+const InvoiceReminder = lazy(() => import('./tab/invoice/Reminder'));
+const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
+
 //subtab: mail
-const Reminder = lazy(() => import('./tab/mail/Reminder'));
-const Recurring = lazy(() => import('./tab/mail/Recurring'));
+const MailReminder = lazy(() => import('./tab/mail/Reminder'));
+const MailRecurring = lazy(() => import('./tab/mail/Recurring'));
 
 const Business = lazy(() => import('./tab/Business'));
 const Payment = lazy(() => import('components/payment')); 
@@ -23,47 +27,49 @@ export default function SettingWrap() {
 		tabDefault = 'general'
 	} 
 
-    const tab_data = [ 
-        {
-            id: 'business',
-            text: 'Business Info'
+    const tab_data = { 
+        business: { 
+            label: 'Business Info'
         },
-        {
-            id: 'payment',
-            text: 'Payment'
+        payment: { 
+            label: 'Payment'
         }, 
-    ];
+    };
     
     const [ currentTab, setCurrentTab ] = useState(tabDefault); 
     const [ currentSubtab, setCurrentSubtab ] = useState(subtabDefault); 
     const [ tabs, setTabs ] = useState(tab_data); 
 
-    useEffect( () => {
-        
+    useEffect( () => {         
         if ( !wage.length ) {
-            const new_tab_data = [ 
-                {
-                    id: 'reminder',
-                    text: 'Reminder'  
-                },
-                {
-                    id: 'mail',
-                    text: 'Mail Template',
-                    subtabs: [
-                        {
-                            id: 'reminder',
-                            text: 'Reminder', 
+            const new_tab_data = { 
+                invoice: { 
+                    label: 'Invoice',
+                    subtabs: {
+                        reminder: { 
+                            label: 'Reminder', 
                         }, 
-                        {
-                            id: 'recurring',
-                            text: 'Recurring'
+                        recurring: { 
+                            label: 'Recurring'
                         }, 
-                    ],
+                    },
                 },  
-            ];
+                mail: { 
+                    label: 'Mail Template',
+                    subtabs: {
+                        reminder: { 
+                            label: 'Reminder', 
+                        }, 
+                        recurring: { 
+                            label: 'Recurring'
+                        }, 
+                    },
+                },  
+            };
             setTabs( new_tab_data );
-        }
-    }, [] )
+        } 
+        
+    }, []); 
 
 	const routeChange = (tab, subtab = null) => { 
         if ( subtab ) { 
@@ -94,27 +100,30 @@ export default function SettingWrap() {
                 </ul>
             </nav>
 
-            <div className='pi-settings-tab'>
-                <ul className='pi-settings-tabs'>
-                    {tabs.map((tab, index) => (
+            <div className='pi-settings-tab'> 
+                <ul className='pi-settings-tabs'> 
+                    {Object.keys(tabs).map(key =>  
                         <li 
-                            key={index}
-                            className={'pi-tab ' + (tab.id == currentTab ? 'pi-active' : '' )} 
+                            key={key}
+                            className={'pi-tab ' + (key == currentTab ? 'pi-active' : '' )} 
+                            onClick={() => addCurrentTab(key)}
                         >   
-                            <a onClick={() => addCurrentTab(tab.id)}>{tab.text}</a>                            
-                            {tab.hasOwnProperty('subtabs') && tab.subtabs.length > 0 && <ul className='pi-settings-subtabs'>
-                                {tab.subtabs.map((subtab, subindex) => (
-                                    <li 
-                                        key={subindex}
-                                        className={'pi-subtab ' + (subtab.id == currentSubtab ? 'pi-active' : '' )}
-                                    > 
-                                        <a onClick={() => addCurrentTab(tab.id, subtab.id)}>{subtab.text}</a>
-                                    </li>
-                                ))}                      
-                            </ul>} 
+                            {tabs[key].label}  
                         </li>
-                    ))}                      
-                </ul> 
+                    )}                 
+                </ul>  
+
+                {tabs.hasOwnProperty(currentTab) && tabs[currentTab].hasOwnProperty('subtabs') && tabs[currentTab].subtabs && <ul className='pi-settings-subtabs'>                     
+                    {Object.keys(tabs[currentTab].subtabs).map(key =>  
+                        <li 
+                            key={key}
+                            className={'pi-subtab ' + ( (key == currentSubtab ) || ( !currentSubtab && Object.keys(tabs[currentTab].subtabs)[0] == key ) ? 'pi-active' : '' )} 
+                            onClick={() => addCurrentTab(currentTab, key)}
+                        >     
+                            {tabs[currentTab].subtabs[key].label}  
+                        </li>
+                    )}      
+                </ul>}
                 
                 <div className="pi-setting-tab-content">
                     {/* <div className="pi-setting-heading-content">
@@ -124,11 +133,17 @@ export default function SettingWrap() {
 
                     <Suspense fallback={<div>Loading...</div>}>
                         {/* {currentTab == 'general' && <General />} */}
+                        {!wage.length && 
+                            <> 
+                                {currentTab == 'invoice' && ( currentSubtab == 'reminder' || ! currentSubtab ) && <InvoiceReminder />}
+                                {currentTab == 'invoice' && currentSubtab == 'recurring' && <InvoiceRecurring />}
+                            </>
+                        }
 
                         {!wage.length && 
-                            <>
-                                {currentTab == 'mail' && currentSubtab == 'reminder' && <Reminder />}
-                                {currentTab == 'mail' && currentSubtab == 'recurring' && <Recurring />}
+                            <> 
+                                {currentTab == 'mail' && ( currentSubtab == 'reminder' || ! currentSubtab ) && <MailReminder />}
+                                {currentTab == 'mail' && currentSubtab == 'recurring' && <MailRecurring />}
                             </>
                         }
 

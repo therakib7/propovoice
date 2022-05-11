@@ -222,13 +222,7 @@ export default class Business extends Component {
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.openForm('new')} >
                         Create New {title}
-                    </button>
-
-                    {checkedBoxes.length ? <button
-                        style={{ marginLeft: '5px' }} className="pi-btn pi-bg-red pi-bg-hover-red"
-                        onClick={() => this.deleteEntry('selected')} >
-                        Delete selected
-                    </button> : ''}
+                    </button> 
 
                     <div className="pi-search-box pi-float-right">
                         <svg
@@ -291,6 +285,17 @@ export default class Business extends Component {
                         </select>
                     </p>
                 </div>}
+
+                {checkedBoxes.length > 0 && <div className='pi-table-showing'>
+                    <p>
+                        {checkedBoxes.length} business selected
+                        <button
+                            style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
+                            onClick={() => this.deleteEntry('selected')} >
+                            Delete
+                        </button>
+                    </p>
+                </div>} 
                 {this.state.preloader ? <Preloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate

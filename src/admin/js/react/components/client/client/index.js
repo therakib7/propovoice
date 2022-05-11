@@ -212,9 +212,7 @@ export default class Client extends Component {
         const { title, clients, checkedBoxes, searchVal } = this.state;
         const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
-            <div className="ncpi-components">
-
-
+            <div className="ncpi-components"> 
                 <h1>{title}</h1>
                 <nav className='pi-breadcrumb'>
                     <ul>
