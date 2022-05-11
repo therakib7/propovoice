@@ -17,7 +17,7 @@ class Section extends Component {
                     content: '',
                 },
                 {
-                    label: 'Terms',
+                    label: 'Terms & Conditions',
                     content: '',
                 }
             ],
