@@ -136,7 +136,7 @@
 
             <a href="https://twitter.com/nasirbinburhan"><img src="https://appux.co/wp-content/plugins/propovoice-server/assets/email/t.png" alt=""></a>
 
-            <a href="#"><img src="https://appux.co/wp-content/plugins/propovoice-server/assets/email/i.png" alt=""></a>    
+            <a href='#'><img src="https://appux.co/wp-content/plugins/propovoice-server/assets/email/i.png" alt=""></a>    
          </div>
          <div class="ncpi-footer-shape"></div>
       </div> 

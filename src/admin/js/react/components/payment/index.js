@@ -226,15 +226,15 @@ export default class Payment extends Component {
                 {!wage.length &&
                     <>
                         <h1>{title}</h1>
-                        <nav className="pi-breadcrumb">
+                        <nav className='pi-breadcrumb'>
                             <ul>
                                 <li>
-                                    <a href="#" >
+                                    <a href='#' >
                                         Home
                                     </a>
                                 </li>
                                 <li>&gt;</li>
-                                <li className="pi-active">
+                                <li className='pi-active'>
                                     {title}
                                 </li>
                             </ul>
@@ -308,7 +308,7 @@ export default class Payment extends Component {
                     </ul>
                     <div className="pi-payment-tab-content">
 
-                        <div id="pi-bank" data-tab-content="" className="pi-active">
+                        <div id="pi-bank" data-tab-content="" className='pi-active'>
                             {currentTab == 'bank' && <FormBank
                                 handleSubmit={this.handleSubmit}
                                 show={this.state.formModal}

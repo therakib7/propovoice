@@ -466,15 +466,15 @@ class Invoice extends Component {
 				<div className="row">
 					<div className="col-md-6">
 						<h1>Create Proposal</h1>
-						<nav className="pi-breadcrumb">
+						<nav className='pi-breadcrumb'>
 							<ul>
 								<li>
-									<a href="#" >
+									<a href='#' >
 										Home
 									</a>
 								</li>
 								<li>&gt;</li>
-								<li className="pi-active">
+								<li className='pi-active'>
 									Proposal
 								</li>
 							</ul>

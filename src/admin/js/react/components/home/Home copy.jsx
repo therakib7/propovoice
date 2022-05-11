@@ -32,7 +32,7 @@ const Home = () => {
             <HashRouter>
                 <aside className="relative ncpi-h-screen w-64 hidden sm:block shadow-xl">
                     <div className="p-6 pb-5">
-                        <a href="#" className="text-3xl font-semibold text-gray-800 hover:text-purple-700 hover:text-purple-700">Propovoice</a>
+                        <a href='#' className="text-3xl font-semibold text-gray-800 hover:text-purple-700 hover:text-purple-700">Propovoice</a>
                     </div>
                     <nav className="text-base">
                         <NavLink
@@ -115,7 +115,7 @@ const Home = () => {
                         </NavLink>
                     </nav>
 
-                    {/* <a href="#" className="absolute w-full upgrade-btn bottom-0 active-nav-link text-gray-700 hover:text-purple-700 flex items-center justify-center py-4">
+                    {/* <a href='#' className="absolute w-full upgrade-btn bottom-0 active-nav-link text-gray-700 hover:text-purple-700 flex items-center justify-center py-4">
                         <i className="dashicons dashicons-upload mr-3" />
                         Upgrade to Pro!
                     </a> */}

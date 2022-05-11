@@ -177,15 +177,15 @@ const Invoice = class Invoice extends Component {
             <div className="ncpi-components">
 
                 <h1>{title}</h1>
-                <nav className="pi-breadcrumb">
+                <nav className='pi-breadcrumb'>
                     <ul>
                         <li>
-                            <a href="#" >
+                            <a href='#' >
                                 Home
                             </a>
                         </li>
                         <li>&gt;</li>
-                        <li className="pi-active">
+                        <li className='pi-active'>
                             {title}
                         </li>
                     </ul>

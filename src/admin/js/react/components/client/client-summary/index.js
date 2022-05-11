@@ -101,7 +101,7 @@ class ClientSummary extends Component {
                         {tabs.map((tab, index) => (
                             <li className="mr-2" key={index}>
                                 <a
-                                    href="#"
+                                    href='#'
                                     className={"inline-flex py-4 px-4 text-sm font-medium text-center rounded-t-lg border-b-2 " + (currentTab == tab.id ? 'text-gray-700 border-gray-700' : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300')}
                                     onClick={(e) => this.setActiveTab(e, tab.id)}
                                 >

@@ -216,15 +216,15 @@ export default class Client extends Component {
 
 
                 <h1>{title}</h1>
-                <nav className="pi-breadcrumb">
+                <nav className='pi-breadcrumb'>
                     <ul>
                         <li>
-                            <a href="#" >
+                            <a href='#' >
                                 Home
                             </a>
                         </li>
                         <li>&gt;</li>
-                        <li className="pi-active">
+                        <li className='pi-active'>
                             {title}
                         </li>
                     </ul>
