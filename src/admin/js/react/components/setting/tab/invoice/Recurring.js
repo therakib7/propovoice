@@ -1,60 +1,72 @@
 import React, { Component } from 'react'; 
 
+import { toast } from 'react-toastify';
+import AppContext from 'context/app-context';
+import Api from 'api/setting';
+
 export default class Recurring extends Component {
     constructor(props) {
-        super(props);
-
-        this.initialState = { 
-            subject: `{company_name} sent you a reminder of {module_name} #{id}`, 
-            msg: `Hi <b>{client_name}</b>,
-Please find attached {module} #{id}. Due Date was {due_date}.
-
-{module} No: #{id}
-{module} Date: {due}
-Due Date: {due_date}
-Due Amount: {amount}
-
-Thank you for your business.
-
-Regards,
-{company_name}` 
-        };
+        super(props); 
 
         this.state = {
-            form: this.initialState
+            form: {
+                status: false,
+                due_date: false, 
+                before: [],
+                after: [],
+                time: '',
+                timezone: '',
+            }
         };
     }
 
-    handleChange = e => {
-        const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
-    } 
+    static contextType = AppContext;
 
-    componentDidUpdate() {
-        //condition added to stop multiple rendering
-        if (this.props.modalType == 'edit') {
-            
-            if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
-            }
-        } else {
-            if (this.state.form.id != null) {
-                this.setState({ form: this.initialState });
-            }
-        }
+    componentDidMount() {
+        Api.getAll('tab=invoice_recurring')
+            .then(resp => { 
+                if (resp.data.success) {
+                    this.setState({ form: resp.data.data });
+                }
+            });
     }
+
+    handleChange = (e, type) => { 
+		let recurring = { ...this.state.form } 
+		const target = e.target;
+		const name = target.name;
+		const value = ( name === 'status' || name === 'due_date') ? target.checked : target.value; 
+		if ( type ) {
+			let arr = recurring[type]; 
+			if (target.checked) {
+				arr.push(parseInt(value)); 
+			} else { 
+				arr.splice(arr.indexOf(parseInt(value)), 1);  
+			}
+		} else { 
+			recurring[name] = value;
+		}
+
+		this.setState({ form: recurring })  
+	}
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // this.props.handleSubmit(this.state.form);
-        //this.setState({ form: this.initialState });
-    } 
 
-    handleLogoChange = (data, type = null) => { 
-		let form = { ...this.state.form }
-		form.logo = data;
-		this.setState({ form })
-	}
+        let form = this.state.form;
+        form.tab = 'invoice_recurring';
+        
+        Api.create(form)
+                .then(resp => {
+                    if (resp.data.success) { 
+                        toast.success(this.context.CrudMsg.update); 
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                })
+    }  
 
     render() {
         return (
@@ -62,33 +74,26 @@ Regards,
 
                 <div className="row">
                     <div className="col">
-                        <label htmlFor="form-subject">
-                            Subject
-                        </label>
-                        <input
-                            id="form-subject"
-                            type="text"
-                            required
-                            name="subject"
-                            value={this.state.form.subject}
-                            onChange={this.handleChange}
-                        />
-                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{module}'}, {'{company_name}'}, </p>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col">
-                        <label htmlFor="form-msg">Message</label>
-                        <textarea
-                            id="form-msg" 
-                            required
-                            rows={9}
-                            name="msg"
-                            value={this.state.form.msg}
-                            onChange={this.handleChange}
-                        />
-                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{module}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{company_name}'},</p>
+                        <table style={{borderSpacing: '8px'}}>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label htmlFor="recurring-status"><strong>Status</strong></label>
+                                    </td>
+                                    <td>
+                                        <label className='pi-switch'>
+                                            <input type='checkbox'
+                                                id="recurring-status"
+                                                name='status'
+                                                checked={this.state.form.status ? 'checked' : ''}
+                                                onChange={this.handleChange}
+                                            />
+                                            <span className='pi-switch-slider round'></span>
+                                        </label>
+                                    </td>
+                                </tr> 
+                            </tbody>
+                        </table>
                     </div>
                 </div> 
 

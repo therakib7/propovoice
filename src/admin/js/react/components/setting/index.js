@@ -9,9 +9,9 @@ const General = lazy(() => import('./tab/General'));
 const InvoiceReminder = lazy(() => import('./tab/invoice/Reminder'));
 const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
 
-//subtab: mail
-const MailReminder = lazy(() => import('./tab/mail/Reminder'));
-const MailRecurring = lazy(() => import('./tab/mail/Recurring'));
+//subtab: email
+const EmailReminder = lazy(() => import('./tab/email/Reminder'));
+const EmailRecurring = lazy(() => import('./tab/email/Recurring'));
 
 const Business = lazy(() => import('./tab/Business'));
 const Payment = lazy(() => import('components/payment')); 
@@ -54,8 +54,8 @@ export default function SettingWrap() {
                         }, 
                     },
                 },  
-                mail: { 
-                    label: 'Mail Template',
+                email: { 
+                    label: 'Email Template',
                     subtabs: {
                         reminder: { 
                             label: 'Reminder', 
@@ -142,8 +142,8 @@ export default function SettingWrap() {
 
                         {!wage.length && 
                             <> 
-                                {currentTab == 'mail' && ( currentSubtab == 'reminder' || ! currentSubtab ) && <MailReminder />}
-                                {currentTab == 'mail' && currentSubtab == 'recurring' && <MailRecurring />}
+                                {currentTab == 'email' && ( currentSubtab == 'reminder' || ! currentSubtab ) && <EmailReminder />}
+                                {currentTab == 'email' && currentSubtab == 'recurring' && <EmailRecurring />}
                             </>
                         }
 

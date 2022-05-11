@@ -28,7 +28,7 @@ class Reminder extends Component {
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <label htmlFor="reminder-status">Status</label>
+                                                <label htmlFor="reminder-status"><strong>Status</strong></label>
                                             </td>
                                             <td>
                                                 <label className='pi-switch'>
@@ -60,7 +60,7 @@ class Reminder extends Component {
                                             </tr>
                                             
                                             <tr>
-                                                <td>
+                                                <td valign='top'>
                                                     <strong>Before due date</strong>
                                                 </td>
                                                 <td>
@@ -95,7 +95,7 @@ class Reminder extends Component {
                                             </tr>  
 
                                             <tr>
-                                                <td>
+                                                <td valign='top'>
                                                     <strong>After due date</strong>
                                                 </td>
                                                 <td>
