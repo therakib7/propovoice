@@ -22,6 +22,10 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
+#: ../includes/Controllers/Installation/InstallationController.php:21
+msgid "Every 1 Minute"
+msgstr ""
+
 #: ../includes/Controllers/Template/PageTemplater.php:24
 msgid "Propovoice Client Invoice"
 msgstr ""
@@ -34,7 +38,7 @@ msgstr ""
 msgid "Required field is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Business.php:195, ../includes/Controllers/Api/Types/Business.php:274, ../includes/Controllers/Api/Types/Project.php:218
+#: ../includes/Controllers/Api/Types/Business.php:221, ../includes/Controllers/Api/Types/Business.php:301, ../includes/Controllers/Api/Types/Project.php:218
 msgid "Name is missing"
 msgstr ""
 
@@ -50,15 +54,15 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:282, ../includes/Controllers/Api/Types/Invoice.php:386, ../includes/Controllers/Api/Types/Proposal.php:262, ../includes/Controllers/Api/Types/Proposal.php:366
+#: ../includes/Controllers/Api/Types/Invoice.php:312, ../includes/Controllers/Api/Types/Invoice.php:427, ../includes/Controllers/Api/Types/Proposal.php:262, ../includes/Controllers/Api/Types/Proposal.php:366
 msgid "Business is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:286, ../includes/Controllers/Api/Types/Proposal.php:266
+#: ../includes/Controllers/Api/Types/Invoice.php:316, ../includes/Controllers/Api/Types/Proposal.php:266
 msgid "Module is missing"
 msgstr ""
 
-#: ../includes/Controllers/Api/Types/Invoice.php:290, ../includes/Controllers/Api/Types/Invoice.php:390, ../includes/Controllers/Api/Types/Proposal.php:270, ../includes/Controllers/Api/Types/Proposal.php:370
+#: ../includes/Controllers/Api/Types/Invoice.php:320, ../includes/Controllers/Api/Types/Invoice.php:431, ../includes/Controllers/Api/Types/Proposal.php:270, ../includes/Controllers/Api/Types/Proposal.php:370
 msgid "Receiver is missing"
 msgstr ""
 
@@ -78,7 +82,11 @@ msgstr ""
 msgid "Title is missing"
 msgstr ""
 
-#: ../includes/Controllers/Marketing/Types/Link.php:22, ../includes/Controllers/Setting/Types/Dashboard.php:90, ../includes/Controllers/Setting/Types/Dashboard.php:91
+#: ../includes/Controllers/Api/Types/Setting.php:32, ../includes/Controllers/Api/Types/Setting.php:125
+msgid "Tab is missing"
+msgstr ""
+
+#: ../includes/Controllers/Marketing/Types/Link.php:22, ../includes/Controllers/Setting/Types/Dashboard.php:93, ../includes/Controllers/Setting/Types/Dashboard.php:94
 msgid "Settings"
 msgstr ""
 
@@ -228,6 +236,14 @@ msgstr ""
 
 #: ../includes/Controllers/Setting/Types/Dashboard.php:63, ../includes/Controllers/Setting/Types/Dashboard.php:64
 msgid "Invoice"
+msgstr ""
+
+#: ../includes/Controllers/Setting/Types/Dashboard.php:73, ../includes/Controllers/Setting/Types/Dashboard.php:74
+msgid "Business"
+msgstr ""
+
+#: ../includes/Controllers/Setting/Types/Dashboard.php:82, ../includes/Controllers/Setting/Types/Dashboard.php:83
+msgid "Payment"
 msgstr ""
 
 #: ../includes/Controllers/Setting/Types/Welcome.php:13, ../includes/Controllers/Setting/Types/Welcome.php:14
