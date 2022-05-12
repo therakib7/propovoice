@@ -7,7 +7,7 @@ class Constant
     public function __construct()
     {
         if (!defined('NCPI_VERSION')) {
-            define('NCPI_VERSION', '0.1.3');
+            define('NCPI_VERSION', '0.1.4');
         }
 
         if (!defined('NCPI_PATH')) {

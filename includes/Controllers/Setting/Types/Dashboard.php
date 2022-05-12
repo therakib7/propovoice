@@ -87,7 +87,7 @@ class Dashboard
             );
         }
 
-        $setting_main = function_exists('ncpip') ? 'mail': 'business';
+        $setting_main = function_exists('ncpip') ? 'estimate': 'business';
         add_submenu_page(
             'ncpi',
             esc_html__('Settings', 'propovoice'),

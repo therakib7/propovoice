@@ -5,6 +5,10 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 const General = lazy(() => import('./tab/General'));
 
+//subtab: estimate
+const EstimateReminder = lazy(() => import('./tab/estimate/Reminder'));
+const EstimateRecurring = lazy(() => import('./tab/estimate/Recurring'));
+
 //subtab: invoice
 const InvoiceReminder = lazy(() => import('./tab/invoice/Reminder'));
 const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
@@ -43,15 +47,32 @@ export default function SettingWrap() {
     useEffect( () => {         
         if ( !wage.length ) {
             const new_tab_data = { 
+                estimate: { 
+                    label: 'Estimate',
+                    subtabs: {
+                        reminder: { 
+                            label: 'Reminder', 
+                        }, 
+                        template: { 
+                            label: 'Template', 
+                        },
+                        /* recurring: { 
+                            label: 'Recurring'
+                        }, */ 
+                    },
+                }, 
                 invoice: { 
                     label: 'Invoice',
                     subtabs: {
                         reminder: { 
                             label: 'Reminder', 
                         }, 
-                        recurring: { 
+                        template: { 
+                            label: 'Template', 
+                        },
+                        /* recurring: { 
                             label: 'Recurring'
-                        }, 
+                        },  */
                     },
                 },  
                 email: { 
@@ -135,6 +156,9 @@ export default function SettingWrap() {
                         {/* {currentTab == 'general' && <General />} */}
                         {!wage.length && 
                             <> 
+                                {currentTab == 'estimate' && ( currentSubtab == 'reminder' || ! currentSubtab ) && <EstimateReminder />}
+                                {currentTab == 'estimate' && currentSubtab == 'recurring' && <EstimateRecurring />}
+
                                 {currentTab == 'invoice' && ( currentSubtab == 'reminder' || ! currentSubtab ) && <InvoiceReminder />}
                                 {currentTab == 'invoice' && currentSubtab == 'recurring' && <InvoiceRecurring />}
                             </>

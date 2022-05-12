@@ -19,12 +19,28 @@ export default class Template extends Component {
         };
     }
 
-    componentDidMount() {
-        //TODO: do not render it multiple time 
+    componentDidMount() { 
         this.getLists();
     }
 
-    getLists = (searchArgs = null) => {
+    getLists = (searchArgs = null) => { 
+
+        
+        const old_version = JSON.parse( localStorage.getItem('ncpi_version') );
+        const template = JSON.parse( localStorage.getItem('ncpi_templates') );
+
+        //version compire
+        let current_version = ncpi.version; 
+        let compare_version = current_version.localeCompare(old_version);
+
+        if ( template && old_version && compare_version !== 1 ) {  
+            
+            this.setState({ preloader: false, templates: template });
+            if (!this.props.currentTemplate) {
+                this.props.changeHandler(template[0]);
+            }
+            return;
+        } 
 
         let args = {
             page: this.state.currentPage,
@@ -42,17 +58,16 @@ export default class Template extends Component {
         Api.getAllTemplate(params)
             .then(resp => {
                 let result = resp.data.data.result;
-                let total = resp.data.data.total;
-                this.setState({ templates: result });
-                this.setState({ preloader: false });
-                this.setState({
-                    totalPage: Math.ceil(total / this.state.perPage)
-                })
+                let total = resp.data.data.total; 
+                localStorage.setItem('ncpi_version', JSON.stringify( ncpi.version ))
+                localStorage.setItem('ncpi_templates', JSON.stringify(result))
+                this.setState({ preloader: false, templates: result, totalPage: Math.ceil(total / this.state.perPage) });
 
                 //select default template
                 if (!this.props.currentTemplate) {
                     this.props.changeHandler(result[0]);
                 }
+                
             })
     };
 
@@ -72,7 +87,7 @@ export default class Template extends Component {
 
     };
 
-    render() {
+    render() { 
         return (
             <div id="pi-template" className="pi-invoice-tab-content">
                 <h2 className='pi-tab-content-title'>Select Template</h2>

@@ -99,6 +99,7 @@ class AssetContoller {
 			
 			wp_localize_script( 'ncpi-dashboard', 'ncpi', array(
 				'apiUrl' => esc_url( rest_url() ),  
+				'version' => ncpi()->version(),  
 				'invoice_page_url' => sprintf(
 					'%s?id=%s&token=%s',
 					Fns::client_page_url('invoice'),

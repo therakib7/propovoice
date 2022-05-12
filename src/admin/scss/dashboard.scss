@@ -173,17 +173,17 @@ h4.from-title {
     display: inline-block;
     width: 50px;
     height: 24px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .pi-switch input {
+}
+
+/* Hide default HTML checkbox */
+.pi-switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  /* The pi-switch-slider */
-  .pi-switch-slider {
+}
+
+/* The pi-switch-slider */
+.pi-switch-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -192,9 +192,9 @@ h4.from-title {
     bottom: 0;
     background-color: #ccc;
     transition: 0.4s;
-  }
-  
-  .pi-switch-slider:before {
+}
+
+.pi-switch-slider:before {
     position: absolute;
     content: "";
     height: 16px;
@@ -203,29 +203,38 @@ h4.from-title {
     bottom: 4px;
     background-color: white;
     transition: 0.4s;
-  }
-  
-  input:checked + .pi-switch-slider {
-    background-color: #4c6fff;
-  }
-  
-  input:focus + .pi-switch-slider {
-    box-shadow: 0 0 1px #4c6fff;
-  }
-  
-  input:checked + .pi-switch-slider:before {
-    transform: translateX(26px);
-  }
-  
-  /* Rounded pi-switch-sliders */
-  .pi-switch-slider.round {
-    border-radius: 34px;
-  }
-  
-  .pi-switch-slider.round:before {
-    border-radius: 50%;
-  }
+}
 
-  .d-none {
-      display: none;
-  }
+input:checked+.pi-switch-slider {
+    background-color: #4c6fff;
+}
+
+input:focus+.pi-switch-slider {
+    box-shadow: 0 0 1px #4c6fff;
+}
+
+input:checked+.pi-switch-slider:before {
+    transform: translateX(26px);
+}
+
+/* Rounded pi-switch-sliders */
+.pi-switch-slider.round {
+    border-radius: 34px;
+}
+
+.pi-switch-slider.round:before {
+    border-radius: 50%;
+}
+
+// bootstrap class
+.d-none {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .justify-content-md-center {
+        -webkit-box-pack: center!important;
+        -ms-flex-pack: center!important;
+        justify-content: center!important;
+    }
+}

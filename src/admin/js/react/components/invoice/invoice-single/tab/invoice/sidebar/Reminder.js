@@ -1,6 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react' 
 
-const TimeField = lazy(() => import('block/time-picker'));
+// const TimeField = lazy(() => import('block/time-picker'));
+import ApiSetting from 'api/setting';
 
 class Reminder extends Component {
 
@@ -8,6 +9,17 @@ class Reminder extends Component {
         super(props);
  
     }
+
+    componentDidMount() { 
+        if ( ! this.props.id ) {
+            const path = this.props.path;
+            ApiSetting.getAll('tab='+path+'_reminder').then(resp => { 
+                if (resp.data.success) { 
+                    this.props.handleDefault(resp.data.data); 
+                }
+            });
+        }        
+    } 
 
     handleChange = (e, type = null) => {
         this.props.handleChange(e, type);
@@ -32,7 +44,8 @@ class Reminder extends Component {
                                             </td>
                                             <td>
                                                 <label className='pi-switch'>
-                                                    <input type='checkbox'
+                                                    <input 
+                                                        type='checkbox'
                                                         id="reminder-status"
                                                         name='status'
                                                         checked={reminder.status ? 'checked' : ''}
@@ -49,7 +62,8 @@ class Reminder extends Component {
                                                     <strong>Due date</strong>
                                                 </td>
                                                 <td>
-                                                    <input type='checkbox'
+                                                    <input 
+                                                        type='checkbox'
                                                         id="reminder-due_date"
                                                         name='due_date'
                                                         checked={reminder.due_date ? 'checked' : ''}
@@ -64,7 +78,8 @@ class Reminder extends Component {
                                                     <strong>Before due date</strong>
                                                 </td>
                                                 <td>
-                                                    <input type='checkbox'
+                                                    <input 
+                                                        type='checkbox'
                                                         id="reminder-before-1"
                                                         name='before'
                                                         value={1}
@@ -73,7 +88,8 @@ class Reminder extends Component {
                                                     />
                                                     <label htmlFor="reminder-before-1">Before 1 day</label>
                                                     <br />
-                                                    <input type='checkbox'
+                                                    <input 
+                                                        type='checkbox'
                                                         id="reminder-before-7"
                                                         name='before'
                                                         value={7}
@@ -83,7 +99,8 @@ class Reminder extends Component {
                                                     <label htmlFor="reminder-before-7">Before 7 days</label>
 
                                                     <br />
-                                                    <input type='checkbox'
+                                                    <input 
+                                                        type='checkbox'
                                                         id="reminder-before-15"
                                                         name='before'
                                                         value={15}
@@ -99,7 +116,8 @@ class Reminder extends Component {
                                                     <strong>After due date</strong>
                                                 </td>
                                                 <td>
-                                                    <input type='checkbox'
+                                                    <input 
+                                                        type='checkbox'
                                                         id="reminder-after-1"
                                                         name='after'
                                                         value={1}
@@ -108,7 +126,8 @@ class Reminder extends Component {
                                                     />
                                                     <label htmlFor="reminder-after-1">After 1 day</label>
                                                     <br />
-                                                    <input type='checkbox'
+                                                    <input 
+                                                        type='checkbox'
                                                         id="reminder-after-7"
                                                         name='after'
                                                         value={7}
@@ -118,7 +137,8 @@ class Reminder extends Component {
                                                     <label htmlFor="reminder-after-7">After 7 days</label>
 
                                                     <br /> 
-                                                    <input type='checkbox'
+                                                    <input 
+                                                        type='checkbox'
                                                         id="reminder-after-15"
                                                         name='after'
                                                         value={15}

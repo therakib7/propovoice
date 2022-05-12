@@ -1,7 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react' 
 import { toast } from 'react-toastify';
 
-import Api from 'api/invoice';
+import Api from 'api/invoice'; 
 
 //self component
 import FromTo from './FromTo';
@@ -48,7 +48,7 @@ class Invoice extends Component {
 					id: 'preview',
 					text: 'Preview & Share'
 				},
-			],
+			], 
 			currentTab: '',
 			currentTabIndex: null,
 			msg: {
@@ -148,7 +148,7 @@ class Invoice extends Component {
 		}
 	};
 
-	componentDidMount() {
+	componentDidMount() { 
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
 		if (this.props.id) {
@@ -173,7 +173,7 @@ class Invoice extends Component {
 				title,
 				currentTab: 'template',
 				currentTabIndex: 0
-			});
+			}); 
 		}
 
 		this.bgColor();
@@ -546,6 +546,12 @@ class Invoice extends Component {
 		}
 	} 
 
+	onReminderDefault = ( data ) => { 
+		let invoice = { ...this.state.invoice } 
+		invoice.reminder = data;
+		this.setState({ invoice })  
+	}
+
 	onReminderChange = (e, type) => { 
 		let invoice = { ...this.state.invoice } 
 		const target = e.target;
@@ -575,7 +581,7 @@ class Invoice extends Component {
 	} 
 
 	render = () => {
-		const { title, tabs = [], currentTab, currentTabIndex } = this.state;
+		const { title, tabs = [], currentTab, currentTabIndex, invoice } = this.state;
 		return (
 			<>
 
@@ -667,7 +673,10 @@ class Invoice extends Component {
 						))}
 					</div>
 
-					{(currentTab == 'template') && <Template currentTemplate={this.state.invoice.template} changeHandler={this.handleTemplateChange} />}
+					{(currentTab == 'template') && <Template 
+						currentTemplate={invoice.template}  
+						changeHandler={this.handleTemplateChange} 
+					/>}
 
 					{(currentTab == 'info') && <div id="pi-informations" className="pi-invoice-tab-content">
 						<div className="row">
@@ -705,7 +714,7 @@ class Invoice extends Component {
 															<label htmlFor="date">{title} date:</label>
 														</div>
 														<div className="pi-info-input-field">
-															<DateField date={this.state.invoice.date} type='date' onDateChange={this.onDateChange} />
+															<DateField date={invoice.date} type='date' onDateChange={this.onDateChange} />
 															{false && <span>
 																<svg
 																	xmlns="http://www.w3.org/2000/svg"
@@ -724,7 +733,7 @@ class Invoice extends Component {
 															<label htmlFor="due">Due date:</label>
 														</div>
 														<div className="pi-info-input-field">
-															<DateField date={this.state.invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
+															<DateField date={invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
 														</div>
 													</div>
 
@@ -736,7 +745,7 @@ class Invoice extends Component {
 															<input
 																type="text"
 																name="currency"
-																// value={this.state.invoice.currency}
+																// value={invoice.currency}
 																value='USD'
 																readOnly
 															// onChange={() => this.changeCurrency}
@@ -782,7 +791,7 @@ class Invoice extends Component {
 										</span>
 
 										<Items
-											items={this.state.invoice.items}
+											items={invoice.items}
 											currencyFormatter={this.formatCurrency}
 											addHandler={this.handleAddLineItem}
 											changeHandler={this.handleLineItemChange}
@@ -801,10 +810,10 @@ class Invoice extends Component {
 											<Total
 												currencyFormatter={this.formatCurrency}
 												itemsTotal={this.calcItemsTotal}
-												extra_field={this.state.invoice.extra_field}
-												tax={this.state.invoice.tax}
-												discount={this.state.invoice.discount}
-												late_fee={this.state.invoice.late_fee}
+												extra_field={invoice.extra_field}
+												tax={invoice.tax}
+												discount={invoice.discount}
+												late_fee={invoice.late_fee}
 												taxTotal={this.calcTaxTotal}
 												discountTotal={this.calcDiscountTotal}
 												lateFeeTotal={this.calcLateFeeTotal}
@@ -817,16 +826,16 @@ class Invoice extends Component {
 
 									<div className="pi-group-form">
 										<Suspense fallback={<div>Loading...</div>}> 
-											<Section data={this.state.invoice.sections} changeHandler={this.handleSectionChange} />
+											<Section data={invoice.sections} changeHandler={this.handleSectionChange} />
 										</Suspense>
 
 										<div className="pi-buttons">
 											<div className="row">
 												<div className="col-md-6">
-													{/* <Attach data={this.state.invoice.attach} changeHandler={this.handleAttachChange} /> */}
+													{/* <Attach data={invoice.attach} changeHandler={this.handleAttachChange} /> */}
 												</div>
 												<div className="col-md-6">
-													<Upload label={'Authorized Signature'} btnClass={'pi-a-btn pi-p-40'} imgClass={'pi-text-right pi-signature'} data={this.state.invoice.sign} changeHandler={this.handleSignChange} />
+													<Upload label={'Authorized Signature'} btnClass={'pi-a-btn pi-p-40'} imgClass={'pi-text-right pi-signature'} data={invoice.sign} changeHandler={this.handleSignChange} />
 												</div>
 											</div>
 										</div>
@@ -839,25 +848,44 @@ class Invoice extends Component {
 									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2>
 
 									<div className='pi-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
-										<InvTemplate key={this.state.invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
+										<InvTemplate key={invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 									</div>
 
 									<div className="pi-accordion-wrapper">
 										<ul>
 											<Suspense fallback={<div>Loading...</div>}>
 
-												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
+												<Style 
+													handleChange={this.onStyleChange} 
+													data={invoice} 
+												/>
 
-												{this.props.path == 'invoice' && <Payment handleChange={this.onPaymentChange} data={this.state.invoice} handleSave={this.handleSave} />}
+												{this.props.path == 'invoice' && <Payment 
+													handleChange={this.onPaymentChange} 
+													data={invoice} 
+													handleSave={this.handleSave} 
+												/>}
 
-												<AdditionalAmount handleChange={this.onExtraFieldChange} data={this.state.invoice.extra_field} />
+												<AdditionalAmount 
+													handleChange={this.onExtraFieldChange} 
+													data={invoice.extra_field} 
+												/>
 
 												{!wage.length && 
-													<Reminder handleChange={this.onReminderChange} data={this.state.invoice.reminder} />  
+													<Reminder 
+														handleChange={this.onReminderChange} 
+														handleDefault={this.onReminderDefault}  
+														id={this.props.id}
+														path={this.props.path}
+														data={invoice.reminder} 
+													/>  
 												} 
 
 												{!wage.length && this.props.path == 'invoice' &&
-													<Recurring handleChange={this.onRecurringChange} data={this.state.invoice.recurring} />
+													<Recurring 
+														handleChange={this.onRecurringChange} 
+														data={invoice.recurring} 
+													/>
 												} 
 											</Suspense>
 										</ul>

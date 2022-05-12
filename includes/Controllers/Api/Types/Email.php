@@ -199,8 +199,9 @@ class Email
 
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $headers[] = 'From: ' . $compnay_name . ' <' . $mail_from . '>';
-        $headers[] = 'Cc: Rakib <rakib@wordpress.org>';
-        $headers[] = 'Cc: iluvwp@wordpress.org'; // note you can just use a simple email address
+        //TODO: dynamic Cc later
+        // $headers[] = 'Cc: Rakib <rakib@wordpress.org>';
+        // $headers[] = 'Cc: iluvwp@wordpress.org'; // note you can just use a simple email address
 
         //attachment
         $attachments = [];
@@ -305,12 +306,13 @@ class Email
             $feedback_title = 'Bug Information: ';
         }
 
-        //TODO: change name email
+        
         $current_user = wp_get_current_user(); 
         $name = isset($params['name']) ? $params['name'] : $current_user->display_name;
         $from = isset($params['from']) ? $params['from'] : $current_user->user_email;
         $subject = isset($params['subject']) ? $params['subject'] : '';
         $details = isset($params['details']) ? nl2br($params['details']) : '';
+        //TODO: change name email
         $propovoice_mail = 'support@propovoice.com';
 
         $headers = array('Content-Type: text/html; charset=UTF-8');

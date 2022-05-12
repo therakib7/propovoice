@@ -28,7 +28,14 @@ export default function InvoiceWrap() {
 
 	return (
 		<>
-			<Invoice id={id} tab={tab} routeChange={routeChange}  routeInvoice={routeInvoice} path={path} key={path} />
+			<Invoice 
+				id={id} 
+				tab={tab} 
+				routeChange={routeChange} 
+				routeInvoice={routeInvoice} 
+				path={path} 
+				key={path} 
+			/>
 		</>
 	);
 } 
