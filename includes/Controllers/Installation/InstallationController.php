@@ -16,6 +16,11 @@ class InstallationController {
     }    
     
     function custom_schedule( $schedules ) {
+        $schedules['half_minute'] = array(
+            'interval'  => 30,
+            'display'   => esc_html__( 'Every Half Minute', 'propovoice' )
+        );
+
         $schedules['one_minute'] = array(
             'interval'  => 60,
             'display'   => esc_html__( 'Every 1 Minute', 'propovoice' )
@@ -28,6 +33,10 @@ class InstallationController {
         //set cron job
         if ( !wp_next_scheduled ( 'ncpi_hourly_event' ) ) {
             wp_schedule_event(time(), 'hourly', 'ncpi_hourly_event');
+        } 
+
+        if ( !wp_next_scheduled ( 'ncpi_half_minute_event' ) ) {
+            wp_schedule_event(time(), 'half_minute', 'ncpi_half_minute_event');
         } 
 
         if ( !wp_next_scheduled ( 'ncpi_one_minute_event' ) ) {

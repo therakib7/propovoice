@@ -133,29 +133,6 @@ class Email
         $query_data['email'] = json_decode(get_post_meta($id, 'email', true));
 
         wp_send_json_success($query_data);
-    }
-
-    public function templateVariable($string = '', $compnay_name, $client_name, $invoice_id, $invoice_url, $msg = '', $path = '')
-    {
-        return str_replace(
-            array(
-                '{company_name}',
-                '{client_name}',
-                '{invoice_id}',
-                '{invoice_url}',
-                '{msg}',
-                '{path}'
-            ),
-            array(
-                $compnay_name,
-                $client_name,
-                $invoice_id,
-                $invoice_url,
-                $msg,
-                $path
-            ),
-            $string
-        );
     } 
 
     public function create($req)
@@ -193,9 +170,9 @@ class Email
             $token
         );
 
-        $subject = $this->templateVariable($mail_subject, $compnay_name, $client_name, $invoice_id, $invoice_url);
+        $subject = Fns::templateVariable($mail_subject, $compnay_name, $client_name, $invoice_id, $invoice_url);
         $template = ncpi()->render('email/invoice', [], true);
-        $body = $this->templateVariable($template, $compnay_name, $client_name, $invoice_id, $invoice_url, $msg, $path);
+        $body = Fns::templateVariable($template, $compnay_name, $client_name, $invoice_id, $invoice_url, $msg, $path);
 
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $headers[] = 'From: ' . $compnay_name . ' <' . $mail_from . '>';
@@ -207,7 +184,7 @@ class Email
         $attachments = [];
         if ($mail_invoice_img) {
             ob_start();
-?>
+    ?>
             <!DOCTYPE html>
             <html>
 

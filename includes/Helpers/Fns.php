@@ -17,7 +17,7 @@ class Fns {
         return apply_filters('ncpi_locate_template', $template_file, $name);
     }
 
-     /* get url by page template */
+    /* get url by page template */
     public static function client_page_url( $slug ) {
         $page = get_pages(array(
             'meta_key' => '_wp_page_template',
@@ -28,6 +28,30 @@ class Fns {
         } else {
             return '#';
         }
+    }
+
+    /* templateVariable */
+    public static function templateVariable($string = '', $compnay_name, $client_name, $invoice_id, $invoice_url, $msg = '', $path = '')
+    {
+        return str_replace(
+            array(
+                '{company_name}',
+                '{client_name}',
+                '{invoice_id}',
+                '{invoice_url}',
+                '{msg}',
+                '{path}'
+            ),
+            array(
+                $compnay_name,
+                $client_name,
+                $invoice_id,
+                $invoice_url,
+                $msg,
+                $path
+            ),
+            $string
+        );
     }
     
     /**
