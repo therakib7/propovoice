@@ -1,0 +1,17 @@
+<?php
+
+namespace Ncpi\Controllers\Cron;
+
+use Ncpi\Controllers\Cron\Types\Reminder;
+use Ncpi\Controllers\Cron\Types\Recurring;
+
+class CronController
+{
+
+	public function __construct()
+	{
+		// from pro
+		// new Recurring(); 
+		// new Reminder(); 
+	}
+}

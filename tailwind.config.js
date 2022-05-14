@@ -1,11 +1,11 @@
 module.exports = {
   purge: {
     content: [
-      './includes/**/*.php',
+      './app/**/*.php',
       './src/**/*.php',
       './src/**/*.js',
-      './templates/**/*.php', 
-      './views/**/*.php' 
+      './templates/**/*.php',
+      './views/**/*.php'
     ]
   },
   darkMode: false, // or 'media' or 'class'

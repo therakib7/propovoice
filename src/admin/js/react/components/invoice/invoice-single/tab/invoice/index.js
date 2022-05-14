@@ -1,14 +1,14 @@
-import React, { Component, Suspense, lazy } from 'react' 
+import React, { Component, Suspense, lazy } from 'react'
 import { toast } from 'react-toastify';
 
-import Api from 'api/invoice'; 
+import Api from 'api/invoice';
 
 //self component
 import FromTo from './FromTo';
 import Items from './Items'
 import PaymentInfo from './PaymentInfo';
-import Total from './Total'; 
-const Section = lazy(() => import('./Section')); 
+import Total from './Total';
+const Section = lazy(() => import('./Section'));
 
 import Template from '../template';
 import Preview from '../preview';
@@ -23,7 +23,7 @@ const Style = lazy(() => import('./sidebar/Style'));
 const Payment = lazy(() => import('./sidebar/Payment'));
 const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
 const Reminder = lazy(() => import('./sidebar/Reminder'));
-const Recurring = lazy(() => import('./sidebar/Recurring')); 
+const Recurring = lazy(() => import('./sidebar/Recurring'));
 
 class Invoice extends Component {
 
@@ -48,7 +48,7 @@ class Invoice extends Component {
 					id: 'preview',
 					text: 'Preview & Share'
 				},
-			], 
+			],
 			currentTab: '',
 			currentTabIndex: null,
 			msg: {
@@ -104,12 +104,12 @@ class Invoice extends Component {
 				paid: 0,
 				extra_field: {
 					tax: 'percent',
-					discount: 'fixed' 
+					discount: 'fixed'
 				},
-				payment_methods: {}, 
+				payment_methods: {},
 				reminder: {
 					status: false,
-					due_date: false, 
+					due_date: false,
 					before: [],
 					after: [],
 					time: '',
@@ -122,7 +122,7 @@ class Invoice extends Component {
 					start_day: '',
 					start_time: '',
 					limit: 5
-				}, 
+				},
 				sections: null,
 				attach: [],
 				sign: null
@@ -148,7 +148,12 @@ class Invoice extends Component {
 		}
 	};
 
-	componentDidMount() { 
+	componentDidMount() {
+		var myCurrentDate = new Date();
+		var myFutureDate = new Date(myCurrentDate);
+		myFutureDate.setDate(myFutureDate.getDate() + 20);
+		console.log(myFutureDate)
+
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
 		if (this.props.id) {
@@ -173,7 +178,7 @@ class Invoice extends Component {
 				title,
 				currentTab: 'template',
 				currentTabIndex: 0
-			}); 
+			});
 		}
 
 		this.bgColor();
@@ -233,7 +238,7 @@ class Invoice extends Component {
 					invoice,
 					status: resp.data.data.status,
 					fromData: resp.data.data.fromData,
-					toData: resp.data.data.toData, 
+					toData: resp.data.data.toData,
 					paymentBankData: resp.data.data.paymentBankData,
 				});
 			})
@@ -280,7 +285,7 @@ class Invoice extends Component {
 		} else {
 			this.setState({ invoice });
 		}
-	} 
+	}
 
 	handleSectionChange = (data) => {
 		let invoice = { ...this.state.invoice }
@@ -434,13 +439,13 @@ class Invoice extends Component {
 	calcGrandTotal = () => {
 		let total = this.calcItemsTotal();
 		let extra_field = this.state.invoice.extra_field;
-		if (extra_field.hasOwnProperty('tax')) { 
+		if (extra_field.hasOwnProperty('tax')) {
 			total += this.calcTaxTotal();
 		}
 		if (extra_field.hasOwnProperty('discount')) {
 			total -= this.calcDiscountTotal();
 		}
-		if (extra_field.hasOwnProperty('late_fee')) { 
+		if (extra_field.hasOwnProperty('late_fee')) {
 			total += this.calcLateFeeTotal();
 		}
 		return total;
@@ -544,41 +549,41 @@ class Invoice extends Component {
 			invoice.extra_field[data.field] = data.type;
 			this.setState({ invoice });
 		}
-	} 
-
-	onReminderDefault = ( data ) => { 
-		let invoice = { ...this.state.invoice } 
-		invoice.reminder = data;
-		this.setState({ invoice })  
 	}
 
-	onReminderChange = (e, type) => { 
-		let invoice = { ...this.state.invoice } 
+	onReminderDefault = (data) => {
+		let invoice = { ...this.state.invoice }
+		invoice.reminder = data;
+		this.setState({ invoice })
+	}
+
+	onReminderChange = (e, type) => {
+		let invoice = { ...this.state.invoice }
 		const target = e.target;
 		const name = target.name;
-		const value = ( name === 'status' || name === 'due_date') ? target.checked : target.value; 
-		if ( type ) {
-			let arr = invoice.reminder[type]; 
+		const value = (name === 'status' || name === 'due_date') ? target.checked : target.value;
+		if (type) {
+			let arr = invoice.reminder[type];
 			if (target.checked) {
-				arr.push(parseInt(value)); 
-			} else { 
-				arr.splice(arr.indexOf(parseInt(value)), 1);  
+				arr.push(parseInt(value));
+			} else {
+				arr.splice(arr.indexOf(parseInt(value)), 1);
 			}
-		} else { 
+		} else {
 			invoice.reminder[name] = value;
 		}
 
-		this.setState({ invoice })  
+		this.setState({ invoice })
 	}
 
 	onRecurringChange = (e) => {
-		let invoice = { ...this.state.invoice } 
+		let invoice = { ...this.state.invoice }
 		const target = e.target;
 		const name = target.name;
 		const value = name === 'status' ? target.checked : target.value;
-		invoice.recurring[name] = value; 
-		this.setState({ invoice })  
-	} 
+		invoice.recurring[name] = value;
+		this.setState({ invoice })
+	}
 
 	render = () => {
 		const { title, tabs = [], currentTab, currentTabIndex, invoice } = this.state;
@@ -673,9 +678,9 @@ class Invoice extends Component {
 						))}
 					</div>
 
-					{(currentTab == 'template') && <Template 
-						currentTemplate={invoice.template}  
-						changeHandler={this.handleTemplateChange} 
+					{(currentTab == 'template') && <Template
+						currentTemplate={invoice.template}
+						changeHandler={this.handleTemplateChange}
 					/>}
 
 					{(currentTab == 'info') && <div id="pi-informations" className="pi-invoice-tab-content">
@@ -825,7 +830,7 @@ class Invoice extends Component {
 									</div>
 
 									<div className="pi-group-form">
-										<Suspense fallback={<div>Loading...</div>}> 
+										<Suspense fallback={<div>Loading...</div>}>
 											<Section data={invoice.sections} changeHandler={this.handleSectionChange} />
 										</Suspense>
 
@@ -855,38 +860,38 @@ class Invoice extends Component {
 										<ul>
 											<Suspense fallback={<div>Loading...</div>}>
 
-												<Style 
-													handleChange={this.onStyleChange} 
-													data={invoice} 
+												<Style
+													handleChange={this.onStyleChange}
+													data={invoice}
 												/>
 
-												{this.props.path == 'invoice' && <Payment 
-													handleChange={this.onPaymentChange} 
-													data={invoice} 
-													handleSave={this.handleSave} 
+												{this.props.path == 'invoice' && <Payment
+													handleChange={this.onPaymentChange}
+													data={invoice}
+													handleSave={this.handleSave}
 												/>}
 
-												<AdditionalAmount 
-													handleChange={this.onExtraFieldChange} 
-													data={invoice.extra_field} 
+												<AdditionalAmount
+													handleChange={this.onExtraFieldChange}
+													data={invoice.extra_field}
 												/>
 
-												{!wage.length && 
-													<Reminder 
-														handleChange={this.onReminderChange} 
-														handleDefault={this.onReminderDefault}  
+												{!wage.length &&
+													<Reminder
+														handleChange={this.onReminderChange}
+														handleDefault={this.onReminderDefault}
 														id={this.props.id}
 														path={this.props.path}
-														data={invoice.reminder} 
-													/>  
-												} 
+														data={invoice.reminder}
+													/>
+												}
 
 												{!wage.length && this.props.path == 'invoice' &&
-													<Recurring 
-														handleChange={this.onRecurringChange} 
-														data={invoice.recurring} 
+													<Recurring
+														handleChange={this.onRecurringChange}
+														data={invoice.recurring}
 													/>
-												} 
+												}
 											</Suspense>
 										</ul>
 									</div>

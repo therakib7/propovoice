@@ -25,10 +25,10 @@ npm install
 - Set name space composer.json psr-4 to tour unique namespace for the app folder
 ```json
 {
-  "Ncpi\\": "includes"
+  "Ncpi\\": "app"
 }
 ```
-- Rename includes/Ncpi.php to your app class name
+- Rename app/Ncpi.php to your app class name
 ```php
 final class Ncpi{
 
