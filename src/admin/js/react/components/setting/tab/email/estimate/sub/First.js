@@ -19,7 +19,7 @@ export default class Reminder extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=email_estimate_first')
+        Api.getAll('tab=email_estimate_default')
             .then(resp => {
                 if (resp.data.success) {
                     this.setState({ form: resp.data.data });
@@ -41,7 +41,7 @@ export default class Reminder extends Component {
         e.preventDefault();
 
         let form = this.state.form;
-        form.tab = 'email_estimate_first';
+        form.tab = 'email_estimate_default';
 
         Api.create(form)
             .then(resp => {
@@ -72,7 +72,7 @@ export default class Reminder extends Component {
                             value={this.state.form.subject}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{company_name}'}, </p>
+                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{company_name}'}, {'{client_name}'} </p>
                     </div>
                 </div>
 

@@ -72,7 +72,7 @@ export default class Recurring extends Component {
                             value={this.state.form.subject}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{company_name}'}, </p>
+                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{company_name}'}, {'{client_name}'} </p>
                     </div>
                 </div>
 

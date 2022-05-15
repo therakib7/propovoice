@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Api from 'api/setting';
 
-export default class Reminder extends Component {
+export default class Recurring extends Component {
     constructor(props) {
         super(props);
 
@@ -19,7 +19,7 @@ export default class Reminder extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=email_estimate_reminder')
+        Api.getAll('tab=email_invoice_default')
             .then(resp => {
                 if (resp.data.success) {
                     this.setState({ form: resp.data.data });
@@ -28,20 +28,20 @@ export default class Reminder extends Component {
     }
 
     handleChange = (e) => {
-        let reminder = { ...this.state.form }
+        let recurring = { ...this.state.form }
         const target = e.target;
         const name = target.name;
         const value = target.value
-        reminder[name] = value;
+        recurring[name] = value;
 
-        this.setState({ form: reminder })
+        this.setState({ form: recurring })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
         let form = this.state.form;
-        form.tab = 'email_estimate_reminder';
+        form.tab = 'email_invoice_default';
 
         Api.create(form)
             .then(resp => {

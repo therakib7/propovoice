@@ -123,7 +123,7 @@
       <div class="ncpi-content">
          <p>{msg}</p>
          <div style="text-align: center;">
-               <a href="{invoice_url}" target="_blank" class="ncpi-btn">View {path}</a>
+               <a href="{url}" target="_blank" class="ncpi-btn">View {path}</a>
          </div>
          <hr>
       </div>

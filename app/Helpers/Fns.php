@@ -31,24 +31,40 @@ class Fns {
     }
 
     /* templateVariable */
-    public static function templateVariable($string = '', $compnay_name, $client_name, $invoice_id, $invoice_url, $msg = '', $path = '')
+    public static function templateVariable($string = '', $array = [])
     {
+        $id = isset( $array['id'] ) ? $array['id'] : '';
+        $path = isset( $array['path'] ) ? $array['path'] : '';
+        $company_name = isset( $array['company_name'] ) ? $array['company_name'] : '';
+        $client_name = isset( $array['client_name'] ) ? $array['client_name'] : '';
+        $date = isset( $array['date'] ) ? $array['date'] : '';
+        $due_date = isset( $array['due_date'] ) ? $array['due_date'] : '';
+        $amount = isset( $array['amount'] ) ? $array['amount'] : '';
+        $msg = isset( $array['msg'] ) ? $array['msg' ] :  '';
+        $url = isset( $array['url'] ) ? $array['url'] : '';
+
         return str_replace(
             array(
+                '{id}',
+                '{path}',
                 '{company_name}',
                 '{client_name}',
-                '{invoice_id}',
-                '{invoice_url}',
+                '{date}',
+                '{due_date}',
+                '{amount}',
                 '{msg}',
-                '{path}'
+                '{url}'
             ),
             array(
-                $compnay_name,
+                $id,
+                $path,
+                $company_name,
                 $client_name,
-                $invoice_id,
-                $invoice_url,
+                $date,
+                $due_date,
+                $amount,
                 $msg,
-                $path
+                $url
             ),
             $string
         );

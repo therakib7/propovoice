@@ -66,6 +66,28 @@ class Setting {
                 }
             }
 
+            if ( $tab == 'email_estimate_default' ) {
+                $option = get_option('ncpi_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {  
+                    $data['subject'] = '{company_name} sent you a Estimate #{id}';
+                    $data['msg'] = 'Hi <b>{client_name}</b>,
+Please find attached Estimate #{id}. Due Date was {due_date}.
+
+Estimate No: #{id}
+Estimate Date: {date}
+Due Date: {due_date}
+Amount: {amount}
+
+Thank you for your business.
+
+Regards,
+{company_name}';
+                }
+            }
+
             if ( $tab == 'email_estimate_reminder' ) {
                 $option = get_option('ncpi_' . $tab);
 
@@ -77,9 +99,31 @@ class Setting {
 Please find attached Estimate #{id}. Due Date was {due_date}.
 
 Estimate No: #{id}
-Estimate Date: {due}
+Estimate Date: {date}
 Due Date: {due_date}
 Amount: {amount}
+
+Thank you for your business.
+
+Regards,
+{company_name}';
+                }
+            }
+
+            if ( $tab == 'email_invoice_default' ) {
+                $option = get_option('ncpi_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {  
+                    $data['subject'] = '{company_name} sent you a Invoice #{id}';
+                    $data['msg'] = 'Hi <b>{client_name}</b>,
+Please find attached Invoice #{id}. Due Date was {due_date}.
+
+Invoice No: #{id}
+Invoice Date: {date}
+Due Date: {due_date}
+Due Amount: {amount}
 
 Thank you for your business.
 
@@ -99,7 +143,7 @@ Regards,
 Please find attached Invoice #{id}. Due Date was {due_date}.
 
 Invoice No: #{id}
-Invoice Date: {due}
+Invoice Date: {date}
 Due Date: {due_date}
 Due Amount: {amount}
 
@@ -121,7 +165,7 @@ Regards,
 Please find attached Invoice #{id}. Due Date was {due_date}.
 
 Invoice No: #{id}
-Invoice Date: {due}
+Invoice Date: {date}
 Due Date: {due_date}
 Due Amount: {amount}
 

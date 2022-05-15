@@ -1,9 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-// import Style from './style.scoped.scss'
-// import Invoice from './tab/invoice';
-
-const General = lazy(() => import('./tab/General'));
+// import Style from './style.scoped.scss' 
 
 //subtab: estimate
 const EstimateReminder = lazy(() => import('./tab/estimate/Reminder'));
@@ -17,7 +14,7 @@ const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
 
-const Business = lazy(() => import('./tab/Business'));
+const Business = lazy(() => import('./tab/business/index'));
 const Payment = lazy(() => import('components/payment'));
 
 export default function SettingWrap() {
@@ -152,8 +149,7 @@ export default function SettingWrap() {
                         <p>note: in this version, you can add only bank info in your invoice</p>
                     </div> */}
 
-                    <Suspense fallback={<div>Loading...</div>}>
-                        {/* {currentTab == 'general' && <General />} */}
+                    <Suspense fallback={<div>Loading...</div>}> 
                         {!wage.length &&
                             <>
                                 {currentTab == 'estimate' && (currentSubtab == 'reminder' || !currentSubtab) && <EstimateReminder />}

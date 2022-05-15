@@ -59,7 +59,7 @@ class Send extends Component {
         let data = this.props.data;    
          
         if ( data.fromData == null || data.toData == null ) {
-            toast.error('First fill up necessary information, From information tab'); 
+            toast.error('First fill up necessary information, From content tab'); 
             return;
         }
 
