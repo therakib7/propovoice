@@ -66,18 +66,40 @@ class Setting {
                 }
             }
 
-            if ( $tab == 'email_reminder' ) {
+            if ( $tab == 'email_estimate_reminder' ) {
                 $option = get_option('ncpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = '{company_name} sent you a reminder of {module_name} #{id}';
+                    $data['subject'] = '{company_name} sent you a reminder of Estimate #{id}';
                     $data['msg'] = 'Hi <b>{client_name}</b>,
-Please find attached {module} #{id}. Due Date was {due_date}.
+Please find attached Estimate #{id}. Due Date was {due_date}.
 
-{module} No: #{id}
-{module} Date: {due}
+Estimate No: #{id}
+Estimate Date: {due}
+Due Date: {due_date}
+Amount: {amount}
+
+Thank you for your business.
+
+Regards,
+{company_name}';
+                }
+            }
+
+            if ( $tab == 'email_invoice_reminder' ) {
+                $option = get_option('ncpi_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {  
+                    $data['subject'] = '{company_name} sent you a reminder of Invoice #{id}';
+                    $data['msg'] = 'Hi <b>{client_name}</b>,
+Please find attached Invoice #{id}. Due Date was {due_date}.
+
+Invoice No: #{id}
+Invoice Date: {due}
 Due Date: {due_date}
 Due Amount: {amount}
 
@@ -88,18 +110,18 @@ Regards,
                 }
             }
 
-            if ( $tab == 'email_recurring' ) {
+            if ( $tab == 'email_invoice_recurring' ) {
                 $option = get_option('ncpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = '{company_name} sent you a recurring of {module_name} #{id}';
+                    $data['subject'] = '{company_name} sent you a recurring of Invoice #{id}';
                     $data['msg'] = 'Hi <b>{client_name}</b>,
-Please find attached {module} #{id}. Due Date was {due_date}.
+Please find attached Invoice #{id}. Due Date was {due_date}.
 
-{module} No: #{id}
-{module} Date: {due}
+Invoice No: #{id}
+Invoice Date: {due}
 Due Date: {due_date}
 Due Amount: {amount}
 

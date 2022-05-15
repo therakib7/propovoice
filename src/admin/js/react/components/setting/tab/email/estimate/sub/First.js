@@ -19,7 +19,7 @@ export default class Reminder extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=email_invoice_reminder')
+        Api.getAll('tab=email_estimate_first')
             .then(resp => {
                 if (resp.data.success) {
                     this.setState({ form: resp.data.data });
@@ -41,7 +41,7 @@ export default class Reminder extends Component {
         e.preventDefault();
 
         let form = this.state.form;
-        form.tab = 'email_invoice_reminder';
+        form.tab = 'email_estimate_first';
 
         Api.create(form)
             .then(resp => {

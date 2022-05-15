@@ -282,6 +282,7 @@ const Home = () => {
                                 <Route path="/setting" element={<Setting />} />
                                 <Route path="/setting/:tab" element={<Setting />} />
                                 <Route path="/setting/:tab/:subtab" element={<Setting />} />
+                                <Route path="/setting/:tab/:subtab/:insubtab" element={<Setting />} />
                                 {/* <Route path="/help" element={<Help />} /> */}
                             </Routes>
                         </Suspense>

@@ -19,7 +19,7 @@ export default class Recurring extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=email_recurring')
+        Api.getAll('tab=email_invoice_recurring')
             .then(resp => {
                 if (resp.data.success) {
                     this.setState({ form: resp.data.data });
@@ -41,7 +41,7 @@ export default class Recurring extends Component {
         e.preventDefault();
 
         let form = this.state.form;
-        form.tab = 'email_recurring';
+        form.tab = 'email_invoice_recurring';
 
         Api.create(form)
             .then(resp => {
@@ -72,7 +72,7 @@ export default class Recurring extends Component {
                             value={this.state.form.subject}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{module}'}, {'{company_name}'}, </p>
+                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{company_name}'}, </p>
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@ export default class Recurring extends Component {
                             value={this.state.form.msg}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{module}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{company_name}'},</p>
+                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{company_name}'},</p>
                     </div>
                 </div>
 
