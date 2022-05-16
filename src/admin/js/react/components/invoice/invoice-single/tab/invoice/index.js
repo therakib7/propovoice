@@ -107,6 +107,7 @@ class Invoice extends Component {
 					discount: 'fixed'
 				},
 				payment_methods: {},
+				//TODO: move the the field in single, if always not needed
 				reminder: {
 					status: false,
 					due_date: false,
@@ -115,13 +116,18 @@ class Invoice extends Component {
 					time: '',
 					timezone: '',
 				},
+				//TODO: move the the field in single, if always not needed
 				recurring: {
 					status: false,
+					// date: new Date(),
+					interval_type: 'week',
+					interval_in: 'month', //1=day, 2=month, 3=year
 					interval: 1,
-					interval_type: 'day',
-					start_day: '',
-					start_time: '',
-					limit: 5
+					limit_type: 0,
+					limit: 5,
+					send_me: false,
+					send_type: 1, // 1=auto, 0=manual
+					delivery: 1, //1=auto, 0=manual
 				},
 				sections: null,
 				attach: [],
@@ -170,16 +176,19 @@ class Invoice extends Component {
 			this.updateEdit();
 			this.getData();
 		} else {
-			var myCurrentDate = new Date();
-			var myFutureDate = new Date(myCurrentDate);
-			myFutureDate.setDate(myFutureDate.getDate() + 20);
-			//TODO: Set future due Date
-			// console.log(myFutureDate)
+			//set future due date
+			let date = new Date();
+			let dueDate = new Date(date);
+			dueDate.setDate(dueDate.getDate() + 30);
+			
+			let invoice = {...this.state.invoice}
+			invoice.due_date = dueDate;
 
 			this.setState({
 				title,
 				currentTab: 'template',
-				currentTabIndex: 0
+				currentTabIndex: 0,
+				invoice
 			});
 		}
 
@@ -216,14 +225,7 @@ class Invoice extends Component {
 			this.setState({ msg, invoice });
 		} else {
 			this.setState({ msg });
-		}
-
-		/*
-		memory leak in your application
-		let tabs = {...this.state.tabs} 
-		tabs[1].text = 'Edit Information'; 
-		tabs[2].text = 'Update & Share'; 
-		this.setState({tabs});*/
+		} 
 	};
 
 	getData = () => {
@@ -582,7 +584,7 @@ class Invoice extends Component {
 		let invoice = { ...this.state.invoice }
 		const target = e.target;
 		const name = target.name;
-		const value = name === 'status' ? target.checked : target.value;
+		const value = target.type == 'checkbox' ? target.checked : target.value;
 		invoice.recurring[name] = value;
 		this.setState({ invoice })
 	}
