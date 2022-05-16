@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import First from './sub/First';
+import DefaultMail from './sub/DefaultMail';
 import Reminder from './sub/Reminder';
 import Recurring from './sub/Recurring';
 
@@ -57,7 +57,7 @@ export default class Invoice extends Component {
                     </div>
 
                     <div className="col-md-10">
-						{currentTab == 'default' && <First />}
+						{currentTab == 'default' && <DefaultMail />}
 						{currentTab == 'reminder' && <Reminder />}
 						{currentTab == 'recurring' && <Recurring />} 
                     </div>

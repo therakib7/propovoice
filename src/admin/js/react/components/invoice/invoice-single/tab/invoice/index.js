@@ -148,11 +148,7 @@ class Invoice extends Component {
 		}
 	};
 
-	componentDidMount() {
-		var myCurrentDate = new Date();
-		var myFutureDate = new Date(myCurrentDate);
-		myFutureDate.setDate(myFutureDate.getDate() + 20);
-		console.log(myFutureDate)
+	componentDidMount() { 
 
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
@@ -174,6 +170,12 @@ class Invoice extends Component {
 			this.updateEdit();
 			this.getData();
 		} else {
+			var myCurrentDate = new Date();
+			var myFutureDate = new Date(myCurrentDate);
+			myFutureDate.setDate(myFutureDate.getDate() + 20);
+			//TODO: Set future due Date
+			// console.log(myFutureDate)
+
 			this.setState({
 				title,
 				currentTab: 'template',

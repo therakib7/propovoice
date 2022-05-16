@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Api from 'api/setting';
 
-export default class Recurring extends Component {
+export default class DefaultMail extends Component {
     constructor(props) {
         super(props);
 
@@ -87,7 +87,7 @@ export default class Recurring extends Component {
                             value={this.state.form.msg}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{company_name}'},</p>
+                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{company_name}'}</p>
                     </div>
                 </div>
 

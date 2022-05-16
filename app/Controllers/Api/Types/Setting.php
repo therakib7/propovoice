@@ -72,19 +72,8 @@ class Setting {
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = '{company_name} sent you a Estimate #{id}';
-                    $data['msg'] = 'Hi <b>{client_name}</b>,
-Please find attached Estimate #{id}. Due Date was {due_date}.
-
-Estimate No: #{id}
-Estimate Date: {date}
-Due Date: {due_date}
-Amount: {amount}
-
-Thank you for your business.
-
-Regards,
-{company_name}';
+                    $data['subject'] = ncpi()->get_default('email_template', 'estimate', 'default', 'subject');
+                    $data['msg'] = ncpi()->get_default('email_template', 'estimate', 'default', 'msg'); 
                 }
             }
 
@@ -94,19 +83,8 @@ Regards,
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = '{company_name} sent you a reminder of Estimate #{id}';
-                    $data['msg'] = 'Hi <b>{client_name}</b>,
-Please find attached Estimate #{id}. Due Date was {due_date}.
-
-Estimate No: #{id}
-Estimate Date: {date}
-Due Date: {due_date}
-Amount: {amount}
-
-Thank you for your business.
-
-Regards,
-{company_name}';
+                    $data['subject'] = ncpip()->get_default('email_template', 'estimate', 'reminder', 'subject');
+                    $data['msg'] = ncpip()->get_default('email_template', 'estimate', 'reminder', 'msg');
                 }
             }
 
@@ -116,19 +94,8 @@ Regards,
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = '{company_name} sent you a Invoice #{id}';
-                    $data['msg'] = 'Hi <b>{client_name}</b>,
-Please find attached Invoice #{id}. Due Date was {due_date}.
-
-Invoice No: #{id}
-Invoice Date: {date}
-Due Date: {due_date}
-Due Amount: {amount}
-
-Thank you for your business.
-
-Regards,
-{company_name}';
+                    $data['subject'] = ncpi()->get_default('email_template', 'invoice', 'default', 'subject');
+                    $data['msg'] = ncpi()->get_default('email_template', 'invoice', 'default', 'msg');
                 }
             }
 
@@ -138,19 +105,8 @@ Regards,
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = '{company_name} sent you a reminder of Invoice #{id}';
-                    $data['msg'] = 'Hi <b>{client_name}</b>,
-Please find attached Invoice #{id}. Due Date was {due_date}.
-
-Invoice No: #{id}
-Invoice Date: {date}
-Due Date: {due_date}
-Due Amount: {amount}
-
-Thank you for your business.
-
-Regards,
-{company_name}';
+                    $data['subject'] = ncpip()->get_default('email_template', 'invoice', 'reminder', 'subject');
+                    $data['msg'] = ncpip()->get_default('email_template', 'invoice', 'reminder', 'msg');
                 }
             }
 
@@ -160,19 +116,8 @@ Regards,
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = '{company_name} sent you a recurring of Invoice #{id}';
-                    $data['msg'] = 'Hi <b>{client_name}</b>,
-Please find attached Invoice #{id}. Due Date was {due_date}.
-
-Invoice No: #{id}
-Invoice Date: {date}
-Due Date: {due_date}
-Due Amount: {amount}
-
-Thank you for your business.
-
-Regards,
-{company_name}';
+                    $data['subject'] = ncpip()->get_default('email_template', 'invoice', 'recurring', 'subject');
+                    $data['msg'] = ncpip()->get_default('email_template', 'invoice', 'recurring', 'msg');
                 }
             }
 
@@ -207,13 +152,36 @@ Regards,
                 $option = update_option('ncpi_' . $tab , $data);                 
             }
 
-            if ( $tab == 'email_reminder' ) { 
-                //TODO: sanitization 
-                $data['subject'] = isset( $params['subject'] ) ? ( $params['subject'] ) : null;
-                $data['msg'] = isset( $params['msg'] ) ? ( $params['msg'] ) : null; 
-
+            if ( $tab == 'email_estimate_default' ) {  
+                $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
+                $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
                 $option = update_option('ncpi_' . $tab, $data);                 
             }
+
+            if ( $tab == 'email_estimate_reminder' ) {  
+                $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
+                $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
+                $option = update_option('ncpi_' . $tab, $data);                 
+            }
+
+            if ( $tab == 'email_invoice_default' ) {  
+                $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
+                $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
+                $option = update_option('ncpi_' . $tab, $data);                 
+            }
+
+            if ( $tab == 'email_invoice_reminder' ) {  
+                $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
+                $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
+                $option = update_option('ncpi_' . $tab, $data);                 
+            }
+
+            if ( $tab == 'email_invoice_recurring' ) {  
+                $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
+                $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
+                $option = update_option('ncpi_' . $tab, $data);                 
+            }
+
             wp_send_json_success();
         }
     }

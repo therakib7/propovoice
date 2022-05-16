@@ -42,8 +42,7 @@ export default class Welcome extends Component {
     }
 
     getData = () => {  
-        Api.getAll('default=1')
-        .then(resp => {
+        Api.getAll('default=1').then(resp => {
             let businessData = resp.data.data.result;
             if ( businessData.length ) {  
                 this.setState({ business: businessData[0] });  
@@ -63,27 +62,25 @@ export default class Welcome extends Component {
         }
 
         if ( !business.id ) {
-            Api.create(business)
-                .then(resp => {
-                    if ( resp.data.success ) {   
-                        let businessData = {...business} 
-                        businessData.id = resp.data.data; 
-                        this.setState({ business: businessData });
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
+            Api.create(business).then(resp => {
+                if ( resp.data.success ) {   
+                    let businessData = {...business} 
+                    businessData.id = resp.data.data; 
+                    this.setState({ business: businessData });
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
         } else {
-            Api.update(business.id, business)
-                .then(resp => {
-                    if ( !resp.data.success) { 
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
+            Api.update(business.id, business).then(resp => {
+                if ( !resp.data.success) { 
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
         }
 
         if ( tab == 'branding' ) {
@@ -99,7 +96,6 @@ export default class Welcome extends Component {
         } else {
             this.setState({ currentTab: 'finish', currentTabIndex: 3 });
         }
-        
     } 
 
     setActiveTab(id, index) { 

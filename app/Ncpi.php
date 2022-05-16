@@ -6,6 +6,7 @@ use Ncpi\Controllers\Installation\InstallationController;
 use Ncpi\Traits\SingletonTrait;
 use Ncpi\Helpers\Constant; 
 use Ncpi\Helpers\Fns; 
+use Ncpi\Helpers\Data;
 use Ncpi\Controllers\MainController;   
 
 /**
@@ -175,6 +176,35 @@ final class Ncpi {
         }
         return $result;
     }  
+
+    /**
+     * @param $file
+     * Get all optoins field value
+     * @return mixed
+     */
+    public function get_default()
+    { 
+        $data = new Data;
+        $result = $data->default();
+        $func_args = func_get_args();  
+        
+        foreach ($func_args as $arg) {
+            if (is_array($arg)) {
+                if (!empty($result[$arg[0]])) {
+                    $result = $result[$arg[0]];
+                } else {
+                    $result = $arg[1];
+                }
+            } else {
+                if (!empty($result[$arg])) {
+                    $result = $result[$arg];
+                } else {
+                    $result = null;
+                }
+            }
+        }
+        return $result;
+    }
 }
 
 /**

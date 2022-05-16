@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
-import AppContext from '../../context/app-context';
+import AppContext from 'context/app-context';
 import ReactPaginate from 'react-paginate';
 
 import Preloader from 'block/preloader/table';

@@ -5,6 +5,8 @@ import InvTemplate from 'inv-template';
 import Share from './Share';
 import Send from './Send';
 
+import ApiSetting from 'api/setting';
+
 const EditDownload = props => {
 
     let title = props.path == 'invoice' ? 'Invoice' : 'Estimate';
@@ -44,6 +46,10 @@ export default class Preview extends Component {
 
         this.state = {
             previewHeight: 'auto',
+            mail: {
+                subject: '',
+                msg: '',
+            }
         };
 
         this.previewRef = React.createRef();
@@ -51,6 +57,14 @@ export default class Preview extends Component {
 
     componentDidMount() {
         this.isPreviewLoaded();
+
+        ApiSetting.getAll('tab=email_'+this.props.path+'_default')
+            .then(resp => {
+                if (resp.data.success) {
+                    this.setState({ mail: resp.data.data }); 
+                }
+            });
+
     }
 
     isPreviewLoaded = () => {
@@ -208,7 +222,7 @@ export default class Preview extends Component {
                                     Share
                                 </button>
                                 <button
-                                    className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white"
+                                    className="pi-btn pi-bg-blue pi-color-white pi-bg-hover-blue pi-hover-color-white" 
                                     onClick={() => this.props.showEmailModal()}
                                 >
                                     Send Mail
@@ -231,6 +245,7 @@ export default class Preview extends Component {
                     <Send
                         show={this.props.emailModal}
                         data={this.props.data}
+                        mail={this.state.mail}
                         path={this.props.path}
                         close={this.props.closeEmailModal}
                     />}

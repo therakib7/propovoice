@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 // import jsPDF from 'jspdf';
 // import html2canvas from 'html2canvas';
 
-import Api from 'api/email';
+import Api from 'api/email'; 
 
 class Send extends Component {
     constructor(props) {
@@ -61,20 +61,22 @@ class Send extends Component {
         if ( data.fromData == null || data.toData == null ) {
             toast.error('First fill up necessary information, From content tab'); 
             return;
-        }
+        } 
 
-        let path = this.props.path; 
+        let path = this.props.path;  
+
         let path_title = path == 'invoice' ? 'Invoice' : 'Estimate'; 
         let formState = {...this.state.form}
 
-        let invoice_id = data.invoice.id;
-        let invoice_date = this.convertDate(data.invoice.date);
-        let invoice_due_date = this.convertDate(data.invoice.due_date);
-        let invoice_due_amount = this.calcGrandTotal();
+        let id = data.invoice.id;
+        let currency = data.invoice.currency; 
+        let date = this.convertDate(data.invoice.date);
+        let due_date = this.convertDate(data.invoice.due_date);
+        let amount = this.calcGrandTotal();
         let company_name = data.fromData.name;
         let client_name = data.toData.first_name + ' ' + data.toData.last_name;
 
-        formState.invoice_id = invoice_id;
+        formState.invoice_id = id;
         formState.path = path_title;
         formState.fromData = {
             id: data.fromData.id,
@@ -88,19 +90,20 @@ class Send extends Component {
             email: data.toData.email,
         }; 
         
-        formState.subject = `${company_name} sent you a ${path_title} #${invoice_id}`;
-        formState.msg = `Hi <b>${client_name}</b>,
-Please find attached ${path} #${invoice_id}. Due Date was ${invoice_due_date}.
+        let mail = this.props.mail;
 
-${path_title} No: #${invoice_id}
-${path_title} Date: ${invoice_date}
-Due Date: ${invoice_due_date}
-Due Amount: USD ${invoice_due_amount}
+        let subject = mail.subject.replaceAll('{id}', id)
+        .replaceAll('{company_name}', company_name);
 
-Thank you for your business.
+        let msg = mail.msg.replaceAll('{id}', id)
+        .replaceAll('{company_name}', company_name)
+        .replaceAll('{client_name}', client_name)
+        .replaceAll('{date}', date)
+        .replaceAll('{due_date}', due_date)
+        .replaceAll('{amount}', amount + ' ' + currency);
 
-Regards,
-${company_name}`;
+        formState.subject = subject;
+        formState.msg = msg;
 
         this.setState({ form: formState });  
     }
@@ -139,14 +142,7 @@ ${company_name}`;
                     });
                 }
             }) 
-    }
-
-    subjectLook = () => {
-        let data = this.props.data; 
-        let company_name = data.fromData.name;
-        let invoice_id = data.invoice.id;
-        return `${company_name} sent you a Invoice #${invoice_id}`;
-    }
+    } 
 
     render() {
         return (

@@ -100,7 +100,7 @@ Due Amount: USD ${invoice_due_amount}
 
 Thank you for your business.
 
-Regards,
+Regards
 ${company_name}`;
 
         this.setState({ form: formState });  

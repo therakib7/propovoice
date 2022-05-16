@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Reminder from './sub/Reminder';
-import First from './sub/First';
+import DefaultMail from './sub/DefaultMail';
 
 export default class Invoice extends Component {
 	constructor(props) {
@@ -52,7 +52,7 @@ export default class Invoice extends Component {
                     </div>
 
                     <div className="col-md-10">
-						{currentTab == 'default' && <First />} 
+						{currentTab == 'default' && <DefaultMail />} 
 						{currentTab == 'reminder' && <Reminder />}
                     </div>
                 </div> 
