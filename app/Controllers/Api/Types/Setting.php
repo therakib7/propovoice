@@ -45,9 +45,7 @@ class Setting {
                     $data['status'] = false;
                     $data['due_date'] = false; 
                     $data['before'] = [];
-                    $data['after'] = [];
-                    $data['time'] = '';
-                    $data['timezone'] = '';
+                    $data['after'] = []; 
                 }
             }
 
@@ -61,8 +59,6 @@ class Setting {
                     $data['due_date'] = false; 
                     $data['before'] = [];
                     $data['after'] = [];
-                    $data['time'] = '';
-                    $data['timezone'] = '';
                 }
             }
 
@@ -145,9 +141,7 @@ class Setting {
                 $data['status'] = isset( $params['status'] ) ? rest_sanitize_boolean( $params['status'] ) : null;
                 $data['due_date'] = isset( $params['due_date'] ) ? ( $params['due_date'] ) : null;
                 $data['before'] = isset( $params['before'] ) ? ( $params['before'] ) : null;
-                $data['after'] = isset( $params['after'] ) ? ( $params['after'] ) : null;
-                $data['time'] = isset( $params['time'] ) ? ( $params['time'] ) : null;
-                $data['timezone'] = isset( $params['timezone'] ) ? ( $params['timezone'] ) : null; 
+                $data['after'] = isset( $params['after'] ) ? ( $params['after'] ) : null; 
 
                 $option = update_option('ncpi_' . $tab , $data);                 
             }

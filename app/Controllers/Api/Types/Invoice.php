@@ -133,6 +133,8 @@ class Invoice
             $query_data['id'] = $id;
             $query_data['token'] = get_post_meta($id, 'token', true);
             $query_data['path'] = get_post_meta($id, 'path', true);
+            $query_data['date'] = get_post_meta($id, 'date', true); 
+            $query_data['due_date'] = get_post_meta($id, 'due_date', true);
 
             $query_data['project'] = [
                 'name' => ''
@@ -175,7 +177,7 @@ class Invoice
             $query_data['payment_method'] = get_post_meta($id, 'payment_method', true);
             $query_data['payment_info'] = get_post_meta($id, 'payment_info', true);
             $query_data['status'] = get_post_meta($id, 'status', true);
-            $query_data['date'] = get_the_time('j-M-Y');
+            // $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -192,11 +194,9 @@ class Invoice
         $id    = absint($url_params['id']);
         $query_data = [];
         $query_data['id'] = $id;
-        $query_data['token'] = get_post_meta($id, 'token', true);
-        $query_data['date'] = null;
-        //$query_data['date'] = get_post_meta($id, 'date', true);
-        $query_data['due_date'] = null;
-        //$query_data['due_date'] = get_post_meta($id, 'due_date', true);
+        $query_data['token'] = get_post_meta($id, 'token', true); 
+        $query_data['date'] = get_post_meta($id, 'date', true); 
+        $query_data['due_date'] = get_post_meta($id, 'due_date', true);
         $from_id = get_post_meta($id, 'from', true);
         $query_data['invoice'] = get_post_meta($id, 'invoice', true);
 
@@ -252,33 +252,35 @@ class Invoice
             $paymentData['details'] = isset($paymentMeta['details']) ? $paymentMeta['details'][0] : '';
         }
         $query_data['paymentBankData'] = $paymentData;
-        $reminder = get_post_meta($id, 'reminder', true);
-        $reminderData = [];
-        if ( $reminder ) { 
-            $reminderData = $reminder; 
-        } else { 
+
+        $invoice = get_post_meta($id, 'invoice', true);
+        $reminder = isset( $invoice['reminder'] ) ? $invoice['reminder'] : null;
+
+        if ( ! $reminder ) {   
+            $reminderData = [];
             $reminderData['status'] = false;
             $reminderData['due_date'] =false;
             $reminderData['before'] = [];
-            $reminderData['after'] = [15];
-            $reminderData['time'] = '';
-            $reminderData['timezone'] = ''; 
-        }
-        $query_data['reminder'] = $reminderData;
+            $reminderData['after'] = [15]; 
+            $invoice['reminder'] = $reminderData;
+        } 
 
-        $recurring = get_post_meta($id, 'recurring', true);
-        $recurringData = [];
-        if ( $recurring ) { 
-            $recurringData = $recurring; 
-        } else { 
-            $recurringData['status'] = false;
+        $recurring = isset( $invoice['recurring'] ) ? $invoice['recurring'] : null;
+        if ( ! $recurring ) {  
+            $recurringData = [];
+            $recurringData['status'] = false; 
+            $recurringData['interval_type'] = 'week';
+            $recurringData['interval_in'] = 'month'; 
             $recurringData['interval'] = 1;
-            $recurringData['interval_type'] = 'day';
-            $recurringData['start_day'] = '';
-            $recurringData['start_time'] = '';
+            $recurringData['limit_type'] = 0;
             $recurringData['limit'] = 5;
+            $recurringData['send_me'] = false; 
+            $recurringData['delivery'] = 1;
+
+            $invoice['recurring'] = $recurringData;
         }
-        $query_data['recurring'] = $recurringData;
+
+        $query_data['invoice'] = $invoice;
 
         wp_send_json_success($query_data);
     }
@@ -374,12 +376,12 @@ class Invoice
                     update_post_meta($post_id, 'payment_methods', $payment_methods);
                 }
 
-                if ($reminder) {
-                    update_post_meta($post_id, 'reminder', $reminder);
+                if ($reminder) { //save true or false
+                    update_post_meta($post_id, 'reminder', $reminder['status']);
                 }
 
-                if ($recurring) {
-                    update_post_meta($post_id, 'recurring', $recurring);
+                if ($recurring) { //save true or false
+                    update_post_meta($post_id, 'recurring', $recurring['status']);
                 }
 
                 //generate secret token
@@ -478,11 +480,11 @@ class Invoice
                 }
 
                 if ($reminder) {
-                    update_post_meta($post_id, 'reminder', $reminder);
+                    update_post_meta($post_id, 'reminder', $reminder['status']);
                 }
 
                 if ($recurring) {
-                    update_post_meta($post_id, 'recurring', $recurring);
+                    update_post_meta($post_id, 'recurring', $recurring['status']);
                 }
 
                 update_post_meta($post_id, 'payment_methods', $payment_methods);

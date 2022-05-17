@@ -1,11 +1,12 @@
 import React, { useRef, useCallback, useState } from 'react';
+import Moment from 'react-moment';
 
 const TableHeader = props => {
     return (
         <thead>
             <tr>
                 <th>
-                <input type="checkbox" 
+                    <input type="checkbox" 
                         className="selectsingle"  
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
                     /> 
@@ -70,7 +71,7 @@ const TableBody = props => {
                 <td>{row.mobile}</td>
                 <td>{row.address}</td>
                 <td>{row.default ? 'Default' : ''}</td>
-                <td>{row.date}</td> 
+                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td> 
                 <td className="pi-action"> 
                     <div className="pi-action-content" >
                         <div className="pi-dropdown">

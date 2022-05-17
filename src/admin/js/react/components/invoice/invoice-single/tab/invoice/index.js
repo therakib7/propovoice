@@ -112,21 +112,17 @@ class Invoice extends Component {
 					status: false,
 					due_date: false,
 					before: [],
-					after: [],
-					time: '',
-					timezone: '',
+					after: []
 				},
 				//TODO: move the the field in single, if always not needed
 				recurring: {
-					status: false,
-					// date: new Date(),
+					status: false, 
 					interval_type: 'week',
 					interval_in: 'month', //1=day, 2=month, 3=year
 					interval: 1,
 					limit_type: 0,
 					limit: 5,
-					send_me: false,
-					send_type: 1, // 1=auto, 0=manual
+					send_me: false, 
 					delivery: 1, //1=auto, 0=manual
 				},
 				sections: null,
@@ -229,13 +225,12 @@ class Invoice extends Component {
 	};
 
 	getData = () => {
+		
 		Api.get(this.props.id)
 			.then(resp => {
 				let invoice = resp.data.data.invoice;
 				invoice.id = parseInt(resp.data.data.id);
 				invoice.token = resp.data.data.token;
-				invoice.reminder = resp.data.data.reminder;
-				invoice.recurring = resp.data.data.recurring;
 				invoice.date = new Date(resp.data.data.invoice.date);
 				invoice.due_date = new Date(resp.data.data.invoice.due_date);
 				this.setState({

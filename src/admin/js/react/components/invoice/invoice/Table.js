@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Moment from 'react-moment';
 import Feedback from './feedback';
 import useClickOutside from 'block/outside-click';
 
@@ -162,7 +162,7 @@ const TableBody = props => {
                         <td>{row.due}</td>
                     </>
                 }
-                <td>{row.date}</td>
+                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
                 <td className="pi-action"> 

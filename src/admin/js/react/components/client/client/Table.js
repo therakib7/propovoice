@@ -1,5 +1,6 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Moment from 'react-moment';
 import useClickOutside from 'block/outside-click';
 
 const TableHeader = props => {
@@ -79,7 +80,7 @@ const TableBody = props => {
                 <td>{row.company_name}</td>
                 <td>{row.web}</td>
                 <td>{row.mobile}</td>
-                <td>{row.date}</td> 
+                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td> 
                 <td className="pi-action"> 
                     <div className="pi-action-content" >
                         <div className="pi-dropdown">

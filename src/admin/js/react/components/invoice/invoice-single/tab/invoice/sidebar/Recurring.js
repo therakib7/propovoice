@@ -82,9 +82,9 @@ class Recurring extends Component {
                                                         <input
                                                             type="number"
                                                             style={{ width: '60px' }}
-                                                            id="recurring-limit"
-                                                            name="limit"
-                                                            value={recurring.limit}
+                                                            id="recurring-interval"
+                                                            name="interval"
+                                                            value={recurring.interval}
                                                             onChange={this.handleChange}
                                                         />
                                                         <select

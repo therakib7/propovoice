@@ -13,9 +13,7 @@ export default class Recurring extends Component {
                 status: false,
                 due_date: false, 
                 before: [],
-                after: [],
-                time: '',
-                timezone: '',
+                after: []
             }
         };
     }
