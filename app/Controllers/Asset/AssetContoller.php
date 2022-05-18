@@ -14,7 +14,7 @@ class AssetContoller {
 		$this->version = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? time() : ncpi()->version(); 
 		$this->ajaxurl = admin_url( 'admin-ajax.php' ); 
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'public_scripts' ), 1 ); 
+		add_action( 'wp_enqueue_scripts', array( $this, 'public_scripts' ), 999 ); 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );  	
 
 		//remove thank you text from propovoice dashboard

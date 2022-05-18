@@ -10,7 +10,7 @@ class PageTemplater
 		add_filter('theme_page_templates', [$this, 'add_template_to_select'], 10, 4);
 		add_filter('template_include', [$this, 'load_plugin_template']); 
 
-		add_action('wp_enqueue_scripts', array($this, 'wage_scripts'), 1);
+		add_action('wp_enqueue_scripts', array($this, 'wage_scripts'), 999);
 		add_action('admin_enqueue_scripts', array($this, 'wage_scripts'));
 	}
 

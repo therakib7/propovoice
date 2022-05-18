@@ -2,6 +2,9 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 // import Style from './style.scoped.scss' 
 
+//subtab: general
+const GeneralSocial = lazy(() => import('./tab/general/social'));
+
 //subtab: estimate
 const EstimateReminder = lazy(() => import('./tab/estimate/Reminder'));
 const EstimateRecurring = lazy(() => import('./tab/estimate/Recurring'));
@@ -10,7 +13,7 @@ const EstimateRecurring = lazy(() => import('./tab/estimate/Recurring'));
 const InvoiceReminder = lazy(() => import('./tab/invoice/Reminder'));
 const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
 
-//subtab: email
+//subtab: email 
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
 
@@ -44,6 +47,20 @@ export default function SettingWrap() {
     useEffect(() => {
         if (!wage.length) {
             const new_tab_data = {
+                general: {
+                    label: 'General',
+                    subtabs: {
+                        social: {
+                            label: 'Social',
+                        },
+                        /* template: {
+                            label: 'Template',
+                        }, */
+                        /* recurring: { 
+                            label: 'Recurring'
+                        }, */
+                    },
+                },
                 estimate: {
                     label: 'Estimate',
                     subtabs: {
@@ -52,10 +69,7 @@ export default function SettingWrap() {
                         },
                         template: {
                             label: 'Template',
-                        },
-                        /* recurring: { 
-                            label: 'Recurring'
-                        }, */
+                        }, 
                     },
                 },
                 invoice: {
@@ -66,15 +80,12 @@ export default function SettingWrap() {
                         },
                         template: {
                             label: 'Template',
-                        },
-                        /* recurring: { 
-                            label: 'Recurring'
-                        },  */
+                        }, 
                     },
                 },
                 email: {
                     label: 'Email Template',
-                    subtabs: {
+                    subtabs: { 
                         estimate: {
                             label: 'Estimate',
                         },
@@ -150,6 +161,13 @@ export default function SettingWrap() {
                     </div> */}
 
                     <Suspense fallback={<div>Loading...</div>}> 
+
+                        {!wage.length &&
+                            <>
+                                {currentTab == 'general' && (currentSubtab == 'social' || !currentSubtab) && <GeneralSocial />} 
+                            </>
+                        }
+
                         {!wage.length &&
                             <>
                                 {currentTab == 'estimate' && (currentSubtab == 'reminder' || !currentSubtab) && <EstimateReminder />}
@@ -161,7 +179,7 @@ export default function SettingWrap() {
                         }
 
                         {!wage.length &&
-                            <>
+                            <> 
                                 {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
                                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
                             </>

@@ -36,6 +36,39 @@ class Setting {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $data = [];
+
+            if ( $tab == 'general_social' ) {
+                $option = get_option('ncpi_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {  
+                    $data['social'] = [
+                        [
+                            'id' => 'facebook',
+                            'label' => 'Facebook',
+                            'desc' => '',
+                            'icon_url' => '',
+                            'url' => '',
+                        ],
+                        [
+                            'id' => 'twitter',
+                            'label' => 'Twitter',
+                            'desc' => '',
+                            'icon_url' => '',
+                            'url' => '',
+                        ],
+                        [
+                            'id' => 'linkedin',
+                            'label' => 'Linkedin',
+                            'desc' => '',
+                            'icon_url' => '',
+                            'url' => '',
+                        ],
+                    ]; 
+                }
+            }
+
             if ( $tab == 'estimate_reminder' ) {
                 $option = get_option('ncpi_' . $tab);
 
@@ -136,6 +169,14 @@ class Setting {
             wp_send_json_error($reg_errors->get_error_messages());
         } else { 
             $data = [];
+
+            if ( $tab == 'general_social' ) {
+                //TODO: sanitization  
+                $data['social'] = isset( $params['social'] ) ? ( $params['social'] ) : null; 
+
+                $option = update_option('ncpi_' . $tab , $data);                 
+            }
+
             if ( $tab == 'estimate_reminder' || $tab == 'invoice_reminder' ) {
                 //TODO: sanitization 
                 $data['status'] = isset( $params['status'] ) ? rest_sanitize_boolean( $params['status'] ) : null;
