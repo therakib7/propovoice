@@ -190,8 +190,11 @@ class Invoice
 
     public function get_single($req)
     {
+        $params = $req->get_params(); 
+
         $url_params = $req->get_url_params();
-        $id    = absint($url_params['id']);
+        
+        $id = absint($url_params['id']);
         $query_data = [];
         $query_data['id'] = $id;
         $query_data['token'] = get_post_meta($id, 'token', true); 
@@ -255,6 +258,37 @@ class Invoice
 
         $invoice = get_post_meta($id, 'invoice', true);
         $reminder = isset( $invoice['reminder'] ) ? $invoice['reminder'] : null;
+
+        if ( isset( $params['client_view'] ) ) { 
+            $payment_methods = isset( $invoice['payment_methods'] ) ? $invoice['payment_methods'] : null;
+            if ( $payment_methods ) { 
+
+                $new_payment_methods = []; 
+
+                foreach( $payment_methods as $key => $payment_id ) { 
+                    $payment_query_data = [];
+                    $payment_query_data['id'] =$payment_id;
+                    
+                    if ( $key == 'bank' ) {
+ 
+                        $payment_query_data['name'] = get_post_meta($payment_id, 'name', true); 
+                        $payment_query_data['details'] = get_post_meta($payment_id, 'details', true); 
+        
+                    } elseif ( $key == 'paypal' ) {
+        
+                        $payment_query_data['account_type'] = get_post_meta($payment_id, 'account_type', true); 
+                        $payment_query_data['client_id'] = get_post_meta($payment_id, 'client_id', true); 
+                        
+                    } elseif ( $key == 'stripe' ) { 
+                        $payment_query_data['public_key'] = get_post_meta($payment_id, 'public_key', true); 
+                    }
+
+                    $new_payment_methods[$key] = $payment_query_data;
+                }
+                
+                $invoice['payment_methods'] = $new_payment_methods;
+            } 
+        }
 
         if ( ! $reminder ) {   
             $reminderData = [];

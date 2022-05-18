@@ -199,7 +199,7 @@ export default class Invoice extends Component {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const id = urlParams.get('id')
-        Api.get(id)
+        Api.get(id + '?client_view=1')
             .then(resp => {
                 let data = resp.data.data;                 
                 let payment_methods = []; 
@@ -327,7 +327,7 @@ export default class Invoice extends Component {
 
                             {this.state.payment_method == 'stripe' && <Stripe
                                 show={this.state.paymentModal}
-                                invoice_id={this.state.id}
+                                invoice={this.state.invoice}
                                 close={() => this.setState({ paymentModal: false })}
                             />}
                         </Suspense>

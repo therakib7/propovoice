@@ -155,7 +155,7 @@ class CheckoutForm extends Component {
                 this.setState({ processing: false, paymentMethod: confirmPayment });
                 let paymentIntent = confirmPayment.paymentIntent;
                 let form = {
-                    invoice_id: this.props.invoice_id,
+                    invoice_id: this.props.invoice.id,
                     payment_method: 'stripe',
                     payment_info: {
                         id: paymentIntent.id,
@@ -277,7 +277,17 @@ const ELEMENTS_OPTIONS = {
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe('pk_test_n5dMNMi4zcaMIcamYh2gMQAo');
+// console.log(props)
+// const stripePromise = loadStripe('pk_test_n5dMNMi4zcaMIcamYh2gMQAo');
+
+/* const stripePromise = (async () => {
+    const key = await fetchPublishableKey(); 
+    return loadStripe(key);
+})();
+
+function fetchPublishableKey() {
+    return 'dpk_test_n5dMNMi4zcaMIcamYh2gMQAo';
+} */
 
 class Stripe extends Component {
     constructor(props) {
@@ -285,6 +295,9 @@ class Stripe extends Component {
     }
 
     render() {
+        let public_key = this.props.invoice.payment_methods.stripe.public_key;
+        const stripePromise = loadStripe(public_key);
+        
         return (
             <>
                 {this.props.show && (
