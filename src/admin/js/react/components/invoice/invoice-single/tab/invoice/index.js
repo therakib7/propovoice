@@ -867,7 +867,7 @@ class Invoice extends Component {
 												{this.props.path == 'invoice' && <Payment
 													handleChange={this.onPaymentChange}
 													data={invoice}
-													handleSave={this.handleSave}
+													// handleSave={this.handleSave}
 												/>}
 
 												<AdditionalAmount

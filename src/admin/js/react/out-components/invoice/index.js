@@ -185,7 +185,7 @@ export default class Invoice extends Component {
     componentDidMount() { 
 
         if (!wage.length) {
-            /* let payment_methods = [
+            let payment_methods = [
                 {
                     id: 'paypal',
                     label: 'Paypal',
@@ -203,7 +203,9 @@ export default class Invoice extends Component {
             let selected_payment_method = {
                 id: 'paypal',
                 label: 'Paypal',
-            } */
+            }
+
+            this.setState({payment_methods, selected_payment_method});
         }
 
         this.getData();
