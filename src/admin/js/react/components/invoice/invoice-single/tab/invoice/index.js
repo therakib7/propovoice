@@ -233,6 +233,11 @@ class Invoice extends Component {
 				invoice.token = resp.data.data.token;
 				invoice.date = new Date(resp.data.data.invoice.date);
 				invoice.due_date = new Date(resp.data.data.invoice.due_date);
+
+				let payment_methods = resp.data.data.invoice.payment_methods; //it's because wordpress empty object covnert to array
+				if ( Array.isArray( payment_methods ) && ! payment_methods.length ) { 
+					invoice.payment_methods = {}
+				}
 				this.setState({
 					invoice,
 					status: resp.data.data.status,

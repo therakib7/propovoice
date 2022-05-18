@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react'
 import { ToastContainer } from 'react-toastify';
 import Select from 'react-select';
 import ReactToPrint from 'react-to-print';
@@ -9,10 +9,13 @@ import InvTemplate from 'inv-template';
 
 import Feedback from './Feedback';
 //payment
-import Bank from './payment/bank';
-//TODO do it on lazy load
-import Stripe from './payment/stripe';
-import Paypal from './payment/paypal';
+const Bank = lazy(() => import('./payment/bank'));
+const Stripe = lazy(() => import('./payment/stripe'));
+const Paypal = lazy(() => import('./payment/paypal'));
+// import Bank from './payment/bank';
+// //TODO do it on lazy load
+// import Stripe from './payment/stripe';
+// import Paypal from './payment/paypal';
 
 const EditDownload = props => {
     return (
@@ -109,10 +112,9 @@ const InvoiceBtn = props => {
                 </>
             }
 
-            {props.type == 'invoice' &&
-                <>
-                    <span style={{ marginRight: '10px' }}>Pay with:</span>
-
+            {props.type == 'invoice' && payment_methods.length > 0 &&
+                <> 
+                    <span style={{ marginRight: '10px' }}>Pay with:</span> 
                     <div style={{ width: '150px', display: 'inline-block' }}>
                         <Select
                             value={selected_method}
@@ -145,17 +147,9 @@ export default class Invoice extends Component {
             status: null,
             emailModal: false,
             paymentModal: false,
-            payment_method: '',
-            payment_methods: [
-                {
-                    id: 'bank',
-                    label: 'Bank',
-                }
-            ],
-            selected_payment_method: {
-                id: 'bank',
-                label: 'Bank',
-            },
+            payment_method: '', 
+            payment_methods: [],
+            selected_payment_method: null,
             feedback: '',
             fromData: null,
             toData: null,
@@ -182,31 +176,7 @@ export default class Invoice extends Component {
 
     }
 
-    componentDidMount() { 
-
-        if (!wage.length) {
-            let payment_methods = [
-                {
-                    id: 'paypal',
-                    label: 'Paypal',
-                },
-                {
-                    id: 'stripe',
-                    label: 'Stripe',
-                },
-                {
-                    id: 'bank',
-                    label: 'Bank',
-                }
-            ]
-
-            let selected_payment_method = {
-                id: 'paypal',
-                label: 'Paypal',
-            }
-
-            this.setState({payment_methods, selected_payment_method});
-        }
+    componentDidMount() {  
 
         this.getData();
     }
@@ -231,7 +201,49 @@ export default class Invoice extends Component {
         const id = urlParams.get('id')
         Api.get(id)
             .then(resp => {
-                this.setState(resp.data.data);
+                let data = resp.data.data;                 
+                let payment_methods = []; 
+
+                let paypal = {
+                    id: 'paypal',
+                    label: 'Paypal',
+                };
+
+                let stripe = {
+                    id: 'stripe',
+                    label: 'Stripe',
+                }; 
+
+                let bank = {
+                    id: 'bank',
+                    label: 'Bank',
+                }; 
+
+                if ( !wage.length ) {
+                    if ( data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal ) { 
+                        payment_methods.push(paypal); 
+                    } 
+
+                    if ( data.invoice.payment_methods.hasOwnProperty('stripe') && data.invoice.payment_methods.stripe ) { 
+                        payment_methods.push(stripe); 
+                    }
+                } 
+
+                if ( data.invoice.payment_methods.hasOwnProperty('bank') && data.invoice.payment_methods.bank ) { 
+                    payment_methods.push(bank); 
+                }
+                
+                data.payment_methods = payment_methods;
+                
+                if ( !wage.length || data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal  ) { 
+                    data.selected_payment_method = paypal; 
+                } else if ( !wage.length || data.invoice.payment_methods.hasOwnProperty('stripe') && data.invoice.payment_methods.stripe  ) { 
+                    data.selected_payment_method = stripe; 
+                } else if ( data.invoice.payment_methods.hasOwnProperty('bank') && data.invoice.payment_methods.bank ) { 
+                    data.selected_payment_method = bank; 
+                }
+                
+                this.setState(data); 
             })
     };
     handleClick = (type, data = null) => {
@@ -299,24 +311,26 @@ export default class Invoice extends Component {
 
                 {this.state.paymentModal &&
                     <>
-                        {this.state.payment_method == 'bank' && <Bank
-                            show={this.state.paymentModal}
-                            invoice_id={this.state.id}
-                            handleSubmit={this.handleSubmit}
-                            close={() => this.setState({ paymentModal: false })}
-                        />}
+                        <Suspense fallback={<div>Loading...</div>}>
+                            {this.state.payment_method == 'bank' && <Bank
+                                show={this.state.paymentModal}
+                                invoice_id={this.state.id}
+                                handleSubmit={this.handleSubmit}
+                                close={() => this.setState({ paymentModal: false })}
+                            />}
 
-                        {this.state.payment_method == 'paypal' && <Paypal
-                            show={this.state.paymentModal}
-                            invoice_id={this.state.id}
-                            close={() => this.setState({ paymentModal: false })}
-                        />}
+                            {this.state.payment_method == 'paypal' && <Paypal
+                                show={this.state.paymentModal}
+                                invoice_id={this.state.id}
+                                close={() => this.setState({ paymentModal: false })}
+                            />}
 
-                        {this.state.payment_method == 'stripe' && <Stripe
-                            show={this.state.paymentModal}
-                            invoice_id={this.state.id}
-                            close={() => this.setState({ paymentModal: false })}
-                        />}
+                            {this.state.payment_method == 'stripe' && <Stripe
+                                show={this.state.paymentModal}
+                                invoice_id={this.state.id}
+                                close={() => this.setState({ paymentModal: false })}
+                            />}
+                        </Suspense>
                     </>
                 }
             </div>
