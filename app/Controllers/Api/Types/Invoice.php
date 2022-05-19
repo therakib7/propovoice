@@ -241,9 +241,10 @@ class Invoice
             $toData['first_name'] = $to_obj->first_name;
             $toData['last_name'] = $to_obj->last_name;
             $toData['email'] = $to_obj->user_email;
-            $toData['mobile'] = get_user_meta($to_id, 'mobile', true);
-            $toData['web'] = get_user_meta($to_id, 'web', true);
-            $toData['address'] = get_user_meta($to_id, 'address', true);
+            $prefix = 'ncpi_';
+            $toData['mobile'] = get_user_meta($to_id, $prefix . 'mobile', true);
+            $toData['web'] = get_user_meta($to_id, $prefix . 'web', true);
+            $toData['address'] = get_user_meta($to_id, $prefix . 'address', true);
         }
         $query_data['toData'] = $toData;
 

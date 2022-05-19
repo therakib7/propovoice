@@ -195,11 +195,16 @@ class Client
             $user_data['id'] = $user->ID;
             $user_data['first_name'] = $user->first_name;
             $user_data['last_name'] = $user->last_name;
-            $user_data['email'] = $user->user_email;
-            $user_data['company_name'] = get_user_meta($user->ID, 'company_name', true);
-            $user_data['web'] = get_user_meta($user->ID, 'web', true);
-            $user_data['mobile'] = get_user_meta($user->ID, 'mobile', true); 
-            $user_data['address'] = get_user_meta($user->ID, 'address', true); 
+            $user_data['email'] = $user->user_email; 
+
+            $prefix = 'ncpi_';
+            $user_data['company_name'] = get_user_meta($user->ID, $prefix . 'company_name', true);
+            $user_data['web'] = get_user_meta($user->ID, $prefix . 'web', true);
+            $user_data['mobile'] = get_user_meta($user->ID, $prefix . 'mobile', true);
+            $user_data['country'] = get_user_meta($user->ID, $prefix . 'country', true); 
+            $user_data['region'] = get_user_meta($user->ID, $prefix . 'region', true); 
+            $user_data['address'] = get_user_meta($user->ID, $prefix . 'address', true); 
+        
             $user_data['date'] = $user->user_registered;
 
             $data[] = $user_data;
@@ -227,10 +232,14 @@ class Client
         $field['first_name'] = $user->first_name;
         $field['last_name'] = $user->last_name;
         $field['email'] = $user->user_email;
-        $field['company_name'] = get_user_meta($user->ID, 'company_name', true);
-        $field['web'] = get_user_meta($user->ID, 'web', true);
-        $field['mobile'] = get_user_meta($user->ID, 'mobile', true);
-        $field['address'] = get_user_meta($user->ID, 'address', true); 
+
+        $prefix = 'ncpi_';
+        $field['company_name'] = get_user_meta($user->ID, $prefix . 'company_name', true);
+        $field['web'] = get_user_meta($user->ID, $prefix . 'web', true);
+        $field['mobile'] = get_user_meta($user->ID, $prefix . 'mobile', true);
+        $field['country'] = get_user_meta($user->ID, $prefix . 'country', true); 
+        $field['region'] = get_user_meta($user->ID, $prefix . 'region', true); 
+        $field['address'] = get_user_meta($user->ID, $prefix . 'address', true); 
         $field['date'] = $user->user_registered;
 
         $data['user'] = $field;
@@ -241,14 +250,16 @@ class Client
     public function create($req)
     {
 
-        $reg_errors             = new \WP_Error;
-        $first_name             = sanitize_text_field($req['first_name']);
-        $last_name              = sanitize_text_field($req['last_name']);
-        $useremail              = strtolower(sanitize_email($req['email']));
-        $company_name           = sanitize_text_field($req['company_name']);
-        $web                    = esc_url_raw($req['web']);
-        $mobile                 = sanitize_text_field($req['mobile']);
-        $address                = sanitize_text_field($req['address']);
+        $reg_errors   = new \WP_Error;
+        $first_name   = sanitize_text_field($req['first_name']);
+        $last_name    = sanitize_text_field($req['last_name']);
+        $useremail    = strtolower(sanitize_email($req['email']));
+        $company_name = sanitize_text_field($req['company_name']);
+        $web          = esc_url_raw($req['web']);
+        $mobile       = sanitize_text_field($req['mobile']);
+        $country      = sanitize_text_field($req['country']);
+        $region       = sanitize_text_field($req['region']);
+        $address      = sanitize_text_field($req['address']);
 
         if (
             empty($first_name) ||
@@ -278,13 +289,16 @@ class Client
             $user_id = wp_insert_user($userdata);
 
             if (!is_wp_error($user_id)) {
-                //set as propovoice member
-                update_user_meta($user_id, 'ncpi_member', true);
+                //set as propovoice member 
 
-                update_user_meta($user_id, 'company_name', $company_name);
-                update_user_meta($user_id, 'web', $web);
-                update_user_meta($user_id, 'mobile', $mobile);
-                update_user_meta($user_id, 'address', $address);
+                $prefix = 'ncpi_';
+                update_user_meta($user_id, $prefix . 'member', true);
+                update_user_meta($user_id, $prefix . 'company_name', $company_name);
+                update_user_meta($user_id, $prefix . 'web', $web);
+                update_user_meta($user_id, $prefix . 'mobile', $mobile);
+                update_user_meta($user_id, $prefix . 'country', $country);
+                update_user_meta($user_id, $prefix . 'region', $region);
+                update_user_meta($user_id, $prefix . 'address', $address);
 
                 wp_send_json_success($user_id);
             } else {
@@ -303,6 +317,8 @@ class Client
         $company_name           = sanitize_text_field($params['company_name']);
         $web                    = esc_url_raw($params['web']);
         $mobile                 = sanitize_text_field($params['mobile']);
+        $country                = sanitize_text_field($req['country']);
+        $region                = sanitize_text_field($req['region']);
         $address                = sanitize_text_field($req['address']);
 
         if (
@@ -338,10 +354,13 @@ class Client
             $user_data = wp_update_user($data);
 
             if (!is_wp_error($user_data)) {
-                update_user_meta($user_id, 'company_name', $company_name);
-                update_user_meta($user_id, 'web', $web);
-                update_user_meta($user_id, 'mobile', $mobile);
-                update_user_meta($user_id, 'address', $address);
+                $prefix = 'ncpi_';
+                update_user_meta($user_id, $prefix . 'company_name', $company_name);
+                update_user_meta($user_id, $prefix . 'web', $web);
+                update_user_meta($user_id, $prefix . 'mobile', $mobile);
+                update_user_meta($user_id, $prefix . 'country', $country);
+                update_user_meta($user_id, $prefix . 'region', $region);
+                update_user_meta($user_id, $prefix . 'address', $address);
                 wp_send_json_success($user_id);
             } else {
                 wp_send_json_error();

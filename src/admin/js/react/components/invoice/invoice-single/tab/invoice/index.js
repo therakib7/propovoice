@@ -336,7 +336,18 @@ class Invoice extends Component {
 	handleAddLineItem = (e) => {
 		let invoice = { ...this.state.invoice }
 		invoice.items = invoice.items.concat(
-			[{ id: Date.now().toString(), title: '', desc: '', qty: 0, qty_type: 'unit', price: 0, tax: 0, tax_type: 'fixed' }]
+			[
+				{ 
+					id: Date.now().toString(), 
+					title: '', 
+					desc: '', 
+					qty: 0, 
+					qty_type: 'unit', 
+					price: 0, 
+					tax: 0, 
+					tax_type: 'fixed' 
+				}
+			]
 		);
 		this.setState({ invoice })
 	}

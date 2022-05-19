@@ -6,32 +6,25 @@ import ReactPaginate from 'react-paginate';
 
 import Preloader from 'block/preloader/table';
 
-import Api from 'api/lead';
+import Api from 'api/business';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
 import Empty from 'block/empty';
 
-export default class Lead extends Component {
+export default class DealPipeline extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            title: 'Lead',
+            title: 'Deal Pipeline',
             empty: false,
             preloader: true,
             formModal: false,
             searchModal: false,
             formModalType: 'new',
-            lead: { id: null },
-            leads: [],
-            summary: {
-                total: 0,
-                paid: 0,
-                unpaid: 0,
-                draft: 0,
-                sent: 0
-            },
+            business: { id: null },
+            businesses: [],
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
@@ -69,7 +62,7 @@ export default class Lead extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ leads: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
+                this.setState({ businesses: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
             })
     };
 
@@ -96,9 +89,9 @@ export default class Lead extends Component {
         });
     }
 
-    handleSubmit = lead => {
+    handleSubmit = business => {
         if (this.state.formModalType == 'new') {
-            Api.create(lead)
+            Api.create(business)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -111,7 +104,7 @@ export default class Lead extends Component {
                     }
                 })
         } else {
-            Api.update(lead.id, lead)
+            Api.update(business.id, business)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -131,11 +124,11 @@ export default class Lead extends Component {
         if (confirm(this.context.CrudMsg.confirm)) {
 
             if (type == 'single') {
-                /* this.setState({
-                    leads: this.state.leads.filter((lead, i) => {
-                        return lead.id !== index;
+                this.setState({
+                    businesses: this.state.businesses.filter((business, i) => {
+                        return business.id !== index;
                     })
-                }); */ 
+                });
             }
             let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
             Api.remove(ids)
@@ -155,14 +148,11 @@ export default class Lead extends Component {
         }
     }
 
-    openForm = (type = 'new', lead = null) => {
-        this.setState({ formModal: true });
-
+    openForm = (type = 'new', business = null) => {
         if (type == 'new') {
-            this.setState({ formModalType: 'new' });
+            this.setState({ formModal: true, formModalType: 'new' });
         } else {
-            this.setState({ formModalType: 'edit' });
-            this.setState({ lead: lead });
+            this.setState({ formModal: true, formModalType: 'edit', business: business });
         }
     };
 
@@ -188,7 +178,7 @@ export default class Lead extends Component {
             //check all
             if (e.target.checked) {
                 let ids = [];
-                this.state.leads.map((row) => { ids.push(row.id) });
+                this.state.businesses.map((row) => { ids.push(row.id) });
                 this.setState({ checkedBoxes: ids });
             } else {
                 this.setState({ checkedBoxes: [] });
@@ -209,10 +199,9 @@ export default class Lead extends Component {
     };
 
     render() {
-        const { title, leads, checkedBoxes, searchVal } = this.state;
-        const { total, paid, unpaid, draft, sent } = this.state.summary;
+        const { title, businesses, checkedBoxes, searchVal } = this.state;
         return (
-            <div className="ncpi-components"> 
+            <div className="ncpi-components">
                 <h1>{title}</h1>
                 <nav className='pi-breadcrumb'>
                     <ul>
@@ -226,54 +215,13 @@ export default class Lead extends Component {
                             {title}
                         </li>
                     </ul>
-                </nav>
-
-                {leads.length > 0 &&
-                    <>{!wage.length && <div className="pi-cards">
-                        <div className="row">
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content pi-bg-husky">
-                                        <span>Total {title}</span>
-                                        <h4 className="pi-color-blue">{total}</h4>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content" style={{ backgroundColor: '#f9f6ea' }}>
-                                        <span>Paid {title}</span>
-                                        <h4 style={{ color: '#c66542' }}>{paid}</h4>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content" style={{ backgroundColor: '#d7f4f1' }}>
-                                        <span>Unpaid {title}</span>
-                                        <h4 style={{ color: '#45ac9d' }}>{unpaid}</h4>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content" style={{ backgroundColor: '#f7dfec' }}>
-                                        <span>Draft {title}</span>
-                                        <h4 style={{ color: '#b66490' }}>{draft}</h4>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content" style={{ backgroundColor: '#e6ffe7' }}>
-                                        <span>Sent {title}</span>
-                                        <h4 style={{ color: '#43ad47' }}>{sent}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>}  
-                </>}
+                </nav> 
 
                 <div className="pi-buttons">
                     <button
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.openForm('new')} >
-                        Add New {title}
+                        Create New {title}
                     </button> 
 
                     <div className="pi-search-box pi-float-right">
@@ -306,8 +254,7 @@ export default class Lead extends Component {
 
                 {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.openForm('new')} />}
 
-                {/* <button
-                    
+                {/* <button                    
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button> */}
@@ -316,7 +263,7 @@ export default class Lead extends Component {
                     handleSubmit={this.handleSubmit}
                     show={this.state.formModal}
                     modalType={this.state.formModalType}
-                    data={this.state.lead}
+                    data={this.state.business}
                     close={this.closeForm}
                 />
 
@@ -326,9 +273,9 @@ export default class Lead extends Component {
                     close={this.closeForm}
                 />
 
-                {leads.length > 0 && <div className='pi-table-showing'>
+                {businesses.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {leads.length} lead showing from {this.state.total}
+                        {businesses.length} Business showing from {this.state.total}
                         <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
@@ -341,7 +288,7 @@ export default class Lead extends Component {
 
                 {checkedBoxes.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {checkedBoxes.length} lead selected
+                        {checkedBoxes.length} business selected
                         <button
                             style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
                             onClick={() => this.deleteEntry('selected')} >
@@ -349,8 +296,7 @@ export default class Lead extends Component {
                         </button>
                     </p>
                 </div>} 
-
-                {this.state.preloader ? <Preloader /> : <Table tableData={leads} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
+                {this.state.preloader ? <Preloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'
