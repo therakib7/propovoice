@@ -29,40 +29,85 @@ class PaymentProcess
         ]);
     }
 
+    public function calcItemsTotal( $items ) {   
+        $total = 0;
+        foreach ( $items as $value ) {
+            $total += ( $value['qty'] * $value['price'] );
+        }
+        return $total;
+    }
+    
+    public function calcExtraTotal( $total, $type, $value ) {  
+        if ( $type == 'percent' ) {
+            return $total * ( $value / 100);
+        } else {
+            return $value;
+        }
+    }  
+    
+    public function getTotalAmount( $invoice )
+    {
+        $items = $invoice['items'];
+        $extra_field = $invoice['extra_field']; 
+        $item_total = $this->calcItemsTotal( $items );  
+        $total = $item_total;
+        
+        if ( isset( $extra_field['tax'] ) ) {
+            $total += $this->calcExtraTotal($item_total, $extra_field['tax'], $invoice['tax']); 
+        }
+    
+        if ( isset( $extra_field['discount'] ) ) {
+            $total -= $this->calcExtraTotal($item_total, $extra_field['discount'], $invoice['discount']); 
+        } 
+    
+        if ( isset( $extra_field['late_fee'] ) ) {
+            $total += $this->calcExtraTotal($item_total, $extra_field['late_fee'], $invoice['late_fee']);
+        }  
+    
+        return $total; 
+    }
+
     public function get($req)
     {
         $request = $req->get_params();
 
         $type = isset($request['type']) ? sanitize_text_field($request['type']) : '';
 
-        //TODO: dynamic price need to mention here
-        $amount = 22.5;
-        // Create a stripe payment intent
+        if ($type == 'payment_indent') {
+            $id = isset($request['id']) ? absint($request['id']) : '';  
 
-        try {
-            //TODO: dynamic stipe key
-            $stripe = new \Stripe\StripeClient('sk_test_q0ZQwYU7J53zk2ebhFzV9JB7');
+            $invoice = get_post_meta($id, 'invoice', true); 
+            $payment_methods = isset($invoice['payment_methods']) ? $invoice['payment_methods'] : null;
+            $stripe_id = isset($payment_methods['stripe']) ? $payment_methods['stripe'] : null; 
 
-            /* $customer = $stripe->customers->create([
-                'email' => $user->user_email,
-            ]); */
+            $amount = $this->getTotalAmount( $invoice );
+            // Create a stripe payment intent
+            $secret_key = get_post_meta($stripe_id, 'secret_key', true); 
 
-            $paymentIntents = $stripe->paymentIntents->create([
-                'amount' => ($amount * 100),
-                'currency' => 'USD',
-                'description' => 'This is a propovoice invoice', //TODO: check it
-                // 'customer' => $customer,
-                // 'receipt_email' => $user->user_email,
-                // 'payment_method_types' => ['card'],
+            try {
+                $stripe = new \Stripe\StripeClient($secret_key);
+
+                /* $customer = $stripe->customers->create([
+                    'email' => $user->user_email,
+                ]); */
+
+                $paymentIntents = $stripe->paymentIntents->create([
+                    'amount' => $amount,
+                    'currency' => 'USD',
+                    'description' => 'Propovoice Invoice', //TODO: check it
+                    // 'customer' => $customer,
+                    // 'receipt_email' => $user->user_email,
+                    'payment_method_types' => ['card'],
+                ]);
+            } catch (\Exception $e) {
+                // status_header(402);
+                // wp_send_json($e->jsonBody);
+            }
+
+            wp_send_json_success([
+                'intent_obj' => $paymentIntents
             ]);
-        } catch (\Exception $e) {
-            // status_header(402);
-            // wp_send_json($e->jsonBody);
         }
-
-        wp_send_json_success([
-            'intent_obj' => $paymentIntents
-        ]);
     }
 
     public function create($req)

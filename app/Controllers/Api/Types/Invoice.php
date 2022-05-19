@@ -267,8 +267,8 @@ class Invoice
 
                 foreach( $payment_methods as $key => $payment_id ) { 
                     $payment_query_data = [];
-                    $payment_query_data['id'] =$payment_id;
-                    
+                    $payment_query_data['id'] = $payment_id;
+
                     if ( $key == 'bank' ) {
  
                         $payment_query_data['name'] = get_post_meta($payment_id, 'name', true); 
