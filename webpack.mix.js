@@ -51,7 +51,7 @@ if (process.env.NODE_ENV === 'package') {
         const copyTo = path.resolve(`${package_slug}`);
         // Select All file then paste on list
         let includes = [
-            'includes',
+            'app',
             'assets',
             'languages',
             'templates',
