@@ -121,14 +121,10 @@ class CheckoutForm extends Component {
         let client_secret = null;
         const url = apiUrl + 'payment-process';
         const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}`);
-        if ( indent_resp ) {
-            // console.log(indent_resp.data); return;
+        if ( indent_resp ) { 
             client_secret = indent_resp.data.data.intent_obj.client_secret
         }
-        // const { data: clientSecret } = await axios.get(`${url}/?type=payment_indent`);
-        // console.log(data)
-        // if (payment_indent) return;
-        // console.log('after indent');
+      
         const paymentPayload = await stripe.createPaymentMethod({
             type: 'card',
             card,
@@ -277,17 +273,6 @@ const ELEMENTS_OPTIONS = {
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-// console.log(props)
-// const stripePromise = loadStripe('pk_test_n5dMNMi4zcaMIcamYh2gMQAo');
-
-/* const stripePromise = (async () => {
-    const key = await fetchPublishableKey(); 
-    return loadStripe(key);
-})();
-
-function fetchPublishableKey() {
-    return 'dpk_test_n5dMNMi4zcaMIcamYh2gMQAo';
-} */
 
 class Stripe extends Component {
     constructor(props) {

@@ -11,14 +11,18 @@ import './style.css';
 import Api from 'api/payment-process';
 
 // This values are the props in the UI
-const amount = "1";
+
 const currency = "USD";
 const style = { "layout": "vertical" };
 
 // Custom component to wrap the PayPalButtons and handle currency changes
-const ButtonWrapper = ({ invoice_id, close, currency, showSpinner }) => {
+const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
     // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
     // This is the main reason to wrap the PayPalButtons in a new component
+
+    const amount = invoice.total;
+    const invoice_id = invoice.id;
+
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer(); 
 
     const [details, setDetails] = useState(null);
@@ -113,13 +117,14 @@ class Paypal extends Component {
     }
 
     render() {
-        return (
+        let client_id = this.props.invoice.payment_methods.paypal.client_id; 
+        return ( 
             <>
                 {this.props.show && (
                     <>
                         <div className="pi-overlay pi-show">
                             {/* TODO: fixed reponsive width in mobile */}
-                            <div className="pi-popup-content" style={{ width: '25%' }}>
+                            <div className="pi-popup-content" style={{ minWidth: '320px', width: '25%' }}>
                                 <div className="pi-modal-header">
                                     <h2 className="pi-modal-title pi-text-center">Pay With Paypal</h2>
                                     <span className="pi-close" onClick={() => this.props.close()}>×</span>
@@ -132,13 +137,13 @@ class Paypal extends Component {
                                             <div className="col-lg">
                                                 <PayPalScriptProvider
                                                     options={{
-                                                        "client-id": "AWSCZzuM_fnlSmcoIMVIBVy7Ccb3PgbE_i_9LNFfSwBQIhPURIwvQfsMUb-GHy3Lxy-OQpUFWIn_BymV",
+                                                        "client-id": client_id,
                                                         components: "buttons",
                                                         currency: "USD"
                                                     }}
                                                 >
-                                                    <ButtonWrapper
-                                                        {...this.props}
+                                                    <ButtonWrapper 
+                                                        invoice={this.props.invoice}
                                                         currency={currency}
                                                         showSpinner={true}
                                                     />

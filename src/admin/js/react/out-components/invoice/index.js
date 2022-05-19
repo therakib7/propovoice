@@ -320,8 +320,8 @@ export default class Invoice extends Component {
                             />}
 
                             {this.state.payment_method == 'paypal' && <Paypal
-                                show={this.state.paymentModal}
-                                invoice_id={this.state.id}
+                                show={this.state.paymentModal} 
+                                invoice={this.state.invoice}
                                 close={() => this.setState({ paymentModal: false })}
                             />}
 

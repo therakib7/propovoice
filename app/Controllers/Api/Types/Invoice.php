@@ -2,6 +2,7 @@
 
 namespace Ncpi\Controllers\Api\Types;
 
+use Ncpi\Models\Invoice as ModelsInvoice;
 use WP_Query;
 
 class Invoice
@@ -288,6 +289,9 @@ class Invoice
                 
                 $invoice['payment_methods'] = $new_payment_methods;
             } 
+
+            $invoice_model = new ModelsInvoice();
+            $invoice['total'] = $invoice_model->getTotalAmount( $invoice );
         }
 
         if ( ! $reminder ) {   
