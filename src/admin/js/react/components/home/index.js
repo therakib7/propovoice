@@ -11,9 +11,15 @@ import {
 } from "react-router-dom";
 
 const Dashboard = lazy(() => import('components/dashboard'));
-const Project = lazy(() => import('components/project'));
-const ClientSummary = lazy(() => import('components/client/client-summary'));
 const Client = lazy(() => import('components/client/client'));
+const ClientSummary = lazy(() => import('components/client/client-summary'));
+
+const Lead = lazy(() => import('components/lead/lead'));
+const LeadSummary = lazy(() => import('components/lead/lead-summary'));
+
+const DealPipeline = lazy(() => import('components/deal-pipeline'));
+
+const Project = lazy(() => import('components/project'));
 //const Proposal = lazy(() => import('components/proposal'));
 // const Editor = lazy(() => import('components/editor'));
 
@@ -90,6 +96,45 @@ const Home = () => {
                                         </svg>
                                         <span>Client</span>
                                     </NavLink>
+
+                                    <NavLink
+                                        to='lead'
+                                        className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                        <svg
+                                            width={18}
+                                            height={18}
+                                            className="mt-3"
+                                            viewBox="0 0 18 14"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M8 2.893c0 .767-.316 1.503-.879 2.045A3.057 3.057 0 015 5.786a3.057 3.057 0 01-2.121-.848A2.841 2.841 0 012 2.893c0-.767.316-1.503.879-2.046A3.057 3.057 0 015 0c.796 0 1.559.305 2.121.847C7.684 1.39 8 2.126 8 2.893zm8 0c0 .38-.078.756-.228 1.107-.151.35-.372.67-.65.938a3.01 3.01 0 01-.974.628 3.097 3.097 0 01-2.296 0 3.01 3.01 0 01-.973-.628 2.887 2.887 0 01-.65-.938A2.803 2.803 0 0110 2.893c0-.767.316-1.503.879-2.046A3.057 3.057 0 0113 0c.796 0 1.559.305 2.121.847.563.543.879 1.279.879 2.046zM11.93 13.5a6.57 6.57 0 00-1.43-5.14 5.143 5.143 0 012.5-.646c.878 0 1.74.223 2.5.646a4.915 4.915 0 011.83 1.765 4.69 4.69 0 01.67 2.41v.965h-6.07zM5 7.714c1.326 0 2.598.508 3.536 1.412A4.736 4.736 0 0110 12.536v.964H0v-.964c0-1.279.527-2.505 1.464-3.41A5.096 5.096 0 015 7.714z"
+                                                fill="#5F5F5F"
+                                            />
+                                        </svg>
+                                        <span>Lead</span>
+                                    </NavLink>
+
+                                    <NavLink
+                                        to='deal-pipeline'
+                                        className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                        <svg
+                                            width={18}
+                                            height={18}
+                                            className="mt-3"
+                                            viewBox="0 0 18 14"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M8 2.893c0 .767-.316 1.503-.879 2.045A3.057 3.057 0 015 5.786a3.057 3.057 0 01-2.121-.848A2.841 2.841 0 012 2.893c0-.767.316-1.503.879-2.046A3.057 3.057 0 015 0c.796 0 1.559.305 2.121.847C7.684 1.39 8 2.126 8 2.893zm8 0c0 .38-.078.756-.228 1.107-.151.35-.372.67-.65.938a3.01 3.01 0 01-.974.628 3.097 3.097 0 01-2.296 0 3.01 3.01 0 01-.973-.628 2.887 2.887 0 01-.65-.938A2.803 2.803 0 0110 2.893c0-.767.316-1.503.879-2.046A3.057 3.057 0 0113 0c.796 0 1.559.305 2.121.847.563.543.879 1.279.879 2.046zM11.93 13.5a6.57 6.57 0 00-1.43-5.14 5.143 5.143 0 012.5-.646c.878 0 1.74.223 2.5.646a4.915 4.915 0 011.83 1.765 4.69 4.69 0 01.67 2.41v.965h-6.07zM5 7.714c1.326 0 2.598.508 3.536 1.412A4.736 4.736 0 0110 12.536v.964H0v-.964c0-1.279.527-2.505 1.464-3.41A5.096 5.096 0 015 7.714z"
+                                                fill="#5F5F5F"
+                                            />
+                                        </svg>
+                                        <span>Deal Pipeline</span>
+                                    </NavLink>
+
                                     {/* <ul className='pi-sub-menu'>
                                         <li>
                                             <NavLink
@@ -259,6 +304,16 @@ const Home = () => {
                                 {/* <Route path="/proposal" element={<Proposal />} />  */}
                                 {/* <Route path="/proposal" element={<Editor />} /> */}
 
+                                <Route path="/client" exact element={<Client />} />
+                                <Route path="/client/:id" exact element={<ClientSummary />} />
+
+                                <Route path="/lead" exact element={<Lead />} />
+                                <Route path="/lead/:id" exact element={<LeadSummary />} />
+
+                                <Route path="/deal-pipeline" exact element={<DealPipeline />} />
+
+                                <Route path="/project" exact element={<Project />} />
+
                                 <Route path="/proposal" element={<Proposal />} />
                                 <Route path="/proposal/single" element={<ProposalSingle />} />
                                 <Route path="/proposal/single/:id" element={<ProposalSingle />} />
@@ -274,10 +329,7 @@ const Home = () => {
                                 <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
                                 <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} />
 
-                                <Route path="/payment" element={<Payment />} />
-                                <Route path="/client" exact element={<Client />} />
-                                <Route path="/project" exact element={<Project />} />
-                                <Route path="/client/:id" exact element={<ClientSummary />} />
+                                <Route path="/payment" element={<Payment />} /> 
                                 <Route path="/business" element={<Business />} />
                                 <Route path="/setting" element={<Setting />} />
                                 <Route path="/setting/:tab" element={<Setting />} />

@@ -20,7 +20,7 @@ class Dashboard
             array($this, 'main_settings'),
             'dashicons-groups',
             30
-        );
+        ); 
 
         add_submenu_page(
             'ncpi',
@@ -31,62 +31,34 @@ class Dashboard
             array($this, 'render')
         );
 
-        add_submenu_page(
-            'ncpi',
-            esc_html__('Client', 'propovoice'),
-            esc_html__('Client', 'propovoice'),
-            'manage_options',
-            'ncpi#/client',
-            array($this, 'render')
-        );
+        $settings_menu = [
+            [
+                'id' => 'client',
+                'label' => esc_html__('Client', 'propovoice'),
+            ],
+            [
+                'id' => 'estimate',
+                'label' => esc_html__('Estimate', 'propovoice'),
+            ],
+            [
+                'id' => 'invoice',
+                'label' => esc_html__('Invoice', 'propovoice'),
+            ] 
+        ];
 
-        /* add_submenu_page(
-            'ncpi',
-            esc_html__('Project', 'propovoice'),
-            esc_html__('Project', 'propovoice'),
-            'manage_options',
-            'ncpi#/project',
-            array($this, 'render')
-        ); */
+        $settings_menu = apply_filters( 'ncpi_sidebar_menu', $settings_menu ); 
 
-        add_submenu_page(
-            'ncpi',
-            esc_html__('Estimate', 'propovoice'),
-            esc_html__('Estimate', 'propovoice'),
-            'manage_options',
-            'ncpi#/estimate',
-            array($this, 'render')
-        );
-
-        add_submenu_page(
-            'ncpi',
-            esc_html__('Invoice', 'propovoice'),
-            esc_html__('Invoice', 'propovoice'),
-            'manage_options',
-            'ncpi#/invoice',
-            array($this, 'render')
-        );
-
-        if ( function_exists('ncpip') ) {
+        foreach( $settings_menu as $menu ) {
             add_submenu_page(
                 'ncpi',
-                esc_html__('Business', 'propovoice'),
-                esc_html__('Business', 'propovoice'),
+                $menu['label'],
+                $menu['label'],
                 'manage_options',
-                'ncpi#/business',
+                'ncpi#/' . $menu['id'],
                 array($this, 'render')
             );
-    
-            add_submenu_page(
-                'ncpi',
-                esc_html__('Payment', 'propovoice'),
-                esc_html__('Payment', 'propovoice'),
-                'manage_options',
-                'ncpi#/payment',
-                array($this, 'render')
-            );
-        }
-
+        }  
+         
         $setting_main = function_exists('ncpip') ? 'general': 'business';
         add_submenu_page(
             'ncpi',
