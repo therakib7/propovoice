@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {apiUrl, token} from './helper' 
 
-const url = apiUrl + 'clients';
+const url = apiUrl + 'leads';
 
 const getAll = ( args = '') => {
 	return axios.get(`${url}/?${args}`);

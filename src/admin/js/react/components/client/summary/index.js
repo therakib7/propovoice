@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, useParams } from "react-router-dom";  
  
-import Api from 'api/lead';
+import Api from 'api/client';
 
 import Overview from './tab/overview';
 import Project from 'components/project'; 
@@ -47,7 +47,7 @@ class ClientSummary extends Component {
                 confirm: 'Are you sure to delete it?',
             },
             data: {
-                user: {
+                profile: {
                     first_name: 'Name'
                 }
             }
@@ -85,14 +85,14 @@ class ClientSummary extends Component {
 
                 <div className='mb-3 text-sm'>
                     <NavLink
-                        to='/lead'
+                        to='/client'
                         >
-                        <span className="dashicons dashicons-arrow-left-alt2"></span> Back to Lead
+                        <span className="dashicons dashicons-arrow-left-alt2"></span> Back to Client
                     </NavLink>
                 </div>
 
                 <div className='mb-5 font-bold text-2xl'>
-                    {this.state.data.user.first_name}
+                    {this.state.data.profile.first_name}
                 </div>
 
                 <div className="border-b border-gray-200 dark:border-gray-700">
@@ -115,9 +115,9 @@ class ClientSummary extends Component {
                 <div className='mb-5'></div>      
 
                 { currentTab == 'overview' && <Overview /> }
-                { currentTab == 'project' && <Project lead_id={id} /> }
-                { currentTab == 'estimate' && <Estimate lead_id={id} /> }
-                { currentTab == 'invoice' && <Invoice lead_id={id} /> }
+                { currentTab == 'project' && <Project client_id={id} /> }
+                { currentTab == 'estimate' && <Estimate client_id={id} /> }
+                { currentTab == 'invoice' && <Invoice client_id={id} /> }
                 { currentTab == 'receipt' && <Receipt /> } 
 
             </div>

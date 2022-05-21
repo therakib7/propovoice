@@ -242,7 +242,7 @@ class Client
         $field['address'] = get_user_meta($user->ID, $prefix . 'address', true); 
         $field['date'] = $user->user_registered;
 
-        $data['user'] = $field;
+        $data['profile'] = $field;
 
         wp_send_json_success($data);
     }
@@ -253,7 +253,7 @@ class Client
         $reg_errors   = new \WP_Error;
         $first_name   = sanitize_text_field($req['first_name']);
         $last_name    = sanitize_text_field($req['last_name']);
-        $useremail    = strtolower(sanitize_email($req['email']));
+        $email        = strtolower(sanitize_email($req['email']));
         $company_name = sanitize_text_field($req['company_name']);
         $web          = esc_url_raw($req['web']);
         $mobile       = sanitize_text_field($req['mobile']);
@@ -263,16 +263,16 @@ class Client
 
         if (
             empty($first_name) ||
-            empty($useremail)
+            empty($email)
         ) {
             $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
         }
 
-        if (!is_email($useremail)) {
+        if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }
 
-        if (email_exists($useremail)) {
+        if (email_exists($email)) {
             $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
         }
 
@@ -280,8 +280,8 @@ class Client
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $userdata = [
-                'user_login' => $useremail,
-                'user_email' => $useremail,
+                'user_login' => $email,
+                'user_email' => $email,
                 'user_pass'  => wp_generate_password(8, true, true),
                 'first_name' => $first_name,
                 'last_name'  => $last_name,
@@ -310,25 +310,25 @@ class Client
     public function update($req)
     {
         $params = $req->get_params();
-        $reg_errors            = new \WP_Error;
-        $first_name             = sanitize_text_field($params['first_name']);
-        $last_name              = sanitize_text_field($params['last_name']);
-        $useremail              = strtolower(sanitize_email($params['email']));
-        $company_name           = sanitize_text_field($params['company_name']);
-        $web                    = esc_url_raw($params['web']);
-        $mobile                 = sanitize_text_field($params['mobile']);
-        $country                = sanitize_text_field($req['country']);
-        $region                = sanitize_text_field($req['region']);
-        $address                = sanitize_text_field($req['address']);
+        $reg_errors    = new \WP_Error;
+        $first_name    = sanitize_text_field($params['first_name']);
+        $last_name     = sanitize_text_field($params['last_name']);
+        $email     = strtolower(sanitize_email($params['email']));
+        $company_name  = sanitize_text_field($params['company_name']);
+        $web           = esc_url_raw($params['web']);
+        $mobile        = sanitize_text_field($params['mobile']);
+        $country       = sanitize_text_field($req['country']);
+        $region        = sanitize_text_field($req['region']);
+        $address       = sanitize_text_field($req['address']);
 
         if (
-            empty($useremail) ||
+            empty($email) ||
             empty($first_name)
         ) {
             $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
         }
 
-        if (!is_email($useremail)) {
+        if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }
 
@@ -336,7 +336,7 @@ class Client
         $user_id      = $url_params['id'];
         $current_user = get_user_by('id', $user_id);
 
-        if (($useremail != $current_user->user_email) && email_exists($useremail)) {
+        if (($email != $current_user->user_email) && email_exists($email)) {
             $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
         }
 
@@ -345,8 +345,8 @@ class Client
         } else {
             $data = [
                 'ID'         => $user_id,
-                'user_login' => $useremail,
-                'user_email' => $useremail,
+                'user_login' => $email,
+                'user_email' => $email,
                 'first_name' => $first_name,
                 'last_name'  => $last_name,
             ];

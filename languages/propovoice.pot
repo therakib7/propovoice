@@ -50,7 +50,7 @@ msgstr ""
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../app/Controllers/Api/Types/Client.php:272, ../app/Controllers/Api/Types/Client.php:332
+#: ../app/Controllers/Api/Types/Client.php:272, ../app/Controllers/Api/Types/Client.php:332, ../app/Controllers/Api/Types/Lead.php:203, ../app/Controllers/Api/Types/Lead.php:289
 msgid "Email id is not valid!"
 msgstr ""
 
@@ -68,6 +68,10 @@ msgstr ""
 
 #: ../app/Controllers/Api/Types/Invoice.php:361, ../app/Controllers/Api/Types/Invoice.php:472, ../app/Controllers/Api/Types/Proposal.php:270, ../app/Controllers/Api/Types/Proposal.php:370
 msgid "Receiver is missing"
+msgstr ""
+
+#: ../app/Controllers/Api/Types/Lead.php:199, ../app/Controllers/Api/Types/Lead.php:285
+msgid "Name field is missing"
 msgstr ""
 
 #: ../app/Controllers/Api/Types/Media.php:208

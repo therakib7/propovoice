@@ -8,6 +8,7 @@ use Ncpi\Controllers\Api\Types\Client;
 use Ncpi\Controllers\Api\Types\Dashbaord;
 use Ncpi\Controllers\Api\Types\Email;
 use Ncpi\Controllers\Api\Types\Invoice;
+use Ncpi\Controllers\Api\Types\Lead;
 use Ncpi\Controllers\Api\Types\Media;
 use Ncpi\Controllers\Api\Types\Payment;
 use Ncpi\Controllers\Api\Types\PaymentProcess;
@@ -20,6 +21,7 @@ class ApiController
 
 	public function __construct()
 	{
+		new Lead();
 		new Client();
 		new Project();
 		new Proposal();

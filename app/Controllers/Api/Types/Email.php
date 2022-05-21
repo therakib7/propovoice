@@ -160,25 +160,29 @@ class Email
         $mail_invoice_img = isset($params['invoice_img']) ? $params['invoice_img'] : '';
 
         $compnay_name = isset($params['fromData']) ? $params['fromData']['name'] : '';
-        $client_name = isset($params['toData']) ? $params['toData']['name'] : '';
 
         $token = get_post_meta($invoice_id, 'token', true);
-        $invoice_url = sprintf(
+        $url = sprintf(
             '%s?id=%s&token=%s',
             Fns::client_page_url($path),
             $invoice_id,
             $token
         );
-
-        $subject = Fns::templateVariable($mail_subject, $compnay_name, $client_name, $invoice_id, $invoice_url);
-        $template = ncpi()->render('email/invoice', [], true);
-        $body = Fns::templateVariable($template, $compnay_name, $client_name, $invoice_id, $invoice_url, $msg, $path);
+ 
+        $subject = Fns::templateVariable($mail_subject, []);
+        $template = ncpi()->render('email/invoice', [], true); 
+             
+        $body = Fns::templateVariable($template, [
+            'msg' => $msg,
+            'url' => $url,
+            'path' => $path
+        ]);
 
         $headers = array('Content-Type: text/html; charset=UTF-8');
         $headers[] = 'From: ' . $compnay_name . ' <' . $mail_from . '>';
         //TODO: dynamic Cc later
-        // $headers[] = 'Cc: Rakib <rakib@wordpress.org>';
-        // $headers[] = 'Cc: iluvwp@wordpress.org'; // note you can just use a simple email address
+        //$headers[] = 'Cc: Rakib <therakib7@gmail.com>';
+        //$headers[] = 'Cc: therakib7@gmail.com'; // note you can just use a simple email address
 
         //attachment
         $attachments = [];

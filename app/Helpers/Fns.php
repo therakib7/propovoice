@@ -65,11 +65,11 @@ class Fns
                 'id' => 'linkedin',
                 'label' => 'Linkedin',
                 'icon_url' => '',
-                'url' => '',
+                'url' => 'https://www.linkedin.com/in/nasirbinburhan/',
             ],
         ];
 
-        if (function_exists('ncpip')) {
+        if ( function_exists('ncpip') ) {
             $get_social = get_option('ncpi_general_social');
             if (isset($get_social['social'])) {
                 $social_list = $get_social['social'];

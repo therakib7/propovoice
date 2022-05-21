@@ -11,11 +11,11 @@ import {
 } from "react-router-dom";
 
 const Dashboard = lazy(() => import('components/dashboard'));
-const Client = lazy(() => import('components/client/client'));
-const ClientSummary = lazy(() => import('components/client/client-summary'));
+const Client = lazy(() => import('components/client/list'));
+const ClientSummary = lazy(() => import('components/client/summary'));
 
-const Lead = lazy(() => import('components/lead/lead'));
-const LeadSummary = lazy(() => import('components/lead/lead-summary'));
+const Lead = lazy(() => import('components/lead/list'));
+const LeadSummary = lazy(() => import('components/lead/summary'));
 
 const DealPipeline = lazy(() => import('components/deal-pipeline'));
 
