@@ -5,8 +5,8 @@ import Api from 'api/lead';
 
 import Overview from './tab/overview';
 import Project from 'components/project'; 
-import Estimate from 'components/invoice/invoice';
-import Invoice from 'components/invoice/invoice';
+import Estimate from 'components/invoice/list';
+import Invoice from 'components/invoice/list';
 import Receipt from './tab/receipt';
 
 class ClientSummary extends Component {

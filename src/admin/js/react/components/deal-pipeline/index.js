@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 // import uuid from "uuid/v4";
 
+import Editable from 'block/editable';
+
 import { v4 as uuidv4 } from 'uuid'; 
 
 const columnsFromBackend = {
@@ -76,7 +78,7 @@ const columnsFromBackend = {
 		name: "Done",
 		items: []
 	}
-};
+}; 
 
 const onDragEnd = (result, columns, setColumns) => {
 	if ( !result.destination ) return;
@@ -121,14 +123,20 @@ function App() {
 	const [columns, setColumns] = useState(columnsFromBackend);
 
 	const addNewColumn = () => {
-		let newColumns = columns;
+		let newColumns = {...columns};
 		newColumns[uuidv4()] = {
 			name: "Title",
 			items: []
-		}
+		} 
 		setColumns(newColumns);
-        console.log(newColumns)
     };
+
+	const handleCoumnLabel = (index, value) => {
+		let newColumns = {...columns};
+		newColumns[index].name = value; 
+		setColumns(newColumns);
+    };
+
 	return (
 		<div style={{ display: "flex", /* justifyContent: "center", */ height: "100%", /* overflowX: 'scroll' */ }}>
 			<DragDropContext
@@ -144,7 +152,15 @@ function App() {
 							}}
 							key={columnId}
 						>
-							<h2>{column.name}</h2>
+							<h2>
+								{/* {column.name} */}
+								<Editable
+									// key={columnId}
+									value={column.name}
+									index={columnId}
+									changeHandler={handleCoumnLabel}
+								/>
+							</h2>
 							<div style={{ marginRight: 8 }}>
 								<Droppable droppableId={columnId} key={columnId}>
 									{(provided, snapshot) => {

@@ -18,7 +18,7 @@ import Editor from '../editor';
 import Contract from './Contract';
 import Estimate from './invoice copy';
 import Invoice from '../invoice/invoice';
-import InvoiceSingle from '../invoice/invoice-single';
+import InvoiceSingle from '../invoice/single';
 import Payment from '../payment';
 import TemplateLibrary from './TemplateLibrary';
 import Business from '../business';

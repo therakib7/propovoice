@@ -21,13 +21,13 @@ const DealPipeline = lazy(() => import('components/deal-pipeline'));
 
 const Project = lazy(() => import('components/project'));
 //const Proposal = lazy(() => import('components/proposal'));
-// const Editor = lazy(() => import('components/editor'));
+//const Editor = lazy(() => import('components/editor'));
 
-const Proposal = lazy(() => import('components/proposal/proposal'));
-const ProposalSingle = lazy(() => import('components/proposal/proposal-single'));
+const Proposal = lazy(() => import('components/proposal/list'));
+const ProposalSingle = lazy(() => import('components/proposal/single'));
 
-const Invoice = lazy(() => import('components/invoice/invoice'));
-const InvoiceSingle = lazy(() => import('components/invoice/invoice-single'));
+const Invoice = lazy(() => import('components/invoice/list'));
+const InvoiceSingle = lazy(() => import('components/invoice/single'));
 
 const Payment = lazy(() => import('components/payment'));
 const Business = lazy(() => import('components/business'));
