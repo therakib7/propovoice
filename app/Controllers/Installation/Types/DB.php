@@ -10,6 +10,5 @@ class DB {
 
     function create_custom_table() {
         
-    }
-
+    } 
 }

@@ -17,7 +17,7 @@ const ClientSummary = lazy(() => import('components/client/summary'));
 const Lead = lazy(() => import('components/lead/list'));
 const LeadSummary = lazy(() => import('components/lead/summary'));
 
-const DealPipeline = lazy(() => import('components/deal-pipeline'));
+const Deal = lazy(() => import('components/deal'));
 
 const Project = lazy(() => import('components/project'));
 //const Proposal = lazy(() => import('components/proposal'));
@@ -117,7 +117,7 @@ const Home = () => {
                                     </NavLink>
 
                                     <NavLink
-                                        to='deal-pipeline'
+                                        to='deal'
                                         className={({ isActive }) => isActive ? 'pi-active' : ''}>
                                         <svg
                                             width={18}
@@ -310,7 +310,7 @@ const Home = () => {
                                 <Route path="/lead" exact element={<Lead />} />
                                 <Route path="/lead/:id" exact element={<LeadSummary />} />
 
-                                <Route path="/deal-pipeline" exact element={<DealPipeline />} />
+                                <Route path="/deal" exact element={<Deal />} />
 
                                 <Route path="/project" exact element={<Project />} />
 

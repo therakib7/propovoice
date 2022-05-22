@@ -266,8 +266,7 @@ export default class Project extends Component {
 
                 {this.state.empty && <Empty title={title} clickHandler={() => this.openForm('new')} />}
 
-                {/* <button
-                    
+                {/* <button 
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button> */}

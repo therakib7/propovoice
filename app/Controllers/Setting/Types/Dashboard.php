@@ -33,6 +33,14 @@ class Dashboard
 
         $settings_menu = [
             [
+				'id' => 'lead',
+				'label' => esc_html__('Lead', 'propovoice'),
+			],
+			[
+				'id' => 'deal',
+				'label' => esc_html__('Deal Pipeline', 'propovoice'),
+            ],
+            [
                 'id' => 'client',
                 'label' => esc_html__('Client', 'propovoice'),
             ],

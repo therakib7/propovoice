@@ -2,7 +2,7 @@
 
 namespace Ncpi\Controllers\Installation;
 
-// use Ncpi\Controllers\Installation\Types\DB;
+use Ncpi\Controllers\Installation\Types\DB;
 use Ncpi\Controllers\Installation\Types\Page;
 
 class InstallationController {
@@ -53,7 +53,7 @@ class InstallationController {
         if ( get_option('ncpi_activation_redirect', false) ) {
             delete_option('ncpi_activation_redirect');  
             
-            //TODO: check by plugin version
+            //TODO: Check by plugin version
             if ( get_option( 'ncpi_role_version' ) < 1 ) { 
                 new Page();
 
@@ -61,7 +61,12 @@ class InstallationController {
                 wp_mkdir_p( $uploads_dir );
 
             }
-            update_option( 'ncpi_role_version', 1 );
+
+            if ( get_option( 'ncpi_role_version' ) < 1.1 ) { 
+                // new DB(); 
+            }
+
+            update_option( 'ncpi_role_version', 1.1 );
 			
             wp_redirect( admin_url('admin.php?page=ncpi-welcome') );
         }

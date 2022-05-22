@@ -328,7 +328,7 @@ export default class Client extends Component {
 
                 {clients.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {clients.length} client showing from {this.state.total}
+                        {clients.length} {title} showing from {this.state.total}
                         <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
@@ -341,7 +341,7 @@ export default class Client extends Component {
 
                 {checkedBoxes.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {checkedBoxes.length} client selected
+                        {checkedBoxes.length} {title} selected
                         <button
                             style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
                             onClick={() => this.deleteEntry('selected')} >

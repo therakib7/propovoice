@@ -275,7 +275,7 @@ export default class Business extends Component {
 
                 {businesses.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {businesses.length} Business showing from {this.state.total}
+                        {businesses.length} {title} showing from {this.state.total}
                         <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
@@ -288,7 +288,7 @@ export default class Business extends Component {
 
                 {checkedBoxes.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {checkedBoxes.length} business selected
+                        {checkedBoxes.length} {title} selected
                         <button
                             style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
                             onClick={() => this.deleteEntry('selected')} >

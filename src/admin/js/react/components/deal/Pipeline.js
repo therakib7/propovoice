@@ -119,7 +119,7 @@ const onDragEnd = (result, columns, setColumns) => {
 	}
 };
 
-function App() {
+function Pipeline( props ) {
 	const [columns, setColumns] = useState(columnsFromBackend);
 
 	const addNewColumn = () => {
@@ -149,7 +149,7 @@ function App() {
 								display: "flex",
 								flexDirection: "column",
 								// alignItems: "center"
-							}}
+							}} 
 							key={columnId}
 						>
 							<h2>
@@ -215,6 +215,7 @@ function App() {
 										);
 									}}
 								</Droppable>
+								<button onClick={() => props.new()}>New Deal</button>
 							</div>
 						</div>
 					);
@@ -235,4 +236,4 @@ function App() {
 		</div>
 	);
 } 
-export default App; 
+export default Pipeline; 

@@ -6,25 +6,26 @@ import ReactPaginate from 'react-paginate';
 
 import Preloader from 'block/preloader/table';
 
-import Api from 'api/business';
+import Api from 'api/deal';
 import Form from './Form';
 import Table from './Table';
+import Pipeline from './Pipeline';
 import Search from './Search';
 import Empty from 'block/empty';
 
-export default class DealPipeline extends Component {
+export default class Deal extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            title: 'Deal Pipeline',
+            title: 'Deal',
             empty: false,
             preloader: true,
             formModal: false,
             searchModal: false,
             formModalType: 'new',
-            business: { id: null },
-            businesses: [],
+            deal: { id: null },
+            deals: [], 
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
@@ -62,7 +63,7 @@ export default class DealPipeline extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ businesses: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
+                this.setState({ deals: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
             })
     };
 
@@ -89,9 +90,9 @@ export default class DealPipeline extends Component {
         });
     }
 
-    handleSubmit = business => {
+    handleSubmit = deal => {
         if (this.state.formModalType == 'new') {
-            Api.create(business)
+            Api.create(deal)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -104,7 +105,7 @@ export default class DealPipeline extends Component {
                     }
                 })
         } else {
-            Api.update(business.id, business)
+            Api.update(deal.id, deal)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -125,8 +126,8 @@ export default class DealPipeline extends Component {
 
             if (type == 'single') {
                 this.setState({
-                    businesses: this.state.businesses.filter((business, i) => {
-                        return business.id !== index;
+                    deals: this.state.deals.filter((deal, i) => {
+                        return deal.id !== index;
                     })
                 });
             }
@@ -148,11 +149,11 @@ export default class DealPipeline extends Component {
         }
     }
 
-    openForm = (type = 'new', business = null) => {
+    openForm = (type = 'new', deal = null) => {
         if (type == 'new') {
             this.setState({ formModal: true, formModalType: 'new' });
         } else {
-            this.setState({ formModal: true, formModalType: 'edit', business: business });
+            this.setState({ formModal: true, formModalType: 'edit', deal: deal });
         }
     };
 
@@ -178,7 +179,7 @@ export default class DealPipeline extends Component {
             //check all
             if (e.target.checked) {
                 let ids = [];
-                this.state.businesses.map((row) => { ids.push(row.id) });
+                this.state.deals.map((row) => { ids.push(row.id) });
                 this.setState({ checkedBoxes: ids });
             } else {
                 this.setState({ checkedBoxes: [] });
@@ -199,10 +200,10 @@ export default class DealPipeline extends Component {
     };
 
     render() {
-        const { title, businesses, checkedBoxes, searchVal } = this.state;
+        const { title, deals, checkedBoxes, searchVal } = this.state;
         return (
             <div className="ncpi-components">
-                <h1>{title}</h1>
+                <h1>{title} Pipeline</h1>
                 <nav className='pi-breadcrumb'>
                     <ul>
                         <li>
@@ -212,7 +213,7 @@ export default class DealPipeline extends Component {
                         </li>
                         <li>&gt;</li>
                         <li className='pi-active'>
-                            {title}
+                            {title} Pipeline
                         </li>
                     </ul>
                 </nav> 
@@ -263,19 +264,19 @@ export default class DealPipeline extends Component {
                     handleSubmit={this.handleSubmit}
                     show={this.state.formModal}
                     modalType={this.state.formModalType}
-                    data={this.state.business}
+                    data={this.state.deal}
                     close={this.closeForm}
                 />
 
-                <Search
+                {/* <Search
                     handleSubmit={this.getLists}
                     show={this.state.searchModal}
                     close={this.closeForm}
-                />
+                /> */}
 
-                {businesses.length > 0 && <div className='pi-table-showing'>
+                {/* {deals.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {businesses.length} Business showing from {this.state.total}
+                        {deals.length} {title} showing from {this.state.total}
                         <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
@@ -284,11 +285,11 @@ export default class DealPipeline extends Component {
                             <option value="100">Show item 100</option>
                         </select>
                     </p>
-                </div>}
+                </div>} */}
 
                 {checkedBoxes.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {checkedBoxes.length} business selected
+                        {checkedBoxes.length} {title} selected
                         <button
                             style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
                             onClick={() => this.deleteEntry('selected')} >
@@ -296,9 +297,15 @@ export default class DealPipeline extends Component {
                         </button>
                     </p>
                 </div>} 
-                {this.state.preloader ? <Preloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
-                {this.state.totalPage > 1 && <ReactPaginate
+                {/* {this.state.preloader ? <Preloader /> : <Table tableData={deals} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />} */}
+
+                {this.state.preloader ? <Preloader /> : 
+                <Pipeline 
+                    new={() => this.openForm('new')}
+                />}
+
+                {/* {this.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'
                     nextClassName='pi-next'
                     disabledClassName='pi-disabled'
@@ -313,7 +320,7 @@ export default class DealPipeline extends Component {
                     onPageChange={this.handlePageClick}
                     containerClassName={"pi-pagination"}
                     activeClassName='pi-active' />
-                }
+                } */}
 
             </div>
         );
