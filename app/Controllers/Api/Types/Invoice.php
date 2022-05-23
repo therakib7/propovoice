@@ -337,7 +337,7 @@ class Invoice
         // wp_send_json_success($invoice);
 
         $total  = 0;
-        foreach ($params['items'] as $item) {
+        foreach ( $params['items'] as $item ) {
             $total += ($item['qty'] * $item['price']);
         }
         $paid   = isset($params['paid']) ? $params['paid'] : null;

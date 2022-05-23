@@ -312,13 +312,12 @@ export default class Lead extends Component {
                     Search
                 </button> */}
 
-                <Form
-                    handleSubmit={this.handleSubmit}
-                    show={this.state.formModal}
+                {this.state.formModal && <Form
+                    handleSubmit={this.handleSubmit} 
                     modalType={this.state.formModalType}
                     data={this.state.lead}
                     close={this.closeForm}
-                />
+                />}
 
                 <Search
                     handleSubmit={this.getLists}

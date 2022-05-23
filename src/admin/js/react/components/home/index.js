@@ -15,9 +15,10 @@ const Client = lazy(() => import('components/client/list'));
 const ClientSummary = lazy(() => import('components/client/summary'));
 
 const Lead = lazy(() => import('components/lead/list'));
-const LeadSummary = lazy(() => import('components/lead/summary'));
+const LeadSummary = lazy(() => import('components/lead/summary')); 
 
-const Deal = lazy(() => import('components/deal'));
+const Deal = lazy(() => import('components/deal/list'));
+const DealSummary = lazy(() => import('components/deal/summary'));
 
 const Project = lazy(() => import('components/project'));
 //const Proposal = lazy(() => import('components/proposal'));
@@ -31,6 +32,10 @@ const InvoiceSingle = lazy(() => import('components/invoice/single'));
 
 const Payment = lazy(() => import('components/payment'));
 const Business = lazy(() => import('components/business'));
+
+const Contact = lazy(() => import('components/contact/list'));
+const ContactSummary = lazy(() => import('components/contact/summary'));
+
 const Setting = lazy(() => import('components/setting'));
 
 const Home = () => {
@@ -311,6 +316,7 @@ const Home = () => {
                                 <Route path="/lead/:id" exact element={<LeadSummary />} />
 
                                 <Route path="/deal" exact element={<Deal />} />
+                                <Route path="/deal/:id" exact element={<DealSummary />} />
 
                                 <Route path="/project" exact element={<Project />} />
 
@@ -331,6 +337,10 @@ const Home = () => {
 
                                 <Route path="/payment" element={<Payment />} /> 
                                 <Route path="/business" element={<Business />} />
+
+                                <Route path="/contact" exact element={<Contact />} />
+                                <Route path="/contact/:id" exact element={<ContactSummary />} />
+
                                 <Route path="/setting" element={<Setting />} />
                                 <Route path="/setting/:tab" element={<Setting />} />
                                 <Route path="/setting/:tab/:subtab" element={<Setting />} />

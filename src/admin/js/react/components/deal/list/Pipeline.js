@@ -138,7 +138,7 @@ function Pipeline( props ) {
     };
 
 	return (
-		<div style={{ display: "flex", /* justifyContent: "center", */ height: "100%", /* overflowX: 'scroll' */ }}>
+		<div style={{ display: 'flex', /* justifyContent: "center", */ height: '100%', /* overflowX: 'scroll' */ }}>
 			<DragDropContext
 				onDragEnd={result => onDragEnd(result, columns, setColumns)}
 			>
@@ -146,8 +146,8 @@ function Pipeline( props ) {
 					return (
 						<div
 							style={{
-								display: "flex",
-								flexDirection: "column",
+								display: 'flex',
+								flexDirection: 'column',
 								// alignItems: "center"
 							}} 
 							key={columnId}
@@ -223,7 +223,7 @@ function Pipeline( props ) {
 
 				<div
 					style={{
-						display: "flex",
+						display: 'flex',
 						flexDirection: "column", 
 					}} 
 				>

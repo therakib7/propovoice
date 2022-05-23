@@ -17,7 +17,9 @@ const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
 
-const Business = lazy(() => import('./tab/business/index'));
+const BusinessSingle = lazy(() => import('./tab/business/index'));
+const Business = lazy(() => import('components/business'));
+
 const Payment = lazy(() => import('components/payment'));
 
 export default function SettingWrap() {
@@ -33,7 +35,7 @@ export default function SettingWrap() {
 
     const tab_data = {
         business: {
-            label: 'Business Info'
+            label: 'Business'
         },
         payment: {
             label: 'Payment'
@@ -60,7 +62,7 @@ export default function SettingWrap() {
                             label: 'Recurring'
                         }, */
                     },
-                },
+                }, 
                 estimate: {
                     label: 'Estimate',
                     subtabs: {
@@ -82,6 +84,12 @@ export default function SettingWrap() {
                             label: 'Template',
                         }, 
                     },
+                },
+                business: {
+                    label: 'Business'
+                },
+                payment: {
+                    label: 'Payment'
                 },
                 email: {
                     label: 'Email Template',
@@ -185,12 +193,9 @@ export default function SettingWrap() {
                             </>
                         }
 
-                        {wage.length > 0 &&
-                            <>
-                                {currentTab == 'business' && <Business />}
-                                {currentTab == 'payment' && <Payment />}
-                            </>
-                        }
+                        {currentTab == 'business' && wage.length > 0 && <BusinessSingle />}
+                        {currentTab == 'business' && !wage.length && <Business />}
+                        {currentTab == 'payment' && <Payment />}
 
                     </Suspense>
                 </div>

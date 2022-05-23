@@ -63,7 +63,7 @@ class InstallationController {
             }
 
             if ( get_option( 'ncpi_role_version' ) < 1.1 ) { 
-                // new DB(); 
+                new DB(); 
             }
 
             update_option( 'ncpi_role_version', 1.1 );

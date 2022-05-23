@@ -6,25 +6,33 @@ import ReactPaginate from 'react-paginate';
 
 import Preloader from 'block/preloader/table';
 
-import Api from 'api/business';
+import Api from 'api/deal';
 import Form from './Form';
+import Pipeline from './Pipeline';
 import Table from './Table';
 import Search from './Search';
 import Empty from 'block/empty';
 
-export default class Business extends Component {
+export default class Deal extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            title: 'Business',
+            title: 'Deal',
             empty: false,
             preloader: true,
             formModal: false,
             searchModal: false,
             formModalType: 'new',
-            business: { id: null },
-            businesses: [],
+            deal: { id: null },
+            deals: [],
+            summary: {
+                total: 0,
+                paid: 0,
+                unpaid: 0,
+                draft: 0,
+                sent: 0
+            },
             checkedBoxes: [],
             offset: 0,
             perPage: 10,
@@ -62,7 +70,7 @@ export default class Business extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ businesses: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
+                this.setState({ deals: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
             })
     };
 
@@ -89,9 +97,9 @@ export default class Business extends Component {
         });
     }
 
-    handleSubmit = business => {
+    handleSubmit = deal => {
         if (this.state.formModalType == 'new') {
-            Api.create(business)
+            Api.create(deal)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -104,7 +112,7 @@ export default class Business extends Component {
                     }
                 })
         } else {
-            Api.update(business.id, business)
+            Api.update(deal.id, deal)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -124,11 +132,11 @@ export default class Business extends Component {
         if (confirm(this.context.CrudMsg.confirm)) {
 
             if (type == 'single') {
-                this.setState({
-                    businesses: this.state.businesses.filter((business, i) => {
-                        return business.id !== index;
+                /* this.setState({
+                    deals: this.state.deals.filter((deal, i) => {
+                        return deal.id !== index;
                     })
-                });
+                }); */ 
             }
             let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
             Api.remove(ids)
@@ -148,11 +156,14 @@ export default class Business extends Component {
         }
     }
 
-    openForm = (type = 'new', business = null) => {
+    openForm = (type = 'new', deal = null) => {
+        this.setState({ formModal: true });
+
         if (type == 'new') {
-            this.setState({ formModal: true, formModalType: 'new' });
+            this.setState({ formModalType: 'new' });
         } else {
-            this.setState({ formModal: true, formModalType: 'edit', business: business });
+            this.setState({ formModalType: 'edit' });
+            this.setState({ deal: deal });
         }
     };
 
@@ -178,7 +189,7 @@ export default class Business extends Component {
             //check all
             if (e.target.checked) {
                 let ids = [];
-                this.state.businesses.map((row) => { ids.push(row.id) });
+                this.state.deals.map((row) => { ids.push(row.id) });
                 this.setState({ checkedBoxes: ids });
             } else {
                 this.setState({ checkedBoxes: [] });
@@ -199,22 +210,71 @@ export default class Business extends Component {
     };
 
     render() {
-        const { title, businesses, checkedBoxes, searchVal } = this.state;
+        const { title, deals, checkedBoxes, searchVal } = this.state;
+        const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
-            <div className="ncpi-components" style={{paddingTop: '20px'}}>
-                {wage.length > 0 &&
-                <>
-                    <div className="pi-setting-heading-content">
-                        <h3>Business Info</h3>
-                        <p><b>Note:</b> In this version, You can add only one business info</p>
-                    </div>
-                </>}
+            <div className="ncpi-components"> 
+                <h1>{title}</h1>
+                <nav className='pi-breadcrumb'>
+                    <ul>
+                        <li>
+                            <a href='#' >
+                                Home
+                            </a>
+                        </li>
+                        <li>&gt;</li>
+                        <li className='pi-active'>
+                            {title} Pipeline
+                        </li>
+                    </ul>
+                </nav>
+
+                {/* {deals.length > 0 &&
+                    <>{!wage.length && <div className="pi-cards">
+                        <div className="row">
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content pi-bg-husky">
+                                        <span>Total {title}</span>
+                                        <h4 className="pi-color-blue">{total}</h4>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#f9f6ea' }}>
+                                        <span>Paid {title}</span>
+                                        <h4 style={{ color: '#c66542' }}>{paid}</h4>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#d7f4f1' }}>
+                                        <span>Unpaid {title}</span>
+                                        <h4 style={{ color: '#45ac9d' }}>{unpaid}</h4>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#f7dfec' }}>
+                                        <span>Draft {title}</span>
+                                        <h4 style={{ color: '#b66490' }}>{draft}</h4>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#e6ffe7' }}>
+                                        <span>Sent {title}</span>
+                                        <h4 style={{ color: '#43ad47' }}>{sent}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>}  
+                </>} */}
 
                 <div className="pi-buttons">
                     <button
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.openForm('new')} >
-                        Create New {title}
+                        Add New {title}
                     </button> 
 
                     <div className="pi-search-box pi-float-right">
@@ -247,18 +307,19 @@ export default class Business extends Component {
 
                 {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.openForm('new')} />}
 
-                {/* <button                    
+                {/* <button
+                    
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button> */}
 
-                <Form
+                {this.state.formModal && <Form
                     handleSubmit={this.handleSubmit}
-                    show={this.state.formModal}
+                    // show={this.state.formModal}
                     modalType={this.state.formModalType}
-                    data={this.state.business}
+                    data={this.state.deal}
                     close={this.closeForm}
-                />
+                />}
 
                 <Search
                     handleSubmit={this.getLists}
@@ -266,9 +327,9 @@ export default class Business extends Component {
                     close={this.closeForm}
                 />
 
-                {businesses.length > 0 && <div className='pi-table-showing'>
+                {/* {deals.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {businesses.length} {title} showing from {this.state.total}
+                        {deals.length} {title} showing from {this.state.total}
                         <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
@@ -277,7 +338,7 @@ export default class Business extends Component {
                             <option value="100">Show item 100</option>
                         </select>
                     </p>
-                </div>}
+                </div>} */}
 
                 {checkedBoxes.length > 0 && <div className='pi-table-showing'>
                     <p>
@@ -289,9 +350,15 @@ export default class Business extends Component {
                         </button>
                     </p>
                 </div>} 
-                {this.state.preloader ? <Preloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
-                {this.state.totalPage > 1 && <ReactPaginate
+                {/* {this.state.preloader ? <Preloader /> : <Table tableData={deals} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />} */}
+
+                {this.state.preloader ? <Preloader /> : 
+                <Pipeline 
+                    new={() => this.openForm('new')}
+                />}
+
+                {/* {this.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'
                     nextClassName='pi-next'
                     disabledClassName='pi-disabled'
@@ -306,7 +373,7 @@ export default class Business extends Component {
                     onPageChange={this.handlePageClick}
                     containerClassName={"pi-pagination"}
                     activeClassName='pi-active' />
-                }
+                } */}
 
             </div>
         );

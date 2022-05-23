@@ -55,7 +55,7 @@ const TableBody = props => {
 
     let navigate = useNavigate();
     function handleOverview(id) {
-        navigate(`/lead/${id}`, { replace: true });
+        navigate(`/contact/${id}`, { replace: true });
     }
 
     let rows = props.tableData.map((row, index) => {

@@ -5,6 +5,7 @@ namespace Ncpi\Controllers\Api;
 use Ncpi\Controllers\Api\Types\Action;
 use Ncpi\Controllers\Api\Types\Business;
 use Ncpi\Controllers\Api\Types\Client;
+use Ncpi\Controllers\Api\Types\Contact;
 use Ncpi\Controllers\Api\Types\Dashbaord;
 use Ncpi\Controllers\Api\Types\Deal;
 use Ncpi\Controllers\Api\Types\Email;
@@ -16,6 +17,7 @@ use Ncpi\Controllers\Api\Types\PaymentProcess;
 use Ncpi\Controllers\Api\Types\Project;
 use Ncpi\Controllers\Api\Types\Proposal;
 use Ncpi\Controllers\Api\Types\Setting;
+use Ncpi\Controllers\Api\Types\Taxonomy;
 
 class ApiController
 {
@@ -24,7 +26,8 @@ class ApiController
 	{
 		new Lead();
 		new Client();
-		new Deal();
+		new Deal(); 
+		new Contact();
 		new Project();
 		new Proposal();
 		new Invoice();
@@ -35,6 +38,7 @@ class ApiController
 		new PaymentProcess();
 		new Dashbaord();
 		new Action();
+		new Taxonomy();
 		new Setting();
 	}
 }

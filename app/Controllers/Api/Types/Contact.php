@@ -4,7 +4,7 @@ namespace Ncpi\Controllers\Api\Types;
 
 use WP_Query;
 
-class Deal
+class Contact
 {
 
     public function __construct()
@@ -13,8 +13,9 @@ class Deal
     }
 
     public function create_rest_routes()
-    { 
-        register_rest_route('ncpi/v1', '/deals', [
+    {
+
+        register_rest_route('ncpi/v1', '/contacts', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -27,7 +28,7 @@ class Deal
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/deals/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/contacts/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -40,7 +41,7 @@ class Deal
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/deals/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/contacts/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -53,7 +54,7 @@ class Deal
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/deals/(?P<id>[0-9,]+)', array(
+        register_rest_route('ncpi/v1', '/contacts/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -81,7 +82,7 @@ class Deal
         }
 
         $args = array(
-            'post_type' => 'ncpi_deal',
+            'post_type' => 'ncpi_contact',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -207,7 +208,7 @@ class Deal
         } else {
 
             $data = array(
-                'post_type' => 'ncpi_deal',
+                'post_type' => 'ncpi_contact',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
