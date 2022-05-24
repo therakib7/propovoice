@@ -62,7 +62,7 @@ export default function SettingWrap() {
                             label: 'Recurring'
                         }, */
                     },
-                }, 
+                },
                 estimate: {
                     label: 'Estimate',
                     subtabs: {
@@ -71,7 +71,7 @@ export default function SettingWrap() {
                         },
                         template: {
                             label: 'Template',
-                        }, 
+                        },
                     },
                 },
                 invoice: {
@@ -82,7 +82,7 @@ export default function SettingWrap() {
                         },
                         template: {
                             label: 'Template',
-                        }, 
+                        },
                     },
                 },
                 business: {
@@ -93,7 +93,7 @@ export default function SettingWrap() {
                 },
                 email: {
                     label: 'Email Template',
-                    subtabs: { 
+                    subtabs: {
                         estimate: {
                             label: 'Estimate',
                         },
@@ -116,90 +116,112 @@ export default function SettingWrap() {
         }
     };
 
-    const addCurrentTab = (tab, subtab = null) => {
-        if (subtab) {
-            setCurrentSubtab(subtab);
-        } else {
-            setCurrentTab(tab);
-            setCurrentSubtab(null);
-        }
+    const addCurrentTab = (e, tab, subtab = null) => {
+        e.preventDefault(); 
+        setCurrentTab(tab); 
+        setCurrentSubtab(subtab);
         routeChange(tab, subtab);
     };
 
     return (
         <>
-            <h1>Settings</h1>
             <nav className='pi-breadcrumb'>
                 <ul>
                     <li><a href='#'>Home</a></li>
-                    <li>&gt;</li>
+                    <li>
+                        <svg
+                            width={5}
+                            height={10}
+                            viewBox="0 0 5 10"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg" 
+                        >
+                        <path
+                            d="M.5 1.25L4.25 5 .5 8.75"
+                            stroke="#718096"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        </svg>
+                    </li>
                     <li className='pi-active'>Settings</li>
                 </ul>
             </nav>
 
+            <h2 className='pi-page-title'>Settings</h2>
+
             <div className='pi-settings-tab'>
-                <ul className='pi-settings-tabs'>
-                    {Object.keys(tabs).map(key =>
-                        <li
-                            key={key}
-                            className={'pi-tab ' + (key == currentTab ? 'pi-active' : '')}
-                            onClick={() => addCurrentTab(key)}
-                        >
-                            {tabs[key].label}
-                        </li>
-                    )}
-                </ul>
+                <div className='row'>
+                    <div className='col-md-3'>
+                        <ul className='pi-settings-tabs'>
+                            {Object.keys(tabs).map(key =>
+                                <li
+                                    key={key}
+                                    className={'pi-tab ' + (key == currentTab ? 'pi-active' : '')} 
+                                >
+                                    <a onClick={(e) => addCurrentTab(e, key)}>
+                                        {tabs[key].label}
+                                    </a>
 
-                {tabs.hasOwnProperty(currentTab) && tabs[currentTab].hasOwnProperty('subtabs') && tabs[currentTab].subtabs && <ul className='pi-settings-subtabs'>
-                    {Object.keys(tabs[currentTab].subtabs).map(key =>
-                        <li
-                            key={key}
-                            className={'pi-subtab ' + ((key == currentSubtab) || (!currentSubtab && Object.keys(tabs[currentTab].subtabs)[0] == key) ? 'pi-active' : '')}
-                            onClick={() => addCurrentTab(currentTab, key)}
-                        >
-                            {tabs[currentTab].subtabs[key].label}
-                        </li>
-                    )}
-                </ul>}
+                                    {tabs[key].hasOwnProperty('subtabs') && tabs[key].subtabs && <ul className='pi-settings-subtabs'>
+                                        {Object.keys(tabs[key].subtabs).map(subkey =>
+                                            <li
+                                                key={subkey}
+                                                className={'pi-subtab ' + ((subkey == currentSubtab) || (!currentSubtab && Object.keys(tabs[key].subtabs)[0] == subkey) ? 'pi-active' : '')} 
+                                            >
+                                                <a onClick={(e) => addCurrentTab(e, key, subkey)}>
+                                                    {tabs[key].subtabs[subkey].label}
+                                                </a>
+                                            </li>
+                                        )}
+                                    </ul>}
+                                </li>
+                            )}
+                        </ul> 
+                    </div>
 
-                <div className="pi-setting-tab-content">
-                    {/* <div className="pi-setting-heading-content">
-                        <h3>Payment Info</h3>
-                        <p>note: in this version, you can add only bank info in your invoice</p>
-                    </div> */}
+                    <div className='col-md-9'>
+                        <div className="pi-setting-tab-content">
+                            {/* <div className="pi-setting-heading-content">
+                                <h3>Payment Info</h3>
+                                <p>note: in this version, you can add only bank info in your invoice</p>
+                            </div> */}
 
-                    <Suspense fallback={<div>Loading...</div>}> 
+                            <h4 className='pi-tab-title'>Edit Business Profile</h4>
 
-                        {!wage.length &&
-                            <>
-                                {currentTab == 'general' && (currentSubtab == 'social' || !currentSubtab) && <GeneralSocial />} 
-                            </>
-                        }
+                            <Suspense fallback={<div>Loading...</div>}>
 
-                        {!wage.length &&
-                            <>
-                                {currentTab == 'estimate' && (currentSubtab == 'reminder' || !currentSubtab) && <EstimateReminder />}
-                                {currentTab == 'estimate' && currentSubtab == 'recurring' && <EstimateRecurring />}
+                                {!wage.length &&
+                                    <>
+                                        {currentTab == 'general' && (currentSubtab == 'social' || !currentSubtab) && <GeneralSocial />}
+                                    </>
+                                }
 
-                                {currentTab == 'invoice' && (currentSubtab == 'reminder' || !currentSubtab) && <InvoiceReminder />}
-                                {currentTab == 'invoice' && currentSubtab == 'recurring' && <InvoiceRecurring />}
-                            </>
-                        }
+                                {!wage.length &&
+                                    <>
+                                        {currentTab == 'estimate' && (currentSubtab == 'reminder' || !currentSubtab) && <EstimateReminder />}
+                                        {currentTab == 'estimate' && currentSubtab == 'recurring' && <EstimateRecurring />}
 
-                        {!wage.length &&
-                            <> 
-                                {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
-                                {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
-                            </>
-                        }
+                                        {currentTab == 'invoice' && (currentSubtab == 'reminder' || !currentSubtab) && <InvoiceReminder />}
+                                        {currentTab == 'invoice' && currentSubtab == 'recurring' && <InvoiceRecurring />}
+                                    </>
+                                }
 
-                        {currentTab == 'business' && wage.length > 0 && <BusinessSingle />}
-                        {currentTab == 'business' && !wage.length && <Business />}
-                        {currentTab == 'payment' && <Payment />}
+                                {!wage.length &&
+                                    <>
+                                        {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
+                                        {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
+                                    </>
+                                }
 
-                    </Suspense>
+                                {currentTab == 'business' && wage.length > 0 && <BusinessSingle />}
+                                {currentTab == 'business' && !wage.length && <Business />}
+                                {currentTab == 'payment' && <Payment />}
+
+                            </Suspense>
+                        </div>
+                    </div>
                 </div>
-                {/* ./ pi-tabs */}
             </div>
         </>
     );

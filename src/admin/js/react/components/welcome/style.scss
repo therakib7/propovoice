@@ -1,4 +1,5 @@
 //TODO: do it like main 
+//rakib code
 .ncpi .pi-field-logo-wrap {
   margin-top: 10px;
   .pi-field-logo {
@@ -24,19 +25,34 @@
       box-shadow: rgb(23 10 18 / 18%) 0px 0px 4px;
   }
 }
+//from reza start
 .ncpi .pi-main-content {
   background-color: var(--bg-color-white);
-  margin-top: 80px;
+  margin: 80px 0;
 }
-
+.ncpi .pi-welcome-tabs-content {
+  position: relative;
+}
+.ncpi .pi-welcome-title-content {
+  text-align: center;
+  margin-bottom: 45px;
+}
+.ncpi .pi-welcome-title-content .pi-welcome-title {
+  font-weight: 700;
+  font-size: 24px;
+}
+.ncpi .pi-welcome-title-content .pi-welcome-disc {
+  font-size: 14px;
+  margin-top: 5px;
+}
 .ncpi .pi-container {
   left: 0;
   right: 0;
   margin: auto;
-  max-width: 657px;
+  max-width: 750px;
   border-radius: 40px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 45px 65px;
+  padding: 45px 60px;
 }
 @media screen and (max-width: 768px) {
   .ncpi .pi-container {
@@ -56,17 +72,6 @@
   text-align: center;
   margin-bottom: 33px;
 }
-.ncpi .pi-logo-content img {
-  width: 36px;
-  height: 36px;
-  margin: auto;
-}
-.ncpi .pi-logo-content strong {
-  position: relative;
-  top: -10px;
-  left: 10px;
-  font-size: 24px;
-}
 .ncpi .pi-buttons.pi-text-center a {
   display: table;
   color: #000;
@@ -85,16 +90,10 @@
     margin-bottom: 15px;
   }
 }
-.ncpi #pi-finished h3 {
-  font-size: 36px;
-  font-weight: 500;
-  margin-bottom: 15px;
-  margin-top: 30px;
-}
 .ncpi .pi-welcome-tabs-content #pi-welcome p {
   margin-bottom: 70px;
 }
-.ncpi .pi-welcome-tabs-content #pi-finished p {
+.ncpi .pi-welcome-tabs-content #pi-finished .pi-sub-title {
   margin-bottom: 45px;
 }
 .ncpi .pi-welcome-tabs-content #pi-finished .pi-buttons a {
@@ -116,13 +115,30 @@
   margin-bottom: 5px;
 }
 .ncpi .pi-tab-content #pi-brand .pi-upload {
-  font-size: 19px;
-  margin-top: 30px;
-  margin-bottom: 40px;
-  margin-top: 10px;
-  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 100px !important;
+  margin-top: 12px !important;
+  font-weight: 500;
+  position: relative;
+  border: 1px solid #CBD5E0;
+  padding: 7px;
+  width: 110px;
+  margin: auto;
+  border-radius: 5px;
 }
 .ncpi .pi-tab-content #pi-brand input {
-  display: block;
-  margin: auto;
+  width: 120px;
+  font-size: 10px;
+  padding: 13px;
+  position: absolute;
+  cursor: pointer;
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+.ncpi #pi-finished h1 {
+  font-weight: 500;
+  line-height: 40px;
+  margin-top: 20px;
 }

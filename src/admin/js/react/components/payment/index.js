@@ -292,25 +292,22 @@ export default class Payment extends Component {
                     <div className="pi-payment-tab-content">
 
                         <div id="pi-bank" data-tab-content="" className='pi-active'>
-                            {currentTab == 'bank' && <FormBank
-                                handleSubmit={this.handleSubmit}
-                                show={this.state.formModal}
+                            {currentTab == 'bank' && this.state.formModal && <FormBank
+                                handleSubmit={this.handleSubmit} 
                                 modalType={this.state.formModalType}
                                 data={this.state.payment}
                                 close={this.closeForm}
                             />}
 
-                            {currentTab == 'paypal' && <FormPaypal
-                                handleSubmit={this.handleSubmit}
-                                show={this.state.formModal}
+                            {currentTab == 'paypal' && this.state.formModal && <FormPaypal
+                                handleSubmit={this.handleSubmit} 
                                 modalType={this.state.formModalType}
                                 data={this.state.payment}
                                 close={this.closeForm}
                             />}
 
-                            {currentTab == 'stripe' && <FormStripe
-                                handleSubmit={this.handleSubmit}
-                                show={this.state.formModal}
+                            {currentTab == 'stripe' && this.state.formModal && <FormStripe
+                                handleSubmit={this.handleSubmit} 
                                 modalType={this.state.formModalType}
                                 data={this.state.payment}
                                 close={this.closeForm}

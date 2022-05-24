@@ -302,52 +302,54 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="pi-right-content">
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <Routes>
-                                <Route path="/" element={<Dashboard />} />
-                                {/* <Route path="/proposal" element={<Proposal />} />  */}
-                                {/* <Route path="/proposal" element={<Editor />} /> */}
+                    <div className='pi-right-content pi-bg-pearl'>
+                        <div className='pi-right-content-data'>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Routes>
+                                    <Route path="/" element={<Dashboard />} />
+                                    {/* <Route path="/proposal" element={<Proposal />} />  */}
+                                    {/* <Route path="/proposal" element={<Editor />} /> */}
 
-                                <Route path="/client" exact element={<Client />} />
-                                <Route path="/client/:id" exact element={<ClientSummary />} />
+                                    <Route path="/client" exact element={<Client />} />
+                                    <Route path="/client/:id" exact element={<ClientSummary />} />
 
-                                <Route path="/lead" exact element={<Lead />} />
-                                <Route path="/lead/:id" exact element={<LeadSummary />} />
+                                    <Route path="/lead" exact element={<Lead />} />
+                                    <Route path="/lead/:id" exact element={<LeadSummary />} />
 
-                                <Route path="/deal" exact element={<Deal />} />
-                                <Route path="/deal/:id" exact element={<DealSummary />} />
+                                    <Route path="/deal" exact element={<Deal />} />
+                                    <Route path="/deal/:id" exact element={<DealSummary />} />
 
-                                <Route path="/project" exact element={<Project />} />
+                                    <Route path="/project" exact element={<Project />} />
 
-                                <Route path="/proposal" element={<Proposal />} />
-                                <Route path="/proposal/single" element={<ProposalSingle />} />
-                                <Route path="/proposal/single/:id" element={<ProposalSingle />} />
-                                <Route path="/proposal/single/:id/tab/:tab" element={<ProposalSingle />} />
+                                    <Route path="/proposal" element={<Proposal />} />
+                                    <Route path="/proposal/single" element={<ProposalSingle />} />
+                                    <Route path="/proposal/single/:id" element={<ProposalSingle />} />
+                                    <Route path="/proposal/single/:id/tab/:tab" element={<ProposalSingle />} />
 
-                                <Route path="/estimate" element={<Invoice />} />
-                                <Route path="/estimate/single" element={<InvoiceSingle />} />
-                                <Route path="/estimate/single/:id" element={<InvoiceSingle />} />
-                                <Route path="/estimate/single/:id/tab/:tab" element={<InvoiceSingle />} />
+                                    <Route path="/estimate" element={<Invoice />} />
+                                    <Route path="/estimate/single" element={<InvoiceSingle />} />
+                                    <Route path="/estimate/single/:id" element={<InvoiceSingle />} />
+                                    <Route path="/estimate/single/:id/tab/:tab" element={<InvoiceSingle />} />
 
-                                <Route path="/invoice" element={<Invoice />} />
-                                <Route path="/invoice/single" element={<InvoiceSingle />} />
-                                <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
-                                <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} />
+                                    <Route path="/invoice" element={<Invoice />} />
+                                    <Route path="/invoice/single" element={<InvoiceSingle />} />
+                                    <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
+                                    <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} />
 
-                                <Route path="/payment" element={<Payment />} /> 
-                                <Route path="/business" element={<Business />} />
+                                    <Route path="/payment" element={<Payment />} /> 
+                                    <Route path="/business" element={<Business />} />
 
-                                <Route path="/contact" exact element={<Contact />} />
-                                <Route path="/contact/:id" exact element={<ContactSummary />} />
+                                    <Route path="/contact" exact element={<Contact />} />
+                                    <Route path="/contact/:id" exact element={<ContactSummary />} />
 
-                                <Route path="/setting" element={<Setting />} />
-                                <Route path="/setting/:tab" element={<Setting />} />
-                                <Route path="/setting/:tab/:subtab" element={<Setting />} />
-                                <Route path="/setting/:tab/:subtab/:insubtab" element={<Setting />} />
-                                {/* <Route path="/help" element={<Help />} /> */}
-                            </Routes>
-                        </Suspense>
+                                    <Route path="/setting" element={<Setting />} />
+                                    <Route path="/setting/:tab" element={<Setting />} />
+                                    <Route path="/setting/:tab/:subtab" element={<Setting />} />
+                                    <Route path="/setting/:tab/:subtab/:insubtab" element={<Setting />} />
+                                    {/* <Route path="/help" element={<Help />} /> */}
+                                </Routes>
+                            </Suspense>
+                        </div>
                     </div>
                 </div>
             </HashRouter>

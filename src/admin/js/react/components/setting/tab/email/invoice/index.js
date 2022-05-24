@@ -41,27 +41,21 @@ export default class Invoice extends Component {
 		return (
 			<>
 
-				<div className="row">
-                    <div className="col-md-2">
-						<ul className='pi-settings-vertical-subtabs'>
-							{tabs.map((tab, index) => (
-								<li
-									key={index}
-									className={'pi-subtab ' + (tab.id == currentTab ? 'pi-active' : '')}
-									onClick={(e) => this.setActiveTab(tab.id)}
-								>
-									{tab.text}
-								</li>
-							))}
-						</ul>
-                    </div>
+				<ul className='pi-settings-horizontal-tab'>
+					{tabs.map((tab, index) => (
+						<li
+							key={index}
+							className={'pi-tab ' + (tab.id == currentTab ? 'pi-active' : '')}
+							onClick={(e) => this.setActiveTab(tab.id)}
+						>
+							{tab.text}
+						</li>
+					))}
+				</ul>
 
-                    <div className="col-md-10">
-						{currentTab == 'default' && <DefaultMail />}
-						{currentTab == 'reminder' && <Reminder />}
-						{currentTab == 'recurring' && <Recurring />} 
-                    </div>
-                </div> 
+				{currentTab == 'default' && <DefaultMail />}
+				{currentTab == 'reminder' && <Reminder />}
+				{currentTab == 'recurring' && <Recurring />} 
 			</>
 		);
 	}
