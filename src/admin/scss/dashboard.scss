@@ -27,7 +27,7 @@
 
 //for backend only 
 .ncpi .pi-right-content {
-    padding: 20px 30px 40px;
+    padding: 20px 30px 15px;
     height: auto !important;
 }
 
@@ -238,3 +238,83 @@ input:checked+.pi-switch-slider:before {
         justify-content: center!important;
     }
 }
+
+
+//field range
+
+
+.pi-field-range {
+        
+    input[type="range"] { 
+        margin: auto;
+        -webkit-appearance: none;
+        position: relative;
+        overflow: hidden;
+        height: 15px;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 0; /* iOS */
+    }
+
+    ::-webkit-slider-runnable-track {
+        background: #ddd;
+    }
+
+    /*
+    * 1. Set to 0 width and remove border for a slider without a thumb
+    */
+    ::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px; /* 1 */
+        height: 15px;
+        background: #fff;
+        box-shadow: -100vw 0 0 100vw dodgerblue;
+        border: 2px solid #999; /* 1 */
+    }
+
+    ::-moz-range-track {
+        height: 15px;
+        background: #ddd;
+    }
+
+    ::-moz-range-thumb {
+        background: #fff;
+        height: 15px;
+        width: 20px;
+        border: 3px solid #999;
+        border-radius: 0 !important;
+        box-shadow: -100vw 0 0 100vw #4e6de9;
+        box-sizing: border-box;
+    }
+
+    ::-ms-fill-lower { 
+        background: #4e6de9;
+    }
+
+    ::-ms-thumb { 
+        background: #fff;
+        border: 2px solid #999;
+        height: 15px;
+        width: 20px;
+        box-sizing: border-box;
+    }
+
+    ::-ms-ticks-after { 
+        display: none; 
+    }
+
+    ::-ms-ticks-before { 
+        display: none; 
+    }
+
+    ::-ms-track { 
+        background: #ddd;
+        color: transparent;
+        height: 15px;
+        border: none;
+    }
+
+    ::-ms-tooltip { 
+        display: none;
+    }
+} 

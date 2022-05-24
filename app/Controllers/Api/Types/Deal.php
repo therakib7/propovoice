@@ -13,7 +13,7 @@ class Deal
     }
 
     public function create_rest_routes()
-    { 
+    {
         register_rest_route('ncpi/v1', '/deals', [
             [
                 'methods' => 'GET',
@@ -80,66 +80,83 @@ class Deal
             $offset = ($per_page * $request['page']) - $per_page;
         }
 
-        $args = array(
-            'post_type' => 'ncpi_deal',
-            'post_status' => 'publish',
-            'posts_per_page' => $per_page,
-            'offset' => $offset,
-        );
+        $get_stage = get_terms( array(
+            'taxonomy' => 'ncpi_deal_stage',
+            'hide_empty' => false
+        ) );
+ 
+        $result = $column = []; 
 
-        $args['meta_query'] = array(
-            'relation' => 'OR'
-        );
+        foreach( $get_stage as $stage ):
+            $stage_id = $stage->term_id;
+            $stage_name = $stage->name;
 
-        if (isset($request['default'])) {
-            $args['meta_query'][] = array(
+            $items = [];
+            $args = array(
+                'post_type' => 'ncpi_deal',
+                'post_status' => 'publish',
+                'posts_per_page' => $per_page,
+                'offset' => $offset,
+            );
+    
+            $args['meta_query'] = array(
+                'relation' => 'OR'
+            );
+    
+            /* if (isset($request['default'])) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'default',
+                        'value'   => 1,
+                        'compare' => 'LIKE'
+                    )
+                );
+            } */
+
+            $args['tax_query'] = array(
                 array(
-                    'key'     => 'default',
-                    'value'   => 1,
-                    'compare' => 'LIKE'
+                    'taxonomy' => 'ncpi_deal_stage',
+                    'terms' => $stage_id,
+                    'field' => 'term_id',
                 )
             );
-        }
+    
+            $query = new WP_Query($args);
+            // $total_data = $query->get_total(); //use this for pagination 
+            
+            while ($query->have_posts()) {
+                $query->the_post();
+                $id = get_the_ID();
+    
+                $query_data = [];
+                $query_data['id'] = (string) $id; //Invariant failed: Draggable requires a [string] draggableId.
 
-        $query = new WP_Query($args);
-        $total_data = $query->get_total(); //use this for pagination 
-        $result = $data = [];
-        while ($query->have_posts()) {
-            $query->the_post();
-            $id = get_the_ID();
+                $deal = [];
+                $title = get_post_meta($id, 'title', true);
+                $deal['title'] =  ( $title ) ? $title : 'Rakib Project';  
+                $deal['budget'] = get_post_meta($id, 'budget', true); 
+                $deal['currency'] = get_post_meta($id, 'currency', true); 
+                $deal['provability'] = get_post_meta($id, 'provability', true);  
+                $query_data['deal'] = $deal;   
 
-            $query_data = [];
-            $query_data['id'] = $id;
-
-            $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-            $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-            $query_data['email'] = get_post_meta($id, 'email', true);
-            $query_data['company_name'] = get_post_meta($id, 'company_name', true);
-            $query_data['web'] = get_post_meta($id, 'web', true);
-            $query_data['mobile'] = get_post_meta($id, 'mobile', true);
-            $query_data['country'] = get_post_meta($id, 'country', true);
-            $query_data['region'] = get_post_meta($id, 'region', true);
-            $query_data['address'] = get_post_meta($id, 'address', true);
-
-            $img_id = get_post_meta($id, 'img', true);
-            $imgData = null;
-            if ($img_id) {
-                $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-                if ($img_src) {
-                    $imgData = [];
-                    $imgData['id'] = $img_id;
-                    $imgData['src'] = $img_src[0];
-                }
+                $contact = [];
+                $contact['name'] = 'Rakib';   
+                $query_data['contact'] = $contact; 
+    
+                $query_data['date'] = get_the_time('j-M-Y');
+                $items[] = $query_data;
             }
-            $query_data['img'] = $imgData;
+            wp_reset_postdata();
+            
+            $column[$stage_id] = [
+                'name' => $stage_name,
+                'items' => $items
+            ];
 
-            $query_data['date'] = get_the_time('j-M-Y');
-            $data[] = $query_data;
-        }
-        wp_reset_postdata();
+            $result['column'] = $column;
+            // $result['total'] = $total_data;
 
-        $result['result'] = $data;
-        $result['total'] = $total_data;
+        endforeach;   
 
         wp_send_json_success($result);
     }
@@ -159,7 +176,7 @@ class Deal
         $query_data['mobile'] = get_post_meta($id, 'mobile', true);
         $query_data['country'] = get_post_meta($id, 'country', true);
         $query_data['region'] = get_post_meta($id, 'region', true);
-        $query_data['address'] = get_post_meta($id, 'address', true); 
+        $query_data['address'] = get_post_meta($id, 'address', true);
 
         $img_id = get_post_meta($id, 'img', true);
         $imgData = null;
@@ -179,28 +196,26 @@ class Deal
     }
 
     public function create($req)
-    { 
+    {
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $company_name = isset($params['company_name']) ? sanitize_text_field($req['company_name']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
+        $title        = isset($params['title']) ? sanitize_text_field($req['title']) : null;
+        $stage_id     = isset($params['stage_id']) ? absint($req['stage_id']) : null;
+        $contact_id   = isset($params['contact_id']) ? absint($req['contact_id']) : null;
+        $budget       = isset($params['budget']) ? sanitize_text_field($req['budget']) : null;
+        $currency     = isset($params['currency']) ? sanitize_text_field($req['currency']) : null;
+        $provability  = isset($params['provability']) ? absint($req['provability']) : null; 
+        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
+        $note         = isset($params['note']) ? nl2br($req['note']) : null;
 
-        if ( empty($first_name) ) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
+        if (empty($stage_id)) {
+            $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
         }
 
-        if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        } 
+        if (empty($contact_id)) {
+            $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -208,55 +223,46 @@ class Deal
 
             $data = array(
                 'post_type' => 'ncpi_deal',
-                'post_title'    => $first_name,
+                'post_title'    => $title,
                 'post_content'  => '',
                 'post_status'   => 'publish',
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if (!is_wp_error($post_id)) { 
 
-                if ($first_name) {
-                    update_post_meta($post_id, 'first_name', $first_name);
+                if ($title) {
+                    update_post_meta($post_id, 'title', $title);
                 }
 
-                if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
+                if ($stage_id) { 
+                    wp_set_post_terms( $post_id, [$stage_id], 'ncpi_deal_stage' );
                 }
 
-                if ($email) {
-                    update_post_meta($post_id, 'email', $email);
+                if ($contact_id) {
+                    update_post_meta($post_id, 'contact_id', $contact_id);
                 }
 
-                if ($company_name) {
-                    update_post_meta($post_id, 'company_name', $company_name);
+                if ($budget) {
+                    update_post_meta($post_id, 'budget', $budget);
                 }
 
-                if ($web) {
-                    update_post_meta($post_id, 'web', $web);
+                if ($currency) {
+                    update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ($mobile) {
-                    update_post_meta($post_id, 'mobile', $mobile);
+                if ($provability) {
+                    update_post_meta($post_id, 'provability', $provability);
                 }
 
-                if ($country) {
-                    update_post_meta($post_id, 'country', $country);
+                if ($tags) { 
+                    wp_set_post_terms( $post_id, $tags, 'ncpi_deal_tag' );
                 }
 
-                if ($region) {
-                    update_post_meta($post_id, 'region', $region);
-                }
-
-                if ($address) {
-                    update_post_meta($post_id, 'address', $address);
-                }
-
-                if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
+                if ($note) {
+                    update_post_meta($post_id, 'note', $note);
                 } 
-
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -269,23 +275,21 @@ class Deal
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $company_name = isset($params['company_name']) ? sanitize_text_field($req['company_name']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
+        $title        = isset($params['title']) ? sanitize_text_field($req['title']) : null;
+        $stage_id     = isset($params['stage_id']) ? absint($req['stage_id']) : null;
+        $contact_id   = isset($params['contact_id']) ? absint($req['contact_id']) : null;
+        $budget       = isset($params['budget']) ? sanitize_text_field($req['budget']) : null;
+        $currency     = isset($params['currency']) ? sanitize_text_field($req['currency']) : null;
+        $provability  = isset($params['provability']) ? absint($req['provability']) : null; 
+        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
+        $note         = isset($params['note']) ? nl2br($req['note']) : null;
 
-        if (empty($first_name)) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
+        if (empty($stage_id)) {
+            $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
         }
 
-        if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
+        if (empty($contact_id)) {
+            $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         }
 
         if ($reg_errors->get_error_messages()) {
@@ -296,51 +300,43 @@ class Deal
 
             $data = array(
                 'ID'            => $post_id,
-                'post_title'    => $first_name,
+                'post_title'    => $title,
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
 
-                if ($first_name) {
-                    update_post_meta($post_id, 'first_name', $first_name);
+                if ($title) {
+                    update_post_meta($post_id, 'title', $title);
                 }
 
-                if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
+                if ($stage_id) { 
+                    wp_set_post_terms( $post_id, [$stage_id], 'ncpi_deal_stage' );
                 }
 
-                if ($email) {
-                    update_post_meta($post_id, 'email', $email);
+                if ($contact_id) {
+                    update_post_meta($post_id, 'contact_id', $contact_id);
                 }
 
-                if ($company_name) {
-                    update_post_meta($post_id, 'company_name', $company_name);
+                if ($budget) {
+                    update_post_meta($post_id, 'budget', $budget);
                 }
 
-                if ($web) {
-                    update_post_meta($post_id, 'web', $web);
+                if ($currency) {
+                    update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ($mobile) {
-                    update_post_meta($post_id, 'mobile', $mobile);
+                if ($provability) {
+                    update_post_meta($post_id, 'provability', $provability);
                 }
 
-                if ($country) {
-                    update_post_meta($post_id, 'country', $country);
+                if ($tags) { 
+                    wp_set_post_terms( $post_id, $tags, 'ncpi_deal_tag' );
                 }
 
-                if ($region) {
-                    update_post_meta($post_id, 'region', $region);
-                }
-
-                if ($address) {
-                    update_post_meta($post_id, 'address', $address);
-                }
-
-                if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
+                if ($note) {
+                    update_post_meta($post_id, 'note', $note);
                 } 
 
                 wp_send_json_success($post_id);

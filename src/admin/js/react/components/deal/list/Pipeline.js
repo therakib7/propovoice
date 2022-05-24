@@ -1,84 +1,9 @@
-import React, { useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-// import uuid from "uuid/v4";
+import React, { useState, useEffect } from "react"; 
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"; 
+import { useNavigate } from 'react-router-dom';
 
-import Editable from 'block/editable';
-
-import { v4 as uuidv4 } from 'uuid'; 
-
-const columnsFromBackend = {
-	[uuidv4()]: {
-		name: "Requested",
-		items: [
-			{ 
-				id: uuidv4(), 
-				deal: {
-					name: "Deal Name", 
-					buget: "500 USD", 
-					probability: "70%", 
-				},
-				client: {
-					name: 'Rakib Hasan',
-					img: '',
-					company: 'Nurency',
-				}
-			},
-			{ 
-				id: uuidv4(), 
-				deal: {
-					name: "Deal Name", 
-					buget: "500 USD", 
-					probability: "70%", 
-				},
-				client: {
-					name: 'Hasan',
-					img: '',
-					company: 'Nurency',
-				}
-			}, 
-		]
-	},
-	[uuidv4()]: {
-		name: "To do",
-		items: [
-			{ 
-				id: uuidv4(), 
-				deal: {
-					name: "Deal Name", 
-					buget: "500 USD", 
-					probability: "70%", 
-				},
-				client: {
-					name: 'Nabil Hasan',
-					img: '',
-					company: 'Nurency',
-				}
-			},
-		]
-	},
-	[uuidv4()]: {
-		name: "In Progress",
-		items: [ 
-			{ 
-				id: uuidv4(), 
-				deal: {
-					name: "Deal Name", 
-					buget: "500 USD", 
-					probability: "70%", 
-				},
-				client: {
-					name: 'Nasir',
-					img: '',
-					company: 'Nurency',
-				}
-			},
-		]
-	},
-	[uuidv4()]: {
-		name: "Done",
-		items: []
-	}
-}; 
+import Editable from 'block/editable'; 
+import { v4 as uuidv4 } from 'uuid';  
 
 const onDragEnd = (result, columns, setColumns) => {
 	if ( !result.destination ) return;
@@ -120,7 +45,8 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 function Pipeline( props ) {
-	const [columns, setColumns] = useState(columnsFromBackend);
+	// const [columns, setColumns] = useState(columnsFromBackend);
+	const [columns, setColumns] = useState({});
 
 	const addNewColumn = () => {
 		let newColumns = {...columns};
@@ -129,6 +55,15 @@ function Pipeline( props ) {
 			items: []
 		} 
 		setColumns(newColumns);
+    };
+
+	useEffect(() => { 
+		setColumns(props.data);
+	}, [props.data]);
+
+	const navigate = useNavigate(); 
+	const goToSingle = (id) => { 
+		navigate(`/deal/${id}`, { replace: true });
     };
 
 	const handleCoumnLabel = (index, value) => {
@@ -187,6 +122,7 @@ function Pipeline( props ) {
 															{(provided, snapshot) => {
 																return (
 																	<div
+																		onClick={() => goToSingle(item.id)}
 																		ref={provided.innerRef}
 																		{...provided.draggableProps}
 																		{...provided.dragHandleProps}
@@ -202,8 +138,8 @@ function Pipeline( props ) {
 																			...provided.draggableProps.style
 																		}}
 																	>
-																		{item.deal.name}<br />
-																		{item.client.name}
+																		{item.deal.title}<br />
+																		{item.contact.name}
 																	</div>
 																);
 															}}

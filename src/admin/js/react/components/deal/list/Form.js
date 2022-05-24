@@ -11,10 +11,11 @@ class Form extends Component {
             id: null,
             title: '',
             stage_id: '',
-            contact_id: '',
+            contact_id: 758,
+            contact_type: 'people', //org/people
             budget: '',
-            curency: '',
-            provability: '',
+            currency: 'USD',
+            provability: 50,
             tags: [],
             note: '',
             date: false
@@ -172,15 +173,16 @@ class Form extends Component {
 
                                 <div className="col-md">
                                     <label
-                                        htmlFor="field-curency">
+                                        htmlFor="field-currency">
                                         Currency
                                     </label>
 
                                     <input
-                                        id="field-curency"
+                                        id="field-currency"
                                         type="text"
-                                        name="curency"
-                                        value={this.state.form.curency}
+                                        readOnly
+                                        name="currency"
+                                        value={this.state.form.currency}
                                         onChange={this.handleChange}
                                     />
                                 </div> 
@@ -191,17 +193,19 @@ class Form extends Component {
                                 <div className="col-md">
                                     <label
                                         htmlFor="field-provability">
-                                        Provability
+                                        Provability ( {this.state.form.provability}% )
                                     </label>
 
-                                    <input
-                                        id="field-provability"
-                                        type="text"
-                                        required
-                                        name="provability"
-                                        value={this.state.form.provability}
-                                        onChange={this.handleChange}
-                                    />
+                                    <div className='pi-field-range'>
+                                        <input
+                                            id="field-provability" 
+                                            type="range"
+                                            min="1" max="100"
+                                            name="provability"
+                                            value={this.state.form.provability}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 

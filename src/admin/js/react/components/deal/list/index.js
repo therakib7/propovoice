@@ -9,7 +9,7 @@ import Preloader from 'block/preloader/table';
 import Api from 'api/deal';
 import Form from './Form';
 import Pipeline from './Pipeline';
-import Table from './Table';
+// import Table from './Table';
 import Search from './Search';
 import Empty from 'block/empty';
 
@@ -25,7 +25,7 @@ export default class Deal extends Component {
             searchModal: false,
             formModalType: 'new',
             deal: { id: null },
-            deals: [],
+            deals: {},
             summary: {
                 total: 0,
                 paid: 0,
@@ -67,10 +67,11 @@ export default class Deal extends Component {
 
         Api.getAll(params)
             .then(resp => {
-                let result = resp.data.data.result;
-                let total = resp.data.data.total;
-                let empty = result.length ? false : true;
-                this.setState({ deals: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
+                let column = resp.data.data.column;
+                // let total = resp.data.data.total;
+                // let empty = result.length ? false : true;
+                // this.setState({ deals: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
+                this.setState({ deals: column, preloader: false, empty: false }); 
             })
     };
 
@@ -98,8 +99,20 @@ export default class Deal extends Component {
     }
 
     handleSubmit = deal => {
+        let newDeal = { ...deal }
+        if ( newDeal.stage_id ) {
+            newDeal.stage_id = newDeal.stage_id.id;
+        }
+
+        if ( newDeal.tags.length ) {
+            let finalArray = newDeal.tags.map( function (obj) {
+                return obj.id;
+            });
+            newDeal.tags = finalArray;
+        }
+
         if (this.state.formModalType == 'new') {
-            Api.create(deal)
+            Api.create(newDeal)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -112,7 +125,7 @@ export default class Deal extends Component {
                     }
                 })
         } else {
-            Api.update(deal.id, deal)
+            Api.update(newDeal.id, newDeal)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -356,6 +369,7 @@ export default class Deal extends Component {
                 {this.state.preloader ? <Preloader /> : 
                 <Pipeline 
                     new={() => this.openForm('new')}
+                    data={deals}
                 />}
 
                 {/* {this.state.totalPage > 1 && <ReactPaginate
