@@ -132,15 +132,20 @@
   color: #2D3748 !important;
 }
 .ncpi .pi-px-25 {
-  padding: 35px 25px !important;
+  padding: 35px 25px 0 !important;
 }
 .ncpi .pi-board {
   display: flex;
-  margin-top: 15px;
+  overflow-x: scroll;
+  margin-top: 30px;
 }
 .ncpi .pi-board-column {
   margin-right: 20px;
-  max-width: 230px;
+}
+.ncpi .pi-board-column .pi-btn {
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 .ncpi .pi-board-column:last-child {
   margin-right: 0;
@@ -155,7 +160,7 @@
 .ncpi .pi-board-column .pi-board-column-title h4 {
   font-size: 14px;
   font-weight: 500;
-  line-height: 17px;
+  line-height: 130%;
 }
 .ncpi .pi-board-column .pi-board-column-title:before {
   position: absolute;
@@ -182,6 +187,7 @@
   border: 1px solid #dddddda8;
   border-radius: 8px;
   margin-bottom: 15px;
+  margin-top: 15px;
 }
 .ncpi .pi-board-column .pi-board-column-item .pi-board-item-top {
   padding: 15px;
@@ -190,7 +196,7 @@
 .ncpi .pi-board-column .pi-board-column-item .pi-board-item-top h4 {
   font-size: 14px;
   font-weight: 500;
-  line-height: 17px;
+  line-height: 130%;
   margin-bottom: 5px;
 }
 .ncpi .pi-board-column .pi-board-column-item .pi-board-item-top p {
@@ -219,9 +225,9 @@
   font-size: 12px;
 }
 .ncpi .pi-broad-content {
-  height: 400px;
   overflow-y: scroll;
-  margin-top: 15px;
+  width: 235px;
+  height: 300px;
 }
 .ncpi ::-webkit-scrollbar {
   width: 5px;
