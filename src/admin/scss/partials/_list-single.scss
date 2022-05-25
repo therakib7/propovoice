@@ -1,0 +1,234 @@
+.ncpi {
+  /* width */
+  /* Track */
+  /* Handle */
+}
+.ncpi .pi-lead-name-content {
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #dddddda8;
+  border-radius: 8px 8px 0 0;
+}
+.ncpi .pi-lead-name-content .pi-lead-content {
+  display: flex;
+}
+.ncpi .pi-lead-name-content .pi-lead-content h3 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #4A5568;
+  margin-bottom: 5px;
+}
+.ncpi .pi-lead-name-content .pi-lead-content .logo {
+  width: 90px;
+  height: 90px;
+  margin-right: 15px;
+  border-radius: 8px;
+}
+.ncpi .pi-lead-name-content .pi-lead-content .pi-lead-address address {
+  font-style: normal;
+  font-size: 12px;
+  color: #718096;
+}
+.ncpi .pi-lead-name-content .pi-lead-button-content .pi-edit-btn {
+  text-align: right;
+  display: block;
+  margin-bottom: 30px;
+}
+.ncpi .pi-lead-name-content .pi-lead-button-content .pi-edit-btn button {
+  border: 1px solid #dddddda8;
+  padding: 5px 12px !important;
+}
+.ncpi .pi-lead-name-content .pi-lead-button-content .pi-btn-medium.pi-bg-stroke {
+  padding: 8px 15px !important;
+}
+.ncpi .pi-lead-name-content .pi-lead-button-content button {
+  background-color: #fff;
+  color: #4A5568;
+  margin-left: 5px;
+  border-radius: 4px;
+  border: 1px solid #dddddda8;
+  line-height: 15px;
+}
+.ncpi .pi-lead-name-content .pi-lead-button-content button img {
+  position: relative;
+  top: 2px;
+  left: -3px;
+}
+.ncpi .pi-lead-name-content .pi-lead-button-content .pi-action-btn {
+  top: 5px;
+}
+.ncpi .pi-tag-content {
+  padding: 30px;
+  background-color: #fff;
+  border: 1px solid #dddddda8;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+.ncpi .pi-tag-content ul {
+  display: flex;
+  margin: 0;
+}
+.ncpi .pi-tag-content ul li {
+  margin-right: 40px;
+}
+.ncpi .pi-tag-content ul select {
+  border: 1px solid #dddddda8;
+  font-weight: 500;
+  color: #4A5568;
+  outline: none;
+  font-size: 10px;
+  padding: 3px 5px;
+  border-radius: 4px;
+  margin-left: 3px;
+}
+.ncpi .pi-tag-content ul label {
+  font-size: 12px;
+  margin-right: 3px;
+  color: #718096;
+}
+.ncpi .pi-tab-buttons-group {
+  border: 1px solid #dddddda8;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: right;
+}
+.ncpi .pi-tab-buttons-group p {
+  text-align: left;
+  font-size: 12px;
+  color: #718096;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+.ncpi .pi-tab-buttons-group button:last-child {
+  border: none;
+  position: relative;
+  top: -4px;
+}
+.ncpi .pi-tab-buttons-group button {
+  background: transparent;
+  border: 1px solid;
+  border-color: #CBD5E0;
+  padding: 5px 6px;
+  border-radius: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-style: dashed;
+}
+.ncpi .pi-work-button-group h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  color: #4A5568;
+}
+.ncpi .pi-work-button-group .pi-btn-small {
+  color: #718096 !important;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #dddddda8;
+}
+.ncpi .pi-work-button-group .pi-btn-small:hover {
+  color: #2D3748 !important;
+}
+.ncpi .pi-px-25 {
+  padding: 35px 25px !important;
+}
+.ncpi .pi-board {
+  display: flex;
+  margin-top: 15px;
+}
+.ncpi .pi-board-column {
+  margin-right: 20px;
+  max-width: 230px;
+}
+.ncpi .pi-board-column:last-child {
+  margin-right: 0;
+}
+.ncpi .pi-board-column .pi-board-column-title {
+  background: #fff;
+  padding: 18px 10px 7px 20px;
+  border-top: 5px solid #4c6fff;
+  display: flex;
+  position: relative;
+}
+.ncpi .pi-board-column .pi-board-column-title h4 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+}
+.ncpi .pi-board-column .pi-board-column-title:before {
+  position: absolute;
+  top: 20px;
+  right: -8px;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 10px solid #ffffff;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+.ncpi .pi-board-column .pi-action-content {
+  margin-left: auto;
+}
+.ncpi .pi-board-column .pi-action-content .pi-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-top: -2px;
+}
+.ncpi .pi-board-column .pi-board-column-item {
+  background-color: #fff;
+  border: 1px solid #dddddda8;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-top {
+  padding: 15px;
+  border-bottom: 1px solid #dddddda8;
+}
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-top h4 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  margin-bottom: 5px;
+}
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-top p {
+  margin: 0px;
+}
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-top span,
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-top p {
+  font-size: 12px;
+  color: #718096;
+}
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-bottom {
+  padding: 10px 15px;
+  display: flex;
+}
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-bottom .pi-avatar-text {
+  margin-left: 8px;
+}
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-bottom .pi-avatar-text h5 {
+  line-height: 17px;
+}
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-bottom .pi-avatar-text p,
+.ncpi .pi-board-column .pi-board-column-item .pi-board-item-bottom .pi-avatar-text h5 {
+  margin: 0;
+  color: #2D3748;
+  font-weight: normal;
+  font-size: 12px;
+}
+.ncpi .pi-broad-content {
+  height: 400px;
+  overflow-y: scroll;
+  margin-top: 15px;
+}
+.ncpi ::-webkit-scrollbar {
+  width: 5px;
+}
+.ncpi ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.ncpi ::-webkit-scrollbar-thumb {
+  background: #cac7c7;
+}

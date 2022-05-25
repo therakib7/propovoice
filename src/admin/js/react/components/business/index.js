@@ -201,7 +201,7 @@ export default class Business extends Component {
     render() {
         const { title, businesses, checkedBoxes, searchVal } = this.state;
         return (
-            <div className="ncpi-components" style={{paddingTop: '20px'}}>
+            <div className="ncpi-components">
                 {wage.length > 0 &&
                 <>
                     <div className="pi-setting-heading-content">

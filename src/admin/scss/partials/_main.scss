@@ -1839,15 +1839,15 @@ html {
   overflow-x: hidden;
   overflow-y: auto;
 }
-.ncpi .pi-popup-content .pi-form-style-one .row > div {
-  margin-bottom: 15px;
-}
 .ncpi .pi-popup-content {
   margin: 30px auto;
   background: #fff;
   border-radius: 25px;
   position: relative;
   max-width: 760px;
+}
+.ncpi .pi-popup-content .pi-form-style-one .row > div {
+  margin-bottom: 15px;
 }
 .ncpi .pi-popup-content .pi-form-style-two select,
 .ncpi .pi-popup-content .pi-form-style-two input[type=number],
@@ -1883,13 +1883,10 @@ html {
     padding: 5px 20px 20px;
   }
 }
-.ncpi .pi-popup-content .pi-content .pi-popup-btn button:first-child {
+.ncpi .pi-popup-content .pi-content .pi-popup-btn .pi-btn {
   background-color: #fff;
   color: #4A5568;
   margin-left: -20px;
-}
-.ncpi .pi-popup-content .pi-content .pi-popup-btn button:last-child {
-  float: right;
 }
 .ncpi .pi-popup-content .pi-content .pi-popup-btn .pi-btn {
   text-transform: capitalize;
@@ -1929,60 +1926,8 @@ html {
   color: #1a202c !important;
   text-transform: capitalize;
 }
-.ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content textarea {
-  margin-bottom: 5px;
-  line-height: 20px;
-  margin-top: 10px !important;
-}
-.ncpi .pi-popup-content .pi-form-style-two .pi-textarea-content {
-  padding: 15px 10px;
-}
 .ncpi .pi-popup-content .pi-form-style-two label {
   top: 9px;
-}
-.ncpi .pi-popup-content .pi-social-content {
-  margin-top: 35px;
-  text-align: center;
-}
-.ncpi .pi-popup-content .pi-social-content .pi-social-icon {
-  display: inline-block;
-  text-align: center;
-  padding: 0 10px;
-}
-.ncpi .pi-popup-content .pi-social-content .pi-social-icon p {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 500;
-  color: #4a5568;
-  margin-bottom: 15px;
-}
-.ncpi .pi-popup-content .pi-social-content .pi-social-icon span {
-  width: 60px;
-  height: 60px;
-  background: #dddd;
-  display: block;
-  border-radius: 50%;
-  line-height: 87px;
-  margin: auto;
-  margin-bottom: 10px;
-}
-.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-whatsapp {
-  background-color: #e9fbef;
-}
-.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-messenger {
-  background-color: #007bff1a;
-}
-.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-discord {
-  background-color: rgba(88, 101, 242, 0.08);
-}
-.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-email {
-  background-color: #fdecea;
-}
-.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-telegrame {
-  background-color: rgba(64, 179, 224, 0.08);
-}
-.ncpi .pi-popup-content .pi-social-content .pi-social-icon .pi-skype {
-  background-color: rgba(0, 175, 240, 0.08);
 }
 @media screen and (max-width: 700px) {
   .ncpi .pi-modal-box {
@@ -2428,15 +2373,19 @@ html {
     border-right: none;
   }
 }
-.ncpi .pi-settings-tab .pi-settings-tabs .pi-tab {
-  padding: 17px 25px;
+.ncpi .pi-settings-tab .pi-settings-tabs li {
+  margin: 0;
   border-left: 3px solid #fff;
+}
+.ncpi .pi-settings-tab .pi-settings-tabs li a {
+  padding: 17px 25px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  display: block;
 }
 @media screen and (max-width: 992px) {
-  .ncpi .pi-settings-tab .pi-settings-tabs .pi-tab {
+  .ncpi .pi-settings-tab .pi-settings-tabs li a {
     padding: 12px 10px;
     font-size: 12px;
   }
@@ -2459,19 +2408,25 @@ html {
   font-weight: 400;
   margin-top: 0;
 }
+.ncpi .pi-settings-tab .pi-settings-tabs li.pi-active ul {
+  display: block !important;
+  padding-bottom: 10px;
+}
 .ncpi .pi-settings-tab .pi-settings-subtabs {
   margin: 0;
-  padding-top: 10px;
+  display: none;
 }
-.ncpi .pi-settings-tab .pi-settings-subtabs .pi-subtab {
+.ncpi .pi-settings-tab .pi-settings-subtabs .pi-subtab a {
   cursor: pointer;
   padding: 15px 20px;
   font-size: 13px;
   font-weight: 500;
+  padding-left: 45px;
 }
-.ncpi .pi-settings-tab .pi-settings-subtabs .pi-subtab:hover,
-.ncpi .pi-settings-tab .pi-settings-subtabs .pi-subtab.pi-active {
+.ncpi .pi-settings-tab .pi-settings-subtabs .pi-subtab a:hover,
+.ncpi .pi-settings-tab .pi-settings-subtabs .pi-subtab.pi-active a {
   color: var(--text-color-blue) !important;
+  border-left: none !important;
 }
 .ncpi .pi-settings-horizontal-tab {
   display: flex;
@@ -3237,6 +3192,7 @@ select {
   width: 100%;
   border: 1px solid #CBD5E0;
   outline: none;
+  line-height: 1px;
 }
 .ncpi .pi-form-style-one select:focus,
 .ncpi .pi-form-style-one input[type=url]:focus,

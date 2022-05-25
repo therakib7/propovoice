@@ -129,7 +129,7 @@ class Form extends Component {
                                         Stage
                                     </label>
 
-                                    <Select
+                                    <Select 
                                         value={this.state.form.stage_id}
                                         onChange={this.handleStageChange}
                                         getOptionValue={(stageList) => stageList.id}
@@ -193,7 +193,7 @@ class Form extends Component {
                                 <div className="col-md">
                                     <label
                                         htmlFor="field-provability">
-                                        Provability ( {this.state.form.provability}% )
+                                        Provability <span className='pi-float-right'>({this.state.form.provability}%)</span>
                                     </label>
 
                                     <div className='pi-field-range'>

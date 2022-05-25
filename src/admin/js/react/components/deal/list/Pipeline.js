@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react"; 
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"; 
+import React, { useState, useEffect } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useNavigate } from 'react-router-dom';
 
-import Editable from 'block/editable'; 
-import { v4 as uuidv4 } from 'uuid';  
+import Editable from 'block/editable';
+import { v4 as uuidv4 } from 'uuid';
 
 const onDragEnd = (result, columns, setColumns) => {
-	if ( !result.destination ) return;
+	if (!result.destination) return;
 	const { source, destination } = result;
 
-	if ( source.droppableId !== destination.droppableId ) {
+	if (source.droppableId !== destination.droppableId) {
 		const sourceColumn = columns[source.droppableId];
 		const destColumn = columns[destination.droppableId];
 		const sourceItems = [...sourceColumn.items];
@@ -44,132 +44,155 @@ const onDragEnd = (result, columns, setColumns) => {
 	}
 };
 
-function Pipeline( props ) {
+function Pipeline(props) {
 	// const [columns, setColumns] = useState(columnsFromBackend);
 	const [columns, setColumns] = useState({});
 
 	const addNewColumn = () => {
-		let newColumns = {...columns};
+		let newColumns = { ...columns };
 		newColumns[uuidv4()] = {
 			name: "Title",
 			items: []
-		} 
+		}
 		setColumns(newColumns);
-    };
+	};
 
-	useEffect(() => { 
+	useEffect(() => {
 		setColumns(props.data);
 	}, [props.data]);
 
-	const navigate = useNavigate(); 
-	const goToSingle = (id) => { 
+	const navigate = useNavigate();
+	const goToSingle = (id) => {
 		navigate(`/deal/${id}`, { replace: true });
-    };
+	};
 
 	const handleCoumnLabel = (index, value) => {
-		let newColumns = {...columns};
-		newColumns[index].name = value; 
+		let newColumns = { ...columns };
+		newColumns[index].name = value;
 		setColumns(newColumns);
-    };
+	};
+
+	const CharLimit = (string) => {
+		let limit = 22;
+		if ( string.length > limit) {
+			return `${string.substring(0, limit)}... `;
+		} 
+		return string;
+	};
 
 	return (
-		<div style={{ display: 'flex', /* justifyContent: "center", */ height: '100%', /* overflowX: 'scroll' */ }}>
+		<div className="pi-board">
 			<DragDropContext
 				onDragEnd={result => onDragEnd(result, columns, setColumns)}
 			>
 				{Object.entries(columns).map(([columnId, column], index) => {
 					return (
-						<div
-							style={{
-								display: 'flex',
-								flexDirection: 'column',
-								// alignItems: "center"
-							}} 
-							key={columnId}
-						>
-							<h2>
-								{/* {column.name} */}
-								<Editable
-									// key={columnId}
-									value={column.name}
-									index={columnId}
-									changeHandler={handleCoumnLabel}
-								/>
-							</h2>
-							<div style={{ marginRight: 8 }}>
-								<Droppable droppableId={columnId} key={columnId}>
-									{(provided, snapshot) => {
-										return (
-											<div
-												{...provided.droppableProps}
-												ref={provided.innerRef}
-												style={{
-													background: snapshot.isDraggingOver
-														? "lightblue"
-														: "lightgrey",
-													padding: 4,
-													width: 250,
-													minHeight: 500
-												}}
-											>
-												{column.items.map((item, index) => {
-													return (
-														<Draggable
-															key={item.id}
-															draggableId={item.id}
-															index={index}
-														>
-															{(provided, snapshot) => {
-																return (
-																	<div
-																		onClick={() => goToSingle(item.id)}
-																		ref={provided.innerRef}
-																		{...provided.draggableProps}
-																		{...provided.dragHandleProps}
-																		style={{
-																			userSelect: "none",
-																			padding: 16,
-																			margin: "0 0 8px 0",
-																			minHeight: "50px",
-																			backgroundColor: snapshot.isDragging
-																				? "#263B4A"
-																				: "#456C86",
-																			color: "white",
-																			...provided.draggableProps.style
-																		}}
-																	>
-																		{item.deal.title}<br />
-																		{item.contact.name}
-																	</div>
-																);
-															}}
-														</Draggable>
-													);
-												})}
-												{provided.placeholder}
-											</div>
-										);
-									}}
-								</Droppable>
-								<button onClick={() => props.new()}>New Deal</button>
+						<div className="pi-board-column" key={columnId}>
+							<div className="pi-board-column-title pi-bg-shadow">
+								<h4 className="pi-color-blue">{column.name}</h4>
+								<div className="pi-action-content">
+									<button className="pi-btn">
+										<svg
+											width={24}
+											height={24}
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												fillRule="evenodd"
+												clipRule="evenodd"
+												d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
+												fill="#718096"
+											/>
+											<path
+												fillRule="evenodd"
+												clipRule="evenodd"
+												d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
+												fill="#718096"
+											/>
+											<path
+												fillRule="evenodd"
+												clipRule="evenodd"
+												d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
+												fill="#718096"
+											/>
+										</svg>
+									</button>
+								</div>
 							</div>
+							<Droppable droppableId={columnId} key={columnId}>
+							{(provided, snapshot) => {
+								return (
+									<div
+										{...provided.droppableProps}
+										ref={provided.innerRef}
+										className="pi-broad-content"
+										/* style={{
+											background: snapshot.isDraggingOver
+												? "lightblue"
+												: "lightgrey",
+											padding: 4,
+											width: 250,
+											minHeight: 500
+										}} */
+									>
+										{column.items.map((item, index) => {
+											return (
+												<Draggable
+													key={item.id}
+													draggableId={item.id}
+													index={index}
+												>
+													{(provided, snapshot) => {
+														return (
+															<div
+																onClick={() => goToSingle(item.id)}
+																ref={provided.innerRef}
+																{...provided.draggableProps}
+																{...provided.dragHandleProps}
+																/* style={{
+																	userSelect: "none",
+																	padding: 16,
+																	margin: "0 0 8px 0",
+																	minHeight: "50px",
+																	backgroundColor: snapshot.isDragging
+																		? "#263B4A"
+																		: "#456C86",
+																	color: "white",
+																	...provided.draggableProps.style
+																}} */
+																className="pi-board-column-item pi-bg-shadow"
+															> 
+																<div className="pi-board-item-top">
+																	<h4>{CharLimit(item.deal.title)}</h4>
+																	<span>$ {item.deal.budget}</span>
+																	<p>Probability: {item.deal.provability}%</p>
+																</div>
+																<div className="pi-board-item-bottom">
+																	<img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+																	<div className="pi-avatar-text">
+																		<h5>{item.contact.name}</h5>
+																		<p>Dhaka, Bangladesh</p>
+																	</div>
+																</div>
+															</div>
+														);
+													}}
+												</Draggable>
+											);
+										})}
+										{provided.placeholder}
+									</div>
+								);
+							}}
+							</Droppable> 
 						</div>
 					);
 				})}
-
-				<div
-					style={{
-						display: 'flex',
-						flexDirection: "column", 
-					}} 
-				>
-					<h2>&nbsp;</h2>
-					<div style={{ marginRight: 8 }}>
-						<button onClick={ () => addNewColumn() }>Add New Column</button>	
-					</div>
-				</div>
 			</DragDropContext>
+
 		</div>
 	);
-} 
+}
 export default Pipeline; 
