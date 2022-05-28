@@ -37,40 +37,19 @@ class Taxonomy {
         } else {
             $data = [];
 
-            if ( $taxonomy == 'deal_stage_tag' ) { 
-
-                $temp_stage = [
-                    'Requested',
-                    'Todo',
-                    'In Progress',
-                    'Done',
-                ];  
-                foreach( $temp_stage as $stage ) {
-                    wp_insert_term(
-                        $stage,   // the term 
-                        'ncpi_deal_stage', // the taxonomy 
-                    );
-                }
-
-                $temp_tag = [
-                    'Design',
-                    'Development',
-                    'Marketing',
-                ];  
-                foreach( $temp_tag as $tag ) {
-                    wp_insert_term(
-                        $tag,   // the term 
-                        'ncpi_deal_tag', // the taxonomy 
-                    );
-                } 
+            if ( $taxonomy == 'deal_stage_tag' ) {  
 
                 $get_stage = get_terms( array(
-                    'taxonomy' => 'ncpi_deal_stage',
+                    'taxonomy' => 'ndpi_deal_stage',
+                    'orderby' => 'ID', 
+                    'order'   => 'ASC',
                     'hide_empty' => false
                 ) );
 
                 $get_tag = get_terms( array(
-                    'taxonomy' => 'ncpi_deal_tag',
+                    'taxonomy' => 'ndpi_deal_tag',
+                    'orderby' => 'ID', 
+                    'order'   => 'ASC',
                     'hide_empty' => false
                 ) );
 

@@ -5,11 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import Editable from 'block/editable';
 import { v4 as uuidv4 } from 'uuid';
 
+import Api from 'api/deal';
+
 const onDragEnd = (result, columns, setColumns) => {
 	if (!result.destination) return;
 	const { source, destination } = result;
 
 	if (source.droppableId !== destination.droppableId) {
+		
 		const sourceColumn = columns[source.droppableId];
 		const destColumn = columns[destination.droppableId];
 		const sourceItems = [...sourceColumn.items];
@@ -74,9 +77,9 @@ function Pipeline(props) {
 
 	const CharLimit = (string) => {
 		let limit = 22;
-		if ( string.length > limit) {
+		if (string.length > limit) {
 			return `${string.substring(0, limit)}... `;
-		} 
+		}
 		return string;
 	};
 
@@ -122,12 +125,12 @@ function Pipeline(props) {
 								</div>
 							</div>
 							<Droppable droppableId={columnId} key={columnId}>
-							{(provided, snapshot) => {
-								return (
-									<div
-										{...provided.droppableProps}
-										ref={provided.innerRef}
-										className="pi-broad-content"
+								{(provided, snapshot) => {
+									return (
+										<div
+											{...provided.droppableProps}
+											ref={provided.innerRef}
+											className="pi-broad-content"
 										/* style={{
 											background: snapshot.isDraggingOver
 												? "lightblue"
@@ -136,57 +139,87 @@ function Pipeline(props) {
 											width: 250,
 											minHeight: 500
 										}} */
-									>
-										{column.items.map((item, index) => {
-											return (
-												<Draggable
-													key={item.id}
-													draggableId={item.id}
-													index={index}
-												>
-													{(provided, snapshot) => {
-														return (
-															<div
-																onClick={() => goToSingle(item.id)}
-																ref={provided.innerRef}
-																{...provided.draggableProps}
-																{...provided.dragHandleProps}
-																/* style={{
-																	userSelect: "none",
-																	padding: 16,
-																	margin: "0 0 8px 0",
-																	minHeight: "50px",
-																	backgroundColor: snapshot.isDragging
-																		? "#263B4A"
-																		: "#456C86",
-																	color: "white",
-																	...provided.draggableProps.style
-																}} */
-																className="pi-board-column-item pi-bg-shadow"
-															> 
-																<div className="pi-board-item-top">
-																	<h4>{CharLimit(item.deal.title)}</h4>
-																	<span>$ {item.deal.budget}</span>
-																	<p>Probability: {item.deal.provability}%</p>
-																</div>
-																<div className="pi-board-item-bottom">
-																	<img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
-																	<div className="pi-avatar-text">
-																		<h5>{item.contact.name}</h5>
-																		<p>Dhaka, Bangladesh</p>
+										>
+											{column.items.map((item, index) => {
+												return (
+													<Draggable
+														key={item.id}
+														draggableId={item.id}
+														index={index}
+													>
+														{(provided, snapshot) => {
+															return (
+																<div
+																	onClick={() => goToSingle(item.id)}
+																	ref={provided.innerRef}
+																	{...provided.draggableProps}
+																	{...provided.dragHandleProps}
+																	/* style={{
+																		userSelect: "none",
+																		padding: 16,
+																		margin: "0 0 8px 0",
+																		minHeight: "50px",
+																		backgroundColor: snapshot.isDragging
+																			? "#263B4A"
+																			: "#456C86",
+																		color: "white",
+																		...provided.draggableProps.style
+																	}} */
+																	className="pi-board-column-item pi-bg-shadow"
+																>
+																	<div className="pi-board-item-top">
+																		<h4>{CharLimit(item.deal.title)}</h4>
+																		<span>$ {item.deal.budget}</span>
+																		<p>Probability: {item.deal.provability}%</p>
+																	</div>
+																	<div className="pi-board-item-bottom">
+																		<img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+																		<div className="pi-avatar-text">
+																			<h5>{item.contact.name}</h5>
+																			<p>Dhaka, Bangladesh</p>
+																		</div>
 																	</div>
 																</div>
-															</div>
-														);
-													}}
-												</Draggable>
-											);
-										})}
-										{provided.placeholder}
-									</div>
-								);
-							}}
-							</Droppable> 
+															);
+														}}
+													</Draggable>
+												);
+											})}
+											{provided.placeholder}
+											 
+											{index == 0 && <button 
+											className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
+											onClick={() => props.new('new')}
+											>
+												<svg
+													width={16}
+													height={14}
+													viewBox="0 0 12 15"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														d="M2.5 8H13.5"
+														stroke="white"
+														strokeWidth="1.5"
+														strokeLinecap="round"
+														strokeLinejoin="round"
+													/>
+													<path
+														d="M8 2.5V13.5"
+														stroke="white"
+														strokeWidth="1.5"
+														strokeLinecap="round"
+														strokeLinejoin="round"
+													/>
+												</svg>
+												New Deal
+											</button>}
+
+										</div>
+									);
+								}}
+							</Droppable>
 						</div>
 					);
 				})}

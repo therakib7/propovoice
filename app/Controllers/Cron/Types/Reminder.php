@@ -10,9 +10,9 @@ class Reminder
 
     public function __construct()
     {
-        // add_action('ncpi_one_minute_event', [$this, 'handle_event']);
-        // add_action('ncpi_half_minute_event', [$this, 'handle_event']);
-        // add_action('ncpi_hourly_event', [$this, 'handle_event']);
+        // add_action('ndpi_one_minute_event', [$this, 'handle_event']);
+        // add_action('ndpi_half_minute_event', [$this, 'handle_event']);
+        // add_action('ndpi_hourly_event', [$this, 'handle_event']);
     }
 
     /**

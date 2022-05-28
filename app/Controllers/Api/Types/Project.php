@@ -82,7 +82,7 @@ class Project
         }
 
         $args = array( 
-            'post_type' => 'ncpi_project',
+            'post_type' => 'ndpi_project',
             'post_status' => 'publish',
             'posts_per_page' => $per_page, 
             'offset' => $offset,
@@ -184,7 +184,7 @@ class Project
         } else {
          
             $data = array(
-                'post_type' => 'ncpi_project',
+                'post_type' => 'ndpi_project',
                 'post_title'    => $title,
                 'post_content'  => $desc,
                 'post_status'   => 'publish',

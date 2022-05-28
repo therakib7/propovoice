@@ -78,10 +78,12 @@ class Deal
 
         if (isset($request['page']) && $request['page'] > 1) {
             $offset = ($per_page * $request['page']) - $per_page;
-        }
-
+        } 
+       
         $get_stage = get_terms( array(
-            'taxonomy' => 'ncpi_deal_stage',
+            'taxonomy' => 'ndpi_deal_stage',
+            'orderby' => 'ID', 
+            'order'   => 'DESC',
             'hide_empty' => false
         ) );
  
@@ -93,7 +95,7 @@ class Deal
 
             $items = [];
             $args = array(
-                'post_type' => 'ncpi_deal',
+                'post_type' => 'ndpi_deal',
                 'post_status' => 'publish',
                 'posts_per_page' => $per_page,
                 'offset' => $offset,
@@ -115,7 +117,7 @@ class Deal
 
             $args['tax_query'] = array(
                 array(
-                    'taxonomy' => 'ncpi_deal_stage',
+                    'taxonomy' => 'ndpi_deal_stage',
                     'terms' => $stage_id,
                     'field' => 'term_id',
                 )
@@ -133,7 +135,7 @@ class Deal
 
                 $deal = [];
                 $title = get_post_meta($id, 'title', true);
-                $deal['title'] =  ( $title ) ? $title : 'Rakib Project';  
+                $deal['title'] = ( $title ) ? $title : 'Rakib Project';  
                 $deal['budget'] = get_post_meta($id, 'budget', true); 
                 $deal['currency'] = get_post_meta($id, 'currency', true); 
                 $deal['provability'] = get_post_meta($id, 'provability', true);  
@@ -150,6 +152,7 @@ class Deal
             
             $column[$stage_id] = [
                 'name' => $stage_name,
+                'id' => $stage_id,
                 'items' => $items
             ];
 
@@ -164,33 +167,96 @@ class Deal
     public function get_single($req)
     {
         $url_params = $req->get_url_params();
-        $id = $url_params['id'];
-        $query_data = [];
-        $query_data['id'] = $id;
+        $id = absint( $url_params['id'] );
+        $data = []; 
 
-        $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-        $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-        $query_data['email'] = get_post_meta($id, 'email', true);
-        $query_data['company_name'] = get_post_meta($id, 'company_name', true);
-        $query_data['web'] = get_post_meta($id, 'web', true);
-        $query_data['mobile'] = get_post_meta($id, 'mobile', true);
-        $query_data['country'] = get_post_meta($id, 'country', true);
-        $query_data['region'] = get_post_meta($id, 'region', true);
-        $query_data['address'] = get_post_meta($id, 'address', true);
+        $data['id'] = $id; 
 
-        $img_id = get_post_meta($id, 'img', true);
-        $imgData = null;
-        if ($img_id) {
-            $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-            if ($img_src) {
-                $imgData = [];
-                $imgData['id'] = $img_id;
-                $imgData['src'] = $img_src[0];
-            }
+        
+        
+        $deal_data = [];    
+        $deal_meta = get_post_meta( $id ); 
+ 
+        if ( isset( $deal_meta['title'] ) ) {
+            $deal_data['title'] = $deal_meta['title'][0];
         }
-        $query_data['img'] = $imgData;
-        $data = [];
-        $data['profile'] = $query_data;
+        if ( isset( $deal_meta['stage_id'] ) ) {
+            $deal_data['stage_id'] = $deal_meta['stage_id'][0];
+        } 
+        if ( isset( $deal_meta['budget'] ) ) {
+            $deal_data['budget'] = $deal_meta['budget'][0];
+        } 
+        if ( isset( $deal_meta['currency'] ) ) {
+            $deal_data['currency'] = $deal_meta['currency'][0];
+        } 
+        if ( isset( $deal_meta['provability'] ) ) {
+            $deal_data['provability'] = $deal_meta['provability'][0];
+        } 
+        if ( isset( $deal_meta['tags'] ) ) {
+            $deal_data['tags'] = $deal_meta['tags'][0];
+        } 
+        if ( isset( $deal_meta['note'] ) ) {
+            $deal_data['note'] = $deal_meta['note'][0];
+        } 
+        $data['deal'] = $deal_data; 
+       
+
+        $contact_id = get_post_meta($id, 'contact_id', true);
+        $contact_type = get_post_meta($id, 'contact_type', true);
+
+        if ( $contact_id ) {
+            $contact_data = [];  
+            	
+            $contact_meta = get_post_meta( $contact_id ); 
+
+            $contact_data['id'] = $contact_id;  
+            $contact_data['contact_type'] = $contact_type;  
+            if ( isset( $contact_meta['first_name'] ) ) {
+                $contact_data['first_name'] = $contact_meta['first_name'][0];
+            }
+            if ( isset( $contact_meta['last_name'] ) ) {
+                $contact_data['last_name'] = $contact_meta['last_name'][0];
+            }
+            if ( isset( $contact_meta['email'] ) ) {
+                $contact_data['email'] = $contact_meta['email'][0];
+            }
+            if ( isset( $contact_meta['company_name'] ) ) {
+                $contact_data['company_name'] = $contact_meta['company_name'][0];
+            }
+            if ( isset( $contact_meta['web'] ) ) {
+                $contact_data['web'] = $contact_meta['web'][0];
+            }
+            if ( isset( $contact_meta['mobile'] ) ) {
+                $contact_data['mobile'] = $contact_meta['mobile'][0];
+            }
+            if ( isset( $contact_meta['country'] ) ) {
+                $contact_data['country'] = $contact_meta['country'][0];
+            }
+            if ( isset( $contact_meta['region'] ) ) {
+                $contact_data['region'] = $contact_meta['region'][0];
+            }
+            if ( isset( $contact_meta['address'] ) ) {
+                $contact_data['address'] = $contact_meta['address'][0];
+            } 
+
+            if ( isset( $contact_meta['img'] ) ) { 
+                $img_id = $contact_meta['img'][0];
+                $imgData = null;
+                if ($img_id) {
+                    $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
+                    if ($img_src) {
+                        $imgData = [];
+                        $imgData['id'] = $img_id;
+                        $imgData['src'] = $img_src[0];
+                    }
+                }
+                $contact_data['img'] = $imgData; 
+
+            }  
+            
+            $data['profile'] = $contact_data;
+        }
+        
 
         wp_send_json_success($data);
     }
@@ -222,7 +288,7 @@ class Deal
         } else {
 
             $data = array(
-                'post_type' => 'ncpi_deal',
+                'post_type' => 'ndpi_deal',
                 'post_title'    => $title,
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -237,7 +303,7 @@ class Deal
                 }
 
                 if ($stage_id) { 
-                    wp_set_post_terms( $post_id, [$stage_id], 'ncpi_deal_stage' );
+                    wp_set_post_terms( $post_id, [$stage_id], 'ndpi_deal_stage' );
                 }
 
                 if ($contact_id) {
@@ -257,7 +323,7 @@ class Deal
                 }
 
                 if ($tags) { 
-                    wp_set_post_terms( $post_id, $tags, 'ncpi_deal_tag' );
+                    wp_set_post_terms( $post_id, $tags, 'ndpi_deal_tag' );
                 }
 
                 if ($note) {
@@ -312,7 +378,7 @@ class Deal
                 }
 
                 if ($stage_id) { 
-                    wp_set_post_terms( $post_id, [$stage_id], 'ncpi_deal_stage' );
+                    wp_set_post_terms( $post_id, [$stage_id], 'ndpi_deal_stage' );
                 }
 
                 if ($contact_id) {
@@ -332,7 +398,7 @@ class Deal
                 }
 
                 if ($tags) { 
-                    wp_set_post_terms( $post_id, $tags, 'ncpi_deal_tag' );
+                    wp_set_post_terms( $post_id, $tags, 'ndpi_deal_tag' );
                 }
 
                 if ($note) {

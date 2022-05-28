@@ -10,10 +10,7 @@ class DB {
     }   
 
     function create_custom_term() { 
-        /* wp_insert_term(
-            'Apple',   // the term 
-            'product', // the taxonomy 
-        ); */
+        
     } 
 
     function create_custom_table() {

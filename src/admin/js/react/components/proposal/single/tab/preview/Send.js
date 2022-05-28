@@ -155,7 +155,7 @@ ${company_name}`;
                 {this.props.show && (
                     <>  
                         <div className="pi-overlay pi-show">
-                            <div className="pi-popup-content">
+                            <div className="pi-modal-content">
                                 <div className="pi-modal-header">
                                     <h2 className="pi-modal-title pi-text-center">Send To</h2>
                                     <span className="pi-close" onClick={() => this.props.close()}>×</span>

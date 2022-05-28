@@ -67,7 +67,7 @@ class FormBank extends Component {
     render() {
         return ( 
             <div className="pi-overlay">
-                <div className="pi-popup-content">
+                <div className="pi-modal-content">
                     <div className="pi-modal-header pi-gradient">
                         <span className="pi-close"
                             onClick={() => this.props.close()}
@@ -157,7 +157,7 @@ class FormBank extends Component {
                         </form>
                     </div>
                 </div>
-                {/* ./ pi-popup-content */}
+                {/* ./ pi-modal-content */}
             </div> 
         );
     }

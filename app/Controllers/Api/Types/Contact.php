@@ -82,7 +82,7 @@ class Contact
         }
 
         $args = array(
-            'post_type' => 'ncpi_contact',
+            'post_type' => 'ndpi_contact',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -208,7 +208,7 @@ class Contact
         } else {
 
             $data = array(
-                'post_type' => 'ncpi_contact',
+                'post_type' => 'ndpi_contact',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',

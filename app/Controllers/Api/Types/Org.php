@@ -82,7 +82,7 @@ class Org
         }
 
         $args = array(
-            'post_type' => 'ncpi_org',
+            'post_type' => 'ndpi_org',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -208,7 +208,7 @@ class Org
         } else {
 
             $data = array(
-                'post_type' => 'ncpi_org',
+                'post_type' => 'ndpi_org',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',

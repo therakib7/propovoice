@@ -169,14 +169,11 @@ export default class Deal extends Component {
         }
     }
 
-    openForm = (type = 'new', deal = null) => {
-        this.setState({ formModal: true });
-
-        if (type == 'new') {
-            this.setState({ formModalType: 'new' });
+    openForm = (type = 'new', deal = null) => { //deal, stage  
+        if ( type == 'new' ) {
+            this.setState({ formModal: true, formModalType: 'new' });
         } else {
-            this.setState({ formModalType: 'edit' });
-            this.setState({ deal: deal });
+            this.setState({ formModal: true, formModalType: 'edit', deal: deal }); 
         }
     };
 
@@ -304,7 +301,7 @@ export default class Deal extends Component {
 
                 {this.state.preloader ? <Preloader /> : 
                 <Pipeline 
-                    new={() => this.openForm('new')}
+                    new={this.openForm}
                     data={deals}
                 />}
             </div>

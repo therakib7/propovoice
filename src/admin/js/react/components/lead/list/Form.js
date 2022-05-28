@@ -57,7 +57,7 @@ class Form extends Component {
     render() {
         return (
             <div className="pi-overlay pi-show">
-                <div className="pi-popup-content">
+                <div className="pi-modal-content">
                     <div className="pi-modal-header">
                         <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Client</h2>
                         <span className="pi-close" onClick={() => this.props.close()}>×</span>

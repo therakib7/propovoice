@@ -38,7 +38,7 @@ class Setting {
             $data = [];
 
             if ( $tab == 'general_social' ) {
-                $option = get_option('ncpi_' . $tab);
+                $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -70,7 +70,7 @@ class Setting {
             }
 
             if ( $tab == 'estimate_reminder' ) {
-                $option = get_option('ncpi_' . $tab);
+                $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -83,7 +83,7 @@ class Setting {
             }
 
             if ( $tab == 'invoice_reminder' ) {
-                $option = get_option('ncpi_' . $tab);
+                $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -96,7 +96,7 @@ class Setting {
             }
 
             if ( $tab == 'email_estimate_default' ) {
-                $option = get_option('ncpi_' . $tab);
+                $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -107,7 +107,7 @@ class Setting {
             }
 
             if ( $tab == 'email_estimate_reminder' ) {
-                $option = get_option('ncpi_' . $tab);
+                $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -118,7 +118,7 @@ class Setting {
             }
 
             if ( $tab == 'email_invoice_default' ) {
-                $option = get_option('ncpi_' . $tab);
+                $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -129,7 +129,7 @@ class Setting {
             }
 
             if ( $tab == 'email_invoice_reminder' ) {
-                $option = get_option('ncpi_' . $tab);
+                $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -140,7 +140,7 @@ class Setting {
             }
 
             if ( $tab == 'email_invoice_recurring' ) {
-                $option = get_option('ncpi_' . $tab);
+                $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -174,7 +174,7 @@ class Setting {
                 //TODO: sanitization  
                 $data['social'] = isset( $params['social'] ) ? ( $params['social'] ) : null; 
 
-                $option = update_option('ncpi_' . $tab , $data);                 
+                $option = update_option('ndpi_' . $tab , $data);                 
             }
 
             if ( $tab == 'estimate_reminder' || $tab == 'invoice_reminder' ) {
@@ -184,37 +184,37 @@ class Setting {
                 $data['before'] = isset( $params['before'] ) ? ( $params['before'] ) : null;
                 $data['after'] = isset( $params['after'] ) ? ( $params['after'] ) : null; 
 
-                $option = update_option('ncpi_' . $tab , $data);                 
+                $option = update_option('ndpi_' . $tab , $data);                 
             }
 
             if ( $tab == 'email_estimate_default' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ncpi_' . $tab, $data);                 
+                $option = update_option('ndpi_' . $tab, $data);                 
             }
 
             if ( $tab == 'email_estimate_reminder' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ncpi_' . $tab, $data);                 
+                $option = update_option('ndpi_' . $tab, $data);                 
             }
 
             if ( $tab == 'email_invoice_default' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ncpi_' . $tab, $data);                 
+                $option = update_option('ndpi_' . $tab, $data);                 
             }
 
             if ( $tab == 'email_invoice_reminder' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ncpi_' . $tab, $data);                 
+                $option = update_option('ndpi_' . $tab, $data);                 
             }
 
             if ( $tab == 'email_invoice_recurring' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ncpi_' . $tab, $data);                 
+                $option = update_option('ndpi_' . $tab, $data);                 
             }
 
             wp_send_json_success();

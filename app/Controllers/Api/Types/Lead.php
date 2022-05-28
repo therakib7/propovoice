@@ -82,7 +82,7 @@ class Lead
         }
 
         $args = array(
-            'post_type' => 'ncpi_lead',
+            'post_type' => 'ndpi_lead',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -208,7 +208,7 @@ class Lead
         } else {
 
             $data = array(
-                'post_type' => 'ncpi_lead',
+                'post_type' => 'ndpi_lead',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',

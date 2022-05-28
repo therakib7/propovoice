@@ -11,7 +11,7 @@ class Form extends Component {
             id: null,
             title: '',
             stage_id: '',
-            contact_id: 758,
+            contact_id: 770,
             contact_type: 'people', //org/people
             budget: '',
             currency: 'USD',
@@ -22,7 +22,7 @@ class Form extends Component {
         };
 
         this.state = {
-            form: this.initialState,
+            form: this.initialState, 
             stages: [],
             tags: [],
         };
@@ -47,10 +47,20 @@ class Form extends Component {
         ApiTaxonomy.getAll('taxonomy=deal_stage_tag')
             .then(resp => {
                 if (resp.data.success) { 
-                    this.setState({ 
-                        stages: resp.data.data.stages,
-                        tags: resp.data.data.tags,
-                    });
+                    if ( this.state.form.stage_id ) {
+                        this.setState({ 
+                            stages: resp.data.data.stages,
+                            tags: resp.data.data.tags,
+                        });
+                    } else {
+                        let form = {...this.state.form}
+                        form.stage_id = resp.data.data.stages[0];
+                        this.setState({ 
+                            form,
+                            stages: resp.data.data.stages,
+                            tags: resp.data.data.tags,
+                        });
+                    } 
                 }
             });
 
@@ -66,24 +76,20 @@ class Form extends Component {
         //condition added to stop multiple rendering 
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
-                if (!wage.length) {
-                    this.setState({ form: this.props.data });
-                } else {
-                    let data = this.props.data;
-                    // data.default = true;
-                    this.setState({ form: data });
-                }
+                this.setState({ form: this.props.data });
             }
         } else {
             if (this.state.form.id != null) {
-                if (!wage.length) {
-                    this.setState({ form: this.initialState });
-                } else {
-                    let data = this.initialState;
-                    // data.default = true;
-                    this.setState({ form: data });
+                this.setState({ form: this.initialState });
+            } 
+            
+            /* else {
+                if ( this.props.data && ! this.state.form.stage_id && this.props.data.hasOwnProperty('label') ) { // new deal from stage
+                    let form = {...this.initialState}
+                    form.stage_id = this.props.data;
+                    this.setState({ form });
                 }
-            }
+            }  */
         }
     }
 
@@ -98,7 +104,7 @@ class Form extends Component {
         const tagList = this.state.tags;
         return (
             <div className="pi-overlay pi-show">
-                <div className="pi-popup-content">
+                <div className="pi-modal-content">
                     <div className="pi-modal-header">
                         <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Deal</h2>
                         <span className="pi-close" onClick={() => this.props.close()}>×</span>
