@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-import Upload from 'block/field/upload';
+import React, { Component } from 'react'; 
 
 class Form extends Component {
     constructor(props) {

@@ -19,7 +19,7 @@ class LeadSummary extends Component {
             tabs: [
                 {
                     id: 'task',
-                    text: 'Task'
+                    text: 'Activity and Task'
                 },
                 {
                     id: 'note',
