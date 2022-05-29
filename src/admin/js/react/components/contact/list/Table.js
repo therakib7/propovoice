@@ -53,10 +53,10 @@ const TableBody = props => {
         } 
     };
 
-    let navigate = useNavigate();
-    function handleOverview(id) {
-        navigate(`/contact/${id}`, { replace: true });
-    }
+    const navigate = useNavigate(); 
+    const handleOverview = (id) => {
+		navigate(`/client/${id}`, { replace: true });
+    };
 
     let rows = props.tableData.map((row, index) => {
 
@@ -94,7 +94,7 @@ const TableBody = props => {
                             {row.id == dropdown && <div className="pi-dropdown-content pi-show" 
                             // ref={popover}
                             >  
-                                <a onClick={() => handleOverview(row.id)}>Overview</a>
+                                {!wage.length && <a onClick={() => handleOverview(row.id)}>Overview</a>}
                                 <a onClick={() => props.editEntry('edit', row)}>Edit</a> 
                                 <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
                             </div>}

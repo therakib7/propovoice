@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Overview extends Component {
     state = {
-        // contacts: []
+        // clients: []
         data: '', 
     };
 
@@ -13,7 +13,7 @@ export default class Overview extends Component {
     getLists = () => {
         Helper.getAll()
             .then(resp => {
-                this.setState({ contacts: resp.data.data });
+                this.setState({ clients: resp.data.data });
             })
     }; 
 

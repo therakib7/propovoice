@@ -45,7 +45,7 @@ export default class Form extends Component {
                             <form onSubmit={this.handleSubmit} className="h-screen border-0 shadow-lg flex flex-col w-full bg-white">
                                 <div className="flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t">
                                     <h3 className="text-xl p-2 font-semibold">Search</h3>
-                                    <button className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl contacting-none font-semibold outline-none focus:outline-none"
+                                    <button className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                                         onClick={() => this.props.close('search')} >
                                         <span className="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
                                             ×
@@ -64,7 +64,7 @@ export default class Form extends Component {
                                                 </label>
 
                                                 <input
-                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 contacting-tight focus:outline-none focus:bg-white"
+                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                     id="first_name"
                                                     type="text"
                                                     name="first_name"
@@ -81,7 +81,7 @@ export default class Form extends Component {
                                                 </label>
 
                                                 <input
-                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 contacting-tight focus:outline-none focus:bg-white"
+                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                     id="last_name"
                                                     type="text"
                                                     name="last_name"
@@ -98,7 +98,7 @@ export default class Form extends Component {
                                                 </label>
 
                                                 <input
-                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 contacting-tight focus:outline-none focus:bg-white"
+                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                     id="grid_email"
                                                     type="email"
                                                     name="email"
@@ -115,7 +115,7 @@ export default class Form extends Component {
                                                 </label>
 
                                                 <input
-                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 contacting-tight focus:outline-none focus:bg-white"
+                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                     id="grid-mobile"
                                                     type="text"
                                                     name="mobile"
@@ -132,7 +132,7 @@ export default class Form extends Component {
                                                 </label>
 
                                                 <input
-                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 contacting-tight focus:outline-none focus:bg-white"
+                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                     id="grid-company_name"
                                                     type="text"
                                                     name="company_name"
@@ -149,7 +149,7 @@ export default class Form extends Component {
                                                 </label>
 
                                                 <input
-                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 contacting-tight focus:outline-none focus:bg-white"
+                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                     id="grid-web"
                                                     type="url"
                                                     name="web"
@@ -166,7 +166,7 @@ export default class Form extends Component {
                                                 </label>
 
                                                 <input
-                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 contacting-tight focus:outline-none focus:bg-white"
+                                                    className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                     id="grid-zip"
                                                     type="number"
                                                     name="zip"

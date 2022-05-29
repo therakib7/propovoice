@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, useParams } from "react-router-dom";  
  
-import Api from 'api/contact';
+import Api from 'api/client';
 
 import Overview from './tab/overview';
 import Project from 'components/project'; 
@@ -85,9 +85,9 @@ class ClientSummary extends Component {
 
                 <div className='mb-3 text-sm'>
                     <NavLink
-                        to='/contact'
+                        to='/client'
                         >
-                        <span className="dashicons dashicons-arrow-left-alt2"></span> Back to Contact
+                        <span className="dashicons dashicons-arrow-left-alt2"></span> Back to Client
                     </NavLink>
                 </div>
 
@@ -115,9 +115,9 @@ class ClientSummary extends Component {
                 <div className='mb-5'></div>      
 
                 { currentTab == 'overview' && <Overview /> }
-                { currentTab == 'project' && <Project contact_id={id} /> }
-                { currentTab == 'estimate' && <Estimate contact_id={id} /> }
-                { currentTab == 'invoice' && <Invoice contact_id={id} /> }
+                { currentTab == 'project' && <Project client_id={id} /> }
+                { currentTab == 'estimate' && <Estimate client_id={id} /> }
+                { currentTab == 'invoice' && <Invoice client_id={id} /> }
                 { currentTab == 'receipt' && <Receipt /> } 
 
             </div>

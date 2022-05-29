@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -12,6 +14,8 @@ class Form extends Component {
             email: '',
             web: '',
             mobile: '', 
+            country: '',
+            region: '',
             address: '',
             date: false
         };
@@ -25,6 +29,14 @@ class Form extends Component {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } });
     } 
+
+    selectCountry (val) {
+        this.setState({ form: { ...this.state.form, ['country']: val } });  
+    }
+    
+    selectRegion (val) {
+        this.setState({ form: { ...this.state.form, ['region']: val } });  
+    }
 
     componentDidMount() {
         //added this multiple place, because not working in invoice single
@@ -159,6 +171,36 @@ class Form extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div> 
+                                    </div> 
+
+                                    <div className="row"> 
+                                        <div className="col">
+                                            <label
+                                                htmlFor="form-country">
+                                                Country
+                                            </label>
+
+                                            <CountryDropdown
+                                                value={this.state.form.country}
+                                                valueType='short'
+                                                onChange={(val) => this.selectCountry(val)} 
+                                            />
+                                        </div>
+
+                                        <div className="col">
+                                            <label
+                                                htmlFor="form-region">
+                                                Region
+                                            </label>
+
+                                            <RegionDropdown
+                                                country={this.state.form.country}
+                                                countryValueType='short'
+                                                value={this.state.form.region} 
+                                                onChange={(val) => this.selectRegion(val)} 
+                                            />
+                                        </div>
+
                                     </div> 
 
                                     <div className="row"> 
