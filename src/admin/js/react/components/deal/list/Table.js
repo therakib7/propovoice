@@ -77,7 +77,7 @@ const TableBody = props => {
                 </td>
                 <td>{row.first_name + ' ' + row.last_name}</td>
                 <td>{row.email}</td>
-                <td>{row.company_name}</td>
+                <td>{row.org_name}</td>
                 <td>{row.web}</td>
                 <td>{row.mobile}</td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td> 

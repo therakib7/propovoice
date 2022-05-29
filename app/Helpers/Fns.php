@@ -38,7 +38,7 @@ class Fns
     {
         $id = isset($array['id']) ? $array['id'] : '';
         $path = isset($array['path']) ? $array['path'] : '';
-        $company_name = isset($array['company_name']) ? $array['company_name'] : '';
+        $org_name = isset($array['org_name']) ? $array['org_name'] : '';
         $client_name = isset($array['client_name']) ? $array['client_name'] : '';
         $date = isset($array['date']) ? $array['date'] : '';
         $due_date = isset($array['due_date']) ? $array['due_date'] : '';
@@ -97,7 +97,7 @@ class Fns
             array(
                 '{id}',
                 '{path}',
-                '{company_name}',
+                '{org_name}',
                 '{client_name}',
                 '{date}',
                 '{due_date}',
@@ -109,7 +109,7 @@ class Fns
             array(
                 $id,
                 $path,
-                $company_name,
+                $org_name,
                 $client_name,
                 $date,
                 $due_date,

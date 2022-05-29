@@ -115,7 +115,7 @@ class Org
             $query_data['first_name'] = get_post_meta($id, 'first_name', true);
             $query_data['last_name'] = get_post_meta($id, 'last_name', true);
             $query_data['email'] = get_post_meta($id, 'email', true);
-            $query_data['company_name'] = get_post_meta($id, 'company_name', true);
+            $query_data['org_name'] = get_post_meta($id, 'org_name', true);
             $query_data['web'] = get_post_meta($id, 'web', true);
             $query_data['mobile'] = get_post_meta($id, 'mobile', true);
             $query_data['country'] = get_post_meta($id, 'country', true);
@@ -155,7 +155,7 @@ class Org
         $query_data['first_name'] = get_post_meta($id, 'first_name', true);
         $query_data['last_name'] = get_post_meta($id, 'last_name', true);
         $query_data['email'] = get_post_meta($id, 'email', true);
-        $query_data['company_name'] = get_post_meta($id, 'company_name', true);
+        $query_data['org_name'] = get_post_meta($id, 'org_name', true);
         $query_data['web'] = get_post_meta($id, 'web', true);
         $query_data['mobile'] = get_post_meta($id, 'mobile', true);
         $query_data['country'] = get_post_meta($id, 'country', true);
@@ -187,7 +187,7 @@ class Org
         $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
         $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $company_name = isset($params['company_name']) ? sanitize_text_field($req['company_name']) : null;
+        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
         $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
         $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
@@ -230,8 +230,8 @@ class Org
                     update_post_meta($post_id, 'email', $email);
                 }
 
-                if ($company_name) {
-                    update_post_meta($post_id, 'company_name', $company_name);
+                if ($org_name) {
+                    update_post_meta($post_id, 'org_name', $org_name);
                 }
 
                 if ($web) {
@@ -273,7 +273,7 @@ class Org
         $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
         $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $company_name = isset($params['company_name']) ? sanitize_text_field($req['company_name']) : null;
+        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
         $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
         $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
@@ -316,8 +316,8 @@ class Org
                     update_post_meta($post_id, 'email', $email);
                 }
 
-                if ($company_name) {
-                    update_post_meta($post_id, 'company_name', $company_name);
+                if ($org_name) {
+                    update_post_meta($post_id, 'org_name', $org_name);
                 }
 
                 if ($web) {

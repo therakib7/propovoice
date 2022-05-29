@@ -1248,7 +1248,7 @@ html {
   width: calc(100vw - 230px);
   z-index: 9;
   background-color: #fff;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 2px rgba(0, 0, 0, 0.01);
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-top-menu-content {
@@ -1702,10 +1702,12 @@ html {
     font-size: 12px;
   }
 }
+.ncpi .pi-top-menu-content .pi-dropdown {
+  margin-right: 30px;
+  margin-left: auto;
+}
 .ncpi .pi-dropdown {
   position: relative;
-  margin-left: auto;
-  margin-right: 30px;
 }
 .ncpi .pi-dropdown img {
   margin-right: 10px;
@@ -1829,6 +1831,66 @@ html {
 }
 .wp-admin .pi-social-content .pi-social-icon .pi-skype {
   background-color: rgba(0, 175, 240, 0.08);
+}
+.wp-admin input[type=range] {
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  width: 100%;
+  height: 8px;
+  background-color: #CCD6FF !important;
+  margin-top: 10px;
+  outline: none;
+}
+.wp-admin input[type=range]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  height: 8px;
+}
+.wp-admin input[type=range]::-moz-track {
+  -moz-appearance: none;
+  height: 8px;
+}
+.wp-admin input[type=range]::-ms-track {
+  appearance: none;
+  height: 8px;
+}
+.wp-admin input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 5px;
+  background-color: #3264fe;
+  cursor: pointer;
+  margin-top: -6px;
+  border: none;
+}
+.wp-admin input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 10px;
+  background-color: #3264fe;
+  cursor: pointer;
+  margin-top: -6px;
+  border: none;
+}
+.wp-admin input[type=range]::-ms-thumb {
+  appearance: none;
+  height: 20px;
+  width: 10px;
+  background-color: #3264fe;
+  cursor: pointer;
+  margin-top: -6px;
+  border: none;
+}
+.wp-admin input[type=range]:active::-webkit-slider-thumb {
+  background-color: #ffffff;
+  border: 3px solid #3264fe;
+}
+.wp-admin #slider-value {
+  position: absolute;
+  color: #000;
+  right: 14px;
+  top: 0px;
 }
 
 /*-------------------------------------------------------------- 
@@ -2065,66 +2127,6 @@ html {
   font-size: 11px;
   color: #F68A0B;
   margin-top: 0;
-}
-.ncpi input[type=range] {
-  position: relative;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  display: block;
-  width: 100%;
-  height: 8px;
-  background-color: #CCD6FF !important;
-  margin-top: 10px;
-  outline: none;
-}
-.ncpi input[type=range]::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  height: 8px;
-}
-.ncpi input[type=range]::-moz-track {
-  -moz-appearance: none;
-  height: 8px;
-}
-.ncpi input[type=range]::-ms-track {
-  appearance: none;
-  height: 8px;
-}
-.ncpi input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 20px;
-  width: 5px;
-  background-color: #3264fe;
-  cursor: pointer;
-  margin-top: -6px;
-  border: none;
-}
-.ncpi input[type=range]::-moz-range-thumb {
-  -webkit-appearance: none;
-  height: 20px;
-  width: 10px;
-  background-color: #3264fe;
-  cursor: pointer;
-  margin-top: -6px;
-  border: none;
-}
-.ncpi input[type=range]::-ms-thumb {
-  appearance: none;
-  height: 20px;
-  width: 10px;
-  background-color: #3264fe;
-  cursor: pointer;
-  margin-top: -6px;
-  border: none;
-}
-.ncpi input[type=range]:active::-webkit-slider-thumb {
-  background-color: #ffffff;
-  border: 3px solid #3264fe;
-}
-.ncpi #slider-value {
-  position: absolute;
-  color: #000;
-  right: 14px;
-  top: 0px;
 }
 
 /*-------------------------------------------------------------- 
@@ -2938,6 +2940,9 @@ html {
 /*-------------------------------------------------------------- 
 # widget
 --------------------------------------------------------------*/
+.ncpi {
+  /* Rounded sliders */
+}
 .ncpi .pi-widget {
   border: 1px solid #dddddda8;
   padding: 20px;
@@ -2949,6 +2954,21 @@ html {
   color: #4A5568;
   font-size: 16px;
   font-weight: 700;
+}
+.ncpi .pi-widget .pi-action-content {
+  margin-left: auto;
+}
+.ncpi .pi-widget button {
+  background: transparent;
+  border: none;
+}
+.ncpi .pi-widget button .pi-action-btn {
+  height: 25px;
+  padding: 0px 2px;
+  top: 0px;
+}
+.ncpi .pi-widget .pi-persons-content address {
+  font-size: 10px;
 }
 .ncpi .pi-info-box address {
   font-style: normal;
@@ -3019,6 +3039,52 @@ html {
   top: 10px;
   bottom: 0;
   left: -12px;
+}
+.ncpi .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.ncpi .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.ncpi .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+.ncpi .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+.ncpi input:checked + .slider {
+  background-color: #2196F3;
+}
+.ncpi input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+.ncpi input:checked + .slider:before {
+  transform: translateX(26px);
+}
+.ncpi .slider.round {
+  border-radius: 34px;
+}
+.ncpi .slider.round:before {
+  border-radius: 50%;
 }
 
 .ncpi .pi-text-center {
@@ -3104,6 +3170,9 @@ html {
 }
 .ncpi .pi-p {
   margin-top: -10px !important;
+}
+.ncpi .pi-p-0 {
+  padding: 0 !important;
 }
 .ncpi .pi-p-40 {
   padding: 40px 30px !important;
@@ -3353,7 +3422,6 @@ select {
   width: 100%;
   border: 1px solid #CBD5E0;
   outline: none;
-  line-height: 1;
 }
 .ncpi .pi-form-style-one select:focus,
 .ncpi .pi-form-style-one input[type=url]:focus,
@@ -3379,7 +3447,6 @@ select {
   width: 100%;
   border: 1px solid #dddddda8;
   outline: none;
-  line-height: 1;
 }
 .ncpi .pi-form-style-two .row > div {
   padding: 5px;
@@ -3595,7 +3662,7 @@ select {
   position: fixed;
   z-index: 9;
   background: #fff;
-  width: 250px;
+  width: 255px;
   border-bottom: 1px solid #dddddd36;
 }
 @media screen and (max-width: 768px) {

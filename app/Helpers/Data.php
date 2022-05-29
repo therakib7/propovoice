@@ -10,7 +10,7 @@ class Data
             'email_template' => [
                 'estimate' => [
                     'default' => [
-                        'subject' => '{company_name} sent you a Estimate #{id}',
+                        'subject' => '{org_name} sent you a Estimate #{id}',
                         'msg' => 'Hi <b>{client_name}</b>,
 Please find attached Estimate #{id}. Due Date was {due_date}.
 
@@ -22,12 +22,12 @@ Amount: {amount}
 Thank you for your business.
 
 Regards
-{company_name}'
+{org_name}'
                     ],
                 ],
                 'invoice' => [
                     'default' => [
-                        'subject' => '{company_name} sent you a Invoice #{id}',
+                        'subject' => '{org_name} sent you a Invoice #{id}',
                         'msg' => 'Hi <b>{client_name}</b>,
 Please find attached Invoice #{id}. Due Date was {due_date}.
 
@@ -39,7 +39,7 @@ Due Amount: {amount}
 Thank you for your business.
 
 Regards
-{company_name}'
+{org_name}'
                     ]
                 ],    
             ]

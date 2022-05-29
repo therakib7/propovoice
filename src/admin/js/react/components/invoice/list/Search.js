@@ -12,7 +12,7 @@ export default class Form extends Component {
             first_name: '',
             last_name: '',
             email: '',
-            company_name: '',
+            org_name: '',
             web: '',
             mobile: '',
             zip: '',
@@ -127,16 +127,16 @@ export default class Form extends Component {
                                             <div className="w-full px-3 mb-6 md:mb-0">
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                                    htmlFor="grid-company_name">
+                                                    htmlFor="grid-org_name">
                                                     Company Name
                                                 </label>
 
                                                 <input
                                                     className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                                    id="grid-company_name"
+                                                    id="grid-org_name"
                                                     type="text"
-                                                    name="company_name"
-                                                    value={this.state.form.company_name}
+                                                    name="org_name"
+                                                    value={this.state.form.org_name}
                                                     onChange={this.handleChange}
                                                 />
                                             </div>

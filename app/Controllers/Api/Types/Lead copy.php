@@ -2,7 +2,7 @@
 
 namespace Ncpi\Controllers\Api\Types;
 
-class Client
+class Lead
 {
 
     public function __construct()
@@ -13,7 +13,7 @@ class Client
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/clients', [
+        register_rest_route('ncpi/v1', '/leads', [
             [
                 'methods' => 'GET',
                 // 'methods' => \WP_REST_Server::READABLE,
@@ -28,7 +28,7 @@ class Client
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/clients/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/leads/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +41,7 @@ class Client
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/clients/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/leads/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -54,7 +54,7 @@ class Client
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/clients/(?P<id>[0-9,]+)', array(
+        register_rest_route('ncpi/v1', '/leads/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -251,40 +251,48 @@ class Client
     {
 
         $reg_errors   = new \WP_Error;
-        $first_name   = sanitize_text_field($req['first_name']);
-        $last_name    = sanitize_text_field($req['last_name']);
-        $email        = strtolower(sanitize_email($req['email']));
-        $org_name = sanitize_text_field($req['org_name']);
-        $web          = esc_url_raw($req['web']);
-        $mobile       = sanitize_text_field($req['mobile']);
-        $country      = sanitize_text_field($req['country']);
-        $region       = sanitize_text_field($req['region']);
-        $address      = sanitize_text_field($req['address']);
+ 
+        $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null; 
+        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
+        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null; 
+        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
+        $note         = isset($params['note']) ? nl2br($params['note']) : null;
+
+        $contact_first_name   = sanitize_text_field($params['first_name']);
+        $contact_last_name    = sanitize_text_field($params['last_name']);
+        $contact_email        = strtolower(sanitize_email($params['email']));
+        $contact_org_name     = sanitize_text_field($params['org_name']);
+        $contact_web          = esc_url_raw($params['web']);
+        $contact_mobile       = sanitize_text_field($params['mobile']);
+        $contact_country      = sanitize_text_field($params['country']);
+        $contact_region       = sanitize_text_field($params['region']);
+        $contact_address      = sanitize_text_field($params['address']);  
 
         if (
-            empty($first_name) ||
-            empty($email)
+            empty($contact_first_name) ||
+            empty($contact_email)
         ) {
             $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
         }
 
-        if (!is_email($email)) {
+        //TODO: get email id if already
+        /* if ( !is_email($contact_email) ) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }
 
-        if (email_exists($email)) {
+        if (email_exists($contact_email)) {
             $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
-        }
+        } */
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $userdata = [
-                'user_login' => $email,
-                'user_email' => $email,
+                'user_login' => $contact_email,
+                'user_email' => $contact_email,
                 'user_pass'  => wp_generate_password(8, true, true),
-                'first_name' => $first_name,
-                'last_name'  => $last_name,
+                'first_name' => $contact_first_name,
+                'last_name'  => $contact_last_name,
             ];
             $user_id = wp_insert_user($userdata);
 
@@ -293,17 +301,14 @@ class Client
 
                 $prefix = 'ncpi_';
                 update_user_meta($user_id, $prefix . 'member', true);
-                update_user_meta($user_id, $prefix . 'org_name', $org_name);
-                update_user_meta($user_id, $prefix . 'web', $web);
-                update_user_meta($user_id, $prefix . 'mobile', $mobile);
-                update_user_meta($user_id, $prefix . 'country', $country);
-                update_user_meta($user_id, $prefix . 'region', $region);
-                update_user_meta($user_id, $prefix . 'address', $address);
-
-                wp_send_json_success($user_id);
-            } else {
-                wp_send_json_error();
-            }
+                update_user_meta($user_id, $prefix . 'org_name', $contact_org_name);
+                update_user_meta($user_id, $prefix . 'web', $contact_web);
+                update_user_meta($user_id, $prefix . 'mobile', $contact_mobile);
+                update_user_meta($user_id, $prefix . 'country', $contact_country);
+                update_user_meta($user_id, $prefix . 'region', $contact_region);
+                update_user_meta($user_id, $prefix . 'address', $contact_address);
+ 
+            }  
         }
     }
 
@@ -311,24 +316,24 @@ class Client
     {
         $params = $req->get_params();
         $reg_errors    = new \WP_Error;
-        $first_name    = sanitize_text_field($params['first_name']);
-        $last_name     = sanitize_text_field($params['last_name']);
-        $email     = strtolower(sanitize_email($params['email']));
-        $org_name  = sanitize_text_field($params['org_name']);
-        $web           = esc_url_raw($params['web']);
-        $mobile        = sanitize_text_field($params['mobile']);
-        $country       = sanitize_text_field($req['country']);
-        $region        = sanitize_text_field($req['region']);
-        $address       = sanitize_text_field($req['address']);
+        $contact_first_name    = sanitize_text_field($params['first_name']);
+        $contact_last_name     = sanitize_text_field($params['last_name']);
+        $contact_email     = strtolower(sanitize_email($params['email']));
+        $contact_org_name  = sanitize_text_field($params['org_name']);
+        $contact_web           = esc_url_raw($params['web']);
+        $contact_mobile        = sanitize_text_field($params['mobile']);
+        $contact_country       = sanitize_text_field($req['country']);
+        $contact_region        = sanitize_text_field($req['region']);
+        $contact_address       = sanitize_text_field($req['address']);
 
         if (
-            empty($email) ||
-            empty($first_name)
+            empty($contact_email) ||
+            empty($contact_first_name)
         ) {
             $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
         }
 
-        if (!is_email($email)) {
+        if (!is_email($contact_email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }
 
@@ -336,7 +341,7 @@ class Client
         $user_id      = $url_params['id'];
         $current_user = get_user_by('id', $user_id);
 
-        if (($email != $current_user->user_email) && email_exists($email)) {
+        if (($contact_email != $current_user->user_email) && email_exists($contact_email)) {
             $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
         }
 
@@ -345,22 +350,22 @@ class Client
         } else {
             $data = [
                 'ID'         => $user_id,
-                'user_login' => $email,
-                'user_email' => $email,
-                'first_name' => $first_name,
-                'last_name'  => $last_name,
+                'user_login' => $contact_email,
+                'user_email' => $contact_email,
+                'first_name' => $contact_first_name,
+                'last_name'  => $contact_last_name,
             ];
 
             $user_data = wp_update_user($data);
 
             if (!is_wp_error($user_data)) {
                 $prefix = 'ncpi_';
-                update_user_meta($user_id, $prefix . 'org_name', $org_name);
-                update_user_meta($user_id, $prefix . 'web', $web);
-                update_user_meta($user_id, $prefix . 'mobile', $mobile);
-                update_user_meta($user_id, $prefix . 'country', $country);
-                update_user_meta($user_id, $prefix . 'region', $region);
-                update_user_meta($user_id, $prefix . 'address', $address);
+                update_user_meta($user_id, $prefix . 'org_name', $contact_org_name);
+                update_user_meta($user_id, $prefix . 'web', $contact_web);
+                update_user_meta($user_id, $prefix . 'mobile', $contact_mobile);
+                update_user_meta($user_id, $prefix . 'country', $contact_country);
+                update_user_meta($user_id, $prefix . 'region', $contact_region);
+                update_user_meta($user_id, $prefix . 'address', $contact_address);
                 wp_send_json_success($user_id);
             } else {
                 wp_send_json_error();

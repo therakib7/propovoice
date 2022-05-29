@@ -8,7 +8,7 @@ const TableHeader = () => {
                     <input type="checkbox" />
                 </th>
                 <th>
-                    Client Name
+                    Lead Name
                 </th>
                 <th>
                     Email
@@ -40,7 +40,7 @@ const TableBody = props => {
                 <td><input type="checkbox" /></td>
                 <td>{row.first_name + ' ' + row.last_name}</td>
                 <td>{row.email}</td>
-                <td>{row.company_name}</td>
+                <td>{row.org_name}</td>
                 <td>{row.web}</td>
                 <td>{row.mobile}</td>
                 <td>{row.date}</td>

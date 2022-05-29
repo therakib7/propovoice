@@ -9,7 +9,20 @@ class Taxonomy {
     }   
 
     function create_custom_taxonomy() {  
-        
+        //lead
+        $temp_level = [
+            'Hot',
+            'Warm',
+            'Cold'
+        ];  
+        foreach( $temp_level as $level ) {
+            wp_insert_term(
+                $level,   // the term 
+                'ndpi_lead_level', // the taxonomy 
+            );
+        } 
+
+        //deal
         $temp_stage = [
             'Opportunity',
             'Contracting',

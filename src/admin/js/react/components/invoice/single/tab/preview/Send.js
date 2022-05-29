@@ -73,14 +73,14 @@ class Send extends Component {
         let date = this.convertDate(data.invoice.date);
         let due_date = this.convertDate(data.invoice.due_date);
         let amount = this.calcGrandTotal();
-        let company_name = data.fromData.name;
+        let org_name = data.fromData.name;
         let client_name = data.toData.first_name + ' ' + data.toData.last_name;
 
         formState.invoice_id = id;
         formState.path = path_title;
         formState.fromData = {
             id: data.fromData.id,
-            name: company_name,
+            name: org_name,
             email: data.fromData.email,
         };
 
@@ -93,10 +93,10 @@ class Send extends Component {
         let mail = this.props.mail;
 
         let subject = mail.subject.replaceAll('{id}', id)
-        .replaceAll('{company_name}', company_name);
+        .replaceAll('{org_name}', org_name);
 
         let msg = mail.msg.replaceAll('{id}', id)
-        .replaceAll('{company_name}', company_name)
+        .replaceAll('{org_name}', org_name)
         .replaceAll('{client_name}', client_name)
         .replaceAll('{date}', date)
         .replaceAll('{due_date}', due_date)

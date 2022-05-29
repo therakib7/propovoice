@@ -1,41 +1,77 @@
 import React, { Component } from 'react';
 
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import Select from 'react-select';
 
 class Form extends Component {
     constructor(props) {
         super(props);
 
-        this.initialState = {
+        this.initialState = { 
             id: null, 
-            first_name: '',
-            last_name: '',
-            company_name: '',
-            email: '',
-            web: '',
-            mobile: '', 
-            country: '',
-            region: '',
-            address: '',
-            date: false
+            source: '', 
+            level_id: '', //tax
+            tags: [], //tax
+            budget: '', 
+            currency: 'USD', 
+            desc: '',
+            note: '',
+            date: false,
+            contact: {
+                id: null, 
+                first_name: '',
+                last_name: '',
+                org_name: '',
+                email: '',
+                web: '',
+                mobile: '', 
+                country: '',
+                region: '',
+                address: '',
+                date: false
+            }, 
         };
 
         this.state = {
-            form: this.initialState
+            form: this.initialState,
+            levels: [],
+            tags: [],
         };
     }
 
-    handleChange = e => {
+    handleChange = (e, type) => { 
         const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
+
+        if ( type == 'contact' ) {  
+            let contact = { ...this.state.form.contact, [name]: value };
+            let form = {...this.state.form}
+                form.contact = contact;
+            this.setState({ form });
+        } else {
+            this.setState({ form: { ...this.state.form, [name]: value } });
+        }
     } 
 
-    selectCountry (val) {
-        this.setState({ form: { ...this.state.form, ['country']: val } });  
+    handleLevelChange = val => {
+        this.setState({ form: { ...this.state.form, ['level_id']: val } });
+    }
+
+    handleTagChange = val => {
+        this.setState({ form: { ...this.state.form, ['tags']: val } });
+    }
+
+    selectCountry ( val ) {
+        let contact = { ...this.state.form.contact, ['country']: val };
+        let form = {...this.state.form}
+            form.contact = contact;
+        this.setState({ form });  
     }
     
     selectRegion (val) {
-        this.setState({ form: { ...this.state.form, ['region']: val } });  
+        let contact = { ...this.state.form.contact, ['region']: val };
+        let form = {...this.state.form}
+            form.contact = contact;
+        this.setState({ form });    
     }
 
     componentDidMount() {
@@ -67,13 +103,17 @@ class Form extends Component {
     }
 
     render() {
+        const contact = this.state.form.contact;
+        const levelList = this.state.levels;
+        const tagList = this.state.tags;
+
         return (
             <>
                 {this.props.show && ( 
                     <div className="pi-overlay pi-show">
                         <div className="pi-modal-content">
                             <div className="pi-modal-header">
-                                <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Client</h2>
+                                <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Lead</h2>
                                 <span className="pi-close" onClick={() => this.props.close()}>×</span>
                             </div>
 
@@ -90,8 +130,8 @@ class Form extends Component {
                                                 id="first_name"
                                                 type="text"
                                                 name="first_name"
-                                                value={this.state.form.first_name}
-                                                onChange={this.handleChange}
+                                                value={contact.first_name}
+                                                onChange={(e) => this.handleChange(e, 'contact')}
                                             />
                                         </div> 
                                         {/* <div className="col-lg">
@@ -104,8 +144,8 @@ class Form extends Component {
                                                 id="last_name"
                                                 type="text"
                                                 name="last_name"
-                                                value={this.state.form.last_name}
-                                                onChange={this.handleChange}
+                                                value={contact.last_name}
+                                                onChange={(e) => this.handleChange(e, 'contact')}
                                             />
                                         </div>  */}
                                     </div>
@@ -113,16 +153,16 @@ class Form extends Component {
                                     <div className="row">
                                         <div className="col-lg">
                                             <label
-                                                htmlFor="form-company_name">
+                                                htmlFor="form-org_name">
                                                 Company/Organization Name
                                             </label>
 
                                             <input
-                                                id="form-company_name"
+                                                id="form-org_name"
                                                 type="text" 
-                                                name="company_name"
-                                                value={this.state.form.company_name}
-                                                onChange={this.handleChange}
+                                                name="org_name"
+                                                value={contact.org_name}
+                                                onChange={(e) => this.handleChange(e, 'contact')}
                                             />
                                         </div> 
                                         <div className="col-lg">
@@ -135,8 +175,8 @@ class Form extends Component {
                                                 id="form-web"
                                                 type="text"
                                                 name="web"
-                                                value={this.state.form.web}
-                                                onChange={this.handleChange}
+                                                value={contact.web}
+                                                onChange={(e) => this.handleChange(e, 'contact')}
                                             />
                                         </div>
                                     </div> 
@@ -153,8 +193,8 @@ class Form extends Component {
                                                 type="email"
                                                 required
                                                 name="email"
-                                                value={this.state.form.email}
-                                                onChange={this.handleChange}
+                                                value={contact.email}
+                                                onChange={(e) => this.handleChange(e, 'contact')}
                                             />
                                         </div> 
                                         <div className="col-lg">
@@ -167,8 +207,8 @@ class Form extends Component {
                                                 id="form-mobile"
                                                 type="text" 
                                                 name="mobile"
-                                                value={this.state.form.mobile}
-                                                onChange={this.handleChange}
+                                                value={contact.mobile}
+                                                onChange={(e) => this.handleChange(e, 'contact')}
                                             />
                                         </div> 
                                     </div> 
@@ -181,7 +221,7 @@ class Form extends Component {
                                             </label>
 
                                             <CountryDropdown
-                                                value={this.state.form.country}
+                                                value={contact.country}
                                                 valueType='short'
                                                 onChange={(val) => this.selectCountry(val)} 
                                             />
@@ -194,9 +234,9 @@ class Form extends Component {
                                             </label>
 
                                             <RegionDropdown
-                                                country={this.state.form.country}
+                                                country={contact.country}
                                                 countryValueType='short'
-                                                value={this.state.form.region} 
+                                                value={contact.region} 
                                                 onChange={(val) => this.selectRegion(val)} 
                                             />
                                         </div>
@@ -214,11 +254,109 @@ class Form extends Component {
                                                 id="form-address"
                                                 type="text"
                                                 name="address"
-                                                value={this.state.form.address}
+                                                value={contact.address}
+                                                onChange={(e) => this.handleChange(e, 'contact')}
+                                            />
+                                        </div>
+                                    </div>  
+                                    
+                                    <div className="row">
+                                        <div className="col-md">
+                                            <label
+                                                htmlFor="field-budget">
+                                                Budget
+                                            </label>
+
+                                            <input
+                                                id="field-budget"
+                                                type="text"
+                                                name="budget"
+                                                value={this.state.form.budget}
                                                 onChange={this.handleChange}
+                                            />
+                                        </div> 
+
+                                        <div className="col-md">
+                                            <label
+                                                htmlFor="field-currency">
+                                                Currency
+                                            </label>
+
+                                            <input
+                                                id="field-currency"
+                                                type="text"
+                                                readOnly
+                                                name="currency"
+                                                value={this.state.form.currency}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>  
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col-md">
+                                            <label
+                                                htmlFor="field-level_id">
+                                                Level
+                                            </label>
+
+                                            <Select 
+                                                value={this.state.form.level_id}
+                                                onChange={this.handleLevelChange}
+                                                getOptionValue={(levelList) => levelList.id}
+                                                getOptionLabel={(levelList) => levelList.label}
+                                                options={levelList}
+                                            />
+                                        </div>
+
+                                        <div className="col-md">
+                                            <label htmlFor="field-tags">
+                                                Tags
+                                            </label>
+                                            <Select
+                                                value={this.state.form.tags}
+                                                onChange={this.handleTagChange}
+                                                getOptionValue={(tagList) => tagList.id}
+                                                getOptionLabel={(tagList) => tagList.label}
+                                                options={tagList}
+                                                isMulti
                                             />
                                         </div>
                                     </div> 
+
+                                    <div className="row"> 
+                                        <div className="col">
+                                            <label
+                                                htmlFor="form-desc">
+                                                Description
+                                            </label>
+
+                                            <textarea
+                                                id="form-desc"
+                                                type="text"
+                                                name="desc"
+                                                value={this.state.form.desc}
+                                                onChange={(e) => this.handleChange(e, 'lead')}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="row"> 
+                                        <div className="col">
+                                            <label
+                                                htmlFor="form-note">
+                                                Note
+                                            </label>
+
+                                            <textarea
+                                                id="form-note"
+                                                type="text"
+                                                name="note"
+                                                value={this.state.form.note}
+                                                onChange={(e) => this.handleChange(e, 'lead')}
+                                            />
+                                        </div>
+                                    </div>  
 
                                     <div className="row">
                                         <div className="col"> 

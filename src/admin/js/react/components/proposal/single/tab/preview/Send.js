@@ -72,14 +72,14 @@ class Send extends Component {
         let invoice_date = this.convertDate(data.invoice.date);
         let invoice_due_date = this.convertDate(data.invoice.due_date);
         let invoice_due_amount = this.calcGrandTotal();
-        let company_name = data.fromData.name;
+        let org_name = data.fromData.name;
         let client_name = data.toData.first_name + ' ' + data.toData.last_name;
 
         formState.invoice_id = invoice_id;
         formState.path = path_title;
         formState.fromData = {
             id: data.fromData.id,
-            name: company_name,
+            name: org_name,
             email: data.fromData.email,
         };
 
@@ -89,7 +89,7 @@ class Send extends Component {
             email: data.toData.email,
         }; 
         
-        formState.subject = `${company_name} sent you a ${path_title} #${invoice_id}`;
+        formState.subject = `${org_name} sent you a ${path_title} #${invoice_id}`;
         formState.msg = `Hi <b>${client_name}</b>,
 Please find attached ${path} #${invoice_id}. Due Date was ${invoice_due_date}.
 
@@ -101,7 +101,7 @@ Due Amount: USD ${invoice_due_amount}
 Thank you for your business.
 
 Regards
-${company_name}`;
+${org_name}`;
 
         this.setState({ form: formState });  
     }
@@ -144,9 +144,9 @@ ${company_name}`;
 
     subjectLook = () => {
         let data = this.props.data; 
-        let company_name = data.fromData.name;
+        let org_name = data.fromData.name;
         let invoice_id = data.invoice.id;
-        return `${company_name} sent you a Invoice #${invoice_id}`;
+        return `${org_name} sent you a Invoice #${invoice_id}`;
     }
 
     render() {

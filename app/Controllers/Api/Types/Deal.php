@@ -220,8 +220,8 @@ class Deal
             if ( isset( $contact_meta['email'] ) ) {
                 $contact_data['email'] = $contact_meta['email'][0];
             }
-            if ( isset( $contact_meta['company_name'] ) ) {
-                $contact_data['company_name'] = $contact_meta['company_name'][0];
+            if ( isset( $contact_meta['org_name'] ) ) {
+                $contact_data['org_name'] = $contact_meta['org_name'][0];
             }
             if ( isset( $contact_meta['web'] ) ) {
                 $contact_data['web'] = $contact_meta['web'][0];
@@ -266,14 +266,14 @@ class Deal
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $title        = isset($params['title']) ? sanitize_text_field($req['title']) : null;
-        $stage_id     = isset($params['stage_id']) ? absint($req['stage_id']) : null;
-        $contact_id   = isset($params['contact_id']) ? absint($req['contact_id']) : null;
-        $budget       = isset($params['budget']) ? sanitize_text_field($req['budget']) : null;
-        $currency     = isset($params['currency']) ? sanitize_text_field($req['currency']) : null;
-        $provability  = isset($params['provability']) ? absint($req['provability']) : null; 
+        $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
+        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
+        $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
+        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
+        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
+        $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $note         = isset($params['note']) ? nl2br($req['note']) : null;
+        $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
         if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
@@ -341,14 +341,14 @@ class Deal
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $title        = isset($params['title']) ? sanitize_text_field($req['title']) : null;
-        $stage_id     = isset($params['stage_id']) ? absint($req['stage_id']) : null;
-        $contact_id   = isset($params['contact_id']) ? absint($req['contact_id']) : null;
-        $budget       = isset($params['budget']) ? sanitize_text_field($req['budget']) : null;
-        $currency     = isset($params['currency']) ? sanitize_text_field($req['currency']) : null;
-        $provability  = isset($params['provability']) ? absint($req['provability']) : null; 
+        $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
+        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
+        $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
+        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
+        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
+        $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $note         = isset($params['note']) ? nl2br($req['note']) : null;
+        $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
         if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));

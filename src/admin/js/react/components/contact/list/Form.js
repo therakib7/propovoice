@@ -10,7 +10,7 @@ class Form extends Component {
             id: null, 
             first_name: '',
             last_name: '',
-            company_name: '',
+            org_name: '',
             email: '',
             web: '',
             mobile: '', 
@@ -113,15 +113,15 @@ class Form extends Component {
                                     <div className="row">
                                         <div className="col-lg">
                                             <label
-                                                htmlFor="form-company_name">
+                                                htmlFor="form-org_name">
                                                 Company/Organization Name
                                             </label>
 
                                             <input
-                                                id="form-company_name"
+                                                id="form-org_name"
                                                 type="text" 
-                                                name="company_name"
-                                                value={this.state.form.company_name}
+                                                name="org_name"
+                                                value={this.state.form.org_name}
                                                 onChange={this.handleChange}
                                             />
                                         </div> 

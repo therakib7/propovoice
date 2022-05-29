@@ -111,28 +111,30 @@ class Lead
 
             $query_data = [];
             $query_data['id'] = $id;
-
-            $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-            $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-            $query_data['email'] = get_post_meta($id, 'email', true);
-            $query_data['company_name'] = get_post_meta($id, 'company_name', true);
-            $query_data['web'] = get_post_meta($id, 'web', true);
-            $query_data['mobile'] = get_post_meta($id, 'mobile', true);
-            $query_data['country'] = get_post_meta($id, 'country', true);
-            $query_data['region'] = get_post_meta($id, 'region', true);
-            $query_data['address'] = get_post_meta($id, 'address', true);
-
-            $img_id = get_post_meta($id, 'img', true);
-            $imgData = null;
-            if ($img_id) {
-                $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-                if ($img_src) {
-                    $imgData = [];
-                    $imgData['id'] = $img_id;
-                    $imgData['src'] = $img_src[0];
-                }
+ 
+            if ($id) { 
+                $queryMeta = get_post_meta($id);
+                $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+                $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
             }
-            $query_data['img'] = $imgData;
+
+            $contact_id = get_post_meta($id, 'contact_id', true); 
+            $contactData = [];
+
+            if ($contact_id) {
+                $contactData['id'] = absint( $contact_id );
+                $contactMeta = get_post_meta($contact_id);
+                $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
+                $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : '';
+                $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
+                $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
+                $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
+                $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
+                $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
+                $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
+                $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : ''; 
+            } 
+            $query_data['contact'] = $contactData;
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -150,117 +152,170 @@ class Lead
         $url_params = $req->get_url_params();
         $id = $url_params['id'];
         $query_data = [];
-        $query_data['id'] = $id;
-
-        $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-        $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-        $query_data['email'] = get_post_meta($id, 'email', true);
-        $query_data['company_name'] = get_post_meta($id, 'company_name', true);
-        $query_data['web'] = get_post_meta($id, 'web', true);
-        $query_data['mobile'] = get_post_meta($id, 'mobile', true);
-        $query_data['country'] = get_post_meta($id, 'country', true);
-        $query_data['region'] = get_post_meta($id, 'region', true);
-        $query_data['address'] = get_post_meta($id, 'address', true); 
-
-        $img_id = get_post_meta($id, 'img', true);
-        $imgData = null;
-        if ($img_id) {
-            $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-            if ($img_src) {
-                $imgData = [];
-                $imgData['id'] = $img_id;
-                $imgData['src'] = $img_src[0];
-            }
+        $query_data['id'] = absint( $id );
+ 
+        if ($id) { 
+            $queryMeta = get_post_meta($id);
+            $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+            $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
+            $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
+            $query_data['desc'] = isset($queryMeta['desc']) ? $queryMeta['desc'][0] : ''; 
         }
-        $query_data['img'] = $imgData;
-        $data = [];
-        $data['profile'] = $query_data;
 
-        wp_send_json_success($data);
+        $contact_id = get_post_meta($id, 'contact_id', true); 
+        $contactData = [];
+
+        if ($contact_id) {
+            $contactData['id'] = absint( $contact_id );
+            $contactMeta = get_post_meta($contact_id);
+            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
+            $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : '';
+            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
+            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
+            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
+            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
+            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
+            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
+            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : ''; 
+        } 
+        $query_data['contact'] = $contactData;
+
+        $query_data['date'] = get_the_time('j-M-Y'); 
+
+        wp_send_json_success($query_data);
     }
 
     public function create($req)
-    { 
+    {
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
+        //lead
+        $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
+        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
+        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
+        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
+        $desc         = isset ($params['desc']) ? nl2br($params['desc']) : null;
+        $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $company_name = isset($params['company_name']) ? sanitize_text_field($req['company_name']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
+        $contact = $params['contact'];
+        $first_name   = isset($contact['first_name']) ? sanitize_text_field($contact['first_name']) : null;
+        $last_name    = isset($contact['last_name']) ? sanitize_text_field($contact['last_name']) : null;
+        $email        = isset($contact['email']) ? strtolower(sanitize_email($contact['email'])) : null;
+        $org_name     = isset($contact['org_name']) ? sanitize_text_field($contact['org_name']) : null;
+        $web          = isset($contact['web']) ? esc_url_raw($contact['web']) : null;
+        $mobile       = isset($contact['mobile']) ? sanitize_text_field($contact['mobile']) : null;
+        $country      = isset($contact['country']) ? sanitize_text_field($contact['country']) : null;
+        $region       = isset($contact['region']) ? sanitize_text_field($contact['region']) : null;
+        $address      = isset($contact['address']) ? sanitize_text_field($contact['address']) : null;
+        $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
-        if ( empty($first_name) ) {
+        if (empty($first_name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
-        if (!is_email($email)) {
+        /* if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        } 
+        }  */
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_lead',
+                'post_type'     => 'ndpi_contact',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
                 'post_author'   => get_current_user_id()
             );
-            $post_id = wp_insert_post($data);
+            $contact_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if (!is_wp_error($contact_id)) {
 
                 if ($first_name) {
-                    update_post_meta($post_id, 'first_name', $first_name);
+                    update_post_meta($contact_id, 'first_name', $first_name);
                 }
 
                 if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
+                    update_post_meta($contact_id, 'last_name', $last_name);
                 }
 
                 if ($email) {
-                    update_post_meta($post_id, 'email', $email);
+                    update_post_meta($contact_id, 'email', $email);
                 }
 
-                if ($company_name) {
-                    update_post_meta($post_id, 'company_name', $company_name);
+                if ($org_name) {
+                    update_post_meta($contact_id, 'org_name', $org_name);
                 }
 
                 if ($web) {
-                    update_post_meta($post_id, 'web', $web);
+                    update_post_meta($contact_id, 'web', $web);
                 }
 
                 if ($mobile) {
-                    update_post_meta($post_id, 'mobile', $mobile);
+                    update_post_meta($contact_id, 'mobile', $mobile);
                 }
 
                 if ($country) {
-                    update_post_meta($post_id, 'country', $country);
+                    update_post_meta($contact_id, 'country', $country);
                 }
 
                 if ($region) {
-                    update_post_meta($post_id, 'region', $region);
+                    update_post_meta($contact_id, 'region', $region);
                 }
 
                 if ($address) {
-                    update_post_meta($post_id, 'address', $address);
+                    update_post_meta($contact_id, 'address', $address);
                 }
 
-                if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
-                } 
+                if ($img) {
+                    update_post_meta($contact_id, 'img', $img);
+                }
 
-                wp_send_json_success($post_id);
-            } else {
-                wp_send_json_error();
+                //insert lead
+                $data = array(
+                    'post_type' => 'ndpi_lead',
+                    'post_title'  => 'Lead',
+                    'post_content'  => '',
+                    'post_status'   => 'publish',
+                    'post_author'   => get_current_user_id()
+                );
+                $post_id = wp_insert_post($data);
+
+                if (!is_wp_error($post_id)) {
+
+                    if ($level_id) {
+                        wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');
+                    }
+
+                    if ($contact_id) {
+                        update_post_meta($post_id, 'contact_id', $contact_id);
+                    }
+
+                    if ($budget) {
+                        update_post_meta($post_id, 'budget', $budget);
+                    }
+
+                    if ($currency) {
+                        update_post_meta($post_id, 'currency', $currency);
+                    }
+
+                    if ($tags) {
+                        wp_set_post_terms($post_id, $tags, 'ndpi_deal_tag');
+                    }
+
+                    if ($desc) {
+                        update_post_meta($post_id, 'desc', $desc);
+                    }
+
+                    if ($note) {
+                        update_post_meta($post_id, 'note', $note);
+                    } 
+                    
+                    wp_send_json_success($post_id);
+                } else {
+                    wp_send_json_error();
+                }
             }
         }
     }
@@ -270,24 +325,34 @@ class Lead
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $company_name = isset($params['company_name']) ? sanitize_text_field($req['company_name']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
+        //lead
+        $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
+        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
+        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
+        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
+        $desc         = isset($params['desc']) ? nl2br($params['desc']) : null;
+        $note         = isset($params['note']) ? nl2br($params['note']) : null;
+
+        $contact = $params['contact'];
+        $contact_id   = isset($contact['id']) && $contact['id'] ? sanitize_text_field($contact['id']) : null;
+        $first_name   = isset($contact['first_name']) ? sanitize_text_field($contact['first_name']) : null;
+        $last_name    = isset($contact['last_name']) ? sanitize_text_field($contact['last_name']) : null;
+        $email        = isset($contact['email']) ? strtolower(sanitize_email($contact['email'])) : null;
+        $org_name     = isset($contact['org_name']) ? sanitize_text_field($contact['org_name']) : null;
+        $web          = isset($contact['web']) ? esc_url_raw($contact['web']) : null;
+        $mobile       = isset($contact['mobile']) ? sanitize_text_field($contact['mobile']) : null;
+        $country      = isset($contact['country']) ? sanitize_text_field($contact['country']) : null;
+        $region       = isset($contact['region']) ? sanitize_text_field($contact['region']) : null;
+        $address      = isset($contact['address']) ? sanitize_text_field($contact['address']) : null;
+        $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
         if (empty($first_name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
-        if (!is_email($email)) {
+        /* if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        }
+        } */
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -316,8 +381,8 @@ class Lead
                     update_post_meta($post_id, 'email', $email);
                 }
 
-                if ($company_name) {
-                    update_post_meta($post_id, 'company_name', $company_name);
+                if ($org_name) {
+                    update_post_meta($post_id, 'org_name', $org_name);
                 }
 
                 if ($web) {
@@ -340,9 +405,9 @@ class Lead
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
-                } 
+                if ($img) {
+                    update_post_meta($post_id, 'img', $img);
+                }
 
                 wp_send_json_success($post_id);
             } else {

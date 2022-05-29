@@ -11,7 +11,7 @@ export default class Business extends Component {
         this.initialState = {
             id: null,
             name: '',
-            company_name: '',
+            org_name: '',
             web: '',
             email: '',
             mobile: '',
@@ -124,15 +124,15 @@ export default class Business extends Component {
 
                     <div className="col-md">
                         <label
-                            htmlFor="field-company_name">
+                            htmlFor="field-org_name">
                             Company/Organization Name
                         </label>
 
                         <input
-                            id="field-company_name"
+                            id="field-org_name"
                             type="text" 
-                            name="company_name"
-                            value={this.state.form.company_name}
+                            name="org_name"
+                            value={this.state.form.org_name}
                             onChange={this.handleChange}
                         />
                     </div>

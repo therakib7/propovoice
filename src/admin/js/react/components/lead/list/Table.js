@@ -16,7 +16,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Client Name
+                    Lead Name
                 </th>
                 <th>
                     Email
@@ -55,7 +55,7 @@ const TableBody = props => {
 
     const navigate = useNavigate(); 
     const handleOverview = (id) => {
-		navigate(`/client/${id}`, { replace: true });
+		navigate(`/lead/${id}`, { replace: true });
     };
 
     let rows = props.tableData.map((row, index) => {
@@ -75,11 +75,11 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>{row.first_name + ' ' + row.last_name}</td>
-                <td>{row.email}</td>
-                <td>{row.company_name}</td>
-                <td>{row.web}</td>
-                <td>{row.mobile}</td>
+                <td>{row.contact.first_name }</td>
+                <td>{row.contact.email}</td>
+                <td>{row.contact.org_name}</td>
+                <td>{row.contact.web}</td>
+                <td>{row.contact.mobile}</td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td> 
                 <td className="pi-action"> 
                     <div className="pi-action-content" >
