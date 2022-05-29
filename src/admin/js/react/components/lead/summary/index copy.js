@@ -3,7 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
  
 import Api from 'api/lead';
 
-import Overview from './tab/overview';
+import Overview from './tab/task';
 import Project from 'components/project'; 
 import Estimate from 'components/invoice/list';
 import Invoice from 'components/invoice/list';

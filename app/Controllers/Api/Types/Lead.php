@@ -156,6 +156,7 @@ class Lead
  
         if ($id) { 
             $queryMeta = get_post_meta($id);
+            $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint( $queryMeta['tab_id'][0] ) : '';
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
@@ -283,6 +284,8 @@ class Lead
                 $post_id = wp_insert_post($data);
 
                 if (!is_wp_error($post_id)) {
+
+                    update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
 
                     if ($level_id) {
                         wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');

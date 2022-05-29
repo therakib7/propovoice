@@ -17,6 +17,7 @@ use Ncpi\Controllers\Api\Types\PaymentProcess;
 use Ncpi\Controllers\Api\Types\Project;
 use Ncpi\Controllers\Api\Types\Proposal;
 use Ncpi\Controllers\Api\Types\Setting;
+use Ncpi\Controllers\Api\Types\Task;
 use Ncpi\Controllers\Api\Types\Taxonomy;
 
 class ApiController
@@ -25,6 +26,7 @@ class ApiController
 	public function __construct()
 	{
 		new Lead();
+		new Task();
 		new Client();
 		new Deal(); 
 		new Contact();
