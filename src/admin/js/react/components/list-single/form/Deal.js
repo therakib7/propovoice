@@ -129,7 +129,7 @@ class Form extends Component {
                 if (resp.data.success) { 
                     toast.success('Sucessfully moved to deal');
                     let id = resp.data.data;
-                    this.props.router.navigate(`/deal/${id}`, { replace: true }); 
+                    this.props.router.navigate(`/deal/single/${id}`, { replace: true }); 
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);

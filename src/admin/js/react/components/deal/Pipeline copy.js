@@ -63,7 +63,7 @@ function Pipeline( props ) {
 
 	const navigate = useNavigate(); 
 	const goToSingle = (id) => { 
-		navigate(`/deal/${id}`, { replace: true });
+		navigate(`/deal/single/${id}`, { replace: true });
     };
 
 	const handleCoumnLabel = (index, value) => {

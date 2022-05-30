@@ -12,12 +12,12 @@ import Table from './Table';
 import Search from './Search';
 import Empty from 'block/empty';
 
-export default class Business extends Component {
+export default class Task extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            title: 'Business',
+            title: 'Task',
             empty: false,
             preloader: true,
             formModal: false,

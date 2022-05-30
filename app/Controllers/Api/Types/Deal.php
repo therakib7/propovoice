@@ -162,103 +162,47 @@ class Deal
         endforeach;   
 
         wp_send_json_success($result);
-    }
+    } 
 
     public function get_single($req)
     {
         $url_params = $req->get_url_params();
-        $id = absint( $url_params['id'] );
-        $data = []; 
-
-        $data['id'] = $id; 
-
-        
-        
-        $deal_data = [];    
-        $deal_meta = get_post_meta( $id ); 
+        $id = $url_params['id'];
+        $query_data = [];
+        $query_data['id'] = absint( $id );
  
-        if ( isset( $deal_meta['title'] ) ) {
-            $deal_data['title'] = $deal_meta['title'][0];
+        if ($id) { 
+            $queryMeta = get_post_meta($id);
+            $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint( $queryMeta['tab_id'][0] ) : '';
+            $query_data['title'] = isset($queryMeta['title']) ? $queryMeta['title'][0] : '';
+            $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+            $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
+            $query_data['provability'] = isset($queryMeta['provability']) ? absint( $queryMeta['provability'][0] ) : ''; 
+            $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
+            $query_data['desc'] = isset($queryMeta['desc']) ? $queryMeta['desc'][0] : ''; 
         }
-        if ( isset( $deal_meta['stage_id'] ) ) {
-            $deal_data['stage_id'] = $deal_meta['stage_id'][0];
-        } 
-        if ( isset( $deal_meta['budget'] ) ) {
-            $deal_data['budget'] = $deal_meta['budget'][0];
-        } 
-        if ( isset( $deal_meta['currency'] ) ) {
-            $deal_data['currency'] = $deal_meta['currency'][0];
-        } 
-        if ( isset( $deal_meta['provability'] ) ) {
-            $deal_data['provability'] = $deal_meta['provability'][0];
-        } 
-        if ( isset( $deal_meta['tags'] ) ) {
-            $deal_data['tags'] = $deal_meta['tags'][0];
-        } 
-        if ( isset( $deal_meta['note'] ) ) {
-            $deal_data['note'] = $deal_meta['note'][0];
-        } 
-        $data['deal'] = $deal_data; 
-       
 
-        $contact_id = get_post_meta($id, 'contact_id', true);
-        $contact_type = get_post_meta($id, 'contact_type', true);
+        $contact_id = get_post_meta($id, 'contact_id', true); 
+        $contactData = [];
 
-        if ( $contact_id ) {
-            $contact_data = [];  
-            	
-            $contact_meta = get_post_meta( $contact_id ); 
+        if ($contact_id) {
+            $contactData['id'] = absint( $contact_id );
+            $contactMeta = get_post_meta($contact_id);
+            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
+            $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : '';
+            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
+            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
+            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
+            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
+            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
+            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
+            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : ''; 
+        } 
+        $query_data['contact'] = $contactData;
 
-            $contact_data['id'] = $contact_id;  
-            $contact_data['contact_type'] = $contact_type;  
-            if ( isset( $contact_meta['first_name'] ) ) {
-                $contact_data['first_name'] = $contact_meta['first_name'][0];
-            }
-            if ( isset( $contact_meta['last_name'] ) ) {
-                $contact_data['last_name'] = $contact_meta['last_name'][0];
-            }
-            if ( isset( $contact_meta['email'] ) ) {
-                $contact_data['email'] = $contact_meta['email'][0];
-            }
-            if ( isset( $contact_meta['org_name'] ) ) {
-                $contact_data['org_name'] = $contact_meta['org_name'][0];
-            }
-            if ( isset( $contact_meta['web'] ) ) {
-                $contact_data['web'] = $contact_meta['web'][0];
-            }
-            if ( isset( $contact_meta['mobile'] ) ) {
-                $contact_data['mobile'] = $contact_meta['mobile'][0];
-            }
-            if ( isset( $contact_meta['country'] ) ) {
-                $contact_data['country'] = $contact_meta['country'][0];
-            }
-            if ( isset( $contact_meta['region'] ) ) {
-                $contact_data['region'] = $contact_meta['region'][0];
-            }
-            if ( isset( $contact_meta['address'] ) ) {
-                $contact_data['address'] = $contact_meta['address'][0];
-            } 
+        $query_data['date'] = get_the_time('j-M-Y'); 
 
-            if ( isset( $contact_meta['img'] ) ) { 
-                $img_id = $contact_meta['img'][0];
-                $imgData = null;
-                if ($img_id) {
-                    $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-                    if ($img_src) {
-                        $imgData = [];
-                        $imgData['id'] = $img_id;
-                        $imgData['src'] = $img_src[0];
-                    }
-                }
-                $contact_data['img'] = $imgData; 
-
-            }  
-            
-            $data['profile'] = $contact_data;
-        }
-        
-
-        wp_send_json_success($data);
+        wp_send_json_success($query_data);
     }
 
     public function create($req)
@@ -302,6 +246,8 @@ class Deal
 
             if (!is_wp_error($post_id)) { 
 
+                update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
+                
                 if ($title) {
                     update_post_meta($post_id, 'title', $title);
                 }

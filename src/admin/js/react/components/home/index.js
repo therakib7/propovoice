@@ -14,11 +14,9 @@ const Dashboard = lazy(() => import('components/dashboard'));
 const Client = lazy(() => import('components/client/list'));
 const ClientSummary = lazy(() => import('components/client/summary'));
 
-const Lead = lazy(() => import('components/lead/list'));
-const LeadSummary = lazy(() => import('components/lead/summary')); 
-
-const Deal = lazy(() => import('components/deal/list'));
-const DealSummary = lazy(() => import('components/deal/summary'));
+const Lead = lazy(() => import('components/lead'));
+const Deal = lazy(() => import('components/deal'));
+const ListSingle = lazy(() => import('components/list-single'));
 
 const Project = lazy(() => import('components/project'));
 //const Proposal = lazy(() => import('components/proposal'));
@@ -314,10 +312,10 @@ const Home = () => {
                                     <Route path="/client/:id" exact element={<ClientSummary />} />
 
                                     <Route path="/lead" exact element={<Lead />} />
-                                    <Route path="/lead/:id" exact element={<LeadSummary />} />
+                                    <Route path="/lead/single/:id" exact element={<ListSingle />} />
 
                                     <Route path="/deal" exact element={<Deal />} />
-                                    <Route path="/deal/:id" exact element={<DealSummary />} />
+                                    <Route path="/deal/single/:id" exact element={<ListSingle />} />
 
                                     <Route path="/project" exact element={<Project />} />
 

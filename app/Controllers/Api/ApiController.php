@@ -12,6 +12,7 @@ use Ncpi\Controllers\Api\Types\Email;
 use Ncpi\Controllers\Api\Types\Invoice;
 use Ncpi\Controllers\Api\Types\Lead;
 use Ncpi\Controllers\Api\Types\Media;
+use Ncpi\Controllers\Api\Types\Note;
 use Ncpi\Controllers\Api\Types\Payment;
 use Ncpi\Controllers\Api\Types\PaymentProcess;
 use Ncpi\Controllers\Api\Types\Project;
@@ -27,6 +28,7 @@ class ApiController
 	{
 		new Lead();
 		new Task();
+		new Note();
 		new Client();
 		new Deal(); 
 		new Contact();
