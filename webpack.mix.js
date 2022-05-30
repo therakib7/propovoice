@@ -23,6 +23,7 @@ mix.webpackConfig({
             //'react-dom' : path.resolve('node_modules/react-dom'), 
             'api': path.resolve('src/admin/js/react/api'),
             'block': path.resolve('src/admin/js/react/blocks'),
+            'hoc': path.resolve('src/admin/js/react/hoc'),
             'context': path.resolve('src/admin/js/react/context'),
             'components': path.resolve('src/admin/js/react/components'),
             'out-components': path.resolve('src/admin/js/react/out-components'),

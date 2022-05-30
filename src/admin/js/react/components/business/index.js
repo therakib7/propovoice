@@ -12,194 +12,15 @@ import Table from './Table';
 import Search from './Search';
 import Empty from 'block/empty';
 
-export default class Business extends Component {
+import Crud from 'hoc/Crud';
+
+class Business extends Component {
     constructor(props) {
-        super(props);
-
-        this.state = {
-            title: 'Business',
-            empty: false,
-            preloader: true,
-            formModal: false,
-            searchModal: false,
-            formModalType: 'new',
-            business: { id: null },
-            businesses: [],
-            checkedBoxes: [],
-            offset: 0,
-            perPage: 10,
-            total: 1,
-            totalPage: 1,
-            currentPage: 1,
-            searchVal: ''
-        };
-        this.timeout = 0;
-    }
-
-    static contextType = AppContext;
-
-    componentDidMount() {
-        this.getLists();
-    }
-
-    getLists = (searchArgs = null) => {
-
-        let args = {
-            page: this.state.currentPage,
-            per_page: this.state.perPage
-        }
-
-        if (searchArgs) {
-            //Filter all falsy values ( "", 0, false, null, undefined )
-            searchArgs = Object.entries(searchArgs).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
-            args = { ...args, ...searchArgs }
-        }
-
-        let params = new URLSearchParams(args).toString();
-
-        Api.getAll(params)
-            .then(resp => {
-                let result = resp.data.data.result;
-                let total = resp.data.data.total;
-                let empty = result.length ? false : true;
-                this.setState({ businesses: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
-            })
-    };
-
-    handleSearch = (e) => {
-        const { value } = e.target;
-
-        this.setState({ searchVal: value }, () => {
-            // if (this.state.searchVal.length < 3) return;
-
-            //search when typing stop
-            if (this.timeout) clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-                this.getLists({
-                    s: this.state.searchVal
-                });
-            }, 300);
-        });
-    }
-
-    showItem = (e) => {
-        const { value } = e.target;
-        this.setState({ perPage: value }, () => {
-            this.getLists();
-        });
-    }
-
-    handleSubmit = business => {
-        if (this.state.formModalType == 'new') {
-            Api.create(business)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.create);
-                        this.getLists();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        } else {
-            Api.update(business.id, business)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.update);
-                        this.getLists();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        }
-    }
-
-    deleteEntry = (type, index) => {
-
-        if (confirm(this.context.CrudMsg.confirm)) {
-
-            if (type == 'single') {
-                this.setState({
-                    businesses: this.state.businesses.filter((business, i) => {
-                        return business.id !== index;
-                    })
-                });
-            }
-            let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
-            Api.remove(ids)
-                .then(resp => {
-                    if (resp.data.success) {
-                        toast.success(this.context.CrudMsg.delete);
-                        if (type != 'single') {
-                            this.setState({ checkedBoxes: [] });
-                        }
-                        this.getLists();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        }
-    }
-
-    openForm = (type = 'new', business = null) => {
-        if (type == 'new') {
-            this.setState({ formModal: true, formModalType: 'new' });
-        } else {
-            this.setState({ formModal: true, formModalType: 'edit', business: business });
-        }
-    };
-
-    closeForm = (type = 'new') => {
-        if (type == 'new') {
-            this.setState({ formModal: false });
-        } else {
-            this.setState({ searchModal: false });
-        }
-    };
-
-    handleCheckbox = (e, type, id = null) => {
-        let arr = this.state.checkedBoxes;
-        if (type == 'single') {
-            if (e.target.checked) {
-                arr.push(id);
-                this.setState({ checkedBoxes: arr });
-            } else {
-                arr.splice(arr.indexOf(id), 1);
-                this.setState({ checkedBoxes: arr });
-            }
-        } else {
-            //check all
-            if (e.target.checked) {
-                let ids = [];
-                this.state.businesses.map((row) => { ids.push(row.id) });
-                this.setState({ checkedBoxes: ids });
-            } else {
-                this.setState({ checkedBoxes: [] });
-            }
-        }
-    }
-
-    handlePageClick = (e) => {
-        const selectedPage = e.selected + 1;
-        const offset = selectedPage * this.state.perPage;
-        this.setState({
-            currentPage: selectedPage,
-            offset: offset
-        }, () => {
-            this.getLists()
-        });
-
-    };
+        super(props);  
+    }  
 
     render() {
-        const { title, businesses, checkedBoxes, searchVal } = this.state;
+        const { title, businesses, checkedBoxes, searchVal } = this.props.state;
         return (
             <div className="ncpi-components">
                 {wage.length > 0 &&
@@ -213,7 +34,7 @@ export default class Business extends Component {
                 <div className="pi-buttons">
                     <button
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
-                        onClick={() => this.openForm('new')} >
+                        onClick={() => this.props.openForm('new')} >
                         Create New {title}
                     </button> 
 
@@ -239,13 +60,13 @@ export default class Business extends Component {
                             type="text"
                             className="pi-search-input"
                             placeholder="Search..."
-                            value={this.state.searchVal}
-                            onChange={this.handleSearch}
+                            value={searchVal}
+                            onChange={this.props.handleSearch}
                         />
                     </div>
                 </div>
 
-                {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.openForm('new')} />}
+                {this.props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.props.openForm('new')} />}
 
                 {/* <button                    
                     onClick={() => this.setState({ searchModal: true })} >
@@ -253,23 +74,23 @@ export default class Business extends Component {
                 </button> */}
 
                 <Form
-                    handleSubmit={this.handleSubmit}
-                    show={this.state.formModal}
-                    modalType={this.state.formModalType}
-                    data={this.state.business}
-                    close={this.closeForm}
+                    handleSubmit={this.props.handleSubmit}
+                    show={this.props.state.formModal}
+                    modalType={this.props.state.formModalType}
+                    data={this.props.state.business}
+                    close={this.props.closeForm}
                 />
 
                 <Search
-                    handleSubmit={this.getLists}
-                    show={this.state.searchModal}
-                    close={this.closeForm}
+                    handleSubmit={this.props.getLists}
+                    show={this.props.state.searchModal}
+                    close={this.props.closeForm}
                 />
 
                 {businesses.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {businesses.length} {title} showing from {this.state.total}
-                        <select onChange={this.showItem}>
+                        {businesses.length} {title} showing from {this.props.state.total}
+                        <select onChange={this.props.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
                             <option value="30">Show item 30</option>
@@ -284,14 +105,14 @@ export default class Business extends Component {
                         {checkedBoxes.length} {title} selected
                         <button
                             style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
-                            onClick={() => this.deleteEntry('selected')} >
+                            onClick={() => this.props.deleteEntry('selected')} >
                             Delete
                         </button>
                     </p>
                 </div>} 
-                {this.state.preloader ? <Preloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
+                {this.props.state.preloader ? <Preloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.props.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.props.handleCheckbox }} deleteEntry={this.props.deleteEntry} />}
 
-                {this.state.totalPage > 1 && <ReactPaginate
+                {this.props.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'
                     nextClassName='pi-next'
                     disabledClassName='pi-disabled'
@@ -299,11 +120,11 @@ export default class Business extends Component {
                     nextLabel={">"}
                     breakLabel={"..."}
                     breakClassName='break'
-                    forcePage={this.state.currentPage - 1}
-                    pageCount={this.state.totalPage}
+                    forcePage={this.props.state.currentPage - 1}
+                    pageCount={this.props.state.totalPage}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
+                    onPageChange={this.props.handlePageClick}
                     containerClassName={"pi-pagination"}
                     activeClassName='pi-active' />
                 }
@@ -311,4 +132,5 @@ export default class Business extends Component {
             </div>
         );
     }
-} 
+}  
+export default Crud(Business, 'business', 'businesses');
