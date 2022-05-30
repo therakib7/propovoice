@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import Select from 'react-select';
+import ApiTaxonomy from 'api/taxonomy';
 
 class Form extends Component {
     constructor(props) {
@@ -75,6 +76,25 @@ class Form extends Component {
     }
 
     componentDidMount() {
+            ApiTaxonomy.getAll('taxonomy=lead_level_tag')
+            .then(resp => {
+                if (resp.data.success) { 
+                    if ( this.state.form.level_id ) {
+                        this.setState({ 
+                            levels: resp.data.data.levels,
+                            tags: resp.data.data.tags,
+                        });
+                    } else {
+                        let form = {...this.state.form}
+                        form.level_id = resp.data.data.levels[0];
+                        this.setState({ 
+                            form,
+                            levels: resp.data.data.levels,
+                            tags: resp.data.data.tags,
+                        });
+                    } 
+                }
+            });
         //added this multiple place, because not working in invoice single
         this.editData();
     }

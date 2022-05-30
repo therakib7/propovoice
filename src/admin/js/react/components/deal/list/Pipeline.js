@@ -172,7 +172,7 @@ function Pipeline(props) {
 																		<span>$ {item.deal.budget}</span>
 																		<p>Probability: {item.deal.provability}%</p>
 																	</div>
-																	<div className="pi-board-item-bottom">
+																	<div className="pi-avatar-content">
 																		<img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
 																		<div className="pi-avatar-text">
 																			<h5>{item.contact.name}</h5>

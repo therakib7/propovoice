@@ -9,7 +9,7 @@ const token = {
 	}
 };
 
-const getAll = ( args = '') => {
+const getAll = (args = '') => {
 	return axios.get(`${apiUrl}/?${args}`);
 };
 

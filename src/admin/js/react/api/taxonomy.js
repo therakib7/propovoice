@@ -3,7 +3,7 @@ import {apiUrl, token} from './helper'
 
 const url = apiUrl + 'taxonomies';
 
-const getAll = ( args = '') => {
+const getAll = (args = '') => {
 	return axios.get(`${url}/?${args}`);
 };
 

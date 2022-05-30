@@ -1,3 +1,6 @@
+.ncpi {
+  /*# sourceMappingURL=accordion.css.map*/
+}
 .ncpi .pi-list-single-head {
   background-color: #fff;
   padding: 30px;
@@ -117,17 +120,25 @@
 }
 .ncpi .pi-tab-buttons-group {
   border: 1px solid #dddddda8;
-  padding: 10px;
+  padding: 5px 10px 10px;
   border-radius: 8px;
   background-color: #fff;
   text-align: right;
 }
-.ncpi .pi-tab-buttons-group p {
+.ncpi .pi-tab-buttons-group .pi-activity-field {
   text-align: left;
+}
+.ncpi .pi-tab-buttons-group .pi-activity-field input {
   font-size: 12px;
   color: #718096;
   margin-bottom: 20px;
   margin-top: 0;
+  border: none;
+  padding: 7px 0;
+  width: 100%;
+}
+.ncpi .pi-tab-buttons-group .pi-activity-field input:focus {
+  outline: none;
 }
 .ncpi .pi-tab-buttons-group button:last-child {
   border: none;
@@ -300,79 +311,81 @@
   border-radius: 5px;
   padding: 8px;
 }
-.ncpi .pi-range {
-  width: 70%;
-  position: relative;
+.ncpi .br-accordion {
+  background: var(--bg-color);
+  border-top: 1px solid var(--color-secondary-04);
+}
+.ncpi .br-accordion .item {
+  border-bottom: 1px solid var(--color-secondary-04);
   display: flex;
-  margin-top: 10px;
+  flex-direction: column;
 }
-.ncpi .pi-range label {
-  font-size: 12px;
-  color: #425466;
-  margin-right: 15px;
+.ncpi .br-accordion .item[active] {
+  border-bottom: 0;
 }
-.ncpi .pi-range #slider-value {
-  top: -15px;
-  font-size: 12px;
-  color: #425466;
+.ncpi .br-accordion .item[active] .header {
+  font-weight: var(--font-weight-semi-bold);
 }
-.ncpi input[type=range] {
-  position: relative;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+.ncpi .br-accordion .item[active] + .content {
+  border-bottom: 1px solid var(--color-secondary-04);
   display: block;
+}
+.ncpi .br-accordion .header {
+  --bg-color: transparent;
+  background: var(--bg-color);
+  border: 0;
+  color: var(--interactive);
+  display: flex;
+  font-size: var(--font-size-scale-up-01);
+  justify-content: space-between;
+  outline: none;
+  padding: var(--spacing-scale-2x) 0;
+  text-align: left;
+  text-decoration: none;
   width: 100%;
-  height: 8px;
-  background-color: #CCD6FF !important;
-  margin-top: 10px;
+}
+.ncpi .br-accordion .header .icon {
+  margin: 0 var(--spacing-scale-2x) 0 var(--spacing-scale-baseh);
+}
+.ncpi .br-accordion .header .title {
+  flex: 1;
+  margin: 0;
+}
+.ncpi .br-accordion .header:focus {
   outline: none;
 }
-.ncpi input[type=range]::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  height: 8px;
+.ncpi .br-accordion .header.focus-visible, .ncpi .br-accordion .header:focus-visible {
+  outline-color: var(--focus);
+  outline-offset: var(--focus-offset);
+  outline-style: var(--focus-style);
+  outline-width: var(--focus-width);
 }
-.ncpi input[type=range]::-moz-track {
-  -moz-appearance: none;
-  height: 8px;
+.ncpi .br-accordion .header:not(:disabled):hover {
+  background-image: linear-gradient(rgba(var(--interactive-rgb), var(--hover)), rgba(var(--interactive-rgb), var(--hover)));
 }
-.ncpi input[type=range]::-ms-track {
-  appearance: none;
-  height: 8px;
+.ncpi .br-accordion .content {
+  color: var(--text-color);
+  display: none;
+  font-size: var(--font-size-scale-base);
+  margin: 0 var(--spacing-scale-base);
+  padding: var(--spacing-scale-base) var(--spacing-scale-8x) var(--spacing-scale-2x);
 }
-.ncpi input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 20px;
-  width: 5px;
-  background-color: #3264fe;
-  cursor: pointer;
-  margin-top: -6px;
-  border: none;
+.ncpi .br-accordion .content *:last-child {
+  margin-bottom: 0;
 }
-.ncpi input[type=range]::-moz-range-thumb {
-  -webkit-appearance: none;
-  height: 20px;
-  width: 10px;
-  background-color: #3264fe;
-  cursor: pointer;
-  margin-top: -6px;
-  border: none;
+.ncpi .br-accordion[negative] {
+  --color: var(--color-dark);
+  --color-rgb: var(--color-dark-rgb);
+  --text-color: var(--color);
+  --interactive: var(--interactive-dark);
+  --interactive-rgb: var(--interactive-dark-rgb);
+  --visited: var(--visited-dark);
+  --hover: var(--hover-dark);
+  --pressed: var(--pressed-dark);
+  --focus-color: var(--focus-color-dark);
+  --focus: var(--focus-color);
+  --bg-color: var(--background-dark);
 }
-.ncpi input[type=range]::-ms-thumb {
-  appearance: none;
-  height: 20px;
-  width: 10px;
-  background-color: #3264fe;
-  cursor: pointer;
-  margin-top: -6px;
-  border: none;
-}
-.ncpi input[type=range]:active::-webkit-slider-thumb {
-  background-color: #ffffff;
-  border: 3px solid #3264fe;
-}
-.ncpi #slider-value {
-  position: absolute;
-  color: #000;
-  right: 14px;
-  top: 0px;
+.ncpi table {
+  --table-border-color: var(--bg-color) !important;
 }

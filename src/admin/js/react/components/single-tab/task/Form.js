@@ -34,15 +34,19 @@ class Form extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="">
-                <div className="pi-tab-buttons-group">
-                    <p><input
-                        id="field-title"
-                        type="text"
-                        required
-                        name="title"
-                        value={this.state.form.title}
-                        onChange={this.handleChange}
-                    /></p>
+                <div className="pi-tab-buttons-group"> 
+
+                    <div className="pi-activity-field">
+                        <input
+                            id="field-title"
+                            type="text"
+                            required
+                            name="title"
+                            value={this.state.form.title}
+                            placeholder='Add activity or task'
+                            onChange={this.handleChange}
+                        />
+                    </div>
 
                     <button>
                         <svg

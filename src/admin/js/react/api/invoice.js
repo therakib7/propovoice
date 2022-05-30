@@ -4,11 +4,11 @@ import {apiUrl, apiServerUrl, token} from './helper'
 const url = apiUrl + 'invoices';
 const urlServer = apiServerUrl + 'invoices';
 
-const getAll = ( args = '') => {
+const getAll = (args = '') => {
 	return axios.get(`${url}/?${args}`);
 };
 
-const getAllTemplate = ( args = '') => {
+const getAllTemplate = (args = '') => {
 	return axios.get(`${urlServer}/?${args}`);
 };
 

@@ -266,6 +266,7 @@ class Deal
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
+        $lead_id     = isset($params['lead_id']) ? absint($params['lead_id']) : null;
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
         $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
         $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
@@ -275,6 +276,9 @@ class Deal
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
+        /* if ( $lead_id ) {
+            wp_send_json_success($lead_id);
+        } */
         if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
         }

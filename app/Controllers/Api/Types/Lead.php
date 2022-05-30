@@ -421,6 +421,7 @@ class Lead
 
     public function delete($req)
     {
+        //TODO: when delete lead delete task note file, if not exist in deal project
         $url_params = $req->get_url_params();
 
         $ids = explode(',', $url_params['id']);

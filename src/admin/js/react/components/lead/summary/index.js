@@ -3,6 +3,8 @@ import { NavLink, useParams } from "react-router-dom";
 
 import Api from 'api/lead';
 
+import DealForm from './DealForm';
+
 import Task from 'components/single-tab/task';
 // import Note from './tab/note';
 import Project from 'components/project';
@@ -32,6 +34,7 @@ class LeadSummary extends Component {
             ],
             currentTab: 'task',
             formModal: false,
+            dealModal: false,
             formModalType: 'new',
             msg: {
                 create: 'Successfully Added',
@@ -99,9 +102,10 @@ class LeadSummary extends Component {
                                 />
                             </svg>
                         </li>
-                        <li className="pi-active">lead Name</li>
+                        <li className="pi-active">{contact.first_name}</li>
                     </ul>
                 </nav>
+
                 <div className="pi-list-single-head">
                     <div className="row">
                         <div className="col-lg-6">
@@ -124,7 +128,10 @@ class LeadSummary extends Component {
                                         Edit
                                     </button>
                                 </div>
-                                <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow">
+                                <button 
+                                    className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
+                                    onClick={() => this.setState({ dealModal: true })}
+                                >
                                     <svg
                                         width={14}
                                         height={12}
@@ -147,7 +154,7 @@ class LeadSummary extends Component {
                                             strokeLinejoin="round"
                                         />
                                     </svg>
-                                    Move to Deal Pipeline
+                                    Add to Deal Pipeline
                                 </button> 
                                 <span className="pi-action-btn pi-bg-stroke pi-bg-shadow">
                                     <svg
@@ -205,6 +212,12 @@ class LeadSummary extends Component {
                         </li>
                     </ul>
                 </div>
+
+                {this.state.dealModal && <DealForm   
+                    data={lead} 
+                    close={() => this.setState({ dealModal: false })}
+                />}
+
                 <div className="row pi-mt-30">
                     <div className="col-lg-9">
                         <div className="pi-horizontal-tab">

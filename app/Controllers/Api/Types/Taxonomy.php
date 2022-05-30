@@ -74,6 +74,44 @@ class Taxonomy {
                     'tags' => $tagList
                 ];
             } 
+
+            if ( $taxonomy == 'lead_level_tag' ) {  
+
+                $get_level = get_terms( array(
+                    'taxonomy' => 'ndpi_lead_level',
+                    'orderby' => 'ID', 
+                    'order'   => 'ASC',
+                    'hide_empty' => false
+                ) );
+
+                $get_tag = get_terms( array(
+                    'taxonomy' => 'ndpi_deal_tag',
+                    'orderby' => 'ID', 
+                    'order'   => 'ASC',
+                    'hide_empty' => false
+                ) );
+
+                $levelList = $tagList = [];
+
+                foreach( $get_level as $level ) {
+                    $levelList[] = [
+                        'id' => $level->term_id,
+                        'label' => $level->name
+                    ];
+                } 
+
+                foreach( $get_tag as $tag ) {
+                    $tagList[] = [
+                        'id' => $tag->term_id,
+                        'label' => $tag->name
+                    ];
+                } 
+
+                $data = [
+                    'levels' => $levelList,
+                    'tags' => $tagList
+                ];
+            } 
             wp_send_json_success($data);
         }
     } 
