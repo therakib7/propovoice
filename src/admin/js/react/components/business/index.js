@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
-import { toast } from 'react-toastify';
-
-import AppContext from 'context/app-context';
+import React, { Component } from 'react'; 
+ 
 import ReactPaginate from 'react-paginate';
 
 import Preloader from 'block/preloader/table';
-
-import Api from 'api/business';
+ 
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
@@ -20,7 +17,7 @@ class Business extends Component {
     }  
 
     render() {
-        const { title, businesses, checkedBoxes, searchVal } = this.props.state;
+        const { title, lists, checkedBoxes, searchVal } = this.props.state;
         return (
             <div className="ncpi-components">
                 {wage.length > 0 &&
@@ -87,9 +84,9 @@ class Business extends Component {
                     close={this.props.closeForm}
                 />
 
-                {businesses.length > 0 && <div className='pi-table-showing'>
+                {lists.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {businesses.length} {title} showing from {this.props.state.total}
+                        {lists.length} {title} showing from {this.props.state.total}
                         <select onChange={this.props.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
@@ -110,7 +107,7 @@ class Business extends Component {
                         </button>
                     </p>
                 </div>} 
-                {this.props.state.preloader ? <Preloader /> : <Table tableData={businesses} searchVal={searchVal} editEntry={this.props.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.props.handleCheckbox }} deleteEntry={this.props.deleteEntry} />}
+                {this.props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={this.props.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.props.handleCheckbox }} deleteEntry={this.props.deleteEntry} />}
 
                 {this.props.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'

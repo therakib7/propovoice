@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify'; 
-import AppContext from 'context/app-context'; 
- 
+import { toast } from 'react-toastify';
+import AppContext from 'context/app-context';
+
 import axios from 'axios';
-import {apiUrl, token} from 'api/helper'  
+import { apiUrl, token } from 'api/helper'
 
-const HOC = (Component, mod, modPlural ) => {
+const HOC = (Inner, mod, modPlural = '') => {
     // console.log("data", module);
+    if (!modPlural) {
+        modPlural = mod + 's';
+    }
 
-    return class Crud extends Component {
+    const url = apiUrl + modPlural;
+    const Crud = class extends Component {
         constructor(props) {
             super(props);
 
             this.state = {
-                url: apiUrl + modPlural,
                 title: mod.charAt(0).toUpperCase() + mod.slice(1), //capitalize
                 empty: false,
                 preloader: true,
                 formModal: false,
                 searchModal: false,
                 formModalType: 'new',
-                business: { id: null },
-                businesses: [],
+                list: { id: null },
+                lists: [],
                 checkedBoxes: [],
                 offset: 0,
                 perPage: 10,
@@ -33,7 +36,7 @@ const HOC = (Component, mod, modPlural ) => {
             this.timeout = 0;
         }
 
-        static contextType = AppContext;
+        // static contextType = AppContext;
 
         componentDidMount() {
             this.getLists();
@@ -46,20 +49,24 @@ const HOC = (Component, mod, modPlural ) => {
                 per_page: this.state.perPage
             }
 
+            if (this.props.tab_id) {
+                args.tab_id = this.props.tab_id;
+            }
+
             if (searchArgs) {
                 //Filter all falsy values ( "", 0, false, null, undefined )
                 searchArgs = Object.entries(searchArgs).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
                 args = { ...args, ...searchArgs }
             }
 
-            let params = new URLSearchParams(args).toString(); 
+            let params = new URLSearchParams(args).toString();
 
-            axios.get(`${this.state.url}/?${params}`).then(resp => {
-                    let result = resp.data.data.result;
-                    let total = resp.data.data.total;
-                    let empty = result.length ? false : true;
-                    this.setState({ businesses: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
-                })
+            axios.get(`${url}/?${params}`).then(resp => {
+                let result = resp.data.data.result;
+                let total = resp.data.data.total;
+                let empty = result.length ? false : true;
+                this.setState({ lists: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
+            })
         };
 
         handleSearch = (e) => {
@@ -85,10 +92,10 @@ const HOC = (Component, mod, modPlural ) => {
             });
         }
 
-        handleSubmit = business => { 
+        handleSubmit = list => {
             if (this.state.formModalType == 'new') {
-                
-                axios.post(this.state.url, business, token).then(resp => {
+
+                axios.post(url, list, token).then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
                         toast.success(this.context.CrudMsg.create);
@@ -99,8 +106,8 @@ const HOC = (Component, mod, modPlural ) => {
                         });
                     }
                 })
-            } else { 
-                axios.put(`${this.state.url}/${business.id}`, business, token).then(resp => {
+            } else {
+                axios.put(`${url}/${list.id}`, list, token).then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
                         toast.success(this.context.CrudMsg.update);
@@ -114,38 +121,38 @@ const HOC = (Component, mod, modPlural ) => {
             }
         }
 
-        deleteEntry = (type, index) => { 
+        deleteEntry = (type, index) => {
             if (confirm(this.context.CrudMsg.confirm)) {
 
                 if (type == 'single') {
                     this.setState({
-                        businesses: this.state.businesses.filter((business, i) => {
-                            return business.id !== index;
+                        lists: this.state.lists.filter((list, i) => {
+                            return list.id !== index;
                         })
                     });
                 }
-                let ids = (type == 'single') ? index : this.state.checkedBoxes.toString(); 
-                axios.delete(`${this.state.url}/${ids}`, token).then(resp => {
-                        if (resp.data.success) {
-                            toast.success(this.context.CrudMsg.delete);
-                            if (type != 'single') {
-                                this.setState({ checkedBoxes: [] });
-                            }
-                            this.getLists();
-                        } else {
-                            resp.data.data.forEach(function (value, index, array) {
-                                toast.error(value);
-                            });
+                let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
+                axios.delete(`${url}/${ids}`, token).then(resp => {
+                    if (resp.data.success) {
+                        toast.success(this.context.CrudMsg.delete);
+                        if (type != 'single') {
+                            this.setState({ checkedBoxes: [] });
                         }
-                    })
+                        this.getLists();
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                })
             }
         }
 
-        openForm = (type = 'new', business = null) => {
+        openForm = (type = 'new', list = null) => {
             if (type == 'new') {
                 this.setState({ formModal: true, formModalType: 'new' });
             } else {
-                this.setState({ formModal: true, formModalType: 'edit', business: business });
+                this.setState({ formModal: true, formModalType: 'edit', list: list });
             }
         };
 
@@ -171,7 +178,7 @@ const HOC = (Component, mod, modPlural ) => {
                 //check all
                 if (e.target.checked) {
                     let ids = [];
-                    this.state.businesses.map((row) => { ids.push(row.id) });
+                    this.state.lists.map((row) => { ids.push(row.id) });
                     this.setState({ checkedBoxes: ids });
                 } else {
                     this.setState({ checkedBoxes: [] });
@@ -193,21 +200,26 @@ const HOC = (Component, mod, modPlural ) => {
 
         render() {
             return (
-              <Component 
-                state={this.state}
-                openForm={this.openForm}
-                closeForm={this.closeForm}
-                showItem={this.showItem}
-                getLists={this.getLists}
-                handleCheckbox={this.handleCheckbox}
-                handleSubmit={this.handleSubmit}
-                handleSearch={this.handleSearch}
-                handlePageClick={this.handlePageClick}
-                deleteEntry={this.deleteEntry}
-              />
+                <Inner
+                    {...this.props}
+                    state={this.state}
+                    openForm={this.openForm}
+                    closeForm={this.closeForm}
+                    showItem={this.showItem}
+                    getLists={this.getLists}
+                    handleCheckbox={this.handleCheckbox}
+                    handleSubmit={this.handleSubmit}
+                    handleSearch={this.handleSearch}
+                    handlePageClick={this.handlePageClick}
+                    deleteEntry={this.deleteEntry}
+                />
             );
         }
     };
+    
+    Crud.contextType = AppContext;
+    return Crud;
 };
+
 
 export default HOC;

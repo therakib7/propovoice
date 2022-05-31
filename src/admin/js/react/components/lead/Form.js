@@ -8,29 +8,29 @@ class Form extends Component {
     constructor(props) {
         super(props);
 
-        this.initialState = { 
-            id: null, 
-            source: '', 
+        this.initialState = {
+            id: null,
+            source: '',
             level_id: '', //tax
             tags: [], //tax
-            budget: '', 
-            currency: 'USD', 
+            budget: '',
+            currency: 'USD',
             desc: '',
             note: '',
             date: false,
             contact: {
-                id: null, 
+                id: null,
                 first_name: '',
                 last_name: '',
                 org_name: '',
                 email: '',
                 web: '',
-                mobile: '', 
+                mobile: '',
                 country: '',
                 region: '',
                 address: '',
                 date: false
-            }, 
+            },
         };
 
         this.state = {
@@ -40,18 +40,18 @@ class Form extends Component {
         };
     }
 
-    handleChange = (e, type) => { 
+    handleChange = (e, type) => {
         const { name, value } = e.target;
 
-        if ( type == 'contact' ) {  
+        if (type == 'contact') {
             let contact = { ...this.state.form.contact, [name]: value };
-            let form = {...this.state.form}
-                form.contact = contact;
+            let form = { ...this.state.form }
+            form.contact = contact;
             this.setState({ form });
         } else {
             this.setState({ form: { ...this.state.form, [name]: value } });
         }
-    } 
+    }
 
     handleLevelChange = val => {
         this.setState({ form: { ...this.state.form, ['level_id']: val } });
@@ -61,40 +61,39 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['tags']: val } });
     }
 
-    selectCountry ( val ) {
+    selectCountry(val) {
         let contact = { ...this.state.form.contact, ['country']: val };
-        let form = {...this.state.form}
-            form.contact = contact;
-        this.setState({ form });  
+        let form = { ...this.state.form }
+        form.contact = contact;
+        this.setState({ form });
     }
-    
-    selectRegion (val) {
+
+    selectRegion(val) {
         let contact = { ...this.state.form.contact, ['region']: val };
-        let form = {...this.state.form}
-            form.contact = contact;
-        this.setState({ form });    
+        let form = { ...this.state.form }
+        form.contact = contact;
+        this.setState({ form });
     }
 
     componentDidMount() {
-            ApiTaxonomy.getAll('taxonomy=lead_level_tag')
-            .then(resp => {
-                if (resp.data.success) { 
-                    if ( this.state.form.level_id ) {
-                        this.setState({ 
-                            levels: resp.data.data.levels,
-                            tags: resp.data.data.tags,
-                        });
-                    } else {
-                        let form = {...this.state.form}
-                        form.level_id = resp.data.data.levels[0];
-                        this.setState({ 
-                            form,
-                            levels: resp.data.data.levels,
-                            tags: resp.data.data.tags,
-                        });
-                    } 
+        ApiTaxonomy.getAll('taxonomy=lead_level_tag').then(resp => {
+            if (resp.data.success) {
+                if (this.state.form.level_id) {
+                    this.setState({
+                        levels: resp.data.data.levels,
+                        tags: resp.data.data.tags,
+                    });
+                } else {
+                    let form = { ...this.state.form }
+                    form.level_id = resp.data.data.levels[0];
+                    this.setState({
+                        form,
+                        levels: resp.data.data.levels,
+                        tags: resp.data.data.tags,
+                    });
                 }
-            });
+            }
+        });
         //added this multiple place, because not working in invoice single
         this.editData();
     }
@@ -114,12 +113,25 @@ class Form extends Component {
                 this.setState({ form: this.initialState });
             }
         }
-    } 
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.form);
-        // this.setState({ form: this.initialState });
+        let form = {...this.state.form}
+        
+        if ( form.level_id ) {
+            form.level_id = form.level_id.id;
+        }
+
+        if ( form.tags.length ) {
+            let finalArray = form.tags.map(function (obj) {
+                return obj.id;
+            });
+            form.tags = finalArray;
+        }
+
+        this.props.handleSubmit(form);
+        this.setState({ form: this.initialState });
     }
 
     render() {
@@ -129,17 +141,40 @@ class Form extends Component {
 
         return (
             <>
-                {this.props.show && ( 
+                {this.props.show && (
                     <div className="pi-overlay pi-show">
                         <div className="pi-modal-content">
-                            <div className="pi-modal-header">
-                                <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Lead</h2>
-                                <span className="pi-close" onClick={() => this.props.close()}>×</span>
+
+                            <div className="pi-modal-header pi-gradient">
+                                <span className="pi-close" onClick={() => this.props.close()}>
+                                    <svg
+                                        width={25}
+                                        height={25}
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M12.5 3.5L3.5 12.5"
+                                            stroke="#718096"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M12.5 12.5L3.5 3.5"
+                                            stroke="#718096"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </span>
+                                <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Lead</h2> 
+                                <p>Add new lead from here</p>
                             </div>
 
                             <div className="pi-content">
                                 <form onSubmit={this.handleSubmit} className="pi-form-style-one">
-                                    <div className="row"> 
+                                    <div className="row">
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="first_name">
@@ -153,7 +188,7 @@ class Form extends Component {
                                                 value={contact.first_name}
                                                 onChange={(e) => this.handleChange(e, 'contact')}
                                             />
-                                        </div> 
+                                        </div>
                                         {/* <div className="col-lg">
                                             <label
                                                 htmlFor="last_name">
@@ -179,12 +214,12 @@ class Form extends Component {
 
                                             <input
                                                 id="form-org_name"
-                                                type="text" 
+                                                type="text"
                                                 name="org_name"
                                                 value={contact.org_name}
                                                 onChange={(e) => this.handleChange(e, 'contact')}
                                             />
-                                        </div> 
+                                        </div>
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="form-web">
@@ -199,9 +234,9 @@ class Form extends Component {
                                                 onChange={(e) => this.handleChange(e, 'contact')}
                                             />
                                         </div>
-                                    </div> 
+                                    </div>
 
-                                    <div className="row"> 
+                                    <div className="row">
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="form-email">
@@ -216,7 +251,7 @@ class Form extends Component {
                                                 value={contact.email}
                                                 onChange={(e) => this.handleChange(e, 'contact')}
                                             />
-                                        </div> 
+                                        </div>
                                         <div className="col-lg">
                                             <label
                                                 htmlFor="form-mobile">
@@ -225,15 +260,15 @@ class Form extends Component {
 
                                             <input
                                                 id="form-mobile"
-                                                type="text" 
+                                                type="text"
                                                 name="mobile"
                                                 value={contact.mobile}
                                                 onChange={(e) => this.handleChange(e, 'contact')}
                                             />
-                                        </div> 
-                                    </div> 
+                                        </div>
+                                    </div>
 
-                                    <div className="row"> 
+                                    <div className="row">
                                         <div className="col">
                                             <label
                                                 htmlFor="form-country">
@@ -243,7 +278,7 @@ class Form extends Component {
                                             <CountryDropdown
                                                 value={contact.country}
                                                 valueType='short'
-                                                onChange={(val) => this.selectCountry(val)} 
+                                                onChange={(val) => this.selectCountry(val)}
                                             />
                                         </div>
 
@@ -256,14 +291,14 @@ class Form extends Component {
                                             <RegionDropdown
                                                 country={contact.country}
                                                 countryValueType='short'
-                                                value={contact.region} 
-                                                onChange={(val) => this.selectRegion(val)} 
+                                                value={contact.region}
+                                                onChange={(val) => this.selectRegion(val)}
                                             />
                                         </div>
 
-                                    </div> 
+                                    </div>
 
-                                    <div className="row"> 
+                                    <div className="row">
                                         <div className="col">
                                             <label
                                                 htmlFor="form-address">
@@ -278,8 +313,8 @@ class Form extends Component {
                                                 onChange={(e) => this.handleChange(e, 'contact')}
                                             />
                                         </div>
-                                    </div>  
-                                    
+                                    </div>
+
                                     <div className="row">
                                         <div className="col-md">
                                             <label
@@ -294,7 +329,7 @@ class Form extends Component {
                                                 value={this.state.form.budget}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
+                                        </div>
 
                                         <div className="col-md">
                                             <label
@@ -310,7 +345,7 @@ class Form extends Component {
                                                 value={this.state.form.currency}
                                                 onChange={this.handleChange}
                                             />
-                                        </div>  
+                                        </div>
                                     </div>
 
                                     <div className="row">
@@ -320,7 +355,7 @@ class Form extends Component {
                                                 Level
                                             </label>
 
-                                            <Select 
+                                            <Select
                                                 value={this.state.form.level_id}
                                                 onChange={this.handleLevelChange}
                                                 getOptionValue={(levelList) => levelList.id}
@@ -342,9 +377,9 @@ class Form extends Component {
                                                 isMulti
                                             />
                                         </div>
-                                    </div> 
+                                    </div>
 
-                                    <div className="row"> 
+                                    <div className="row">
                                         <div className="col">
                                             <label
                                                 htmlFor="form-desc">
@@ -361,7 +396,7 @@ class Form extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="row"> 
+                                    <div className="row">
                                         <div className="col">
                                             <label
                                                 htmlFor="form-note">
@@ -376,19 +411,19 @@ class Form extends Component {
                                                 onChange={(e) => this.handleChange(e, 'lead')}
                                             />
                                         </div>
-                                    </div>  
+                                    </div>
 
                                     <div className="row">
-                                        <div className="col"> 
+                                        <div className="col">
                                             <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
                                                 Save
-                                            </button> 
-                                        </div> 
+                                            </button>
+                                        </div>
                                     </div>
-                                </form> 
+                                </form>
                             </div>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
                 )}
             </>
         );

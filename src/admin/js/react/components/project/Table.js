@@ -7,7 +7,7 @@ const TableHeader = props => {
             <tr>
                 <th>
                     <input type="checkbox"
-                        className="selectsingle"
+                        
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
                     />
                 </th>
@@ -40,7 +40,7 @@ const TableBody = props => {
             <tr key={index}>
                 <td>
                     <input type="checkbox"
-                        className="selectsingle"
+                        
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}

@@ -9,7 +9,7 @@ const TableHeader = props => {
             <tr>
                 <th>
                     <input type="checkbox"
-                        className="selectsingle"
+                        
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
@@ -69,7 +69,7 @@ const TableBody = props => {
             <tr key={index}>
                 <td>
                     <input type="checkbox"
-                        className="selectsingle"
+                        
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}

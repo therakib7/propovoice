@@ -103,7 +103,7 @@ class Lead
         }
 
         $query = new WP_Query($args);
-        $total_data = $query->get_total(); //use this for pagination 
+        $total_data = $query->post_count; //use this for pagination 
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
@@ -112,11 +112,34 @@ class Lead
             $query_data = [];
             $query_data['id'] = $id;
  
-            if ($id) { 
-                $queryMeta = get_post_meta($id);
-                $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-                $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
-            }
+            $queryMeta = get_post_meta($id);
+            $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+            $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
+            $query_data['level_id'] = ''; 
+
+            $level = get_the_terms($id, 'ndpi_lead_level'); 
+            if ( $level ) {
+                
+                $query_data['level_id'] = [
+                    'id' => $level[0]->term_id,
+                    'label' => $level[0]->name
+                ];
+            } 
+
+            $query_data['tags'] = []; 
+
+            $tags = get_the_terms($id, 'ndpi_deal_tag'); 
+            if ( $tags ) {
+                $tagList = [];
+                foreach( $tags as $tag ) {
+                    $tagList[] = [
+                        'id' => $tag->term_id,
+                        'label' => $tag->name
+                    ];
+                } 
+                $query_data['tags'] = $tagList;
+            } 
+            
 
             $contact_id = get_post_meta($id, 'contact_id', true); 
             $contactData = [];
@@ -191,7 +214,7 @@ class Lead
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
         //lead
-        $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
+        $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null; 
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
