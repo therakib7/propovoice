@@ -9,6 +9,7 @@ use Ncpi\Controllers\Api\Types\Contact;
 use Ncpi\Controllers\Api\Types\Dashbaord;
 use Ncpi\Controllers\Api\Types\Deal;
 use Ncpi\Controllers\Api\Types\Email;
+use Ncpi\Controllers\Api\Types\File;
 use Ncpi\Controllers\Api\Types\Invoice;
 use Ncpi\Controllers\Api\Types\Lead;
 use Ncpi\Controllers\Api\Types\Media;
@@ -29,6 +30,7 @@ class ApiController
 		new Lead();
 		new Task();
 		new Note();
+		new File();
 		new Client();
 		new Deal(); 
 		new Contact();

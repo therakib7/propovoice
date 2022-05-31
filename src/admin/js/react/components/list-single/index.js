@@ -8,6 +8,7 @@ import DealForm from './form/Deal';
 
 const Task = lazy(() => import('./tab/task'));
 const Note = lazy(() => import('./tab/note')); 
+const File = lazy(() => import('./tab/file')); 
 
 class ListSingle extends Component {
 
@@ -365,12 +366,12 @@ class ListSingle extends Component {
                                 <Suspense fallback={<div>Loading...</div>}>
                                     {currentTab == 'task' && data.tab_id && <Task tab_id={data.tab_id} />}
                                     {currentTab == 'note' && data.tab_id && <Note tab_id={data.tab_id} />}
+                                    {currentTab == 'file' && data.tab_id && <File tab_id={data.tab_id} />}
                                 </Suspense>
                             </div>
                         </div>
-                        {/* ./ pi-horizontal-tab */}
                     </div>
-                    {/* /.col-lg-9 */}
+
                     <div className="col-lg-3 pi-lead-right-content">
                         <div className="pi-widget pi-info-box">
                             <h3 className="pi-widget-title">Aditional Info</h3>

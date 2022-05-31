@@ -18,6 +18,10 @@ const Note = ( props ) => {
                 tab_id={props.tab_id}
             /> 
 
+            <div className="pi-work-button-group">
+                <h3>My Note</h3> 
+            </div> 
+
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
             {props.state.totalPage > 1 && <ReactPaginate

@@ -28,8 +28,7 @@ const Task = ( props ) => {
                 <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
                     Done
                 </button>
-            </div>
-            {/* ./ pi-work-button-group */}
+            </div> 
 
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
