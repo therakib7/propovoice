@@ -112,8 +112,8 @@ class Task
             $query_data = [];
             $query_data['id'] = $id;
 
-            $query_data['title'] = get_post_meta($id, 'title', true); 
- 
+            $query_data['title'] = get_the_title();  
+            $query_data['desc'] = get_the_content();  
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -133,8 +133,9 @@ class Task
         $query_data = [];
         $query_data['id'] = $id;
 
-        $query_data['title'] = get_post_meta($id, 'title', true); 
-         
+        $query_data['title'] = get_the_title(); 
+        $query_data['desc'] = get_the_content(); 
+        // $query_data['desc'] = get_post_meta($id, 'title', true); 
 
         wp_send_json_success($query_data);
     }
@@ -152,7 +153,7 @@ class Task
         }
 
         if ( empty($title) ) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
+            $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
         } 
 
         if ($reg_errors->get_error_messages()) {
@@ -170,11 +171,7 @@ class Task
 
             if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'tab_id', $tab_id);
-
-                if ($title) {
-                    update_post_meta($post_id, 'title', $title);
-                } 
+                update_post_meta($post_id, 'tab_id', $tab_id); 
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -187,7 +184,8 @@ class Task
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $title   = isset($params['title']) ? sanitize_text_field($req['title']) : null; 
+        $title = isset($params['title']) ? sanitize_text_field($req['title']) : null; 
+        $desc = isset($params['desc']) ? sanitize_text_field($req['desc']) : null; 
 
         if (empty($title)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -202,15 +200,16 @@ class Task
             $data = array(
                 'ID'            => $post_id,
                 'post_title'    => $title,
+                'post_content'  => $desc,
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
 
-                if ($title) {
-                    update_post_meta($post_id, 'title', $title);
-                } 
+                /* if ($desc) {
+                    update_post_meta($post_id, 'desc', $desc);
+                }  */
 
                 wp_send_json_success($post_id);
             } else {

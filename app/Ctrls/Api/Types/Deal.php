@@ -134,8 +134,9 @@ class Deal
                 $query_data['id'] = (string) $id; //Invariant failed: Draggable requires a [string] draggableId.
 
                 $deal = [];
-                $title = get_post_meta($id, 'title', true);
+                $title = get_the_title();
                 $deal['title'] = ( $title ) ? $title : 'Rakib Project';  
+                $deal['desc'] = get_the_content(); 
                 $deal['budget'] = get_post_meta($id, 'budget', true); 
                 $deal['currency'] = get_post_meta($id, 'currency', true); 
                 $deal['provability'] = get_post_meta($id, 'provability', true);  
@@ -171,16 +172,14 @@ class Deal
         $query_data = [];
         $query_data['id'] = absint( $id );
  
-        if ($id) { 
-            $queryMeta = get_post_meta($id);
-            $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint( $queryMeta['tab_id'][0] ) : '';
-            $query_data['title'] = isset($queryMeta['title']) ? $queryMeta['title'][0] : '';
-            $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-            $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
-            $query_data['provability'] = isset($queryMeta['provability']) ? absint( $queryMeta['provability'][0] ) : ''; 
-            $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
-            $query_data['desc'] = isset($queryMeta['desc']) ? $queryMeta['desc'][0] : ''; 
-        }
+        $queryMeta = get_post_meta($id);
+        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint( $queryMeta['tab_id'][0] ) : '';
+        $query_data['title'] = isset($queryMeta['title']) ? $queryMeta['title'][0] : '';
+        $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+        $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
+        $query_data['provability'] = isset($queryMeta['provability']) ? absint( $queryMeta['provability'][0] ) : ''; 
+        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
+        $query_data['desc'] = get_post_field('post_content', $id); 
 
         $contact_id = get_post_meta($id, 'contact_id', true); 
         $contactData = [];
@@ -218,6 +217,7 @@ class Deal
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
+        $desc         = isset($params['desc']) ? nl2br($params['desc']) : null;
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
         /* if ( $lead_id ) {
@@ -238,7 +238,7 @@ class Deal
             $data = array(
                 'post_type' => 'ndpi_deal',
                 'post_title'    => $title,
-                'post_content'  => '',
+                'post_content'  => $desc,
                 'post_status'   => 'publish',
                 'post_author'   => get_current_user_id()
             );
@@ -298,6 +298,7 @@ class Deal
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
+        $desc         = isset($params['desc']) ? nl2br($params['desc']) : null;
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
         if (empty($stage_id)) {
@@ -317,6 +318,7 @@ class Deal
             $data = array(
                 'ID'            => $post_id,
                 'post_title'    => $title,
+                'post_content'  => $desc,
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);

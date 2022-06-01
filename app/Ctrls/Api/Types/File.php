@@ -111,9 +111,11 @@ class File
 
             $query_data = [];
             $query_data['id'] = $id;
-
-            $query_data['title'] = get_post_meta($id, 'title', true); 
- 
+            
+            $queryMeta = get_post_meta($id);
+            $query_data['type'] = isset($queryMeta['type']) ? sanitize_text_field($queryMeta['type'][0]) : ''; 
+            $query_data['title'] = isset($queryMeta['title']) ? sanitize_text_field($queryMeta['title'][0]) : ''; 
+            $query_data['url'] = isset($queryMeta['url']) ? sanitize_text_field($queryMeta['url'][0]) : ''; 
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -143,16 +145,17 @@ class File
     { 
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
-
-        $tab_id   = isset($params['tab_id']) ? absint($req['tab_id']) : null; 
-        $title   = isset($params['title']) ? sanitize_text_field($req['title']) : null; 
+        $tab_id = isset($params['tab_id']) ? absint($req['tab_id']) : null;          
+        $type   = isset($params['type']) ? sanitize_text_field($params['type']) : null; 
+        $title  = isset($params['title']) ? sanitize_text_field($params['title']) : null;  
+        $url    = isset($params['url']) ? sanitize_text_field($params['url']) : null;  
 
         if ( empty($tab_id) ) {
             $reg_errors->add('field', esc_html__('Tab ID is missing', 'propovoice'));
         }
 
-        if ( empty($title) ) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
+        if ( empty($type) ) {
+            $reg_errors->add('field', esc_html__('Type is missing', 'propovoice'));
         } 
 
         if ($reg_errors->get_error_messages()) {
@@ -161,7 +164,7 @@ class File
 
             $data = array(
                 'post_type' => 'ndpi_file',
-                'post_title' => $title,
+                'post_title' => '',
                 'post_content'  => '',
                 'post_status'   => 'publish',
                 'post_author'   => get_current_user_id()
@@ -171,9 +174,14 @@ class File
             if (!is_wp_error($post_id)) {
 
                 update_post_meta($post_id, 'tab_id', $tab_id);
+                update_post_meta($post_id, 'type', $type);
 
                 if ($title) {
                     update_post_meta($post_id, 'title', $title);
+                } 
+
+                if ($url) {
+                    update_post_meta($post_id, 'url', $url);
                 } 
                 wp_send_json_success($post_id);
             } else {
@@ -186,12 +194,9 @@ class File
     {
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
-
-        $title   = isset($params['title']) ? sanitize_text_field($req['title']) : null; 
-
-        if (empty($title)) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        } 
+ 
+        $title  = isset($params['title']) ? sanitize_text_field($params['title']) : null;  
+        $url    = isset($params['url']) ? sanitize_text_field($params['url']) : null;  
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -201,15 +206,19 @@ class File
 
             $data = array(
                 'ID'            => $post_id,
-                'post_title'    => $title,
+                'post_title'    => '',
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if (!is_wp_error($post_id)) { 
 
                 if ($title) {
                     update_post_meta($post_id, 'title', $title);
+                } 
+
+                if ($url) {
+                    update_post_meta($post_id, 'url', $url);
                 } 
 
                 wp_send_json_success($post_id);

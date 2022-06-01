@@ -3,6 +3,7 @@ import Preloader from 'block/preloader/table';
 import Pagination from 'block/pagination';
 
 import Form from './Form';
+import FormEdit from './FormEdit';
 import Table from './Table';
 // import Search from './Search';
 // import Empty from 'block/empty';
@@ -17,6 +18,16 @@ const Note = ( props ) => {
                 handleSubmit={props.handleSubmit}  
                 tab_id={props.tab_id}
             /> 
+
+            <FormEdit
+                tab_id={props.tab_id}
+                handleSubmit={props.handleSubmit}
+                show={props.state.formModal}
+                modalType={props.state.formModalType}
+                data={props.state.list}
+                close={props.closeForm}
+            /> 
+
             <div className="pi-small-button-group">
                 <h3>My Note</h3> 
             </div> 

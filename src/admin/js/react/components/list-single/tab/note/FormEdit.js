@@ -11,9 +11,7 @@ class Form extends Component {
         this.initialState = {
             id: null,
             tab_id: this.props.tab_id,
-            type: 'link',
-            title: '',
-            url: '',  
+            text: '', 
         };
 
         this.state = {
@@ -91,45 +89,28 @@ class Form extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Link</h2> 
-                                <p>Add file link from here</p>
+                                <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Note</h2> 
+                                <p>Edit note from here</p>
                             </div>
 
                             <div className="pi-content">
-                                <form onSubmit={this.handleSubmit} className="pi-form-style-one">
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label htmlFor="title">
-                                                Title
+                                <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
+
+                                    <div className="row"> 
+                                        <div className="col">
+                                            <label htmlFor="form-text">
+                                                Note
                                             </label>
 
-                                            <input
-                                                id="title"
-                                                type="text"
-                                                name="title"
-                                                value={form.title}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div> 
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label htmlFor="url">
-                                                URL
-                                            </label>
-
-                                            <input
-                                                id="url"
-                                                type="url"
-                                                name="url"
+                                            <textarea
+                                                id="form-text"
                                                 required
-                                                value={form.url}
+                                                name="text"
+                                                value={form.text}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
+                                        </div>
                                     </div>
-
 
                                     <div className="row">
                                         <div className="col">

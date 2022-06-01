@@ -92,8 +92,13 @@ const HOC = (Inner, mod, modPlural = '') => {
             });
         }
 
-        handleSubmit = list => {
-            if (this.state.formModalType == 'new') {
+        handleSubmit = ( list, newType = null) => { //newType for task, note tab
+            let type = this.state.formModalType;
+            if ( newType ) {
+                type = newType;
+            }
+
+            if (type == 'new') {
 
                 axios.post(url, list, token).then(resp => {
                     if (resp.data.success) {
@@ -149,7 +154,7 @@ const HOC = (Inner, mod, modPlural = '') => {
         }
 
         openForm = (type = 'new', list = null) => {
-            if (type == 'new') {
+            if (type == 'new') { 
                 this.setState({ formModal: true, formModalType: 'new' });
             } else {
                 this.setState({ formModal: true, formModalType: 'edit', list: list });

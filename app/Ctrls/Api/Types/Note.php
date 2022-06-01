@@ -112,8 +112,7 @@ class Note
             $query_data = [];
             $query_data['id'] = $id;
 
-            $query_data['text'] = get_the_content(); 
- 
+            $query_data['text'] = get_the_content();  
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -133,7 +132,7 @@ class Note
         $query_data = [];
         $query_data['id'] = $id;
 
-        $query_data['text'] = get_post_meta($id, 'text', true); 
+        $query_data['text'] = get_post_field('post_content', $id); 
          
 
         wp_send_json_success($query_data);
@@ -170,11 +169,8 @@ class Note
 
             if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'tab_id', $tab_id);
-
-                /* if ($text) {
-                    update_post_meta($post_id, 'text', $text);
-                }  */
+                update_post_meta($post_id, 'tab_id', $tab_id); 
+                
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -189,7 +185,7 @@ class Note
 
         $text   = isset($params['text']) ? sanitize_text_field($req['text']) : null; 
 
-        if (empty($text)) {
+        if ( empty($text) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         } 
 
@@ -207,11 +203,7 @@ class Note
             );
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) {
-
-                /* if ($text) {
-                    update_post_meta($post_id, 'text', $text);
-                }  */
+            if (!is_wp_error($post_id)) { 
 
                 wp_send_json_success($post_id);
             } else {

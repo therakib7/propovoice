@@ -11,9 +11,8 @@ class Form extends Component {
         this.initialState = {
             id: null,
             tab_id: this.props.tab_id,
-            type: 'link',
-            title: '',
-            url: '',  
+            title: '', 
+            desc: '', 
         };
 
         this.state = {
@@ -91,12 +90,13 @@ class Form extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Link</h2> 
-                                <p>Add file link from here</p>
+                                <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Task</h2> 
+                                <p>Edit task from here</p>
                             </div>
 
                             <div className="pi-content">
-                                <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                                <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
+
                                     <div className="row">
                                         <div className="col-lg">
                                             <label htmlFor="title">
@@ -113,23 +113,21 @@ class Form extends Component {
                                         </div> 
                                     </div>
 
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label htmlFor="url">
-                                                URL
+                                    <div className="row"> 
+                                        <div className="col">
+                                            <label htmlFor="form-desc">
+                                                Description
                                             </label>
 
-                                            <input
-                                                id="url"
-                                                type="url"
-                                                name="url"
+                                            <textarea
+                                                id="form-desc"
                                                 required
-                                                value={form.url}
+                                                name="desc"
+                                                value={form.desc}
                                                 onChange={this.handleChange}
                                             />
-                                        </div> 
+                                        </div>
                                     </div>
-
 
                                     <div className="row">
                                         <div className="col">

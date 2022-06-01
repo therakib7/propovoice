@@ -268,7 +268,7 @@ class Lead
             $data = array(
                 'post_type'     => 'ndpi_contact',
                 'post_title'    => $first_name,
-                'post_content'  => '',
+                'post_content'  => $desc,
                 'post_status'   => 'publish',
                 'post_author'   => get_current_user_id()
             );
@@ -348,11 +348,7 @@ class Lead
 
                     if ($tags) {
                         wp_set_post_terms($post_id, $tags, 'ndpi_tag');
-                    }
-
-                    if ($desc) {
-                        update_post_meta($post_id, 'desc', $desc);
-                    }
+                    } 
 
                     if ($note) {
                         update_post_meta($post_id, 'note', $note);
@@ -409,6 +405,7 @@ class Lead
             $data = array(
                 'ID'            => $post_id,
                 'post_title'    => $first_name,
+                'post_content'  => $desc,
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
