@@ -2,12 +2,12 @@
 
 require_once __DIR__ . './../vendor/autoload.php';
  
-use Ncpi\Controllers\Installation\InstallationController;
+use Ncpi\Ctrls\Installation\InstallationController;
 use Ncpi\Traits\SingletonTrait;
 use Ncpi\Helpers\Constant; 
 use Ncpi\Helpers\Fns; 
 use Ncpi\Helpers\Data;
-use Ncpi\Controllers\MainController;   
+use Ncpi\Ctrls\MainController;   
 
 /**
  * Class Ncpi

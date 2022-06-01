@@ -12,7 +12,7 @@ const File = (props) => {
     const { lists, checkedBoxes, searchVal } = props.state;
     return (
         <>
-            <div className="pi-work-button-group pi-work-button-group-two">
+            <div className="pi-small-button-group pi-small-button-group-two">
                 <div className="row">
                     <div className="col">
                         <h3>My Files</h3>

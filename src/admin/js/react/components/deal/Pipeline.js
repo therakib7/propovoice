@@ -12,7 +12,7 @@ const onDragEnd = (result, columns, setColumns) => {
 	const { source, destination } = result;
 
 	if (source.droppableId !== destination.droppableId) {
-		
+
 		const sourceColumn = columns[source.droppableId];
 		const destColumn = columns[destination.droppableId];
 		const sourceItems = [...sourceColumn.items];
@@ -94,7 +94,7 @@ function Pipeline(props) {
 							<div className="pi-board-column-title pi-bg-shadow">
 								<h4 className="pi-color-blue">{column.name}</h4>
 								<div className="pi-action-content">
-									<button className="pi-btn">
+									<button className="pi-active">
 										<svg
 											width={24}
 											height={24}
@@ -122,7 +122,11 @@ function Pipeline(props) {
 											/>
 										</svg>
 									</button>
+									<div className="pi-dropdown-content">
+										<a>Edit</a> 
+									</div>
 								</div>
+
 							</div>
 							<Droppable droppableId={columnId} key={columnId}>
 								{(provided, snapshot) => {
@@ -186,10 +190,10 @@ function Pipeline(props) {
 												);
 											})}
 											{provided.placeholder}
-											 
-											{index == 0 && <button 
-											className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
-											onClick={() => props.new('new')}
+
+											{index == 0 && <button
+												className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
+												onClick={() => props.new('new')}
 											>
 												<svg
 													width={16}

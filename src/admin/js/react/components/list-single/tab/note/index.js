@@ -17,7 +17,7 @@ const Note = ( props ) => {
                 handleSubmit={props.handleSubmit}  
                 tab_id={props.tab_id}
             /> 
-            <div className="pi-work-button-group">
+            <div className="pi-small-button-group">
                 <h3>My Note</h3> 
             </div> 
 

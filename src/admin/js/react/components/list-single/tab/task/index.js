@@ -17,7 +17,7 @@ const Task = ( props ) => {
                 tab_id={props.tab_id}
             />
                 
-            <div className="pi-work-button-group">
+            <div className="pi-small-button-group">
                 <h3>My Work</h3>
                 <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
                     To do

@@ -807,6 +807,7 @@ html {
   font-size: 10px;
   border-radius: 5px;
   background-color: #E2E8F0;
+  color: #4a5568;
 }
 .ncpi .pi-table {
   width: 100%;
@@ -839,16 +840,16 @@ html {
 .ncpi .pi-table tbody tr {
   background-color: #fff;
 }
-.ncpi .pi-table tbody tr td:last-child,
-.ncpi .pi-table tr th:last-child {
-  text-align: center;
+.ncpi .pi-table tbody tr td:last-child {
+  position: relative;
+  top: 2px;
 }
 .ncpi .pi-table tr td:first-child,
 .ncpi .pi-table tr th:first-child {
   width: 42px;
   padding-left: 15px;
 }
-.ncpi .pi-table tr td:nth-child(3n) {
+.ncpi .pi-table tr td:nth-child(n+3) {
   color: #718096;
 }
 .ncpi .pi-table tr td {
@@ -884,39 +885,19 @@ html {
   padding: 7px;
   cursor: pointer;
 }
-.ncpi .pi-table .pi-dropbtn {
-  padding: 7px 12px;
-  position: relative;
-  top: 2px;
-  display: block;
-  border-radius: 5px;
-}
-.ncpi .pi-table .pi-active {
-  background-color: #edf2f7;
-}
-.ncpi .pi-table .pi-active:hover,
-.ncpi .pi-table .pi-active:focus {
-  background-color: #edf2f7;
-}
-.ncpi .pi-table .pi-dropdown {
-  display: inline-block;
-}
 .ncpi .pi-table .pi-dropdown-content {
   display: none;
   position: absolute;
   background-color: #fff;
   min-width: 210px;
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.13);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.13);
   z-index: 1;
-  right: 0;
+  right: -75px;
   top: 45px;
   border-radius: 8px;
 }
 .ncpi .pi-table .pi-dropdown-content svg {
   margin-right: 15px;
-}
-.ncpi .pi-table .pi-action-content {
-  position: relative;
 }
 .ncpi .pi-table .pi-action-content button {
   background-color: transparent;
@@ -1210,6 +1191,17 @@ html {
 .ncpi .pi-table-three td:nth-child(2) span {
   margin-left: 15px;
   color: #4A5568;
+}
+.ncpi .pi-table-three .pi-dropdown-content {
+  left: -70px;
+  top: 28px;
+}
+.ncpi .pi-table-three td:nth-child(n+3) .pi-avater {
+  justify-content: center;
+}
+.ncpi .pi-table-three td:nth-child(n+3),
+.ncpi .pi-table-three th:nth-child(n+3) {
+  text-align: center;
 }
 
 /*-------------------------------------------------------------- 
@@ -1700,10 +1692,25 @@ html {
 .ncpi .pi-pagination li a:hover {
   color: var(--text-color-blue) !important;
 }
+.ncpi .pi-pagination-two {
+  margin-top: 55px;
+  margin-right: -30px;
+}
+.ncpi .pi-dropdown-active {
+  display: block !important;
+}
+.ncpi .pi-action-content {
+  position: relative;
+}
 .ncpi .pi-action-content button {
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+.ncpi .pi-action-content .pi-active:hover,
+.ncpi .pi-action-content .pi-active:focus {
+  background-color: #edf2f7;
+  border-radius: 5px;
 }
 .ncpi .pi-dropbtn {
   background-color: transparent;
@@ -1723,24 +1730,24 @@ html {
 .ncpi .pi-top-menu-content .pi-dropdown {
   margin-right: 30px;
   margin-left: auto;
-}
-.ncpi .pi-dropdown {
   position: relative;
 }
-.ncpi .pi-dropdown img {
+.ncpi .pi-top-menu-content .pi-dropdown img {
   margin-right: 10px;
   position: relative;
   top: 13px;
+}
+.ncpi .pi-top-menu-content .pi-dropdown-content {
+  top: 57px;
+  left: 20px;
 }
 .ncpi .pi-dropdown-content {
   display: none;
   position: absolute;
   min-width: 180px;
   overflow: auto;
-  box-shadow: 0px 4px 8px -3px rgba(0, 0, 0, 0.13);
+  box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.13);
   z-index: 1;
-  margin-top: 18px;
-  left: 24px;
   background-color: #fff;
   border-radius: 8px;
 }
@@ -2037,7 +2044,7 @@ html {
   }
 }
 .ncpi .pi-modal-sidebar .pi-modal-header {
-  padding: 45px 25px;
+  padding: 45px 35px;
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-modal-sidebar .pi-modal-header {
@@ -2934,6 +2941,7 @@ html {
   background-color: #fff;
   width: 100%;
   border-radius: 8px;
+  border: 1px solid #dddddda8;
 }
 .ncpi .pi-horizontal-tab .pi-tab-content {
   padding: 30px;
@@ -2990,6 +2998,10 @@ html {
 }
 .ncpi .pi-widget .pi-action-content {
   margin-left: auto;
+}
+.ncpi .pi-widget .pi-action-content .pi-dropdown-content {
+  left: -60px;
+  top: 35px;
 }
 .ncpi .pi-widget button {
   background: transparent;
