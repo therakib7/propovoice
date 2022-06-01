@@ -47,7 +47,7 @@ class Taxonomy {
                 ) );
 
                 $get_tag = get_terms( array(
-                    'taxonomy' => 'ndpi_deal_tag',
+                    'taxonomy' => 'ndpi_tag',
                     'orderby' => 'ID', 
                     'order'   => 'ASC',
                     'hide_empty' => false
@@ -85,7 +85,7 @@ class Taxonomy {
                 ) );
 
                 $get_tag = get_terms( array(
-                    'taxonomy' => 'ndpi_deal_tag',
+                    'taxonomy' => 'ndpi_tag',
                     'orderby' => 'ID', 
                     'order'   => 'ASC',
                     'hide_empty' => false

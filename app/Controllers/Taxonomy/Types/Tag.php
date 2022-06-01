@@ -2,7 +2,7 @@
 
 namespace Ncpi\Controllers\Taxonomy\Types; 
 
-class DealTag { 
+class Tag { 
 
     public function __construct() {  
         add_action('init', [$this, 'create_taxonomy'] ); 
@@ -10,11 +10,11 @@ class DealTag {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_deal_tag' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_tag' ) ) {
             return;
         }
          
-        do_action('ndpi_deal_tag_taxonomy');  
+        do_action('ndpi_tag_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Deal Tags', 'deal_tag general name', 'propovoice' ),
@@ -40,7 +40,7 @@ class DealTag {
             'rewrite'           => array( 'slug' => 'deal_tag' ),
         );
      
-        register_taxonomy( 'ndpi_deal_tag', array( 'ndpi_deal' ), apply_filters('ndpi_deal_tag_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpi_tag', array( 'ndpi_deal' ), apply_filters('ndpi_tag_taxonomy_args', $args) ); 
         
         do_action('ncpi_after_deal_tag_taxonomy');          
     }

@@ -45,7 +45,7 @@ class Taxonomy {
         foreach( $temp_tag as $tag ) {
             wp_insert_term(
                 $tag,   // the term 
-                'ndpi_deal_tag', // the taxonomy 
+                'ndpi_tag', // the taxonomy 
             );
         } 
     } 

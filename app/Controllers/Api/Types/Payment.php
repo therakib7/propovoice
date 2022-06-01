@@ -123,7 +123,7 @@ class Payment
         }
 
         $query = new WP_Query($args);
-        $total_data = $query->post_count; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination 
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
