@@ -60,7 +60,10 @@ const File = (props) => {
                                 </svg>
                                 Upload File
                             </button>
-                            <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
+                            <button 
+                            className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
+                            onClick={() => props.openForm('new')}
+                            >
                                 <svg width={12} height={12} viewBox="0 0 12 12">
                                     <path
                                         fillRule="evenodd"
@@ -139,6 +142,14 @@ const File = (props) => {
                 </div>
             </div>
 
+            <Form
+                handleSubmit={props.handleSubmit}
+                show={props.state.formModal}
+                modalType={props.state.formModalType}
+                data={props.state.list}
+                close={props.closeForm}
+            /> 
+
             <div className="pi-table-wrap">
                 <table className="pi-table pi-table-three">
                     <thead>
@@ -214,7 +225,7 @@ const File = (props) => {
                             <td className="pi-action">
                                 <div className="pi-action-content">
                                     <div className="pi-dropdown">
-                                        <button onclick="myFunction()" className="pi-active">
+                                        <button className="pi-active">
                                             <svg
                                                 width={24}
                                                 height={24}
@@ -313,7 +324,7 @@ const File = (props) => {
                             <td className="pi-action">
                                 <div className="pi-action-content">
                                     <div className="pi-dropdown">
-                                        <button onclick="myFunction()" className="pi-active">
+                                        <button className="pi-active">
                                             <svg
                                                 width={24}
                                                 height={24}
@@ -412,7 +423,7 @@ const File = (props) => {
                             <td className="pi-action">
                                 <div className="pi-action-content">
                                     <div className="pi-dropdown">
-                                        <button onclick="myFunction()" className="pi-active">
+                                        <button className="pi-active">
                                             <svg
                                                 width={24}
                                                 height={24}
@@ -511,7 +522,7 @@ const File = (props) => {
                             <td className="pi-action">
                                 <div className="pi-action-content">
                                     <div className="pi-dropdown">
-                                        <button onclick="myFunction()" className="pi-active">
+                                        <button className="pi-active">
                                             <svg
                                                 width={24}
                                                 height={24}
@@ -610,7 +621,7 @@ const File = (props) => {
                             <td className="pi-action">
                                 <div className="pi-action-content">
                                     <div className="pi-dropdown">
-                                        <button onclick="myFunction()" className="pi-active">
+                                        <button className="pi-active">
                                             <svg
                                                 width={24}
                                                 height={24}
