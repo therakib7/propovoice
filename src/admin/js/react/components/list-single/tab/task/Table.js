@@ -1,45 +1,6 @@
 import React, { useRef, useCallback, useState } from 'react';
 import Moment from 'react-moment';
 
-const TableHeader = props => {
-    return (
-        <thead>
-            <tr>
-                <th>
-                    <input type="checkbox"
-
-                        onChange={(e) => props.checkedBoxes.handle(e, 'all')}
-                    />
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Website
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Mobile
-                </th>
-                <th>
-                    Address
-                </th>
-                <th>
-                    Default
-                </th>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Action
-                </th>
-            </tr>
-        </thead>
-    );
-}
-
 const TableBody = props => {
 
     const [dropdown, setDropdown] = useState(null);
@@ -180,8 +141,7 @@ const Table = (props) => {
     return (
         <>
             {tableData.length > 0 && <div className='pi-table-wrap'>
-                <table className='pi-table pi-table-two'>
-                    {/* <TableHeader checkedBoxes={checkedBoxes} /> */}
+                <table className='pi-table pi-table-two'> 
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
                 </table>
             </div>}

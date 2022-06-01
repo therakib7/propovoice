@@ -86,8 +86,7 @@ class Task
         $args = array(
             'post_type' => 'ndpi_task',
             'post_status' => 'publish',
-            'posts_per_page' => $per_page,
-            'offset' => $offset,
+            'posts_per_page' => -1, 
         );
 
         $args['meta_query'] = array(
@@ -104,19 +103,29 @@ class Task
 
         $query = new WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
-        $result = $data = [];
+        $result = [];
+        $data = [
+            'today' => [],
+            'other' => [],
+            'unschedule' => [],
+        ];
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
 
             $query_data = [];
-            $query_data['id'] = $id;
-
+            $query_data['id'] = $id;  
             $query_data['title'] = get_the_title();  
-            $query_data['desc'] = get_the_content();  
-
+            $query_data['desc'] = get_the_content(); 
             $query_data['date'] = get_the_time('j-M-Y');
-            $data[] = $query_data;
+
+            if ( false ) { // TODO: check unschedule
+                $data['unschedule'][] = $query_data;
+            } else if ( true ) { // TODO: check today 
+                $data['today'][] = $query_data;
+            } else { 
+                $data['other'][] = $query_data;
+            }
         }
         wp_reset_postdata();
 
