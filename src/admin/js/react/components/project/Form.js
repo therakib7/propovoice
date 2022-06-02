@@ -95,8 +95,21 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.form);
-        //this.setState({ form: this.initialState });
+        let form = {...this.state.form}
+        
+        if ( form.stage_id ) {
+            form.stage_id = form.stage_id.id;
+        }
+
+        if ( form.tags.length ) {
+            let finalArray = form.tags.map(function (obj) {
+                return obj.id;
+            });
+            form.tags = finalArray;
+        }
+
+        this.props.handleSubmit(form);
+        this.setState({ form: this.initialState });
     }
 
     render() {

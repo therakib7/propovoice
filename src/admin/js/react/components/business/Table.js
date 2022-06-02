@@ -75,7 +75,7 @@ const TableBody = props => {
                 <td className="pi-action"> 
                     <div className="pi-action-content" >
                         <div className="pi-dropdown">
-                            <button className={'pi-dropbtn ' + ( row.id == dropdown ? 'pi-active': '') } onClick={() => showDropdown(row.id) }>
+                            <button className={ ( row.id == dropdown ? 'pi-active': '') } onClick={() => showDropdown(row.id) }>
                                 <svg width={4} height={20}>
                                     <circle cx={2} cy={2} r={2} fill="#A0AEC0" />
                                     <circle cx={2} cy={10} r={2} fill="#A0AEC0" />

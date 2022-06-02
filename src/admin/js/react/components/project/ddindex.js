@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 import Preloader from 'block/preloader/table';
 
-import Api from 'api/lead';
+import Api from 'api/project';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
@@ -23,8 +23,8 @@ export default class Lead extends Component {
             formModal: false,
             searchModal: false,
             formModalType: 'new',
-            lead: { id: null },
-            leads: [],
+            project: { id: null },
+            projects: [],
             summary: {
                 total: 0,
                 paid: 0,
@@ -69,7 +69,7 @@ export default class Lead extends Component {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ leads: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
+                this.setState({ projects: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
             })
     };
 
@@ -96,9 +96,9 @@ export default class Lead extends Component {
         });
     }
 
-    handleSubmit = lead => {
+    handleSubmit = project => {
         if (this.state.formModalType == 'new') {
-            Api.create(lead)
+            Api.create(project)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -111,7 +111,7 @@ export default class Lead extends Component {
                     }
                 })
         } else {
-            Api.update(lead.id, lead)
+            Api.update(project.id, project)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
@@ -132,8 +132,8 @@ export default class Lead extends Component {
 
             if (type == 'single') {
                 /* this.setState({
-                    leads: this.state.leads.filter((lead, i) => {
-                        return lead.id !== index;
+                    projects: this.state.projects.filter((project, i) => {
+                        return project.id !== index;
                     })
                 }); */ 
             }
@@ -155,14 +155,14 @@ export default class Lead extends Component {
         }
     }
 
-    openForm = (type = 'new', lead = null) => {
+    openForm = (type = 'new', project = null) => {
         this.setState({ formModal: true });
 
         if (type == 'new') {
             this.setState({ formModalType: 'new' });
         } else {
             this.setState({ formModalType: 'edit' });
-            this.setState({ lead: lead });
+            this.setState({ project: project });
         }
     };
 
@@ -188,7 +188,7 @@ export default class Lead extends Component {
             //check all
             if (e.target.checked) {
                 let ids = [];
-                this.state.leads.map((row) => { ids.push(row.id) });
+                this.state.projects.map((row) => { ids.push(row.id) });
                 this.setState({ checkedBoxes: ids });
             } else {
                 this.setState({ checkedBoxes: [] });
@@ -209,7 +209,7 @@ export default class Lead extends Component {
     };
 
     render() {
-        const { title, leads, checkedBoxes, searchVal } = this.state;
+        const { title, projects, checkedBoxes, searchVal } = this.state;
         const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
             <div className="ncpi-components">  
@@ -244,7 +244,7 @@ export default class Lead extends Component {
 
                 <h2 className='pi-page-title'>{title}</h2> 
 
-                {leads.length > 0 &&
+                {projects.length > 0 &&
                     <>{!wage.length && <div className="pi-cards">
                         <div className="row">
                                 <div className="col-md-4 col-lg">
@@ -332,7 +332,7 @@ export default class Lead extends Component {
                     handleSubmit={this.handleSubmit}
                     show={this.state.formModal}
                     modalType={this.state.formModalType}
-                    data={this.state.lead}
+                    data={this.state.project}
                     close={this.closeForm}
                 />
 
@@ -342,9 +342,9 @@ export default class Lead extends Component {
                     close={this.closeForm}
                 />
 
-                {leads.length > 0 && <div className='pi-table-showing'>
+                {projects.length > 0 && <div className='pi-table-showing'>
                     <p>
-                        {leads.length} {title} showing from {this.state.total}
+                        {projects.length} {title} showing from {this.state.total}
                         <select onChange={this.showItem}>
                             <option value="10">Show item 10</option>
                             <option value="20">Show item 20</option>
@@ -366,7 +366,7 @@ export default class Lead extends Component {
                     </p>
                 </div>} 
 
-                {this.state.preloader ? <Preloader /> : <Table tableData={leads} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
+                {this.state.preloader ? <Preloader /> : <Table tableData={projects} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
 
                 {this.state.totalPage > 1 && <ReactPaginate
                     previousClassName='pi-previous'

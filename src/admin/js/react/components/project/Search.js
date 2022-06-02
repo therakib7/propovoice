@@ -10,7 +10,8 @@ export default class Form extends Component {
                 text: '',
                 level: '',
                 tag: '', 
-            }
+            },
+            searchModal: false,
         };
 
         this.timeout = 0;
@@ -56,8 +57,8 @@ export default class Form extends Component {
                         onChange={this.handleChange}
                     /> 
                 </div>
-                <div className="pi-category-select-content">
-                    <button>
+                <div className="pi-search-btn">
+                    <button onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
                         <svg
                             width={20}
                             height={20}
@@ -88,7 +89,8 @@ export default class Form extends Component {
                             />
                         </svg>
                     </button>
-                    <div id="pi-select-content">
+
+                    {this.state.searchModal && <div className="pi-search-form">
                         <ul>
                             <li>
                                 <svg
@@ -176,7 +178,7 @@ export default class Form extends Component {
                                 </select>
                             </li>
                             <li>
-                                <span>
+                                <span onClick={() => this.setState({ searchModal: false })}>
                                     <svg
                                         width={16}
                                         height={16}
@@ -200,9 +202,9 @@ export default class Form extends Component {
                                 </span>
                             </li>
                         </ul>
-                    </div>
+                    </div>}
                 </div>
-                <div className="pi-show-client">
+                <div className="pi-total-list">
                     <p>{showing} {title} showing from <span>{total}</span></p>
                 </div>
             </div>

@@ -1480,13 +1480,13 @@ html {
   margin-left: 10px;
   cursor: pointer;
 }
-.ncpi .pi-search-bar .pi-show-client p {
+.ncpi .pi-search-bar .pi-total-list p {
   margin: 0;
   padding-top: 8px;
   color: #718096;
   font-size: 12px;
 }
-.ncpi .pi-search-bar .pi-show-client p span {
+.ncpi .pi-search-bar .pi-total-list p span {
   font-weight: 500;
   color: #2D3748;
 }
@@ -1515,7 +1515,7 @@ html {
     top: 8px;
   }
 }
-.ncpi .pi-show-client {
+.ncpi .pi-total-list {
   margin-left: auto;
 }
 .ncpi .pi-item-main-content > div {

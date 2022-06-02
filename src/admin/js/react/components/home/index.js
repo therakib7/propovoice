@@ -318,6 +318,7 @@ const Home = () => {
                                     <Route path="/deal/single/:id" exact element={<ListSingle />} />
 
                                     <Route path="/project" exact element={<Project />} />
+                                    <Route path="/project/single/:id" exact element={<ListSingle />} />
 
                                     <Route path="/proposal" element={<Proposal />} />
                                     <Route path="/proposal/single" element={<ProposalSingle />} />

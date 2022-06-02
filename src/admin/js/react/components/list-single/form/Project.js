@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+import {
+    // useLocation,
+    useNavigate
+    // useParams,
+} from "react-router-dom";
 
 import Select from 'react-select';
 import ApiTaxonomy from 'api/taxonomy';
+// import Api from 'api/deal';
+import axios from 'axios';
+import { apiUrl, token } from 'api/helper'
 
 class Form extends Component {
     constructor(props) {
@@ -9,6 +18,7 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
+            deal_id: null,
             title: '',
             stage_id: '',
             contact_id: 770,
@@ -22,7 +32,7 @@ class Form extends Component {
         };
 
         this.state = {
-            form: this.initialState, 
+            form: this.initialState,
             stages: [],
             tags: [],
         };
@@ -44,87 +54,102 @@ class Form extends Component {
     }
 
     componentDidMount() {
+        // console.log();
         ApiTaxonomy.getAll('taxonomy=deal_stage_tag')
             .then(resp => {
-                if (resp.data.success) { 
-                    if ( this.state.form.stage_id ) {
-                        this.setState({ 
+                if (resp.data.success) {
+                    if (this.state.form.stage_id) {
+                        this.setState({
                             stages: resp.data.data.stages,
                             tags: resp.data.data.tags,
                         });
                     } else {
-                        let form = {...this.state.form}
+                        let form = { ...this.state.form }
                         form.stage_id = resp.data.data.stages[0];
-                        this.setState({ 
+                        this.setState({
                             form,
                             stages: resp.data.data.stages,
                             tags: resp.data.data.tags,
                         });
-                    } 
+                    }
                 }
             });
 
         //added this multiple place, because not working in invoice single
-        this.editData();
+        let deal_id = this.props.data.id;
+        this.setState({ form: { ...this.state.form, ['deal_id']: deal_id } });
+        // this.editData();
     }
 
-    componentDidUpdate() {
-        this.editData();
-    }
+    componentDidUpdate() { 
+    }  
 
-    editData = () => {
-        //condition added to stop multiple rendering 
-        if (this.props.modalType == 'edit') {
-            if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
-            }
-        } else {
-            if (this.state.form.id != null) {
-                this.setState({ form: this.initialState });
-            } 
-            
-            /* else {
-                if ( this.props.data && ! this.state.form.stage_id && this.props.data.hasOwnProperty('label') ) { // new deal from stage
-                    let form = {...this.initialState}
-                    form.stage_id = this.props.data;
-                    this.setState({ form });
-                }
-            }  */
-        }
-    }
-
-    handleSubmit = (e) => {
+    handleSubmit = e => {
         e.preventDefault();
-        let form = {...this.state.form}
-        
-        if ( form.stage_id ) {
-            form.stage_id = form.stage_id.id;
+        let newDeal = { ...this.state.form }
+        if (newDeal.stage_id) {
+            newDeal.stage_id = newDeal.stage_id.id;
         }
 
-        if ( form.tags.length ) {
-            let finalArray = form.tags.map(function (obj) {
+        if (newDeal.tags.length) {
+            let finalArray = newDeal.tags.map(function (obj) {
                 return obj.id;
             });
-            form.tags = finalArray;
+            newDeal.tags = finalArray;
         }
-
-        this.props.handleSubmit(form);
-        this.setState({ form: this.initialState });
+ 
+        axios.post(apiUrl + 'projects', newDeal, token).then(resp => {
+            if (resp.data.success) { 
+                toast.success('Sucessfully moved to project');
+                let id = resp.data.data;
+                this.props.close();
+                this.props.router.navigate(`/project/single/${id}`, { replace: true }); 
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        }) 
     }
 
     render() {
         const stageList = this.state.stages;
         const tagList = this.state.tags;
         const form = this.state.form;
-        const provabilityPercent = (form.provability / 100) * 100;
-        
+        const provabilityPercent = (form.provability / 100) * 100; 
+
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
-                    <div className="pi-modal-header">
-                        <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Deal</h2>
-                        <span className="pi-close" onClick={() => this.props.close()}>×</span>
-                    </div>
+
+                    <div className="pi-modal-header pi-gradient">
+                        <span className="pi-close" onClick={() => this.props.close()}>
+                            <svg
+                                width={25}
+                                height={25}
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.5 3.5L3.5 12.5"
+                                    stroke="#718096"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M12.5 12.5L3.5 3.5"
+                                    stroke="#718096"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </span>
+                        <h2 className="pi-modal-title">Add to project</h2>
+                        <p>
+                            Move this deal into project       
+                        </p>
+                    </div> 
 
                     <div className="pi-content">
                         <form onSubmit={this.handleSubmit} className="pi-form-style-one">
@@ -151,30 +176,14 @@ class Form extends Component {
                                         Stage
                                     </label>
 
-                                    <Select 
+                                    <Select
                                         value={form.stage_id}
                                         onChange={this.handleStageChange}
                                         getOptionValue={(stageList) => stageList.id}
                                         getOptionLabel={(stageList) => stageList.label}
                                         options={stageList}
                                     />
-                                </div>
-
-                                <div className="col-md">
-                                    <label
-                                        htmlFor="field-contact_id">
-                                        Contact
-                                    </label>
-
-                                    <input
-                                        id="field-contact_id"
-                                        type="text"
-                                        name="contact_id"
-                                        value={form.contact_id}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-
+                                </div> 
                             </div>
 
                             <div className="row">
@@ -191,7 +200,7 @@ class Form extends Component {
                                         value={form.budget}
                                         onChange={this.handleChange}
                                     />
-                                </div> 
+                                </div>
 
                                 <div className="col-md">
                                     <label
@@ -207,11 +216,11 @@ class Form extends Component {
                                         value={form.currency}
                                         onChange={this.handleChange}
                                     />
-                                </div> 
-                                 
+                                </div>
+
                             </div>
 
-                            <div className="row"> 
+                            <div className="row">
                                 <div className="col-md">
                                     <label
                                         htmlFor="field-provability">
@@ -219,12 +228,12 @@ class Form extends Component {
                                     </label>
 
                                     <input
-                                        id="field-provability" 
+                                        id="field-provability"
                                         type="range"
                                         min="1" max="100"
                                         name="provability"
                                         value={form.provability}
-                                        style={{background: `linear-gradient(to right, #3264fe ${provabilityPercent}%, #ccd6ff ${provabilityPercent}%)`}}
+                                        style={{ background: `linear-gradient(to right, #3264fe ${provabilityPercent}%, #ccd6ff ${provabilityPercent}%)` }}
                                         onChange={this.handleChange}
                                     />
                                 </div>
@@ -277,4 +286,23 @@ class Form extends Component {
     }
 }
 
-export default Form;
+
+function withRouter(Component) {
+    function ComponentWithRouterProp(props) {
+        // let location = useLocation();
+        let navigate = useNavigate();
+        // let params = useParams();
+        return (
+            <Component
+                {...props}
+                router={{ navigate }}
+            />
+        );
+    } 
+    return ComponentWithRouterProp;
+}
+
+export default withRouter(Form); 
+// export default Payment; 
+
+// export default Form;

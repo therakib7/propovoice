@@ -157,7 +157,7 @@ class Deal
                 'items' => $items
             ];
 
-            $result['column'] = $column;
+            $result['result'] = $column;
             // $result['total'] = $total_data;
 
         endforeach;   

@@ -8,7 +8,9 @@ import {
 
 import Select from 'react-select';
 import ApiTaxonomy from 'api/taxonomy';
-import Api from 'api/deal';
+// import Api from 'api/deal';
+import axios from 'axios';
+import { apiUrl, token } from 'api/helper'
 
 class Form extends Component {
     constructor(props) {
@@ -79,36 +81,8 @@ class Form extends Component {
         // this.editData();
     }
 
-    componentDidUpdate() {
-        // this.editData();
-    }
-
-    editData = () => {
-        //condition added to stop multiple rendering 
-        if (this.props.modalType == 'edit') {
-            if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
-            }
-        } else {
-            if (this.state.form.id != null) {
-                this.setState({ form: this.initialState });
-            }
-
-            /* else {
-                if ( this.props.data && ! this.state.form.stage_id && this.props.data.hasOwnProperty('label') ) { // new deal from stage
-                    let form = {...this.initialState}
-                    form.stage_id = this.props.data;
-                    this.setState({ form });
-                }
-            }  */
-        }
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        // this.props.handleSubmit(this.state.form);
-        //this.setState({ form: this.initialState });
-    }
+    componentDidUpdate() { 
+    }  
 
     handleSubmit = e => {
         e.preventDefault();
@@ -124,19 +98,18 @@ class Form extends Component {
             newDeal.tags = finalArray;
         }
  
-        Api.create(newDeal)
-            .then(resp => {
-                if (resp.data.success) { 
-                    toast.success('Sucessfully moved to deal');
-                    let id = resp.data.data;
-                    this.props.close();
-                    this.props.router.navigate(`/deal/single/${id}`, { replace: true }); 
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            }) 
+        axios.post(apiUrl + 'deals', newDeal, token).then(resp => {
+            if (resp.data.success) { 
+                toast.success('Sucessfully moved to deal');
+                let id = resp.data.data;
+                this.props.close();
+                this.props.router.navigate(`/deal/single/${id}`, { replace: true }); 
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        }) 
     }
 
     render() {
