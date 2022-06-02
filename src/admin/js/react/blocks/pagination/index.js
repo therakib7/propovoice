@@ -1,4 +1,4 @@
-import ReactPaginate from 'react-paginate'; ;
+import ReactPaginate from 'react-paginate';
 
 const Pagination = (props) => { 
 	return ( 
@@ -6,8 +6,8 @@ const Pagination = (props) => {
 			previousClassName='pi-previous'
 			nextClassName='pi-next'
 			disabledClassName='pi-disabled'
-			// previousLabel={"<"}
-			// nextLabel={">"}
+			previousLabel={"<"}
+			nextLabel={">"}
 			breakLabel={"..."}
 			breakClassName='break'
 			forcePage={props.forcePage}

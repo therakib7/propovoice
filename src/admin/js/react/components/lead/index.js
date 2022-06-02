@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-
-import ReactPaginate from 'react-paginate';
-
+import Breadcrumb from 'block/breadcrumb';
+import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
 
 import Form from './Form';
@@ -15,32 +13,7 @@ const Lead = (props) => {
     const { title, lists, checkedBoxes, searchVal } = props.state;
     return (
         <div className="ncpi-components">
-            <nav className="pi-breadcrumb">
-                <ul className="">
-                    <li>
-                        <a href="#" className="">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <svg
-                            width={5}
-                            height={10}
-                            viewBox="0 0 5 10"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M0.5 1.25L4.25 5L0.5 8.75"
-                                stroke="#718096"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </li>
-                    <li className="pi-active">{title}</li>
-                </ul>
-            </nav>
+            <Breadcrumb title={title} />
 
             <div className="row">
                 <div className="col-lg-6">
@@ -199,33 +172,17 @@ const Lead = (props) => {
                 handleSubmit={props.getLists} 
             />
 
-            <Form
-                handleSubmit={props.handleSubmit}
-                show={props.state.formModal}
+            {props.state.formModal && <Form
+                handleSubmit={props.handleSubmit} 
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
-            /> 
+            />} 
             
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
             <div className="pi-pagination-content">
-                {props.state.totalPage > 1 && <ReactPaginate
-                    previousClassName='pi-previous'
-                    nextClassName='pi-next'
-                    disabledClassName='pi-disabled'
-                    previousLabel={"<"}
-                    nextLabel={">"}
-                    breakLabel={"..."}
-                    breakClassName='break'
-                    forcePage={props.state.currentPage - 1}
-                    pageCount={props.state.totalPage}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={props.handlePageClick}
-                    containerClassName={"pi-pagination"}
-                    activeClassName='pi-active' />
-                }
+                { props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />} 
             </div>
         </div> 
     );

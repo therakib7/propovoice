@@ -1,298 +1,54 @@
-import React, { Component } from 'react';
-import { toast } from 'react-toastify';
-
-import AppContext from 'context/app-context';
-import ReactPaginate from 'react-paginate';
-
+import Breadcrumb from 'block/breadcrumb';
+import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
 
-import Api from 'api/client';
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
 import Empty from 'block/empty';
 
-export default class Contact extends Component {
-    constructor(props) {
-        super(props);
+import Crud from 'hoc/Crud';
 
-        this.state = {
-            title: 'Contact',
-            empty: false,
-            preloader: true,
-            formModal: false,
-            searchModal: false,
-            formModalType: 'new',
-            client: { id: null },
-            clients: [],
-            summary: {
-                total: 0,
-                paid: 0,
-                unpaid: 0,
-                draft: 0,
-                sent: 0
-            },
-            checkedBoxes: [],
-            offset: 0,
-            perPage: 10,
-            total: 1,
-            totalPage: 1,
-            currentPage: 1,
-            searchVal: ''
-        };
-        this.timeout = 0;
-    }
+const Contact = (props) => {
+    const { title, lists, checkedBoxes, searchVal } = props.state;
+    return (
+        <div className="ncpi-components">
+            <Breadcrumb title={title} />
 
-    static contextType = AppContext;
-
-    componentDidMount() {
-        this.getLists();
-    }
-
-    getLists = (searchArgs = null) => {
-
-        let args = {
-            page: this.state.currentPage,
-            per_page: this.state.perPage
-        }
-
-        if (searchArgs) {
-            //Filter all falsy values ( "", 0, false, null, undefined )
-            searchArgs = Object.entries(searchArgs).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
-            args = { ...args, ...searchArgs }
-        }
-
-        let params = new URLSearchParams(args).toString();
-
-        Api.getAll(params)
-            .then(resp => {
-                let result = resp.data.data.result;
-                let total = resp.data.data.total;
-                let empty = result.length ? false : true;
-                this.setState({ clients: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) }); 
-            })
-    };
-
-    handleSearch = (e) => {
-        const { value } = e.target;
-
-        this.setState({ searchVal: value }, () => {
-            // if (this.state.searchVal.length < 3) return;
-
-            //search when typing stop
-            if (this.timeout) clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-                this.getLists({
-                    s: this.state.searchVal
-                });
-            }, 300);
-        });
-    }
-
-    showItem = (e) => {
-        const { value } = e.target;
-        this.setState({ perPage: value }, () => {
-            this.getLists();
-        });
-    }
-
-    handleSubmit = client => {
-        if (this.state.formModalType == 'new') {
-            Api.create(client)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.create);
-                        this.getLists();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        } else {
-            Api.update(client.id, client)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.update);
-                        this.getLists();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        }
-    }
-
-    deleteEntry = (type, index) => {
-
-        if (confirm(this.context.CrudMsg.confirm)) {
-
-            if (type == 'single') {
-                /* this.setState({
-                    clients: this.state.clients.filter((client, i) => {
-                        return client.id !== index;
-                    })
-                }); */ 
-            }
-            let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
-            Api.remove(ids)
-                .then(resp => {
-                    if (resp.data.success) {
-                        toast.success(this.context.CrudMsg.delete);
-                        if (type != 'single') {
-                            this.setState({ checkedBoxes: [] });
-                        }
-                        this.getLists();
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        }
-    }
-
-    openForm = (type = 'new', client = null) => {
-        this.setState({ formModal: true });
-
-        if (type == 'new') {
-            this.setState({ formModalType: 'new' });
-        } else {
-            this.setState({ formModalType: 'edit' });
-            this.setState({ client: client });
-        }
-    };
-
-    closeForm = (type = 'new') => {
-        if (type == 'new') {
-            this.setState({ formModal: false });
-        } else {
-            this.setState({ searchModal: false });
-        }
-    };
-
-    handleCheckbox = (e, type, id = null) => {
-        let arr = this.state.checkedBoxes;
-        if (type == 'single') {
-            if (e.target.checked) {
-                arr.push(id);
-                this.setState({ checkedBoxes: arr });
-            } else {
-                arr.splice(arr.indexOf(id), 1);
-                this.setState({ checkedBoxes: arr });
-            }
-        } else {
-            //check all
-            if (e.target.checked) {
-                let ids = [];
-                this.state.clients.map((row) => { ids.push(row.id) });
-                this.setState({ checkedBoxes: ids });
-            } else {
-                this.setState({ checkedBoxes: [] });
-            }
-        }
-    }
-
-    handlePageClick = (e) => {
-        const selectedPage = e.selected + 1;
-        const offset = selectedPage * this.state.perPage;
-        this.setState({
-            currentPage: selectedPage,
-            offset: offset
-        }, () => {
-            this.getLists()
-        });
-
-    };
-
-    render() {
-        const { title, clients, checkedBoxes, searchVal } = this.state;
-        const { total, paid, unpaid, draft, sent } = this.state.summary;
-        return (
-            <div className="ncpi-components">  
-                <nav className='pi-breadcrumb'>
-                    <ul>
-                        <li>
-                            <a href='#' >
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <svg
-                                width={5}
-                                height={10}
-                                viewBox="0 0 5 10"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg" 
-                            >
+            <div className="row">
+                <div className="col-lg-6">
+                    <h2 className="pi-page-title">{title}</h2>
+                </div>
+                <div className="col-lg-6 pi-text-right">
+                    <button 
+                    className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
+                    onClick={() => props.openForm('new')}
+                    >
+                        <svg
+                            width={14}
+                            height={12}
+                            viewBox="0 0 12 15"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
                             <path
-                                d="M.5 1.25L4.25 5 .5 8.75"
-                                stroke="#718096"
+                                d="M2.5 8H13.5"
+                                stroke="white"
+                                strokeWidth="1.5"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                            />
-                            </svg>
-                        </li>
-                        <li className='pi-active'>
-                            {title}
-                        </li>
-                    </ul>
-                </nav>
-
-                <h2 className='pi-page-title'>{title}</h2> 
-
-                {clients.length > 0 &&
-                    <>{!wage.length && <div className="pi-cards">
-                        <div className="row">
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content pi-bg-husky">
-                                        <span>Total {title}</span>
-                                        <h4 className="pi-color-blue">{total}</h4>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content" style={{ backgroundColor: '#f9f6ea' }}>
-                                        <span>Paid {title}</span>
-                                        <h4 style={{ color: '#c66542' }}>{paid}</h4>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content" style={{ backgroundColor: '#d7f4f1' }}>
-                                        <span>Unpaid {title}</span>
-                                        <h4 style={{ color: '#45ac9d' }}>{unpaid}</h4>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content" style={{ backgroundColor: '#f7dfec' }}>
-                                        <span>Draft {title}</span>
-                                        <h4 style={{ color: '#b66490' }}>{draft}</h4>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4 col-lg">
-                                    <div className="pi-cards-content" style={{ backgroundColor: '#e6ffe7' }}>
-                                        <span>Sent {title}</span>
-                                        <h4 style={{ color: '#43ad47' }}>{sent}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>}  
-                </>}
-
-                <div className="pi-buttons">
-                    <button
-                        className="pi-btn pi-bg-blue pi-bg-hover-blue"
-                        onClick={() => this.openForm('new')} >
-                        Add New {title}
+                            ></path>
+                            <path
+                                d="M8 2.5V13.5"
+                                stroke="white"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            ></path>
+                        </svg>
+                        Add {title}
                     </button> 
-
-                    <div className="pi-search-box pi-float-right">
+                    <span className="pi-action-btn">
                         <svg
                             width={24}
                             height={24}
@@ -301,91 +57,135 @@ export default class Contact extends Component {
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
                                 fill="#718096"
                             />
                             <path
-                                d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
+                                fill="#718096"
+                            />
+                            <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
                                 fill="#718096"
                             />
                         </svg>
-
-                        <input
-                            type="text"
-                            className="pi-search-input"
-                            placeholder="Search..."
-                            value={this.state.searchVal}
-                            onChange={this.handleSearch}
-                        />
-                    </div>
+                    </span>
                 </div>
-
-                {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.openForm('new')} />}
-
-                {/* <button
-                    
-                    onClick={() => this.setState({ searchModal: true })} >
-                    Search
-                </button> */}
-
-                <Form
-                    handleSubmit={this.handleSubmit}
-                    show={this.state.formModal}
-                    modalType={this.state.formModalType}
-                    data={this.state.client}
-                    close={this.closeForm}
-                />
-
-                <Search
-                    handleSubmit={this.getLists}
-                    show={this.state.searchModal}
-                    close={this.closeForm}
-                />
-
-                {clients.length > 0 && <div className='pi-table-showing'>
-                    <p>
-                        {clients.length} {title} showing from {this.state.total}
-                        <select onChange={this.showItem}>
-                            <option value="10">Show item 10</option>
-                            <option value="20">Show item 20</option>
-                            <option value="30">Show item 30</option>
-                            <option value="50">Show item 50</option>
-                            <option value="100">Show item 100</option>
-                        </select>
-                    </p>
-                </div>}
-
-                {checkedBoxes.length > 0 && <div className='pi-table-showing'>
-                    <p>
-                        {checkedBoxes.length} {title} selected
-                        <button
-                            style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
-                            onClick={() => this.deleteEntry('selected')} >
-                            Delete
-                        </button>
-                    </p>
-                </div>} 
-
-                {this.state.preloader ? <Preloader /> : <Table tableData={clients} searchVal={searchVal} editEntry={this.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} />}
-
-                {this.state.totalPage > 1 && <ReactPaginate
-                    previousClassName='pi-previous'
-                    nextClassName='pi-next'
-                    disabledClassName='pi-disabled'
-                    previousLabel={"<"}
-                    nextLabel={">"}
-                    breakLabel={"..."}
-                    breakClassName='break'
-                    forcePage={this.state.currentPage - 1}
-                    pageCount={this.state.totalPage}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    containerClassName={"pi-pagination"}
-                    activeClassName='pi-active' />
-                }
-
             </div>
-        );
-    }
-} 
+
+            <div className="pi-buttons-group">
+                <button className="pi-bg-hover-shadow">
+                    <svg
+                        width={20}
+                        height={20}
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M7.5 5H16.875"
+                            stroke="#4A5568"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M7.5 10H16.875"
+                            stroke="#4A5568"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M7.5 15H16.875"
+                            stroke="#4A5568"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 5H4.375"
+                            stroke="#4A5568"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 10H4.375"
+                            stroke="#4A5568"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 15H4.375"
+                            stroke="#4A5568"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </button>
+                <button className="pi-bg-hover-shadow">
+                    <svg
+                        width={20}
+                        height={20}
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M17.5 4.375H2.5C2.15482 4.375 1.875 4.65482 1.875 5V6.875C1.875 7.22018 2.15482 7.5 2.5 7.5H17.5C17.8452 7.5 18.125 7.22018 18.125 6.875V5C18.125 4.65482 17.8452 4.375 17.5 4.375Z"
+                            stroke="#A0AEC0"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M16.875 7.5V15C16.875 15.1658 16.8092 15.3247 16.6919 15.4419C16.5747 15.5592 16.4158 15.625 16.25 15.625H3.75C3.58424 15.625 3.42527 15.5592 3.30806 15.4419C3.19085 15.3247 3.125 15.1658 3.125 15V7.5"
+                            stroke="#A0AEC0"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M8.125 10.625H11.875"
+                            stroke="#A0AEC0"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </button>
+            </div> 
+
+            <Search
+                title={title}
+                showing={lists.length}
+                total={props.state.total}
+                handleSubmit={props.getLists} 
+            />
+
+            {props.state.formModal && <Form
+                handleSubmit={props.handleSubmit} 
+                modalType={props.state.formModalType}
+                data={props.state.list}
+                close={props.closeForm}
+            />} 
+            
+            {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
+
+            <div className="pi-pagination-content">
+                { props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />} 
+            </div>
+        </div> 
+    );
+}
+
+export default Crud(Contact, 'contact');

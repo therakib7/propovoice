@@ -15,7 +15,7 @@ const File = (props) => {
             <div className="pi-small-button-group pi-small-button-group-two">
                 <div className="row">
                     <div className="col">
-                        <h3 className="title-style-three">My Files</h3>
+                        <h3 className="pi-title-small">My Files</h3>
                         <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
                             All
                         </button>

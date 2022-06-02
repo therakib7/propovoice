@@ -117,13 +117,13 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let form = {...this.state.form}
-        
-        if ( form.level_id ) {
+        let form = { ...this.state.form }
+
+        if (form.level_id) {
             form.level_id = form.level_id.id;
         }
 
-        if ( form.tags.length ) {
+        if (form.tags.length) {
             let finalArray = form.tags.map(function (obj) {
                 return obj.id;
             });
@@ -139,293 +139,303 @@ class Form extends Component {
         const levelList = this.state.levels;
         const tagList = this.state.tags;
 
-        return (
-            <>
-                {this.props.show && (
-                    <div className="pi-overlay pi-show">
-                        <div className="pi-modal-content">
+        return ( 
+            <div className="pi-overlay pi-show">
+                <div className="pi-modal-content">
 
-                            <div className="pi-modal-header pi-gradient">
-                                <span className="pi-close" onClick={() => this.props.close()}>
-                                    <svg
-                                        width={25}
-                                        height={25}
-                                        viewBox="0 0 16 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M12.5 3.5L3.5 12.5"
-                                            stroke="#718096"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
+                    <div className="pi-modal-header pi-gradient">
+                        <span className="pi-close" onClick={() => this.props.close()}>
+                            <svg
+                                width={25}
+                                height={25}
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.5 3.5L3.5 12.5"
+                                    stroke="#718096"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M12.5 12.5L3.5 3.5"
+                                    stroke="#718096"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </span>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Lead</h2>
+                        <p>Add new lead from here</p>
+                    </div>
+                    <form onSubmit={this.handleSubmit} >
+                        <div className="pi-content">
+                            <div className="pi-form-style-one">
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label
+                                            htmlFor="first_name">
+                                            Full Name
+                                        </label>
+
+                                        <input
+                                            id="first_name"
+                                            type="text"
+                                            name="first_name"
+                                            value={contact.first_name}
+                                            onChange={(e) => this.handleChange(e, 'contact')}
                                         />
-                                        <path
-                                            d="M12.5 12.5L3.5 3.5"
-                                            stroke="#718096"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
+                                    </div>
+                                    {/* <div className="col-lg">
+                                        <label
+                                            htmlFor="last_name">
+                                            Last Name
+                                        </label>
+
+                                        <input
+                                            id="last_name"
+                                            type="text"
+                                            name="last_name"
+                                            value={contact.last_name}
+                                            onChange={(e) => this.handleChange(e, 'contact')}
                                         />
-                                    </svg>
-                                </span>
-                                <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Lead</h2> 
-                                <p>Add new lead from here</p>
-                            </div>
+                                    </div>  */}
+                                </div>
 
-                            <div className="pi-content">
-                                <form onSubmit={this.handleSubmit} className="pi-form-style-one">
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="first_name">
-                                                Full Name
-                                            </label>
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label
+                                            htmlFor="form-org_name">
+                                            Company/Organization Name
+                                        </label>
 
-                                            <input
-                                                id="first_name"
-                                                type="text"
-                                                name="first_name"
-                                                value={contact.first_name}
-                                                onChange={(e) => this.handleChange(e, 'contact')}
-                                            />
-                                        </div>
-                                        {/* <div className="col-lg">
-                                            <label
-                                                htmlFor="last_name">
-                                                Last Name
-                                            </label>
+                                        <input
+                                            id="form-org_name"
+                                            type="text"
+                                            name="org_name"
+                                            value={contact.org_name}
+                                            onChange={(e) => this.handleChange(e, 'contact')}
+                                        />
+                                    </div>
+                                    <div className="col-lg">
+                                        <label
+                                            htmlFor="form-web">
+                                            Website
+                                        </label>
 
-                                            <input
-                                                id="last_name"
-                                                type="text"
-                                                name="last_name"
-                                                value={contact.last_name}
-                                                onChange={(e) => this.handleChange(e, 'contact')}
-                                            />
-                                        </div>  */}
+                                        <input
+                                            id="form-web"
+                                            type="text"
+                                            name="web"
+                                            value={contact.web}
+                                            onChange={(e) => this.handleChange(e, 'contact')}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label
+                                            htmlFor="form-email">
+                                            Email
+                                        </label>
+
+                                        <input
+                                            id="form-email"
+                                            type="email"
+                                            required
+                                            name="email"
+                                            value={contact.email}
+                                            onChange={(e) => this.handleChange(e, 'contact')}
+                                        />
+                                    </div>
+                                    <div className="col-lg">
+                                        <label
+                                            htmlFor="form-mobile">
+                                            Mobile Number
+                                        </label>
+
+                                        <input
+                                            id="form-mobile"
+                                            type="text"
+                                            name="mobile"
+                                            value={contact.mobile}
+                                            onChange={(e) => this.handleChange(e, 'contact')}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label
+                                            htmlFor="form-country">
+                                            Country
+                                        </label>
+
+                                        <CountryDropdown
+                                            value={contact.country}
+                                            valueType='short'
+                                            onChange={(val) => this.selectCountry(val)}
+                                        />
                                     </div>
 
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-org_name">
-                                                Company/Organization Name
-                                            </label>
+                                    <div className="col">
+                                        <label
+                                            htmlFor="form-region">
+                                            Region
+                                        </label>
 
-                                            <input
-                                                id="form-org_name"
-                                                type="text"
-                                                name="org_name"
-                                                value={contact.org_name}
-                                                onChange={(e) => this.handleChange(e, 'contact')}
-                                            />
-                                        </div>
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-web">
-                                                Website
-                                            </label>
-
-                                            <input
-                                                id="form-web"
-                                                type="text"
-                                                name="web"
-                                                value={contact.web}
-                                                onChange={(e) => this.handleChange(e, 'contact')}
-                                            />
-                                        </div>
+                                        <RegionDropdown
+                                            country={contact.country}
+                                            countryValueType='short'
+                                            value={contact.region}
+                                            onChange={(val) => this.selectRegion(val)}
+                                        />
                                     </div>
 
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-email">
-                                                Email
-                                            </label>
+                                </div>
 
-                                            <input
-                                                id="form-email"
-                                                type="email"
-                                                required
-                                                name="email"
-                                                value={contact.email}
-                                                onChange={(e) => this.handleChange(e, 'contact')}
-                                            />
-                                        </div>
-                                        <div className="col-lg">
-                                            <label
-                                                htmlFor="form-mobile">
-                                                Mobile Number
-                                            </label>
+                                <div className="row">
+                                    <div className="col">
+                                        <label
+                                            htmlFor="form-address">
+                                            Address
+                                        </label>
 
-                                            <input
-                                                id="form-mobile"
-                                                type="text"
-                                                name="mobile"
-                                                value={contact.mobile}
-                                                onChange={(e) => this.handleChange(e, 'contact')}
-                                            />
-                                        </div>
+                                        <input
+                                            id="form-address"
+                                            type="text"
+                                            name="address"
+                                            value={contact.address}
+                                            onChange={(e) => this.handleChange(e, 'contact')}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label
+                                            htmlFor="field-budget">
+                                            Budget
+                                        </label>
+
+                                        <input
+                                            id="field-budget"
+                                            type="text"
+                                            name="budget"
+                                            value={this.state.form.budget}
+                                            onChange={this.handleChange}
+                                        />
                                     </div>
 
-                                    <div className="row">
-                                        <div className="col">
-                                            <label
-                                                htmlFor="form-country">
-                                                Country
-                                            </label>
+                                    <div className="col-md">
+                                        <label
+                                            htmlFor="field-currency">
+                                            Currency
+                                        </label>
 
-                                            <CountryDropdown
-                                                value={contact.country}
-                                                valueType='short'
-                                                onChange={(val) => this.selectCountry(val)}
-                                            />
-                                        </div>
+                                        <input
+                                            id="field-currency"
+                                            type="text"
+                                            readOnly
+                                            name="currency"
+                                            value={this.state.form.currency}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
 
-                                        <div className="col">
-                                            <label
-                                                htmlFor="form-region">
-                                                Region
-                                            </label>
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label
+                                            htmlFor="field-level_id">
+                                            Level
+                                        </label>
 
-                                            <RegionDropdown
-                                                country={contact.country}
-                                                countryValueType='short'
-                                                value={contact.region}
-                                                onChange={(val) => this.selectRegion(val)}
-                                            />
-                                        </div>
-
+                                        <Select
+                                            value={this.state.form.level_id}
+                                            onChange={this.handleLevelChange}
+                                            getOptionValue={(levelList) => levelList.id}
+                                            getOptionLabel={(levelList) => levelList.label}
+                                            options={levelList}
+                                        />
                                     </div>
 
-                                    <div className="row">
-                                        <div className="col">
-                                            <label
-                                                htmlFor="form-address">
-                                                Address
-                                            </label>
-
-                                            <input
-                                                id="form-address"
-                                                type="text"
-                                                name="address"
-                                                value={contact.address}
-                                                onChange={(e) => this.handleChange(e, 'contact')}
-                                            />
-                                        </div>
+                                    <div className="col-md">
+                                        <label htmlFor="field-tags">
+                                            Tags
+                                        </label>
+                                        <Select
+                                            value={this.state.form.tags}
+                                            onChange={this.handleTagChange}
+                                            getOptionValue={(tagList) => tagList.id}
+                                            getOptionLabel={(tagList) => tagList.label}
+                                            options={tagList}
+                                            isMulti
+                                        />
                                     </div>
+                                </div>
 
-                                    <div className="row">
-                                        <div className="col-md">
-                                            <label
-                                                htmlFor="field-budget">
-                                                Budget
-                                            </label>
+                                <div className="row">
+                                    <div className="col">
+                                        <label
+                                            htmlFor="form-desc">
+                                            Description
+                                        </label>
 
-                                            <input
-                                                id="field-budget"
-                                                type="text"
-                                                name="budget"
-                                                value={this.state.form.budget}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-
-                                        <div className="col-md">
-                                            <label
-                                                htmlFor="field-currency">
-                                                Currency
-                                            </label>
-
-                                            <input
-                                                id="field-currency"
-                                                type="text"
-                                                readOnly
-                                                name="currency"
-                                                value={this.state.form.currency}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
+                                        <textarea
+                                            id="form-desc"
+                                            type="text"
+                                            name="desc"
+                                            value={this.state.form.desc}
+                                            onChange={(e) => this.handleChange(e, 'lead')}
+                                        />
                                     </div>
+                                </div>
 
-                                    <div className="row">
-                                        <div className="col-md">
-                                            <label
-                                                htmlFor="field-level_id">
-                                                Level
-                                            </label>
+                                <div className="row">
+                                    <div className="col">
+                                        <label
+                                            htmlFor="form-note">
+                                            Note
+                                        </label>
 
-                                            <Select
-                                                value={this.state.form.level_id}
-                                                onChange={this.handleLevelChange}
-                                                getOptionValue={(levelList) => levelList.id}
-                                                getOptionLabel={(levelList) => levelList.label}
-                                                options={levelList}
-                                            />
-                                        </div>
-
-                                        <div className="col-md">
-                                            <label htmlFor="field-tags">
-                                                Tags
-                                            </label>
-                                            <Select
-                                                value={this.state.form.tags}
-                                                onChange={this.handleTagChange}
-                                                getOptionValue={(tagList) => tagList.id}
-                                                getOptionLabel={(tagList) => tagList.label}
-                                                options={tagList}
-                                                isMulti
-                                            />
-                                        </div>
+                                        <textarea
+                                            id="form-note"
+                                            type="text"
+                                            name="note"
+                                            value={this.state.form.note}
+                                            onChange={(e) => this.handleChange(e, 'lead')}
+                                        />
                                     </div>
+                                </div>
 
-                                    <div className="row">
-                                        <div className="col">
-                                            <label
-                                                htmlFor="form-desc">
-                                                Description
-                                            </label>
-
-                                            <textarea
-                                                id="form-desc"
-                                                type="text"
-                                                name="desc"
-                                                value={this.state.form.desc}
-                                                onChange={(e) => this.handleChange(e, 'lead')}
-                                            />
-                                        </div>
+                                {/* <div className="row">
+                                    <div className="col">
+                                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                            Save
+                                        </button>
                                     </div>
-
-                                    <div className="row">
-                                        <div className="col">
-                                            <label
-                                                htmlFor="form-note">
-                                                Note
-                                            </label>
-
-                                            <textarea
-                                                id="form-note"
-                                                type="text"
-                                                name="note"
-                                                value={this.state.form.note}
-                                                onChange={(e) => this.handleChange(e, 'lead')}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col">
-                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
-                                                Save
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div> */}
                             </div>
                         </div>
-                    </div>
-                )}
-            </>
+
+                        <div className="pi-modal-footer">
+                            <div className="row">
+                                <div className="col">
+                                    <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                                </div>
+                                <div className="col">
+                                    <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>  
         );
     }
 }

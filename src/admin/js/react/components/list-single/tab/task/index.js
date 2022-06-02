@@ -28,7 +28,7 @@ const Task = (props) => {
             />
 
             <div className="pi-small-button-group">
-                <h3 className="title-style-three">My Work</h3>
+                <h3 className="pi-title-small">My Work</h3>
                 <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
                     To do
                 </button>
