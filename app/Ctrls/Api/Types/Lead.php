@@ -238,7 +238,7 @@ class Lead
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc         = isset($params['desc']) ? nl2br($params['desc']) : null;
+        $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
         $contact = $params['contact'];
@@ -372,7 +372,7 @@ class Lead
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc         = isset($params['desc']) ? nl2br($params['desc']) : null;
+        $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
         $contact = $params['contact'];

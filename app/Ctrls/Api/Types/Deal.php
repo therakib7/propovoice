@@ -217,7 +217,7 @@ class Deal
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc         = isset($params['desc']) ? nl2br($params['desc']) : null;
+        $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
         /* if ( $lead_id ) {
@@ -298,7 +298,7 @@ class Deal
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc         = isset($params['desc']) ? nl2br($params['desc']) : null;
+        $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
         if (empty($stage_id)) {

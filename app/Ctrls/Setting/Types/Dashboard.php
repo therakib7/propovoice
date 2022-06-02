@@ -53,6 +53,10 @@ class Dashboard
                 'label' => esc_html__('Invoice', 'propovoice'),
             ], 
             [
+                'id' => 'project',
+                'label' => esc_html__('Project', 'propovoice'),
+            ], 
+            [
                 'id' => 'contact',
                 'label' => esc_html__('Contact', 'propovoice'),
             ] 

@@ -28,7 +28,7 @@ const Task = (props) => {
             />
 
             <div className="pi-small-button-group">
-                <h3>My Work</h3>
+                <h3 className="title-style-three">My Work</h3>
                 <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
                     To do
                 </button>
@@ -38,7 +38,7 @@ const Task = (props) => {
                 <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
                     Done
                 </button>
-            </div>
+            </div> 
 
             {props.state.preloader ? <Preloader /> : <div className="pi-accordion">
                 {true &&
@@ -71,7 +71,7 @@ const Task = (props) => {
                             </div>
                         </section>
                     </>
-                } 
+                }
 
                 {true &&
                     <>

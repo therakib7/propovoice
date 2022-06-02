@@ -28,9 +28,7 @@ const Note = ( props ) => {
                 close={props.closeForm}
             /> 
 
-            <div className="pi-small-button-group">
-                <h3>My Note</h3> 
-            </div> 
+            <h3 className='title-style-three'>My Note</h3> 
 
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 

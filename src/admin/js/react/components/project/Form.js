@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AsyncSelect from 'react-select/async'; 
 
-import ApiClient from '../.././api/client';
+import Select from 'react-select';
+import ApiTaxonomy from 'api/taxonomy';
 
 class Form extends Component {
     constructor(props) {
@@ -9,159 +9,257 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
-            client_id: null,
-            client: null,
-            title: '', 
-            desc: '', 
+            title: '',
+            stage_id: '',
+            contact_id: 770,
+            contact_type: 'people', //org/people
+            budget: '',
+            currency: 'USD',
+            provability: 50,
+            tags: [],
+            note: '',
             date: false
         };
 
         this.state = {
-            clientList: [],  
-            form: this.initialState
+            form: this.initialState, 
+            stages: [],
+            tags: [],
         };
-
-        this.timeout =  0;
     }
 
     handleChange = e => {
-        const { name, value } = e.target;
+        const target = e.target;
+        const name = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
-    } 
+    }
+
+    handleStageChange = val => {
+        this.setState({ form: { ...this.state.form, ['stage_id']: val } });
+    }
+
+    handleTagChange = val => {
+        this.setState({ form: { ...this.state.form, ['tags']: val } });
+    }
+
+    componentDidMount() {
+        ApiTaxonomy.getAll('taxonomy=deal_stage_tag')
+            .then(resp => {
+                if (resp.data.success) { 
+                    if ( this.state.form.stage_id ) {
+                        this.setState({ 
+                            stages: resp.data.data.stages,
+                            tags: resp.data.data.tags,
+                        });
+                    } else {
+                        let form = {...this.state.form}
+                        form.stage_id = resp.data.data.stages[0];
+                        this.setState({ 
+                            form,
+                            stages: resp.data.data.stages,
+                            tags: resp.data.data.tags,
+                        });
+                    } 
+                }
+            });
+
+        //added this multiple place, because not working in invoice single
+        this.editData();
+    }
 
     componentDidUpdate() {
-        //condition added to stop multiple rendering
-        if (this.props.modalType == 'edit') { 
-            if (this.state.form.id != this.props.data.id) {  
-                this.setState({ 
-                    form: this.props.data 
-                });
+        this.editData();
+    }
+
+    editData = () => {
+        //condition added to stop multiple rendering 
+        if (this.props.modalType == 'edit') {
+            if (this.state.form.id != this.props.data.id) {
+                this.setState({ form: this.props.data });
             }
         } else {
             if (this.state.form.id != null) {
                 this.setState({ form: this.initialState });
-            }
+            } 
+            
+            /* else {
+                if ( this.props.data && ! this.state.form.stage_id && this.props.data.hasOwnProperty('label') ) { // new deal from stage
+                    let form = {...this.initialState}
+                    form.stage_id = this.props.data;
+                    this.setState({ form });
+                }
+            }  */
         }
-    }
-
-    handleFindClient = (val, callback) => { 
-        if ( val.length < 3 ) return;
-
-        //search when typing stop
-        if (this.timeout) clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-            //search function
-            //TODO: pass proper client search args
-            ApiClient.getAll('first_name='+val+'&last_name='+val)
-                .then(resp => {
-                    let clientData = resp.data.data.result;
-                    callback( clientData ); 
-                }); 
-        }, 300); 
-    } 
-
-    handleClientSelect = (value) => {    
-        let form = {...this.state.form} 
-        if ( value ) {
-            form.client_id = value.id;    
-            form.client = value;
-        } else {
-            form.client_id = null;    
-            form.client = null;
-        }
-		    
-		this.setState({ form }) 
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let form = {...this.state.form} 
-        if ( this.props.client_id ) {
-            form.client_id = this.props.client_id;
-        }
-        this.props.handleSubmit(form); 
-    } 
+        this.props.handleSubmit(this.state.form);
+        //this.setState({ form: this.initialState });
+    }
 
     render() {
+        const stageList = this.state.stages;
+        const tagList = this.state.tags;
+        const form = this.state.form;
+        const provabilityPercent = (form.provability / 100) * 100;
+        
         return (
-            <>
-                {this.props.show && ( 
-                    <div className="pi-overlay pi-show">
-                        <div className="pi-modal-content">
-                            <div className="pi-modal-header">
-                                <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Project</h2>
-                                <span className="pi-close" onClick={() => this.props.close()}>×</span>
+            <div className="pi-overlay pi-show">
+                <div className="pi-modal-content">
+                    <div className="pi-modal-header">
+                        <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Project</h2>
+                        <span className="pi-close" onClick={() => this.props.close()}>×</span>
+                    </div>
+
+                    <div className="pi-content">
+                        <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                            <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-title">
+                                        Title
+                                    </label>
+
+                                    <input
+                                        id="field-title"
+                                        type="text"
+                                        name="title"
+                                        value={form.title}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
                             </div>
 
-                            <div className="pi-content">
-                                <form onSubmit={this.handleSubmit} className="pi-form-style-one">
-                                    {!this.props.client_id && 
-                                    <div className="row">
-                                        <div className="col">
-                                            <label
-                                                htmlFor="form-title">
-                                                Client
-                                            </label> 
-                                            <AsyncSelect
-                                                loadOptions={this.handleFindClient}
-                                                value={this.state.form.client}
-                                                onChange={this.handleClientSelect}
-                                                isClearable={true}
-                                                getOptionValue ={(toList) => toList.id}
-                                                getOptionLabel ={(toList) => ( toList.first_name ) ? toList.first_name + ' ' + toList.last_name : ''} 
-                                            />
-                                        </div> 
-                                    </div>} 
+                            <div className="row">
+                                <div className="col-md">
+                                    <label
+                                        htmlFor="field-stage_id">
+                                        Stage
+                                    </label>
 
-                                    <div className="row">
-                                        <div className="col">
-                                            <label
-                                                htmlFor="form-title">
-                                                Title
-                                            </label>
+                                    <Select 
+                                        value={form.stage_id}
+                                        onChange={this.handleStageChange}
+                                        getOptionValue={(stageList) => stageList.id}
+                                        getOptionLabel={(stageList) => stageList.label}
+                                        options={stageList}
+                                    />
+                                </div>
 
-                                            <input
-                                                id="form-title"
-                                                type="text"
-                                                required
-                                                name="title"
-                                                value={this.state.form.title}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div> 
-                                    </div>
+                                <div className="col-md">
+                                    <label
+                                        htmlFor="field-contact_id">
+                                        Contact
+                                    </label>
 
-                                    <div className="row">
-                                        <div className="col">
-                                            <label
-                                                htmlFor="form-desc">
-                                                Description
-                                            </label>
+                                    <input
+                                        id="field-contact_id"
+                                        type="text"
+                                        name="contact_id"
+                                        value={form.contact_id}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
 
-                                            <input
-                                                id="form-desc"
-                                                type="text"
-                                                required
-                                                name="desc"
-                                                value={this.state.form.desc}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div> 
-                                    </div>   
-
-                                    <div className="row">
-                                        <div className="col"> 
-                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
-                                                Submit
-                                            </button> 
-                                        </div> 
-                                    </div>
-                                </form> 
                             </div>
-                        </div> 
-                    </div>  
-                )}
-            </>
+
+                            <div className="row">
+                                <div className="col-md">
+                                    <label
+                                        htmlFor="field-budget">
+                                        Budget
+                                    </label>
+
+                                    <input
+                                        id="field-budget"
+                                        type="text"
+                                        name="budget"
+                                        value={form.budget}
+                                        onChange={this.handleChange}
+                                    />
+                                </div> 
+
+                                <div className="col-md">
+                                    <label
+                                        htmlFor="field-currency">
+                                        Currency
+                                    </label>
+
+                                    <input
+                                        id="field-currency"
+                                        type="text"
+                                        readOnly
+                                        name="currency"
+                                        value={form.currency}
+                                        onChange={this.handleChange}
+                                    />
+                                </div> 
+                                 
+                            </div>
+
+                            <div className="row"> 
+                                <div className="col-md">
+                                    <label
+                                        htmlFor="field-provability">
+                                        Provability <span className='pi-float-right'>({form.provability}%)</span>
+                                    </label>
+
+                                    <input
+                                        id="field-provability" 
+                                        type="range"
+                                        min="1" max="100"
+                                        name="provability"
+                                        value={form.provability}
+                                        style={{background: `linear-gradient(to right, #3264fe ${provabilityPercent}%, #ccd6ff ${provabilityPercent}%)`}}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-tags">
+                                        Tags
+                                    </label>
+                                    <Select
+                                        value={form.tags}
+                                        onChange={this.handleTagChange}
+                                        getOptionValue={(tagList) => tagList.id}
+                                        getOptionLabel={(tagList) => tagList.label}
+                                        options={tagList}
+                                        isMulti
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="field-note">
+                                        Note
+                                    </label>
+
+                                    <textarea
+                                        id="form-note"
+                                        rows={2}
+                                        name="note"
+                                        value={form.note}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col">
+                                    <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

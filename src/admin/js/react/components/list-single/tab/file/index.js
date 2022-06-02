@@ -15,7 +15,7 @@ const File = (props) => {
             <div className="pi-small-button-group pi-small-button-group-two">
                 <div className="row">
                     <div className="col">
-                        <h3>My Files</h3>
+                        <h3 className="title-style-three">My Files</h3>
                         <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
                             All
                         </button>
@@ -61,8 +61,8 @@ const File = (props) => {
                                 Upload File
                             </button>
                             <button 
-                            className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
-                            onClick={() => props.openForm('new')}
+                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
+                                onClick={() => props.openForm('new')}
                             >
                                 <svg width={12} height={12} viewBox="0 0 12 12">
                                     <path
@@ -149,9 +149,9 @@ const File = (props) => {
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
-            /> 
+            />
 
-            {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />} 
+            {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
         </>
     );
 }

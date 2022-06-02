@@ -812,7 +812,6 @@ html {
 .ncpi .pi-table {
   width: 100%;
   border-collapse: collapse;
-  border-style: hidden;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.06);
 }
 .ncpi .pi-table thead tr {
@@ -1291,6 +1290,10 @@ html {
 }
 .ncpi .pi-right-content {
   width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  height: 100vh;
 }
 .ncpi .pi-right-content .pi-page-title {
   margin-bottom: 25px;
@@ -1458,8 +1461,14 @@ html {
   background-color: #FAFAFB;
   padding: 15px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.06);
+}
+@media screen and (max-width: 550px) {
+  .ncpi .pi-search-bar {
+    width: 100% px;
+    overflow-x: scroll;
+  }
 }
 .ncpi .pi-search-bar button {
   height: 37px;
@@ -1692,7 +1701,7 @@ html {
 .ncpi .pi-pagination li a:hover {
   color: var(--text-color-blue) !important;
 }
-.ncpi .pi-pagination-two {
+.ncpi .pi-pagination-two .pi-pagination {
   margin-top: 55px;
   margin-right: -30px;
 }
@@ -2894,6 +2903,11 @@ html {
 .ncpi .pi-category-select-content #pi-select-content {
   margin-left: -4px;
 }
+@media screen and (max-width: 550px) {
+  .ncpi .pi-category-select-content #pi-select-content {
+    width: 400px;
+  }
+}
 .ncpi .pi-category-select-content #pi-select-content ul {
   display: flex;
   border: 1px solid #dddddda8;
@@ -2988,6 +3002,14 @@ html {
   font-size: 16px;
   font-weight: 700;
 }
+.ncpi .pi-widget .pi-widget-title .pi-btn-small {
+  float: right;
+  font-weight: normal;
+  color: #2D3748;
+}
+.ncpi .pi-widget .pi-widget-title .pi-btn-small svg path {
+  fill: #2D3748 !important;
+}
 .ncpi .pi-widget .pi-avatar-content img {
   width: 30px;
   height: 30px;
@@ -3004,17 +3026,16 @@ html {
   top: 35px;
 }
 .ncpi .pi-widget button {
-  background: transparent;
-  border: none;
   padding: 0;
 }
 .ncpi .pi-widget button .pi-action-btn {
-  height: 25px;
-  padding: 0px 2px;
+  height: 22px;
+  padding: 1px;
   top: 0px;
+  border-radius: 3px;
 }
 .ncpi .pi-widget .pi-persons-content {
-  margin-top: 10px;
+  margin-top: 15px;
   padding: 15px;
   border: 1px solid #dddddda8;
   border-radius: 8px;
@@ -3098,13 +3119,13 @@ html {
 .ncpi .pi-switch-content .pi-primary {
   font-size: 10px;
   position: relative;
-  top: -3px;
+  top: -4px;
   margin-left: 5px;
 }
 .ncpi .pi-switch {
   position: relative;
   display: inline-block;
-  width: 44px;
+  width: 30px;
   height: 15px;
 }
 .ncpi .pi-switch input {
@@ -3127,16 +3148,16 @@ html {
   content: "";
   height: 12px;
   width: 12px;
-  left: 4px;
+  left: -9px;
   bottom: 2px;
   background-color: white;
   transition: 0.4s;
 }
 .ncpi input:checked + .pi-slider {
-  background-color: #2196F3;
+  background-color: #4C6FFF;
 }
 .ncpi input:focus + .pi-slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #4C6FFF;
 }
 .ncpi input:checked + .pi-slider:before {
   transform: translateX(26px);
@@ -3328,6 +3349,13 @@ body {
     font-weight: 700;
   }
 }
+.ncpi .title-style-three {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  color: #4A5568;
+}
 
 /*--------------------------------------------------------------
 # Copy
@@ -3377,13 +3405,15 @@ body {
 .ncpi .pi-btn-medium {
   padding: 10px 15px !important;
   font-weight: 500;
+  border: 1px solid #dddddda8;
 }
 .ncpi .pi-btn-small {
   padding: 6px 10px !important;
   font-weight: 500;
-  font-size: 10px;
+  font-size: 12px;
   border-radius: 4px;
   background-color: #fff;
+  border: 1px solid #dddddda8;
 }
 @media screen and (max-width: 768px) {
   .ncpi .pi-btn {
