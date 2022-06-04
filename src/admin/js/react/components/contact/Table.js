@@ -55,7 +55,7 @@ const TableBody = props => {
 
     const navigate = useNavigate();
     const handleOverview = (id) => {
-        navigate(`/contact/${id}`, { replace: true });
+        navigate(`/contact/single/${id}`, { replace: true });
     };
 
     let rows = props.tableData.map((row, index) => {
@@ -131,7 +131,7 @@ const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
-            {tableData.length > 0 && <div className='pi-table-wrap'>
+            {tableData.length > 0 && <div className='pi-table-wrap pi-mt-15'>
                 <table className='pi-table'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />

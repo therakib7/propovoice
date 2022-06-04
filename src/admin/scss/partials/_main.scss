@@ -1411,18 +1411,28 @@ html {
   margin-bottom: 20px;
 }
 .ncpi .pi-cards .pi-cards-content {
-  border-radius: 20px;
-  padding: 25px;
+  border-radius: 5px;
+  padding: 20px;
+  background: #fff;
 }
 .ncpi .pi-cards .pi-cards-content span {
-  font-weight: 500;
-  text-transform: capitalize;
-  font-size: 14px;
+  padding: 7px;
+  display: inline-block;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+}
+.ncpi .pi-cards .pi-cards-content p {
+  color: #718096;
+  margin-bottom: 0;
+  margin-top: 10px;
 }
 .ncpi .pi-cards .pi-cards-content h4 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  margin-top: 5px;
+  color: #2D3748;
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-cards .pi-cards-content {
@@ -2970,6 +2980,7 @@ html {
 .ncpi .pi-search-btn .pi-search-form ul li {
   padding: 6px 5px;
   padding-left: 20px;
+  margin: 0;
 }
 @media screen and (max-width: 820px) {
   .ncpi .pi-search-btn .pi-search-form ul li {
@@ -3238,8 +3249,8 @@ html {
 .ncpi .pi-mt-15 {
   margin-top: 15px;
 }
-.ncpi .pi-mt-00 {
-  margin-top: 60px;
+.ncpi .pi-mt-25 {
+  margin-top: 25px;
 }
 .ncpi .pi-ml-55 {
   margin-left: 55px;

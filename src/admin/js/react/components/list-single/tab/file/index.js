@@ -26,6 +26,7 @@ const File = (props) => {
                             Link
                         </button>
                     </div>
+
                     <div className="col">
                         <div className="pi-buttons-right pi-text-right">
                             <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
@@ -142,14 +143,14 @@ const File = (props) => {
                 </div>
             </div>
 
-            <Form
+            {props.state.formModal && <Form
                 tab_id={props.tab_id}
                 handleSubmit={props.handleSubmit}
-                show={props.state.formModal}
+                // show={}
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
-            />
+            />}
 
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
         </>

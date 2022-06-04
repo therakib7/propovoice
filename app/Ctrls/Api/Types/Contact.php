@@ -150,33 +150,55 @@ class Contact
         $url_params = $req->get_url_params();
         $id = $url_params['id'];
         $query_data = [];
-        $query_data['id'] = $id;
+        $query_data['id'] = absint($id); 
+        $query_data['tab_id'] = $id; 
 
-        $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-        $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-        $query_data['email'] = get_post_meta($id, 'email', true);
-        $query_data['org_name'] = get_post_meta($id, 'org_name', true);
-        $query_data['web'] = get_post_meta($id, 'web', true);
-        $query_data['mobile'] = get_post_meta($id, 'mobile', true);
-        $query_data['country'] = get_post_meta($id, 'country', true);
-        $query_data['region'] = get_post_meta($id, 'region', true);
-        $query_data['address'] = get_post_meta($id, 'address', true); 
+        $query_data['level_id'] = '';
 
-        $img_id = get_post_meta($id, 'img', true);
-        $imgData = null;
-        if ($img_id) {
-            $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-            if ($img_src) {
-                $imgData = [];
-                $imgData['id'] = $img_id;
-                $imgData['src'] = $img_src[0];
-            }
+        $level = get_the_terms($id, 'ndpi_lead_level');
+        if ($level) {
+
+            $query_data['level_id'] = [
+                'id' => $level[0]->term_id,
+                'label' => $level[0]->name
+            ];
         }
-        $query_data['img'] = $imgData;
-        $data = [];
-        $data['profile'] = $query_data;
 
-        wp_send_json_success($data);
+        $query_data['tags'] = [];
+
+        $tags = get_the_terms($id, 'ndpi_tag');
+        if ($tags) {
+            $tagList = [];
+            foreach ($tags as $tag) {
+                $tagList[] = [
+                    'id' => $tag->term_id,
+                    'label' => $tag->name
+                ];
+            }
+            $query_data['tags'] = $tagList;
+        }
+
+        $contact_id = $id;
+        $contactData = [];
+
+        if ($contact_id) {
+            $contactData['id'] = absint($contact_id);
+            $contactMeta = get_post_meta($contact_id);
+            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
+            $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : '';
+            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
+            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
+            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
+            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
+            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
+            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
+            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
+        }
+        $query_data['contact'] = $contactData;
+
+        $query_data['date'] = get_the_time('j-M-Y');
+
+        wp_send_json_success($query_data);
     }
 
     public function create($req)

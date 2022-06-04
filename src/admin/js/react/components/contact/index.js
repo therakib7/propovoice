@@ -179,6 +179,15 @@ const Contact = (props) => {
                 close={props.closeForm}
             />} 
             
+            <div className="pi-small-button-group">
+                <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                    Person
+                </button>
+                <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                    Organization
+                </button>
+            </div>
+
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
             <div className="pi-pagination-content">
