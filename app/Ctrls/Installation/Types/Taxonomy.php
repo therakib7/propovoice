@@ -23,19 +23,39 @@ class Taxonomy {
         } 
 
         //deal
-        $temp_stage = [
-            'Opportunity',
-            'Contracting',
-            'Engaging',
-            'Proposing',
-            'Deal Closing',
+
+        $temp_pipeline = [
+            'Sales Pipeline' 
         ];  
-        foreach( $temp_stage as $stage ) {
-            wp_insert_term(
-                $stage,   // the term 
-                'ndpi_deal_stage', // the taxonomy 
+        foreach( $temp_pipeline as $pipeline ) {
+            $add_pipeline = wp_insert_term(
+                $pipeline,   // the term 
+                'ndpi_deal_pipeline', // the taxonomy 
             );
-        }
+
+            $temp_stage = [
+                'Opportunity',
+                'Contracting',
+                'Engaging',
+                'Proposing',
+                'Deal Closing',
+            ];  
+            foreach( $temp_stage as $stage ) {
+                $stage = wp_insert_term(
+                    $stage,   // the term 
+                    'ndpi_deal_stage', // the taxonomy 
+                ); 
+    
+                if ( ! is_wp_error( $stage ) || ! is_wp_error( $add_pipeline ) ) { 
+                    $pipeline_id = isset( $add_pipeline['term_id'] ) ? $add_pipeline['term_id'] : 0;
+                    $stage_id = isset( $stage['term_id'] ) ? $stage['term_id'] : 0;
+                    
+                    add_term_meta( $stage_id, 'deal_pipeline_id' , $pipeline_id );
+                } 
+                
+            }
+        } 
+        
 
         $temp_tag = [
             'Design',
