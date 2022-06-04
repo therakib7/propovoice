@@ -11,8 +11,7 @@ import {
 } from "react-router-dom";
 
 const Dashboard = lazy(() => import('components/dashboard'));
-const Client = lazy(() => import('components/client/list'));
-const ClientSummary = lazy(() => import('components/client/summary'));
+const Client = lazy(() => import('components/client')); 
 
 const Lead = lazy(() => import('components/lead'));
 const Deal = lazy(() => import('components/deal'));
@@ -309,7 +308,7 @@ const Home = () => {
                                     {/* <Route path="/proposal" element={<Editor />} /> */}
 
                                     <Route path="/client" exact element={<Client />} />
-                                    <Route path="/client/:id" exact element={<ClientSummary />} />
+                                    <Route path="/client/single/:id" exact element={<ListSingle />} />
 
                                     <Route path="/lead" exact element={<Lead />} />
                                     <Route path="/lead/single/:id" exact element={<ListSingle />} />

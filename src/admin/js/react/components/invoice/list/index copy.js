@@ -4,11 +4,8 @@ import { toast } from 'react-toastify';
 import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from 'context/app-context';
 
-// import ReactPaginate from 'react-paginate';
+import ReactPaginate from 'react-paginate';
 
-// import Preloader from 'block/preloader/table';
-import Breadcrumb from 'block/breadcrumb';
-import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
 
 import Api from 'api/invoice';
@@ -241,173 +238,171 @@ const Invoice = class Invoice extends Component {
         const { title, invoices, checkedBoxes, searchVal } = this.state;
         const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
-            <div className="ncpi-components">
-                <Breadcrumb title={title} />
-
-                <div className="row">
-                    <div className="col-lg-6">
-                        <h2 className="pi-page-title">{title}</h2>
-                    </div>
-                    <div className="col-lg-6 pi-text-right">
-                        <button
-                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
-                            onClick={() => this.newInvoie()}
-                        >
+            <div className="ncpi-components"> 
+                <nav className='pi-breadcrumb'>
+                    <ul>
+                        <li>
+                            <a href='#' >
+                                Home
+                            </a>
+                        </li>
+                        <li>
                             <svg
-                                width={14}
-                                height={12}
-                                viewBox="0 0 12 15"
+                                width={5}
+                                height={10}
+                                viewBox="0 0 5 10"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="http://www.w3.org/2000/svg" 
                             >
-                                <path
-                                    d="M2.5 8H13.5"
-                                    stroke="white"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                ></path>
-                                <path
-                                    d="M8 2.5V13.5"
-                                    stroke="white"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                ></path>
+                            <path
+                                d="M.5 1.25L4.25 5 .5 8.75"
+                                stroke="#718096"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
                             </svg>
-                            Add {title}
-                        </button>
-                        <span className="pi-action-btn">
-                            <svg
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                    fill="#718096"
-                                />
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                    fill="#718096"
-                                />
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                    fill="#718096"
-                                />
-                            </svg>
-                        </span>
-                    </div>
-                </div>
+                        </li>
+                        <li className='pi-active'>
+                            {title}
+                        </li>
+                    </ul>
+                </nav>
 
-                <div className="pi-buttons-group">
-                    <button className="pi-bg-hover-shadow">
+                <h2 className='pi-page-title'>{title}</h2> 
+
+                {invoices.length > 0 &&
+                    <>
+                        {!wage.length && <div className="pi-cards"> 
+                            <div className="row">
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content pi-bg-husky">
+                                        <span>Total {title}</span>
+                                        <h4 className="pi-color-blue">{total}</h4>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#f9f6ea' }}>
+                                        <span>Paid {title}</span>
+                                        <h4 style={{ color: '#c66542' }}>{paid}</h4>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#d7f4f1' }}>
+                                        <span>Unpaid {title}</span>
+                                        <h4 style={{ color: '#45ac9d' }}>{unpaid}</h4>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#f7dfec' }}>
+                                        <span>Draft {title}</span>
+                                        <h4 style={{ color: '#b66490' }}>{draft}</h4>
+                                    </div>
+                                </div>
+
+                                <div className="col-md-4 col-lg">
+                                    <div className="pi-cards-content" style={{ backgroundColor: '#e6ffe7' }}>
+                                        <span>Sent {title}</span>
+                                        <h4 style={{ color: '#43ad47' }}>{sent}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>}
+                    </>}
+
+                <div className="pi-buttons">
+                    <button
+                        className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                        onClick={() => this.newInvoie()} >
+                        Create New {title}
+                    </button>
+
+                    <div className="pi-search-box pi-float-right">
                         <svg
-                            width={20}
-                            height={20}
-                            viewBox="0 0 20 20"
+                            width={24}
+                            height={24}
+                            viewBox="0 0 24 24"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                d="M7.5 5H16.875"
-                                stroke="#4A5568"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
+                                d="M10.77 18.3a7.53 7.53 0 110-15.06 7.53 7.53 0 010 15.06zm0-13.55a6 6 0 100 12 6 6 0 000-12z"
+                                fill="#718096"
                             />
                             <path
-                                d="M7.5 10H16.875"
-                                stroke="#4A5568"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M7.5 15H16.875"
-                                stroke="#4A5568"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M3.125 5H4.375"
-                                stroke="#4A5568"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M3.125 10H4.375"
-                                stroke="#4A5568"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M3.125 15H4.375"
-                                stroke="#4A5568"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
+                                d="M20 20.75a.74.74 0 01-.53-.22l-4.13-4.13a.75.75 0 011.06-1.06l4.13 4.13a.75.75 0 01-.53 1.28z"
+                                fill="#718096"
                             />
                         </svg>
-                    </button>
-                    <button className="pi-bg-hover-shadow">
-                        <svg
-                            width={20}
-                            height={20}
-                            viewBox="0 0 20 20"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M17.5 4.375H2.5C2.15482 4.375 1.875 4.65482 1.875 5V6.875C1.875 7.22018 2.15482 7.5 2.5 7.5H17.5C17.8452 7.5 18.125 7.22018 18.125 6.875V5C18.125 4.65482 17.8452 4.375 17.5 4.375Z"
-                                stroke="#A0AEC0"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M16.875 7.5V15C16.875 15.1658 16.8092 15.3247 16.6919 15.4419C16.5747 15.5592 16.4158 15.625 16.25 15.625H3.75C3.58424 15.625 3.42527 15.5592 3.30806 15.4419C3.19085 15.3247 3.125 15.1658 3.125 15V7.5"
-                                stroke="#A0AEC0"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M8.125 10.625H11.875"
-                                stroke="#A0AEC0"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </button>
-                </div>
 
-                <Search
-                    title={title}
-                    showing={invoices.length}
-                    total={this.state.total}
-                    handleSubmit={this.getLists}
-                /> 
+                        <input
+                            type="text"
+                            className="pi-search-input"
+                            placeholder="Search..."
+                            value={this.state.searchVal}
+                            onChange={this.handleSearch}
+                        />
+                    </div>
+                </div>
 
                 {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.newInvoie()} />}
 
+                {/* <button 
+                    onClick={() => this.setState({ searchModal: true })} >
+                    Search
+                </button>  */}
+
+                {/* <Search
+                    handleSubmit={this.getLists}
+                    show={this.state.searchModal}
+                    close={this.closeForm}
+                /> */}
+
+                {invoices.length > 0 && <div className='pi-table-showing'>
+                    <p>
+                        {invoices.length} {title} showing from {this.state.total}
+                        <select onChange={this.showItem}>
+                            <option value="10">Show item 10</option>
+                            <option value="20">Show item 20</option>
+                            <option value="30">Show item 30</option>
+                            <option value="50">Show item 50</option>
+                            <option value="100">Show item 100</option>
+                        </select>
+                    </p>
+                </div>}
+
+                {checkedBoxes.length > 0 && <div className='pi-table-showing'>
+                    <p>
+                        {checkedBoxes.length} {title} selected
+                        <button
+                            style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
+                            onClick={() => this.deleteEntry('selected')} >
+                            Delete
+                        </button>
+                    </p>
+                </div>}
+
                 {this.state.preloader ? <Preloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} action={this.handleAction} />}
 
-                <div className="pi-pagination-content">
-                    {this.state.totalPage > 1 && <Pagination forcePage={this.state.currentPage - 1} pageCount={this.state.totalPage} onPageChange={this.handlePageClick} />}
-                </div>
+                {this.state.totalPage > 1 && <ReactPaginate
+                    previousClassName='pi-previous'
+                    nextClassName='pi-next'
+                    disabledClassName='pi-disabled'
+                    previousLabel={"<"}
+                    nextLabel={">"}
+                    breakLabel={"..."}
+                    breakClassName='break'
+                    forcePage={this.state.currentPage - 1}
+                    pageCount={this.state.totalPage}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pi-pagination"}
+                    activeClassName='pi-active' />
+                }
+
             </div>
         );
     }

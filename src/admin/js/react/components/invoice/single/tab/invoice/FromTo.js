@@ -8,7 +8,7 @@ import ApiClient from 'api/client';
 
 //others component
 import BusinessForm from 'components/business/Form';
-import ClientForm from 'components/client/list/Form';
+import ClientForm from 'components/client/Form';
 
 import PropTypes from 'prop-types'
 

@@ -93,6 +93,7 @@ class ListSingle extends Component {
                         <li>
                             {path == 'lead' && <NavLink to='/lead'>Lead</NavLink>}
                             {path == 'deal' && <NavLink to='/deal'>Deal</NavLink>}
+                            {path == 'client' && <NavLink to='/client'>Client</NavLink>}
                             {path == 'project' && <NavLink to='/project'>Project</NavLink>}
                             {path == 'contact' && <NavLink to='/contact'>Contact</NavLink>}
                         </li>
@@ -114,6 +115,7 @@ class ListSingle extends Component {
                         </li>
                         <li className="pi-active">
                             {path == 'lead' && contact.first_name}
+                            {path == 'client' && contact.first_name}
                             {path == 'deal' || path == 'project' && data.title}
                             {path == 'contact' && contact.first_name}
                         </li>
@@ -904,6 +906,8 @@ export default function SingleWrap() {
         path = 'deal';
     } else if (url_path.includes('project')) {
         path = 'project';
+    } else if (url_path.includes('client')) {
+        path = 'client';
     } else if (url_path.includes('contact')) {
         path = 'contact';
     }

@@ -19,14 +19,13 @@ const Note = ( props ) => {
                 tab_id={props.tab_id}
             /> 
 
-            <FormEdit
+            {props.state.formModal && <FormEdit
                 tab_id={props.tab_id}
-                handleSubmit={props.handleSubmit}
-                show={props.state.formModal}
+                handleSubmit={props.handleSubmit} 
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
-            /> 
+            />} 
 
             <h3 className='pi-title-small'>My Note</h3> 
 

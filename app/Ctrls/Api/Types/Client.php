@@ -221,7 +221,7 @@ class Client
     {
 
         $url_params = $req->get_url_params();
-        $user_id      = $url_params['id'];
+        $user_id    = absint( $url_params['id'] );
 
         $user = get_user_by('id', $user_id);
 
@@ -241,8 +241,8 @@ class Client
         $field['region'] = get_user_meta($user->ID, $prefix . 'region', true); 
         $field['address'] = get_user_meta($user->ID, $prefix . 'address', true); 
         $field['date'] = $user->user_registered;
-
-        $data['profile'] = $field;
+        $data['tab_id'] = $user_id;
+        $data['contact'] = $field;
 
         wp_send_json_success($data);
     }

@@ -17,14 +17,13 @@ const Task = (props) => {
                 tab_id={props.tab_id}
             />
 
-            <FormEdit
+            {props.state.formModal && <FormEdit
                 tab_id={props.tab_id}
-                handleSubmit={props.handleSubmit}
-                show={props.state.formModal}
+                handleSubmit={props.handleSubmit} 
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
-            />
+            />}
 
             <div className="pi-small-button-group">
                 <h3 className="pi-title-small">My Work</h3>

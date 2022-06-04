@@ -145,8 +145,7 @@ const File = (props) => {
 
             {props.state.formModal && <Form
                 tab_id={props.tab_id}
-                handleSubmit={props.handleSubmit}
-                // show={}
+                handleSubmit={props.handleSubmit} 
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
