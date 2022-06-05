@@ -104,6 +104,7 @@ class Form extends Component {
                 let id = resp.data.data;
                 this.props.close();
                 this.props.router.navigate(`/project/single/${id}`, { replace: true }); 
+                this.props.reload();
             } else {
                 resp.data.data.forEach(function (value, index, array) {
                     toast.error(value);

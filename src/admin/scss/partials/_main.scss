@@ -1397,23 +1397,16 @@ html {
 .ncpi .pi-cards {
   margin-bottom: 25px;
 }
-.ncpi .pi-cards .row > div {
-  padding-right: 7px;
-}
-@media screen and (max-width: 550px) {
-  .ncpi .pi-cards .row > div {
-    padding-right: 15px;
-  }
-}
 .ncpi .pi-cards h2 {
   font-size: 24px;
   font-weight: 500;
   margin-bottom: 20px;
 }
 .ncpi .pi-cards .pi-cards-content {
-  border-radius: 5px;
+  border-radius: 8px;
   padding: 20px;
   background: #fff;
+  border: 1px solid #dddddda8;
 }
 .ncpi .pi-cards .pi-cards-content span {
   padding: 7px;
@@ -1517,6 +1510,12 @@ html {
     padding-left: 40px;
   }
 }
+@media screen and (max-width: 768px) {
+  .ncpi .pi-mediun-search-bar .pi-search-input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
 .ncpi .pi-mediun-search-bar svg {
   top: 7px;
 }
@@ -1544,8 +1543,8 @@ html {
   padding: 20px 30px;
   border: 1px solid #edf2f7;
   border-radius: 10px;
-  height: 130px;
   margin-bottom: 15px;
+  box-shadow: 0px 2.95074px 4.60099px rgba(0, 0, 0, 0.07);
 }
 .ncpi .pi-item-main-content .pi-item-content .pi-add-item-text {
   margin-left: 20px;
@@ -1684,10 +1683,11 @@ html {
 .ncpi .pi-pagination .pi-next span,
 .ncpi .pi-pagination .pi-previous span {
   padding: 6px 12px;
-  border: 1px solid #CBD5E0;
+  border: 1px solid #dddddda8;
   margin-left: -1px;
   font-size: 18px;
   font-weight: 500;
+  background-color: #fff;
 }
 .ncpi .pi-pagination li.pi-previous span {
   border-radius: 5px;
@@ -1703,13 +1703,16 @@ html {
 .ncpi .pi-pagination li:nth-last-of-type(2) a {
   border-radius: 0 5px 5px 0;
 }
+.ncpi .pi-pagination li.pi-break {
+  margin-top: -2px;
+}
 .ncpi .pi-pagination li a {
   padding: 8px 12px;
-  border: 1px solid #cbd5e0;
+  border: 1px solid #dddddda8;
   margin-left: -1px;
-  color: #4a5568;
+  color: #718096;
   font-size: 14px;
-  font-weight: 600;
+  background-color: #fff;
 }
 .ncpi .pi-pagination li a.pi-active,
 .ncpi .pi-pagination li a:hover {
@@ -1986,8 +1989,8 @@ html {
 .ncpi .pi-modal-content .pi-close {
   background: #fff;
   position: absolute;
-  top: 50%;
-  right: -22px;
+  top: 25%;
+  right: -55px;
   padding: 5px;
   border-radius: 50%;
   width: 45px;
@@ -1995,7 +1998,6 @@ html {
   line-height: 50px;
   text-align: center;
   cursor: pointer;
-  box-shadow: rgba(136, 138, 141, 0.18) 0px 0px 4px;
   transform: translateY(-50%);
 }
 .ncpi .pi-modal-content .pi-close svg path {
@@ -2076,7 +2078,7 @@ html {
 }
 .ncpi .pi-modal-sidebar .pi-content {
   padding: 20px 35px 15px;
-  height: calc(100vh - 246px);
+  height: calc(100vh - 253px);
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-modal-sidebar .pi-content {
@@ -2127,10 +2129,11 @@ html {
   border: none;
   font-size: 14px;
   padding: 6px 14px !important;
+  border-radius: 5px;
 }
 .ncpi .pi-modal-sidebar-two .pi-modal-header .pi-btn-medium {
   background: #16B21D;
-  border-radius: 0;
+  border-radius: 5px;
   border: none;
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-head {
@@ -2234,7 +2237,7 @@ html {
   margin: 0;
   padding: 0;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 45px;
 }
 .ncpi .pi-welcome-tabs-content .pi-tabs:before {
   content: "";
@@ -3252,6 +3255,15 @@ html {
 .ncpi .pi-mt-25 {
   margin-top: 25px;
 }
+.ncpi .pi-mt-90 {
+  margin-top: 90px;
+}
+.ncpi .pi-mt-m-15 {
+  margin-top: -15px;
+}
+.ncpi .pi-mt-60 {
+  margin-top: 60px;
+}
 .ncpi .pi-ml-55 {
   margin-left: 55px;
 }
@@ -3277,12 +3289,6 @@ html {
   margin: auto;
   display: block !important;
   margin-top: 30px;
-}
-.ncpi .pi-gradient {
-  background: linear-gradient(to bottom, #ffffff6b 0%, #00000004 100%);
-}
-.ncpi .pi-box-shodow {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 7px -3px, rgba(0, 0, 0, 0.06) 0px 2px 0px -1px;
 }
 .ncpi .pi-mt-5 {
   margin-top: 5px;
@@ -3315,12 +3321,21 @@ html {
 .ncpi .pi-p-40 {
   padding: 40px 30px !important;
 }
+.ncpi .pi-p-8 {
+  padding: 8px 15px !important;
+}
 .ncpi .pi-gap > div {
   padding: 10px;
 }
 .ncpi .pi-margin-l-r {
   margin-right: -10px;
   margin-left: -10px;
+}
+.ncpi .pi-gradient {
+  background: linear-gradient(to bottom, #ffffff6b 0%, #00000004 100%);
+}
+.ncpi .pi-box-shodow {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 7px -3px, rgba(0, 0, 0, 0.06) 0px 2px 0px -1px;
 }
 .ncpi .pi-bg-hover-blue:hover {
   background: linear-gradient(180deg, #365DFD 0%, #123DEE 100%) !important;

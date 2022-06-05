@@ -65,10 +65,10 @@ class Form extends Component {
                         });
                     } else {
                         let form = { ...this.state.form }
-                        form.stage_id = resp.data.data.stages[0];
+                        // form.stage_id = resp.data.data.stages[0];
                         this.setState({
                             form,
-                            stages: resp.data.data.stages,
+                            // stages: resp.data.data.stages,
                             tags: resp.data.data.tags,
                         });
                     }
@@ -104,6 +104,7 @@ class Form extends Component {
                 let id = resp.data.data;
                 this.props.close();
                 this.props.router.navigate(`/deal/single/${id}`, { replace: true }); 
+                this.props.reload();
             } else {
                 resp.data.data.forEach(function (value, index, array) {
                     toast.error(value);

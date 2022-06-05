@@ -54,6 +54,9 @@
 .ncpi .pi-list-single-button-content .pi-btn-medium.pi-bg-stroke {
   padding: 8px 15px !important;
 }
+.ncpi .pi-list-single-button-content .pi-btn-medium.pi-bg-stroke.pi-invite {
+  padding: 10px 15px !important;
+}
 .ncpi .pi-list-single-button-content .pi-select {
   margin-bottom: 30px;
   text-align: right;
@@ -78,7 +81,6 @@
   color: #4A5568;
   margin-left: 5px;
   border-radius: 4px;
-  border: 1px solid #dddddda8;
   line-height: 15px;
 }
 .ncpi .pi-list-single-button-content button img {
@@ -87,7 +89,7 @@
   left: -3px;
 }
 .ncpi .pi-list-single-button-content .pi-action-btn {
-  top: 5px;
+  top: 6px;
   padding: 5px 0px;
 }
 .ncpi .pi-list-single-button-content .pi-action-btn button {
