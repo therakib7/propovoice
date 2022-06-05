@@ -20,7 +20,7 @@ class ListSingle extends Component {
             tabs: [
                 {
                     id: 'task',
-                    text: 'Activity and Task'
+                    text: 'Task & Activity'
                 },
                 {
                     id: 'note',
@@ -156,7 +156,7 @@ class ListSingle extends Component {
                                             </select>
                                         </div>
                                         <button
-                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
+                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
                                             onClick={() => this.setState({ dealModal: true })}
                                         >
                                             <svg
@@ -302,7 +302,7 @@ class ListSingle extends Component {
                                             </select>
                                         </div>
                                         <button
-                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
+                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
                                             onClick={() => this.setState({ projectModal: true })}
                                         >
                                             <svg
@@ -440,7 +440,7 @@ class ListSingle extends Component {
                                                 <option value="audi">Audi</option>
                                             </select>
                                         </div>
-                                        <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow">
+                                        <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2">
                                             Mark as completed
                                         </button>
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-invite">

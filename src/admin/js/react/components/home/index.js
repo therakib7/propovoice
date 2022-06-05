@@ -15,6 +15,7 @@ const Client = lazy(() => import('components/client'));
 
 const Lead = lazy(() => import('components/lead'));
 const Deal = lazy(() => import('components/deal'));
+const Task = lazy(() => import('components/task'));
 const ListSingle = lazy(() => import('components/list-single'));
 
 const Project = lazy(() => import('components/project'));
@@ -315,6 +316,9 @@ const Home = () => {
 
                                     <Route path="/deal" exact element={<Deal />} />
                                     <Route path="/deal/single/:id" exact element={<ListSingle />} />
+
+                                    <Route path="/task" exact element={<Task />} />
+                                    <Route path="/task/single/:id" exact element={<ListSingle />} />
 
                                     <Route path="/project" exact element={<Project />} />
                                     <Route path="/project/single/:id" exact element={<ListSingle />} />

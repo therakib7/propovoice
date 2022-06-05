@@ -239,3 +239,7 @@ input:checked+.pi-switch-slider:before {
         justify-content: center!important;
     }
 } 
+//TODO: this class already exist just add important
+.ncpi .pi-modal-sidebar {
+    margin: 0 !important;
+}

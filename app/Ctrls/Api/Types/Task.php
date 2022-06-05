@@ -68,63 +68,80 @@ class Task
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
-        $offset = 0;
+        $offset = 0; 
 
-        $tab_id = $request['tab_id'];
-
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
+        $tab_id = isset($params['tab_id']) ? absint($req['tab_id']) : false;
+
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
         }
 
         $args = array(
             'post_type' => 'ndpi_task',
             'post_status' => 'publish',
-            'posts_per_page' => -1, 
+            'posts_per_page' => -1,
         );
+
+        if ( ! $tab_id ) {
+            $args['posts_per_page'] = $per_page;
+            $args['offset'] = $offset; 
+        }
 
         $args['meta_query'] = array(
             'relation' => 'OR'
         );
- 
-        $args['meta_query'][] = array(
-            array(
-                'key'     => 'tab_id',
-                'value'   => $tab_id,
-                'compare' => '='
-            )
-        ); 
 
-        $query = new WP_Query($args);
+        if ( $tab_id ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'     => 'tab_id',
+                    'value'   => $tab_id,
+                    'compare' => '='
+                )
+            );
+        }
+
+        $query = new WP_Query( $args );
         $total_data = $query->found_posts; //use this for pagination 
         $result = [];
+
         $data = [
             'today' => [],
             'other' => [],
             'unschedule' => [],
         ];
+
+        if ( ! $tab_id ) {
+            $data = [];
+        }
+        
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
 
             $query_data = [];
-            $query_data['id'] = $id;  
-            $query_data['title'] = get_the_title();  
-            $query_data['desc'] = get_the_content(); 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['id'] = $id;
+            $query_data['title'] = get_the_title();
+            $query_data['desc'] = get_the_content();
+            $query_data['date'] = get_the_time('j-M-Y'); 
 
-            if ( false ) { // TODO: check unschedule
-                $data['unschedule'][] = $query_data;
-            } else if ( true ) { // TODO: check today 
-                $data['today'][] = $query_data;
-            } else { 
-                $data['other'][] = $query_data;
+            if ( $tab_id ) {
+                if ( false ) { //TODO: check unschedule
+                    $data['unschedule'][] = $query_data;
+                } else if ( true ) { //TODO: check today 
+                    $data['today'][] = $query_data;
+                } else {
+                    $data['other'][] = $query_data;
+                }
+            } else {
+                $data[] = $query_data;
             }
         }
         wp_reset_postdata();
@@ -142,28 +159,28 @@ class Task
         $query_data = [];
         $query_data['id'] = $id;
 
-        $query_data['title'] = get_the_title(); 
-        $query_data['desc'] = get_the_content(); 
+        $query_data['title'] = get_the_title();
+        $query_data['desc'] = get_the_content();
         // $query_data['desc'] = get_post_meta($id, 'title', true); 
 
         wp_send_json_success($query_data);
     }
 
     public function create($req)
-    { 
+    {
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $tab_id   = isset($params['tab_id']) ? absint($req['tab_id']) : null; 
-        $title   = isset($params['title']) ? sanitize_text_field($req['title']) : null; 
+        $tab_id   = isset($params['tab_id']) ? absint($req['tab_id']) : null;
+        $title   = isset($params['title']) ? sanitize_text_field($req['title']) : null;
 
-        if ( empty($tab_id) ) {
+        if (empty($tab_id)) {
             $reg_errors->add('field', esc_html__('Tab ID is missing', 'propovoice'));
         }
 
-        if ( empty($title) ) {
+        if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
-        } 
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -180,7 +197,7 @@ class Task
 
             if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'tab_id', $tab_id); 
+                update_post_meta($post_id, 'tab_id', $tab_id);
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -193,12 +210,12 @@ class Task
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $title = isset($params['title']) ? sanitize_text_field($req['title']) : null; 
-        $desc = isset($params['desc']) ? sanitize_text_field($req['desc']) : null; 
+        $title = isset($params['title']) ? sanitize_text_field($req['title']) : null;
+        $desc = isset($params['desc']) ? sanitize_text_field($req['desc']) : null;
 
         if (empty($title)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        } 
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());

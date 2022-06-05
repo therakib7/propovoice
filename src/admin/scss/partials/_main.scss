@@ -907,16 +907,11 @@ html {
   height: 25px;
 }
 .ncpi .pi-table .pi-dropdown-content a {
-  color: black;
-  padding: 13px 30px;
-  text-decoration: none;
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
   text-align: left;
 }
 .ncpi .pi-table .pi-dropdown a:hover {
-  background-color: #edf2f7;
+  background-color: var(--bg-color-deutzia-white);
+  color: black;
 }
 .ncpi .pi-table .pi-show {
   display: block;
@@ -1190,10 +1185,6 @@ html {
 .ncpi .pi-table-three td:nth-child(2) span {
   margin-left: 15px;
   color: #4A5568;
-}
-.ncpi .pi-table-three .pi-dropdown-content {
-  left: -70px;
-  top: 28px;
 }
 .ncpi .pi-table-three td:nth-child(n+3) .pi-avater {
   justify-content: center;
@@ -2151,7 +2142,7 @@ html {
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-content ul li input[type=checkbox] {
   position: relative;
-  top: 2px;
+  top: 1px;
   margin-right: 5px;
 }
 .ncpi .pi-range {
@@ -2255,22 +2246,19 @@ html {
   font-size: 14px;
   position: relative;
 }
-.ncpi .pi-welcome-tabs-content .pi-tab .pi-done:hover,
 .ncpi .pi-welcome-tabs-content .pi-tab .pi-done {
   position: absolute;
   top: 0px;
-  background: #4c6fff;
+  background: #4c6fff !important;
   text-align: center;
   line-height: 45px;
   z-index: 6;
   opacity: 1;
   border: 2px solid #4c6fff !important;
 }
-.ncpi .pi-welcome-tabs-content .pi-tab .pi-done:hover svg path,
 .ncpi .pi-welcome-tabs-content .pi-tab .pi-done svg path {
   fill: var(--text-color-white);
 }
-.ncpi .pi-welcome-tabs-content .pi-tab .pi-done:hover svg,
 .ncpi .pi-welcome-tabs-content .pi-tab .pi-done svg {
   left: 1px;
   top: -15px;
@@ -2280,9 +2268,6 @@ html {
   .ncpi .pi-welcome-tabs-content .pi-tab {
     font-size: 12px;
   }
-}
-.ncpi .pi-welcome-tabs-content .pi-tab.pi-active span {
-  border: 2px solid #4c6fff !important;
 }
 .ncpi .pi-welcome-tabs-content .pi-tab.pi-active {
   color: var(--bg-color-black);
@@ -2955,8 +2940,9 @@ html {
 .ncpi .pi-search-btn {
   display: flex;
 }
-.ncpi .pi-search-btn .pi-search-form {
-  margin-left: -4px;
+.ncpi .pi-search-btn .pi-active {
+  border-radius: 8px 0 0 8px !important;
+  border-right: 0;
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-search-btn .pi-search-form {
@@ -3204,7 +3190,7 @@ html {
   content: "";
   height: 12px;
   width: 12px;
-  left: -9px;
+  left: 2px;
   bottom: 2px;
   background-color: white;
   transition: 0.4s;
@@ -3216,7 +3202,7 @@ html {
   box-shadow: 0 0 1px #4C6FFF;
 }
 .ncpi input:checked + .pi-slider:before {
-  transform: translateX(26px);
+  transform: translateX(14px);
 }
 .ncpi .pi-slider.pi-round {
   border-radius: 34px;
@@ -3267,6 +3253,9 @@ html {
 .ncpi .pi-ml-55 {
   margin-left: 55px;
 }
+.ncpi .pi-mr-10 {
+  margin-right: 10px;
+}
 .ncpi .pi-ml-45 {
   margin-left: 45px;
 }
@@ -3276,6 +3265,10 @@ html {
 .ncpi .pi-mt-2 {
   position: relative;
   top: 3px;
+}
+.ncpi .pi-mt-m-2 {
+  position: relative;
+  top: -2px;
 }
 .ncpi .pi-mt-4 {
   position: relative !important;
@@ -3706,6 +3699,7 @@ select {
 
 .pi-bg-blue {
   background: linear-gradient(180deg, #4C6FFF 0%, #3157F0 99.99%, rgba(76, 111, 255, 0) 100%) !important;
+  border: none !important;
 }
 
 .pi-bg-shadow {

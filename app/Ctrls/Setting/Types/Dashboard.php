@@ -33,6 +33,10 @@ class Dashboard
 
         $settings_menu = [
             [
+				'id' => 'task',
+				'label' => esc_html__('Task & Activity', 'propovoice'),
+            ],
+            [
 				'id' => 'lead',
 				'label' => esc_html__('Lead', 'propovoice'),
 			],
