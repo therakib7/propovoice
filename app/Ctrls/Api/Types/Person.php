@@ -4,7 +4,7 @@ namespace Ncpi\Ctrls\Api\Types;
 
 use WP_Query;
 
-class Contact
+class Person
 {
 
     public function __construct()
@@ -15,7 +15,7 @@ class Contact
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/contacts', [
+        register_rest_route('ncpi/v1', '/persons', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -28,7 +28,7 @@ class Contact
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/contacts/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/persons/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +41,7 @@ class Contact
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/contacts/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/persons/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -54,7 +54,7 @@ class Contact
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/contacts/(?P<id>[0-9,]+)', array(
+        register_rest_route('ncpi/v1', '/persons/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -82,7 +82,7 @@ class Contact
         }
 
         $args = array(
-            'post_type' => 'ndpi_contact',
+            'post_type' => 'ndpi_person',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -178,23 +178,23 @@ class Contact
             $query_data['tags'] = $tagList;
         }
 
-        $contact_id = $id;
-        $contactData = [];
+        $person_id = $id;
+        $personData = [];
 
-        if ($contact_id) {
-            $contactData['id'] = absint($contact_id);
-            $contactMeta = get_post_meta($contact_id);
-            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-            $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : '';
-            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
-            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
-            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
-            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
-            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
+        if ($person_id) {
+            $personData['id'] = absint($person_id);
+            $personMeta = get_post_meta($person_id);
+            $personData['first_name'] = isset($personMeta['first_name']) ? $personMeta['first_name'][0] : '';
+            $personData['last_name'] = isset($personMeta['last_name']) ? $personMeta['last_name'][0] : '';
+            $personData['org_name'] = isset($personMeta['org_name']) ? $personMeta['org_name'][0] : '';
+            $personData['email'] = isset($personMeta['email']) ? $personMeta['email'][0] : '';
+            $personData['mobile'] = isset($personMeta['mobile']) ? $personMeta['mobile'][0] : '';
+            $personData['web'] = isset($personMeta['web']) ? $personMeta['web'][0] : '';
+            $personData['country'] = isset($personMeta['country']) ? $personMeta['country'][0] : '';
+            $personData['region'] = isset($personMeta['region']) ? $personMeta['region'][0] : '';
+            $personData['address'] = isset($personMeta['address']) ? $personMeta['address'][0] : '';
         }
-        $query_data['contact'] = $contactData;
+        $query_data['person'] = $personData;
 
         $query_data['date'] = get_the_time('j-M-Y');
 
@@ -230,7 +230,7 @@ class Contact
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_contact',
+                'post_type' => 'ndpi_person',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',

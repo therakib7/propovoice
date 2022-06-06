@@ -58,7 +58,7 @@ export default class Form extends Component {
                     /> 
                 </div>
                 <div className="pi-search-btn">
-                    <button onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
+                    <button className={this.state.searchModal ? 'pi-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
                         <svg
                             width={20}
                             height={20}

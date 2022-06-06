@@ -734,17 +734,7 @@ class Invoice extends Component {
 															<label htmlFor="date">{title} date:</label>
 														</div>
 														<div className="pi-info-input-field">
-															<DateField date={invoice.date} type='date' onDateChange={this.onDateChange} />
-															{false && <span>
-																<svg
-																	xmlns="http://www.w3.org/2000/svg"
-																	x="0px"
-																	y="0px"
-																	viewBox="0 0 1000 1000"
-																>
-																	<path d="M867.2 131.4h-58.5V53.6c0-24.6-20.2-44.8-44.8-44.8h-2.4c-24.6 0-44.8 20.2-44.8 44.8v77.8h-430V53.6c0-24.6-20.2-44.8-44.8-44.8h-2.4c-24.6 0-44.8 20.2-44.8 44.8v77.8h-61.9C65.3 131.4 10 186.7 10 254.2v614.1c0 67.6 55.3 122.8 122.8 122.8h734.4c67.6 0 122.8-55.3 122.8-122.8V254.2c0-67.5-55.3-122.8-122.8-122.8zM900.4 899H100.8V407.8h799.6V899zm0-584.6H100.8V221h799.6v93.4z" />
-																</svg>
-															</span>}
+															<DateField date={invoice.date} type='date' onDateChange={this.onDateChange} /> 
 														</div>
 													</div>
 

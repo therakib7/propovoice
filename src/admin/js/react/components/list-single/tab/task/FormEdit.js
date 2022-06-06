@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import Select from 'react-select';
-import ApiTaxonomy from 'api/taxonomy';
+// import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+// import Select from 'react-select';
+// import ApiTaxonomy from 'api/taxonomy';
+
+import Checklist from './Checklist';
 
 class Form extends Component {
     constructor(props) {
@@ -14,6 +16,7 @@ class Form extends Component {
             title: '',
             desc: '',
             note: '',
+            checklist: null,
         };
 
         this.state = {
@@ -59,8 +62,15 @@ class Form extends Component {
         this.setState({ form: this.initialState });
     }
 
+    handleChecklistChange = (data) => {
+		let invoice = { ...this.state.invoice }
+		invoice.group = data;
+		this.setState({ invoice })
+	}
+ 
+
     render() {
-        const form = this.state.form;
+        const form = this.state.form; 
 
         return (
             <div className="pi-overlay">
@@ -114,7 +124,7 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
-                            <div className="row">
+                                <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="title">
                                             Title
@@ -198,7 +208,7 @@ class Form extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-desc">
@@ -232,67 +242,7 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col">
-                                        <div className="pi-checklist-head">
-                                            <span>Checklist</span>
-                                            <span className="pi-float-right">45 Done</span>
-                                        </div>
-                                        <div className="pi-checklist-content">
-                                            <ul>
-                                                <li>
-                                                    <input type="checkbox" />
-                                                    Checkbox
-                                                </li>
-                                                <li>
-                                                    <input type="checkbox" />
-                                                    Preparation
-                                                </li>
-                                                <li>
-                                                    <input type="checkbox" />
-                                                    Mail
-                                                </li>
-                                                <li>
-                                                    <input type="checkbox" />
-                                                    Feedback
-                                                </li>
-                                                <li>
-                                                    <input type="checkbox" />
-                                                    Update
-                                                </li>
-                                                <li>
-                                                    <input type="checkbox" />
-                                                    Testing
-                                                </li>
-                                                <li>
-                                                    <input type="checkbox" />
-                                                    Checkbox
-                                                </li>
-                                            </ul>
-                                            <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow pi-bg-shadow">
-                                                <svg
-                                                    width={12}
-                                                    height={12}
-                                                    viewBox="0 0 12 12"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path
-                                                        d="M1.875 6H10.125"
-                                                        stroke="#2D3748"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-                                                    <path
-                                                        d="M6 1.875V10.125"
-                                                        stroke="#2D3748"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-                                                </svg>
-                                                Add an Item
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} /> 
                                 </div>
                             </div>
                         </div>
