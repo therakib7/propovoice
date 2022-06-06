@@ -31,7 +31,8 @@ const InvoiceSingle = lazy(() => import('components/invoice/single'));
 const Payment = lazy(() => import('components/payment'));
 const Business = lazy(() => import('components/business'));
 
-const Contact = lazy(() => import('components/contact'));
+const ContactPerson = lazy(() => import('components/contact/person'));
+const ContactOrg = lazy(() => import('components/contact/org'));
 // const ContactSummary = lazy(() => import('components/contact/summary'));
 
 const Setting = lazy(() => import('components/setting'));
@@ -341,7 +342,8 @@ const Home = () => {
                                     <Route path="/payment" element={<Payment />} /> 
                                     <Route path="/business" element={<Business />} /> 
 
-                                    <Route path="/contact" exact element={<Contact />} />
+                                    <Route path="/contact/person" exact element={<ContactPerson />} />
+                                    <Route path="/contact/organization" exact element={<ContactOrg />} />
                                     <Route path="/contact/single/:id" exact element={<ListSingle />} />
 
                                     <Route path="/setting" element={<Setting />} />

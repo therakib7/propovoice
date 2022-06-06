@@ -1,4 +1,5 @@
- 
+import { useNavigate } from 'react-router-dom';
+import Breadcrumb from 'block/breadcrumb';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
 
@@ -9,13 +10,18 @@ import Empty from 'block/empty';
 
 import Crud from 'hoc/Crud';
 
-const Person = (props) => {
+const Org = (props) => {
+
+    const navigate = useNavigate();  
+
     const { title, lists, checkedBoxes, searchVal } = props.state;
     return (
-        <div className="ncpi-components">             
+        <div className="ncpi-components">
+            <Breadcrumb title='Contact Book' /> 
+            
             <div className="row">
                 <div className="col-lg-6">
-                    <h2 className="pi-page-title">{title}</h2>
+                    <h2 className="pi-page-title">Contact Book</h2>
                 </div>
                 <div className="col-lg-6 pi-text-right">
                     <button 
@@ -170,6 +176,21 @@ const Person = (props) => {
                 handleSubmit={props.getLists} 
             />
 
+            <div className="pi-small-button-group pi-mb-30">
+                <button 
+                    className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
+                    onClick={() => navigate(`/contact/person`, { replace: true })}
+                >
+                    Person
+                </button>
+                <button 
+                    className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
+                    onClick={() => navigate(`/contact/organization`, { replace: true })}
+                >
+                    Organization
+                </button>
+            </div>
+
             {props.state.formModal && <Form
                 handleSubmit={props.handleSubmit} 
                 modalType={props.state.formModalType}
@@ -186,4 +207,4 @@ const Person = (props) => {
     );
 }
 
-export default Crud(Person, 'person');
+export default Crud(Org, 'organization');

@@ -249,7 +249,8 @@ input:checked+.pi-switch-slider:before {
         -webkit-appearance: none;
         -moz-appearance: none;
         background: transparent;
-        background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        // background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-image: url("data:image/svg+xml;utf8,<svg width='11' height='7' viewBox='0 0 11 7' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915' stroke='#CBD5E0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
         background-repeat: no-repeat;
         background-position-x: 100%;
         background-position-y: 5px;  

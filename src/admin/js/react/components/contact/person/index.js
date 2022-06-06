@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import Breadcrumb from 'block/breadcrumb';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
@@ -10,6 +12,9 @@ import Empty from 'block/empty';
 import Crud from 'hoc/Crud';
 
 const Contact = (props) => {
+
+    const navigate = useNavigate(); 
+
     const { title, lists, checkedBoxes, searchVal } = props.state;
     return (
         <div className="ncpi-components">
@@ -173,10 +178,16 @@ const Contact = (props) => {
             />
 
             <div className="pi-small-button-group pi-mb-30">
-                <button className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                <button 
+                    className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
+                    onClick={() => navigate(`/contact/person`, { replace: true })}
+                >
                     Person
                 </button>
-                <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                <button 
+                    className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
+                    onClick={() => navigate(`/contact/organization`, { replace: true })}
+                >
                     Organization
                 </button>
             </div>

@@ -14,6 +14,7 @@ use Ncpi\Ctrls\Api\Types\Invoice;
 use Ncpi\Ctrls\Api\Types\Lead;
 use Ncpi\Ctrls\Api\Types\Media;
 use Ncpi\Ctrls\Api\Types\Note;
+use Ncpi\Ctrls\Api\Types\Org;
 use Ncpi\Ctrls\Api\Types\Payment;
 use Ncpi\Ctrls\Api\Types\PaymentProcess;
 use Ncpi\Ctrls\Api\Types\Project;
@@ -34,6 +35,7 @@ class ApiController
 		new Client();
 		new Deal(); 
 		new Person();
+		new Org();
 		new Project();
 		new Proposal();
 		new Invoice();

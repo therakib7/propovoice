@@ -69,12 +69,17 @@ class Dashboard
         $settings_menu = apply_filters( 'ncpi_sidebar_menu', $settings_menu ); 
 
         foreach( $settings_menu as $menu ) {
+            $menu_id = $menu['id'];
+            if ( $menu_id == 'contact' ) {
+                $menu_id = $menu_id . '/person';
+            }
+
             add_submenu_page(
                 'ncpi',
                 $menu['label'],
                 $menu['label'],
                 'manage_options',
-                'ncpi#/' . $menu['id'],
+                'ncpi#/' . $menu_id,
                 array($this, 'render')
             );
         }  
