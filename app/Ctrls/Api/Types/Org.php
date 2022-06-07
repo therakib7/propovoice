@@ -112,10 +112,10 @@ class Org
             $query_data = [];
             $query_data['id'] = $id;
 
+            $query_data['name'] = get_the_title();
             $query_data['first_name'] = get_post_meta($id, 'first_name', true);
             $query_data['last_name'] = get_post_meta($id, 'last_name', true);
             $query_data['email'] = get_post_meta($id, 'email', true);
-            $query_data['org_name'] = get_post_meta($id, 'org_name', true);
             $query_data['web'] = get_post_meta($id, 'web', true);
             $query_data['mobile'] = get_post_meta($id, 'mobile', true);
             $query_data['country'] = get_post_meta($id, 'country', true);
@@ -155,7 +155,7 @@ class Org
         $query_data['first_name'] = get_post_meta($id, 'first_name', true);
         $query_data['last_name'] = get_post_meta($id, 'last_name', true);
         $query_data['email'] = get_post_meta($id, 'email', true);
-        $query_data['org_name'] = get_post_meta($id, 'org_name', true);
+        $query_data['name'] = get_post_meta($id, 'name', true);
         $query_data['web'] = get_post_meta($id, 'web', true);
         $query_data['mobile'] = get_post_meta($id, 'mobile', true);
         $query_data['country'] = get_post_meta($id, 'country', true);
@@ -187,7 +187,7 @@ class Org
         $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
         $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
+        $name = isset($params['name']) ? sanitize_text_field($req['name']) : null;
         $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
         $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
@@ -195,7 +195,7 @@ class Org
         $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
         $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
 
-        if ( empty($first_name) ) {
+        if ( empty($name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
@@ -209,7 +209,7 @@ class Org
 
             $data = array(
                 'post_type' => 'ndpi_org',
-                'post_title'    => $first_name,
+                'post_title'    => $name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
                 'post_author'   => get_current_user_id()
@@ -230,8 +230,8 @@ class Org
                     update_post_meta($post_id, 'email', $email);
                 }
 
-                if ($org_name) {
-                    update_post_meta($post_id, 'org_name', $org_name);
+                if ($name) {
+                    update_post_meta($post_id, 'name', $name);
                 }
 
                 if ($web) {
@@ -273,7 +273,7 @@ class Org
         $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
         $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
+        $name = isset($params['name']) ? sanitize_text_field($req['name']) : null;
         $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
         $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
@@ -281,7 +281,7 @@ class Org
         $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
         $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
 
-        if (empty($first_name)) {
+        if (empty($name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
@@ -297,7 +297,7 @@ class Org
 
             $data = array(
                 'ID'            => $post_id,
-                'post_title'    => $first_name,
+                'post_title'    => $name,
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
@@ -316,8 +316,8 @@ class Org
                     update_post_meta($post_id, 'email', $email);
                 }
 
-                if ($org_name) {
-                    update_post_meta($post_id, 'org_name', $org_name);
+                if ($name) {
+                    update_post_meta($post_id, 'name', $name);
                 }
 
                 if ($web) {

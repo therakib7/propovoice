@@ -113,6 +113,7 @@ class Project
             $query_data['id'] = $id;
 
             $queryMeta = get_post_meta($id);
+            $query_data['title'] = get_the_title();
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['level_id'] = '';

@@ -27,7 +27,7 @@ const Task = (props) => {
 
             <div className="pi-small-button-group">
                 <h3 className="pi-title-small">My Work</h3>
-                <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                <button className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
                     To do
                 </button>
                 <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">

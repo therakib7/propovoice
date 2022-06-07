@@ -15,7 +15,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Contact Name
+                    Project Title
                 </th>
                 <th>
                     <svg
@@ -38,7 +38,7 @@ const TableHeader = props => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Email
+                    client
                 </th>
                 <th>
                     <svg
@@ -55,7 +55,24 @@ const TableHeader = props => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Lead Level
+                    Start Date
+                </th>
+                <th>
+                    <svg
+                        width={15}
+                        height={10}
+                        viewBox="0 0 15 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M11.15 9.275L14 5 11.15.725A.493.493 0 0010.731.5H1.5A.5.5 0 001 1v8a.5.5 0 00.5.5h9.231a.494.494 0 00.419-.225v0z"
+                            stroke="#718096"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                    Budget
                 </th>
                 <th>
                     <svg
@@ -73,7 +90,7 @@ const TableHeader = props => {
                         />
                         <path d="M5.25 6a.75.75 0 100-1.5.75.75 0 000 1.5z" fill="#718096" />
                     </svg>
-                    Tag
+                    Status
                 </th>
                 <th>
                     Date
@@ -119,35 +136,12 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>
-                    <div className="pi-avater">
-                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
-                        <span>{row.contact.first_name}</span>
-                    </div>
-                </td>
+                <td>{row.title}</td>
                 <td>{row.contact.email}</td>
+                <td>22 April, 2022</td>
+                <td>${row.budget}</td>
                 <td>
-                    <span className="pi-badge pi-bg-orange">
-                        <svg
-                            width="6"
-                            height="6"
-                            viewBox="0 0 6 6"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <circle cx="3" cy="3" r="3" fill="#F68A0B" />
-                        </svg>
-                        {row.level_id && row.level_id.label}
-                    </span>
-                </td>
-                <td>
-                    {
-                        row.tags && row.tags.map((tag, tagIndex) => {
-                            return (
-                                <span key={tagIndex} className="pi-badge">{tag.label}</span>
-                            )
-                        })
-                    }
+                    <span className="pi-badge">Status</span>
                 </td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">

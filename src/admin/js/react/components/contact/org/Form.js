@@ -10,7 +10,7 @@ class Form extends Component {
             id: null,
             first_name: '',
             last_name: '',
-            org_name: '',
+            name: '',
             email: '',
             web: '',
             mobile: '',
@@ -103,16 +103,15 @@ class Form extends Component {
                             <div className="pi-form-style-one">
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-org_name">
-                                            Company/Organization Name
+                                        <label htmlFor="form-name">
+                                            Organization Name
                                         </label>
 
                                         <input
-                                            id="form-org_name"
+                                            id="form-name"
                                             type="text"
-                                            name="org_name"
-                                            value={this.state.form.org_name}
+                                            name="name"
+                                            value={this.state.form.name}
                                             onChange={this.handleChange}
                                         />
                                     </div>
