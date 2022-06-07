@@ -144,7 +144,7 @@ const TableBody = props => {
                     {
                         row.tags && row.tags.map((tag, tagIndex) => {
                             return (
-                                <span key={tagIndex} className="pi-badge">{tag.label}</span>
+                                <span key={tagIndex} className="pi-badge pi-mr-5">{tag.label}</span>
                             )
                         })
                     }

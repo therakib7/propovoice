@@ -830,6 +830,7 @@ html {
   padding: 5px 0;
   color: #8492A6;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 .ncpi .pi-table tr th svg {
   position: relative;
@@ -1120,55 +1121,78 @@ html {
   margin-left: 5px;
   outline: none;
 }
-.ncpi .pi-table-two input[type=checkbox] {
-  position: relative;
-  top: -7px;
+.ncpi .pi-accordion-table-list {
+  display: flex;
+  margin-bottom: 20px;
 }
-.ncpi .pi-table-two tr {
+.ncpi .pi-accordion-table-list .pi-checkbox {
+  width: 45px;
+  padding: 17px 0;
+}
+.ncpi .pi-accordion-table-list ul {
+  display: grid;
+  margin: 0;
+  border: 1px solid #dddddda8;
+  padding: 20px 10px 20px 0px;
+  width: 100%;
   border-radius: 5px;
+  grid-template-columns: auto auto auto auto auto;
 }
-.ncpi .pi-table-two tr td {
-  font-size: 12px;
+.ncpi .pi-accordion-table-list ul li:first-child {
+  display: flex;
+  margin-top: -10px;
+  margin-left: -15px;
 }
-.ncpi .pi-table-two tr td:nth-child(3) svg {
+.ncpi .pi-accordion-table-list ul li:nth-child(n+2) {
+  padding-top: 7px;
+}
+.ncpi .pi-accordion-table-list ul li:nth-child(2) svg {
   position: relative;
   top: 2px;
+  margin-right: 7px;
 }
-.ncpi .pi-table-two tr td:nth-child(2) {
-  display: flex;
+.ncpi .pi-accordion-table-list ul li:nth-child(n+3) {
+  text-align: right;
 }
-.ncpi .pi-table-two tr td:nth-child(2) h4 {
+.ncpi .pi-accordion-table-list ul li {
+  color: #718096;
+  font-size: 12px;
+}
+.ncpi .pi-accordion-table-list ul li .pi-badge {
+  font-weight: 500;
+  color: #F68A0B;
+}
+.ncpi .pi-accordion-table-list ul li h4 {
   font-size: 12px;
   font-weight: 600;
   color: #4A5568;
 }
-.ncpi .pi-table-two tr td:nth-child(2) .pi-envelope {
+.ncpi .pi-accordion-table-list ul li .pi-envelope {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: 1px solid #dddddda8;
   padding: 6px 5px;
   margin-right: 10px;
+  background-color: #fff;
   text-align: center;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 7px -1px, rgba(0, 0, 0, 0.06) 0px 2px 0px -1px;
+  box-shadow: 0px 4.95074px 6.60099px rgba(0, 0, 0, 0.07);
 }
-.ncpi .pi-table-two tr td:nth-child(2) .pi-envelope svg path {
+.ncpi .pi-accordion-table-list ul li .pi-envelope svg path {
   color: #A0AE #fff;
 }
-.ncpi .pi-table-two tr td:nth-child(2) .pi-envelope-text p {
+.ncpi .pi-accordion-table-list ul li .pi-envelope-text p {
   font-size: 10px;
   color: #a5b0c1;
   margin: 0;
 }
-.ncpi .pi-table-two tr td:nth-child(2) .pi-envelope-text svg {
+.ncpi .pi-accordion-table-list ul li .pi-envelope-text svg {
   position: relative;
   top: 2px;
 }
-.ncpi .pi-table-two tr td:nth-child(2) .pi-table-item-border {
-  border: 1px solid #dddddda8;
-}
-.ncpi .pi-table-two .pi-dropdown {
-  margin-top: 6px;
+.ncpi .pi-accordion-table-list .pi-dropdown-active {
+  text-align: left;
+  left: -25px;
 }
 .ncpi .pi-table-three {
   margin-top: 25px;
@@ -1295,6 +1319,7 @@ html {
   margin-top: 0;
   font-size: 24px;
   font-weight: 700;
+  color: #4a5568;
 }
 .ncpi .pi-right-content .pi-page-title sup {
   font-size: 12px;
@@ -1791,6 +1816,24 @@ html {
   display: block;
 }
 
+.pi-select-small {
+  margin-left: 15px;
+  font-size: 11px !important;
+  color: #F68A0B !important;
+  border: 1px solid #CBD5E0;
+  border-radius: 5px;
+  padding: 13px 40px 13px 15px !important;
+  padding: 8px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 87% !important;
+  background-position-y: 8px;
+  outline: none;
+}
+
 .wp-admin .pi-info-table td input[type=number],
 .wp-admin .pi-info-table td input[type=text] {
   padding: 2px 8px !important;
@@ -1884,7 +1927,7 @@ html {
   bottom: 0;
   left: 0;
   right: -17px;
-  background: rgba(54, 54, 54, 0.7);
+  background: rgba(0, 0, 0, 0.75);
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
@@ -1920,7 +1963,7 @@ html {
 .ncpi .pi-modal-content {
   margin: 30px auto;
   background: #fff;
-  border-radius: 25px;
+  border-radius: 15px;
   position: relative;
   max-width: 760px;
 }
@@ -1940,21 +1983,23 @@ html {
   position: relative;
   border-radius: 25px 25px 0 0;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.06);
-  padding: 45px;
-  background-color: #f8f8fa !important;
+  padding: 55px 55px 45px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8F8FA 100%);
 }
 .ncpi .pi-modal-content .pi-modal-header p {
   margin: 0;
   padding-top: 12px;
+  color: #718096;
 }
 .ncpi .pi-modal-content .pi-modal-title {
   font-size: 24px;
   font-weight: 700;
   text-transform: capitalize;
+  color: #4A5568;
 }
 .ncpi .pi-modal-content .pi-content {
   overflow: auto;
-  padding: 30px 45px 0px;
+  padding: 30px 55px 0px;
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-modal-content .pi-content {
@@ -1962,7 +2007,7 @@ html {
   }
 }
 .ncpi .pi-modal-content .pi-modal-footer {
-  padding: 0 45px 45px;
+  padding: 0 55px 45px;
 }
 .ncpi .pi-modal-content .pi-modal-footer .pi-btn {
   background-color: #fff;
@@ -1981,18 +2026,15 @@ html {
   background: #fff;
   position: absolute;
   top: 25%;
-  right: -55px;
+  right: -65px;
   padding: 5px;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  line-height: 50px;
+  width: 50px;
+  height: 50px;
+  line-height: 52px;
   text-align: center;
   cursor: pointer;
   transform: translateY(-50%);
-}
-.ncpi .pi-modal-content .pi-close svg path {
-  fill: #CBD5E0;
 }
 .ncpi .pi-modal-content .pi-close:hover {
   color: #4e6de9;
@@ -2069,7 +2111,7 @@ html {
 }
 .ncpi .pi-modal-sidebar .pi-content {
   padding: 20px 35px 15px;
-  height: calc(100vh - 253px);
+  height: calc(100vh - 238px);
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-modal-sidebar .pi-content {
@@ -2086,7 +2128,7 @@ html {
   }
 }
 .ncpi .pi-modal-sidebar .pi-modal-footer {
-  margin-top: 35px;
+  margin-top: 20px;
   padding: 20px 45px 5px;
   border: 1px solid #dddddda8;
 }
@@ -2103,12 +2145,8 @@ html {
   font-weight: 500;
   padding: 13px 20px !important;
 }
-.ncpi .pi-modal-sidebar .pi-deal-atage {
+.ncpi .pi-modal-sidebar .pi-select-small {
   width: auto;
-  margin-left: 15px;
-  font-size: 11px;
-  color: #F68A0B;
-  margin-top: 0;
 }
 .ncpi .pi-modal-sidebar-two {
   width: 760px;
@@ -2135,15 +2173,20 @@ html {
   font-size: 14px;
   color: #718096;
 }
+.ncpi .pi-modal-sidebar-two .pi-checklist-content ul {
+  margin-bottom: 5px;
+}
 .ncpi .pi-modal-sidebar-two .pi-checklist-content ul li {
   font-size: 12px;
   padding: 5px 0;
-  color: #718096;
+}
+.ncpi .pi-modal-sidebar-two .pi-checklist-content ul li label {
+  color: #4a5568;
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-content ul li input[type=checkbox] {
   position: relative;
   top: 1px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .ncpi .pi-range {
   width: 70%;
@@ -3287,6 +3330,9 @@ html {
   margin-top: 5px;
   position: relative;
 }
+.ncpi .pi-mr-5 {
+  margin-right: 5px;
+}
 .ncpi .pi-mt-m-10 {
   margin-top: -10px;
 }
@@ -3855,9 +3901,6 @@ select {
   position: relative;
   top: 3px;
 }
-.ncpi .pi-left-sidebar ul li a svg path {
-  fill: #718096;
-}
 .ncpi .pi-left-sidebar ul li a .polygon {
   position: absolute;
   right: 10px;
@@ -3869,10 +3912,6 @@ select {
   background-color: #F7F8FA;
   color: var(--text-color-blue);
   color: #000;
-}
-.ncpi .pi-left-sidebar ul li .pi-active svg path,
-.ncpi .pi-left-sidebar ul li a:hover svg path {
-  fill: var(--text-color-blue);
 }
 .ncpi .pi-left-sidebar ul li .pi-sub-menu li a {
   font-weight: 500;

@@ -8,28 +8,21 @@ const TableHeader = props => {
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox"
-
-                        // value={row.id}
-                        // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
+                    <input type="checkbox" 
+                        //value={row.id}
+                        //checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
                     />
                 </th>
                 <th>
-                    Organization Name
+                    Organization
                 </th>
                 <th>
-                    Email
+                    Location
                 </th>
                 <th>
-                    Company Name
-                </th>
-                <th>
-                    Website
-                </th>
-                <th>
-                    Mobile
-                </th>
+                    Contact Person
+                </th> 
                 <th>
                     Date
                 </th>
@@ -68,18 +61,15 @@ const TableBody = props => {
         return (
             <tr key={index}>
                 <td>
-                    <input type="checkbox"
-
+                    <input type="checkbox" 
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
                 <td>{row.org_name}</td>
-                <td>{row.email}</td>
-                <td>{row.org_name}</td>
-                <td>{row.web}</td>
-                <td>{row.mobile}</td>
+                <td>{row.address}</td> 
+                <td></td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <div className="pi-action-content">

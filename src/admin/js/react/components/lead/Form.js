@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+ 
 import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
 import ApiTaxonomy from 'api/taxonomy';
+
+import ApiPerson from 'api/person';
+import ApiOrg from 'api/org';
 
 class Form extends Component {
     constructor(props) {
@@ -18,6 +21,8 @@ class Form extends Component {
             desc: '',
             note: '',
             date: false,
+            contact_id: null,
+            contact_type: 'person', //org/person
             contact: {
                 id: null,
                 first_name: '',
@@ -37,6 +42,8 @@ class Form extends Component {
             form: this.initialState,
             levels: [],
             tags: [],
+            personList: [],
+            orgList: [],
         };
     }
 
@@ -94,6 +101,28 @@ class Form extends Component {
                 }
             }
         });
+
+        //find person
+        let args = {
+            page: 1,
+            per_page: 10
+        }
+        let params = new URLSearchParams(args).toString();
+
+        ApiPerson.getAll(params).then(resp => {
+            if (resp.data.success) {
+                let personList = resp.data.data.result;
+                this.setState({ personList });
+            }
+        });
+
+        ApiOrg.getAll(params).then(resp => {
+            if (resp.data.success) {
+                let orgList = resp.data.data.result;
+                this.setState({ orgList });
+            }
+        });
+
         //added this multiple place, because not working in invoice single
         this.editData();
     }
@@ -134,10 +163,52 @@ class Form extends Component {
         this.setState({ form: this.initialState });
     }
 
+    handleFindPerson = (val, callback) => {
+        if (val.length < 2) return;
+
+        //search when typing stop
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+            //search function
+            ApiPerson.getAll('first_name=' + val + '&last_name=' + val)
+                .then(resp => {
+                    let toData = resp.data.data.result;
+                    callback(toData);
+                });
+        }, 300);
+    }
+
+    handlePersonSelect = (val) => {
+        this.setState({ to: val });
+        // this.props.setTo(val);
+    }
+
+    handleFindOrg = (val, callback) => {
+        if (val.length < 2) return;
+
+        //search when typing stop
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+            //search function
+            ApiOrg.getAll('first_name=' + val + '&last_name=' + val)
+                .then(resp => {
+                    let toData = resp.data.data.result;
+                    callback(toData);
+                });
+        }, 300);
+    }
+
+    handleOrgSelect = (val) => {
+        this.setState({ to: val });
+        // this.props.setTo(val);
+    }
+
     render() {
         const contact = this.state.form.contact;
         const levelList = this.state.levels;
         const tagList = this.state.tags;
+
+        const { personList, orgList } = this.state;
 
         return ( 
             <div className="pi-overlay pi-show">
@@ -174,144 +245,53 @@ class Form extends Component {
                             <div className="pi-form-style-one">
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="first_name">
-                                            Full Name
+                                        <label htmlFor="first_name">
+                                            Contact Person
                                         </label>
 
-                                        <input
+                                        <AsyncSelect
+                                            loadOptions={this.handleFindPerson}
+                                            value={this.state.form.contact_id}
+                                            defaultOptions={personList}
+                                            onChange={this.handlePersonSelect}
+                                            getOptionValue={(data) => data.id}
+                                            getOptionLabel={(data) => (data.first_name) ? data.first_name : ''}
+                                        />
+
+                                        {/* <input
                                             id="first_name"
                                             type="text"
                                             name="first_name"
                                             value={contact.first_name}
                                             onChange={(e) => this.handleChange(e, 'contact')}
-                                        />
-                                    </div>
-                                    {/* <div className="col-lg">
-                                        <label
-                                            htmlFor="last_name">
-                                            Last Name
-                                        </label>
-
-                                        <input
-                                            id="last_name"
-                                            type="text"
-                                            name="last_name"
-                                            value={contact.last_name}
-                                            onChange={(e) => this.handleChange(e, 'contact')}
-                                        />
-                                    </div>  */}
+                                        /> */}
+                                    </div> 
                                 </div>
 
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-org_name">
-                                            Company/Organization Name
+                                        <label htmlFor="form-org_name">
+                                            Organization Name
                                         </label>
 
-                                        <input
+                                        <AsyncSelect
+                                            loadOptions={this.handleFindOrg}
+                                            value={this.state.form.contact_id}
+                                            defaultOptions={orgList}
+                                            onChange={this.handleOrgSelect}
+                                            getOptionValue={(data) => data.id}
+                                            getOptionLabel={(data) => (data.first_name) ? data.first_name : ''}
+                                        />
+
+                                        {/* <input
                                             id="form-org_name"
                                             type="text"
                                             name="org_name"
                                             value={contact.org_name}
                                             onChange={(e) => this.handleChange(e, 'contact')}
-                                        />
-                                    </div>
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="form-web">
-                                            Website
-                                        </label>
-
-                                        <input
-                                            id="form-web"
-                                            type="text"
-                                            name="web"
-                                            value={contact.web}
-                                            onChange={(e) => this.handleChange(e, 'contact')}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="form-email">
-                                            Email
-                                        </label>
-
-                                        <input
-                                            id="form-email"
-                                            type="email"
-                                            required
-                                            name="email"
-                                            value={contact.email}
-                                            onChange={(e) => this.handleChange(e, 'contact')}
-                                        />
-                                    </div>
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="form-mobile">
-                                            Mobile Number
-                                        </label>
-
-                                        <input
-                                            id="form-mobile"
-                                            type="text"
-                                            name="mobile"
-                                            value={contact.mobile}
-                                            onChange={(e) => this.handleChange(e, 'contact')}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label
-                                            htmlFor="form-country">
-                                            Country
-                                        </label>
-
-                                        <CountryDropdown
-                                            value={contact.country}
-                                            valueType='short'
-                                            onChange={(val) => this.selectCountry(val)}
-                                        />
-                                    </div>
-
-                                    <div className="col">
-                                        <label
-                                            htmlFor="form-region">
-                                            Region
-                                        </label>
-
-                                        <RegionDropdown
-                                            country={contact.country}
-                                            countryValueType='short'
-                                            value={contact.region}
-                                            onChange={(val) => this.selectRegion(val)}
-                                        />
-                                    </div>
-
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label
-                                            htmlFor="form-address">
-                                            Address
-                                        </label>
-
-                                        <input
-                                            id="form-address"
-                                            type="text"
-                                            name="address"
-                                            value={contact.address}
-                                            onChange={(e) => this.handleChange(e, 'contact')}
-                                        />
-                                    </div>
-                                </div>
+                                        /> */}
+                                    </div> 
+                                </div> 
 
                                 <div className="row">
                                     <div className="col-md">

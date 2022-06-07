@@ -16,20 +16,17 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Client Name
+                    Contact Person
                 </th>
                 <th>
                     Email
                 </th>
                 <th>
-                    Company Name
+                    Organization
                 </th>
                 <th>
-                    Website
-                </th>
-                <th>
-                    Mobile
-                </th>
+                    Status
+                </th> 
                 <th>
                     Date
                 </th>
@@ -75,11 +72,15 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>{row.first_name + ' ' + row.last_name}</td>
+                <td> 
+                    <div className="pi-avater">
+                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                        <span>{row.first_name}</span>
+                    </div>
+                </td>
                 <td>{row.email}</td>
-                <td>{row.org_name}</td>
-                <td>{row.web}</td>
-                <td>{row.mobile}</td>
+                <td>{row.org_name}</td> 
+                <td><span className='pi-badge'>Client</span></td> 
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <div className="pi-action-content">

@@ -104,15 +104,15 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label
-                                            htmlFor="first_name">
-                                            Full Name
+                                            htmlFor="form-org_name">
+                                            Company/Organization Name
                                         </label>
 
                                         <input
-                                            id="first_name"
+                                            id="form-org_name"
                                             type="text"
-                                            name="first_name"
-                                            value={this.state.form.first_name}
+                                            name="org_name"
+                                            value={this.state.form.org_name}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -135,15 +135,15 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label
-                                            htmlFor="form-org_name">
-                                            Company/Organization Name
+                                            htmlFor="first_name">
+                                            Contact Person
                                         </label>
 
                                         <input
-                                            id="form-org_name"
+                                            id="first_name"
                                             type="text"
-                                            name="org_name"
-                                            value={this.state.form.org_name}
+                                            name="first_name"
+                                            value={this.state.form.first_name}
                                             onChange={this.handleChange}
                                         />
                                     </div>
