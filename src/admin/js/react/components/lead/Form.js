@@ -22,20 +22,7 @@ class Form extends Component {
             note: '',
             date: false,
             contact_id: null,
-            contact_type: 'person', //org/person
-            contact: {
-                id: null,
-                first_name: '',
-                last_name: '',
-                org_name: '',
-                email: '',
-                web: '',
-                mobile: '',
-                country: '',
-                region: '',
-                address: '',
-                date: false
-            },
+            contact_type: 'person', //org/person 
         };
 
         this.state = {
@@ -148,7 +135,11 @@ class Form extends Component {
         e.preventDefault();
         let form = { ...this.state.form }
 
-        if (form.level_id) {
+        if ( form.contact_id ) {
+            form.contact_id = form.contact_id.id;
+        }
+
+        if ( form.level_id ) {
             form.level_id = form.level_id.id;
         }
 
@@ -178,8 +169,11 @@ class Form extends Component {
         }, 300);
     }
 
-    handlePersonSelect = (val) => {
-        this.setState({ to: val });
+    handlePersonSelect = ( val ) => { 
+        let form = { ...this.state.form }
+        form.contact_id = val;
+        form.contact_type = 'person';
+        this.setState({ form });
         // this.props.setTo(val);
     }
 
@@ -256,15 +250,7 @@ class Form extends Component {
                                             onChange={this.handlePersonSelect}
                                             getOptionValue={(data) => data.id}
                                             getOptionLabel={(data) => (data.first_name) ? data.first_name : ''}
-                                        />
-
-                                        {/* <input
-                                            id="first_name"
-                                            type="text"
-                                            name="first_name"
-                                            value={contact.first_name}
-                                            onChange={(e) => this.handleChange(e, 'contact')}
-                                        /> */}
+                                        /> 
                                     </div> 
                                 </div>
 

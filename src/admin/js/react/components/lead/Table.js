@@ -122,10 +122,10 @@ const TableBody = props => {
                 <td>
                     <div className="pi-avater">
                         <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
-                        <span>{row.contact.first_name}</span>
+                        <span>{row.contact_id.first_name}</span>
                     </div>
                 </td>
-                <td>{row.contact.email}</td>
+                <td>{row.contact_id.email}</td>
                 <td>
                     <span className="pi-badge pi-bg-orange">
                         <svg

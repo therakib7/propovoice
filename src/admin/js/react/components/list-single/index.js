@@ -1,8 +1,10 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useParams, useLocation } from "react-router-dom";
+import AsyncSelect from 'react-select/async'; 
 
-import axios from 'axios';
-import { apiUrl } from 'api/helper'
+import ApiTaxonomy from 'api/taxonomy';
+
+import Api from 'hoc/Api';
 
 import DealForm from './form/Deal';
 import ProjectForm from './form/Project';
@@ -34,6 +36,8 @@ class ListSingle extends Component {
             currentTab: 'task',
             dealModal: false,
             projectModal: false,
+            levels: [],
+            tags: [],
             data: {
                 contact: {
                     first_name: 'Name'
@@ -42,14 +46,26 @@ class ListSingle extends Component {
         };
     }
 
-    componentDidMount() {
-        this.getData();
+    componentDidMount() { 
+        this.getData(); 
     }
 
     getData = () => {
-        const url = apiUrl + this.props.path + 's';
-        axios.get(`${url}/${this.props.id}`).then(resp => {
+        const url = this.props.path + 's';
+        this.props.get(url, this.props.id).then(resp => {
             this.setState({ data: resp.data.data });
+            this.getLevelTagData();
+        });
+    };
+
+    getLevelTagData = () => {
+        this.props.getAll('taxonomies', 'taxonomy=lead_level_tag').then(resp => {
+            if (resp.data.success) {
+                this.setState({
+                    levels: resp.data.data.levels,
+                    tags: resp.data.data.tags,
+                });
+            }
         });
     };
 
@@ -144,16 +160,25 @@ class ListSingle extends Component {
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label htmlFor="source">Lead Level:</label>
-                                            <select name="source" id="source" className="pi-select-small">
+                                            <AsyncSelect
+                                                //loadOptions={this.handleFindPerson}
+                                                value={data.level_id}
+                                                defaultOptions={this.state.levels}
+                                                //onChange={this.handlePersonSelect}
+                                                getOptionValue={(data) => data.id}
+                                                getOptionLabel={(data) => (data.label) ? data.label : ''}
+                                            /> 
+                                            {/* <select name="source" id="source" className="pi-select-small">
                                                 <option value="volvo">Opportunity</option>
                                                 <option value="saab">Saab</option>
                                                 <option value="opel">Opel</option>
                                                 <option value="audi">Audi</option>
-                                            </select>
+                                            </select> */}
                                         </div>
                                         
                                         <button
@@ -853,6 +878,8 @@ class ListSingle extends Component {
     }
 }
 
+const ListSingleWithApi = Api(ListSingle);
+
 export default function SingleWrap() {
 
     const { id } = useParams();
@@ -875,7 +902,7 @@ export default function SingleWrap() {
 
     return (
         <>
-            <ListSingle
+            <ListSingleWithApi
                 id={id}
                 path={path}
             />
