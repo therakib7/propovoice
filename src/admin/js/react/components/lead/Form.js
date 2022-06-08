@@ -280,7 +280,7 @@ class Form extends Component {
                                             defaultOptions={orgList}
                                             onChange={this.handleOrgSelect}
                                             getOptionValue={(data) => data.id}
-                                            getOptionLabel={(data) => (data.first_name) ? data.first_name : ''}
+                                            getOptionLabel={(data) => (data.name) ? data.name : ''}
                                         />
 
                                         {/* <input

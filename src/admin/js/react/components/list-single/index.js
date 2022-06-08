@@ -148,7 +148,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label htmlFor="source">Lead Level:</label>
-                                            <select name="source" id="source" className="pi-deal-atage">
+                                            <select name="source" id="source" className="pi-select-small">
                                                 <option value="volvo">Opportunity</option>
                                                 <option value="saab">Saab</option>
                                                 <option value="opel">Opel</option>
@@ -295,7 +295,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label htmlFor="source">Deal Stage:</label>
-                                            <select name="source" id="source" className="pi-deal-atage">
+                                            <select name="source" id="source" className="pi-select-small">
                                                 <option value="volvo">Opportunity</option>
                                                 <option value="saab">Saab</option>
                                                 <option value="opel">Opel</option>
@@ -434,7 +434,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label htmlFor="source">Lead Level:</label>
-                                            <select name="source" id="source" className="pi-deal-atage">
+                                            <select name="source" id="source" className="pi-select-small">
                                                 <option value="volvo">Opportunity</option>
                                                 <option value="saab">Saab</option>
                                                 <option value="opel">Opel</option>
@@ -695,7 +695,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label htmlFor="source">Lead Level:</label>
-                                            <select name="source" id="source" className="pi-deal-atage">
+                                            <select name="source" id="source" className="pi-select-small">
                                                 <option value="volvo">Opportunity</option>
                                                 <option value="saab">Saab</option>
                                                 <option value="opel">Opel</option>
