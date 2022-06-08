@@ -207,15 +207,8 @@ class Lead
         if ($contact_id) {
             $contactData['id'] = absint($contact_id);
             $contactMeta = get_post_meta($contact_id);
-            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-            $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : '';
-            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
+            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : ''; 
             $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
-            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
-            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
-            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
         }
         $query_data['contact'] = $contactData;
 
@@ -305,29 +298,20 @@ class Lead
         $reg_errors = new \WP_Error;
 
         //lead
+        $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
+        $contact_type = isset($params['contact_type']) ? sanitize_text_field($params['contact_type']) : null;
         $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
-
-        $contact = $params['contact'];
-        $contact_id   = isset($contact['id']) && $contact['id'] ? sanitize_text_field($contact['id']) : null;
-        $first_name   = isset($contact['first_name']) ? sanitize_text_field($contact['first_name']) : null;
-        $last_name    = isset($contact['last_name']) ? sanitize_text_field($contact['last_name']) : null;
-        $email        = isset($contact['email']) ? strtolower(sanitize_email($contact['email'])) : null;
-        $org_name     = isset($contact['org_name']) ? sanitize_text_field($contact['org_name']) : null;
-        $web          = isset($contact['web']) ? esc_url_raw($contact['web']) : null;
-        $mobile       = isset($contact['mobile']) ? sanitize_text_field($contact['mobile']) : null;
-        $country      = isset($contact['country']) ? sanitize_text_field($contact['country']) : null;
-        $region       = isset($contact['region']) ? sanitize_text_field($contact['region']) : null;
-        $address      = isset($contact['address']) ? sanitize_text_field($contact['address']) : null;
+ 
         $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
-        if (empty($first_name)) {
+        /* if (empty($first_name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        }
+        } */
 
         /* if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
@@ -341,52 +325,40 @@ class Lead
 
             $data = array(
                 'ID'            => $post_id,
-                'post_title'    => $first_name,
+                'post_title'    => 'Lead',
                 'post_content'  => $desc,
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if ( !is_wp_error($post_id) ) { 
 
-                if ($first_name) {
-                    update_post_meta($post_id, 'first_name', $first_name);
+                if ($level_id) {
+                    wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');
                 }
 
-                if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
+                if ( $contact_id ) {
+                    update_post_meta($post_id, 'contact_id', $contact_id);
                 }
 
-                if ($email) {
-                    update_post_meta($post_id, 'email', $email);
+                if ( $contact_type ) {
+                    update_post_meta($post_id, 'contact_type', $contact_type);
                 }
 
-                if ($org_name) {
-                    update_post_meta($post_id, 'org_name', $org_name);
+                if ($budget) {
+                    update_post_meta($post_id, 'budget', $budget);
                 }
 
-                if ($web) {
-                    update_post_meta($post_id, 'web', $web);
+                if ($currency) {
+                    update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ($mobile) {
-                    update_post_meta($post_id, 'mobile', $mobile);
-                }
+                if ($tags) {
+                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
+                } 
 
-                if ($country) {
-                    update_post_meta($post_id, 'country', $country);
-                }
-
-                if ($region) {
-                    update_post_meta($post_id, 'region', $region);
-                }
-
-                if ($address) {
-                    update_post_meta($post_id, 'address', $address);
-                }
-
-                if ($img) {
-                    update_post_meta($post_id, 'img', $img);
+                if ($note) {
+                    update_post_meta($post_id, 'note', $note);
                 }
 
                 wp_send_json_success($post_id);

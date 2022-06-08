@@ -37,11 +37,14 @@ class ListSingle extends Component {
             dealModal: false,
             projectModal: false,
             levels: [],
+            stages: [],
             tags: [],
             data: {
                 contact: {
                     first_name: 'Name'
-                }
+                },
+                level_id: null,
+                stage_id: null,
             }
         };
     }
@@ -54,7 +57,11 @@ class ListSingle extends Component {
         const url = this.props.path + 's';
         this.props.get(url, this.props.id).then(resp => {
             this.setState({ data: resp.data.data });
-            this.getLevelTagData();
+            if ( this.props.path == 'lead' ) {
+                this.getLevelTagData();
+            } else {
+                this.getStageTagData();
+            } 
         });
     };
 
@@ -69,11 +76,62 @@ class ListSingle extends Component {
         });
     };
 
+    getStageTagData = () => {
+        this.props.getAll('taxonomies', 'taxonomy=deal_stage_tag').then(resp => {
+            if (resp.data.success) {
+                this.setState({
+                    stages: resp.data.data.stages,
+                    tags: resp.data.data.tags,
+                });
+            }
+        });
+    };
+
     setActiveTab(e, id) {
         e.preventDefault();
         this.setState({
             currentTab: id
         });
+    }
+
+    handleFindLevel = (val, callback) => {
+        return;
+        if (val.length < 2) return;
+
+        //search when typing stop
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+            //search function
+            ApiPerson.getAll('first_name=' + val + '&last_name=' + val)
+                .then(resp => {
+                    let toData = resp.data.data.result;
+                    callback(toData);
+                });
+        }, 300);
+    } 
+
+    handleLevelChange = ( val ) => { 
+        let data = { ...this.state.data }
+        data.level_id = val; 
+        this.setState({ data }, () => { 
+            let newData = {};
+            if ( data.level_id ) {
+                newData.level_id = data.level_id.id;
+            } 
+            this.props.update('leads', this.props.id, newData);
+        });  
+    }
+
+    handleStageChange = ( val ) => { 
+        let data = { ...this.state.data }
+        data.stage_id = val; 
+        this.setState({ data }, () => { 
+            let newData = {};
+            if ( data.stage_id ) {
+                newData.stage_id = data.stage_id.id;
+            } 
+            this.props.update('deals', this.props.id, newData);
+        });  
     }
 
     render() {
@@ -166,19 +224,13 @@ class ListSingle extends Component {
                                         <div className="pi-select">
                                             <label htmlFor="source">Lead Level:</label>
                                             <AsyncSelect
-                                                //loadOptions={this.handleFindPerson}
+                                                loadOptions={this.handleFindLevel}
                                                 value={data.level_id}
                                                 defaultOptions={this.state.levels}
-                                                //onChange={this.handlePersonSelect}
+                                                onChange={this.handleLevelChange}
                                                 getOptionValue={(data) => data.id}
                                                 getOptionLabel={(data) => (data.label) ? data.label : ''}
-                                            /> 
-                                            {/* <select name="source" id="source" className="pi-select-small">
-                                                <option value="volvo">Opportunity</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="opel">Opel</option>
-                                                <option value="audi">Audi</option>
-                                            </select> */}
+                                            />  
                                         </div>
                                         
                                         <button
@@ -320,12 +372,14 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label htmlFor="source">Deal Stage:</label>
-                                            <select name="source" id="source" className="pi-select-small">
-                                                <option value="volvo">Opportunity</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="opel">Opel</option>
-                                                <option value="audi">Audi</option>
-                                            </select>
+                                            <AsyncSelect
+                                                // loadOptions={this.handleFindLevel}
+                                                value={data.stage_id}
+                                                defaultOptions={this.state.stages}
+                                                onChange={this.handleStageChange}
+                                                getOptionValue={(data) => data.id}
+                                                getOptionLabel={(data) => (data.label) ? data.label : ''}
+                                            />
                                         </div>
                                         <button
                                             className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
