@@ -246,6 +246,7 @@ class Deal
 
             if (!is_wp_error($post_id)) { 
 
+                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
                 update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
                 
                 if ($title) {

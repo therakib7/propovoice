@@ -196,7 +196,7 @@ class Task
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-
+                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
                 update_post_meta($post_id, 'tab_id', $tab_id);
                 wp_send_json_success($post_id);
             } else {

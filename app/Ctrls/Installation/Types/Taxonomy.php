@@ -9,6 +9,22 @@ class Taxonomy {
     }   
 
     function create_custom_taxonomy() {  
+        //when install set workplace for all previous data
+        
+        //Workplace pro 
+        $data = array(
+            'post_type'     => 'ndpi_workplace',
+            'post_title'    => 'Workplace',
+            'post_content'  => '',
+            'post_status'   => 'publish', //TODO: is it public or private for workplace
+            'post_author'   => get_current_user_id()
+        );
+        $post_id = wp_insert_post($data);
+
+        if ( ! is_wp_error( $post_id ) ) {
+            update_option( 'ndpi_workplace_default', $post_id );
+        }
+
         //lead
         $temp_level = [
             'Hot',

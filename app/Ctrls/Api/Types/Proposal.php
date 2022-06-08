@@ -384,6 +384,8 @@ class Proposal
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
+                
+                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
 
                 if ($date) {
                     update_post_meta($post_id, 'date', $date);

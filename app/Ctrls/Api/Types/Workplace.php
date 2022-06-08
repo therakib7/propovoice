@@ -4,7 +4,7 @@ namespace Ncpi\Ctrls\Api\Types;
 
 use WP_Query;
 
-class Org
+class Workplace
 {
 
     public function __construct()
@@ -15,7 +15,7 @@ class Org
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/organizations', [
+        register_rest_route('ncpi/v1', '/workplaces', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -28,7 +28,7 @@ class Org
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/organizations/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/workplaces/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +41,7 @@ class Org
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/organizations/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/workplaces/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -54,7 +54,7 @@ class Org
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/organizations/(?P<id>[0-9,]+)', array(
+        register_rest_route('ncpi/v1', '/workplaces/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -82,7 +82,7 @@ class Org
         }
 
         $args = array(
-            'post_type' => 'ndpi_org',
+            'post_type' => 'ndpi_workplace',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -112,10 +112,10 @@ class Org
             $query_data = [];
             $query_data['id'] = $id;
 
-            $query_data['name'] = get_the_title();
             $query_data['first_name'] = get_post_meta($id, 'first_name', true);
             $query_data['last_name'] = get_post_meta($id, 'last_name', true);
             $query_data['email'] = get_post_meta($id, 'email', true);
+            $query_data['org_name'] = get_post_meta($id, 'org_name', true);
             $query_data['web'] = get_post_meta($id, 'web', true);
             $query_data['mobile'] = get_post_meta($id, 'mobile', true);
             $query_data['country'] = get_post_meta($id, 'country', true);
@@ -150,33 +150,55 @@ class Org
         $url_params = $req->get_url_params();
         $id = $url_params['id'];
         $query_data = [];
-        $query_data['id'] = $id;
+        $query_data['id'] = absint($id); 
+        $query_data['tab_id'] = $id; 
 
-        $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-        $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-        $query_data['email'] = get_post_meta($id, 'email', true);
-        $query_data['name'] = get_post_meta($id, 'name', true);
-        $query_data['web'] = get_post_meta($id, 'web', true);
-        $query_data['mobile'] = get_post_meta($id, 'mobile', true);
-        $query_data['country'] = get_post_meta($id, 'country', true);
-        $query_data['region'] = get_post_meta($id, 'region', true);
-        $query_data['address'] = get_post_meta($id, 'address', true); 
+        $query_data['level_id'] = '';
 
-        $img_id = get_post_meta($id, 'img', true);
-        $imgData = null;
-        if ($img_id) {
-            $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-            if ($img_src) {
-                $imgData = [];
-                $imgData['id'] = $img_id;
-                $imgData['src'] = $img_src[0];
-            }
+        $level = get_the_terms($id, 'ndpi_lead_level');
+        if ($level) {
+
+            $query_data['level_id'] = [
+                'id' => $level[0]->term_id,
+                'label' => $level[0]->name
+            ];
         }
-        $query_data['img'] = $imgData;
-        $data = [];
-        $data['profile'] = $query_data;
 
-        wp_send_json_success($data);
+        $query_data['tags'] = [];
+
+        $tags = get_the_terms($id, 'ndpi_tag');
+        if ($tags) {
+            $tagList = [];
+            foreach ($tags as $tag) {
+                $tagList[] = [
+                    'id' => $tag->term_id,
+                    'label' => $tag->name
+                ];
+            }
+            $query_data['tags'] = $tagList;
+        }
+
+        $workplace_id = $id;
+        $workplaceData = [];
+
+        if ($workplace_id) {
+            $workplaceData['id'] = absint($workplace_id);
+            $workplaceMeta = get_post_meta($workplace_id);
+            $workplaceData['first_name'] = isset($workplaceMeta['first_name']) ? $workplaceMeta['first_name'][0] : '';
+            $workplaceData['last_name'] = isset($workplaceMeta['last_name']) ? $workplaceMeta['last_name'][0] : '';
+            $workplaceData['org_name'] = isset($workplaceMeta['org_name']) ? $workplaceMeta['org_name'][0] : '';
+            $workplaceData['email'] = isset($workplaceMeta['email']) ? $workplaceMeta['email'][0] : '';
+            $workplaceData['mobile'] = isset($workplaceMeta['mobile']) ? $workplaceMeta['mobile'][0] : '';
+            $workplaceData['web'] = isset($workplaceMeta['web']) ? $workplaceMeta['web'][0] : '';
+            $workplaceData['country'] = isset($workplaceMeta['country']) ? $workplaceMeta['country'][0] : '';
+            $workplaceData['region'] = isset($workplaceMeta['region']) ? $workplaceMeta['region'][0] : '';
+            $workplaceData['address'] = isset($workplaceMeta['address']) ? $workplaceMeta['address'][0] : '';
+        }
+        $query_data['workplace'] = $workplaceData;
+
+        $query_data['date'] = get_the_time('j-M-Y');
+
+        wp_send_json_success($query_data);
     }
 
     public function create($req)
@@ -187,7 +209,7 @@ class Org
         $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
         $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $name = isset($params['name']) ? sanitize_text_field($req['name']) : null;
+        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
         $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
         $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
@@ -195,7 +217,7 @@ class Org
         $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
         $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
 
-        if ( empty($name) ) {
+        if ( empty($first_name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
@@ -208,8 +230,8 @@ class Org
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_org',
-                'post_title'    => $name,
+                'post_type' => 'ndpi_workplace',
+                'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
                 'post_author'   => get_current_user_id()
@@ -217,7 +239,7 @@ class Org
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
+
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
                 }
@@ -230,8 +252,8 @@ class Org
                     update_post_meta($post_id, 'email', $email);
                 }
 
-                if ($name) {
-                    update_post_meta($post_id, 'name', $name);
+                if ($org_name) {
+                    update_post_meta($post_id, 'org_name', $org_name);
                 }
 
                 if ($web) {
@@ -273,7 +295,7 @@ class Org
         $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
         $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $name = isset($params['name']) ? sanitize_text_field($req['name']) : null;
+        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
         $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
         $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
@@ -281,7 +303,7 @@ class Org
         $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
         $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
 
-        if (empty($name)) {
+        if (empty($first_name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
@@ -297,7 +319,7 @@ class Org
 
             $data = array(
                 'ID'            => $post_id,
-                'post_title'    => $name,
+                'post_title'    => $first_name,
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
@@ -316,8 +338,8 @@ class Org
                     update_post_meta($post_id, 'email', $email);
                 }
 
-                if ($name) {
-                    update_post_meta($post_id, 'name', $name);
+                if ($org_name) {
+                    update_post_meta($post_id, 'org_name', $org_name);
                 }
 
                 if ($web) {

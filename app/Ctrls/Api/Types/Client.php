@@ -291,7 +291,8 @@ class Client
             if (!is_wp_error($user_id)) {
                 //set as propovoice member 
 
-                $prefix = 'ncpi_';
+                $prefix = 'ncpi_'; 
+                update_user_meta($user_id, $prefix . 'wp_id', ncpi()->get_workplace());
                 update_user_meta($user_id, $prefix . 'member', true);
                 update_user_meta($user_id, $prefix . 'org_name', $org_name);
                 update_user_meta($user_id, $prefix . 'web', $web);
