@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useNavigate } from 'react-router-dom';
 
+import WithApi from 'hoc/Api';
+
 import Editable from 'block/editable';
 import { v4 as uuidv4 } from 'uuid';
 
-const onDragEnd = (result, columns, setColumns) => {
+const onDragEnd = (update, result, columns, setColumns) => {
 	if (!result.destination) return;
 	const { source, destination } = result;
 
-	if (source.droppableId !== destination.droppableId) {
+	if (source.droppableId !== destination.droppableId) { 
 
+		// console.log(update);
 		const sourceColumn = columns[source.droppableId];
 		const destColumn = columns[destination.droppableId];
 		const sourceItems = [...sourceColumn.items];
@@ -29,6 +32,15 @@ const onDragEnd = (result, columns, setColumns) => {
 				items: destItems
 			}
 		});
+
+		//update another stage
+		let deal_id = parseInt( columns[source.droppableId].items[source.index].id );
+		let deal_stage_id = parseInt( destination.droppableId );  
+		let finalArray = destItems.map(function (obj) {
+			return parseInt( obj.id );
+		}); 
+		update('deals', deal_id, { stage_id: deal_stage_id, reorder: finalArray } ); //update come from api hoc
+		
 	} else {
 		const column = columns[source.droppableId];
 		const copiedItems = [...column.items];
@@ -42,6 +54,13 @@ const onDragEnd = (result, columns, setColumns) => {
 				items: copiedItems
 			}
 		});
+
+		//update deal in same stage
+		let finalArray = copiedItems.map(function (obj) {
+			return parseInt( obj.id );
+		}); 
+		let deal_id = parseInt( columns[source.droppableId].items[source.index].id ); 
+		update('deals', deal_id, { reorder: finalArray } );
 	}
 };
 
@@ -94,7 +113,7 @@ function Pipeline(props) {
 	return (
 		<div className="pi-board">
 			<DragDropContext
-				onDragEnd={result => onDragEnd(result, columns, setColumns)}
+				onDragEnd={result => onDragEnd(props.update, result, columns, setColumns)}
 			>
 				{Object.entries(columns).map(([columnId, column], index) => {
 					return (
@@ -243,4 +262,5 @@ function Pipeline(props) {
 		</div>
 	);
 }
-export default Pipeline; 
+
+export default WithApi(Pipeline);  

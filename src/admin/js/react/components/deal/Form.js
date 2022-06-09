@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Select from 'react-select';
-import ApiTaxonomy from 'api/taxonomy';
+import WithApi from 'hoc/Api'; 
 
 class Form extends Component {
     constructor(props) {
@@ -44,8 +44,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        ApiTaxonomy.getAll('taxonomy=deal_stage_tag')
-            .then(resp => {
+        this.props.getAll('taxonomies', 'taxonomy=deal_stage_tag').then(resp => { 
                 if (resp.data.success) {
                     if (this.state.form.stage_id) {
                         this.setState({
@@ -118,6 +117,14 @@ class Form extends Component {
         const form = this.state.form;
         const provabilityPercent = (form.provability / 100) * 100;
 
+        let title = '';
+        if ( this.props.modalType == 'new' ) {
+            title = 'New'
+        } else if ( this.props.modalType == 'edit' ) {
+            title = 'Edit'
+        } else if ( this.props.modalType == 'move' ) {
+            title = 'Move to'
+        } 
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -145,7 +152,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Deal</h2>
+                        <h2 className="pi-modal-title">{title} Deal</h2>
                         <p>Add new deal from here</p>
                     </div>
 
@@ -307,4 +314,4 @@ class Form extends Component {
     }
 }
 
-export default Form;
+export default WithApi(Form); 

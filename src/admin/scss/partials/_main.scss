@@ -809,6 +809,9 @@ html {
   background-color: #E2E8F0;
   color: #4a5568;
 }
+.ncpi .pi-badge svg {
+  margin-right: 3px;
+}
 .ncpi .pi-table {
   width: 100%;
   border-collapse: collapse;
@@ -876,7 +879,8 @@ html {
   transform: scale(0.8);
   border: 1px solid #939393f0;
   box-shadow: none;
-  margin-top: 4px;
+  position: relative;
+  top: 2px;
 }
 .ncpi .pi-table tr {
   border-bottom: 1px solid #EDF2F7;
@@ -926,6 +930,130 @@ html {
     padding: 1px;
     width: 100%;
   }
+}
+.ncpi .pi-table-two tr th .pi-project {
+  display: flex;
+}
+.ncpi .pi-table-two tr th .pi-project input[type=checkbox] {
+  top: 0px;
+  margin-right: 5px;
+}
+.ncpi .pi-table-two tr td {
+  padding: 20px 0;
+}
+.ncpi .pi-table-two tr td:nth-child(2) {
+  color: #2D3748;
+  font-weight: 600;
+}
+.ncpi .pi-table-two tr .pi-avater img {
+  width: 30px;
+  height: 30px;
+}
+.ncpi .pi-table-two tr .pi-avater span {
+  color: #718096;
+  font-size: 14px !important;
+  font-weight: inherit !important;
+  margin-top: 5px !important;
+}
+.ncpi .pi-table-three {
+  margin-top: 25px;
+}
+.ncpi .pi-table-three td {
+  font-size: 14px;
+}
+.ncpi .pi-table-three td span {
+  color: #718096;
+}
+.ncpi .pi-table-three td:nth-child(2) img {
+  vertical-align: middle;
+}
+.ncpi .pi-table-three td:nth-child(2) span {
+  margin-left: 20px;
+  color: #4A5568;
+}
+.ncpi .pi-table-three td:nth-child(n+3) .pi-avater {
+  justify-content: center;
+}
+.ncpi .pi-table-three td:nth-child(n+3),
+.ncpi .pi-table-three th:nth-child(n+3) {
+  text-align: center;
+}
+.ncpi .pi-table-four tbody tr td .pi-list-title {
+  font-weight: 600;
+  color: #2D3748;
+}
+.ncpi .pi-accordion-table-list {
+  display: flex;
+  margin-bottom: 20px;
+}
+.ncpi .pi-accordion-table-list .pi-checkbox {
+  width: 45px;
+  padding: 17px 0;
+}
+.ncpi .pi-accordion-table-list ul {
+  display: grid;
+  margin: 0;
+  border: 1px solid #dddddda8;
+  padding: 20px 10px 20px 0px;
+  width: 100%;
+  border-radius: 5px;
+  grid-template-columns: auto auto auto auto auto;
+}
+.ncpi .pi-accordion-table-list ul li:first-child {
+  display: flex;
+  margin-top: -10px;
+  margin-left: -15px;
+}
+.ncpi .pi-accordion-table-list ul li:nth-child(n+2) {
+  padding-top: 7px;
+}
+.ncpi .pi-accordion-table-list ul li:nth-child(2) svg {
+  position: relative;
+  top: 2px;
+  margin-right: 7px;
+}
+.ncpi .pi-accordion-table-list ul li:nth-child(n+3) {
+  text-align: right;
+}
+.ncpi .pi-accordion-table-list ul li {
+  color: #718096;
+  font-size: 12px;
+}
+.ncpi .pi-accordion-table-list ul li .pi-badge {
+  font-weight: 500;
+  color: #F68A0B;
+}
+.ncpi .pi-accordion-table-list ul li h4 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4A5568;
+}
+.ncpi .pi-accordion-table-list ul li .pi-envelope {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #dddddda8;
+  padding: 6px 5px;
+  margin-right: 10px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0px 4.95074px 6.60099px rgba(0, 0, 0, 0.07);
+}
+.ncpi .pi-accordion-table-list ul li .pi-envelope svg path {
+  color: #A0AE #fff;
+}
+.ncpi .pi-accordion-table-list ul li .pi-envelope-text p {
+  font-size: 10px;
+  color: #a5b0c1;
+  margin: 0;
+}
+.ncpi .pi-accordion-table-list ul li .pi-envelope-text svg {
+  position: relative;
+  top: 2px;
+}
+.ncpi .pi-accordion-table-list .pi-show {
+  text-align: left;
+  left: -25px;
 }
 .ncpi .pi-info-table-content {
   margin-top: 20px;
@@ -1121,106 +1249,6 @@ html {
   margin-left: 5px;
   outline: none;
 }
-.ncpi .pi-accordion-table-list {
-  display: flex;
-  margin-bottom: 20px;
-}
-.ncpi .pi-accordion-table-list .pi-checkbox {
-  width: 45px;
-  padding: 17px 0;
-}
-.ncpi .pi-accordion-table-list ul {
-  display: grid;
-  margin: 0;
-  border: 1px solid #dddddda8;
-  padding: 20px 10px 20px 0px;
-  width: 100%;
-  border-radius: 5px;
-  grid-template-columns: auto auto auto auto auto;
-}
-.ncpi .pi-accordion-table-list ul li:first-child {
-  display: flex;
-  margin-top: -10px;
-  margin-left: -15px;
-}
-.ncpi .pi-accordion-table-list ul li:nth-child(n+2) {
-  padding-top: 7px;
-}
-.ncpi .pi-accordion-table-list ul li:nth-child(2) svg {
-  position: relative;
-  top: 2px;
-  margin-right: 7px;
-}
-.ncpi .pi-accordion-table-list ul li:nth-child(n+3) {
-  text-align: right;
-}
-.ncpi .pi-accordion-table-list ul li {
-  color: #718096;
-  font-size: 12px;
-}
-.ncpi .pi-accordion-table-list ul li .pi-badge {
-  font-weight: 500;
-  color: #F68A0B;
-}
-.ncpi .pi-accordion-table-list ul li h4 {
-  font-size: 12px;
-  font-weight: 600;
-  color: #4A5568;
-}
-.ncpi .pi-accordion-table-list ul li .pi-envelope {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid #dddddda8;
-  padding: 6px 5px;
-  margin-right: 10px;
-  background-color: #fff;
-  text-align: center;
-  box-shadow: 0px 4.95074px 6.60099px rgba(0, 0, 0, 0.07);
-}
-.ncpi .pi-accordion-table-list ul li .pi-envelope svg path {
-  color: #A0AE #fff;
-}
-.ncpi .pi-accordion-table-list ul li .pi-envelope-text p {
-  font-size: 10px;
-  color: #a5b0c1;
-  margin: 0;
-}
-.ncpi .pi-accordion-table-list ul li .pi-envelope-text svg {
-  position: relative;
-  top: 2px;
-}
-.ncpi .pi-accordion-table-list .pi-show {
-  text-align: left;
-  left: -25px;
-}
-.ncpi .pi-table-three {
-  margin-top: 25px;
-}
-.ncpi .pi-table-three td {
-  font-size: 14px;
-}
-.ncpi .pi-table-three td span {
-  color: #718096;
-}
-.ncpi .pi-table-three td:nth-child(2) img {
-  vertical-align: middle;
-}
-.ncpi .pi-table-three td:nth-child(2) span {
-  margin-left: 15px;
-  color: #4A5568;
-}
-.ncpi .pi-table-three td:nth-child(n+3) .pi-avater {
-  justify-content: center;
-}
-.ncpi .pi-table-three td:nth-child(n+3),
-.ncpi .pi-table-three th:nth-child(n+3) {
-  text-align: center;
-}
-.ncpi .pi-table-four tbody tr td .pi-list-title {
-  font-weight: 600;
-  color: #2D3748;
-}
 
 /*-------------------------------------------------------------- 
 # crid
@@ -1282,10 +1310,10 @@ html {
 }
 .ncpi .pi-top-menu-content .pi-avater {
   float: right;
+  margin-top: 3px;
 }
 .ncpi .pi-avater {
   display: flex;
-  padding-top: 3px;
 }
 .ncpi .pi-avater .pi-dropdown-angle {
   margin-left: 13px;
@@ -1360,6 +1388,20 @@ html {
 }
 .ncpi .pi-icon-color {
   fill: var(--text-color-white);
+}
+.ncpi .pi-empty-content {
+  padding: 200px 0 150px;
+  margin-bottom: 225px;
+}
+.ncpi .pi-empty-content .pi-empty-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  color: #4A5568;
+}
+.ncpi .pi-empty-content .pi-btn {
+  border-radius: 5px;
 }
 .ncpi .pi-buttons-group {
   margin-bottom: 20px;
@@ -1496,6 +1538,38 @@ html {
   .ncpi .pi-cards {
     margin-bottom: 0px;
   }
+}
+.ncpi .pi-punnel {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 10px;
+}
+.ncpi .pi-punnel ul {
+  margin: 0;
+}
+.ncpi .pi-punnel ul li:last-child {
+  text-align: center;
+  background: #345bde;
+  width: 95px;
+  border-radius: 50%;
+  height: 95px;
+  padding: 27px 10px;
+}
+.ncpi .pi-punnel ul li:last-child span {
+  display: block;
+  float: none;
+  font-size: 20px;
+}
+.ncpi .pi-punnel ul li {
+  padding: 23px 25px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 14px;
+  margin: auto;
+  display: block;
+}
+.ncpi .pi-punnel ul li span {
+  float: right;
 }
 .ncpi .pi-search-box .pi-search-input {
   color: #1a202c;
@@ -2442,9 +2516,12 @@ html {
   position: relative;
   line-height: 20px;
 }
+.ncpi .pi-invoice-tab-content {
+  margin-top: -30px;
+}
 @media screen and (min-width: 1025px) {
   .ncpi .pi-single-tabs {
-    margin-top: -65px;
+    margin-top: -30px;
   }
 }
 @media screen and (max-width: 992px) {
@@ -3194,8 +3271,8 @@ html {
 }
 .ncpi .pi-button-group .pi-btn {
   width: 100%;
-  margin-bottom: 10px;
-  padding: 25px 20px;
+  margin-bottom: 7px;
+  padding: 20px 20px;
   text-align: left;
   font-size: 18px;
   color: #2D3748 !important;
@@ -3398,6 +3475,10 @@ html {
   position: relative !important;
   top: 4px !important;
 }
+.ncpi .pi-mt-1 {
+  position: relative !important;
+  top: 1px !important;
+}
 .ncpi .pi-mt-6 {
   position: relative !important;
   top: 6px !important;
@@ -3541,7 +3622,7 @@ body {
   }
 }
 .ncpi .pi-title-medium {
-  font-size: 24px;
+  font-size: 18px;
   color: #2D3748;
   font-weight: 500;
 }
@@ -3594,7 +3675,6 @@ body {
   border: none;
   font-size: 14px;
   display: inline-block;
-  border: 1px solid #dddddda8;
 }
 .ncpi .pi-btn svg {
   margin-right: 5px;

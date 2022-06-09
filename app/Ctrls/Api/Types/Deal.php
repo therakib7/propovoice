@@ -97,6 +97,8 @@ class Deal
             $args = array(
                 'post_type' => 'ndpi_deal',
                 'post_status' => 'publish',
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
                 'posts_per_page' => $per_page,
                 'offset' => $offset,
             );
@@ -213,7 +215,13 @@ class Deal
             $contactData['id'] = absint($contact_id);
             $contactMeta = get_post_meta($contact_id);
             $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : ''; 
+            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
             $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
+            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
+            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
+            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
+            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
+            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
         }
         $query_data['contact'] = $contactData;
 
@@ -311,6 +319,7 @@ class Deal
         $reg_errors = new \WP_Error;
 
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
+        $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
         $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
         $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
@@ -349,7 +358,11 @@ class Deal
                 }
 
                 if ($stage_id) { 
-                    wp_set_post_terms( $post_id, [$stage_id], 'ndpi_deal_stage' );
+                    wp_set_post_terms( $post_id, [$stage_id], 'ndpi_deal_stage' ); 
+                }
+
+                if ( $reorder ) {
+                    $this->reorder_posts( $reorder );
                 }
 
                 if ($contact_id) {
@@ -381,6 +394,17 @@ class Deal
                 wp_send_json_error();
             }
         }
+    }
+
+    public function reorder_posts( $order = array() ) {
+        global $wpdb;
+        $list = join(', ', $order);
+        $wpdb->query( 'SELECT @i:=-1' );
+        $result = $wpdb->query(
+            "UPDATE wp_posts SET menu_order = ( @i:= @i+1 )
+            WHERE ID IN ( $list ) ORDER BY FIELD( ID, $list );"
+        );
+        return $result;
     }
 
     public function delete($req)

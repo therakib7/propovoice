@@ -257,3 +257,14 @@ input:checked+.pi-switch-slider:before {
         padding-right: 20px !important;
     }
 } */
+
+.pi-list-single-select {
+    width: 150px;
+    float: right;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: -10px;
+    input:focus {
+        box-shadow: none;
+    }
+}

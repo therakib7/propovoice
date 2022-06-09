@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
  
 import Select from 'react-select';
-import AsyncSelect from 'react-select/async';
-import ApiTaxonomy from 'api/taxonomy';
-
-import ApiPerson from 'api/person';
-import ApiOrg from 'api/org';
+import AsyncSelect from 'react-select/async'; 
+import WithApi from 'hoc/Api'; 
 
 class Form extends Component {
     constructor(props) {
@@ -70,7 +67,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        ApiTaxonomy.getAll('taxonomy=lead_level_tag').then(resp => {
+        this.props.getAll('taxonomies', 'taxonomy=lead_level_tag').then(resp => {
             if (resp.data.success) {
                 if (this.state.form.level_id) {
                     this.setState({
@@ -96,14 +93,14 @@ class Form extends Component {
         }
         let params = new URLSearchParams(args).toString();
 
-        ApiPerson.getAll(params).then(resp => {
+        this.props.getAll('persons', params).then(resp => { 
             if (resp.data.success) {
                 let personList = resp.data.data.result;
                 this.setState({ personList });
             }
         });
 
-        ApiOrg.getAll(params).then(resp => {
+        this.props.getAll('organizations', params).then(resp => {  
             if (resp.data.success) {
                 let orgList = resp.data.data.result;
                 this.setState({ orgList });
@@ -161,8 +158,7 @@ class Form extends Component {
         if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             //search function
-            ApiPerson.getAll('first_name=' + val + '&last_name=' + val)
-                .then(resp => {
+            this.props.getAll('persons', 'first_name=' + val + '&last_name=' + val).then(resp => {   
                     let toData = resp.data.data.result;
                     callback(toData);
                 });
@@ -184,8 +180,7 @@ class Form extends Component {
         if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             //search function
-            ApiOrg.getAll('first_name=' + val + '&last_name=' + val)
-                .then(resp => {
+            this.props.getAll('organizations', 'first_name=' + val + '&last_name=' + val).then(resp => { 
                     let toData = resp.data.data.result;
                     callback(toData);
                 });
@@ -404,6 +399,6 @@ class Form extends Component {
             </div>  
         );
     }
-}
+} 
 
-export default Form;
+export default WithApi(Form);  

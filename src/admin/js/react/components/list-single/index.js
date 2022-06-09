@@ -1,13 +1,17 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useParams, useLocation } from "react-router-dom";
-import AsyncSelect from 'react-select/async'; 
+import AsyncSelect from 'react-select/async';
 
-import ApiTaxonomy from 'api/taxonomy';
+// import ApiTaxonomy from 'api/taxonomy';
 
 import Api from 'hoc/Api';
 
-import DealForm from './form/Deal';
-import ProjectForm from './form/Project';
+import LeadForm from 'components/lead/Form';
+import DealForm from 'components/deal/Form';
+import ProjectForm from 'components/project/Form';
+
+// import DealForm from './form/Deal';
+// import ProjectForm from './form/Project';
 
 const Task = lazy(() => import('./tab/task'));
 const Note = lazy(() => import('./tab/note'));
@@ -34,6 +38,7 @@ class ListSingle extends Component {
                 },
             ],
             currentTab: 'task',
+            leadModal: false,
             dealModal: false,
             projectModal: false,
             levels: [],
@@ -45,23 +50,26 @@ class ListSingle extends Component {
                 },
                 level_id: null,
                 stage_id: null,
+                provability: 0,
             }
         };
+
+        this.timeout = 0;
     }
 
-    componentDidMount() { 
-        this.getData(); 
+    componentDidMount() {
+        this.getData();
     }
 
     getData = () => {
         const url = this.props.path + 's';
         this.props.get(url, this.props.id).then(resp => {
             this.setState({ data: resp.data.data });
-            if ( this.props.path == 'lead' ) {
+            if (this.props.path == 'lead') {
                 this.getLevelTagData();
             } else {
                 this.getStageTagData();
-            } 
+            }
         });
     };
 
@@ -108,30 +116,49 @@ class ListSingle extends Component {
                     callback(toData);
                 });
         }, 300);
-    } 
-
-    handleLevelChange = ( val ) => { 
-        let data = { ...this.state.data }
-        data.level_id = val; 
-        this.setState({ data }, () => { 
-            let newData = {};
-            if ( data.level_id ) {
-                newData.level_id = data.level_id.id;
-            } 
-            this.props.update('leads', this.props.id, newData);
-        });  
     }
 
-    handleStageChange = ( val ) => { 
+    handleLevelChange = (val) => {
         let data = { ...this.state.data }
-        data.stage_id = val; 
-        this.setState({ data }, () => { 
+        data.level_id = val;
+        this.setState({ data }, () => {
             let newData = {};
-            if ( data.stage_id ) {
+            if (data.level_id) {
+                newData.level_id = data.level_id.id;
+            }
+            this.props.update('leads', this.props.id, newData);
+        });
+    }
+
+    handleProvabilityChange = (e) => {
+        let data = { ...this.state.data }
+
+        const target = e.target;
+
+        data.provability = target.value;
+        this.setState({ data }, () => {
+
+            if (this.timeout) clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                let newData = {};
+                if (data.provability) {
+                    newData.provability = data.provability;
+                }
+                this.props.update('deals', this.props.id, newData);
+            }, 300);
+        });
+    }
+
+    handleStageChange = (val) => {
+        let data = { ...this.state.data }
+        data.stage_id = val;
+        this.setState({ data }, () => {
+            let newData = {};
+            if (data.stage_id) {
                 newData.stage_id = data.stage_id.id;
-            } 
+            }
             this.props.update('deals', this.props.id, newData);
-        });  
+        });
     }
 
     render() {
@@ -190,7 +217,7 @@ class ListSingle extends Component {
                         <li className="pi-active">
                             {path == 'lead' && contact.first_name}
                             {path == 'client' && contact.first_name}
-                            {path == 'deal' || path == 'project' && data.title}
+                            { ( path == 'deal' || path == 'project' ) && data.title} 
                             {path == 'contact' && contact.first_name}
                         </li>
                     </ul>
@@ -222,17 +249,19 @@ class ListSingle extends Component {
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label htmlFor="source">Lead Level:</label>
-                                            <AsyncSelect
-                                                loadOptions={this.handleFindLevel}
-                                                value={data.level_id}
-                                                defaultOptions={this.state.levels}
-                                                onChange={this.handleLevelChange}
-                                                getOptionValue={(data) => data.id}
-                                                getOptionLabel={(data) => (data.label) ? data.label : ''}
-                                            />  
+                                            <label>Lead Level:</label>
+                                            <div className='pi-list-single-select'>
+                                                <AsyncSelect
+                                                    loadOptions={this.handleFindLevel}
+                                                    value={data.level_id}
+                                                    defaultOptions={this.state.levels}
+                                                    onChange={this.handleLevelChange}
+                                                    getOptionValue={(data) => data.id}
+                                                    getOptionLabel={(data) => (data.label) ? data.label : ''}
+                                                />
+                                            </div>
                                         </div>
-                                        
+
                                         <button
                                             className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
                                             onClick={() => this.setState({ dealModal: true })}
@@ -358,12 +387,18 @@ class ListSingle extends Component {
                                             </div>
                                         </div>
                                         <div className="pi-range">
-                                            <label htmlFor="">Probability</label>
+                                            <label htmlFor="field-provability">
+                                                Provability 
+                                            </label>
+                                            {/* <span className='pi-float-right'>({data.provability}%)</span> */}
                                             <input
+                                                id="field-provability"
                                                 type="range"
-                                                min={0}
-                                                max={100}
-                                                defaultValue={20}
+                                                min="1" max="100"
+                                                name="provability"
+                                                value={data.provability}
+                                                style={{ background: `linear-gradient(to right, #3264fe ${(data.provability / 100) * 100}%, #ccd6ff ${(data.provability / 100) * 100}%)` }}
+                                                onChange={this.handleProvabilityChange}
                                             />
                                         </div>
                                     </div>
@@ -371,15 +406,17 @@ class ListSingle extends Component {
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label htmlFor="source">Deal Stage:</label>
-                                            <AsyncSelect
-                                                // loadOptions={this.handleFindLevel}
-                                                value={data.stage_id}
-                                                defaultOptions={this.state.stages}
-                                                onChange={this.handleStageChange}
-                                                getOptionValue={(data) => data.id}
-                                                getOptionLabel={(data) => (data.label) ? data.label : ''}
-                                            />
+                                            <label>Deal Stage:</label>
+                                            <div className='pi-list-single-select'>
+                                                <AsyncSelect
+                                                    // loadOptions={this.handleFindLevel}
+                                                    value={data.stage_id}
+                                                    defaultOptions={this.state.stages}
+                                                    onChange={this.handleStageChange}
+                                                    getOptionValue={(data) => data.id}
+                                                    getOptionLabel={(data) => (data.label) ? data.label : ''}
+                                                />
+                                            </div>
                                         </div>
                                         <button
                                             className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
@@ -512,7 +549,7 @@ class ListSingle extends Component {
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label htmlFor="source">Lead Level:</label>
+                                            <label>Lead Level:</label>
                                             <select name="source" id="source" className="pi-select-small">
                                                 <option value="volvo">Opportunity</option>
                                                 <option value="saab">Saab</option>
@@ -564,8 +601,8 @@ class ListSingle extends Component {
                                                         />
                                                     </svg>
                                                     Create Invoice
-                                                </a> 
-                                            </div> 
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -773,7 +810,7 @@ class ListSingle extends Component {
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label htmlFor="source">Lead Level:</label>
+                                            <label>Lead Level:</label>
                                             <select name="source" id="source" className="pi-select-small">
                                                 <option value="volvo">Opportunity</option>
                                                 <option value="saab">Saab</option>
@@ -811,7 +848,7 @@ class ListSingle extends Component {
                                                 </svg>
                                             </button>
                                             <div className="pi-dropdown-content">
-                                                <a href="#home"> 
+                                                <a href="#home">
                                                     Create Invoice
                                                 </a>
                                             </div>
@@ -846,14 +883,23 @@ class ListSingle extends Component {
                     </>
                 }
 
+                {this.state.leadModal && <LeadForm
+                    data={data}
+                    modalType='edit'
+                    close={() => this.setState({ leadModal: false })}
+                    reload={() => this.getData()}
+                />}
+
                 {this.state.dealModal && <DealForm
                     data={data}
+                    modalType='move'
                     close={() => this.setState({ dealModal: false })}
                     reload={() => this.getData()}
                 />}
 
                 {this.state.projectModal && <ProjectForm
                     data={data}
+                    modalType='move'
                     close={() => this.setState({ projectModal: false })}
                     reload={() => this.getData()}
                 />}
