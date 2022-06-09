@@ -1,16 +1,17 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useParams, useLocation } from "react-router-dom";
 import AsyncSelect from 'react-select/async';
+import { toast } from 'react-toastify';
 
 // import ApiTaxonomy from 'api/taxonomy';
 
 import Api from 'hoc/Api';
 
 import LeadForm from 'components/lead/Form';
-import DealForm from 'components/deal/Form';
+// import DealForm from 'components/deal/Form';
 import ProjectForm from 'components/project/Form';
 
-// import DealForm from './form/Deal';
+import DealForm from './dform/Deal';
 // import ProjectForm from './form/Project';
 
 const Task = lazy(() => import('./tab/task'));
@@ -38,6 +39,7 @@ class ListSingle extends Component {
                 },
             ],
             currentTab: 'task',
+            action: false,
             leadModal: false,
             dealModal: false,
             projectModal: false,
@@ -159,6 +161,22 @@ class ListSingle extends Component {
             }
             this.props.update('deals', this.props.id, newData);
         });
+    }
+
+    deleteEntry = (type, id) => {
+        if ( confirm('Are you sure want to delete it?') ) { //TODO: translation
+             
+            this.props.remove(type + 's', id).then(resp => {
+                if (resp.data.success) { 
+                    toast.success('Successfully deleted'); //TODO: translation
+                    // this.props.router.navigate(type, { replace: true });  
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })  
+        }
     }
 
     render() {
@@ -290,8 +308,12 @@ class ListSingle extends Component {
                                             </svg>
                                             Add to Deal Pipeline
                                         </button>
+
                                         <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
-                                            <button>
+                                            <button 
+                                                className={(this.state.action ? '' : '')} 
+                                                onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
+                                            >
                                                 <svg
                                                     width={24}
                                                     height={24}
@@ -319,17 +341,12 @@ class ListSingle extends Component {
                                                     />
                                                 </svg>
                                             </button>
-                                            <div className="pi-dropdown-content">
-                                                <a href="#home">
-                                                    <svg width={13} height={13} viewBox="0 0 13 13">
-                                                        <path
-                                                            d="M8 2.89286C8 3.66009 7.68393 4.3959 7.12132 4.93842C6.55871 5.48093 5.79565 5.78571 5 5.78571C4.20435 5.78571 3.44129 5.48093 2.87868 4.93842C2.31607 4.3959 2 3.66009 2 2.89286C2 2.12562 2.31607 1.38981 2.87868 0.847298C3.44129 0.304782 4.20435 0 5 0C5.79565 0 6.55871 0.304782 7.12132 0.847298C7.68393 1.38981 8 2.12562 8 2.89286V2.89286ZM16 2.89286C16 3.27275 15.9224 3.64893 15.7716 3.99991C15.6209 4.35088 15.3999 4.66979 15.1213 4.93842C14.8427 5.20704 14.512 5.42013 14.1481 5.56551C13.7841 5.71089 13.394 5.78571 13 5.78571C12.606 5.78571 12.2159 5.71089 11.8519 5.56551C11.488 5.42013 11.1573 5.20704 10.8787 4.93842C10.6001 4.66979 10.3791 4.35088 10.2284 3.99991C10.0776 3.64893 10 3.27275 10 2.89286C10 2.12562 10.3161 1.38981 10.8787 0.847298C11.4413 0.304782 12.2044 0 13 0C13.7956 0 14.5587 0.304782 15.1213 0.847298C15.6839 1.38981 16 2.12562 16 2.89286V2.89286ZM11.93 13.5C11.976 13.1847 12 12.8636 12 12.5357C12.0023 11.0207 11.4737 9.54934 10.5 8.36036C11.2601 7.93719 12.1223 7.71441 13 7.71441C13.8776 7.7144 14.7399 7.93717 15.4999 8.36033C16.26 8.78348 16.8912 9.39211 17.3301 10.125C17.7689 10.858 18 11.6894 18 12.5357V13.5H11.93ZM5 7.71429C6.32608 7.71429 7.59785 8.22226 8.53553 9.12645C9.47322 10.0306 10 11.257 10 12.5357V13.5H0V12.5357C0 11.257 0.526784 10.0306 1.46447 9.12645C2.40215 8.22226 3.67392 7.71429 5 7.71429V7.71429Z"
-                                                            fill="#5F5F5F"
-                                                        />
-                                                    </svg>
-                                                    Create Invoice
-                                                </a>
-                                            </div>
+
+                                            {this.state.action && <div className="pi-dropdown-content pi-show">
+                                                <a href="#home">Edit</a> 
+                                                <a onClick={() => this.deleteEntry('lead', data.id)}>Delete</a>
+                                            </div>}
+
                                         </div>
                                     </div>
                                 </div>
@@ -349,17 +366,13 @@ class ListSingle extends Component {
                                     }
 
                                     <select name="" id="">
-                                        <option value="">+ Add TAg</option>
-                                        <option value="">+ Add TAg</option>
-                                        <option value="">+ Add TAg</option>
+                                        <option value="">+ Add TAg</option> 
                                     </select>
                                 </li>
                                 <li>
                                     <label htmlFor="">Source:</label>
                                     <select name="" id="">
-                                        <option value="">Website</option>
-                                        <option value="">Website</option>
-                                        <option value="">Website</option>
+                                        <option value="">Website</option> 
                                     </select>
                                 </li>
                             </ul>
@@ -382,8 +395,8 @@ class ListSingle extends Component {
                                         <div className="pi-avatar-content">
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
-                                                <h5>Nabil Ahmed</h5>
-                                                <p>Dhaka, Bangladesh</p>
+                                                <h5>{data.contact.first_name}</h5>
+                                                <p>{ ( data.contact.region ) ? data.contact.region+',' : ''} {data.contact.country}</p>
                                             </div>
                                         </div>
                                         <div className="pi-range">
@@ -453,9 +466,12 @@ class ListSingle extends Component {
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow">
                                             <img src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
                                             Lost
-                                        </button>
+                                        </button> 
                                         <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
-                                            <button>
+                                            <button 
+                                                className={(this.state.action ? '' : '')} 
+                                                onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
+                                            >
                                                 <svg
                                                     width={24}
                                                     height={24}
@@ -483,18 +499,12 @@ class ListSingle extends Component {
                                                     />
                                                 </svg>
                                             </button>
-                                            <div className="pi-dropdown-content">
-                                                <a href="#home">
-                                                    <svg width={13} height={13} viewBox="0 0 13 13">
-                                                        <path
-                                                            d="M8 2.89286C8 3.66009 7.68393 4.3959 7.12132 4.93842C6.55871 5.48093 5.79565 5.78571 5 5.78571C4.20435 5.78571 3.44129 5.48093 2.87868 4.93842C2.31607 4.3959 2 3.66009 2 2.89286C2 2.12562 2.31607 1.38981 2.87868 0.847298C3.44129 0.304782 4.20435 0 5 0C5.79565 0 6.55871 0.304782 7.12132 0.847298C7.68393 1.38981 8 2.12562 8 2.89286V2.89286ZM16 2.89286C16 3.27275 15.9224 3.64893 15.7716 3.99991C15.6209 4.35088 15.3999 4.66979 15.1213 4.93842C14.8427 5.20704 14.512 5.42013 14.1481 5.56551C13.7841 5.71089 13.394 5.78571 13 5.78571C12.606 5.78571 12.2159 5.71089 11.8519 5.56551C11.488 5.42013 11.1573 5.20704 10.8787 4.93842C10.6001 4.66979 10.3791 4.35088 10.2284 3.99991C10.0776 3.64893 10 3.27275 10 2.89286C10 2.12562 10.3161 1.38981 10.8787 0.847298C11.4413 0.304782 12.2044 0 13 0C13.7956 0 14.5587 0.304782 15.1213 0.847298C15.6839 1.38981 16 2.12562 16 2.89286V2.89286ZM11.93 13.5C11.976 13.1847 12 12.8636 12 12.5357C12.0023 11.0207 11.4737 9.54934 10.5 8.36036C11.2601 7.93719 12.1223 7.71441 13 7.71441C13.8776 7.7144 14.7399 7.93717 15.4999 8.36033C16.26 8.78348 16.8912 9.39211 17.3301 10.125C17.7689 10.858 18 11.6894 18 12.5357V13.5H11.93ZM5 7.71429C6.32608 7.71429 7.59785 8.22226 8.53553 9.12645C9.47322 10.0306 10 11.257 10 12.5357V13.5H0V12.5357C0 11.257 0.526784 10.0306 1.46447 9.12645C2.40215 8.22226 3.67392 7.71429 5 7.71429V7.71429Z"
-                                                            fill="#5F5F5F"
-                                                        />
-                                                    </svg>
-                                                    Create Invoice
-                                                </a>
-                                            </div>
-                                            {/* ./ pi-action-content*/}
+
+                                            {this.state.action && <div className="pi-dropdown-content pi-show">
+                                                <a href="#home">Edit</a>
+                                                <a href="#home">Delete</a>
+                                            </div>}
+
                                         </div>
                                     </div>
                                 </div>
@@ -505,18 +515,19 @@ class ListSingle extends Component {
                             <ul>
                                 <li className="pi-budget">
                                     <label htmlFor="">Budget:</label>
-                                    <span>$14214</span>
+                                    <span>${data.budget}</span>
                                 </li>
                                 <li>
                                     <label htmlFor="">Tag:</label>
-                                    <span className="pi-badge">Badge</span>
-                                    <span className="pi-badge">Badge</span>
-                                    <span className="pi-badge">Badge</span>
-                                    <span className="pi-badge">Badge</span>
+                                    {
+                                        data.tags && data.tags.map((tag, tagIndex) => {
+                                            return (
+                                                <span key={tagIndex} className="pi-badge">{tag.label}</span>
+                                            )
+                                        })
+                                    }
                                     <select name="" id="">
-                                        <option value="">+ Add Tag</option>
-                                        <option value="">+ Add Tag</option>
-                                        <option value="">+ Add Tag</option>
+                                        <option value="">+ Add Tag</option> 
                                     </select>
                                 </li>
                             </ul>

@@ -43,7 +43,7 @@ class Bank extends Component {
                 if (resp.data.success) {
                     this.props.close();
                     this.props.reload();
-                    toast.success('Sucessfully Paid');
+                    toast.success('Successfully Paid');
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);

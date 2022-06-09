@@ -11,7 +11,7 @@ const onDragEnd = (update, result, columns, setColumns) => {
 	if (!result.destination) return;
 	const { source, destination } = result;
 
-	if (source.droppableId !== destination.droppableId) { 
+	if (source.droppableId !== destination.droppableId) {
 
 		// console.log(update);
 		const sourceColumn = columns[source.droppableId];
@@ -34,13 +34,13 @@ const onDragEnd = (update, result, columns, setColumns) => {
 		});
 
 		//update another stage
-		let deal_id = parseInt( columns[source.droppableId].items[source.index].id );
-		let deal_stage_id = parseInt( destination.droppableId );  
+		let deal_id = parseInt(columns[source.droppableId].items[source.index].id);
+		let deal_stage_id = parseInt(destination.droppableId);
 		let finalArray = destItems.map(function (obj) {
-			return parseInt( obj.id );
-		}); 
-		update('deals', deal_id, { stage_id: deal_stage_id, reorder: finalArray } ); //update come from api hoc
-		
+			return parseInt(obj.id);
+		});
+		update('deals', deal_id, { stage_id: deal_stage_id, reorder: finalArray }); //update come from api hoc
+
 	} else {
 		const column = columns[source.droppableId];
 		const copiedItems = [...column.items];
@@ -57,10 +57,10 @@ const onDragEnd = (update, result, columns, setColumns) => {
 
 		//update deal in same stage
 		let finalArray = copiedItems.map(function (obj) {
-			return parseInt( obj.id );
-		}); 
-		let deal_id = parseInt( columns[source.droppableId].items[source.index].id ); 
-		update('deals', deal_id, { reorder: finalArray } );
+			return parseInt(obj.id);
+		});
+		let deal_id = parseInt(columns[source.droppableId].items[source.index].id);
+		update('deals', deal_id, { reorder: finalArray });
 	}
 };
 
@@ -152,11 +152,11 @@ function Pipeline(props) {
 									</button>
 									{columnId == dropdown && <div className="pi-dropdown-content pi-show"
 									// ref={popover}
-									> 
+									>
 										<a onClick={() => props.editEntry('edit', columnId)}>Edit</a>
 										<a onClick={() => props.deleteEntry('single', columnId)}>Delete</a>
 									</div>}
-								</div> 
+								</div>
 							</div>
 							<Droppable droppableId={columnId} key={columnId}>
 								{(provided, snapshot) => {
@@ -202,15 +202,15 @@ function Pipeline(props) {
 																	className="pi-board-column-item pi-bg-shadow"
 																>
 																	<div className="pi-board-item-top">
-																		<h4>{CharLimit(item.deal.title)}</h4>
-																		<span>$ {item.deal.budget}</span>
-																		<p>Probability: {item.deal.provability}%</p>
+																		<h4>{CharLimit(item.title)}</h4>
+																		<span>$ {item.budget}</span>
+																		<p>Probability: {item.provability}%</p>
 																	</div>
 																	<div className="pi-avatar-content">
 																		<img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
 																		<div className="pi-avatar-text">
-																			<h5>{item.contact.name}</h5>
-																			<p>Dhaka, Bangladesh</p>
+																			<h5>{item.contact.first_name}</h5>
+																			<p>{(item.contact.region) ? item.contact.region + ',' : ''} {item.contact.country}</p>
 																		</div>
 																	</div>
 																</div>

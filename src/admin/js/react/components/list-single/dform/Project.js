@@ -100,7 +100,7 @@ class Form extends Component {
  
         axios.post(apiUrl + 'projects', newDeal, token).then(resp => {
             if (resp.data.success) { 
-                toast.success('Sucessfully moved to project');
+                toast.success('Successfully moved to project');
                 let id = resp.data.data;
                 this.props.close();
                 this.props.router.navigate(`/project/single/${id}`, { replace: true }); 

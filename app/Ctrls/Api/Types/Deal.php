@@ -78,18 +78,18 @@ class Deal
 
         if (isset($request['page']) && $request['page'] > 1) {
             $offset = ($per_page * $request['page']) - $per_page;
-        } 
-       
-        $get_stage = get_terms( array(
+        }
+
+        $get_stage = get_terms(array(
             'taxonomy' => 'ndpi_deal_stage',
-            'orderby' => 'ID', 
+            'orderby' => 'ID',
             'order'   => 'DESC',
             'hide_empty' => false
-        ) );
- 
-        $result = $column = []; 
+        ));
 
-        foreach( $get_stage as $stage ):
+        $result = $column = [];
+
+        foreach ($get_stage as $stage) :
             $stage_id = $stage->term_id;
             $stage_name = $stage->name;
 
@@ -102,11 +102,11 @@ class Deal
                 'posts_per_page' => $per_page,
                 'offset' => $offset,
             );
-    
+
             $args['meta_query'] = array(
                 'relation' => 'OR'
             );
-    
+
             /* if (isset($request['default'])) {
                 $args['meta_query'][] = array(
                     array(
@@ -124,35 +124,53 @@ class Deal
                     'field' => 'term_id',
                 )
             );
-    
+
             $query = new WP_Query($args);
             // $total_data = $query->found_posts; //use this for pagination 
-            
+
             while ($query->have_posts()) {
                 $query->the_post();
                 $id = get_the_ID();
-    
+
                 $query_data = [];
-                $query_data['id'] = (string) $id; //Invariant failed: Draggable requires a [string] draggableId.
+                $query_data['id'] = (string) $id; //Invariant failed: Draggable requires a [string] draggableId. 
 
-                $deal = [];
-                $title = get_the_title();
-                $deal['title'] = ( $title ) ? $title : 'Rakib Project';  
-                $deal['desc'] = get_the_content(); 
-                $deal['budget'] = get_post_meta($id, 'budget', true); 
-                $deal['currency'] = get_post_meta($id, 'currency', true); 
-                $deal['provability'] = get_post_meta($id, 'provability', true);  
-                $query_data['deal'] = $deal;   
+                $queryMeta = get_post_meta($id);
+                $query_data['title'] = get_the_title();
+                $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+                $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
+                $query_data['provability'] = isset($queryMeta['provability']) ? $queryMeta['provability'][0] : '';
 
-                $contact = [];
-                $contact['name'] = 'Rakib';   
-                $query_data['contact'] = $contact; 
-    
+                /* $query_data['tags'] = [];
+                $tags = get_the_terms($id, 'ndpi_tag');
+                if ($tags) {
+                    $tagList = [];
+                    foreach ($tags as $tag) {
+                        $tagList[] = [
+                            'id' => $tag->term_id,
+                            'label' => $tag->name
+                        ];
+                    }
+                    $query_data['tags'] = $tagList;
+                } */
+
+                $contact_id = get_post_meta($id, 'contact_id', true);
+                $contactData = [];
+
+                if ($contact_id) {
+                    $contactData['id'] = absint($contact_id);
+                    $contactMeta = get_post_meta($contact_id);
+                    $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : ''; 
+                    $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
+                    $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : ''; 
+                }
+                $query_data['contact'] = $contactData;
+
                 $query_data['date'] = get_the_time('j-M-Y');
                 $items[] = $query_data;
             }
             wp_reset_postdata();
-            
+
             $column[$stage_id] = [
                 'name' => $stage_name,
                 'id' => $stage_id,
@@ -160,28 +178,28 @@ class Deal
             ];
 
             $result['result'] = $column;
-            // $result['total'] = $total_data;
+        // $result['total'] = $total_data;
 
-        endforeach;   
+        endforeach;
 
         wp_send_json_success($result);
-    } 
+    }
 
     public function get_single($req)
     {
         $url_params = $req->get_url_params();
         $id = $url_params['id'];
         $query_data = [];
-        $query_data['id'] = absint( $id );
- 
+        $query_data['id'] = absint($id);
+
         $queryMeta = get_post_meta($id);
-        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint( $queryMeta['tab_id'][0] ) : '';
+        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
         $query_data['title'] = isset($queryMeta['title']) ? $queryMeta['title'][0] : '';
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-        $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
-        $query_data['provability'] = isset($queryMeta['provability']) ? absint( $queryMeta['provability'][0] ) : ''; 
-        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
-        $query_data['desc'] = get_post_field('post_content', $id); 
+        $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
+        $query_data['provability'] = isset($queryMeta['provability']) ? absint($queryMeta['provability'][0]) : '';
+        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
+        $query_data['desc'] = get_post_field('post_content', $id);
 
         $query_data['stage_id'] = '';
 
@@ -214,7 +232,7 @@ class Deal
         if ($contact_id) {
             $contactData['id'] = absint($contact_id);
             $contactMeta = get_post_meta($contact_id);
-            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : ''; 
+            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
             $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
             $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
             $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
@@ -225,7 +243,7 @@ class Deal
         }
         $query_data['contact'] = $contactData;
 
-        $query_data['date'] = get_the_time('j-M-Y'); 
+        $query_data['date'] = get_the_time('j-M-Y');
 
         wp_send_json_success($query_data);
     }
@@ -241,7 +259,7 @@ class Deal
         $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
+        $provability  = isset($params['provability']) ? absint($params['provability']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
@@ -270,17 +288,17 @@ class Deal
             );
             $post_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) { 
+            if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
+                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
                 update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
-                
+
                 if ($title) {
                     update_post_meta($post_id, 'title', $title);
                 }
 
-                if ($stage_id) { 
-                    wp_set_post_terms( $post_id, [$stage_id], 'ndpi_deal_stage' );
+                if ($stage_id) {
+                    wp_set_post_terms($post_id, [$stage_id], 'ndpi_deal_stage');
                 }
 
                 if ($contact_id) {
@@ -299,13 +317,13 @@ class Deal
                     update_post_meta($post_id, 'provability', $provability);
                 }
 
-                if ($tags) { 
-                    wp_set_post_terms( $post_id, $tags, 'ndpi_tag' );
+                if ($tags) {
+                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
                 }
 
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);
-                } 
+                }
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -324,7 +342,7 @@ class Deal
         $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
+        $provability  = isset($params['provability']) ? absint($params['provability']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
@@ -357,12 +375,12 @@ class Deal
                     update_post_meta($post_id, 'title', $title);
                 }
 
-                if ($stage_id) { 
-                    wp_set_post_terms( $post_id, [$stage_id], 'ndpi_deal_stage' ); 
+                if ($stage_id) {
+                    wp_set_post_terms($post_id, [$stage_id], 'ndpi_deal_stage');
                 }
 
-                if ( $reorder ) {
-                    $this->reorder_posts( $reorder );
+                if ($reorder) {
+                    $this->reorder_posts($reorder);
                 }
 
                 if ($contact_id) {
@@ -381,13 +399,13 @@ class Deal
                     update_post_meta($post_id, 'provability', $provability);
                 }
 
-                if ($tags) { 
-                    wp_set_post_terms( $post_id, $tags, 'ndpi_tag' );
+                if ($tags) {
+                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
                 }
 
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);
-                } 
+                }
 
                 wp_send_json_success($post_id);
             } else {
@@ -396,10 +414,11 @@ class Deal
         }
     }
 
-    public function reorder_posts( $order = array() ) {
+    public function reorder_posts($order = array())
+    {
         global $wpdb;
         $list = join(', ', $order);
-        $wpdb->query( 'SELECT @i:=-1' );
+        $wpdb->query('SELECT @i:=-1');
         $result = $wpdb->query(
             "UPDATE wp_posts SET menu_order = ( @i:= @i+1 )
             WHERE ID IN ( $list ) ORDER BY FIELD( ID, $list );"
