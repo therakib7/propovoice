@@ -108,7 +108,14 @@ class Form extends Component {
             form.tags = finalArray;
         }
 
-        this.props.handleSubmit(form);
+        if ( this.props.reload ) {
+            this.props.update('leads', form.id, form);
+            this.props.close();
+            this.props.reload();
+        } else {
+            this.props.handleSubmit(form);
+        }
+        
         this.setState({ form: this.initialState });
     }
 

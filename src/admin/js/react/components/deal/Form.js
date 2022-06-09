@@ -17,6 +17,7 @@ class Form extends Component {
             currency: 'USD',
             provability: 50,
             tags: [],
+            desc: '',
             note: '',
             date: false
         };
@@ -107,7 +108,13 @@ class Form extends Component {
             form.tags = finalArray;
         }
 
-        this.props.handleSubmit(form);
+        if ( this.props.reload ) {
+            this.props.update('leads', form.id, form);
+            this.props.close();
+            this.props.reload();
+        } else {
+            this.props.handleSubmit(form);
+        }
         this.setState({ form: this.initialState });
     }
 
@@ -276,6 +283,22 @@ class Form extends Component {
                                         />
                                     </div>
                                 </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="field-desc">
+                                            Description
+                                        </label>
+
+                                        <textarea
+                                            id="form-desc"
+                                            rows={2}
+                                            name="desc"
+                                            value={form.desc}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div> 
 
                                 <div className="row">
                                     <div className="col">

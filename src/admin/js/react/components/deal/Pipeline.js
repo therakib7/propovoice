@@ -104,7 +104,7 @@ function Pipeline(props) {
 
 	const CharLimit = (string) => {
 		let limit = 22;
-		if (string.length > limit) {
+		if ( string.length > limit ) {
 			return `${string.substring(0, limit)}... `;
 		}
 		return string;

@@ -245,9 +245,7 @@
 }
 .ncpi .pi-board {
   display: flex;
-  overflow-x: scroll;
   margin-top: 30px;
-  height: calc(100vh - 235px);
 }
 .ncpi .pi-board-column {
   margin-right: 20px;
@@ -343,10 +341,9 @@
   font-size: 12px;
 }
 .ncpi .pi-broad-content {
-  overflow-y: scroll;
   width: 235px;
-  height: 89%;
   padding: 15px 10px;
+  width: 235px;
 }
 .ncpi .pi-note {
   display: flex;

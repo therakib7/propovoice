@@ -7,7 +7,7 @@ const Api = (Inner, mod = '') => {
 
     let url = apiUrl + mod;
 
-    const Crud = class extends Component {
+    const apiWrap = class extends Component {
         constructor(props) {
             super(props);
         } 
@@ -68,7 +68,7 @@ const Api = (Inner, mod = '') => {
             ); 
         }
     };
-    return Crud;
+    return apiWrap;
 };
 
 export default Api;

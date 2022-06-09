@@ -194,7 +194,7 @@ class Deal
 
         $queryMeta = get_post_meta($id);
         $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
-        $query_data['title'] = isset($queryMeta['title']) ? $queryMeta['title'][0] : '';
+        $query_data['title'] = get_the_title( $id );
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
         $query_data['provability'] = isset($queryMeta['provability']) ? absint($queryMeta['provability'][0]) : '';
@@ -362,18 +362,21 @@ class Deal
             $post_id    = $url_params['id'];
 
             $data = array(
-                'ID'            => $post_id,
-                'post_title'    => $title,
-                'post_content'  => $desc,
-                'post_author'   => get_current_user_id()
+                'ID'          => $post_id,  
+                'post_author' => get_current_user_id()
             );
+
+            if ( $title ) {
+                $data['post_title'] = $title;
+            }
+
+            if ( $desc ) {
+                $data['post_content'] = $desc;
+            }
+
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) {
-
-                if ($title) {
-                    update_post_meta($post_id, 'title', $title);
-                }
+            if (!is_wp_error($post_id)) { 
 
                 if ($stage_id) {
                     wp_set_post_terms($post_id, [$stage_id], 'ndpi_deal_stage');
