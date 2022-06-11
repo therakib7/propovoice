@@ -10,7 +10,7 @@ import AppContext from 'context/app-context';
 import Api from 'api/payment';
 
 //others component
-import FormBank from 'components/payment/FormBank';  
+import FormBank from 'components/payment/FormBank';
 
 class Payment extends Component {
 
@@ -20,7 +20,7 @@ class Payment extends Component {
         this.state = {
             preloader: true,
             bankModal: false,
-            payment: { id: null }, 
+            payment: { id: null },
             payments: [],
             checkedBoxes: [],
             offset: 0,
@@ -56,11 +56,11 @@ class Payment extends Component {
                 let result = resp.data.data.result;
                 this.setState({ payments: result, preloader: false });
             })
-    }; 
+    };
 
     setPayment = (data, type) => {
         this.props.handleChange(data, type);
-    } 
+    }
 
     handleSubmit = payment => {
         Api.create(payment)
@@ -75,30 +75,26 @@ class Payment extends Component {
                         toast.error(value);
                     });
                 }
-            }) 
-    } 
+            })
+    }
 
     render() {
         const { payment_methods } = this.props.data
         return (
-            <li>
-                <input type="checkbox" defaultChecked="checked" />
-                <i />
-                <h3>Accepted Payment</h3>
-                <div className="pi-form-accordion pi-additional">  
-                    {this.state.payments.map((row, index) => { 
-                        if ( wage.length > 0 ) {
-                            if ( row.method_id !== 'bank') return;
-                        }
-                        
-                        return (
+            <div className="pi-form-accordion pi-additional">
+                {this.state.payments.map((row, index) => {
+                    if (wage.length > 0) {
+                        if (row.method_id !== 'bank') return;
+                    }
+
+                    return (
                         <div className="pi-tab" key={index}>
-                            <input type="checkbox" defaultChecked={payment_methods.hasOwnProperty(row.method_id)} id={"pi-payment-"+row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pi-payment-type" />
-                            <label className="pi-tab-label" htmlFor={"pi-payment-"+row.method_id}>
+                            <input type="checkbox" defaultChecked={payment_methods.hasOwnProperty(row.method_id)} id={"pi-payment-" + row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pi-payment-type" />
+                            <label className="pi-tab-label" htmlFor={"pi-payment-" + row.method_id}>
                                 {row.method_name}
                             </label>
                             <div className="pi-tab-content">
-                                {row.list.map((single, index_single) => { 
+                                {row.list.map((single, index_single) => {
                                     return (
                                         <div className="pi-payment-bank-content" key={index_single} onClick={() => this.setPayment(single, 'id')} >
                                             <div className="pi-payment-image">
@@ -133,9 +129,9 @@ class Payment extends Component {
                                                     </svg>
                                                 </span>}
 
-                                                { ( row.method_id == 'paypal' || row.method_id == 'stripe' ) &&
+                                                {(row.method_id == 'paypal' || row.method_id == 'stripe') &&
                                                     <>
-                                                        <h4 className="pi-payment-title">{single.account_name}</h4> 
+                                                        <h4 className="pi-payment-title">{single.account_name}</h4>
                                                     </>
                                                 }
 
@@ -147,33 +143,31 @@ class Payment extends Component {
                                             </div>
                                         </div>
                                     );
-                                })} 
+                                })}
                             </div>
                         </div>
-                        );
-                    })}  
-                    
-                    {!this.state.payments.length && 
-                        <div className='pi-payment-buttons'> 
-                            {this.state.bankModal && <FormBank
-                                handleSubmit={this.handleSubmit}
-                                show={this.state.bankModal}
-                                modalType={'new'}
-                                // data={this.state.businessData}
-                                close={() => this.setState({ bankModal: false })}
-                            />}
-                            <button 
-                                className='pi-btn pi-bg-blue pi-bg-hover-blue pi-hover-color-white'
-                                // onClick={this.goToPayment}
-                                onClick={() => this.setState({ bankModal: true })}
-                                >
-                                Add New Payment
-                            </button>   
-                        </div>
-                    } 
-                </div>
+                    );
+                })}
 
-            </li>
+                {!this.state.payments.length &&
+                    <div className='pi-payment-buttons'>
+                        {this.state.bankModal && <FormBank
+                            handleSubmit={this.handleSubmit}
+                            show={this.state.bankModal}
+                            modalType={'new'}
+                            // data={this.state.businessData}
+                            close={() => this.setState({ bankModal: false })}
+                        />}
+                        <button
+                            className='pi-btn pi-bg-blue pi-bg-hover-blue pi-hover-color-white'
+                            // onClick={this.goToPayment}
+                            onClick={() => this.setState({ bankModal: true })}
+                        >
+                            Add New Payment
+                        </button>
+                    </div>
+                }
+            </div>
         );
     }
 }

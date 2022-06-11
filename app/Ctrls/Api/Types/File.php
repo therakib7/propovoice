@@ -68,19 +68,20 @@ class File
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        $tab_id = $request['tab_id'];
+        $tab_id = $params['tab_id'];
+        $type   = isset($params['type']) ? sanitize_text_field($params['type']) : null; 
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
         }
 
         $args = array(
@@ -91,7 +92,7 @@ class File
         );
 
         $args['meta_query'] = array(
-            'relation' => 'OR'
+            'relation' => 'AND'
         );
  
         $args['meta_query'][] = array(
@@ -101,6 +102,16 @@ class File
                 'compare' => '='
             )
         ); 
+
+        if ( $type ) { 
+            $args['meta_query'][] = array( 
+                array(
+                    'key'     => 'type',
+                    'value'   => $type,
+                    'compare' => 'LIKE'
+                )
+            );
+        }
 
         $query = new WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
@@ -117,7 +128,22 @@ class File
             $query_data['title'] = isset($queryMeta['title']) ? sanitize_text_field($queryMeta['title'][0]) : ''; 
             $query_data['url'] = isset($queryMeta['url']) ? sanitize_text_field($queryMeta['url'][0]) : ''; 
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $file_id = isset($queryMeta['file']) ? sanitize_text_field($queryMeta['file'][0]) : '';
+            $fileData = null; 
+            if ( $file_id ) {
+                $file_src = wp_get_attachment_image_src( $file_id, 'thumbnail' );
+                if ( $file_src ) {
+                    $fileData = []; 
+                    $fileData['id'] = $file_id;  
+                    $fileData['src'] = $file_src[0]; 
+                    $fileData['srcdd'] = $file_src; 
+                }
+            } 
+            $query_data['file'] = $fileData;
+ 
+            $posted = get_the_time('U'); 
+            $query_data['date'] = human_time_diff($posted, current_time( 'U' )). ' ' . esc_html__( 'ago', 'propovoice' );
+
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -147,6 +173,8 @@ class File
         $reg_errors = new \WP_Error;
         $tab_id = isset($params['tab_id']) ? absint($req['tab_id']) : null;          
         $type   = isset($params['type']) ? sanitize_text_field($params['type']) : null; 
+        $file = isset( $params['file'] ) && isset( $params['file']['id'] ) ? absint( $params['file']['id'] ) : null;
+
         $title  = isset($params['title']) ? sanitize_text_field($params['title']) : null;  
         $url    = isset($params['url']) ? sanitize_text_field($params['url']) : null;  
 
@@ -183,6 +211,11 @@ class File
                 if ($url) {
                     update_post_meta($post_id, 'url', $url);
                 } 
+
+                if ( $file ) {
+                    update_post_meta($post_id, 'file', $file); 
+                } 
+
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();

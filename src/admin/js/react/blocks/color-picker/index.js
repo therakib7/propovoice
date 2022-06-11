@@ -3,7 +3,7 @@ import { HexColorPicker, HexColorInput } from "react-colorful";
 import "./style.scss";
 import useClickOutside from 'block/outside-click';
 
-const ColorPicker = ({ color, onChange }) => {
+export default ({ color, onChange }) => {
 	const popover = useRef();
 	const [isOpen, toggle] = useState(false);
 	
@@ -49,6 +49,4 @@ const ColorPicker = ({ color, onChange }) => {
 			)}
 		</>
 	);
-};
-
-export default ColorPicker;
+} 

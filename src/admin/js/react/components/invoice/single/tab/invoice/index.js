@@ -49,6 +49,7 @@ class Invoice extends Component {
 					text: 'Preview & Share'
 				},
 			],
+			sidebarActive: '',
 			currentTab: '',
 			currentTabIndex: null,
 			msg: {
@@ -116,13 +117,13 @@ class Invoice extends Component {
 				},
 				//TODO: move the the field in single, if always not needed
 				recurring: {
-					status: false, 
+					status: false,
 					interval_type: 'week',
 					interval_in: 'month', //1=day, 2=month, 3=year
 					interval: 1,
 					limit_type: 0,
 					limit: 5,
-					send_me: false, 
+					send_me: false,
 					delivery: 1, //1=auto, 0=manual
 				},
 				sections: null,
@@ -150,7 +151,7 @@ class Invoice extends Component {
 		}
 	};
 
-	componentDidMount() { 
+	componentDidMount() {
 
 		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
 
@@ -176,8 +177,8 @@ class Invoice extends Component {
 			let date = new Date();
 			let dueDate = new Date(date);
 			dueDate.setDate(dueDate.getDate() + 30);
-			
-			let invoice = {...this.state.invoice}
+
+			let invoice = { ...this.state.invoice }
 			invoice.due_date = dueDate;
 
 			this.setState({
@@ -221,11 +222,11 @@ class Invoice extends Component {
 			this.setState({ msg, invoice });
 		} else {
 			this.setState({ msg });
-		} 
+		}
 	};
 
 	getData = () => {
-		
+
 		Api.get(this.props.id)
 			.then(resp => {
 				let invoice = resp.data.data.invoice;
@@ -235,7 +236,7 @@ class Invoice extends Component {
 				invoice.due_date = new Date(resp.data.data.invoice.due_date);
 
 				let payment_methods = resp.data.data.invoice.payment_methods; //it's because wordpress empty object covnert to array
-				if ( Array.isArray( payment_methods ) && ! payment_methods.length ) { 
+				if (Array.isArray(payment_methods) && !payment_methods.length) {
 					invoice.payment_methods = {}
 				}
 				this.setState({
@@ -337,15 +338,15 @@ class Invoice extends Component {
 		let invoice = { ...this.state.invoice }
 		invoice.items = invoice.items.concat(
 			[
-				{ 
-					id: Date.now().toString(), 
-					title: '', 
-					desc: '', 
-					qty: 0, 
-					qty_type: 'unit', 
-					price: 0, 
-					tax: 0, 
-					tax_type: 'fixed' 
+				{
+					id: Date.now().toString(),
+					title: '',
+					desc: '',
+					qty: 0,
+					qty_type: 'unit',
+					price: 0,
+					tax: 0,
+					tax_type: 'fixed'
 				}
 			]
 		);
@@ -512,6 +513,14 @@ class Invoice extends Component {
 		});
 	}
 
+	setSidebarActive( id ) {
+		if ( this.state.sidebarActive == id ) {
+			this.setState({ sidebarActive: '' });
+		} else {
+			this.setState({ sidebarActive: id });
+		} 
+	}
+
 	onStyleChange = (data) => {
 		let invoice = { ...this.state.invoice }
 		invoice.style = data;
@@ -601,7 +610,7 @@ class Invoice extends Component {
 	}
 
 	render = () => {
-		const { title, tabs = [], currentTab, currentTabIndex, invoice } = this.state;
+		const { title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
 		return (
 			<>
 
@@ -734,7 +743,7 @@ class Invoice extends Component {
 															<label htmlFor="date">{title} date:</label>
 														</div>
 														<div className="pi-info-input-field">
-															<DateField date={invoice.date} type='date' onDateChange={this.onDateChange} /> 
+															<DateField date={invoice.date} type='date' onDateChange={this.onDateChange} />
 														</div>
 													</div>
 
@@ -864,39 +873,61 @@ class Invoice extends Component {
 									<div className="pi-accordion-wrapper">
 										<ul>
 											<Suspense fallback={<div>Loading...</div>}>
+ 
+												{ ( !sidebarActive || sidebarActive == 'style' ) && <li className="pi-edit-style">
+													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('style')} />
+													<i />
+													<h3>Edit Style</h3>
+													<Style
+														handleChange={this.onStyleChange}
+														data={invoice}
+													/>
+												</li>}
 
-												<Style
-													handleChange={this.onStyleChange}
-													data={invoice}
-												/>
-
-												{this.props.path == 'invoice' && <Payment
-													handleChange={this.onPaymentChange}
-													data={invoice}
+												{ ( !sidebarActive || sidebarActive == 'payment' ) && this.props.path == 'invoice' && <li>
+													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
+													<i />
+													<h3>Accepted Payment</h3>
+													 <Payment
+														handleChange={this.onPaymentChange}
+														data={invoice}
 													// handleSave={this.handleSave}
-												/>}
+													/>
+												</li>}
 
-												<AdditionalAmount
-													handleChange={this.onExtraFieldChange}
-													data={invoice.extra_field}
-												/>
+												{ ( !sidebarActive || sidebarActive == 'extra-field' ) && <li>
+													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('extra-field')} />
+													<i />
+													<h3>Additional Amount</h3>
+													<AdditionalAmount
+														handleChange={this.onExtraFieldChange}
+														data={invoice.extra_field}
+													/>
+												</li>}
 
-												{!wage.length &&
+												{ ( !sidebarActive || sidebarActive == 'reminder' ) && !wage.length &&<li>
+													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('reminder')} />
+													<i />
+													<h3>Reminder</h3> 
 													<Reminder
 														handleChange={this.onReminderChange}
 														handleDefault={this.onReminderDefault}
 														id={this.props.id}
 														path={this.props.path}
 														data={invoice.reminder}
-													/>
-												}
+													/> 
+												</li>}
 
-												{!wage.length && this.props.path == 'invoice' &&
+												{ ( !sidebarActive || sidebarActive == 'recurring' ) && !wage.length && this.props.path == 'invoice' &&<li>
+													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('recurring')} />
+													<i />
+													<h3>Recurring</h3> 
 													<Recurring
 														handleChange={this.onRecurringChange}
 														data={invoice.recurring}
-													/>
-												}
+													/> 
+												</li>}
+
 											</Suspense>
 										</ul>
 									</div>

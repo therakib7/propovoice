@@ -307,11 +307,11 @@ const Home = () => {
                 </div>
 
                 <div className='pi-right-content pi-bg-pearl'>
-                    <div className='pi-right-content-data pi-deal-content'>
+                    <div className='pi-right-content-data '> {/* TODO: conditional class pi-deal-content */} 
                         <Suspense fallback={<div>Loading...</div>}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
-                                {/* <Route path="/proposal" element={<Proposal />} />  */}
+                                {/* <Route path="/proposal" element={<Proposal />} /> */}
                                 {/* <Route path="/proposal" element={<Editor />} /> */}
 
                                 <Route path="/client" exact element={<Client />} />

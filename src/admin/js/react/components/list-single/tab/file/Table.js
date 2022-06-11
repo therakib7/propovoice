@@ -81,22 +81,23 @@ const TableBody = props => {
         return (
             <tr key={index}>
                 <td>
-                    <input type="checkbox" 
+                    <input type="checkbox"
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
                 <td>
-                    <img src={ncpi.assetImgUri + 'file.png'} alt="file" /> 
-                    <span><a target='_blank' href={row.url}>{row.title}</a></span> 
-                </td> 
+                    {row.file && <img src={row.file.src} alt="file" width="40" />}
+                    { ! row.file && <img src={ncpi.assetImgUri + 'file.png'} alt="file" />}
+                    <span><a target='_blank' href={row.url}>{row.title}</a></span>
+                </td>
                 <td>
                     <div className="pi-avater">
-                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" /> 
+                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                     </div>
-                </td> 
-                <td>{/* <Moment format="YYYY-MM-DD" >{row.date}</Moment> */}2 min ago</td>
+                </td>
+                <td>{row.date}</td>
                 <td className="pi-action">
                     <div className="pi-action-content">
                         <button className={(row.id == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(row.id)}>
@@ -128,12 +129,12 @@ const TableBody = props => {
                             </svg>
                         </button>
                         {row.id == dropdown && <div className="pi-dropdown-content pi-show"
-                            // ref={popover}
-                            > 
-                                <a onClick={() => props.editEntry('edit', row)}>Edit</a>
-                                <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
-                            </div>}
-                    </div> 
+                        // ref={popover}
+                        >
+                            {row.type == 'link' && <a onClick={() => props.editEntry('edit', row)}>Edit</a>}
+                            <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
+                        </div>}
+                    </div>
                 </td>
             </tr>
         );

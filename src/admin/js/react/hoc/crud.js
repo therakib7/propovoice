@@ -22,7 +22,7 @@ const HOC = (Inner, mod, modPlural = '') => {
                 preloader: true,
                 formModal: false,
                 searchModal: false,
-                formModalType: 'new',
+                formModalType: 'new', 
                 list: { id: null },
                 lists: [],
                 checkedBoxes: [],

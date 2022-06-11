@@ -4,6 +4,8 @@ import Select from 'react-select';
 import AsyncSelect from 'react-select/async'; 
 import WithApi from 'hoc/Api'; 
 
+import Search from 'block/field/search';
+
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -18,8 +20,8 @@ class Form extends Component {
             desc: '',
             note: '',
             date: false,
-            contact_id: null,
-            contact_type: 'person', //org/person 
+            person_id: null, 
+            org_id: null, 
         };
 
         this.state = {
@@ -132,8 +134,12 @@ class Form extends Component {
         e.preventDefault();
         let form = { ...this.state.form }
 
-        if ( form.contact_id ) {
-            form.contact_id = form.contact_id.id;
+        if ( form.person_id ) {
+            form.person_id = form.person_id.id;
+        }
+
+        if ( form.org_id ) {
+            form.org_id = form.org_id.id;
         }
 
         if ( form.level_id ) {
@@ -174,8 +180,7 @@ class Form extends Component {
 
     handlePersonSelect = ( val ) => { 
         let form = { ...this.state.form }
-        form.contact_id = val;
-        form.contact_type = 'person';
+        form.person_id = val; 
         this.setState({ form });
         // this.props.setTo(val);
     }
@@ -194,9 +199,11 @@ class Form extends Component {
         }, 300);
     }
 
-    handleOrgSelect = (val) => {
-        this.setState({ to: val });
-        // this.props.setTo(val);
+    handleOrgSelect = ( val ) => {
+        let form = { ...this.state.form }
+        form.org_id = val; 
+        this.setState({ form });
+        //this.props.setTo(val);
     }
 
     render() {
@@ -244,10 +251,10 @@ class Form extends Component {
                                         <label htmlFor="first_name">
                                             Contact Person
                                         </label>
-
+                                        {/* <Search name={'person_id'} /> */}
                                         <AsyncSelect
                                             loadOptions={this.handleFindPerson}
-                                            value={this.state.form.contact_id}
+                                            value={this.state.form.person_id}
                                             defaultOptions={personList}
                                             onChange={this.handlePersonSelect}
                                             getOptionValue={(data) => data.id}
@@ -264,7 +271,7 @@ class Form extends Component {
 
                                         <AsyncSelect
                                             loadOptions={this.handleFindOrg}
-                                            value={this.state.form.contact_id}
+                                            value={this.state.form.org_id}
                                             defaultOptions={orgList}
                                             onChange={this.handleOrgSelect}
                                             getOptionValue={(data) => data.id}

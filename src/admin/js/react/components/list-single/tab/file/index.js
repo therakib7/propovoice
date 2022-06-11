@@ -1,7 +1,8 @@
-import ReactPaginate from 'react-paginate';
+import React, { useCallback, useRef, useState } from "react"; 
 import Preloader from 'block/preloader/table';
 
-import Form from './Form';
+import FormFile from './FormFile';
+import FormLink from './FormLink';
 import Table from './Table';
 // import Search from './Search';
 // import Empty from 'block/empty';
@@ -9,6 +10,10 @@ import Table from './Table';
 import Crud from 'hoc/Crud';
 
 const File = (props) => {
+
+    const [fileModal, setFileModal] = useState(false);
+    const [activeTab, setActiveTab] = useState('all');
+
     const { lists, checkedBoxes, searchVal } = props.state;
     return (
         <>
@@ -16,20 +21,32 @@ const File = (props) => {
                 <div className="row">
                     <div className="col">
                         <h3 className="pi-title-small">My Files</h3>
-                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                        <button 
+                            className={ 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ( activeTab == 'all' ? 'pi-active' : '') }
+                            onClick={() => { setActiveTab('all'); props.getLists(); } }
+                        >
                             All
                         </button>
-                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                        <button 
+                            className={ 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ( activeTab == 'file' ? 'pi-active' : '') } 
+                            onClick={() => { setActiveTab('file'); props.getLists({type: 'file'}); } }
+                        >
                             File
                         </button>
-                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                        <button 
+                            className={ 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ( activeTab == 'link' ? 'pi-active' : '') }
+                            onClick={() => { setActiveTab('link'); props.getLists({type: 'link'}); } } 
+                        >
                             Link
                         </button>
                     </div>
 
                     <div className="col">
                         <div className="pi-buttons-right pi-text-right">
-                            <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
+                            <button 
+                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
+                                onClick={() => setFileModal( true ) }
+                            >
                                 <svg
                                     width={17}
                                     height={14}
@@ -143,7 +160,15 @@ const File = (props) => {
                 </div>
             </div>
 
-            {props.state.formModal && <Form
+            {fileModal && <FormFile
+                tab_id={props.tab_id}
+                handleSubmit={props.handleSubmit} 
+                modalType={'new'}
+                data={props.state.list}
+                close={ () => setFileModal( false ) }
+            />}
+
+            {props.state.formModal && <FormLink
                 tab_id={props.tab_id}
                 handleSubmit={props.handleSubmit} 
                 modalType={props.state.formModalType}
@@ -154,7 +179,5 @@ const File = (props) => {
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
         </>
     );
-}
-
-
+}  
 export default Crud(File, 'file');
