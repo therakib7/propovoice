@@ -129,6 +129,16 @@ class Task
             $query_data = [];
             $query_data['id'] = $id;
             $query_data['title'] = get_the_title();
+            $query_data['type_id'] = '';
+
+            $type = get_the_terms($id, 'ndpi_task_type');
+            if ($type) {
+                $query_data['type_id'] = [
+                    'id' => $type[0]->term_id,
+                    'label' => $type[0]->name
+                ];
+            }
+
             $query_data['desc'] = get_the_content();
             $query_data['date'] = get_the_time('j-M-Y'); 
 
@@ -173,6 +183,7 @@ class Task
 
         $tab_id   = isset($params['tab_id']) ? absint($req['tab_id']) : null;
         $title   = isset($params['title']) ? sanitize_text_field($req['title']) : null;
+        $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
 
         if (empty($tab_id)) {
             $reg_errors->add('field', esc_html__('Tab ID is missing', 'propovoice'));
@@ -198,6 +209,10 @@ class Task
             if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
                 update_post_meta($post_id, 'tab_id', $tab_id);
+                if ($type_id) {
+                    wp_set_post_terms($post_id, [$type_id], 'ndpi_task_type');
+                }
+
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -211,6 +226,7 @@ class Task
         $reg_errors = new \WP_Error;
 
         $title = isset($params['title']) ? sanitize_text_field($req['title']) : null;
+        $type_id = isset($params['type_id']) ? absint($params['type_id']) : null;
         $desc = isset($params['desc']) ? sanitize_text_field($req['desc']) : null;
 
         if (empty($title)) {
@@ -233,9 +249,9 @@ class Task
 
             if (!is_wp_error($post_id)) {
 
-                /* if ($desc) {
-                    update_post_meta($post_id, 'desc', $desc);
-                }  */
+                if ($type_id) {
+                    wp_set_post_terms($post_id, [$type_id], 'ndpi_task_type');
+                }
 
                 wp_send_json_success($post_id);
             } else {

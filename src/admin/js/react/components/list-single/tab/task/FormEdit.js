@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-// import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-// import Select from 'react-select';
-// import ApiTaxonomy from 'api/taxonomy';
+import Select from 'react-select';
+import WithApi from 'hoc/Api'; 
 
 import Checklist from './Checklist';
 
@@ -14,13 +13,15 @@ class Form extends Component {
             id: null,
             tab_id: this.props.tab_id,
             title: '',
+            type_id: null,
             desc: '',
             note: '',
             checklist: null,
         };
 
         this.state = {
-            form: this.initialState
+            form: this.initialState,
+            types: [],
         };
     }
 
@@ -30,6 +31,23 @@ class Form extends Component {
     }
 
     componentDidMount() {
+        this.props.getAll('taxonomies', 'taxonomy=task_type').then(resp => { 
+            if (resp.data.success) {
+                if (this.state.form.type_id) {
+                    this.setState({
+                        types: resp.data.data.types  
+                    });
+                } else {
+                    let form = { ...this.state.form }
+                    form.type_id = resp.data.data.types[0];
+                    this.setState({
+                        form,
+                        types: resp.data.data.types 
+                    });
+                }
+            }
+        });
+
         //added this multiple place, because not working in invoice single
         this.editData();
     }
@@ -58,19 +76,28 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let form = { ...this.state.form }
+
+        if (form.type_id) {
+            form.type_id = form.type_id.id;
+        }
+
         this.props.handleSubmit(form);
         this.setState({ form: this.initialState });
     }
 
     handleChecklistChange = (data) => {
-		let invoice = { ...this.state.invoice }
-		invoice.group = data;
-		this.setState({ invoice })
-	}
- 
+        let invoice = { ...this.state.invoice }
+        invoice.group = data;
+        this.setState({ invoice })
+    }
+
+    handleStageChange = val => {
+        this.setState({ form: { ...this.state.form, ['type_id']: val } });
+    }
 
     render() {
         const form = this.state.form; 
+        const typeList = this.state.types;
 
         return (
             <div className="pi-overlay">
@@ -124,6 +151,23 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="form-desc">
+                                            Activity Type
+                                        </label> 
+
+                                        <Select
+                                            value={form.type_id}
+                                            onChange={this.handleStageChange}
+                                            getOptionValue={(data) => data.id}
+                                            getOptionLabel={(data) => data.label}
+                                            options={typeList}
+                                        />
+                                    </div>
+                                </div>
+
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="title">
@@ -216,8 +260,7 @@ class Form extends Component {
                                         </label>
 
                                         <textarea
-                                            id="form-desc"
-                                            required
+                                            id="form-desc" 
                                             name="desc"
                                             value={form.desc}
                                             onChange={this.handleChange}
@@ -232,8 +275,7 @@ class Form extends Component {
                                         </label>
 
                                         <textarea
-                                            id="form-note"
-                                            required
+                                            id="form-note" 
                                             name="note"
                                             value={form.note}
                                             onChange={this.handleChange}
@@ -242,7 +284,7 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} /> 
+                                    <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} />
                                 </div>
                             </div>
                         </div>
@@ -265,4 +307,4 @@ class Form extends Component {
     }
 }
 
-export default Form;
+export default WithApi(Form); 

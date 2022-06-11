@@ -288,7 +288,7 @@ class ListSingle extends Component {
                                         </div>
 
                                         <button
-                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
+                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
                                             onClick={() => this.setState({ dealModal: true, dealModalType: 'move' })}
                                         >
                                             <svg
@@ -441,7 +441,7 @@ class ListSingle extends Component {
                                             </div>
                                         </div>
                                         <button
-                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
+                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
                                             onClick={() => this.setState({ projectModal: true, projectModalType: 'move' })}
                                         >
                                             <svg
@@ -580,7 +580,7 @@ class ListSingle extends Component {
                                                 <option value="audi">Audi</option>
                                             </select>
                                         </div>
-                                        <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2">
+                                        <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow">
                                             Mark as completed
                                         </button>
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-invite">

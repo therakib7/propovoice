@@ -112,6 +112,29 @@ class Taxonomy {
                     'tags' => $tagList
                 ];
             } 
+
+            if ( $taxonomy == 'task_type' ) {  
+
+                $get_type = get_terms( array(
+                    'taxonomy' => 'ndpi_task_type',
+                    'orderby' => 'ID', 
+                    'order'   => 'ASC',
+                    'hide_empty' => false
+                ) ); 
+                $typeList = [];
+
+                foreach( $get_type as $type ) {
+                    $typeList[] = [
+                        'id' => $type->term_id,
+                        'label' => $type->name
+                    ];
+                }  
+
+                $data = [
+                    'types' => $typeList 
+                ];
+            }
+
             wp_send_json_success($data);
         }
     } 

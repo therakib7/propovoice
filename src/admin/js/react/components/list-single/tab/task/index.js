@@ -1,3 +1,4 @@
+import { useState } from "react"; 
 import Preloader from 'block/preloader/table';
 
 import Form from './Form';
@@ -9,6 +10,8 @@ import Table from './Table';
 import Crud from 'hoc/Crud';
 
 const Task = (props) => {
+    const [activeTab, setActiveTab] = useState('todo');
+
     const { lists, checkedBoxes, searchVal } = props.state;
     return (
         <div className="">
@@ -19,24 +22,33 @@ const Task = (props) => {
 
             {props.state.formModal && <FormEdit
                 tab_id={props.tab_id}
-                handleSubmit={props.handleSubmit} 
+                handleSubmit={props.handleSubmit}
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
             />}
 
             <div className="pi-small-button-group">
-                <h3 className="pi-title-small">My Work</h3>
-                <button className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
-                    To do
-                </button>
-                <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                <h3 className="pi-title-small">My Work</h3> 
+                <button
+                    className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'todo' ? 'pi-active' : '')}
+                    onClick={() => { setActiveTab('todo'); props.getLists({ type: 'todo' }); }}
+                >
                     In Progress
                 </button>
-                <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                <button
+                    className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'inprogress' ? 'pi-active' : '')}
+                    onClick={() => { setActiveTab('inprogress'); props.getLists({ type: 'inprogress' }); }}
+                >
+                    File
+                </button>
+                <button
+                    className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'done' ? 'pi-active' : '')}
+                    onClick={() => { setActiveTab('done'); props.getLists({ type: 'done' }); }}
+                >
                     Done
                 </button>
-            </div> 
+            </div>
 
             {props.state.preloader ? <Preloader /> : <div className="pi-accordion">
                 {lists.today.length > 0 &&
@@ -101,7 +113,7 @@ const Task = (props) => {
                             </div>
                         </section>
                     </>
-                } 
+                }
 
                 {lists.unschedule.length > 0 &&
                     <>
@@ -132,11 +144,11 @@ const Task = (props) => {
                                 <Table tableData={lists.unschedule} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
                             </div>
                         </section>
-                        
+
                     </>
-                } 
+                }
                 <input type="radio" name="pi-accordion" id="pi-acc-close" />
-            </div>} 
+            </div>}
         </div>
     );
 }

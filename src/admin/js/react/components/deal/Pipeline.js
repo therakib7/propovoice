@@ -71,7 +71,7 @@ function Pipeline(props) {
 	const addNewColumn = () => {
 		let newColumns = { ...columns };
 		newColumns[uuidv4()] = {
-			name: "Title",
+			name: 'Stage Label',
 			items: []
 		}
 		setColumns(newColumns);
@@ -104,7 +104,7 @@ function Pipeline(props) {
 
 	const CharLimit = (string) => {
 		let limit = 22;
-		if ( string.length > limit ) {
+		if (string.length > limit) {
 			return `${string.substring(0, limit)}... `;
 		}
 		return string;
@@ -120,6 +120,14 @@ function Pipeline(props) {
 						<div className="pi-board-column" key={columnId}>
 							<div className="pi-board-column-title pi-bg-shadow">
 								<h4 className="pi-color-blue">{column.name}</h4>
+								{/* <h4 className="pi-color-blue">
+								<Editable
+									// key={columnId}
+									value={column.name}
+									index={columnId}
+									changeHandler={handleCoumnLabel}
+								/>
+								</h4> */}
 
 								<div className="pi-action-content">
 									<button className={(columnId == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(columnId)}>
@@ -257,6 +265,40 @@ function Pipeline(props) {
 						</div>
 					);
 				})}
+
+				<div className="pi-board-column">  
+					<div className="pi-broad-content" style={{ padding: 0 }}>  
+						<button
+							className="pi-btn pi-btn-medium pi-bg-stroke"
+							onClick={() => addNewColumn()}
+						>
+							<svg
+								width={16}
+								height={14}
+								viewBox="0 0 12 15"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M2.5 8H13.5"
+									stroke="white"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M8 2.5V13.5"
+									stroke="white"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+							</svg>
+							Add New Column
+						</button>
+
+					</div>
+				</div>
 			</DragDropContext>
 
 		</div>

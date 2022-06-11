@@ -26,20 +26,19 @@ class Taxonomy {
         }
 
         //lead
-        $temp_level = [
+        $lead_level = [
             'Hot',
             'Warm',
             'Cold'
         ];  
-        foreach( $temp_level as $level ) {
+        foreach( $lead_level as $level ) {
             wp_insert_term(
                 $level,   // the term 
                 'ndpi_lead_level', // the taxonomy 
             );
         } 
 
-        //deal
-
+        //deal 
         $temp_pipeline = [
             'Sales Pipeline' 
         ];  
@@ -82,6 +81,19 @@ class Taxonomy {
             wp_insert_term(
                 $tag,   // the term 
                 'ndpi_tag', // the taxonomy 
+            );
+        } 
+
+        //task
+        $task_type = [
+            'Email',
+            'Call',
+            'Meeting'
+        ];  
+        foreach( $task_type as $type ) {
+            wp_insert_term(
+                $type,   // the term 
+                'ndpi_task_type', // the taxonomy 
             );
         } 
     } 
