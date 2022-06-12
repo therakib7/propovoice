@@ -254,9 +254,10 @@ class Deal
         $reg_errors = new \WP_Error;
 
         $lead_id     = isset($params['lead_id']) ? absint($params['lead_id']) : null;
+        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
+        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null; 
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
-        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
-        $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
+        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null; 
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $provability  = isset($params['provability']) ? absint($params['provability']) : null;
@@ -301,9 +302,13 @@ class Deal
                     wp_set_post_terms($post_id, [$stage_id], 'ndpi_deal_stage');
                 }
 
-                if ($contact_id) {
-                    update_post_meta($post_id, 'contact_id', $contact_id);
-                }
+                if ( $person_id ) {
+                    update_post_meta($post_id, 'person_id', $person_id);
+                } 
+
+                if ( $org_id ) {
+                    update_post_meta($post_id, 'org_id', $org_id);
+                } 
 
                 if ($budget) {
                     update_post_meta($post_id, 'budget', $budget);
@@ -336,10 +341,12 @@ class Deal
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
+        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
+        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null; 
+
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
         $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
-        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
-        $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
+        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null; 
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $provability  = isset($params['provability']) ? absint($params['provability']) : null;
@@ -386,9 +393,13 @@ class Deal
                     $this->reorder_posts($reorder);
                 }
 
-                if ($contact_id) {
-                    update_post_meta($post_id, 'contact_id', $contact_id);
-                }
+                if ( $person_id ) {
+                    update_post_meta($post_id, 'person_id', $person_id);
+                } 
+
+                if ( $org_id ) {
+                    update_post_meta($post_id, 'org_id', $org_id);
+                } 
 
                 if ($budget) {
                     update_post_meta($post_id, 'budget', $budget);

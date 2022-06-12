@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
  
-import Select from 'react-select';
-import AsyncSelect from 'react-select/async'; 
 import WithApi from 'hoc/Api'; 
 
-import Search from 'block/field/search';
+import Select from 'react-select';  
+import Contact from 'block/field/Contact';
 
 class Form extends Component {
     constructor(props) {
@@ -19,9 +18,9 @@ class Form extends Component {
             currency: 'USD',
             desc: '',
             note: '',
-            date: false,
             person_id: null, 
             org_id: null, 
+            date: false,
         };
 
         this.state = {
@@ -162,48 +161,18 @@ class Form extends Component {
         } 
         
         this.setState({ form: this.initialState });
-    }
-
-    handleFindPerson = (val, callback) => {
-        if (val.length < 2) return;
-
-        //search when typing stop
-        if (this.timeout) clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-            //search function
-            this.props.getAll('persons', 'first_name=' + val + '&last_name=' + val).then(resp => {   
-                    let toData = resp.data.data.result;
-                    callback(toData);
-                });
-        }, 300);
-    }
+    } 
 
     handlePersonSelect = ( val ) => { 
         let form = { ...this.state.form }
         form.person_id = val; 
-        this.setState({ form });
-        // this.props.setTo(val);
-    }
-
-    handleFindOrg = (val, callback) => {
-        if (val.length < 2) return;
-
-        //search when typing stop
-        if (this.timeout) clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-            //search function
-            this.props.getAll('organizations', 'first_name=' + val + '&last_name=' + val).then(resp => { 
-                    let toData = resp.data.data.result;
-                    callback(toData);
-                });
-        }, 300);
-    }
+        this.setState({ form }); 
+    } 
 
     handleOrgSelect = ( val ) => {
         let form = { ...this.state.form }
         form.org_id = val; 
-        this.setState({ form });
-        //this.props.setTo(val);
+        this.setState({ form }); 
     }
 
     render() {
@@ -246,47 +215,14 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="first_name">
-                                            Contact Person
-                                        </label>
-                                        {/* <Search name={'person_id'} /> */}
-                                        <AsyncSelect
-                                            loadOptions={this.handleFindPerson}
-                                            value={this.state.form.person_id}
-                                            defaultOptions={personList}
-                                            onChange={this.handlePersonSelect}
-                                            getOptionValue={(data) => data.id}
-                                            getOptionLabel={(data) => (data.first_name) ? data.first_name : ''}
-                                        /> 
-                                    </div> 
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-org_name">
-                                            Organization Name
-                                        </label>
-
-                                        <AsyncSelect
-                                            loadOptions={this.handleFindOrg}
-                                            value={this.state.form.org_id}
-                                            defaultOptions={orgList}
-                                            onChange={this.handleOrgSelect}
-                                            getOptionValue={(data) => data.id}
-                                            getOptionLabel={(data) => (data.name) ? data.name : ''}
-                                        />
-
-                                        {/* <input
-                                            id="form-org_name"
-                                            type="text"
-                                            name="org_name"
-                                            value={contact.org_name}
-                                            onChange={(e) => this.handleChange(e, 'contact')}
-                                        /> */}
-                                    </div> 
-                                </div> 
+                                <Contact 
+                                    data={{
+                                        person: this.state.form.person_id,
+                                        org: this.state.form.org_id 
+                                    }}
+                                    onPersonChange={this.handlePersonSelect}
+                                    onOrgChange={this.handleOrgSelect}
+                                /> 
 
                                 <div className="row">
                                     <div className="col-md">

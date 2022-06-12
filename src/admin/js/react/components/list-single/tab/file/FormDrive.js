@@ -2,15 +2,15 @@ import { useEffect } from 'react';
 import useDrivePicker from 'react-google-drive-picker'
 
 
-function GoogleDrive() {
+function App() {
     const [openPicker, authResponse] = useDrivePicker();
-
-    useEffect(() => {
+    // const customViewsArray = [new google.picker.DocsView()]; // custom view
+    const handleOpenPicker = () => {
         openPicker({
-            clientId: "360087475802-7mg8et7lg5rfm4njqea5t8243ksmlh69.apps.googleusercontent.com",
-            //secret: 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
-            developerKey: "AIzaSyClbXH25aGlYTmIxtAyxjClp2icaRlIpgQ",
+            clientId: "360087475802-7mg8et7lg5rfm4njqea5t8243ksmlh69.apps.googleusercontent.com", 
+            developerKey: "AIzaSyD5mPs_ifRKqVXdpEu4xu0FFDuSNEmt6Ws",
             viewId: "DOCS",
+            // token: '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',
             // token: token, // pass oauth token in case you already have one
             showUploadView: true,
             showUploadFolders: true,
@@ -24,12 +24,15 @@ function GoogleDrive() {
                 console.log(data)
             },
         })
-    }, []);  
+    }
+
+
+
     return (
         <div>
-            <button>Open Picker</button>
+            <button onClick={() => handleOpenPicker()}>Open Picker</button>
         </div>
     );
 }
 
-export default GoogleDrive;
+export default App;

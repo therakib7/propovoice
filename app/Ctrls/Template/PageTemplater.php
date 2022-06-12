@@ -20,7 +20,9 @@ class PageTemplater
 	function add_template_to_select($post_templates, $wp_theme, $post, $post_type)
 	{ 
 		//TODO: dashboard is pro features
-		// $post_templates['dashboard-template.php'] = esc_html__('Propovoice Dashboard', 'propovoice');
+		if ( function_exists('ncpip') ) {
+			$post_templates['dashboard-template.php'] = esc_html__('Propovoice Workplace', 'propovoice');
+		}
 		$post_templates['invoice-template.php'] = esc_html__('Propovoice Client Invoice', 'propovoice');
 		$post_templates['estimate-template.php'] = esc_html__('Propovoice Client Estimate', 'propovoice');
 		return $post_templates;

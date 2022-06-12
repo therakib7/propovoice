@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-
-import Select from 'react-select';
+ 
 import WithApi from 'hoc/Api'; 
+
+import Select from 'react-select';  
+import Contact from 'block/field/Contact';
 
 class Form extends Component {
     constructor(props) {
@@ -10,15 +12,15 @@ class Form extends Component {
         this.initialState = {
             id: null,
             title: '',
-            stage_id: '',
-            contact_id: 770,
-            contact_type: 'people', //org/people
+            stage_id: '', 
             budget: '',
             currency: 'USD',
             provability: 50,
             tags: [],
             desc: '',
             note: '',
+            person_id: null, 
+            org_id: null, 
             date: false
         };
 
@@ -101,6 +103,14 @@ class Form extends Component {
             form.stage_id = form.stage_id.id;
         }
 
+        if ( form.person_id ) {
+            form.person_id = form.person_id.id;
+        }
+
+        if ( form.org_id ) {
+            form.org_id = form.org_id.id;
+        }
+
         if (form.tags.length) {
             let finalArray = form.tags.map(function (obj) {
                 return obj.id;
@@ -116,6 +126,18 @@ class Form extends Component {
             this.props.handleSubmit(form);
         }
         this.setState({ form: this.initialState });
+    }
+
+    handlePersonSelect = ( val ) => { 
+        let form = { ...this.state.form }
+        form.person_id = val; 
+        this.setState({ form }); 
+    } 
+
+    handleOrgSelect = ( val ) => {
+        let form = { ...this.state.form }
+        form.org_id = val; 
+        this.setState({ form }); 
     }
 
     render() {
@@ -166,6 +188,15 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
+                                <Contact 
+                                    data={{
+                                        person: this.state.form.person_id,
+                                        org: this.state.form.org_id 
+                                    }}
+                                    onPersonChange={this.handlePersonSelect}
+                                    onOrgChange={this.handleOrgSelect}
+                                /> 
+
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-title">
@@ -184,8 +215,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-stage_id">
+                                        <label htmlFor="field-stage_id">
                                             Stage
                                         </label>
 
@@ -196,23 +226,7 @@ class Form extends Component {
                                             getOptionLabel={(stageList) => stageList.label}
                                             options={stageList}
                                         />
-                                    </div>
-
-                                    <div className="col-md">
-                                        <label
-                                            htmlFor="field-contact_id">
-                                            Contact
-                                        </label>
-
-                                        <input
-                                            id="field-contact_id"
-                                            type="text"
-                                            name="contact_id"
-                                            value={form.contact_id}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-
+                                    </div> 
                                 </div>
 
                                 <div className="row">
