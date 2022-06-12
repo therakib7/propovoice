@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+import WithApi from 'hoc/Api'; 
+import WithRouter from 'hoc/Router'; 
 
-import Select from 'react-select';
-import ApiTaxonomy from 'api/taxonomy';
+import Select from 'react-select';  
+import Contact from 'block/field/Contact';
 
 class Form extends Component {
     constructor(props) {
@@ -10,14 +13,16 @@ class Form extends Component {
         this.initialState = {
             id: null,
             title: '',
-            stage_id: '',
-            contact_id: 770,
-            contact_type: 'people', //org/people
+            deal_id: '', 
+            stage_id: '', 
             budget: '',
             currency: 'USD',
             provability: 50,
             tags: [],
+            desc: '',
             note: '',
+            person_id: null, 
+            org_id: null, 
             date: false
         };
 
@@ -44,10 +49,9 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        ApiTaxonomy.getAll('taxonomy=deal_stage_tag')
-            .then(resp => {
-                if (resp.data.success) {
-                    if (this.state.form.stage_id) {
+        this.props.getAll('taxonomies', 'taxonomy=deal_stage_tag').then(resp => { 
+                if ( resp.data.success ) {
+                    if ( this.state.form.stage_id ) {
                         this.setState({
                             stages: resp.data.data.stages,
                             tags: resp.data.data.tags,
@@ -72,11 +76,17 @@ class Form extends Component {
         this.editData();
     }
 
-    editData = () => {
+    editData = () => { 
         //condition added to stop multiple rendering 
-        if (this.props.modalType == 'edit') {
+        if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
+                let data = {...this.props.data}
+                if ( this.props.modalType == 'move' ) {
+                    data.deal_id = data.id;
+                    data.provability = 50;
+                }
+
+                this.setState({ form: data });
             }
         } else {
             if (this.state.form.id != null) {
@@ -84,7 +94,7 @@ class Form extends Component {
             }
 
             /* else {
-                if ( this.props.data && ! this.state.form.stage_id && this.props.data.hasOwnProperty('label') ) { // new deal from stage
+                if ( this.props.data && ! this.state.form.stage_id && this.props.data.hasOwnProperty('label') ) { // new project from stage
                     let form = {...this.initialState}
                     form.stage_id = this.props.data;
                     this.setState({ form });
@@ -101,6 +111,14 @@ class Form extends Component {
             form.stage_id = form.stage_id.id;
         }
 
+        if ( form.person_id ) {
+            form.person_id = form.person_id.id;
+        }
+
+        if ( form.org_id ) {
+            form.org_id = form.org_id.id;
+        }
+
         if (form.tags.length) {
             let finalArray = form.tags.map(function (obj) {
                 return obj.id;
@@ -109,14 +127,45 @@ class Form extends Component {
         }
 
         if ( this.props.reload ) {
-            this.props.update('leads', form.id, form);
-            this.props.close();
-            this.props.reload();
+            
+
+            if ( this.props.modalType == 'move' ) {
+
+                this.props.create('projects', form).then(resp => { 
+                    if (resp.data.success) { 
+                        toast.success('Successfully moved to project');
+                        let id = resp.data.data;
+                        this.props.close();
+                        this.props.navigate(`/project/single/${id}`, { replace: true }); 
+                        this.props.reload();
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                });
+
+            } else {
+                this.props.update('projects', form.id, form);
+                this.props.close();
+                this.props.reload();
+            } 
         } else {
             this.props.handleSubmit(form);
         }
-        
         this.setState({ form: this.initialState });
+    }
+
+    handlePersonSelect = ( val ) => { 
+        let form = { ...this.state.form }
+        form.person_id = val; 
+        this.setState({ form }); 
+    } 
+
+    handleOrgSelect = ( val ) => {
+        let form = { ...this.state.form }
+        form.org_id = val; 
+        this.setState({ form }); 
     }
 
     render() {
@@ -125,6 +174,14 @@ class Form extends Component {
         const form = this.state.form;
         const provabilityPercent = (form.provability / 100) * 100;
 
+        let title = '';
+        if ( this.props.modalType == 'new' ) {
+            title = 'New'
+        } else if ( this.props.modalType == 'edit' ) {
+            title = 'Edit'
+        } else if ( this.props.modalType == 'move' ) {
+            title = 'Move to'
+        } 
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -152,13 +209,22 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Project</h2>
+                        <h2 className="pi-modal-title">{title} Project</h2>
                         <p>Add new project from here</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
+                                { !this.props.reload && <Contact 
+                                    data={{
+                                        person: this.state.form.person_id,
+                                        org: this.state.form.org_id 
+                                    }}
+                                    onPersonChange={this.handlePersonSelect}
+                                    onOrgChange={this.handleOrgSelect}
+                                />} 
+
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-title">
@@ -177,8 +243,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-stage_id">
+                                        <label htmlFor="field-stage_id">
                                             Stage
                                         </label>
 
@@ -189,23 +254,7 @@ class Form extends Component {
                                             getOptionLabel={(stageList) => stageList.label}
                                             options={stageList}
                                         />
-                                    </div>
-
-                                    <div className="col-md">
-                                        <label
-                                            htmlFor="field-contact_id">
-                                            Contact
-                                        </label>
-
-                                        <input
-                                            id="field-contact_id"
-                                            type="text"
-                                            name="contact_id"
-                                            value={form.contact_id}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-
+                                    </div> 
                                 </div>
 
                                 <div className="row">
@@ -279,6 +328,22 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
+                                        <label htmlFor="field-desc">
+                                            Description
+                                        </label>
+
+                                        <textarea
+                                            id="form-desc"
+                                            rows={2}
+                                            name="desc"
+                                            value={form.desc}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div> 
+
+                                <div className="row">
+                                    <div className="col">
                                         <label htmlFor="field-note">
                                             Note
                                         </label>
@@ -314,4 +379,5 @@ class Form extends Component {
     }
 }
 
-export default Form;
+const FormData = WithApi(Form);  
+export default WithRouter(FormData);  

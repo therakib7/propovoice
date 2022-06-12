@@ -27,4 +27,4 @@ class From extends Component {
     }
 }
 
-export default From
+export default From 

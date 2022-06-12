@@ -222,7 +222,7 @@ class Form extends Component {
                                     }}
                                     onPersonChange={this.handlePersonSelect}
                                     onOrgChange={this.handleOrgSelect}
-                                /> 
+                                />
 
                                 <div className="row">
                                     <div className="col-md">

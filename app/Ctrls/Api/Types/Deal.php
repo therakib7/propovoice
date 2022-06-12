@@ -272,7 +272,7 @@ class Deal
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
         }
 
-        if (empty($contact_id)) {
+        if ( !$lead_id && empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         }
 
@@ -292,14 +292,30 @@ class Deal
             if (!is_wp_error($post_id)) {
 
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
-                update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
+                $tab_id = $post_id;
+                if ( $lead_id ) {
+                    $tab_id = $lead_id;
+                }
+                update_post_meta($post_id, 'tab_id', $tab_id); //for task, note, file
 
                 if ($title) {
                     update_post_meta($post_id, 'title', $title);
-                }
+                } 
 
                 if ($stage_id) {
                     wp_set_post_terms($post_id, [$stage_id], 'ndpi_deal_stage');
+                }
+
+                if ( $lead_id ) {
+                    $get_lead_person = get_post_meta($id, 'person_id', true);
+                    if ( $get_lead_person ) {
+                        $person_id = $get_lead_person;
+                    }
+
+                    $get_lead_org = get_post_meta($id, 'org_id', true);
+                    if ( $get_lead_org ) {
+                        $org_id = $get_lead_org;
+                    }
                 }
 
                 if ( $person_id ) {
@@ -310,24 +326,28 @@ class Deal
                     update_post_meta($post_id, 'org_id', $org_id);
                 } 
 
-                if ($budget) {
+                if ( $budget ) {
                     update_post_meta($post_id, 'budget', $budget);
                 }
 
-                if ($currency) {
+                if ( $currency ) {
                     update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ($provability) {
+                if ( $provability ) {
                     update_post_meta($post_id, 'provability', $provability);
                 }
 
-                if ($tags) {
+                if ( $tags ) {
                     wp_set_post_terms($post_id, $tags, 'ndpi_tag');
                 }
 
-                if ($note) {
+                if ( $note ) {
                     update_post_meta($post_id, 'note', $note);
+                }
+
+                if ( $lead_id ) { //when move to deal
+                    wp_delete_post( $lead_id );
                 }
                 wp_send_json_success($post_id);
             } else {
@@ -342,8 +362,7 @@ class Deal
         $reg_errors = new \WP_Error;
 
         $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
-        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null; 
-
+        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null;  
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
         $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
         $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null; 

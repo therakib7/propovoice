@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
- 
+import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api'; 
+import WithRouter from 'hoc/Router'; 
 
 import Select from 'react-select';  
 import Contact from 'block/field/Contact';
@@ -12,6 +13,7 @@ class Form extends Component {
         this.initialState = {
             id: null,
             title: '',
+            lead_id: '', 
             stage_id: '', 
             budget: '',
             currency: 'USD',
@@ -48,8 +50,8 @@ class Form extends Component {
 
     componentDidMount() {
         this.props.getAll('taxonomies', 'taxonomy=deal_stage_tag').then(resp => { 
-                if (resp.data.success) {
-                    if (this.state.form.stage_id) {
+                if ( resp.data.success ) {
+                    if ( this.state.form.stage_id ) {
                         this.setState({
                             stages: resp.data.data.stages,
                             tags: resp.data.data.tags,
@@ -74,11 +76,17 @@ class Form extends Component {
         this.editData();
     }
 
-    editData = () => {
+    editData = () => { 
         //condition added to stop multiple rendering 
-        if (this.props.modalType == 'edit') {
+        if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
+                let data = {...this.props.data}
+                if ( this.props.modalType == 'move' ) {
+                    data.lead_id = data.id;
+                    data.provability = 50;
+                }
+
+                this.setState({ form: data });
             }
         } else {
             if (this.state.form.id != null) {
@@ -119,9 +127,29 @@ class Form extends Component {
         }
 
         if ( this.props.reload ) {
-            this.props.update('leads', form.id, form);
-            this.props.close();
-            this.props.reload();
+            
+
+            if ( this.props.modalType == 'move' ) {
+
+                this.props.create('deals', form).then(resp => { 
+                    if (resp.data.success) { 
+                        toast.success('Successfully moved to deal');
+                        let id = resp.data.data;
+                        this.props.close();
+                        this.props.navigate(`/deal/single/${id}`, { replace: true }); 
+                        this.props.reload();
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                });
+
+            } else {
+                this.props.update('deals', form.id, form);
+                this.props.close();
+                this.props.reload();
+            } 
         } else {
             this.props.handleSubmit(form);
         }
@@ -188,14 +216,14 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
-                                <Contact 
+                                { !this.props.reload && <Contact 
                                     data={{
                                         person: this.state.form.person_id,
                                         org: this.state.form.org_id 
                                     }}
                                     onPersonChange={this.handlePersonSelect}
                                     onOrgChange={this.handleOrgSelect}
-                                /> 
+                                />} 
 
                                 <div className="row">
                                     <div className="col-md">
@@ -351,4 +379,5 @@ class Form extends Component {
     }
 }
 
-export default WithApi(Form); 
+const FormData = WithApi(Form);  
+export default WithRouter(FormData);  

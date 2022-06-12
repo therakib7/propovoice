@@ -14,7 +14,6 @@ class Project
 
     public function create_rest_routes()
     {
-
         register_rest_route('ncpi/v1', '/projects', [
             [
                 'methods' => 'GET',
@@ -81,89 +80,107 @@ class Project
             $offset = ($per_page * $request['page']) - $per_page;
         }
 
-        $args = array(
-            'post_type' => 'ndpi_project',
-            'post_status' => 'publish',
-            'posts_per_page' => $per_page,
-            'offset' => $offset,
-        );
+        $get_stage = get_terms(array(
+            'taxonomy' => 'ndpi_project_stage',
+            'orderby' => 'ID',
+            'order'   => 'DESC',
+            'hide_empty' => false
+        ));
 
-        $args['meta_query'] = array(
-            'relation' => 'OR'
-        );
+        $result = $column = [];
 
-        if (isset($request['default'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'default',
-                    'value'   => 1,
-                    'compare' => 'LIKE'
-                )
+        foreach ($get_stage as $stage) :
+            $stage_id = $stage->term_id;
+            $stage_name = $stage->name;
+
+            $items = [];
+            $args = array(
+                'post_type' => 'ndpi_project',
+                'post_status' => 'publish',
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
+                'posts_per_page' => $per_page,
+                'offset' => $offset,
             );
-        }
 
-        $query = new WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
-        $result = $data = [];
-        while ($query->have_posts()) {
-            $query->the_post();
-            $id = get_the_ID();
+            $args['meta_query'] = array(
+                'relation' => 'OR'
+            );
 
-            $query_data = [];
-            $query_data['id'] = $id;
-
-            $queryMeta = get_post_meta($id);
-            $query_data['title'] = get_the_title();
-            $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-            $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
-            $query_data['level_id'] = '';
-
-            /* $level = get_the_terms($id, 'ndpi_project_level');
-            if ($level) {
-                $query_data['level_id'] = [
-                    'id' => $level[0]->term_id,
-                    'label' => $level[0]->name
-                ];
+            /* if (isset($request['default'])) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'default',
+                        'value'   => 1,
+                        'compare' => 'LIKE'
+                    )
+                );
             } */
 
-            $query_data['tags'] = [];
-            $tags = get_the_terms($id, 'ndpi_tag');
-            if ($tags) {
-                $tagList = [];
-                foreach ($tags as $tag) {
-                    $tagList[] = [
-                        'id' => $tag->term_id,
-                        'label' => $tag->name
-                    ];
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'ndpi_project_stage',
+                    'terms' => $stage_id,
+                    'field' => 'term_id',
+                )
+            );
+
+            $query = new WP_Query($args);
+            // $total_data = $query->found_posts; //use this for pagination 
+
+            while ($query->have_posts()) {
+                $query->the_post();
+                $id = get_the_ID();
+
+                $query_data = [];
+                $query_data['id'] = (string) $id; //Invariant failed: Draggable requires a [string] draggableId. 
+
+                $queryMeta = get_post_meta($id);
+                $query_data['title'] = get_the_title();
+                $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+                $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
+                $query_data['provability'] = isset($queryMeta['provability']) ? $queryMeta['provability'][0] : '';
+
+                /* $query_data['tags'] = [];
+                $tags = get_the_terms($id, 'ndpi_tag');
+                if ($tags) {
+                    $tagList = [];
+                    foreach ($tags as $tag) {
+                        $tagList[] = [
+                            'id' => $tag->term_id,
+                            'label' => $tag->name
+                        ];
+                    }
+                    $query_data['tags'] = $tagList;
+                } */
+
+                $contact_id = get_post_meta($id, 'contact_id', true);
+                $contactData = [];
+
+                if ($contact_id) {
+                    $contactData['id'] = absint($contact_id);
+                    $contactMeta = get_post_meta($contact_id);
+                    $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : ''; 
+                    $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
+                    $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : ''; 
                 }
-                $query_data['tags'] = $tagList;
+                $query_data['contact'] = $contactData;
+
+                $query_data['date'] = get_the_time('j-M-Y');
+                $items[] = $query_data;
             }
+            wp_reset_postdata();
 
-            $contact_id = get_post_meta($id, 'contact_id', true);
-            $contactData = [];
+            $column[$stage_id] = [
+                'name' => $stage_name,
+                'id' => $stage_id,
+                'items' => $items
+            ];
 
-            if ($contact_id) {
-                $contactData['id'] = absint($contact_id);
-                $contactMeta = get_post_meta($contact_id);
-                $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-                $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : '';
-                $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
-                $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-                $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
-                $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
-                $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
-                $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-                $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
-            }
-            $query_data['contact'] = $contactData;
+            $result['result'] = $column;
+        // $result['total'] = $total_data;
 
-            $query_data['date'] = get_the_time('j-M-Y');
-            $data[] = $query_data;
-        }
-        wp_reset_postdata();
-
-        $result['result'] = $data;
-        $result['total'] = $total_data;
+        endforeach;
 
         wp_send_json_success($result);
     }
@@ -173,36 +190,60 @@ class Project
         $url_params = $req->get_url_params();
         $id = $url_params['id'];
         $query_data = [];
-        $query_data['id'] = absint( $id );
- 
-        $queryMeta = get_post_meta($id);
-        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint( $queryMeta['tab_id'][0] ) : '';
-        $query_data['title'] = isset($queryMeta['title']) ? $queryMeta['title'][0] : '';
-        $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-        $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : ''; 
-        $query_data['provability'] = isset($queryMeta['provability']) ? absint( $queryMeta['provability'][0] ) : ''; 
-        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
-        $query_data['desc'] = get_post_field('post_content', $id); 
+        $query_data['id'] = absint($id);
 
-        $contact_id = get_post_meta($id, 'contact_id', true); 
+        $queryMeta = get_post_meta($id);
+        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
+        $query_data['title'] = get_the_title( $id );
+        $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+        $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
+        $query_data['provability'] = isset($queryMeta['provability']) ? absint($queryMeta['provability'][0]) : '';
+        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
+        $query_data['desc'] = get_post_field('post_content', $id);
+
+        $query_data['stage_id'] = '';
+
+        $stage = get_the_terms($id, 'ndpi_project_stage');
+        if ($stage) {
+
+            $query_data['stage_id'] = [
+                'id' => $stage[0]->term_id,
+                'label' => $stage[0]->name
+            ];
+        }
+
+        $query_data['tags'] = [];
+
+        $tags = get_the_terms($id, 'ndpi_tag');
+        if ($tags) {
+            $tagList = [];
+            foreach ($tags as $tag) {
+                $tagList[] = [
+                    'id' => $tag->term_id,
+                    'label' => $tag->name
+                ];
+            }
+            $query_data['tags'] = $tagList;
+        }
+
+        $contact_id = get_post_meta($id, 'contact_id', true);
         $contactData = [];
 
         if ($contact_id) {
-            $contactData['id'] = absint( $contact_id );
+            $contactData['id'] = absint($contact_id);
             $contactMeta = get_post_meta($contact_id);
             $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-            $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : '';
             $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
             $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
             $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
             $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
             $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
             $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : ''; 
-        } 
+            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
+        }
         $query_data['contact'] = $contactData;
 
-        $query_data['date'] = get_the_time('j-M-Y'); 
+        $query_data['date'] = get_the_time('j-M-Y');
 
         wp_send_json_success($query_data);
     }
@@ -213,24 +254,25 @@ class Project
         $reg_errors = new \WP_Error;
 
         $deal_id     = isset($params['deal_id']) ? absint($params['deal_id']) : null;
+        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
+        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null; 
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
-        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
-        $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
+        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null; 
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
+        $provability  = isset($params['provability']) ? absint($params['provability']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
-        /* if ( $lead_id ) {
-            wp_send_json_success($lead_id);
+        /* if ( $deal_id ) {
+            wp_send_json_success($deal_id);
         } */
         if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
         }
 
-        if (empty($contact_id)) {
+        if ( !$deal_id && empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         }
 
@@ -247,43 +289,66 @@ class Project
             );
             $post_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) { 
-                
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
+            if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
-                
+                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
+                $tab_id = $post_id;
+                if ( $deal_id ) {
+                    $tab_id = $deal_id;
+                }
+                update_post_meta($post_id, 'tab_id', $tab_id); //for task, note, file
+
                 if ($title) {
                     update_post_meta($post_id, 'title', $title);
+                } 
+
+                if ($stage_id) {
+                    wp_set_post_terms($post_id, [$stage_id], 'ndpi_project_stage');
                 }
 
-                if ($stage_id) { 
-                    wp_set_post_terms( $post_id, [$stage_id], 'ndpi_deal_stage' );
+                if ( $deal_id ) {
+                    $get_lead_person = get_post_meta($id, 'person_id', true);
+                    if ( $get_lead_person ) {
+                        $person_id = $get_lead_person;
+                    }
+
+                    $get_lead_org = get_post_meta($id, 'org_id', true);
+                    if ( $get_lead_org ) {
+                        $org_id = $get_lead_org;
+                    }
                 }
 
-                if ($contact_id) {
-                    update_post_meta($post_id, 'contact_id', $contact_id);
-                }
+                if ( $person_id ) {
+                    update_post_meta($post_id, 'person_id', $person_id);
+                } 
 
-                if ($budget) {
+                if ( $org_id ) {
+                    update_post_meta($post_id, 'org_id', $org_id);
+                } 
+
+                if ( $budget ) {
                     update_post_meta($post_id, 'budget', $budget);
                 }
 
-                if ($currency) {
+                if ( $currency ) {
                     update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ($provability) {
+                if ( $provability ) {
                     update_post_meta($post_id, 'provability', $provability);
                 }
 
-                if ($tags) { 
-                    wp_set_post_terms( $post_id, $tags, 'ndpi_tag' );
+                if ( $tags ) {
+                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
                 }
 
-                if ($note) {
+                if ( $note ) {
                     update_post_meta($post_id, 'note', $note);
-                } 
+                }
+
+                if ( $deal_id ) { //when move to project
+                    wp_delete_post( $deal_id );
+                }
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -296,23 +361,25 @@ class Project
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
+        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
+        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null;  
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
-        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
-        $contact_id   = isset($params['contact_id']) ? absint($params['contact_id']) : null;
+        $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
+        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null; 
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $provability  = isset($params['provability']) ? absint($params['provability']) : null; 
+        $provability  = isset($params['provability']) ? absint($params['provability']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
-        if (empty($stage_id)) {
+        /* if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
         }
 
         if (empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
-        }
+        } */
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -321,26 +388,37 @@ class Project
             $post_id    = $url_params['id'];
 
             $data = array(
-                'ID'            => $post_id,
-                'post_title'    => $title,
-                'post_content'  => $desc,
-                'post_author'   => get_current_user_id()
+                'ID'          => $post_id,  
+                'post_author' => get_current_user_id()
             );
+
+            if ( $title ) {
+                $data['post_title'] = $title;
+            }
+
+            if ( $desc ) {
+                $data['post_content'] = $desc;
+            }
+
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if (!is_wp_error($post_id)) { 
 
-                if ($title) {
-                    update_post_meta($post_id, 'title', $title);
+                if ($stage_id) {
+                    wp_set_post_terms($post_id, [$stage_id], 'ndpi_project_stage');
                 }
 
-                if ($stage_id) { 
-                    wp_set_post_terms( $post_id, [$stage_id], 'ndpi_deal_stage' );
+                if ($reorder) {
+                    $this->reorder_posts($reorder);
                 }
 
-                if ($contact_id) {
-                    update_post_meta($post_id, 'contact_id', $contact_id);
-                }
+                if ( $person_id ) {
+                    update_post_meta($post_id, 'person_id', $person_id);
+                } 
+
+                if ( $org_id ) {
+                    update_post_meta($post_id, 'org_id', $org_id);
+                } 
 
                 if ($budget) {
                     update_post_meta($post_id, 'budget', $budget);
@@ -354,13 +432,13 @@ class Project
                     update_post_meta($post_id, 'provability', $provability);
                 }
 
-                if ($tags) { 
-                    wp_set_post_terms( $post_id, $tags, 'ndpi_tag' );
+                if ($tags) {
+                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
                 }
 
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);
-                } 
+                }
 
                 wp_send_json_success($post_id);
             } else {
@@ -369,9 +447,20 @@ class Project
         }
     }
 
+    public function reorder_posts($order = array())
+    {
+        global $wpdb;
+        $list = join(', ', $order);
+        $wpdb->query('SELECT @i:=-1');
+        $result = $wpdb->query(
+            "UPDATE wp_posts SET menu_order = ( @i:= @i+1 )
+            WHERE ID IN ( $list ) ORDER BY FIELD( ID, $list );"
+        );
+        return $result;
+    }
+
     public function delete($req)
     {
-        //TODO: when delete project delete task note file, if not exist in deal project
         $url_params = $req->get_url_params();
 
         $ids = explode(',', $url_params['id']);

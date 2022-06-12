@@ -3,8 +3,7 @@ import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import AsyncSelect from 'react-select/async';
 import { toast } from 'react-toastify';
 
-// import ApiTaxonomy from 'api/taxonomy';
-
+//import ApiTaxonomy from 'api/taxonomy'; 
 import Api from 'hoc/Api'; 
 
 import LeadForm from 'components/lead/Form';
