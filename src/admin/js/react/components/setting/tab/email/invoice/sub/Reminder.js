@@ -57,7 +57,7 @@ export default class Reminder extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={{ maxWidth: '600px' }} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
                 <div className="row">
                     <div className="col">

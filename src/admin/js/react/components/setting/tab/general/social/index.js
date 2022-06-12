@@ -56,7 +56,7 @@ export default class Social extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={{ maxWidth: '600px' }} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
                 {this.state.form.social.map((row, i) => (
                     <div className="row" key={i}>
