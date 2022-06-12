@@ -7,10 +7,10 @@
 
 //editor js
 //TODO: do it only for editor
-.ncpi-page-content {
+/* .ncpi-page-content {
     max-height: 600px; //TODO: add a4 size later
     overflow: hidden;
-}
+} */
 
 .ce-block__content,
 .ce-toolbar__content {
@@ -22,20 +22,20 @@
 }
 
 //invoice item radius without edit column
-.ncpi .pi-info-table-content .pi-info-table thead tr th:last-child {
+/* .ncpi .pi-info-table-content .pi-info-table thead tr th:last-child {
     border-radius: 0 15px 0 0;
-}
+} */
 
 //for backend only 
-.ncpi .pi-right-content {
+/* .ncpi .pi-right-content {
     padding: 20px 30px 15px;
     height: auto !important;
 }
-
-.pi-field-desc {
+ */
+/* .pi-field-desc {
     line-height: 1.4;
     margin-top: 2px;
-}
+} */
 
 .ncpi .pi-info-logo img,
 .pi-inv .pi-from-logo img {
@@ -44,23 +44,23 @@
 }
 
 //TODO: temporary css
-h4.from-title {
+/* h4.from-title {
     font-family: "Inter", sans-serif !important;
-}
+} */
 
-.ncpi .pi-modal-content {
+.wp-admin.ncpi .pi-modal-content {
     margin: 65px auto;
 }
 
-.ncpi .pi-form-style-two label {
+/* .ncpi .pi-form-style-two label {
     z-index: 99;
 }
 
 .ncpi .pi-from-content .pi-from {
     margin-top: 10px;
-}
+} */
 
-.wp-admin .pi-left-sidebar {
+.wp-admin .pi-left-sidebar, .wp-admin .pi-top-menu-content {
     display: none;
 }
 
@@ -68,16 +68,16 @@ h4.from-title {
     top: 3em;
 }
 
-.ncpi .pi-settings-tab .pi-settings-tabs .pi-tab {
+/* .ncpi .pi-settings-tab .pi-settings-tabs .pi-tab {
     margin: 0;
-}
+} */
 
-.ncpi .pi-edit-content span {
+/* .ncpi .pi-edit-content span {
     border: 3px solid #fff;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 10%), inset 0 0 0 1px rgb(0 0 0 / 10%);
-}
+} */
 
-.ncpi .pi-style-color {
+/* .ncpi .pi-style-color {
     display: flex;
     gap: 4px;
 
@@ -90,7 +90,7 @@ h4.from-title {
         border-radius: 8px;
         cursor: pointer;
     }
-}
+} */
 
 //temporary form css 
 .ncpi .pi-field-logo-wrap { 
@@ -121,18 +121,18 @@ h4.from-title {
     }
 }
 
-.ncpi .pi-signature {
+/* .ncpi .pi-signature {
     margin-top: 70px;
-}
+} */
 
-.pi-inv .pi-sign {
+/* .pi-inv .pi-sign {
     margin-top: 30px;
 
     img {
         max-width: 190px;
         max-height: 60px;
     }
-}
+} */
 
 .pi-inv-sidebar-preview {
     .pi-inv-feedback {
@@ -140,15 +140,15 @@ h4.from-title {
     }
 }
 
-.pi-inv .pi-bank-info {
+/* .pi-inv .pi-bank-info {
     font-size: 12px;
-}
+} */
 
 //remove it from main file
-.ncpi .pi-right-content {
+/* .ncpi .pi-right-content {
     overflow: inherit;
     height: auto;
-}
+} */
 
 .pi-inv-preview-wrap {
     border: 1px solid #dfdfdf;
@@ -168,22 +168,22 @@ h4.from-title {
 } */
 
 // switch css
-.pi-switch {
+/* .pi-switch {
     position: relative;
     display: inline-block;
     width: 50px;
     height: 24px;
-}
+} */
 
 /* Hide default HTML checkbox */
-.pi-switch input {
+/* .pi-switch input {
     opacity: 0;
     width: 0;
     height: 0;
-}
+} */
 
 /* The pi-switch-slider */
-.pi-switch-slider {
+/* .pi-switch-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -215,16 +215,16 @@ input:focus+.pi-switch-slider {
 
 input:checked+.pi-switch-slider:before {
     transform: translateX(26px);
-}
+} */
 
 /* Rounded pi-switch-sliders */
-.pi-switch-slider.round {
+/* .pi-switch-slider.round {
     border-radius: 34px;
 }
 
 .pi-switch-slider.round:before {
     border-radius: 50%;
-}
+} */
 
 // bootstrap class
 .d-none {

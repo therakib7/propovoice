@@ -34,13 +34,13 @@ const Task = (props) => {
                     className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'todo' ? 'pi-active' : '')}
                     onClick={() => { setActiveTab('todo'); props.getLists({ type: 'todo' }); }}
                 >
-                    In Progress
+                    Todo
                 </button>
                 <button
                     className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'inprogress' ? 'pi-active' : '')}
                     onClick={() => { setActiveTab('inprogress'); props.getLists({ type: 'inprogress' }); }}
                 >
-                    File
+                    In Progress
                 </button>
                 <button
                     className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'done' ? 'pi-active' : '')}

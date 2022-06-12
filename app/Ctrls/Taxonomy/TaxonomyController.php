@@ -6,6 +6,7 @@ use Ncpi\Ctrls\Taxonomy\Types\DealPipeline;
 use Ncpi\Ctrls\Taxonomy\Types\Tag;
 use Ncpi\Ctrls\Taxonomy\Types\DealStage;
 use Ncpi\Ctrls\Taxonomy\Types\LeadLevel;
+use Ncpi\Ctrls\Taxonomy\Types\TaskStatus;
 use Ncpi\Ctrls\Taxonomy\Types\TaskType;
 
 class TaxonomyController {
@@ -13,6 +14,7 @@ class TaxonomyController {
 	public function __construct() {   
 		new LeadLevel(); 
 		new Tag();
+		new TaskStatus();
 		new TaskType();
 		new DealPipeline();
 		new DealStage();
