@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import WithApi from 'hoc/Api'; 
 
 import Select from 'react-select';  
-import Contact from 'block/field/Contact';
+import Contact from 'block/field/contact';
 
 class Form extends Component {
     constructor(props) {

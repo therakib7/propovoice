@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context';
-import Api from 'api/setting';
+import AppContext from 'context/app-context'; 
 
-export default class Social extends Component {
+export default class General extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            
             form: {
                 social: []
             }
@@ -19,12 +19,12 @@ export default class Social extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=general_social')
-            .then(resp => {
-                if (resp.data.success) {
-                    this.setState({ form: resp.data.data });
-                }
-            });
+
+        this.props.getAll('settings', 'tab=general_social').then(resp => {
+            if (resp.data.success) {
+                this.setState({ form: resp.data.data });
+            }
+        }); 
     }
 
     handleChange = (e, i) => {
@@ -42,16 +42,15 @@ export default class Social extends Component {
         let form = this.state.form;
         form.tab = 'general_social';
 
-        Api.create(form)
-            .then(resp => {
-                if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            })
+        this.props.create('settings', form).then(resp => { 
+            if (resp.data.success) {
+                toast.success(this.context.CrudMsg.update);
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        }); 
     }
 
     render() {

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 // import Style from './style.scoped.scss' 
+ 
+const General = lazy(() => import('./tab/general'));
 
-//subtab: general
-const GeneralSocial = lazy(() => import('./tab/general/social'));
+const Lead = lazy(() => import('./tab/lead'));
 
 //subtab: estimate
 const EstimateReminder = lazy(() => import('./tab/estimate/Reminder'));
@@ -50,18 +51,10 @@ export default function SettingWrap() {
         if (!wage.length) {
             const new_tab_data = {
                 general: {
-                    label: 'General',
-                    subtabs: {
-                        social: {
-                            label: 'Social',
-                        },
-                        /* template: {
-                            label: 'Template',
-                        }, */
-                        /* recurring: { 
-                            label: 'Recurring'
-                        }, */
-                    },
+                    label: 'General'
+                },
+                lead: {
+                    label: 'Lead'
                 },
                 estimate: {
                     label: 'Estimate',
@@ -189,13 +182,10 @@ export default function SettingWrap() {
 
                             <h4 className='pi-tab-title' style={{textTransform: 'capitalize'}}>{currentTab} Settings</h4>
 
-                            <Suspense fallback={<div>Loading...</div>}>
+                            <Suspense fallback={<div>Loading...</div>}> 
 
-                                {!wage.length &&
-                                    <>
-                                        {currentTab == 'general' && (currentSubtab == 'social' || !currentSubtab) && <GeneralSocial />}
-                                    </>
-                                }
+                                {currentTab == 'general' && <General />}
+                                {currentTab == 'lead' && <Lead />}
 
                                 {!wage.length &&
                                     <>

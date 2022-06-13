@@ -6,6 +6,7 @@ import WithApi from 'hoc/Api';
 
 import Editable from 'block/editable';
 import { v4 as uuidv4 } from 'uuid';
+import { data } from "autoprefixer";
 
 const onDragEnd = (update, result, columns, setColumns) => {
 	if (!result.destination) return;
@@ -213,6 +214,8 @@ function Pipeline(props) {
 																		<h4>{CharLimit(item.title)}</h4>
 																		<span>$ {item.budget}</span>
 																		<p>Probability: {item.provability}%</p>
+																		{item.status == 'won' && <span className="pi-badge pi-bg-green pi-color-white">Won</span>}
+																		{item.status == 'lost' && <span className="pi-badge pi-bg-red pi-color-white">Lost</span>}
 																	</div>
 																	<div className="pi-avatar-content">
 																		<img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />

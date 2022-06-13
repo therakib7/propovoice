@@ -19,6 +19,7 @@
   margin-left: 20px;
   margin-bottom: 10px;
   font-size: 10px;
+  margin-top: 4px;
 }
 .ncpi .pi-list-single-head .pi-list-content .logo {
   width: 90px;
@@ -103,6 +104,30 @@
   color: #718096;
   font-size: 13px;
   font-weight: 500;
+}
+.ncpi .pi-tag-content .pi-badge:hover {
+  border-radius: 5px 0 0 5px;
+}
+.ncpi .pi-tag-content .pi-badge:hover b {
+  display: block;
+}
+.ncpi .pi-tag-content .pi-badge b:hover {
+  cursor: pointer;
+}
+.ncpi .pi-tag-content .pi-badge {
+  position: relative;
+  padding: 5px 6px 5px 10px;
+}
+.ncpi .pi-tag-content .pi-badge b {
+  color: #fff;
+  position: absolute;
+  right: -16px;
+  background: #123DEE;
+  padding: 1px 5px;
+  border-radius: 0 15px 15px 0;
+  display: none;
+  top: 0;
+  z-index: 9;
 }
 @media screen and (max-width: 820px) {
   .ncpi .pi-tag-content {
@@ -298,9 +323,17 @@
   border-radius: 8px;
   margin-bottom: 15px;
 }
+.ncpi .pi-board-column .pi-board-column-item .pi-badge {
+  float: right;
+  position: absolute;
+  right: 0;
+  top: 47%;
+  border-radius: 8px 0 0 8px;
+}
 .ncpi .pi-board-column .pi-board-column-item .pi-board-item-top {
   padding: 15px;
   border-bottom: 1px solid #dddddda8;
+  position: relative;
 }
 .ncpi .pi-board-column .pi-board-column-item .pi-board-item-top h4 {
   font-size: 14px;

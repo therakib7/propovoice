@@ -137,6 +137,7 @@ class Deal
 
                 $queryMeta = get_post_meta($id);
                 $query_data['title'] = get_the_title();
+                $query_data['status'] = isset($queryMeta['status']) ? $queryMeta['status'][0] : '';
                 $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
                 $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
                 $query_data['provability'] = isset($queryMeta['provability']) ? $queryMeta['provability'][0] : '';
@@ -195,6 +196,7 @@ class Deal
         $queryMeta = get_post_meta($id);
         $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
         $query_data['title'] = get_the_title( $id );
+        $query_data['status'] = isset($queryMeta['status']) ? $queryMeta['status'][0] : '';
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
         $query_data['provability'] = isset($queryMeta['provability']) ? absint($queryMeta['provability'][0]) : '';
@@ -253,7 +255,7 @@ class Deal
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $lead_id     = isset($params['lead_id']) ? absint($params['lead_id']) : null;
+        $lead_id      = isset($params['lead_id']) ? absint($params['lead_id']) : null;
         $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
         $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null; 
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
@@ -363,6 +365,7 @@ class Deal
 
         $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
         $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null;  
+        $status       = isset($params['status']) ? sanitize_text_field($params['status']) : null; 
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
         $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
         $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null; 
@@ -404,9 +407,13 @@ class Deal
 
             if (!is_wp_error($post_id)) { 
 
-                if ($stage_id) {
+                if ( $stage_id ) {
                     wp_set_post_terms($post_id, [$stage_id], 'ndpi_deal_stage');
                 }
+
+                if ( $status ) {
+                    update_post_meta($post_id, 'status', $status);
+                } 
 
                 if ($reorder) {
                     $this->reorder_posts($reorder);

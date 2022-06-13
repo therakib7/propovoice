@@ -4,7 +4,7 @@ import WithApi from 'hoc/Api';
 import WithRouter from 'hoc/Router';
 
 import Select from 'react-select';
-import Contact from 'block/field/Contact';
+import Contact from 'block/field/contact';
 
 class Form extends Component {
     constructor(props) {

@@ -166,6 +166,18 @@ class ListSingle extends Component {
         });
     }
 
+    handleStatusChange = (val) => {
+        let data = { ...this.state.data }
+        data.status = val;
+        this.setState({ data }, () => {
+            let newData = {};
+            if (data.status) {
+                newData.status = data.status;
+            }
+            this.props.update('deals', this.props.id, newData);
+        });
+    }
+
     deleteEntry = (type, id) => {
         if (confirm('Are you sure want to delete it?')) { //TODO: translation
 
@@ -466,15 +478,26 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                             Move to Project
-                                        </button>
-                                        <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow">
-                                            <img src={ncpi.assetImgUri + 'happy.png'} alt="won" />
-                                            Won
-                                        </button>
-                                        <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow">
-                                            <img src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
-                                            Lost
-                                        </button>
+                                        </button> 
+                                        
+                                        {data.hasOwnProperty('status') && <>
+                                            { (!data.status || data.status == 'won') && <button
+                                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
+                                                onClick={() => this.handleStatusChange('won')}
+                                            >
+                                                <img src={ncpi.assetImgUri + 'happy.png'} alt="won" />
+                                                Won
+                                            </button>}
+
+                                            { (!data.status || data.status == 'lost') && <button
+                                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
+                                                onClick={() => this.handleStatusChange('lost')}
+                                            >
+                                                <img src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
+                                                Lost
+                                            </button>}
+                                        </>}
+
                                         <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
                                             <button
                                                 className={(this.state.action ? '' : '')}
@@ -997,7 +1020,7 @@ class ListSingle extends Component {
                                         <h5>Note:</h5>
                                         <p className="" dangerouslySetInnerHTML={{ __html: data.note }}></p>
                                     </>
-                                } 
+                                }
                             </div>
                         </div>
                         {/* ./ widget */}

@@ -256,11 +256,11 @@ class Project
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_deal',
-                'post_title'    => $title,
-                'post_content'  => $desc,
-                'post_status'   => 'publish',
-                'post_author'   => get_current_user_id()
+                'post_type' => 'ndpi_project',
+                'post_title'   => $title,
+                'post_content' => $desc,
+                'post_status'  => 'publish',
+                'post_author'  => get_current_user_id()
             );
             $post_id = wp_insert_post($data);
 
@@ -270,6 +270,8 @@ class Project
                 $tab_id = $post_id;
                 if ( $deal_id ) {
                     $tab_id = $deal_id;
+                    update_post_meta($post_id, 'deal_id', $deal_id);
+                    update_post_meta($deal_id, 'project_id', $post_id);
                 }
                 update_post_meta($post_id, 'tab_id', $tab_id); //for task, note, file
 
@@ -278,7 +280,7 @@ class Project
                 } 
 
                 if ($status_id) {
-                    wp_set_post_terms($post_id, [$status_id], 'ndpi_deal_status');
+                    wp_set_post_terms($post_id, [$status_id], 'ndpi_project_status');
                 }
 
                 if ( $deal_id ) {
@@ -376,7 +378,7 @@ class Project
             if (!is_wp_error($post_id)) { 
 
                 if ($status_id) {
-                    wp_set_post_terms($post_id, [$status_id], 'ndpi_deal_status');
+                    wp_set_post_terms($post_id, [$status_id], 'ndpi_project_status');
                 }
 
                 if ($reorder) {
