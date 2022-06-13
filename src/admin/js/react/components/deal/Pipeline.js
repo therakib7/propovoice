@@ -14,7 +14,6 @@ const onDragEnd = (update, result, columns, setColumns) => {
 
 	if (source.droppableId !== destination.droppableId) {
 
-		// console.log(update);
 		const sourceColumn = columns[source.droppableId];
 		const destColumn = columns[destination.droppableId];
 		const sourceItems = [...sourceColumn.items];
@@ -269,8 +268,8 @@ function Pipeline(props) {
 					);
 				})}
 
-				<div className="pi-board-column">  
-					<div className="pi-broad-content" style={{ padding: 0 }}>  
+				<div className="pi-board-column">
+					<div className="pi-broad-content" style={{ padding: 0 }}>
 						<button
 							className="pi-btn pi-btn-medium pi-bg-stroke"
 							onClick={() => addNewColumn()}
