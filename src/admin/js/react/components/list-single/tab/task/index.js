@@ -1,4 +1,4 @@
-import { useState } from "react"; 
+import { useState } from "react";
 import Preloader from 'block/preloader/table';
 
 import Form from './Form';
@@ -10,7 +10,7 @@ import Table from './Table';
 import Crud from 'hoc/Crud';
 
 const Task = (props) => {
-    const [activeTab, setActiveTab] = useState('todo');
+    const [activeTab, setActiveTab] = useState(null);
 
     const { lists, checkedBoxes, searchVal } = props.state;
     return (
@@ -29,25 +29,17 @@ const Task = (props) => {
             />}
 
             <div className="pi-small-button-group">
-                <h3 className="pi-title-small">My Work</h3> 
-                <button
-                    className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'todo' ? 'pi-active' : '')}
-                    onClick={() => { setActiveTab('todo'); props.getLists({ type: 'todo' }); }}
-                >
-                    Todo
-                </button>
-                <button
-                    className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'inprogress' ? 'pi-active' : '')}
-                    onClick={() => { setActiveTab('inprogress'); props.getLists({ type: 'inprogress' }); }}
-                >
-                    In Progress
-                </button>
-                <button
-                    className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'done' ? 'pi-active' : '')}
-                    onClick={() => { setActiveTab('done'); props.getLists({ type: 'done' }); }}
-                >
-                    Done
-                </button>
+                <h3 className="pi-title-small">My Work</h3>
+                {lists.task_status && lists.task_status.map((status, statusIndex) => {
+                    return (
+                        <button key={statusIndex}
+                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ( ( activeTab == status.id ) || ( !activeTab && statusIndex == 0 ) ? 'pi-active' : '')}
+                            onClick={() => { setActiveTab(status.id); props.getLists({ status: status.id }); }}
+                        >
+                            {status.label}
+                        </button>
+                    )
+                })}
             </div>
 
             {props.state.preloader ? <Preloader /> : <div className="pi-accordion">

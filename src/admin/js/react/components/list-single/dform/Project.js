@@ -225,7 +225,7 @@ class Form extends Component {
                                 <div className="col-md">
                                     <label
                                         htmlFor="field-provability">
-                                        Provability <span className='pi-float-right'>({form.provability}%)</span>
+                                        Provability <span style={{position: 'absolute', right: '15px'}}>({form.provability}%)</span>
                                     </label>
 
                                     <input

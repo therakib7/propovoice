@@ -4,7 +4,7 @@ import AsyncSelect from 'react-select/async';
 import { toast } from 'react-toastify';
 
 //import ApiTaxonomy from 'api/taxonomy'; 
-import Api from 'hoc/Api';
+import WithApi from 'hoc/Api';
 
 import LeadForm from 'components/lead/Form';
 import DealForm from 'components/deal/Form';
@@ -1035,7 +1035,7 @@ class ListSingle extends Component {
     }
 }
 
-const ListSingleWithApi = Api(ListSingle);
+const ListSingleWithApi = WithApi(ListSingle);
 
 export default function SingleWrap() {
 

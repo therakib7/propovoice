@@ -71,7 +71,7 @@ class Task
         $params = $req->get_params();
 
         $per_page = 10;
-        $offset = 0; 
+        $offset = 0;
 
         if (isset($params['per_page'])) {
             $per_page = $params['per_page'];
@@ -89,16 +89,16 @@ class Task
             'posts_per_page' => -1,
         );
 
-        if ( ! $tab_id ) {
+        if (!$tab_id) {
             $args['posts_per_page'] = $per_page;
-            $args['offset'] = $offset; 
+            $args['offset'] = $offset;
         }
 
         $args['meta_query'] = array(
             'relation' => 'OR'
         );
 
-        if ( $tab_id ) {
+        if ($tab_id) {
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'tab_id',
@@ -108,20 +108,38 @@ class Task
             );
         }
 
-        $query = new WP_Query( $args );
+        $query = new WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
         $result = [];
 
         $data = [
+            'task_status' => [],
             'today' => [],
             'other' => [],
             'unschedule' => [],
         ];
 
-        if ( ! $tab_id ) {
+        if (!$tab_id) {
             $data = [];
         }
-        
+
+        $taxonomy = 'task_status';
+        $get_taxonomy = get_terms( array(
+            'taxonomy' => 'ndpi_' . $taxonomy,
+            'orderby' => 'ID', 
+            'order'   => 'ASC',
+            'hide_empty' => false
+        ) );
+
+        $format_taxonomy = [];
+        foreach( $get_taxonomy as $single ) {
+            $format_taxonomy[] = [
+                'id' => $single->term_id,
+                'label' => $single->name
+            ];
+        } 
+        $data[$taxonomy] = $format_taxonomy;
+
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
@@ -140,12 +158,12 @@ class Task
             }
 
             $query_data['desc'] = get_the_content();
-            $query_data['date'] = get_the_time('j-M-Y'); 
+            $query_data['date'] = get_the_time('j-M-Y');
 
-            if ( $tab_id ) {
-                if ( false ) { //TODO: check unschedule
+            if ( $tab_id ) { 
+                if (false) { //TODO: check unschedule
                     $data['unschedule'][] = $query_data;
-                } else if ( true ) { //TODO: check today 
+                } else if (true) { //TODO: check today 
                     $data['today'][] = $query_data;
                 } else {
                     $data['other'][] = $query_data;
@@ -200,14 +218,14 @@ class Task
             $data = array(
                 'post_type' => 'ndpi_task',
                 'post_title' => $title,
-                'post_content'  => '',
-                'post_status'   => 'publish',
-                'post_author'   => get_current_user_id()
+                'post_content' => '',
+                'post_status'  => 'publish',
+                'post_author'  => get_current_user_id()
             );
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
+                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
                 update_post_meta($post_id, 'tab_id', $tab_id);
                 if ($type_id) {
                     wp_set_post_terms($post_id, [$type_id], 'ndpi_task_type');

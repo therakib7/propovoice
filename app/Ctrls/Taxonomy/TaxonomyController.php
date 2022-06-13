@@ -7,6 +7,7 @@ use Ncpi\Ctrls\Taxonomy\Types\Tag;
 use Ncpi\Ctrls\Taxonomy\Types\DealStage;
 use Ncpi\Ctrls\Taxonomy\Types\LeadLevel;
 use Ncpi\Ctrls\Taxonomy\Types\LeadSource;
+use Ncpi\Ctrls\Taxonomy\Types\ProjectStatus;
 use Ncpi\Ctrls\Taxonomy\Types\TaskStatus;
 use Ncpi\Ctrls\Taxonomy\Types\TaskType;
 
@@ -20,5 +21,6 @@ class TaxonomyController {
 		new TaskType();
 		new DealPipeline();
 		new DealStage();
+		new ProjectStatus();
 	} 
 }

@@ -84,7 +84,20 @@ class Taxonomy {
             );
         } 
 
-        //task
+        //task status
+        $task_status = [
+            'Todo',
+            'In Progress',
+            'Done'
+        ];  
+        foreach( $task_status as $status ) {
+            wp_insert_term(
+                $status,   // the term 
+                'ndpi_task_status', // the taxonomy 
+            );
+        } 
+
+        //task type
         $task_type = [
             'Email',
             'Call',
@@ -96,5 +109,19 @@ class Taxonomy {
                 'ndpi_task_type', // the taxonomy 
             );
         } 
+
+        //project status
+        $project_status = [
+            'New',
+            'In Progress',
+            'Done'
+        ];  
+        foreach( $project_status as $status ) {
+            wp_insert_term(
+                $status,   // the term 
+                'ndpi_project_status', // the taxonomy 
+            );
+        } 
+
     } 
 }

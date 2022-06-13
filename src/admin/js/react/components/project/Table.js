@@ -38,7 +38,7 @@ const TableHeader = props => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    client
+                    Client
                 </th>
                 <th>
                     <svg
@@ -137,11 +137,11 @@ const TableBody = props => {
                     />
                 </td>
                 <td>{row.title}</td>
-                <td>{row.contact.email}</td>
+                <td>{row.contact_id.email}</td>
                 <td>22 April, 2022</td>
                 <td>${row.budget}</td>
                 <td>
-                    <span className="pi-badge">Status</span>
+                    <span className="pi-badge">{row.status_id && row.status_id.label}</span>
                 </td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
