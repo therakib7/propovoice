@@ -68,20 +68,20 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=lead_level_tag').then(resp => {
+        this.props.getAll('taxonomies', 'taxonomy=lead_level,tag').then(resp => {
             if (resp.data.success) {
                 if (this.state.form.level_id) {
                     this.setState({
-                        levels: resp.data.data.levels,
-                        tags: resp.data.data.tags,
+                        levels: resp.data.data.lead_level,
+                        tags: resp.data.data.tag,
                     });
                 } else {
                     let form = { ...this.state.form }
-                    form.level_id = resp.data.data.levels[0];
+                    form.level_id = resp.data.data.lead_level[0];
                     this.setState({
                         form,
-                        levels: resp.data.data.levels,
-                        tags: resp.data.data.tags,
+                        levels: resp.data.data.lead_level,
+                        tags: resp.data.data.tag,
                     });
                 }
             }

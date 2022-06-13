@@ -26,116 +26,36 @@ class Taxonomy {
         $params = $req->get_params(); 
         $reg_errors = new \WP_Error;  
 
-        $taxonomy = isset( $params['taxonomy'] ) ? sanitize_text_field( $params['taxonomy'] ) : null;  
+        $taxonomies = isset( $params['taxonomy'] ) ? sanitize_text_field( $params['taxonomy'] ) : null;  
 
-        if ( empty( $taxonomy ) ) {
-            $reg_errors->add('field', esc_html__('Tab is missing', 'propovoice'));
+        if ( empty( $taxonomies ) ) {
+            $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
         } 
 
         if ( $reg_errors->get_error_messages() ) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $data = [];
-
-            if ( $taxonomy == 'deal_stage_tag' ) {  
-
-                $get_stage = get_terms( array(
-                    'taxonomy' => 'ndpi_deal_stage',
+            
+            $taxonomies = explode(',', $taxonomies);
+            foreach ($taxonomies as $taxonomy) { 
+                $get_taxonomy = get_terms( array(
+                    'taxonomy' => 'ndpi_' . $taxonomy,
                     'orderby' => 'ID', 
                     'order'   => 'ASC',
                     'hide_empty' => false
                 ) );
 
-                $get_tag = get_terms( array(
-                    'taxonomy' => 'ndpi_tag',
-                    'orderby' => 'ID', 
-                    'order'   => 'ASC',
-                    'hide_empty' => false
-                ) );
-
-                $stageList = $tagList = [];
-
-                foreach( $get_stage as $stage ) {
-                    $stageList[] = [
-                        'id' => $stage->term_id,
-                        'label' => $stage->name
+                $format_taxonomy = [];
+                foreach( $get_taxonomy as $single ) {
+                    $format_taxonomy[] = [
+                        'id' => $single->term_id,
+                        'label' => $single->name
                     ];
                 } 
-
-                foreach( $get_tag as $tag ) {
-                    $tagList[] = [
-                        'id' => $tag->term_id,
-                        'label' => $tag->name
-                    ];
-                } 
-
-                $data = [
-                    'stages' => $stageList,
-                    'tags' => $tagList
-                ];
-            } 
-
-            if ( $taxonomy == 'lead_level_tag' ) {  
-
-                $get_level = get_terms( array(
-                    'taxonomy' => 'ndpi_lead_level',
-                    'orderby' => 'ID', 
-                    'order'   => 'ASC',
-                    'hide_empty' => false
-                ) );
-
-                $get_tag = get_terms( array(
-                    'taxonomy' => 'ndpi_tag',
-                    'orderby' => 'ID', 
-                    'order'   => 'ASC',
-                    'hide_empty' => false
-                ) );
-
-                $levelList = $tagList = [];
-
-                foreach( $get_level as $level ) {
-                    $levelList[] = [
-                        'id' => $level->term_id,
-                        'label' => $level->name
-                    ];
-                } 
-
-                foreach( $get_tag as $tag ) {
-                    $tagList[] = [
-                        'id' => $tag->term_id,
-                        'label' => $tag->name
-                    ];
-                } 
-
-                $data = [
-                    'levels' => $levelList,
-                    'tags' => $tagList
-                ];
-            } 
-
-            if ( $taxonomy == 'task_type' ) {  
-
-                $get_type = get_terms( array(
-                    'taxonomy' => 'ndpi_task_type',
-                    'orderby' => 'ID', 
-                    'order'   => 'ASC',
-                    'hide_empty' => false
-                ) ); 
-                $typeList = [];
-
-                foreach( $get_type as $type ) {
-                    $typeList[] = [
-                        'id' => $type->term_id,
-                        'label' => $type->name
-                    ];
-                }  
-
-                $data = [
-                    'types' => $typeList 
-                ];
+                $data[$taxonomy] = $format_taxonomy;
             }
-
-            wp_send_json_success($data);
+            wp_send_json_success($data); 
         }
     } 
 
@@ -153,14 +73,7 @@ class Taxonomy {
         if ( $reg_errors->get_error_messages() ) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else { 
-            $data = [];
-
-            if ( $taxonomy == 'general_social' ) {
-                //TODO: sanitization  
-                $data['social'] = isset( $params['social'] ) ? ( $params['social'] ) : null; 
-
-                $option = update_option('ncpi_' . $taxonomy , $data);                 
-            } 
+            $data = []; 
 
             wp_send_json_success();
         }

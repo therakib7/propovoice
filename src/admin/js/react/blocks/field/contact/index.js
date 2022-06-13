@@ -9,7 +9,7 @@ const Contact = (props) => {
 	let timeout = 0;
 
 	useEffect(() => {
-          
+        //TODO: stop multiple rendering if loaded
         let args = {
             page: 1,
             per_page: 10

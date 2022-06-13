@@ -154,7 +154,7 @@ class Deal
                     $query_data['tags'] = $tagList;
                 } */
 
-                $contact_id = get_post_meta($id, 'contact_id', true);
+                $contact_id = get_post_meta($id, 'person_id', true);
                 $contactData = [];
 
                 if ($contact_id) {
@@ -226,7 +226,7 @@ class Deal
             $query_data['tags'] = $tagList;
         }
 
-        $contact_id = get_post_meta($id, 'contact_id', true);
+        $contact_id = get_post_meta($id, 'person_id', true);
         $contactData = [];
 
         if ($contact_id) {
@@ -272,9 +272,9 @@ class Deal
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
         }
 
-        if ( !$lead_id && empty($contact_id)) {
+        /* if ( !$lead_id && empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
-        }
+        } */
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());

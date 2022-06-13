@@ -1,10 +1,10 @@
-import React, { Component, Suspense, lazy } from 'react' 
+import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import AsyncSelect from 'react-select/async';
 import { toast } from 'react-toastify';
 
 //import ApiTaxonomy from 'api/taxonomy'; 
-import Api from 'hoc/Api'; 
+import Api from 'hoc/Api';
 
 import LeadForm from 'components/lead/Form';
 import DealForm from 'components/deal/Form';
@@ -79,22 +79,22 @@ class ListSingle extends Component {
     };
 
     getLevelTagData = () => {
-        this.props.getAll('taxonomies', 'taxonomy=lead_level_tag').then(resp => {
+        this.props.getAll('taxonomies', 'taxonomy=lead_level,tag').then(resp => {
             if (resp.data.success) {
                 this.setState({
-                    levels: resp.data.data.levels,
-                    tags: resp.data.data.tags,
+                    levels: resp.data.data.lead_level,
+                    tags: resp.data.data.tag,
                 });
             }
         });
     };
 
     getStageTagData = () => {
-        this.props.getAll('taxonomies', 'taxonomy=deal_stage_tag').then(resp => {
+        this.props.getAll('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
             if (resp.data.success) {
                 this.setState({
-                    stages: resp.data.data.stages,
-                    tags: resp.data.data.tags,
+                    stages: resp.data.data.deal_stage,
+                    tags: resp.data.data.tag,
                 });
             }
         });
@@ -167,18 +167,18 @@ class ListSingle extends Component {
     }
 
     deleteEntry = (type, id) => {
-        if ( confirm('Are you sure want to delete it?') ) { //TODO: translation
-             
+        if (confirm('Are you sure want to delete it?')) { //TODO: translation
+
             this.props.remove(type + 's', id).then(resp => {
-                if ( resp.data.success ) { 
+                if (resp.data.success) {
                     toast.success('Successfully deleted'); //TODO: translation
-                    this.props.navigate(`/${type}`, { replace: true });  
+                    this.props.navigate(`/${type}`, { replace: true });
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
                     });
                 }
-            })  
+            })
         }
     }
 
@@ -238,7 +238,7 @@ class ListSingle extends Component {
                         <li className="pi-active">
                             {path == 'lead' && contact.first_name}
                             {path == 'client' && contact.first_name}
-                            { ( path == 'deal' || path == 'project' ) && data.title} 
+                            {(path == 'deal' || path == 'project') && data.title}
                             {path == 'contact' && contact.first_name}
                         </li>
                     </ul>
@@ -254,7 +254,7 @@ class ListSingle extends Component {
                                         <div className="pi-lead-address">
                                             <h3 className="">
                                                 {contact.first_name}
-                                                <button 
+                                                <button
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ leadModal: true })}
                                                 >
@@ -316,8 +316,8 @@ class ListSingle extends Component {
                                         </button>
 
                                         <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
-                                            <button 
-                                                className={(this.state.action ? '' : '')} 
+                                            <button
+                                                className={(this.state.action ? '' : '')}
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
                                             >
                                                 <svg
@@ -349,9 +349,9 @@ class ListSingle extends Component {
                                             </button>
 
                                             {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                <a onClick={() => this.setState({ leadModal: true })}>Edit</a> 
+                                                <a onClick={() => this.setState({ leadModal: true })}>Edit</a>
                                                 <a onClick={() => this.deleteEntry('lead', data.id)}>Delete</a>
-                                            </div>} 
+                                            </div>}
                                         </div>
                                     </div>
                                 </div>
@@ -371,13 +371,13 @@ class ListSingle extends Component {
                                     }
 
                                     <select name="" id="">
-                                        <option value="">+ Add TAg</option> 
+                                        <option value="">+ Add TAg</option>
                                     </select>
                                 </li>
                                 <li>
                                     <label htmlFor="">Source:</label>
                                     <select name="" id="">
-                                        <option value="">Website</option> 
+                                        <option value="">Website</option>
                                     </select>
                                 </li>
                             </ul>
@@ -393,7 +393,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-content">
                                         <h3 className="">
                                             {data.title}
-                                            <button 
+                                            <button
                                                 className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                 onClick={() => this.setState({ dealModal: true })}
                                             >
@@ -404,12 +404,12 @@ class ListSingle extends Component {
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
                                                 <h5>{data.contact.first_name}</h5>
-                                                <p>{ ( data.contact.region ) ? data.contact.region+',' : ''} {data.contact.country}</p>
+                                                <p>{(data.contact.region) ? data.contact.region + ',' : ''} {data.contact.country}</p>
                                             </div>
                                         </div>
                                         <div className="pi-range">
                                             <label htmlFor="field-provability">
-                                                Provability 
+                                                Provability
                                             </label>
                                             {/* <span className='pi-float-right'>({data.provability}%)</span> */}
                                             <input
@@ -474,10 +474,10 @@ class ListSingle extends Component {
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow">
                                             <img src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
                                             Lost
-                                        </button> 
+                                        </button>
                                         <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
-                                            <button 
-                                                className={(this.state.action ? '' : '')} 
+                                            <button
+                                                className={(this.state.action ? '' : '')}
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
                                             >
                                                 <svg
@@ -509,7 +509,7 @@ class ListSingle extends Component {
                                             </button>
 
                                             {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                <a onClick={() => this.setState({ dealModal: true })}>Edit</a> 
+                                                <a onClick={() => this.setState({ dealModal: true })}>Edit</a>
                                                 <a onClick={() => this.deleteEntry('deal', data.id)}>Delete</a>
                                             </div>}
 
@@ -535,7 +535,7 @@ class ListSingle extends Component {
                                         })
                                     }
                                     <select name="" id="">
-                                        <option value="">+ Add Tag</option> 
+                                        <option value="">+ Add Tag</option>
                                     </select>
                                 </li>
                             </ul>
@@ -551,7 +551,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-content">
                                         <h3 className="">
                                             {data.title}
-                                            <button 
+                                            <button
                                                 className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                 onClick={() => this.setState({ projectModal: true })}
                                             >
@@ -584,10 +584,10 @@ class ListSingle extends Component {
                                         </button>
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-invite">
                                             Invite
-                                        </button> 
+                                        </button>
                                         <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
-                                            <button 
-                                                className={(this.state.action ? '' : '')} 
+                                            <button
+                                                className={(this.state.action ? '' : '')}
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
                                             >
                                                 <svg
@@ -619,9 +619,9 @@ class ListSingle extends Component {
                                             </button>
 
                                             {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                <a onClick={() => this.setState({ projectModal: true })}>Edit</a> 
+                                                <a onClick={() => this.setState({ projectModal: true })}>Edit</a>
                                                 <a onClick={() => this.deleteEntry('project', data.id)}>Delete</a>
-                                            </div>} 
+                                            </div>}
                                         </div>
                                     </div>
 
@@ -815,7 +815,7 @@ class ListSingle extends Component {
                                         <div className="pi-lead-address">
                                             <h3 className="">
                                                 {contact.first_name}
-                                                <button 
+                                                <button
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ contactModal: true })}
                                                 >
@@ -842,8 +842,8 @@ class ListSingle extends Component {
                                         </div>
 
                                         <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow pi-float-right">
-                                            <button 
-                                                className={(this.state.action ? '' : '')} 
+                                            <button
+                                                className={(this.state.action ? '' : '')}
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
                                             >
                                                 <svg
@@ -875,9 +875,9 @@ class ListSingle extends Component {
                                             </button>
 
                                             {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                <a onClick={() => this.setState({ contactModal: true })}>Edit</a> 
+                                                <a onClick={() => this.setState({ contactModal: true })}>Edit</a>
                                                 <a onClick={() => this.deleteEntry('contact', data.id)}>Delete</a>
-                                            </div>} 
+                                            </div>}
                                         </div>
                                     </div>
                                 </div>
@@ -960,25 +960,49 @@ class ListSingle extends Component {
 
                     <div className="col-lg-3 pi-lead-right-content">
                         <div className="pi-widget pi-info-box">
-                            <h3 className="pi-widget-title">Aditional Info</h3>
+                            <h3 className="pi-widget-title">Additional Info</h3>
                             <address>
-                                <span>Mobile:</span>
-                                {contact.mobile}
-                                <span>Website:</span>
-                                {contact.web}
-                                <span>Address: </span>
-                                {contact.address}
+                                {contact.mobile &&
+                                    <>
+                                        <span>Mobile:</span>
+                                        {contact.mobile}
+                                    </>
+                                }
+
+                                {contact.web &&
+                                    <>
+                                        <span>Website:</span>
+                                        {contact.web}
+                                    </>
+                                }
+
+                                {contact.address &&
+                                    <>
+                                        <span>Address:</span>
+                                        {contact.address}
+                                    </>
+                                }
+
                             </address>
                             <div className="pi-desc-content">
-                                <h5>Description</h5>
-                                <p className="" dangerouslySetInnerHTML={{ __html: data.desc }}></p>
-                                <h5>Note:</h5>
-                                <p className="" dangerouslySetInnerHTML={{ __html: data.note }}></p>
+                                {data.desc &&
+                                    <>
+                                        <h5>Description:</h5>
+                                        <p className="" dangerouslySetInnerHTML={{ __html: data.desc }}></p>
+                                    </>
+                                }
+
+                                {data.desc &&
+                                    <>
+                                        <h5>Note:</h5>
+                                        <p className="" dangerouslySetInnerHTML={{ __html: data.note }}></p>
+                                    </>
+                                } 
                             </div>
                         </div>
                         {/* ./ widget */}
                         <div className="pi-widget pi-timeline-box">
-                            <h3 className="pi-widget-title">Aditional Info</h3>
+                            <h3 className="pi-widget-title">Timeline Info</h3>
                             <ul>
                                 <li>
                                     <h4 className="timeline-title">Nabil Created Project Propovoice</h4>

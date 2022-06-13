@@ -35,14 +35,14 @@ class Form extends Component {
             if (resp.data.success) {
                 if (this.state.form.type_id) {
                     this.setState({
-                        types: resp.data.data.types  
+                        types: resp.data.data.task_type  
                     });
                 } else {
                     let form = { ...this.state.form }
-                    form.type_id = resp.data.data.types[0];
+                    form.type_id = resp.data.data.task_type[0];
                     this.setState({
                         form,
-                        types: resp.data.data.types 
+                        types: resp.data.data.task_type 
                     });
                 }
             }

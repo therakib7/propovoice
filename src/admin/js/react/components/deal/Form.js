@@ -49,20 +49,20 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=deal_stage_tag').then(resp => { 
+        this.props.getAll('taxonomies', 'taxonomy=deal_stage,tag').then(resp => { 
                 if ( resp.data.success ) {
                     if ( this.state.form.stage_id ) {
                         this.setState({
-                            stages: resp.data.data.stages,
-                            tags: resp.data.data.tags,
+                            stages: resp.data.data.deal_stage,
+                            tags: resp.data.data.tag,
                         });
                     } else {
                         let form = { ...this.state.form }
-                        form.stage_id = resp.data.data.stages[0];
+                        form.stage_id = resp.data.data.deal_stage[0];
                         this.setState({
                             form,
-                            stages: resp.data.data.stages,
-                            tags: resp.data.data.tags,
+                            stages: resp.data.data.deal_stage,
+                            tags: resp.data.data.tag,
                         });
                     }
                 }

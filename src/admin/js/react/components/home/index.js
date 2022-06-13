@@ -161,11 +161,11 @@ const Home = () => {
                                     Deal Pipeline
                                 </NavLink>
                             </li>
-                            <li>
+                            { false && <li>
                                 <NavLink to='proposal' className={({ isActive }) => isActive ? 'pi-active' : ''}>
                                     <svg
                                         className="pi-mr-14"
-                                        width={16}
+                                         width={16}
                                         height={20}
                                         viewBox="0 0 16 20"
                                         fill="none"
@@ -186,7 +186,7 @@ const Home = () => {
                                     </svg>
                                     Proposal
                                 </NavLink>
-                            </li>
+                            </li>}
                             <li>
                                 <NavLink to='estimate' className={({ isActive }) => isActive ? 'pi-active' : ''}>
                                     <svg
@@ -303,7 +303,7 @@ const Home = () => {
                                     Project
                                 </NavLink>
                             </li>
-                            <li>
+                            { false && <li>
                                 <NavLink to='accounting' className={({ isActive }) => isActive ? 'pi-active' : ''}>
                                     <svg
                                         width={20}
@@ -330,7 +330,7 @@ const Home = () => {
                                     </svg>
                                     Accounting
                                 </NavLink>
-                            </li>
+                            </li>}
                             <li>
                                 <NavLink to='contact/person' className={({ isActive }) => isActive ? 'pi-active' : ''}>
                                     <svg
