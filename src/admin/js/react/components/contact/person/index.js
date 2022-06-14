@@ -168,8 +168,7 @@ const Contact = (props) => {
             />
           </svg>
         </button>
-      </div>
-
+      </div> 
 
       <Search
         title={title}

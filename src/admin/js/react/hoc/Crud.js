@@ -49,6 +49,12 @@ const HOC = (Inner, mod, modPlural = '') => {
                 per_page: this.state.perPage
             } 
             
+            if ( this.props.taxonomy ) {
+                args.taxonomy = this.props.taxonomy;
+            }
+
+            args.taxonomy = 'tag';
+
             if ( this.props.tab_id ) {
                 args.tab_id = this.props.tab_id;
             }

@@ -1,27 +1,31 @@
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api';
 import styles from './Items.module.scss'
 
-const Contact = (props) => {
+const Taxonomy = (props) => {
 	const [list, setList] = useState([]);
-	const [modal, setModal] = useState(false);
+	const [modal, setModal] = useState(false); 
 	const [modalType, setModalType] = useState('new');
 	const newForm = {
 		label: '',
 		color: '',
-		bg_color: '',
+		bg_color: '' 
 	};
 	const [form, setForm] = useState(newForm);
 
 	useEffect(() => { 
+		getData();
+	}, []);
+
+	const getData = () => {
 		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 			}
 		});
-
-	}, []);
+	}
 
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
@@ -43,8 +47,56 @@ const Contact = (props) => {
 	}
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log('submited');
+		e.preventDefault(); 
+
+		let newFrom = {...form}
+		newFrom.taxonomy = props.taxonomy;
+
+		if ( modalType == 'new' ) {
+			props.create('taxonomies', newFrom).then(resp => { 
+				if (resp.data.success) { 
+					toast.success('Successfully added'); //TODO: translation
+					getData();
+				} else {
+					resp.data.data.forEach(function (value, index, array) {
+						toast.error(value);
+					});
+				}
+			});; 
+		} else {
+			props.update('taxonomies', newFrom.id, newFrom).then(resp => { 
+				if (resp.data.success) { 
+					toast.success('Successfully updated'); //TODO: translation
+					getData();
+				} else {
+					resp.data.data.forEach(function (value, index, array) {
+						toast.error(value);
+					});
+				}
+			});;  
+		}  
+		setModal(false);
+	} 
+
+	const handleDelete = ( id ) => {
+		if (confirm('Are you sure, to delete it?')) { //TODO: translation
+
+			let newFrom = {}
+			newFrom.taxonomy = props.taxonomy;
+			newFrom.delete = true;
+			newFrom.id = parseInt( id );
+
+			props.update('taxonomies', newFrom.id, newFrom).then(resp => { 
+				if (resp.data.success) { 
+					toast.success('Successfully deleted'); //TODO: translation
+					getData();
+				} else {
+					resp.data.data.forEach(function (value, index, array) {
+						toast.error(value);
+					});
+				}
+			});  
+		}
 	}
 
 	const handleDragEnd = (result) => {
@@ -95,7 +147,7 @@ const Contact = (props) => {
 												{...provided.draggableProps}
 												{...provided.dragHandleProps}
 												style={provided.draggableProps.style}
-												className={snapshot.isDragging ? styles.listItemDragging : ''}
+												className={snapshot.isDragging ? styles.listItemDragging : styles.listItem}
 											>
 												<div className="row">
 													<div className="col">
@@ -182,7 +234,7 @@ const Contact = (props) => {
 																/>
 															</svg>
 														</span>
-														<span>
+														<span onClick={() => { handleDelete(item.id) }}>
 															<svg
 																width={16}
 																height={16}
@@ -350,4 +402,4 @@ const Contact = (props) => {
 	);
 }
 
-export default WithApi(Contact);  
+export default WithApi(Taxonomy);  

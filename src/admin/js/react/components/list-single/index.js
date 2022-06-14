@@ -373,11 +373,11 @@ class ListSingle extends Component {
                         <div className="pi-tag-content">
                             <ul>
                                 <li>
-                                    <label htmlFor="">Tag:</label>
+                                    <label htmlFor="">Tag: </label>
                                     {
                                         data.tags && data.tags.map((tag, tagIndex) => {
                                             return (
-                                                <span key={tagIndex} className="pi-badge">{tag.label}</span>
+                                                <span key={tagIndex} className="pi-badge">{tag.label} <b>X</b></span>
                                             )
                                         })
                                     }
@@ -549,11 +549,11 @@ class ListSingle extends Component {
                                     <span>${data.budget}</span>
                                 </li>
                                 <li>
-                                    <label htmlFor="">Tag:</label>
+                                    <label htmlFor="">Tag: </label>
                                     {
                                         data.tags && data.tags.map((tag, tagIndex) => {
                                             return (
-                                                <span key={tagIndex} className="pi-badge">{tag.label}</span>
+                                                <span key={tagIndex} className="pi-badge">{tag.label} <b>X</b></span>
                                             )
                                         })
                                     }
@@ -655,7 +655,7 @@ class ListSingle extends Component {
                         <div className="pi-tag-content">
                             <ul>
                                 <li>
-                                    <label htmlFor="">Tag:</label>
+                                    <label htmlFor="">Tag: </label>
                                     <span className="pi-badge">Badge</span>
                                     <span className="pi-badge">Badge</span>
                                     <select name="" id="">
@@ -910,11 +910,11 @@ class ListSingle extends Component {
                         <div className="pi-tag-content">
                             <ul>
                                 <li>
-                                    <label htmlFor="">Tag:</label>
+                                    <label htmlFor="">Tag: </label>
                                     {
                                         data.tags && data.tags.map((tag, tagIndex) => {
                                             return (
-                                                <span key={tagIndex} className="pi-badge">{tag.label}</span>
+                                                <span key={tagIndex} className="pi-badge">{tag.label} <b>X</b></span>
                                             )
                                         })
                                     }

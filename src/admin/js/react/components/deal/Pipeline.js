@@ -172,7 +172,7 @@ function Pipeline(props) {
 										<div
 											{...provided.droppableProps}
 											ref={provided.innerRef}
-											className="pi-broad-content"
+											className="pi-board-content"
 										/* style={{
 											background: snapshot.isDraggingOver
 												? "lightblue"
@@ -269,7 +269,7 @@ function Pipeline(props) {
 				})}
 
 				<div className="pi-board-column">
-					<div className="pi-broad-content" style={{ padding: 0 }}>
+					<div className="pi-board-content" style={{ padding: 0 }}>
 						<button
 							className="pi-btn pi-btn-medium pi-bg-stroke"
 							onClick={() => addNewColumn()}

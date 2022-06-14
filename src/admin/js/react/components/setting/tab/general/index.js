@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import WithApi from 'hoc/Api';
 
 import SubGeneral from './sub/General';
+import Tag from './sub/Tag';
 import Social from './sub/Social';
 
 class General extends Component {
@@ -13,6 +14,10 @@ class General extends Component {
 				{
 					id: 'general',
 					text: 'General'
+				},
+				{
+					id: 'tag',
+					text: 'Tag'
 				},
 				{
 					id: 'social',
@@ -49,6 +54,7 @@ class General extends Component {
 				</ul>
 		
 				{currentTab == 'general' && <SubGeneral {...this.props} />} 
+				{currentTab == 'tag' && <Tag/>}
 				{currentTab == 'social' && <Social {...this.props} />}
 			</>
 		);

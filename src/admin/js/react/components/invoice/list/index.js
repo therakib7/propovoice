@@ -308,8 +308,8 @@ const Invoice = class Invoice extends Component {
                     </div>
                 </div>
 
-                <div className="pi-buttons-group">
-                    <button className="pi-bg-hover-shadow">
+                <div className="pi-buttons-group pi-mb-20">
+                    <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
                         <svg
                             width={20}
                             height={20}
@@ -361,7 +361,7 @@ const Invoice = class Invoice extends Component {
                             />
                         </svg>
                     </button>
-                    <button className="pi-bg-hover-shadow">
+                    <button className="pi-btn pi-btn-icon pi-bg-hover-shadow">
                         <svg
                             width={20}
                             height={20}
@@ -399,7 +399,7 @@ const Invoice = class Invoice extends Component {
                     showing={invoices.length}
                     total={this.state.total}
                     handleSubmit={this.getLists}
-                /> 
+                />
 
                 {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.newInvoie()} />}
 
