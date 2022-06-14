@@ -5,15 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import WithApi from 'hoc/Api';
 
 import Editable from 'block/editable';
-import { v4 as uuidv4 } from 'uuid';
-import { data } from "autoprefixer";
+import { v4 as uuidv4 } from 'uuid'; 
 
 const onDragEnd = (update, result, columns, setColumns) => {
 	if (!result.destination) return;
 	const { source, destination } = result;
 
-	if (source.droppableId !== destination.droppableId) {
-
+	if (source.droppableId !== destination.droppableId) { 
 		const sourceColumn = columns[source.droppableId];
 		const destColumn = columns[destination.droppableId];
 		const sourceItems = [...sourceColumn.items];
@@ -35,7 +33,7 @@ const onDragEnd = (update, result, columns, setColumns) => {
 
 		//update another stage
 		let deal_id = parseInt(columns[source.droppableId].items[source.index].id);
-		let deal_stage_id = parseInt(destination.droppableId);
+		let deal_stage_id = parseInt(destColumn.id); 
 		let finalArray = destItems.map(function (obj) {
 			return parseInt(obj.id);
 		});

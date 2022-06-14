@@ -82,13 +82,13 @@ class Deal
 
         $get_stage = get_terms(array(
             'taxonomy' => 'ndpi_deal_stage',
-            'orderby' => 'ID',
-            'order'   => 'DESC',
+            // 'orderby' => 'ID',
+            // 'order'   => 'DESC',
+            'orderby' => 'term_order',
+            'order'   => 'ASC',
             'hide_empty' => false
         ));
-
-        $result = $column = [];
-
+        $result = $column = []; 
         foreach ($get_stage as $stage) :
             $stage_id = $stage->term_id;
             $stage_name = $stage->name;
@@ -105,17 +105,7 @@ class Deal
 
             $args['meta_query'] = array(
                 'relation' => 'OR'
-            );
-
-            /* if (isset($request['default'])) {
-                $args['meta_query'][] = array(
-                    array(
-                        'key'     => 'default',
-                        'value'   => 1,
-                        'compare' => 'LIKE'
-                    )
-                );
-            } */
+            ); 
 
             $args['tax_query'] = array(
                 array(
@@ -127,7 +117,7 @@ class Deal
 
             $query = new WP_Query($args);
             // $total_data = $query->found_posts; //use this for pagination 
-
+            
             while ($query->have_posts()) {
                 $query->the_post();
                 $id = get_the_ID();
@@ -172,14 +162,15 @@ class Deal
             }
             wp_reset_postdata();
 
-            $column[$stage_id] = [
+            $column[] = [
+            // $column[$stage_id] = [
                 'name' => $stage_name,
                 'id' => $stage_id,
                 'items' => $items
             ];
 
             $result['result'] = $column;
-        // $result['total'] = $total_data;
+            // $result['total'] = $test;
 
         endforeach;
 

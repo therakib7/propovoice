@@ -75,7 +75,7 @@ class Taxonomy
 
         if (empty($taxonomies)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
-        }
+        } 
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -84,26 +84,26 @@ class Taxonomy
 
             $taxonomies = explode(',', $taxonomies);
             foreach ($taxonomies as $taxonomy) {
-                $get_taxonomy = get_terms(array(
-                    'taxonomy' => 'ndpi_' . $taxonomy,
-                    'orderby' => 'ID',
+                $get_taxonomy = get_terms( array(
+                    'taxonomy' => 'ndpi_' . $taxonomy, 
+                    'orderby' => 'term_order',
                     'order'   => 'ASC',
                     'hide_empty' => false
-                ));
+                ) );
 
                 $format_taxonomy = [];
                 foreach ($get_taxonomy as $single) {
-                    $color = get_term_meta( $single->term_id, 'color', true );
-                    $bg_color = get_term_meta( $single->term_id, 'bg_color', true );
+                    $color = get_term_meta($single->term_id, 'color', true);
+                    $bg_color = get_term_meta($single->term_id, 'bg_color', true);
                     $format_taxonomy[] = [
                         'id' => (string) $single->term_id,
                         'label' => $single->name,
                         'color' => $color ? $color : '',
-                        'bg_color' => $bg_color ? $bg_color : '' 
+                        'bg_color' => $bg_color ? $bg_color : ''
                     ];
                 }
                 $data[$taxonomy] = $format_taxonomy;
-            } 
+            }
             wp_send_json_success($data);
         }
     }
@@ -115,9 +115,9 @@ class Taxonomy
         $query_data = [];
         $query_data['id'] = $id;
 
-        $query_data['label'] = get_term( $id )->name;
-        $query_data['color'] = get_term_meta( $id, 'color', true );
-        $query_data['bg_color'] = get_term_meta( $id, 'bg_color', true );   
+        $query_data['label'] = get_term($id)->name;
+        $query_data['color'] = get_term_meta($id, 'color', true);
+        $query_data['bg_color'] = get_term_meta($id, 'bg_color', true);
 
         wp_send_json_success($query_data);
     }
@@ -127,7 +127,8 @@ class Taxonomy
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
+        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null; 
+        $reorder  = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
         $label = isset($params['label']) ? sanitize_text_field($params['label']) : null;
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
         $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
@@ -138,20 +139,24 @@ class Taxonomy
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
-        } else { 
-
-            $taxonomy = wp_insert_term(
-                $label,   // the term 
-                'ndpi_' . $taxonomy, // the taxonomy 
-            ); 
-
-            if ( ! is_wp_error( $taxonomy ) ) {  
-                $term_id = $taxonomy['term_id'];
-                update_term_meta( $term_id, 'color', $color );
-                update_term_meta( $term_id, 'bg_color', $bg_color );
-                wp_send_json_success(  $term_id );
+        } else {
+            if ( $reorder ) {
+                $this->reorder_taxonomies($reorder);
+                wp_send_json_success();
             } else {
-                wp_send_json_error();
+                $taxonomy = wp_insert_term(
+                    $label,   // the term 
+                    'ndpi_' . $taxonomy, // the taxonomy 
+                );
+    
+                if (!is_wp_error($taxonomy)) {
+                    $term_id = $taxonomy['term_id'];
+                    update_term_meta($term_id, 'color', $color);
+                    update_term_meta($term_id, 'bg_color', $bg_color);
+                    wp_send_json_success($term_id);
+                } else {
+                    wp_send_json_error();
+                }
             } 
         }
     }
@@ -175,30 +180,39 @@ class Taxonomy
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $url_params = $req->get_url_params();
-            $term_id = $url_params['id'];
+            $term_id = $url_params['id']; 
 
-            if ( $delete ) {
-                wp_delete_term($term_id, 'ndpi_' . $taxonomy );
+            if ($delete) {
+                wp_delete_term($term_id, 'ndpi_' . $taxonomy);
                 wp_send_json_success();
-                
             } else {
                 $taxonomy = wp_update_term(
                     $term_id,   // the term 
                     'ndpi_' . $taxonomy, // the taxonomy 
                     array(
-                        'name' => $label, 
+                        'name' => $label,
                     )
-                ); 
-    
-                if ( ! is_wp_error( $taxonomy ) ) {  
-                    update_term_meta( $term_id, 'color', $color );
-                    update_term_meta( $term_id, 'bg_color', $bg_color );
-                    wp_send_json_success( $term_id );
+                );
+
+                if (!is_wp_error($taxonomy)) {
+                    update_term_meta($term_id, 'color', $color);
+                    update_term_meta($term_id, 'bg_color', $bg_color);
+                    wp_send_json_success($term_id);
                 } else {
                     wp_send_json_error();
-                } 
-            } 
+                }
+            }
         }
+    } 
+
+    public function reorder_taxonomies($ids = array())
+    {
+        global $wpdb;  
+        $i = 0; 
+        foreach ($ids as $id):  
+            $i++; 
+            $result = $wpdb->update($wpdb->prefix . 'terms', array('term_order' => $i), array('term_id' => $id) ); 
+        endforeach;
     }
 
     public function delete($req)
@@ -232,4 +246,4 @@ class Taxonomy
     {
         return current_user_can('delete_posts');
     }
-} 
+}

@@ -27,4 +27,4 @@ if (!class_exists('Ncpi')) {
     }
 
     require_once plugin_dir_path(__FILE__) . 'app/Ncpi.php';
-}
+} 

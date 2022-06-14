@@ -49,11 +49,11 @@ const Taxonomy = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault(); 
 
-		let newFrom = {...form}
-		newFrom.taxonomy = props.taxonomy;
+		let newForm = {...form}
+		newForm.taxonomy = props.taxonomy;
 
 		if ( modalType == 'new' ) {
-			props.create('taxonomies', newFrom).then(resp => { 
+			props.create('taxonomies', newForm).then(resp => { 
 				if (resp.data.success) { 
 					toast.success('Successfully added'); //TODO: translation
 					getData();
@@ -64,7 +64,7 @@ const Taxonomy = (props) => {
 				}
 			});; 
 		} else {
-			props.update('taxonomies', newFrom.id, newFrom).then(resp => { 
+			props.update('taxonomies', newForm.id, newForm).then(resp => { 
 				if (resp.data.success) { 
 					toast.success('Successfully updated'); //TODO: translation
 					getData();
@@ -81,12 +81,12 @@ const Taxonomy = (props) => {
 	const handleDelete = ( id ) => {
 		if (confirm('Are you sure, to delete it?')) { //TODO: translation
 
-			let newFrom = {}
-			newFrom.taxonomy = props.taxonomy;
-			newFrom.delete = true;
-			newFrom.id = parseInt( id );
+			let newForm = {}
+			newForm.taxonomy = props.taxonomy;
+			newForm.delete = true;
+			newForm.id = parseInt( id );
 
-			props.update('taxonomies', newFrom.id, newFrom).then(resp => { 
+			props.update('taxonomies', newForm.id, newForm).then(resp => { 
 				if (resp.data.success) { 
 					toast.success('Successfully deleted'); //TODO: translation
 					getData();
@@ -123,7 +123,12 @@ const Taxonomy = (props) => {
 			return parseInt(obj.id);
 		});
 
-		console.log(finalArray)
+		// console.log(finalArray)
+		let newForm = { 
+			reorder: finalArray,
+			taxonomy: props.taxonomy
+		}
+		props.create('taxonomies', newForm);
 		// call parent handler with new state representation
 		// this.props.reorderHandler(Items)
 
