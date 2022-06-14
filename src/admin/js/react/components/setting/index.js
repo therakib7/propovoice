@@ -5,6 +5,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 const General = lazy(() => import('./tab/general'));
 
 const Lead = lazy(() => import('./tab/lead'));
+const Deal = lazy(() => import('./tab/deal'));
 
 //subtab: estimate
 const EstimateReminder = lazy(() => import('./tab/estimate/Reminder'));
@@ -55,6 +56,9 @@ export default function SettingWrap() {
                 },
                 lead: {
                     label: 'Lead'
+                },
+                deal: {
+                    label: 'Deal'
                 },
                 estimate: {
                     label: 'Estimate',
@@ -180,12 +184,13 @@ export default function SettingWrap() {
                                 <p>note: in this version, you can add only bank info in your invoice</p>
                             </div> */}
 
-                            <h4 className='pi-tab-title' style={{textTransform: 'capitalize'}}>{currentTab} Settings</h4>
+                            <h4 className='pi-title-medium pi-mb-30' style={{textTransform: 'capitalize'}}>{currentTab} Settings</h4>
 
                             <Suspense fallback={<div>Loading...</div>}> 
 
                                 {currentTab == 'general' && <General />}
                                 {currentTab == 'lead' && <Lead />}
+                                {currentTab == 'deal' && <Deal />}
 
                                 {!wage.length &&
                                     <>

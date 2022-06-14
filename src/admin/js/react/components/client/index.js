@@ -20,9 +20,9 @@ const Client = (props) => {
                     <h2 className="pi-page-title">{title}</h2>
                 </div>
                 <div className="col-lg-6 pi-text-right">
-                    <button 
-                    className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
-                    onClick={() => props.openForm('new')}
+                    <button
+                        className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
+                        onClick={() => props.openForm('new')}
                     >
                         <svg
                             width={14}
@@ -47,7 +47,7 @@ const Client = (props) => {
                             ></path>
                         </svg>
                         Add {title}
-                    </button> 
+                    </button>
                     <span className="pi-action-btn">
                         <svg
                             width={24}
@@ -79,8 +79,8 @@ const Client = (props) => {
                 </div>
             </div>
 
-            <div className="pi-buttons-group">
-                <button className="pi-bg-hover-shadow">
+            <div className="pi-buttons-group pi-mb-20">
+                <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
                     <svg
                         width={20}
                         height={20}
@@ -132,7 +132,7 @@ const Client = (props) => {
                         />
                     </svg>
                 </button>
-                <button className="pi-bg-hover-shadow">
+                <button className="pi-btn pi-btn-icon pi-bg-hover-shadow">
                     <svg
                         width={20}
                         height={20}
@@ -169,22 +169,22 @@ const Client = (props) => {
                 title={title}
                 showing={lists.length}
                 total={props.state.total}
-                handleSubmit={props.getLists} 
+                handleSubmit={props.getLists}
             />
 
             {props.state.formModal && <Form
-                handleSubmit={props.handleSubmit} 
+                handleSubmit={props.handleSubmit}
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
             />}
-            
+
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
             <div className="pi-pagination-content">
-                { props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />} 
+                {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
             </div>
-        </div> 
+        </div>
     );
 }
 

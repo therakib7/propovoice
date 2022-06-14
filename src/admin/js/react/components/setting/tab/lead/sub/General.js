@@ -61,16 +61,11 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Level</label>
-                        <Taxonomy taxonomy='lead_level' color={true} />
+                        <Taxonomy taxonomy='lead_level' title='level' />
                     </div>
-                </div>
-
-                <div className="row">
                     <div className="col">
-                        <label>Deal Stage</label>
-                        <Taxonomy taxonomy='deal_stage' color={true} />
                     </div>
-                </div>
+                </div> 
 
                 <div className="row" style={{ marginTop: '10px' }}>
                     <div className="col">
