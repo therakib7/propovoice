@@ -10,11 +10,10 @@ class Checklist extends Component {
 
         this.state = {
             edit: false,
-            checklists: [
+            checklist: [
                 {
-                    label: 'Terms',
-                    list_type: 'letter',
-                    items: [{ text: '' }]
+                    label: 'Checklist', 
+                    items: [{ text: '', done: false }]
                 }
             ],
         };
@@ -22,115 +21,143 @@ class Checklist extends Component {
 
     componentDidUpdate() {
         if (!this.state.edit && this.props.data) {
-            this.setState({ edit: true, checklists: this.props.data });
+            this.setState({ edit: true, checklist: this.props.data });
         }
-    }
-
+    } 
+    
     handleChecklistLabel = (index, value = null) => {
-        let items = this.state.checklists[index];
+        let items = this.state.checklist[index];
         items['label'] = value;
 
-        let checklists = this.state.checklists;
-        this.setState({ checklists: checklists });
+        let checklist = this.state.checklist;
+        this.setState({ checklist: checklist });
         this.handlePros();
     }
 
     handleChange = (checklist_index, list_index) => (e) => {
         const { name, value } = e.target;
-        let items = this.state.checklists[checklist_index].items.map((item, i) => {
+        let items = this.state.checklist[checklist_index].items.map((item, i) => {
             if (list_index !== i) return item;
             return { ...item, [name]: value }
         });
 
-        this.state.checklists[checklist_index].items = items;
-        let checklists = this.state.checklists;
-        this.setState({ checklists: checklists });
+        this.state.checklist[checklist_index].items = items;
+        let checklist = this.state.checklist;
+        this.setState({ checklist: checklist });
         this.handlePros();
     }
 
     addChecklist = (e) => {
         e.preventDefault();
-        let checklists = this.state.checklists;
-        checklists.push({
-            label: 'Terms',
-            list_type: 'letter',
-            items: [{ text: '' }]
+        let checklist = this.state.checklist;
+        checklist.push({
+            label: 'Checklist', 
+            items: [{ text: '', done: false }]
         });
-        this.setState({ checklists: checklists });
+        this.setState({ checklist: checklist });
     };
 
     addList = (e, index) => {
         e.preventDefault();
-        let items = this.state.checklists[index].items;
+        let items = this.state.checklist[index].items;
         items.push({ text: '' });
-        let checklists = this.state.checklists;
-        this.setState({ checklists: checklists });
+        let checklist = this.state.checklist;
+        this.setState({ checklist: checklist });
     };
 
     handlePros = () => {
-        this.props.changeHandler(this.state.checklists);
-    };
+        this.props.changeHandler(this.state.checklist);
+    }; 
 
-    deleteHandler = (checklist_index, list_index = null) => {
-        let array = [...this.state.checklists];
+    deleteHandler = (checklist_index, list_index = null) => { 
+        let array = [...this.state.checklist]; 
 
-        if (list_index === null) {
-            array.splice(checklist_index, 1);
+        if ( list_index === null ) {
+            array.splice(checklist_index, 1); 
         } else {
-            let items = array[checklist_index].items;
-            items.splice(list_index, 1);
-        }
+           let items = array[checklist_index].items;
+           items.splice(list_index, 1); 
+        } 
 
-        this.setState({ checklists: array }, () => {
-            this.handlePros();
-        });
-    }
+        this.setState({ checklist: array }, () => {
+            this.handlePros(); 
+        }); 
+    } 
 
     render = () => {
-        const { checklists } = this.state;
+        const { checklist } = this.state;
 
         return (
             <>
-                {checklists.map( (single, index) => {
-
+                {checklist.map((checklist_single, checklist_index) => { 
                     return (
-                        <div className="col">
-                            <div className="pi-checklist-head">
-                                <span>Checklist</span>
-                                <span className="pi-float-right">45 Done</span>
+                        <div className="pi-checklist" key={checklist_index}>
+                            <div className="row">
+                                <div className="col-md-8">
+                                    <Editable
+                                        key={checklist_index}
+                                        value={checklist_single.label}
+                                        index={checklist_index}
+                                        changeHandler={this.handleChecklistLabel}
+                                    />
+                                </div>
+                                <div className="col-md-4">
+                                    <div className="">  
+                                        <span
+                                            className='pi-delate'
+                                            title='Delete this checklist'
+                                            onClick={() => this.deleteHandler(checklist_index)}
+                                        >
+                                            <svg
+                                                width={18}
+                                                height={18}
+                                                viewBox="0 0 9 9"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M8.073 2.387a.39.39 0 01-.345.388l-.045.003h-.33l-.48 4.886a1.073 1.073 0 01-1.069.967H2.927a1.073 1.073 0 01-1.068-.967l-.48-4.886h-.33a.39.39 0 010-.78h1.95a1.366 1.366 0 112.732 0h1.952a.39.39 0 01.39.39zm-2.83 1.269a.293.293 0 00-.29.253l-.002.04V6.68l.003.04a.293.293 0 00.58 0l.002-.04V3.948l-.002-.04a.293.293 0 00-.29-.252zm-1.756 0a.293.293 0 00-.29.253l-.002.04V6.68l.003.04a.293.293 0 00.58 0l.002-.04V3.948l-.003-.04a.293.293 0 00-.29-.252zm.879-2.244a.585.585 0 00-.586.585h1.17a.585.585 0 00-.584-.585z"
+                                                    fill="#718096"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="pi-checklist-content">
+
+                            <div className="pi-checklist-item">
                                 <ul>
-                                    <li><input type="checkbox" /> <label>Checkbox</label></li>
+                                    {checklist_single.items.map((item, list_index) => {
+                                        return (
+                                            <li key={list_index}>
+                                                <input
+                                                    type="text"
+                                                    name="text"
+                                                    value={item.text}
+                                                    onChange={this.handleChange(checklist_index, list_index)} />
+                                                <span className='pi-list-delete' onClick={() => this.deleteHandler(checklist_index, list_index)}>×</span>
+                                            </li>
+                                        );
+                                    })}
                                 </ul>
-                                
-                                <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow pi-bg-shadow">
-                                    <svg
-                                        width={12}
-                                        height={12}
-                                        viewBox="0 0 12 12"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M1.875 6H10.125"
-                                            stroke="#2D3748"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M6 1.875V10.125"
-                                            stroke="#2D3748"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                    Add an Item
+
+                                <button
+                                    className="pi-btn pi-btn-small pi-bg-stroke"
+                                    onClick={(e) => this.addList(e, checklist_index)}
+                                > 
+                                    Add New Item
                                 </button>
                             </div>
                         </div>
                     );
                 })}
+
+                <button
+                    className="pi-btn pi-btn-medium pi-bg-stroke"
+                    onClick={(e) => this.addChecklist(e)}
+                > 
+                    Add New Checklist
+                </button>
             </>
         )
     }

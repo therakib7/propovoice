@@ -42,6 +42,7 @@ const TableHeader = props => {
                 </th>
                 <th>
                     <svg
+                        style={{ top: 2 }}
                         width={15}
                         height={10}
                         viewBox="0 0 15 10"
@@ -110,6 +111,7 @@ const TableBody = props => {
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
+        const level = row.level_id;
         return (
             <tr key={index}>
                 <td>
@@ -127,27 +129,35 @@ const TableBody = props => {
                 </td>
                 <td>{row.contact_id.email}</td>
                 <td>
-                    <span className="pi-badge pi-bg-orange">
+                    {(level.color && level.bg_color) && <span className="pi-badge"
+                        style={{
+                            backgroundColor: level.bg_color,
+                            color: level.color
+                        }}
+                    >
                         <svg
-                            width="6"
-                            height="6"
+                            width={6}
+                            height={6}
                             viewBox="0 0 6 6"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                         >
-                            <circle cx="3" cy="3" r="3" fill="#F68A0B" />
+                            <circle cx={3} cy={3} r={3} fill={level.color} />
                         </svg>
-                        {row.level_id && row.level_id.label}
-                    </span>
+                        {level.label}
+                    </span>}
+
+                    {(!level.color || !level.bg_color) && <span className="pi-badge">
+                        {level.label}
+                    </span>}
+
                 </td>
                 <td>
-                    {
-                        row.tags && row.tags.map((tag, tagIndex) => {
-                            return (
-                                <span key={tagIndex} className="pi-badge pi-mr-5">{tag.label}</span>
-                            )
-                        })
-                    }
+                    {row.tags && row.tags.map((tag, tagIndex) => {
+                        return (
+                            <span key={tagIndex} className="pi-badge pi-mr-5">{tag.label}</span>
+                        )
+                    })}
                 </td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
@@ -181,13 +191,13 @@ const TableBody = props => {
                             </svg>
                         </button>
                         {row.id == dropdown && <div className="pi-dropdown-content pi-show"
-                            // ref={popover}
-                            >
-                                {!wage.length && <a onClick={() => handleOverview(row.id)}>Overview</a>}
-                                <a onClick={() => props.editEntry('edit', row)}>Edit</a>
-                                <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
-                            </div>}
-                    </div> 
+                        // ref={popover}
+                        >
+                            {!wage.length && <a onClick={() => handleOverview(row.id)}>Overview</a>}
+                            <a onClick={() => props.editEntry('edit', row)}>Edit</a>
+                            <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
+                        </div>}
+                    </div>
                 </td>
             </tr>
         );

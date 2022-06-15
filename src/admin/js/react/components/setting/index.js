@@ -6,6 +6,8 @@ const General = lazy(() => import('./tab/general'));
 
 const Lead = lazy(() => import('./tab/lead'));
 const Deal = lazy(() => import('./tab/deal'));
+const Task = lazy(() => import('./tab/task'));
+const Tag = lazy(() => import('./tab/tag'));
 
 //subtab: estimate
 const EstimateReminder = lazy(() => import('./tab/estimate/Reminder'));
@@ -19,8 +21,7 @@ const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
 
-const BusinessSingle = lazy(() => import('./tab/business/index'));
-const Business = lazy(() => import('components/business'));
+const BusinessSingle = lazy(() => import('./tab/business/index')); 
 
 const Payment = lazy(() => import('components/payment'));
 
@@ -49,10 +50,13 @@ export default function SettingWrap() {
     const [tabs, setTabs] = useState(tab_data);
 
     useEffect(() => {
-        if (!wage.length) {
+        if ( !wage.length ) {
             const new_tab_data = {
                 general: {
                     label: 'General'
+                },
+                task: {
+                    label: 'Task & Activity'
                 },
                 lead: {
                     label: 'Lead'
@@ -98,6 +102,9 @@ export default function SettingWrap() {
                             label: 'Invoice'
                         },
                     },
+                },
+                tag: {
+                    label: 'Tag'
                 },
             };
             setTabs(new_tab_data);
@@ -189,6 +196,7 @@ export default function SettingWrap() {
                             <Suspense fallback={<div>Loading...</div>}> 
 
                                 {currentTab == 'general' && <General />}
+                                {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
                                 {currentTab == 'deal' && <Deal />}
 
@@ -202,16 +210,17 @@ export default function SettingWrap() {
                                     </>
                                 }
 
+                                {currentTab == 'business' && <BusinessSingle />} 
+                                {currentTab == 'payment' && <Payment />}
+
                                 {!wage.length &&
                                     <>
                                         {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
                                         {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
                                     </>
-                                }
+                                } 
 
-                                {currentTab == 'business' && wage.length > 0 && <BusinessSingle />}
-                                {currentTab == 'business' && !wage.length && <Business />}
-                                {currentTab == 'payment' && <Payment />}
+                                {currentTab == 'tag' && <Tag />}
 
                             </Suspense>
                         </div>

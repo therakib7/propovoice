@@ -16,6 +16,8 @@ const TableBody = props => {
     return props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
+
+        const priority = row.priority_id;
         return (
             <div className="pi-accordion-table-list" key={index}>
                 <div className="pi-checkbox">
@@ -27,7 +29,7 @@ const TableBody = props => {
                     />
                 </div>
                 <ul>
-                    <li>
+                    <li className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
                         <div className="pi-envelope">
                             <svg
                                 width={16}
@@ -99,21 +101,34 @@ const TableBody = props => {
                         nurencydigital@gmail.com
                     </li>
                     <li>
-                        <span className="pi-badge pi-bg-orange"> Over Due </span>
+                        <span className="pi-badge pi-bg-orange">Over Due</span>
                     </li>
                     <li>
-                        <span className="pi-badge pi-bg-orange">
-                            <svg
-                                width={6}
-                                height={6}
-                                viewBox="0 0 6 6"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <circle cx={3} cy={3} r={3} fill="#F68A0B" />
-                            </svg>
-                            Badge
-                        </span>
+                        {priority &&
+                            <>
+                                {(priority.color && priority.bg_color) && <span className="pi-badge"
+                                    style={{
+                                        backgroundColor: priority.bg_color,
+                                        color: priority.color
+                                    }}
+                                >
+                                    <svg
+                                        width={6}
+                                        height={6}
+                                        viewBox="0 0 6 6"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <circle cx={3} cy={3} r={3} fill={priority.color} />
+                                    </svg>
+                                    {priority.label}
+                                </span>}
+
+                                {(!priority.color || !priority.bg_color) && <span className="pi-badge">
+                                    {priority.label}
+                                </span>}
+                            </>
+                        }
                     </li>
                     <li>
                         <div className="pi-action-content">
@@ -149,7 +164,7 @@ const TableBody = props => {
                             // ref={popover}
                             >
                                 <a onClick={() => props.editEntry('edit', row)}>Edit</a>
-                                <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
+                                <a onClick={() => props.deleteEntry('single', row.id, 'task')}>Delete</a>
                             </div>}
                         </div>
                     </li>

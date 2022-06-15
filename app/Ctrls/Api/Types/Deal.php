@@ -81,11 +81,8 @@ class Deal
         }
 
         $get_stage = get_terms(array(
-            'taxonomy' => 'ndpi_deal_stage',
-            // 'orderby' => 'ID',
-            // 'order'   => 'DESC',
-            'orderby' => 'term_order',
-            'order'   => 'ASC',
+            'taxonomy' => 'ndpi_deal_stage', 
+            'orderby' => 'term_order', 
             'hide_empty' => false
         ));
         $result = $column = []; 

@@ -171,27 +171,59 @@
   font-weight: 500;
   font-size: 12px;
 }
-.ncpi .pi-tag-content ul select {
+.ncpi .pi-tag-content ul .pi-action-content {
+  display: inline;
+}
+.ncpi .pi-tag-content ul .pi-action-content .pi-action-btn {
   border: 1px solid #dddddda8;
   font-weight: 500;
   color: #4A5568;
-  outline: none;
-  font-size: 10px;
-  padding: 3px 5px;
-  border-radius: 4px;
-  margin-left: 3px;
+  font-size: 13px;
+  padding: 3px 20px;
+  border-radius: 6px;
+  width: 150px;
+  text-align: left;
+  top: 0;
+  height: auto;
+}
+.ncpi .pi-tag-content ul .pi-action-content .pi-action-btn svg {
+  float: right;
+  margin-top: 5px;
 }
 .ncpi .pi-tag-content ul label {
   font-size: 12px;
   margin-right: 3px;
   color: #718096;
 }
+.ncpi .pi-tag-content ul .pi-dropdown-content {
+  border: 1px solid #E2E8F0;
+  min-width: 150px;
+  box-shadow: none;
+  left: 4px;
+  top: 25px;
+}
+.ncpi .pi-tag-content ul .pi-dropdown-content button {
+  color: #A0AEC0;
+  border-bottom: 1px solid #E2E8F0;
+  width: 100%;
+  padding: 12px 16px 12px 0;
+}
+.ncpi .pi-tag-content ul .pi-dropdown-content button:hover {
+  color: #4C6FFF;
+  background: #f7fafc;
+}
+.ncpi .pi-tag-content ul .pi-dropdown-content a:hover {
+  color: #4C6FFF;
+}
+.ncpi .pi-tag-content ul .pi-dropdown-content a {
+  color: #4A5568;
+  font-size: 14px;
+}
 .ncpi .pi-tab-buttons-group {
   border: 1px solid #dddddda8;
   padding: 5px 10px 10px;
   border-radius: 8px;
   background-color: #fff;
-  text-align: right;
 }
 .ncpi .pi-tab-buttons-group .pi-activity-field {
   text-align: left;
@@ -209,15 +241,16 @@
   outline: none;
   box-shadow: none;
 }
-.ncpi .pi-tab-buttons-group button:last-child {
-  border: none;
-  position: relative;
-  top: -4px;
+.ncpi .pi-tab-buttons-group .pi-tab-buttons {
+  text-align: right;
 }
-.ncpi .pi-tab-buttons-group button:last-child {
+.ncpi .pi-tab-buttons-group .pi-tab-buttons .pi-action-content {
+  display: inline-block;
+}
+.ncpi .pi-tab-buttons-group .pi-tab-buttons button:last-child {
   width: auto;
 }
-.ncpi .pi-tab-buttons-group button {
+.ncpi .pi-tab-buttons-group .pi-tab-buttons button {
   background: transparent;
   border: 1px solid;
   border-color: #CBD5E0;
@@ -227,6 +260,14 @@
   cursor: pointer;
   border-style: dashed;
   width: 32px;
+}
+.ncpi .pi-tab-buttons-group .pi-tab-buttons .pi-dropdown-content {
+  text-align: left;
+  top: 45px;
+  left: -60px;
+}
+.ncpi .pi-tab-buttons-group .pi-tab-buttons .pi-dropdown-content svg {
+  top: 4px !important;
 }
 .ncpi .pi-small-button-group .pi-btn-small {
   color: #718096 !important;

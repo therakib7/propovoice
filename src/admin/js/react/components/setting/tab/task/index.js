@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import WithApi from 'hoc/Api';
 
-import SubGeneral from './sub/General'; 
-import Social from './sub/Social';
+import SubGeneral from './sub/General';
+import Other from './sub/Other';
 
 class General extends Component {
 	constructor(props) {
@@ -13,10 +13,10 @@ class General extends Component {
 				{
 					id: 'general',
 					text: 'General'
-				}, 
+				},
 				{
-					id: 'social',
-					text: 'Social'
+					id: 'other',
+					text: 'Other'
 				} 
 			],
 			currentTab: '',
@@ -48,8 +48,8 @@ class General extends Component {
 					))}
 				</ul>
 		
-				{currentTab == 'general' && <SubGeneral {...this.props} />}  
-				{currentTab == 'social' && <Social {...this.props} />}
+				{currentTab == 'general' && <SubGeneral {...this.props} />} 
+				{currentTab == 'other' && <Other {...this.props} />}
 			</>
 		);
 	}

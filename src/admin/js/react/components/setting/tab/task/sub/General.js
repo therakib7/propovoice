@@ -56,24 +56,30 @@ export default class General extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
+                <div className="row">
+                    <div className="col">
+                        <label>Task Status</label>
+                        <Taxonomy taxonomy='task_status' title='status' color={true} />
+                    </div>
+                    <div className="col"></div>
+                </div> 
 
                 <div className="row">
                     <div className="col">
-                        <label>Level</label>
-                        <Taxonomy taxonomy='lead_level' title='level' color={true} />
+                        <label>Task Type</label>
+                        <Taxonomy taxonomy='task_type' title='type' />
                     </div>
-                    <div className="col">
-                    </div>
+                    <div className="col"></div>
                 </div> 
 
-                <div className="row" style={{ marginTop: '10px' }}>
+                <div className="row">
                     <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Save
-                        </button>
+                        <label>Task Priority</label>
+                        <Taxonomy taxonomy='task_priority' title='priority' color={true} />
                     </div>
-                </div>
+                    <div className="col"></div>
+                </div> 
 
             </form>
         );

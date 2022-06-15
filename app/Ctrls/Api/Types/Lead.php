@@ -119,9 +119,12 @@ class Lead
 
             $level = get_the_terms($id, 'ndpi_lead_level');
             if ($level) {
+                $term_id = $level[0]->term_id;
                 $query_data['level_id'] = [
-                    'id' => $level[0]->term_id,
-                    'label' => $level[0]->name
+                    'id' => $term_id,
+                    'label' => $level[0]->name,
+                    'color' => get_term_meta($term_id, 'color', true),
+                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
                 ];
             }
 

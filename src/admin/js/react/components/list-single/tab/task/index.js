@@ -34,7 +34,7 @@ const Task = (props) => {
                     return (
                         <button key={statusIndex}
                             className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ( ( activeTab == status.id ) || ( !activeTab && statusIndex == 0 ) ? 'pi-active' : '')}
-                            onClick={() => { setActiveTab(status.id); props.getLists({ status: status.id }); }}
+                            onClick={() => { setActiveTab(status.id); props.getLists({ status_id: status.id }); }}
                         >
                             {status.label}
                         </button>

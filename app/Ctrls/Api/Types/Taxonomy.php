@@ -86,8 +86,7 @@ class Taxonomy
             foreach ($taxonomies as $taxonomy) {
                 $get_taxonomy = get_terms( array(
                     'taxonomy' => 'ndpi_' . $taxonomy, 
-                    'orderby' => 'term_order',
-                    'order'   => 'ASC',
+                    'orderby' => 'term_order', 
                     'hide_empty' => false
                 ) );
 

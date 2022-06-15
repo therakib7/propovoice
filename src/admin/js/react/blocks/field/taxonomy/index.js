@@ -3,19 +3,20 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api';
 import styles from './Items.module.scss'
+import ColorPicker from 'block/color-picker';
 
 const Taxonomy = (props) => {
 	const [list, setList] = useState([]);
-	const [modal, setModal] = useState(false); 
+	const [modal, setModal] = useState(false);
 	const [modalType, setModalType] = useState('new');
 	const newForm = {
 		label: '',
 		color: '',
-		bg_color: '' 
+		bg_color: ''
 	};
 	const [form, setForm] = useState(newForm);
 
-	useEffect(() => { 
+	useEffect(() => {
 		getData();
 	}, []);
 
@@ -46,15 +47,19 @@ const Taxonomy = (props) => {
 		setForm({ ...form, [name]: value })
 	}
 
-	const handleSubmit = (e) => {
-		e.preventDefault(); 
+	const handleColorChange = (val, key) => {
+		setForm({ ...form, [key]: val })
+	}
 
-		let newForm = {...form}
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		let newForm = { ...form }
 		newForm.taxonomy = props.taxonomy;
 
-		if ( modalType == 'new' ) {
-			props.create('taxonomies', newForm).then(resp => { 
-				if (resp.data.success) { 
+		if (modalType == 'new') {
+			props.create('taxonomies', newForm).then(resp => {
+				if (resp.data.success) {
 					toast.success('Successfully added'); //TODO: translation
 					getData();
 				} else {
@@ -62,10 +67,10 @@ const Taxonomy = (props) => {
 						toast.error(value);
 					});
 				}
-			});; 
+			});;
 		} else {
-			props.update('taxonomies', newForm.id, newForm).then(resp => { 
-				if (resp.data.success) { 
+			props.update('taxonomies', newForm.id, newForm).then(resp => {
+				if (resp.data.success) {
 					toast.success('Successfully updated'); //TODO: translation
 					getData();
 				} else {
@@ -73,21 +78,21 @@ const Taxonomy = (props) => {
 						toast.error(value);
 					});
 				}
-			});;  
-		}  
+			});;
+		}
 		setModal(false);
-	} 
+	}
 
-	const handleDelete = ( id ) => {
+	const handleDelete = (id) => {
 		if (confirm('Are you sure, to delete it?')) { //TODO: translation
 
 			let newForm = {}
 			newForm.taxonomy = props.taxonomy;
 			newForm.delete = true;
-			newForm.id = parseInt( id );
+			newForm.id = parseInt(id);
 
-			props.update('taxonomies', newForm.id, newForm).then(resp => { 
-				if (resp.data.success) { 
+			props.update('taxonomies', newForm.id, newForm).then(resp => {
+				if (resp.data.success) {
 					toast.success('Successfully deleted'); //TODO: translation
 					getData();
 				} else {
@@ -95,7 +100,7 @@ const Taxonomy = (props) => {
 						toast.error(value);
 					});
 				}
-			});  
+			});
 		}
 	}
 
@@ -124,7 +129,7 @@ const Taxonomy = (props) => {
 		});
 
 		// console.log(finalArray)
-		let newForm = { 
+		let newForm = {
 			reorder: finalArray,
 			taxonomy: props.taxonomy
 		}
@@ -142,6 +147,7 @@ const Taxonomy = (props) => {
 						{(provided, snapshot) => (
 							<ul
 								ref={provided.innerRef}
+								style={{ margin: 0 }}
 								className={snapshot.isDraggingOver ? styles.listDraggingOver : ''}
 							>
 								{list.map((item, i) => (
@@ -190,28 +196,33 @@ const Taxonomy = (props) => {
 																/>
 															</svg>
 														</span>
-														{props.color && <span className="pi-badge"
-															style={{
-																backgroundColor: "#ddffde",
-																color: "#108315"
-															}}
-														>
-															<svg
-																width={6}
-																height={6}
-																viewBox="0 0 6 6"
-																fill="none"
-																xmlns="http://www.w3.org/2000/svg"
+														{props.color && <>
+															{(item.color && item.bg_color) && <span className="pi-badge"
+																style={{
+																	backgroundColor: item.bg_color,
+																	color: item.color
+																}}
 															>
-																<circle cx={3} cy={3} r={3} fill="#108315" />
-															</svg>
-															{item.label}
-														</span>}
+																<svg
+																	width={6}
+																	height={6}
+																	viewBox="0 0 6 6"
+																	fill="none"
+																	xmlns="http://www.w3.org/2000/svg"
+																>
+																	<circle cx={3} cy={3} r={3} fill={item.color} />
+																</svg>
+																{item.label}
+															</span>}
+
+															{(!item.color || !item.bg_color) && <span className="pi-badge">
+																{item.label}
+															</span>}
+														</>}
 
 														{!props.color && <span className="pi-badge">
 															{item.label}
 														</span>}
-
 
 													</div>
 													<div className="col pi-text-right pi-mt-6">
@@ -310,9 +321,9 @@ const Taxonomy = (props) => {
 			</div>
 
 			{modal && <div className="pi-overlay pi-show">
-				<div className="pi-modal-content">
+				<div className="pi-modal-content pi-modal-style-two pi-modal-small">
 
-					<div className="pi-modal-header pi-gradient">
+					<div className="pi-modal-header">
 						<span className="pi-close" onClick={() => setModal(false)}>
 							<svg
 								width={25}
@@ -336,11 +347,10 @@ const Taxonomy = (props) => {
 							</svg>
 						</span>
 						<h2 className="pi-modal-title">{modalType == 'new' ? 'Add new' : 'Edit'} {props.title}</h2>
-						<p>{modalType == 'new' ? 'Add new' : 'Edit'} {props.title} from here</p>
 					</div>
 
 					<div className="pi-content">
-						<div className="pi-form-style-one"> 
+						<div className="pi-form-style-one">
 							<div className="row">
 								<div className="col-md">
 									<label htmlFor="field-label">
@@ -357,45 +367,33 @@ const Taxonomy = (props) => {
 								</div>
 							</div>
 
-							<div className="row">
-								<div className="col-md">
-									<label htmlFor="field-color">
-										Color
-									</label>
-
-									<input
-										id="field-color"
-										type="text"
-										name="color"
-										value={form.color}
-										onChange={(e) => handleChange(e)}
-									/>
+							{props.color && <>
+								<div className="row">
+									<div className="col-md">
+										<label htmlFor="field-color">
+											Color
+										</label>
+										<ColorPicker color={form.color} onChange={(val) => handleColorChange(val, 'color')} />
+									</div>
 								</div>
-							</div>
 
-							<div className="row">
-								<div className="col-md">
-									<label htmlFor="field-bg_color">
-										Background Color
-									</label>
-
-									<input
-										id="field-bg_color"
-										type="text"
-										name="bg_color"
-										value={form.bg_color}
-										onChange={(e) => handleChange(e)}
-									/>
+								<div className="row">
+									<div className="col-md">
+										<label htmlFor="field-bg_color">
+											Background Color
+										</label>
+										<ColorPicker color={form.bg_color} onChange={(val) => handleColorChange(val, 'bg_color')} />
+									</div>
 								</div>
-							</div>
-
+							</>}
 						</div>
 					</div>
 
-					<div className="pi-modal-footer">
+					<div className="pi-modal-footer pi-mt-10">
 						<div className="row">
+							<div className="col"></div>
 							<div className="col">
-								<button type='submit' onClick={(e) => handleSubmit(e)} className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
+								<button type='submit' onClick={(e) => handleSubmit(e)} className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-medium pi-float-right pi-color-white">
 									Save
 								</button>
 							</div>

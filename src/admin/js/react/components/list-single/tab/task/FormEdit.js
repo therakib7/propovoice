@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Select from 'react-select';
-import WithApi from 'hoc/Api'; 
+import WithApi from 'hoc/Api';
 
 import Checklist from './Checklist';
 
@@ -13,7 +13,9 @@ class Form extends Component {
             id: null,
             tab_id: this.props.tab_id,
             title: '',
+            status_id: null,
             type_id: null,
+            priority_id: null,
             desc: '',
             note: '',
             checklist: null,
@@ -21,9 +23,26 @@ class Form extends Component {
 
         this.state = {
             form: this.initialState,
+            dropdown: null,
+            status: [],
             types: [],
+            priorities: [],
         };
     }
+
+    showDropdown = (e, id) => {
+        e.preventDefault();
+        if (this.state.dropdown == id) {
+            this.setState({ dropdown: null });
+        } else {
+            this.setState({ dropdown: id });
+        }
+    };
+
+    setTax = (e, value, key) => {
+        e.preventDefault();
+        this.setState({ dropdown: null, form: { ...this.state.form, [key]: value } });
+    };
 
     handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,9 +50,16 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=task_type').then(resp => { 
+        this.props.getAll('taxonomies', 'taxonomy=task_status,task_type,task_priority').then(resp => {
             if (resp.data.success) {
-                if (this.state.form.type_id) {
+
+                this.setState({
+                    status: resp.data.data.task_status,
+                    types: resp.data.data.task_type,
+                    priorities: resp.data.data.task_priority,
+                });
+
+                /* if (this.state.form.type_id) {
                     this.setState({
                         types: resp.data.data.task_type  
                     });
@@ -44,7 +70,7 @@ class Form extends Component {
                         form,
                         types: resp.data.data.task_type 
                     });
-                }
+                } */
             }
         });
 
@@ -77,27 +103,38 @@ class Form extends Component {
         e.preventDefault();
         let form = { ...this.state.form }
 
+        if (form.status_id) {
+            form.status_id = form.status_id.id;
+        }
+
         if (form.type_id) {
             form.type_id = form.type_id.id;
         }
 
+        if (form.priority_id) {
+            form.priority_id = form.priority_id.id;
+        }
+
         this.props.handleSubmit(form);
+        this.props.close();
         this.setState({ form: this.initialState });
     }
 
     handleChecklistChange = (data) => {
-        let invoice = { ...this.state.invoice }
-        invoice.group = data;
-        this.setState({ invoice })
+        let form = { ...this.state.form }
+        form.checklist = data;
+        this.setState({ form })
     }
 
-    handleStageChange = val => {
-        this.setState({ form: { ...this.state.form, ['type_id']: val } });
+    handleTaxChange = (val, key) => {
+        this.setState({ form: { ...this.state.form, [key]: val } });
     }
 
     render() {
-        const form = this.state.form; 
+        const form = this.state.form;
+        const statusList = this.state.status;
         const typeList = this.state.types;
+        const priorityList = this.state.priorities;
 
         return (
             <div className="pi-overlay">
@@ -127,7 +164,29 @@ class Form extends Component {
                         </span>
 
                         <div className="pi-small-button-group">
-                            <button className="pi-btn pi-btn-small">To Do</button>
+                            <div className="pi-action-content">
+                                {form.status_id && <button
+                                    className="pi-btn pi-btn-small"
+                                    style={{
+                                        backgroundColor: form.status_id.bg_color 
+                                    }}
+                                    onClick={e => this.showDropdown(e, 'status')}
+                                    ref={e => e && e.style.setProperty('color', form.status_id.color, 'important')}
+                                >
+                                    {form.status_id.label}
+                                </button>}
+
+                                {this.state.dropdown == 'status' && <div className="pi-dropdown-content pi-show">
+                                    {statusList && statusList.map((item, itemIndex) => {
+                                        return (
+                                            <a onClick={(e) => this.setTax(e, item, 'status_id')} key={itemIndex}>
+                                                {item.label}
+                                            </a>
+                                        )
+                                    })}
+                                </div>}
+                            </div>
+
                             <button className="pi-btn pi-btn-medium pi-float-right">
                                 <svg
                                     width={13}
@@ -153,22 +212,6 @@ class Form extends Component {
                             <div className="pi-form-style-one">
 
                                 <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="form-desc">
-                                            Activity Type
-                                        </label> 
-
-                                        <Select
-                                            value={form.type_id}
-                                            onChange={this.handleStageChange}
-                                            getOptionValue={(data) => data.id}
-                                            getOptionLabel={(data) => data.label}
-                                            options={typeList}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="title">
                                             Title
@@ -181,6 +224,36 @@ class Form extends Component {
                                             name="title"
                                             value={form.title}
                                             onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="form-desc">
+                                            Task Type
+                                        </label>
+
+                                        <Select
+                                            value={form.type_id}
+                                            onChange={(val) => this.handleTaxChange(val, 'type_id')}
+                                            getOptionValue={data => data.id}
+                                            getOptionLabel={data => data.label}
+                                            options={typeList}
+                                        />
+                                    </div>
+
+                                    <div className="col">
+                                        <label htmlFor="form-desc">
+                                            Task Priority
+                                        </label>
+
+                                        <Select
+                                            value={form.priority_id}
+                                            onChange={(val) => this.handleTaxChange(val, 'priority_id')}
+                                            getOptionValue={data => data.id}
+                                            getOptionLabel={data => data.label}
+                                            options={priorityList}
                                         />
                                     </div>
                                 </div>
@@ -260,7 +333,7 @@ class Form extends Component {
                                         </label>
 
                                         <textarea
-                                            id="form-desc" 
+                                            id="form-desc"
                                             name="desc"
                                             value={form.desc}
                                             onChange={this.handleChange}
@@ -275,7 +348,7 @@ class Form extends Component {
                                         </label>
 
                                         <textarea
-                                            id="form-note" 
+                                            id="form-note"
                                             name="note"
                                             value={form.note}
                                             onChange={this.handleChange}
@@ -284,7 +357,9 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} />
+                                    <div className="col">
+                                        <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} />
+                                    </div> 
                                 </div>
                             </div>
                         </div>

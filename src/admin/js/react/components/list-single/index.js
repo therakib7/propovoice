@@ -292,7 +292,7 @@ class ListSingle extends Component {
                                                     value={data.level_id}
                                                     defaultOptions={this.state.levels}
                                                     onChange={this.handleLevelChange}
-                                                    getOptionValue={(data) => data.id}
+                                                    getOptionValue={data => data.id}
                                                     getOptionLabel={(data) => (data.label) ? data.label : ''}
                                                 />
                                             </div>
@@ -446,7 +446,7 @@ class ListSingle extends Component {
                                                     value={data.stage_id}
                                                     defaultOptions={this.state.stages}
                                                     onChange={this.handleStageChange}
-                                                    getOptionValue={(data) => data.id}
+                                                    getOptionValue={data => data.id}
                                                     getOptionLabel={(data) => (data.label) ? data.label : ''}
                                                 />
                                             </div>
@@ -478,10 +478,10 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                             Move to Project
-                                        </button> 
-                                        
+                                        </button>
+
                                         {data.hasOwnProperty('status') && <>
-                                            { (!data.status || data.status == 'won') && <button
+                                            {(!data.status || data.status == 'won') && <button
                                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
                                                 onClick={() => this.handleStatusChange('won')}
                                             >
@@ -489,7 +489,7 @@ class ListSingle extends Component {
                                                 Won
                                             </button>}
 
-                                            { (!data.status || data.status == 'lost') && <button
+                                            {(!data.status || data.status == 'lost') && <button
                                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
                                                 onClick={() => this.handleStatusChange('lost')}
                                             >
@@ -534,6 +534,20 @@ class ListSingle extends Component {
                                             {this.state.action && <div className="pi-dropdown-content pi-show">
                                                 <a onClick={() => this.setState({ dealModal: true })}>Edit</a>
                                                 <a onClick={() => this.deleteEntry('deal', data.id)}>Delete</a>
+
+                                                {data.hasOwnProperty('status') && <>
+                                                    {(!data.status || data.status == 'lost') && <a 
+                                                        onClick={() => this.handleStatusChange('won')}
+                                                    > 
+                                                        Move to Won
+                                                    </a>}
+
+                                                    {(!data.status || data.status == 'won') && <a 
+                                                        onClick={() => this.handleStatusChange('lost')}
+                                                    > 
+                                                        Move to lost
+                                                    </a>}
+                                                </>}
                                             </div>}
 
                                         </div>

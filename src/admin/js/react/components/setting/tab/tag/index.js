@@ -5,7 +5,7 @@ export default () => {
             <div className="row">
                 <div className="col">
                     <label>Tag</label>
-                    <Taxonomy taxonomy='tag' title='tag' color={true} />
+                    <Taxonomy taxonomy='tag' title='tag' reorder={false} />
                 </div>
                 <div className="col">
                 </div>

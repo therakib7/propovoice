@@ -105,7 +105,7 @@ export default class Business extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={{ maxWidth: '700px' }} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
                 <div className="row">
                     <div className="col-md">
                         <label

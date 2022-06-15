@@ -49,11 +49,9 @@ const HOC = (Inner, mod, modPlural = '') => {
                 per_page: this.state.perPage
             } 
             
-            if ( this.props.taxonomy ) {
+            /* if ( this.props.taxonomy ) {
                 args.taxonomy = this.props.taxonomy;
-            }
-
-            args.taxonomy = 'tag';
+            }  */
 
             if ( this.props.tab_id ) {
                 args.tab_id = this.props.tab_id;
@@ -132,10 +130,10 @@ const HOC = (Inner, mod, modPlural = '') => {
             }
         }
 
-        deleteEntry = (type, index) => {
+        deleteEntry = (type, index, module = null) => {
             if (confirm(this.context.CrudMsg.confirm)) {
 
-                if (type == 'single') {
+                if (type == 'single' && module != 'task' ) {
                     this.setState({
                         lists: this.state.lists.filter((list, i) => {
                             return list.id !== index;

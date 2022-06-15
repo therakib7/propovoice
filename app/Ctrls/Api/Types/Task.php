@@ -78,6 +78,7 @@ class Task
         }
 
         $tab_id = isset($params['tab_id']) ? absint($req['tab_id']) : false;
+        $status_id = isset($params['status_id']) ? absint($req['status_id']) : false;
 
         if (isset($params['page']) && $params['page'] > 1) {
             $offset = ($per_page * $params['page']) - $per_page;
@@ -98,7 +99,7 @@ class Task
             'relation' => 'OR'
         );
 
-        if ($tab_id) {
+        if ( $tab_id ) {
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'tab_id',
@@ -106,7 +107,25 @@ class Task
                     'compare' => '='
                 )
             );
+        } 
+
+        if ( ! $status_id ) {
+            $taxonomy = 'task_status';
+            $get_taxonomy = get_terms( array(
+                'taxonomy' => 'ndpi_' . $taxonomy,
+                'orderby' => 'term_order',
+                'hide_empty' => false
+            ) );
+            $status_id = $get_taxonomy[0]->term_id; 
         }
+
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'ndpi_task_status',
+                'terms' => $status_id,
+                'field' => 'term_id',
+            )
+        );
 
         $query = new WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
@@ -126,8 +145,7 @@ class Task
         $taxonomy = 'task_status';
         $get_taxonomy = get_terms( array(
             'taxonomy' => 'ndpi_' . $taxonomy,
-            'orderby' => 'ID', 
-            'order'   => 'ASC',
+            'orderby' => 'term_order',
             'hide_empty' => false
         ) );
 
@@ -147,13 +165,37 @@ class Task
             $query_data = [];
             $query_data['id'] = $id;
             $query_data['title'] = get_the_title();
-            $query_data['type_id'] = '';
 
+            $query_data['status_id'] = ''; 
+            $status = get_the_terms($id, 'ndpi_task_status');
+            if ($status) {
+                $term_id = $status[0]->term_id;
+                $query_data['status_id'] = [
+                    'id' => $term_id,
+                    'label' => $status[0]->name,
+                    'color' => get_term_meta($term_id, 'color', true),
+                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
+                ];
+            }
+
+            $query_data['type_id'] = ''; 
             $type = get_the_terms($id, 'ndpi_task_type');
             if ($type) {
                 $query_data['type_id'] = [
                     'id' => $type[0]->term_id,
                     'label' => $type[0]->name
+                ];
+            }
+
+            $query_data['priority_id'] = ''; 
+            $priority = get_the_terms($id, 'ndpi_task_priority');
+            if ($priority) {
+                $term_id = $priority[0]->term_id;
+                $query_data['priority_id'] = [
+                    'id' => $term_id,
+                    'label' => $priority[0]->name,
+                    'color' => get_term_meta($term_id, 'color', true),
+                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
                 ];
             }
 
@@ -201,7 +243,9 @@ class Task
 
         $tab_id   = isset($params['tab_id']) ? absint($req['tab_id']) : null;
         $title   = isset($params['title']) ? sanitize_text_field($req['title']) : null;
+        $status_id  = isset($params['status_id']) ? absint($params['status_id']) : null;
         $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
+        $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
 
         if (empty($tab_id)) {
             $reg_errors->add('field', esc_html__('Tab ID is missing', 'propovoice'));
@@ -227,8 +271,17 @@ class Task
             if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
                 update_post_meta($post_id, 'tab_id', $tab_id);
+
+                if ($status_id) {
+                    wp_set_post_terms($post_id, [$status_id], 'ndpi_task_status');
+                }
+
                 if ($type_id) {
                     wp_set_post_terms($post_id, [$type_id], 'ndpi_task_type');
+                }
+
+                if ($priority_id) {
+                    wp_set_post_terms($post_id, [$priority_id], 'ndpi_task_priority');
                 }
 
                 wp_send_json_success($post_id);
@@ -244,7 +297,9 @@ class Task
         $reg_errors = new \WP_Error;
 
         $title = isset($params['title']) ? sanitize_text_field($req['title']) : null;
-        $type_id = isset($params['type_id']) ? absint($params['type_id']) : null;
+        $status_id  = isset($params['status_id']) ? absint($params['status_id']) : null;
+        $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
+        $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
         $desc = isset($params['desc']) ? sanitize_text_field($req['desc']) : null;
 
         if (empty($title)) {
@@ -267,8 +322,16 @@ class Task
 
             if (!is_wp_error($post_id)) {
 
+                if ($status_id) {
+                    wp_set_post_terms($post_id, [$status_id], 'ndpi_task_status');
+                }
+
                 if ($type_id) {
                     wp_set_post_terms($post_id, [$type_id], 'ndpi_task_type');
+                }
+
+                if ($priority_id) {
+                    wp_set_post_terms($post_id, [$priority_id], 'ndpi_task_priority');
                 }
 
                 wp_send_json_success($post_id);

@@ -80,7 +80,7 @@ const Contact = (props) => {
 						value={props.data.person}
 						defaultOptions={person}
 						onChange={handlePersonSelect}
-						getOptionValue={(data) => data.id}
+						getOptionValue={data => data.id}
 						getOptionLabel={(data) => (data.first_name) ? data.first_name : ''}
 					/>
 				</div>
@@ -97,7 +97,7 @@ const Contact = (props) => {
 						value={props.data.org}
 						defaultOptions={org}
 						onChange={handleOrgSelect}
-						getOptionValue={(data) => data.id}
+						getOptionValue={data => data.id}
 						getOptionLabel={(data) => (data.name) ? data.name : ''}
 					/> 
 				</div>

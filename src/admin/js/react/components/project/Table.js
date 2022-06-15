@@ -42,6 +42,7 @@ const TableHeader = props => {
                 </th>
                 <th>
                     <svg
+                        style={{ top: 2 }}
                         width={15}
                         height={10}
                         viewBox="0 0 15 10"
@@ -59,6 +60,7 @@ const TableHeader = props => {
                 </th>
                 <th>
                     <svg
+                        style={{ top: 2 }}
                         width={15}
                         height={10}
                         viewBox="0 0 15 10"
