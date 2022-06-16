@@ -3,26 +3,38 @@ import Moment from 'react-moment';
 
 const TableBody = props => {
 
-    const [dropdown, setDropdown] = useState(null);
+    const [dropdown, setDropdown] = useState({id: null, type: null});
 
-    const showDropdown = (id) => {
-        if (dropdown == id) {
-            setDropdown(null);
+    const showDropdown = (id, type) => {
+        if (dropdown.id == id && dropdown.type == type ) {
+            setDropdown({id: null, type: null});
         } else {
-            setDropdown(id);
+            setDropdown({id, type});
         }
     };
+
+    const setTax = (e, post_id, key, value) => {
+        e.preventDefault(); 
+        let form = { 
+            id: post_id, 
+        }  
+        form[key] = value; 
+
+        props.handleSubmit(form);
+    }; 
+
+    const taxonomies = props.taxonomies; 
 
     return props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
 
+        const status = row.status_id;
         const priority = row.priority_id;
         return (
             <div className="pi-accordion-table-list" key={index}>
                 <div className="pi-checkbox">
                     <input type="checkbox"
-
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
@@ -79,60 +91,82 @@ const TableBody = props => {
                         </div>
                     </li>
                     <li>
-                        <svg
-                            width={12}
-                            height={12}
-                            viewBox="0 0 12 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M6 7.5C7.65685 7.5 9 6.15685 9 4.5C9 2.84315 7.65685 1.5 6 1.5C4.34315 1.5 3 2.84315 3 4.5C3 6.15685 4.34315 7.5 6 7.5Z"
-                                stroke="#718096"
-                                strokeMiterlimit={10}
-                            />
-                            <path
-                                d="M1.45312 10.125C1.91388 9.32678 2.57664 8.66392 3.37479 8.20306C4.17294 7.7422 5.07835 7.49957 6 7.49957C6.92165 7.49957 7.82706 7.7422 8.62521 8.20306C9.42336 8.66392 10.0861 9.32678 10.5469 10.125"
-                                stroke="#718096"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                        nurencydigital@gmail.com
-                    </li>
+                    </li> 
                     <li>
-                        <span className="pi-badge pi-bg-orange">Over Due</span>
-                    </li>
-                    <li>
-                        {priority &&
-                            <>
-                                {(priority.color && priority.bg_color) && <span className="pi-badge"
-                                    style={{
-                                        backgroundColor: priority.bg_color,
-                                        color: priority.color
-                                    }}
+                        <div className="pi-action-content"> 
+                            {(status.color && status.bg_color) && <span className="pi-badge"
+                                onClick={() => showDropdown(row.id, 'status')}
+                                style={{
+                                    backgroundColor: status.bg_color,
+                                    color: status.color
+                                }}
+                            >
+                                <svg
+                                    width={6}
+                                    height={6}
+                                    viewBox="0 0 6 6"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
                                 >
-                                    <svg
-                                        width={6}
-                                        height={6}
-                                        viewBox="0 0 6 6"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <circle cx={3} cy={3} r={3} fill={priority.color} />
-                                    </svg>
-                                    {priority.label}
-                                </span>}
+                                    <circle cx={3} cy={3} r={3} fill={status.color} />
+                                </svg>
+                                {status.label}
+                            </span>}
 
-                                {(!priority.color || !priority.bg_color) && <span className="pi-badge">
-                                    {priority.label}
-                                </span>}
-                            </>
-                        }
+                            {(!status.color || !status.bg_color) && <span className="pi-badge">
+                                {status.label}
+                            </span>}
+                            
+                            { ( dropdown.id == row.id && dropdown.type == 'status' ) &&<div className="pi-dropdown-content pi-show">
+                                {taxonomies.status && taxonomies.status.map((item, itemIndex) => {
+                                    return (
+                                        <a onClick={(e) => setTax(e, row.id, 'status_id', item.id )} key={itemIndex}>
+                                            {item.label}
+                                        </a>
+                                    )
+                                })}
+                            </div>}
+                        </div>
+                    </li>
+                    <li>
+                        <div className="pi-action-content"> 
+                            {(priority.color && priority.bg_color) && <span className="pi-badge"
+                                onClick={() => showDropdown(row.id, 'priority')}
+                                style={{
+                                    backgroundColor: priority.bg_color,
+                                    color: priority.color
+                                }}
+                            >
+                                <svg
+                                    width={6}
+                                    height={6}
+                                    viewBox="0 0 6 6"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <circle cx={3} cy={3} r={3} fill={priority.color} />
+                                </svg>
+                                {priority.label}
+                            </span>}
+
+                            {(!priority.color || !priority.bg_color) && <span className="pi-badge">
+                                {priority.label}
+                            </span>}
+                            
+                            { ( dropdown.id == row.id && dropdown.type == 'priority' ) &&<div className="pi-dropdown-content pi-show">
+                                {taxonomies.priorities && taxonomies.priorities.map((item, itemIndex) => {
+                                    return (
+                                        <a onClick={(e) => setTax(e, row.id, 'priority_id', item.id )} key={itemIndex}>
+                                            {item.label}
+                                        </a>
+                                    )
+                                })}
+                            </div>}
+                        </div>
                     </li>
                     <li>
                         <div className="pi-action-content">
-                            <button className={(row.id == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(row.id)}>
+                            <button className={(row.id == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(row.id, 'action')}>
                                 <svg
                                     width={24}
                                     height={24}
@@ -160,7 +194,7 @@ const TableBody = props => {
                                     />
                                 </svg>
                             </button>
-                            {row.id == dropdown && <div className="pi-dropdown-content pi-show"
+                            { ( dropdown.id == row.id && dropdown.type == 'action' )  && <div className="pi-dropdown-content pi-show"
                             // ref={popover}
                             >
                                 <a onClick={() => props.editEntry('edit', row)}>Edit</a>
@@ -174,12 +208,11 @@ const TableBody = props => {
     });
 }
 
-const Table = (props) => {
-    const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
+const Table = (props) => { 
     return (
         <>
-            {tableData.length > 0 && <div className='pi-accordion-table-list-area'>
-                <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
+            {props.tableData.length > 0 && <div className='pi-accordion-table-list-area'>
+                <TableBody {...props} />
             </div>}
         </>
     );

@@ -2,6 +2,7 @@ import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import AsyncSelect from 'react-select/async';
 import { toast } from 'react-toastify';
+import Tag from 'block/field/tag';
 
 //import ApiTaxonomy from 'api/taxonomy'; 
 import WithApi from 'hoc/Api';
@@ -50,6 +51,7 @@ class ListSingle extends Component {
             stages: [],
             tags: [],
             data: {
+                id: null,
                 contact: {
                     first_name: 'Name'
                 },
@@ -372,19 +374,9 @@ class ListSingle extends Component {
 
                         <div className="pi-tag-content">
                             <ul>
-                                <li>
+                                <li> 
                                     <label htmlFor="">Tag: </label>
-                                    {
-                                        data.tags && data.tags.map((tag, tagIndex) => {
-                                            return (
-                                                <span key={tagIndex} className="pi-badge">{tag.label} <b>X</b></span>
-                                            )
-                                        })
-                                    }
-
-                                    <select name="" id="">
-                                        <option value="">+ Add TAg</option>
-                                    </select>
+                                    {data.id && <Tag id={data.id} tax='tag' multiple={true} />}
                                 </li>
                                 <li>
                                     <label htmlFor="">Source:</label>
@@ -426,6 +418,7 @@ class ListSingle extends Component {
                                             {/* <span className='pi-float-right'>({data.provability}%)</span> */}
                                             <input
                                                 id="field-provability"
+                                                className='pi-mt-10'
                                                 type="range"
                                                 min="1" max="100"
                                                 name="provability"
@@ -536,15 +529,15 @@ class ListSingle extends Component {
                                                 <a onClick={() => this.deleteEntry('deal', data.id)}>Delete</a>
 
                                                 {data.hasOwnProperty('status') && <>
-                                                    {(!data.status || data.status == 'lost') && <a 
+                                                    {(!data.status || data.status == 'lost') && <a
                                                         onClick={() => this.handleStatusChange('won')}
-                                                    > 
+                                                    >
                                                         Move to Won
                                                     </a>}
 
-                                                    {(!data.status || data.status == 'won') && <a 
+                                                    {(!data.status || data.status == 'won') && <a
                                                         onClick={() => this.handleStatusChange('lost')}
-                                                    > 
+                                                    >
                                                         Move to lost
                                                     </a>}
                                                 </>}
@@ -564,16 +557,7 @@ class ListSingle extends Component {
                                 </li>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {
-                                        data.tags && data.tags.map((tag, tagIndex) => {
-                                            return (
-                                                <span key={tagIndex} className="pi-badge">{tag.label} <b>X</b></span>
-                                            )
-                                        })
-                                    }
-                                    <select name="" id="">
-                                        <option value="">+ Add Tag</option>
-                                    </select>
+                                    {data.id && <Tag id={data.id} taxonomy='tag' multiple={true} />}
                                 </li>
                             </ul>
                         </div>

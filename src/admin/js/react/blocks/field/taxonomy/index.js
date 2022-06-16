@@ -371,7 +371,7 @@ const Taxonomy = (props) => {
 								<div className="row">
 									<div className="col-md">
 										<label htmlFor="field-color">
-											Color
+											Text Color
 										</label>
 										<ColorPicker color={form.color} onChange={(val) => handleColorChange(val, 'color')} />
 									</div>

@@ -72,10 +72,11 @@ class Taxonomy
         $reg_errors = new \WP_Error;
 
         $taxonomies = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
+        $id = isset($params['id']) ? sanitize_text_field($params['id']) : null; //post id
 
         if (empty($taxonomies)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
-        } 
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -84,11 +85,11 @@ class Taxonomy
 
             $taxonomies = explode(',', $taxonomies);
             foreach ($taxonomies as $taxonomy) {
-                $get_taxonomy = get_terms( array(
-                    'taxonomy' => 'ndpi_' . $taxonomy, 
-                    'orderby' => 'term_order', 
+                $get_taxonomy = get_terms(array(
+                    'taxonomy' => 'ndpi_' . $taxonomy,
+                    'orderby' => 'term_order',
                     'hide_empty' => false
-                ) );
+                ));
 
                 $format_taxonomy = [];
                 foreach ($get_taxonomy as $single) {
@@ -102,6 +103,21 @@ class Taxonomy
                     ];
                 }
                 $data[$taxonomy] = $format_taxonomy;
+
+                if ( $id ) { 
+                    $tags = get_the_terms($id, 'ndpi_tag');
+                    if ($tags) {
+                        $tagList = [];
+                        foreach ($tags as $tag) {
+                            $tagList[] = [
+                                'id' => $tag->term_id,
+                                'label' => $tag->name
+                            ];
+                        }
+
+                        $data['single_tag'] = $tagList;
+                    }
+                }
             }
             wp_send_json_success($data);
         }
@@ -126,7 +142,7 @@ class Taxonomy
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null; 
+        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
         $reorder  = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
         $label = isset($params['label']) ? sanitize_text_field($params['label']) : null;
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
@@ -139,7 +155,7 @@ class Taxonomy
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-            if ( $reorder ) {
+            if ($reorder) {
                 $this->reorder_taxonomies($reorder);
                 wp_send_json_success();
             } else {
@@ -147,7 +163,7 @@ class Taxonomy
                     $label,   // the term 
                     'ndpi_' . $taxonomy, // the taxonomy 
                 );
-    
+
                 if (!is_wp_error($taxonomy)) {
                     $term_id = $taxonomy['term_id'];
                     update_term_meta($term_id, 'color', $color);
@@ -156,7 +172,7 @@ class Taxonomy
                 } else {
                     wp_send_json_error();
                 }
-            } 
+            }
         }
     }
 
@@ -165,7 +181,9 @@ class Taxonomy
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
+        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null; 
+        $post_id = isset($params['post_id']) ? absint($params['post_id']) : null;
+        $add = isset($params['add']) ? true : false;
         $delete = isset($params['delete']) ? true : false;
         $label = isset($params['label']) ? sanitize_text_field($params['label']) : null;
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
@@ -179,10 +197,18 @@ class Taxonomy
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $url_params = $req->get_url_params();
-            $term_id = $url_params['id']; 
+            $term_id = absint( $url_params['id'] );
 
-            if ($delete) {
-                wp_delete_term($term_id, 'ndpi_' . $taxonomy);
+            if ( $add ) {
+                wp_set_object_terms($post_id, $term_id, 'ndpi_' . $taxonomy, true);
+
+                wp_send_json_success();
+            } else if ( $delete ) {
+                if ( $post_id ) { //delete term from post
+                    wp_remove_object_terms($post_id, $term_id, 'ndpi_' . $taxonomy);
+                } else { // delte term
+                    wp_delete_term($term_id, 'ndpi_' . $taxonomy);
+                }
                 wp_send_json_success();
             } else {
                 $taxonomy = wp_update_term(
@@ -202,15 +228,15 @@ class Taxonomy
                 }
             }
         }
-    } 
+    }
 
     public function reorder_taxonomies($ids = array())
     {
-        global $wpdb;  
-        $i = 0; 
-        foreach ($ids as $id):  
-            $i++; 
-            $result = $wpdb->update($wpdb->prefix . 'terms', array('term_order' => $i), array('term_id' => $id) ); 
+        global $wpdb;
+        $i = 0;
+        foreach ($ids as $id) :
+            $i++;
+            $result = $wpdb->update($wpdb->prefix . 'terms', array('term_order' => $i), array('term_id' => $id));
         endforeach;
     }
 

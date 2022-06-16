@@ -179,9 +179,9 @@
   font-weight: 500;
   color: #4A5568;
   font-size: 13px;
-  padding: 3px 20px;
+  padding: 3px 10px;
   border-radius: 6px;
-  width: 150px;
+  width: auto;
   text-align: left;
   top: 0;
   height: auto;
@@ -189,6 +189,7 @@
 .ncpi .pi-tag-content ul .pi-action-content .pi-action-btn svg {
   float: right;
   margin-top: 5px;
+  margin-left: 15px;
 }
 .ncpi .pi-tag-content ul label {
   font-size: 12px;

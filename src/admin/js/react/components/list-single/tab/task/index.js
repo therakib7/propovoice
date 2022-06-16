@@ -9,19 +9,27 @@ import Table from './Table';
 
 import Crud from 'hoc/Crud';
 
-const Task = (props) => {
+const Task = (props) => { 
+            
     const [activeTab, setActiveTab] = useState(null);
+    const [taxonomies, setTaxonomies] = useState({
+        status: [],
+        types: [],
+        priorities: [],
+    }); 
 
     const { lists, checkedBoxes, searchVal } = props.state;
     return (
-        <div className="">
+        <div className=""> 
             <Form
                 handleSubmit={props.handleSubmit}
+                setTaxonomies={setTaxonomies}
                 tab_id={props.tab_id}
             />
 
             {props.state.formModal && <FormEdit
                 tab_id={props.tab_id}
+                taxonomies={taxonomies} 
                 handleSubmit={props.handleSubmit}
                 modalType={props.state.formModalType}
                 data={props.state.list}
@@ -69,7 +77,7 @@ const Task = (props) => {
                             </label>
                             <label className="pi-table-close" htmlFor="pi-acc-close" />
                             <div className="pi-accordion-content">
-                                <Table tableData={lists.today} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
+                                <Table tableData={lists.today} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={props.deleteEntry} />
                             </div>
                         </section>
                     </>

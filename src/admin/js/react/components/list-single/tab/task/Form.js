@@ -28,23 +28,31 @@ class Form extends Component {
         this.props.getAll('taxonomies', 'taxonomy=task_status,task_type,task_priority').then(resp => {
             if (resp.data.success) {
                 let form = { ...this.state.form }
+                const status = resp.data.data.task_status;
+                const types = resp.data.data.task_type;
+                const priorities = resp.data.data.task_priority;
                 //TODO: add fallback if no taxonomy
-                form.status_id = resp.data.data.task_status[0]; 
-                form.type_id = resp.data.data.task_type[0];
-                form.priority_id = resp.data.data.task_priority[0];
+                form.status_id = status[0]; 
+                form.type_id = types[0];
+                form.priority_id = priorities[0];
 
                 this.setState({
                     form,
-                    status: resp.data.data.task_status,
-                    types: resp.data.data.task_type,
-                    priorities: resp.data.data.task_priority,
+                    status,
+                    types,
+                    priorities,
+                });
+
+                this.props.setTaxonomies({
+                    status,
+                    types,
+                    priorities,
                 });
             }
         });
     }
 
-    showDropdown = (e, id) => {
-        e.preventDefault();
+    showDropdown = ( id ) => { 
         if (this.state.dropdown == id) {
             this.setState({ dropdown: null });
         } else {
@@ -111,7 +119,7 @@ class Form extends Component {
                     </div>
                     <div className="pi-tab-buttons">
                         <div className="pi-action-content">
-                            <button onClick={(e) => this.showDropdown(e, 'date')}>
+                            <button type='button' onClick={() => this.showDropdown('date')}>
                                 <svg
                                     width={20}
                                     height={20}
@@ -130,7 +138,7 @@ class Form extends Component {
                             </button>
                         </div>
                         <div className="pi-action-content">
-                            <button onClick={(e) => this.showDropdown(e, 'type')}>
+                            <button type='button' onClick={() => this.showDropdown('type')}>
                                 <svg
                                     width={16}
                                     height={20}
@@ -175,7 +183,7 @@ class Form extends Component {
                             </div>}
                         </div>
                         <div className="pi-action-content">
-                            <button onClick={(e) => this.showDropdown(e, 'priority')}>
+                            <button type='button' onClick={() => this.showDropdown('priority')}>
                                 <svg
                                     width={20}
                                     height={20}
@@ -223,7 +231,7 @@ class Form extends Component {
                                 })}
                             </div>}
                         </div>
-                        <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-mt-m-4">
+                        <button type='submit' className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-mt-m-4">
                             Save
                         </button>
                     </div>

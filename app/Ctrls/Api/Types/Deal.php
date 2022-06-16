@@ -204,7 +204,7 @@ class Deal
 
         $query_data['tags'] = [];
 
-        $tags = get_the_terms($id, 'ndpi_tag');
+        /* $tags = get_the_terms($id, 'ndpi_tag');
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
@@ -214,7 +214,7 @@ class Deal
                 ];
             }
             $query_data['tags'] = $tagList;
-        }
+        } */
 
         $contact_id = get_post_meta($id, 'person_id', true);
         $contactData = [];
