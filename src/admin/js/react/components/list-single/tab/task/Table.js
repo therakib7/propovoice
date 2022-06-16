@@ -20,7 +20,7 @@ const TableBody = props => {
         }  
         form[key] = value; 
 
-        props.handleSubmit(form);
+        props.handleSubmit(form, 'edit');
     }; 
 
     const taxonomies = props.taxonomies; 
@@ -113,7 +113,7 @@ const TableBody = props => {
                                 {status.label}
                             </span>}
 
-                            {(!status.color || !status.bg_color) && <span className="pi-badge">
+                            {(!status.color || !status.bg_color) && <span className="pi-badge" onClick={() => showDropdown(row.id, 'status')}>
                                 {status.label}
                             </span>}
                             
@@ -149,7 +149,7 @@ const TableBody = props => {
                                 {priority.label}
                             </span>}
 
-                            {(!priority.color || !priority.bg_color) && <span className="pi-badge">
+                            {(!priority.color || !priority.bg_color) && <span className="pi-badge" onClick={() => showDropdown(row.id, 'priority')}>
                                 {priority.label}
                             </span>}
                             

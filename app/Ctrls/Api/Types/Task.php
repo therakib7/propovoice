@@ -294,17 +294,15 @@ class Task
     public function update($req)
     {
         $params = $req->get_params();
-        $reg_errors = new \WP_Error;
-
-        $title = isset($params['title']) ? sanitize_text_field($req['title']) : null;
+        $reg_errors = new \WP_Error; 
+        
         $status_id  = isset($params['status_id']) ? absint($params['status_id']) : null;
         $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
-        $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
-        $desc = isset($params['desc']) ? sanitize_text_field($req['desc']) : null;
+        $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null; 
 
-        if (empty($title)) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        }
+        /* if (empty($title)) {
+            $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
+        } */
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -313,11 +311,18 @@ class Task
             $post_id    = $url_params['id'];
 
             $data = array(
-                'ID'            => $post_id,
-                'post_title'    => $title,
-                'post_content'  => $desc,
+                'ID'            => $post_id, 
                 'post_author'   => get_current_user_id()
-            );
+            ); 
+
+            if ( isset($params['title']) ) {
+                $data['post_title'] = sanitize_text_field($req['title']);
+            }
+
+            if ( isset($params['desc']) ) {
+                $data['post_content'] = sanitize_text_field($req['desc']);
+            }
+
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
