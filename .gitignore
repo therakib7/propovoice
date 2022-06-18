@@ -8,3 +8,4 @@ propovoice
 *.zip
 mix-manifest.json
 package-lock.json
+webpack.mix.js
