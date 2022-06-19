@@ -17,7 +17,7 @@ class Form extends Component {
             stage_id: '', 
             budget: '',
             currency: 'USD',
-            provability: 50,
+            probability: 50,
             tags: [],
             desc: '',
             note: '',
@@ -83,7 +83,7 @@ class Form extends Component {
                 let data = {...this.props.data}
                 if ( this.props.modalType == 'move' ) {
                     data.lead_id = data.id;
-                    data.provability = 50;
+                    data.probability = 50;
                 }
 
                 this.setState({ form: data });
@@ -172,7 +172,7 @@ class Form extends Component {
         const stageList = this.state.stages;
         const tagList = this.state.tags;
         const form = this.state.form;
-        const provabilityPercent = (form.provability / 100) * 100;
+        const probabilityPercent = (form.probability / 100) * 100;
 
         let title = '';
         if ( this.props.modalType == 'new' ) {
@@ -294,17 +294,17 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label
-                                            htmlFor="field-provability">
-                                            Provability <span style={{position: 'absolute', right: '15px'}}>({form.provability}%)</span>
+                                            htmlFor="field-probability">
+                                            probability <span style={{position: 'absolute', right: '15px'}}>({form.probability}%)</span>
                                         </label>
 
                                         <input
-                                            id="field-provability"
+                                            id="field-probability"
                                             type="range"
                                             min="1" max="100"
-                                            name="provability"
-                                            value={form.provability}
-                                            style={{ background: `linear-gradient(to right, #3264fe ${provabilityPercent}%, #ccd6ff ${provabilityPercent}%)` }}
+                                            name="probability"
+                                            value={form.probability}
+                                            style={{ background: `linear-gradient(to right, #3264fe ${probabilityPercent}%, #ccd6ff ${probabilityPercent}%)` }}
                                             onChange={this.handleChange}
                                         />
                                     </div>

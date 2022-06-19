@@ -217,6 +217,7 @@ const HOC = (Inner, mod, modPlural = '') => {
                     showItem={this.showItem}
                     getLists={this.getLists}
                     handleCheckbox={this.handleCheckbox}
+                    uncheckAll={ () => this.setState({ checkedBoxes: [] }) }
                     handleSubmit={this.handleSubmit}
                     handleSearch={this.handleSearch}
                     handlePageClick={this.handlePageClick}

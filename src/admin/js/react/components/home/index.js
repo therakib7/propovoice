@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, useRef, useState } from 'react';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -39,14 +39,19 @@ const ContactOrg = lazy(() => import('components/contact/org'));
 const Setting = lazy(() => import('components/setting'));
 
 const Home = () => {
+    const contentRef = useRef();
 
     const [dropdown, setDropdown] = useState(false);
 
-    let deal_papge = false;
-    let url = location.href;
-    if (url.includes('/deal') && !url.includes('/deal/single')) {
-        console.log(url);
-    }
+    const dealLoad = ( load = true ) => { 
+        const span = contentRef.current; // corresponding DOM node
+        if ( load ) {
+            span.className = 'pi-right-content-data pi-deal-content';
+        } else {
+            span.className = 'pi-right-content-data';
+        }
+	}; 
+
     return (
         <HashRouter>
             <ToastContainer />
@@ -454,10 +459,9 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
 
-
-                    <div className='pi-right-content-data '> {/* TODO: conditional class pi-deal-content */}
+                    <div className='pi-right-content-data' ref={contentRef}>
                         <Suspense fallback={<div>Loading...</div>}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
@@ -470,7 +474,7 @@ const Home = () => {
                                 <Route path="/lead" exact element={<Lead />} />
                                 <Route path="/lead/single/:id" exact element={<ListSingle />} />
 
-                                <Route path="/deal" exact element={<Deal />} />
+                                <Route path="/deal" exact element={<Deal dealLoad={dealLoad} />} />
                                 <Route path="/deal/single/:id" exact element={<ListSingle />} />
 
                                 <Route path="/task" exact element={<Task />} />

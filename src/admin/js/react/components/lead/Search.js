@@ -34,7 +34,7 @@ export default class Form extends Component {
     } 
 
     render() {
-        const { title, showing, total } = this.props;
+        const { title, showing, showItem, total } = this.props;
         return (
             <div className="pi-search-bar">
                 <div className="pi-search-box pi-mediun-search-bar">
@@ -204,8 +204,18 @@ export default class Form extends Component {
                         </ul>
                     </div>}
                 </div>
-                <div className="pi-total-list">
-                    <p>{showing} {title} showing from <span>{total}</span></p>
+                <div className="pi-total-list">  
+                    <p>
+                        Show <select onChange={showItem} >
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select> 
+                        {/* {showing}  */}
+                         {title} from <span>{total}</span>
+                    </p>
                 </div>
             </div>
         );

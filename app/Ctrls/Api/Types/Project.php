@@ -341,7 +341,7 @@ class Project
         $status_id     = isset($params['status_id']) ? absint($params['status_id']) : null; 
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $provability  = isset($params['provability']) ? absint($params['provability']) : null;
+        $probability  = isset($params['probability']) ? absint($params['probability']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
@@ -401,8 +401,8 @@ class Project
                     update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ($provability) {
-                    update_post_meta($post_id, 'provability', $provability);
+                if ($probability) {
+                    update_post_meta($post_id, 'probability', $probability);
                 }
 
                 if ($tags) {

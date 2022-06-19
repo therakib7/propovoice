@@ -57,7 +57,7 @@ class ListSingle extends Component {
                 },
                 level_id: null,
                 stage_id: null,
-                provability: 0,
+                probability: 0,
             }
         };
 
@@ -137,19 +137,19 @@ class ListSingle extends Component {
         });
     }
 
-    handleProvabilityChange = (e) => {
+    handleprobabilityChange = (e) => {
         let data = { ...this.state.data }
 
         const target = e.target;
 
-        data.provability = target.value;
+        data.probability = target.value;
         this.setState({ data }, () => {
 
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
                 let newData = {};
-                if (data.provability) {
-                    newData.provability = data.provability;
+                if (data.probability) {
+                    newData.probability = data.probability;
                 }
                 this.props.update('deals', this.props.id, newData);
             }, 300);
@@ -412,19 +412,19 @@ class ListSingle extends Component {
                                             </div>
                                         </div>
                                         <div className="pi-range">
-                                            <label htmlFor="field-provability">
-                                                Provability
+                                            <label htmlFor="field-probability">
+                                                probability
                                             </label>
-                                            {/* <span className='pi-float-right'>({data.provability}%)</span> */}
+                                            {/* <span className='pi-float-right'>({data.probability}%)</span> */}
                                             <input
-                                                id="field-provability"
+                                                id="field-probability"
                                                 className='pi-mt-10'
                                                 type="range"
                                                 min="1" max="100"
-                                                name="provability"
-                                                value={data.provability}
-                                                style={{ background: `linear-gradient(to right, #3264fe ${(data.provability / 100) * 100}%, #ccd6ff ${(data.provability / 100) * 100}%)` }}
-                                                onChange={this.handleProvabilityChange}
+                                                name="probability"
+                                                value={data.probability}
+                                                style={{ background: `linear-gradient(to right, #3264fe ${(data.probability / 100) * 100}%, #ccd6ff ${(data.probability / 100) * 100}%)` }}
+                                                onChange={this.handleprobabilityChange}
                                             />
                                         </div>
                                     </div>

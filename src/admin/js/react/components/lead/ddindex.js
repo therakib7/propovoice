@@ -322,8 +322,7 @@ export default class Lead extends Component {
 
                 {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.openForm('new')} />}
 
-                {/* <button
-                    
+                {/* <button 
                     onClick={() => this.setState({ searchModal: true })} >
                     Search
                 </button> */}

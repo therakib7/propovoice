@@ -40,7 +40,7 @@ class Taxonomy {
 
         //deal 
         $temp_pipeline = [
-            'Sales Pipeline' 
+            'Deal Pipeline' 
         ];  
         foreach( $temp_pipeline as $pipeline ) {
             $add_pipeline = wp_insert_term(
@@ -55,6 +55,7 @@ class Taxonomy {
                 'Proposing',
                 'Deal Closing',
             ];  
+            
             foreach( $temp_stage as $stage ) {
                 $stage = wp_insert_term(
                     $stage,   // the term 
@@ -66,11 +67,9 @@ class Taxonomy {
                     $stage_id = isset( $stage['term_id'] ) ? $stage['term_id'] : 0;
                     
                     add_term_meta( $stage_id, 'deal_pipeline_id' , $pipeline_id );
-                } 
-                
+                }  
             }
-        } 
-        
+        }  
 
         $temp_tag = [
             'Design',

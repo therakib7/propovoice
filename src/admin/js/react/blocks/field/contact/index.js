@@ -84,10 +84,8 @@ const Contact = (props) => {
 						getOptionLabel={(data) => (data.first_name) ? data.first_name : ''}
 					/>
 				</div>
-			</div>
 
-			<div className="row">
-				<div className="col-lg">
+                <div className="col-lg">
 					<label htmlFor="form-org_name">
 						Organization Name
 					</label>
@@ -100,8 +98,8 @@ const Contact = (props) => {
 						getOptionValue={data => data.id}
 						getOptionLabel={(data) => (data.name) ? data.name : ''}
 					/> 
-				</div>
-			</div>
+				</div> 
+			</div> 
 		</>
 	);
 }

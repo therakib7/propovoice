@@ -127,7 +127,7 @@ class Deal
                 $query_data['status'] = isset($queryMeta['status']) ? $queryMeta['status'][0] : '';
                 $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
                 $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
-                $query_data['provability'] = isset($queryMeta['provability']) ? $queryMeta['provability'][0] : '';
+                $query_data['probability'] = isset($queryMeta['probability']) ? $queryMeta['probability'][0] : '';
 
                 /* $query_data['tags'] = [];
                 $tags = get_the_terms($id, 'ndpi_tag');
@@ -163,6 +163,8 @@ class Deal
             // $column[$stage_id] = [
                 'name' => $stage_name,
                 'id' => $stage_id,
+                // 'color' => get_term_meta($stage_id, 'color', true),
+                'bg_color' => get_term_meta($stage_id, 'bg_color', true),
                 'items' => $items
             ];
 
@@ -187,7 +189,7 @@ class Deal
         $query_data['status'] = isset($queryMeta['status']) ? $queryMeta['status'][0] : '';
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
-        $query_data['provability'] = isset($queryMeta['provability']) ? absint($queryMeta['provability'][0]) : '';
+        $query_data['probability'] = isset($queryMeta['probability']) ? absint($queryMeta['probability'][0]) : '';
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
         $query_data['desc'] = get_post_field('post_content', $id);
 
@@ -250,7 +252,7 @@ class Deal
         $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null; 
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $provability  = isset($params['provability']) ? absint($params['provability']) : null;
+        $probability  = isset($params['probability']) ? absint($params['probability']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
@@ -324,8 +326,8 @@ class Deal
                     update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ( $provability ) {
-                    update_post_meta($post_id, 'provability', $provability);
+                if ( $probability ) {
+                    update_post_meta($post_id, 'probability', $probability);
                 }
 
                 if ( $tags ) {
@@ -359,7 +361,7 @@ class Deal
         $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null; 
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $provability  = isset($params['provability']) ? absint($params['provability']) : null;
+        $probability  = isset($params['probability']) ? absint($params['probability']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
@@ -423,8 +425,8 @@ class Deal
                     update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ($provability) {
-                    update_post_meta($post_id, 'provability', $provability);
+                if ($probability) {
+                    update_post_meta($post_id, 'probability', $probability);
                 }
 
                 if ($tags) {

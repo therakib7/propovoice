@@ -5,13 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import WithApi from 'hoc/Api';
 
 import Editable from 'block/editable';
-import { v4 as uuidv4 } from 'uuid'; 
+import { v4 as uuidv4 } from 'uuid';
 
 const onDragEnd = (update, result, columns, setColumns) => {
 	if (!result.destination) return;
 	const { source, destination } = result;
 
-	if (source.droppableId !== destination.droppableId) { 
+	if (source.droppableId !== destination.droppableId) {
 		const sourceColumn = columns[source.droppableId];
 		const destColumn = columns[destination.droppableId];
 		const sourceItems = [...sourceColumn.items];
@@ -33,7 +33,7 @@ const onDragEnd = (update, result, columns, setColumns) => {
 
 		//update another stage
 		let deal_id = parseInt(columns[source.droppableId].items[source.index].id);
-		let deal_stage_id = parseInt(destColumn.id); 
+		let deal_stage_id = parseInt(destColumn.id);
 		let finalArray = destItems.map(function (obj) {
 			return parseInt(obj.id);
 		});
@@ -116,8 +116,8 @@ function Pipeline(props) {
 				{Object.entries(columns).map(([columnId, column], index) => {
 					return (
 						<div className="pi-board-column" key={columnId}>
-							<div className="pi-board-column-title pi-bg-shadow">
-								<h4 className="pi-color-blue">{column.name}</h4>
+							<div className="pi-board-column-title pi-bg-shadow" style={{ borderColor: column.bg_color, color: column.bg_color }}>
+								<h4 className="">{column.name}</h4>
 								{/* <h4 className="pi-color-blue">
 								<Editable
 									// key={columnId}
@@ -210,15 +210,16 @@ function Pipeline(props) {
 																	<div className="pi-board-item-top">
 																		<h4>{CharLimit(item.title)}</h4>
 																		<span>$ {item.budget}</span>
-																		<p>Probability: {item.provability}%</p>
-																		{item.status == 'won' && <span className="pi-badge pi-bg-green pi-color-white">Won</span>}
-																		{item.status == 'lost' && <span className="pi-badge pi-bg-red pi-color-white">Lost</span>}
+																		<p>Probability: {item.probability}%</p>
 																	</div>
 																	<div className="pi-avatar-content">
 																		<img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
 																		<div className="pi-avatar-text">
 																			<h5>{item.contact.first_name}</h5>
 																			<p>{(item.contact.region) ? item.contact.region + ',' : ''} {item.contact.country}</p>
+
+																			{item.status == 'won' && <span className="pi-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>Won</span>}
+																			{item.status == 'lost' && <span className="pi-badge" style={{ backgroundColor: '#FFDEEB', color: '#FF267F' }}>Lost</span>}
 																		</div>
 																	</div>
 																</div>
@@ -229,34 +230,36 @@ function Pipeline(props) {
 											})}
 											{provided.placeholder}
 
-											{index == 0 && <button
-												className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
-												onClick={() => props.new('new')}
-											>
-												<svg
-													width={16}
-													height={14}
-													viewBox="0 0 12 15"
-													fill="none"
-													xmlns="http://www.w3.org/2000/svg"
+											{index == 0 &&
+												<button
+													className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
+													onClick={() => props.new('new')}
 												>
-													<path
-														d="M2.5 8H13.5"
-														stroke="white"
-														strokeWidth="1.5"
-														strokeLinecap="round"
-														strokeLinejoin="round"
-													/>
-													<path
-														d="M8 2.5V13.5"
-														stroke="white"
-														strokeWidth="1.5"
-														strokeLinecap="round"
-														strokeLinejoin="round"
-													/>
-												</svg>
-												New Deal
-											</button>}
+													<svg
+														width={14}
+														height={12}
+														viewBox="0 0 12 15"
+														fill="none"
+														xmlns="http://www.w3.org/2000/svg"
+													>
+														<path
+															d="M2.5 8H13.5"
+															stroke="#4A5568"
+															strokeWidth="1.5"
+															strokeLinecap="round"
+															strokeLinejoin="round"
+														/>
+														<path
+															d="M8 2.5V13.5"
+															stroke="#4A5568"
+															strokeWidth="1.5"
+															strokeLinecap="round"
+															strokeLinejoin="round"
+														/>
+													</svg>
+													New Deal
+												</button>
+											}
 
 										</div>
 									);
@@ -267,37 +270,34 @@ function Pipeline(props) {
 				})}
 
 				<div className="pi-board-column">
-					<div className="pi-board-content" style={{ padding: 0 }}>
-						<button
-							className="pi-btn pi-btn-medium pi-bg-stroke"
-							onClick={() => addNewColumn()}
+					<button
+						className="pi-btn pi-btn-big pi-bg-white pi-bg-hover-shadow"
+						onClick={() => addNewColumn()}
+					>
+						<svg
+							width={16}
+							height={14}
+							viewBox="0 0 12 15"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
 						>
-							<svg
-								width={16}
-								height={14}
-								viewBox="0 0 12 15"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M2.5 8H13.5"
-									stroke="white"
-									strokeWidth="1.5"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-								<path
-									d="M8 2.5V13.5"
-									stroke="white"
-									strokeWidth="1.5"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-							</svg>
-							Add New Column
-						</button>
-
-					</div>
+							<path
+								d="M2.5 8H13.5"
+								stroke="white"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<path
+								d="M8 2.5V13.5"
+								stroke="white"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+						</svg>
+						Add New Stage
+					</button>
 				</div>
 			</DragDropContext>
 
