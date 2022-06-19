@@ -1821,8 +1821,9 @@ html {
 .ncpi .pi-pagination li:nth-last-of-type(2) a {
   border-radius: 0 5px 5px 0;
 }
-.ncpi .pi-pagination li.pi-break {
-  margin-top: -2px;
+.ncpi .pi-pagination li.pi-break svg {
+  position: relative;
+  top: 3px;
 }
 .ncpi .pi-pagination li a {
   padding: 8px 12px;
@@ -2109,7 +2110,7 @@ html {
   }
 }
 .ncpi .pi-modal-content .pi-modal-footer {
-  padding: 0 55px 45px;
+  padding: 0 50px 45px;
 }
 .ncpi .pi-modal-content .pi-modal-footer .pi-btn {
   background-color: #fff;

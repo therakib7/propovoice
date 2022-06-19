@@ -40,7 +40,22 @@ const Pagination = (props) => {
 					/>
 				</svg>
 			}
-			breakLabel={"..."}
+			breakLabel={
+				<svg
+					width={15}
+					height={15}
+					viewBox="0 0 24 24"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg" 
+				>
+					<path
+						fillRule="evenodd"
+						clipRule="evenodd"
+						d="M7 12a2 2 0 10-4 0 2 2 0 004 0zM14 12a2 2 0 10-4 0 2 2 0 004 0zM21 12a2 2 0 10-4 0 2 2 0 004 0z"
+						fill="#718096"
+					/>
+				</svg>
+			}
 			breakClassName='break'
 			forcePage={props.forcePage}
 			pageCount={props.pageCount}
