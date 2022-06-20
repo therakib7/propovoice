@@ -99,7 +99,7 @@ class Task
             'relation' => 'OR'
         );
 
-        if ( $tab_id ) {
+        if ($tab_id) {
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'tab_id',
@@ -107,16 +107,17 @@ class Task
                     'compare' => '='
                 )
             );
-        } 
+        }
 
-        if ( ! $status_id ) {
+        if (!$status_id) {
             $taxonomy = 'task_status';
-            $get_taxonomy = get_terms( array(
+            $get_taxonomy = get_terms(array(
                 'taxonomy' => 'ndpi_' . $taxonomy,
-                'orderby' => 'term_order',
+                'meta_key' => 'tax_pos',
+                'orderby' => 'tax_pos',
                 'hide_empty' => false
-            ) );
-            $status_id = $get_taxonomy[0]->term_id; 
+            ));
+            $status_id = $get_taxonomy[0]->term_id;
         }
 
         $args['tax_query'] = array(
@@ -143,19 +144,20 @@ class Task
         }
 
         $taxonomy = 'task_status';
-        $get_taxonomy = get_terms( array(
+        $get_taxonomy = get_terms(array(
             'taxonomy' => 'ndpi_' . $taxonomy,
-            'orderby' => 'term_order',
+            'meta_key' => 'tax_pos',
+            'orderby' => 'tax_pos',
             'hide_empty' => false
-        ) );
+        ));
 
         $format_taxonomy = [];
-        foreach( $get_taxonomy as $single ) {
+        foreach ($get_taxonomy as $single) {
             $format_taxonomy[] = [
                 'id' => $single->term_id,
                 'label' => $single->name
             ];
-        } 
+        }
         $data[$taxonomy] = $format_taxonomy;
 
         while ($query->have_posts()) {
@@ -166,7 +168,7 @@ class Task
             $query_data['id'] = $id;
             $query_data['title'] = get_the_title();
 
-            $query_data['status_id'] = ''; 
+            $query_data['status_id'] = '';
             $status = get_the_terms($id, 'ndpi_task_status');
             if ($status) {
                 $term_id = $status[0]->term_id;
@@ -178,7 +180,7 @@ class Task
                 ];
             }
 
-            $query_data['type_id'] = ''; 
+            $query_data['type_id'] = '';
             $type = get_the_terms($id, 'ndpi_task_type');
             if ($type) {
                 $query_data['type_id'] = [
@@ -187,7 +189,7 @@ class Task
                 ];
             }
 
-            $query_data['priority_id'] = ''; 
+            $query_data['priority_id'] = '';
             $priority = get_the_terms($id, 'ndpi_task_priority');
             if ($priority) {
                 $term_id = $priority[0]->term_id;
@@ -202,7 +204,7 @@ class Task
             $query_data['desc'] = get_the_content();
             $query_data['date'] = get_the_time('j-M-Y');
 
-            if ( $tab_id ) { 
+            if ($tab_id) {
                 if (false) { //TODO: check unschedule
                     $data['unschedule'][] = $query_data;
                 } else if (true) { //TODO: check today 
@@ -294,11 +296,11 @@ class Task
     public function update($req)
     {
         $params = $req->get_params();
-        $reg_errors = new \WP_Error; 
-        
+        $reg_errors = new \WP_Error;
+
         $status_id  = isset($params['status_id']) ? absint($params['status_id']) : null;
         $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
-        $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null; 
+        $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
 
         /* if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
@@ -311,15 +313,15 @@ class Task
             $post_id    = $url_params['id'];
 
             $data = array(
-                'ID'            => $post_id, 
+                'ID'            => $post_id,
                 'post_author'   => get_current_user_id()
-            ); 
+            );
 
-            if ( isset($params['title']) ) {
+            if (isset($params['title'])) {
                 $data['post_title'] = sanitize_text_field($req['title']);
             }
 
-            if ( isset($params['desc']) ) {
+            if (isset($params['desc'])) {
                 $data['post_content'] = sanitize_text_field($req['desc']);
             }
 

@@ -87,7 +87,8 @@ class Taxonomy
             foreach ($taxonomies as $taxonomy) {
                 $get_taxonomy = get_terms(array(
                     'taxonomy' => 'ndpi_' . $taxonomy,
-                    'orderby' => 'term_order',
+                    'meta_key' => 'tax_pos',
+                    'orderby' => 'tax_pos',
                     'hide_empty' => false
                 ));
 
@@ -104,7 +105,7 @@ class Taxonomy
                 }
                 $data[$taxonomy] = $format_taxonomy;
 
-                if ( $id ) { 
+                if ($id) {
                     $tags = get_the_terms($id, 'ndpi_tag');
                     if ($tags) {
                         $tagList = [];
@@ -166,6 +167,7 @@ class Taxonomy
 
                 if (!is_wp_error($taxonomy)) {
                     $term_id = $taxonomy['term_id'];
+                    update_term_meta($term_id, 'tax_pos', $term_id);
                     update_term_meta($term_id, 'color', $color);
                     update_term_meta($term_id, 'bg_color', $bg_color);
                     wp_send_json_success($term_id);
@@ -181,7 +183,7 @@ class Taxonomy
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null; 
+        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
         $post_id = isset($params['post_id']) ? absint($params['post_id']) : null;
         $add = isset($params['add']) ? true : false;
         $delete = isset($params['delete']) ? true : false;
@@ -197,14 +199,14 @@ class Taxonomy
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $url_params = $req->get_url_params();
-            $term_id = absint( $url_params['id'] );
+            $term_id = absint($url_params['id']);
 
-            if ( $add ) {
+            if ($add) {
                 wp_set_object_terms($post_id, $term_id, 'ndpi_' . $taxonomy, true);
 
                 wp_send_json_success();
-            } else if ( $delete ) {
-                if ( $post_id ) { //delete term from post
+            } else if ($delete) {
+                if ($post_id) { //delete term from post
                     wp_remove_object_terms($post_id, $term_id, 'ndpi_' . $taxonomy);
                 } else { // delte term
                     wp_delete_term($term_id, 'ndpi_' . $taxonomy);
@@ -232,11 +234,10 @@ class Taxonomy
 
     public function reorder_taxonomies($ids = array())
     {
-        global $wpdb;
-        $i = 0;
+        $i = 1;
         foreach ($ids as $id) :
+            update_term_meta($id, 'tax_pos', $i);
             $i++;
-            $result = $wpdb->update($wpdb->prefix . 'terms', array('term_order' => $i), array('term_id' => $id));
         endforeach;
     }
 
