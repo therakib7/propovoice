@@ -146,7 +146,7 @@ const Tag = (props) => {
 			})}
 
 			<div className="pi-action-content" ref={dropdownContent}>
-				<button className="pi-action-btn pi-bg-shadow" onClick={() => showDropdown()}>
+				<button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow" onClick={() => showDropdown()}>
 					+ Add tag
 				</button>
 				{dropdown && <div className="pi-dropdown-content pi-show">

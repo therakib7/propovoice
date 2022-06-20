@@ -9,7 +9,7 @@ class PaymentInfo extends Component {
     render = () => {
         const bank_info = this.props.data;
         return (  
-            <div className="pi-from-content"> 
+            <div className=""> 
                 {bank_info ?
                     <>
                         <div className="pi-from-to"> 

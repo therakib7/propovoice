@@ -295,7 +295,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label
                                             htmlFor="field-probability">
-                                            probability <span style={{position: 'absolute', right: '15px'}}>({form.probability}%)</span>
+                                            Probability <span style={{position: 'absolute', right: '15px'}}>({form.probability}%)</span>
                                         </label>
 
                                         <input

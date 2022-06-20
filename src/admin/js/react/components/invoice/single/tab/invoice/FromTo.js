@@ -47,29 +47,29 @@ class FromTo extends Component {
             if (fromData.length) {
                 let stateValue = {}
 
-                if ( !wage.length ) {
+                if (!wage.length) {
                     stateValue.fromList = fromData;
-                }  
+                }
 
-                if ( !this.props.editId ) {  
-                    let filteredArray = fromData.filter(function(itm){
+                if (!this.props.editId) {
+                    let filteredArray = fromData.filter(function (itm) {
                         return itm.default == true;
                     });
 
-                    if (filteredArray.length) { 
+                    if (filteredArray.length) {
                         stateValue.from = filteredArray[0];
                         this.props.setFrom(filteredArray[0]);
                     } else {
                         stateValue.from = fromData[0];
                         this.props.setFrom(fromData[0]);
-                    } 
-                }   
-                
-                this.setState( stateValue );
+                    }
+                }
+
+                this.setState(stateValue);
             }
         });
 
-        if ( this.props.editId ) { 
+        if (this.props.editId) {
             let fromData = this.props.fromData;
             let toData = this.props.toData;
             if (fromData && toData) {
@@ -197,143 +197,66 @@ class FromTo extends Component {
         const { fromList, toList } = this.state;
         const { fromData, toData } = this.props;
         return (
-            <div className="pi-from-content" style={{ padding: '17px 30px 10px' }} >
-                {/* TODO: move parent style to css */}
-
-                {this.state.businessModal && <BusinessForm
-                    handleSubmit={this.handleBusinessSubmit}
-                    show={this.state.businessModal}
-                    modalType={this.state.businessModalType}
-                    data={this.state.businessData}
-                    close={() => this.setState({ businessModal: false })}
-                />}
-
-                {this.state.clientModal && <ClientForm
-                    handleSubmit={this.handleClientSubmit}
-                    show={this.state.clientModal}
-                    modalType={this.state.clientModalType}
-                    data={this.state.clientData}
-                    close={() => this.setState({ clientModal: false })}
-                />}
-
+            <div className="pi-from-content pi-border-right pi-mt-25">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-md-6">
                         <div className="pi-from-to">
-                            <label>Business:</label>
-                            <Select
-                                value={fromData}
-                                onChange={this.handleFromChange}
-                                getOptionValue={(fromList) => fromList.id}
-                                getOptionLabel={(fromList) => fromList.name}
-                                options={fromList}
-                            />
-                            <div className="pi-from pi-bg-air-white">
-                                {fromData ?
-                                    <>
-                                        <h4 className="pi-from-title">
-                                            {fromData.name}
-
-                                            <span
-                                                onClick={() => this.setState({ businessData: fromData, businessModal: true, businessModalType: 'edit' })}
-                                            >
-                                                <svg
-                                                    width={11}
-                                                    height={11}
-                                                    viewBox="0 0 13 13"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path
-                                                        d="M12.524.476a1.625 1.625 0 00-2.298 0L4.062 6.64v2.297H6.36l6.164-6.163a1.625 1.625 0 000-2.298z"
-                                                        fill="#A0AEC0"
-                                                    />
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                        d="M0 3.25a1.625 1.625 0 011.625-1.625h3.25a.813.813 0 110 1.625h-3.25v8.125H9.75v-3.25a.813.813 0 011.625 0v3.25A1.625 1.625 0 019.75 13H1.625A1.625 1.625 0 010 11.375V3.25z"
-                                                        fill="#A0AEC0"
-                                                    />
-                                                </svg>
-                                                Edit
-                                            </span>
-                                        </h4>
-                                        <address>
-                                            {fromData.address &&
-                                                <>{fromData.address}.<br /></>
-                                            }
-
-                                            {fromData.email},
-
-                                            {fromData.mobile &&
-                                                <><br />{fromData.mobile}</>
-                                            }
-                                        </address>
-                                    </> : <>
-                                        {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>Create New Business</a>
-                                    </>
-                                }
+                            <label className="pi-title-small">Sender</label>
+                            <div className="pi-from pi-bg-white">
+                                <h4 className="pi-title-small">
+                                    ABCD Solution Ltd
+                                    <span>
+                                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
+                                            Edit
+                                        </button>
+                                    </span>
+                                </h4>
+                                <address>
+                                    Email: hello@nurency.com
+                                    <br />
+                                    What'sApp: +8801760706361
+                                    <br />
+                                    Asia Address:
+                                    <br />
+                                    377 Airport - Dakshinkhan Rd, Dhaka 1230
+                                </address>
                             </div>
                         </div>
                         {/* ./ pi-from-to */}
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-md-6">
                         <div className="pi-from-to pi-to">
-                            <label>Receiver:</label>
-                            <AsyncSelect
-                                loadOptions={this.handleFindClient}
-                                value={toData}
-                                defaultOptions={toList}
-                                onChange={this.handleClientSelect}
-                                getOptionValue={(toList) => toList.id}
-                                getOptionLabel={(toList) => (toList.first_name) ? toList.first_name + ' ' + toList.last_name : ''}
-                            />
-                            <div className="pi-from pi-bg-air-white">
-                                {toData ?
-                                    <>
-                                        <h4 className="pi-from-title">
-                                            {toData.first_name} {toData.last_name}
-
-                                            <span
-                                                onClick={() => this.setState({ clientData: toData, clientModal: true, clientModalType: 'edit' })}
-                                            >
-                                                <svg
-                                                    width={11}
-                                                    height={11}
-                                                    viewBox="0 0 13 13"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path
-                                                        d="M12.524.476a1.625 1.625 0 00-2.298 0L4.062 6.64v2.297H6.36l6.164-6.163a1.625 1.625 0 000-2.298z"
-                                                        fill="#A0AEC0"
-                                                    />
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                        d="M0 3.25a1.625 1.625 0 011.625-1.625h3.25a.813.813 0 110 1.625h-3.25v8.125H9.75v-3.25a.813.813 0 011.625 0v3.25A1.625 1.625 0 019.75 13H1.625A1.625 1.625 0 010 11.375V3.25z"
-                                                        fill="#A0AEC0"
-                                                    />
-                                                </svg>
-                                                Edit
-                                            </span>
-                                        </h4>
-                                        <address>
-                                            {toData.address &&
-                                                <>{toData.address}.<br /></>
-                                            }
-
-                                            {toData.email},
-
-                                            {toData.mobile &&
-                                                <><br />{toData.mobile}</>
-                                            }
-                                        </address>
-                                    </> : <>
-                                        {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ clientModal: true, clientModalTYpe: 'new' })}>Add New Client</a>
-                                    </>
-                                }
+                            <div className="row">
+                                <div className="col">
+                                    <label className="pi-title-small">Receiver</label>
+                                </div>
+                                <div className="col">
+                                    <select name="pi-sandlist">
+                                        <option value="volvo">Nurency Digital</option>
+                                        <option value="saab">Saab</option>
+                                        <option value="opel">Opel</option>
+                                        <option value="audi">Audi</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="pi-from pi-bg-white">
+                                <h4 className="pi-title-small">
+                                    ABCD Solution Ltd
+                                    <span>
+                                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
+                                            Edit
+                                        </button>
+                                    </span>
+                                </h4>
+                                <address>
+                                    Email: hello@nurency.com
+                                    <br />
+                                    What'sApp: +8801760706361
+                                    <br />
+                                    Asia Address:
+                                    <br />
+                                    377 Airport - Dakshinkhan Rd, Dhaka 1230
+                                </address>
                             </div>
                         </div>
                         {/* ./ pi-from-to */}

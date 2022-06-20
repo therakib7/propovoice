@@ -89,8 +89,8 @@ export default class Template extends Component {
 
     render() { 
         return (
-            <div id="pi-template" className="pi-invoice-tab-content">
-                <h2 className='pi-tab-content-title'>Select Template</h2>
+            <div className="pi-invoice-tab-content">
+                <h2 className='pi-page-title'>Select Template</h2>
                 <div className="row pi-gap pi-margin-l-r">
 
                     {this.state.preloader && <Preloader />}
@@ -102,11 +102,11 @@ export default class Template extends Component {
                                     <div className={(this.props.currentTemplate == row.id) ? 'pi-single-image-content pi-active' : 'pi-single-image-content'}>
                                         <img src={row.src} className="pi-single-image" />
                                         {(this.props.currentTemplate != row.id) && <div className="pi-overflow-content">
-                                            <a className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
+                                            <a className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
                                             <a
                                                 href={'https://appux.co/ncpi/preview/inv' + row.id + '.html'}
                                                 target="_blank"
-                                                className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
                                             >Full Preview</a>
                                         </div>}
                                     </div>

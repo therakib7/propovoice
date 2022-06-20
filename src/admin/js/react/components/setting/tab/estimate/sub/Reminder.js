@@ -21,7 +21,7 @@ export default class Reminder extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=invoice_reminder')
+        Api.getAll('tab=estimate_reminder')
             .then(resp => { 
                 if (resp.data.success) {
                     this.setState({ form: resp.data.data });
@@ -52,7 +52,7 @@ export default class Reminder extends Component {
         e.preventDefault();
 
         let form = this.state.form;
-        form.tab = 'invoice_reminder';
+        form.tab = 'estimate_reminder';
         
         Api.create(form)
                 .then(resp => {
@@ -68,7 +68,7 @@ export default class Reminder extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={{maxWidth: '600px'}} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
                 <div className="row">
                     <div className="col">
@@ -180,7 +180,7 @@ export default class Reminder extends Component {
                     </div>
                 </div> 
 
-                <div className="row" style={{marginTop: '10px'}}>
+                <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
                             Save

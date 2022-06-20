@@ -35,7 +35,7 @@ const Deal = (props) => {
                 <div className="col-lg-6">
                     <h2 className="pi-page-title pi-mb-15">{title + ' Pipeline'}</h2>
                     <div className="pi-small-button-group">
-                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+                        <button className="pi-btn pi-btn-small pi-active pi-bg-stroke pi-bg-hover-shadow">
                             All Deal
                         </button>
                         <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
@@ -72,7 +72,7 @@ const Deal = (props) => {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            Add Section
+                            Add Stage
                         </button>
                         <button 
                         className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white"

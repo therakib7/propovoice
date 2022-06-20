@@ -413,7 +413,7 @@ class ListSingle extends Component {
                                         </div>
                                         <div className="pi-range">
                                             <label htmlFor="field-probability">
-                                                probability
+                                                Probability
                                             </label>
                                             {/* <span className='pi-float-right'>({data.probability}%)</span> */}
                                             <input
@@ -654,13 +654,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    <span className="pi-badge">Badge</span>
-                                    <span className="pi-badge">Badge</span>
-                                    <select name="" id="">
-                                        <option value="">+ Add Tag</option>
-                                        <option value="">+ Add Tag</option>
-                                        <option value="">+ Add Tag</option>
-                                    </select>
+                                    {data.id && <Tag id={data.id} taxonomy='tag' multiple={true} />}
                                 </li>
                                 <li>
                                     <label htmlFor="">Start Date:</label>
@@ -909,19 +903,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {
-                                        data.tags && data.tags.map((tag, tagIndex) => {
-                                            return (
-                                                <span key={tagIndex} className="pi-badge">{tag.label} <b>X</b></span>
-                                            )
-                                        })
-                                    }
-
-                                    <select name="" id="">
-                                        <option value="">+ Add TAg</option>
-                                        <option value="">+ Add TAg</option>
-                                        <option value="">+ Add TAg</option>
-                                    </select>
+                                    {data.id && <Tag id={data.id} taxonomy='tag' multiple={true} />}
                                 </li>
                                 <li>Project 2</li>
                                 <li>Deal 2</li>

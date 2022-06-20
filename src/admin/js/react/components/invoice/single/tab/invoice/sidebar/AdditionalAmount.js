@@ -26,14 +26,37 @@ class AdditionalAmount extends Component {
                         Tax
                     </label>
                     <div className="pi-tab-content">
-                        <div className="pi-form-style-two pi-form-style-four">
+                        <div className="pi-form-style-one">
                             <div className="pi-radio-content">
                                 <div className="pi-radio-group">
                                     <h4>Tax type:</h4>
-                                    <input onChange={() => this.setAdditional({ field: 'tax', type: 'percent' }, 'type')} defaultChecked={extra_field.hasOwnProperty('tax') && extra_field.tax == 'percent'} type="radio" name="tax" id="tax-percent" />
-                                    <label htmlFor="tax-percent">Percentage</label>
-                                    <input onChange={() => this.setAdditional({ field: 'tax', type: 'fixed' }, 'type')} defaultChecked={extra_field.hasOwnProperty('tax') && extra_field.tax == 'fixed'} type="radio" name="tax" id="tax-fixed" />
-                                    <label htmlFor="tax-fixed">Fixed</label>
+                                    <div className='row'>
+                                        <div className='col'>
+                                            <div className='pi-field-radio'>
+
+                                            </div>
+                                        </div>
+                                        <div className='col pi-p-0'>
+                                            <div className='pi-field-radio'>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className='row'>
+                                        <div className='col'>
+                                            <div className='pi-field-radio'>
+                                                <input onChange={() => this.setAdditional({ field: 'tax', type: 'percent' }, 'type')} defaultChecked={extra_field.hasOwnProperty('tax') && extra_field.tax == 'percent'} type="radio" name="tax" id="tax-percent" />
+                                                <label htmlFor="tax-percent">Percentage</label>
+                                            </div>
+                                        </div>
+                                        <div className='col pi-p-0'>
+                                            <div className='pi-field-radio'>
+                                                <input onChange={() => this.setAdditional({ field: 'tax', type: 'fixed' }, 'type')} defaultChecked={extra_field.hasOwnProperty('tax') && extra_field.tax == 'fixed'} type="radio" name="tax" id="tax-fixed" />
+                                                <label htmlFor="tax-fixed">Fixed</label>
+                                            </div>
+                                        </div>
+                                    </div>  
                                 </div>
                             </div>
                         </div>
@@ -46,7 +69,7 @@ class AdditionalAmount extends Component {
                         Discount
                     </label>
                     <div className="pi-tab-content">
-                        <div className="pi-form-style-two pi-form-style-four">
+                        <div className="pi-form-style-one">
                             <div className="pi-radio-content">
                                 <div className="pi-radio-group">
                                     <h4>Discount type:</h4>
@@ -66,7 +89,7 @@ class AdditionalAmount extends Component {
                         Late Fee
                     </label>
                     <div className="pi-tab-content">
-                        <div className="pi-form-style-two pi-form-style-four">
+                        <div className="pi-form-style-one">
                             <div className="pi-radio-content">
                                 <div className="pi-radio-group">
                                     <h4>Late Fee type:</h4>

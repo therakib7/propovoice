@@ -2,14 +2,69 @@ const Empty = (props) => {
     const { title, clickHandler, searchVal, logo = '' } = props;
     return (
         <>
-            <div className="pi-empty-content pi-text-center">
-                <img src={ncpi.assetImgUri + 'empty-data.png'}  />
-                {!searchVal.length && <h4>You haven&apos;t  {title == 'Client' ? 'added' : 'created'} any {title} yet.</h4>}
-                {searchVal.length > 0 && <h4>No {title} found by your search query.</h4>}
+            {/* <div className="pi-empty-content pi-text-center">
+                <img src={ncpi.assetImgUri + 'empty-data.png'} />
+                
+                
+            </div> */}
+
+            <div
+                className="pi-empty-content pi-text-center"
+                // style={{ backgroundImage: "url(assets/img/overlay-image.png)" }}
+            >
+                <svg
+                    width={80}
+                    height={80}
+                    viewBox="0 0 36 36"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M28.8281 0.617554V7.03125H35.2414L28.8281 0.617554Z"
+                        fill="#4C6FFF"
+                        fillOpacity="0.5"
+                    />
+                    <path
+                        d="M27.7734 9.14062C27.191 9.14062 26.7188 8.66841 26.7188 8.08594V0H11.6016C9.8569 0 8.4375 1.4194 8.4375 3.16406V14.9547C8.78498 14.9232 9.13662 14.9062 9.49219 14.9062C13.0871 14.9062 16.3053 16.5499 18.435 19.125H29.8828C30.4653 19.125 30.9375 19.5972 30.9375 20.1797C30.9375 20.7622 30.4653 21.2344 29.8828 21.2344H19.8245C20.4837 22.5208 20.9088 23.946 21.0453 25.4531H29.8828C30.4653 25.4531 30.9375 25.9253 30.9375 26.5078C30.9375 27.0903 30.4653 27.5625 29.8828 27.5625H21.0453C20.7299 31.0457 18.8689 34.0893 16.1549 36H32.6953C34.44 36 35.8594 34.5806 35.8594 32.8359V9.14062H27.7734ZM29.8828 14.9062H14.4141C13.8316 14.9062 13.3594 14.434 13.3594 13.8516C13.3594 13.2691 13.8316 12.7969 14.4141 12.7969H29.8828C30.4653 12.7969 30.9375 13.2691 30.9375 13.8516C30.9375 14.434 30.4653 14.9062 29.8828 14.9062Z"
+                        fill="#4C6FFF"
+                    />
+                    <path
+                        d="M9.49219 17.0156C4.25819 17.0156 0 21.2738 0 26.5078C0 31.7418 4.25819 36 9.49219 36C14.7262 36 18.9844 31.7418 18.9844 26.5078C18.9844 21.2738 14.7262 17.0156 9.49219 17.0156ZM8.90627 25.4531H10.0782C11.3058 25.4531 12.3047 26.452 12.3047 27.6797V28.8515C12.3047 29.9185 11.5502 30.8121 10.5469 31.0281V31.4297C10.5469 32.0122 10.0747 32.4844 9.49219 32.4844C8.90972 32.4844 8.4375 32.0122 8.4375 31.4297V31.0281C7.43414 30.8121 6.67969 29.9185 6.67969 28.8515C6.67969 28.2691 7.15191 27.7969 7.73438 27.7969C8.31684 27.7969 8.78906 28.2691 8.78906 28.8515C8.78906 28.9162 8.84166 28.9688 8.90627 28.9688H10.0782C10.1428 28.9688 10.1954 28.9162 10.1954 28.8515V27.6797C10.1954 27.6151 10.1428 27.5625 10.0782 27.5625H8.90627C7.67855 27.5625 6.67969 26.5636 6.67969 25.3359V24.1641C6.67969 23.0972 7.43414 22.2035 8.4375 21.9876V21.5859C8.4375 21.0035 8.90972 20.5312 9.49219 20.5312C10.0747 20.5312 10.5469 21.0035 10.5469 21.5859V21.9876C11.5502 22.2035 12.3047 23.0972 12.3047 24.1641C12.3047 24.7466 11.8325 25.2188 11.25 25.2188C10.6675 25.2188 10.1953 24.7466 10.1953 24.1641C10.1953 24.0995 10.1427 24.0469 10.0781 24.0469H8.9062C8.84159 24.0469 8.78899 24.0995 8.78899 24.1641V25.3359C8.78906 25.4005 8.84166 25.4531 8.90627 25.4531Z"
+                        fill="#4C6FFF"
+                        fillOpacity="0.5"
+                    />
+                </svg> 
+
+                {!searchVal.length && <h2 className="pi-empty-title">You haven&apos;t  {title == 'Client' ? 'added' : 'created'} any {title} yet.</h2>}
+                {searchVal.length > 0 && <h2 className="pi-empty-title">No {title} found by your search query.</h2>}
+
                 <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => clickHandler('new')}>
+                    <svg
+                        width={14}
+                        height={12}
+                        viewBox="0 0 12 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M2.5 8H13.5"
+                            stroke="white"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M8 2.5V13.5"
+                            stroke="white"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
                     Let&apos;s Start {title == 'Client' ? 'Adding' : 'Creating'}
                 </button>
             </div>
+
         </>
     );
 }

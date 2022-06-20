@@ -1202,29 +1202,43 @@ html {
 .ncpi .pi-calculation {
   margin-top: 15px;
 }
+.ncpi .pi-calculation .pi-title-small {
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.ncpi .pi-calculation address {
+  color: #718096;
+  font-style: normal;
+  line-height: 170%;
+}
 .ncpi .pi-calculation table {
   margin-left: auto;
   text-align: right;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
-.ncpi .pi-calculation table tr:first-child td:first-child {
+.ncpi .pi-calculation table tr td:first-child {
   font-size: 14px;
   font-weight: 700;
+  color: #4A5568;
+  text-align: left;
 }
 .ncpi .pi-calculation table tr:last-child {
-  border-radius: 8px;
-  background-color: #edf2f7;
+  border-top: 1px solid #E2E8F0;
+}
+.ncpi .pi-calculation table tr:last-child td:last-child {
+  font-weight: 500;
 }
 .ncpi .pi-calculation table tr:last-child td {
-  position: relative;
-  right: 2px;
+  padding: 25px 0 15px 15px;
+  font-size: 20px;
   font-weight: bold;
 }
 .ncpi .pi-calculation table tr td {
   font-size: 12px;
-  z-index: 2;
-  position: relative;
-  padding: 10px 15px;
-  margin-right: 10px;
+  padding: 0px 0 15px 15px;
+  color: #718096;
 }
 .ncpi .pi-calculation table input[type=number] {
   width: 70px;
@@ -1611,6 +1625,11 @@ html {
   color: #718096;
   font-size: 12px;
 }
+.ncpi .pi-search-bar .pi-total-list p select {
+  border: 1px solid #E2E8F0;
+  border-radius: 5px;
+  margin: 0 5px 0 5px;
+}
 .ncpi .pi-search-bar .pi-total-list p span {
   font-weight: 500;
   color: #2D3748;
@@ -1794,12 +1813,12 @@ html {
     float: none;
   }
 }
-.ncpi .pi-pagination .pi-disabled span {
+.ncpi .pi-pagination .pi-disabled a {
   cursor: not-allowed;
   color: #4a5568;
 }
-.ncpi .pi-pagination .pi-next span,
-.ncpi .pi-pagination .pi-previous span {
+.ncpi .pi-pagination .pi-next a,
+.ncpi .pi-pagination .pi-previous a {
   padding: 6px 12px;
   border: 1px solid #dddddda8;
   margin-left: -1px;
@@ -1807,11 +1826,11 @@ html {
   font-weight: 500;
   background-color: #fff;
 }
-.ncpi .pi-pagination li.pi-previous span {
+.ncpi .pi-pagination li.pi-previous a {
   border-radius: 5px;
   margin-right: 5px;
 }
-.ncpi .pi-pagination li.pi-next span {
+.ncpi .pi-pagination li.pi-next a {
   border-radius: 5px;
   margin-left: 5px;
 }
@@ -2672,6 +2691,8 @@ html {
   border-radius: 10px;
   border: 1px solid #dddddda8;
   margin-bottom: 10px;
+  z-index: 9;
+  position: relative;
 }
 .ncpi .pi-accordion-wrapper > ul > li i {
   position: absolute;
@@ -3393,7 +3414,7 @@ html {
   display: block;
   color: #4A5568;
   font-weight: 500;
-  margin-bottom: 3px;
+  margin-top: 10px;
 }
 .ncpi .pi-info-box .pi-desc-content h5 {
   color: #4A5568;

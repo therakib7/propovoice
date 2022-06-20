@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+ 
 import ColorPicker from 'block/color-picker';
 
 class Style extends Component {
@@ -18,10 +18,14 @@ class Style extends Component {
     render() {
         const color = this.props.data.style.primary_color;
         return (
-            <div className="pi-edit-content">
-                <h4>Edit Color</h4>
-                <ColorPicker color={color} onChange={this.handleChange} />
-            </div>
+            <div className="pi-form-style-one pi-edit">
+                <div className="row">
+                    <div className="col-12">
+                        <label htmlFor="name">Edit clolor</label> 
+                        <ColorPicker color={color} onChange={this.handleChange} />
+                    </div>
+                </div> 
+            </div> 
         );
     }
 }

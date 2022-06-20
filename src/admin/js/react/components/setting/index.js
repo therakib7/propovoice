@@ -4,18 +4,20 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
  
 const General = lazy(() => import('./tab/general'));
 
+const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
 const Deal = lazy(() => import('./tab/deal'));
-const Task = lazy(() => import('./tab/task'));
+const Estimate = lazy(() => import('./tab/estimate'));
+const Invoice = lazy(() => import('./tab/invoice'));
 const Tag = lazy(() => import('./tab/tag'));
 
 //subtab: estimate
-const EstimateReminder = lazy(() => import('./tab/estimate/Reminder'));
-const EstimateRecurring = lazy(() => import('./tab/estimate/Recurring'));
+// const EstimateReminder = lazy(() => import('./tab/estimate/Reminder'));
+// const EstimateRecurring = lazy(() => import('./tab/estimate/Recurring'));
 
 //subtab: invoice
-const InvoiceReminder = lazy(() => import('./tab/invoice/Reminder'));
-const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
+// const InvoiceReminder = lazy(() => import('./tab/invoice/Reminder'));
+// const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
 
 //subtab: email 
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
@@ -65,26 +67,10 @@ export default function SettingWrap() {
                     label: 'Deal'
                 },
                 estimate: {
-                    label: 'Estimate',
-                    subtabs: {
-                        reminder: {
-                            label: 'Reminder',
-                        },
-                        template: {
-                            label: 'Template',
-                        },
-                    },
+                    label: 'Estimate'
                 },
                 invoice: {
-                    label: 'Invoice',
-                    subtabs: {
-                        reminder: {
-                            label: 'Reminder',
-                        },
-                        template: {
-                            label: 'Template',
-                        },
-                    },
+                    label: 'Invoice'
                 },
                 business: {
                     label: 'Business'
@@ -199,8 +185,10 @@ export default function SettingWrap() {
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
                                 {currentTab == 'deal' && <Deal />}
+                                {currentTab == 'estimate' && <Estimate />}
+                                {currentTab == 'invoice' && <Invoice />}
 
-                                {!wage.length &&
+                                {/* {!wage.length &&
                                     <>
                                         {currentTab == 'estimate' && (currentSubtab == 'reminder' || !currentSubtab) && <EstimateReminder />}
                                         {currentTab == 'estimate' && currentSubtab == 'recurring' && <EstimateRecurring />}
@@ -208,7 +196,7 @@ export default function SettingWrap() {
                                         {currentTab == 'invoice' && (currentSubtab == 'reminder' || !currentSubtab) && <InvoiceReminder />}
                                         {currentTab == 'invoice' && currentSubtab == 'recurring' && <InvoiceRecurring />}
                                     </>
-                                }
+                                } */}
 
                                 {currentTab == 'business' && <BusinessSingle />} 
                                 {currentTab == 'payment' && <Payment />}

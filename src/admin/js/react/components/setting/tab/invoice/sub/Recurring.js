@@ -68,7 +68,7 @@ export default class Recurring extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={{maxWidth: '600px'}} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
                 <div className="row">
                     <div className="col">
@@ -95,7 +95,7 @@ export default class Recurring extends Component {
                     </div>
                 </div> 
 
-                <div className="row" style={{marginTop: '10px'}}>
+                <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
                             Save

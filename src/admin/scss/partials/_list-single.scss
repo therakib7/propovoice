@@ -74,6 +74,11 @@
   margin-right: 0;
   margin-left: 20px;
 }
+.ncpi .pi-list-single-button-content .pi-select .pi-action-content .pi-dropdown-content {
+  top: 36px;
+  left: -20px;
+  text-align: left;
+}
 .ncpi .pi-list-single-button-content button {
   background-color: #fff;
   color: #4A5568;
@@ -308,7 +313,6 @@
   margin-right: 20px;
   width: 250px;
   background: linear-gradient(180deg, #F0F4F8 0%, rgba(247, 247, 247, 0) 100%);
-  height: calc(100vh - 235px);
 }
 .ncpi .pi-board-column .pi-btn {
   width: 100%;
@@ -417,6 +421,7 @@
 }
 .ncpi .pi-board-content {
   margin-top: 10px;
+  height: calc(100vh - 308px);
 }
 .ncpi .pi-note {
   display: flex;

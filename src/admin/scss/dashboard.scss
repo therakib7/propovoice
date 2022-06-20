@@ -272,13 +272,4 @@ input:checked+.pi-switch-slider:before {
     // max-width: none !important; 
     max-width: none !important; overflow-x: scroll; height: 100vh;
     // overflow-x: scroll;
-}
-
-//TODO: remove it after reza add it to html
-.pi-total-list {
-    select {
-        border: 1px solid #dfdfdf;
-        padding: 0 15px 0 10px;
-        margin: 0 5px;
-    }
-}
+} 

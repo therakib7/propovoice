@@ -1,6 +1,6 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { toast } from 'react-toastify';
-
+import { NavLink } from "react-router-dom";
 import Api from 'api/invoice';
 
 //self component
@@ -513,12 +513,12 @@ class Invoice extends Component {
 		});
 	}
 
-	setSidebarActive( id ) {
-		if ( this.state.sidebarActive == id ) {
+	setSidebarActive(id) {
+		if (this.state.sidebarActive == id) {
 			this.setState({ sidebarActive: '' });
 		} else {
 			this.setState({ sidebarActive: id });
-		} 
+		}
 	}
 
 	onStyleChange = (data) => {
@@ -613,201 +613,245 @@ class Invoice extends Component {
 		const { title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
 		return (
 			<>
+				<div>
+					<div className="row">
+						<div className="col-md-6">
+							<nav className="pi-breadcrumb">
+								<ul className="">
+									<li>
+										<a href="#" className="">
+											Home
+										</a>
+									</li>
+									<li>
+										<svg
+											width={5}
+											height={10}
+											viewBox="0 0 5 10"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												d="M0.5 1.25L4.25 5L0.5 8.75"
+												stroke="#718096"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+											/>
+										</svg>
+									</li>
+									<li>
+										<NavLink to='/invoice'>{title}</NavLink>
+									</li>
+									<li>
+										<svg
+											width={5}
+											height={10}
+											viewBox="0 0 5 10"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												d="M0.5 1.25L4.25 5L0.5 8.75"
+												stroke="#718096"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+											/>
+										</svg>
+									</li>
+									<li className="pi-active">
+										{currentTab == 'template' && 'Select Template'}
+										{currentTab == 'info' && 'Add Content'}
+										{currentTab == 'preview' && 'Preview & Share'}
+									</li>
+								</ul>
+							</nav>
+						</div>
+						<div className="col-md-6">
+							<div className="pi-invoice-single-btn pi-text-right">
 
-				<div className="row">
-					<div className="col-md-6">
-						<h1>Create {title}</h1>
-						<nav className='pi-breadcrumb'>
-							<ul>
-								<li>
-									<a href='#' >
-										Home
-									</a>
-								</li>
-								<li>&gt;</li>
-								<li className='pi-active'>
-									{title}
-								</li>
-							</ul>
-						</nav>
-					</div>
-					<div className="col-md-6">
-						<div className="pi-single-btn pi-text-right">
+								{(currentTab == 'template') &&
+									<button
+										className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-mt-20"
+										onClick={() => this.continueTab('template')}
+									>
+										Continue
+										<svg
+											className="pi-mt-1"
+											width={6}
+											height={9}
+											viewBox="0 0 6 9"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
+												fill="white"
+											/>
+										</svg>
+									</button>
+								}
 
-							{(currentTab == 'template') && <button
-								className="pi-btn pi-bg-blue pi-bg-hover-blue"
-								onClick={() => this.continueTab('template')} >
-								Continue
-							</button>}
+								{(currentTab == 'info') &&
+									<button
+										className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-mt-20"
+										onClick={this.handleSave}
+									>
+										{this.state.msg.saveTxt} & Continue
+										<svg
+											className="pi-mt-1"
+											width={6}
+											height={9}
+											viewBox="0 0 6 9"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
+												fill="white"
+											/>
+										</svg>
+									</button>
+								}
 
-							{(currentTab == 'info') && <button
-								className="pi-btn pi-bg-blue pi-bg-hover-blue"
-								onClick={this.handleSave} >
-								{this.state.msg.saveTxt} & Continue
-							</button>}
-
-							{(currentTab == 'preview') &&
-								<>
-									{/* <button
+								{(currentTab == 'preview') &&
+									<>
+										{/* <button
 										className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
 										onClick={() => this.props.routeInvoice()} >
 										Back to Invoice
 									</button> */}
 
-									<button
-										className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
-										onClick={() => this.setState({ shareModal: true })} >
-										Share
-									</button>
-									<button
-										className="pi-btn pi-bg-blue pi-bg-hover-blue"
-										onClick={() => this.setState({ emailModal: true })} >
-										Send Email
-									</button>
-								</>
-							}
+										<button
+											className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
+											onClick={() => this.setState({ shareModal: true })} >
+											Share
+										</button>
+										<button
+											className="pi-btn pi-bg-blue pi-bg-hover-blue"
+											onClick={() => this.setState({ emailModal: true })} >
+											Send Email
+										</button>
+									</>
+								}
+							</div>
 						</div>
-					</div>
-				</div>{/* ./row */}
+					</div>{/* ./row */}
 
-				<div className="pi-single-tab-content">
-					<div className="pi-single-tabs pi-text-center">
-						{tabs.map((tab, index) => (
-							<button
-								key={index}
-								className={"pi-tab-item tablink " + (index <= currentTabIndex ? 'pi-active' : '')}
-								onClick={(e) => this.setActiveTab(e, tab.id, index)}
-							>
-								{<span className="pi-single-tab-done"><svg
-									width={12}
-									height={12}
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="3.4 5.6 17.6 13.4"
-									xmlSpace="preserve"
+					<div className="pi-single-tab-content">
+						<div className="pi-single-tabs pi-text-center">
+							{tabs.map((tab, index) => (
+								<button
+									key={index}
+									className={"pi-tab-item tablink " + (index <= currentTabIndex ? 'pi-active' : '')}
+									onClick={(e) => this.setActiveTab(e, tab.id, index)}
 								>
-									<path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
-								</svg></span>}
-								<span></span>
-								{tab.text}
-								{index < 2 && <svg width={95} height={10} className="pi-arrow">
-									<path
-										d="M89.5 1l4 4m0 0l-4 4m4-4H1"
-										stroke={(index < currentTabIndex ? '#4c6fff' : '#E2E8F0')}
-										strokeWidth={2}
-										strokeLinecap="round"
-										strokeLinejoin="round"
-									/>
-								</svg>}
-							</button>
-						))}
-					</div>
+									{<span className="pi-single-tab-done"><svg
+										width={12}
+										height={12}
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="3.4 5.6 17.6 13.4"
+										xmlSpace="preserve"
+									>
+										<path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+									</svg></span>}
+									<span></span>
+									{tab.text}
+									{index < 2 && <svg width={95} height={10} className="pi-arrow">
+										<path
+											d="M89.5 1l4 4m0 0l-4 4m4-4H1"
+											stroke={(index < currentTabIndex ? '#4c6fff' : '#E2E8F0')}
+											strokeWidth={2}
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>}
+								</button>
+							))}
+						</div>
 
-					{(currentTab == 'template') && <Template
-						currentTemplate={invoice.template}
-						changeHandler={this.handleTemplateChange}
-					/>}
+						{(currentTab == 'template') && <Template
+							currentTemplate={invoice.template}
+							changeHandler={this.handleTemplateChange}
+						/>}
 
-					{(currentTab == 'info') && <div id="pi-informations" className="pi-invoice-tab-content">
-						<div className="row">
-							<div className="col-lg-9">
-								<h2 className='pi-tab-content-title'>Add Content</h2>
-								<div className="pi-info-content pi-bg-white">
-									<div className="pi-add-info-content pi-bg-pearl">
-										<h3 className="pi-color-blue pi-text-center">{title}</h3>
-										<div className="row">
-											<div className="col-12 col-md-6">
-												{this.state.fromData && this.state.fromData.logo &&
-													<div className="pi-info-logo">
-														<img src={this.state.fromData.logo.src} />
-													</div>}
-											</div>
-
-											<div className="col-12 col-md-6">
-												<div className="pi-info-form">
-													<div className="row">
-														<div className="pi-info-lavel">
-															<label htmlFor="info-number">{title} number:</label>
-														</div>
-														<div className="pi-info-input-field">
-															<input
-																type="text"
-																name="invoice_id"
-																value={this.props.id ? (this.props.path == 'invoice' ? 'Inv' : 'Est') + this.props.id : ''}
-																readOnly
-															/>
-														</div>
-													</div>
-
-													<div className="row">
-														<div className="pi-info-lavel">
-															<label htmlFor="date">{title} date:</label>
-														</div>
-														<div className="pi-info-input-field">
-															<DateField date={invoice.date} type='date' onDateChange={this.onDateChange} />
-														</div>
-													</div>
-
-													<div className="row">
-														<div className="pi-info-lavel">
-															<label htmlFor="due">Due date:</label>
-														</div>
-														<div className="pi-info-input-field">
-															<DateField date={invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
-														</div>
-													</div>
-
-													<div className="row">
-														<div className="pi-info-lavel">
-															<label htmlFor="info-currency">Currency:</label>
-														</div>
-														<div className="pi-info-input-field">
-															<input
-																type="text"
-																name="currency"
-																// value={invoice.currency}
-																value='USD'
-																readOnly
-															// onChange={() => this.changeCurrency}
-															/>
-														</div>
-													</div>
-
+						{(currentTab == 'info') && <div className="pi-invoice-tab-content">
+							<div className="row">
+								<div className="col-lg-9">
+									<h2 className='pi-page-title'>Add Content</h2>
+									<div className="pi-info-content pi-bg-white">
+										<div className="pi-add-info-content">
+											<h3 className="pi-color-blue pi-text-center">{title}</h3>
+											<div className="row">
+												<div className="col-12 col-md-6">
+													{this.state.fromData && this.state.fromData.logo &&
+														<div className="pi-info-logo">
+															<img src={this.state.fromData.logo.src} />
+														</div>}
 												</div>
-												{/* ./ pi-info-form */}
+
+												<div className="col-12 col-md-6">
+													<div className="pi-info-form">
+														<div className="row">
+															<div className="pi-info-lavel">
+																<label htmlFor="info-number">{title} number:</label>
+															</div>
+															<div className="pi-info-input-field">
+																<input
+																	type="text"
+																	name="invoice_id"
+																	value={this.props.id ? (this.props.path == 'invoice' ? 'Inv' : 'Est') + this.props.id : ''}
+																	readOnly
+																/>
+															</div>
+														</div>
+
+														<div className="row">
+															<div className="pi-info-lavel">
+																<label htmlFor="date">{title} date:</label>
+															</div>
+															<div className="pi-info-input-field">
+																<DateField date={invoice.date} type='date' onDateChange={this.onDateChange} />
+															</div>
+														</div>
+
+														<div className="row">
+															<div className="pi-info-lavel">
+																<label htmlFor="due">Due date:</label>
+															</div>
+															<div className="pi-info-input-field">
+																<DateField date={invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
+															</div>
+														</div>
+
+														<div className="row">
+															<div className="pi-info-lavel">
+																<label htmlFor="info-currency">Currency:</label>
+															</div>
+															<div className="pi-info-input-field">
+																<input
+																	type="text"
+																	name="currency"
+																	// value={invoice.currency}
+																	value='USD'
+																	readOnly
+																// onChange={() => this.changeCurrency}
+																/>
+															</div>
+														</div>
+
+													</div>
+													{/* ./ pi-info-form */}
+												</div>
 											</div>
-										</div>
-									</div>{/* ./ pi-add-info-content */}
+										</div>{/* ./ pi-add-info-content */}
 
-									<FromTo
-										setFrom={this.handleSetFrom}
-										setTo={this.handleSetTo}
-										fromData={this.state.fromData}
-										toData={this.state.toData}
-										editId={this.props.id}
-									/>
-
-									<div className="pi-info-table-content">
-										<span className="pi-edit-btn pi-float-right pi-color-blue pi-bg-air-white d-none">
-											<svg
-												width={10}
-												height={10}
-												viewBox="0 0 13 13"
-												fill="none"
-												xmlns="http://www.w3.org/2000/svg"
-											>
-												<path
-													d="M12.5241 0.47579C12.2193 0.171142 11.8061 0 11.3752 0C10.9443 0 10.531 0.171142 10.2263 0.47579L4.0625 6.63957V8.93738H6.36031L12.5241 2.7736C12.8287 2.46886 12.9999 2.0556 12.9999 1.62469C12.9999 1.19379 12.8287 0.78053 12.5241 0.47579Z"
-													fill="#A0AEC0"
-												/>
-												<path
-													fillRule="evenodd"
-													clipRule="evenodd"
-													d="M0 3.24978C0 2.81879 0.171209 2.40546 0.475963 2.1007C0.780718 1.79595 1.19405 1.62474 1.62504 1.62474H4.87512C5.09062 1.62474 5.29728 1.71034 5.44966 1.86272C5.60204 2.0151 5.68764 2.22177 5.68764 2.43726C5.68764 2.65275 5.60204 2.85942 5.44966 3.0118C5.29728 3.16417 5.09062 3.24978 4.87512 3.24978H1.62504V11.375H9.75024V8.1249C9.75024 7.90941 9.83585 7.70274 9.98823 7.55036C10.1406 7.39799 10.3473 7.31238 10.5628 7.31238C10.7783 7.31238 10.9849 7.39799 11.1373 7.55036C11.2897 7.70274 11.3753 7.90941 11.3753 8.1249V11.375C11.3753 11.806 11.2041 12.2193 10.8993 12.5241C10.5946 12.8288 10.1812 13 9.75024 13H1.62504C1.19405 13 0.780718 12.8288 0.475963 12.5241C0.171209 12.2193 0 11.806 0 11.375V3.24978Z"
-													fill="#A0AEC0"
-												/>
-											</svg>
-											Edit column
-										</span>
+										<FromTo
+											setFrom={this.handleSetFrom}
+											setTo={this.handleSetTo}
+											fromData={this.state.fromData}
+											toData={this.state.toData}
+											editId={this.props.id}
+										/>
 
 										<Items
 											items={invoice.items}
@@ -817,138 +861,138 @@ class Invoice extends Component {
 											focusHandler={this.handleFocusSelect}
 											deleteHandler={this.handleRemoveLineItem}
 											reorderHandler={this.handleReorderItems}
-										/>
-									</div>{/* ./ info-table-content */}
+										/> 
 
-									<div className="row">
-										<div className="col-lg-6">
-											<PaymentInfo data={this.state.paymentBankData} />
-										</div>
+										<div className="row">
+											<div className="col-lg-6">
+												<PaymentInfo data={this.state.paymentBankData} />
+											</div>
 
-										<div className="col-lg-6">
-											<Total
-												currencyFormatter={this.formatCurrency}
-												itemsTotal={this.calcItemsTotal}
-												extra_field={invoice.extra_field}
-												tax={invoice.tax}
-												discount={invoice.discount}
-												late_fee={invoice.late_fee}
-												taxTotal={this.calcTaxTotal}
-												discountTotal={this.calcDiscountTotal}
-												lateFeeTotal={this.calcLateFeeTotal}
-												grandTotal={this.calcGrandTotal}
-												changeHandler={this.handleTotalChange}
-												focusHandler={this.handleFocusSelect}
-											/>
-										</div>
-									</div>
-
-									<div className="pi-group-form">
-										<Suspense fallback={<div>Loading...</div>}>
-											<Section data={invoice.sections} changeHandler={this.handleSectionChange} />
-										</Suspense>
-
-										<div className="pi-buttons">
-											<div className="row">
-												<div className="col-md-6">
-													{/* <Attach data={invoice.attach} changeHandler={this.handleAttachChange} /> */}
-												</div>
-												<div className="col-md-6">
-													<Upload label={'Authorized Signature'} btnClass={'pi-a-btn pi-p-40'} imgClass={'pi-text-right pi-signature'} data={invoice.sign} changeHandler={this.handleSignChange} />
-												</div>
+											<div className="col-lg-6">
+												<Total
+													currencyFormatter={this.formatCurrency}
+													itemsTotal={this.calcItemsTotal}
+													extra_field={invoice.extra_field}
+													tax={invoice.tax}
+													discount={invoice.discount}
+													late_fee={invoice.late_fee}
+													taxTotal={this.calcTaxTotal}
+													discountTotal={this.calcDiscountTotal}
+													lateFeeTotal={this.calcLateFeeTotal}
+													grandTotal={this.calcGrandTotal}
+													changeHandler={this.handleTotalChange}
+													focusHandler={this.handleFocusSelect}
+												/>
 											</div>
 										</div>
-									</div>{/* ./ pi-group-form */}
-								</div>{/* ./ pi-info-content */}
-							</div>{/* ./ col-lg-9 */}
 
-							<div className="col-lg-3">
-								<div id="pi-right-sidebar" className="pi-right-sidebar" ref={this.sidebarRef} >
-									<h2 className="pi-r-s-title pi-tab-content-title">Preview {title}</h2>
-
-									<div className='pi-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
-										<InvTemplate key={invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
-									</div>
-
-									<div className="pi-accordion-wrapper">
-										<ul>
+										<div className="pi-group-form">
 											<Suspense fallback={<div>Loading...</div>}>
- 
-												{ ( !sidebarActive || sidebarActive == 'style' ) && <li className="pi-edit-style">
-													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('style')} />
-													<i />
-													<h3>Edit Style</h3>
-													<Style
-														handleChange={this.onStyleChange}
-														data={invoice}
-													/>
-												</li>}
-
-												{ ( !sidebarActive || sidebarActive == 'payment' ) && this.props.path == 'invoice' && <li>
-													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
-													<i />
-													<h3>Accepted Payment</h3>
-													 <Payment
-														handleChange={this.onPaymentChange}
-														data={invoice}
-													// handleSave={this.handleSave}
-													/>
-												</li>}
-
-												{ ( !sidebarActive || sidebarActive == 'extra-field' ) && <li>
-													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('extra-field')} />
-													<i />
-													<h3>Additional Amount</h3>
-													<AdditionalAmount
-														handleChange={this.onExtraFieldChange}
-														data={invoice.extra_field}
-													/>
-												</li>}
-
-												{ ( !sidebarActive || sidebarActive == 'reminder' ) && !wage.length &&<li>
-													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('reminder')} />
-													<i />
-													<h3>Reminder</h3> 
-													<Reminder
-														handleChange={this.onReminderChange}
-														handleDefault={this.onReminderDefault}
-														id={this.props.id}
-														path={this.props.path}
-														data={invoice.reminder}
-													/> 
-												</li>}
-
-												{ ( !sidebarActive || sidebarActive == 'recurring' ) && !wage.length && this.props.path == 'invoice' &&<li>
-													<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('recurring')} />
-													<i />
-													<h3>Recurring</h3> 
-													<Recurring
-														handleChange={this.onRecurringChange}
-														data={invoice.recurring}
-													/> 
-												</li>}
-
+												<Section data={invoice.sections} changeHandler={this.handleSectionChange} />
 											</Suspense>
-										</ul>
-									</div>
 
+											<div className="pi-buttons">
+												<div className="row">
+													<div className="col-md-6">
+														{/* <Attach data={invoice.attach} changeHandler={this.handleAttachChange} /> */}
+													</div>
+													<div className="col-md-6">
+														<Upload label={'Authorized Signature'} btnClass={'pi-a-btn pi-p-40'} imgClass={'pi-text-right pi-signature'} data={invoice.sign} changeHandler={this.handleSignChange} />
+													</div>
+												</div>
+											</div>
+										</div>{/* ./ pi-group-form */}
+									</div>{/* ./ pi-info-content */}
+								</div>{/* ./ col-lg-9 */}
+
+								<div className="col-lg-3">
+									<div id="pi-right-sidebar" className="pi-right-sidebar" ref={this.sidebarRef} >
+										<h2 className="pi-title-medium">Preview {title}</h2>
+
+										<div className='pi-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
+											<InvTemplate key={invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
+										</div>
+
+										<div className="pi-accordion-wrapper pi-mt-25">
+											<ul>
+												<Suspense fallback={<div>Loading...</div>}>
+
+													{(!sidebarActive || sidebarActive == 'style') && <li>
+														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('style')} />
+														<i />
+														<h3 className='pi-title-small'>Edit Style</h3>
+														<Style
+															handleChange={this.onStyleChange}
+															data={invoice}
+														/>
+													</li>}
+
+													{(!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
+														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
+														<i />
+														<h3 className='pi-title-small'>Accepted Payment</h3>
+														<Payment
+															handleChange={this.onPaymentChange}
+															data={invoice}
+														// handleSave={this.handleSave}
+														/>
+													</li>}
+
+													{(!sidebarActive || sidebarActive == 'extra-field') && <li>
+														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('extra-field')} />
+														<i />
+														<h3 className='pi-title-small'>Additional Amount</h3>
+														<AdditionalAmount
+															handleChange={this.onExtraFieldChange}
+															data={invoice.extra_field}
+														/>
+													</li>}
+
+													{(!sidebarActive || sidebarActive == 'reminder') && !wage.length && <li>
+														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('reminder')} />
+														<i />
+														<h3 className='pi-title-small'>Reminder</h3>
+														<Reminder
+															handleChange={this.onReminderChange}
+															handleDefault={this.onReminderDefault}
+															id={this.props.id}
+															path={this.props.path}
+															data={invoice.reminder}
+														/>
+													</li>}
+
+													{(!sidebarActive || sidebarActive == 'recurring') && !wage.length && this.props.path == 'invoice' && <li>
+														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('recurring')} />
+														<i />
+														<h3 className='pi-title-small'>Recurring</h3>
+														<Recurring
+															handleChange={this.onRecurringChange}
+															data={invoice.recurring}
+														/>
+													</li>}
+
+												</Suspense>
+											</ul>
+										</div>
+
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>}
+						</div>}
 
-					{(currentTab == 'preview') &&
-						<Preview
-							data={this.state}
-							shareModal={this.state.shareModal}
-							showShareModal={() => this.setState({ shareModal: true })}
-							closeShareModal={() => this.setState({ shareModal: false })}
-							emailModal={this.state.emailModal}
-							showEmailModal={() => this.setState({ emailModal: true })}
-							closeEmailModal={() => this.setState({ emailModal: false })}
-							editTab={this.editTab}
-							path={this.props.path}
-						/>}
+						{(currentTab == 'preview') &&
+							<Preview
+								data={this.state}
+								shareModal={this.state.shareModal}
+								showShareModal={() => this.setState({ shareModal: true })}
+								closeShareModal={() => this.setState({ shareModal: false })}
+								emailModal={this.state.emailModal}
+								showEmailModal={() => this.setState({ emailModal: true })}
+								closeEmailModal={() => this.setState({ emailModal: false })}
+								editTab={this.editTab}
+								path={this.props.path}
+							/>}
+					</div>
 				</div>
 			</>
 		)

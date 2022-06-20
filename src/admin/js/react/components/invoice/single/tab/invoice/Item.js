@@ -8,78 +8,84 @@ class Item extends Component {
         const { index, title, desc, qty, qty_type, price } = this.props
 
         return (
-            <> 
-            <td>
-                <input 
-                    name="title" 
-                    type="text"  
-                    placeholder='Title' 
-                    value={title} 
-                    onChange={this.props.changeHandler(index)} /> <br />
+            <>
+                <td>
+                    <input
+                        name="title"
+                        type="text"
+                        placeholder='Title'
+                        value={title}
+                        onChange={this.props.changeHandler(index)} /> <br />
 
-                <textarea 
-                    name="desc" 
-                    type="text"  
-                    placeholder='Description'
-                    value={desc} 
-                    onChange={this.props.changeHandler(index)} />
-            </td>
-            <td>
-                <input 
-                    name="qty" 
-                    type="number"  
-                    min="0.00" 
-                    step="1" 
-                    max="9999999.99" 
-                    value={qty} 
-                    onChange={this.props.changeHandler(index)} 
-                    onFocus={this.props.focusHandler} />
-                    
-                <select name="qty_type"  
-                    value={qty_type} 
-                    onChange={this.props.changeHandler(index)} >
-                    <option value="unit">Unit</option> 
-                    <option value="page">Page</option>
-                    <option value="hour">Hour</option>
-                    <option value="week">Week</option>
-                    <option value="month">Month</option> 
-                </select>
-            </td>
-            <td>
-                <input 
-                    name="price" 
-                    type="number"  
-                    step="0.01" 
-                    min="0.00" 
-                    max="9999999.99" 
-                    value={price} 
-                    onChange={this.props.changeHandler(index)} 
-                    onFocus={this.props.focusHandler} 
-                /> 
-            </td>
+                    <textarea
+                        name="desc"
+                        type="text"
+                        placeholder='Description'
+                        value={desc}
+                        onChange={this.props.changeHandler(index)} />
+                </td>
+                <td>
+                    <div className='pi-field-checkbox pi-field-checkbox-input'>
+                        <input
+                            name="qty"
+                            type="number"
+                            min="0.00"
+                            step="1"
+                            max="9999999.99"
+                            value={qty}
+                            onChange={this.props.changeHandler(index)}
+                            onFocus={this.props.focusHandler} />
 
-            <td>
-                {this.props.currencyFormatter(qty * price)} 
-            </td>  
-
-            <td>
-                <span
-                onClick={this.props.deleteHandler(index)}
-                >
-                    <svg
-                    width={15}
-                    height={15}
-                    viewBox="0 0 9 9"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg" 
-                    >
-                    <path
-                        d="M8.073 2.387a.39.39 0 01-.345.388l-.045.003h-.33l-.48 4.886a1.073 1.073 0 01-1.069.967H2.927a1.073 1.073 0 01-1.068-.967l-.48-4.886h-.33a.39.39 0 010-.78h1.95a1.366 1.366 0 112.732 0h1.952a.39.39 0 01.39.39zm-2.83 1.269a.293.293 0 00-.29.253l-.002.04V6.68l.003.04a.293.293 0 00.58 0l.002-.04V3.948l-.002-.04a.293.293 0 00-.29-.252zm-1.756 0a.293.293 0 00-.29.253l-.002.04V6.68l.003.04a.293.293 0 00.58 0l.002-.04V3.948l-.003-.04a.293.293 0 00-.29-.252zm.879-2.244a.585.585 0 00-.586.585h1.17a.585.585 0 00-.584-.585z"
-                        fill="#718096"
+                        <select name="qty_type"
+                            value={qty_type}
+                            onChange={this.props.changeHandler(index)} >
+                            <option value="unit">Unit</option>
+                            <option value="page">Page</option>
+                            <option value="hour">Hour</option>
+                            <option value="week">Week</option>
+                            <option value="month">Month</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <input
+                        name="price"
+                        type="number"
+                        step="0.01"
+                        min="0.00"
+                        max="9999999.99"
+                        value={price}
+                        onChange={this.props.changeHandler(index)}
+                        onFocus={this.props.focusHandler}
                     />
-                    </svg>
-                </span>
-            </td>
+                </td>
+
+                <td>
+                    {this.props.currencyFormatter(qty * price)}
+                </td>
+
+                <td>
+                    <span
+                        onClick={this.props.deleteHandler(index)}
+                    >
+                        <svg
+                            width={15}
+                            height={15}
+                            viewBox="0 0 10 10"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M1.195 1.204a.666.666 0 01.942 0l2.859 2.862 2.859-2.862a.666.666 0 11.942.942l-2.86 2.862 2.86 2.862a.667.667 0 01-.942.943L4.995 5.95 2.138 8.813a.666.666 0 01-.942-.943l2.86-2.862-2.86-2.862a.667.667 0 010-.942z"
+                                fill="#4A5568"
+                                stroke="#A0AEC0"
+                                strokeWidth={0.5}
+                            />
+                        </svg>
+                    </span>
+                </td>
             </>
         )
     }
