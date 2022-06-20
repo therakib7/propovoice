@@ -1,192 +1,166 @@
-import React, { Component } from 'react';
+import { useState } from "react";
 
-class Recurring extends Component {
+export default (props) => {
 
-    constructor(props) {
-        super(props);
+    const [interval_type, SetIntervalType] = useState({
+        'week': 'Weekly',
+        'month': 'Monthly',
+        'quarter': 'Quarterly',
+        'half-year': 'Half Yearly',
+        'year': 'Yearly',
+        'custom': 'Custom'
+    });
 
-        this.state = {
-            interval_type: {
-                'week': 'Weekly',
-                'month': 'Monthly',
-                'quarter': 'Quarterly',
-                'half-year': 'Half Yearly',
-                'year': 'Yearly',
-                'custom': 'Custom'
-            }
-        }
+    const handleChange = e => {
+        props.handleChange(e);
     }
 
-    handleChange = e => {
-        this.props.handleChange(e);
-    }
+    const recurring = props.data;
+    return (
+        <div className="">
+            <div className="pi-form-style-one">
+                <div className="row">
+                    <div className="col">
+                        <label>How often?</label>
+                        <div className="pi-field-radio">
+                            <input
+                                type='radio'
+                                id="interval_type_day"
+                                name='interval_type'
+                                value='day'
+                                checked={recurring.interval_type == 'day'}
+                                onChange={(e) => handleChange(e)}
+                            />
+                            <label htmlFor="interval_type_day">Daily</label>
+                        </div>
+                        <div className="pi-field-radio">
+                            <input
+                                type='radio'
+                                id="interval_type_week"
+                                name='interval_type'
+                                value='week'
+                                checked={recurring.interval_type == 'week'}
+                                onChange={(e) => handleChange(e)}
+                            />
+                            <label htmlFor="interval_type_week">Weekly</label>
+                        </div>
+                        <div className="pi-field-radio">
+                            <input
+                                type='radio'
+                                id="interval_type_month"
+                                name='interval_type'
+                                value='month'
+                                checked={recurring.interval_type == 'month'}
+                                onChange={(e) => handleChange(e)}
+                            />
+                            <label htmlFor="interval_type_month">Monthly</label>
+                        </div>
+                        <div className="pi-field-radio pi-field-radio-input">
+                            <input
+                                type='radio'
+                                id="interval_type_custom"
+                                name='interval_type'
+                                value='custom'
+                                checked={recurring.interval_type == 'custom'}
+                                onChange={(e) => handleChange(e)}
+                            />
+                            <label htmlFor="interval_type_custom" className="pi-mt-6 pi-mr-8">Interval In</label>
+                            <input
+                                type="number"
+                                id="recurring-interval"
+                                name="interval"
+                                value={recurring.interval}
+                                onChange={handleChange}
+                            />
+                            <select
+                                name="interval_in"
+                                id="recurring-interval_in"
+                                value={recurring.interval_in}
+                                onChange={handleChange}
+                            >
+                                <option value="day">Day</option>
+                                <option value="month">Month</option>
+                                <option value="year">Year</option>
+                            </select>
+                        </div>
+                    </div>
 
-    render() {
-        const recurring = this.props.data;
-        return (
-            <div className="pi-reminder">
-                <div className="pi-form-style-one" style={{ padding: '0 20px' }}>
-                    <div className="row">
-                        <div className="col">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <label htmlFor="recurring-status">Status</label>
-                                        </td>
-                                        <td>
-                                            <label className='pi-switch'>
-                                                <input type='checkbox'
-                                                    id="recurring-status"
-                                                    name='status'
-                                                    checked={recurring.status ? 'checked' : ''}
-                                                    onChange={this.handleChange}
-                                                />
-                                                <span className='pi-switch-slider round'></span>
-                                            </label>
-                                        </td>
-                                    </tr>
+                    <div className="col">
+                        <label>How Many?</label>
+                        <div className="pi-field-radio">
+                            <input
+                                type='radio'
+                                id="limit_type_0"
+                                name='limit_type'
+                                value='0'
+                                checked={recurring.limit_type == '0'}
+                                onChange={(e) => handleChange(e)}
+                            />
+                            <label htmlFor="limit_type_0">On going</label>
+                        </div>
+                        <div className="pi-field-radio pi-field-radio-input">
+                            <input
+                                type='radio'
+                                id="limit_type_1"
+                                name='limit_type'
+                                value='1'
+                                checked={recurring.limit_type == '1'}
+                                onChange={(e) => handleChange(e)}
+                            />
+                            <label htmlFor="limit_type_1" className="pi-mt-6 pi-mr-8">Limit</label>
+                            <input
+                                type="number" 
+                                id="recurring-limit"
+                                name="limit"
+                                value={recurring.limit}
+                                onChange={handleChange}
+                            /> Times
+                        </div>
+                    </div>
 
-                                    {recurring.status && <>
-                                        <tr>
-                                            <td>
-                                                <label htmlFor="recurring-interval_type">
-                                                    How Often?
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <select
-                                                    style={{ width: '100px' }}
-                                                    name="interval_type"
-                                                    value={recurring.interval_type}
-                                                    onChange={this.handleChange}
-                                                >
-                                                    {Object.entries(this.state.interval_type).map(([key, value]) => (
-                                                        <option key={key} value={key}>{value}</option>
-                                                    ))}
-                                                </select>
-                                            </td>
-                                        </tr>
-
-                                        {recurring.interval_type == 'custom' &&
-                                            <>
-                                                <tr>
-                                                    <td>
-                                                        <label htmlFor="recurring-interval_in">Interval in</label>
-                                                    </td>
-                                                    <td>
-                                                        <input
-                                                            type="number"
-                                                            style={{ width: '60px' }}
-                                                            id="recurring-interval"
-                                                            name="interval"
-                                                            value={recurring.interval}
-                                                            onChange={this.handleChange}
-                                                        />
-                                                        <select
-                                                            style={{ width: '90px' }}
-                                                            name="interval_in"
-                                                            id="recurring-interval_in"
-                                                            value={recurring.interval_in}
-                                                            onChange={this.handleChange}
-                                                        >
-                                                            <option value="day">Day</option>
-                                                            <option value="month">Month</option>
-                                                            <option value="year">Year</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </>
-                                        }
-
-                                        <tr>
-                                            <td>
-                                                <label htmlFor="recurring-limit_type">How many?</label>
-                                            </td>
-                                            <td>
-                                                <select
-                                                    style={{ width: '100px' }}
-                                                    name="limit_type"
-                                                    id="recurring-limit_type"
-                                                    value={recurring.limit_type}
-                                                    onChange={this.handleChange}
-                                                >
-                                                    <option value="0">On Going</option>
-                                                    <option value="1">Limit</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-
-                                        {recurring.limit_type == '1' && <tr>
-                                            <td>
-                                                <label htmlFor="recurring-limit">Limit of Invoice</label>
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="number"
-                                                    style={{ width: '60px' }}
-                                                    id="recurring-limit"
-                                                    name="limit"
-                                                    value={recurring.limit}
-                                                    onChange={this.handleChange}
-                                                /> Times
-                                            </td>
-                                        </tr>}
-
-                                        <tr>
-                                            <td>
-                                                <label htmlFor="recurring-send_me">Send me a copy </label>
-                                            </td>
-                                            <td>
-                                                <label className='pi-switch'>
-                                                    <input type='checkbox'
-                                                        id="recurring-send_me"
-                                                        name='send_me'
-                                                        checked={recurring.send_me ? 'checked' : ''}
-                                                        onChange={this.handleChange}
-                                                    />
-                                                    <span className='pi-switch-slider round'></span>
-                                                </label>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                Delivery
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type='radio'
-                                                    id="recurring-delivery-auto"
-                                                    name='delivery'
-                                                    value={1}
-                                                    checked={recurring.delivery == 1 ? 'checked' : ''}
-                                                    onChange={(e) => this.handleChange(e, 'delivery')}
-                                                />
-                                                <label htmlFor="recurring-delivery-auto">Send automatically</label>
-                                                <br />
-
-                                                <input
-                                                    type='radio'
-                                                    id="recurring-delivery-manual"
-                                                    name='delivery'
-                                                    value={0}
-                                                    checked={recurring.delivery == 0 ? 'checked' : ''}
-                                                    onChange={(e) => this.handleChange(e, 'delivery')}
-                                                />
-                                                <label htmlFor="recurring-delivery-manual">Create Draft and send manually</label>
-
-                                            </td>
-                                        </tr>
-                                    </>}
-                                </tbody>
-                            </table>
+                    <div className="col">
+                        <label>Select delivery option</label>
+                        <div className="pi-field-radio">
+                            <input
+                                type='radio'
+                                id="recurring-delivery-auto"
+                                name='delivery'
+                                value={1}
+                                checked={recurring.delivery == 1 ? 'checked' : ''}
+                                onChange={(e) => handleChange(e, 'delivery')}
+                            />
+                            <label htmlFor="recurring-delivery-auto">Send automatically</label>
+                        </div>
+                        <div className="pi-field-radio">
+                            <input
+                                type='radio'
+                                id="recurring-delivery-manual"
+                                name='delivery'
+                                value={0}
+                                checked={recurring.delivery == 0 ? 'checked' : ''}
+                                onChange={(e) => handleChange(e, 'delivery')}
+                            />
+                            <label htmlFor="recurring-delivery-manual">Create Draft and send manually</label>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <div className="pi-switch-content pi-switch-style-two">
+                            <span className="pi-copy" id="recurring-send_me">Send me a copy</span>
+                            <label className="pi-switch">
+                                <input type='checkbox'
+                                    id="recurring-send_me"
+                                    name='send_me'
+                                    checked={recurring.send_me ? 'checked' : ''}
+                                    onChange={handleChange}
+                                />
+                                <span className="pi-slider pi-round" />
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
-
-export default Recurring;
+        </div>
+    );
+} 

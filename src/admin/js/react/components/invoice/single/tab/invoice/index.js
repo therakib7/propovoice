@@ -861,7 +861,7 @@ class Invoice extends Component {
 											focusHandler={this.handleFocusSelect}
 											deleteHandler={this.handleRemoveLineItem}
 											reorderHandler={this.handleReorderItems}
-										/> 
+										/>
 
 										<div className="row">
 											<div className="col-lg-6">
@@ -951,7 +951,20 @@ class Invoice extends Component {
 													{(!sidebarActive || sidebarActive == 'reminder') && !wage.length && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('reminder')} />
 														<i />
-														<h3 className='pi-title-small'>Reminder</h3>
+														<h3 className='pi-title-small'>
+															Reminder 
+															<span className="pi-switch-content">
+																<label className="pi-switch pi-switch-big">
+																	<input type='checkbox'
+																		id="reminder-status"
+																		name='status'
+																		checked={invoice.reminder.status ? 'checked' : ''}
+																		onChange={this.onReminderChange}
+																	/>
+																	<span className="pi-slider pi-round" />
+																</label>
+															</span> 
+														</h3>
 														<Reminder
 															handleChange={this.onReminderChange}
 															handleDefault={this.onReminderDefault}
@@ -964,7 +977,19 @@ class Invoice extends Component {
 													{(!sidebarActive || sidebarActive == 'recurring') && !wage.length && this.props.path == 'invoice' && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('recurring')} />
 														<i />
-														<h3 className='pi-title-small'>Recurring</h3>
+														<h3 className='pi-title-small'>Recurring
+															<span className="pi-switch-content">
+																<label className="pi-switch pi-switch-big">
+																	<input type='checkbox'
+																		id="recurring-status"
+																		name='status'
+																		checked={invoice.recurring.status ? 'checked' : ''}
+																		onChange={this.onRecurringChange}
+																	/>
+																	<span className="pi-slider pi-round" />
+																</label>
+															</span> 
+														</h3>
 														<Recurring
 															handleChange={this.onRecurringChange}
 															data={invoice.recurring}

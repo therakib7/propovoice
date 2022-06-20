@@ -198,28 +198,57 @@ class FromTo extends Component {
         const { fromData, toData } = this.props;
         return (
             <div className="pi-from-content pi-border-right pi-mt-25">
+
+                {this.state.businessModal && <BusinessForm
+                    handleSubmit={this.handleBusinessSubmit}
+                    show={this.state.businessModal}
+                    modalType={this.state.businessModalType}
+                    data={this.state.businessData}
+                    close={() => this.setState({ businessModal: false })}
+                />}
+
+                {this.state.clientModal && <ClientForm
+                    handleSubmit={this.handleClientSubmit}
+                    show={this.state.clientModal}
+                    modalType={this.state.clientModalType}
+                    data={this.state.clientData}
+                    close={() => this.setState({ clientModal: false })}
+                />}
+
                 <div className="row">
                     <div className="col-md-6">
                         <div className="pi-from-to">
                             <label className="pi-title-small">Sender</label>
                             <div className="pi-from pi-bg-white">
-                                <h4 className="pi-title-small">
-                                    ABCD Solution Ltd
-                                    <span>
-                                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
-                                            Edit
-                                        </button>
-                                    </span>
-                                </h4>
-                                <address>
-                                    Email: hello@nurency.com
-                                    <br />
-                                    What'sApp: +8801760706361
-                                    <br />
-                                    Asia Address:
-                                    <br />
-                                    377 Airport - Dakshinkhan Rd, Dhaka 1230
-                                </address>
+                                {fromData ?
+                                    <>
+                                        <h4 className="pi-title-small">
+                                            {fromData.name}
+                                            <span>
+                                                <button
+                                                    className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
+                                                    onClick={() => this.setState({ businessData: fromData, businessModal: true, businessModalType: 'edit' })}
+                                                >
+                                                    Edit
+                                                </button>
+                                            </span>
+                                        </h4>
+                                        <address>
+                                            {fromData.address &&
+                                                <>{fromData.address}.<br /></>
+                                            }
+
+                                            {fromData.email},
+
+                                            {fromData.mobile &&
+                                                <><br />{fromData.mobile}</>
+                                            }
+                                        </address>
+                                    </> : <>
+                                        {/* Search & select, Or <br /> <br /> */}
+                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>Create New Business</a>
+                                    </>
+                                }
                             </div>
                         </div>
                         {/* ./ pi-from-to */}
@@ -231,32 +260,46 @@ class FromTo extends Component {
                                     <label className="pi-title-small">Receiver</label>
                                 </div>
                                 <div className="col">
-                                    <select name="pi-sandlist">
-                                        <option value="volvo">Nurency Digital</option>
-                                        <option value="saab">Saab</option>
-                                        <option value="opel">Opel</option>
-                                        <option value="audi">Audi</option>
-                                    </select>
+                                    <AsyncSelect
+                                        loadOptions={this.handleFindClient}
+                                        value={toData}
+                                        defaultOptions={toList}
+                                        onChange={this.handleClientSelect}
+                                        getOptionValue={(toList) => toList.id}
+                                        getOptionLabel={(toList) => (toList.first_name) ? toList.first_name + ' ' + toList.last_name : ''}
+                                    />
                                 </div>
                             </div>
                             <div className="pi-from pi-bg-white">
-                                <h4 className="pi-title-small">
-                                    ABCD Solution Ltd
-                                    <span>
-                                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
-                                            Edit
-                                        </button>
-                                    </span>
-                                </h4>
-                                <address>
-                                    Email: hello@nurency.com
-                                    <br />
-                                    What'sApp: +8801760706361
-                                    <br />
-                                    Asia Address:
-                                    <br />
-                                    377 Airport - Dakshinkhan Rd, Dhaka 1230
-                                </address>
+                                {toData ?
+                                    <>
+                                        <h4 className="pi-title-small">
+                                            {toData.first_name} {toData.last_name}
+                                            <span>
+                                                <button
+                                                    className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
+                                                    onClick={() => this.setState({ clientData: toData, clientModal: true, clientModalType: 'edit' })}
+                                                >
+                                                    Edit
+                                                </button>
+                                            </span>
+                                        </h4>
+                                        <address>
+                                            {toData.address &&
+                                                <>{toData.address}.<br /></>
+                                            }
+
+                                            {toData.email},
+
+                                            {toData.mobile &&
+                                                <><br />{toData.mobile}</>
+                                            }
+                                        </address>
+                                    </> : <>
+                                        {/* Search & select, Or <br /> <br /> */}
+                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ clientModal: true, clientModalTYpe: 'new' })}>Add New Client</a>
+                                    </>
+                                }
                             </div>
                         </div>
                         {/* ./ pi-from-to */}

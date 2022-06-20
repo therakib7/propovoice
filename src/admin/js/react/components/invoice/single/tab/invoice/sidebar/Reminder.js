@@ -1,159 +1,190 @@
-import React, { Component, Suspense, lazy } from 'react'
+import { useEffect } from "react";
 
-// const TimeField = lazy(() => import('block/time-picker'));
 import ApiSetting from 'api/setting';
 
-class Reminder extends Component {
+export default (props) => {
 
-    constructor(props) {
-        super(props);
-
-    }
-
-    componentDidMount() {
-        if (!this.props.id) {
-            const path = this.props.path;
+    useEffect(() => {
+        if (!props.id) {
+            const path = props.path;
             ApiSetting.getAll('tab=' + path + '_reminder').then(resp => {
                 if (resp.data.success) {
-                    this.props.handleDefault(resp.data.data);
+                    props.handleDefault(resp.data.data);
                 }
             });
         }
+    }, []);
+
+    const handleChange = (e, type = null) => {
+        props.handleChange(e, type);
     }
 
-    handleChange = (e, type = null) => {
-        this.props.handleChange(e, type);
-    }
+    const reminder = props.data;
+    return (
+        <div className="pi-reminder">
+            <div className="pi-form-style-one">
+                <div className="row">
+                    <div className="col">
+                        <label>Reminder</label>
+                        <div className="pi-field-checkbox">
+                            <input
+                                type='checkbox'
+                                id="reminder-due_date"
+                                name='due_date'
+                                checked={reminder.due_date ? 'checked' : ''}
+                                onChange={handleChange}
+                            />
+                            <label htmlFor="reminder-due_date">On due date</label>
+                        </div>
+                    </div>
+                </div>
 
-    render() {
-        const reminder = this.props.data;
-        return (
-            <div className="pi-reminder">
-                <div className="pi-form-style-one" style={{ padding: '0 20px' }}>
-                    <div className="row">
-                        <div className="col">
-                            <table style={{ borderSpacing: '8px' }}>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <label htmlFor="reminder-status"><strong>Status</strong></label>
-                                        </td>
-                                        <td>
-                                            <label className='pi-switch'>
-                                                <input
-                                                    type='checkbox'
-                                                    id="reminder-status"
-                                                    name='status'
-                                                    checked={reminder.status ? 'checked' : ''}
-                                                    onChange={this.handleChange}
-                                                />
-                                                <span className='pi-switch-slider round'></span>
-                                            </label>
-                                        </td>
-                                    </tr>
-
-                                    {reminder.status && <>
-                                        <tr>
-                                            <td>
-                                                <strong>Due date</strong>
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type='checkbox'
-                                                    id="reminder-due_date"
-                                                    name='due_date'
-                                                    checked={reminder.due_date ? 'checked' : ''}
-                                                    onChange={this.handleChange}
-                                                />
-                                                <label htmlFor="reminder-due_date">On due date</label>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td valign='top'>
-                                                <strong>Before due date</strong>
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type='checkbox'
-                                                    id="reminder-before-1"
-                                                    name='before'
-                                                    value={1}
-                                                    checked={reminder.before.includes(1) ? 'checked' : ''}
-                                                    onChange={(e) => this.handleChange(e, 'before')}
-                                                />
-                                                <label htmlFor="reminder-before-1">Before 1 day</label>
-                                                <br />
-                                                <input
-                                                    type='checkbox'
-                                                    id="reminder-before-7"
-                                                    name='before'
-                                                    value={7}
-                                                    checked={reminder.before.includes(7) ? 'checked' : ''}
-                                                    onChange={(e) => this.handleChange(e, 'before')}
-                                                />
-                                                <label htmlFor="reminder-before-7">Before 7 days</label>
-
-                                                <br />
-                                                <input
-                                                    type='checkbox'
-                                                    id="reminder-before-15"
-                                                    name='before'
-                                                    value={15}
-                                                    checked={reminder.before.includes(15) ? 'checked' : ''}
-                                                    onChange={(e) => this.handleChange(e, 'before')}
-                                                />
-                                                <label htmlFor="reminder-before-15">Before 15 days</label>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td valign='top'>
-                                                <strong>After due date</strong>
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type='checkbox'
-                                                    id="reminder-after-1"
-                                                    name='after'
-                                                    value={1}
-                                                    checked={reminder.after.includes(1) ? 'checked' : ''}
-                                                    onChange={(e) => this.handleChange(e, 'after')}
-                                                />
-                                                <label htmlFor="reminder-after-1">After 1 day</label>
-                                                <br />
-                                                <input
-                                                    type='checkbox'
-                                                    id="reminder-after-7"
-                                                    name='after'
-                                                    value={7}
-                                                    checked={reminder.after.includes(7) ? 'checked' : ''}
-                                                    onChange={(e) => this.handleChange(e, 'after')}
-                                                />
-                                                <label htmlFor="reminder-after-7">After 7 days</label>
-
-                                                <br />
-                                                <input
-                                                    type='checkbox'
-                                                    id="reminder-after-15"
-                                                    name='after'
-                                                    value={15}
-                                                    checked={reminder.after.includes(15) ? 'checked' : ''}
-                                                    onChange={(e) => this.handleChange(e, 'after')}
-                                                />
-                                                <label htmlFor="reminder-after-15">After 15 days</label>
-                                            </td>
-                                        </tr>
-
-                                    </>}
-                                </tbody>
-                            </table>
+                <div className="row">
+                    <div className="col">
+                        <label>Reminder Before</label>
+                        <div className="pi-field-checkbox">
+                            <input
+                                type='checkbox'
+                                id="reminder-before-1"
+                                name='before'
+                                value={1}
+                                checked={reminder.before.includes(1) ? 'checked' : ''}
+                                onChange={(e) => handleChange(e, 'before')}
+                            />
+                            <label htmlFor="reminder-before-1">1 day</label>
+                        </div>
+                        <div className="pi-field-checkbox">
+                            <input
+                                type='checkbox'
+                                id="reminder-before-7"
+                                name='before'
+                                value={7}
+                                checked={reminder.before.includes(7) ? 'checked' : ''}
+                                onChange={(e) => handleChange(e, 'before')}
+                            />
+                            <label htmlFor="reminder-before-7">7 days</label>
+                        </div>
+                        <div className="pi-field-checkbox">
+                            <input
+                                type='checkbox'
+                                id="reminder-before-15"
+                                name='before'
+                                value={15}
+                                checked={reminder.before.includes(15) ? 'checked' : ''}
+                                onChange={(e) => handleChange(e, 'before')}
+                            />
+                            <label htmlFor="reminder-before-15">15 days</label>
+                        </div>
+                        <div className="pi-field-checkbox pi-field-checkbox-input pi-mb-10">
+                            <input type="checkbox" id="date" name="date" />
+                            <input
+                                type="number"
+                                id="unit-number"
+                                name="firstname"
+                                placeholder={1}
+                            />
+                            <select name="number-type">
+                                <option value="page">Days</option>
+                                <option value="hour">Hour</option>
+                                <option value="week">Week</option>
+                                <option value="month">Month</option>
+                            </select>
+                        </div>
+                        <div className="pi-field-checkbox pi-field-checkbox-input">
+                            <input type="checkbox" id="date" name="date" />
+                            <input
+                                type="number"
+                                id="unit-number"
+                                name="firstname"
+                                placeholder={1}
+                            />
+                            <select name="number-type">
+                                <option value="page">Days</option>
+                                <option value="hour">Hour</option>
+                                <option value="week">Week</option>
+                                <option value="month">Month</option>
+                            </select>
+                        </div>
+                        <button className="pi-btn">
+                            <svg
+                                width={12}
+                                height={13}
+                                viewBox="0 0 12 13"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M1.875 6.5H10.125"
+                                    stroke="#718096"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M6 2.375V10.625"
+                                    stroke="#718096"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                            Add Another
+                        </button>
+                    </div>
+                    <div className="col">
+                        <label>Reminder After</label>
+                        <div className="pi-field-checkbox">
+                            <input
+                                type='checkbox'
+                                id="reminder-after-1"
+                                name='after'
+                                value={1}
+                                checked={reminder.after.includes(1) ? 'checked' : ''}
+                                onChange={(e) => handleChange(e, 'after')}
+                            />
+                            <label htmlFor="reminder-after-1">1 day</label>
+                        </div>
+                        <div className="pi-field-checkbox">
+                            <input
+                                type='checkbox'
+                                id="reminder-after-7"
+                                name='after'
+                                value={7}
+                                checked={reminder.after.includes(7) ? 'checked' : ''}
+                                onChange={(e) => handleChange(e, 'after')}
+                            />
+                            <label htmlFor="reminder-after-7">7 days</label>
+                        </div>
+                        <div className="pi-field-checkbox">
+                            <input
+                                type='checkbox'
+                                id="reminder-after-15"
+                                name='after'
+                                value={15}
+                                checked={reminder.after.includes(15) ? 'checked' : ''}
+                                onChange={(e) => handleChange(e, 'after')}
+                            />
+                            <label htmlFor="reminder-after-15">15 days</label>
+                        </div>
+                        <div className="pi-field-checkbox pi-field-checkbox-input">
+                            <input type="checkbox" id="date" name="date" />
+                            <input
+                                type="number"
+                                id="unit-number"
+                                name="firstname"
+                                placeholder={1}
+                            />
+                            <select name="number-type">
+                                <option value="page">Days</option>
+                                <option value="hour">Hour</option>
+                                <option value="week">Week</option>
+                                <option value="month">Month</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
 
-export default Reminder;
+        </div>
+    );
+} 

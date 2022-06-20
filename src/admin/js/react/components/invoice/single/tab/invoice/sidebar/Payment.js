@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
-/* import {
-    useLocation,
-    useNavigate,
-    useParams,
-} from "react-router-dom"; */
-import AppContext from 'context/app-context';
-
+import { toast } from 'react-toastify'; 
+import AppContext from 'context/app-context'; 
 import Api from 'api/payment';
 
 //others component
