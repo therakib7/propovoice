@@ -721,15 +721,28 @@ class Invoice extends Component {
 										Back to Invoice
 									</button> */}
 
-										<button
+										{/* <button
 											className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
 											onClick={() => this.setState({ shareModal: true })} >
 											Share
-										</button>
+										</button> */}
 										<button
-											className="pi-btn pi-bg-blue pi-bg-hover-blue"
+											className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-mt-20"
 											onClick={() => this.setState({ emailModal: true })} >
 											Send Email
+											<svg
+												className="pi-mt-1"
+												width={6}
+												height={9}
+												viewBox="0 0 6 9"
+												fill="none"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
+													fill="white"
+												/>
+											</svg>
 										</button>
 									</>
 								}
@@ -952,7 +965,7 @@ class Invoice extends Component {
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('reminder')} />
 														<i />
 														<h3 className='pi-title-small'>
-															Reminder 
+															Reminder
 															<span className="pi-switch-content">
 																<label className="pi-switch pi-switch-big">
 																	<input type='checkbox'
@@ -963,7 +976,7 @@ class Invoice extends Component {
 																	/>
 																	<span className="pi-slider pi-round" />
 																</label>
-															</span> 
+															</span>
 														</h3>
 														<Reminder
 															handleChange={this.onReminderChange}
@@ -988,7 +1001,7 @@ class Invoice extends Component {
 																	/>
 																	<span className="pi-slider pi-round" />
 																</label>
-															</span> 
+															</span>
 														</h3>
 														<Recurring
 															handleChange={this.onRecurringChange}

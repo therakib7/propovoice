@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { toast } from 'react-toastify';
-import Select from 'react-select';
-import AsyncSelect from 'react-select/async';
+import { toast } from 'react-toastify'; 
+
 import AppContext from 'context/app-context';
 import ApiBusiness from 'api/business';
-import ApiContact from 'api/client';
+// import ApiContact from 'api/client';
 import WithApi from 'hoc/Api';
+
+import Contact from 'block/field/contact-select';
+
 //others component
-import BusinessForm from 'components/business/Form';
-import ContactForm from 'components/contact/Form';
+import BusinessForm from 'components/business/Form'; 
 
 class FromTo extends Component {
 
@@ -16,10 +17,8 @@ class FromTo extends Component {
         super(props);
 
         this.state = {
-            loaded: false,
-            dropdown: false,
-            fromList: [],
-            toList: [],
+            loaded: false, 
+            fromList: [], 
             from: { id: null },
             to: { id: null },
             to_type: 'person', //'org'
@@ -78,57 +77,11 @@ class FromTo extends Component {
                     to: toData
                 });
             }
-        }
+        } 
+        
+    }     
 
-        let args = {
-            page: 1,
-            per_page: 10
-        }
-        let params = new URLSearchParams(args).toString();
-
-        ApiContact.getAll(params)
-            .then(resp => {
-                if (resp.data.success) {
-                    let toList = resp.data.data.result;
-                    this.setState({ toList });
-                }
-            });
-    }
-
-    handleFromChange = val => {
-        this.setState({ from: val });
-        this.props.setFrom(val);
-    }
-
-    handleFindContact = (e) => {
-
-        const target = e.target;
-        const val = target.value;
-
-        if (val.length < 2) return;
-
-        //search when typing stop
-        if (this.timeout) clearTimeout(this.timeout);
-
-        this.timeout = setTimeout(() => {
-            this.props.getAll('contacts', 's=' + val).then(resp => {
-                if (resp.data.success) {
-                    let toList = resp.data.data.result;
-                    this.setState({ toList });
-                }
-            });
-
-            //search function
-            /* ApiContact.getAll('first_name=' + val + '&last_name=' + val)
-                .then(resp => {
-                    let toData = resp.data.data.result;
-                    callback(toData);
-                }); */
-        }, 300);
-    }
-
-    handleContactSelect = (e, val) => {
-        e.preventDefault();
+    handleContactSelect = (val) => { 
         this.setState({ to: val });
         this.props.setTo(val);
     }
@@ -172,42 +125,9 @@ class FromTo extends Component {
                     }
                 })
         }
-    }
+    }  
 
-    handleContactSubmit = client => {
-        if (this.state.clientModalType == 'new') {
-            ApiContact.create(client)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ clientModal: false })
-                        toast.success(this.context.CrudMsg.create);
-                        client.id = resp.data.data;
-                        this.props.setTo(client);
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        } else {
-            ApiContact.update(client.id, client)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ clientModal: false })
-                        toast.success(this.context.CrudMsg.update);
-                        this.props.setTo(client);
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        }
-    }
-
-    render = () => {
-
-        const { fromList, toList } = this.state;
+    render = () => { 
         const { fromData, toData } = this.props;
         return (
             <div className="pi-from-content pi-border-right pi-mt-25">
@@ -218,15 +138,7 @@ class FromTo extends Component {
                     modalType={this.state.businessModalType}
                     data={this.state.businessData}
                     close={() => this.setState({ businessModal: false })}
-                />}
-
-                {this.state.clientModal && <ContactForm
-                    handleSubmit={this.handleContactSubmit}
-                    show={this.state.clientModal}
-                    modalType={this.state.clientModalType}
-                    data={this.state.clientData}
-                    close={() => this.setState({ clientModal: false })}
-                />}
+                />} 
 
                 <div className="row">
                     <div className="col-md-6">
@@ -281,46 +193,16 @@ class FromTo extends Component {
                                         getOptionValue={(toList) => toList.id}
                                         getOptionLabel={(toList) => (toList.first_name) ? toList.first_name + ' ' + toList.last_name : ''}
                                     /> */}
-                                    <div className="pi-sandlist pi-action-content">
-                                        <span
-                                            onClick={() => this.setState({ dropdown: true })}
-                                        >
-                                            Select Receiver
-                                            <svg
-                                                style={{ marginTop: 6, float: "right" }}
-                                                width={12}
-                                                height={10}
-                                                viewBox="0 0 10 6"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
-                                                    fill="#718096"
-                                                />
-                                            </svg>
-                                        </span>
-                                        {this.state.dropdown && <div className="pi-dropdown-content pi-show">
-                                            <div className="pi-search-field">
-                                                <input type="text" onChange={this.handleFindContact} placeholder="Search" />
-                                            </div>
-                                            <button>+ Add New</button> 
-
-                                            {toList && toList.map((item, itemIndex) => {
-                                                return (
-                                                    <a key={itemIndex} onClick={(e) => this.handleContactSelect(e, item)}>{item.first_name}</a>
-                                                )
-                                            })}
-                                        </div>}
-                                    </div>
-
+                                    <div className="pi-sandlist pi-action-content pi-text-right">
+                                        <Contact data={toData} onChange={this.handleContactSelect} /> 
+                                    </div> 
                                 </div>
                             </div>
                             <div className="pi-from pi-bg-white">
                                 {toData ?
                                     <>
                                         <h4 className="pi-title-small">
-                                            {toData.first_name} {toData.last_name}
+                                            {toData.name} 
                                             <span>
                                                 <button
                                                     className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"

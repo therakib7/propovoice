@@ -68,79 +68,97 @@ class Contact
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        $s = isset($params['s']) ? sanitize_text_field($params['s']) : null;
+
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
         }
 
-        $args = array(
-            'post_type' => 'ndpi_person',
-            'post_status' => 'publish',
-            'posts_per_page' => $per_page,
-            'offset' => $offset,
-        );
+        $result = $data = []; 
 
-        $args['meta_query'] = array(
-            'relation' => 'OR'
-        );
+        $contact_types = ['person', 'org'];
 
-        if (isset($request['default'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'default',
-                    'value'   => 1,
-                    'compare' => 'LIKE'
-                )
+        foreach( $contact_types as $contact_type ) {
+            $args = array(
+                'post_type' => 'ndpi_' . $contact_type,
+                'post_status' => 'publish',
+                'posts_per_page' => $per_page,
+                'offset' => $offset,
             );
-        }
+    
+            $args['meta_query'] = array(
+                'relation' => 'OR'
+            );
+    
+            if ( $s ) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'first_name',
+                        'value'   => $s,
+                        'compare' => 'LIKE'
+                    )
+                );
 
-        $query = new WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
-        $result = $data = [];
-        while ($query->have_posts()) {
-            $query->the_post();
-            $id = get_the_ID();
-
-            $query_data = [];
-            $query_data['id'] = $id;
-
-            $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-            $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-            $query_data['email'] = get_post_meta($id, 'email', true);
-            $query_data['org_name'] = get_post_meta($id, 'org_name', true);
-            $query_data['web'] = get_post_meta($id, 'web', true);
-            $query_data['mobile'] = get_post_meta($id, 'mobile', true);
-            $query_data['country'] = get_post_meta($id, 'country', true);
-            $query_data['region'] = get_post_meta($id, 'region', true);
-            $query_data['address'] = get_post_meta($id, 'address', true);
-
-            $img_id = get_post_meta($id, 'img', true);
-            $imgData = null;
-            if ($img_id) {
-                $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-                if ($img_src) {
-                    $imgData = [];
-                    $imgData['id'] = $img_id;
-                    $imgData['src'] = $img_src[0];
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'name',
+                        'value'   => $s,
+                        'compare' => 'LIKE'
+                    )
+                );
+            } 
+    
+            $query = new WP_Query($args); 
+            
+            while ($query->have_posts()) {
+                $query->the_post();
+                $id = get_the_ID();
+    
+                $query_data = [];
+                $query_data['id'] = $id;
+                
+                if ( $contact_type == 'org' ) {
+                    $query_data['name'] = get_post_meta($id, 'name', true); 
+                } else {
+                    $query_data['name'] = get_post_meta($id, 'first_name', true); 
+                } 
+                $query_data['email'] = get_post_meta($id, 'email', true);
+                $query_data['org_name'] = get_post_meta($id, 'org_name', true);
+                $query_data['web'] = get_post_meta($id, 'web', true);
+                $query_data['mobile'] = get_post_meta($id, 'mobile', true);
+                $query_data['country'] = get_post_meta($id, 'country', true);
+                $query_data['region'] = get_post_meta($id, 'region', true);
+                $query_data['address'] = get_post_meta($id, 'address', true);
+                $query_data['contact_type'] = $contact_type;
+    
+                $img_id = get_post_meta($id, 'img', true);
+                $imgData = null;
+                if ($img_id) {
+                    $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
+                    if ($img_src) {
+                        $imgData = [];
+                        $imgData['id'] = $img_id;
+                        $imgData['src'] = $img_src[0];
+                    }
                 }
+                $query_data['img'] = $imgData;
+    
+                $query_data['date'] = get_the_time('j-M-Y');
+                $data[] = $query_data;
             }
-            $query_data['img'] = $imgData;
-
-            $query_data['date'] = get_the_time('j-M-Y');
-            $data[] = $query_data;
+            wp_reset_postdata();
         }
-        wp_reset_postdata();
 
-        $result['result'] = $data;
-        $result['total'] = $total_data;
+        $result['result'] = $data; 
 
         wp_send_json_success($result);
     }

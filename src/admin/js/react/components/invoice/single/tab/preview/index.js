@@ -234,16 +234,14 @@ export default class Preview extends Component {
 
                 {/* TODO: check this step for every component or pass show props */}
                 {this.props.shareModal &&
-                    <Share
-                        show={this.props.shareModal}
+                    <Share 
                         data={this.props.data}
                         path={this.props.path}
                         close={this.props.closeShareModal}
                     />}
 
                 {this.props.emailModal &&
-                    <Send
-                        show={this.props.emailModal}
+                    <Send 
                         data={this.props.data}
                         mail={this.state.mail}
                         path={this.props.path}

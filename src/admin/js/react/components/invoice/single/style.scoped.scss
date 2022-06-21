@@ -190,6 +190,9 @@
   background: rgba(231, 236, 254, 0.26);
   border-radius: 10px;
 }
+.ncpi .pi-from-content .pi-to {
+  margin-left: auto;
+}
 .ncpi .pi-from-content .pi-from-to {
   max-width: 310px;
 }
@@ -200,6 +203,19 @@
   margin-bottom: 15px;
   font-weight: 500;
 }
+.ncpi .pi-from-content .pi-from-to .pi-sandlist span {
+  cursor: pointer;
+  padding: 10px 15px;
+  position: relative;
+  color: #4A5568;
+  left: -10px;
+}
+.ncpi .pi-from-content .pi-from-to .pi-sandlist span svg {
+  margin-top: 6px;
+  float: right;
+  position: absolute;
+  margin-left: 15px;
+}
 .ncpi .pi-from-content .pi-title-small {
   font-weight: 700;
   margin-top: 0;
@@ -209,9 +225,6 @@
   float: right;
   cursor: pointer;
   margin-top: -2px;
-}
-.ncpi .pi-from-content .pi-to {
-  margin-left: auto;
 }
 .ncpi .pi-from-content .pi-from {
   padding: 16px 15px 20px 20px;
@@ -230,7 +243,7 @@
 .ncpi .pi-from-content .pi-dropdown-content .pi-search-field input[type=text] {
   border: 1px solid #E2E8F0;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 6px;
   outline: none;
   box-shadow: 0px 1px 2px rgba(50, 50, 71, 0.08), 0px 0px 1px rgba(50, 50, 71, 0.2);
 }
@@ -347,6 +360,8 @@
   border-radius: 12px;
   margin-top: 25px;
   font-size: 16px;
+  padding: 20px 30px;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.07);
 }
 .ncpi .pi-group-form .pi-buttons .pi-btn-a span {
   position: relative;

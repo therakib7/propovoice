@@ -903,18 +903,9 @@ html {
   cursor: pointer;
 }
 .ncpi .pi-table .pi-dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #fff;
   min-width: 210px;
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.13);
-  z-index: 1;
-  right: -50px;
-  top: 45px;
-  border-radius: 8px;
-}
-.ncpi .pi-table .pi-dropdown-content svg {
-  margin-right: 15px;
+  right: -70px;
+  top: 30px;
 }
 .ncpi .pi-table .pi-action-content button {
   background-color: transparent;
@@ -1808,7 +1799,8 @@ html {
 .ncpi .pi-pagination {
   display: inline-flex;
   float: right;
-  margin-top: 30px;
+  margin-top: 50px;
+  margin-right: -30px;
 }
 @media screen and (max-width: 450px) {
   .ncpi .pi-pagination {
@@ -2339,8 +2331,16 @@ html {
   font-weight: 500;
   padding: 13px 20px !important;
 }
-.ncpi .pi-modal-sidebar .pi-select-small {
-  width: auto;
+.ncpi .pi-modal-sidebar .pi-action-content {
+  display: inline;
+}
+.ncpi .pi-modal-sidebar .pi-action-content svg {
+  margin-right: 0;
+  margin-left: 20px;
+}
+.ncpi .pi-modal-sidebar .pi-action-content .pi-dropdown-content {
+  top: 35px;
+  left: 0;
 }
 .ncpi .pi-modal-sidebar-two {
   width: 760px;
@@ -2430,19 +2430,27 @@ html {
   appearance: none;
   height: 8px;
 }
+.ncpi input[type=range]::-webkit-slider-thumb::before {
+  content: "";
+  height: 30px;
+  width: 30px;
+  background-color: red;
+  position: absolute;
+}
 .ncpi input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 20px;
-  width: 5px;
+  height: 25px;
+  width: 25px;
   background-color: #3264fe;
   cursor: pointer;
-  margin-top: -6px;
-  border: none;
+  margin-top: -9px;
+  border-radius: 50%;
+  position: relative;
 }
 .ncpi input[type=range]::-moz-range-thumb {
   -webkit-appearance: none;
   height: 20px;
-  width: 10px;
+  width: 20px;
   background-color: #3264fe;
   cursor: pointer;
   margin-top: -6px;
@@ -2451,7 +2459,7 @@ html {
 .ncpi input[type=range]::-ms-thumb {
   appearance: none;
   height: 20px;
-  width: 10px;
+  width: 20px;
   background-color: #3264fe;
   cursor: pointer;
   margin-top: -6px;
@@ -2732,14 +2740,14 @@ html {
   transform: translate(0, 90%);
 }
 .ncpi .pi-accordion-wrapper > ul > li > input[type=checkbox]:checked ~ i:before {
-  margin-top: 9px;
+  margin-top: 8px;
   height: 9px;
   transform: translate(2px, 0) rotate(45deg);
 }
 .ncpi .pi-accordion-wrapper > ul > li > input[type=checkbox]:checked ~ i:after {
-  margin-top: 9px;
+  margin-top: 8px;
   height: 9px;
-  transform: translate(-2px, 0) rotate(-45deg);
+  transform: translate(-4px, 0) rotate(-45deg);
 }
 .ncpi .pi-accordion-wrapper > li {
   -webkit-animation: bounceInUp 1s ease both;
@@ -3355,7 +3363,7 @@ html {
 }
 .ncpi .pi-widget .pi-action-content .pi-dropdown-content {
   left: -60px;
-  top: 35px;
+  top: 30px;
 }
 .ncpi .pi-widget .pi-action-content button {
   padding: 0;
@@ -3691,9 +3699,6 @@ html {
 }
 .ncpi .pi-p-0 {
   padding: 0 !important;
-}
-.ncpi .pi-p-25-35 {
-  padding: 25px 35px !important;
 }
 .ncpi .pi-p-8 {
   padding: 8px 15px !important;
