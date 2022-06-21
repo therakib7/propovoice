@@ -177,7 +177,7 @@ export default function SettingWrap() {
                                 <p>note: in this version, you can add only bank info in your invoice</p>
                             </div> */}
 
-                            <h4 className='pi-title-medium pi-mb-30' style={{textTransform: 'capitalize'}}>{currentTab} Settings</h4>
+                            <h4 className='pi-title-medium pi-mb-15' style={{textTransform: 'capitalize'}}>{currentTab} Settings</h4>
 
                             <Suspense fallback={<div>Loading...</div>}> 
 
