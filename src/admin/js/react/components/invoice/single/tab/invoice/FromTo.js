@@ -4,13 +4,11 @@ import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
 import AppContext from 'context/app-context';
 import ApiBusiness from 'api/business';
-import ApiClient from 'api/client';
-
+import ApiContact from 'api/client';
+import WithApi from 'hoc/Api';
 //others component
 import BusinessForm from 'components/business/Form';
-import ClientForm from 'components/client/Form';
-
-import PropTypes from 'prop-types'
+import ContactForm from 'components/contact/Form';
 
 class FromTo extends Component {
 
@@ -19,10 +17,12 @@ class FromTo extends Component {
 
         this.state = {
             loaded: false,
+            dropdown: false,
             fromList: [],
             toList: [],
             from: { id: null },
             to: { id: null },
+            to_type: 'person', //'org'
             businessModal: false,
             businessModalType: 'new',
             businessData: { id: null },
@@ -86,7 +86,7 @@ class FromTo extends Component {
         }
         let params = new URLSearchParams(args).toString();
 
-        ApiClient.getAll(params)
+        ApiContact.getAll(params)
             .then(resp => {
                 if (resp.data.success) {
                     let toList = resp.data.data.result;
@@ -100,22 +100,35 @@ class FromTo extends Component {
         this.props.setFrom(val);
     }
 
-    handleFindClient = (val, callback) => {
+    handleFindContact = (e) => {
+
+        const target = e.target;
+        const val = target.value;
+
         if (val.length < 2) return;
 
         //search when typing stop
         if (this.timeout) clearTimeout(this.timeout);
+
         this.timeout = setTimeout(() => {
+            this.props.getAll('contacts', 's=' + val).then(resp => {
+                if (resp.data.success) {
+                    let toList = resp.data.data.result;
+                    this.setState({ toList });
+                }
+            });
+
             //search function
-            ApiClient.getAll('first_name=' + val + '&last_name=' + val)
+            /* ApiContact.getAll('first_name=' + val + '&last_name=' + val)
                 .then(resp => {
                     let toData = resp.data.data.result;
                     callback(toData);
-                });
+                }); */
         }, 300);
     }
 
-    handleClientSelect = (val) => {
+    handleContactSelect = (e, val) => {
+        e.preventDefault();
         this.setState({ to: val });
         this.props.setTo(val);
     }
@@ -161,9 +174,9 @@ class FromTo extends Component {
         }
     }
 
-    handleClientSubmit = client => {
+    handleContactSubmit = client => {
         if (this.state.clientModalType == 'new') {
-            ApiClient.create(client)
+            ApiContact.create(client)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ clientModal: false })
@@ -177,7 +190,7 @@ class FromTo extends Component {
                     }
                 })
         } else {
-            ApiClient.update(client.id, client)
+            ApiContact.update(client.id, client)
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ clientModal: false })
@@ -207,8 +220,8 @@ class FromTo extends Component {
                     close={() => this.setState({ businessModal: false })}
                 />}
 
-                {this.state.clientModal && <ClientForm
-                    handleSubmit={this.handleClientSubmit}
+                {this.state.clientModal && <ContactForm
+                    handleSubmit={this.handleContactSubmit}
                     show={this.state.clientModal}
                     modalType={this.state.clientModalType}
                     data={this.state.clientData}
@@ -260,14 +273,47 @@ class FromTo extends Component {
                                     <label className="pi-title-small">Receiver</label>
                                 </div>
                                 <div className="col">
-                                    <AsyncSelect
-                                        loadOptions={this.handleFindClient}
+                                    {/* <AsyncSelect
+                                        loadOptions={this.handleFindContact}
                                         value={toData}
                                         defaultOptions={toList}
-                                        onChange={this.handleClientSelect}
+                                        onChange={this.handleContactSelect}
                                         getOptionValue={(toList) => toList.id}
                                         getOptionLabel={(toList) => (toList.first_name) ? toList.first_name + ' ' + toList.last_name : ''}
-                                    />
+                                    /> */}
+                                    <div className="pi-sandlist pi-action-content">
+                                        <span
+                                            onClick={() => this.setState({ dropdown: true })}
+                                        >
+                                            Select Receiver
+                                            <svg
+                                                style={{ marginTop: 6, float: "right" }}
+                                                width={12}
+                                                height={10}
+                                                viewBox="0 0 10 6"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
+                                                    fill="#718096"
+                                                />
+                                            </svg>
+                                        </span>
+                                        {this.state.dropdown && <div className="pi-dropdown-content pi-show">
+                                            <div className="pi-search-field">
+                                                <input type="text" onChange={this.handleFindContact} placeholder="Search" />
+                                            </div>
+                                            <button>+ Add New</button> 
+
+                                            {toList && toList.map((item, itemIndex) => {
+                                                return (
+                                                    <a key={itemIndex} onClick={(e) => this.handleContactSelect(e, item)}>{item.first_name}</a>
+                                                )
+                                            })}
+                                        </div>}
+                                    </div>
+
                                 </div>
                             </div>
                             <div className="pi-from pi-bg-white">
@@ -297,7 +343,7 @@ class FromTo extends Component {
                                         </address>
                                     </> : <>
                                         {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ clientModal: true, clientModalTYpe: 'new' })}>Add New Client</a>
+                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ clientModal: true, clientModalTYpe: 'new' })}>Add New</a>
                                     </>
                                 }
                             </div>
@@ -309,5 +355,4 @@ class FromTo extends Component {
         )
     }
 }
-
-export default FromTo
+export default WithApi(FromTo); 

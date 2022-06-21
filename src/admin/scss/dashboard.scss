@@ -273,3 +273,10 @@ input:checked+.pi-switch-slider:before {
     max-width: none !important; overflow-x: scroll; height: 100vh;
     // overflow-x: scroll;
 } 
+
+.wp-admin.ncpi .pi-right-content {
+    height: auto !important;
+}
+.wp-admin.ncpi {
+    background-color: #f7f8fa !important;
+}

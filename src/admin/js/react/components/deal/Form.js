@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import WithApi from 'hoc/Api'; 
-import WithRouter from 'hoc/Router'; 
+import WithApi from 'hoc/Api';
+import WithRouter from 'hoc/Router';
 
-import Select from 'react-select';  
+import Select from 'react-select';
 import Contact from 'block/field/contact';
 
 class Form extends Component {
@@ -13,16 +13,16 @@ class Form extends Component {
         this.initialState = {
             id: null,
             title: '',
-            lead_id: '', 
-            stage_id: '', 
+            lead_id: '',
+            stage_id: '',
             budget: '',
             currency: 'USD',
             probability: 50,
             tags: [],
             desc: '',
             note: '',
-            person_id: null, 
-            org_id: null, 
+            person_id: null,
+            org_id: null,
             date: false
         };
 
@@ -49,24 +49,24 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=deal_stage,tag').then(resp => { 
-                if ( resp.data.success ) {
-                    if ( this.state.form.stage_id ) {
-                        this.setState({
-                            stages: resp.data.data.deal_stage,
-                            tags: resp.data.data.tag,
-                        });
-                    } else {
-                        let form = { ...this.state.form }
-                        form.stage_id = resp.data.data.deal_stage[0];
-                        this.setState({
-                            form,
-                            stages: resp.data.data.deal_stage,
-                            tags: resp.data.data.tag,
-                        });
-                    }
+        this.props.getAll('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
+            if (resp.data.success) {
+                if (this.state.form.stage_id) {
+                    this.setState({
+                        stages: resp.data.data.deal_stage,
+                        tags: resp.data.data.tag,
+                    });
+                } else {
+                    let form = { ...this.state.form }
+                    form.stage_id = resp.data.data.deal_stage[0];
+                    this.setState({
+                        form,
+                        stages: resp.data.data.deal_stage,
+                        tags: resp.data.data.tag,
+                    });
                 }
-            });
+            }
+        });
 
         //added this multiple place, because not working in invoice single
         this.editData();
@@ -76,12 +76,12 @@ class Form extends Component {
         this.editData();
     }
 
-    editData = () => { 
+    editData = () => {
         //condition added to stop multiple rendering 
         if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
-                let data = {...this.props.data}
-                if ( this.props.modalType == 'move' ) {
+                let data = { ...this.props.data }
+                if (this.props.modalType == 'move') {
                     data.lead_id = data.id;
                     data.probability = 50;
                 }
@@ -111,11 +111,11 @@ class Form extends Component {
             form.stage_id = form.stage_id.id;
         }
 
-        if ( form.person_id ) {
+        if (form.person_id) {
             form.person_id = form.person_id.id;
         }
 
-        if ( form.org_id ) {
+        if (form.org_id) {
             form.org_id = form.org_id.id;
         }
 
@@ -126,17 +126,17 @@ class Form extends Component {
             form.tags = finalArray;
         }
 
-        if ( this.props.reload ) {
-            
+        if (this.props.reload) {
 
-            if ( this.props.modalType == 'move' ) {
 
-                this.props.create('deals', form).then(resp => { 
-                    if (resp.data.success) { 
+            if (this.props.modalType == 'move') {
+
+                this.props.create('deals', form).then(resp => {
+                    if (resp.data.success) {
                         toast.success('Successfully moved to deal');
                         let id = resp.data.data;
                         this.props.close();
-                        this.props.navigate(`/deal/single/${id}`, { replace: true }); 
+                        this.props.navigate(`/deal/single/${id}`, { replace: true });
                         this.props.reload();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -149,23 +149,23 @@ class Form extends Component {
                 this.props.update('deals', form.id, form);
                 this.props.close();
                 this.props.reload();
-            } 
+            }
         } else {
             this.props.handleSubmit(form);
         }
         this.setState({ form: this.initialState });
     }
 
-    handlePersonSelect = ( val ) => { 
+    handlePersonSelect = (val) => {
         let form = { ...this.state.form }
-        form.person_id = val; 
-        this.setState({ form }); 
-    } 
+        form.person_id = val;
+        this.setState({ form });
+    }
 
-    handleOrgSelect = ( val ) => {
+    handleOrgSelect = (val) => {
         let form = { ...this.state.form }
-        form.org_id = val; 
-        this.setState({ form }); 
+        form.org_id = val;
+        this.setState({ form });
     }
 
     render() {
@@ -175,13 +175,13 @@ class Form extends Component {
         const probabilityPercent = (form.probability / 100) * 100;
 
         let title = '';
-        if ( this.props.modalType == 'new' ) {
+        if (this.props.modalType == 'new') {
             title = 'New'
-        } else if ( this.props.modalType == 'edit' ) {
+        } else if (this.props.modalType == 'edit') {
             title = 'Edit'
-        } else if ( this.props.modalType == 'move' ) {
+        } else if (this.props.modalType == 'move') {
             title = 'Move to'
-        } 
+        }
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -216,14 +216,14 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
-                                { !this.props.reload && <Contact 
+                                {!this.props.reload && <Contact
                                     data={{
                                         person: this.state.form.person_id,
-                                        org: this.state.form.org_id 
+                                        org: this.state.form.org_id
                                     }}
                                     onPersonChange={this.handlePersonSelect}
                                     onOrgChange={this.handleOrgSelect}
-                                />} 
+                                />}
 
                                 <div className="row">
                                     <div className="col-md">
@@ -254,7 +254,7 @@ class Form extends Component {
                                             getOptionLabel={(stageList) => stageList.label}
                                             options={stageList}
                                         />
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div className="row">
@@ -295,7 +295,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label
                                             htmlFor="field-probability">
-                                            Probability <span style={{position: 'absolute', right: '15px'}}>({form.probability}%)</span>
+                                            Probability <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
                                         </label>
 
                                         <input
@@ -340,7 +340,7 @@ class Form extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div className="row">
                                     <div className="col">
@@ -356,7 +356,7 @@ class Form extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
 
@@ -379,5 +379,5 @@ class Form extends Component {
     }
 }
 
-const FormData = WithApi(Form);  
+const FormData = WithApi(Form);
 export default WithRouter(FormData);  

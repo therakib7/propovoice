@@ -218,16 +218,34 @@
   border-radius: 8px;
   border: 1px solid #CBD5E0;
 }
-.ncpi .pi-from-content select {
-  outline: none;
-  margin-left: 3px;
-  width: 100%;
-  border: none;
-  color: #4A5568;
-  border-radius: 10px;
+.ncpi .pi-from-content .pi-dropdown-content {
+  top: 25px;
+  right: -20px;
+  box-shadow: none;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+}
+.ncpi .pi-from-content .pi-dropdown-content .pi-search-field {
   padding: 10px;
-  margin-top: -10px;
-  font-size: 14px;
+}
+.ncpi .pi-from-content .pi-dropdown-content .pi-search-field input[type=text] {
+  border: 1px solid #E2E8F0;
+  padding: 10px;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0px 1px 2px rgba(50, 50, 71, 0.08), 0px 0px 1px rgba(50, 50, 71, 0.2);
+}
+.ncpi .pi-from-content .pi-dropdown-content button {
+  padding: 12px 16px;
+  width: 100%;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
+  color: #A0AEC0;
+  text-align: left;
+}
+.ncpi .pi-from-content .pi-dropdown-content a:hover {
+  color: #4c6fff;
+}
+.ncpi .pi-from-content .pi-dropdown-content a {
+  color: #4A5568;
 }
 .ncpi .pi-from-content address {
   font-size: 14px;
@@ -316,21 +334,23 @@
 }
 .ncpi .pi-group-form .pi-buttons .pi-btn.pi-btn-add {
   background: none;
-  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 45px;
+  margin-left: -15px;
 }
-.ncpi .pi-group-form .pi-buttons p {
-  margin-top: 5px;
-  font-size: 11px;
+.ncpi .pi-group-form .pi-buttons .pi-btn-add:hover {
+  color: #4c6fff !important;
 }
-.ncpi .pi-group-form .pi-buttons .pi-btn.pi-bg-air-white {
-  color: #000;
-  margin-top: 25px;
-  border: 1px solid var(--border-color-gray);
-}
-.ncpi .pi-group-form .pi-buttons .pi-a-btn {
+.ncpi .pi-group-form .pi-buttons .pi-btn-a {
   float: right;
   border-radius: 12px;
-  border: 1px solid var(--border-color-gray);
+  margin-top: 25px;
+  font-size: 16px;
+}
+.ncpi .pi-group-form .pi-buttons .pi-btn-a span {
+  position: relative;
+  top: -10px;
 }
 @media screen and (max-width: 767px) {
   .ncpi .pi-group-form .pi-buttons .pi-a-btn {

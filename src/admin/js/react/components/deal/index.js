@@ -33,18 +33,7 @@ const Deal = (props) => {
 
             <div className="row">
                 <div className="col-lg-6">
-                    <h2 className="pi-page-title pi-mb-15">{title + ' Pipeline'}</h2>
-                    <div className="pi-small-button-group">
-                        <button className="pi-btn pi-btn-small pi-active pi-bg-stroke pi-bg-hover-shadow">
-                            All Deal
-                        </button>
-                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
-                            Woned
-                        </button>
-                        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
-                            Lost
-                        </button>
-                    </div>
+                    <h2 className="pi-page-title pi-mb-15">{title + ' Pipeline'}</h2> 
                 </div>
                 
                 <div className="col-lg-6 pi-text-right">

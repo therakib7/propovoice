@@ -64,7 +64,8 @@ class Taxonomy
                 'Contracting',
                 'Engaging',
                 'Proposing',
-                'Deal Closing',
+                'Closing Won',
+                'Lost',
             ];
 
             foreach ($temp_stage as $stage) {
@@ -75,6 +76,14 @@ class Taxonomy
 
                 if (!is_wp_error($stage_add)) {
                     update_term_meta($stage_add['term_id'], 'tax_pos', $stage_add['term_id']);
+
+                    //TODO: Check the stage name for specific type
+                    if ( $stage == 'Closing Won' ) {
+                        update_term_meta($stage_add['term_id'], 'type', 'won');
+                    } else if ( $stage == 'Lost' ) {
+                        update_term_meta($stage_add['term_id'], 'type', 'lost');
+                    }
+                    
                 }
 
                 if (!is_wp_error($stage_add) || !is_wp_error($pipeline_id)) {

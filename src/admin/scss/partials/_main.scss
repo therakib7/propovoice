@@ -1115,7 +1115,7 @@ html {
 }
 .ncpi .pi-info-table-content .pi-info-table td input[type=number],
 .ncpi .pi-info-table-content .pi-info-table td input[type=text] {
-  padding: 12px 8px !important;
+  padding: 9px 8px !important;
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
   outline: none;
   border-radius: 4px;
@@ -1297,7 +1297,7 @@ html {
 .ncpi .pi-top-menu-content {
   position: fixed;
   width: calc(100vw - 230px);
-  z-index: 9;
+  z-index: 15;
   background-color: #fff;
   box-shadow: 0px 2px rgba(0, 0, 0, 0.01);
 }
@@ -2666,7 +2666,7 @@ html {
 }
 .ncpi .pi-accordion-wrapper h3 {
   font-weight: 600;
-  padding: 10px 15px;
+  padding: 12px 15px;
   margin: 0;
 }
 .ncpi .pi-accordion-wrapper p,
@@ -2699,14 +2699,14 @@ html {
 .ncpi .pi-accordion-wrapper > ul > li i {
   position: absolute;
   transform: translate(-6px, 0);
-  margin-top: 12px;
-  right: 30px;
+  margin-top: 14px;
+  right: 15px;
 }
 .ncpi .pi-accordion-wrapper > ul > li i:before, .ncpi .pi-accordion-wrapper > ul > li i:after {
   content: "";
   position: absolute;
-  background-color: #CBD5E0;
-  width: 2px;
+  background-color: #4A5568;
+  width: 1px;
   height: 20px;
 }
 .ncpi .pi-accordion-wrapper > ul > li i:before {
@@ -2763,7 +2763,10 @@ html {
 .ncpi .pi-accordion-wrapper .pi-switch-big .pi-slider:before {
   height: 18px;
   width: 18px;
-  left: 11px;
+  left: 3px;
+}
+.ncpi .pi-accordion-wrapper .pi-switch-big input:checked + .pi-slider:before {
+  transform: translateX(21px);
 }
 .ncpi .pi-edit span {
   width: 30px;
@@ -3113,7 +3116,7 @@ html {
 .pi-form-accordion.pi-additional .pi-radio-content span {
   font-size: 13px;
   position: relative;
-  top: 5px;
+  top: 7px;
   left: 20px;
   color: #718096;
 }
@@ -3162,16 +3165,15 @@ html {
   border-radius: 0px 4px 4px 0 !important;
   background: #F7FAFC;
 }
-
-.pi-reminder .pi-form-style-one .row:last-child > div {
-  margin-bottom: 10px;
-}
-.pi-reminder .pi-btn {
-  color: #718096;
-  padding: 10px;
-  background: none;
-  margin-left: -10px;
-  font-weight: normal;
+.pi-field-radio-input .pi-times,
+.pi-field-checkbox-input .pi-times {
+  border: 1px solid #CBD5E0;
+  padding: 5px 15px;
+  font-size: 12px;
+  border-radius: 5px;
+  border-left: none;
+  color: #4A5568;
+  margin-left: -2px;
 }
 
 .pi-switch-style-two {
@@ -3481,6 +3483,8 @@ html {
 }
 .ncpi .pi-switch-content {
   text-align: right;
+  z-index: 99;
+  position: relative;
 }
 .ncpi .pi-switch-content .pi-primary {
   font-size: 10px;
@@ -3658,6 +3662,9 @@ html {
 .ncpi .pi-mr-5 {
   margin-right: 5px;
 }
+.ncpi .pi-mr-0 {
+  margin-right: 0px !important;
+}
 .ncpi .pi-mt-m-10 {
   margin-top: -10px;
 }
@@ -3685,8 +3692,8 @@ html {
 .ncpi .pi-p-0 {
   padding: 0 !important;
 }
-.ncpi .pi-p-40 {
-  padding: 40px 30px !important;
+.ncpi .pi-p-25-35 {
+  padding: 25px 35px !important;
 }
 .ncpi .pi-p-8 {
   padding: 8px 15px !important;
@@ -3697,6 +3704,9 @@ html {
 .ncpi .pi-margin-l-r {
   margin-right: -10px;
   margin-left: -10px;
+}
+.ncpi .pi-br-0 {
+  border-radius: 4px !important;
 }
 .ncpi .pi-border-0 {
   border: 0 !important;

@@ -158,7 +158,12 @@ class ListSingle extends Component {
 
     handleStageChange = (val) => {
         let data = { ...this.state.data }
-        data.stage_id = val;
+        if ( val == 'won' || val == 'lost' ) {
+            let obj = this.state.stages.find(o => o.type === val);
+            data.stage_id = obj;
+        } else {
+            data.stage_id = val;
+        }
         this.setState({ data }, () => {
             let newData = {};
             if (data.stage_id) {
@@ -166,19 +171,7 @@ class ListSingle extends Component {
             }
             this.props.update('deals', this.props.id, newData);
         });
-    }
-
-    handleStatusChange = (val) => {
-        let data = { ...this.state.data }
-        data.status = val;
-        this.setState({ data }, () => {
-            let newData = {};
-            if (data.status) {
-                newData.status = data.status;
-            }
-            this.props.update('deals', this.props.id, newData);
-        });
-    }
+    } 
 
     deleteEntry = (type, id) => {
         if (confirm('Are you sure want to delete it?')) { //TODO: translation
@@ -445,7 +438,7 @@ class ListSingle extends Component {
                                             </div>
                                         </div>
                                         <button
-                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
+                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
                                             onClick={() => this.setState({ projectModal: true, projectModalType: 'move' })}
                                         >
                                             <svg
@@ -473,27 +466,27 @@ class ListSingle extends Component {
                                             Move to Project
                                         </button>
 
-                                        {data.hasOwnProperty('status') && <>
-                                            {(!data.status || data.status == 'won') && <button
+                                        {data.stage_id && <>
+                                            {( data.stage_id.type == 'won' || data.stage_id.type == '' ) &&<button
                                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
-                                                onClick={() => this.handleStatusChange('won')}
+                                                onClick={() => this.handleStageChange('won')}
                                             >
-                                                <img src={ncpi.assetImgUri + 'happy.png'} alt="won" />
+                                                <img className='pi-mt-3 pi-mr-5' src={ncpi.assetImgUri + 'happy.png'} alt="won" />
                                                 Won
                                             </button>}
 
-                                            {(!data.status || data.status == 'lost') && <button
+                                            {( data.stage_id.type == 'lost' || data.stage_id.type == '' ) &&<button
                                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
-                                                onClick={() => this.handleStatusChange('lost')}
+                                                onClick={() => this.handleStageChange('lost')}
                                             >
-                                                <img src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
+                                                <img className='pi-mt-3 pi-mr-5' src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
                                                 Lost
                                             </button>}
                                         </>}
 
-                                        <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
+                                        <div className="pi-action-content pi-action-btn">
                                             <button
-                                                className={(this.state.action ? '' : '')}
+                                                className='pi-bg-stroke pi-bg-shadow'
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
                                             >
                                                 <svg
@@ -526,21 +519,7 @@ class ListSingle extends Component {
 
                                             {this.state.action && <div className="pi-dropdown-content pi-show">
                                                 <a onClick={() => this.setState({ dealModal: true })}>Edit</a>
-                                                <a onClick={() => this.deleteEntry('deal', data.id)}>Delete</a>
-
-                                                {data.hasOwnProperty('status') && <>
-                                                    {(!data.status || data.status == 'lost') && <a
-                                                        onClick={() => this.handleStatusChange('won')}
-                                                    >
-                                                        Move to Won
-                                                    </a>}
-
-                                                    {(!data.status || data.status == 'won') && <a
-                                                        onClick={() => this.handleStatusChange('lost')}
-                                                    >
-                                                        Move to lost
-                                                    </a>}
-                                                </>}
+                                                <a onClick={() => this.deleteEntry('deal', data.id)}>Delete</a> 
                                             </div>}
 
                                         </div>

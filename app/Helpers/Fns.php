@@ -5,6 +5,27 @@ namespace Ncpi\Helpers;
 class Fns
 {
 
+    public static function get_terms($tax)
+    {
+        return get_terms(array(
+            'taxonomy' => 'ndpi_' . $tax, 
+            'meta_query' => array(
+                'relation' => 'OR',
+                array(
+                    'key' => 'tax_pos',
+                    'compare' => 'NOT EXISTS', // works!
+                    // 'value' => '' // This is ignored, but is necessary...
+                ),
+                array(
+                    'key' => 'tax_pos',
+                    'compare' => 'EXISTS',
+                )
+            ),
+            'orderby' => 'tax_pos',
+            'hide_empty' => false
+        ));
+    }
+
     public static function locate_template($name)
     {
         // Look within passed path within the theme - this is priority.

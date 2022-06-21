@@ -5,6 +5,7 @@ namespace Ncpi\Ctrls\Api;
 use Ncpi\Ctrls\Api\Types\Action;
 use Ncpi\Ctrls\Api\Types\Business;
 use Ncpi\Ctrls\Api\Types\Client;
+use Ncpi\Ctrls\Api\Types\Contact;
 use Ncpi\Ctrls\Api\Types\Person;
 use Ncpi\Ctrls\Api\Types\Dashbaord;
 use Ncpi\Ctrls\Api\Types\Deal;
@@ -36,6 +37,7 @@ class ApiController
 		new Deal(); 
 		new Person();
 		new Org();
+		new Contact();
 		new Project();
 		new Proposal();
 		new Invoice();

@@ -122,7 +122,7 @@ export default class Business extends Component {
                         />
                     </div>
 
-                    <div className="col-md">
+                    {/* <div className="col-md">
                         <label
                             htmlFor="field-org_name">
                             Company/Organization Name
@@ -135,7 +135,7 @@ export default class Business extends Component {
                             value={this.state.form.org_name}
                             onChange={this.handleChange}
                         />
-                    </div>
+                    </div> */}
 
                 </div>
 

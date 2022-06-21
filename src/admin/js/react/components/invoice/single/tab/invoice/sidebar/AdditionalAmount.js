@@ -8,7 +8,7 @@ export default (props) => {
         <div className="pi-form-accordion pi-additional">
             <div className="pi-tab">
                 <input checked={extra_field.hasOwnProperty('tax') ? 'checked' : ''} onChange={() => setAdditional('tax', 'field')} type="checkbox" id="additional-tax" name="additional-tax" />
-                <label className="pi-tab-label" htmlFor="additional-tax">
+                <label className={ ( extra_field.hasOwnProperty('tax') ? 'pi-active' : '' ) + ' pi-tab-label'} htmlFor="additional-tax">
                     Tax
                 </label>
                 <div className="pi-tab-content">
@@ -38,7 +38,7 @@ export default (props) => {
 
             <div className="pi-tab">
                 <input checked={extra_field.hasOwnProperty('discount') ? 'checked' : ''} onChange={() => setAdditional('discount', 'field')} type="checkbox" id="additional-discount" name="additional-discount" />
-                <label className="pi-tab-label" htmlFor="additional-discount">
+                <label className={ ( extra_field.hasOwnProperty('discount') ? 'pi-active' : '' ) + ' pi-tab-label'} htmlFor="additional-discount">
                     Discount
                 </label>
                 <div className="pi-tab-content">
@@ -68,7 +68,7 @@ export default (props) => {
 
             <div className="pi-tab">
                 <input checked={extra_field.hasOwnProperty('late_fee') ? 'checked' : ''} onChange={() => setAdditional('late_fee', 'field')} type="checkbox" id="additional-late_fee" name="additional-late_fee" />
-                <label className="pi-tab-label" htmlFor="additional-late_fee">
+                <label className={ ( extra_field.hasOwnProperty('late_fee') ? 'pi-active' : '' ) + ' pi-tab-label'} htmlFor="additional-late_fee">
                     Late Fee
                 </label>
                 <div className="pi-tab-content">

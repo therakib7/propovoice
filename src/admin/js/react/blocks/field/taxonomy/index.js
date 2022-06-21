@@ -83,9 +83,9 @@ const Taxonomy = (props) => {
 		setModal(false);
 	}
 
-	const handleDelete = (id) => {
-		if (confirm('Are you sure, to delete it?')) { //TODO: translation
+	const handleDelete = (id) => { 
 
+		if (confirm('Are you sure, to delete it?')) { //TODO: translation 
 			let newForm = {}
 			newForm.taxonomy = props.taxonomy;
 			newForm.delete = true;
@@ -250,7 +250,7 @@ const Taxonomy = (props) => {
 																/>
 															</svg>
 														</span>
-														<span onClick={() => { handleDelete(item.id) }}>
+														{ ( !item.hasOwnProperty('type') || ! item.type ) && <span onClick={() => { handleDelete(item.id) }}>
 															<svg
 																width={16}
 																height={16}
@@ -280,7 +280,7 @@ const Taxonomy = (props) => {
 																	strokeLinejoin="round"
 																/>
 															</svg>
-														</span>
+														</span>}
 													</div>
 												</div>
 											</li>

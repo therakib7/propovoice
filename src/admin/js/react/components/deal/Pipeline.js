@@ -218,8 +218,8 @@ function Pipeline(props) {
 																			<h5>{item.contact.first_name}</h5>
 																			<p>{(item.contact.region) ? item.contact.region + ',' : ''} {item.contact.country}</p>
 
-																			{item.status == 'won' && <span className="pi-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>Won</span>}
-																			{item.status == 'lost' && <span className="pi-badge" style={{ backgroundColor: '#FFDEEB', color: '#FF267F' }}>Lost</span>}
+																			{column.type == 'won' && <span className="pi-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>Won</span>}
+																			{column.type == 'lost' && <span className="pi-badge" style={{ backgroundColor: '#FFDEEB', color: '#FF267F' }}>Lost</span>}
 																		</div>
 																	</div>
 																</div>

@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Helpers\Fns;
 use WP_Query;
 
 class Task
@@ -110,13 +111,8 @@ class Task
         }
 
         if (!$status_id) {
-            $taxonomy = 'task_status';
-            $get_taxonomy = get_terms(array(
-                'taxonomy' => 'ndpi_' . $taxonomy,
-                'meta_key' => 'tax_pos',
-                'orderby' => 'tax_pos',
-                'hide_empty' => false
-            ));
+            $taxonomy = 'task_status'; 
+            $get_taxonomy = Fns::get_terms($taxonomy);
             $status_id = $get_taxonomy[0]->term_id;
         }
 
@@ -143,13 +139,8 @@ class Task
             $data = [];
         }
 
-        $taxonomy = 'task_status';
-        $get_taxonomy = get_terms(array(
-            'taxonomy' => 'ndpi_' . $taxonomy,
-            'meta_key' => 'tax_pos',
-            'orderby' => 'tax_pos',
-            'hide_empty' => false
-        ));
+        $taxonomy = 'task_status'; 
+        $get_taxonomy = Fns::get_terms($taxonomy);
 
         $format_taxonomy = [];
         foreach ($get_taxonomy as $single) {

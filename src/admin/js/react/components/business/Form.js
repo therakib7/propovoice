@@ -25,12 +25,12 @@ class Form extends Component {
         };
     }
 
-    handleChange = e => { 
+    handleChange = e => {
         const target = e.target;
-		const name = target.name;
-		const value = target.type === 'checkbox' ? target.checked : target.value; 
+        const name = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
-    } 
+    }
 
     componentDidMount() {
         //added this multiple place, because not working in invoice single
@@ -79,35 +79,67 @@ class Form extends Component {
     }
 
     render() {
+
+        let title = '';
+        if ( this.props.modalType == 'new' ) {
+            title = 'New'
+        } else if ( this.props.modalType == 'edit' ) {
+            title = 'Edit'
+        }  
+
         return (
             <>
                 {this.props.show && (
                     <div className="pi-overlay pi-show">
                         <div className="pi-modal-content">
-                            <div className="pi-modal-header">
-                                <h2 className="pi-modal-title pi-text-center">{this.props.modalType == 'new' ? 'New' : 'Edit'} Business</h2>
-                                <span className="pi-close" onClick={() => this.props.close()}>×</span>
+
+                            <div className="pi-modal-header pi-gradient">
+                                <span className="pi-close" onClick={() => this.props.close()}>
+                                    <svg
+                                        width={25}
+                                        height={25}
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M12.5 3.5L3.5 12.5"
+                                            stroke="#718096"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M12.5 12.5L3.5 3.5"
+                                            stroke="#718096"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </span>
+                                <h2 className="pi-modal-title">{title} Business</h2>
+                                <p>Add new business from here</p>
                             </div>
 
-                            <div className="pi-content">
-                                <form onSubmit={this.handleSubmit} className="pi-form-style-one">
-                                    <div className="row">
-                                        <div className="col-md">
-                                            <label
-                                                htmlFor="field-name">
-                                                Name
-                                            </label>
+                            <form onSubmit={this.handleSubmit} >
+                                <div className="pi-content">
+                                    <div className="pi-form-style-one">
+                                        <div className="row">
+                                            <div className="col-md">
+                                                <label
+                                                    htmlFor="field-name">
+                                                    Name
+                                                </label>
 
-                                            <input
-                                                id="field-name"
-                                                type="text" 
-                                                name="name"
-                                                value={this.state.form.name}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
+                                                <input
+                                                    id="field-name"
+                                                    type="text"
+                                                    name="name"
+                                                    value={this.state.form.name}
+                                                    onChange={this.handleChange}
+                                                />
+                                            </div>
 
-                                        <div className="col-md">
+                                            {/* <div className="col-md">
                                             <label
                                                 htmlFor="field-org_name">
                                                 Company Name
@@ -120,131 +152,110 @@ class Form extends Component {
                                                 value={this.state.form.org_name}
                                                 onChange={this.handleChange}
                                             />
+                                        </div> */}
+
                                         </div>
-
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-md">
-                                            <label
-                                                htmlFor="field-web">
-                                                Website
-                                            </label>
-
-                                            <input
-                                                id="field-web"
-                                                type="text"
-                                                name="web"
-                                                value={this.state.form.web}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-                                        <div className="col-md">
-                                            <label
-                                                htmlFor="field-email">
-                                                Email
-                                            </label>
-
-                                            <input
-                                                id="field-email"
-                                                type="email"
-                                                required
-                                                name="email"
-                                                value={this.state.form.email}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-md">
-                                            <label
-                                                htmlFor="field-mobile">
-                                                Mobile Number
-                                            </label>
-
-                                            <input
-                                                id="field-mobile"
-                                                type="text"
-                                                required
-                                                name="mobile"
-                                                value={this.state.form.mobile}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-                                        <div className="col-md">
-                                            <label
-                                                htmlFor="field-zip">
-                                                Zip Code
-                                            </label>
-
-                                            <input
-                                                id="field-zip"
-                                                type="number"
-                                                name="zip"
-                                                value={this.state.form.zip}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col">
-                                            <label
-                                                htmlFor="field-address">
-                                                Address
-                                            </label>
-
-                                            <input
-                                                id="field-address"
-                                                type="text"
-                                                name="address"
-                                                placeholder='Write you full address here'
-                                                value={this.state.form.address}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col">
-                                            <Upload data={this.state.form.logo} changeHandler={this.handleLogoChange} />
-                                        </div>
-
-                                        <div className="col">
-                                            {!wage.length && <> 
+                                        <div className="row">
+                                            <div className="col-md">
                                                 <label
-                                                    htmlFor="form-default"
-                                                    className="pi-m-10"
-                                                >
-                                                    Default?
+                                                    htmlFor="field-web">
+                                                    Website
                                                 </label>
 
-                                                <br />
-
-                                                <label className='pi-switch'>
-                                                    <input type='checkbox'
-                                                        id="form-default"
-                                                        name='default'  
-                                                        checked={this.state.form.default ? 'checked' : ''}
-                                                        onChange={this.handleChange}
-                                                    /> 
-                                                    <span className='pi-switch-slider round'></span>
+                                                <input
+                                                    id="field-web"
+                                                    type="text"
+                                                    name="web"
+                                                    value={this.state.form.web}
+                                                    onChange={this.handleChange}
+                                                />
+                                            </div>
+                                            <div className="col-md">
+                                                <label
+                                                    htmlFor="field-email">
+                                                    Email
                                                 </label>
-                                            </>}
+
+                                                <input
+                                                    id="field-email"
+                                                    type="email"
+                                                    required
+                                                    name="email"
+                                                    value={this.state.form.email}
+                                                    onChange={this.handleChange}
+                                                />
+                                            </div>
+
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md">
+                                                <label
+                                                    htmlFor="field-mobile">
+                                                    Mobile Number
+                                                </label>
+
+                                                <input
+                                                    id="field-mobile"
+                                                    type="text"
+                                                    required
+                                                    name="mobile"
+                                                    value={this.state.form.mobile}
+                                                    onChange={this.handleChange}
+                                                />
+                                            </div>
+                                            <div className="col-md">
+                                                <label
+                                                    htmlFor="field-zip">
+                                                    Zip Code
+                                                </label>
+
+                                                <input
+                                                    id="field-zip"
+                                                    type="number"
+                                                    name="zip"
+                                                    value={this.state.form.zip}
+                                                    onChange={this.handleChange}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col">
+                                                <label
+                                                    htmlFor="field-address">
+                                                    Address
+                                                </label>
+
+                                                <input
+                                                    id="field-address"
+                                                    type="text"
+                                                    name="address"
+                                                    placeholder='Write you full address here'
+                                                    value={this.state.form.address}
+                                                    onChange={this.handleChange}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col">
+                                                <Upload data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                                            </div> 
                                         </div>
                                     </div>
+                                </div>
 
+                                <div className="pi-modal-footer">
                                     <div className="row">
                                         <div className="col">
-                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
-                                                Submit
+                                            <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                                        </div>
+                                        <div className="col">
+                                            <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
+                                                Save
                                             </button>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 )}

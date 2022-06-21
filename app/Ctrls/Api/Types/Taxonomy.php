@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Helpers\Fns;
 use WP_Query;
 
 class Taxonomy
@@ -85,23 +86,24 @@ class Taxonomy
 
             $taxonomies = explode(',', $taxonomies);
             foreach ($taxonomies as $taxonomy) {
-                $get_taxonomy = get_terms(array(
-                    'taxonomy' => 'ndpi_' . $taxonomy,
-                    'meta_key' => 'tax_pos',
-                    'orderby' => 'tax_pos',
-                    'hide_empty' => false
-                ));
+                $get_taxonomy = Fns::get_terms($taxonomy);
 
                 $format_taxonomy = [];
                 foreach ($get_taxonomy as $single) {
                     $color = get_term_meta($single->term_id, 'color', true);
-                    $bg_color = get_term_meta($single->term_id, 'bg_color', true);
-                    $format_taxonomy[] = [
+                    $bg_color = get_term_meta($single->term_id, 'bg_color', true); 
+                    
+                    $term_property = [
                         'id' => (string) $single->term_id,
                         'label' => $single->name,
                         'color' => $color ? $color : '',
                         'bg_color' => $bg_color ? $bg_color : ''
                     ];
+
+                    if ( $taxonomy == 'deal_stage' ) {
+                        $term_property['type'] = get_term_meta($single->term_id, 'type', true);
+                    }
+                    $format_taxonomy[] = $term_property;
                 }
                 $data[$taxonomy] = $format_taxonomy;
 

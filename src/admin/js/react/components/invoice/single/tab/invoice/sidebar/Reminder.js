@@ -21,7 +21,7 @@ export default (props) => {
 
     const reminder = props.data;
     return (
-        <div className="pi-reminder">
+        <div>
             <div className="pi-form-style-one">
                 <div className="row">
                     <div className="col">
@@ -105,7 +105,7 @@ export default (props) => {
                                 <option value="month">Month</option>
                             </select>
                         </div>
-                        <button className="pi-btn">
+                        <button className="pi-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
                             <svg
                                 width={12}
                                 height={13}

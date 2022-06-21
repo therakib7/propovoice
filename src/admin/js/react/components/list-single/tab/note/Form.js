@@ -34,7 +34,7 @@ class Form extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="">
-                <div className="pi-tab-buttons-group"> 
+                <div className="pi-tab-buttons-group pi-text-right"> 
 
                     <div className="pi-activity-field">
                         <input

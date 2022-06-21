@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Helpers\Fns;
 use WP_Query;
 
 class Deal
@@ -78,14 +79,10 @@ class Deal
 
         if (isset($request['page']) && $request['page'] > 1) {
             $offset = ($per_page * $request['page']) - $per_page;
-        }
+        } 
 
-        $get_stage = get_terms(array(
-            'taxonomy' => 'ndpi_deal_stage',
-            'meta_key' => 'tax_pos',
-            'orderby' => 'tax_pos',
-            'hide_empty' => false
-        ));
+        $get_stage = Fns::get_terms('deal_stage');
+
         $result = $column = [];
         foreach ($get_stage as $stage) :
             $stage_id = $stage->term_id;
@@ -166,6 +163,7 @@ class Deal
                 'id' => $stage_id,
                 // 'color' => get_term_meta($stage_id, 'color', true),
                 'bg_color' => get_term_meta($stage_id, 'bg_color', true),
+                'type' => get_term_meta($stage_id, 'type', true),
                 'items' => $items
             ];
 
@@ -198,10 +196,13 @@ class Deal
 
         $stage = get_the_terms($id, 'ndpi_deal_stage');
         if ($stage) {
-
+            $term_id = $stage[0]->term_id;
             $query_data['stage_id'] = [
-                'id' => $stage[0]->term_id,
-                'label' => $stage[0]->name
+                'id' => $term_id,
+                'label' => $stage[0]->name,
+                'color' => get_term_meta($term_id, 'color', true),
+                'bg_color' => get_term_meta($term_id, 'bg_color', true),
+                'type' => get_term_meta($term_id, 'type', true)
             ];
         }
 
