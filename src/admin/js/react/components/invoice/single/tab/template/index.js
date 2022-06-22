@@ -89,7 +89,7 @@ export default class Template extends Component {
 
     render() { 
         return (
-            <div className="pi-invoice-tab-content">
+            <div id="pi-tab-template" className="pi-invoice-tab-content">
                 <h2 className='pi-page-title'>Select Template</h2>
                 <div className="row pi-gap pi-margin-l-r">
 

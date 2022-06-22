@@ -74,7 +74,7 @@ class Send extends Component {
         let due_date = this.convertDate(data.invoice.due_date);
         let amount = this.calcGrandTotal();
         let org_name = data.fromData.name;
-        let client_name = data.toData.first_name + ' ' + data.toData.last_name;
+        let client_name = data.toData.name;
 
         formState.invoice_id = id;
         formState.path = path_title;

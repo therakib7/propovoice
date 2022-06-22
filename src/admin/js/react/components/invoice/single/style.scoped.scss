@@ -1,12 +1,6 @@
 .ncpi .pi-invoice-single-btn .pi-btn {
   border-radius: 5px;
 }
-.ncpi .pi-invoice-single-btn .pi-btn:last-child {
-  padding: 12px 15px !important;
-}
-.ncpi .pi-invoice-single-btn .pi-btn:last-child svg {
-  margin-left: 10px;
-}
 .ncpi .pi-single-tab-content .pi-page-title {
   margin-bottom: 55px;
 }
@@ -111,7 +105,7 @@
   position: absolute;
   top: 1px;
   right: 1px;
-  z-index: 99;
+  z-index: 9;
   padding: 11px 5px;
   width: 31px;
   height: 35px;
@@ -203,14 +197,17 @@
   margin-bottom: 15px;
   font-weight: 500;
 }
-.ncpi .pi-from-content .pi-from-to .pi-sandlist span {
+.ncpi .pi-from-content .pi-from-to .pi-sendlist {
+  text-align: right;
+}
+.ncpi .pi-from-content .pi-from-to .pi-sendlist .pi-list {
   cursor: pointer;
   padding: 10px 15px;
   position: relative;
   color: #4A5568;
   left: -10px;
 }
-.ncpi .pi-from-content .pi-from-to .pi-sandlist span svg {
+.ncpi .pi-from-content .pi-from-to .pi-sendlist .pi-list svg {
   margin-top: 6px;
   float: right;
   position: absolute;
@@ -236,6 +233,7 @@
   right: -20px;
   box-shadow: none;
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  text-align: left;
 }
 .ncpi .pi-from-content .pi-dropdown-content .pi-search-field {
   padding: 10px;
@@ -344,33 +342,6 @@
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
   font-weight: 500;
   border-radius: 8px;
-}
-.ncpi .pi-group-form .pi-buttons .pi-btn.pi-btn-add {
-  background: none;
-  padding: 10px 20px;
-  border: none;
-  margin-top: 45px;
-  margin-left: -15px;
-}
-.ncpi .pi-group-form .pi-buttons .pi-btn-add:hover {
-  color: #4c6fff !important;
-}
-.ncpi .pi-group-form .pi-buttons .pi-btn-a {
-  float: right;
-  border-radius: 12px;
-  margin-top: 25px;
-  font-size: 16px;
-  padding: 20px 30px;
-  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.07);
-}
-.ncpi .pi-group-form .pi-buttons .pi-btn-a span {
-  position: relative;
-  top: -10px;
-}
-@media screen and (max-width: 767px) {
-  .ncpi .pi-group-form .pi-buttons .pi-a-btn {
-    margin-top: 20px !important;
-  }
 }
 .ncpi .pi-right-sidebar h2.pi-title-medium {
   margin-bottom: 15px;

@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { toast } from 'react-toastify'; 
 
 import AppContext from 'context/app-context';
-import ApiBusiness from 'api/business';
-// import ApiContact from 'api/client';
+import ApiBusiness from 'api/business'; 
 import WithApi from 'hoc/Api';
 
 import Contact from 'block/field/contact-select';
 
 //others component
 import BusinessForm from 'components/business/Form'; 
+import ContactForm from 'components/contact/Form'; 
 
 class FromTo extends Component {
 
@@ -140,6 +140,14 @@ class FromTo extends Component {
                     close={() => this.setState({ businessModal: false })}
                 />} 
 
+                {this.state.clientModal && <ContactForm
+                    handleSubmit={this.handleClientSubmit}
+                    show={this.state.clientModal}
+                    modalType={this.state.clientModalType}
+                    data={this.state.clientData}
+                    close={() => this.setState({ clientModal: false })}
+                />}
+
                 <div className="row">
                     <div className="col-md-6">
                         <div className="pi-from-to">
@@ -193,7 +201,7 @@ class FromTo extends Component {
                                         getOptionValue={(toList) => toList.id}
                                         getOptionLabel={(toList) => (toList.first_name) ? toList.first_name + ' ' + toList.last_name : ''}
                                     /> */}
-                                    <div className="pi-sandlist pi-action-content pi-text-right">
+                                    <div className="pi-sendlist pi-action-content">
                                         <Contact data={toData} onChange={this.handleContactSelect} /> 
                                     </div> 
                                 </div>

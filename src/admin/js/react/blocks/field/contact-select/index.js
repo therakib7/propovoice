@@ -3,8 +3,7 @@ import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
 import WithApi from 'hoc/Api';
 
-import ContactForm from 'components/contact/Form';
-import { data } from "autoprefixer";
+import ContactForm from 'components/contact/Form'; 
 
 const Contact = (props) => {
 	const dropdownContent = useRef();
@@ -189,6 +188,7 @@ const Contact = (props) => {
 	return (
 		<>
 			<span
+				className="pi-list"
 				onClick={() => showDropdown()}
 			>
 				{ ( props.data ) ? props.data.name : 'Select Receiver'}

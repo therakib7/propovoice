@@ -112,7 +112,7 @@ class Lead
             $query_data = [];
             $query_data['id'] = $id;
 
-            $queryMeta = get_post_meta($id); 
+            $queryMeta = get_post_meta($id);
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['level_id'] = '';
@@ -180,16 +180,13 @@ class Lead
         $query_data['desc'] = isset($queryMeta['desc']) ? $queryMeta['desc'][0] : '';
 
         $query_data['level_id'] = '';
-
         $level = get_the_terms($id, 'ndpi_lead_level');
         if ($level) {
-
             $query_data['level_id'] = [
                 'id' => $level[0]->term_id,
                 'label' => $level[0]->name
             ];
         }
-
         $query_data['tags'] = [];
 
         /* $tags = get_the_terms($id, 'ndpi_tag');
@@ -210,7 +207,7 @@ class Lead
         if ($contact_id) {
             $contactData['id'] = absint($contact_id);
             $contactMeta = get_post_meta($contact_id);
-            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : ''; 
+            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
             $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
             $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
             $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
@@ -232,15 +229,15 @@ class Lead
         $reg_errors = new \WP_Error;
 
         //lead
-        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
-        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null; 
+        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null;
+        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null;
         $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
- 
+
         /* if ( empty($level_id) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         } */
@@ -251,7 +248,7 @@ class Lead
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
-        } else { 
+        } else {
             //insert lead
             $data = array(
                 'post_type' => 'ndpi_lead',
@@ -262,21 +259,21 @@ class Lead
             );
             $post_id = wp_insert_post($data);
 
-            if ( !is_wp_error($post_id) ) {
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
+            if (!is_wp_error($post_id)) {
+                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
                 update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
 
                 if ($level_id) {
                     wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');
                 }
 
-                if ( $person_id ) {
+                if ($person_id) {
                     update_post_meta($post_id, 'person_id', $person_id);
-                } 
+                }
 
-                if ( $org_id ) {
+                if ($org_id) {
                     update_post_meta($post_id, 'org_id', $org_id);
-                } 
+                }
 
                 if ($budget) {
                     update_post_meta($post_id, 'budget', $budget);
@@ -288,7 +285,7 @@ class Lead
 
                 if ($tags) {
                     wp_set_post_terms($post_id, $tags, 'ndpi_tag');
-                } 
+                }
 
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);
@@ -307,15 +304,15 @@ class Lead
         $reg_errors = new \WP_Error;
 
         //lead
-        $person_id   = isset($params['person_id']) ? absint($params['person_id']) : null; 
-        $org_id   = isset($params['org_id']) ? absint($params['org_id']) : null; 
+        $person_id   = isset($params['person_id']) ? absint($params['person_id']) : null;
+        $org_id   = isset($params['org_id']) ? absint($params['org_id']) : null;
         $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
- 
+
         $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
         /* if (empty($first_name)) {
@@ -340,19 +337,19 @@ class Lead
             );
             $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) { 
+            if (!is_wp_error($post_id)) {
 
                 if ($level_id) {
                     wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');
                 }
 
-                if ( $person_id ) {
+                if ($person_id) {
                     update_post_meta($post_id, 'person_id', $person_id);
-                } 
+                }
 
-                if ( $org_id ) {
+                if ($org_id) {
                     update_post_meta($post_id, 'org_id', $org_id);
-                } 
+                }
 
                 if ($budget) {
                     update_post_meta($post_id, 'budget', $budget);
@@ -364,7 +361,7 @@ class Lead
 
                 if ($tags) {
                     wp_set_post_terms($post_id, $tags, 'ndpi_tag');
-                } 
+                }
 
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);

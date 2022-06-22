@@ -83,12 +83,12 @@ class Invoice
         }
 
         $search_value = false; //empty value showing data
-        if ( isset($request['s']) ) {
+        if (isset($request['s'])) {
             /* $find = ['est', 'Est', 'inv', 'Inv'];
             $replace = ['', '', '', '']; 
             $search_value = str_replace($find, $replace, trim($request['s'])); */
-            $search_value = preg_replace('/[^0-9.]+/', '',$request['s']);
-        } 
+            $search_value = preg_replace('/[^0-9.]+/', '', $request['s']);
+        }
 
         $args = array(
             'post_type' => 'ncpi_estvoice',
@@ -134,7 +134,7 @@ class Invoice
             $query_data['id'] = $id;
             $query_data['token'] = get_post_meta($id, 'token', true);
             $query_data['path'] = get_post_meta($id, 'path', true);
-            $query_data['date'] = get_post_meta($id, 'date', true); 
+            $query_data['date'] = get_post_meta($id, 'date', true);
             $query_data['due_date'] = get_post_meta($id, 'due_date', true);
 
             $query_data['project'] = [
@@ -149,7 +149,7 @@ class Invoice
             }
             $query_data['from'] = $fromData;
 
-            $to_id = get_post_meta($id, 'to', true);
+            /* $to_id = get_post_meta($id, 'to', true);
             $toData = [];
             if ($to_id) {
                 $toData['id'] = $to_id;
@@ -159,7 +159,19 @@ class Invoice
                 $toData['last_name'] = $to_obj->last_name;
                 $toData['email'] = $to_obj->user_email;
             }
-            $query_data['to'] = $toData;
+            $query_data['to'] = $toData; */
+
+            $contact_id = get_post_meta($id, 'to', true);
+            $contactData = [];
+
+            if ($contact_id) {
+                $contactData['id'] = absint($contact_id);
+                $contactMeta = get_post_meta($contact_id);
+                $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
+                $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
+                $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
+            }
+            $query_data['to'] = $contactData;
 
             $query_data['invoice'] = get_post_meta($id, 'invoice', true);
 
@@ -168,7 +180,7 @@ class Invoice
             if (!$query_data['paid']) {
                 $query_data['paid'] = 0;
             }
-            
+
             $query_data['due'] = get_post_meta($id, 'due', true);
             if (!$query_data['due']) {
                 $query_data['due'] = 0;
@@ -191,20 +203,20 @@ class Invoice
 
     public function get_single($req)
     {
-        $params = $req->get_params(); 
+        $params = $req->get_params();
 
         $url_params = $req->get_url_params();
-        
+
         $id = absint($url_params['id']);
         $query_data = [];
         $query_data['id'] = $id;
-        $query_data['token'] = get_post_meta($id, 'token', true); 
-        $query_data['date'] = get_post_meta($id, 'date', true); 
+        $query_data['token'] = get_post_meta($id, 'token', true);
+        $query_data['date'] = get_post_meta($id, 'date', true);
         $query_data['due_date'] = get_post_meta($id, 'due_date', true);
         $from_id = get_post_meta($id, 'from', true);
         $query_data['invoice'] = get_post_meta($id, 'invoice', true);
 
-        $query_data['title'] = ucwords( get_post_meta($id, 'path', true) );
+        $query_data['title'] = ucwords(get_post_meta($id, 'path', true));
 
         $from_id = get_post_meta($id, 'from', true);
         $query_data['status'] = get_post_meta($id, 'status', true);
@@ -232,7 +244,7 @@ class Invoice
         }
         $query_data['fromData'] = $fromData;
 
-        $to_id = get_post_meta($id, 'to', true);
+        /* $to_id = get_post_meta($id, 'to', true);
         $toData = [];
         if ($to_id) {
             $toData['id'] = $to_id;
@@ -246,7 +258,24 @@ class Invoice
             $toData['web'] = get_user_meta($to_id, $prefix . 'web', true);
             $toData['address'] = get_user_meta($to_id, $prefix . 'address', true);
         }
-        $query_data['toData'] = $toData;
+        $query_data['toData'] = $toData; */
+
+        $contact_id = get_post_meta($id, 'to', true);
+        $contactData = [];
+
+        if ( $contact_id ) {
+            $contactData['id'] = absint($contact_id);
+            $contactMeta = get_post_meta($contact_id);
+            $contactData['name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
+            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
+            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
+            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
+            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
+            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
+            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
+            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
+        }
+        $query_data['toData'] = $contactData;
 
         $payment_methods = get_post_meta($id, 'payment_methods', true);
         $paymentData = null;
@@ -259,61 +288,59 @@ class Invoice
         $query_data['paymentBankData'] = $paymentData;
 
         $invoice = get_post_meta($id, 'invoice', true);
-        $reminder = isset( $invoice['reminder'] ) ? $invoice['reminder'] : null;
+        $reminder = isset($invoice['reminder']) ? $invoice['reminder'] : null;
 
-        if ( isset( $params['client_view'] ) ) { 
-            $payment_methods = isset( $invoice['payment_methods'] ) ? $invoice['payment_methods'] : null;
-            if ( $payment_methods ) { 
+        if (isset($params['client_view'])) {
+            $payment_methods = isset($invoice['payment_methods']) ? $invoice['payment_methods'] : null;
+            if ($payment_methods) {
 
-                $new_payment_methods = []; 
+                $new_payment_methods = [];
 
-                foreach( $payment_methods as $key => $payment_id ) { 
+                foreach ($payment_methods as $key => $payment_id) {
                     $payment_query_data = [];
                     $payment_query_data['id'] = $payment_id;
 
-                    if ( $key == 'bank' ) {
- 
-                        $payment_query_data['name'] = get_post_meta($payment_id, 'name', true); 
-                        $payment_query_data['details'] = get_post_meta($payment_id, 'details', true); 
-        
-                    } elseif ( $key == 'paypal' ) {
-        
-                        $payment_query_data['account_type'] = get_post_meta($payment_id, 'account_type', true); 
-                        $payment_query_data['client_id'] = get_post_meta($payment_id, 'client_id', true); 
-                        
-                    } elseif ( $key == 'stripe' ) { 
-                        $payment_query_data['public_key'] = get_post_meta($payment_id, 'public_key', true); 
+                    if ($key == 'bank') {
+
+                        $payment_query_data['name'] = get_post_meta($payment_id, 'name', true);
+                        $payment_query_data['details'] = get_post_meta($payment_id, 'details', true);
+                    } elseif ($key == 'paypal') {
+
+                        $payment_query_data['account_type'] = get_post_meta($payment_id, 'account_type', true);
+                        $payment_query_data['client_id'] = get_post_meta($payment_id, 'client_id', true);
+                    } elseif ($key == 'stripe') {
+                        $payment_query_data['public_key'] = get_post_meta($payment_id, 'public_key', true);
                     }
 
                     $new_payment_methods[$key] = $payment_query_data;
                 }
-                
+
                 $invoice['payment_methods'] = $new_payment_methods;
-            } 
+            }
 
             $invoice_model = new ModelsInvoice();
-            $invoice['total'] = $invoice_model->getTotalAmount( $invoice );
+            $invoice['total'] = $invoice_model->getTotalAmount($invoice);
         }
 
-        if ( ! $reminder ) {   
+        if (!$reminder) {
             $reminderData = [];
             $reminderData['status'] = false;
-            $reminderData['due_date'] =false;
+            $reminderData['due_date'] = false;
             $reminderData['before'] = [];
-            $reminderData['after'] = [15]; 
+            $reminderData['after'] = [15];
             $invoice['reminder'] = $reminderData;
-        } 
+        }
 
-        $recurring = isset( $invoice['recurring'] ) ? $invoice['recurring'] : null;
-        if ( ! $recurring ) {  
+        $recurring = isset($invoice['recurring']) ? $invoice['recurring'] : null;
+        if (!$recurring) {
             $recurringData = [];
-            $recurringData['status'] = false; 
+            $recurringData['status'] = false;
             $recurringData['interval_type'] = 'week';
-            $recurringData['interval_in'] = 'month'; 
+            $recurringData['interval_in'] = 'month';
             $recurringData['interval'] = 1;
             $recurringData['limit_type'] = 0;
             $recurringData['limit'] = 5;
-            $recurringData['send_me'] = false; 
+            $recurringData['send_me'] = false;
             $recurringData['delivery'] = 1;
 
             $invoice['recurring'] = $recurringData;
@@ -337,7 +364,7 @@ class Invoice
         // wp_send_json_success($invoice);
 
         $total  = 0;
-        foreach ( $params['items'] as $item ) {
+        foreach ($params['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
         }
         $paid   = isset($params['paid']) ? $params['paid'] : null;
@@ -345,6 +372,7 @@ class Invoice
 
         $from   = isset($params['from']) ? $params['from'] : null;
         $to     = isset($params['to']) ? $params['to'] : null;
+        $to_type     = isset($params['to_type']) ? $params['to_type'] : null;
 
         $reminder = isset($params['reminder']) ? $params['reminder'] : null;
         $recurring = isset($params['recurring']) ? $params['recurring'] : null;
@@ -376,7 +404,7 @@ class Invoice
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
+                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
                 update_post_meta($post_id, 'status', 'draft');
                 update_post_meta($post_id, 'path', $path);
 
@@ -394,6 +422,10 @@ class Invoice
 
                 if ($to) {
                     update_post_meta($post_id, 'to', $to);
+                }
+
+                if ($to_type) {
+                    update_post_meta($post_id, 'to_type', $to_type);
                 }
 
                 if ($invoice) {
@@ -450,7 +482,8 @@ class Invoice
         $payment_methods = isset($params['payment_methods']) ? $params['payment_methods'] : null;
 
         $from     = isset($params['from']) ? $params['from'] : null;
-        $to     = isset($params['to']) ? $params['to'] : null;
+        $to       = isset($params['to']) ? $params['to'] : null;
+        $to_type  = isset($params['to_type']) ? $params['to_type'] : null;
 
         $total  = 0;
         foreach ($params['items'] as $item) {
@@ -502,6 +535,10 @@ class Invoice
 
                 if ($to) {
                     update_post_meta($post_id, 'to', $to);
+                }
+
+                if ($to_type) {
+                    update_post_meta($post_id, 'to_type', $to_type);
                 }
 
                 if ($invoice) {

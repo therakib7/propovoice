@@ -1111,6 +1111,7 @@ html {
   outline: none;
   border-radius: 4px;
   text-align: center;
+  line-height: 100%;
 }
 .ncpi .pi-info-table-content .pi-info-table td input[type=number]:focus,
 .ncpi .pi-info-table-content .pi-info-table td input[type=text]:focus {
@@ -1795,6 +1796,10 @@ html {
   padding: 12px 15px;
   z-index: 1;
   position: relative;
+}
+.ncpi .pi-contact-pagination-content .pi-pagination {
+  margin-top: 25px;
+  margin-right: 0px;
 }
 .ncpi .pi-pagination {
   display: inline-flex;
@@ -3710,7 +3715,7 @@ html {
   margin-right: -10px;
   margin-left: -10px;
 }
-.ncpi .pi-br-0 {
+.ncpi .pi-br-4 {
   border-radius: 4px !important;
 }
 .ncpi .pi-border-0 {
@@ -3858,7 +3863,7 @@ body {
   cursor: pointer;
   border: none;
   font-size: 14px;
-  display: inline-block;
+  display: inline-flex;
 }
 .ncpi .pi-btn svg {
   margin-right: 5px;
@@ -3972,6 +3977,7 @@ select {
   width: 100%;
   border: 1px solid #CBD5E0;
   outline: none;
+  line-height: 100%;
   line-height: 100%;
 }
 .ncpi .pi-form-style-one select:focus,

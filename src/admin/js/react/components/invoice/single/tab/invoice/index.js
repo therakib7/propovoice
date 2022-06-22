@@ -78,6 +78,7 @@ class Invoice extends Component {
 				template: null,
 				from: null,
 				to: null,
+				to_type: '', //person, 'org'
 				item_label: {
 					id: 'ID',
 					title: 'Title',
@@ -272,6 +273,7 @@ class Invoice extends Component {
 	handleSetTo = (data) => {
 		let invoice = { ...this.state.invoice }
 		invoice.to = data.id;
+		invoice.to_type = data.contact_type;
 		this.setState({
 			toData: data,
 			invoice,
@@ -676,9 +678,9 @@ class Invoice extends Component {
 									>
 										Continue
 										<svg
-											className="pi-mt-1"
+											className="pi-mt-3 pi-ml-10 pi-mr-0"
 											width={6}
-											height={9}
+											height={12}
 											viewBox="0 0 6 9"
 											fill="none"
 											xmlns="http://www.w3.org/2000/svg"
@@ -698,9 +700,9 @@ class Invoice extends Component {
 									>
 										{this.state.msg.saveTxt} & Continue
 										<svg
-											className="pi-mt-1"
+											className="pi-mt-3 pi-ml-10 pi-mr-0"
 											width={6}
-											height={9}
+											height={12}
 											viewBox="0 0 6 9"
 											fill="none"
 											xmlns="http://www.w3.org/2000/svg"
@@ -731,9 +733,9 @@ class Invoice extends Component {
 											onClick={() => this.setState({ emailModal: true })} >
 											Send Email
 											<svg
-												className="pi-mt-1"
+												className="pi-mt-3 pi-ml-10 pi-mr-0"
 												width={6}
-												height={9}
+												height={12}
 												viewBox="0 0 6 9"
 												fill="none"
 												xmlns="http://www.w3.org/2000/svg"
@@ -787,7 +789,7 @@ class Invoice extends Component {
 							changeHandler={this.handleTemplateChange}
 						/>}
 
-						{(currentTab == 'info') && <div className="pi-invoice-tab-content">
+						{(currentTab == 'info') && <div id="pi-tab-info" className="pi-invoice-tab-content">
 							<div className="row">
 								<div className="col-lg-9">
 									<h2 className='pi-page-title'>Add Content</h2>

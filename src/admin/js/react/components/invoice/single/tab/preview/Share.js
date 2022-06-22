@@ -31,7 +31,7 @@ class Share extends Component {
 
     copyToClipboard = (e) => {
         this.client_url.select();
-        document.execCommand('copy');
+        document.execCommand('copy'); //TODO: Deprecated https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
         // This is just personal preference.
         // I prefer to not show the whole text area selected. 
         e.target.focus();
@@ -42,12 +42,13 @@ class Share extends Component {
 
         let path = this.props.path;
         let path_title = path == 'invoice' ? 'Invoice' : 'Estimate';
-        
+
         return (
             <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
+                <div className="pi-modal-content pi-modal-style-three pi-modal-medium">
 
-                    <div className="pi-modal-header pi-gradient">
+                    <div className="pi-modal-header">
+                        <h2 className="pi-modal-title pi-text-center">Share {path_title}</h2>
                         <span className="pi-close" onClick={() => this.props.close()}>
                             <svg
                                 width={25}
@@ -70,12 +71,10 @@ class Share extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">Share {path_title}</h2>
-                        <p>Share {path} from here</p>
                     </div>
 
                     <div className="pi-content">
-                        <div className="pi-form-content pi-form-style-two">
+                        <div className="pi-form-style-one">
                             <div className="row">
                                 <div className="col-lg">
                                     <div className="pi-field-copy">
@@ -91,9 +90,9 @@ class Share extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="pi-social-content">
+                            <div className="pi-field-share">
                                 <a href="https://web.whatsapp.com" target="_blank" className="pi-social-icon">
-                                    <span className="pi-whatsapp">
+                                    <span className="pi-whatsapp" style={{ background: "#E9FBEF" }}>
                                         <svg
                                             width={40}
                                             height={40}
@@ -114,7 +113,10 @@ class Share extends Component {
                                     <p>Whatsapp</p>
                                 </a>
                                 <a href="https://messenger.com" target="_blank" className="pi-social-icon">
-                                    <span className="pi-messenger">
+                                    <span
+                                        className="pi-messenger"
+                                        style={{ background: "rgba(0, 123, 255, 0.1)" }}
+                                    >
                                         <svg
                                             width={35}
                                             height={40}
@@ -131,7 +133,10 @@ class Share extends Component {
                                     <p>Messenger</p>
                                 </a>
                                 <a href="https://web.telegram.org/z/" target="_blank" className="pi-social-icon">
-                                    <span className="pi-telegrame">
+                                    <span
+                                        className="pi-telegrame"
+                                        style={{ background: "rgba(64, 179, 224, 0.08)" }}
+                                    >
                                         <svg
                                             width={35}
                                             height={35}
@@ -152,7 +157,10 @@ class Share extends Component {
                                     <p>Telegrame</p>
                                 </a>
                                 <a href="https://web.skype.com/" target="_blank" className="pi-social-icon">
-                                    <span className="pi-skype">
+                                    <span
+                                        className="pi-skype"
+                                        style={{ background: "rgba(0, 175, 240, 0.08)" }}
+                                    >
                                         <svg
                                             width={35}
                                             height={35}
