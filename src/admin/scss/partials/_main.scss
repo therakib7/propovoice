@@ -850,7 +850,7 @@ html {
 }
 .ncpi .pi-table tr th svg {
   position: relative;
-  top: 4px;
+  top: 1px;
   margin-right: 5px;
 }
 .ncpi .pi-table tbody tr {
@@ -1797,7 +1797,7 @@ html {
   z-index: 1;
   position: relative;
 }
-.ncpi .pi-contact-pagination-content .pi-pagination {
+.ncpi .pi-pagination-content-two .pi-pagination {
   margin-top: 25px;
   margin-right: 0px;
 }
@@ -2242,14 +2242,16 @@ html {
 }
 .ncpi .pi-field-copy .pi-copy {
   position: absolute;
-  right: 0px;
-  top: 0px;
-  padding: 12px 15px;
+  right: 2px;
+  top: 2px;
+  padding: 10px 12px;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--bg-color-blue);
   cursor: pointer;
   font-size: 14px;
+  background: #fff;
+  border-radius: 5px;
 }
 .ncpi .pi-field-share {
   margin-top: 10px;
@@ -2293,7 +2295,7 @@ html {
   }
 }
 .ncpi .pi-modal-sidebar .pi-modal-header {
-  padding: 45px 35px;
+  padding: 40px 35px;
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-modal-sidebar .pi-modal-header {
@@ -2302,7 +2304,7 @@ html {
 }
 .ncpi .pi-modal-sidebar .pi-content {
   padding: 20px 35px 15px;
-  height: calc(100vh - 229px);
+  height: calc(100vh - 219px);
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-modal-sidebar .pi-content {
@@ -2310,8 +2312,8 @@ html {
   }
 }
 .ncpi .pi-modal-sidebar .pi-close {
-  top: 35%;
-  left: -55px;
+  top: 48%;
+  left: -60px;
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-modal-sidebar .pi-close {
@@ -2320,7 +2322,7 @@ html {
 }
 .ncpi .pi-modal-sidebar .pi-modal-footer {
   margin-top: 20px;
-  padding: 20px 45px 5px;
+  padding: 20px 40px 5px;
   border: 1px solid #dddddda8;
 }
 @media screen and (max-width: 992px) {
@@ -2329,7 +2331,7 @@ html {
   }
 }
 .ncpi .pi-modal-sidebar .pi-modal-footer .pi-btn {
-  margin-left: -35px;
+  margin-left: -30px;
 }
 .ncpi .pi-modal-sidebar .pi-title-field {
   font-size: 24px !important;
@@ -2342,6 +2344,7 @@ html {
 .ncpi .pi-modal-sidebar .pi-action-content svg {
   margin-right: 0;
   margin-left: 20px;
+  margin-top: 6px;
 }
 .ncpi .pi-modal-sidebar .pi-action-content .pi-dropdown-content {
   top: 35px;
@@ -2383,14 +2386,13 @@ html {
   color: #718096;
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-content ul {
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-content ul li {
   font-size: 12px;
-  padding: 5px 0;
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-content ul li label {
-  color: #4a5568;
+  color: #718096;
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-content ul li input[type=checkbox] {
   position: relative;
@@ -3350,7 +3352,6 @@ html {
 .ncpi .pi-widget .pi-widget-title .pi-btn-small {
   float: right;
   font-weight: normal;
-  color: #2D3748;
 }
 .ncpi .pi-widget .pi-widget-title .pi-btn-small svg path {
   fill: #2D3748 !important;
@@ -3420,7 +3421,10 @@ html {
 .ncpi .pi-button-group .pi-btn svg {
   margin-right: 20px;
   position: relative;
-  top: 3px;
+  top: -1px;
+}
+.ncpi .pi-button-group .pi-btn-big {
+  justify-content: left;
 }
 .ncpi .pi-info-box address {
   font-style: normal;
@@ -3496,7 +3500,7 @@ html {
 }
 .ncpi .pi-switch-content {
   text-align: right;
-  z-index: 99;
+  z-index: 9;
   position: relative;
 }
 .ncpi .pi-switch-content .pi-primary {
@@ -3633,7 +3637,7 @@ html {
 }
 .ncpi .pi-mt-3 {
   position: relative;
-  top: 3px;
+  top: 3px !important;
 }
 .ncpi .pi-mt-6 {
   position: relative;
@@ -3889,6 +3893,7 @@ body {
 }
 .ncpi .pi-btn-big {
   width: 200px;
+  justify-content: center;
 }
 
 select {
@@ -4055,6 +4060,7 @@ select {
   --bg-color-blue: #4c6fff;
   --bg-color-red: #F16063;
   --bg-color-green: #18954d;
+  --bg-color-light-green: #DDFFDE;
   --bg-color-pearl: #f7f8fa;
   --bg-color-husky: #e1e8ff;
   --bg-color-air-white: #edf2f7;
@@ -4120,6 +4126,10 @@ select {
 
 .pi-bg-green {
   background-color: var(--bg-color-green) !important;
+}
+
+.pi-bg-light-green {
+  background-color: var(--bg-color-light-green) !important;
 }
 
 .pi-bg-red {

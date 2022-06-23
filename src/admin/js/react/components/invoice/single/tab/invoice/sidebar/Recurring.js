@@ -114,7 +114,7 @@ export default (props) => {
                                 name="limit"
                                 value={recurring.limit}
                                 onChange={handleChange}
-                            /> Times
+                            /> <span className="pi-times">Times</span>
                         </div>
                     </div>
 

@@ -20,11 +20,12 @@ const Action = (props) => {
         <div className="pi-table-action pi-mb-10">
             <div className="row">
                 <div className="col">
-                    <div className="pi-checkbox-field">
+                    <div className="pi-checkbox-field pi-mt-6">
                         <input type="checkbox" defaultChecked={true} onChange={() => props.uncheckAll()} />
                         <span>{props.length} Items Selected</span>
                     </div>
                 </div>
+                
                 <div className="col">
                     <div className="pi-small-button-group pi-text-right">
                         {/* <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">

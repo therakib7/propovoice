@@ -67,9 +67,9 @@ class Section extends Component {
         this.props.changeHandler(this.state.sections);
     };
 
-    deleteHandler = (section_index) => {
+    deleteHandler = (index) => {
         let array = [...this.state.sections];
-        array.splice(section_index, 1);
+        array.splice(index, 1);
         this.setState({ sections: array }, () => {
             this.handlePros();
         });
@@ -78,79 +78,79 @@ class Section extends Component {
     render = () => {
         const { sections } = this.state;
         return (
-            <>
-                {sections.map((section_single, section_index) => {
+            <div className="pi-inv-sections pi-form-style-one">
+                {sections.map((section_single, index) => {
                     return (
-                        <div className="pi-add-term" key={section_index}>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <Editable
-                                        key={section_index}
-                                        value={section_single.label}
-                                        index={section_index}
-                                        changeHandler={this.handleSectionLabel}
+                        <div className="pi-group-input" key={index}>
+                            <span
+                                className="pi-close-icon"
+                                onClick={() => this.deleteHandler(index)}
+                            >
+                                <svg
+                                    width={15}
+                                    height={15}
+                                    viewBox="0 0 10 10"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        clipRule="evenodd"
+                                        d="M1.19499 1.20353C1.31989 1.07854 1.48926 1.00833 1.66585 1.00833C1.84245 1.00833 2.01182 1.07854 2.13671 1.20353L4.99584 4.06553L7.85496 1.20353C7.9164 1.13985 7.98988 1.08906 8.07114 1.05412C8.15239 1.01919 8.23979 1.00079 8.32822 1.00003C8.41665 0.999256 8.50434 1.01612 8.58619 1.04964C8.66804 1.08316 8.7424 1.13267 8.80493 1.19526C8.86747 1.25786 8.91692 1.33229 8.95041 1.41422C8.98389 1.49615 9.00074 1.58394 8.99997 1.67246C8.99921 1.76098 8.98083 1.84846 8.94593 1.9298C8.91103 2.01113 8.86029 2.08469 8.79668 2.14619L5.93756 5.00819L8.79668 7.87019C8.91799 7.99593 8.98512 8.16433 8.98361 8.33913C8.98209 8.51392 8.91205 8.68113 8.78857 8.80474C8.66508 8.92834 8.49804 8.99846 8.32342 8.99997C8.1488 9.00149 7.98057 8.9343 7.85496 8.81286L4.99584 5.95086L2.13671 8.81286C2.01111 8.9343 1.84287 9.00149 1.66825 8.99997C1.49363 8.99846 1.32659 8.92834 1.20311 8.80474C1.07963 8.68113 1.00958 8.51392 1.00807 8.33913C1.00655 8.16433 1.07368 7.99593 1.19499 7.87019L4.05412 5.00819L1.19499 2.14619C1.07014 2.02117 1 1.85163 1 1.67486C1 1.49808 1.07014 1.32854 1.19499 1.20353Z"
+                                        fill="#4A5568"
+                                        stroke="#4A5568"
+                                        strokeWidth="0.2"
                                     />
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="pi-radio-group">
+                                </svg>
+                            </span>
 
-                                        <span
-                                            className='pi-delate'
-                                            title='Delete this section'
-                                            onClick={() => this.deleteHandler(section_index)}
-                                        >
-                                            <svg
-                                                width={18}
-                                                height={18}
-                                                viewBox="0 0 9 9"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M8.073 2.387a.39.39 0 01-.345.388l-.045.003h-.33l-.48 4.886a1.073 1.073 0 01-1.069.967H2.927a1.073 1.073 0 01-1.068-.967l-.48-4.886h-.33a.39.39 0 010-.78h1.95a1.366 1.366 0 112.732 0h1.952a.39.39 0 01.39.39zm-2.83 1.269a.293.293 0 00-.29.253l-.002.04V6.68l.003.04a.293.293 0 00.58 0l.002-.04V3.948l-.002-.04a.293.293 0 00-.29-.252zm-1.756 0a.293.293 0 00-.29.253l-.002.04V6.68l.003.04a.293.293 0 00.58 0l.002-.04V3.948l-.003-.04a.293.293 0 00-.29-.252zm.879-2.244a.585.585 0 00-.586.585h1.17a.585.585 0 00-.584-.585z"
-                                                    fill="#718096"
-                                                />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <Editable
+                                key={index}
+                                value={section_single.label}
+                                index={index}
+                                changeHandler={this.handleSectionLabel}
+                            />
 
-                            <div className="pi-editor">
+                            <div className="pi-editor" style={{ marginBottom: '25px' }}>
                                 <Editor
-                                    key={section_index}
+                                    key={index}
                                     value={section_single.content}
-                                    index={section_index}
+                                    index={index}
                                     changeHandler={this.handleSectionContent}
                                 />
                             </div>
                         </div>
                     );
                 })}
-
+                
                 <button
-                    className="pi-group-btn pi-ml-10"
+                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
                     onClick={() => this.addSection()}
+                    style={{ width: "100%", justifyContent: "center" }}
                 >
-                    <span>
-                        <svg
-                            width={10}
-                            height={10}
-                            viewBox="0 0 10 10"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M5 0a1 1 0 011 1v3h3a1 1 0 010 2H6v3a1 1 0 01-2 0V6H1a1 1 0 010-2h3V1a1 1 0 011-1z"
-                                fill="#2D3748"
-                            />
-                        </svg>
-                    </span>
+                    <svg
+                        width={16}
+                        height={16}
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M1.875 6H10.125"
+                            stroke="#2D3748"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M6 1.875V10.125"
+                            stroke="#2D3748"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
                     Add New Section
                 </button>
-            </>
+            </div>
         )
     }
 }

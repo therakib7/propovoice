@@ -65,12 +65,12 @@ class Upload extends Component {
 	onFileUpload = (file) => {
 		const formData = new FormData();
 		formData.append('file', file);
-		if ( this.props.attach_type ) {
+		if (this.props.attach_type) {
 			formData.append('attach_type', this.props.attach_type);
 		} else {
 			formData.append('attach_type', 'ncpi');
 		}
-		
+
 		let permission = this.props.permission !== undefined ? true : false;
 		formData.append('permission', permission);
 
@@ -97,9 +97,9 @@ class Upload extends Component {
 		let imgClass = this.props.imgClass;
 		imgClass = imgClass ? imgClass : '';
 
-		let remove = this.props.remove !== undefined ? false : true; 
+		let remove = this.props.remove !== undefined ? false : true;
 		return (
-			<div className={'pi-field-logo-wrap ' + imgClass}> 
+			<div className={'pi-field-logo-wrap ' + imgClass}>
 				{this.props.library && this.state.media && <Media
 					insertHandler={this.handlePros}
 					show={this.state.media}
@@ -109,28 +109,29 @@ class Upload extends Component {
 				{!logo &&
 					<>
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='d-none' />
-						<button
-							className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + btnClass}
+
+						<button 
+							className={'pi-btn pi-bg-stroke pi-bg-hover-stroke ' + btnClass}
 							onClick={(e) => this.handleUploadFile(e)}
-							style={{ color: '#000' }}>
+							style={{ padding: ( this.props.padding ? this.props.padding : '10px 20px'), border: "1px solid #E2E8F0" }}
+						>
 							<svg
-								width={14}
-								height={14}
-								viewBox="0 0 16 13"
+								width={25}
+								height={25}
+								viewBox="0 0 14 14"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
 							>
 								<path
-									d="M10.037 9.553H8.69v-4.32a.144.144 0 00-.146-.142h-1.09a.144.144 0 00-.146.142v4.32H5.965c-.122 0-.19.137-.115.23l2.036 2.526a.143.143 0 00.115.055.148.148 0 00.114-.055l2.036-2.526c.075-.093.008-.23-.114-.23z"
-									fill="#4C6FFF"
-								/>
-								<path
-									d="M13.346 3.675A5.715 5.715 0 008.004 0 5.714 5.714 0 002.66 3.673 3.56 3.56 0 000 7.11a3.562 3.562 0 003.57 3.556h.716a.143.143 0 00.143-.143V9.458a.143.143 0 00-.143-.142H3.57a2.206 2.206 0 01-.565-4.34l.677-.176.248-.65a4.378 4.378 0 011.573-2.014 4.337 4.337 0 012.5-.787 4.337 4.337 0 013.436 1.673 4.3 4.3 0 01.638 1.127l.246.65.675.177a2.216 2.216 0 011.645 2.135c0 .589-.23 1.143-.648 1.56a2.198 2.198 0 01-1.565.645h-.716a.143.143 0 00-.143.142v1.066c0 .079.065.143.143.143h.716A3.562 3.562 0 0016 7.11a3.559 3.559 0 00-2.654-3.436z"
-									fill="#4C6FFF"
+									d="M3.66824 10.0907C3.01193 10.0915 2.37842 9.85536 1.88909 9.42768C1.39976 9 1.08901 8.41081 1.01638 7.773C0.943746 7.13518 1.11434 6.49358 1.49547 5.97112C1.87661 5.44866 2.44148 5.08208 3.08188 4.94161C2.89659 4.09662 3.06217 3.21426 3.5422 2.48865C4.02223 1.76304 4.77738 1.25361 5.64153 1.07243C6.50568 0.891248 7.40804 1.05316 8.1501 1.52254C8.89217 1.99193 9.41315 2.73034 9.59844 3.57533H9.66507C10.4913 3.57451 11.2883 3.87392 11.9014 4.41541C12.5146 4.9569 12.9001 5.70185 12.9831 6.50564C13.0662 7.30943 12.8408 8.11472 12.3508 8.76517C11.8608 9.41562 11.1411 9.86483 10.3314 10.0256M8.99875 8.13612L6.99981 6.1815M6.99981 6.1815L5.00087 8.13612M6.99981 6.1815V13"
+									stroke="#4C6FFF"
+									strokeWidth="1.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 								/>
 							</svg>
-							{label}
-						</button>
+							<span className="pi-mt-4">{label}</span>
+						</button> 
 					</>
 				}
 

@@ -216,7 +216,7 @@
 .ncpi .pi-from-content .pi-title-small {
   font-weight: 700;
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .ncpi .pi-from-content .pi-title-small span {
   float: right;
@@ -293,55 +293,49 @@
     padding: 35px 0px !important;
   }
 }
-.ncpi .pi-group-form .pi-group-input {
+.ncpi .pi-inv-sections .pi-group-input {
   position: relative;
 }
-.ncpi .pi-group-form .pi-group-input label {
+.ncpi .pi-inv-sections .pi-group-input label {
   font-size: 14px;
   font-weight: 600;
   color: #2D3748;
 }
-.ncpi .pi-group-form .pi-group-input label svg {
+.ncpi .pi-inv-sections .pi-group-input label svg {
   margin-left: 5px;
   cursor: pointer;
   color: #2D3748;
   top: 4px;
   position: relative;
 }
-.ncpi .pi-group-form .pi-group-input textarea {
+.ncpi .pi-inv-sections .pi-group-input textarea {
   margin-bottom: 25px;
   color: #718096;
   font-size: 12px;
 }
-.ncpi .pi-group-form .pi-group-input .pi-close-icon {
+.ncpi .pi-inv-sections .pi-group-input .pi-close-icon {
   position: absolute;
   right: 15px;
   top: 5%;
   padding: 5px 10px;
   cursor: pointer;
 }
-.ncpi .pi-group-form .pi-group-input input {
+.ncpi .pi-inv-sections .pi-group-input input {
   width: 50%;
   font-weight: 600;
   margin-bottom: 10px;
 }
-.ncpi .pi-group-form .pi-group-input input::-moz-placeholder {
+.ncpi .pi-inv-sections .pi-group-input input::-moz-placeholder {
   color: #2D3748 !important;
   font-weight: 600;
 }
-.ncpi .pi-group-form .pi-group-input input:-ms-input-placeholder {
+.ncpi .pi-inv-sections .pi-group-input input:-ms-input-placeholder {
   color: #2D3748 !important;
   font-weight: 600;
 }
-.ncpi .pi-group-form .pi-group-input input::placeholder {
+.ncpi .pi-inv-sections .pi-group-input input::placeholder {
   color: #2D3748 !important;
   font-weight: 600;
-}
-.ncpi .pi-group-form .pi-btn {
-  color: #2D3748 !important;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
-  font-weight: 500;
-  border-radius: 8px;
 }
 .ncpi .pi-right-sidebar h2.pi-title-medium {
   margin-bottom: 15px;
