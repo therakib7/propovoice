@@ -125,7 +125,7 @@
   margin-bottom: 5px;
 }
 .ncpi .pi-info-content {
-  padding: 30px 45px;
+  padding: 30px 45px 45px;
   border-radius: 20px;
 }
 .ncpi .pi-info-logo {
@@ -313,17 +313,26 @@
   color: #718096;
   font-size: 12px;
 }
-.ncpi .pi-inv-sections .pi-group-input .pi-close-icon {
+.ncpi .pi-inv-sections .pi-group-input .pi-field-input {
+  width: 50%;
+}
+.ncpi .pi-inv-sections .pi-group-input .pi-field-input .pi-close-icon {
   position: absolute;
-  right: 15px;
+  right: 0px;
   top: 5%;
   padding: 5px 10px;
   cursor: pointer;
 }
-.ncpi .pi-inv-sections .pi-group-input input {
-  width: 50%;
+.ncpi .pi-inv-sections .pi-group-input .pi-field-input input {
   font-weight: 600;
   margin-bottom: 10px;
+}
+.ncpi .pi-inv-sections .pi-group-input .pi-field-label .pi-close-icon {
+  position: absolute;
+  right: 0px;
+  top: 0%;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 .ncpi .pi-inv-sections .pi-group-input input::-moz-placeholder {
   color: #2D3748 !important;

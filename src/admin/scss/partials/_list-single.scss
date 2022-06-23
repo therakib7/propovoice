@@ -69,12 +69,15 @@
 }
 .ncpi .pi-list-single-button-content .pi-select .pi-action-content .pi-btn {
   font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 5px;
 }
 .ncpi .pi-list-single-button-content .pi-select .pi-action-content .pi-btn svg {
   margin-right: 0;
   margin-left: 20px;
   position: relative;
-  top: 6px;
+  top: 4px;
 }
 .ncpi .pi-list-single-button-content .pi-select .pi-action-content .pi-dropdown-content {
   top: 36px;
@@ -86,15 +89,11 @@
   color: #4A5568;
   margin-left: 5px;
   border-radius: 4px;
-  line-height: 15px;
-}
-.ncpi .pi-list-single-button-content .pi-action-btn {
-  top: 6px;
-  padding: 5px 0px;
 }
 .ncpi .pi-list-single-button-content .pi-action-btn button {
   border: none;
   margin-left: 0;
+  padding: 3px;
 }
 .ncpi .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
   margin-top: 3px;
@@ -318,6 +317,7 @@
   width: 100%;
   margin-bottom: 15px;
   border-radius: 5px;
+  justify-content: center;
 }
 .ncpi .pi-board-column:last-child {
   margin-right: 0;
@@ -349,8 +349,12 @@
   margin-left: auto;
 }
 .ncpi .pi-board-column .pi-action-content button {
-  top: -3px;
+  top: -4px;
   position: relative;
+}
+.ncpi .pi-board-column .pi-action-content button svg {
+  position: relative;
+  top: 1px;
 }
 .ncpi .pi-board-column .pi-action-content .pi-dropdown-content {
   top: 39px;

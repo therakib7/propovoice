@@ -1011,8 +1011,7 @@ class ListSingle extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </div> 
         );
     }
 }
