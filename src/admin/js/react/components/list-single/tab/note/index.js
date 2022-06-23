@@ -31,7 +31,7 @@ const Note = ( props ) => {
 
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
-            <div className="pi-pagination-content">
+            <div className="pi-pagination-content pi-mr-m-30">
                 { props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />} 
             </div>
         </div>
