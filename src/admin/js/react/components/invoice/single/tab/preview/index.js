@@ -19,7 +19,6 @@ const EditDownload = props => {
                 onClick={() => props.handleEdit()}
             >
                 <svg
-                    className="pi-mt-3"
                     width={17}
                     height={16}
                     viewBox="0 0 17 16"
@@ -107,7 +106,6 @@ export default class Preview extends Component {
                                 // onClick={() => props.handleDownload()}
                                 >
                                     <svg
-                                        className="pi-mt-3"
                                         width={17}
                                         height={16}
                                         viewBox="0 0 17 16"
@@ -141,7 +139,6 @@ export default class Preview extends Component {
                                 // onClick={() => props.handlePrint()}
                                 >
                                     <svg
-                                        className="pi-mt-3"
                                         width={17}
                                         height={16}
                                         viewBox="0 0 17 16"
@@ -196,7 +193,6 @@ export default class Preview extends Component {
                                     //onClick={() => props.handleDownload()}
                                     >
                                         <svg
-                                            className="pi-mt-3"
                                             width={17}
                                             height={16}
                                             viewBox="0 0 17 16"
@@ -230,7 +226,6 @@ export default class Preview extends Component {
                                     // onClick={() => props.handlePrint()}
                                     >
                                         <svg
-                                            className="pi-mt-3"
                                             width={17}
                                             height={16}
                                             viewBox="0 0 17 16"

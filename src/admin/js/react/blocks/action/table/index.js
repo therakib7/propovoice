@@ -25,10 +25,10 @@ const Action = (props) => {
                         <span>{props.length} Items Selected</span>
                     </div>
                 </div>
-                
+
                 <div className="col">
                     <div className="pi-small-button-group pi-text-right">
-                        {/* <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
+                        {/*<button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
                             Export CVC
                         </button>
                         <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
@@ -36,7 +36,7 @@ const Action = (props) => {
                         </button>
                         <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
                             Archive
-                        </button> */}
+                        </button>*/}
                         <button
                             className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
                             onClick={() => props.deleteEntry('selected')}

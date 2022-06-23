@@ -268,11 +268,14 @@ input:checked+.pi-switch-slider:before {
     }
 }
 
-.pi-deal-content {
-    // max-width: none !important; 
-    max-width: none !important; overflow-x: scroll; height: 100vh;
-    // overflow-x: scroll;
+.pi-deal-content { 
+    max-width: none !important; 
+    overflow-x: scroll; 
+    height: 100vh; 
 } 
+.wp-admin .pi-deal-content {
+    height: auto;
+}
 
 .wp-admin.ncpi .pi-right-content {
     height: auto !important;
