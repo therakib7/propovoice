@@ -91,8 +91,8 @@ class Taxonomy
                 $format_taxonomy = [];
                 foreach ($get_taxonomy as $single) {
                     $color = get_term_meta($single->term_id, 'color', true);
-                    $bg_color = get_term_meta($single->term_id, 'bg_color', true); 
-                    
+                    $bg_color = get_term_meta($single->term_id, 'bg_color', true);
+
                     $term_property = [
                         'id' => (string) $single->term_id,
                         'label' => $single->name,
@@ -100,7 +100,7 @@ class Taxonomy
                         'bg_color' => $bg_color ? $bg_color : ''
                     ];
 
-                    if ( $taxonomy == 'deal_stage' ) {
+                    if ($taxonomy == 'deal_stage') { // for won, lost
                         $term_property['type'] = get_term_meta($single->term_id, 'type', true);
                     }
                     $format_taxonomy[] = $term_property;
@@ -108,18 +108,17 @@ class Taxonomy
                 $data[$taxonomy] = $format_taxonomy;
 
                 if ($id) {
-                    $tags = get_the_terms($id, 'ndpi_tag');
+                    $tags = get_the_terms($id, 'ndpi_' . $taxonomy);
+                    $tagList = [];
                     if ($tags) {
-                        $tagList = [];
                         foreach ($tags as $tag) {
                             $tagList[] = [
                                 'id' => $tag->term_id,
                                 'label' => $tag->name
                             ];
                         }
-
-                        $data['single_tag'] = $tagList;
                     }
+                    $data['single_' . $taxonomy] = $tagList;
                 }
             }
             wp_send_json_success($data);

@@ -81,14 +81,14 @@ class ListSingle extends Component {
     };
 
     getLevelTagData = () => {
-        this.props.getAll('taxonomies', 'taxonomy=lead_level,tag').then(resp => {
+        /* this.props.getAll('taxonomies', 'taxonomy=lead_level,tag').then(resp => {
             if (resp.data.success) {
                 this.setState({
                     levels: resp.data.data.lead_level,
                     tags: resp.data.data.tag,
                 });
             }
-        });
+        }); */
     };
 
     getStageTagData = () => {
@@ -294,7 +294,8 @@ class ListSingle extends Component {
                                         </div> */}
                                         <div className="pi-select">
                                             <label htmlFor="source">Lead Level:</label>
-                                            <div className="pi-action-content">
+                                            {data.id && <Tag id={data.id} taxonomy='lead_level' title='Level' big={true} color={true} />}
+                                            {/* <div className="pi-action-content">
                                                 <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
                                                     Hot
                                                     <svg
@@ -315,7 +316,7 @@ class ListSingle extends Component {
                                                     <a href="#">Tag two</a>
                                                     <a href="#">Tag three</a>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                         <button
@@ -394,13 +395,12 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {data.id && <Tag id={data.id} tax='tag' multiple={true} />}
+                                    {data.id && <Tag id={data.id} taxonomy='tag' title='Tag' multiple={true} />}
                                 </li>
+
                                 <li>
-                                    <label htmlFor="">Source:</label>
-                                    <select name="" id="">
-                                        <option value="">Website</option>
-                                    </select>
+                                    <label htmlFor="">Source: </label>
+                                    {data.id && <Tag id={data.id} taxonomy='lead_source' title='Source' color={true} />}
                                 </li>
                             </ul>
                         </div>
