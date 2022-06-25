@@ -279,7 +279,7 @@ class ListSingle extends Component {
 
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
-                                        <div className="pi-select">
+                                        {/* <div className="pi-select">
                                             <label>Lead Level:</label>
                                             <div className='pi-list-single-select'>
                                                 <AsyncSelect
@@ -290,6 +290,31 @@ class ListSingle extends Component {
                                                     getOptionValue={data => data.id}
                                                     getOptionLabel={(data) => (data.label) ? data.label : ''}
                                                 />
+                                            </div>
+                                        </div> */}
+                                        <div className="pi-select">
+                                            <label htmlFor="source">Lead Level:</label>
+                                            <div className="pi-action-content">
+                                                <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
+                                                    Hot
+                                                    <svg
+                                                        width={10}
+                                                        height={6}
+                                                        viewBox="0 0 10 6"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
+                                                            fill="#F7936F"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                                <div className="pi-dropdown-content">
+                                                    <a href="#">Tag one</a>
+                                                    <a href="#">Tag two</a>
+                                                    <a href="#">Tag three</a>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -602,14 +627,31 @@ class ListSingle extends Component {
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label>Lead Level:</label>
-                                            <select name="source" id="source" className="pi-select-small">
-                                                <option value="volvo">Opportunity</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="opel">Opel</option>
-                                                <option value="audi">Audi</option>
-                                            </select>
+                                            <label htmlFor="source">Project Status:</label>
+                                            <div className="pi-action-content">
+                                                <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
+                                                    In Progress
+                                                    <svg
+                                                        width={10}
+                                                        height={6}
+                                                        viewBox="0 0 10 6"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
+                                                            fill="#F7936F"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                                <div className="pi-dropdown-content">
+                                                    <a href="#">Tag one</a>
+                                                    <a href="#">Tag two</a>
+                                                    <a href="#">Tag three</a>
+                                                </div>
+                                            </div>
                                         </div>
+
                                         <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow">
                                             Mark as completed
                                         </button>
@@ -857,13 +899,29 @@ class ListSingle extends Component {
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label>Status:</label>
-                                            <select name="source" id="source" className="pi-select-small">
-                                                <option value="volvo">Opportunity</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="opel">Opel</option>
-                                                <option value="audi">Audi</option>
-                                            </select>
+                                            <label htmlFor="source">Status:</label>
+                                            <div className="pi-action-content">
+                                                <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
+                                                    Opportunity
+                                                    <svg
+                                                        width={10}
+                                                        height={6}
+                                                        viewBox="0 0 10 6"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
+                                                            fill="#F7936F"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                                <div className="pi-dropdown-content">
+                                                    <a href="#">Tag one</a>
+                                                    <a href="#">Tag two</a>
+                                                    <a href="#">Tag three</a>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow pi-float-right">
