@@ -158,7 +158,7 @@ class ListSingle extends Component {
 
     handleStageChange = (val) => {
         let data = { ...this.state.data }
-        if ( val == 'won' || val == 'lost' ) {
+        if (val == 'won' || val == 'lost') {
             let obj = this.state.stages.find(o => o.type === val);
             data.stage_id = obj;
         } else {
@@ -171,7 +171,7 @@ class ListSingle extends Component {
             }
             this.props.update('deals', this.props.id, newData);
         });
-    } 
+    }
 
     deleteEntry = (type, id) => {
         if (confirm('Are you sure want to delete it?')) { //TODO: translation
@@ -367,7 +367,7 @@ class ListSingle extends Component {
 
                         <div className="pi-tag-content">
                             <ul>
-                                <li> 
+                                <li>
                                     <label htmlFor="">Tag: </label>
                                     {data.id && <Tag id={data.id} tax='tag' multiple={true} />}
                                 </li>
@@ -424,7 +424,7 @@ class ListSingle extends Component {
                                 </div>
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
-                                        <div className="pi-select">
+                                        {/* <div className="pi-select">
                                             <label>Deal Stage:</label>
                                             <div className='pi-list-single-select'>
                                                 <AsyncSelect
@@ -436,7 +436,33 @@ class ListSingle extends Component {
                                                     getOptionLabel={(data) => (data.label) ? data.label : ''}
                                                 />
                                             </div>
+                                        </div> */}
+                                        <div className="pi-select">
+                                            <label htmlFor="source">Deal Stage:</label>
+                                            <div className="pi-action-content">
+                                                <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
+                                                    Opportunity
+                                                    <svg
+                                                        width={10}
+                                                        height={6}
+                                                        viewBox="0 0 10 6"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
+                                                            fill="#F7936F"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                                <div className="pi-dropdown-content">
+                                                    <a href="#">Tag one</a>
+                                                    <a href="#">Tag two</a>
+                                                    <a href="#">Tag three</a>
+                                                </div>
+                                            </div>
                                         </div>
+
                                         <button
                                             className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
                                             onClick={() => this.setState({ projectModal: true, projectModalType: 'move' })}
@@ -467,24 +493,29 @@ class ListSingle extends Component {
                                         </button>
 
                                         {data.stage_id && <>
-                                            {( data.stage_id.type == 'won' || data.stage_id.type == '' ) &&<button
+                                            {(data.stage_id.type == 'won' || data.stage_id.type == '') && <button
                                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
+                                                style={{ padding: "9px 15px !important" }}
                                                 onClick={() => this.handleStageChange('won')}
                                             >
-                                                <img className='pi-mt-3 pi-mr-5' src={ncpi.assetImgUri + 'happy.png'} alt="won" />
+                                                <img className='pi-mr-5' src={ncpi.assetImgUri + 'happy.png'} alt="won" />
                                                 Won
                                             </button>}
 
-                                            {( data.stage_id.type == 'lost' || data.stage_id.type == '' ) &&<button
+                                            {(data.stage_id.type == 'lost' || data.stage_id.type == '') && <button
                                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
+                                                style={{ padding: "9px 15px !important" }}
                                                 onClick={() => this.handleStageChange('lost')}
                                             >
-                                                <img className='pi-mt-3 pi-mr-5' src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
+                                                <img className='pi-mr-5' src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
                                                 Lost
                                             </button>}
                                         </>}
 
-                                        <div className="pi-action-content pi-action-btn">
+                                        <div
+                                            className="pi-action-content pi-action-btn"
+                                            style={{ padding: 0, top: 2 }}
+                                        >
                                             <button
                                                 className='pi-bg-stroke pi-bg-shadow'
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
@@ -519,7 +550,7 @@ class ListSingle extends Component {
 
                                             {this.state.action && <div className="pi-dropdown-content pi-show">
                                                 <a onClick={() => this.setState({ dealModal: true })}>Edit</a>
-                                                <a onClick={() => this.deleteEntry('deal', data.id)}>Delete</a> 
+                                                <a onClick={() => this.deleteEntry('deal', data.id)}>Delete</a>
                                             </div>}
 
                                         </div>
@@ -1011,7 +1042,7 @@ class ListSingle extends Component {
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         );
     }
 }
