@@ -678,7 +678,7 @@ class Invoice extends Component {
 									>
 										Continue
 										<svg
-											className="pi-mt-3 pi-ml-10 pi-mr-0"
+											className="pi-mr-0 pi-ml-10 pi-mt-1"
 											width={6}
 											height={12}
 											viewBox="0 0 6 9"
@@ -700,7 +700,7 @@ class Invoice extends Component {
 									>
 										{this.state.msg.saveTxt} & Continue
 										<svg
-											className="pi-mt-3 pi-ml-10 pi-mr-0"
+											className="pi-mr-0 pi-ml-10 pi-mt-1"
 											width={6}
 											height={12}
 											viewBox="0 0 6 9"
@@ -733,7 +733,7 @@ class Invoice extends Component {
 											onClick={() => this.setState({ emailModal: true })} >
 											Send Email
 											<svg
-												className="pi-mt-3 pi-ml-10 pi-mr-0"
+												className="pi-mr-0 pi-ml-10 pi-mt-1"
 												width={6}
 												height={12}
 												viewBox="0 0 6 9"

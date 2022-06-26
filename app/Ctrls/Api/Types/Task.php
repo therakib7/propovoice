@@ -167,7 +167,8 @@ class Task
                     'id' => $term_id,
                     'label' => $status[0]->name,
                     'color' => get_term_meta($term_id, 'color', true),
-                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
+                    'bg_color' => get_term_meta($term_id, 'bg_color', true),
+                    'type' => get_term_meta($term_id, 'type', true),
                 ];
             }
 

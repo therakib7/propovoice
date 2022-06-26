@@ -125,6 +125,9 @@ class Taxonomy
 
             if (!is_wp_error($term_id)) {
                 update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
+                if ( $status == 'Done' ) {
+                    update_term_meta($term_id['term_id'], 'type', 'done');
+                }
             }
         }
 

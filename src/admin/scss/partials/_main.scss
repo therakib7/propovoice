@@ -1935,6 +1935,24 @@ html {
   position: relative;
   top: 2px;
 }
+.ncpi .pi-dropdown-content .pi-search-field {
+  padding: 10px;
+}
+.ncpi .pi-dropdown-content .pi-search-field input[type=text] {
+  border: 1px solid #E2E8F0;
+  padding: 10px;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: 0px 1px 2px rgba(50, 50, 71, 0.08), 0px 0px 1px rgba(50, 50, 71, 0.2);
+}
+.ncpi .pi-dropdown-content button {
+  padding: 12px 16px;
+  width: 100%;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
+  color: #A0AEC0;
+  text-align: left;
+  margin-left: 0px !important;
+}
 .ncpi .pi-dropdown-content a:hover {
   background-color: var(--bg-color-deutzia-white);
 }

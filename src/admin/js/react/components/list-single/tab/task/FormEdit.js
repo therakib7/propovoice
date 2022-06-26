@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Select from 'react-select';
 import WithApi from 'hoc/Api';
+import Taxonomy from 'block/field/taxonomy'; 
 
 import Checklist from './Checklist';
 
@@ -126,6 +127,24 @@ class Form extends Component {
         this.setState({ form })
     }
 
+    handleTaskStatusChange = (val) => {
+        
+        let data = { ...this.state.form }
+        if (val == 'done') {
+            let obj = this.state.status.find(o => o.type === val);
+            data.status_id = obj;
+        } else {
+            data.status_id = val;
+        }  
+        this.setState({ data }, () => {
+            let newData = {};
+            if (data.status_id) {
+                newData.status_id = data.status_id.id;
+            }
+            this.props.update('tasks', data.id, newData);
+        });
+    }
+
     handleTaxChange = (val, key) => {
         this.setState({ form: { ...this.state.form, [key]: val } });
     }
@@ -164,7 +183,8 @@ class Form extends Component {
                         </span>
 
                         <div className="pi-small-button-group">
-                            <div className="pi-action-content">
+                            {form.id && <Taxonomy id={form.id} taxonomy='task_status' title='Status' btnMid={true} color={true} />} 
+                            { false && <div className="pi-action-content">
                                 {form.status_id && <button
                                     className="pi-btn pi-btn-small"
                                     style={{
@@ -185,9 +205,12 @@ class Form extends Component {
                                         )
                                     })}
                                 </div>}
-                            </div>
-
-                            <button className="pi-btn pi-btn-medium pi-float-right">
+                            </div>}  
+                            
+                            {( form.status_id && form.status_id.type != 'done') && <button
+                                className="pi-btn pi-btn-medium pi-float-right" 
+                                onClick={() => this.handleTaskStatusChange('done')}
+                            >  
                                 <svg
                                     width={13}
                                     height={10}
@@ -203,8 +226,8 @@ class Form extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                Mark as Done
-                            </button>
+                                Done
+                            </button>}
                         </div>
                     </div>
                     <form onSubmit={this.handleSubmit} >

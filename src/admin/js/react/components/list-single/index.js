@@ -1,10 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
-import AsyncSelect from 'react-select/async';
 import { toast } from 'react-toastify';
 import Taxonomy from 'block/field/taxonomy';
-
-//import ApiTaxonomy from 'api/taxonomy'; 
 import WithApi from 'hoc/Api';
 
 import LeadForm from 'components/lead/Form';
@@ -125,7 +122,7 @@ class ListSingle extends Component {
                     callback(toData);
                 });
         }, 300);
-    } 
+    }
 
     handleprobabilityChange = (e) => {
         let data = { ...this.state.data }
@@ -170,7 +167,7 @@ class ListSingle extends Component {
             data.status_id = obj;
         } else {
             data.status_id = val;
-        } 
+        }
         this.setState({ data }, () => {
             let newData = {};
             if (data.status_id) {
@@ -285,10 +282,10 @@ class ListSingle extends Component {
                                 </div>
 
                                 <div className="col-lg-6">
-                                    <div className="pi-list-single-button-content"> 
+                                    <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Lead Level:</label>
-                                            {data.id && <Taxonomy id={data.id} taxonomy='lead_level' title='Level' btnMid={true} color={true} />} 
+                                            {data.id && <Taxonomy id={data.id} taxonomy='lead_level' title='Level' btnMid={true} color={true} />}
                                         </div>
 
                                         <button
@@ -440,13 +437,13 @@ class ListSingle extends Component {
                                         </div>
 
                                         <button
-                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow pi-mt-m-2"
+                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
                                             onClick={() => this.setState({ projectModal: true, projectModalType: 'move' })}
                                         >
                                             <svg
-                                                width={14}
-                                                height={12}
-                                                viewBox="0 0 12 15"
+                                                width={15}
+                                                height={15}
+                                                viewBox="0 0 16 16"
                                                 fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"
                                             >
@@ -489,11 +486,12 @@ class ListSingle extends Component {
                                         </>}
 
                                         <div
-                                            className="pi-action-content pi-action-btn"
-                                            style={{ padding: 0, top: 2 }}
+                                            className="pi-action-content pi-action-btn pi-bg-shadow"
+                                            style={{ top: 2 }}
                                         >
                                             <button
                                                 className='pi-bg-stroke pi-bg-shadow'
+                                                style={{ padding: '2px' }}
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
                                             >
                                                 <svg
@@ -530,7 +528,7 @@ class ListSingle extends Component {
                                             </div>}
 
                                         </div>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                         </div>
@@ -579,20 +577,20 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Project Status:</label>
-                                            {data.id && <Taxonomy id={data.id} taxonomy='project_status' title='Status' btnMid={true} color={true} />} 
+                                            {data.id && <Taxonomy id={data.id} taxonomy='project_status' title='Status' btnMid={true} color={true} />}
                                         </div>
- 
-                                        {( data.status_id && data.status_id.type != 'completed') && <button
-                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow" 
-                                            onClick={() => this.handleProjectStatusChange('completed')}
-                                        > 
-                                            Mark as completed
-                                        </button>} 
 
-                                        <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-invite">
-                                            Invite
-                                        </button>
-                                        <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
+                                        {(data.status_id && data.status_id.type != 'completed') && <button
+                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
+                                            onClick={() => this.handleProjectStatusChange('completed')}
+                                        >
+                                            Mark as completed
+                                        </button>}
+
+                                        <div 
+                                        className="pi-action-content pi-action-btn pi-bg-shadow"
+                                        style={{ padding: 3, top: 4 }}
+                                        >
                                             <button
                                                 className={(this.state.action ? '' : '')}
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
@@ -851,7 +849,7 @@ class ListSingle extends Component {
                                                     </svg>
                                                 </button>
                                                 <div className="pi-dropdown-content">
-                                                    <a href="#">Client</a> 
+                                                    <a href="#">Client</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -902,7 +900,7 @@ class ListSingle extends Component {
                         <div className="pi-tag-content">
                             <ul>
                                 <li>
-                                    <label htmlFor="">Tag: </label> 
+                                    <label htmlFor="">Tag: </label>
                                     {data.id && <Taxonomy id={data.id} taxonomy='tag' title='Tag' multiple={true} />}
                                 </li>
                                 <li>Project 2</li>
