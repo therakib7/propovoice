@@ -1,10 +1,11 @@
- import React, { useCallback, useRef, useState, useEffect } from "react";
+import React, { useCallback, useRef, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
+import ColorPicker from 'block/color-picker';
 import useClickOutside from 'block/outside-click';
 import WithApi from 'hoc/Api';
 
 const Tag = (props) => {
-	const dropdownContent = useRef();  
+	const dropdownContent = useRef();
 
 	const [list, setList] = useState([]);
 	const [listById, setListById] = useState([]);
@@ -127,7 +128,7 @@ const Tag = (props) => {
 		newForm.id = parseInt(id);
 		setDropdown(false);
 		props.update('taxonomies', newForm.id, newForm).then(resp => {
-			if (resp.data.success) { 
+			if (resp.data.success) {
 				getData();
 			} else {
 				resp.data.data.forEach(function (value, index, array) {
@@ -135,7 +136,7 @@ const Tag = (props) => {
 				});
 			}
 		});
-	} 
+	}
 
 	return (
 		<>
@@ -147,10 +148,10 @@ const Tag = (props) => {
 
 			<div className="pi-action-content" ref={dropdownContent}>
 				<button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow" onClick={() => showDropdown()}>
-					+ Add tag
+					+ Add {props.title}
 				</button>
 				{dropdown && <div className="pi-dropdown-content pi-show">
-					<button onClick={(e) => { openModal(e, 'new') }}>+ Add new tag</button> 
+					<button onClick={(e) => { openModal(e, 'new') }}>+ Add New {props.title}</button>
 					{list && list.map((item, itemIndex) => {
 						return (
 							<a key={itemIndex} onClick={() => handleSelect(item.id)}>{item.label}</a>

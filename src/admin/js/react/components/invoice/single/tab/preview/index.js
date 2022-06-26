@@ -261,7 +261,7 @@ export default class Preview extends Component {
                                     Share
                                 </button>
                                 <button
-                                    className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-mt-20"
+                                    className="pi-btn pi-btn-medium pi-bg-hover-blue pi-bg-blue pi-br-4"
                                     onClick={() => this.props.showEmailModal()} >
                                     Send Email
                                     <svg

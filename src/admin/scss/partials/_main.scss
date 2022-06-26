@@ -982,7 +982,7 @@ html {
   zoom: 1.5;
   border-radius: 3px;
   transform: scale(0.8);
-  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+  border: 1px solid #939393f0;
   box-shadow: none;
   position: relative;
   top: 2px;
@@ -999,7 +999,7 @@ html {
 
 .ncpi .pi-table .pi-dropdown-content {
   min-width: 210px;
-  right: -70px;
+  right: -45px;
   top: 30px;
 }
 
@@ -1115,7 +1115,7 @@ html {
 .ncpi .pi-accordion-table-list ul {
   display: grid;
   margin: 0;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 20px 10px 20px 0px;
   width: 100%;
   border-radius: 5px;
@@ -1162,7 +1162,7 @@ html {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 6px 5px;
   margin-right: 10px;
   background-color: #fff;
@@ -1171,7 +1171,7 @@ html {
 }
 
 .ncpi .pi-accordion-table-list ul li .pi-envelope svg path {
-  color: rgba(170, 0, 170, 0.9333333333) #fff;
+  color: #A0AE #fff;
 }
 
 .ncpi .pi-accordion-table-list ul li .pi-envelope-text p {
@@ -1183,11 +1183,12 @@ html {
 .ncpi .pi-accordion-table-list ul li .pi-envelope-text svg {
   position: relative;
   top: 2px;
+  margin-right: 5px;
 }
 
-.ncpi .pi-accordion-table-list .pi-show {
+.ncpi .pi-accordion-table-list .pi-dropdown-content {
   text-align: left;
-  left: -25px;
+  left: -30px;
 }
 
 .ncpi .pi-info-table-content {
@@ -1432,7 +1433,7 @@ html {
 }
 
 .ncpi ::-webkit-scrollbar-thumb {
-  background: rgb(202, 199, 199);
+  background: #cac7c7;
 }
 
 .ncpi .pi-logo-content img {
@@ -1592,7 +1593,7 @@ html {
 
 .ncpi .pi-btn-icon {
   background: #fff;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294) !important;
+  border: 1px solid #dddddda8 !important;
   padding: 7px 8px !important;
   line-height: 10px;
   cursor: pointer !important;
@@ -1610,7 +1611,7 @@ html {
   top: 5px;
   border-radius: 5px;
   margin-left: 5px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 
 .ncpi .pi-breadcrumb {
@@ -1629,7 +1630,7 @@ html {
 }
 
 .ncpi .pi-breadcrumb ul li a {
-  color: rgba(113, 128, 150, 0.7098039216);
+  color: #718096b5;
   font-weight: 500;
   text-transform: capitalize;
 }
@@ -1668,7 +1669,7 @@ html {
   border-radius: 8px;
   padding: 20px;
   background: #fff;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 
 .ncpi .pi-cards .pi-cards-content span {
@@ -1794,7 +1795,7 @@ html {
   color: #1a202c;
   font-size: 14px;
   padding: 12px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   outline: none;
   line-height: 1;
   padding-left: 40px;
@@ -1841,7 +1842,7 @@ html {
 
 .ncpi .pi-search-bar button {
   background: transparent;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 7px 8px;
   border-radius: 8px;
   line-height: 10px;
@@ -2101,7 +2102,7 @@ html {
 .ncpi .pi-pagination .pi-next a,
 .ncpi .pi-pagination .pi-previous a {
   padding: 6px 12px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   margin-left: -1px;
   font-size: 18px;
   font-weight: 500;
@@ -2133,7 +2134,7 @@ html {
 
 .ncpi .pi-pagination li a {
   padding: 8px 12px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   margin-left: -1px;
   color: #718096;
   font-size: 14px;
@@ -2271,108 +2272,12 @@ html {
   outline: none;
 }
 
-.wp-admin .pi-info-table td input[type=number],
-.wp-admin .pi-info-table td input[type=text] {
-  padding: 2px 8px !important;
+.wp-admin .pi-search-form ul li {
+  padding: 3px 5px !important;
 }
 
-.wp-admin .pi-radio-group input[type=radio]:checked:after {
-  top: -15px !important;
-  left: -1px !important;
-}
-
-.wp-admin .pi-group-item ul li {
-  margin-bottom: 0 !important;
-}
-
-.wp-admin .pi-form-accordion .pi-payment-buttons .pi-btn {
-  padding: 12px 40px !important;
-}
-
-@media screen and (max-width: 768px) {
-  .wp-admin .pi-radio-group input[type=radio]:checked:after {
-    left: 0px !important;
-    top: -25px !important;
-  }
-
-  .wp-admin .pi-radio-group input[type=radio]:checked:before {
-    top: -8px !important;
-    left: -8px !important;
-  }
-
-  .wp-admin .pi-add-info-content input[type=number] {
-    min-height: 30px;
-  }
-
-  .wp-admin .pi-accordion-wrapper {
-    margin-top: -190px;
-  }
-}
-
-.wp-admin .pi-table input[type=checkbox] {
-  zoom: 1.2;
-}
-
-.wp-admin .pi-add-info-content input[type=text] {
-  padding: 6px !important;
-}
-
-.wp-admin .pi-calculation table input[type=number] {
-  padding: 3px 6px !important;
-}
-
-.wp-admin .pi-social-content {
-  margin-top: 35px;
-  text-align: center;
-}
-
-.wp-admin .pi-social-content .pi-social-icon {
-  display: inline-block;
-  text-align: center;
-  padding: 0 10px;
-}
-
-.wp-admin .pi-social-content .pi-social-icon p {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 500;
-  color: #4a5568;
-  margin-bottom: 15px;
-}
-
-.wp-admin .pi-social-content .pi-social-icon span {
-  width: 60px;
-  height: 60px;
-  background: rgba(221, 221, 221, 0.8666666667);
-  display: block;
-  border-radius: 50%;
-  line-height: 87px;
-  margin: auto;
-  margin-bottom: 10px;
-}
-
-.wp-admin .pi-social-content .pi-social-icon .pi-whatsapp {
-  background-color: #e9fbef;
-}
-
-.wp-admin .pi-social-content .pi-social-icon .pi-messenger {
-  background-color: rgba(0, 123, 255, 0.1019607843);
-}
-
-.wp-admin .pi-social-content .pi-social-icon .pi-discord {
-  background-color: rgba(88, 101, 242, 0.08);
-}
-
-.wp-admin .pi-social-content .pi-social-icon .pi-email {
-  background-color: #fdecea;
-}
-
-.wp-admin .pi-social-content .pi-social-icon .pi-telegrame {
-  background-color: rgba(64, 179, 224, 0.08);
-}
-
-.wp-admin .pi-social-content .pi-social-icon .pi-skype {
-  background-color: rgba(0, 175, 240, 0.08);
+.wp-admin .pi-modal-style-two .pi-modal-footer {
+  padding: 0 30px 0px;
 }
 
 /*-------------------------------------------------------------- 
@@ -2489,8 +2394,12 @@ html {
   margin-left: -20px;
 }
 
+<<<<<<< HEAD=======.ncpi .pi-modal-content .pi-modal-footer .pi-btn {
+  text-transform: capitalize;
+  font-size: 14px;
+}
 
-.ncpi .pi-modal-content .pi-form-style-two .pi-btn {
+>>>>>>>cd13b79186f73e97ce42651adfbb7b675850a715 .ncpi .pi-modal-content .pi-form-style-two .pi-btn {
   margin-bottom: 35px;
 }
 
@@ -2538,7 +2447,7 @@ html {
 }
 
 .ncpi .pi-modal-style-two .pi-modal-header {
-  padding: 20px 30px 20px;
+  padding: 20px 30px;
   background: transparent;
   border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
@@ -2553,7 +2462,7 @@ html {
 }
 
 .ncpi .pi-modal-style-two .pi-modal-footer {
-  padding: 0 30px 30px;
+  padding: 0 30px 15px;
 }
 
 .ncpi .pi-modal-style-two .pi-close {
@@ -2712,7 +2621,7 @@ html {
 .ncpi .pi-modal-sidebar .pi-modal-footer {
   margin-top: 20px;
   padding: 20px 40px 5px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 
 @media screen and (max-width: 992px) {
@@ -2763,15 +2672,6 @@ html {
   font-weight: 700;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-modal-header .pi-action-content .pi-badge svg {
-  margin-left: 10px;
-  margin-right: 0;
-}
-
-.ncpi .pi-modal-sidebar-two .pi-modal-header .pi-action-content .pi-badge svg path {
-  fill: #F68A0B;
-}
-
 .ncpi .pi-modal-sidebar-two .pi-modal-header .pi-btn-medium {
   background: #16B21D;
   border-radius: 5px;
@@ -2780,7 +2680,7 @@ html {
 }
 
 .ncpi .pi-modal-sidebar-two .pi-checklist-head {
-  border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border-bottom: 1px solid #dddddda8;
   padding: 10px 0;
 }
 
@@ -3166,7 +3066,7 @@ html {
   background-color: #fff;
   margin-bottom: 15px;
   border-radius: 10px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   margin-bottom: 10px;
   z-index: 9;
   position: relative;
@@ -3530,7 +3430,7 @@ html {
 
 .pi-form-accordion .pi-tab .pi-payment-btn {
   padding: 10px 25px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   border-radius: 5px;
   margin-top: 10px;
   font-weight: 600;
@@ -3617,7 +3517,7 @@ html {
 
 .pi-form-accordion.pi-additional input:checked~.pi-tab-content {
   padding: 15px 15px 1px !important;
-  border-top: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border-top: 1px solid #dddddda8;
 }
 
 .pi-form-accordion.pi-additional .pi-tab {
@@ -3765,7 +3665,7 @@ html {
 
 .ncpi .pi-search-btn .pi-search-form ul {
   display: flex;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   display: flex;
   margin: 0;
   border-radius: 0 8px 8px 0;
@@ -3777,7 +3677,7 @@ html {
 }
 
 .ncpi .pi-search-btn .pi-search-form ul li:last-child {
-  border-left: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border-left: 1px solid #dddddda8;
   padding: 6px 8px;
   margin-left: 10px;
   cursor: pointer;
@@ -3819,7 +3719,7 @@ html {
   background-color: #fff;
   width: 100%;
   border-radius: 8px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 
 .ncpi .pi-horizontal-tab .pi-tab-content {
@@ -3828,7 +3728,7 @@ html {
 
 .ncpi .pi-horizontal-tab .pi-tabs {
   display: flex;
-  border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border-bottom: 1px solid #dddddda8;
   margin: 0;
 }
 
@@ -3908,7 +3808,7 @@ html {
 }
 
 .ncpi .pi-widget {
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -3963,7 +3863,7 @@ html {
 .ncpi .pi-widget .pi-persons-content {
   margin-top: 15px;
   padding: 15px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   border-radius: 8px;
 }
 
@@ -4003,7 +3903,7 @@ html {
   text-align: left;
   font-size: 18px;
   color: #2D3748 !important;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 
 .ncpi .pi-button-group .pi-btn svg {
@@ -4395,7 +4295,7 @@ html {
 }
 
 .ncpi .pi-gradient {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4196078431) 0%, rgba(0, 0, 0, 0.0156862745) 100%);
+  background: linear-gradient(to bottom, #ffffff6b 0%, #00000004 100%);
 }
 
 .ncpi .pi-box-shodow {
@@ -4577,7 +4477,7 @@ body {
 .ncpi .pi-btn-medium {
   padding: 10px 15px !important;
   font-weight: 500;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 
 .ncpi .pi-btn-small {
@@ -4586,7 +4486,7 @@ body {
   font-size: 12px;
   border-radius: 4px;
   background-color: #fff;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 
 @media screen and (max-width: 768px) {
@@ -4665,7 +4565,7 @@ select {
   font-size: 14px;
   padding: 14px;
   width: 100%;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   line-height: 20px;
   border-radius: 8px;
   outline: none;
@@ -4727,7 +4627,7 @@ select {
   font-size: 14px;
   padding: 10px;
   width: 100%;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   outline: none;
   line-height: 100%;
 }
@@ -4973,7 +4873,7 @@ select {
   z-index: 9;
   background: #fff;
   width: 255px;
-  border-bottom: 1px solid rgba(221, 221, 221, 0.2117647059);
+  border-bottom: 1px solid #dddddd36;
 }
 
 @media screen and (max-width: 768px) {
@@ -5050,7 +4950,7 @@ select {
 
 .ncpi .pi-left-sidebar .pi-menu-buttons button {
   width: 180px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   font-size: 13px;
   margin-bottom: 15px;
   padding: 15px 10px;
