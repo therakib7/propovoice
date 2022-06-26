@@ -130,7 +130,7 @@ class Upload extends Component {
 									strokeLinejoin="round"
 								/>
 							</svg>
-							<span className="pi-mt-4">{label}</span>
+							<span>{label}</span>
 						</button> 
 					</>
 				}

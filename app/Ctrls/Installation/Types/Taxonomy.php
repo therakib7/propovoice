@@ -149,7 +149,8 @@ class Taxonomy
         $project_status = [
             'New',
             'In Progress',
-            'Done'
+            'Done',
+            'Completed',
         ];
 
         foreach ($project_status as $status) {
@@ -160,6 +161,9 @@ class Taxonomy
 
             if (!is_wp_error($term_id)) {
                 update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
+                if ( $status == 'Completed' ) {
+                    update_term_meta($term_id['term_id'], 'type', 'completed');
+                }
             }
         }
     }

@@ -7,5 +7,4 @@ node_modules
 propovoice 
 *.zip
 mix-manifest.json
-package-lock.json
-webpack.mix.js
+package-lock.json 

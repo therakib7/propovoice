@@ -2,7 +2,7 @@ import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import AsyncSelect from 'react-select/async';
 import { toast } from 'react-toastify';
-import Tag from 'block/field/tag';
+import Taxonomy from 'block/field/taxonomy';
 
 //import ApiTaxonomy from 'api/taxonomy'; 
 import WithApi from 'hoc/Api';
@@ -123,19 +123,7 @@ class ListSingle extends Component {
                     callback(toData);
                 });
         }, 300);
-    }
-
-    handleLevelChange = (val) => {
-        let data = { ...this.state.data }
-        data.level_id = val;
-        this.setState({ data }, () => {
-            let newData = {};
-            if (data.level_id) {
-                newData.level_id = data.level_id.id;
-            }
-            this.props.update('leads', this.props.id, newData);
-        });
-    }
+    } 
 
     handleprobabilityChange = (e) => {
         let data = { ...this.state.data }
@@ -157,6 +145,23 @@ class ListSingle extends Component {
     }
 
     handleStageChange = (val) => {
+        let data = { ...this.state.data }
+        if (val == 'won' || val == 'lost') {
+            let obj = this.state.stages.find(o => o.type === val);
+            data.stage_id = obj;
+        } else {
+            data.stage_id = val;
+        }
+        this.setState({ data }, () => {
+            let newData = {};
+            if (data.stage_id) {
+                newData.stage_id = data.stage_id.id;
+            }
+            this.props.update('deals', this.props.id, newData);
+        });
+    }
+
+    handleStatusChange = (val) => {
         let data = { ...this.state.data }
         if (val == 'won' || val == 'lost') {
             let obj = this.state.stages.find(o => o.type === val);
@@ -278,45 +283,10 @@ class ListSingle extends Component {
                                 </div>
 
                                 <div className="col-lg-6">
-                                    <div className="pi-list-single-button-content">
-                                        {/* <div className="pi-select">
-                                            <label>Lead Level:</label>
-                                            <div className='pi-list-single-select'>
-                                                <AsyncSelect
-                                                    loadOptions={this.handleFindLevel}
-                                                    value={data.level_id}
-                                                    defaultOptions={this.state.levels}
-                                                    onChange={this.handleLevelChange}
-                                                    getOptionValue={data => data.id}
-                                                    getOptionLabel={(data) => (data.label) ? data.label : ''}
-                                                />
-                                            </div>
-                                        </div> */}
+                                    <div className="pi-list-single-button-content"> 
                                         <div className="pi-select">
                                             <label htmlFor="source">Lead Level:</label>
-                                            {data.id && <Tag id={data.id} taxonomy='lead_level' title='Level' big={true} color={true} />}
-                                            {/* <div className="pi-action-content">
-                                                <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
-                                                    Hot
-                                                    <svg
-                                                        width={10}
-                                                        height={6}
-                                                        viewBox="0 0 10 6"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
-                                                            fill="#F7936F"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                                <div className="pi-dropdown-content">
-                                                    <a href="#">Tag one</a>
-                                                    <a href="#">Tag two</a>
-                                                    <a href="#">Tag three</a>
-                                                </div>
-                                            </div> */}
+                                            {data.id && <Taxonomy id={data.id} taxonomy='lead_level' title='Level' btnMid={true} color={true} />} 
                                         </div>
 
                                         <button
@@ -395,12 +365,12 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {data.id && <Tag id={data.id} taxonomy='tag' title='Tag' multiple={true} />}
+                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' title='Tag' multiple={true} />}
                                 </li>
 
                                 <li>
                                     <label htmlFor="">Source: </label>
-                                    {data.id && <Tag id={data.id} taxonomy='lead_source' title='Source' color={true} />}
+                                    {data.id && <Taxonomy id={data.id} taxonomy='lead_source' title='Source' color={true} />}
                                 </li>
                             </ul>
                         </div>
@@ -464,28 +434,7 @@ class ListSingle extends Component {
                                         </div> */}
                                         <div className="pi-select">
                                             <label htmlFor="source">Deal Stage:</label>
-                                            <div className="pi-action-content">
-                                                <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
-                                                    Opportunity
-                                                    <svg
-                                                        width={10}
-                                                        height={6}
-                                                        viewBox="0 0 10 6"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
-                                                            fill="#F7936F"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                                <div className="pi-dropdown-content">
-                                                    <a href="#">Tag one</a>
-                                                    <a href="#">Tag two</a>
-                                                    <a href="#">Tag three</a>
-                                                </div>
-                                            </div>
+                                            {data.id && <Taxonomy id={data.id} taxonomy='deal_stage' title='Stage' btnMid={true} color={true} />}
                                         </div>
 
                                         <button
@@ -592,7 +541,7 @@ class ListSingle extends Component {
                                 </li>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {data.id && <Tag id={data.id} taxonomy='tag' multiple={true} />}
+                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' multiple={true} />}
                                 </li>
                             </ul>
                         </div>
@@ -628,28 +577,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label htmlFor="source">Project Status:</label>
-                                            <div className="pi-action-content">
-                                                <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
-                                                    In Progress
-                                                    <svg
-                                                        width={10}
-                                                        height={6}
-                                                        viewBox="0 0 10 6"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
-                                                            fill="#F7936F"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                                <div className="pi-dropdown-content">
-                                                    <a href="#">Tag one</a>
-                                                    <a href="#">Tag two</a>
-                                                    <a href="#">Tag three</a>
-                                                </div>
-                                            </div>
+                                            {data.id && <Taxonomy id={data.id} taxonomy='project_status' title='Status' btnMid={true} color={true} />} 
                                         </div>
 
                                         <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow">
@@ -706,7 +634,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {data.id && <Tag id={data.id} taxonomy='tag' multiple={true} />}
+                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' multiple={true} />}
                                 </li>
                                 <li>
                                     <label htmlFor="">Start Date:</label>
@@ -971,7 +899,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {data.id && <Tag id={data.id} taxonomy='tag' multiple={true} />}
+                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' multiple={true} />}
                                 </li>
                                 <li>Project 2</li>
                                 <li>Deal 2</li>

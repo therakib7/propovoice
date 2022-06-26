@@ -52,9 +52,6 @@
 .ncpi .pi-list-single-button-content {
   float: right;
 }
-.ncpi .pi-list-single-button-content .pi-btn-medium.pi-bg-stroke.pi-invite {
-  padding: 10px 15px !important;
-}
 .ncpi .pi-list-single-button-content .pi-select {
   margin-bottom: 30px;
   text-align: right;
@@ -91,11 +88,11 @@
 .ncpi .pi-list-single-button-content .pi-action-btn button {
   border: none;
   margin-left: 0;
-  padding: 1px;
+  padding: 0px;
 }
 .ncpi .pi-list-single-button-content .pi-action-btn button svg {
   position: relative;
-  top: 1px;
+  top: 2px;
 }
 .ncpi .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
   margin-top: 3px;

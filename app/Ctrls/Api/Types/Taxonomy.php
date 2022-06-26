@@ -103,6 +103,11 @@ class Taxonomy
                     if ($taxonomy == 'deal_stage') { // for won, lost
                         $term_property['type'] = get_term_meta($single->term_id, 'type', true);
                     }
+
+                    if ($taxonomy == 'project_status') { // for won, lost
+                        $term_property['type'] = get_term_meta($single->term_id, 'type', true);
+                    }
+
                     $format_taxonomy[] = $term_property;
                 }
                 $data[$taxonomy] = $format_taxonomy;
@@ -187,6 +192,7 @@ class Taxonomy
         $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
         $post_id = isset($params['post_id']) ? absint($params['post_id']) : null;
         $add = isset($params['add']) ? true : false;
+        $append = isset($params['append']) && $params['append'] ? true : false;
         $delete = isset($params['delete']) ? true : false;
         $label = isset($params['label']) ? sanitize_text_field($params['label']) : null;
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
@@ -202,9 +208,12 @@ class Taxonomy
             $url_params = $req->get_url_params();
             $term_id = absint($url_params['id']);
 
-            if ($add) {
-                wp_set_object_terms($post_id, $term_id, 'ndpi_' . $taxonomy, true);
-
+            if ( $add ) {
+                if ( $append ) {
+                    wp_set_object_terms($post_id, $term_id, 'ndpi_' . $taxonomy, true);
+                } else {
+                    wp_set_post_terms($post_id, [$term_id], 'ndpi_' . $taxonomy);
+                }  
                 wp_send_json_success();
             } else if ($delete) {
                 if ($post_id) { //delete term from post

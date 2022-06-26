@@ -1,4 +1,4 @@
-import Taxonomy from 'block/field/taxonomy';
+import Taxonomy from 'block/field/taxonomy/setting';
 export default () => {  
     return (
         <div className="pi-form-style-one"> 

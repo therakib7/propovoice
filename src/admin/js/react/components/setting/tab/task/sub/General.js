@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-import Taxonomy from 'block/field/taxonomy';
+import Taxonomy from 'block/field/taxonomy/setting';
 
 export default class General extends Component {
     constructor(props) {
