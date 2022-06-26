@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ColorPicker from 'block/color-picker'; 
-import { toast } from 'react-toastify'; 
+import ColorPicker from 'block/color-picker';
+import { toast } from 'react-toastify';
 
 class Form extends Component {
     constructor(props) {
@@ -10,7 +10,8 @@ class Form extends Component {
             id: null,
             label: '',
             color: '',
-            bg_color: ''
+            bg_color: '',
+            icon: null,
         };
 
         this.state = {
@@ -23,9 +24,9 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
-    handleColorChange = (val, key) => { 
+    handleColorChange = (val, key) => {
         this.setState({ form: { ...this.state.form, [key]: val } });
-	} 
+    }
 
     componentDidMount() {
         //added this multiple place, because not working in invoice single
@@ -47,39 +48,45 @@ class Form extends Component {
                 this.setState({ form: this.initialState });
             }
         }
-    } 
+    }
 
-    handleSubmit = () => { 
+    handleSubmit = () => {
 
-		let newForm = { ...this.state.form }
-		newForm.taxonomy = this.props.taxonomy;
+        let newForm = { ...this.state.form }
+        newForm.taxonomy = this.props.taxonomy;
 
-		if (this.props.modalType == 'new') {
-			this.props.create('taxonomies', newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully added'); //TODO: translation
-					this.props.reload();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});;
-		} else {
-			this.props.update('taxonomies', newForm.id, newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully updated'); //TODO: translation
-					this.props.reload();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});;
-		}
-		// setModal(false);
+        if (this.props.modalType == 'new') {
+            this.props.create('taxonomies', newForm).then(resp => {
+                if (resp.data.success) {
+                    toast.success('Successfully added'); //TODO: translation
+                    this.props.reload();
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            });;
+        } else {
+            this.props.update('taxonomies', newForm.id, newForm).then(resp => {
+                if (resp.data.success) {
+                    toast.success('Successfully updated'); //TODO: translation
+                    this.props.reload();
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            });;
+        }
+        // setModal(false);
         this.props.close()
-	}
+    }
+
+    handleLogoChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.icon = data;
+        this.setState({ form })
+    }
 
     render() {
         const form = this.state.form;
@@ -110,11 +117,11 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} {this.props.title}</h2> 
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} {this.props.title}</h2>
                     </div>
- 
+
                     <div className="pi-content">
-                        <div className="pi-form-style-one"> 
+                        <div className="pi-form-style-one">
                             <div className="row">
                                 <div className="col-md">
                                     <label htmlFor="field-label">
@@ -150,6 +157,17 @@ class Form extends Component {
                                     </div>
                                 </div>
                             </>}
+
+                            {this.props.icon &&
+                            <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-color">
+                                        Text Color
+                                    </label>
+                                    {/* <ColorPicker color={form.color} onChange={(val) => this.handleColorChange(val, 'color')} /> */}
+                                    <Upload data={form.icon} changeHandler={this.handleLogoChange} />
+                                </div>
+                            </div>}
                         </div>
                     </div>
 
@@ -164,7 +182,7 @@ class Form extends Component {
                                 </button>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
         );

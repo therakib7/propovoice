@@ -205,8 +205,8 @@ class Form extends Component {
                                 {priorityList && priorityList.map((item, itemIndex) => {
                                     return (
                                         <a onClick={(e) => this.setTax(e, item, 'priority_id')} key={itemIndex}>
-                                            <svg
-                                                className=""
+                                            <svg 
+                                                ref={e => e && e.style.setProperty('top', '8px', 'important')}
                                                 width={24}
                                                 height={24}
                                                 viewBox="0 0 24 24"
