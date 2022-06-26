@@ -1500,6 +1500,7 @@ html {
 
 .ncpi .pi-avater {
   display: flex;
+  align-items: center;
 }
 
 .ncpi .pi-avater .pi-dropdown-angle {
@@ -1839,7 +1840,6 @@ html {
 }
 
 .ncpi .pi-search-bar button {
-  height: 37px;
   background: transparent;
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 7px 8px;
@@ -2489,11 +2489,6 @@ html {
   margin-left: -20px;
 }
 
-.ncpi .pi-modal-content .pi-modal-footer .pi-btn {
-  text-transform: capitalize;
-  font-size: 14px;
-  border-radius: 10px !important;
-}
 
 .ncpi .pi-modal-content .pi-form-style-two .pi-btn {
   margin-bottom: 35px;
@@ -5198,7 +5193,10 @@ select {
   background-color: lightblue;
 }
 
-
 .ncpi .pi-modal-style-two .pi-modal-footer {
-  padding: 0 30px 0px;
+  padding: 0 30px 20px;
+}
+
+.ncpi .pi-top-menu-content .pi-dropdown-content {
+  left: 35px !important;
 }
