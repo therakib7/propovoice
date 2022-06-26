@@ -50,6 +50,7 @@ class ListSingle extends Component {
             levels: [],
             stages: [],
             tags: [],
+            project_status: [],
             data: {
                 id: null,
                 contact: {
@@ -92,11 +93,12 @@ class ListSingle extends Component {
     };
 
     getStageTagData = () => {
-        this.props.getAll('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
+        this.props.getAll('taxonomies', 'taxonomy=deal_stage,tag,project_status').then(resp => {
             if (resp.data.success) {
                 this.setState({
                     stages: resp.data.data.deal_stage,
                     tags: resp.data.data.tag,
+                    project_status: resp.data.data.project_status,
                 });
             }
         });
@@ -161,20 +163,20 @@ class ListSingle extends Component {
         });
     }
 
-    handleStatusChange = (val) => {
+    handleProjectStatusChange = (val) => {
         let data = { ...this.state.data }
-        if (val == 'won' || val == 'lost') {
-            let obj = this.state.stages.find(o => o.type === val);
-            data.stage_id = obj;
+        if (val == 'completed') {
+            let obj = this.state.project_status.find(o => o.type === val);
+            data.status_id = obj;
         } else {
-            data.stage_id = val;
-        }
+            data.status_id = val;
+        } 
         this.setState({ data }, () => {
             let newData = {};
-            if (data.stage_id) {
-                newData.stage_id = data.stage_id.id;
+            if (data.status_id) {
+                newData.status_id = data.status_id.id;
             }
-            this.props.update('deals', this.props.id, newData);
+            this.props.update('projects', this.props.id, newData);
         });
     }
 
@@ -285,7 +287,7 @@ class ListSingle extends Component {
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content"> 
                                         <div className="pi-select">
-                                            <label htmlFor="source">Lead Level:</label>
+                                            <label>Lead Level:</label>
                                             {data.id && <Taxonomy id={data.id} taxonomy='lead_level' title='Level' btnMid={true} color={true} />} 
                                         </div>
 
@@ -433,7 +435,7 @@ class ListSingle extends Component {
                                             </div>
                                         </div> */}
                                         <div className="pi-select">
-                                            <label htmlFor="source">Deal Stage:</label>
+                                            <label>Deal Stage:</label>
                                             {data.id && <Taxonomy id={data.id} taxonomy='deal_stage' title='Stage' btnMid={true} color={true} />}
                                         </div>
 
@@ -576,13 +578,17 @@ class ListSingle extends Component {
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label htmlFor="source">Project Status:</label>
+                                            <label>Project Status:</label>
                                             {data.id && <Taxonomy id={data.id} taxonomy='project_status' title='Status' btnMid={true} color={true} />} 
                                         </div>
-
-                                        <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow">
+ 
+                                        {( data.status_id && data.status_id.type != 'completed') && <button
+                                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow" 
+                                            onClick={() => this.handleProjectStatusChange('completed')}
+                                        > 
                                             Mark as completed
-                                        </button>
+                                        </button>} 
+
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-invite">
                                             Invite
                                         </button>
@@ -827,10 +833,10 @@ class ListSingle extends Component {
                                 <div className="col-lg-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label htmlFor="source">Status:</label>
+                                            <label>Status:</label>
                                             <div className="pi-action-content">
                                                 <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
-                                                    Opportunity
+                                                    Lead
                                                     <svg
                                                         width={10}
                                                         height={6}
@@ -845,9 +851,7 @@ class ListSingle extends Component {
                                                     </svg>
                                                 </button>
                                                 <div className="pi-dropdown-content">
-                                                    <a href="#">Tag one</a>
-                                                    <a href="#">Tag two</a>
-                                                    <a href="#">Tag three</a>
+                                                    <a href="#">Client</a> 
                                                 </div>
                                             </div>
                                         </div>
@@ -898,8 +902,8 @@ class ListSingle extends Component {
                         <div className="pi-tag-content">
                             <ul>
                                 <li>
-                                    <label htmlFor="">Tag: </label>
-                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' multiple={true} />}
+                                    <label htmlFor="">Tag: </label> 
+                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' title='Tag' multiple={true} />}
                                 </li>
                                 <li>Project 2</li>
                                 <li>Deal 2</li>

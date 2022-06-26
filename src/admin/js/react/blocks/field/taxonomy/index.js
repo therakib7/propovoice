@@ -148,7 +148,7 @@ const Taxonomy = (props) => {
 			})}
 
 			<div className="pi-action-content" ref={dropdownContent}>
-				{!listById.length || props.multiple && <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow" onClick={() => showDropdown()}>
+				{props.multiple && <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow" onClick={() => showDropdown()}>
 					+ Add {props.title}
 				</button>}
 
