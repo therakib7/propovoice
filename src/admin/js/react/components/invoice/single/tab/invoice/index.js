@@ -806,7 +806,7 @@ class Invoice extends Component {
 
 												<div className="col-12 col-md-6">
 													<div className="pi-info-form">
-														<div className="row">
+														<div className="pi-info-form-list">
 															<div className="pi-info-lavel">
 																<label htmlFor="info-number">{title} number:</label>
 															</div>
@@ -820,7 +820,7 @@ class Invoice extends Component {
 															</div>
 														</div>
 
-														<div className="row">
+														<div className="pi-info-form-list">
 															<div className="pi-info-lavel">
 																<label htmlFor="date">{title} date:</label>
 															</div>
@@ -829,7 +829,7 @@ class Invoice extends Component {
 															</div>
 														</div>
 
-														<div className="row">
+														<div className="pi-info-form-list">
 															<div className="pi-info-lavel">
 																<label htmlFor="due">Due date:</label>
 															</div>
@@ -838,7 +838,7 @@ class Invoice extends Component {
 															</div>
 														</div>
 
-														<div className="row">
+														<div className="pi-info-form-list">
 															<div className="pi-info-lavel">
 																<label htmlFor="info-currency">Currency:</label>
 															</div>
