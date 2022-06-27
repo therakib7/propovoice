@@ -4,7 +4,7 @@ import Action from 'block/action/row';
 import Taxonomy from 'block/field/taxonomy';
 
 const TableBody = props => {  
-    
+
     return props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
@@ -22,7 +22,7 @@ const TableBody = props => {
                 </div>
                 <ul>
                     <li className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
-                        <div className="pi-envelope">
+                        <div className="pi-task-type">
                             {row.type_id.icon && <img src={row.type_id.icon.src} />}
                             {!row.type_id.icon && <svg
                                 width={16}
@@ -41,7 +41,7 @@ const TableBody = props => {
                             </svg>}
 
                         </div>
-                        <div className="pi-envelope-text">
+                        <div className="pi-task-type-text">
                             <h4>{row.title}</h4>
                             <p>
                                 <svg

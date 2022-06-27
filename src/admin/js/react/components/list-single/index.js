@@ -394,18 +394,18 @@ class ListSingle extends Component {
                                         <div className="pi-avatar-content">
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
-                                                <h5>{data.contact.first_name}</h5>
-                                                <p>{(data.contact.region) ? data.contact.region + ',' : ''} {data.contact.country}</p>
+                                                <h5 style={{ fontSize: 12 }}>{data.contact.first_name}</h5>
+                                                <p style={{ fontSize: 12 }}>{(data.contact.region) ? data.contact.region + ',' : ''} {data.contact.country}</p>
                                             </div>
                                         </div>
                                         <div className="pi-range">
+                                            <span>{data.probability}%</span>
                                             <label htmlFor="field-probability">
                                                 Probability
                                             </label>
-                                            {/* <span className='pi-float-right'>({data.probability}%)</span> */}
+                                            
                                             <input
                                                 id="field-probability"
-                                                className='pi-mt-10'
                                                 type="range"
                                                 min="1" max="100"
                                                 name="probability"
@@ -566,8 +566,8 @@ class ListSingle extends Component {
                                         <div className="pi-avatar-content">
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
-                                                <h5>Nabil Ahmed</h5>
-                                                <p>Dhaka, Bangladesh</p>
+                                                <h5 style={{ fontSize: 12 }}>Nabil Ahmed</h5>
+                                                <p style={{ fontSize: 12 }}>Dhaka, Bangladesh</p>
                                             </div>
                                         </div>
                                     </div>
@@ -587,9 +587,9 @@ class ListSingle extends Component {
                                             Mark as completed
                                         </button>}
 
-                                        <div 
-                                        className="pi-action-content pi-action-btn pi-bg-shadow"
-                                        style={{ padding: 3, top: 4 }}
+                                        <div
+                                            className="pi-action-content pi-action-btn pi-bg-shadow"
+                                            style={{ padding: 3, top: 4 }}
                                         >
                                             <button
                                                 className={(this.state.action ? '' : '')}
