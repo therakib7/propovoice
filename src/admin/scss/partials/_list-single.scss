@@ -17,7 +17,7 @@
 .ncpi .pi-list-single-head .pi-list-content h3 .pi-btn {
   border: 1px solid #dddddda8;
   margin-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 10px;
   margin-top: 4px;
 }
@@ -69,10 +69,6 @@
   font-weight: 700;
   padding: 6px 14px;
   border-radius: 5px;
-}
-.ncpi .pi-list-single-button-content .pi-select .pi-action-content .pi-btn svg {
-  margin-right: 0;
-  margin-left: 10px;
 }
 .ncpi .pi-list-single-button-content .pi-select .pi-action-content .pi-dropdown-content {
   top: 36px;
@@ -237,32 +233,34 @@
   outline: none;
   box-shadow: none;
 }
-.ncpi .pi-tab-buttons-group .pi-tab-buttons {
-  text-align: right;
-}
-.ncpi .pi-tab-buttons-group .pi-tab-buttons .pi-action-content {
-  display: inline-block;
-}
-.ncpi .pi-tab-buttons-group .pi-tab-buttons button:last-child {
-  width: auto;
-}
-.ncpi .pi-tab-buttons-group .pi-tab-buttons button {
+.ncpi .pi-task-btn {
   background: transparent;
-  border: 1px solid;
-  border-color: #CBD5E0;
+  border: 1px solid #CBD5E0 !important;
   padding: 5px 6px 3px;
   border-radius: 5px;
   margin-right: 5px;
-  cursor: pointer;
-  border-style: dashed;
-  width: 32px;
+  border-style: dashed !important;
+  width: 32px !important;
 }
-.ncpi .pi-tab-buttons-group .pi-tab-buttons .pi-dropdown-content {
+.ncpi .pi-task-btn img {
+  width: 15px;
+  height: 20px;
+}
+.ncpi .pi-tab-buttons {
+  text-align: right;
+}
+.ncpi .pi-tab-buttons .pi-action-content {
+  display: inline-block;
+}
+.ncpi .pi-tab-buttons button:last-child {
+  width: auto;
+}
+.ncpi .pi-tab-buttons .pi-dropdown-content {
   text-align: left;
   top: 45px;
   left: -70px;
 }
-.ncpi .pi-tab-buttons-group .pi-tab-buttons .pi-dropdown-content img {
+.ncpi .pi-tab-buttons .pi-dropdown-content img {
   margin-right: 10px;
 }
 .ncpi .pi-small-button-group .pi-btn-small {
@@ -322,7 +320,7 @@
 }
 .ncpi .pi-board-column .pi-board-column-title {
   background: #fff;
-  padding: 18px 10px 7px 20px;
+  padding: 15px 10px 5px 15px;
   border-top: 6px solid #4c6fff;
   display: flex;
   position: relative;

@@ -111,7 +111,7 @@ class Task
         }
 
         if (!$status_id) {
-            $taxonomy = 'task_status'; 
+            $taxonomy = 'task_status';
             $get_taxonomy = Fns::get_terms($taxonomy);
             $status_id = $get_taxonomy[0]->term_id;
         }
@@ -139,7 +139,7 @@ class Task
             $data = [];
         }
 
-        $taxonomy = 'task_status'; 
+        $taxonomy = 'task_status';
         $get_taxonomy = Fns::get_terms($taxonomy);
 
         $format_taxonomy = [];
@@ -176,15 +176,15 @@ class Task
             $type = get_the_terms($id, 'ndpi_task_type');
             if ($type) {
                 $icon_id = get_term_meta($type[0]->term_id, 'icon', true);
-                $iconData = null;  
-                if ( $icon_id ) {
-                    $icon_src = wp_get_attachment_image_src( $icon_id, 'thumbnail' );
-                    if ( $icon_src ) {
-                        $iconData = []; 
-                        $iconData['id'] = $icon_id;  
-                        $iconData['src'] = $icon_src[0]; 
+                $iconData = null;
+                if ($icon_id) {
+                    $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
+                    if ($icon_src) {
+                        $iconData = [];
+                        $iconData['id'] = $icon_id;
+                        $iconData['src'] = $icon_src[0];
                     }
-                } 
+                }
                 $query_data['type_id'] = [
                     'id' => $type[0]->term_id,
                     'label' => $type[0]->name,
