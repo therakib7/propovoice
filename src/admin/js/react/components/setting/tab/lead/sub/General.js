@@ -70,13 +70,13 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Source</label>
-                        <Taxonomy taxonomy='lead_source' title='Source' color={true} />
+                        <Taxonomy taxonomy='lead_source' title='Source' />
                     </div>
                     <div className="col">
                     </div>
                 </div>
 
-                <div className="row" style={{ marginTop: '10px' }}>
+                <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
                             Save

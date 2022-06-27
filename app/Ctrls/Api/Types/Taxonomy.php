@@ -129,10 +129,29 @@ class Taxonomy
                     $tagList = [];
                     if ($tags) {
                         foreach ($tags as $tag) {
-                            $tagList[] = [
+                            $color = get_term_meta($tag->term_id, 'color', true);
+                            $bg_color = get_term_meta($tag->term_id, 'bg_color', true);
+
+                            $single_tag = [
                                 'id' => $tag->term_id,
-                                'label' => $tag->name
+                                'label' => $tag->name,
+                                'color' => '#4a5568',
+                                'bg_color' => '#E2E8F0',
                             ];
+
+                            if ( $taxonomy == 'lead_source' ) { 
+                                $single_tag['bg_color'] = '';
+                            }
+
+                            if ( $color ) {
+                                $single_tag['color'] = $color;
+                            }
+
+                            if ( $bg_color ) {
+                                $single_tag['bg_color'] = $bg_color;
+                            }
+
+                            $tagList[] = $single_tag;
                         }
                     }
                     $data['single_' . $taxonomy] = $tagList;

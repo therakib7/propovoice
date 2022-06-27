@@ -265,7 +265,7 @@ export default class Preview extends Component {
                                     onClick={() => this.props.showEmailModal()} >
                                     Send Email
                                     <svg
-                                        className="pi-mt-3 pi-ml-10 pi-mr-0"
+                                        className="pi-ml-10 pi-mr-0"
                                         width={6}
                                         height={12}
                                         viewBox="0 0 6 9"

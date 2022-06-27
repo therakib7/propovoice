@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import WithApi from 'hoc/Api';
-
-import Reminder from './sub/Reminder';
+import WithApi from 'hoc/Api'; 
+import Reminder from 'block/field/reminder';
 import Template from './sub/Template';
 
 class General extends Component {
@@ -48,7 +47,7 @@ class General extends Component {
 					))}
 				</ul>
 		
-				{currentTab == 'reminder' && <Reminder {...this.props} />} 
+				{currentTab == 'reminder' && <Reminder {...this.props} path={'estimate'} />} 
 				{currentTab == 'template' && <Template {...this.props} />}
 			</>
 		);

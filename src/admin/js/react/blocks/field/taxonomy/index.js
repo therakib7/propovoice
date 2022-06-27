@@ -153,7 +153,11 @@ const Taxonomy = (props) => {
 				</button>}
 
 				{!props.multiple && listById.length > 0 && <button
-					className={(props.btnMid) ? 'pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange' : 'pi-btn pi-btn-small'}
+					className={(props.btnMid) ? 'pi-btn pi-btn-medium' : 'pi-btn pi-btn-small'}
+					style={{
+						backgroundColor: listById[0].bg_color,
+						color: listById[0].color
+					}}
 					onClick={() => showDropdown()}
 				>
 					{listById[0].label}
@@ -167,7 +171,7 @@ const Taxonomy = (props) => {
 					>
 						<path
 							d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
-							fill={(props.btnMid) ? '#F7936F' : '#718096'}
+							fill={listById[0].color}
 						/>
 					</svg>
 				</button>}
@@ -178,8 +182,7 @@ const Taxonomy = (props) => {
 				>
 					+ Add {props.title}
 				</button>}
-
-				{/* {console.log(listById)} */}
+ 
 				{dropdown && <div className="pi-dropdown-content pi-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>+ Add New {props.title}</button>
 					{list && list.map((item, itemIndex) => {
