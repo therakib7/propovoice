@@ -83,7 +83,7 @@ class Section extends Component {
                     return (
                         <div className="pi-group-input" key={index}>
 
-                            <div className='pi-field'>
+                            <div className='pi-field-label'>
                                 <Editable
                                     key={index}
                                     value={section_single.label}

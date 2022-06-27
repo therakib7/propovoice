@@ -100,18 +100,16 @@
   color: #718096;
 }
 .ncpi .pi-add-info-content label {
-  padding: 12px 12px 12px 0;
+  padding: 9px 12px 12px 0;
   display: inline-block;
   font-size: 12px;
   color: #4A5568;
 }
 .ncpi .pi-add-info-content .pi-info-lavel {
   width: 45%;
-  margin-top: 6px;
   text-align: right;
 }
 .ncpi .pi-add-info-content .pi-info-input-field {
-  margin-top: 10px;
   text-align: right;
   position: relative;
   width: 135px;
@@ -128,6 +126,7 @@
 }
 .ncpi .pi-add-info-content .pi-info-form-list {
   display: flex;
+  margin-bottom: 10px;
 }
 .ncpi .pi-add-info-content .pi-info-form {
   float: right;
@@ -296,17 +295,15 @@
   color: #718096;
   font-size: 12px;
 }
-.ncpi .pi-inv-sections .pi-group-input .pi-field {
-  width: 50%;
-}
-.ncpi .pi-inv-sections .pi-group-input .pi-field .pi-close-icon {
+.ncpi .pi-inv-sections .pi-group-input .pi-field-label .pi-close-icon {
   position: absolute;
   right: 0px;
   top: 0%;
   padding: 5px 10px;
   cursor: pointer;
 }
-.ncpi .pi-inv-sections .pi-group-input .pi-field input {
+.ncpi .pi-inv-sections .pi-group-input input {
+  width: 50%;
   font-weight: 600;
   margin-bottom: 10px;
 }

@@ -121,7 +121,7 @@ const Taxonomy = (props) => {
 	}
 
 	const handleSelect = (id) => {
-		let newForm = {} 
+		let newForm = {}
 		newForm.taxonomy = props.taxonomy;
 		newForm.add = true;
 		newForm.append = props.multiple ? true : false;
@@ -152,32 +152,32 @@ const Taxonomy = (props) => {
 					+ Add {props.title}
 				</button>}
 
-				{!props.multiple && listById.length > 0 &&<button 
-				className={ (props.btnMid ) ? 'pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow' } 
-				onClick={() => showDropdown()}
+				{!props.multiple && listById.length > 0 && <button
+					className={(props.btnMid) ? 'pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange' : 'pi-btn pi-btn-small'}
+					onClick={() => showDropdown()}
 				>
-					{listById[0].label} 
-					{ props.btnMid && <svg
+					{listById[0].label}
+					<svg
 						width={10}
 						height={6}
-						// style={ { paddingLeft: ( props.btnMid ) ? '' : '10px' } }
+						style={{ margin: (props.btnMid) ? '' : '0 0 0 7px' }}
 						viewBox="0 0 10 6"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
 					>
 						<path
 							d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
-							fill={ ( props.btnMid ) ? '#F7936F' : '#718096' }
+							fill={(props.btnMid) ? '#F7936F' : '#718096'}
 						/>
-					</svg>}
-				</button>} 
+					</svg>
+				</button>}
 
-				{!props.multiple && !listById.length &&<button 
-				className={ (props.btnMid ) ? 'pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow' } 
-				onClick={() => showDropdown()}
+				{!props.multiple && !listById.length && <button
+					className={(props.btnMid) ? 'pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
+					onClick={() => showDropdown()}
 				>
-					+ Add {props.title} 
-				</button>} 
+					+ Add {props.title}
+				</button>}
 
 				{/* {console.log(listById)} */}
 				{dropdown && <div className="pi-dropdown-content pi-show">

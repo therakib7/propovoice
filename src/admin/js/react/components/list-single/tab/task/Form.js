@@ -32,7 +32,7 @@ class Form extends Component {
                 const types = resp.data.data.task_type;
                 const priorities = resp.data.data.task_priority;
                 //TODO: add fallback if no taxonomy
-                form.status_id = status[0]; 
+                form.status_id = status[0];
                 form.type_id = types[0];
                 form.priority_id = priorities[0];
 
@@ -52,7 +52,7 @@ class Form extends Component {
         });
     }
 
-    showDropdown = ( id ) => { 
+    showDropdown = (id) => {
         if (this.state.dropdown == id) {
             this.setState({ dropdown: null });
         } else {
@@ -75,24 +75,24 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let form = { ...this.state.form } 
+        let form = { ...this.state.form }
 
-        if ( form.status_id ) {
-            form.status_id = parseInt( form.status_id.id );
+        if (form.status_id) {
+            form.status_id = parseInt(form.status_id.id);
         }
 
-        if ( form.type_id ) {
-            form.type_id = parseInt( form.type_id.id );
+        if (form.type_id) {
+            form.type_id = parseInt(form.type_id.id);
         }
 
-        if ( form.priority_id ) {
-            form.priority_id = parseInt( form.priority_id.id );
-        } 
+        if (form.priority_id) {
+            form.priority_id = parseInt(form.priority_id.id);
+        }
 
         this.props.handleSubmit(form, 'new');
 
-        let newFrom = {...this.initialState};
-        newFrom.status_id = this.state.status[0]; 
+        let newFrom = { ...this.initialState };
+        newFrom.status_id = this.state.status[0];
         newFrom.type_id = this.state.types[0];
         newFrom.priority_id = this.state.priorities[0];
 
@@ -119,7 +119,7 @@ class Form extends Component {
                     </div>
                     <div className="pi-tab-buttons">
                         <div className="pi-action-content">
-                            <button type='button' onClick={() => this.showDropdown('date')}>
+                            <button type='button' onClick={() => this.showDropdown('date')}> 
                                 <svg
                                     width={20}
                                     height={20}
@@ -139,7 +139,8 @@ class Form extends Component {
                         </div>
                         <div className="pi-action-content">
                             <button type='button' onClick={() => this.showDropdown('type')}>
-                                <svg
+                                {form.type_id.icon && <img src={form.type_id.icon.src} />}
+                                {!form.type_id.icon && <svg
                                     width={16}
                                     height={20}
                                     viewBox="0 0 16 20"
@@ -153,35 +154,21 @@ class Form extends Component {
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                     />
-                                </svg>
-                            </button>
+                                </svg>}
+                            </button> 
 
                             {this.state.dropdown == 'type' && <div className="pi-dropdown-content pi-show">
-
                                 {typeList && typeList.map((item, itemIndex) => {
                                     return (
                                         <a onClick={(e) => this.setTax(e, item, 'type_id')} key={itemIndex}>
-                                            <svg
-                                                width={14}
-                                                height={18}
-                                                viewBox="0 0 14 18"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M4.50001 3.16667H2.83334C2.39131 3.16667 1.96739 3.34226 1.65483 3.65482C1.34227 3.96738 1.16667 4.39131 1.16667 4.83333V14.8333C1.16667 15.2754 1.34227 15.6993 1.65483 16.0118C1.96739 16.3244 2.39131 16.5 2.83334 16.5H11.1667C11.6087 16.5 12.0326 16.3244 12.3452 16.0118C12.6577 15.6993 12.8333 15.2754 12.8333 14.8333V4.83333C12.8333 4.39131 12.6577 3.96738 12.3452 3.65482C12.0326 3.34226 11.6087 3.16667 11.1667 3.16667H9.50001M4.50001 3.16667C4.50001 3.60869 4.6756 4.03262 4.98816 4.34518C5.30072 4.65774 5.72465 4.83333 6.16667 4.83333H7.83334C8.27537 4.83333 8.69929 4.65774 9.01185 4.34518C9.32441 4.03262 9.50001 3.60869 9.50001 3.16667M4.50001 3.16667C4.50001 2.72464 4.6756 2.30072 4.98816 1.98816C5.30072 1.67559 5.72465 1.5 6.16667 1.5H7.83334C8.27537 1.5 8.69929 1.67559 9.01185 1.98816C9.32441 2.30072 9.50001 2.72464 9.50001 3.16667M4.50001 10.6667L6.16667 12.3333L9.50001 9"
-                                                    stroke="#718096"
-                                                    strokeWidth="1.5"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
+                                            {item.icon && <img src={item.icon.src} />}
                                             {item.label}
                                         </a>
                                     )
                                 })}
                             </div>}
                         </div>
+
                         <div className="pi-action-content">
                             <button type='button' onClick={() => this.showDropdown('priority')}>
                                 <svg
@@ -205,7 +192,7 @@ class Form extends Component {
                                 {priorityList && priorityList.map((item, itemIndex) => {
                                     return (
                                         <a onClick={(e) => this.setTax(e, item, 'priority_id')} key={itemIndex}>
-                                            <svg 
+                                            <svg
                                                 ref={e => e && e.style.setProperty('top', '8px', 'important')}
                                                 width={24}
                                                 height={24}
@@ -215,14 +202,14 @@ class Form extends Component {
                                             >
                                                 <path
                                                     d="M3.75 20.25V4.5"
-                                                    stroke={ item.bg_color ? item.bg_color : "#CBD5E0"}
+                                                    stroke={item.bg_color ? item.bg_color : "#CBD5E0"}
                                                     strokeWidth={2}
                                                     strokeLinecap="round"
                                                     strokeLinejoin="round"
                                                 />
                                                 <path
                                                     d="M3.75 15.75C9.75 11.25 14.25 20.25 20.25 15.75V4.49997C14.25 8.99997 9.75 -3.40939e-05 3.75 4.49997"
-                                                    fill={ item.bg_color ? item.bg_color : "#CBD5E0"}
+                                                    fill={item.bg_color ? item.bg_color : "#CBD5E0"}
                                                 />
                                             </svg>
                                             {item.label}

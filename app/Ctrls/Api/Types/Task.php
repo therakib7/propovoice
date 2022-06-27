@@ -175,9 +175,20 @@ class Task
             $query_data['type_id'] = '';
             $type = get_the_terms($id, 'ndpi_task_type');
             if ($type) {
+                $icon_id = get_term_meta($type[0]->term_id, 'icon', true);
+                $iconData = null;  
+                if ( $icon_id ) {
+                    $icon_src = wp_get_attachment_image_src( $icon_id, 'thumbnail' );
+                    if ( $icon_src ) {
+                        $iconData = []; 
+                        $iconData['id'] = $icon_id;  
+                        $iconData['src'] = $icon_src[0]; 
+                    }
+                } 
                 $query_data['type_id'] = [
                     'id' => $type[0]->term_id,
-                    'label' => $type[0]->name
+                    'label' => $type[0]->name,
+                    'icon' => $iconData ? $iconData : ''
                 ];
             }
 

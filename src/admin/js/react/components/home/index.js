@@ -54,7 +54,7 @@ const Home = () => {
 
     return (
         <HashRouter>
-            <ToastContainer />
+            <ToastContainer hideProgressBar />
             <div className="pi-grid-container pi-main-content">
                 <div className="pi-left-sidebar">
                     <div className="pi-menubar-icon">

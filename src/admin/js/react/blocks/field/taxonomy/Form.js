@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ColorPicker from 'block/color-picker';
 import { toast } from 'react-toastify';
+import Upload from 'block/field/upload';
 
 class Form extends Component {
     constructor(props) {
@@ -161,11 +162,10 @@ class Form extends Component {
                             {this.props.icon &&
                             <div className="row">
                                 <div className="col-md">
-                                    <label htmlFor="field-color">
-                                        Text Color
-                                    </label>
-                                    {/* <ColorPicker color={form.color} onChange={(val) => this.handleColorChange(val, 'color')} /> */}
-                                    <Upload data={form.icon} changeHandler={this.handleLogoChange} />
+                                    <label htmlFor="field-icon">
+                                        Icon
+                                    </label> 
+                                    <Upload data={form.icon} small={true} changeHandler={this.handleLogoChange} />
                                 </div>
                             </div>}
                         </div>
