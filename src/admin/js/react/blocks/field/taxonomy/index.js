@@ -164,7 +164,8 @@ const Taxonomy = (props) => {
 					<svg
 						width={10}
 						height={6}
-						style={{ margin: (props.btnMid) ? '' : '0 0 0 7px' }}
+						style={{ marginLeft: (props.btnMid) ? '10px' : '7px' }}
+						className='pi-mr-0'
 						viewBox="0 0 10 6"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +183,7 @@ const Taxonomy = (props) => {
 				>
 					+ Add {props.title}
 				</button>}
- 
+
 				{dropdown && <div className="pi-dropdown-content pi-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>+ Add New {props.title}</button>
 					{list && list.map((item, itemIndex) => {

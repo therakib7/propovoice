@@ -21,7 +21,7 @@ export default class Reminder extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab='+this.props.path+'_reminder')
+        Api.getAll('tab=' + this.props.path + '_reminder')
             .then(resp => {
                 if (resp.data.success) {
                     this.setState({ form: resp.data.data });
@@ -52,7 +52,7 @@ export default class Reminder extends Component {
         e.preventDefault();
 
         let form = this.state.form;
-        form.tab = this.props.path+'_reminder';
+        form.tab = this.props.path + '_reminder';
 
         Api.create(form)
             .then(resp => {
@@ -74,7 +74,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Status</label>
-                        <div className="pi-field-switch">
+                        <div className="pi-field-switch pi-mt-3 pi-ml-10">
                             <label className='pi-switch'>
                                 <input type='checkbox'
                                     id="reminder-status"
@@ -82,7 +82,7 @@ export default class Reminder extends Component {
                                     checked={form.status ? 'checked' : ''}
                                     onChange={this.handleChange}
                                 />
-                                <span className='pi-switch-slider round'></span>
+                                <span className='pi-switch-slider pi-round'></span>
                             </label>
                         </div>
                     </div>

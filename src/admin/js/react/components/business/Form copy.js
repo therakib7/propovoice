@@ -25,12 +25,12 @@ class Form extends Component {
         };
     }
 
-    handleChange = e => { 
+    handleChange = e => {
         const target = e.target;
-		const name = target.name;
-		const value = target.type === 'checkbox' ? target.checked : target.value; 
+        const name = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
-    } 
+    }
 
     componentDidMount() {
         //added this multiple place, because not working in invoice single
@@ -100,7 +100,7 @@ class Form extends Component {
 
                                             <input
                                                 id="field-name"
-                                                type="text" 
+                                                type="text"
                                                 name="name"
                                                 value={this.state.form.name}
                                                 onChange={this.handleChange}
@@ -122,7 +122,7 @@ class Form extends Component {
                                             />
                                         </div> */}
 
-                                    </div> 
+                                    </div>
                                     <div className="row">
                                         <div className="col-md">
                                             <label
@@ -154,7 +154,7 @@ class Form extends Component {
                                             />
                                         </div>
 
-                                    </div> 
+                                    </div>
                                     <div className="row">
                                         <div className="col-md">
                                             <label
@@ -185,7 +185,7 @@ class Form extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div className="row">
                                         <div className="col">
                                             <label
@@ -202,14 +202,14 @@ class Form extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div className="row">
                                         <div className="col">
                                             <Upload data={this.state.form.logo} changeHandler={this.handleLogoChange} />
                                         </div>
 
                                         <div className="col">
-                                            {!wage.length && <> 
+                                            {!wage.length && <>
                                                 <label
                                                     htmlFor="form-default"
                                                     className="pi-m-10"
@@ -222,15 +222,15 @@ class Form extends Component {
                                                 <label className='pi-switch'>
                                                     <input type='checkbox'
                                                         id="form-default"
-                                                        name='default'  
+                                                        name='default'
                                                         checked={this.state.form.default ? 'checked' : ''}
                                                         onChange={this.handleChange}
-                                                    /> 
-                                                    <span className='pi-switch-slider round'></span>
+                                                    />
+                                                    <span className='pi-switch-slider pi-round'></span>
                                                 </label>
                                             </>}
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
                         </div>

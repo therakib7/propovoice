@@ -109,7 +109,7 @@ export default (props) => {
                             />
                             <label htmlFor="limit_type_1" className="pi-mt-6 pi-mr-8">Limit</label>
                             <input
-                                type="number" 
+                                type="number"
                                 id="recurring-limit"
                                 name="limit"
                                 value={recurring.limit}
@@ -146,16 +146,16 @@ export default (props) => {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <div className="pi-switch-content pi-switch-style-two">
-                            <span className="pi-copy" id="recurring-send_me">Send me a copy</span>
-                            <label className="pi-switch">
+                        <label id="recurring-send_me">Send me a copy</label>
+                        <div className="pi-field-switch pi-mt-3 pi-ml-10">
+                            <label className='pi-switch'>
                                 <input type='checkbox'
                                     id="recurring-send_me"
                                     name='send_me'
                                     checked={recurring.send_me ? 'checked' : ''}
                                     onChange={handleChange}
                                 />
-                                <span className="pi-slider pi-round" />
+                                <span className='pi-switch-slider pi-round'></span>
                             </label>
                         </div>
                     </div>

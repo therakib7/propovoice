@@ -119,7 +119,7 @@ class Form extends Component {
                     </div>
                     <div className="pi-tab-buttons">
                         <div className="pi-action-content">
-                            <button type='button' onClick={() => this.showDropdown('date')}> 
+                            <button className='pi-task-btn' type='button' onClick={() => this.showDropdown('date')}>
                                 <svg
                                     width={20}
                                     height={20}
@@ -138,7 +138,7 @@ class Form extends Component {
                             </button>
                         </div>
                         <div className="pi-action-content">
-                            <button type='button' onClick={() => this.showDropdown('type')}>
+                            <button className='pi-task-btn' type='button' onClick={() => this.showDropdown('type')}>
                                 {form.type_id.icon && <img src={form.type_id.icon.src} />}
                                 {!form.type_id.icon && <svg
                                     width={16}
@@ -155,7 +155,7 @@ class Form extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>}
-                            </button> 
+                            </button>
 
                             {this.state.dropdown == 'type' && <div className="pi-dropdown-content pi-show">
                                 {typeList && typeList.map((item, itemIndex) => {
@@ -170,7 +170,7 @@ class Form extends Component {
                         </div>
 
                         <div className="pi-action-content">
-                            <button type='button' onClick={() => this.showDropdown('priority')}>
+                            <button className='pi-task-btn' type='button' onClick={() => this.showDropdown('priority')}>
                                 <svg
                                     width={20}
                                     height={20}
