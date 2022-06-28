@@ -178,7 +178,8 @@ const Taxonomy = (props) => {
 				</button>}
 
 				{!props.multiple && !listById.length && <button
-					className={(props.btnMid) ? 'pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
+					style={{ backgroundColor: '#E2E8F0', color: '#4a5568' }}
+					className={(props.btnMid) ? 'pi-btn pi-btn-medium pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
 					onClick={() => showDropdown()}
 				>
 					+ Add {props.title}

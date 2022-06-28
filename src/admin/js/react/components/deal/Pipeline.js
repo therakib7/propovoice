@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import WithApi from 'hoc/Api';
 
-import Editable from 'block/editable';
 import { v4 as uuidv4 } from 'uuid';
 
 const onDragEnd = (update, result, columns, setColumns) => {
@@ -118,15 +117,6 @@ function Pipeline(props) {
 						<div className="pi-board-column" key={columnId}>
 							<div className="pi-board-column-title pi-bg-shadow" style={{ borderColor: column.bg_color, color: column.bg_color }}>
 								<h4 className="">{column.name}</h4>
-								{/* <h4 className="pi-color-blue">
-								<Editable
-									// key={columnId}
-									value={column.name}
-									index={columnId}
-									changeHandler={handleCoumnLabel}
-								/>
-								</h4> */}
-
 								<div className="pi-action-content">
 									<button className={(columnId == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(columnId)}>
 										<svg
