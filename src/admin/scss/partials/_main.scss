@@ -2394,12 +2394,12 @@ html {
   margin-left: -20px;
 }
 
-<<<<<<< HEAD=======.ncpi .pi-modal-content .pi-modal-footer .pi-btn {
+.ncpi .pi-modal-content .pi-modal-footer .pi-btn {
   text-transform: capitalize;
   font-size: 14px;
 }
 
->>>>>>>cd13b79186f73e97ce42651adfbb7b675850a715 .ncpi .pi-modal-content .pi-form-style-two .pi-btn {
+.ncpi .pi-modal-content .pi-form-style-two .pi-btn {
   margin-bottom: 35px;
 }
 
@@ -5099,4 +5099,46 @@ select {
 
 .ncpi .pi-top-menu-content .pi-dropdown-content {
   left: 35px !important;
+}
+
+.pi-search-btn .pi-search-form ul li:last-child svg {
+  top: 7px;
+}
+
+.ncpi input[type=range] {
+  margin-top: 2px;
+}
+
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+input[type="checkbox"]:focus,
+input[type="radio"]:focus,
+select:focus,
+textarea:focus {
+  box-shadow: none !important;
+}
+
+//Datepicker
+.react-datepicker-popper {
+  z-index: 11 !important;
+}
+
+.react-datepicker {
+  border: 1px solid #CBD5E0 !important;
+}
+
+.react-datepicker__current-month {
+  color: #4A5568 !important;
+}
+
+.react-datepicker__day-name {
+  color: #4A5568 !important;
+}
+
+.react-datepicker__header {
+  border-bottom: 1px solid #CBD5E0 !important;
 }
