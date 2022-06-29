@@ -26,8 +26,37 @@ class Form extends Component {
     }
 
     handleColorChange = (val, key) => {
-        this.setState({ form: { ...this.state.form, [key]: val } });
+        let form = { ...this.state.form }
+        if ( key == 'bg_color' ) {
+            form.bg_color = val;
+            form.color = this.lightenDarkenColor(val, -80);
+        } else {
+            form.color = val; 
+        }
+        
+        this.setState({ form });
     }
+
+    lightenDarkenColor = (color, percent) => {
+
+        let R = parseInt(color.substring(1,3),16);
+        let G = parseInt(color.substring(3,5),16);
+        let B = parseInt(color.substring(5,7),16);
+    
+        R = parseInt(R * (100 + percent) / 100);
+        G = parseInt(G * (100 + percent) / 100);
+        B = parseInt(B * (100 + percent) / 100);
+    
+        R = (R<255)?R:255;  
+        G = (G<255)?G:255;  
+        B = (B<255)?B:255;  
+    
+        let RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+        let GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+        let BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+    
+        return "#"+RR+GG+BB;
+    } 
 
     componentDidMount() {
         //added this multiple place, because not working in invoice single
@@ -142,6 +171,15 @@ class Form extends Component {
                             {this.props.color && <>
                                 <div className="row">
                                     <div className="col-md">
+                                        <label htmlFor="field-bg_color">
+                                            Background Color
+                                        </label>
+                                        <ColorPicker color={form.bg_color} onChange={(val) => this.handleColorChange(val, 'bg_color')} />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-md">
                                         <label htmlFor="field-color">
                                             Text Color
                                         </label>
@@ -149,25 +187,51 @@ class Form extends Component {
                                     </div>
                                 </div>
 
-                                <div className="row">
+                                {false && <div className="row">
                                     <div className="col-md">
-                                        <label htmlFor="field-bg_color">
-                                            Background Color
+                                        <label htmlFor="field-color">
+                                            Preview
                                         </label>
-                                        <ColorPicker color={form.bg_color} onChange={(val) => this.handleColorChange(val, 'bg_color')} />
+                                        <div className='pi-field-btn-preview'>
+                                            <button
+                                                className='pi-btn pi-btn-medium'
+                                                style={{
+                                                    backgroundColor: form.bg_color,
+                                                    color: form.color,
+                                                    border: 'none'
+                                                }}
+                                                onClick={(e) => e.preventDefault()}
+                                            >
+                                                {form.label ? form.label : 'Button'}
+                                                <svg
+                                                    width={10}
+                                                    height={6}
+                                                    style={{ marginLeft: '10px' }}
+                                                    className='pi-mr-0'
+                                                    viewBox="0 0 10 6"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
+                                                        fill={form.color}
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </div>}
                             </>}
 
                             {this.props.icon &&
-                            <div className="row">
-                                <div className="col-md">
-                                    <label htmlFor="field-icon">
-                                        Icon
-                                    </label> 
-                                    <Upload data={form.icon} small={true} changeHandler={this.handleLogoChange} />
-                                </div>
-                            </div>}
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-icon">
+                                            Icon
+                                        </label>
+                                        <Upload data={form.icon} small={true} changeHandler={this.handleLogoChange} />
+                                    </div>
+                                </div>}
                         </div>
                     </div>
 

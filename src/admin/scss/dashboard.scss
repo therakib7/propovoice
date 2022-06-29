@@ -22,9 +22,7 @@
 }
 
 //invoice item radius without edit column
-/* .ncpi .pi-info-table-content .pi-info-table thead tr th:last-child {
-    border-radius: 0 15px 0 0;
-} */
+ 
 
 //for backend only 
 /* .ncpi .pi-right-content {
@@ -46,19 +44,7 @@
 //TODO: temporary css
 /* h4.from-title {
     font-family: "Inter", sans-serif !important;
-} */
-
-.wp-admin.ncpi .pi-modal-content {
-    margin: 65px auto;
-}
-
-/* .ncpi .pi-form-style-two label {
-    z-index: 99;
-}
-
-.ncpi .pi-from-content .pi-from {
-    margin-top: 10px;
-} */
+} */ 
 
 .wp-admin .pi-left-sidebar, .wp-admin .pi-top-menu-content {
     display: none;
@@ -66,31 +52,7 @@
 
 .wp-admin .Toastify__toast-container.Toastify__toast-container--top-right {
     top: 3em;
-}
-
-/* .ncpi .pi-settings-tab .pi-settings-tabs .pi-tab {
-    margin: 0;
-} */
-
-/* .ncpi .pi-edit-content span {
-    border: 3px solid #fff;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 10%), inset 0 0 0 1px rgb(0 0 0 / 10%);
-} */
-
-/* .ncpi .pi-style-color {
-    display: flex;
-    gap: 4px;
-
-    span {
-        width: 32px;
-        height: 32px;
-        line-height: 24px;
-        border: 3px solid #fff;
-        box-shadow: 0 0 0 1px rgb(0 0 0 / 10%), inset 0 0 0 1px rgb(0 0 0 / 10%);
-        border-radius: 8px;
-        cursor: pointer;
-    }
-} */
+} 
 
 //temporary form css 
 .ncpi .pi-field-logo-wrap { 
@@ -119,20 +81,7 @@
         cursor: pointer;
         box-shadow: rgb(23 10 18 / 18%) 0px 0px 4px;
     }
-}
-
-/* .ncpi .pi-signature {
-    margin-top: 70px;
-} */
-
-/* .pi-inv .pi-sign {
-    margin-top: 30px;
-
-    img {
-        max-width: 190px;
-        max-height: 60px;
-    }
-} */
+} 
 
 .pi-inv-sidebar-preview {
     .pi-inv-feedback {
@@ -165,66 +114,7 @@
 //tiny mce editor 
 /* .mce-content-body {
     font-family: Inter, sans-serif !important;
-} */
-
-// switch css
-/* .pi-switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-} */
-
-/* Hide default HTML checkbox */
-/* .pi-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-} */
-
-/* The pi-switch-slider */
-/* .pi-switch-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-}
-
-.pi-switch-slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: 0.4s;
-}
-
-input:checked+.pi-switch-slider {
-    background-color: #4c6fff;
-}
-
-input:focus+.pi-switch-slider {
-    box-shadow: 0 0 1px #4c6fff;
-}
-
-input:checked+.pi-switch-slider:before {
-    transform: translateX(26px);
-} */
-
-/* Rounded pi-switch-sliders */
-/* .pi-switch-slider.round {
-    border-radius: 34px;
-}
-
-.pi-switch-slider.round:before {
-    border-radius: 50%;
-} */
+} */ 
 
 // bootstrap class
 .d-none {
@@ -241,21 +131,7 @@ input:checked+.pi-switch-slider:before {
 //TODO: this class already exist just add important
 .ncpi .pi-modal-sidebar {
     margin: 0 !important;
-}
-
-/* .ncpi {
-    select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background: transparent;
-        // background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-        background-image: url("data:image/svg+xml;utf8,<svg width='11' height='7' viewBox='0 0 11 7' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915' stroke='#CBD5E0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-        background-repeat: no-repeat;
-        background-position-x: 100%;
-        background-position-y: 5px;  
-        padding-right: 20px !important;
-    }
-} */
+} 
 
 .pi-list-single-select {
     width: 150px;
@@ -283,3 +159,16 @@ input:checked+.pi-switch-slider:before {
 .wp-admin.ncpi {
     background-color: #f7f8fa !important;
 }
+
+.pi-field-action {
+    display: inline-block;
+    margin-left: 15px; 
+    top: -2px;
+    position: relative;
+}
+
+/* .wp-admin.ncpi {
+    .pi-modal-sidebar .pi-modal-header {
+        padding-top: 70px;
+    }
+} */

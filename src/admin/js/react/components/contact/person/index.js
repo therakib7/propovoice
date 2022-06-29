@@ -26,14 +26,14 @@ const Contact = (props) => {
           <h2 className="pi-page-title">Contact Book</h2>
         </div>
         <div className="col-lg-6">
-          <AddNew 
-						title={title}
-						openForm={props.openForm}
-					/>
+          <AddNew
+            title={title}
+            openForm={props.openForm}
+          />
         </div>
       </div>
 
-      <div className="pi-buttons-group pi-mb-20">
+      {true && <div className="pi-buttons-group pi-mb-20">
         <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
           <svg
             width={20}
@@ -117,7 +117,7 @@ const Contact = (props) => {
             />
           </svg>
         </button>
-      </div> 
+      </div>}
 
       <Search
         title={title}

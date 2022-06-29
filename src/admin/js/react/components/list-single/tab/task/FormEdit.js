@@ -150,7 +150,7 @@ class Form extends Component {
                     </div>
 
                     <div className="pi-content">
-                        <div className="pi-form-style-one"> 
+                        <div className="pi-form-style-one">
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="title">
@@ -173,14 +173,18 @@ class Form extends Component {
                                     <label htmlFor="form-desc">
                                         Task Type:
                                     </label>
-                                    {form.id && <Taxonomy id={form.id} taxonomy='task_type' title='Type' btnMid={true} color={true} />}
+                                    <div className='pi-field-action'>
+                                        {form.id && <Taxonomy id={form.id} taxonomy='task_type' title='Type' btnMid={true} color={true} />}
+                                    </div>
                                 </div>
 
                                 <div className="col">
                                     <label htmlFor="form-desc">
                                         Task Priority:
                                     </label>
-                                    {form.id && <Taxonomy id={form.id} taxonomy='task_priority' title='Priority' btnMid={true} color={true} />}
+                                    <div className='pi-field-action'>
+                                        {form.id && <Taxonomy id={form.id} taxonomy='task_priority' title='Priority' btnMid={true} color={true} />}
+                                    </div>
                                 </div>
                             </div>
 

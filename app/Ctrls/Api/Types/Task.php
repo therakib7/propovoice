@@ -135,9 +135,9 @@ class Task
             'unschedule' => [],
         ];
 
-        if (!$tab_id) {
+        /* if (!$tab_id) {
             $data = [];
-        }
+        } */
 
         $taxonomy = 'task_status';
         $get_taxonomy = Fns::get_terms($taxonomy);
@@ -207,16 +207,12 @@ class Task
             $query_data['desc'] = get_the_content();
             $query_data['date'] = get_the_time('j-M-Y');
 
-            if ($tab_id) {
-                if (false) { //TODO: check unschedule
-                    $data['unschedule'][] = $query_data;
-                } else if (true) { //TODO: check today 
-                    $data['today'][] = $query_data;
-                } else {
-                    $data['other'][] = $query_data;
-                }
+            if (false) { //TODO: check unschedule
+                $data['unschedule'][] = $query_data;
+            } else if (true) { //TODO: check today 
+                $data['today'][] = $query_data;
             } else {
-                $data[] = $query_data;
+                $data['other'][] = $query_data;
             }
         }
         wp_reset_postdata();
@@ -252,9 +248,9 @@ class Task
         $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
         $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
 
-        if (empty($tab_id)) {
+        /* if (empty($tab_id)) {
             $reg_errors->add('field', esc_html__('Tab ID is missing', 'propovoice'));
-        }
+        } */
 
         if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
@@ -275,7 +271,10 @@ class Task
 
             if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
-                update_post_meta($post_id, 'tab_id', $tab_id);
+
+                if ( $tab_id ) {
+                    update_post_meta($post_id, 'tab_id', $tab_id);
+                }
 
                 if ($status_id) {
                     wp_set_post_terms($post_id, [$status_id], 'ndpi_task_status');
