@@ -205,12 +205,18 @@ class Task
             $query_data['end_date'] = get_post_meta($id, 'end_date', true);
             $query_data['date'] = get_the_time('j-M-Y');
 
-            if (false) { //TODO: check unschedule
-                $data['unschedule'][] = $query_data;
-            } else if (true) { //TODO: check today 
-                $data['today'][] = $query_data;
+            $start_date = get_post_meta($id, 'start_date', true); 
+            if ( $start_date ) {
+                $current_date = date('Y-m-d', current_time('timestamp'));
+                $format_start_date = date('Y-m-d', strtotime($start_date));
+
+                if ($current_date == $format_start_date) {
+                    $data['today'][] = $query_data;
+                } else {
+                    $data['other'][] = $query_data;
+                } 
             } else {
-                $data['other'][] = $query_data;
+                $data['unschedule'][] = $query_data;
             }
         }
         wp_reset_postdata();
@@ -249,11 +255,11 @@ class Task
         $start_date = isset($params['start_date']) ? $params['start_date'] : null;
         $end_date = isset($params['end_date']) ? $params['end_date'] : null;
 
-        if ( empty($title) ) {
+        if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
         }
 
-        if ( $reg_errors->get_error_messages() ) {
+        if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
 

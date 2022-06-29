@@ -1,5 +1,6 @@
 import React, { Component, Suspense, lazy } from 'react'
 import WithApi from 'hoc/Api';
+import Moment from 'react-moment';
 const DateField = lazy(() => import('block/date-picker'));
 
 class Form extends Component {
@@ -78,6 +79,9 @@ class Form extends Component {
     onDateChange = (date, type = null) => {
 		let form = { ...this.state.form }
 
+        // const startDateStr = new Moment(date).format('YYYY-MM-DD HH:mm:ss')
+        //  const endDateStr = moment(endDate).format('YYYY-MM-DD HH:mm:ss')    
+        // console.log(startDateStr);
 		if (type == 'start_date') {
 			form.start_date = date;
 		} else {
