@@ -526,7 +526,7 @@ const Home = () => {
                                 <input
                                     type="text"
                                     className="pi-search-input"
-                                    placeholder="Search Contact, invoice, proposal "
+                                    placeholder="Search Contact, Invoice, Proposal "
                                 />
                             </div>
                             <div className="pi-avater">

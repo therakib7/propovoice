@@ -226,28 +226,26 @@ class Invoice extends Component {
 		}
 	};
 
-	getData = () => {
+	getData = () => { 
+		Api.get(this.props.id).then(resp => {
+			let invoice = resp.data.data.invoice;
+			invoice.id = parseInt(resp.data.data.id);
+			invoice.token = resp.data.data.token;
+			invoice.date = new Date(resp.data.data.invoice.date);
+			invoice.due_date = new Date(resp.data.data.invoice.due_date);
 
-		Api.get(this.props.id)
-			.then(resp => {
-				let invoice = resp.data.data.invoice;
-				invoice.id = parseInt(resp.data.data.id);
-				invoice.token = resp.data.data.token;
-				invoice.date = new Date(resp.data.data.invoice.date);
-				invoice.due_date = new Date(resp.data.data.invoice.due_date);
-
-				let payment_methods = resp.data.data.invoice.payment_methods; //it's because wordpress empty object covnert to array
-				if (Array.isArray(payment_methods) && !payment_methods.length) {
-					invoice.payment_methods = {}
-				}
-				this.setState({
-					invoice,
-					status: resp.data.data.status,
-					fromData: resp.data.data.fromData,
-					toData: resp.data.data.toData,
-					paymentBankData: resp.data.data.paymentBankData,
-				});
-			})
+			let payment_methods = resp.data.data.invoice.payment_methods; //it's because wordpress empty object covnert to array
+			if (Array.isArray(payment_methods) && !payment_methods.length) {
+				invoice.payment_methods = {}
+			}
+			this.setState({
+				invoice,
+				status: resp.data.data.status,
+				fromData: resp.data.data.fromData,
+				toData: resp.data.data.toData,
+				paymentBankData: resp.data.data.paymentBankData,
+			});
+		})
 	};
 
 	onDateChange = (date, type = null) => {

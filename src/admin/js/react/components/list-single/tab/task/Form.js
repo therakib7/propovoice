@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react'
 import WithApi from 'hoc/Api';
+const DateField = lazy(() => import('block/date-picker'));
 
 class Form extends Component {
     constructor(props) {
@@ -12,7 +13,9 @@ class Form extends Component {
             status_id: '',
             type_id: '',
             priority_id: '',
-            date: false
+            start_date: false,
+            end_date: false,
+            date: false,
         };
 
         this.state = {
@@ -72,6 +75,17 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
+    onDateChange = (date, type = null) => {
+		let form = { ...this.state.form }
+
+		if (type == 'start_date') {
+			form.start_date = date;
+		} else {
+			form.end_date = date;
+		}
+		this.setState({ form });
+	}
+
     handleSubmit = (e) => {
         e.preventDefault();
 
@@ -110,6 +124,7 @@ class Form extends Component {
                         <input
                             id="field-title"
                             type="text"
+                            className='pi-mb-20'
                             required
                             name="title"
                             value={form.title}
@@ -119,23 +134,7 @@ class Form extends Component {
                     </div>
                     <div className="pi-tab-buttons">
                         <div className="pi-action-content">
-                            <button className='pi-task-btn' type='button' onClick={() => this.showDropdown('date')}>
-                                <svg
-                                    width={20}
-                                    height={20}
-                                    viewBox="0 0 20 20"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M6 5V1V5ZM14 5V1V5ZM5 9H15H5ZM3 19H17C17.5304 19 18.0391 18.7893 18.4142 18.4142C18.7893 18.0391 19 17.5304 19 17V5C19 4.46957 18.7893 3.96086 18.4142 3.58579C18.0391 3.21071 17.5304 3 17 3H3C2.46957 3 1.96086 3.21071 1.58579 3.58579C1.21071 3.96086 1 4.46957 1 5V17C1 17.5304 1.21071 18.0391 1.58579 18.4142C1.96086 18.7893 2.46957 19 3 19Z"
-                                        stroke="#CBD5E0"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </button>
+                            <DateField date={form.start_date} type='start_date' onDateChange={this.onDateChange} /> 
                         </div>
                         <div className="pi-action-content">
                             <button className='pi-task-btn' type='button' onClick={() => this.showDropdown('type')}>
