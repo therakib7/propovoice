@@ -113,11 +113,13 @@
   position: absolute;
   top: 1px;
   right: 1px;
-  padding: 10px 9px 4px;
+  padding: 10px 7px;
   border-left: 1px solid var(--border-color-gray);
   cursor: pointer;
   text-align: center;
   background: linear-gradient(180deg, #FFFFFF 0%, #F8F8FA 100%);
+  display: flex;
+  align-items: center;
 }
 .ncpi .pi-add-info-content .pi-info-form-list {
   display: flex;

@@ -837,8 +837,8 @@ html {
   background-color: #FAFAFB;
 }
 .ncpi .pi-table thead tr th:last-child {
-  text-align: right;
-  padding-right: 15px;
+  text-align: center;
+  padding: 0 15px;
 }
 .ncpi .pi-table tr {
   text-align: left;
@@ -863,8 +863,7 @@ html {
 .ncpi .pi-table tbody tr td:last-child {
   position: relative;
   top: 2px;
-  text-align: right;
-  padding-right: 10px;
+  text-align: center;
   width: 60px;
 }
 .ncpi .pi-table tr td:first-child,
@@ -1135,12 +1134,13 @@ html {
 }
 .ncpi .pi-info-table-content .pi-info-table td input[type=number],
 .ncpi .pi-info-table-content .pi-info-table td input[type=text] {
-  padding: 9px 8px !important;
+  padding: 8px !important;
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
   outline: none;
   border-radius: 4px;
   text-align: center;
   line-height: 100%;
+  height: 35px;
 }
 .ncpi .pi-info-table-content .pi-info-table td input[type=number]:focus,
 .ncpi .pi-info-table-content .pi-info-table td input[type=text]:focus {
@@ -2017,35 +2017,31 @@ html {
   border: 1px solid #4C6FFF !important;
 }
 
-.pi-add-button-group {
-  max-width: 1190px;
-  text-align: center;
-  display: flex;
-  margin: auto;
-  justify-content: space-between;
-}
-.pi-add-button-group .pi-btn {
-  background: none;
-  padding: 25px !important;
-  color: #718096 !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-}
-.pi-add-button-group .pi-btn:hover {
-  color: #4C6FFF !important;
-}
-.pi-add-button-group .pi-btn svg {
-  margin-right: 10px !important;
-}
-
 .wp-admin .pi-search-form ul li {
   padding: 3px 5px !important;
+}
+.wp-admin .pi-search-btn .pi-search-form ul li:last-child svg {
+  top: 7px;
 }
 .wp-admin .pi-modal-style-two .pi-modal-footer {
   padding: 0 30px 0px;
 }
-.wp-admin .pi-search-btn .pi-search-form ul li:last-child svg {
-  top: 7px;
+.wp-admin .ncpi .pi-table input[type=checkbox] {
+  zoom: 1 !important;
+  top: -2px !important;
+}
+.wp-admin .pi-table tr th:first-child input[type=checkbox] {
+  top: 0px !important;
+}
+.wp-admin .pi-info-form-list label {
+  padding: 6px 12px 7px 0 !important;
+}
+.wp-admin .pi-info-form-list input[type=number],
+.wp-admin .pi-info-form-list input[type=text] {
+  padding: 6px 6px !important;
+}
+.wp-admin .pi-info-form-list .pi-calendar {
+  padding: 7px 6px 3px !important;
 }
 
 /*-------------------------------------------------------------- 
@@ -3980,9 +3976,6 @@ select {
   border-radius: 8px;
   outline: none;
 }
-.ncpi .pi-form-style-one textarea:focus {
-  border: 1px solid #4C6FFF !important;
-}
 .ncpi .pi-form-style-one label {
   font-size: 14px;
   color: #718096;
@@ -4004,6 +3997,7 @@ select {
   line-height: 100%;
   line-height: 100%;
 }
+.ncpi .pi-form-style-one textarea:focus,
 .ncpi .pi-form-style-one select:focus,
 .ncpi .pi-form-style-one input[type=url]:focus,
 .ncpi .pi-form-style-one input[type=number]:focus,
@@ -4229,12 +4223,13 @@ select {
 }
 .ncpi .pi-left-sidebar ul li a {
   padding: 13px 30px;
-  display: table;
   color: #4a5568;
   font-weight: 500;
   font-size: 14px;
   width: 100%;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 .ncpi .pi-left-sidebar ul li a .pi-Profeature {
   margin-left: -3px;
@@ -4248,8 +4243,6 @@ select {
 }
 .ncpi .pi-left-sidebar ul li a svg {
   margin-right: 10px;
-  position: relative;
-  top: 3px;
 }
 .ncpi .pi-left-sidebar ul li a .polygon {
   position: absolute;
