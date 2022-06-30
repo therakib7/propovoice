@@ -76,6 +76,7 @@ const Contact = (props) => {
 						Contact Person
 					</label> 
 					<AsyncSelect
+                        className={'pi-field-select'}
 						loadOptions={handleFindPerson}
 						value={props.data.person}
 						defaultOptions={person}
@@ -91,6 +92,7 @@ const Contact = (props) => {
 					</label>
 
 					<AsyncSelect
+                        className={'pi-field-select'}
 						loadOptions={handleFindOrg}
 						value={props.data.org}
 						defaultOptions={org}

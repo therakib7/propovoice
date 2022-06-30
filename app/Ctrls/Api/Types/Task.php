@@ -135,10 +135,6 @@ class Task
             'unschedule' => [],
         ];
 
-        /* if (!$tab_id) {
-            $data = [];
-        } */
-
         $taxonomy = 'task_status';
         $get_taxonomy = Fns::get_terms($taxonomy);
 
@@ -205,14 +201,22 @@ class Task
             }
 
             $query_data['desc'] = get_the_content();
+            $query_data['start_date'] = get_post_meta($id, 'start_date', true);
+            $query_data['end_date'] = get_post_meta($id, 'end_date', true);
             $query_data['date'] = get_the_time('j-M-Y');
 
-            if (false) { //TODO: check unschedule
-                $data['unschedule'][] = $query_data;
-            } else if (true) { //TODO: check today 
-                $data['today'][] = $query_data;
+            $start_date = get_post_meta($id, 'start_date', true); 
+            if ( $start_date ) {
+                $current_date = date('Y-m-d', current_time('timestamp'));
+                $format_start_date = date('Y-m-d', strtotime($start_date));
+
+                if ($current_date == $format_start_date) {
+                    $data['today'][] = $query_data;
+                } else {
+                    $data['other'][] = $query_data;
+                } 
             } else {
-                $data['other'][] = $query_data;
+                $data['unschedule'][] = $query_data;
             }
         }
         wp_reset_postdata();
@@ -242,15 +246,14 @@ class Task
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $tab_id   = isset($params['tab_id']) ? absint($req['tab_id']) : null;
-        $title   = isset($params['title']) ? sanitize_text_field($req['title']) : null;
-        $status_id  = isset($params['status_id']) ? absint($params['status_id']) : null;
-        $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
-        $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
+        $tab_id    = isset($params['tab_id']) ? absint($req['tab_id']) : null;
+        $title     = isset($params['title']) ? sanitize_text_field($req['title']) : null;
+        $status_id = isset($params['status_id']) ? absint($params['status_id']) : null;
+        $type_id = isset($params['type_id']) ? absint($params['type_id']) : null;
+        $priority_id = isset($params['priority_id']) ? absint($params['priority_id']) : null;
 
-        /* if (empty($tab_id)) {
-            $reg_errors->add('field', esc_html__('Tab ID is missing', 'propovoice'));
-        } */
+        $start_date = isset($params['start_date']) ? $params['start_date'] : null;
+        $end_date = isset($params['end_date']) ? $params['end_date'] : null;
 
         if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
@@ -272,7 +275,7 @@ class Task
             if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
 
-                if ( $tab_id ) {
+                if ($tab_id) {
                     update_post_meta($post_id, 'tab_id', $tab_id);
                 }
 
@@ -286,6 +289,14 @@ class Task
 
                 if ($priority_id) {
                     wp_set_post_terms($post_id, [$priority_id], 'ndpi_task_priority');
+                }
+
+                if ($start_date) {
+                    update_post_meta($post_id, 'start_date', $start_date);
+                }
+
+                if ($end_date) {
+                    update_post_meta($post_id, 'end_date', $end_date);
                 }
 
                 wp_send_json_success($post_id);
@@ -303,6 +314,9 @@ class Task
         $status_id  = isset($params['status_id']) ? absint($params['status_id']) : null;
         $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
         $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
+
+        $start_date = isset($params['start_date']) ? $params['start_date'] : null;
+        $end_date = isset($params['end_date']) ? $params['end_date'] : null;
 
         /* if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
@@ -341,6 +355,14 @@ class Task
 
                 if ($priority_id) {
                     wp_set_post_terms($post_id, [$priority_id], 'ndpi_task_priority');
+                }
+
+                if ($start_date) {
+                    update_post_meta($post_id, 'start_date', $start_date);
+                }
+
+                if ($end_date) {
+                    update_post_meta($post_id, 'end_date', $end_date);
                 }
 
                 wp_send_json_success($post_id);

@@ -153,7 +153,7 @@ const TableBody = props => {
                 <td>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
                 {/*<td>{row.project.name}</td>*/}
                 {!props.client_id && <td>
-                    {(row.to.first_name) ? row.to.first_name + ' ' + row.to.last_name : ''}
+                    {(row.to.first_name) ? row.to.first_name : ''}
                 </td>}
                 <td>{row.total}</td>
                 {(props.path == 'invoice') &&
