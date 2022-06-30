@@ -239,7 +239,7 @@ class Form extends Component {
                     <div className="pi-modal-footer pi-mt-10">
                         <div className="row">
                             <div className="col">
-                                {/* <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button> */}
+                                <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
                             </div>
                             <div className="col">
                                 <button onClick={this.handleSubmit} className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-medium pi-float-right pi-color-white">
