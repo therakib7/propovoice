@@ -1,28 +1,93 @@
-import { useEffect } from "react";
+import React, { Component } from 'react';
 
-import ApiSetting from 'api/setting';
+import { toast } from 'react-toastify';
+import AppContext from 'context/app-context';
+import Api from 'api/setting';
 
-export default (props) => {
+export default class Reminder extends Component {
+    constructor(props) {
+        super(props);
 
-    useEffect(() => {
-        if (!props.id) {
-            const path = props.path;
-            ApiSetting.getAll('tab=' + path + '_reminder').then(resp => {
-                if (resp.data.success) {
-                    props.handleDefault(resp.data.data);
-                }
-            });
-        }
-    }, []);
-
-    const handleChange = (e, type = null) => {
-        props.handleChange(e, type);
+        this.state = {
+            form: {
+                status: false,
+                due_date: false,
+                before: [],
+                after: []
+            }
+        };
     }
 
-    const reminder = props.data;
-    return (
-        <div>
-            <div className="pi-form-style-one">
+    static contextType = AppContext;
+
+    componentDidMount() {
+        Api.getAll('tab=' + this.props.path + '_reminder')
+            .then(resp => {
+                if (resp.data.success) {
+                    this.setState({ form: resp.data.data });
+                }
+            });
+    }
+
+    handleChange = (e, type) => {
+        let reminder = { ...this.state.form }
+        const target = e.target;
+        const name = target.name;
+        const value = (name === 'status' || name === 'due_date') ? target.checked : target.value;
+        if (type) {
+            let arr = reminder[type];
+            if (target.checked) {
+                arr.push(parseInt(value));
+            } else {
+                arr.splice(arr.indexOf(parseInt(value)), 1);
+            }
+        } else {
+            reminder[name] = value;
+        }
+
+        this.setState({ form: reminder })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        let form = this.state.form;
+        form.tab = this.props.path + '_reminder';
+
+        Api.create(form)
+            .then(resp => {
+                if (resp.data.success) {
+                    toast.success(this.context.CrudMsg.update);
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
+    }
+
+    render() {
+        const form = this.state.form;
+        return (
+            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+
+                <div className="row">
+                    <div className="col">
+                        <label>Status</label>
+                        <div className="pi-field-switch pi-mt-3 pi-ml-10">
+                            <label className='pi-switch'>
+                                <input type='checkbox'
+                                    id="reminder-status"
+                                    name='status'
+                                    checked={form.status ? 'checked' : ''}
+                                    onChange={this.handleChange}
+                                />
+                                <span className='pi-switch-slider pi-round'></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="row">
                     <div className="col">
                         <label>Reminder</label>
@@ -31,8 +96,8 @@ export default (props) => {
                                 type='checkbox'
                                 id="reminder-due_date"
                                 name='due_date'
-                                checked={reminder.due_date ? 'checked' : ''}
-                                onChange={handleChange}
+                                checked={form.due_date ? 'checked' : ''}
+                                onChange={this.handleChange}
                             />
                             <label htmlFor="reminder-due_date">On due date</label>
                         </div>
@@ -48,8 +113,8 @@ export default (props) => {
                                 id="reminder-before-1"
                                 name='before'
                                 value={1}
-                                checked={reminder.before.includes(1) ? 'checked' : ''}
-                                onChange={(e) => handleChange(e, 'before')}
+                                checked={form.before.includes(1) ? 'checked' : ''}
+                                onChange={(e) => this.handleChange(e, 'before')}
                             />
                             <label htmlFor="reminder-before-1">1 day</label>
                         </div>
@@ -59,8 +124,8 @@ export default (props) => {
                                 id="reminder-before-7"
                                 name='before'
                                 value={7}
-                                checked={reminder.before.includes(7) ? 'checked' : ''}
-                                onChange={(e) => handleChange(e, 'before')}
+                                checked={form.before.includes(7) ? 'checked' : ''}
+                                onChange={(e) => this.handleChange(e, 'before')}
                             />
                             <label htmlFor="reminder-before-7">7 days</label>
                         </div>
@@ -70,8 +135,8 @@ export default (props) => {
                                 id="reminder-before-15"
                                 name='before'
                                 value={15}
-                                checked={reminder.before.includes(15) ? 'checked' : ''}
-                                onChange={(e) => handleChange(e, 'before')}
+                                checked={form.before.includes(15) ? 'checked' : ''}
+                                onChange={(e) => this.handleChange(e, 'before')}
                             />
                             <label htmlFor="reminder-before-15">15 days</label>
                         </div>
@@ -139,8 +204,8 @@ export default (props) => {
                                 id="reminder-after-1"
                                 name='after'
                                 value={1}
-                                checked={reminder.after.includes(1) ? 'checked' : ''}
-                                onChange={(e) => handleChange(e, 'after')}
+                                checked={form.after.includes(1) ? 'checked' : ''}
+                                onChange={(e) => this.handleChange(e, 'after')}
                             />
                             <label htmlFor="reminder-after-1">1 day</label>
                         </div>
@@ -150,8 +215,8 @@ export default (props) => {
                                 id="reminder-after-7"
                                 name='after'
                                 value={7}
-                                checked={reminder.after.includes(7) ? 'checked' : ''}
-                                onChange={(e) => handleChange(e, 'after')}
+                                checked={form.after.includes(7) ? 'checked' : ''}
+                                onChange={(e) => this.handleChange(e, 'after')}
                             />
                             <label htmlFor="reminder-after-7">7 days</label>
                         </div>
@@ -161,8 +226,8 @@ export default (props) => {
                                 id="reminder-after-15"
                                 name='after'
                                 value={15}
-                                checked={reminder.after.includes(15) ? 'checked' : ''}
-                                onChange={(e) => handleChange(e, 'after')}
+                                checked={form.after.includes(15) ? 'checked' : ''}
+                                onChange={(e) => this.handleChange(e, 'after')}
                             />
                             <label htmlFor="reminder-after-15">15 days</label>
                         </div>
@@ -183,7 +248,15 @@ export default (props) => {
                         </div>
                     </div>
                 </div>
-            </div> 
-        </div>
-    );
+
+                <div className="row">
+                    <div className="col">
+                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        );
+    }
 } 

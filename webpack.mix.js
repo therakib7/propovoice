@@ -17,7 +17,7 @@ mix.webpackConfig({
         //publicPath: '/nurency-plugin/wp-content/plugins/propovoice/',
         chunkFilename: 'assets/admin/js/component/chunks/[chunkhash].js', //[name][chunkhash]
     },
-    resolve: {w
+    resolve: {
         alias: {
             //adding react and react-dom may not be necessary for you but it did fix some issues in my setup.
             //'react' : path.resolve('node_modules/react'),

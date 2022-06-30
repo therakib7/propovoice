@@ -18,6 +18,7 @@ const TableHeader = props => {
                 </th>
                 <th>
                     <svg
+                        className='pi-mt-4'
                         width={16}
                         height={16}
                         viewBox="0 0 16 16"
@@ -77,6 +78,7 @@ const TableHeader = props => {
                 </th>
                 <th>
                     <svg
+                        className='pi-mt-4'
                         width={16}
                         height={16}
                         viewBox="0 0 16 16"

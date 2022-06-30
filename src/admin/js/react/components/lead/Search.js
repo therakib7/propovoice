@@ -57,7 +57,7 @@ export default class Form extends Component {
                         onChange={this.handleChange}
                     /> 
                 </div>
-                <div className="pi-search-btn">
+                {false && <div className="pi-search-btn">
                     <button className={this.state.searchModal ? 'pi-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
                         <svg
                             width={20}
@@ -203,7 +203,7 @@ export default class Form extends Component {
                             </li>
                         </ul>
                     </div>}
-                </div>
+                </div>}
                 <div className="pi-total-list">  
                     <p>
                         Show <select onChange={showItem} >
@@ -211,7 +211,7 @@ export default class Form extends Component {
                             <option value="20">20</option>
                             <option value="30">30</option>
                             <option value="50">50</option>
-                            <option value="100">100</option>
+                            <option value="99">99</option>
                         </select> 
                         {/* {showing}  */}
                          {title} from <span>{total}</span>

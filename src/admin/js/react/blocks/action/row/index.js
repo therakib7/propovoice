@@ -49,7 +49,7 @@ const Action = (props) => {
             </button>
 
             {dropdown && <div className="pi-dropdown-content pi-show" ref={dropdownRef}>
-                <a onClick={() => { setDropdown(false); props.handleOverview(row.id) }}>Overview</a>
+                {props.handleOverview && <a onClick={() => { setDropdown(false); props.handleOverview(row.id) }}>Overview</a>}
                 <a onClick={() => { setDropdown(false); props.editEntry('edit', row) }}>Edit</a>
                 <a onClick={() => { setDropdown(false); props.deleteEntry('single', row.id) }}>Delete</a>
             </div>}

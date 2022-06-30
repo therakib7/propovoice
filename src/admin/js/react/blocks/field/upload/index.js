@@ -130,7 +130,7 @@ class Upload extends Component {
 									strokeLinejoin="round"
 								/>
 							</svg>
-							<span className="pi-mt-4">{label}</span>
+							<span>{label}</span>
 						</button> 
 					</>
 				}
@@ -138,7 +138,7 @@ class Upload extends Component {
 				{logo &&
 					<>
 						<div className='pi-field-logo'>
-							<img src={logo.src} width="100" />
+							<img src={logo.src} width={ ( this.props.small ) ? '40' : '100' } />
 							{remove && <span className='pi-field-logo-close' onClick={() => this.handleDelete(logo.id)}>×</span>}
 						</div>
 					</>

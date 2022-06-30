@@ -59,8 +59,8 @@ export default class General extends Component {
             <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
                 <div className="row">
                     <div className="col">
-                        <label>Deal Stage</label>
-                        <Taxonomy taxonomy='deal_stage' title='stage' color={true} />
+                        <label>Project Status</label>
+                        <Taxonomy taxonomy='project_status' title='Status' color={true} />
                     </div>
                     <div className="col">
                     </div>

@@ -17,7 +17,7 @@
 .ncpi .pi-list-single-head .pi-list-content h3 .pi-btn {
   border: 1px solid #dddddda8;
   margin-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 10px;
   margin-top: 4px;
 }
@@ -52,9 +52,6 @@
 .ncpi .pi-list-single-button-content {
   float: right;
 }
-.ncpi .pi-list-single-button-content .pi-btn-medium.pi-bg-stroke.pi-invite {
-  padding: 10px 15px !important;
-}
 .ncpi .pi-list-single-button-content .pi-select {
   margin-bottom: 30px;
   text-align: right;
@@ -73,10 +70,6 @@
   padding: 6px 14px;
   border-radius: 5px;
 }
-.ncpi .pi-list-single-button-content .pi-select .pi-action-content .pi-btn svg {
-  margin-right: 0;
-  margin-left: 20px;
-}
 .ncpi .pi-list-single-button-content .pi-select .pi-action-content .pi-dropdown-content {
   top: 36px;
   left: 3px;
@@ -91,11 +84,11 @@
 .ncpi .pi-list-single-button-content .pi-action-btn button {
   border: none;
   margin-left: 0;
-  padding: 1px;
+  padding: 0px;
 }
 .ncpi .pi-list-single-button-content .pi-action-btn button svg {
   position: relative;
-  top: 1px;
+  top: 2px;
 }
 .ncpi .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
   margin-top: 3px;
@@ -231,7 +224,6 @@
 .ncpi .pi-tab-buttons-group .pi-activity-field input {
   font-size: 12px;
   color: #718096;
-  margin-bottom: 20px;
   margin-top: 0;
   border: none;
   padding: 7px 0;
@@ -241,33 +233,39 @@
   outline: none;
   box-shadow: none;
 }
-.ncpi .pi-tab-buttons-group .pi-tab-buttons {
-  text-align: right;
-}
-.ncpi .pi-tab-buttons-group .pi-tab-buttons .pi-action-content {
-  display: inline-block;
-}
-.ncpi .pi-tab-buttons-group .pi-tab-buttons button:last-child {
-  width: auto;
-}
-.ncpi .pi-tab-buttons-group .pi-tab-buttons button {
+.ncpi .pi-task-btn {
   background: transparent;
-  border: 1px solid;
-  border-color: #CBD5E0;
-  padding: 5px 6px;
+  border: 1px solid #CBD5E0 !important;
+  padding: 5px 6px 3px;
   border-radius: 5px;
   margin-right: 5px;
-  cursor: pointer;
-  border-style: dashed;
-  width: 32px;
+  border-style: dashed !important;
+  width: 32px !important;
 }
-.ncpi .pi-tab-buttons-group .pi-tab-buttons .pi-dropdown-content {
+.ncpi .pi-task-btn img {
+  width: 15px;
+  height: 20px;
+}
+.ncpi .pi-task-btn-two {
+  padding: 3px 2px 2px;
+  width: 28px !important;
+}
+.ncpi .pi-tab-buttons {
+  text-align: right;
+}
+.ncpi .pi-tab-buttons .pi-action-content {
+  display: inline-block;
+}
+.ncpi .pi-tab-buttons button:last-child {
+  width: auto;
+}
+.ncpi .pi-tab-buttons .pi-dropdown-content {
   text-align: left;
   top: 45px;
   left: -70px;
 }
-.ncpi .pi-tab-buttons-group .pi-tab-buttons .pi-dropdown-content svg {
-  top: 4px !important;
+.ncpi .pi-tab-buttons .pi-dropdown-content img {
+  margin-right: 10px;
 }
 .ncpi .pi-small-button-group .pi-btn-small {
   color: #718096 !important;
@@ -307,13 +305,14 @@
   padding: 35px 25px 0 !important;
 }
 .ncpi .pi-board {
-  display: flex;
   margin-top: 15px;
+  max-width: 1522px;
 }
 .ncpi .pi-board-column {
   margin-right: 20px;
   width: 250px;
   background: linear-gradient(180deg, #F0F4F8 0%, rgba(247, 247, 247, 0) 100%);
+  float: left;
 }
 .ncpi .pi-board-column .pi-btn {
   width: 100%;
@@ -326,7 +325,7 @@
 }
 .ncpi .pi-board-column .pi-board-column-title {
   background: #fff;
-  padding: 18px 10px 7px 20px;
+  padding: 15px 10px 5px 15px;
   border-top: 6px solid #4c6fff;
   display: flex;
   position: relative;
@@ -405,7 +404,7 @@
 }
 .ncpi .pi-avatar-content .pi-avatar-text h5 {
   line-height: 140%;
-  color: #2D3748;
+  color: #4A5568;
   font-weight: 500;
 }
 .ncpi .pi-avatar-content .pi-avatar-text p {

@@ -175,16 +175,18 @@ class Project
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
-        $query_data['desc'] = isset($queryMeta['desc']) ? $queryMeta['desc'][0] : '';
-
-        $query_data['status_id'] = '';
-
+        $query_data['desc'] = isset($queryMeta['desc']) ? $queryMeta['desc'][0] : ''; 
+        
+        $query_data['status_id'] = ''; 
         $status = get_the_terms($id, 'ndpi_project_status');
         if ($status) {
-
+            $term_id = $status[0]->term_id;
             $query_data['status_id'] = [
-                'id' => $status[0]->term_id,
-                'label' => $status[0]->name
+                'id' => $term_id,
+                'label' => $status[0]->name,
+                'color' => get_term_meta($term_id, 'color', true),
+                'bg_color' => get_term_meta($term_id, 'bg_color', true),
+                'type' => get_term_meta($term_id, 'type', true)
             ];
         }
 

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import WithApi from 'hoc/Api';
 
-import Editable from 'block/editable';
 import { v4 as uuidv4 } from 'uuid';
 
 const onDragEnd = (update, result, columns, setColumns) => {
@@ -64,16 +63,7 @@ const onDragEnd = (update, result, columns, setColumns) => {
 
 function Pipeline(props) {
 	// const [columns, setColumns] = useState(columnsFromBackend);
-	const [columns, setColumns] = useState({});
-
-	const addNewColumn = () => {
-		let newColumns = { ...columns };
-		newColumns[uuidv4()] = {
-			name: 'Stage Label',
-			items: []
-		}
-		setColumns(newColumns);
-	};
+	const [columns, setColumns] = useState({}); 
 
 	const [dropdown, setDropdown] = useState(null);
 
@@ -92,13 +82,7 @@ function Pipeline(props) {
 	const navigate = useNavigate();
 	const goToSingle = (id) => {
 		navigate(`/deal/single/${id}`, { replace: true });
-	};
-
-	const handleCoumnLabel = (index, value) => {
-		let newColumns = { ...columns };
-		newColumns[index].name = value;
-		setColumns(newColumns);
-	};
+	}; 
 
 	const CharLimit = (string) => {
 		let limit = 22;
@@ -118,15 +102,6 @@ function Pipeline(props) {
 						<div className="pi-board-column" key={columnId}>
 							<div className="pi-board-column-title pi-bg-shadow" style={{ borderColor: column.bg_color, color: column.bg_color }}>
 								<h4 className="">{column.name}</h4>
-								{/* <h4 className="pi-color-blue">
-								<Editable
-									// key={columnId}
-									value={column.name}
-									index={columnId}
-									changeHandler={handleCoumnLabel}
-								/>
-								</h4> */}
-
 								<div className="pi-action-content">
 									<button className={(columnId == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(columnId)}>
 										<svg
@@ -156,10 +131,12 @@ function Pipeline(props) {
 											/>
 										</svg>
 									</button>
+									
 									{columnId == dropdown && <div className="pi-dropdown-content pi-show"
 									// ref={popover}
 									>
-										<a onClick={() => props.editEntry('edit', columnId)}>Edit</a>
+										{/* <a onClick={() => props.editEntry('edit', columnId)}>Edit</a> */}
+										<a onClick={() => props.taxForm()}>Edit</a>
 										<a onClick={() => props.deleteEntry('single', columnId)}>Delete</a>
 									</div>}
 								</div>
@@ -272,7 +249,7 @@ function Pipeline(props) {
 				<div className="pi-board-column">
 					<button
 						className="pi-btn pi-btn-big pi-bg-white pi-bg-hover-shadow"
-						onClick={() => addNewColumn()}
+						onClick={() => props.taxForm()}
 					>
 						<svg
 							width={16}

@@ -265,7 +265,7 @@ export default class Invoice extends Component {
     render() {
         return (
             <div>
-                <ToastContainer />
+                <ToastContainer hideProgressBar />
                 <iframe id="ncpi-invoice-print" style={{ margin: 0, padding: 0, height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8 pi-no-print' style={{ margin: '30px 0' }}>

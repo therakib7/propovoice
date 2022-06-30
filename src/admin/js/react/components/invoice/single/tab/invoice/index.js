@@ -678,7 +678,7 @@ class Invoice extends Component {
 									>
 										Continue
 										<svg
-											className="pi-mt-3 pi-ml-10 pi-mr-0"
+											className="pi-mr-0 pi-ml-10 pi-mt-1"
 											width={6}
 											height={12}
 											viewBox="0 0 6 9"
@@ -700,7 +700,7 @@ class Invoice extends Component {
 									>
 										{this.state.msg.saveTxt} & Continue
 										<svg
-											className="pi-mt-3 pi-ml-10 pi-mr-0"
+											className="pi-mr-0 pi-ml-10 pi-mt-1"
 											width={6}
 											height={12}
 											viewBox="0 0 6 9"
@@ -733,7 +733,7 @@ class Invoice extends Component {
 											onClick={() => this.setState({ emailModal: true })} >
 											Send Email
 											<svg
-												className="pi-mt-3 pi-ml-10 pi-mr-0"
+												className="pi-mr-0 pi-ml-10 pi-mt-1"
 												width={6}
 												height={12}
 												viewBox="0 0 6 9"
@@ -798,10 +798,30 @@ class Invoice extends Component {
 											<h3 className="pi-color-blue pi-text-center">{title}</h3>
 											<div className="row">
 												<div className="col-12 col-md-6">
-													{this.state.fromData && this.state.fromData.logo &&
-														<div className="pi-info-logo">
-															<img src={this.state.fromData.logo.src} />
+													<div className="pi-info-logo pi-cursor-pointer">
+														{this.state.fromData && this.state.fromData.logo && <img src={this.state.fromData.logo.src} />}
+														{this.state.fromData && !this.state.fromData.logo && <div className="pi-upload">
+															<svg
+																width={18}
+																height={18}
+																viewBox="0 0 18 18"
+																fill="none"
+																xmlns="http://www.w3.org/2000/svg"
+															>
+																<path
+																	d="M4.55765 13.121C3.68257 13.122 2.83789 12.8072 2.18545 12.2369C1.53301 11.6667 1.11868 10.8811 1.02184 10.0307C0.924994 9.18024 1.15245 8.32477 1.66063 7.62816C2.16881 6.93155 2.92198 6.44278 3.77584 6.25548C3.52879 5.12883 3.74957 3.95235 4.3896 2.98487C5.02964 2.01739 6.03651 1.33814 7.1887 1.09657C8.3409 0.854997 9.54405 1.07088 10.5335 1.69672C11.5229 2.32257 12.2175 3.30712 12.4646 4.43377H12.5534C13.655 4.43269 14.7177 4.83189 15.5353 5.55388C16.3528 6.27587 16.8668 7.26913 16.9775 8.34085C17.0882 9.41258 16.7877 10.4863 16.1344 11.3536C15.481 12.2208 14.5214 12.8198 13.4418 13.0341M11.665 10.5148L8.99975 7.90866M8.99975 7.90866L6.33449 10.5148M8.99975 7.90866V17"
+																	stroke="#718096"
+																	strokeWidth="1.5"
+																	strokeLinecap="round"
+																	strokeLinejoin="round"
+																/>
+															</svg>
+															<p>
+																Upload <br />
+																Logo
+															</p>
 														</div>}
+													</div>
 												</div>
 
 												<div className="col-12 col-md-6">
@@ -909,7 +929,7 @@ class Invoice extends Component {
 											<div className="row">
 												<div className="col-md-6">
 													{/* <Attach data={invoice.attach} changeHandler={this.handleAttachChange} /> */}
-													{ false && <button
+													{false && <button
 														className="pi-btn pi-mt-10 pi-text-hover-blue"
 														style={{
 															background: "none",
@@ -936,12 +956,12 @@ class Invoice extends Component {
 													</button>}
 												</div>
 
-												<div className="col-md-6 pi-text-right"> 
-													<Upload label={'Authorized Signature'} padding={'20px 30px'}  data={invoice.sign} changeHandler={this.handleSignChange} />
+												<div className="col-md-6 pi-text-right">
+													<Upload label={'Authorized Signature'} padding={'20px 30px'} data={invoice.sign} changeHandler={this.handleSignChange} />
 												</div>
 											</div>
-										</div> 
-										 
+										</div>
+
 
 									</div>{/* ./ pi-info-content */}
 								</div>{/* ./ col-lg-9 */}
@@ -994,15 +1014,15 @@ class Invoice extends Component {
 														<i />
 														<h3 className='pi-title-small'>
 															Reminder
-															<span className="pi-switch-content">
-																<label className="pi-switch pi-switch-big">
+															<span className="pi-field-switch-content">
+																<label className="pi-field-switch pi-field-switch-big">
 																	<input type='checkbox'
 																		id="reminder-status"
 																		name='status'
 																		checked={invoice.reminder.status ? 'checked' : ''}
 																		onChange={this.onReminderChange}
 																	/>
-																	<span className="pi-slider pi-round" />
+																	<span className="pi-switch-slider pi-round" />
 																</label>
 															</span>
 														</h3>
@@ -1019,15 +1039,15 @@ class Invoice extends Component {
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('recurring')} />
 														<i />
 														<h3 className='pi-title-small'>Recurring
-															<span className="pi-switch-content">
-																<label className="pi-switch pi-switch-big">
+															<span className="pi-field-switch-content">
+																<label className="pi-field-switch pi-field-switch-big">
 																	<input type='checkbox'
 																		id="recurring-status"
 																		name='status'
 																		checked={invoice.recurring.status ? 'checked' : ''}
 																		onChange={this.onRecurringChange}
 																	/>
-																	<span className="pi-slider pi-round" />
+																	<span className="pi-switch-slider pi-round" />
 																</label>
 															</span>
 														</h3>

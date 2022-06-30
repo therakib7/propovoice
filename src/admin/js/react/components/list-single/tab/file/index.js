@@ -1,4 +1,4 @@
-import { useState } from "react"; 
+import { useState } from "react";
 import Preloader from 'block/preloader/table';
 
 import FormDrive from './FormDrive';
@@ -23,21 +23,21 @@ const File = (props) => {
                 <div className="row">
                     <div className="col">
                         <h3 className="pi-title-small">My Files</h3>
-                        <button 
-                            className={ 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ( activeTab == 'all' ? 'pi-active' : '') }
-                            onClick={() => { setActiveTab('all'); props.getLists(); } }
+                        <button
+                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'all' ? 'pi-active' : '')}
+                            onClick={() => { setActiveTab('all'); props.getLists(); }}
                         >
                             All
                         </button>
-                        <button 
-                            className={ 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ( activeTab == 'file' ? 'pi-active' : '') } 
-                            onClick={() => { setActiveTab('file'); props.getLists({type: 'file'}); } }
+                        <button
+                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'file' ? 'pi-active' : '')}
+                            onClick={() => { setActiveTab('file'); props.getLists({ type: 'file' }); }}
                         >
                             File
                         </button>
-                        <button 
-                            className={ 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ( activeTab == 'link' ? 'pi-active' : '') }
-                            onClick={() => { setActiveTab('link'); props.getLists({type: 'link'}); } } 
+                        <button
+                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'link' ? 'pi-active' : '')}
+                            onClick={() => { setActiveTab('link'); props.getLists({ type: 'link' }); }}
                         >
                             Link
                         </button>
@@ -45,9 +45,9 @@ const File = (props) => {
 
                     <div className="col">
                         <div className="pi-buttons-right pi-text-right">
-                        <button 
+                            <button
                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
-                                onClick={() => setDriveModal( true ) }
+                                onClick={() => setDriveModal(true)}
                             >
                                 <svg
                                     width={17}
@@ -81,9 +81,9 @@ const File = (props) => {
                                 Upload Drive
                             </button>
 
-                            <button 
+                            {false && <button
                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
-                                onClick={() => setFileModal( true ) }
+                                onClick={() => setFileModal(true)}
                             >
                                 <svg
                                     width={17}
@@ -115,8 +115,8 @@ const File = (props) => {
                                     />
                                 </svg>
                                 Upload File
-                            </button>
-                            <button 
+                            </button>}
+                            <button
                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
                                 onClick={() => props.openForm('new')}
                             >
@@ -131,68 +131,70 @@ const File = (props) => {
                                 Add File Link
                             </button>
                             <br />
-                            <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
-                                <svg
-                                    width={16}
-                                    height={16}
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M12.9999 9H2.99988C2.72374 9 2.49988 9.22386 2.49988 9.5V12C2.49988 12.2761 2.72374 12.5 2.99988 12.5H12.9999C13.276 12.5 13.4999 12.2761 13.4999 12V9.5C13.4999 9.22386 13.276 9 12.9999 9Z"
-                                        stroke="#718096"
-                                        strokeWidth="0.8"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M12.9999 3.5H2.99988C2.72374 3.5 2.49988 3.72386 2.49988 4V6.5C2.49988 6.77614 2.72374 7 2.99988 7H12.9999C13.276 7 13.4999 6.77614 13.4999 6.5V4C13.4999 3.72386 13.276 3.5 12.9999 3.5Z"
-                                        stroke="#718096"
-                                        strokeWidth="0.8"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </button>
-                            <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
-                                <svg
-                                    width={16}
-                                    height={16}
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M7 3H3V7H7V3Z"
-                                        stroke="#718096"
-                                        strokeWidth="0.8"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M13 3H9V7H13V3Z"
-                                        stroke="#718096"
-                                        strokeWidth="0.8"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M7 9H3V13H7V9Z"
-                                        stroke="#718096"
-                                        strokeWidth="0.8"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M13 9H9V13H13V9Z"
-                                        stroke="#718096"
-                                        strokeWidth="0.8"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </button>
+                            <div className="pi-buttons-group pi-mb-20">
+                                <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
+                                    <svg
+                                        width={16}
+                                        height={16}
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M12.9999 9H2.99988C2.72374 9 2.49988 9.22386 2.49988 9.5V12C2.49988 12.2761 2.72374 12.5 2.99988 12.5H12.9999C13.276 12.5 13.4999 12.2761 13.4999 12V9.5C13.4999 9.22386 13.276 9 12.9999 9Z"
+                                            stroke="#718096"
+                                            strokeWidth="0.8"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M12.9999 3.5H2.99988C2.72374 3.5 2.49988 3.72386 2.49988 4V6.5C2.49988 6.77614 2.72374 7 2.99988 7H12.9999C13.276 7 13.4999 6.77614 13.4999 6.5V4C13.4999 3.72386 13.276 3.5 12.9999 3.5Z"
+                                            stroke="#718096"
+                                            strokeWidth="0.8"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                                <button className="pi-btn pi-btn-icon pi-bg-hover-shadow">
+                                    <svg
+                                        width={16}
+                                        height={16}
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M7 3H3V7H7V3Z"
+                                            stroke="#718096"
+                                            strokeWidth="0.8"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M13 3H9V7H13V3Z"
+                                            stroke="#718096"
+                                            strokeWidth="0.8"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M7 9H3V13H7V9Z"
+                                            stroke="#718096"
+                                            strokeWidth="0.8"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M13 9H9V13H13V9Z"
+                                            stroke="#718096"
+                                            strokeWidth="0.8"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -200,23 +202,23 @@ const File = (props) => {
 
             {driveModal && <FormDrive
                 tab_id={props.tab_id}
-                handleSubmit={props.handleSubmit} 
+                handleSubmit={props.handleSubmit}
                 modalType={'new'}
                 data={props.state.list}
-                close={ () => setDriveModal( false ) }
+                close={() => setDriveModal(false)}
             />}
 
             {fileModal && <FormFile
                 tab_id={props.tab_id}
-                handleSubmit={props.handleSubmit} 
+                handleSubmit={props.handleSubmit}
                 modalType={'new'}
                 data={props.state.list}
-                close={ () => setFileModal( false ) }
+                close={() => setFileModal(false)}
             />}
 
             {props.state.formModal && <FormLink
                 tab_id={props.tab_id}
-                handleSubmit={props.handleSubmit} 
+                handleSubmit={props.handleSubmit}
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
@@ -225,5 +227,5 @@ const File = (props) => {
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
         </>
     );
-}  
+}
 export default Crud(File, 'file');

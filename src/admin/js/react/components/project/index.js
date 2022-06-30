@@ -28,7 +28,7 @@ const Project = (props) => {
         </div>
       </div>
 
-      <div className="pi-buttons-group pi-mb-20">
+      { true && <div className="pi-buttons-group pi-mb-20">
         <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
           <svg
             width={20}
@@ -112,8 +112,7 @@ const Project = (props) => {
             />
           </svg>
         </button>
-      </div>
-
+      </div>} 
 
       <Search
         title={title}

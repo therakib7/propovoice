@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import WithApi from 'hoc/Api';
-import Reminder from 'block/field/reminder';
-import Recurring from './sub/Recurring';
+
+import SubGeneral from './sub/General';
+import Other from './sub/Other';
 
 class General extends Component {
 	constructor(props) {
@@ -10,12 +11,12 @@ class General extends Component {
 		this.state = {
 			tabs: [
 				{
-					id: 'reminder',
-					text: 'Reminder'
+					id: 'general',
+					text: 'General'
 				},
 				{
-					id: 'template',
-					text: 'Recurring'
+					id: 'other',
+					text: 'Other'
 				} 
 			],
 			currentTab: '',
@@ -24,7 +25,7 @@ class General extends Component {
 	} 
 
 	componentDidMount() {
-		this.setState({ currentTab: 'reminder' });
+		this.setState({ currentTab: 'general' });
 	}
 
 	setActiveTab(id) { 
@@ -47,8 +48,8 @@ class General extends Component {
 					))}
 				</ul>
 		
-				{currentTab == 'reminder' && <Reminder {...this.props} path={'invoice'} />} 
-				{currentTab == 'template' && <Recurring {...this.props} />}
+				{currentTab == 'general' && <SubGeneral {...this.props} />} 
+				{currentTab == 'other' && <Other {...this.props} />}
 			</>
 		);
 	}

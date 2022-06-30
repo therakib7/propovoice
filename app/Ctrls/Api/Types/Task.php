@@ -111,7 +111,7 @@ class Task
         }
 
         if (!$status_id) {
-            $taxonomy = 'task_status'; 
+            $taxonomy = 'task_status';
             $get_taxonomy = Fns::get_terms($taxonomy);
             $status_id = $get_taxonomy[0]->term_id;
         }
@@ -135,11 +135,11 @@ class Task
             'unschedule' => [],
         ];
 
-        if (!$tab_id) {
+        /* if (!$tab_id) {
             $data = [];
-        }
+        } */
 
-        $taxonomy = 'task_status'; 
+        $taxonomy = 'task_status';
         $get_taxonomy = Fns::get_terms($taxonomy);
 
         $format_taxonomy = [];
@@ -167,16 +167,28 @@ class Task
                     'id' => $term_id,
                     'label' => $status[0]->name,
                     'color' => get_term_meta($term_id, 'color', true),
-                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
+                    'bg_color' => get_term_meta($term_id, 'bg_color', true),
+                    'type' => get_term_meta($term_id, 'type', true),
                 ];
             }
 
             $query_data['type_id'] = '';
             $type = get_the_terms($id, 'ndpi_task_type');
             if ($type) {
+                $icon_id = get_term_meta($type[0]->term_id, 'icon', true);
+                $iconData = null;
+                if ($icon_id) {
+                    $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
+                    if ($icon_src) {
+                        $iconData = [];
+                        $iconData['id'] = $icon_id;
+                        $iconData['src'] = $icon_src[0];
+                    }
+                }
                 $query_data['type_id'] = [
                     'id' => $type[0]->term_id,
-                    'label' => $type[0]->name
+                    'label' => $type[0]->name,
+                    'icon' => $iconData ? $iconData : ''
                 ];
             }
 
@@ -195,16 +207,12 @@ class Task
             $query_data['desc'] = get_the_content();
             $query_data['date'] = get_the_time('j-M-Y');
 
-            if ($tab_id) {
-                if (false) { //TODO: check unschedule
-                    $data['unschedule'][] = $query_data;
-                } else if (true) { //TODO: check today 
-                    $data['today'][] = $query_data;
-                } else {
-                    $data['other'][] = $query_data;
-                }
+            if (false) { //TODO: check unschedule
+                $data['unschedule'][] = $query_data;
+            } else if (true) { //TODO: check today 
+                $data['today'][] = $query_data;
             } else {
-                $data[] = $query_data;
+                $data['other'][] = $query_data;
             }
         }
         wp_reset_postdata();
@@ -240,9 +248,9 @@ class Task
         $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
         $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
 
-        if (empty($tab_id)) {
+        /* if (empty($tab_id)) {
             $reg_errors->add('field', esc_html__('Tab ID is missing', 'propovoice'));
-        }
+        } */
 
         if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
@@ -263,7 +271,10 @@ class Task
 
             if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
-                update_post_meta($post_id, 'tab_id', $tab_id);
+
+                if ( $tab_id ) {
+                    update_post_meta($post_id, 'tab_id', $tab_id);
+                }
 
                 if ($status_id) {
                     wp_set_post_terms($post_id, [$status_id], 'ndpi_task_status');

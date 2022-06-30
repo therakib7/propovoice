@@ -91,7 +91,7 @@ export default class DefaultMail extends Component {
                     </div>
                 </div>
 
-                <div className="row" style={{ marginTop: '10px' }}>
+                <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
                             Save
