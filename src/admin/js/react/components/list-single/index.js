@@ -417,20 +417,7 @@ class ListSingle extends Component {
                                     </div>
                                 </div>
                                 <div className="col-lg-6">
-                                    <div className="pi-list-single-button-content">
-                                        {/* <div className="pi-select">
-                                            <label>Deal Stage:</label>
-                                            <div className='pi-list-single-select'>
-                                                <AsyncSelect
-                                                    // loadOptions={this.handleFindLevel}
-                                                    value={data.stage_id}
-                                                    defaultOptions={this.state.stages}
-                                                    onChange={this.handleStageChange}
-                                                    getOptionValue={data => data.id}
-                                                    getOptionLabel={(data) => (data.label) ? data.label : ''}
-                                                />
-                                            </div>
-                                        </div> */}
+                                    <div className="pi-list-single-button-content"> 
                                         <div className="pi-select">
                                             <label>Deal Stage:</label>
                                             {data.id && <Taxonomy id={data.id} taxonomy='deal_stage' title='Stage' btnMid={true} color={true} />}

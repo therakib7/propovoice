@@ -167,7 +167,7 @@ class Info extends Component {
                 </div>
 
                 <div className="pi-buttons pi-text-center">
-                    <button type="submit" className="pi-btn pi-bg-blue pi-bg-hover-blue">Save & Continue</button>
+                    <button type="submit" className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big">Save & Continue</button>
                     <a className="pi-text-hover-blue" onClick={() => this.props.handleSkip('info')}>Skip</a>
                 </div>
             </form>

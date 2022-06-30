@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import {
-    NavLink
-} from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import Api from 'api/dashboard';
 import Feedback from './Feedback';
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
     constructor(props) {
         super(props);
 
@@ -55,374 +52,397 @@ export default class Dashboard extends Component {
         const { total_client, total_estimate, accepted_estimate, total_invoice, paid_invoice } = this.state.summary;
         return (
             <div className="ncpi-components">
-                <h1>Dashboard<sup>Beta</sup></h1>
-                <div className="pi-add-item-main-content pi-m-40">
-                    <div className="row">
-                        <div className="col-md-6 col-lg-4">
-                            <div className="pi-add-item-content">
-                                <div className="pi-item-content">
-                                    <div className="pi-add-image-content">
-                                        <svg
-                                            width={36}
-                                            height={32}
-                                            viewBox="0 0 36 32"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M18 12.234A6.117 6.117 0 1018 0a6.117 6.117 0 000 12.234z"
-                                                fill="#4C6FFF"
-                                            />
-                                            <path
-                                                d="M30.375 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM5.625 12.234a3.867 3.867 0 100-7.734 3.867 3.867 0 000 7.734zM9.435 15.707c-1.522-1.247-2.9-1.082-4.66-1.082C2.141 14.625 0 16.755 0 19.37v7.68c0 1.136.927 2.06 2.068 2.06 4.924 0 4.33.088 4.33-.213 0-5.441-.644-9.431 3.037-13.19z"
-                                                fill="#C1CDFF"
-                                            />
-                                            <path
-                                                d="M19.674 14.653c-3.074-.256-5.746.003-8.051 1.905-3.858 3.09-3.115 7.25-3.115 12.339a2.466 2.466 0 002.462 2.462c14.842 0 15.432.48 16.313-1.47.288-.659.21-.45.21-6.755 0-5.008-4.337-8.48-7.819-8.48z"
-                                                fill="#4C6FFF"
-                                            />
-                                            <path
-                                                d="M31.226 14.625c-1.77 0-3.141-.164-4.661 1.082 3.653 3.73 3.037 7.449 3.037 13.19 0 .303-.493.212 4.256.212A2.14 2.14 0 0036 26.976V19.37c0-2.616-2.142-4.745-4.774-4.745z"
-                                                fill="#C1CDFF"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div className="pi-add-item-text">
-                                        <h3>Add Client</h3>
-                                        <p>Easily add new client with just a few clicks.</p>
-                                    </div>
-                                </div>
-                                <NavLink
-                                    to='client'
-                                    className='pi-btn pi-bg-blue pi-bg-hover-blue'>
-                                    <svg width={10} height={10}>
-                                        <path
-                                            d="M5 0a1 1 0 011 1v3h3a1 1 0 010 2H6v3a1 1 0 01-2 0V6H1a1 1 0 010-2h3V1a1 1 0 011-1z"
-                                            fill="#2D3748"
-                                        />
-                                    </svg>
-                                    Add Client
-                                </NavLink>
+                <div className="row">
+                    <div className="col-9">
+                        <div className="row">
+                            <div className="col">
+                                <h2 className="pi-page-title" style={{ color: "#2d3748" }}>
+                                    Overview
+                                </h2>
                             </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="pi-add-item-content">
-                                <div className="pi-item-content">
-                                    <div className="pi-add-image-content">
-                                        <svg
-                                            width={36}
-                                            height={36}
-                                            viewBox="0 0 36 36"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d="M26.804 7.031L20.39.618V7.03h6.413z" fill="#C1CDFF" />
-                                            <path
-                                                d="M24.639 25.663a1.95 1.95 0 01-.08.075 3.16 3.16 0 01-.84.641l-5.22 2.734a3.176 3.176 0 01-1.468.362 3.175 3.175 0 01-2.908-1.912H5.976a1.055 1.055 0 010-2.11h8.007a3.2 3.2 0 01.244-.61l1.89-3.609H5.976a1.055 1.055 0 010-2.109h11.279l4.218-4.219H5.977a1.055 1.055 0 110-2.11h17.578l.027.002 3.658-3.657h-7.904a1.055 1.055 0 01-1.055-1.055V0H3.164A3.168 3.168 0 000 3.164v29.672A3.168 3.168 0 003.164 36h21.094a3.168 3.168 0 003.164-3.164V22.88l-2.783 2.783zM35.178 12.14a2.816 2.816 0 000-3.976 2.794 2.794 0 00-1.99-.824c-.75 0-1.457.292-1.988.824l-.994.994 3.977 3.977.995-.994z"
-                                                fill="#4C6FFF"
-                                            />
-                                            <path
-                                                d="M16.096 25.821a1.054 1.054 0 001.424 1.424l4.533-2.375-3.582-3.582-2.375 4.533zM19.761 19.6l8.948-8.949 3.977 3.977-8.948 8.948-3.977-3.977z"
-                                                fill="#C1CDFF"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div className="pi-add-item-text">
-                                        <h3>Create Estimate</h3>
-                                        <p>
-                                            The easiest way to create a project estimate to send your client
-                                        </p>
-                                    </div>
-                                </div>
-                                <NavLink
-                                    to='estimate'
-                                    className='pi-btn pi-bg-blue pi-bg-hover-blue'>
-                                    <svg width={10} height={10}>
-                                        <path
-                                            d="M5 0a1 1 0 011 1v3h3a1 1 0 010 2H6v3a1 1 0 01-2 0V6H1a1 1 0 010-2h3V1a1 1 0 011-1z"
-                                            fill="#2D3748"
-                                        />
-                                    </svg>
-                                    Create Estimate
-                                </NavLink>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-4">
-                            <div className="pi-add-item-content">
-                                <div className="pi-item-content">
-                                    <div className="pi-add-image-content">
-                                        <svg
-                                            width={36}
-                                            height={36}
-                                            viewBox="0 0 36 36"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M28.828.618V7.03h6.413L28.828.618z"
-                                                fill="#4C6FFF"
-                                                fillOpacity={0.5}
-                                            />
-                                            <path
-                                                d="M27.773 9.14a1.055 1.055 0 01-1.054-1.054V0H11.602a3.168 3.168 0 00-3.165 3.164v11.79a11.583 11.583 0 019.997 4.17h11.449a1.055 1.055 0 110 2.11H19.825a11.515 11.515 0 011.22 4.22h8.838a1.055 1.055 0 110 2.108h-8.838A11.606 11.606 0 0116.155 36h16.54a3.168 3.168 0 003.164-3.164V9.14h-8.086zm2.11 5.766H14.414a1.055 1.055 0 110-2.11h15.469a1.055 1.055 0 110 2.11z"
-                                                fill="#4C6FFF"
-                                            />
-                                            <path
-                                                d="M9.492 17.016C4.258 17.016 0 21.274 0 26.508 0 31.742 4.258 36 9.492 36c5.234 0 9.492-4.258 9.492-9.492 0-5.234-4.258-9.492-9.492-9.492zm-.586 8.437h1.172a2.23 2.23 0 012.227 2.227v1.172a2.23 2.23 0 01-1.758 2.176v.402a1.055 1.055 0 11-2.11 0v-.402a2.23 2.23 0 01-1.757-2.176 1.055 1.055 0 012.11 0c0 .064.052.117.116.117h1.172a.117.117 0 00.117-.117V27.68a.117.117 0 00-.117-.117H8.906a2.23 2.23 0 01-2.226-2.227v-1.172a2.23 2.23 0 011.758-2.176v-.402a1.055 1.055 0 012.109 0v.402a2.23 2.23 0 011.758 2.176 1.055 1.055 0 11-2.11 0 .117.117 0 00-.117-.117H8.906a.117.117 0 00-.117.117v1.172c0 .065.053.117.117.117z"
-                                                fill="#4C6FFF"
-                                                fillOpacity={0.5}
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div className="pi-add-item-text">
-                                        <h3>Create Invoice</h3>
-                                        <p>
-                                            Create invoice with your brand guideline and send to collect
-                                            payment
-                                        </p>
-                                    </div>
-                                </div>
-                                <NavLink
-                                    to='invoice'
-                                    className='pi-btn pi-bg-blue pi-bg-hover-blue'>
-                                    <svg width={10} height={10}>
-                                        <path
-                                            d="M5 0a1 1 0 011 1v3h3a1 1 0 010 2H6v3a1 1 0 01-2 0V6H1a1 1 0 010-2h3V1a1 1 0 011-1z"
-                                            fill="#2D3748"
-                                        />
-                                    </svg>
-                                    Create Invoice
-                                </NavLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="pi-cards">
-                    <h2>Overview</h2>
-                    <div className="row">
-                        <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content pi-bg-husky">
-                                <span >Total Client</span>
-                                <h4 className="pi-color-blue">{total_client}</h4>
-                            </div>
-                        </div>
-
-                        <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content" style={{ backgroundColor: '#f9f6ea' }}>
-                                <span >Total Estiamte</span>
-                                <h4 style={{ color: '#c66542' }}>{total_estimate}</h4>
-                            </div>
-                        </div>
-
-                        <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content" style={{ backgroundColor: '#d7f4f1' }}>
-                                <span >Accepted Estiamte</span>
-                                <h4 style={{ color: '#45ac9d' }}>{accepted_estimate}</h4>
-                            </div>
-                        </div>
-
-                        <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content" style={{ backgroundColor: '#f7dfec' }}>
-                                <span >Total Invoice</span>
-                                <h4 style={{ color: '#b66490' }}>{total_invoice}</h4>
-                            </div>
-                        </div>
-
-                        <div className="col-md-4 col-lg">
-                            <div className="pi-cards-content" style={{ backgroundColor: '#e6ffe7' }}>
-                                <span >Paid Invoice</span>
-                                <h4 style={{ color: '#43ad47' }}>{paid_invoice}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* ./ pi-cards */}
-                <div className="pi-featurs-main-content pi-bg-husky">
-                    <h2 className="pi-featurs-title">
-                        Upcomming Features <span className="pi-bg-blue">Free</span>
-                    </h2>
-                    <div className="row">
-                        <div className="col-md-6 col-lg-3">
-                            <div className="pi-featurs-content">
-                                <div className="pi-featurs-image">
-                                    <svg
-                                        width={36}
-                                        height={36}
-                                        viewBox="0 0 36 36"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M28.07 18H21a3 3 0 01-3-3V7.911a4.5 4.5 0 00-1.749-3.575 4.306 4.306 0 00-3.722-.8C3.71 5.724-1.665 14.648.526 23.467a16.453 16.453 0 0012.834 12.189c8.586 1.643 16.963-3.695 19.101-12.171a4.314 4.314 0 00-.8-3.728A4.582 4.582 0 0028.07 18z"
-                                            fill="#4C6FFF"
-                                        />
-                                        <path
-                                            d="M35.477 11.169a14.885 14.885 0 00-1.517-3.633A15.135 15.135 0 0024.873.558C24.621.49 24.057.45 24.057.45c-.201 0-1.07 0-1.756.557-1.01.794-1.169 1.698-1.184 1.768-.052.221-.08.448-.081.675v7.05a4.5 4.5 0 004.5 4.5h7.078a2.942 2.942 0 002.38-1.2 3.057 3.057 0 00.6-1.921 3.172 3.172 0 00-.117-.71z"
-                                            fill="#C1CDFF"
-                                        />
-                                    </svg>
-                                </div>
-                                <div className="pi-featurs-text">
-                                    <h4>Report</h4>
-                                    <p>It will allow seeing a real-time overview of sales and activity with graphs and charts.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="pi-featurs-content">
-                                <div className="pi-featurs-image">
-                                    <svg
-                                        width={36}
-                                        height={36}
-                                        viewBox="0 0 36 36"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <g clipPath="url(#clip0_2928_27439)">
-                                            <path
-                                                d="M31.5 10.5v18A7.51 7.51 0 0124 36H12a7.51 7.51 0 01-7.5-7.5v-21A7.509 7.509 0 0112 0h9v7.5a3 3 0 003 3h7.5zm-6.288 15.62a1.501 1.501 0 00-2.1-.334A6.878 6.878 0 0119.702 27a2.02 2.02 0 01-1.296-.517 4.538 4.538 0 00-2.747-.983 8.792 8.792 0 00-4.57 1.809 1.5 1.5 0 101.822 2.382 5.927 5.927 0 012.748-1.191c.368 0 .556.117 1.05.45a4.878 4.878 0 003 1.05 9.696 9.696 0 005.183-1.79 1.5 1.5 0 00.32-2.09zM25.5 21a1.5 1.5 0 00-1.5-1.5H12a1.5 1.5 0 100 3h12a1.5 1.5 0 001.5-1.5zm0-6a1.5 1.5 0 00-1.5-1.5H12a1.5 1.5 0 100 3h12a1.5 1.5 0 001.5-1.5z"
-                                                fill="#4C6FFF"
-                                            />
-                                            <path
-                                                d="M26.819 2.196A7.452 7.452 0 0024 .45V7.5h7.05a7.431 7.431 0 00-1.748-2.817L26.82 2.196z"
-                                                fill="#C1CDFF"
-                                            />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_2928_27439">
-                                                <path fill="#fff" d="M0 0H36V36H0z" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <div className="pi-featurs-text">
-                                    <h4>Proposal</h4>
-                                    <p>Proposal will work for you to send a written document outlining everything.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="pi-featurs-content">
-                                <div className="pi-featurs-image">
-                                    <svg
-                                        width={36}
-                                        height={36}
-                                        viewBox="0 0 36 36"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <g clipPath="url(#clip0_2928_27450)">
-                                            <path
-                                                d="M31.5 10.5v18A7.51 7.51 0 0124 36H12a7.51 7.51 0 01-7.5-7.5v-21A7.509 7.509 0 0112 0h9v7.5a3 3 0 003 3h7.5zm-6.288 15.62a1.501 1.501 0 00-2.1-.334A6.878 6.878 0 0119.702 27a2.02 2.02 0 01-1.296-.517 4.538 4.538 0 00-2.747-.983 8.792 8.792 0 00-4.57 1.809 1.5 1.5 0 101.822 2.382 5.927 5.927 0 012.748-1.191c.368 0 .556.117 1.05.45a4.878 4.878 0 003 1.05 9.696 9.696 0 005.183-1.79 1.5 1.5 0 00.32-2.09zM25.5 21a1.5 1.5 0 00-1.5-1.5H12a1.5 1.5 0 100 3h12a1.5 1.5 0 001.5-1.5zm0-6a1.5 1.5 0 00-1.5-1.5H12a1.5 1.5 0 100 3h12a1.5 1.5 0 001.5-1.5z"
-                                                fill="#4C6FFF"
-                                            />
-                                            <path
-                                                d="M26.819 2.196A7.452 7.452 0 0024 .45V7.5h7.05a7.431 7.431 0 00-1.748-2.817L26.82 2.196z"
-                                                fill="#C1CDFF"
-                                            />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_2928_27450">
-                                                <path fill="#fff" d="M0 0H36V36H0z" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                </div>
-                                <div className="pi-featurs-text">
-                                    <h4>Contract</h4>
-                                    <p>It will allow you to create project agreement between you and the client.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="pi-featurs-content">
-                                <div className="pi-featurs-image">
-                                    <svg
-                                        width={36}
-                                        height={36}
-                                        viewBox="0 0 36 36"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M21.422 20.184L35.129 6.477c1.139-1.137 1.333-3.373-.638-4.595-1.687-.83-2.991-.122-3.599.587L17.741 17.035a7.509 7.509 0 013.68 3.149z"
-                                            fill="#4C6FFF"
-                                        />
-                                        <path d="M7.5 28.5H15a4.5 4.5 0 100-9c-6 0-7.5 9-7.5 9z" fill="#C1CDFF" />
-                                        <path
-                                            d="M24 28.5a4.5 4.5 0 014.5-4.5H36V9.847l-13.56 13.56c.016.2.06.39.06.593a7.51 7.51 0 01-7.5 7.5H7.5a3 3 0 01-2.96-3.494c.681-4.082 3.462-10.85 9.59-11.448L28.657.47c.143-.143.293-.28.45-.408C28.905.045 28.71 0 28.5 0h-21A7.51 7.51 0 000 7.5v21A7.51 7.51 0 007.5 36H24v-7.5z"
-                                            fill="#4C6FFF"
-                                        />
-                                        <path
-                                            d="M28.5 27a1.5 1.5 0 00-1.5 1.5v7.05a7.446 7.446 0 002.817-1.746l3.987-3.987A7.446 7.446 0 0035.55 27H28.5z"
-                                            fill="#C1CDFF"
-                                        />
-                                    </svg>
-                                </div>
-                                <div className="pi-featurs-text">
-                                    <h4>Project</h4>
-                                    <p>Create estimate & estimate according to the client's project and manage the project easily.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* /. pi-featurs-main-content */}
-                <div className="pi-client-feedback">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="pi-feedback-content pi-request pi-bg-blue">
-                                <h2>Have any feature request?</h2>
-                                <p>Generate actionable insights with built-in reporting system.</p>
-                                <button
-                                    className="pi-btn pi-bg-white pi-color-blue pi-bg-hover-blue pi-hover-color-white"
-                                    onClick={() => this.setState({ feedbackModal: true, feedbackModalType: 'features' })}
+                            <div className="col">
+                                <select
+                                    name="source"
+                                    id="source"
+                                    className="pi-float-right pi-select-small"
                                 >
-                                    Submit Request
-                                </button>
-
+                                    <option value="volvo">This month</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="pi-cards pi-mt-10 pi-cards-two">
+                            <div className="row">
+                                <div className="col-md-6 col-lg">
+                                    <div className="pi-cards-content">
+                                        <span
+                                            className=""
+                                            style={{ background: "rgba(76, 111, 255, 0.12)" }}
+                                        >
+                                            <svg
+                                                width={24}
+                                                height={24}
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M12.75 13.5C14.4069 13.5 15.75 12.1569 15.75 10.5C15.75 8.84315 14.4069 7.5 12.75 7.5C11.0931 7.5 9.75 8.84315 9.75 10.5C9.75 12.1569 11.0931 13.5 12.75 13.5Z"
+                                                    stroke="#4C6FFF"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                                <path
+                                                    d="M3 10.125H5.25"
+                                                    stroke="#4C6FFF"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                                <path
+                                                    d="M3 6.375H5.25"
+                                                    stroke="#4C6FFF"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                                <path
+                                                    d="M3 13.875H5.25"
+                                                    stroke="#4C6FFF"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                                <path
+                                                    d="M3 17.625H5.25"
+                                                    stroke="#4C6FFF"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                                <path
+                                                    d="M8.25 15.75C8.77395 15.0514 9.45336 14.4844 10.2344 14.0938C11.0155 13.7033 11.8767 13.5 12.75 13.5C13.6233 13.5 14.4845 13.7033 15.2656 14.0938C16.0466 14.4844 16.726 15.0514 17.25 15.75"
+                                                    stroke="#4C6FFF"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                                <path
+                                                    d="M20.25 20.25V3.75C20.25 3.33579 19.9142 3 19.5 3L6 3C5.58579 3 5.25 3.33579 5.25 3.75L5.25 20.25C5.25 20.6642 5.58579 21 6 21H19.5C19.9142 21 20.25 20.6642 20.25 20.25Z"
+                                                    stroke="#4C6FFF"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <p className="">Contact</p>
+                                        <h4>23</h4>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 col-lg">
+                                    <div className="pi-cards-content">
+                                        <span className="" style={{ background: "#f1faf1" }}>
+                                            <svg
+                                                width={24}
+                                                height={24}
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M7.5 13C6.60998 13 5.73995 12.7361 4.99993 12.2416C4.25991 11.7471 3.68314 11.0443 3.34254 10.2221C3.00195 9.39981 2.91283 8.49501 3.08647 7.6221C3.2601 6.74918 3.68868 5.94736 4.31802 5.31802C4.94736 4.68868 5.74918 4.2601 6.62209 4.08647C7.49501 3.91283 8.39981 4.00195 9.22208 4.34254C10.0443 4.68314 10.7471 5.25991 11.2416 5.99994C11.7361 6.73996 12 7.60999 12 8.5C11.9987 9.69307 11.5241 10.8369 10.6805 11.6805C9.83689 12.5241 8.69307 12.9987 7.5 13ZM7.5 6C7.00555 6 6.5222 6.14662 6.11107 6.42133C5.69995 6.69603 5.37952 7.08648 5.1903 7.54329C5.00108 8.00011 4.95157 8.50278 5.04804 8.98773C5.1445 9.47268 5.3826 9.91814 5.73223 10.2678C6.08186 10.6174 6.52732 10.8555 7.01227 10.952C7.49723 11.0484 7.99989 10.9989 8.45671 10.8097C8.91352 10.6205 9.30397 10.3 9.57867 9.88893C9.85338 9.4778 10 8.99445 10 8.5C10 7.83696 9.73661 7.20108 9.26777 6.73223C8.79893 6.26339 8.16304 6 7.5 6ZM15 23V22.5C15 20.5109 14.2098 18.6032 12.8033 17.1967C11.3968 15.7902 9.48912 15 7.5 15C5.51088 15 3.60322 15.7902 2.1967 17.1967C0.790176 18.6032 0 20.5109 0 22.5L0 23C0 23.2652 0.105357 23.5196 0.292893 23.7071C0.48043 23.8946 0.734784 24 1 24C1.26522 24 1.51957 23.8946 1.70711 23.7071C1.89464 23.5196 2 23.2652 2 23V22.5C2 21.0413 2.57946 19.6424 3.61091 18.6109C4.64236 17.5795 6.04131 17 7.5 17C8.95869 17 10.3576 17.5795 11.3891 18.6109C12.4205 19.6424 13 21.0413 13 22.5V23C13 23.2652 13.1054 23.5196 13.2929 23.7071C13.4804 23.8946 13.7348 24 14 24C14.2652 24 14.5196 23.8946 14.7071 23.7071C14.8946 23.5196 15 23.2652 15 23ZM24 18C24 16.6487 23.6088 15.3263 22.8737 14.1924C22.1386 13.0585 21.091 12.1616 19.8574 11.61C18.6238 11.0584 17.2569 10.8756 15.9218 11.0837C14.5866 11.2919 13.3402 11.8821 12.333 12.783C12.2338 12.8702 12.1528 12.9762 12.0948 13.0949C12.0367 13.2135 12.0028 13.3425 11.9949 13.4744C11.987 13.6063 12.0053 13.7384 12.0487 13.8631C12.0922 13.9879 12.1599 14.1028 12.2481 14.2012C12.3362 14.2996 12.4429 14.3796 12.5621 14.4366C12.6813 14.4935 12.8106 14.5262 12.9426 14.5329C13.0745 14.5396 13.2064 14.5201 13.3308 14.4754C13.4551 14.4308 13.5694 14.362 13.667 14.273C14.3865 13.6296 15.2767 13.2082 16.2304 13.0597C17.1841 12.9111 18.1604 13.0417 19.0414 13.4358C19.9225 13.8299 20.6706 14.4705 21.1956 15.2804C21.7206 16.0903 22 17.0348 22 18C22 18.2652 22.1054 18.5196 22.2929 18.7071C22.4804 18.8946 22.7348 19 23 19C23.2652 19 23.5196 18.8946 23.7071 18.7071C23.8946 18.5196 24 18.2652 24 18ZM17.5 9C16.61 9 15.74 8.73608 14.9999 8.24161C14.2599 7.74715 13.6831 7.04434 13.3425 6.22208C13.0019 5.39981 12.9128 4.49501 13.0865 3.6221C13.2601 2.74918 13.6887 1.94736 14.318 1.31802C14.9474 0.688685 15.7492 0.260102 16.6221 0.0864682C17.495 -0.0871652 18.3998 0.00194979 19.2221 0.342544C20.0443 0.683138 20.7471 1.25991 21.2416 1.99994C21.7361 2.73996 22 3.60999 22 4.5C21.9987 5.69307 21.5241 6.83689 20.6805 7.68052C19.8369 8.52415 18.6931 8.99868 17.5 9ZM17.5 2C17.0055 2 16.5222 2.14662 16.1111 2.42133C15.7 2.69603 15.3795 3.08648 15.1903 3.54329C15.0011 4.00011 14.9516 4.50277 15.048 4.98773C15.1445 5.47268 15.3826 5.91814 15.7322 6.26777C16.0819 6.6174 16.5273 6.8555 17.0123 6.95196C17.4972 7.04843 17.9999 6.99892 18.4567 6.8097C18.9135 6.62048 19.304 6.30005 19.5787 5.88893C19.8534 5.4778 20 4.99445 20 4.5C20 3.83696 19.7366 3.20108 19.2678 2.73223C18.7989 2.26339 18.163 2 17.5 2Z"
+                                                    fill="#78C377"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <p className="">Total Client</p>
+                                        <h4>23</h4>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 col-lg">
+                                    <div className="pi-cards-content">
+                                        <span
+                                            className=""
+                                            style={{ background: "rgba(69, 172, 157, 0.28)" }}
+                                        >
+                                            <svg
+                                                width={24}
+                                                height={24}
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M21.75 5.25L12.75 14.25L9 10.5L2.25 17.25"
+                                                    stroke="#45AC9D"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                                <path
+                                                    d="M21.75 11.25V5.25H15.75"
+                                                    stroke="#45AC9D"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <p className="">Invoice Revenue</p>
+                                        <h4>$ 23</h4>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 col-lg">
+                                    <div className="pi-cards-content">
+                                        <span
+                                            className=""
+                                            style={{ background: "rgba(182, 100, 144, 0.26)" }}
+                                        >
+                                            <svg
+                                                width={24}
+                                                height={24}
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M5.55929 3.75H18.4405C18.5893 3.75025 18.7345 3.7947 18.8579 3.87772C18.9813 3.96073 19.0773 4.07856 19.1335 4.21622C19.1898 4.35388 19.2039 4.50517 19.174 4.65085C19.1441 4.79653 19.0715 4.93002 18.9655 5.03438L11.9999 12L5.03429 5.03438C4.92833 4.93002 4.85579 4.79653 4.82587 4.65085C4.79596 4.50517 4.81004 4.35388 4.86631 4.21622C4.92258 4.07856 5.0185 3.96073 5.1419 3.87772C5.26529 3.7947 5.41058 3.75025 5.55929 3.75V3.75Z"
+                                                    stroke="#B66490"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                                <path
+                                                    d="M5.55929 20.25H18.4405C18.5893 20.2498 18.7345 20.2053 18.8579 20.1223C18.9813 20.0393 19.0773 19.9214 19.1335 19.7838C19.1898 19.6461 19.2039 19.4948 19.174 19.3492C19.1441 19.2035 19.0715 19.07 18.9655 18.9656L11.9999 12L5.03429 18.9656C4.92833 19.07 4.85579 19.2035 4.82587 19.3492C4.79596 19.4948 4.81004 19.6461 4.86631 19.7838C4.92258 19.9214 5.0185 20.0393 5.1419 20.1223C5.26529 20.2053 5.41058 20.2498 5.55929 20.25Z"
+                                                    stroke="#B66490"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                                <path
+                                                    d="M16.5 16.5H7.5"
+                                                    stroke="#B66490"
+                                                    strokeWidth={2}
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <p className="">Overdue</p>
+                                        <h4>23</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* ./pi-cards */}
+                        <div className="pi-card-contact">
+                            <h3 className="pi-title-medium pi-mb-25">Latest Contact</h3>
+                            <div className="row">
+                                <div className="col-md-6 col-lg">
+                                    <div className="pi-card-contact-item">
+                                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                                        <h4>Sabbair Rhaman</h4>
+                                        <p>
+                                            Bangladesh <br />
+                                            sabbirdammy@gmail.com
+                                        </p>
+                                        <span
+                                            className="pi-badge pi-color-white"
+                                            style={{ background: "#f7936f" }}
+                                        >
+                                            Interested
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 col-lg">
+                                    <div className="pi-card-contact-item">
+                                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                                        <h4>Sabbair Rhaman</h4>
+                                        <p>
+                                            Sabbair Rhaman <br />
+                                            sabbirdammy@gmail.com
+                                        </p>
+                                        <span className="pi-badge">Interested</span>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 col-lg">
+                                    <div className="pi-card-contact-item">
+                                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                                        <h4>Sabbair Rhaman</h4>
+                                        <p>
+                                            Sabbair Rhaman <br />
+                                            sabbirdammy@gmail.com
+                                        </p>
+                                        <span className="pi-badge">Interested</span>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 col-lg">
+                                    <div className="pi-card-contact-item">
+                                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                                        <h4>Sabbair Rhaman</h4>
+                                        <p>
+                                            Sabbair Rhaman <br />
+                                            sabbirdammy@gmail.com
+                                        </p>
+                                        <span className="pi-badge">Interested</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* /. pi-card-contact */}
+                    </div>
+                    <div className="col-3">
+                        <div className="pi-button-group">
+                            <button className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
                                 <svg
-                                    width={190}
-                                    height={230}
-                                    viewBox="0 0 167 149"
+                                    width={20}
+                                    height={20}
+                                    viewBox="0 0 20 20"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <path
-                                        d="M16.749 70C-.523 54.8 11.842 15.833 19.039-.5L-14-28v196h148.509c4.144-2.333 9.945-11.2 0-28-12.43-21-40.235 12-57.244-12.5C60.254 103 37.356 147 36.047 117c-1.308-30 2.29-28-19.3-47z"
+                                        d="M15 4.73684C15 5.6737 14.7068 6.58952 14.1573 7.36849C13.6079 8.14746 12.827 8.75459 11.9134 9.11311C10.9998 9.47163 9.99445 9.56544 9.02455 9.38267C8.05465 9.19989 7.16373 8.74875 6.46447 8.08629C5.76521 7.42384 5.289 6.57981 5.09608 5.66095C4.90315 4.7421 5.00217 3.78968 5.3806 2.92413C5.75904 2.05859 6.39991 1.31879 7.22215 0.798302C8.0444 0.277811 9.0111 0 10 0C11.3261 0 12.5979 0.499059 13.5355 1.38739C14.4732 2.27572 15 3.48055 15 4.73684Z"
+                                        fill="#4C5DFF"
+                                    />
+                                    <path
+                                        d="M20 16.8423C20 17.6798 19.6488 18.483 19.0237 19.0752C18.3986 19.6674 17.5507 20.0002 16.6667 20.0002H3.33333C2.44928 20.0002 1.60143 19.6674 0.976311 19.0752C0.35119 18.483 0 17.6798 0 16.8423C0 15.4464 0.585316 14.1077 1.62718 13.1206C2.66905 12.1336 4.08213 11.5791 5.55556 11.5791H14.4444C15.9179 11.5791 17.3309 12.1336 18.3728 13.1206C19.4147 14.1077 20 15.4464 20 16.8423Z"
+                                        fill="#A6C5FF"
+                                    />
+                                </svg>
+                                Add Contact
+                            </button>
+                            <button className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
+                                <svg
+                                    width={20}
+                                    height={20}
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M15 4.73684C15 5.6737 14.7068 6.58952 14.1573 7.36849C13.6079 8.14746 12.827 8.75459 11.9134 9.11311C10.9998 9.47163 9.99445 9.56544 9.02455 9.38267C8.05465 9.19989 7.16373 8.74875 6.46447 8.08629C5.76521 7.42384 5.289 6.57981 5.09608 5.66095C4.90315 4.7421 5.00217 3.78968 5.3806 2.92413C5.75904 2.05859 6.39991 1.31879 7.22215 0.798302C8.0444 0.277811 9.0111 0 10 0C11.3261 0 12.5979 0.499059 13.5355 1.38739C14.4732 2.27572 15 3.48055 15 4.73684Z"
+                                        fill="#4C5DFF"
+                                    />
+                                    <path
+                                        d="M20 16.8423C20 17.6798 19.6488 18.483 19.0237 19.0752C18.3986 19.6674 17.5507 20.0002 16.6667 20.0002H3.33333C2.44928 20.0002 1.60143 19.6674 0.976311 19.0752C0.35119 18.483 0 17.6798 0 16.8423C0 15.4464 0.585316 14.1077 1.62718 13.1206C2.66905 12.1336 4.08213 11.5791 5.55556 11.5791H14.4444C15.9179 11.5791 17.3309 12.1336 18.3728 13.1206C19.4147 14.1077 20 15.4464 20 16.8423Z"
+                                        fill="#A6C5FF"
+                                    />
+                                </svg>
+                                Add Client
+                            </button>
+                            <button className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
+                                <svg
+                                    width={20}
+                                    height={20}
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M14.8911 3.90643L11.3281 0.343262V3.90643H14.8911Z"
                                         fill="#C1CDFF"
                                     />
                                     <path
-                                        d="M22.14 50c-20.3-18.302-8.459-62.21 0-81.878L-14-68v236h174.547c4.869-2.81 11.687-13.486 0-33.714-14.61-25.286-47.289 14.449-67.282-15.051-19.992-29.5-46.904 23.479-48.442-12.643C43.285 70.469 47.514 72.877 22.14 50z"
+                                        d="M13.6882 14.2571C13.6739 14.2715 13.6591 14.2855 13.6441 14.299C13.5095 14.4429 13.3514 14.5638 13.1772 14.655L10.277 16.1742C10.0261 16.3055 9.74418 16.3749 9.46152 16.3749C8.99184 16.3749 8.55031 16.192 8.21832 15.8599C8.05672 15.6984 7.93219 15.5122 7.84574 15.3125H3.32031C2.99672 15.3125 2.73438 15.0501 2.73438 14.7265C2.73438 14.4029 2.99672 14.1406 3.32031 14.1406H7.76879C7.80168 14.025 7.8466 13.9113 7.90426 13.8013L8.95418 11.7969H3.32031C2.99672 11.7969 2.73438 11.5345 2.73438 11.2109C2.73438 10.8873 2.99672 10.625 3.32031 10.625H9.58641L11.9302 8.28125H3.32031C2.99672 8.28125 2.73438 8.01891 2.73438 7.69531C2.73438 7.37172 2.99672 7.10938 3.32031 7.10938H13.0859C13.0911 7.10938 13.0961 7.11 13.1012 7.11016L15.1333 5.07812H10.7422C10.4186 5.07812 10.1562 4.81578 10.1562 4.49219V0H1.75781C0.788555 0 0 0.788555 0 1.75781V18.2422C0 19.2114 0.788555 20 1.75781 20H13.4766C14.4458 20 15.2344 19.2114 15.2344 18.2422V12.7109L13.6882 14.2571Z"
+                                        fill="#4C6FFF"
+                                    />
+                                    <path
+                                        d="M19.5434 6.74498C20.1526 6.13576 20.1526 5.14451 19.5434 4.53529C19.2482 4.24018 18.8559 4.07764 18.4385 4.07764C18.0212 4.07764 17.6288 4.24018 17.3337 4.53529L16.7812 5.08771L18.9909 7.2974L19.5434 6.74498Z"
+                                        fill="#4C6FFF"
+                                    />
+                                    <path
+                                        d="M8.94242 14.3453C8.82347 14.5724 8.8659 14.8503 9.04715 15.0315C9.15976 15.1441 9.30976 15.2031 9.46164 15.2031C9.55414 15.2031 9.64738 15.1812 9.73332 15.1362L12.252 13.8169L10.2617 11.8267L8.94242 14.3453Z"
                                         fill="#C1CDFF"
-                                        fillOpacity={0.37}
+                                    />
+                                    <path
+                                        d="M10.9785 10.8887L15.9496 5.91755L18.159 8.12693L13.1879 13.098L10.9785 10.8887Z"
+                                        fill="#C1CDFF"
                                     />
                                 </svg>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="pi-feedback-content" style={{ backgroundColor: '#f16063' }}>
-                                <h2>If you experience any problems?</h2>
-                                <p>If you experience any problems or have any feature requests, I would be</p>
-
-                                <button
-                                    className="pi-btn pi-bg-white pi-color-red pi-bg-hover-red pi-hover-color-white"
-                                    onClick={() => this.setState({ feedbackModal: true, feedbackModalType: 'bug' })}
+                                Create Estimate
+                            </button>
+                            <button className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
+                                <svg
+                                    width={20}
+                                    height={20}
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
                                 >
-                                    Submit
-                                </button>
-                            </div>
+                                    <path
+                                        d="M14.8911 3.90643L11.3281 0.343262V3.90643H14.8911Z"
+                                        fill="#C1CDFF"
+                                    />
+                                    <path
+                                        d="M13.6882 14.2571C13.6739 14.2715 13.6591 14.2855 13.6441 14.299C13.5095 14.4429 13.3514 14.5638 13.1772 14.655L10.277 16.1742C10.0261 16.3055 9.74418 16.3749 9.46152 16.3749C8.99184 16.3749 8.55031 16.192 8.21832 15.8599C8.05672 15.6984 7.93219 15.5122 7.84574 15.3125H3.32031C2.99672 15.3125 2.73438 15.0501 2.73438 14.7265C2.73438 14.4029 2.99672 14.1406 3.32031 14.1406H7.76879C7.80168 14.025 7.8466 13.9113 7.90426 13.8013L8.95418 11.7969H3.32031C2.99672 11.7969 2.73438 11.5345 2.73438 11.2109C2.73438 10.8873 2.99672 10.625 3.32031 10.625H9.58641L11.9302 8.28125H3.32031C2.99672 8.28125 2.73438 8.01891 2.73438 7.69531C2.73438 7.37172 2.99672 7.10938 3.32031 7.10938H13.0859C13.0911 7.10938 13.0961 7.11 13.1012 7.11016L15.1333 5.07812H10.7422C10.4186 5.07812 10.1562 4.81578 10.1562 4.49219V0H1.75781C0.788555 0 0 0.788555 0 1.75781V18.2422C0 19.2114 0.788555 20 1.75781 20H13.4766C14.4458 20 15.2344 19.2114 15.2344 18.2422V12.7109L13.6882 14.2571Z"
+                                        fill="#4C6FFF"
+                                    />
+                                    <path
+                                        d="M19.5434 6.74498C20.1526 6.13576 20.1526 5.14451 19.5434 4.53529C19.2482 4.24018 18.8559 4.07764 18.4385 4.07764C18.0212 4.07764 17.6288 4.24018 17.3337 4.53529L16.7812 5.08771L18.9909 7.2974L19.5434 6.74498Z"
+                                        fill="#4C6FFF"
+                                    />
+                                    <path
+                                        d="M8.94242 14.3453C8.82347 14.5724 8.8659 14.8503 9.04715 15.0315C9.15976 15.1441 9.30976 15.2031 9.46164 15.2031C9.55414 15.2031 9.64738 15.1812 9.73332 15.1362L12.252 13.8169L10.2617 11.8267L8.94242 14.3453Z"
+                                        fill="#C1CDFF"
+                                    />
+                                    <path
+                                        d="M10.9785 10.8887L15.9496 5.91755L18.159 8.12693L13.1879 13.098L10.9785 10.8887Z"
+                                        fill="#C1CDFF"
+                                    />
+                                </svg>
+                                Create Invoice
+                            </button>
                         </div>
+                        <div className="pi-widget pi-widget-style-two">
+                            <h3 className="pi-widget-title">Upgrade pro to get access all insight</h3>
+                            <p>
+                                It is a long established fact that a reader will be distracted by the
+                                readable content of a page when looking at its layout. The point of
+                                using Lorem
+                            </p>
+                            <button className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
+                                Upgrade Now
+                            </button>
+                        </div>
+                        {/* ./ widget */}
+                        <div className="pi-widget pi-widget-style-two">
+                            <h3 className="pi-widget-title">Need Help?</h3>
+                            <p>
+                                It is a long established fact that a reader will be distracted by the
+                                readable content of a page when looking at its layout. The point of
+                                using Lorem
+                            </p>
+                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
+                                See Documentation
+                            </button>
+                            <button className="pi-btn pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mt-15">
+                                Contact with us
+                            </button>
+                        </div>
+                        {/* ./ widget */}
                     </div>
-
-                    {this.state.feedbackModal &&
-                        <Feedback
-                            show={this.state.feedbackModal}
-                            type={this.state.feedbackModalType}
-                            close={() => this.setState({ feedbackModal: false })}
-                        />}
                 </div>
             </div>
         );
     }
 } 
+
+function withRouter(Component) {
+    function ComponentWithRouterProp(props) { 
+        let navigate = useNavigate(); 
+        return (
+            <Component
+                {...props}
+                router={{ navigate }}
+            />
+        );
+    } 
+    return ComponentWithRouterProp;
+}
+
+export default withRouter(Dashboard); 

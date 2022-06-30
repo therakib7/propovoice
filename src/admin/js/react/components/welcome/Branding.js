@@ -88,7 +88,7 @@ class Branding extends Component {
 				</div>}
 
 				<div className="pi-buttons pi-text-center">
-					<button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.props.handleSubmit('', 'branding')}>Save & Continue</button>
+					<button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big" onClick={() => this.props.handleSubmit('', 'branding')}>Save &amp; Continue</button>
 					<a className="pi-text-hover-blue" onClick={() => this.props.handleSkip('branding')}>Skip</a>
 				</div>
 			</>

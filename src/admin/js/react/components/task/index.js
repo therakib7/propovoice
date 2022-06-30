@@ -9,16 +9,8 @@ class ListSingle extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			tabs: [
-				{
-					id: 'task',
-					text: 'Task & Activity'
-				}
-			],
-			currentTab: 'task',
-			action: false,
-			tags: [],
+		this.state = {  
+			action: false, 
 		};
 
 		this.timeout = 0;
@@ -50,16 +42,14 @@ class ListSingle extends Component {
 					<div className="col-lg-9">
 						<div className="pi-horizontal-tab">
 							<ul className="pi-tabs">
-								{tabs.map((tab, index) => (
-									<li className={"pi-tab " + (currentTab == tab.id ? 'pi-active' : '')} key={index} onClick={(e) => this.setActiveTab(e, tab.id)}>
-										{tab.text}
-									</li>
-								))}
+								<li className={"pi-tab "}>
+									Task &amp; Activity
+								</li>
 							</ul>
 
 							<div className="pi-tab-content">
 								<Suspense fallback={<div>Loading...</div>}>
-									{currentTab == 'task' && <Task tab_id={null} />}
+									<Task tab_id={null} />
 								</Suspense>
 							</div>
 						</div>
