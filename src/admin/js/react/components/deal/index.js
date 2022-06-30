@@ -50,6 +50,7 @@ const Deal = (props) => {
 				{...props}
 				taxonomy='deal_stage'
 				title='Stage'
+                reload={props.getLists}
 				modalType={modalType}
 				// reload={getData}
 				data={form}
@@ -127,7 +128,7 @@ const Deal = (props) => {
 
             {props.state.preloader ? <Preloader /> :
                 <Pipeline
-                    new={props.openForm}
+                    new={props.openForm} 
                     data={lists}
                     taxForm={() => setModal(true)}
                 />}

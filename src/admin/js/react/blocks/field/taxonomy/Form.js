@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ColorPicker from 'block/color-picker';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
+import WithApi from 'hoc/Api';
 
 class Form extends Component {
     constructor(props) {
@@ -251,6 +252,5 @@ class Form extends Component {
             </div>
         );
     }
-}
-
-export default Form;   
+} 
+export default WithApi(Form); 

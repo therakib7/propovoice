@@ -142,16 +142,7 @@
     input:focus {
         box-shadow: none;
     }
-}
-
-.pi-deal-content { 
-    max-width: none !important; 
-    overflow-x: scroll; 
-    height: 100vh; 
 } 
-.wp-admin .pi-deal-content {
-    height: auto;
-}
 
 .wp-admin.ncpi .pi-right-content {
     height: auto !important;
@@ -172,3 +163,11 @@
         padding-top: 70px;
     }
 } */
+.pi-deal-content { 
+    max-width: none !important; 
+    overflow-x: scroll; 
+    height: 100vh; 
+} 
+.wp-admin .pi-deal-content {
+    height: auto;
+}

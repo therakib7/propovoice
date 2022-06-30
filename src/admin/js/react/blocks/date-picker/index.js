@@ -27,7 +27,7 @@ const CustomInput = React.forwardRef((props, ref) => {
 			</div>}
 
 			{props.type == 'start_date' && <button className='pi-task-btn' type='button' onClick={props.onClick}>
-				<span>{props.value || props.placeholder}</span>
+				{props.value && <span>{props.value}</span>}
 				{/* {props.value && <span onClick={() => props.clear(null, props.type)}>x</span>} */}
 				<svg
 					width={20}

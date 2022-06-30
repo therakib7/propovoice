@@ -64,6 +64,7 @@ const onDragEnd = (update, result, columns, setColumns) => {
 function Pipeline(props) {
 	// const [columns, setColumns] = useState(columnsFromBackend);
 	const [columns, setColumns] = useState({}); 
+	const [width, setWidth] = useState(1590); 
 
 	const [dropdown, setDropdown] = useState(null);
 
@@ -77,6 +78,11 @@ function Pipeline(props) {
 
 	useEffect(() => {
 		setColumns(props.data);
+		if ( props.data.length ) {
+			//left right padding 140
+			//add new column 235
+			setWidth( props.data.length * 255 + 235 + 30); 
+		}
 	}, [props.data]);
 
 	const navigate = useNavigate();
@@ -93,7 +99,7 @@ function Pipeline(props) {
 	};
 
 	return (
-		<div className="pi-board">
+		<div className="pi-board" style={{width: width + 'px'}}>
 			<DragDropContext
 				onDragEnd={result => onDragEnd(props.update, result, columns, setColumns)}
 			>
