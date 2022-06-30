@@ -82,6 +82,8 @@ class Form extends Component {
         // const startDateStr = new Moment(date).format('YYYY-MM-DD HH:mm:ss')
         //  const endDateStr = moment(endDate).format('YYYY-MM-DD HH:mm:ss')    
         // console.log(startDateStr);
+        // console.log(date);
+        // console.log(date.toLocaleString());
 		if (type == 'start_date') {
 			form.start_date = date;
 		} else {

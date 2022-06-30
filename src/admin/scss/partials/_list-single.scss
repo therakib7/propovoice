@@ -54,7 +54,9 @@
 }
 .ncpi .pi-list-single-button-content .pi-select {
   margin-bottom: 30px;
-  text-align: right;
+  display: flex;
+  justify-content: right;
+  align-items: center;
 }
 .ncpi .pi-list-single-button-content .pi-select label {
   font-size: 14px;
@@ -246,15 +248,24 @@
   width: 15px;
   height: 20px;
 }
+.ncpi .pi-task-btn span {
+  font-size: 12px;
+  position: relative;
+  top: -5px;
+  padding-right: 3px;
+  color: #718096;
+}
 .ncpi .pi-task-btn-two {
-  padding: 3px 2px 2px;
-  width: 28px !important;
+  padding: 3px 5px 2px;
 }
 .ncpi .pi-tab-buttons {
   text-align: right;
 }
 .ncpi .pi-tab-buttons .pi-action-content {
   display: inline-block;
+}
+.ncpi .pi-tab-buttons .pi-task-btn:first-child {
+  width: auto !important;
 }
 .ncpi .pi-tab-buttons button:last-child {
   width: auto;

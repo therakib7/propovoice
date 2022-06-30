@@ -11,7 +11,12 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
-            source_id: '',
+            first_name: '',
+            org_name: '',
+            email: '',
+            mobile: '',
+            web: '',
+            source_id: '', //tax
             level_id: '', //tax
             tags: [], //tax
             budget: '',
@@ -68,7 +73,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=lead_level,tag').then(resp => {
+        this.props.getAll('taxonomies', 'taxonomy=lead_level,lead_source,tag').then(resp => {
             if (resp.data.success) {
                 if (this.state.form.level_id) {
                     this.setState({
@@ -163,24 +168,32 @@ class Form extends Component {
         this.setState({ form: this.initialState });
     } 
 
-    handlePersonSelect = ( val ) => { 
+    handleContactChange = ( val, type ) => { 
         let form = { ...this.state.form }
-        form.person_id = val; 
+        if ( type == 'person' ) {
+            form.first_name = val; 
+        } else {
+            form.org_name = val; 
+        } 
         this.setState({ form }); 
-    } 
+    }  
 
-    handleOrgSelect = ( val ) => {
+    handleContactSelect = ( val, type ) => { 
         let form = { ...this.state.form }
-        form.org_id = val; 
+        if ( type == 'person' ) {
+            form.person_id = val; 
+        } else {
+            form.org_id = val; 
+        } 
         this.setState({ form }); 
-    }
+    }  
 
     render() {
         const contact = this.state.form.contact;
         const levelList = this.state.levels;
         const tagList = this.state.tags;
-
-        const { personList, orgList } = this.state;
+ 
+        const form = this.state.form;
 
         return ( 
             <div className="pi-overlay pi-show">
@@ -217,11 +230,13 @@ class Form extends Component {
                             <div className="pi-form-style-one">
                                 <Contact 
                                     data={{
-                                        person: this.state.form.person_id,
-                                        org: this.state.form.org_id 
+                                        first_name: form.first_name,
+                                        org_name: form.org_name,
+                                        person_id: form.person_id,
+                                        org_id: form.org_id 
                                     }}
-                                    onPersonChange={this.handlePersonSelect}
-                                    onOrgChange={this.handleOrgSelect}
+                                    onChange={this.handleContactChange} 
+                                    onSelect={this.handleContactSelect} 
                                 />
 
                                 <div className="row">
@@ -259,10 +274,12 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-                                        <label htmlFor="field-level_id">
+                                        <label
+                                            htmlFor="field-level_id">
                                             Level
-                                        </label> 
-                                        <Select 
+                                        </label>
+
+                                        <Select
                                             className={'pi-field-select'}
                                             value={this.state.form.level_id}
                                             onChange={this.handleLevelChange}

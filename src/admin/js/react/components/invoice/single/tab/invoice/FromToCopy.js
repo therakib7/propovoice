@@ -221,6 +221,7 @@ class FromTo extends Component {
                         <div className="pi-from-to">
                             <label>Business:</label>
                             <Select
+                                className={'pi-field-select'}
                                 value={fromData}
                                 onChange={this.handleFromChange}
                                 getOptionValue={(fromList) => fromList.id}

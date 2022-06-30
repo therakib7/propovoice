@@ -1043,11 +1043,15 @@ html {
   height: 30px;
   border-radius: 50%;
   border: 1px solid #dddddda8;
-  padding: 6px 5px;
+  padding: 7px 5px;
   margin-right: 10px;
   background-color: #fff;
   text-align: center;
   box-shadow: 0px 4.95074px 6.60099px rgba(0, 0, 0, 0.07);
+}
+.ncpi .pi-accordion-table-list ul li .pi-task-type img {
+  width: 15px;
+  height: 15px;
 }
 .ncpi .pi-accordion-table-list ul li .pi-task-type-text p {
   font-size: 10px;
@@ -1075,6 +1079,7 @@ html {
 }
 .ncpi .pi-accordion-table-list ul li .pi-dropdown-content {
   top: 30px;
+  left: -35px;
 }
 .ncpi .pi-accordion-table-list .pi-dropdown-content {
   text-align: left;
@@ -1085,6 +1090,9 @@ html {
 }
 .ncpi .pi-info-table-content .pi-info-table thead tr th:first-child {
   width: 40%;
+}
+.ncpi .pi-info-table-content .pi-info-table tbody tr td:first-child {
+  width: auto;
 }
 .ncpi .pi-info-table-content .pi-info-table thead tr th:nth-child(3) {
   padding: 10px 15px;
@@ -2021,6 +2029,7 @@ html {
   padding: 25px !important;
   color: #718096 !important;
   font-size: 16px !important;
+  font-weight: 500 !important;
 }
 .pi-add-button-group .pi-btn:hover {
   color: #4C6FFF !important;
@@ -2189,7 +2198,7 @@ html {
   font-weight: 600;
 }
 .ncpi .pi-modal-style-two .pi-content {
-  padding: 25px 30px 0px;
+  padding: 15px 30px 0px;
 }
 .ncpi .pi-modal-style-two .pi-modal-footer {
   padding: 0 30px 15px;
@@ -2351,14 +2360,6 @@ html {
 .ncpi .pi-modal-sidebar-two .pi-modal-header .pi-action-content {
   display: inline;
 }
-.ncpi .pi-modal-sidebar-two .pi-modal-header .pi-action-content .pi-badge {
-  color: #F68A0B;
-  border: none;
-  font-size: 12px;
-  padding: 6px 14px !important;
-  border-radius: 5px;
-  font-weight: 700;
-}
 .ncpi .pi-modal-sidebar-two .pi-modal-header .pi-btn-medium {
   background: #16B21D;
   border-radius: 5px;
@@ -2398,6 +2399,7 @@ html {
   position: relative;
   display: flex;
   margin-top: 10px;
+  align-items: center;
 }
 .ncpi .pi-range label {
   font-size: 12px;
@@ -2421,7 +2423,6 @@ html {
   height: 8px;
   background-color: #CCD6FF !important;
   outline: none;
-  margin-top: 8px;
 }
 .ncpi input[type=range]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
@@ -3140,39 +3141,33 @@ html {
 .pi-field-radio,
 .pi-field-checkbox {
   display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .pi-field-radio input[type=radio],
 .pi-field-radio input[type=checkbox],
 .pi-field-checkbox input[type=radio],
 .pi-field-checkbox input[type=checkbox] {
   margin-right: 8px;
-  position: relative;
-  top: 2px;
   zoom: 1.2;
 }
 .pi-field-radio label,
 .pi-field-checkbox label {
   font-weight: 500;
+  margin-bottom: 0 !important;
 }
 
-.pi-field-radio-input input[type=radio],
-.pi-field-radio-input input[type=checkbox],
-.pi-field-checkbox-input input[type=radio],
-.pi-field-checkbox-input input[type=checkbox] {
-  position: relative;
-  top: 8px !important;
-}
 .pi-field-radio-input input[type=number],
 .pi-field-checkbox-input input[type=number] {
   width: 65px !important;
-  padding: 7px 0 7px 6px !important;
+  padding: 7px 6px !important;
   border-radius: 4px 0 0 4px !important;
 }
 .pi-field-radio-input select,
 .pi-field-checkbox-input select {
   width: 65px !important;
   margin-left: -2px;
-  padding: 8px 0 6px 6px !important;
+  padding: 10px 6px !important;
   font-size: 11px !important;
   border-radius: 0px 4px 4px 0 !important;
   background-position-x: 92% !important;
@@ -3186,11 +3181,7 @@ html {
   border-left: none;
   color: #4A5568;
   margin-left: -2px;
-}
-
-.pi-field-switch-style-two {
-  display: flex;
-  margin-top: 15px;
+  height: 33px;
 }
 
 .ncpi .pi-search-btn {
@@ -3644,9 +3635,6 @@ html {
 .ncpi .pi-mr-10 {
   margin-right: 10px;
 }
-.ncpi .pi-mr-8 {
-  margin-right: 8px;
-}
 .ncpi .pi-mr-14 {
   margin-right: 14px !important;
 }
@@ -3976,7 +3964,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   background: transparent;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAHCAYAAADebrddAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAB+SURBVHgBlY+xDYAwDAQ/EUiMEUZJh6ioECNkJHagoUJ0jEL2QMIkIUEGpcGd3/f2G/hRou3NDgLOA3qdR8uHzWCUPLH5+TKNtaRbV7LE1nRGZUAVGRQkoeFEQY9BowIYaMldDTHSFhENrrVBZWCKJ/hZZsAXfMHc4EnKPHwBLapEOyWyFGMAAAAASUVORK5CYII=);
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAHCAYAAAA8sqwkAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACFSURBVHgBdZDBEUBADEX/OnBVAh1oQSfuLqsC2wEHRjla0AEluHJZCWPIsjkl+e/nzwSg0nWntWkSeIo1bfqCe0VDrBDO1K4WW96aanFhhWgEbGyxpwEBBCLnBQvvJAmDj63qEfuMhvFOOuMFXE7XTsQ/pmsj4Y9Bmgh3YPi/MvBXsj/tAGFQP1QFEIIIAAAAAElFTkSuQmCC);
   background-repeat: no-repeat;
   background-position-x: 97%;
   background-position-y: 50%;

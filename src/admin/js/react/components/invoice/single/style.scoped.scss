@@ -105,12 +105,7 @@
   font-size: 12px;
   color: #4A5568;
 }
-.ncpi .pi-add-info-content .pi-info-lavel {
-  width: 45%;
-  text-align: right;
-}
 .ncpi .pi-add-info-content .pi-info-input-field {
-  text-align: right;
   position: relative;
   width: 135px;
 }
@@ -127,6 +122,7 @@
 .ncpi .pi-add-info-content .pi-info-form-list {
   display: flex;
   margin-bottom: 10px;
+  justify-content: right;
 }
 .ncpi .pi-add-info-content .pi-info-form {
   float: right;
@@ -197,7 +193,9 @@
   font-weight: 500;
 }
 .ncpi .pi-from-content .pi-from-to .pi-sendlist {
-  text-align: right;
+  display: flex;
+  justify-content: right;
+  align-items: center;
 }
 .ncpi .pi-from-content .pi-from-to .pi-sendlist .pi-list {
   cursor: pointer;
@@ -205,6 +203,7 @@
   position: relative;
   color: #4A5568;
   left: -10px;
+  margin-top: -10px;
 }
 .ncpi .pi-from-content .pi-from-to .pi-sendlist .pi-list svg {
   margin-top: 6px;

@@ -279,6 +279,7 @@ class Form extends Component {
                                         </label>
 
                                         <Select
+                                            className={'pi-field-select'}
                                             value={form.status_id}
                                             onChange={this.handleStageChange}
                                             getOptionValue={(stageList) => stageList.id}
@@ -294,6 +295,7 @@ class Form extends Component {
                                             Tags
                                         </label>
                                         <Select
+                                            className={'pi-field-select'}
                                             value={form.tags}
                                             onChange={this.handleTagChange}
                                             getOptionValue={(tagList) => tagList.id}

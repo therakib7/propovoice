@@ -247,6 +247,7 @@ class FromTo extends Component {
                         <div className="pi-from-to pi-to">
                             <label>Receiver:</label>
                             <AsyncSelect
+                                className={'pi-field-select'}
                                 loadOptions={this.handleFindClient}
                                 value={toData}
                                 onChange={this.handleClientSelect}
