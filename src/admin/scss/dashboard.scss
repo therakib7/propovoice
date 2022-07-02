@@ -22,7 +22,7 @@
 }
 
 //invoice item radius without edit column
- 
+
 
 //for backend only 
 /* .ncpi .pi-right-content {
@@ -39,18 +39,19 @@
 .pi-inv .pi-from-logo img {
     max-width: 200px !important;
     max-height: 80px;
-} 
+}
 
-.wp-admin .pi-left-sidebar, .wp-admin .pi-top-menu-content {
+.wp-admin .pi-left-sidebar,
+.wp-admin .pi-top-menu-content {
     display: none;
 }
 
 .wp-admin .Toastify__toast-container.Toastify__toast-container--top-right {
     top: 3em;
-} 
+}
 
 //temporary form css 
-.ncpi .pi-field-logo-wrap { 
+.ncpi .pi-field-logo-wrap {
 
     .pi-field-logo {
         position: relative;
@@ -76,13 +77,13 @@
         cursor: pointer;
         box-shadow: rgb(23 10 18 / 18%) 0px 0px 4px;
     }
-} 
+}
 
 .pi-inv-sidebar-preview {
     .pi-inv-feedback {
         display: none;
     }
-} 
+}
 
 .pi-inv-preview-wrap {
     border: 1px solid #dfdfdf;
@@ -99,7 +100,7 @@
 //tiny mce editor 
 /* .mce-content-body {
     font-family: Inter, sans-serif !important;
-} */ 
+} */
 
 // bootstrap class
 .d-none {
@@ -108,23 +109,24 @@
 
 @media (min-width: 768px) {
     .justify-content-md-center {
-        -webkit-box-pack: center!important;
-        -ms-flex-pack: center!important;
-        justify-content: center!important;
+        -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
     }
-} 
+}
+
 //TODO: this class already exist just add important
 .ncpi .pi-modal-sidebar {
     margin: 0 !important;
-}  
+}
 
 .pi-field-action {
     display: inline-block;
-    margin-left: 15px; 
+    margin-left: 15px;
     top: -2px;
     position: relative;
 }
- 
+
 .wp-admin.ncpi {
     background-color: #f7f8fa !important;
 
@@ -135,16 +137,23 @@
     /* .pi-board-content {
         height: calc(100vh - 404px);
     } */
-} 
- 
+}
+
 .ncpi {
-    .pi-deal-content { 
-        max-width: none !important; 
-        overflow-x: scroll;  
-    } 
+    .pi-deal-content {
+        max-width: none !important;
+        overflow-x: scroll;
+    }
 
     .pi-board-content {
         height: calc(100vh - 396px);
     }
-} 
- 
+}
+
+//TODO: chrome auto fill bg color, move it to css file
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

@@ -81,11 +81,11 @@ class Form extends Component {
     render() {
 
         let title = '';
-        if ( this.props.modalType == 'new' ) {
+        if (this.props.modalType == 'new') {
             title = 'New'
-        } else if ( this.props.modalType == 'edit' ) {
+        } else if (this.props.modalType == 'edit') {
             title = 'Edit'
-        }  
+        }
 
         return (
             <>
@@ -237,8 +237,12 @@ class Form extends Component {
                                         </div>
                                         <div className="row">
                                             <div className="col">
+                                                <label
+                                                    htmlFor="field-logo">
+                                                    Logo
+                                                </label>
                                                 <Upload data={this.state.form.logo} changeHandler={this.handleLogoChange} />
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
