@@ -3,7 +3,7 @@ import AsyncSelect from 'react-select/async';
 import WithApi from 'hoc/Api';
 
 const Contact = (props) => {
-    const [personModal, setPersonModal] = useState([]);
+    const [personModal, setPersonModal] = useState(false);
     const [orgModal, setOrgModal] = useState([]);
     const [person, setPerson] = useState([]);
     const [org, setOrg] = useState([]);
@@ -35,19 +35,21 @@ const Contact = (props) => {
     }, []);
 
     const handleContactChange = (e, type) => {
-        props.onChange(e.target.value, type);
-    }
+        let val = e.target.value;
+        props.onChange(val, type);
 
-    const handleFindPerson = (val, callback) => {
-        if (val.length < 2) return;
-
+        if (val.length < 2) {
+            setPersonModal(false);
+            return;
+        }
+        setPersonModal(true);
         //search when typing stop
         if (timeout) clearTimeout(timeout);
         timeout = setTimeout(() => {
             //search function
-            props.getAll('persons', 'first_name=' + val + '&last_name=' + val).then(resp => {
-                let toData = resp.data.data.result;
-                callback(toData);
+            props.getAll('persons', 'first_name=' + val).then(resp => {
+                let persons = resp.data.data.result;
+                console.log(persons)
             });
         }, 300);
     }
@@ -100,12 +102,10 @@ const Contact = (props) => {
                                 onChange={(e) => handleContactChange(e, 'person')}
                             />
 
-                            <div className="pi-dropdown-content"> 
-                                <button style={{color: '#4c6fff'}}>+ Add '{props.data.first_name}' as New Contact</button>
+                            {personModal && <div className="pi-dropdown-content pi-show">
+                                <button style={{ color: '#4c6fff' }}>+ Add '{props.data.first_name}' as New Contact</button>
                                 <a href="#home">Nasir</a>
-                                <a href="#about">Uddin</a>
-                                <a href="#contact">Burhan</a>
-                            </div>
+                            </div>}
                         </div>
 
                     </div>
@@ -123,6 +123,10 @@ const Contact = (props) => {
                             value={props.data.org_name}
                             onChange={(e) => handleContactChange(e, 'org')}
                         />
+                        {orgModal && <div className="pi-dropdown-content pi-show">
+                            <button style={{ color: '#4c6fff' }}>+ Add '{props.data.first_name}' as New Contact</button>
+                            <a href="#home">Nurency Digital</a>
+                        </div>}
                     </div>
                     {/* <AsyncSelect
 						loadOptions={handleFindOrg}
