@@ -136,15 +136,7 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let form = { ...this.state.form }
-
-        if (form.person_id) {
-            form.person_id = form.person_id.id;
-        }
-
-        if (form.org_id) {
-            form.org_id = form.org_id.id;
-        }
+        let form = { ...this.state.form } 
 
         if (form.level_id) {
             form.level_id = form.level_id.id;
@@ -180,18 +172,18 @@ class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-        
+         
         if (type == 'person') {
-            form.person_id = val.id; 
-            form.email = val.email; 
-            form.mobile = val.mobile; 
-            form.web = val.web; 
+            form.person_id = ( val ) ? val.id : null; 
+            form.email = ( val ) ? val.email : ''; 
+            form.mobile = ( val ) ? val.mobile : ''; 
+            form.web = ( val ) ? val.web : '';  
         } else {
-            form.org_id = val.id; 
+            form.org_id = ( val ) ? val.id : null; 
             if ( !form.first_name ) {
-                form.email = val.email; 
-                form.mobile = val.mobile; 
-                form.web = val.web; 
+                form.email = ( val ) ? val.email : ''; 
+                form.mobile = ( val ) ? val.mobile : ''; 
+                form.web = ( val ) ? val.web : '';  
             }
         } 
         
