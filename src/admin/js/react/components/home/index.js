@@ -415,7 +415,7 @@ const Home = () => {
                             <li className="pi-mt-35">
                                 <a>
                                     <svg
-                                        className="pi-Profeature pi-mr-14"
+                                        className=""
                                         width={20}
                                         height={13}
                                         viewBox="0 0 20 13"
@@ -431,7 +431,7 @@ const Home = () => {
                                 </a>
                             </li>
                             <li>
-                                <a>
+                                <a href='https://propovoice.com/support' target='_blank'>
                                     <svg
                                         className="pi-mr-14"
                                         width={16}
@@ -453,7 +453,7 @@ const Home = () => {
                                 </a>
                             </li>
                             <li>
-                                <a>
+                                <a href='https://propovoice.com/docs' target='_blank'>
                                     <svg
                                         width={20}
                                         height={18}
@@ -492,12 +492,12 @@ const Home = () => {
                         </ul>
 
                         <div className="pi-menu-buttons">
-                            <button className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
+                            <a href='https://propovoice.com/affilite' target='_blank' className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
                                 Refer &amp; Earn
-                            </button>
-                            <button className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
+                            </a>
+                            <a href={ncpi.dashboard} className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
                                 Back to WP Dashboard
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

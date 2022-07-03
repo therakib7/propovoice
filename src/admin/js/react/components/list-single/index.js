@@ -988,8 +988,8 @@ class ListSingle extends Component {
                                 }
                             </div>
                         </div>
-                        {/* ./ widget */}
-                        <div className="pi-widget pi-timeline-box">
+                        
+                        {false && <div className="pi-widget pi-timeline-box">
                             <h3 className="pi-widget-title">Timeline Info</h3>
                             <ul>
                                 <li>
@@ -1014,7 +1014,7 @@ class ListSingle extends Component {
                                 </li>
                             </ul>
                             {/* ./ widget */}
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>
