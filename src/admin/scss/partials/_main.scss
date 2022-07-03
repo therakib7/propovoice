@@ -2374,25 +2374,7 @@ html {
   padding: 7px 6px 3px !important;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 50px 100px 1fr;
-  gap: 1rem;
-}
 
-form {
-  display: grid;
-  grid-template-columns: -webkit-max-content 1fr;
-  grid-template-columns: max-content 1fr;
-  gap: 1rem;
-  align-items: center;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: fit-content(700px) fit-content(700px) 1fr;
-  gap: 1rem;
-}
 
 /*-------------------------------------------------------------- 
 # modal
