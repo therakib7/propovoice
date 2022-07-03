@@ -258,6 +258,9 @@
 .ncpi .pi-task-btn-two {
   padding: 3px 5px 2px;
 }
+.ncpi .pi-task-btn-two img {
+  height: 18px;
+}
 .ncpi .pi-tab-buttons {
   text-align: right;
 }
@@ -317,11 +320,10 @@
 }
 .ncpi .pi-board {
   margin-top: 15px;
-  max-width: 1522px;
 }
 .ncpi .pi-board-column {
   margin-right: 20px;
-  width: 250px;
+  width: 235px;
   background: linear-gradient(180deg, #F0F4F8 0%, rgba(247, 247, 247, 0) 100%);
   float: left;
 }
