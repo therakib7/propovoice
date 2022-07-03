@@ -9,7 +9,7 @@ import {
     Routes,
     Route,
     NavLink
-} from "react-router-dom";
+} from "react-router-dom"; 
 
 const Dashboard = lazy(() => import('components/dashboard'));
 const Client = lazy(() => import('components/client'));
@@ -39,13 +39,12 @@ const ContactOrg = lazy(() => import('components/contact/org'));
 const Setting = lazy(() => import('components/setting'));
 
 const Home = () => {
-    const contentRef = useRef();
+    const contentRef = useRef(); 
+    const [dropdown, setDropdown] = useState(false);  
 
-    const [dropdown, setDropdown] = useState(false);
-
-    const dealLoad = (load = true) => {
+    const dealLoad = ( load = true ) => {
         const span = contentRef.current; // corresponding DOM node
-        if (load) {
+        if ( load ) {
             span.className = 'pi-right-content-data pi-deal-content';
         } else {
             span.className = 'pi-right-content-data';
@@ -64,6 +63,7 @@ const Home = () => {
                             <rect y={57} width={100} height={12} />
                         </svg>
                     </div>
+
                     <div className="">
                         <div className="pi-logo-content pi-site-logo">
                             <img src={ncpi.assetImgUri + 'site-logo.png'} alt="favicon" />
@@ -413,7 +413,7 @@ const Home = () => {
                                 </NavLink>
                             </li>
                             <li className="pi-mt-35">
-                                <a href="#">
+                                <a>
                                     <svg
                                         className="pi-Profeature pi-mr-14"
                                         width={20}
@@ -431,7 +431,7 @@ const Home = () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a>
                                     <svg
                                         className="pi-mr-14"
                                         width={16}
@@ -453,7 +453,7 @@ const Home = () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a>
                                     <svg
                                         width={20}
                                         height={18}
@@ -559,7 +559,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
 
                     <div className='pi-right-content-data' ref={contentRef}>
                         <Suspense fallback={<div>Loading...</div>}>
@@ -574,7 +574,7 @@ const Home = () => {
                                 <Route path="/lead" exact element={<Lead />} />
                                 <Route path="/lead/single/:id" exact element={<ListSingle />} />
 
-                                <Route path="/deal" exact element={<Deal dealLoad={dealLoad} />} />
+                                <Route path="/deal" exact element={<Deal onLoad={dealLoad} />} />
                                 <Route path="/deal/single/:id" exact element={<ListSingle />} />
 
                                 <Route path="/task" exact element={<Task />} />
@@ -617,6 +617,5 @@ const Home = () => {
             </div>
         </HashRouter>
     )
-}
-
+} 
 export default Home;

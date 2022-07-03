@@ -29,8 +29,8 @@ const Deal = (props) => {
     const { title, lists } = props.state; 
     
     useEffect(() => {
-        props.dealLoad(true); 
-        return () => props.dealLoad(false);
+        props.onLoad(true); 
+        return () => props.onLoad(false);
     }, []);
 
     return (
