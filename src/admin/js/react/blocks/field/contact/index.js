@@ -58,13 +58,23 @@ class Contact extends Component {
         });
     } 
 
-    handleSelect = (val, type) => {
+    handleSelect = (e, val, type) => {
+        e.preventDefault();
+
         this.props.onSelect(val, type); 
+
+        let form = this.state.form;
         if ( type == 'person' ) {
-            this.setState({ personModal: false, personList: [], form: { ...this.state.form, ['first_name']: val.first_name } });
+            if ( val ) {
+                form.first_name = val.first_name;
+            } 
+            this.setState({ personModal: false, personList: [], form  }); 
         } else {
-            this.setState({ orgModal: false, orgList: [], form: { ...this.state.form, ['org_name']: val.name }  });
-        } 
+            if ( val ) {
+                form.org_name = val.name;
+            } 
+            this.setState({ orgModal: false, orgList: [], form  }); 
+        }  
     }
 
     render() { 
@@ -86,9 +96,9 @@ class Contact extends Component {
                             />
 
                             {this.state.personModal && <div className="pi-dropdown-content pi-show">
-                                <button style={{ color: '#4c6fff' }} onClick={() => this.handleSelect(null, 'person')}>+ Add '{this.state.form.first_name}' as New Contact</button>
+                                <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ Add '{this.state.form.first_name}' as New Contact</button>
                                 {this.state.personList.map((item, i) => (
-                                    <a key={i} onClick={() => this.handleSelect(item, 'person')}>{item.first_name}</a>
+                                    <a key={i} onClick={(e) => this.handleSelect(e, item, 'person')}>{item.first_name}</a>
                                 ))}
                             </div>}
                         </div> 
@@ -111,9 +121,9 @@ class Contact extends Component {
                             />
 
                             {this.state.orgModal && <div className="pi-dropdown-content pi-show">
-                                <button style={{ color: '#4c6fff' }} onClick={() => this.handleSelect(null, 'org')}>+ Add '{this.state.form.org_name}' as New Organization</button>
+                                <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'org')}>+ Add '{this.state.form.org_name}' as New Organization</button>
                                 {this.state.orgList.map((item, i) => (
-                                    <a key={i} onClick={() => this.handleSelect(item, 'org')}>{item.name}</a>
+                                    <a key={i} onClick={(e) => this.handleSelect(e, item, 'org')}>{item.name}</a>
                                 ))}
                             </div>}
                         </div> 
