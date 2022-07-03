@@ -1,15 +1,12 @@
 .ncpi .pi-invoice-single-btn .pi-btn {
   border-radius: 5px;
 }
-
 .ncpi .pi-single-tab-content .pi-page-title {
   margin-bottom: 55px;
 }
-
 .ncpi .pi-single-image-content {
   position: relative;
 }
-
 .ncpi .pi-single-image {
   opacity: 1;
   display: block;
@@ -17,21 +14,18 @@
   height: auto;
   transition: 0.5s ease;
   -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+          backface-visibility: hidden;
   border-radius: 15px !important;
   border: 1px solid var(--border-color-gray);
 }
-
 .ncpi .pi-single-image-content.pi-active {
   border: 5px solid var(--bg-color-blue);
   border-radius: 15px;
 }
-
 .ncpi .pi-single-image-content.pi-active:hover .pi-single-image {
   opacity: 1;
   border-radius: 0;
 }
-
 .ncpi .pi-overflow-content {
   transition: 0.5s ease;
   opacity: 0;
@@ -43,18 +37,15 @@
   text-align: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(10, 10, 10, 0.2784313725);
+  background-color: #0a0a0a47;
   border-radius: 15px;
 }
-
 .ncpi .pi-single-image-content:hover .pi-single-image {
   opacity: 0.3;
 }
-
 .ncpi .pi-single-image-content:hover .pi-overflow-content {
   opacity: 1;
 }
-
 .ncpi .pi-single-image-content a {
   transform: translateY(-113%);
   display: block;
@@ -67,18 +58,15 @@
   font-weight: 500;
   border-radius: 5px;
 }
-
 .ncpi .pi-single-image-content .pi-bg-hover-blue:hover {
   background-color: #4e6de9 !important;
   color: var(--bg-color-white);
 }
-
 .ncpi .pi-single-image-content a:last-child {
   background-color: var(--bg-color-white) !important;
   color: #2D3748;
   margin-top: 10px;
 }
-
 .ncpi .pi-invoice-tab-content .pi-modal-content {
   margin: 75px auto;
 }
@@ -87,22 +75,18 @@
   padding: 35px 30px;
   border-radius: 8px;
 }
-
 .ncpi .pi-add-info-content {
   margin-bottom: 20px;
 }
-
 .ncpi .pi-add-info-content h3 {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 5px;
 }
-
 .ncpi .pi-add-info-content .pi-info-content {
   padding: 30px 45px 45px;
   border-radius: 20px;
 }
-
 .ncpi .pi-add-info-content input[type=number],
 .ncpi .pi-add-info-content input[type=text] {
   width: 100%;
@@ -115,19 +99,16 @@
   font-weight: 500;
   color: #718096;
 }
-
 .ncpi .pi-add-info-content label {
   padding: 9px 12px 12px 0;
   display: inline-block;
   font-size: 12px;
   color: #4A5568;
 }
-
 .ncpi .pi-add-info-content .pi-info-input-field {
   position: relative;
   width: 135px;
 }
-
 .ncpi .pi-add-info-content .pi-info-input-field .pi-calendar {
   position: absolute;
   top: 1px;
@@ -140,23 +121,19 @@
   display: flex;
   align-items: center;
 }
-
 .ncpi .pi-add-info-content .pi-info-form-list {
   display: flex;
   margin-bottom: 10px;
   justify-content: right;
 }
-
 .ncpi .pi-add-info-content .pi-info-form {
   float: right;
 }
-
 .ncpi .pi-info-logo {
   position: relative;
   top: 50%;
   transform: translatey(-49%);
 }
-
 .ncpi .pi-info-logo .pi-upload {
   font-weight: 500;
   border: 1px dashed #718096;
@@ -168,14 +145,12 @@
   background: #FAFAFA;
   overflow: hidden;
 }
-
 .ncpi .pi-info-logo .pi-upload p {
   font-size: 14px;
   color: #718096;
   font-weight: 500;
   margin-top: 5px;
 }
-
 .ncpi .pi-info-logo input[type=file] {
   position: absolute;
   cursor: pointer;
@@ -186,39 +161,32 @@
   width: 130px;
   height: 130px;
 }
-
 @media screen and (max-width: 767px) {
   .ncpi .pi-info-content .pi-info-logo {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 20px;
   }
-
   .ncpi .pi-info-content .pi-info-form {
     float: none;
   }
 }
-
 @media screen and (max-width: 500px) {
   .ncpi .pi-add-info-content {
     padding: 25px 25px;
   }
 }
-
 .ncpi .pi-from-content {
   padding: 40px 35px 35px;
   background: rgba(231, 236, 254, 0.26);
   border-radius: 10px;
 }
-
 .ncpi .pi-from-content .pi-to {
   margin-left: auto;
 }
-
 .ncpi .pi-from-content .pi-from-to {
   max-width: 310px;
 }
-
 .ncpi .pi-from-content .pi-from-to label {
   font-size: 14px;
   display: block;
@@ -226,13 +194,11 @@
   margin-bottom: 15px;
   font-weight: 500;
 }
-
 .ncpi .pi-from-content .pi-from-to .pi-sendlist {
   display: flex;
   justify-content: right;
   align-items: center;
 }
-
 .ncpi .pi-from-content .pi-from-to .pi-sendlist .pi-list {
   cursor: pointer;
   padding: 10px 15px;
@@ -241,32 +207,27 @@
   left: -10px;
   margin-top: -10px;
 }
-
 .ncpi .pi-from-content .pi-from-to .pi-sendlist .pi-list svg {
   margin-top: 6px;
   float: right;
   position: absolute;
   margin-left: 15px;
 }
-
 .ncpi .pi-from-content .pi-title-small {
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 5px;
 }
-
 .ncpi .pi-from-content .pi-title-small span {
   float: right;
   cursor: pointer;
   margin-top: -2px;
 }
-
 .ncpi .pi-from-content .pi-from {
   padding: 16px 15px 20px 20px;
   border-radius: 8px;
   border: 1px solid #CBD5E0;
 }
-
 .ncpi .pi-from-content .pi-dropdown-content {
   top: 25px;
   right: -20px;
@@ -274,15 +235,12 @@
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
   text-align: left;
 }
-
 .ncpi .pi-from-content .pi-dropdown-content a:hover {
   color: #4c6fff;
 }
-
 .ncpi .pi-from-content .pi-dropdown-content a {
   color: #4A5568;
 }
-
 .ncpi .pi-from-content address {
   font-size: 14px;
   font-style: normal;
@@ -293,7 +251,6 @@
 .pi-border-right {
   position: relative;
 }
-
 .pi-border-right:before {
   content: "";
   height: 100%;
@@ -305,9 +262,8 @@
 }
 
 @media screen and (max-width: 550px) {
-
   .pi-to,
-  .pi-from-to {
+.pi-from-to {
     max-width: 100% !important;
     float: none !important;
   }
@@ -320,17 +276,14 @@
     padding: 35px 0px !important;
   }
 }
-
 .ncpi .pi-inv-sections .pi-group-input {
   position: relative;
 }
-
 .ncpi .pi-inv-sections .pi-group-input label {
   font-size: 14px;
   font-weight: 600;
   color: #2D3748;
 }
-
 .ncpi .pi-inv-sections .pi-group-input label svg {
   margin-left: 5px;
   cursor: pointer;
@@ -338,13 +291,11 @@
   top: 4px;
   position: relative;
 }
-
 .ncpi .pi-inv-sections .pi-group-input textarea {
   margin-bottom: 25px;
   color: #718096;
   font-size: 12px;
 }
-
 .ncpi .pi-inv-sections .pi-group-input .pi-field-label .pi-close-icon {
   position: absolute;
   right: 0px;
@@ -352,41 +303,34 @@
   padding: 5px 10px;
   cursor: pointer;
 }
-
 .ncpi .pi-inv-sections .pi-group-input input {
   width: 50%;
   font-weight: 600;
   margin-bottom: 10px;
 }
-
 .ncpi .pi-inv-sections .pi-group-input input::-moz-placeholder {
   color: #2D3748 !important;
   font-weight: 600;
 }
-
 .ncpi .pi-inv-sections .pi-group-input input:-ms-input-placeholder {
   color: #2D3748 !important;
   font-weight: 600;
 }
-
 .ncpi .pi-inv-sections .pi-group-input input::placeholder {
   color: #2D3748 !important;
   font-weight: 600;
 }
-
 .ncpi .pi-right-sidebar h2.pi-title-medium {
   margin-bottom: 15px;
   margin-top: 80px;
   font-size: 20px;
   color: #4A5568;
 }
-
 .ncpi .pi-right-sidebar .pi-invoice-image {
   border: 1px solid #718096;
   border-radius: 10px;
   width: 100%;
 }
-
 .ncpi .pi-right-content {
   background-color: #f1f1f7;
 }
