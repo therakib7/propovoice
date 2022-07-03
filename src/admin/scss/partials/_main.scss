@@ -909,7 +909,7 @@ html {
 }
 .ncpi .pi-table .pi-dropdown-content {
   min-width: 210px;
-  right: -100px;
+  right: -80px;
   top: 30px;
 }
 .ncpi .pi-table .pi-action-content button {
@@ -991,6 +991,9 @@ html {
   font-weight: 600;
   color: #2D3748;
 }
+.ncpi .pi-accordion-table-list:last-child {
+  margin-bottom: 0;
+}
 .ncpi .pi-accordion-table-list {
   display: flex;
   margin-bottom: 20px;
@@ -1042,15 +1045,16 @@ html {
   height: 30px;
   border-radius: 50%;
   border: 1px solid #dddddda8;
-  padding: 7px 5px;
   margin-right: 10px;
   background-color: #fff;
-  text-align: center;
   box-shadow: 0px 4.95074px 6.60099px rgba(0, 0, 0, 0.07);
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 .ncpi .pi-accordion-table-list ul li .pi-task-type img {
-  width: 15px;
-  height: 15px;
+  max-width: 15px;
+  max-height: 15px;
 }
 .ncpi .pi-accordion-table-list ul li .pi-task-type-text p {
   font-size: 10px;
@@ -1080,9 +1084,9 @@ html {
   top: 30px;
   left: -35px;
 }
-.ncpi .pi-accordion-table-list .pi-dropdown-content {
+.ncpi .pi-accordion-table-list .pi-action-content .pi-dropdown-content {
   text-align: left;
-  left: -60px;
+  left: -65px;
 }
 .ncpi .pi-info-table-content {
   margin-top: 20px;
@@ -1980,6 +1984,7 @@ html {
   border-radius: 6px;
   outline: none;
   box-shadow: 0px 1px 2px rgba(50, 50, 71, 0.08), 0px 0px 1px rgba(50, 50, 71, 0.2);
+  line-height: 100%;
 }
 .ncpi .pi-dropdown-content button {
   padding: 12px 16px;
@@ -2004,8 +2009,8 @@ html {
 }
 
 .pi-overview-select {
-  padding: 6px 35px 6px 10px !important;
-  border: 1px solid #CBD5E0;
+  padding: 10px 35px 10px 10px;
+  border: 1px solid #CBD5E0 !important;
   border-radius: 4px;
   margin-left: 15px;
   font-size: 14px;
@@ -2022,6 +2027,9 @@ html {
   border: 1px solid #4C6FFF !important;
 }
 
+.wp-admin .pi-overview-select {
+  padding: 3px 35px 3px 10px !important;
+}
 .wp-admin .pi-search-form ul li {
   padding: 3px 5px !important;
 }
@@ -2046,7 +2054,59 @@ html {
   padding: 6px 6px !important;
 }
 .wp-admin .pi-info-form-list .pi-calendar {
-  padding: 7px 6px 3px !important;
+  padding: 8px 7px !important;
+}
+.wp-admin .ncpi .pi-info-table-content .pi-info-table td select {
+  padding: 5px 6px !important;
+  height: 35px;
+}
+.wp-admin .ncpi .pi-accordion-wrapper .pi-field-switch-big {
+  top: 0;
+}
+.wp-admin .pi-field-checkbox input[type=radio],
+.wp-admin .pi-field-checkbox input[type=checkbox] {
+  zoom: 1;
+  position: relative;
+  top: 2px;
+}
+.wp-admin .ncpi .pi-search-bar .pi-total-list p select {
+  padding: 0px 20px 0px 4px !important;
+}
+.wp-admin .ncpi .pi-table input[type=checkbox] {
+  zoom: 1.2;
+  top: -1px !important;
+}
+.wp-admin .react-datepicker {
+  border: 1px solid #CBD5E0 !important;
+}
+.wp-admin .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
+  border-bottom-color: #CBD5E0 !important;
+}
+.wp-admin .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
+  border-bottom-color: #CBD5E0 !important;
+}
+.wp-admin .react-datepicker__header {
+  color: #4A5568 !important;
+  border-bottom: 1px solid #CBD5E0 !important;
+  background-color: #FAFAFB !important;
+}
+.wp-admin .react-datepicker__current-month {
+  color: #4A5568 !important;
+  position: relative;
+  top: -3px;
+}
+.wp-admin .react-datepicker__day-names {
+  color: #4A5568 !important;
+}
+.wp-admin .react-datepicker__day {
+  color: #718096 !important;
+}
+.wp-admin .react-datepicker__day--selected {
+  background-color: #4c6fff !important;
+  color: #fff !important;
+}
+.wp-admin .react-datepicker__day--selected:hover {
+  background-color: #3157F0 !important;
 }
 
 /*-------------------------------------------------------------- 
@@ -3094,9 +3154,9 @@ html {
   margin-top: -23px !important;
 }
 .pi-form-accordion.pi-additional .pi-tab input[type=checkbox] {
-  top: 27px;
+  top: 30px;
   left: 12px;
-  zoom: 1.3;
+  zoom: 1.2;
   box-shadow: none;
   z-index: 10;
 }
@@ -3746,7 +3806,7 @@ html {
   border: 0 !important;
 }
 .ncpi .pi-border-gray {
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid rgba(221, 221, 221, 0.6588235294) !important;
 }
 .ncpi .pi-gradient {
   background: linear-gradient(to bottom, #ffffff6b 0%, #00000004 100%);
@@ -4273,12 +4333,15 @@ select {
   text-align: center;
   margin-top: 50px;
 }
-.ncpi .pi-left-sidebar .pi-menu-buttons button {
+.ncpi .pi-left-sidebar .pi-menu-buttons a {
   width: 180px;
   border: 1px solid #dddddda8;
   font-size: 13px;
   margin-bottom: 15px;
   padding: 15px 10px;
+}
+.ncpi .pi-left-sidebar .pi-menu-buttons a.pi-bg-blue:hover {
+  color: #fff;
 }
 .ncpi .pi-menubar-icon {
   display: none;

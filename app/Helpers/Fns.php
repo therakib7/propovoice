@@ -47,10 +47,10 @@ class Fns
             'meta_key' => '_wp_page_template',
             'meta_value' => $slug . '-template.php'
         ));
-        if (!empty($page)) {
+        if ( !empty($page) ) {
             return get_permalink($page[0]->ID);
         } else {
-            return '#';
+            return '';
         }
     }
 

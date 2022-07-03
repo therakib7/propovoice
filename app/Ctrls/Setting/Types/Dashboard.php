@@ -1,14 +1,16 @@
 <?php
 
 namespace Ncpi\Ctrls\Setting\Types;
+use Ncpi\Helpers\Fns;
 
 class Dashboard
 {
 
     public function __construct()
     {
-        add_action('admin_menu', [$this, 'add_settings_menu'], 30);
+        add_action('admin_menu', [$this, 'add_settings_menu'], 30);  
     }
+ 
 
     public function add_settings_menu()
     {
@@ -93,6 +95,14 @@ class Dashboard
             'ncpi#/setting/' . $setting_main,
             array($this, 'render')
         );
+
+        if ( function_exists('ncpip') ) { 
+            global $submenu;
+            $permalink = Fns::client_page_url('dashboard');
+            if ( $permalink ) {
+                $submenu['ncpi'][] = array( 'Go to Frontend', 'manage_options', $permalink );
+            }
+        }
 
         remove_submenu_page('ncpi', 'ncpi');
     }

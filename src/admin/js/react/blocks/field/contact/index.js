@@ -1,145 +1,127 @@
-import React, { useState, useEffect } from "react";
-import AsyncSelect from 'react-select/async';
+import React, { Component } from 'react';
 import WithApi from 'hoc/Api';
 
-const Contact = (props) => {
-    const [personModal, setPersonModal] = useState(false);
-    const [orgModal, setOrgModal] = useState([]);
-    const [person, setPerson] = useState([]);
-    const [org, setOrg] = useState([]);
+class Contact extends Component {
 
-    let timeout = 0;
+    constructor(props) {
+        super(props); 
 
-    useEffect(() => {
-        //TODO: stop multiple rendering if loaded
-        let args = {
-            page: 1,
-            per_page: 10
-        }
-        let params = new URLSearchParams(args).toString();
+        this.state = {
+            form: { 
+                first_name: '',
+                org_name: '', 
+            },
+            personList: [],
+            orgList: [],
+            personModal: false, 
+            orgModal: false, 
+        };
 
-        props.getAll('persons', params).then(resp => {
-            if (resp.data.success) {
-                let personList = resp.data.data.result;
-                setPerson(personList);
+        this.timeout = 0;
+    }
+
+    handleChange = e => {
+        const { name, value } = e.target; 
+
+        if ( value.length < 1 ) { 
+            this.setState({ personModal: false, personList: [], form: { ...this.state.form, [name]: value } });
+            if ( name == 'first_name' ) {
+                this.props.onChange('', 'person'); 
+            } else {
+                this.props.onChange('', 'org'); 
             }
-        });
-
-        props.getAll('organizations', params).then(resp => {
-            if (resp.data.success) {
-                let orgList = resp.data.data.result;
-                setOrg(orgList);
-            }
-        });
-
-    }, []);
-
-    const handleContactChange = (e, type) => {
-        let val = e.target.value;
-        props.onChange(val, type);
-
-        if (val.length < 2) {
-            setPersonModal(false);
             return;
         }
-        setPersonModal(true);
-        //search when typing stop
-        if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            //search function
-            props.getAll('persons', 'first_name=' + val).then(resp => {
-                let persons = resp.data.data.result;
-                console.log(persons)
-            });
-        }, 300);
+
+        this.setState({ form: { ...this.state.form, [name]: value } }, () => {
+            if ( name == 'first_name' ) {
+                this.props.onChange(value, 'person'); 
+            } else {
+                this.props.onChange(value, 'org'); 
+            }
+            //search when typing stop
+            if ( this.timeout ) clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => { 
+                if ( name == 'first_name' ) {
+                    this.props.getAll('persons', 'first_name=' + value).then(resp => {
+                        let persons = resp.data.data.result;
+                        this.setState({ personModal: true, personList: persons });
+                    });
+                } else {
+                    this.props.getAll('organizations', 'name=' + value).then(resp => {
+                        let orgs = resp.data.data.result;
+                        this.setState({ orgModal: true, orgList: orgs });
+                    }); 
+                }
+                
+            }, 300);
+        });
+    } 
+
+    handleSelect = (val, type) => {
+        this.props.onSelect(val, type); 
+        if ( type == 'person' ) {
+            this.setState({ personModal: false, personList: [], form: { ...this.state.form, ['first_name']: val.first_name } });
+        } else {
+            this.setState({ orgModal: false, orgList: [], form: { ...this.state.form, ['org_name']: val.name }  });
+        } 
     }
 
-    const handlePersonSelect = (val) => {
-        props.onPersonChange(val, 'person');
-    }
-
-    const handleFindOrg = (val, callback) => {
-        if (val.length < 2) return;
-
-        //search when typing stop
-        if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            //search function
-            props.getAll('organizations', 'name=' + val).then(resp => {
-                let toData = resp.data.data.result;
-                callback(toData);
-            });
-        }, 300);
-    }
-
-    const handleOrgSelect = (val) => {
-        props.onOrgChange(val, 'org');
-    }
-
-    return (
-        <>
+    render() { 
+        return (
             <div className="row">
                 <div className="col-lg">
                     <label htmlFor="first_name">
                         Contact Person
-                    </label>
-                    {/* <AsyncSelect
-						loadOptions={handleFindPerson}
-						value={props.data.person}
-						defaultOptions={person}
-						onChange={handlePersonSelect}
-						getOptionValue={data => data.id}
-						getOptionLabel={(data) => (data.first_name) ? data.first_name : ''}
-					/> */}
-                    <div className="pi-field-search">
-
+                    </label> 
+                    <div className="pi-field-search"> 
                         <div className="pi-action-content">
                             <input
                                 id="first_name"
                                 type="text"
-                                name="first_name"
-                                value={props.data.first_name}
-                                onChange={(e) => handleContactChange(e, 'person')}
+                                name="first_name" 
+                                autoComplete='off'
+                                value={this.state.form.first_name}
+                                onChange={this.handleChange}
                             />
 
-                            {personModal && <div className="pi-dropdown-content pi-show">
-                                <button style={{ color: '#4c6fff' }}>+ Add '{props.data.first_name}' as New Contact</button>
-                                <a href="#home">Nasir</a>
+                            {this.state.personModal && <div className="pi-dropdown-content pi-show">
+                                <button style={{ color: '#4c6fff' }} onClick={() => this.handleSelect(null, 'person')}>+ Add '{this.state.form.first_name}' as New Contact</button>
+                                {this.state.personList.map((item, i) => (
+                                    <a key={i} onClick={() => this.handleSelect(item, 'person')}>{item.first_name}</a>
+                                ))}
                             </div>}
-                        </div>
-
+                        </div> 
                     </div>
                 </div>
 
                 <div className="col-lg">
-                    <label htmlFor="form-org_name">
-                        Organization Name
-                    </label>
-                    <div className="pi-field-search">
-                        <input
-                            id="org_name"
-                            type="text"
-                            name="org_name"
-                            value={props.data.org_name}
-                            onChange={(e) => handleContactChange(e, 'org')}
-                        />
-                        {orgModal && <div className="pi-dropdown-content pi-show">
-                            <button style={{ color: '#4c6fff' }}>+ Add '{props.data.first_name}' as New Contact</button>
-                            <a href="#home">Nurency Digital</a>
-                        </div>}
+                    <label htmlFor="org_name">
+                        Contact Organization
+                    </label> 
+                    <div className="pi-field-search"> 
+                        <div className="pi-action-content">
+                            <input
+                                id="org_name"
+                                type="text"
+                                name="org_name" 
+                                autoComplete='off'
+                                value={this.state.form.org_name}
+                                onChange={this.handleChange}
+                            />
+
+                            {this.state.orgModal && <div className="pi-dropdown-content pi-show">
+                                <button style={{ color: '#4c6fff' }} onClick={() => this.handleSelect(null, 'org')}>+ Add '{this.state.form.org_name}' as New Organization</button>
+                                {this.state.orgList.map((item, i) => (
+                                    <a key={i} onClick={() => this.handleSelect(item, 'org')}>{item.name}</a>
+                                ))}
+                            </div>}
+                        </div> 
                     </div>
-                    {/* <AsyncSelect
-						loadOptions={handleFindOrg}
-						value={props.data.org}
-						defaultOptions={org}
-						onChange={handleOrgSelect}
-						getOptionValue={data => data.id}
-						getOptionLabel={(data) => (data.name) ? data.name : ''}
-					/>  */}
                 </div>
             </div>
-        </>
-    );
-}
+        );
+    }
+} 
 
 export default WithApi(Contact);  

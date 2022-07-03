@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
- 
-import WithApi from 'hoc/Api'; 
 
-import Select from 'react-select';  
+import WithApi from 'hoc/Api';
+
+import Select from 'react-select';
 import Contact from 'block/field/contact';
 
 class Form extends Component {
@@ -23,8 +23,8 @@ class Form extends Component {
             currency: 'USD',
             desc: '',
             note: '',
-            person_id: null, 
-            org_id: null, 
+            person_id: null,
+            org_id: null,
             date: false,
         };
 
@@ -99,14 +99,14 @@ class Form extends Component {
         }
         let params = new URLSearchParams(args).toString();
 
-        this.props.getAll('persons', params).then(resp => { 
+        this.props.getAll('persons', params).then(resp => {
             if (resp.data.success) {
                 let personList = resp.data.data.result;
                 this.setState({ personList });
             }
         });
 
-        this.props.getAll('organizations', params).then(resp => {  
+        this.props.getAll('organizations', params).then(resp => {
             if (resp.data.success) {
                 let orgList = resp.data.data.result;
                 this.setState({ orgList });
@@ -138,15 +138,15 @@ class Form extends Component {
         e.preventDefault();
         let form = { ...this.state.form }
 
-        if ( form.person_id ) {
+        if (form.person_id) {
             form.person_id = form.person_id.id;
         }
 
-        if ( form.org_id ) {
+        if (form.org_id) {
             form.org_id = form.org_id.id;
         }
 
-        if ( form.level_id ) {
+        if (form.level_id) {
             form.level_id = form.level_id.id;
         }
 
@@ -156,46 +156,56 @@ class Form extends Component {
             });
             form.tags = finalArray;
         }
- 
-        if ( this.props.reload ) {
+
+        if (this.props.reload) {
             this.props.update('leads', form.id, form);
             this.props.close();
             this.props.reload();
         } else {
             this.props.handleSubmit(form);
+        }
+
+        this.setState({ form: this.initialState });
+    }
+
+    handleContactChange = (val, type) => {
+        let form = { ...this.state.form }
+        if (type == 'person') {
+            form.first_name = val;
+        } else {
+            form.org_name = val;
+        }
+        this.setState({ form });
+    }
+
+    handleContactSelect = (val, type) => {
+        let form = { ...this.state.form }
+        
+        if (type == 'person') {
+            form.person_id = val.id; 
+            form.email = val.email; 
+            form.mobile = val.mobile; 
+            form.web = val.web; 
+        } else {
+            form.org_id = val.id; 
+            if ( !form.first_name ) {
+                form.email = val.email; 
+                form.mobile = val.mobile; 
+                form.web = val.web; 
+            }
         } 
         
-        this.setState({ form: this.initialState });
-    } 
-
-    handleContactChange = ( val, type ) => { 
-        let form = { ...this.state.form }
-        if ( type == 'person' ) {
-            form.first_name = val; 
-        } else {
-            form.org_name = val; 
-        } 
-        this.setState({ form }); 
-    }  
-
-    handleContactSelect = ( val, type ) => { 
-        let form = { ...this.state.form }
-        if ( type == 'person' ) {
-            form.person_id = val; 
-        } else {
-            form.org_id = val; 
-        } 
-        this.setState({ form }); 
-    }  
+        this.setState({ form });
+    }
 
     render() {
         const contact = this.state.form.contact;
         const levelList = this.state.levels;
         const tagList = this.state.tags;
- 
+
         const form = this.state.form;
 
-        return ( 
+        return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
 
@@ -228,16 +238,48 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
-                                <Contact 
+                                <Contact
                                     data={{
                                         first_name: form.first_name,
                                         org_name: form.org_name,
                                         person_id: form.person_id,
-                                        org_id: form.org_id 
+                                        org_id: form.org_id
                                     }}
-                                    onChange={this.handleContactChange} 
-                                    onSelect={this.handleContactSelect} 
+                                    onChange={this.handleContactChange}
+                                    onSelect={this.handleContactSelect}
                                 />
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label
+                                            htmlFor="form-email">
+                                            Email
+                                        </label>
+
+                                        <input
+                                            id="form-email"
+                                            type="email"
+                                            required
+                                            name="email"
+                                            value={form.email}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                    <div className="col-lg">
+                                        <label
+                                            htmlFor="form-mobile">
+                                            Mobile Number
+                                        </label>
+
+                                        <input
+                                            id="form-mobile"
+                                            type="text"
+                                            name="mobile"
+                                            value={form.mobile}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
 
                                 <div className="row">
                                     <div className="col-md">
@@ -363,9 +405,9 @@ class Form extends Component {
                         </div>
                     </form>
                 </div>
-            </div>  
+            </div>
         );
     }
-} 
+}
 
 export default WithApi(Form);  
