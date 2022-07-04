@@ -115,17 +115,18 @@ class Person
             $query_data = [];
             $query_data['id'] = $id;
 
-            $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-            $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-            $query_data['email'] = get_post_meta($id, 'email', true);
-            $query_data['org_name'] = get_post_meta($id, 'org_name', true);
-            $query_data['web'] = get_post_meta($id, 'web', true);
-            $query_data['mobile'] = get_post_meta($id, 'mobile', true);
-            $query_data['country'] = get_post_meta($id, 'country', true);
-            $query_data['region'] = get_post_meta($id, 'region', true);
-            $query_data['address'] = get_post_meta($id, 'address', true);
+            $queryMeta = get_post_meta($id);
+            $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : ''; 
+            $query_data['email'] = isset($queryMeta['email']) ? $queryMeta['email'][0] : '';
+            $query_data['org_id'] = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
+            $query_data['web'] = isset($queryMeta['web']) ? $queryMeta['web'][0] : '';
+            $query_data['mobile'] = isset($queryMeta['mobile']) ? $queryMeta['mobile'][0] : '';
+            $query_data['country'] = isset($queryMeta['country']) ? $queryMeta['country'][0] : '';
+            $query_data['region'] = isset($queryMeta['region']) ? $queryMeta['region'][0] : '';
+            $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : ''; 
+            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : ''; 
 
-            $img_id = get_post_meta($id, 'img', true);
+            $img_id = $query_data['img'];
             $imgData = null;
             if ($img_id) {
                 $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
