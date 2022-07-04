@@ -8,6 +8,7 @@ import AppContext from 'context/app-context';
 
 // import Preloader from 'block/preloader/table';
 import AddNew from 'block/add-new';
+import Action from 'block/action/table'; 
 import Breadcrumb from 'block/breadcrumb';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
@@ -249,8 +250,8 @@ const Invoice = class Invoice extends Component {
                     <div className="col-lg-6">
                         <h2 className="pi-page-title">{title}</h2>
                     </div>
-                    <div className="col-lg-6"> 
-                        <AddNew 
+                    <div className="col-lg-6">
+                        <AddNew
                             title={title}
                             openForm={() => this.newInvoie()}
                         />
@@ -349,6 +350,14 @@ const Invoice = class Invoice extends Component {
                     total={this.state.total}
                     handleSubmit={this.getLists}
                 />
+
+                {checkedBoxes.length > 0 &&
+                    <Action
+                        length={checkedBoxes.length}
+                        uncheckAll={ () => this.setState({ checkedBoxes: [] }) }
+                        deleteEntry={this.deleteEntry}
+                    />
+                }
 
                 {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.newInvoie()} />}
 

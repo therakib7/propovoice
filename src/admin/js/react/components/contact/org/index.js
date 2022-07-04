@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
+import Action from 'block/action/table'; 
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
 
@@ -139,6 +140,14 @@ const Org = (props) => {
           Organization
         </button>
       </div>
+
+      {checkedBoxes.length > 0 && 
+				<Action 
+					length={checkedBoxes.length} 
+					uncheckAll={props.uncheckAll} 
+					deleteEntry={props.deleteEntry}
+				/> 
+			} 
 
       {props.state.formModal && <Form
         handleSubmit={props.handleSubmit}
