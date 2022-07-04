@@ -1221,7 +1221,7 @@ html {
 
 .pi-accordion-table-list .pi-action-content .pi-dropdown-content {
   text-align: left;
-  left: -65px;
+  left: -65px !important;
 }
 
 .ncpi .pi-info-table-content {
@@ -1481,19 +1481,24 @@ html {
 .ncpi .pi-logo-content img {
   width: 36px;
   height: 36px;
-  margin: auto;
 }
+<<<<<<< HEAD
 
 .ncpi .pi-logo-content strong {
+=======
+.ncpi .pi-logo-content {
+  display: flex;
+  align-items: center;
+}
+.ncpi strong {
+>>>>>>> 724e6e5f1c7a606919c290ea4109117ab93a2455
   position: relative;
-  top: -10px;
   left: 10px;
   font-size: 24px;
   font-weight: 600;
 }
 
 .ncpi .pi-site-logo strong {
-  top: -12px;
   font-size: 18px;
 }
 
@@ -1503,6 +1508,7 @@ html {
   padding: 15px 70px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 @media screen and (max-width: 992px) {
@@ -1909,7 +1915,7 @@ html {
   margin: 0 5px 0 5px;
   border: 1px solid #CBD5E0;
   outline: none;
-  padding: 4px 20px 4px 4px;
+  padding: 40px 20px 4px 4px;
   background-position-x: 85%;
   background-position-y: 44%;
   line-height: 100%;
@@ -2222,14 +2228,14 @@ html {
 }
 
 .ncpi .pi-dropbtn {
+  display: flex;
+  align-items: center;
   background-color: transparent;
   color: #718096;
   font-size: 14px;
   border: none;
   cursor: pointer;
   font-weight: 500;
-  margin-top: -14px;
-  padding-bottom: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -2240,6 +2246,7 @@ html {
 
 .ncpi .pi-top-menu-content .pi-dropdown {
   position: relative;
+  left: 5px;
 }
 
 @media screen and (max-width: 992px) {
@@ -2250,8 +2257,6 @@ html {
 
 .ncpi .pi-top-menu-content .pi-dropdown img {
   margin-right: 10px;
-  position: relative;
-  top: 13px;
 }
 
 @media screen and (max-width: 420px) {
@@ -2263,7 +2268,7 @@ html {
 
 .ncpi .pi-top-menu-content .pi-dropdown-content {
   top: 57px;
-  left: 20px;
+  left: 14px;
 }
 
 .ncpi .pi-dropdown-content {
@@ -2359,9 +2364,14 @@ html {
 .wp-admin .pi-modal-style-two .pi-modal-footer {
   padding: 0 30px 0px;
 }
+<<<<<<< HEAD
 
 .wp-admin .ncpi .pi-table input[type=checkbox] {
   zoom: 1 !important;
+=======
+.wp-admin .pi-table input[type=checkbox] {
+  zoom: 1.2 !important;
+>>>>>>> 724e6e5f1c7a606919c290ea4109117ab93a2455
   top: -2px !important;
 }
 
@@ -2386,9 +2396,14 @@ html {
   padding: 5px 6px !important;
   height: 35px;
 }
+<<<<<<< HEAD
 
 .wp-admin .ncpi .pi-accordion-wrapper .pi-field-switch-big {
   top: 0;
+=======
+.wp-admin .pi-accordion-wrapper .pi-field-switch-big {
+  top: 0 !important;
+>>>>>>> 724e6e5f1c7a606919c290ea4109117ab93a2455
 }
 
 .wp-admin .pi-field-checkbox input[type=radio],
@@ -2401,17 +2416,28 @@ html {
 .wp-admin .ncpi .pi-search-bar .pi-total-list p select {
   padding: 0px 20px 0px 4px !important;
 }
+<<<<<<< HEAD
 
 .wp-admin .ncpi .pi-table input[type=checkbox] {
   zoom: 1.2;
+=======
+.wp-admin .pi-table input[type=checkbox] {
+  zoom: 1.2 !important;
+>>>>>>> 724e6e5f1c7a606919c290ea4109117ab93a2455
   top: -1px !important;
 }
 
 .wp-admin .react-datepicker {
   border: 1px solid #CBD5E0 !important;
 }
+<<<<<<< HEAD
 
 
+=======
+.wp-admin .react-datepicker__triangle::after {
+  border-bottom-color: #FAFAFB !important;
+}
+>>>>>>> 724e6e5f1c7a606919c290ea4109117ab93a2455
 .wp-admin .react-datepicker__header {
   color: #4A5568 !important;
   border-bottom: 1px solid #CBD5E0 !important;
@@ -3543,7 +3569,7 @@ html {
 .pi-form-accordion .pi-tab-label {
   display: flex;
   justify-content: space-between;
-  padding: 12px 12px 12px 45px;
+  padding: 12px 12px 12px 40px;
   font-weight: 500;
   cursor: pointer;
   border-radius: 5px;
@@ -3684,9 +3710,9 @@ html {
 }
 
 .pi-form-accordion.pi-additional .pi-tab input[type=checkbox] {
-  top: 30px;
+  top: 32px;
   left: 12px;
-  zoom: 1.2;
+  zoom: 1.1;
   box-shadow: none;
   z-index: 10;
 }
@@ -3719,9 +3745,8 @@ html {
 
 .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group input[type=radio] {
   position: relative;
-  top: 1px;
+  top: 0px;
   left: 0;
-  zoom: 1.3;
 }
 
 .pi-form-accordion.pi-additional .pi-radio-content span {
@@ -4994,7 +5019,7 @@ select {
 }
 
 .ncpi .pi-left-sidebar .pi-logo-content {
-  padding: 16px 30px;
+  padding: 19px 30px;
   position: fixed;
   z-index: 9;
   background: #fff;

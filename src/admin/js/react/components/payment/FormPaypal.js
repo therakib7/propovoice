@@ -79,8 +79,7 @@ class FormPaypal extends Component {
                                     </label>
 
                                     <div>
-                                        <label
-                                            htmlFor="form-account_type_personal">
+                                        <label htmlFor="form-account_type_personal">
                                             Personal
                                         </label> 
                                         <input
@@ -91,8 +90,7 @@ class FormPaypal extends Component {
                                             onChange={this.handleChange}
                                         />
 
-                                        <label
-                                            htmlFor="form-account_type_business">
+                                        <label htmlFor="form-account_type_business">
                                             Business
                                         </label>  
                                         <input

@@ -260,8 +260,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-budget">
+                                        <label htmlFor="field-budget">
                                             Budget
                                         </label>
 
@@ -275,8 +274,7 @@ class Form extends Component {
                                     </div>
 
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-currency">
+                                        <label htmlFor="field-currency">
                                             Currency
                                         </label>
 
@@ -294,8 +292,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-probability">
+                                        <label htmlFor="field-probability">
                                             Probability <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
                                         </label>
 

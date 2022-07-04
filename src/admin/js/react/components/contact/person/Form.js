@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 class Form extends Component {
@@ -8,8 +9,7 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
-            first_name: '',
-            last_name: '',
+            first_name: '', 
             org_name: '',
             email: '',
             web: '',
@@ -60,6 +60,16 @@ class Form extends Component {
         }
     }
 
+    handleContactChange = (val, type) => {
+        let form = { ...this.state.form }
+        if (type == 'person') {
+            form.first_name = val;
+        } else {
+            form.org_name = val;
+        }
+        this.setState({ form });
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
@@ -67,6 +77,7 @@ class Form extends Component {
     }
 
     render() {
+        const form = this.state.form;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -101,41 +112,19 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="first_name">
-                                            Full Name
-                                        </label>
+                                 
+                                <Contact
+                                    data={{
+                                        first_name: form.first_name,
+                                        org_name: form.org_name
+                                    }}
+                                    review={true}
+                                    onChange={this.handleContactChange} 
+                                />
 
-                                        <input
-                                            id="first_name"
-                                            type="text"
-                                            name="first_name"
-                                            value={this.state.form.first_name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
+                                <div className="row">
                                     {/* <div className="col-lg">
-                                            <label
-                                                htmlFor="last_name">
-                                                Last Name
-                                            </label>
-
-                                            <input
-                                                id="last_name"
-                                                type="text"
-                                                name="last_name"
-                                                value={this.state.form.last_name}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>  */}
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="form-org_name">
+                                        <label htmlFor="form-org_name">
                                             Company/Organization Name
                                         </label>
 
@@ -146,10 +135,9 @@ class Form extends Component {
                                             value={this.state.form.org_name}
                                             onChange={this.handleChange}
                                         />
-                                    </div>
+                                    </div> */}
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-web">
+                                        <label htmlFor="form-web">
                                             Website
                                         </label>
 
@@ -165,8 +153,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-email">
+                                        <label htmlFor="form-email">
                                             Email
                                         </label>
 
@@ -180,8 +167,7 @@ class Form extends Component {
                                         />
                                     </div>
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-mobile">
+                                        <label htmlFor="form-mobile">
                                             Mobile Number
                                         </label>
 
@@ -197,8 +183,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-country">
+                                        <label htmlFor="form-country">
                                             Country
                                         </label>
 
@@ -210,8 +195,7 @@ class Form extends Component {
                                     </div>
 
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-region">
+                                        <label htmlFor="form-region">
                                             Region
                                         </label>
 
@@ -227,8 +211,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-address">
+                                        <label htmlFor="form-address">
                                             Address
                                         </label>
 

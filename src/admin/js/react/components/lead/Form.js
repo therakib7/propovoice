@@ -136,7 +136,7 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let form = { ...this.state.form } 
+        let form = { ...this.state.form }
 
         if (form.level_id) {
             form.level_id = form.level_id.id;
@@ -172,21 +172,21 @@ class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-         
-        if ( type == 'person' ) {
-            form.person_id = ( val ) ? val.id : null; 
-            form.email = ( val ) ? val.email : ''; 
-            form.mobile = ( val ) ? val.mobile : ''; 
-            form.web = ( val ) ? val.web : '';  
+
+        if (type == 'person') {
+            form.person_id = (val) ? val.id : null;
+            form.email = (val) ? val.email : '';
+            form.mobile = (val) ? val.mobile : '';
+            form.web = (val) ? val.web : '';
         } else {
-            form.org_id = ( val ) ? val.id : null; 
-            if ( !form.first_name ) {
-                form.email = ( val ) ? val.email : ''; 
-                form.mobile = ( val ) ? val.mobile : ''; 
-                form.web = ( val ) ? val.web : '';  
+            form.org_id = (val) ? val.id : null;
+            if (!form.first_name) {
+                form.email = (val) ? val.email : '';
+                form.mobile = (val) ? val.mobile : '';
+                form.web = (val) ? val.web : '';
             }
-        } 
-        
+        }
+
         this.setState({ form });
     }
 
@@ -243,23 +243,20 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-email">
+                                        <label htmlFor="form-email">
                                             Email
                                         </label>
-
                                         <input
                                             id="form-email"
                                             type="email"
-                                            required
                                             name="email"
                                             value={form.email}
                                             onChange={this.handleChange}
                                         />
                                     </div>
+
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-mobile">
+                                        <label htmlFor="form-mobile">
                                             Mobile Number
                                         </label>
 
@@ -275,8 +272,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-budget">
+                                        <label htmlFor="field-budget">
                                             Budget
                                         </label>
 
@@ -290,8 +286,7 @@ class Form extends Component {
                                     </div>
 
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-currency">
+                                        <label htmlFor="field-currency">
                                             Currency
                                         </label>
 
@@ -308,8 +303,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-level_id">
+                                        <label htmlFor="field-level_id">
                                             Level
                                         </label>
 
@@ -341,8 +335,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-desc">
+                                        <label htmlFor="form-desc">
                                             Description
                                         </label>
 
@@ -358,8 +351,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-note">
+                                        <label htmlFor="form-note">
                                             Note
                                         </label>
 

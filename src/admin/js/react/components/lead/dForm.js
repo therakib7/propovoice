@@ -226,8 +226,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-budget">
+                                        <label htmlFor="field-budget">
                                             Budget
                                         </label>
 
@@ -241,8 +240,7 @@ class Form extends Component {
                                     </div>
 
                                     <div className="col-md">
-                                        <label
-                                            htmlFor="field-currency">
+                                        <label htmlFor="field-currency">
                                             Currency
                                         </label>
 
@@ -290,8 +288,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-desc">
+                                        <label htmlFor="form-desc">
                                             Description
                                         </label>
 
@@ -307,8 +304,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-note">
+                                        <label htmlFor="form-note">
                                             Note
                                         </label>
 

@@ -1,7 +1,7 @@
 <?php
 namespace Ncpi\Models; 
 
-class Person {
+class Org {
 
     public function create($params)
     {  

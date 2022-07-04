@@ -68,18 +68,20 @@ class Person
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
         }
+
+        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
 
         $args = array(
             'post_type' => 'ndpi_person',
@@ -92,15 +94,15 @@ class Person
             'relation' => 'OR'
         );
 
-        if (isset($request['default'])) {
+        if ( $first_name ) {
             $args['meta_query'][] = array(
                 array(
-                    'key'     => 'default',
-                    'value'   => 1,
-                    'compare' => 'LIKE'
+                    'key'     => 'first_name',
+                    'value'   => $first_name,
+                    'compare' => 'Like',
                 )
-            );
-        }
+            ); 
+        } 
 
         $query = new WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 

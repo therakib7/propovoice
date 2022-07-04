@@ -1,5 +1,6 @@
 import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
+import Action from 'block/action/table';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
 
@@ -21,10 +22,10 @@ const Client = (props) => {
                     <h2 className="pi-page-title">{title}</h2>
                 </div>
                 <div className="col-lg-6">
-                    <AddNew 
-						title={title}
-						openForm={props.openForm}
-					/>
+                    <AddNew
+                        title={title}
+                        openForm={props.openForm}
+                    />
                 </div>
             </div>
 
@@ -112,7 +113,7 @@ const Client = (props) => {
                         />
                     </svg>
                 </button>
-            </div> 
+            </div>
 
             <Search
                 title={title}
@@ -120,6 +121,14 @@ const Client = (props) => {
                 total={props.state.total}
                 handleSubmit={props.getLists}
             />
+
+            {checkedBoxes.length > 0 &&
+                <Action
+                    length={checkedBoxes.length}
+                    uncheckAll={props.uncheckAll}
+                    deleteEntry={props.deleteEntry}
+                />
+            }
 
             {props.state.formModal && <Form
                 handleSubmit={props.handleSubmit}

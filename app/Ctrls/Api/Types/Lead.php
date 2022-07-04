@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Org;
 use Ncpi\Models\Person;
 use WP_Query;
 
@@ -230,6 +231,8 @@ class Lead
         $reg_errors = new \WP_Error;
 
         //lead
+        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
         $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
         $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
         $level_id  = isset($params['level_id']) ? absint($params['level_id']) : null;
@@ -239,20 +242,22 @@ class Lead
         $desc      = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note      = isset($params['note']) ? nl2br($params['note']) : null;
 
-        /* if ( empty($level_id) ) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        } */
+        if ( empty($first_name) &&  empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
 
         /* if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }  */
 
         if ( ! $person_id ) {
-            $contact = new Person();  
-            $person_id = $contact->create( $params );
-            /* if ( $person_id->get_error_messages() ) {
-                wp_send_json_error($reg_errors->get_error_messages());
-            } */
+            $person = new Person();  
+            $person_id = $person->create( $params ); 
+        }
+
+        if ( ! $org_id ) {
+            $org = new Org();
+            $org_id = $org->create( $params ); 
         }
 
         if ($reg_errors->get_error_messages()) {
@@ -273,7 +278,7 @@ class Lead
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
                 update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
 
-                if ($level_id) {
+                if ( $level_id ) {
                     wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');
                 }
 

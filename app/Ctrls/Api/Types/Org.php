@@ -81,6 +81,8 @@ class Org
             $offset = ($per_page * $request['page']) - $per_page;
         }
 
+        $name = isset($params['name']) ? sanitize_text_field($params['name']) : null;
+
         $args = array(
             'post_type' => 'ndpi_org',
             'post_status' => 'publish',
@@ -92,15 +94,15 @@ class Org
             'relation' => 'OR'
         );
 
-        if (isset($request['default'])) {
+        if ( $name ) {
             $args['meta_query'][] = array(
                 array(
-                    'key'     => 'default',
-                    'value'   => 1,
-                    'compare' => 'LIKE'
+                    'key'     => 'name',
+                    'value'   => $name,
+                    'compare' => 'Like',
                 )
-            );
-        }
+            ); 
+        } 
 
         $query = new WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
