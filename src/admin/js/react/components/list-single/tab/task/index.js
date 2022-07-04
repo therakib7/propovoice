@@ -137,7 +137,7 @@ const Task = (props) => {
                                         />
                                     </svg>
                                 </span>
-                                <b>Unscheduled</b>
+                                <b>Unschedule</b>
                             </label>
                             <label className="pi-table-close" htmlFor="pi-acc-close" />
                             <div className="pi-accordion-content">

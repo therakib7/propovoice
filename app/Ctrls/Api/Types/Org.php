@@ -1,7 +1,8 @@
 <?php
 
 namespace Ncpi\Ctrls\Api\Types;
-
+ 
+use Ncpi\Models\Person;
 use WP_Query;
 
 class Org
