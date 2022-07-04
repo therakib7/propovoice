@@ -7,9 +7,9 @@ class Person {
     {  
         $reg_errors = new \WP_Error;
 
+        $org_id     = isset($params['org_id']) ? sanitize_text_field($params['org_id']) : null;
         $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null; 
         $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
-        $org_name     = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
         $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($params['mobile']) : null;
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
@@ -37,20 +37,20 @@ class Person {
             );
             $post_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if ( !is_wp_error($post_id) ) {
 
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
                 
+                if ($org_id) {
+                    update_post_meta($post_id, 'org_id', $org_id);
+                }
+
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
                 } 
 
                 if ($email) {
                     update_post_meta($post_id, 'email', $email);
-                }
-
-                if ($org_name) {
-                    update_post_meta($post_id, 'org_name', $org_name);
                 }
 
                 if ($web) {
@@ -92,7 +92,7 @@ class Person {
         $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
         $last_name    = isset($params['last_name']) ? sanitize_text_field($params['last_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
-        $org_name     = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
+        $org_id     = isset($params['org_id']) ? sanitize_text_field($params['org_id']) : null;
         $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($params['mobile']) : null;
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
@@ -121,7 +121,7 @@ class Person {
             );
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if ( !is_wp_error($post_id) ) {
 
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
@@ -135,8 +135,8 @@ class Person {
                     update_post_meta($post_id, 'email', $email);
                 }
 
-                if ($org_name) {
-                    update_post_meta($post_id, 'org_name', $org_name);
+                if ($org_id) {
+                    update_post_meta($post_id, 'org_id', $org_id);
                 }
 
                 if ($web) {
