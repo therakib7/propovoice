@@ -5221,3 +5221,13 @@ select {
   right: 20px;
   background-color: lightblue;
 }
+
+.twentytwenty-theme {
+
+  svg,
+  img,
+  embed,
+  object {
+    display: inline-block !important;
+  }
+}
