@@ -103,8 +103,7 @@ class Form extends Component {
                             <div className="pi-form-style-one">
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="first_name">
+                                        <label htmlFor="first_name">
                                             Full Name
                                         </label>
 
@@ -134,8 +133,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-org_name">
+                                        <label htmlFor="form-org_name">
                                             Company/Organization Name
                                         </label>
 
@@ -148,8 +146,7 @@ class Form extends Component {
                                         />
                                     </div>
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-web">
+                                        <label htmlFor="form-web">
                                             Website
                                         </label>
 
@@ -165,8 +162,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-email">
+                                        <label htmlFor="form-email">
                                             Email
                                         </label>
 
@@ -180,8 +176,7 @@ class Form extends Component {
                                         />
                                     </div>
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-mobile">
+                                        <label htmlFor="form-mobile">
                                             Mobile Number
                                         </label>
 
@@ -197,8 +192,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-country">
+                                        <label htmlFor="form-country">
                                             Country
                                         </label>
 
@@ -210,8 +204,7 @@ class Form extends Component {
                                     </div>
 
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-region">
+                                        <label htmlFor="form-region">
                                             Region
                                         </label>
 
@@ -227,8 +220,7 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-address">
+                                        <label htmlFor="form-address">
                                             Address
                                         </label>
 

@@ -184,8 +184,7 @@ class Send extends Component {
                             <div className="pi-form-style-one">
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-name">
+                                        <label htmlFor="form-name">
                                             Client Name
                                         </label>
 
@@ -201,8 +200,7 @@ class Send extends Component {
                                     </div>
 
                                     <div className="col-lg">
-                                        <label
-                                            htmlFor="form-email">
+                                        <label htmlFor="form-email">
                                             Email
                                         </label>
 
@@ -219,8 +217,7 @@ class Send extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="form-subject">
+                                        <label htmlFor="form-subject">
                                             Subject
                                         </label>
 

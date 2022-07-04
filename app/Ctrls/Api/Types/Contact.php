@@ -225,15 +225,15 @@ class Contact
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
+        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $last_name    = isset($params['last_name']) ? sanitize_text_field($params['last_name']) : null;
+        $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
+        $org_name = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
+        $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
+        $mobile       = isset($params['mobile']) ? sanitize_text_field($params['mobile']) : null;
+        $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
+        $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
+        $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
         $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
 
         if ( empty($first_name) ) {
@@ -313,15 +313,15 @@ class Contact
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
+        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $last_name    = isset($params['last_name']) ? sanitize_text_field($params['last_name']) : null;
+        $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
+        $org_name = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
+        $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
+        $mobile       = isset($params['mobile']) ? sanitize_text_field($params['mobile']) : null;
+        $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
+        $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
+        $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
         $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
 
         if (empty($first_name)) {
