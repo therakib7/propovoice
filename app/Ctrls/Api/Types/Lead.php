@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Person;
 use WP_Query;
 
 class Lead
@@ -144,12 +145,12 @@ class Lead
             $contact_id = get_post_meta($id, 'person_id', true);
             $contactData = [];
 
-            if ($contact_id) {
+            if ( $contact_id ) {
                 $contactData['id'] = absint($contact_id);
                 $contactMeta = get_post_meta($contact_id);
                 $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
                 $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-                // $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : ''; 
+                //$contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : ''; 
             }
             $query_data['contact_id'] = $contactData;
 
@@ -229,14 +230,14 @@ class Lead
         $reg_errors = new \WP_Error;
 
         //lead
-        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
-        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
-        $note         = isset($params['note']) ? nl2br($params['note']) : null;
+        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
+        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
+        $level_id  = isset($params['level_id']) ? absint($params['level_id']) : null;
+        $budget    = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
+        $currency  = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
+        $tags      = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
+        $desc      = isset($params['desc']) ? nl2br($params['desc']) : '';
+        $note      = isset($params['note']) ? nl2br($params['note']) : null;
 
         /* if ( empty($level_id) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -246,9 +247,18 @@ class Lead
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }  */
 
+        if ( ! $person_id ) {
+            $contact = new Person();  
+            $person_id = $contact->create( $params );
+            /* if ( $person_id->get_error_messages() ) {
+                wp_send_json_error($reg_errors->get_error_messages());
+            } */
+        }
+
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
-        } else {
+        } else { 
+
             //insert lead
             $data = array(
                 'post_type' => 'ndpi_lead',
@@ -259,7 +269,7 @@ class Lead
             );
             $post_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if ( !is_wp_error($post_id) ) {
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
                 update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
 
