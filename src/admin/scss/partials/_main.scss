@@ -1107,13 +1107,11 @@ html {
   font-weight: 600;
   color: #2D3748;
 }
-<<<<<<< HEAD
 
-=======
 .ncpi .pi-accordion-table-list:last-child {
   margin-bottom: 0;
 }
->>>>>>> 7334015ace18dfc2e4d23e0c6ab2c690b00dfc81
+
 .ncpi .pi-accordion-table-list {
   display: flex;
   margin-bottom: 20px;
@@ -1150,9 +1148,6 @@ html {
   margin-right: 7px;
 }
 
-.ncpi .pi-accordion-table-list ul li:nth-child(n+3) {
-  text-align: right;
-}
 
 .ncpi .pi-accordion-table-list ul li {
   color: #718096;
@@ -1222,12 +1217,9 @@ html {
   top: 30px;
   left: -35px;
 }
-<<<<<<< HEAD
 
-.ncpi .pi-accordion-table-list .pi-dropdown-content {
-=======
-.ncpi .pi-accordion-table-list .pi-action-content .pi-dropdown-content {
->>>>>>> 7334015ace18dfc2e4d23e0c6ab2c690b00dfc81
+
+.pi-accordion-table-list .pi-action-content .pi-dropdown-content {
   text-align: left;
   left: -65px;
 }
@@ -2355,6 +2347,7 @@ html {
 .wp-admin .pi-overview-select {
   padding: 3px 35px 3px 10px !important;
 }
+
 .wp-admin .pi-search-form ul li {
   padding: 3px 5px !important;
 }
@@ -2388,55 +2381,62 @@ html {
 .wp-admin .pi-info-form-list .pi-calendar {
   padding: 8px 7px !important;
 }
+
 .wp-admin .ncpi .pi-info-table-content .pi-info-table td select {
   padding: 5px 6px !important;
   height: 35px;
 }
+
 .wp-admin .ncpi .pi-accordion-wrapper .pi-field-switch-big {
   top: 0;
 }
+
 .wp-admin .pi-field-checkbox input[type=radio],
 .wp-admin .pi-field-checkbox input[type=checkbox] {
   zoom: 1;
   position: relative;
   top: 2px;
 }
+
 .wp-admin .ncpi .pi-search-bar .pi-total-list p select {
   padding: 0px 20px 0px 4px !important;
 }
+
 .wp-admin .ncpi .pi-table input[type=checkbox] {
   zoom: 1.2;
   top: -1px !important;
 }
+
 .wp-admin .react-datepicker {
   border: 1px solid #CBD5E0 !important;
 }
-.wp-admin .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
-  border-bottom-color: #CBD5E0 !important;
-}
-.wp-admin .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
-  border-bottom-color: #CBD5E0 !important;
-}
+
+
 .wp-admin .react-datepicker__header {
   color: #4A5568 !important;
   border-bottom: 1px solid #CBD5E0 !important;
   background-color: #FAFAFB !important;
 }
+
 .wp-admin .react-datepicker__current-month {
   color: #4A5568 !important;
   position: relative;
   top: -3px;
 }
+
 .wp-admin .react-datepicker__day-names {
   color: #4A5568 !important;
 }
+
 .wp-admin .react-datepicker__day {
   color: #718096 !important;
 }
+
 .wp-admin .react-datepicker__day--selected {
   background-color: #4c6fff !important;
   color: #fff !important;
 }
+
 .wp-admin .react-datepicker__day--selected:hover {
   background-color: #3157F0 !important;
 }
@@ -2466,7 +2466,7 @@ html {
 .ncpi .pi-overlay {
   visibility: visible;
   opacity: 1;
-  z-index: 99;
+  z-index: 99999;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -4785,7 +4785,7 @@ select {
 .ncpi .pi-form-style-one input[type=number]:focus,
 .ncpi .pi-form-style-one input[type=email]:focus,
 .ncpi .pi-form-style-one input[type=text]:focus {
-  border: 1px solid #4C6FFF !important;
+  border: 1px solid #4C6FFF;
 }
 
 .ncpi .pi-form-style-one textarea {
@@ -5072,25 +5072,19 @@ select {
   text-align: center;
   margin-top: 50px;
 }
-<<<<<<< HEAD
 
-.ncpi .pi-left-sidebar .pi-menu-buttons button {
-=======
 .ncpi .pi-left-sidebar .pi-menu-buttons a {
->>>>>>> 7334015ace18dfc2e4d23e0c6ab2c690b00dfc81
   width: 180px;
   border: 1px solid #dddddda8;
   font-size: 13px;
   margin-bottom: 15px;
   padding: 15px 10px;
 }
-<<<<<<< HEAD
 
-=======
 .ncpi .pi-left-sidebar .pi-menu-buttons a.pi-bg-blue:hover {
   color: #fff;
 }
->>>>>>> 7334015ace18dfc2e4d23e0c6ab2c690b00dfc81
+
 .ncpi .pi-menubar-icon {
   display: none;
 }
