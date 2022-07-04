@@ -11,6 +11,7 @@ class Form extends Component {
             id: null,
             first_name: '', 
             org_name: '',
+            org_id: null,
             email: '',
             web: '',
             mobile: '',
@@ -70,6 +71,26 @@ class Form extends Component {
         this.setState({ form });
     }
 
+    handleContactSelect = (val, type) => {
+        let form = { ...this.state.form }
+
+        if (type == 'person') {
+            form.person_id = (val) ? val.id : null;
+            form.email = (val) ? val.email : '';
+            form.mobile = (val) ? val.mobile : '';
+            form.web = (val) ? val.web : '';
+        } else {
+            form.org_id = (val) ? val.id : null;
+            if (!form.first_name) {
+                form.email = (val) ? val.email : '';
+                form.mobile = (val) ? val.mobile : '';
+                form.web = (val) ? val.web : '';
+            }
+        }
+
+        this.setState({ form });
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
@@ -120,6 +141,7 @@ class Form extends Component {
                                     }}
                                     review={true}
                                     onChange={this.handleContactChange} 
+                                    onSelect={this.handleContactSelect}
                                 />
 
                                 <div className="row">

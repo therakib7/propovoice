@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Org; 
 use WP_Query;
 
 class Person
@@ -114,17 +115,18 @@ class Person
             $query_data = [];
             $query_data['id'] = $id;
 
-            $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-            $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-            $query_data['email'] = get_post_meta($id, 'email', true);
-            $query_data['org_name'] = get_post_meta($id, 'org_name', true);
-            $query_data['web'] = get_post_meta($id, 'web', true);
-            $query_data['mobile'] = get_post_meta($id, 'mobile', true);
-            $query_data['country'] = get_post_meta($id, 'country', true);
-            $query_data['region'] = get_post_meta($id, 'region', true);
-            $query_data['address'] = get_post_meta($id, 'address', true);
+            $queryMeta = get_post_meta($id);
+            $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : ''; 
+            $query_data['email'] = isset($queryMeta['email']) ? $queryMeta['email'][0] : '';
+            $query_data['org_id'] = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
+            $query_data['web'] = isset($queryMeta['web']) ? $queryMeta['web'][0] : '';
+            $query_data['mobile'] = isset($queryMeta['mobile']) ? $queryMeta['mobile'][0] : '';
+            $query_data['country'] = isset($queryMeta['country']) ? $queryMeta['country'][0] : '';
+            $query_data['region'] = isset($queryMeta['region']) ? $queryMeta['region'][0] : '';
+            $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : ''; 
+            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : ''; 
 
-            $img_id = get_post_meta($id, 'img', true);
+            $img_id = $query_data['img'];
             $imgData = null;
             if ($img_id) {
                 $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
@@ -208,22 +210,22 @@ class Person
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $org_name     = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img          = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+        $first_name = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
+        $org_id     = isset($params['org_id']) ? absint($params['org_id']) : null;
+        $email      = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
+        $web        = isset($params['web']) ? esc_url_raw($req['web']) : null;
+        $mobile     = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
+        $country    = isset($params['country']) ? sanitize_text_field($req['country']) : null;
+        $region     = isset($params['region']) ? sanitize_text_field($req['region']) : null;
+        $address    = isset($params['address']) ? sanitize_text_field($req['address']) : null;
+        $img        = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
 
-        if (empty($first_name)) {
+        if ( empty($first_name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
-        if (!is_email($email)) {
+        if ( !is_email($email) ) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }
 
@@ -246,18 +248,20 @@ class Person
 
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
-                }
-
-                if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
-                }
+                } 
 
                 if ($email) {
                     update_post_meta($post_id, 'email', $email);
                 }
 
-                if ($org_name) {
-                    update_post_meta($post_id, 'org_name', $org_name);
+
+                if ( ! $org_id && $org_name ) {
+                    $org = new Org();
+                    $org_id = $org->create( [ 'org_name' => $org_name] );
+                }
+
+                if ($org_id) {
+                    update_post_meta($post_id, 'org_id', $org_id);
                 }
 
                 if ($web) {

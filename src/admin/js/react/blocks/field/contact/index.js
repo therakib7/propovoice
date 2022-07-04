@@ -56,7 +56,7 @@ class Contact extends Component {
                 
             }, 300);
         });
-    } 
+    }  
 
     handleSelect = (e, val, type) => {
         e.preventDefault();

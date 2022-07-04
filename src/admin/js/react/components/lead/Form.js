@@ -13,6 +13,8 @@ class Form extends Component {
             id: null,
             first_name: '',
             org_name: '',
+            person_id: null,
+            org_id: null,
             email: '',
             mobile: '',
             web: '',
@@ -22,9 +24,7 @@ class Form extends Component {
             budget: '',
             currency: 'USD',
             desc: '',
-            note: '',
-            person_id: null,
-            org_id: null,
+            note: '', 
             date: false,
         };
 

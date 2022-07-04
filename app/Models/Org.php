@@ -7,7 +7,7 @@ class Org {
     {  
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
         $last_name    = isset($params['last_name']) ? sanitize_text_field($params['last_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
         $org_name     = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
@@ -17,7 +17,7 @@ class Org {
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
         $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null; 
-        /* if ( empty($first_name) ) {
+        /* if ( empty($name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
@@ -30,8 +30,8 @@ class Org {
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_person',
-                'post_title'    => $first_name,
+                'post_type' => 'ndpi_org',
+                'post_title'    => $name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
                 'post_author'   => get_current_user_id()
@@ -42,13 +42,9 @@ class Org {
 
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
                 
-                if ($first_name) {
-                    update_post_meta($post_id, 'first_name', $first_name);
-                }
-
-                if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
-                }
+                if ($name) {
+                    update_post_meta($post_id, 'name', $name);
+                } 
 
                 if ($email) {
                     update_post_meta($post_id, 'email', $email);
@@ -94,7 +90,7 @@ class Org {
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $name   = isset($params['name']) ? sanitize_text_field($params['name']) : null;
         $last_name    = isset($params['last_name']) ? sanitize_text_field($params['last_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
         $org_name = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
@@ -105,7 +101,7 @@ class Org {
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
         $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
 
-        /* if (empty($first_name)) {
+        /* if (empty($name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
@@ -121,15 +117,15 @@ class Org {
 
             $data = array(
                 'ID'            => $post_id,
-                'post_title'    => $first_name,
+                'post_title'    => $name,
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
 
-                if ($first_name) {
-                    update_post_meta($post_id, 'first_name', $first_name);
+                if ($name) {
+                    update_post_meta($post_id, 'name', $name);
                 }
 
                 if ($last_name) {
