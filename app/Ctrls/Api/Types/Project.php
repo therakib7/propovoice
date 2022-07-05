@@ -266,7 +266,7 @@ class Project
             );
             $post_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if ( !is_wp_error($post_id) ) {
 
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
                 $tab_id = $post_id;
@@ -377,7 +377,7 @@ class Project
 
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) { 
+            if ( !is_wp_error($post_id) ) { 
 
                 if ($status_id) {
                     wp_set_post_terms($post_id, [$status_id], 'ndpi_project_status');

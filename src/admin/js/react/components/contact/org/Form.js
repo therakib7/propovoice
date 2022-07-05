@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 class Form extends Component {
@@ -8,9 +8,9 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
-            first_name: '',
-            last_name: '',
             name: '',
+            first_name: '', 
+            person_id: null, 
             email: '',
             web: '',
             mobile: '',
@@ -60,6 +60,36 @@ class Form extends Component {
         }
     }
 
+    handleContactChange = (val, type) => {
+        let form = { ...this.state.form }
+        if (type == 'person') {
+            form.first_name = val;
+        } else {
+            form.name = val;
+        }
+        this.setState({ form });
+    }
+
+    handleContactSelect = (val, type) => {
+        let form = { ...this.state.form }
+
+        if (type == 'person') {
+            form.person_id = (val) ? val.id : null;
+            form.email = (val) ? val.email : '';
+            form.mobile = (val) ? val.mobile : '';
+            form.web = (val) ? val.web : '';
+        } else {
+            form.org_id = (val) ? val.id : null;
+            if (!form.name) {
+                form.email = (val) ? val.email : '';
+                form.mobile = (val) ? val.mobile : '';
+                form.web = (val) ? val.web : '';
+            }
+        }
+
+        this.setState({ form });
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
@@ -67,6 +97,7 @@ class Form extends Component {
     }
 
     render() {
+        const form = this.state.form;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -101,50 +132,18 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-name">
-                                            Organization Name
-                                        </label>
+                                <Contact
+                                    data={{
+                                        org_name: form.name,
+                                        first_name: form.first_name
+                                    }}
+                                    review={true}
+                                    personLast={true}
+                                    onChange={this.handleContactChange} 
+                                    onSelect={this.handleContactSelect}
+                                /> 
 
-                                        <input
-                                            id="form-name"
-                                            type="text"
-                                            name="name"
-                                            value={this.state.form.name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                    {/* <div className="col-lg">
-                                            <label
-                                                htmlFor="last_name">
-                                                Last Name
-                                            </label>
-
-                                            <input
-                                                id="last_name"
-                                                type="text"
-                                                name="last_name"
-                                                value={this.state.form.last_name}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>  */}
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="first_name">
-                                            Contact Person
-                                        </label>
-
-                                        <input
-                                            id="first_name"
-                                            type="text"
-                                            name="first_name"
-                                            value={this.state.form.first_name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
+                                <div className="row"> 
                                     <div className="col-lg">
                                         <label htmlFor="form-web">
                                             Website

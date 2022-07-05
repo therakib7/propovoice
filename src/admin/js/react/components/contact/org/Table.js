@@ -55,7 +55,7 @@ const TableBody = props => {
                 </td>
                 <td>{row.name}</td>
                 <td>{row.address}</td> 
-                <td></td>
+                <td>{row.first_name}</td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <Action 

@@ -238,7 +238,7 @@ class Workplace
             );
             $post_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if ( !is_wp_error($post_id) ) {
 
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
@@ -324,7 +324,7 @@ class Workplace
             );
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if ( !is_wp_error($post_id) ) {
 
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);

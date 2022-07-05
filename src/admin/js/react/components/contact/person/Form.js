@@ -132,8 +132,7 @@ class Form extends Component {
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
-                            <div className="pi-form-style-one">
-                                 
+                            <div className="pi-form-style-one"> 
                                 <Contact
                                     data={{
                                         first_name: form.first_name,
@@ -145,19 +144,6 @@ class Form extends Component {
                                 />
 
                                 <div className="row">
-                                    {/* <div className="col-lg">
-                                        <label htmlFor="form-org_name">
-                                            Company/Organization Name
-                                        </label>
-
-                                        <input
-                                            id="form-org_name"
-                                            type="text"
-                                            name="org_name"
-                                            value={this.state.form.org_name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div> */}
                                     <div className="col-lg">
                                         <label htmlFor="form-web">
                                             Website

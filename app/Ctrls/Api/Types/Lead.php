@@ -352,7 +352,7 @@ class Lead
             );
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if ( !is_wp_error($post_id) ) {
 
                 if ($level_id) {
                     wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');

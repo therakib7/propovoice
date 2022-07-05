@@ -24,7 +24,7 @@ class Taxonomy
         );
         $post_id = wp_insert_post($data);
 
-        if (!is_wp_error($post_id)) {
+        if ( !is_wp_error($post_id) ) {
             update_option('ndpi_workplace_default', $post_id);
         }
 

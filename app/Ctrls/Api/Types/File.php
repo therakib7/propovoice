@@ -199,7 +199,7 @@ class File
             );
             $post_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) {
+            if ( !is_wp_error($post_id) ) {
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
                 update_post_meta($post_id, 'tab_id', $tab_id);
                 update_post_meta($post_id, 'type', $type);
@@ -244,7 +244,7 @@ class File
             );
             $post_id = wp_update_post($data);
 
-            if (!is_wp_error($post_id)) { 
+            if ( !is_wp_error($post_id) ) { 
 
                 if ($title) {
                     update_post_meta($post_id, 'title', $title);
