@@ -1,21 +1,23 @@
 <?php
-namespace Ncpi\Models; 
 
-class Person {
+namespace Ncpi\Models;
+
+class Person
+{
 
     public function create($params)
-    {  
+    {
         $reg_errors = new \WP_Error;
 
         $org_id     = isset($params['org_id']) ? sanitize_text_field($params['org_id']) : null;
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null; 
+        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
         $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($params['mobile']) : null;
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null; 
+        $img = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
         /* if ( empty($first_name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
@@ -24,7 +26,7 @@ class Person {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }  */
 
-        if ( $reg_errors->get_error_messages() ) {
+        if ($reg_errors->get_error_messages()) {
             return $reg_errors;
         } else {
 
@@ -37,17 +39,17 @@ class Person {
             );
             $post_id = wp_insert_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
-                
+                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
+
                 if ($org_id) {
                     update_post_meta($post_id, 'org_id', $org_id);
                 }
 
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
-                } 
+                }
 
                 if ($email) {
                     update_post_meta($post_id, 'email', $email);
@@ -73,9 +75,9 @@ class Person {
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
-                } 
+                if ($img) {
+                    update_post_meta($post_id, 'img', $img);
+                }
 
                 return $post_id;
             } else {
@@ -84,13 +86,11 @@ class Person {
         }
     }
 
-    public function update($req)
-    {
-        $params = $req->get_params();
+    public function update($params)
+    { 
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($params['last_name']) : null;
+        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null; 
         $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
         $org_id     = isset($params['org_id']) ? sanitize_text_field($params['org_id']) : null;
         $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
@@ -98,7 +98,7 @@ class Person {
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
+        $img = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
 
         /* if (empty($first_name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -110,9 +110,8 @@ class Person {
 
         if ($reg_errors->get_error_messages()) {
             return $reg_errors;
-        } else {
-            $url_params = $req->get_url_params();
-            $post_id    = $url_params['id'];
+        } else { 
+            $post_id = $params['person_id'];
 
             $data = array(
                 'ID'            => $post_id,
@@ -121,15 +120,11 @@ class Person {
             );
             $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
 
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
-                }
-
-                if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
-                }
+                } 
 
                 if ($email) {
                     update_post_meta($post_id, 'email', $email);
@@ -159,9 +154,9 @@ class Person {
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
-                } 
+                if ($img) {
+                    update_post_meta($post_id, 'img', $img);
+                }
 
                 return $post_id;
             } else {
@@ -169,5 +164,16 @@ class Person {
             }
         }
     }
- 
+
+    function single($id)
+    {
+        if (!$id) return null;
+        $Data = [];
+
+        $Data['id'] = absint($id);
+        $Meta = get_post_meta($id);
+        $Data['first_name'] = isset($Meta['first_name']) ? $Meta['first_name'][0] : '';
+        $Data['email'] = isset($Meta['email']) ? $Meta['email'][0] : '';
+        return $Data;
+    }
 }

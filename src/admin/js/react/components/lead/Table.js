@@ -111,10 +111,10 @@ const TableBody = props => {
                 <td>
                     <div className="pi-avater">
                         <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
-                        <span>{row.contact_id.first_name}</span>
+                        <span>{ ( row.person ) ? row.person.first_name : row.org.name }</span>
                     </div>
                 </td>
-                <td>{row.contact_id.email}</td>
+                <td>{ ( row.person ) ? row.person.email : row.org.email }</td>
                 <td>
                     {(level.color && level.bg_color) && <span className="pi-badge"
                         style={{

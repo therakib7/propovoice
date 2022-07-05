@@ -184,6 +184,10 @@
 .ncpi .pi-from-content .pi-to {
   margin-left: auto;
 }
+.ncpi .pi-from-content .pi-from-to-content {
+  display: flex;
+  justify-content: space-between;
+}
 .ncpi .pi-from-content .pi-from-to {
   max-width: 310px;
 }
@@ -205,7 +209,7 @@
   position: relative;
   color: #4A5568;
   left: -10px;
-  margin-top: -10px;
+  margin-top: -15px;
 }
 .ncpi .pi-from-content .pi-from-to .pi-sendlist .pi-list svg {
   margin-top: 6px;

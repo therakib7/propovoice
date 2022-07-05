@@ -23,10 +23,23 @@ const Taxonomy = (props) => {
 	useClickOutside(dropdownContent, close);
 
 	useEffect(() => {
-		getData();
+		if ( props.data ) {
+			setListById( props.data );
+			getData();
+		} else {
+			getDataWithSingle();
+		} 
 	}, []);
 
 	const getData = () => {
+		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy).then(resp => {
+			if (resp.data.success) {
+				setList(resp.data.data[props.taxonomy]); 
+			}
+		});
+	}
+
+	const getDataWithSingle = () => {
 		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
@@ -35,7 +48,8 @@ const Taxonomy = (props) => {
 		});
 	}
 
-	const showDropdown = () => {
+	const showDropdown = (e) => {
+		e.preventDefault();
 		if (dropdown) {
 			setDropdown(false);
 		} else {
@@ -53,50 +67,7 @@ const Taxonomy = (props) => {
 			setModalType(type);
 			setForm(tax);
 		}
-	}
-
-	const handleChange = (e) => {
-		const target = e.target;
-		const name = target.name;
-		const value = target.value;
-		setForm({ ...form, [name]: value })
-	}
-
-	const handleColorChange = (val, key) => {
-		setForm({ ...form, [key]: val })
-	}
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
-		let newForm = { ...form }
-		newForm.taxonomy = props.taxonomy;
-
-		if (modalType == 'new') {
-			props.create('taxonomies', newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully added'); //TODO: translation
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});;
-		} else {
-			props.update('taxonomies', newForm.id, newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully updated'); //TODO: translation
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});;
-		}
-		setModal(false);
-	}
+	}  
 
 	const handleDelete = (id) => {
 		if (confirm('Are you sure, to delete it?')) { //TODO: translation
@@ -148,23 +119,25 @@ const Taxonomy = (props) => {
 			})}
 
 			<div className="pi-action-content" ref={dropdownContent}>
-				{props.multiple && <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow" onClick={() => showDropdown()}>
+				{props.multiple && <button 
+				className={( !props.small ) ? 'pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
+				onClick={(e) => showDropdown(e)}>
 					+ Add {props.title}
 				</button>}
 
 				{!props.multiple && listById.length > 0 && <button
-					className={(props.btnMid) ? 'pi-btn pi-btn-medium' : 'pi-btn pi-btn-small'}
+					className={( !props.small ) ? 'pi-btn pi-btn-medium' : 'pi-btn pi-btn-small'}
 					style={{
 						backgroundColor: listById[0].bg_color,
 						color: listById[0].color
 					}}
-					onClick={() => showDropdown()}
+					onClick={(e) => showDropdown(e)}
 				>
 					{listById[0].label}
 					<svg
 						width={10}
 						height={6}
-						style={{ marginLeft: (props.btnMid) ? '10px' : '7px' }}
+						style={{ marginLeft: ( !props.small ) ? '10px' : '7px' }}
 						className='pi-mr-0'
 						viewBox="0 0 10 6"
 						fill="none"
@@ -179,8 +152,8 @@ const Taxonomy = (props) => {
 
 				{!props.multiple && !listById.length && <button
 					style={{ backgroundColor: '#E2E8F0', color: '#4a5568' }}
-					className={(props.btnMid) ? 'pi-btn pi-btn-medium pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
-					onClick={() => showDropdown()}
+					className={( !props.small ) ? 'pi-btn pi-btn-medium pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
+					onClick={(e) => showDropdown(e)}
 				>
 					+ Add {props.title}
 				</button>}

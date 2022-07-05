@@ -84,9 +84,8 @@ class Org {
         }
     }
 
-    public function update($req)
+    public function update($params)
     {
-        $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
         $name   = isset($params['name']) ? sanitize_text_field($params['name']) : null;
@@ -111,8 +110,7 @@ class Org {
         if ($reg_errors->get_error_messages()) {
             return $reg_errors;
         } else {
-            $url_params = $req->get_url_params();
-            $post_id    = $url_params['id'];
+            $post_id = $params['org_id'];
 
             $data = array(
                 'ID'            => $post_id,
@@ -168,6 +166,18 @@ class Org {
                 return $reg_errors->add('update_post', esc_html__('Something wrong!', 'propovoice'));
             }
         }
+    }
+
+    function single($id)
+    {
+        if (!$id) return null;
+        $Data = [];
+
+        $Data['id'] = absint($id);
+        $Meta = get_post_meta($id);
+        $Data['name'] = isset($Meta['name']) ? $Meta['name'][0] : '';
+        $Data['email'] = isset($Meta['email']) ? $Meta['email'][0] : '';
+        return $Data;
     }
  
 }
