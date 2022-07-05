@@ -2,7 +2,7 @@
 
 body.toplevel_page_ncpi-welcome {
 	margin-top: -32px;
-	background: #fff; 
+	background: #fff;
 	// font-family: "Nunito", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -21,18 +21,18 @@ body.toplevel_page_ncpi-welcome #wpwrap {
 
 body.toplevel_page_ncpi-welcome #wpbody-content {
 	padding: 0;
-	min-height: 100vh!important
+	min-height: 100vh !important
 }
 
 body.toplevel_page_ncpi-welcome #wpbody-content .wrap {
 	margin: 0
 }
 
-body.toplevel_page_ncpi-welcome #adminmenumain, 
+body.toplevel_page_ncpi-welcome #adminmenumain,
 body.toplevel_page_ncpi-welcome #wpadminbar,
 body.toplevel_page_ncpi-welcome #wpcontent>*,
 body.toplevel_page_ncpi-welcome #wpfooter,
-body.toplevel_page_ncpi-welcome .error, 
+body.toplevel_page_ncpi-welcome .error,
 body.toplevel_page_ncpi-welcome .notice,
 body.toplevel_page_ncpi-welcome .update-nag,
 body.toplevel_page_ncpi-welcome .updated,
@@ -40,18 +40,18 @@ body.toplevel_page_ncpi-welcome .woocommerce-layout__header,
 body.toplevel_page_ncpi-welcome .woocommerce-message,
 body.toplevel_page_ncpi-welcome .woocommerce-store-alerts {
 	display: none
-} 
- 
+}
+
 body.toplevel_page_ncpi-welcome .hidden {
 	display: none !important
 }
 
 body.toplevel_page_ncpi-welcome #wpcontent {
-	margin-left: 0!important;
-	padding-left: 0!important
+	margin-left: 0 !important;
+	padding-left: 0 !important
 }
 
-body.toplevel_page_ncpi-welcome #wpcontent > #wpbody {
+body.toplevel_page_ncpi-welcome #wpcontent>#wpbody {
 	display: block;
-	margin-top: 0!important
+	margin-top: 0 !important
 }
