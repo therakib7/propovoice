@@ -107,14 +107,14 @@ const TableBody = props => {
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
-                </td>
-                <td>
+                </td> 
+                <td onClick={() => handleOverview(row.id)}>
                     <div className="pi-avater">
                         <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                         <span>{ ( row.person ) ? row.person.first_name : row.org.name }</span>
                     </div>
                 </td>
-                <td>{ ( row.person ) ? row.person.email : row.org.email }</td>
+                <td onClick={() => handleOverview(row.id)}>{ ( row.person ) ? row.person.email : row.org.email }</td>
                 <td>
                     {(level.color && level.bg_color) && <span className="pi-badge"
                         style={{
@@ -139,14 +139,14 @@ const TableBody = props => {
                     </span>}
 
                 </td>
-                <td>
+                <td onClick={() => handleOverview(row.id)}>
                     {row.tags && row.tags.map((tag, tagIndex) => {
                         return (
                             <span key={tagIndex} className="pi-badge pi-mr-5">{tag.label}</span>
                         )
                     })}
                 </td>
-                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td onClick={() => handleOverview(row.id)}><Moment format="YYYY-MM-DD">{row.date}</Moment></td> 
                 <td className="pi-action">
                     <Action 
                         row={row}

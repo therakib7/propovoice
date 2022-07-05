@@ -56,6 +56,9 @@ class ListSingle extends Component {
                 org: {
                     name: 'Name'
                 },
+                contact: {
+                    first_name: 'Name'
+                },
                 level_id: null,
                 stage_id: null,
                 probability: 0,
@@ -266,8 +269,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-content">
                                         <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
-                                            <h3 className="">
-                                                {/* {contact.first_name} */}
+                                            <h3 className=""> 
                                                 { ( data.person ) ? data.person.first_name : data.org.name } 
                                                 <button
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
@@ -398,8 +400,12 @@ class ListSingle extends Component {
                                         <div className="pi-avatar-content">
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
-                                                <h5 style={{ fontSize: 12 }}>{data.contact.first_name}</h5>
-                                                <p style={{ fontSize: 12 }}>{(data.contact.region) ? data.contact.region + ',' : ''} {data.contact.country}</p>
+                                                <h5 style={{ fontSize: 12 }}>{ ( data.person ) ? data.person.first_name : data.org.name } </h5>
+                                                <p style={{ fontSize: 12 }}>
+                                                { ( data.person ) ? data.person.region : data.org.region }
+
+                                                { ( data.person ) ? data.person.country : data.org.country }
+                                                </p>
                                             </div>
                                         </div>
                                         <div className="pi-range">
@@ -557,8 +563,12 @@ class ListSingle extends Component {
                                         <div className="pi-avatar-content">
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
-                                                <h5 style={{ fontSize: 12 }}>Nabil Ahmed</h5>
-                                                <p style={{ fontSize: 12 }}>Dhaka, Bangladesh</p>
+                                            <h5 style={{ fontSize: 12 }}>{ ( data.person ) ? data.person.first_name : data.org.name } </h5>
+                                                <p style={{ fontSize: 12 }}>
+                                                { ( data.person ) ? data.person.region : data.org.region }
+
+                                                { ( data.person ) ? data.person.country : data.org.country }
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

@@ -2,6 +2,8 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Org;
+use Ncpi\Models\Person;
 use WP_Query;
 
 class Project
@@ -138,7 +140,21 @@ class Project
                 $query_data['tags'] = $tagList;
             }
 
-            $contact_id = get_post_meta($id, 'person_id', true);
+            $query_data['person'] = null;
+            $person_id = get_post_meta($id, 'person_id', true);
+            if ($person_id) {
+                $person = new Person();
+                $query_data['person'] = $person->single($person_id);
+            }
+
+            $query_data['org'] = null;
+            $org_id = get_post_meta($id, 'org_id', true);
+            if ($org_id) {
+                $org = new Org();
+                $query_data['org'] = $org->single($org_id);
+            }
+
+            /* $contact_id = get_post_meta($id, 'person_id', true);
             $contactData = [];
 
             if ($contact_id) {
@@ -148,7 +164,7 @@ class Project
                 $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
                 // $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : ''; 
             }
-            $query_data['contact_id'] = $contactData;
+            $query_data['contact_id'] = $contactData; */
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -204,7 +220,21 @@ class Project
             $query_data['tags'] = $tagList;
         }
 
-        $contact_id = get_post_meta($id, 'person_id', true);
+        $query_data['person'] = null;
+        $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
+        if ( $person_id ) {
+            $person = new Person();   
+            $query_data['person'] = $person->single( $person_id, true );
+        }
+
+        $query_data['org'] = null;
+        $org_id = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
+        if ( $org_id ) {
+            $org = new Org();   
+            $query_data['org'] = $org->single( $org_id, true );
+        } 
+
+        /* $contact_id = get_post_meta($id, 'person_id', true);
         $contactData = [];
 
         if ($contact_id) {
@@ -219,7 +249,7 @@ class Project
             $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
             $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
         }
-        $query_data['contact'] = $contactData;
+        $query_data['contact'] = $contactData; */
 
         $query_data['date'] = get_the_time('j-M-Y');
 
@@ -232,8 +262,10 @@ class Project
         $reg_errors = new \WP_Error;
 
         $deal_id    = isset($params['deal_id']) ? absint($params['deal_id']) : null;
-        $person_id  = isset($params['person_id']) ? absint($params['person_id']) : null; 
-        $org_id     = isset($params['org_id']) ? absint($params['org_id']) : null; 
+        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
+        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
+        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
         $title      = isset($params['title']) ? sanitize_text_field($params['title']) : null;
         $status_id   = isset($params['status_id']) ? absint($params['status_id']) : null; 
         $budget     = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
@@ -252,6 +284,24 @@ class Project
         /* if ( !$deal_id && empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
+
+        $person = new Person();  
+        if ( $person_id ) {
+            $person->update( $params ); 
+        }
+
+        if ( ! $person_id && $first_name ) { 
+            $person_id = $person->create( $params ); 
+        } 
+
+        $org = new Org();
+        if ( ! $person_id && $org_id ) {
+            $org->update( $params ); 
+        }
+        
+        if ( ! $org_id && $org_name ) { 
+            $org_id = $org->create( $params ); 
+        } 
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());

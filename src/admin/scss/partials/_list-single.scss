@@ -242,7 +242,7 @@
   border-radius: 5px;
   margin-right: 5px;
   border-style: dashed !important;
-  width: 32px !important;
+  width: 32px;
 }
 .ncpi .pi-task-btn img {
   max-width: 15px;
@@ -257,6 +257,7 @@
 }
 .ncpi .pi-task-btn-two {
   padding: 3px 5px 2px;
+  width: 28px;
 }
 .ncpi .pi-task-btn-two img {
   height: 18px;

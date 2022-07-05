@@ -12,16 +12,20 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
+            first_name: '',
+            org_name: '',
+            person_id: null,
+            org_id: null,
+            email: '',
+            mobile: '',
             title: '',
             deal_id: '',
             status_id: '',
             budget: '',
-            currency: 'USD', 
+            currency: 'USD',
             tags: [],
             desc: '',
             note: '',
-            person_id: null,
-            org_id: null,
             date: false
         };
 
@@ -81,7 +85,7 @@ class Form extends Component {
             if (this.state.form.id != this.props.data.id) {
                 let data = { ...this.props.data }
                 if (this.props.modalType == 'move') {
-                    data.deal_id = data.id; 
+                    data.deal_id = data.id;
                 }
 
                 this.setState({ form: data });
@@ -154,22 +158,40 @@ class Form extends Component {
         this.setState({ form: this.initialState });
     }
 
-    handlePersonSelect = (val) => {
+    handleContactChange = (val, type) => {
         let form = { ...this.state.form }
-        form.person_id = val;
+        if (type == 'person') {
+            form.first_name = val;
+        } else {
+            form.org_name = val;
+        }
         this.setState({ form });
     }
 
-    handleOrgSelect = (val) => {
+    handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-        form.org_id = val;
+
+        if (type == 'person') {
+            form.person_id = (val) ? val.id : null;
+            form.email = (val) ? val.email : '';
+            form.mobile = (val) ? val.mobile : '';
+            form.web = (val) ? val.web : '';
+        } else {
+            form.org_id = (val) ? val.id : null;
+            if (!form.first_name) {
+                form.email = (val) ? val.email : '';
+                form.mobile = (val) ? val.mobile : '';
+                form.web = (val) ? val.web : '';
+            }
+        }
+
         this.setState({ form });
     }
 
     render() {
         const stageList = this.state.stages;
         const tagList = this.state.tags;
-        const form = this.state.form; 
+        const form = this.state.form;
 
         let title = '';
         if (this.props.modalType == 'new') {
@@ -212,15 +234,49 @@ class Form extends Component {
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
-                            <div className="pi-form-style-one">
-                                {!this.props.reload && <Contact
-                                    data={{
-                                        person: this.state.form.person_id,
-                                        org: this.state.form.org_id
-                                    }}
-                                    onPersonChange={this.handlePersonSelect}
-                                    onOrgChange={this.handleOrgSelect}
-                                />}
+                            <div className="pi-form-style-one"> 
+
+                                {!this.props.reload && <>
+                                    <Contact
+                                        data={{
+                                            first_name: form.first_name,
+                                            org_name: form.org_name,
+                                            person_id: form.person_id,
+                                            org_id: form.org_id
+                                        }}
+                                        onChange={this.handleContactChange}
+                                        onSelect={this.handleContactSelect}
+                                    />
+
+                                    <div className="row">
+                                        <div className="col-lg">
+                                            <label htmlFor="form-email">
+                                                Email
+                                            </label>
+                                            <input
+                                                id="form-email"
+                                                type="email"
+                                                name="email"
+                                                value={form.email}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="col-lg">
+                                            <label htmlFor="form-mobile">
+                                                Mobile Number
+                                            </label>
+
+                                            <input
+                                                id="form-mobile"
+                                                type="text"
+                                                name="mobile"
+                                                value={form.mobile}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
+                                </>}
 
                                 <div className="row">
                                     <div className="col-md">
@@ -236,7 +292,7 @@ class Form extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div className="row">
                                     <div className="col-md">
@@ -285,7 +341,7 @@ class Form extends Component {
                                             options={stageList}
                                         />
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div className="row">
                                     <div className="col-md">

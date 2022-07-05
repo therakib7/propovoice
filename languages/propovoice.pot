@@ -98,7 +98,7 @@ msgstr ""
 msgid "Receiver is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Lead.php:254
+#: ../app/Ctrls/Api/Types/Lead.php:268
 msgid "Contact info is missing"
 msgstr ""
 

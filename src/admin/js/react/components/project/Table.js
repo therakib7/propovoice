@@ -127,7 +127,7 @@ const TableBody = props => {
                     />
                 </td>
                 <td>{row.title}</td>
-                <td>{row.contact_id.email}</td>
+                <td>{ ( row.person ) ? row.person.email : row.org.email }</td>
                 <td>22 April, 2022</td>
                 <td>${row.budget}</td>
                 <td>

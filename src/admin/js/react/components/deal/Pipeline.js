@@ -198,8 +198,12 @@ function Pipeline(props) {
 																	<div className="pi-avatar-content">
 																		<img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
 																		<div className="pi-avatar-text">
-																			<h5>{item.contact.first_name}</h5>
-																			<p>{(item.contact.region) ? item.contact.region + ',' : ''} {item.contact.country}</p>
+																			<h5>{ ( item.person ) ? item.person.first_name : item.org.name } </h5> 
+																			<p>
+																			{ ( item.person ) ? item.person.region : item.org.region }
+
+																			{ ( item.person ) ? item.person.country : item.org.country }
+																			</p>
 
 																			{column.type == 'won' && <span className="pi-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>Won</span>}
 																			{column.type == 'lost' && <span className="pi-badge" style={{ backgroundColor: '#FFDEEB', color: '#FF267F' }}>Lost</span>}
