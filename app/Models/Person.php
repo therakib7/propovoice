@@ -165,7 +165,7 @@ class Person
         }
     }
 
-    function single($id)
+    function single($id, $details = false)
     {
         if (!$id) return null;
         $Data = [];
@@ -174,6 +174,14 @@ class Person
         $Meta = get_post_meta($id);
         $Data['first_name'] = isset($Meta['first_name']) ? $Meta['first_name'][0] : '';
         $Data['email'] = isset($Meta['email']) ? $Meta['email'][0] : '';
+        $Data['mobile'] = isset($Meta['mobile']) ? $Meta['mobile'][0] : '';
+        if ( $details ) { 
+            $Data['web'] = isset($Meta['web']) ? $Meta['web'][0] : '';
+            $Data['country'] = isset($Meta['country']) ? $Meta['country'][0] : '';
+            $Data['region'] = isset($Meta['region']) ? $Meta['region'][0] : '';
+            $Data['address'] = isset($Meta['address']) ? $Meta['address'][0] : '';
+        } 
+
         return $Data;
     }
 }

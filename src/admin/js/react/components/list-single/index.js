@@ -50,8 +50,11 @@ class ListSingle extends Component {
             project_status: [],
             data: {
                 id: null,
-                contact: {
+                person: {
                     first_name: 'Name'
+                },
+                org: {
+                    name: 'Name'
                 },
                 level_id: null,
                 stage_id: null,
@@ -247,7 +250,7 @@ class ListSingle extends Component {
                             </svg>
                         </li>
                         <li className="pi-active">
-                            {path == 'lead' && contact.first_name}
+                            {path == 'lead' && ( data.person ) ? data.person.first_name : data.org.name}
                             {path == 'client' && contact.first_name}
                             {(path == 'deal' || path == 'project') && data.title}
                             {path == 'contact' && contact.first_name}
@@ -264,7 +267,8 @@ class ListSingle extends Component {
                                         <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
                                             <h3 className="">
-                                                {contact.first_name}
+                                                {/* {contact.first_name} */}
+                                                { ( data.person ) ? data.person.first_name : data.org.name } 
                                                 <button
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ leadModal: true })}
@@ -273,8 +277,8 @@ class ListSingle extends Component {
                                                 </button>
                                             </h3>
                                             <address>
-                                                {contact.email} <br />
-                                                Organization/Company: {contact.org_name}<br />
+                                                { ( data.person ) ? data.person.email : data.org.email } <br />
+                                                {data.person && data.org && <>Organization/Company: {data.org_name}<br /></>}
                                                 Budget ${data.budget}
                                             </address>
                                         </div>
@@ -950,24 +954,25 @@ class ListSingle extends Component {
                         <div className="pi-widget pi-info-box">
                             <h3 className="pi-widget-title">Additional Info</h3>
                             <address>
-                                {contact.mobile &&
+                            
+                                {true &&
                                     <>
                                         <span>Mobile:</span>
-                                        {contact.mobile}
+                                        {( data.person ) ? data.person.mobile : data.org.mobile}
                                     </>
                                 }
 
-                                {contact.web &&
+                                {true &&
                                     <>
                                         <span>Website:</span>
-                                        {contact.web}
+                                        {( data.person ) ? data.person.web : data.org.web}
                                     </>
                                 }
 
-                                {contact.address &&
+                                {true &&
                                     <>
                                         <span>Address:</span>
-                                        {contact.address}
+                                        {( data.person ) ? data.person.address : data.org.address}
                                     </>
                                 }
 

@@ -211,7 +211,21 @@ class Lead
             $query_data['tags'] = $tagList;
         } */
 
-        $contact_id = get_post_meta($id, 'person_id', true);
+        $query_data['person'] = null;
+        $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
+        if ( $person_id ) {
+            $person = new Person();   
+            $query_data['person'] = $person->single( $person_id, true );
+        }
+
+        $query_data['org'] = null;
+        $org_id = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
+        if ( $org_id ) {
+            $org = new Org();   
+            $query_data['org'] = $org->single( $org_id, true );
+        }
+
+        /* $contact_id = get_post_meta($id, 'person_id', true);
         $contactData = [];
 
         if ($contact_id) {
@@ -226,7 +240,7 @@ class Lead
             $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
             $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
         }
-        $query_data['contact'] = $contactData;
+        $query_data['contact'] = $contactData; */
 
         $query_data['date'] = get_the_time('j-M-Y');
 
