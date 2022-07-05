@@ -71,7 +71,7 @@ const TableBody = props => {
                 <td className="pi-action">
                     <Action 
                         row={row}
-                        handleOverview={handleOverview}
+                        // handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
                     />

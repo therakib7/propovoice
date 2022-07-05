@@ -1,24 +1,22 @@
-import React, { Component } from 'react'  
+import React, { Component } from 'react'
 
 class PaymentInfo extends Component {
 
     constructor(props) {
-        super(props); 
-    } 
+        super(props);
+    }
 
     render = () => {
         const bank_info = this.props.data;
-        return (  
-            <div className=""> 
+        return (
+            <>
                 {bank_info ?
                     <>
-                        <div className="pi-from-to"> 
-                            <label>Payment Info:</label>  
-                            <div className="pi-bank-info" dangerouslySetInnerHTML={{__html: bank_info.name + '<br />' + bank_info.details.replaceAll('\n', '<br />')}}></div>
-                        </div> 
+                        <h4 className='pi-title-small'>Payment Info:</h4>
+                        <address dangerouslySetInnerHTML={{ __html: bank_info.name + '<br />' + bank_info.details.replaceAll('\n', '<br />') }}></address>
                     </> : ''
-                } 
-            </div> 
+                }
+            </>
         )
     }
 }

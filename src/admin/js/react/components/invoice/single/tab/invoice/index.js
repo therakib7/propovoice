@@ -640,7 +640,7 @@ class Invoice extends Component {
 										</svg>
 									</li>
 									<li>
-										<NavLink to='/invoice'>{title}</NavLink>
+										<NavLink to={'/'+this.props.path}>{title}</NavLink>
 									</li>
 									<li>
 										<svg
@@ -897,11 +897,11 @@ class Invoice extends Component {
 										/>
 
 										<div className="row">
-											<div className="col-lg-6">
+											<div className="col">
 												<PaymentInfo data={this.state.paymentBankData} />
 											</div>
 
-											<div className="col-lg-6">
+											<div className="col">
 												<Total
 													currencyFormatter={this.formatCurrency}
 													itemsTotal={this.calcItemsTotal}

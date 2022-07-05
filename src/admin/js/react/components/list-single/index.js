@@ -253,9 +253,9 @@ class ListSingle extends Component {
                             </svg>
                         </li>
                         <li className="pi-active">
-                            {path == 'lead' && ( data.person ) ? data.person.first_name : data.org.name}
-                            {path == 'client' && contact.first_name}
+                            {path == 'lead' && <>{( data.person ) ? data.person.first_name : data.org.name}</>}
                             {(path == 'deal' || path == 'project') && data.title}
+                            {path == 'client' && contact.first_name}
                             {path == 'contact' && contact.first_name}
                         </li>
                     </ul>
