@@ -1451,7 +1451,7 @@ html {
 }
 .ncpi .pi-breadcrumb {
   margin-bottom: 18px;
-  margin-left: -3px;
+  margin-left: -5px;
 }
 .ncpi .pi-breadcrumb ul {
   margin: 0;
@@ -1460,6 +1460,7 @@ html {
 .ncpi .pi-breadcrumb ul li {
   padding: 5px;
   font-size: 12px;
+  line-height: 100%;
 }
 .ncpi .pi-breadcrumb ul li a {
   color: #718096b5;
@@ -1472,7 +1473,7 @@ html {
 }
 .ncpi .pi-breadcrumb ul li svg {
   position: relative;
-  top: 5px;
+  top: 1px;
 }
 .ncpi .pi-float-right.pi-select-small {
   border: none;
@@ -2078,35 +2079,6 @@ html {
   zoom: 1.2 !important;
   top: -1px !important;
 }
-.wp-admin .react-datepicker {
-  border: 1px solid #CBD5E0 !important;
-}
-.wp-admin .react-datepicker__triangle::after {
-  border-bottom-color: #FAFAFB !important;
-}
-.wp-admin .react-datepicker__header {
-  color: #4A5568 !important;
-  border-bottom: 1px solid #CBD5E0 !important;
-  background-color: #FAFAFB !important;
-}
-.wp-admin .react-datepicker__current-month {
-  color: #4A5568 !important;
-  position: relative;
-  top: -3px;
-}
-.wp-admin .react-datepicker__day-names {
-  color: #4A5568 !important;
-}
-.wp-admin .react-datepicker__day {
-  color: #718096 !important;
-}
-.wp-admin .react-datepicker__day--selected {
-  background-color: #4c6fff !important;
-  color: #fff !important;
-}
-.wp-admin .react-datepicker__day--selected:hover {
-  background-color: #3157F0 !important;
-}
 .wp-admin .pi-field-select textarea:focus,
 .wp-admin .pi-field-select select:focus,
 .wp-admin .pi-field-select input[type=url]:focus,
@@ -2115,6 +2087,111 @@ html {
 .wp-admin .pi-field-select input[type=text]:focus {
   border: 0 !important;
   box-shadow: none !important;
+}
+
+.react-datepicker {
+  border: 1px solid #CBD5E0 !important;
+}
+
+.react-datepicker__triangle::after {
+  border-bottom-color: #FAFAFB !important;
+}
+
+.react-datepicker__header {
+  color: #4A5568 !important;
+  border-bottom: 1px solid #CBD5E0 !important;
+  background-color: #FAFAFB !important;
+}
+
+.react-datepicker__current-month {
+  color: #4A5568 !important;
+  position: relative;
+  top: -3px;
+}
+
+.react-datepicker__day-names {
+  color: #4A5568 !important;
+}
+
+.react-datepicker__day {
+  color: #718096 !important;
+}
+
+.react-datepicker__day--selected {
+  background-color: #4c6fff !important;
+  color: #fff !important;
+}
+
+.react-datepicker__day--selected:hover {
+  background-color: #3157F0 !important;
+}
+
+.twentytwenty-theme svg,
+.twentytwenty-theme img,
+.twentytwenty-theme embed,
+.twentytwenty-theme object {
+  display: inline-block !important;
+}
+.twentytwenty-theme button {
+  padding: 0;
+}
+.twentytwenty-theme ul li {
+  margin: 0;
+}
+.twentytwenty-theme table {
+  margin: 0;
+}
+.twentytwenty-theme table,
+.twentytwenty-theme th,
+.twentytwenty-theme td {
+  border: none;
+}
+.twentytwenty-theme .pi-table tr th {
+  line-height: 27px;
+}
+.twentytwenty-theme .pi-accordion-table {
+  padding: 0;
+}
+.twentytwenty-theme input[type=checkbox] {
+  zoom: 0.8 !important;
+}
+.twentytwenty-theme .pi-table tr th:first-child input[type=checkbox] {
+  top: 6px !important;
+}
+.twentytwenty-theme .pi-accordion-table input[type=checkbox] {
+  zoom: 1 !important;
+}
+@media (min-width: 700px) {
+  .twentytwenty-theme section {
+    padding: 0;
+  }
+}
+.twentytwenty-theme .pi-settings-horizontal-tab {
+  margin-left: 0;
+}
+.twentytwenty-theme .pi-breadcrumb ul li {
+  margin: 0;
+}
+.twentytwenty-theme .pi-search-field input[type=text] {
+  font-size: 14px;
+}
+.twentytwenty-theme .pi-calculation input[type=number] {
+  display: inline-block;
+  font-size: 14px;
+}
+.twentytwenty-theme .pi-accordion-wrapper .pi-field-switch-big {
+  top: 6px;
+}
+.twentytwenty-theme .pi-top-menu-content .pi-dropdown {
+  left: 0px;
+}
+.twentytwenty-theme .pi-top-menu-content .pi-dropdown-content {
+  top: 54px;
+  left: -15px;
+}
+.twentytwenty-theme .pi-timeline-box ul {
+  margin: 0;
+  margin-top: 15px;
 }
 
 /*-------------------------------------------------------------- 

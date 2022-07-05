@@ -67,50 +67,7 @@ const Taxonomy = (props) => {
 			setModalType(type);
 			setForm(tax);
 		}
-	}
-
-	const handleChange = (e) => {
-		const target = e.target;
-		const name = target.name;
-		const value = target.value;
-		setForm({ ...form, [name]: value })
-	}
-
-	const handleColorChange = (val, key) => {
-		setForm({ ...form, [key]: val })
-	}
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
-		let newForm = { ...form }
-		newForm.taxonomy = props.taxonomy;
-
-		if (modalType == 'new') {
-			props.create('taxonomies', newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully added'); //TODO: translation
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});;
-		} else {
-			props.update('taxonomies', newForm.id, newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully updated'); //TODO: translation
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});;
-		}
-		setModal(false);
-	}
+	}  
 
 	const handleDelete = (id) => {
 		if (confirm('Are you sure, to delete it?')) { //TODO: translation
