@@ -119,6 +119,12 @@ class Lead
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['level_id'] = '';
 
+            /* $query_data['person_id'] = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
+            $query_data['first_name'] = $queryMeta['person_id'] ? get_post_meta($query_data['person_id'], 'first_name', true) : '';
+
+            $query_data['org_id'] = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
+            $query_data['org_name'] = $queryMeta['org_id'] ? get_post_meta($query_data['org_id'], 'name', true) : ''; */
+
             $level = get_the_terms($id, 'ndpi_lead_level');
             if ($level) {
                 $term_id = $level[0]->term_id;
@@ -141,19 +147,21 @@ class Lead
                     ];
                 }
                 $query_data['tags'] = $tagList;
+            } 
+
+            $query_data['person'] = null;
+            $person_id = get_post_meta($id, 'person_id', true);
+            if ( $person_id ) {
+                $person = new Person();   
+                $query_data['person'] = $person->single( $person_id );
             }
 
-            $contact_id = get_post_meta($id, 'person_id', true);
-            $contactData = [];
-
-            if ( $contact_id ) {
-                $contactData['id'] = absint($contact_id);
-                $contactMeta = get_post_meta($contact_id);
-                $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-                $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-                //$contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : ''; 
+            $query_data['org'] = null;
+            $org_id = get_post_meta($id, 'org_id', true);
+            if ( $org_id ) {
+                $org = new Org();   
+                $query_data['org'] = $org->single( $org_id );
             }
-            $query_data['contact_id'] = $contactData;
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -249,16 +257,23 @@ class Lead
         /* if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }  */
+        $person = new Person();  
+        if ( $person_id ) {
+            $person->update( $params ); 
+        }
 
-        if ( ! $person_id ) {
-            $person = new Person();  
+        if ( ! $person_id && $first_name ) { 
             $person_id = $person->create( $params ); 
-        }
+        } 
 
-        if ( ! $org_id ) {
-            $org = new Org();
-            $org_id = $org->create( $params ); 
+        $org = new Org();
+        if ( ! $person_id && $org_id ) {
+            $org->update( $params ); 
         }
+        
+        if ( ! $org_id && $org_name ) { 
+            $org_id = $org->create( $params ); 
+        } 
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -392,8 +407,7 @@ class Lead
     public function delete($req)
     {
         //TODO: when delete lead delete task note file, if not exist in deal project
-        $url_params = $req->get_url_params();
-
+        $url_params = $req->get_url_params(); 
         $ids = explode(',', $url_params['id']);
         foreach ($ids as $id) {
             wp_delete_post($id);

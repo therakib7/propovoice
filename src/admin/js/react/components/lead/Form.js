@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
+import Taxonomy from 'block/field/taxonomy';
+import Contact from 'block/field/contact';
 import WithApi from 'hoc/Api';
 
 import Select from 'react-select';
-import Contact from 'block/field/contact';
+
 
 class Form extends Component {
     constructor(props) {
@@ -280,7 +282,7 @@ class Form extends Component {
                                             id="field-budget"
                                             type="text"
                                             name="budget"
-                                            value={this.state.form.budget}
+                                            value={form.budget}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -295,7 +297,7 @@ class Form extends Component {
                                             type="text"
                                             readOnly
                                             name="currency"
-                                            value={this.state.form.currency}
+                                            value={form.currency}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -306,30 +308,31 @@ class Form extends Component {
                                         <label htmlFor="field-level_id">
                                             Level
                                         </label>
-
-                                        <Select
+                                        <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color={true} />
+                                        {/* <Select
                                             className={'pi-field-select'}
-                                            value={this.state.form.level_id}
+                                            value={form.level_id}
                                             onChange={this.handleLevelChange}
                                             getOptionValue={(levelList) => levelList.id}
                                             getOptionLabel={(levelList) => levelList.label}
                                             options={levelList}
-                                        />
+                                        /> */}
                                     </div>
 
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
                                             Tags
-                                        </label>
-                                        <Select
+                                        </label> 
+                                        <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple={true} />
+                                        {/* <Select
                                             className={'pi-field-select'}
-                                            value={this.state.form.tags}
+                                            value={form.tags}
                                             onChange={this.handleTagChange}
                                             getOptionValue={(tagList) => tagList.id}
                                             getOptionLabel={(tagList) => tagList.label}
                                             options={tagList}
                                             isMulti
-                                        />
+                                        /> */}
                                     </div>
                                 </div>
 
@@ -343,7 +346,7 @@ class Form extends Component {
                                             id="form-desc"
                                             type="text"
                                             name="desc"
-                                            value={this.state.form.desc}
+                                            value={form.desc}
                                             onChange={(e) => this.handleChange(e, 'lead')}
                                         />
                                     </div>
@@ -359,7 +362,7 @@ class Form extends Component {
                                             id="form-note"
                                             type="text"
                                             name="note"
-                                            value={this.state.form.note}
+                                            value={form.note}
                                             onChange={(e) => this.handleChange(e, 'lead')}
                                         />
                                     </div>

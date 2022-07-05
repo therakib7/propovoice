@@ -1136,6 +1136,9 @@ html {
 .ncpi .pi-info-table-content .pi-info-table td .pi-field-checkbox {
   margin-bottom: 0;
 }
+.ncpi .pi-info-table-content .pi-info-table td input[type=text] {
+  font-size: 14px;
+}
 .ncpi .pi-info-table-content .pi-info-table td input[type=number],
 .ncpi .pi-info-table-content .pi-info-table td input[type=text] {
   padding: 8px !important;
@@ -1452,9 +1455,9 @@ html {
 }
 .ncpi .pi-breadcrumb ul {
   margin: 0;
+  display: flex;
 }
 .ncpi .pi-breadcrumb ul li {
-  display: inline;
   padding: 5px;
   font-size: 12px;
 }
@@ -1469,7 +1472,7 @@ html {
 }
 .ncpi .pi-breadcrumb ul li svg {
   position: relative;
-  top: 1px;
+  top: 5px;
 }
 .ncpi .pi-float-right.pi-select-small {
   border: none;
@@ -1660,7 +1663,7 @@ html {
   margin: 0 5px 0 5px;
   border: 1px solid #CBD5E0;
   outline: none;
-  padding: 40px 20px 4px 4px;
+  padding: 4px 20px 4px 4px;
   background-position-x: 85%;
   background-position-y: 44%;
   line-height: 100%;
@@ -2103,6 +2106,15 @@ html {
 }
 .wp-admin .react-datepicker__day--selected:hover {
   background-color: #3157F0 !important;
+}
+.wp-admin .pi-field-select textarea:focus,
+.wp-admin .pi-field-select select:focus,
+.wp-admin .pi-field-select input[type=url]:focus,
+.wp-admin .pi-field-select input[type=number]:focus,
+.wp-admin .pi-field-select input[type=email]:focus,
+.wp-admin .pi-field-select input[type=text]:focus {
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
 /*-------------------------------------------------------------- 
@@ -2625,9 +2637,10 @@ html {
   border: none;
   width: 130px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   position: relative;
   cursor: pointer;
+  color: #2D3748;
 }
 .ncpi .pi-single-tabs .pi-tab-item .pi-single-tab-done {
   position: absolute;
@@ -3017,6 +3030,9 @@ html {
 .ncpi .pi-settings-horizontal-tab .pi-tab:hover {
   border-bottom: 3px solid var(--bg-color-blue);
   color: var(--bg-color-blue);
+}
+.ncpi .pi-settings-horizontal-tab .pi-field-desc {
+  margin-top: 10px;
 }
 
 .pi-form-accordion {
