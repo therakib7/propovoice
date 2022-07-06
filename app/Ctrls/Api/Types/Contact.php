@@ -72,7 +72,7 @@ class Contact
 
         $per_page = 10;
         $offset = 0;
-
+        
         $s = isset($params['s']) ? sanitize_text_field($params['s']) : null;
 
         if (isset($params['per_page'])) {
@@ -158,8 +158,7 @@ class Contact
             wp_reset_postdata();
         }
 
-        $result['result'] = $data; 
-
+        $result['result'] = $data;   
         wp_send_json_success($result);
     }
 
