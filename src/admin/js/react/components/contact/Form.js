@@ -106,7 +106,8 @@ class Form extends Component {
                 if (resp.data.success) {
                     this.props.close();
                     toast.success(this.context.CrudMsg.create);
-                    contact.id = resp.data.data;
+                    contact.id = resp.data.data.id;
+                    contact.type = resp.data.data.type;
                     this.props.handleSubmit(contact);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {

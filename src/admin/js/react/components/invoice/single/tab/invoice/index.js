@@ -271,7 +271,7 @@ class Invoice extends Component {
 	handleSetTo = (data) => {
 		let invoice = { ...this.state.invoice }
 		invoice.to = data.id;
-		invoice.to_type = data.contact_type;
+		invoice.to_type = data.type;
 		this.setState({
 			toData: data,
 			invoice,

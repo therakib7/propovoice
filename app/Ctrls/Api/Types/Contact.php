@@ -139,9 +139,8 @@ class Contact
                 $query_data['mobile'] = get_post_meta($id, 'mobile', true);
                 $query_data['country'] = get_post_meta($id, 'country', true);
                 $query_data['region'] = get_post_meta($id, 'region', true);
-                $query_data['address'] = get_post_meta($id, 'address', true);
-                $query_data['contact_type'] = $contact_type;
-    
+                $query_data['address'] = get_post_meta($id, 'address', true); 
+                
                 $img_id = get_post_meta($id, 'img', true);
                 $imgData = null;
                 if ($img_id) {
@@ -253,7 +252,11 @@ class Contact
 
         if ( $person_id || $org_id ) {
             $post_id = $person_id ? $person_id : $org_id;
-            wp_send_json_success($post_id);
+            $type = $person_id ? 'person' : 'org';
+            wp_send_json_success([
+                'id' => $post_id,
+                'type' => $type
+            ]);
         } else {
             wp_send_json_error();
         } 

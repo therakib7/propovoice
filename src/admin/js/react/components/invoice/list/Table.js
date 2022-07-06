@@ -28,7 +28,7 @@ const TableHeader = props => {
                     Project
                 </th> */}
                 {!props.client_id && <th>
-                    Client
+                    Contact
                 </th>}
                 <th>
                     Total
@@ -167,7 +167,7 @@ const TableBody = props => {
                 <td>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
                 {/*<td>{row.project.name}</td>*/}
                 {!props.client_id && <td>
-                    {(row.to.first_name) ? row.to.first_name : ''}
+                    {(row.to.type == 'person') ? row.to.first_name : row.to.org_name } 
                 </td>}
                 <td>{row.total}</td>
                 {(props.path == 'invoice') &&

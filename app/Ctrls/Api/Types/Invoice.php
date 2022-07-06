@@ -162,13 +162,15 @@ class Invoice
             $query_data['to'] = $toData; */
 
             $contact_id = get_post_meta($id, 'to', true);
+            $to_type = get_post_meta($id, 'to_type', true);
             $contactData = [];
 
             if ($contact_id) {
                 $contactData['id'] = absint($contact_id);
+                $contactData['type'] = $to_type;
                 $contactMeta = get_post_meta($contact_id);
                 $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-                $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
+                $contactData['org_name'] = isset($contactMeta['name']) ? $contactMeta['name'][0] : '';
                 $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
             }
             $query_data['to'] = $contactData;
