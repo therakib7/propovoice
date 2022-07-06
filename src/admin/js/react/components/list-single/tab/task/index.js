@@ -157,11 +157,10 @@ const Task = (props) => {
                                 <b>Unschedule</b>
                             </label>
                             <label className="pi-table-close" htmlFor="pi-acc-close" />
-                            <div className="pi-accordion-content">
+                            <div className="pi-accordion-content"> 
                                 <Table tableData={lists.unschedule} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
                             </div>
-                        </section>
-
+                        </section> 
                     </>
                 }
                 <input type="radio" name="pi-accordion" id="pi-acc-close" />

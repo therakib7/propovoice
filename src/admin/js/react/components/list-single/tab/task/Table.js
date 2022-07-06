@@ -12,7 +12,7 @@ const TableBody = props => {
         const status = row.status_id;
         const priority = row.priority_id;
         return (
-            <div className="pi-accordion-table-list" key={index}>
+            <div className="pi-accordion-table-list" key={index}> 
                 <div className="pi-checkbox">
                     <input type="checkbox"
                         value={row.id}

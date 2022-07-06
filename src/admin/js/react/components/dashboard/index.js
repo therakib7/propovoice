@@ -315,7 +315,7 @@ const Dashboard = (props) => {
 
                             <div className="pi-tab-content">
                                 <Suspense fallback={<Spinner />}>
-                                    <Task tab_id={null} />
+                                    <Task tab_id={null} dashboard={true} />
                                 </Suspense>
                             </div>
                         </div>
@@ -372,6 +372,5 @@ const Dashboard = (props) => {
         </div>
 
     );
-}
-
+} 
 export default WithApi(Dashboard);
