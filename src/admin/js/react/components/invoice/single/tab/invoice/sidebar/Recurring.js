@@ -64,7 +64,7 @@ export default (props) => {
                                 checked={recurring.interval_type == 'custom'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="interval_type_custom" className="pi-mt-6 pi-mr-8">Interval In</label>
+                            <label htmlFor="interval_type_custom" className="pi-mr-10">Interval In</label>
                             <input
                                 type="number"
                                 id="recurring-interval"
@@ -107,7 +107,7 @@ export default (props) => {
                                 checked={recurring.limit_type == '1'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="limit_type_1" className="pi-mt-6 pi-mr-8">Limit</label>
+                            <label htmlFor="limit_type_1" className="pi-mr-10">Limit</label>
                             <input
                                 type="number"
                                 id="recurring-limit"

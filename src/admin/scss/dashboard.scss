@@ -157,3 +157,33 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
+
+// preloader spinner
+.spinner.loading {
+    padding: 50px;
+    position: relative;
+    text-align: center;
+}
+
+.spinner.loading:before {
+    content: "";
+    height: 40px;
+    width: 40px;
+    margin: -15px auto auto -15px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #2180c0 #ccc #ccc;
+    border-radius: 100%;
+    animation: rotation .7s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(359deg);
+    }
+}

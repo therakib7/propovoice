@@ -1,6 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; 
+import Spinner from 'block/preloader/spinner';
 import Taxonomy from 'block/field/taxonomy';
 import WithApi from 'hoc/Api';
 
@@ -951,7 +952,7 @@ class ListSingle extends Component {
                             </ul>
 
                             <div className="pi-tab-content">
-                                <Suspense fallback={<div>Loading...</div>}>
+                                <Suspense fallback={<Spinner />}>
                                     {currentTab == 'task' && data.tab_id && <Task tab_id={data.tab_id} />}
                                     {currentTab == 'note' && data.tab_id && <Note tab_id={data.tab_id} />}
                                     {currentTab == 'file' && data.tab_id && <File tab_id={data.tab_id} />}

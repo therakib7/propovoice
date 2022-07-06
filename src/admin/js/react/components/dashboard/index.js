@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect, Suspense, lazy } from "react";
 import Breadcrumb from 'block/breadcrumb';
 import Preloader from 'block/preloader/table';
+import Spinner from 'block/preloader/spinner';
 
 const Task = lazy(() => import('components/list-single/tab/task'));
 
@@ -309,7 +310,7 @@ const Dashboard = (props) => {
                             </ul>
 
                             <div className="pi-tab-content">
-                                <Suspense fallback={<div>Loading...</div>}>
+                                <Suspense fallback={<Spinner />}>
                                     <Task tab_id={null} />
                                 </Suspense>
                             </div>

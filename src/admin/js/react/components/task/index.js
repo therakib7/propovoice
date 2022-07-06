@@ -1,7 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react'
 import Breadcrumb from 'block/breadcrumb';
 import WithApi from 'hoc/Api';
-
+import Spinner from 'block/preloader/spinner';
 const Task = lazy(() => import('components/list-single/tab/task'));
 
 class ListSingle extends Component {
@@ -48,7 +48,7 @@ class ListSingle extends Component {
 							</ul>
 
 							<div className="pi-tab-content">
-								<Suspense fallback={<div>Loading...</div>}>
+								<Suspense fallback={<Spinner />}>
 									<Task tab_id={null} />
 								</Suspense>
 							</div>

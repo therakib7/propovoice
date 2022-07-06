@@ -10,7 +10,7 @@ import {
     Route,
     NavLink
 } from "react-router-dom"; 
-
+import Spinner from 'block/preloader/spinner';
 const Dashboard = lazy(() => import('components/dashboard'));
 const Client = lazy(() => import('components/client'));
 
@@ -544,7 +544,7 @@ const Home = () => {
                     </div> 
 
                     <div className='pi-right-content-data' ref={contentRef}>
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Spinner />}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
                                 {/* <Route path="/proposal" element={<Proposal />} /> */}

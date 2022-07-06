@@ -129,7 +129,7 @@ class FormBank extends Component {
                                         value={this.state.form.details}
                                         onChange={this.handleChange}
                                     />
-                                    {/*<Suspense fallback={<div>Loading...</div>}> 
+                                    {/*<Suspense fallback={<Spinner />}> 
                                         <Editor
                                             key={'pi-bank-details'}
                                             value={this.state.form.details} 
