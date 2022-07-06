@@ -58,7 +58,7 @@ msgstr ""
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:272, ../app/Ctrls/Api/Types/Client.php:333, ../app/Ctrls/Api/Types/Contact.php:283, ../app/Ctrls/Api/Types/Org.php:209, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:230, ../app/Ctrls/Api/Types/Person.php:319, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
+#: ../app/Ctrls/Api/Types/Client.php:272, ../app/Ctrls/Api/Types/Client.php:333, ../app/Ctrls/Api/Types/Contact.php:286, ../app/Ctrls/Api/Types/Org.php:209, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:230, ../app/Ctrls/Api/Types/Person.php:319, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
 msgid "Email id is not valid!"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Contact.php:279, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:205, ../app/Ctrls/Api/Types/Org.php:293, ../app/Ctrls/Api/Types/Person.php:226, ../app/Ctrls/Api/Types/Person.php:315, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
+#: ../app/Ctrls/Api/Types/Contact.php:282, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:205, ../app/Ctrls/Api/Types/Org.php:293, ../app/Ctrls/Api/Types/Person.php:226, ../app/Ctrls/Api/Types/Person.php:315, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
 msgid "Name field is missing"
 msgstr ""
 
@@ -86,15 +86,15 @@ msgstr ""
 msgid "Type is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Invoice.php:367, ../app/Ctrls/Api/Types/Invoice.php:488, ../app/Ctrls/Api/Types/Proposal.php:262, ../app/Ctrls/Api/Types/Proposal.php:366
+#: ../app/Ctrls/Api/Types/Invoice.php:369, ../app/Ctrls/Api/Types/Invoice.php:490, ../app/Ctrls/Api/Types/Proposal.php:262, ../app/Ctrls/Api/Types/Proposal.php:366
 msgid "Business is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Invoice.php:371, ../app/Ctrls/Api/Types/Proposal.php:266
+#: ../app/Ctrls/Api/Types/Invoice.php:373, ../app/Ctrls/Api/Types/Proposal.php:266
 msgid "Module is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Invoice.php:375, ../app/Ctrls/Api/Types/Invoice.php:492, ../app/Ctrls/Api/Types/Proposal.php:270, ../app/Ctrls/Api/Types/Proposal.php:370
+#: ../app/Ctrls/Api/Types/Invoice.php:377, ../app/Ctrls/Api/Types/Invoice.php:494, ../app/Ctrls/Api/Types/Proposal.php:270, ../app/Ctrls/Api/Types/Proposal.php:370
 msgid "Receiver is missing"
 msgstr ""
 
