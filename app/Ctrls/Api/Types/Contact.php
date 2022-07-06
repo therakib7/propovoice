@@ -2,6 +2,8 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Org;
+use Ncpi\Models\Person;
 use WP_Query;
 
 class Contact
@@ -125,14 +127,14 @@ class Contact
     
                 $query_data = [];
                 $query_data['id'] = $id;
+                $query_data['type'] = $contact_type;
                 
                 if ( $contact_type == 'org' ) {
-                    $query_data['name'] = get_post_meta($id, 'name', true); 
+                    $query_data['org_name'] = get_post_meta($id, 'name', true); 
                 } else {
-                    $query_data['name'] = get_post_meta($id, 'first_name', true); 
+                    $query_data['first_name'] = get_post_meta($id, 'first_name', true); 
                 } 
-                $query_data['email'] = get_post_meta($id, 'email', true);
-                $query_data['org_name'] = get_post_meta($id, 'org_name', true);
+                $query_data['email'] = get_post_meta($id, 'email', true); 
                 $query_data['web'] = get_post_meta($id, 'web', true);
                 $query_data['mobile'] = get_post_meta($id, 'mobile', true);
                 $query_data['country'] = get_post_meta($id, 'country', true);
@@ -221,90 +223,40 @@ class Contact
 
     public function create($req)
     { 
-        $params = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $params = $req->get_params(); 
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($params['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
-        $org_name = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($params['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
+        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
 
-        if ( empty($first_name) ) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        }
+        $person_id = null;
+        $org_id = null; 
 
-        if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
+        $person = new Person();  
+        $org = new Org();
+
+        if ( $first_name ) {  
+            $person_id = $person->create( $params ); 
         } 
 
-        if ($reg_errors->get_error_messages()) {
-            wp_send_json_error($reg_errors->get_error_messages());
+        if ( $org_name ) { 
+            $params = ( $person_id ) ? [ 'org_name' => $org_name ] : $params;
+            $org_id = $org->create( $params ); 
+        } 
+
+        if ( $org_id ) {
+            $person->update( [ 'org_id' => $org_id ] ); 
+        }  
+
+        if ( $person_id ) {
+            $org->update( [ 'person_id' => $person_id ] ); 
+        }  
+
+        if ( $person_id || $org_id ) {
+            $post_id = $person_id ? $person_id : $org_id;
+            wp_send_json_success($post_id);
         } else {
-
-            $data = array(
-                'post_type' => 'ndpi_person',
-                'post_title'    => $first_name,
-                'post_content'  => '',
-                'post_status'   => 'publish',
-                'post_author'   => get_current_user_id()
-            );
-            $post_id = wp_insert_post($data);
-
-            if ( !is_wp_error($post_id) ) {
-
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace() );
-                
-                if ($first_name) {
-                    update_post_meta($post_id, 'first_name', $first_name);
-                }
-
-                if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
-                }
-
-                if ($email) {
-                    update_post_meta($post_id, 'email', $email);
-                }
-
-                if ($org_name) {
-                    update_post_meta($post_id, 'org_name', $org_name);
-                }
-
-                if ($web) {
-                    update_post_meta($post_id, 'web', $web);
-                }
-
-                if ($mobile) {
-                    update_post_meta($post_id, 'mobile', $mobile);
-                }
-
-                if ($country) {
-                    update_post_meta($post_id, 'country', $country);
-                }
-
-                if ($region) {
-                    update_post_meta($post_id, 'region', $region);
-                }
-
-                if ($address) {
-                    update_post_meta($post_id, 'address', $address);
-                }
-
-                if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
-                } 
-
-                wp_send_json_success($post_id);
-            } else {
-                wp_send_json_error();
-            }
-        }
+            wp_send_json_error();
+        } 
     }
 
     public function update($req)

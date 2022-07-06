@@ -96,7 +96,7 @@ class Form extends Component {
                         toast.error(value);
                     });
                 }
-            });;
+            });
         } else {
             this.props.update('taxonomies', newForm.id, newForm).then(resp => {
                 if (resp.data.success) {
@@ -107,7 +107,7 @@ class Form extends Component {
                         toast.error(value);
                     });
                 }
-            });;
+            });
         }
         // setModal(false);
         this.props.close()

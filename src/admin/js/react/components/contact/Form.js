@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { toast } from 'react-toastify';
+
+import AppContext from 'context/app-context';
+import WithApi from 'hoc/Api';
 import Contact from 'block/field/contact';
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector'; 
 
 class Form extends Component {
     constructor(props) {
@@ -25,18 +29,7 @@ class Form extends Component {
         };
     }
 
-    handleChange = e => {
-        const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
-    }
-
-    selectCountry(val) {
-        this.setState({ form: { ...this.state.form, ['country']: val } });
-    }
-
-    selectRegion(val) {
-        this.setState({ form: { ...this.state.form, ['region']: val } });
-    }
+    static contextType = AppContext; 
 
     componentDidMount() {
         //added this multiple place, because not working in invoice single
@@ -45,7 +38,7 @@ class Form extends Component {
 
     componentDidUpdate() {
         this.editData();
-    }
+    } 
 
     editData = () => {
         //condition added to stop multiple rendering 
@@ -58,6 +51,19 @@ class Form extends Component {
                 this.setState({ form: this.initialState });
             }
         }
+    }
+
+    handleChange = e => {
+        const { name, value } = e.target;
+        this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    selectCountry(val) {
+        this.setState({ form: { ...this.state.form, ['country']: val } });
+    }
+
+    selectRegion(val) {
+        this.setState({ form: { ...this.state.form, ['region']: val } });
     }
 
     handleContactChange = (val, type) => {
@@ -90,12 +96,39 @@ class Form extends Component {
         this.setState({ form });
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.handleSubmit(this.state.form);
-        // this.setState({ form: this.initialState });
-    }
+    handleSubmit = e => {
 
+        e.preventDefault();
+        let contact = this.state.form;
+
+        if (this.props.modalType == 'new') {
+            this.props.create('contacts', contact).then(resp => {
+                if (resp.data.success) {
+                    this.props.close();
+                    toast.success(this.context.CrudMsg.create);
+                    contact.id = resp.data.data;
+                    this.props.handleSubmit(contact);
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
+        } else {
+            this.props.update('contacts', contact.id, contact).then(resp => {
+                if (resp.data.success) {
+                    this.props.close();
+                    toast.success(this.context.CrudMsg.update);
+                    this.props.handleSubmit(contact);
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
+        }
+    } 
+    
     render() {
         const form = this.state.form;
         return (
@@ -131,36 +164,7 @@ class Form extends Component {
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
-                            <div className="pi-form-style-one">
-                                {/* <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="first_name">
-                                            Person Name
-                                        </label>
-
-                                        <input
-                                            id="first_name"
-                                            type="text"
-                                            name="first_name"
-                                            value={form.first_name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                    
-                                    <div className="col-lg">
-                                        <label htmlFor="form-org_name">
-                                            Company/Organization Name
-                                        </label>
-
-                                        <input
-                                            id="form-org_name"
-                                            type="text"
-                                            name="org_name"
-                                            value={form.org_name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div> */}
+                            <div className="pi-form-style-one"> 
 
                                 <Contact
                                     data={{
@@ -283,4 +287,4 @@ class Form extends Component {
     }
 }
 
-export default Form;
+export default WithApi(Form);  

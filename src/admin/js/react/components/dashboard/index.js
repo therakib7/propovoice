@@ -331,13 +331,13 @@ const Dashboard = (props) => {
                             </h3>
                             <ul>
                                 <li style={{ background: "#d6defa" }}>
-                                    Interested<span>12</span>
+                                    Opportunity<span>12</span>
                                 </li>
                                 <li style={{ background: "#acbef4", width: "80%" }}>
-                                    In Conversastion<span>12</span>
+                                    Contracting<span>12</span>
                                 </li>
                                 <li style={{ background: "#829dee", width: "60%" }}>
-                                    Qualified<span>12</span>
+                                    Proposing<span>12</span>
                                 </li>
                                 <li style={{ background: "#5b7cea", width: "45%" }}>
                                     Offer Sent<span>12</span>
@@ -355,9 +355,9 @@ const Dashboard = (props) => {
             <div className="">
                 <div className="row">
                     <div className="col-8">
-                        <Suspense fallback={<Spinner />}> 
-                            <ChartLine /> 
-                            <ChartBar type='estimate' /> 
+                        <Suspense fallback={<Spinner />}>
+                            <ChartLine />
+                            <ChartBar type='estimate' />
                             <ChartBar type='invoice' />
                         </Suspense>
                     </div>
