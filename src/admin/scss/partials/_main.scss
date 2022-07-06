@@ -1289,13 +1289,7 @@ html {
 .ncpi .pi-info-table-content .pi-info-table td .pi-field-checkbox {
   margin-bottom: 0;
 }
-<<<<<<< HEAD
 
-=======
-.ncpi .pi-info-table-content .pi-info-table td input[type=text] {
-  font-size: 14px;
-}
->>>>>>> a0bfb263074bc4529214f08efe94ca8b9d9bb5c0
 .ncpi .pi-info-table-content .pi-info-table td input[type=number],
 .ncpi .pi-info-table-content .pi-info-table td input[type=text] {
   padding: 8px !important;
@@ -1667,18 +1661,17 @@ html {
 
 .ncpi .pi-breadcrumb {
   margin-bottom: 18px;
-  margin-left: -5px;
+  margin-left: -3px;
 }
 
 .ncpi .pi-breadcrumb ul {
   margin: 0;
-  display: flex;
 }
 
 .ncpi .pi-breadcrumb ul li {
+  display: inline;
   padding: 5px;
   font-size: 12px;
-  line-height: 100%;
 }
 
 .ncpi .pi-breadcrumb ul li a {
@@ -2235,7 +2228,7 @@ html {
   display: flex;
   align-items: center;
   background-color: transparent;
-  color: #718096;
+  color: #718096 !important;
   font-size: 14px;
   border: none;
   cursor: pointer;
@@ -2413,7 +2406,6 @@ html {
   zoom: 1.2 !important;
   top: -1px !important;
 }
-<<<<<<< HEAD
 
 .wp-admin .react-datepicker {
   border: 1px solid #CBD5E0 !important;
@@ -2424,43 +2416,17 @@ html {
 }
 
 .wp-admin .react-datepicker__header {
-=======
-.wp-admin .pi-field-select textarea:focus,
-.wp-admin .pi-field-select select:focus,
-.wp-admin .pi-field-select input[type=url]:focus,
-.wp-admin .pi-field-select input[type=number]:focus,
-.wp-admin .pi-field-select input[type=email]:focus,
-.wp-admin .pi-field-select input[type=text]:focus {
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-.react-datepicker {
-  border: 1px solid #CBD5E0 !important;
-}
-
-.react-datepicker__triangle::after {
-  border-bottom-color: #FAFAFB !important;
-}
-
-.react-datepicker__header {
->>>>>>> a0bfb263074bc4529214f08efe94ca8b9d9bb5c0
   color: #4A5568 !important;
   border-bottom: 1px solid #CBD5E0 !important;
   background-color: #FAFAFB !important;
 }
 
-<<<<<<< HEAD
 .wp-admin .react-datepicker__current-month {
-=======
-.react-datepicker__current-month {
->>>>>>> a0bfb263074bc4529214f08efe94ca8b9d9bb5c0
   color: #4A5568 !important;
   position: relative;
   top: -3px;
 }
 
-<<<<<<< HEAD
 .wp-admin .react-datepicker__day-names {
   color: #4A5568 !important;
 }
@@ -2470,95 +2436,12 @@ html {
 }
 
 .wp-admin .react-datepicker__day--selected {
-=======
-.react-datepicker__day-names {
-  color: #4A5568 !important;
-}
-
-.react-datepicker__day {
-  color: #718096 !important;
-}
-
-.react-datepicker__day--selected {
->>>>>>> a0bfb263074bc4529214f08efe94ca8b9d9bb5c0
   background-color: #4c6fff !important;
   color: #fff !important;
 }
 
-<<<<<<< HEAD
 .wp-admin .react-datepicker__day--selected:hover {
-=======
-.react-datepicker__day--selected:hover {
->>>>>>> a0bfb263074bc4529214f08efe94ca8b9d9bb5c0
   background-color: #3157F0 !important;
-}
-
-.twentytwenty-theme svg,
-.twentytwenty-theme img,
-.twentytwenty-theme embed,
-.twentytwenty-theme object {
-  display: inline-block !important;
-}
-.twentytwenty-theme button {
-  padding: 0;
-}
-.twentytwenty-theme ul li {
-  margin: 0;
-}
-.twentytwenty-theme table {
-  margin: 0;
-}
-.twentytwenty-theme table,
-.twentytwenty-theme th,
-.twentytwenty-theme td {
-  border: none;
-}
-.twentytwenty-theme .pi-table tr th {
-  line-height: 27px;
-}
-.twentytwenty-theme .pi-accordion-table {
-  padding: 0;
-}
-.twentytwenty-theme input[type=checkbox] {
-  zoom: 0.8 !important;
-}
-.twentytwenty-theme .pi-table tr th:first-child input[type=checkbox] {
-  top: 6px !important;
-}
-.twentytwenty-theme .pi-accordion-table input[type=checkbox] {
-  zoom: 1 !important;
-}
-@media (min-width: 700px) {
-  .twentytwenty-theme section {
-    padding: 0;
-  }
-}
-.twentytwenty-theme .pi-settings-horizontal-tab {
-  margin-left: 0;
-}
-.twentytwenty-theme .pi-breadcrumb ul li {
-  margin: 0;
-}
-.twentytwenty-theme .pi-search-field input[type=text] {
-  font-size: 14px;
-}
-.twentytwenty-theme .pi-calculation input[type=number] {
-  display: inline-block;
-  font-size: 14px;
-}
-.twentytwenty-theme .pi-accordion-wrapper .pi-field-switch-big {
-  top: 6px;
-}
-.twentytwenty-theme .pi-top-menu-content .pi-dropdown {
-  left: 0px;
-}
-.twentytwenty-theme .pi-top-menu-content .pi-dropdown-content {
-  top: 54px;
-  left: -15px;
-}
-.twentytwenty-theme .pi-timeline-box ul {
-  margin: 0;
-  margin-top: 15px;
 }
 
 /*-------------------------------------------------------------- 
@@ -3180,10 +3063,9 @@ html {
   border: none;
   width: 130px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   position: relative;
   cursor: pointer;
-  color: #2D3748;
 }
 
 .ncpi .pi-single-tabs .pi-tab-item .pi-single-tab-done {
@@ -3649,9 +3531,6 @@ html {
 .ncpi .pi-settings-horizontal-tab .pi-tab:hover {
   border-bottom: 3px solid var(--bg-color-blue);
   color: var(--bg-color-blue);
-}
-.ncpi .pi-settings-horizontal-tab .pi-field-desc {
-  margin-top: 10px;
 }
 
 .pi-form-accordion {
@@ -5346,7 +5225,158 @@ select {
   background-color: lightblue;
 }
 
-.pi-info-table-content .pi-info-table td select {
-  padding: 11px 6px !important;
-  line-height: 100%;
+
+
+
+
+
+// Globel
+button {
+  padding: 0;
+}
+
+// Table
+table {
+  margin: 0;
+}
+
+table,
+th,
+td {
+  border: none;
+}
+
+.pi-table tr th {
+  line-height: 27px;
+}
+
+input[type=checkbox] {
+  zoom: 1;
+}
+
+// Twenty Twentytwo Theme
+.twentytwentytwo-theme {}
+
+//Twenty Twenty Theme
+.twentytwenty-theme {
+
+  svg,
+  img,
+  embed,
+  object {
+    display: inline-block !important;
+  }
+
+  ul li {
+    margin: 0;
+  }
+
+  .pi-accordion-table {
+    padding: 0;
+  }
+
+  .pi-table tr th:first-child input[type=checkbox] {
+    top: 1px !important;
+  }
+
+  @media (min-width: 700px) {
+    section {
+      padding: 0;
+    }
+  }
+
+  input[type=checkbox] {
+    //zoom: 0.8 !important;
+  }
+
+  .pi-field-checkbox {
+    input[type=checkbox] {
+      //zoom: 0.6 !important;
+      top: -1px;
+    }
+  }
+
+  .pi-settings-horizontal-tab {
+    margin-left: 0;
+  }
+
+  .pi-breadcrumb ul li {
+    margin: 0;
+  }
+
+  .pi-search-field input[type="text"] {
+    font-size: 14px;
+  }
+
+  .pi-calculation input[type="number"] {
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  .pi-accordion-wrapper .pi-field-switch-big {
+    top: 6px;
+  }
+
+  .pi-top-menu-content .pi-dropdown {
+    left: 0px;
+  }
+
+  .pi-top-menu-content .pi-dropdown-content {
+    top: 54px;
+    left: -15px;
+  }
+
+  .pi-timeline-box ul {
+    margin: 0;
+    margin-top: 15px;
+  }
+}
+
+// Twenty Twentyone Theme
+.twentytwentyone-theme {
+  button:focus {
+    outline: none;
+  }
+
+  button {
+    background-color: transparent !important;
+  }
+
+  .pi-timeline-box ul {
+    margin-top: 15px;
+  }
+
+  .pi-accordion-table-list ul li {
+    margin-bottom: 0;
+  }
+
+  .pi-table-action input[type=checkbox] {
+    zoom: 0.6 !important;
+    border: 1px solid rgba(147, 147, 147, 0.9411764706);
+    top: 2px;
+  }
+
+  input[type=checkbox] {
+    zoom: 0.8 !important;
+  }
+
+  table,
+  th,
+  td {
+    border: none;
+  }
+
+  .pi-accordion-table input[type=checkbox] {
+    zoom: 0.6;
+    top: 6px;
+    border: 1px solid rgba(147, 147, 147, 0.9411764706);
+  }
+
+  .pi-table tr th:first-child input[type=checkbox] {
+    top: 4px;
+  }
+
+  input[type=checkbox]:focus {
+    outline: none !important;
+  }
 }
