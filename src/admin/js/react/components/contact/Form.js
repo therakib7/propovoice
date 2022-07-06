@@ -67,6 +67,7 @@ class Form extends Component {
     }
 
     render() {
+        const form = this.state.form;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -111,7 +112,7 @@ class Form extends Component {
                                             id="first_name"
                                             type="text"
                                             name="first_name"
-                                            value={this.state.form.first_name}
+                                            value={form.first_name}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -125,23 +126,7 @@ class Form extends Component {
                                             id="form-org_name"
                                             type="text"
                                             name="org_name"
-                                            value={this.state.form.org_name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row"> 
-                                    <div className="col-lg">
-                                        <label htmlFor="form-web">
-                                            Website
-                                        </label>
-
-                                        <input
-                                            id="form-web"
-                                            type="text"
-                                            name="web"
-                                            value={this.state.form.web}
+                                            value={form.org_name}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -158,7 +143,7 @@ class Form extends Component {
                                             type="email"
                                             required
                                             name="email"
-                                            value={this.state.form.email}
+                                            value={form.email}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -171,7 +156,23 @@ class Form extends Component {
                                             id="form-mobile"
                                             type="text"
                                             name="mobile"
-                                            value={this.state.form.mobile}
+                                            value={form.mobile}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row"> 
+                                    <div className="col-lg">
+                                        <label htmlFor="form-web">
+                                            Website
+                                        </label>
+
+                                        <input
+                                            id="form-web"
+                                            type="text"
+                                            name="web"
+                                            value={form.web}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -184,7 +185,7 @@ class Form extends Component {
                                         </label>
 
                                         <CountryDropdown
-                                            value={this.state.form.country}
+                                            value={form.country}
                                             valueType='short'
                                             onChange={(val) => this.selectCountry(val)}
                                         />
@@ -196,9 +197,9 @@ class Form extends Component {
                                         </label>
 
                                         <RegionDropdown
-                                            country={this.state.form.country}
+                                            country={form.country}
                                             countryValueType='short'
-                                            value={this.state.form.region}
+                                            value={form.region}
                                             onChange={(val) => this.selectRegion(val)}
                                         />
                                     </div>
@@ -215,7 +216,7 @@ class Form extends Component {
                                             id="form-address"
                                             type="text"
                                             name="address"
-                                            value={this.state.form.address}
+                                            value={form.address}
                                             onChange={this.handleChange}
                                         />
                                     </div>
