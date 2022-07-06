@@ -211,22 +211,19 @@ class Lead
             $query_data['tags'] = $tagList;
         } */
 
-        $contact_id = get_post_meta($id, 'person_id', true);
-        $contactData = [];
-
-        if ($contact_id) {
-            $contactData['id'] = absint($contact_id);
-            $contactMeta = get_post_meta($contact_id);
-            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
-            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
-            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
-            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
-            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
+        $query_data['person'] = null;
+        $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
+        if ( $person_id ) {
+            $person = new Person();   
+            $query_data['person'] = $person->single( $person_id, true );
         }
-        $query_data['contact'] = $contactData;
+
+        $query_data['org'] = null;
+        $org_id = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
+        if ( $org_id ) {
+            $org = new Org();   
+            $query_data['org'] = $org->single( $org_id, true );
+        } 
 
         $query_data['date'] = get_the_time('j-M-Y');
 

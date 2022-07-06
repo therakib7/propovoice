@@ -6,7 +6,7 @@ import {
     Route,
     NavLink
 } from "react-router-dom";
-
+import Spinner from 'block/preloader/spinner';
 import Dashboard from '../Dashboard';
 import Client from '../client/client';
 import Project from '../project';
@@ -122,7 +122,7 @@ const Home = () => {
                 </aside>
 
                 <div className="w-full ncpi-h-screen overflow-y-hidden p-6">
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<Spinner />}>
                         <Routes>
                             <Route path="/" element={<Dashboard />} />
                             <Route path="/proposal" element={<Proposal />} />

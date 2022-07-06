@@ -141,23 +141,7 @@ class Form extends Component {
                                     review={true}
                                     onChange={this.handleContactChange} 
                                     onSelect={this.handleContactSelect}
-                                />
-
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-web">
-                                            Website
-                                        </label>
-
-                                        <input
-                                            id="form-web"
-                                            type="text"
-                                            name="web"
-                                            value={this.state.form.web}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
+                                /> 
 
                                 <div className="row">
                                     <div className="col-lg">
@@ -184,6 +168,22 @@ class Form extends Component {
                                             type="text"
                                             name="mobile"
                                             value={this.state.form.mobile}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label htmlFor="form-web">
+                                            Website
+                                        </label>
+
+                                        <input
+                                            id="form-web"
+                                            type="text"
+                                            name="web"
+                                            value={this.state.form.web}
                                             onChange={this.handleChange}
                                         />
                                     </div>

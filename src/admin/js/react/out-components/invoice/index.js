@@ -2,7 +2,7 @@ import React, { Component, Suspense, lazy } from 'react'
 import { ToastContainer } from 'react-toastify';
 import Select from 'react-select';
 import ReactToPrint from 'react-to-print';
-
+import Spinner from 'block/preloader/spinner';
 // import Template from 'inv-template';
 import Api from 'api/invoice';
 import InvTemplate from 'inv-template';
@@ -311,7 +311,7 @@ export default class Invoice extends Component {
 
                 {this.state.paymentModal &&
                     <>
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Spinner />}>
                             {this.state.payment_method == 'bank' && <Bank
                                 show={this.state.paymentModal}
                                 invoice_id={this.state.id}

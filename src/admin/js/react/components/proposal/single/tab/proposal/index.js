@@ -1,7 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useParams, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-
+import Spinner from 'block/preloader/spinner';
 import Api from 'api/invoice';
 
 //self component
@@ -617,7 +617,7 @@ class Invoice extends Component {
 									<h2 className="pi-r-s-title pi-tab-content-title">Setings</h2>
 									<div className="pi-accordion-wrapper">
 										<ul>
-											<Suspense fallback={<div>Loading...</div>}>
+											<Suspense fallback={<Spinner />}>
 												<Style handleChange={this.onStyleChange} data={this.state.invoice} />
 												{this.props.path == 'invoice' && <Payment handleChange={this.onPaymentChange} data={this.state.invoice} handleSave={this.handleSave} />}
 												{/* {!wage.length && <AdditionalAmount handleChange={this.onPaymentChange} data={this.state.invoice} />} */}

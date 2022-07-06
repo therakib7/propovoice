@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 class Form extends Component {
@@ -60,13 +60,44 @@ class Form extends Component {
         }
     }
 
+    handleContactChange = (val, type) => {
+        let form = { ...this.state.form }
+        if (type == 'person') {
+            form.first_name = val;
+        } else {
+            form.org_name = val;
+        }
+        this.setState({ form });
+    }
+
+    handleContactSelect = (val, type) => {
+        let form = { ...this.state.form }
+
+        if (type == 'person') {
+            form.person_id = (val) ? val.id : null;
+            form.email = (val) ? val.email : '';
+            form.mobile = (val) ? val.mobile : '';
+            form.web = (val) ? val.web : '';
+        } else {
+            form.org_id = (val) ? val.id : null;
+            if (!form.first_name) {
+                form.email = (val) ? val.email : '';
+                form.mobile = (val) ? val.mobile : '';
+                form.web = (val) ? val.web : '';
+            }
+        }
+
+        this.setState({ form });
+    }
+
     handleSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         this.props.handleSubmit(this.state.form);
         // this.setState({ form: this.initialState });
     }
 
     render() {
+        const form = this.state.form;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -101,7 +132,7 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
-                                <div className="row">
+                                {/* <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="first_name">
                                             Person Name
@@ -111,7 +142,7 @@ class Form extends Component {
                                             id="first_name"
                                             type="text"
                                             name="first_name"
-                                            value={this.state.form.first_name}
+                                            value={form.first_name}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -125,27 +156,21 @@ class Form extends Component {
                                             id="form-org_name"
                                             type="text"
                                             name="org_name"
-                                            value={this.state.form.org_name}
+                                            value={form.org_name}
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
 
-                                <div className="row"> 
-                                    <div className="col-lg">
-                                        <label htmlFor="form-web">
-                                            Website
-                                        </label>
-
-                                        <input
-                                            id="form-web"
-                                            type="text"
-                                            name="web"
-                                            value={this.state.form.web}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
+                                <Contact
+                                    data={{
+                                        first_name: form.first_name,
+                                        org_name: form.org_name
+                                    }}
+                                    review={true}
+                                    onChange={this.handleContactChange}
+                                    onSelect={this.handleContactSelect}
+                                />
 
                                 <div className="row">
                                     <div className="col-lg">
@@ -158,7 +183,7 @@ class Form extends Component {
                                             type="email"
                                             required
                                             name="email"
-                                            value={this.state.form.email}
+                                            value={form.email}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -171,7 +196,23 @@ class Form extends Component {
                                             id="form-mobile"
                                             type="text"
                                             name="mobile"
-                                            value={this.state.form.mobile}
+                                            value={form.mobile}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label htmlFor="form-web">
+                                            Website
+                                        </label>
+
+                                        <input
+                                            id="form-web"
+                                            type="text"
+                                            name="web"
+                                            value={form.web}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -184,7 +225,7 @@ class Form extends Component {
                                         </label>
 
                                         <CountryDropdown
-                                            value={this.state.form.country}
+                                            value={form.country}
                                             valueType='short'
                                             onChange={(val) => this.selectCountry(val)}
                                         />
@@ -196,9 +237,9 @@ class Form extends Component {
                                         </label>
 
                                         <RegionDropdown
-                                            country={this.state.form.country}
+                                            country={form.country}
                                             countryValueType='short'
-                                            value={this.state.form.region}
+                                            value={form.region}
                                             onChange={(val) => this.selectRegion(val)}
                                         />
                                     </div>
@@ -215,7 +256,7 @@ class Form extends Component {
                                             id="form-address"
                                             type="text"
                                             name="address"
-                                            value={this.state.form.address}
+                                            value={form.address}
                                             onChange={this.handleChange}
                                         />
                                     </div>

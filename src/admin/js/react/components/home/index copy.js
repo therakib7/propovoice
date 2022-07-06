@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Spinner from 'block/preloader/spinner';
 import {
     HashRouter, 
     useHistory,
@@ -308,7 +308,7 @@ const Home = () => {
 
                 <div className='pi-right-content pi-bg-pearl'>
                     <div className='pi-right-content-data '> {/* TODO: conditional class pi-deal-content */} 
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Spinner />}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
                                 {/* <Route path="/proposal" element={<Proposal />} /> */}

@@ -2,7 +2,7 @@ import React, { Component, Suspense, lazy } from 'react'
 import { toast } from 'react-toastify';
 import { NavLink } from "react-router-dom";
 import Api from 'api/invoice';
-
+import Spinner from 'block/preloader/spinner';
 //self component
 import FromTo from './FromTo';
 import Items from './Items'
@@ -640,7 +640,7 @@ class Invoice extends Component {
 										</svg>
 									</li>
 									<li>
-										<NavLink to='/invoice'>{title}</NavLink>
+										<NavLink to={'/'+this.props.path}>{title}</NavLink>
 									</li>
 									<li>
 										<svg
@@ -897,11 +897,11 @@ class Invoice extends Component {
 										/>
 
 										<div className="row">
-											<div className="col-lg-6">
+											<div className="col">
 												<PaymentInfo data={this.state.paymentBankData} />
 											</div>
 
-											<div className="col-lg-6">
+											<div className="col">
 												<Total
 													currencyFormatter={this.formatCurrency}
 													itemsTotal={this.calcItemsTotal}
@@ -919,7 +919,7 @@ class Invoice extends Component {
 											</div>
 										</div>
 
-										<Suspense fallback={<div>Loading...</div>}>
+										<Suspense fallback={<Spinner />}>
 											<Section data={invoice.sections} changeHandler={this.handleSectionChange} />
 										</Suspense>
 
@@ -974,7 +974,7 @@ class Invoice extends Component {
 
 										<div className="pi-accordion-wrapper pi-mt-25">
 											<ul>
-												<Suspense fallback={<div>Loading...</div>}>
+												<Suspense fallback={<Spinner />}>
 
 													{(!sidebarActive || sidebarActive == 'style') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('style')} />

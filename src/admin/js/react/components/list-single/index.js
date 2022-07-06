@@ -1,6 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; 
+import Spinner from 'block/preloader/spinner';
 import Taxonomy from 'block/field/taxonomy';
 import WithApi from 'hoc/Api';
 
@@ -50,6 +51,12 @@ class ListSingle extends Component {
             project_status: [],
             data: {
                 id: null,
+                person: {
+                    first_name: 'Name'
+                },
+                org: {
+                    name: 'Name'
+                },
                 contact: {
                     first_name: 'Name'
                 },
@@ -247,9 +254,9 @@ class ListSingle extends Component {
                             </svg>
                         </li>
                         <li className="pi-active">
-                            {path == 'lead' && contact.first_name}
-                            {path == 'client' && contact.first_name}
+                            {path == 'lead' && <>{( data.person ) ? data.person.first_name : data.org.name}</>}
                             {(path == 'deal' || path == 'project') && data.title}
+                            {path == 'client' && contact.first_name}
                             {path == 'contact' && contact.first_name}
                         </li>
                     </ul>
@@ -263,8 +270,8 @@ class ListSingle extends Component {
                                     <div className="pi-list-content">
                                         <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
-                                            <h3 className="">
-                                                {contact.first_name}
+                                            <h3 className=""> 
+                                                { ( data.person ) ? data.person.first_name : data.org.name } 
                                                 <button
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ leadModal: true })}
@@ -273,8 +280,8 @@ class ListSingle extends Component {
                                                 </button>
                                             </h3>
                                             <address>
-                                                {contact.email} <br />
-                                                Organization/Company: {contact.org_name}<br />
+                                                { ( data.person ) ? data.person.email : data.org.email } <br />
+                                                {data.person && data.org && <>Organization/Company: {data.org_name}<br /></>}
                                                 Budget ${data.budget}
                                             </address>
                                         </div>
@@ -394,8 +401,12 @@ class ListSingle extends Component {
                                         <div className="pi-avatar-content">
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
-                                                <h5 style={{ fontSize: 12 }}>{data.contact.first_name}</h5>
-                                                <p style={{ fontSize: 12 }}>{(data.contact.region) ? data.contact.region + ',' : ''} {data.contact.country}</p>
+                                                <h5 style={{ fontSize: 12 }}>{ ( data.person ) ? data.person.first_name : data.org.name } </h5>
+                                                <p style={{ fontSize: 12 }}>
+                                                { ( data.person ) ? data.person.region : data.org.region }
+
+                                                { ( data.person ) ? data.person.country : data.org.country }
+                                                </p>
                                             </div>
                                         </div>
                                         <div className="pi-range">
@@ -553,8 +564,12 @@ class ListSingle extends Component {
                                         <div className="pi-avatar-content">
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
-                                                <h5 style={{ fontSize: 12 }}>Nabil Ahmed</h5>
-                                                <p style={{ fontSize: 12 }}>Dhaka, Bangladesh</p>
+                                            <h5 style={{ fontSize: 12 }}>{ ( data.person ) ? data.person.first_name : data.org.name } </h5>
+                                                <p style={{ fontSize: 12 }}>
+                                                { ( data.person ) ? data.person.region : data.org.region }
+
+                                                { ( data.person ) ? data.person.country : data.org.country }
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -576,7 +591,7 @@ class ListSingle extends Component {
 
                                         <div
                                             className="pi-action-content pi-action-btn pi-bg-shadow"
-                                            style={{ padding: 3, top: 4 }}
+                                            style={{ padding: 3 }}
                                         >
                                             <button
                                                 className={(this.state.action ? '' : '')}
@@ -937,7 +952,7 @@ class ListSingle extends Component {
                             </ul>
 
                             <div className="pi-tab-content">
-                                <Suspense fallback={<div>Loading...</div>}>
+                                <Suspense fallback={<Spinner />}>
                                     {currentTab == 'task' && data.tab_id && <Task tab_id={data.tab_id} />}
                                     {currentTab == 'note' && data.tab_id && <Note tab_id={data.tab_id} />}
                                     {currentTab == 'file' && data.tab_id && <File tab_id={data.tab_id} />}
@@ -950,24 +965,25 @@ class ListSingle extends Component {
                         <div className="pi-widget pi-info-box">
                             <h3 className="pi-widget-title">Additional Info</h3>
                             <address>
-                                {contact.mobile &&
+                            
+                                {true &&
                                     <>
                                         <span>Mobile:</span>
-                                        {contact.mobile}
+                                        {( data.person ) ? data.person.mobile : data.org.mobile}
                                     </>
                                 }
 
-                                {contact.web &&
+                                {true &&
                                     <>
                                         <span>Website:</span>
-                                        {contact.web}
+                                        {( data.person ) ? data.person.web : data.org.web}
                                     </>
                                 }
 
-                                {contact.address &&
+                                {true &&
                                     <>
                                         <span>Address:</span>
-                                        {contact.address}
+                                        {( data.person ) ? data.person.address : data.org.address}
                                     </>
                                 }
 

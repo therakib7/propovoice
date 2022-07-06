@@ -82,6 +82,9 @@
   margin-left: 5px;
   border-radius: 4px;
 }
+.ncpi .pi-list-single-button-content .pi-action-btn {
+  float: right;
+}
 .ncpi .pi-list-single-button-content .pi-action-btn button {
   border: none;
   margin-left: 0;
@@ -238,11 +241,11 @@
 .ncpi .pi-task-btn {
   background: transparent;
   border: 1px solid #CBD5E0 !important;
-  padding: 5px 6px 3px !important;
   border-radius: 5px;
   margin-right: 5px;
   border-style: dashed !important;
-  width: 32px !important;
+  width: 34px;
+  height: 36px;
 }
 .ncpi .pi-task-btn img {
   max-width: 15px;
@@ -252,26 +255,26 @@
   font-size: 12px;
   position: relative;
   top: -5px;
-  padding-right: 8px !important;
+  padding-right: 7px;
   color: #718096;
 }
 .ncpi .pi-task-btn-two {
   padding: 3px 5px 2px;
+  width: 28px;
 }
 .ncpi .pi-task-btn-two img {
   height: 18px;
 }
 .ncpi .pi-tab-buttons {
-  text-align: right;
+  display: flex;
+  justify-content: right;
 }
 .ncpi .pi-tab-buttons .pi-action-content {
   display: inline-block;
 }
-.ncpi .pi-tab-buttons .pi-task-btn:first-child {
-  width: auto !important;
-}
-.ncpi .pi-tab-buttons button:last-child {
+.ncpi .pi-tab-buttons .pi-action-content:first-child .pi-task-btn {
   width: auto;
+  padding: 5px 8px;
 }
 .ncpi .pi-tab-buttons .pi-dropdown-content {
   text-align: left;

@@ -3,6 +3,8 @@
 namespace Ncpi\Ctrls\Api\Types;
 
 use Ncpi\Helpers\Fns;
+use Ncpi\Models\Org;
+use Ncpi\Models\Person;
 use WP_Query;
 
 class Deal
@@ -79,7 +81,7 @@ class Deal
 
         if (isset($request['page']) && $request['page'] > 1) {
             $offset = ($per_page * $request['page']) - $per_page;
-        } 
+        }
 
         $get_stage = Fns::get_terms('deal_stage');
 
@@ -140,7 +142,21 @@ class Deal
                     $query_data['tags'] = $tagList;
                 } */
 
-                $contact_id = get_post_meta($id, 'person_id', true);
+                $query_data['person'] = null;
+                $person_id = get_post_meta($id, 'person_id', true);
+                if ($person_id) {
+                    $person = new Person();
+                    $query_data['person'] = $person->single($person_id);
+                }
+
+                $query_data['org'] = null;
+                $org_id = get_post_meta($id, 'org_id', true);
+                if ($org_id) {
+                    $org = new Org();
+                    $query_data['org'] = $org->single($org_id);
+                }
+
+                /* $contact_id = get_post_meta($id, 'person_id', true);
                 $contactData = [];
 
                 if ($contact_id) {
@@ -150,7 +166,7 @@ class Deal
                     $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
                     $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
                 }
-                $query_data['contact'] = $contactData;
+                $query_data['contact'] = $contactData; */
 
                 $query_data['date'] = get_the_time('j-M-Y');
                 $items[] = $query_data;
@@ -220,22 +236,19 @@ class Deal
             $query_data['tags'] = $tagList;
         } */
 
-        $contact_id = get_post_meta($id, 'person_id', true);
-        $contactData = [];
-
-        if ($contact_id) {
-            $contactData['id'] = absint($contact_id);
-            $contactMeta = get_post_meta($contact_id);
-            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
-            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
-            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
-            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
-            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
+        $query_data['person'] = null;
+        $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
+        if ( $person_id ) {
+            $person = new Person();   
+            $query_data['person'] = $person->single( $person_id, true );
         }
-        $query_data['contact'] = $contactData;
+
+        $query_data['org'] = null;
+        $org_id = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
+        if ( $org_id ) {
+            $org = new Org();   
+            $query_data['org'] = $org->single( $org_id, true );
+        } 
 
         $query_data['date'] = get_the_time('j-M-Y');
 
@@ -248,8 +261,10 @@ class Deal
         $reg_errors = new \WP_Error;
 
         $lead_id      = isset($params['lead_id']) ? absint($params['lead_id']) : null;
-        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null;
+        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
+        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
+        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
         $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
@@ -262,6 +277,25 @@ class Deal
         /* if ( $lead_id ) {
             wp_send_json_success($lead_id);
         } */
+
+        $person = new Person();  
+        if ( $person_id ) {
+            $person->update( $params ); 
+        }
+
+        if ( ! $person_id && $first_name ) { 
+            $person_id = $person->create( $params ); 
+        } 
+
+        $org = new Org();
+        if ( ! $person_id && $org_id ) {
+            $org->update( $params ); 
+        }
+        
+        if ( ! $org_id && $org_name ) { 
+            $org_id = $org->create( $params ); 
+        } 
+
         if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
         }
@@ -283,7 +317,7 @@ class Deal
             );
             $post_id = wp_insert_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
 
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
                 $tab_id = $post_id;
@@ -397,7 +431,7 @@ class Deal
 
             $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
 
                 if ($stage_id) {
                     wp_set_post_terms($post_id, [$stage_id], 'ndpi_deal_stage');

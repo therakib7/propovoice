@@ -223,7 +223,7 @@ class Form extends Component {
                                 })}
                             </div>}
                         </div>
-                        <button type='submit' className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-mt-m-4">
+                        <button type='submit' className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-br-4">
                             Save
                         </button>
                     </div>

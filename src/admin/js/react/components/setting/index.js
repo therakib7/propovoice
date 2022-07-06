@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 // import Style from './style.scoped.scss' 
- 
+import Spinner from 'block/preloader/spinner';
 const General = lazy(() => import('./tab/general'));
 
 const Task = lazy(() => import('./tab/task'));
@@ -183,7 +183,7 @@ export default function SettingWrap() {
 
                             <h4 className='pi-title-medium pi-mb-15' style={{textTransform: 'capitalize'}}>{currentTab} Settings</h4>
 
-                            <Suspense fallback={<div>Loading...</div>}> 
+                            <Suspense fallback={<Spinner />}> 
 
                                 {currentTab == 'general' && <General />}
                                 {currentTab == 'task' && <Task />}

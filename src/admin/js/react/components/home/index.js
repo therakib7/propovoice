@@ -10,7 +10,7 @@ import {
     Route,
     NavLink
 } from "react-router-dom"; 
-
+import Spinner from 'block/preloader/spinner';
 const Dashboard = lazy(() => import('components/dashboard'));
 const Client = lazy(() => import('components/client'));
 
@@ -412,25 +412,7 @@ const Home = () => {
                                     Settings
                                 </NavLink>
                             </li>
-                            <li className="pi-mt-35">
-                                <a>
-                                    <svg
-                                        className=""
-                                        width={20}
-                                        height={13}
-                                        viewBox="0 0 20 13"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M17.6915 1.80824L14.9082 3.41657C14.7262 3.52107 14.5155 3.5645 14.3071 3.54051C14.0986 3.51651 13.9033 3.42635 13.7498 3.28324L10.6665 0.441569C10.4855 0.272804 10.2473 0.178955 9.99985 0.178955C9.7524 0.178955 9.51415 0.272804 9.33318 0.441569L6.24985 3.28324C6.09638 3.42635 5.90109 3.51651 5.69262 3.54051C5.48416 3.5645 5.27349 3.52107 5.09152 3.41657L2.30818 1.80824C2.1482 1.71652 1.9657 1.67151 1.78141 1.67833C1.59713 1.68515 1.41845 1.74352 1.26568 1.84681C1.11291 1.95011 0.992179 2.09418 0.917199 2.26266C0.842219 2.43113 0.815998 2.61727 0.841516 2.7999C1.29152 6.00824 1.74152 8.37491 2.18318 11.8082C2.21442 12.045 2.33042 12.2625 2.50969 12.4203C2.68896 12.5781 2.91935 12.6656 3.15818 12.6666H16.8415C17.0804 12.6656 17.3107 12.5781 17.49 12.4203C17.6693 12.2625 17.7853 12.045 17.8165 11.8082C18.2582 8.37491 18.7082 6.00824 19.1582 2.7999C19.1837 2.61727 19.1575 2.43113 19.0825 2.26266C19.0075 2.09418 18.8868 1.95011 18.734 1.84681C18.5812 1.74352 18.4026 1.68515 18.2183 1.67833C18.034 1.67151 17.8515 1.71652 17.6915 1.80824ZM12.4998 10.1666H7.49985C7.27883 10.1666 7.06687 10.0788 6.91059 9.9225C6.75431 9.76622 6.66652 9.55425 6.66652 9.33324C6.66652 9.11223 6.75431 8.90027 6.91059 8.74399C7.06687 8.5877 7.27883 8.49991 7.49985 8.49991H12.4998C12.7209 8.49991 12.9328 8.5877 13.0891 8.74399C13.2454 8.90027 13.3332 9.11223 13.3332 9.33324C13.3332 9.55425 13.2454 9.76622 13.0891 9.9225C12.9328 10.0788 12.7209 10.1666 12.4998 10.1666Z"
-                                            fill="#718096"
-                                        />
-                                    </svg>
-                                    Pro Feature
-                                </a>
-                            </li>
-                            <li>
+                            { false && <li>
                                 <a href='https://propovoice.com/support' target='_blank'>
                                     <svg
                                         className="pi-mr-14"
@@ -451,8 +433,8 @@ const Home = () => {
                                     </svg>
                                     Need Support?
                                 </a>
-                            </li>
-                            <li>
+                            </li>}
+                            <li className="pi-mt-35">
                                 <a href='https://propovoice.com/docs' target='_blank'>
                                     <svg
                                         width={20}
@@ -492,9 +474,9 @@ const Home = () => {
                         </ul>
 
                         <div className="pi-menu-buttons">
-                            <a href='https://propovoice.com/affilite' target='_blank' className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
+                            {false && <a href='https://propovoice.com/affilite' target='_blank' className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
                                 Refer &amp; Earn
-                            </a>
+                            </a>}
                             <a href={ncpi.dashboard} className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
                                 Back to WP Dashboard
                             </a>
@@ -562,7 +544,7 @@ const Home = () => {
                     </div> 
 
                     <div className='pi-right-content-data' ref={contentRef}>
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Spinner />}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
                                 {/* <Route path="/proposal" element={<Proposal />} /> */}

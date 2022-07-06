@@ -71,10 +71,10 @@ const TableBody = props => {
                     <li>
                     </li>
                     <li>
-                        <Taxonomy id={row.id} taxonomy='task_status' title='Status' color={true} /> 
+                        <Taxonomy id={row.id} taxonomy='task_status' title='Status' small={true} color={true} /> 
                     </li>
                     <li>
-                        <Taxonomy id={row.id} taxonomy='task_priority' title='Priority' color={true} />  
+                        <Taxonomy id={row.id} taxonomy='task_priority' title='Priority' small={true} color={true} />  
                     </li>
                     <li> 
                         <Action
