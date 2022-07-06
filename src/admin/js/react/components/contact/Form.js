@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 class Form extends Component {
@@ -60,8 +60,38 @@ class Form extends Component {
         }
     }
 
+    handleContactChange = (val, type) => {
+        let form = { ...this.state.form }
+        if (type == 'person') {
+            form.first_name = val;
+        } else {
+            form.org_name = val;
+        }
+        this.setState({ form });
+    }
+
+    handleContactSelect = (val, type) => {
+        let form = { ...this.state.form }
+
+        if (type == 'person') {
+            form.person_id = (val) ? val.id : null;
+            form.email = (val) ? val.email : '';
+            form.mobile = (val) ? val.mobile : '';
+            form.web = (val) ? val.web : '';
+        } else {
+            form.org_id = (val) ? val.id : null;
+            if (!form.first_name) {
+                form.email = (val) ? val.email : '';
+                form.mobile = (val) ? val.mobile : '';
+                form.web = (val) ? val.web : '';
+            }
+        }
+
+        this.setState({ form });
+    }
+
     handleSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         this.props.handleSubmit(this.state.form);
         // this.setState({ form: this.initialState });
     }
@@ -102,7 +132,7 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
-                                <div className="row">
+                                {/* <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="first_name">
                                             Person Name
@@ -130,7 +160,17 @@ class Form extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
+
+                                <Contact
+                                    data={{
+                                        first_name: form.first_name,
+                                        org_name: form.org_name
+                                    }}
+                                    review={true}
+                                    onChange={this.handleContactChange}
+                                    onSelect={this.handleContactSelect}
+                                />
 
                                 <div className="row">
                                     <div className="col-lg">
@@ -162,7 +202,7 @@ class Form extends Component {
                                     </div>
                                 </div>
 
-                                <div className="row"> 
+                                <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-web">
                                             Website

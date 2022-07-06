@@ -9,18 +9,35 @@ import Table from './Table';
 
 import Crud from 'hoc/Crud';
 
-const Task = (props) => { 
-            
+const Task = (props) => {
+
     const [activeTab, setActiveTab] = useState(null);
     const [taxonomies, setTaxonomies] = useState({
         status: [],
         types: [],
         priorities: [],
-    }); 
+    });
 
     const { lists, checkedBoxes, searchVal } = props.state;
+
+    let openTodayTab, openOtherTab, openUnscheduleTab = false;
+
+    if ( lists.hasOwnProperty('today') ) {
+        if (lists.today.length > 0) {
+            openTodayTab = true;
+        }
+
+        if (!lists.today.length && lists.other.length > 0) {
+            openOtherTab = true;
+        }
+
+        if (!lists.today.length && !lists.other.length && lists.unschedule.length > 0) {
+            openUnscheduleTab = true;
+        }
+    }
+
     return (
-        <div className=""> 
+        <div className="">
             <Form
                 handleSubmit={props.handleSubmit}
                 setTaxonomies={setTaxonomies}
@@ -29,7 +46,7 @@ const Task = (props) => {
 
             {props.state.formModal && <FormEdit
                 tab_id={props.tab_id}
-                taxonomies={taxonomies} 
+                taxonomies={taxonomies}
                 handleSubmit={props.handleSubmit}
                 modalType={props.state.formModalType}
                 data={props.state.list}
@@ -41,7 +58,7 @@ const Task = (props) => {
                 {lists.task_status && lists.task_status.map((status, statusIndex) => {
                     return (
                         <button key={statusIndex}
-                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ( ( activeTab == status.id ) || ( !activeTab && statusIndex == 0 ) ? 'pi-active' : '')}
+                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ((activeTab == status.id) || (!activeTab && statusIndex == 0) ? 'pi-active' : '')}
                             onClick={() => { setActiveTab(status.id); props.getLists({ status_id: status.id }); }}
                         >
                             {status.label}
@@ -53,7 +70,7 @@ const Task = (props) => {
             {props.state.preloader ? <Preloader /> : <div className="pi-accordion">
                 {lists.today.length > 0 &&
                     <>
-                        <input type="radio" name="pi-accordion" id="pi-task-today" />
+                        <input type="radio" name="pi-accordion" defaultChecked={openTodayTab} id="pi-task-today" />
                         <section className="pi-accordion-table">
                             <label className="pi-accordion-title" htmlFor="pi-task-today">
                                 <span className="pi-down-angle">
@@ -85,7 +102,7 @@ const Task = (props) => {
 
                 {lists.other.length > 0 &&
                     <>
-                        <input type="radio" name="pi-accordion" id="pi-task-other" />
+                        <input type="radio" name="pi-accordion" defaultChecked={openOtherTab} id="pi-task-other" />
                         <section className="pi-accordion-table">
                             <label className="pi-accordion-title" htmlFor="pi-task-other">
                                 <span className="pi-down-angle">
@@ -117,7 +134,7 @@ const Task = (props) => {
 
                 {lists.unschedule.length > 0 &&
                     <>
-                        <input type="radio" name="pi-accordion" id="pi-task-unschedule" />
+                        <input type="radio" name="pi-accordion" defaultChecked={openUnscheduleTab} id="pi-task-unschedule" />
                         <section className="pi-accordion-table">
                             <label className="pi-accordion-title" htmlFor="pi-task-unschedule">
                                 <span className="pi-down-angle">

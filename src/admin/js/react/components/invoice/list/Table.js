@@ -89,46 +89,60 @@ const TableBody = props => {
         let status;
         switch (row.status) {
             case 'draft':
-                status = <span className='pi-badge pi-bg-pink'>Draft</span>
+                status = <span className='pi-badge pi-bg-pink'
+                // style={{color: '#fff'}}
+                >Draft</span>
                 break;
 
             case 'sent':
-                status = <span className='pi-badge pi-bg-gray'>Sent</span>
+                status = <span className='pi-badge pi-bg-gray'
+                // style={{color: '#fff'}}
+                >Sent</span>
                 break;
 
             case 'viewed':
-                status = <span className='pi-badge pi-bg-orange'>Viewed</span>
+                status = <span className='pi-badge pi-bg-orange'
+                // style={{color: '#999'}}
+                >Viewed</span>
                 break;
 
             case 'accept':
-                status = <span className='pi-badge pi-bg-blue pi-cursor-pointer' onClick={() => props.infoModal(row, 'feedback')}>Accepted</span>
+                status = <span className='pi-badge pi-bg-blue pi-cursor-pointer' 
+                style={{color: '#fff'}}
+                onClick={() => props.infoModal(row, 'feedback')}>Accepted</span>
                 break;
 
             case 'decline':
-                status = <span className='pi-badge pi-bg-red pi-cursor-pointer' onClick={() => props.infoModal(row, 'feedback')}>Declined</span>
+                status = <span className='pi-badge pi-bg-red pi-cursor-pointer' 
+                style={{color: '#fff'}}
+                onClick={() => props.infoModal(row, 'feedback')}>Declined</span>
                 break;
 
             case 'paid_req':
-                status = <span className='pi-badge pi-bg-orange'>Paid Request</span>
+                status = <span className='pi-badge pi-bg-orange'
+                style={{color: '#fff'}}
+                >Paid Request</span>
                 break;
 
             case 'paid':
-                status = <span className='pi-badge pi-bg-blue'>Paid</span>
+                status = <span className='pi-badge pi-bg-blue'
+                style={{color: '#fff'}}
+                >Paid</span>
                 break;
         }
 
         let payment_method;
         switch (row.payment_method) {
             case 'bank':
-                payment_method = <span className='pi-badge pi-cursor-pointer' style={{ backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank & Others</span>
+                payment_method = <span className='pi-badge pi-cursor-pointer' style={{ color: '#fff', backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank & Others</span>
                 break;
 
             case 'paypal':
-                payment_method = <span className='pi-badge pi-cursor-pointer' style={{ backgroundColor: '#009cde' }} onClick={() => props.infoModal(row, 'paypal')}>Paypal</span>
+                payment_method = <span className='pi-badge pi-cursor-pointer' style={{ color: '#fff', backgroundColor: '#009cde' }} onClick={() => props.infoModal(row, 'paypal')}>Paypal</span>
                 break;
 
             case 'stripe':
-                payment_method = <span className='pi-badge pi-cursor-pointer' style={{ backgroundColor: '#5433FF' }} onClick={() => props.infoModal(row, 'stripe')}>Stripe</span>
+                payment_method = <span className='pi-badge pi-cursor-pointer' style={{ color: '#fff', backgroundColor: '#5433FF' }} onClick={() => props.infoModal(row, 'stripe')}>Stripe</span>
                 break;
         }
 

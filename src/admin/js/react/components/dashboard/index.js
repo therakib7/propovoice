@@ -5,6 +5,10 @@ import Spinner from 'block/preloader/spinner';
 
 const Task = lazy(() => import('components/list-single/tab/task'));
 
+const ChartPie = lazy(() => import('./chart/Pie'));
+const ChartLine = lazy(() => import('./chart/Line'));
+const ChartBar = lazy(() => import('./chart/Bar'));
+
 import WithApi from 'hoc/Api';
 
 const Dashboard = (props) => {
@@ -32,9 +36,9 @@ const Dashboard = (props) => {
                         className="pi-action-content"
                         style={{ display: "flex", justifyContent: "right" }}
                     >
-                        <button 
-                        className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-br-4"
-                        onClick={() => setDropdown(val => !val)}
+                        <button
+                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-br-4"
+                            onClick={() => setDropdown(val => !val)}
                         >
                             <svg
                                 width={14}
@@ -61,10 +65,10 @@ const Dashboard = (props) => {
                             Create
                         </button>
 
-                        {dropdown && <div className="pi-dropdown-content pi-show" style={{ top: 40 }}> 
+                        {dropdown && <div className="pi-dropdown-content pi-show" style={{ top: 40 }}>
                             <a href="#">Create Project</a>
                             <a href="#">Create Person</a>
-                            <a href="#">Create Organization</a> 
+                            <a href="#">Create Organization</a>
                         </div>}
                     </div>
                 </div>
@@ -323,7 +327,7 @@ const Dashboard = (props) => {
                                 className="pi-title-medium pi-mb-20"
                                 style={{ fontWeight: "bold", color: "#718096" }}
                             >
-                                Leadfunnel
+                                Deal Funnel
                             </h3>
                             <ul>
                                 <li style={{ background: "#d6defa" }}>
@@ -347,15 +351,22 @@ const Dashboard = (props) => {
                     </div>
                 </div>
             </div>
-            {/* ./pi-block */}
-            <div className="pi-summery-content">
+
+            <div className="">
                 <div className="row">
-                    <div className="col-8"> 
+                    <div className="col-8">
+                        <Suspense fallback={<Spinner />}> 
+                            <ChartLine /> 
+                            <ChartBar type='estimate' /> 
+                            <ChartBar type='invoice' />
+                        </Suspense>
                     </div>
-                    {/* ./ col-8 */}
                     <div className="col-4">
+                        <Suspense fallback={<Spinner />}>
+                            <ChartPie type='lead_level' />
+                            <ChartPie type='lead_source' />
+                        </Suspense>
                     </div>
-                    {/* ./col-4 */}
                 </div>
             </div>
         </div>

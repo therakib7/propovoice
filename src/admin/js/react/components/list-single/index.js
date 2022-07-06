@@ -591,7 +591,7 @@ class ListSingle extends Component {
 
                                         <div
                                             className="pi-action-content pi-action-btn pi-bg-shadow"
-                                            style={{ padding: 3, top: 4 }}
+                                            style={{ padding: 3 }}
                                         >
                                             <button
                                                 className={(this.state.action ? '' : '')}

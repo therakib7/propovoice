@@ -866,6 +866,9 @@ html {
   text-align: center;
   width: 60px;
 }
+.ncpi .pi-table tr th:first-child input[type=checkbox] {
+  top: 3px;
+}
 .ncpi .pi-table tr td:first-child,
 .ncpi .pi-table tr th:first-child {
   width: 42px;
@@ -1010,6 +1013,7 @@ html {
   width: 100%;
   border-radius: 5px;
   justify-content: space-between;
+  align-items: center;
 }
 .ncpi .pi-accordion-table-list ul li:first-child {
   display: flex;
@@ -1082,6 +1086,11 @@ html {
 .ncpi .pi-accordion-table-list .pi-action-content .pi-dropdown-content {
   text-align: left;
   left: -65px !important;
+}
+.ncpi .pi-accordion-table-list .pi-action-content button {
+  padding: 0px 5px;
+  position: relative;
+  top: 3px;
 }
 .ncpi .pi-info-table-content {
   margin-top: 20px;
@@ -1442,7 +1451,7 @@ html {
   background-color: #fff;
   display: inline-block;
   cursor: pointer;
-  top: 3px;
+  top: 0px;
   border-radius: 5px;
   margin-left: 5px;
   border: 1px solid #dddddda8;
@@ -2047,6 +2056,10 @@ html {
 .wp-admin .pi-table tr th:first-child input[type=checkbox] {
   top: 0px !important;
 }
+.wp-admin .pi-info-table .pi-field-checkbox select {
+  padding: 5px 6px !important;
+  height: 35px;
+}
 .wp-admin .pi-info-form-list label {
   padding: 6px 12px 7px 0 !important;
 }
@@ -2056,10 +2069,6 @@ html {
 }
 .wp-admin .pi-info-form-list .pi-calendar {
   padding: 8px 7px !important;
-}
-.wp-admin .pi-info-table-content .pi-info-table td select {
-  padding: 5px 6px !important;
-  height: 35px;
 }
 .wp-admin .pi-accordion-wrapper .pi-field-switch-big {
   top: 0 !important;
@@ -2089,6 +2098,18 @@ html {
 .wp-admin .pi-field-select input[type=text]:focus {
   border: 0 !important;
   box-shadow: none !important;
+}
+.wp-admin .pi-modal-style-two .pi-modal-footer .row > .col {
+  margin-bottom: 0px;
+}
+.wp-admin .pi-modal-style-two .pi-modal-footer .row > .col .pi-btn {
+  padding: 10px 20px !important;
+}
+.wp-admin .pi-field-radio input[type=radio],
+.wp-admin .pi-field-radio input[type=checkbox] {
+  zoom: 1;
+  position: relative;
+  top: 2px;
 }
 
 .react-datepicker {
@@ -2159,7 +2180,7 @@ html {
   border: 1px solid rgba(147, 147, 147, 0.9411764706);
 }
 .twentytwentyone-theme .pi-table tr th:first-child input[type=checkbox] {
-  top: 6px;
+  top: 4px;
 }
 .twentytwentyone-theme input[type=checkbox]:focus {
   outline: none !important;
@@ -2196,7 +2217,7 @@ td {
   padding: 0;
 }
 .twentytwenty-theme .pi-table tr th:first-child input[type=checkbox] {
-  top: 6px !important;
+  top: 1px !important;
 }
 @media (min-width: 700px) {
   .twentytwenty-theme section {
