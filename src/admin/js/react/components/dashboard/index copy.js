@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
-import Api from 'api/dashboard';
+// import Api from 'api/dashboard';
 import Feedback from './Feedback';
 
 class Dashboard extends Component {

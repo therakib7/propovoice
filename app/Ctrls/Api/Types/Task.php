@@ -79,10 +79,15 @@ class Task
         }
 
         $tab_id = isset($params['tab_id']) ? absint($req['tab_id']) : false;
+        $dashboard = isset($params['dashboard']) ? sanitize_text_field($req['dashboard']) : false;
         $status_id = isset($params['status_id']) ? absint($req['status_id']) : false;
 
         if (isset($params['page']) && $params['page'] > 1) {
             $offset = ($per_page * $params['page']) - $per_page;
+        }
+
+        if ( $dashboard ) {
+            $per_page = 3;
         }
 
         $args = array(
@@ -205,19 +210,23 @@ class Task
             $query_data['end_date'] = get_post_meta($id, 'end_date', true);
             $query_data['date'] = get_the_time('j-M-Y');
 
-            $start_date = get_post_meta($id, 'start_date', true); 
-            if ( $start_date ) {
-                $current_date = date('Y-m-d', current_time('timestamp'));
-                $format_start_date = date('Y-m-d', strtotime($start_date));
-
-                if ($current_date == $format_start_date) {
-                    $data['today'][] = $query_data;
-                } else {
-                    $data['other'][] = $query_data;
-                } 
+            if ( $dashboard ) {
+                $data['latest'][] = $query_data;
             } else {
-                $data['unschedule'][] = $query_data;
-            }
+                $start_date = get_post_meta($id, 'start_date', true); 
+                if ( $start_date ) {
+                    $current_date = date('Y-m-d', current_time('timestamp'));
+                    $format_start_date = date('Y-m-d', strtotime($start_date));
+    
+                    if ($current_date == $format_start_date) {
+                        $data['today'][] = $query_data;
+                    } else {
+                        $data['other'][] = $query_data;
+                    } 
+                } else {
+                    $data['unschedule'][] = $query_data;
+                }
+            } 
         }
         wp_reset_postdata();
 

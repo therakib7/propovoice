@@ -53,8 +53,14 @@ const HOC = (Inner, mod, modPlural = '') => {
                 args.taxonomy = this.props.taxonomy;
             }  */
 
+            //this is for task tab
             if ( this.props.tab_id ) {
                 args.tab_id = this.props.tab_id;
+            }
+            
+            //this is for task tab
+            if ( this.props.dashboard ) {
+                args.dashboard = this.props.dashboard;
             }
 
             if (searchArgs) {
