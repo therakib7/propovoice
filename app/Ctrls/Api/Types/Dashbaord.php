@@ -34,8 +34,11 @@ class Dashbaord
 
         if ( $params['section'] == 'deal_funnel' ) {
             $this->deal_funnel( $params );
-        } 
-        
+        }  
+
+        if ( $params['section'] == 'lead_level' || $params['section'] == 'lead_source' ) {
+            $this->lead_level_source( $params );
+        }
     }
 
     public function summary( $params ) {
@@ -191,14 +194,72 @@ class Dashbaord
 
     public function deal_tracking() {
          
-    }
+    } 
 
-    public function lead_level() {
-         
-    }
+    public function lead_level_source( $params ) { 
 
-    public function lead_source() {
-         
+        $per_page = 10;
+        $offset = 0;
+
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
+        }
+
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
+        }
+
+        $get_tax = Fns::get_terms($params['section']);
+
+        $column = [];
+        $total_tax = count( $get_tax );
+ 
+        $minus_width = 100 / $total_tax;
+
+        foreach ($get_tax as $tax):
+            $tax_id = $tax->term_id;
+            $tax_name = $tax->name;
+
+            $items = [];
+            $args = array(
+                'post_type' => 'ndpi_lead',
+                'post_status' => 'publish',
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
+                'posts_per_page' => $per_page,
+                'offset' => $offset,
+            );
+
+            $args['meta_query'] = array(
+                'relation' => 'OR'
+            );
+
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'ndpi_' . $params['section'],
+                    'terms' => $tax_id,
+                    'field' => 'term_id',
+                )
+            );
+
+            $query = new WP_Query($args);
+            $total_data = $query->found_posts; //use this for pagination   
+
+            $width = ''; 
+            $width = round($minus_width); 
+
+            $bg_color = get_term_meta($tax_id, 'bg_color', true);
+            $tax_single = [ 
+                'name' => $tax_name,  
+                'bg_color' => $bg_color ? $bg_color : '#B9C7FF', 
+                'width' => $width,
+                'items' => $total_data
+            ];  
+
+            $column[] = $tax_single;
+        endforeach;
+
+        wp_send_json_success($column);
     }
 
     public function estvoice() {

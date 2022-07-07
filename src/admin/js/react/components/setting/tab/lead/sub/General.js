@@ -70,7 +70,7 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Source</label>
-                        <Taxonomy taxonomy='lead_source' title='Source' />
+                        <Taxonomy taxonomy='lead_source' title='Source' color={true} />
                     </div>
                     <div className="col">
                     </div>
