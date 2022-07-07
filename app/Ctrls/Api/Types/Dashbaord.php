@@ -171,10 +171,12 @@ class Dashbaord
                 $item_width -= $minus_width;
             }
 
+            $bg_color = get_term_meta($stage_id, 'bg_color', true);
+            $color = get_term_meta($stage_id, 'color', true);
             $stage_single = [ 
-                'name' => $stage_name, 
-                'color' => get_term_meta($stage_id, 'color', true),
-                'bg_color' => get_term_meta($stage_id, 'bg_color', true),
+                'name' => $stage_name,  
+                'color' => $color ? $color : '#fff', 
+                'bg_color' => $bg_color ? $bg_color : '#345bde', 
                 'type' => $type,
                 'width' => $width,
                 'items' => $total_data
