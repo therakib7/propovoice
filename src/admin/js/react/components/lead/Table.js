@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import Moment from 'react-moment';  
-import Action from 'block/action/row'; 
+import Moment from 'react-moment';
+import Action from 'block/action/row';
 
 const TableHeader = props => {
     return (
@@ -88,13 +88,13 @@ const TableHeader = props => {
     );
 }
 
-const TableBody = props => { 
+const TableBody = props => {
     const navigate = useNavigate();
     const handleOverview = (id) => {
         navigate(`/lead/single/${id}`, { replace: true });
     };
 
-    let rows = props.tableData.map((row, index) => { 
+    let rows = props.tableData.map((row, index) => {
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
@@ -107,14 +107,14 @@ const TableBody = props => {
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
-                </td> 
+                </td>
                 <td onClick={() => handleOverview(row.id)}>
                     <div className="pi-avater">
                         <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
-                        <span>{ ( row.person ) ? row.person.first_name : row.org.name }</span>
+                        <span>{(row.person) ? row.person.first_name : row.org.name}</span>
                     </div>
                 </td>
-                <td onClick={() => handleOverview(row.id)}>{ ( row.person ) ? row.person.email : row.org.email }</td>
+                <td onClick={() => handleOverview(row.id)}>{(row.person) ? row.person.email : row.org.email}</td>
                 <td>
                     {(level.color && level.bg_color) && <span className="pi-badge"
                         style={{
@@ -146,14 +146,14 @@ const TableBody = props => {
                         )
                     })}
                 </td>
-                <td onClick={() => handleOverview(row.id)}><Moment format="YYYY-MM-DD">{row.date}</Moment></td> 
+                <td onClick={() => handleOverview(row.id)}><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
-                    <Action 
+                    <Action
                         row={row}
                         handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
-                    /> 
+                    />
                 </td>
             </tr>
         );

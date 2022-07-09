@@ -9,7 +9,7 @@ import {
     Routes,
     Route,
     NavLink
-} from "react-router-dom"; 
+} from "react-router-dom";
 import Spinner from 'block/preloader/spinner';
 const Dashboard = lazy(() => import('components/dashboard'));
 const Client = lazy(() => import('components/client'));
@@ -39,12 +39,12 @@ const ContactOrg = lazy(() => import('components/contact/org'));
 const Setting = lazy(() => import('components/setting'));
 
 const Home = () => {
-    const contentRef = useRef(); 
-    const [dropdown, setDropdown] = useState(false);  
+    const contentRef = useRef();
+    const [dropdown, setDropdown] = useState(false);
 
-    const dealLoad = ( load = true ) => {
+    const dealLoad = (load = true) => {
         const span = contentRef.current; // corresponding DOM node
-        if ( load ) {
+        if (load) {
             span.className = 'pi-right-content-data pi-deal-content';
         } else {
             span.className = 'pi-right-content-data';
@@ -69,6 +69,7 @@ const Home = () => {
                             <img src={ncpi.assetImgUri + 'site-logo.png'} alt="favicon" />
                             <strong>Propovoice</strong>
                         </div>
+
                         <ul>
                             <li>
                                 <NavLink to='/' className={({ isActive }) => isActive ? 'pi-active' : ''}>
@@ -412,7 +413,7 @@ const Home = () => {
                                     Settings
                                 </NavLink>
                             </li>
-                            { false && <li>
+                            {false && <li>
                                 <a href='https://propovoice.com/support' target='_blank'>
                                     <svg
                                         className="pi-mr-14"
@@ -541,7 +542,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
 
                     <div className='pi-right-content-data' ref={contentRef}>
                         <Suspense fallback={<Spinner />}>
@@ -599,5 +600,5 @@ const Home = () => {
             </div>
         </HashRouter>
     )
-} 
+}
 export default Home;
