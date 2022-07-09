@@ -12,14 +12,14 @@ const TableBody = props => {
         const status = row.status_id;
         const priority = row.priority_id;
         return (
-            <div className="pi-accordion-table-list" key={index}>
-                <div className="pi-checkbox">
+            <div className="pi-accordion-table-list" key={index}> 
+                {!props.dashboard && <div className="pi-checkbox">
                     <input type="checkbox"
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
-                </div>
+                </div>}
                 <ul>
                     <li className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
                         <div className="pi-task-type">

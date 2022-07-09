@@ -3,7 +3,8 @@
 
 const Snipper = props => {
   return ( 
-    <div className="spinner loading" />
+    // <div className="spinner loading">Loading...</div>
+    <div className="">Loading...</div>
   )
 }
 export default Snipper

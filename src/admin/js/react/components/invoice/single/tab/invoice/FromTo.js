@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 
 import AppContext from 'context/app-context';
-import ApiBusiness from 'api/business'; 
 import WithApi from 'hoc/Api';
 
 import Contact from 'block/field/contact-select';
 
 //others component
-import BusinessForm from 'components/business/Form'; 
-import ContactForm from 'components/contact/Form'; 
+import BusinessForm from 'components/business/Form';
+import ContactForm from 'components/contact/Form';
 
 class FromTo extends Component {
 
@@ -17,17 +16,17 @@ class FromTo extends Component {
         super(props);
 
         this.state = {
-            loaded: false, 
-            fromList: [], 
+            loaded: false,
+            fromList: [],
             from: { id: null },
             to: { id: null },
             to_type: 'person', //'org'
             businessModal: false,
             businessModalType: 'new',
             businessData: { id: null },
-            clientModal: false,
-            clientModalType: 'new',
-            clientData: { id: null },
+            contactModal: false,
+            contactModalType: 'new',
+            contactData: { id: null },
         };
 
         this.timeout = 0;
@@ -41,7 +40,13 @@ class FromTo extends Component {
          * for pro default delected with list
          * if don't have default selected first one
          */
-        ApiBusiness.getAll().then(resp => {
+        let args = {
+            page: 1,
+            per_page: 1
+        }
+        let params = new URLSearchParams(args).toString();
+
+        this.props.getAll('businesses', params).then(resp => {
             let fromData = resp.data.data.result;
             if (fromData.length) {
                 let stateValue = {}
@@ -77,11 +82,11 @@ class FromTo extends Component {
                     to: toData
                 });
             }
-        } 
-        
-    }     
+        }
 
-    handleContactSelect = (val) => { 
+    }
+
+    handleContactSelect = (val) => {
         this.setState({ to: val });
         this.props.setTo(val);
     }
@@ -98,54 +103,54 @@ class FromTo extends Component {
 
     handleBusinessSubmit = business => {
         if (this.state.businessModalType == 'new') {
-            ApiBusiness.create(business)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ businessModal: false })
-                        toast.success(this.context.CrudMsg.create);
-                        business.id = resp.data.data;
-                        this.props.setFrom(business);
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
+            this.props.create('businesses', business).then(resp => {
+                if (resp.data.success) {
+                    this.setState({ businessModal: false })
+                    toast.success(this.context.CrudMsg.create);
+                    business.id = resp.data.data;
+                    this.props.setFrom(business);
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
         } else {
-            ApiBusiness.update(business.id, business)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ businessModal: false })
-                        toast.success(this.context.CrudMsg.update);
-                        this.props.setFrom(business);
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
+            this.props.update('businesses', business.id, business).then(resp => {
+                if (resp.data.success) {
+                    this.setState({ businessModal: false })
+                    toast.success(this.context.CrudMsg.update);
+                    this.props.setFrom(business);
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
         }
-    }  
+    }
 
-    render = () => { 
+    handleContactSubmit = contact => {
+        this.props.setTo(contact);
+    }
+
+    render = () => {
         const { fromData, toData } = this.props;
         return (
             <div className="pi-from-content pi-border-right pi-mt-25">
 
                 {this.state.businessModal && <BusinessForm
                     handleSubmit={this.handleBusinessSubmit}
-                    show={this.state.businessModal}
                     modalType={this.state.businessModalType}
                     data={this.state.businessData}
                     close={() => this.setState({ businessModal: false })}
-                />} 
+                />}
 
-                {this.state.clientModal && <ContactForm
-                    handleSubmit={this.handleClientSubmit}
-                    show={this.state.clientModal}
-                    modalType={this.state.clientModalType}
-                    data={this.state.clientData}
-                    close={() => this.setState({ clientModal: false })}
+                {this.state.contactModal && <ContactForm
+                    handleSubmit={this.handleContactSubmit}
+                    modalType={this.state.contactModalType}
+                    data={this.state.contactData}
+                    close={() => this.setState({ contactModal: false })}
                 />}
 
                 <div className="row">
@@ -188,33 +193,22 @@ class FromTo extends Component {
                     </div>
                     <div className="col-md-6">
                         <div className="pi-from-to pi-to">
-                            <div className="row">
-                                <div className="col">
-                                    <label className="pi-title-small">Receiver</label>
-                                </div>
-                                <div className="col">
-                                    {/* <AsyncSelect
-                                        loadOptions={this.handleFindContact}
-                                        value={toData}
-                                        defaultOptions={toList}
-                                        onChange={this.handleContactSelect}
-                                        getOptionValue={(toList) => toList.id}
-                                        getOptionLabel={(toList) => (toList.first_name) ? toList.first_name + ' ' + toList.last_name : ''}
-                                    /> */}
-                                    <div className="pi-sendlist pi-action-content">
-                                        <Contact data={toData} onChange={this.handleContactSelect} /> 
-                                    </div> 
+                            <div className="pi-from-to-content">
+                                <label className="pi-title-small">Receiver</label>
+                                <div className="pi-sendlist pi-action-content">
+                                    <Contact data={toData} onChange={this.handleContactSelect} />
                                 </div>
                             </div>
+
                             <div className="pi-from pi-bg-white">
                                 {toData ?
                                     <>
-                                        <h4 className="pi-title-small">
-                                            {toData.name} 
+                                        <h4 className="pi-title-small"> 
+                                            {(toData.type == 'person') ? toData.first_name : toData.org_name }
                                             <span>
                                                 <button
                                                     className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
-                                                    onClick={() => this.setState({ clientData: toData, clientModal: true, clientModalType: 'edit' })}
+                                                    onClick={() => this.setState({ contactData: toData, contactModal: true, contactModalType: 'edit' })}
                                                 >
                                                     Edit
                                                 </button>
@@ -233,7 +227,7 @@ class FromTo extends Component {
                                         </address>
                                     </> : <>
                                         {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ clientModal: true, clientModalTYpe: 'new' })}>Add New</a>
+                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ contactModal: true, contactModalTYpe: 'new' })}>Add New</a>
                                     </>
                                 }
                             </div>

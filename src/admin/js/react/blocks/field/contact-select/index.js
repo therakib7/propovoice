@@ -63,49 +63,7 @@ const Contact = (props) => {
 			setForm(tax);
 		}
 	}
-
-	const handleChange = (e) => {
-		const target = e.target;
-		const name = target.name;
-		const value = target.value;
-		setForm({ ...form, [name]: value })
-	}
-
-	const handleColorChange = (val, key) => {
-		setForm({ ...form, [key]: val })
-	}
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
-		let newForm = { ...form }
-		newForm.taxonomy = props.taxonomy;
-
-		if (modalType == 'new') {
-			props.create('taxonomies', newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully added'); //TODO: translation
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});;
-		} else {
-			props.update('taxonomies', newForm.id, newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully updated'); //TODO: translation
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});;
-		}
-		setModal(false);
-	}
+ 
 
 	const handleDelete = (id) => {
 		if (confirm('Are you sure, to delete it?')) { //TODO: translation
@@ -154,35 +112,9 @@ const Contact = (props) => {
         }, 300);
     }
 
-	const handleContactSubmit = client => {
-        if (this.state.clientModalType == 'new') {
-            ApiContact.create(client)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ clientModal: false })
-                        toast.success(this.context.CrudMsg.create);
-                        client.id = resp.data.data;
-                        this.props.setTo(client);
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        } else {
-            ApiContact.update(client.id, client)
-                .then(resp => {
-                    if (resp.data.success) {
-                        this.setState({ clientModal: false })
-                        toast.success(this.context.CrudMsg.update);
-                        this.props.setTo(client);
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
-        }
+	const handleContactSubmit = contact => {
+        props.onChange( contact );
+		setDropdown(false);
     }
 
 	return (
@@ -191,7 +123,13 @@ const Contact = (props) => {
 				className="pi-list"
 				onClick={() => showDropdown()}
 			>
-				{ ( props.data ) ? props.data.name : 'Select Receiver'}
+				
+				{ ! props.data && 'Select Receiver'}
+
+				{ props.data && <>
+					{(props.data.type == 'person') ? props.data.first_name : props.data.org_name }
+				</>} 
+				
 				<svg
 					style={{ marginTop: 6, float: "right" }}
 					width={12}
@@ -215,7 +153,7 @@ const Contact = (props) => {
 
 				{list && list.map((item, itemIndex) => {
 					return (
-						<a key={itemIndex} onClick={() => handleSelect(item)}>{item.name}</a>
+						<a key={itemIndex} onClick={() => handleSelect(item)}>{(item.type == 'person') ? item.first_name : item.org_name }</a>
 					)
 				})}
 			</div>}

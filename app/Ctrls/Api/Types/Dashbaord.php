@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Helpers\Fns;
 use WP_Query;
 
 class Dashbaord
@@ -25,8 +26,22 @@ class Dashbaord
 
     public function get( $req )
     {
-        $request = $req->get_params(); 
+        $params = $req->get_params(); 
 
+        if ( $params['section'] == 'summary' ) {
+            $this->summary( $params );
+        } 
+
+        if ( $params['section'] == 'deal_funnel' ) {
+            $this->deal_funnel( $params );
+        }  
+
+        if ( $params['section'] == 'lead_level' || $params['section'] == 'lead_source' ) {
+            $this->lead_level_source( $params );
+        }
+    }
+
+    public function summary( $params ) {
         $total_client = 0;
         $total_estimate = 0;
         $accepted_estimate = 0; 
@@ -91,7 +106,166 @@ class Dashbaord
         $summary['total_invoice'] = $total_invoice;
         $summary['paid_invoice'] = $paid_invoice;
 
-        wp_send_json_success(['summary' => $summary ]); 
+        wp_send_json_success($summary); 
+    }
+
+    public function deal_funnel(  $params ) { 
+
+        $per_page = 10;
+        $offset = 0;
+
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
+        }
+
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
+        }
+
+        $get_stage = Fns::get_terms('deal_stage');
+
+        $column = [];
+        $total_stage = count( $get_stage ) - 2;
+
+        $item_width = 100;
+        $minus_width = 100 / $total_stage;
+
+        foreach ($get_stage as $stage) :
+            $stage_id = $stage->term_id;
+            $stage_name = $stage->name;
+
+            $items = [];
+            $args = array(
+                'post_type' => 'ndpi_deal',
+                'post_status' => 'publish',
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
+                'posts_per_page' => $per_page,
+                'offset' => $offset,
+            );
+
+            $args['meta_query'] = array(
+                'relation' => 'OR'
+            );
+
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'ndpi_deal_stage',
+                    'terms' => $stage_id,
+                    'field' => 'term_id',
+                )
+            );
+
+            $query = new WP_Query($args);
+            $total_data = $query->found_posts; //use this for pagination  
+
+            $type = get_term_meta($stage_id, 'type', true);
+
+            $width = '';
+
+            if ( $type != 'won' || $type != 'lost' ) {
+                if ( $item_width < 32 ) {
+                    $item_width = 32;
+                }
+                $width = $item_width . '%';
+                $item_width -= $minus_width;
+            }
+
+            $bg_color = get_term_meta($stage_id, 'bg_color', true);
+            $color = get_term_meta($stage_id, 'color', true);
+            $stage_single = [ 
+                'name' => $stage_name,  
+                'color' => $color ? $color : '#fff', 
+                'bg_color' => $bg_color ? $bg_color : '#345bde', 
+                'type' => $type,
+                'width' => $width,
+                'items' => $total_data
+            ];  
+
+            if ( $type == 'won' ) {
+                $column['won'] = $stage_single;
+            } else if ( $type == 'lost' ) {
+                $column['lost'] = $stage_single;
+            } else {
+                $column['common'][] = $stage_single;
+            }
+        endforeach;
+
+        wp_send_json_success($column);
+    }
+
+    public function deal_tracking() {
+         
+    } 
+
+    public function lead_level_source( $params ) { 
+
+        $per_page = 10;
+        $offset = 0;
+
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
+        }
+
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
+        }
+
+        $get_tax = Fns::get_terms($params['section']);
+
+        $column = [];
+        $total_tax = count( $get_tax );
+ 
+        $minus_width = 100 / $total_tax;
+
+        foreach ($get_tax as $tax):
+            $tax_id = $tax->term_id;
+            $tax_name = $tax->name;
+
+            $items = [];
+            $args = array(
+                'post_type' => 'ndpi_lead',
+                'post_status' => 'publish',
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
+                'posts_per_page' => $per_page,
+                'offset' => $offset,
+            );
+
+            $args['meta_query'] = array(
+                'relation' => 'OR'
+            );
+
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'ndpi_' . $params['section'],
+                    'terms' => $tax_id,
+                    'field' => 'term_id',
+                )
+            );
+
+            $query = new WP_Query($args);
+            $total_data = $query->found_posts; //use this for pagination   
+
+            $width = ''; 
+            $width = round($minus_width); 
+
+            $bg_color = get_term_meta($tax_id, 'bg_color', true);
+            $tax_single = [ 
+                'name' => $tax_name,  
+                'bg_color' => $bg_color ? $bg_color : '#B9C7FF', 
+                'width' => $width,
+                'items' => $total_data
+            ];  
+
+            $column[] = $tax_single;
+        endforeach;
+
+        wp_send_json_success($column);
+    }
+
+    public function estvoice() {
+         
     }
 
     // check permission

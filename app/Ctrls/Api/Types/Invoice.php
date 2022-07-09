@@ -162,13 +162,15 @@ class Invoice
             $query_data['to'] = $toData; */
 
             $contact_id = get_post_meta($id, 'to', true);
+            $to_type = get_post_meta($id, 'to_type', true);
             $contactData = [];
 
             if ($contact_id) {
                 $contactData['id'] = absint($contact_id);
+                $contactData['type'] = $to_type;
                 $contactMeta = get_post_meta($contact_id);
                 $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-                $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
+                $contactData['org_name'] = isset($contactMeta['name']) ? $contactMeta['name'][0] : '';
                 $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
             }
             $query_data['to'] = $contactData;
@@ -242,40 +244,26 @@ class Invoice
             }
             $fromData['logo'] = $logoData;
         }
-        $query_data['fromData'] = $fromData;
+        $query_data['fromData'] = $fromData; 
 
-        /* $to_id = get_post_meta($id, 'to', true);
+        $to_id = get_post_meta($id, 'to', true);
+        $to_type = get_post_meta($id, 'to_type', true);
         $toData = [];
-        if ($to_id) {
-            $toData['id'] = $to_id;
-            $to_obj = get_user_by('id', $to_id);
 
-            $toData['first_name'] = $to_obj->first_name;
-            $toData['last_name'] = $to_obj->last_name;
-            $toData['email'] = $to_obj->user_email;
-            $prefix = 'ncpi_';
-            $toData['mobile'] = get_user_meta($to_id, $prefix . 'mobile', true);
-            $toData['web'] = get_user_meta($to_id, $prefix . 'web', true);
-            $toData['address'] = get_user_meta($to_id, $prefix . 'address', true);
+        if ( $to_id ) {
+            $toData['id'] = absint($to_id);
+            $toMeta = get_post_meta($to_id);
+            $toData['type'] = $to_type;
+            $toData['first_name'] = isset($toMeta['first_name']) ? $toMeta['first_name'][0] : '';
+            $toData['org_name'] = isset($toMeta['name']) ? $toMeta['name'][0] : '';
+            $toData['email'] = isset($toMeta['email']) ? $toMeta['email'][0] : '';
+            $toData['mobile'] = isset($toMeta['mobile']) ? $toMeta['mobile'][0] : '';
+            $toData['web'] = isset($toMeta['web']) ? $toMeta['web'][0] : '';
+            $toData['country'] = isset($toMeta['country']) ? $toMeta['country'][0] : '';
+            $toData['region'] = isset($toMeta['region']) ? $toMeta['region'][0] : '';
+            $toData['address'] = isset($toMeta['address']) ? $toMeta['address'][0] : '';
         }
-        $query_data['toData'] = $toData; */
-
-        $contact_id = get_post_meta($id, 'to', true);
-        $contactData = [];
-
-        if ( $contact_id ) {
-            $contactData['id'] = absint($contact_id);
-            $contactMeta = get_post_meta($contact_id);
-            $contactData['name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
-            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
-            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
-            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
-            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
-        }
-        $query_data['toData'] = $contactData;
+        $query_data['toData'] = $toData;
 
         $payment_methods = get_post_meta($id, 'payment_methods', true);
         $paymentData = null;
@@ -372,7 +360,7 @@ class Invoice
 
         $from   = isset($params['from']) ? $params['from'] : null;
         $to     = isset($params['to']) ? $params['to'] : null;
-        $to_type     = isset($params['to_type']) ? $params['to_type'] : null;
+        $to_type = isset($params['to_type']) ? $params['to_type'] : null;
 
         $reminder = isset($params['reminder']) ? $params['reminder'] : null;
         $recurring = isset($params['recurring']) ? $params['recurring'] : null;

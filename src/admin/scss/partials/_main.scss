@@ -953,6 +953,10 @@ html {
   width: 60px;
 }
 
+.ncpi .pi-table tr th:first-child input[type=checkbox] {
+  top: 3px;
+}
+
 .ncpi .pi-table tr td:first-child,
 .ncpi .pi-table tr th:first-child {
   width: 42px;
@@ -988,7 +992,7 @@ html {
   zoom: 1.5;
   border-radius: 3px;
   transform: scale(0.8);
-  border: 1px solid #939393f0;
+  border: 1px solid rgba(147, 147, 147, 0.9411764706);
   box-shadow: none;
   position: relative;
   top: 2px;
@@ -1125,11 +1129,12 @@ html {
 .ncpi .pi-accordion-table-list ul {
   display: flex;
   margin: 0;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 20px 10px 17px 0px;
   width: 100%;
   border-radius: 5px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .ncpi .pi-accordion-table-list ul li:first-child {
@@ -1138,16 +1143,11 @@ html {
   margin-left: -15px;
 }
 
-.ncpi .pi-accordion-table-list ul li:nth-child(n+2) {
-  padding-top: 7px;
-}
-
 .ncpi .pi-accordion-table-list ul li:nth-child(2) svg {
   position: relative;
   top: 2px;
   margin-right: 7px;
 }
-
 
 .ncpi .pi-accordion-table-list ul li {
   color: #718096;
@@ -1169,7 +1169,7 @@ html {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   margin-right: 10px;
   background-color: #fff;
   box-shadow: 0px 4.95074px 6.60099px rgba(0, 0, 0, 0.07);
@@ -1206,22 +1206,26 @@ html {
 }
 
 .ncpi .pi-accordion-table-list ul li .pi-btn-medium {
-  margin-top: -2px;
+  margin-top: -4px;
 }
 
 .ncpi .pi-accordion-table-list ul li .pi-btn-small {
   margin-top: -2px;
+  font-size: 12px;
 }
 
 .ncpi .pi-accordion-table-list ul li .pi-dropdown-content {
   top: 30px;
-  left: -35px;
+  left: -55px !important;
 }
 
+.ncpi .pi-accordion-table-list .pi-action-content .pi-active {
+  padding: 0px 5px;
+}
 
-.pi-accordion-table-list .pi-action-content .pi-dropdown-content {
-  text-align: left;
-  left: -65px !important;
+.ncpi .pi-accordion-table-list .pi-action-content .pi-active svg {
+  position: relative;
+  top: 3px;
 }
 
 .ncpi .pi-info-table-content {
@@ -1286,12 +1290,16 @@ html {
   text-align: left;
 }
 
-.ncpi .pi-info-table-content .pi-info-table td .pi-field-checkbox {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td .pi-field-checkbox {
   margin-bottom: 0;
 }
 
-.ncpi .pi-info-table-content .pi-info-table td input[type=number],
-.ncpi .pi-info-table-content .pi-info-table td input[type=text] {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=number] {
+  font-size: 14px;
+}
+
+.ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=number],
+.ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=text] {
   padding: 8px !important;
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
   outline: none;
@@ -1301,21 +1309,21 @@ html {
   height: 35px;
 }
 
-.ncpi .pi-info-table-content .pi-info-table td input[type=number]:focus,
-.ncpi .pi-info-table-content .pi-info-table td input[type=text]:focus {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=number]:focus,
+.ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=text]:focus {
   border: 1px solid #4C6FFF !important;
   z-index: 5;
 }
 
 @media screen and (max-width: 500px) {
 
-  .ncpi .pi-info-table-content .pi-info-table td input[type=number],
-  .ncpi .pi-info-table-content .pi-info-table td input[type=text] {
+  .ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=number],
+  .ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=text] {
     width: 65px;
   }
 }
 
-.ncpi .pi-info-table-content .pi-info-table td textarea {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td textarea {
   border-radius: 5px;
   margin-top: 10px;
   outline: none;
@@ -1325,21 +1333,21 @@ html {
   color: #718096;
 }
 
-.ncpi .pi-info-table-content .pi-info-table td textarea:focus {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td textarea:focus {
   border: 1px solid #4C6FFF !important;
 }
 
-.ncpi .pi-info-table-content .pi-info-table td select {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td select {
   outline: none;
   border: 1px solid #CBD5E0;
 }
 
-.ncpi .pi-info-table-content .pi-info-table td select:focus {
+.ncpi .pi-info-table-content .pi-info-table tbody tr td select:focus {
   border: 1px solid #4C6FFF !important;
 }
 
 @media screen and (max-width: 550px) {
-  .ncpi .pi-info-table-content .pi-info-table td select {
+  .ncpi .pi-info-table-content .pi-info-table tbody tr td select {
     width: 60px;
   }
 }
@@ -1454,6 +1462,7 @@ html {
   background-color: #f8f8f8;
   margin-left: 5px;
   outline: none;
+  line-height: 100%;
 }
 
 /*-------------------------------------------------------------- 
@@ -1475,7 +1484,7 @@ html {
 }
 
 .ncpi ::-webkit-scrollbar-thumb {
-  background: #cac7c7;
+  background: rgb(202, 199, 199);
 }
 
 .ncpi .pi-logo-content img {
@@ -1517,7 +1526,7 @@ html {
 
 .ncpi .pi-top-menu-content {
   position: fixed;
-  width: calc(100vw - 255px);
+  width: calc(100vw - 245px);
   z-index: 25;
   background-color: #fff;
   box-shadow: 0px 2px rgba(0, 0, 0, 0.01);
@@ -1638,7 +1647,7 @@ html {
 
 .ncpi .pi-btn-icon {
   background: #fff;
-  border: 1px solid #dddddda8 !important;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294) !important;
   padding: 7px 8px !important;
   line-height: 10px;
   cursor: pointer !important;
@@ -1653,29 +1662,30 @@ html {
   background-color: #fff;
   display: inline-block;
   cursor: pointer;
-  top: 3px;
+  top: 0px;
   border-radius: 5px;
   margin-left: 5px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
 
 .ncpi .pi-breadcrumb {
   margin-bottom: 18px;
-  margin-left: -3px;
+  margin-left: -5px;
 }
 
 .ncpi .pi-breadcrumb ul {
   margin: 0;
+  display: flex;
 }
 
 .ncpi .pi-breadcrumb ul li {
-  display: inline;
   padding: 5px;
   font-size: 12px;
+  line-height: 100%;
 }
 
 .ncpi .pi-breadcrumb ul li a {
-  color: #718096b5;
+  color: rgba(113, 128, 150, 0.7098039216);
   font-weight: 500;
   text-transform: capitalize;
 }
@@ -1714,7 +1724,7 @@ html {
   border-radius: 8px;
   padding: 20px;
   background: #fff;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
 
 .ncpi .pi-cards .pi-cards-content span {
@@ -1845,7 +1855,7 @@ html {
   color: #1a202c;
   font-size: 14px;
   padding: 12px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   outline: none;
   line-height: 1;
   padding-left: 40px;
@@ -1892,7 +1902,7 @@ html {
 
 .ncpi .pi-search-bar button {
   background: transparent;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 7px 8px;
   border-radius: 8px;
   line-height: 10px;
@@ -1916,6 +1926,7 @@ html {
   background-position-x: 85%;
   background-position-y: 44%;
   line-height: 100%;
+  font-size: 12px;
 }
 
 .ncpi .pi-search-bar .pi-total-list p span {
@@ -2155,7 +2166,7 @@ html {
 .ncpi .pi-pagination .pi-next a,
 .ncpi .pi-pagination .pi-previous a {
   padding: 6px 12px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   margin-left: -1px;
   font-size: 18px;
   font-weight: 500;
@@ -2187,7 +2198,7 @@ html {
 
 .ncpi .pi-pagination li a {
   padding: 8px 12px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   margin-left: -1px;
   color: #718096;
   font-size: 14px;
@@ -2359,12 +2370,21 @@ html {
 }
 
 .wp-admin .pi-modal-style-two .pi-modal-footer {
-  padding: 0 30px 0px;
+  padding: 0 30px 5px !important;
 }
 
+.wp-admin .pi-table input[type=checkbox] {
+  zoom: 1.2 !important;
+  top: -2px !important;
+}
 
 .wp-admin .pi-table tr th:first-child input[type=checkbox] {
-  top: 0px !important;
+  top: 1px !important;
+}
+
+.wp-admin .pi-info-table .pi-field-checkbox select {
+  padding: 5px 6px !important;
+  height: 35px;
 }
 
 .wp-admin .pi-info-form-list label {
@@ -2380,68 +2400,311 @@ html {
   padding: 8px 7px !important;
 }
 
-.wp-admin .ncpi .pi-info-table-content .pi-info-table td select {
-  padding: 5px 6px !important;
-  height: 35px;
+.wp-admin .pi-form-accordion.pi-additional .pi-tab input[type=checkbox] {
+  top: 30px;
 }
 
-
-.wp-admin .pi-accordion-wrapper .pi-field-switch-big {
-  top: 0 !important;
+.wp-admin .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group input[type=radio] {
+  top: 2px;
 }
 
+.wp-admin .pi-field-radio input[type=radio],
+.wp-admin .pi-field-radio input[type=checkbox],
 .wp-admin .pi-field-checkbox input[type=radio],
 .wp-admin .pi-field-checkbox input[type=checkbox] {
+  margin-right: 8px;
   zoom: 1;
   position: relative;
   top: 2px;
 }
 
-.wp-admin .ncpi .pi-search-bar .pi-total-list p select {
-  padding: 0px 20px 0px 4px !important;
+.wp-admin .pi-accordion-wrapper .pi-field-switch-big {
+  top: -1px !important;
 }
 
+.wp-admin .pi-from-content .pi-from-to .pi-sendlist .pi-list {
+  margin-top: -10px;
+}
+
+.wp-admin .pi-accordion-wrapper>ul>li>input[type=checkbox] {
+  height: 91px !important;
+}
+
+.wp-admin .pi-search-bar .pi-total-list p select {
+  padding: 0px 20px 0px 4px !important;
+}
 
 .wp-admin .pi-table input[type=checkbox] {
   zoom: 1.2 !important;
   top: -1px !important;
 }
 
-.wp-admin .react-datepicker {
+.wp-admin .pi-info-table-content .pi-info-table td select {
+  padding: 11px 6px !important;
+  line-height: 100%;
+}
+
+.wp-admin .pi-field-select textarea:focus,
+.wp-admin .pi-field-select select:focus,
+.wp-admin .pi-field-select input[type=url]:focus,
+.wp-admin .pi-field-select input[type=number]:focus,
+.wp-admin .pi-field-select input[type=email]:focus,
+.wp-admin .pi-field-select input[type=text]:focus {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.wp-admin .pi-modal-style-two .pi-modal-footer .row>.col {
+  margin-bottom: 0px;
+}
+
+.wp-admin .pi-modal-style-two .pi-modal-footer .row>.col .pi-btn {
+  padding: 10px 20px !important;
+}
+
+.wp-admin .pi-field-radio input[type=radio],
+.wp-admin .pi-field-radio input[type=checkbox] {
+  zoom: 1;
+  position: relative;
+  top: 2px;
+}
+
+.react-datepicker {
   border: 1px solid #CBD5E0 !important;
 }
 
-.wp-admin .react-datepicker__triangle::after {
+.react-datepicker__triangle::after {
   border-bottom-color: #FAFAFB !important;
 }
 
-.wp-admin .react-datepicker__header {
+.react-datepicker__header {
   color: #4A5568 !important;
   border-bottom: 1px solid #CBD5E0 !important;
   background-color: #FAFAFB !important;
 }
 
-.wp-admin .react-datepicker__current-month {
+.react-datepicker__current-month {
   color: #4A5568 !important;
   position: relative;
   top: -3px;
 }
 
-.wp-admin .react-datepicker__day-names {
+.react-datepicker__day-names {
   color: #4A5568 !important;
 }
 
-.wp-admin .react-datepicker__day {
+.react-datepicker__day {
   color: #718096 !important;
 }
 
-.wp-admin .react-datepicker__day--selected {
+.react-datepicker__day--selected {
   background-color: #4c6fff !important;
   color: #fff !important;
 }
 
-.wp-admin .react-datepicker__day--selected:hover {
+.react-datepicker__day--selected:hover {
   background-color: #3157F0 !important;
+}
+
+.twentytwentyone-theme button:focus {
+  outline: none;
+}
+
+.twentytwentyone-theme button {
+  background-color: transparent !important;
+}
+
+.twentytwentyone-theme .pi-timeline-box ul {
+  margin-top: 15px;
+}
+
+.twentytwentyone-theme .pi-accordion-table-list ul li {
+  margin-bottom: 0;
+}
+
+.twentytwentyone-theme .pi-table-action input[type=checkbox] {
+  zoom: 0.6 !important;
+  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+  top: 2px;
+}
+
+.twentytwentyone-theme input[type=checkbox] {
+  zoom: 0.8 !important;
+}
+
+.twentytwentyone-theme table,
+.twentytwentyone-theme th,
+.twentytwentyone-theme td {
+  border: none;
+}
+
+.twentytwentyone-theme .pi-accordion-table input[type=checkbox] {
+  zoom: 0.6;
+  top: 6px;
+  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+}
+
+.twentytwentyone-theme .pi-table tr th:first-child input[type=checkbox] {
+  top: 4px;
+}
+
+.twentytwentyone-theme input[type=checkbox]:focus {
+  outline: none !important;
+}
+
+button {
+  padding: 0;
+}
+
+table {
+  margin: 0;
+}
+
+table,
+th,
+td {
+  border: none;
+}
+
+.pi-table tr th {
+  line-height: 27px;
+}
+
+input[type=checkbox] {
+  zoom: 1;
+}
+
+.twentytwentytwo-theme .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group input[type=radio] {
+  zoom: 1.3;
+}
+
+.twentytwenty-theme svg,
+.twentytwenty-theme img,
+.twentytwenty-theme embed,
+.twentytwenty-theme object {
+  display: inline-block !important;
+}
+
+.twentytwenty-theme ul li {
+  margin: 0;
+}
+
+.twentytwenty-theme .pi-accordion-table {
+  padding: 0;
+}
+
+.twentytwenty-theme input[type=checkbox] {
+  zoom: 0.6;
+  position: relative;
+  top: 0px;
+}
+
+.twentytwenty-theme .pi-table input[type=checkbox] {
+  zoom: 0.8;
+}
+
+.twentytwenty-theme .pi-table tr th:first-child input[type=checkbox] {
+  top: 6px;
+}
+
+@media (min-width: 700px) {
+  .twentytwenty-theme section {
+    padding: 0;
+  }
+}
+
+.twentytwenty-theme .pi-settings-horizontal-tab {
+  margin-left: 0;
+}
+
+.twentytwenty-theme .pi-breadcrumb ul li {
+  margin: 0;
+}
+
+.twentytwenty-theme .pi-search-field input[type=text] {
+  font-size: 14px;
+}
+
+.twentytwenty-theme .pi-calculation input[type=number] {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.twentytwenty-theme .pi-accordion-wrapper .pi-field-switch-big {
+  top: 6px;
+}
+
+.twentytwenty-theme .pi-top-menu-content .pi-dropdown {
+  left: 0px;
+}
+
+.twentytwenty-theme .pi-top-menu-content .pi-dropdown-content {
+  top: 54px;
+  left: -15px;
+}
+
+.twentytwenty-theme .pi-timeline-box ul {
+  margin: 0;
+  margin-top: 15px;
+}
+
+.twentytwentyone-theme button:focus {
+  outline: none;
+}
+
+.twentytwentyone-theme button {
+  background-color: transparent !important;
+}
+
+.twentytwentyone-theme .pi-timeline-box ul {
+  margin-top: 15px;
+}
+
+.twentytwentyone-theme .pi-accordion-table-list ul li {
+  margin-bottom: 0;
+}
+
+.twentytwentyone-theme .pi-table-action input[type=checkbox] {
+  zoom: 0.6 !important;
+  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+  top: 2px;
+}
+
+.twentytwentyone-theme input[type=checkbox] {
+  zoom: 0.8 !important;
+}
+
+.twentytwentyone-theme table,
+.twentytwentyone-theme th,
+.twentytwentyone-theme td {
+  border: none;
+}
+
+.twentytwentyone-theme .pi-accordion-table input[type=checkbox] {
+  zoom: 0.6;
+  top: 6px;
+  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+}
+
+.twentytwentyone-theme .pi-table tr th:first-child input[type=checkbox] {
+  top: 4px;
+}
+
+.twentytwentyone-theme input[type=checkbox]:focus {
+  outline: none !important;
+}
+
+.pi-field-radio-input select,
+.pi-field-checkbox-input select {
+  margin-left: -1px;
+}
+
+.pi-modal-style-two .pi-modal-footer .row>.col {
+  margin-bottom: 0px;
+}
+
+.pi-modal-style-two .pi-modal-footer .row>.col .pi-btn {
+  padding: 10px 20px !important;
 }
 
 /*-------------------------------------------------------------- 
@@ -2631,7 +2894,7 @@ html {
 
 .ncpi .pi-modal-style-two .pi-close {
   background: none;
-  top: 50%;
+  top: 54%;
   right: 15px;
 }
 
@@ -2786,7 +3049,7 @@ html {
 .ncpi .pi-modal-sidebar .pi-modal-footer {
   margin-top: 20px;
   padding: 20px 40px 5px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
 
 @media screen and (max-width: 992px) {
@@ -2830,7 +3093,7 @@ html {
 }
 
 .ncpi .pi-modal-sidebar-two .pi-checklist-head {
-  border-bottom: 1px solid #dddddda8;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 10px 0;
 }
 
@@ -3063,9 +3326,10 @@ html {
   border: none;
   width: 130px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   position: relative;
   cursor: pointer;
+  color: #2D3748;
 }
 
 .ncpi .pi-single-tabs .pi-tab-item .pi-single-tab-done {
@@ -3228,7 +3492,7 @@ html {
   background-color: #fff;
   margin-bottom: 15px;
   border-radius: 10px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   margin-bottom: 10px;
   position: relative;
 }
@@ -3533,6 +3797,10 @@ html {
   color: var(--bg-color-blue);
 }
 
+.ncpi .pi-settings-horizontal-tab .pi-field-desc {
+  margin-top: 10px;
+}
+
 .pi-form-accordion {
   /* Accordion styles */
 }
@@ -3591,7 +3859,7 @@ html {
 
 .pi-form-accordion .pi-tab .pi-payment-btn {
   padding: 10px 25px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   border-radius: 5px;
   margin-top: 10px;
   font-weight: 600;
@@ -3678,7 +3946,7 @@ html {
 
 .pi-form-accordion.pi-additional input:checked~.pi-tab-content {
   padding: 15px 15px 1px !important;
-  border-top: 1px solid #dddddda8;
+  border-top: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
 
 .pi-form-accordion.pi-additional .pi-tab {
@@ -3702,6 +3970,10 @@ html {
 
 .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group {
   margin-bottom: 20px;
+}
+
+.pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group label {
+  margin-left: 10px;
 }
 
 .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group .row .col {
@@ -3770,11 +4042,12 @@ html {
 .pi-field-radio-input select,
 .pi-field-checkbox-input select {
   width: 65px !important;
-  margin-left: -2px;
+  margin-left: -1px;
   padding: 10px 6px !important;
   font-size: 11px !important;
   border-radius: 0px 4px 4px 0 !important;
   background-position-x: 92% !important;
+  line-height: 100%;
 }
 
 .pi-field-radio-input .pi-times,
@@ -3806,7 +4079,7 @@ html {
 
 .ncpi .pi-search-btn .pi-search-form ul {
   display: flex;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   display: flex;
   margin: 0;
   border-radius: 0 8px 8px 0;
@@ -3818,7 +4091,7 @@ html {
 }
 
 .ncpi .pi-search-btn .pi-search-form ul li:last-child {
-  border-left: 1px solid #dddddda8;
+  border-left: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 6px 8px;
   margin-left: 10px;
   cursor: pointer;
@@ -3863,7 +4136,7 @@ html {
   background-color: #fff;
   width: 100%;
   border-radius: 8px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
 
 .ncpi .pi-horizontal-tab .pi-tab-content {
@@ -3872,7 +4145,7 @@ html {
 
 .ncpi .pi-horizontal-tab .pi-tabs {
   display: flex;
-  border-bottom: 1px solid #dddddda8;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
   margin: 0;
 }
 
@@ -3952,7 +4225,7 @@ html {
 }
 
 .ncpi .pi-widget {
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -4008,7 +4281,7 @@ html {
 .ncpi .pi-widget .pi-persons-content {
   margin-top: 15px;
   padding: 15px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   border-radius: 8px;
 }
 
@@ -4048,7 +4321,7 @@ html {
   text-align: left;
   font-size: 18px;
   color: #2D3748 !important;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
 
 .ncpi .pi-button-group .pi-btn svg {
@@ -4144,6 +4417,31 @@ html {
   top: 10px;
   bottom: 0;
   left: -12px;
+  height: 100%;
+}
+
+.ncpi .pi-lead ul li {
+  font-size: 12px;
+  color: #718096;
+  padding: 5px 0 5px 15px;
+  font-weight: 500;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.ncpi .pi-lead ul li span {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 5px;
+  position: absolute;
+  left: -15px;
+}
+
+.ncpi .pi-lead ul li b {
+  float: right;
+  margin-right: 25%;
+  font-weight: 500;
 }
 
 .ncpi .pi-summery ul {
@@ -4483,7 +4781,7 @@ html {
 }
 
 .ncpi .pi-gradient {
-  background: linear-gradient(to bottom, #ffffff6b 0%, #00000004 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4196078431) 0%, rgba(0, 0, 0, 0.0156862745) 100%);
 }
 
 .ncpi .pi-box-shodow {
@@ -4665,7 +4963,7 @@ body {
 .ncpi .pi-btn-medium {
   padding: 10px 15px !important;
   font-weight: 500;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
 
 .ncpi .pi-btn-small {
@@ -4674,7 +4972,7 @@ body {
   font-size: 12px;
   border-radius: 4px;
   background-color: #fff;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
 
 @media screen and (max-width: 768px) {
@@ -4752,7 +5050,7 @@ select {
   font-size: 14px;
   padding: 14px;
   width: 100%;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   line-height: 20px;
   border-radius: 8px;
   outline: none;
@@ -4987,7 +5285,21 @@ select {
 ## Menus
 --------------------------------------------------------------*/
 .ncpi .pi-left-sidebar {
-  width: 290px;
+  width: 280px;
+  background-color: #f7f8fa;
+}
+
+.ncpi .pi-left-sidebar .pi-logo-content {
+  padding: 19px 30px;
+  z-index: 9;
+  background: #fff;
+  width: 100%;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.2117647059);
+  position: fixed;
+}
+
+.ncpi .pi-left-sidebar .pi-collapse-menu {
+  margin: 0;
   background-color: #fff;
   overflow-y: auto;
   overflow-x: hidden;
@@ -4996,33 +5308,13 @@ select {
   padding-bottom: 50px;
 }
 
-.ncpi .pi-left-sidebar .pi-logo-content {
-  padding: 19px 30px;
-  position: fixed;
-  z-index: 9;
-  background: #fff;
-  width: 255px;
-  border-bottom: 1px solid #dddddd36;
-}
-
-@media screen and (max-width: 768px) {
-  .ncpi .pi-left-sidebar .pi-logo-content {
-    width: 203px;
-  }
-}
-
-.ncpi .pi-left-sidebar ul {
-  padding-top: 100px;
-  margin: 0;
-}
-
-.ncpi .pi-left-sidebar ul li {
+.ncpi .pi-left-sidebar .pi-collapse-menu ul li {
   display: block;
   position: relative;
 }
 
-.ncpi .pi-left-sidebar ul li a {
-  padding: 13px 30px;
+.ncpi .pi-left-sidebar .pi-collapse-menu ul li a {
+  padding: 13px 35px;
   color: #4a5568;
   font-weight: 500;
   font-size: 14px;
@@ -5032,27 +5324,14 @@ select {
   align-items: center;
 }
 
-.ncpi .pi-left-sidebar ul li a .pi-Profeature {
-  margin-left: -3px;
-  position: relative;
-  top: 2px;
-}
-
-.ncpi .pi-left-sidebar ul li a img {
+.ncpi .pi-left-sidebar .pi-collapse-menu ul li a img {
   position: relative;
   top: 2px;
   margin-right: 6px;
 }
 
-.ncpi .pi-left-sidebar ul li a svg {
+.ncpi .pi-left-sidebar .pi-collapse-menu ul li a svg {
   margin-right: 10px;
-}
-
-.ncpi .pi-left-sidebar ul li a .polygon {
-  position: absolute;
-  right: 10px;
-  top: 20px;
-  transform: rotate(90deg);
 }
 
 .ncpi .pi-left-sidebar ul li .pi-active,
@@ -5078,7 +5357,7 @@ select {
 
 .ncpi .pi-left-sidebar .pi-menu-buttons a {
   width: 180px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   font-size: 13px;
   margin-bottom: 15px;
   padding: 15px 10px;
@@ -5151,232 +5430,37 @@ select {
 
 @media screen and (min-width: 768px) {
   .pi-collapse-menu {
+    padding-top: 80px;
     transition: all 0.2s ease-out;
-    width: 90px !important;
+    width: 95px !important;
   }
 
-  .pi-collapse-menu .pi-logo-content {
-    background: none !important;
-    border-bottom: none !important;
-    position: static !important;
-  }
-
-  .pi-collapse-menu .pi-logo-content strong {
-    display: none;
-    transition: all 0.9s ease-out;
-    top: -11px;
-    left: -5px;
-    font-size: 18px;
-  }
-
-  .pi-collapse-menu ul {
-    padding-top: 0 !important;
-    background-color: #f8f8f8 !important;
+  .pi-collapse-menu ul li a {
+    display: inline-table !important;
   }
 
   .pi-collapse-menu ul li a span {
     position: absolute;
-    display: table-cell;
-    vertical-align: middle;
     display: none;
-    top: 30%;
+    top: 25%;
     left: 25%;
     transition: all 0.9s ease-out;
   }
 
-  .pi-collapse-menu ul li a .polygon {
+  .pi-collapse-menu ul li a:hover svg path {
+    fill: #3157f0;
+  }
+
+  .pi-collapse-menu .pi-menu-buttons {
     display: none;
   }
 
   .pi-collapse-menu:hover {
-    width: 245px !important;
-  }
-
-  .pi-collapse-menu:hover .pi-logo-content {
-    display: table;
-  }
-
-  .pi-collapse-menu:hover .pi-logo-content strong {
-    display: table-cell;
+    width: 242px !important;
   }
 
   .pi-collapse-menu:hover ul li a span {
-    display: table-cell;
-    left: 35%;
-  }
-
-  .pi-collapse-menu:hover ul li a .polygon {
-    display: block;
-  }
-}
-
-.overlay {
-  position: relative;
-}
-
-.overlay::before {
-  position: absolute;
-  transition: 0.7s ease;
-  opacity: 0;
-  width: 300px;
-  height: 0;
-  top: 0;
-  right: 20px;
-  background-color: lightblue;
-}
-
-
-
-
-
-
-// Globel
-button {
-  padding: 0;
-}
-
-// Table
-table {
-  margin: 0;
-}
-
-table,
-th,
-td {
-  border: none;
-}
-
-.pi-table tr th {
-  line-height: 27px;
-}
-
-input[type=checkbox] {
-  zoom: 1;
-}
-
-// Twenty Twentytwo Theme
-.twentytwentytwo-theme {}
-
-//Twenty Twenty Theme
-.twentytwenty-theme {
-
-  svg,
-  img,
-  embed,
-  object {
-    display: inline-block !important;
-  }
-
-  ul li {
-    margin: 0;
-  }
-
-  .pi-accordion-table {
-    padding: 0;
-  }
-
-  .pi-table tr th:first-child input[type=checkbox] {
-    top: 1px !important;
-  }
-
-  @media (min-width: 700px) {
-    section {
-      padding: 0;
-    }
-  }
-
-  input[type=checkbox] {
-    //zoom: 0.8 !important;
-  }
-
-  .pi-field-checkbox {
-    input[type=checkbox] {
-      //zoom: 0.6 !important;
-      top: -1px;
-    }
-  }
-
-  .pi-settings-horizontal-tab {
-    margin-left: 0;
-  }
-
-  .pi-breadcrumb ul li {
-    margin: 0;
-  }
-
-  .pi-search-field input[type="text"] {
-    font-size: 14px;
-  }
-
-  .pi-calculation input[type="number"] {
-    display: inline-block;
-    font-size: 14px;
-  }
-
-  .pi-accordion-wrapper .pi-field-switch-big {
-    top: 6px;
-  }
-
-  .pi-top-menu-content .pi-dropdown {
-    left: 0px;
-  }
-
-  .pi-top-menu-content .pi-dropdown-content {
-    top: 54px;
-    left: -15px;
-  }
-
-  .pi-timeline-box ul {
-    margin: 0;
-    margin-top: 15px;
-  }
-}
-
-// Twenty Twentyone Theme
-.twentytwentyone-theme {
-  button:focus {
-    outline: none;
-  }
-
-  button {
-    background-color: transparent !important;
-  }
-
-  .pi-timeline-box ul {
-    margin-top: 15px;
-  }
-
-  .pi-accordion-table-list ul li {
-    margin-bottom: 0;
-  }
-
-  .pi-table-action input[type=checkbox] {
-    zoom: 0.6 !important;
-    border: 1px solid rgba(147, 147, 147, 0.9411764706);
-    top: 2px;
-  }
-
-  input[type=checkbox] {
-    zoom: 0.8 !important;
-  }
-
-  table,
-  th,
-  td {
-    border: none;
-  }
-
-  .pi-accordion-table input[type=checkbox] {
-    zoom: 0.6;
-    top: 6px;
-    border: 1px solid rgba(147, 147, 147, 0.9411764706);
-  }
-
-  .pi-table tr th:first-child input[type=checkbox] {
-    top: 4px;
-  }
-
-  input[type=checkbox]:focus {
-    outline: none !important;
+    display: table;
+    left: 30%;
   }
 }

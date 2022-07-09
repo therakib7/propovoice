@@ -130,7 +130,7 @@ class Form extends Component {
                         <input
                             id="field-title"
                             type="text"
-                            className='pi-mb-20'
+                            //className='pi-mb-20'
                             required
                             name="title"
                             value={form.title}
