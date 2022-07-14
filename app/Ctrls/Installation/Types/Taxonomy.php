@@ -24,7 +24,7 @@ class Taxonomy
         );
         $post_id = wp_insert_post($data);
 
-        if ( !is_wp_error($post_id) ) {
+        if (!is_wp_error($post_id)) {
             update_option('ndpi_workplace_default', $post_id);
         }
 
@@ -50,14 +50,17 @@ class Taxonomy
             'Deal Pipeline'
         ];
         foreach ($temp_pipeline as $pipeline) {
-            $pipeline_id = wp_insert_term(
+            $pipeline_add = wp_insert_term(
                 $pipeline,   // the term 
                 'ndpi_deal_pipeline', // the taxonomy 
             );
 
-            if (!is_wp_error($pipeline_id)) {
-                update_term_meta($pipeline_id['term_id'], 'tax_pos', $pipeline_id['term_id']);
+            if (!is_wp_error($pipeline_add)) {
+                update_term_meta($pipeline_add['term_id'], 'tax_pos', $pipeline_add['term_id']);
             }
+
+            $pipeline_id = isset($pipeline_add['term_id']) ? $pipeline_add['term_id'] : 0;
+
 
             $temp_stage = [
                 'Opportunity',
@@ -70,26 +73,24 @@ class Taxonomy
 
             foreach ($temp_stage as $stage) {
                 $stage_add = wp_insert_term(
-                    $stage,   // the term 
-                    'ndpi_deal_stage', // the taxonomy 
+                    $stage,  //the term 
+                    'ndpi_deal_stage', //the taxonomy 
                 );
 
                 if (!is_wp_error($stage_add)) {
                     update_term_meta($stage_add['term_id'], 'tax_pos', $stage_add['term_id']);
 
                     //TODO: Check the stage name for specific type
-                    if ( $stage == 'Closing Won' ) {
+                    if ($stage == 'Closing Won') {
                         update_term_meta($stage_add['term_id'], 'type', 'won');
-                    } else if ( $stage == 'Lost' ) {
+                    } else if ($stage == 'Lost') {
                         update_term_meta($stage_add['term_id'], 'type', 'lost');
                     }
-                    
                 }
 
-                if (!is_wp_error($stage_add) || !is_wp_error($pipeline_id)) {
-                    $pipeline_id = isset($pipeline_id['term_id']) ? $pipeline_id['term_id'] : 0;
-                    $stage_id = isset($stage_add['term_id']) ? $stage_add['term_id'] : 0;
+                if (!is_wp_error($stage_add)) {
 
+                    $stage_id = isset($stage_add['term_id']) ? $stage_add['term_id'] : 0;
                     add_term_meta($stage_id, 'deal_pipeline_id', $pipeline_id);
                 }
             }
@@ -125,7 +126,7 @@ class Taxonomy
 
             if (!is_wp_error($term_id)) {
                 update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
-                if ( $status == 'Done' ) {
+                if ($status == 'Done') {
                     update_term_meta($term_id['term_id'], 'type', 'done');
                 }
             }
@@ -164,7 +165,7 @@ class Taxonomy
 
             if (!is_wp_error($term_id)) {
                 update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
-                if ( $status == 'Completed' ) {
+                if ($status == 'Completed') {
                     update_term_meta($term_id['term_id'], 'type', 'completed');
                 }
             }

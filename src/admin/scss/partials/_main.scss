@@ -1216,7 +1216,7 @@ html {
 
 .ncpi .pi-accordion-table-list ul li .pi-dropdown-content {
   top: 30px;
-  left: -55px !important;
+  left: -70px !important;
 }
 
 .ncpi .pi-accordion-table-list .pi-action-content .pi-active {
@@ -1225,7 +1225,7 @@ html {
 
 .ncpi .pi-accordion-table-list .pi-action-content .pi-active svg {
   position: relative;
-  top: 3px;
+  top: 2px;
 }
 
 .ncpi .pi-info-table-content {
@@ -1306,7 +1306,7 @@ html {
   border-radius: 4px;
   text-align: center;
   line-height: 100%;
-  height: 35px;
+  height: 33px;
 }
 
 .ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=number]:focus,
@@ -1658,7 +1658,6 @@ html {
 }
 
 .ncpi .pi-action-btn {
-  padding: 2px;
   background-color: #fff;
   display: inline-block;
   cursor: pointer;
@@ -2324,10 +2323,11 @@ html {
 
 .ncpi .pi-dropdown-content a:hover {
   background-color: var(--bg-color-deutzia-white);
+  color: #2D3748;
 }
 
 .ncpi .pi-dropdown-content a {
-  color: black;
+  color: #2D3748;
   padding: 12px 16px;
   text-decoration: none;
   display: flex;
@@ -2367,10 +2367,6 @@ html {
 
 .wp-admin .pi-search-btn .pi-search-form ul li:last-child svg {
   top: 7px;
-}
-
-.wp-admin .pi-modal-style-two .pi-modal-footer {
-  padding: 0 30px 5px !important;
 }
 
 .wp-admin .pi-table input[type=checkbox] {
@@ -3837,7 +3833,6 @@ input[type=checkbox] {
   max-height: 0;
   color: #000;
   background-color: #f7fafc;
-  transition: all 0.35s;
   border-radius: 0 0 5px 5px;
 }
 
@@ -3970,10 +3965,6 @@ input[type=checkbox] {
 
 .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group {
   margin-bottom: 20px;
-}
-
-.pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group label {
-  margin-left: 10px;
 }
 
 .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group .row .col {
@@ -5298,7 +5289,7 @@ select {
   position: fixed;
 }
 
-.ncpi .pi-left-sidebar .pi-collapse-menu {
+.ncpi .pi-left-sidebar .pi-sidebar-menu {
   margin: 0;
   background-color: #fff;
   overflow-y: auto;
@@ -5308,12 +5299,12 @@ select {
   padding-bottom: 50px;
 }
 
-.ncpi .pi-left-sidebar .pi-collapse-menu ul li {
+.ncpi .pi-left-sidebar .pi-sidebar-menu ul li {
   display: block;
   position: relative;
 }
 
-.ncpi .pi-left-sidebar .pi-collapse-menu ul li a {
+.ncpi .pi-left-sidebar .pi-sidebar-menu ul li a {
   padding: 13px 35px;
   color: #4a5568;
   font-weight: 500;
@@ -5324,13 +5315,13 @@ select {
   align-items: center;
 }
 
-.ncpi .pi-left-sidebar .pi-collapse-menu ul li a img {
+.ncpi .pi-left-sidebar .pi-sidebar-menu ul li a img {
   position: relative;
   top: 2px;
   margin-right: 6px;
 }
 
-.ncpi .pi-left-sidebar .pi-collapse-menu ul li a svg {
+.ncpi .pi-left-sidebar .pi-sidebar-menu ul li a svg {
   margin-right: 10px;
 }
 
@@ -5432,7 +5423,7 @@ select {
   .pi-collapse-menu {
     padding-top: 80px;
     transition: all 0.2s ease-out;
-    width: 95px !important;
+    width: 90px !important;
   }
 
   .pi-collapse-menu ul li a {

@@ -86,7 +86,7 @@ class Task
             $offset = ($per_page * $params['page']) - $per_page;
         }
 
-        if ( $dashboard ) {
+        if ($dashboard) {
             $per_page = 3;
         }
 
@@ -135,6 +135,7 @@ class Task
 
         $data = [
             'task_status' => [],
+            'latest' => [],
             'today' => [],
             'other' => [],
             'unschedule' => [],
@@ -210,23 +211,23 @@ class Task
             $query_data['end_date'] = get_post_meta($id, 'end_date', true);
             $query_data['date'] = get_the_time('j-M-Y');
 
-            if ( $dashboard ) {
+            if ($dashboard) {
                 $data['latest'][] = $query_data;
             } else {
-                $start_date = get_post_meta($id, 'start_date', true); 
-                if ( $start_date ) {
+                $start_date = get_post_meta($id, 'start_date', true);
+                if ($start_date) {
                     $current_date = date('Y-m-d', current_time('timestamp'));
                     $format_start_date = date('Y-m-d', strtotime($start_date));
-    
+
                     if ($current_date == $format_start_date) {
                         $data['today'][] = $query_data;
                     } else {
                         $data['other'][] = $query_data;
-                    } 
+                    }
                 } else {
                     $data['unschedule'][] = $query_data;
                 }
-            } 
+            }
         }
         wp_reset_postdata();
 
@@ -281,7 +282,7 @@ class Task
             );
             $post_id = wp_insert_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
 
                 if ($tab_id) {
@@ -352,7 +353,7 @@ class Task
 
             $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
 
                 if ($status_id) {
                     wp_set_post_terms($post_id, [$status_id], 'ndpi_task_status');

@@ -23,18 +23,18 @@ const Taxonomy = (props) => {
 	useClickOutside(dropdownContent, close);
 
 	useEffect(() => {
-		if ( props.data ) {
-			setListById( props.data );
+		if (props.data) {
+			setListById(props.data);
 			getData();
 		} else {
 			getDataWithSingle();
-		} 
+		}
 	}, []);
 
 	const getData = () => {
 		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy).then(resp => {
 			if (resp.data.success) {
-				setList(resp.data.data[props.taxonomy]); 
+				setList(resp.data.data[props.taxonomy]);
 			}
 		});
 	}
@@ -67,7 +67,7 @@ const Taxonomy = (props) => {
 			setModalType(type);
 			setForm(tax);
 		}
-	}  
+	}
 
 	const handleDelete = (id) => {
 		if (confirm('Are you sure, to delete it?')) { //TODO: translation
@@ -77,6 +77,11 @@ const Taxonomy = (props) => {
 			newForm.delete = true;
 			newForm.post_id = parseInt(props.id);
 			newForm.id = parseInt(id);
+
+			const filtered = listById.filter(obj => {
+				return obj.id !== id;
+			});
+			setListById(filtered);
 
 			props.update('taxonomies', newForm.id, newForm).then(resp => {
 				if (resp.data.success) {
@@ -91,13 +96,20 @@ const Taxonomy = (props) => {
 		}
 	}
 
-	const handleSelect = (id) => {
+	const handleSelect = (item) => {
 		let newForm = {}
 		newForm.taxonomy = props.taxonomy;
 		newForm.add = true;
 		newForm.append = props.multiple ? true : false;
 		newForm.post_id = parseInt(props.id);
-		newForm.id = parseInt(id);
+		newForm.id = parseInt(item.id);
+
+		if (!props.multiple) {
+			setListById([item]);
+		} else {
+			setListById([...listById, item]);
+		}
+
 		setDropdown(false);
 		props.update('taxonomies', newForm.id, newForm).then(resp => {
 			if (resp.data.success) {
@@ -119,14 +131,14 @@ const Taxonomy = (props) => {
 			})}
 
 			<div className="pi-action-content" ref={dropdownContent}>
-				{props.multiple && <button 
-				className={( !props.small ) ? 'pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
-				onClick={(e) => showDropdown(e)}>
+				{props.multiple && <button
+					className={(!props.small) ? 'pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
+					onClick={(e) => showDropdown(e)}>
 					+ Add {props.title}
 				</button>}
 
 				{!props.multiple && listById.length > 0 && <button
-					className={( !props.small ) ? 'pi-btn pi-btn-medium' : 'pi-btn pi-btn-small'}
+					className={(!props.small) ? 'pi-btn pi-btn-medium' : 'pi-btn pi-btn-small'}
 					style={{
 						backgroundColor: listById[0].bg_color,
 						color: listById[0].color
@@ -137,7 +149,7 @@ const Taxonomy = (props) => {
 					<svg
 						width={10}
 						height={6}
-						style={{ marginLeft: ( !props.small ) ? '10px' : '7px' }}
+						style={{ marginLeft: (!props.small) ? '10px' : '7px' }}
 						className='pi-mr-0'
 						viewBox="0 0 10 6"
 						fill="none"
@@ -152,7 +164,7 @@ const Taxonomy = (props) => {
 
 				{!props.multiple && !listById.length && <button
 					style={{ backgroundColor: '#E2E8F0', color: '#4a5568' }}
-					className={( !props.small ) ? 'pi-btn pi-btn-medium pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
+					className={(!props.small) ? 'pi-btn pi-btn-medium pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}
 				>
 					+ Add {props.title}
@@ -162,7 +174,7 @@ const Taxonomy = (props) => {
 					<button onClick={(e) => { openModal(e, 'new') }}>+ Add New {props.title}</button>
 					{list && list.map((item, itemIndex) => {
 						return (
-							<a key={itemIndex} onClick={() => handleSelect(item.id)}>{item.label}</a>
+							<a key={itemIndex} onClick={() => handleSelect(item)}>{item.label}</a>
 						)
 					})}
 				</div>}

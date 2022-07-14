@@ -22,7 +22,7 @@ const HOC = (Inner, mod, modPlural = '') => {
                 preloader: true,
                 formModal: false,
                 searchModal: false,
-                formModalType: 'new', 
+                formModalType: 'new',
                 list: { id: null },
                 lists: [],
                 checkedBoxes: [],
@@ -47,19 +47,19 @@ const HOC = (Inner, mod, modPlural = '') => {
             let args = {
                 page: this.state.currentPage,
                 per_page: this.state.perPage
-            } 
-            
+            }
+
             /* if ( this.props.taxonomy ) {
                 args.taxonomy = this.props.taxonomy;
             }  */
 
             //this is for task tab
-            if ( this.props.tab_id ) {
+            if (this.props.tab_id) {
                 args.tab_id = this.props.tab_id;
             }
-            
+
             //this is for task tab
-            if ( this.props.dashboard ) {
+            if (this.props.dashboard) {
                 args.dashboard = this.props.dashboard;
             }
 
@@ -102,9 +102,9 @@ const HOC = (Inner, mod, modPlural = '') => {
             });
         }
 
-        handleSubmit = ( list, newType = null) => { //newType for task, note tab
+        handleSubmit = (list, newType = null) => { //newType for task, note tab
             let type = this.state.formModalType;
-            if ( newType ) {
+            if (newType) {
                 type = newType;
             }
 
@@ -138,14 +138,15 @@ const HOC = (Inner, mod, modPlural = '') => {
 
         deleteEntry = (type, index, module = null) => {
             if (confirm(this.context.CrudMsg.confirm)) {
-
-                if (type == 'single' && module != 'task' ) {
+                //TODO: instant delete do it later
+                /* if (type == 'single' && module != 'task' ) {
                     this.setState({
                         lists: this.state.lists.filter((list, i) => {
                             return list.id !== index;
                         })
                     });
-                }
+                } */
+
                 let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
                 axios.delete(`${url}/${ids}`, token).then(resp => {
                     if (resp.data.success) {
@@ -164,7 +165,7 @@ const HOC = (Inner, mod, modPlural = '') => {
         }
 
         openForm = (type = 'new', list = null) => {
-            if (type == 'new') { 
+            if (type == 'new') {
                 this.setState({ formModal: true, formModalType: 'new' });
             } else {
                 this.setState({ formModal: true, formModalType: 'edit', list: list });
@@ -223,7 +224,7 @@ const HOC = (Inner, mod, modPlural = '') => {
                     showItem={this.showItem}
                     getLists={this.getLists}
                     handleCheckbox={this.handleCheckbox}
-                    uncheckAll={ () => this.setState({ checkedBoxes: [] }) }
+                    uncheckAll={() => this.setState({ checkedBoxes: [] })}
                     handleSubmit={this.handleSubmit}
                     handleSearch={this.handleSearch}
                     handlePageClick={this.handlePageClick}
@@ -232,7 +233,7 @@ const HOC = (Inner, mod, modPlural = '') => {
             );
         }
     };
-    
+
     Crud.contextType = AppContext;
     return Crud;
 };

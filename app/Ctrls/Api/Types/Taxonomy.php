@@ -92,33 +92,45 @@ class Taxonomy
                 foreach ($get_taxonomy as $single) {
                     $color = get_term_meta($single->term_id, 'color', true);
                     $bg_color = get_term_meta($single->term_id, 'bg_color', true);
-                    
+
                     $icon_id = get_term_meta($single->term_id, 'icon', true);
-                    $iconData = null;  
-                    if ( $icon_id ) {
-                        $icon_src = wp_get_attachment_image_src( $icon_id, 'thumbnail' );
-                        if ( $icon_src ) {
-                            $iconData = []; 
-                            $iconData['id'] = $icon_id;  
-                            $iconData['src'] = $icon_src[0]; 
+                    $iconData = null;
+                    if ($icon_id) {
+                        $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
+                        if ($icon_src) {
+                            $iconData = [];
+                            $iconData['id'] = $icon_id;
+                            $iconData['src'] = $icon_src[0];
                         }
-                    }  
+                    }
 
                     $term_property = [
                         'id' => (string) $single->term_id,
                         'label' => $single->name,
-                        'color' => $color ? $color : '',
-                        'bg_color' => $bg_color ? $bg_color : '',
+                        'color' => '#4a5568',
+                        'bg_color' => '#E2E8F0',
                         'icon' => $iconData ? $iconData : ''
                     ];
 
-                    if ( 
+                    if ($taxonomy == 'lead_source') {
+                        $term_property['bg_color'] = '';
+                    }
+
+                    if ($color) {
+                        $term_property['color'] = $color;
+                    }
+
+                    if ($bg_color) {
+                        $term_property['bg_color'] = $bg_color;
+                    }
+
+                    if (
                         $taxonomy == 'deal_stage' ||
                         $taxonomy == 'project_status' ||
-                        $taxonomy == 'task_status' 
+                        $taxonomy == 'task_status'
                     ) { // for deal won, deal lost, project complted, task done
                         $term_property['type'] = get_term_meta($single->term_id, 'type', true);
-                    } 
+                    }
 
                     $format_taxonomy[] = $term_property;
                 }
@@ -139,15 +151,15 @@ class Taxonomy
                                 'bg_color' => '#E2E8F0',
                             ];
 
-                            if ( $taxonomy == 'lead_source' ) { 
+                            if ($taxonomy == 'lead_source') {
                                 $single_tag['bg_color'] = '';
                             }
 
-                            if ( $color ) {
+                            if ($color) {
                                 $single_tag['color'] = $color;
                             }
 
-                            if ( $bg_color ) {
+                            if ($bg_color) {
                                 $single_tag['bg_color'] = $bg_color;
                             }
 
@@ -172,15 +184,15 @@ class Taxonomy
         $query_data['color'] = get_term_meta($id, 'color', true);
         $query_data['bg_color'] = get_term_meta($id, 'bg_color', true);
         $icon_id = get_term_meta($id, 'icon', true);
-        $iconData = null;  
-        if ( $icon_id ) {
-            $icon_src = wp_get_attachment_image_src( $icon_id, 'thumbnail' );
-            if ( $icon_src ) {
-                $iconData = []; 
-                $iconData['id'] = $icon_id;  
-                $iconData['src'] = $icon_src[0]; 
+        $iconData = null;
+        if ($icon_id) {
+            $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
+            if ($icon_src) {
+                $iconData = [];
+                $iconData['id'] = $icon_id;
+                $iconData['src'] = $icon_src[0];
             }
-        } 
+        }
         $query_data['icon'] = $iconData;
 
         wp_send_json_success($query_data);
@@ -196,7 +208,7 @@ class Taxonomy
         $label = isset($params['label']) ? sanitize_text_field($params['label']) : null;
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
         $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
-        $icon = isset( $params['icon'] ) && isset( $params['icon']['id'] ) ? absint( $params['icon']['id'] ) : null;
+        $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -220,9 +232,9 @@ class Taxonomy
                     update_term_meta($term_id, 'color', $color);
                     update_term_meta($term_id, 'bg_color', $bg_color);
 
-                    if ( $icon ) {
-                        update_term_meta($term_id, 'icon', $icon); 
-                    } 
+                    if ($icon) {
+                        update_term_meta($term_id, 'icon', $icon);
+                    }
 
                     wp_send_json_success($term_id);
                 } else {
@@ -245,7 +257,7 @@ class Taxonomy
         $label = isset($params['label']) ? sanitize_text_field($params['label']) : null;
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
         $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
-        $icon = isset( $params['icon'] ) && isset( $params['icon']['id'] ) ? absint( $params['icon']['id'] ) : null;
+        $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -257,12 +269,12 @@ class Taxonomy
             $url_params = $req->get_url_params();
             $term_id = absint($url_params['id']);
 
-            if ( $add ) {
-                if ( $append ) {
+            if ($add) {
+                if ($append) {
                     wp_set_object_terms($post_id, $term_id, 'ndpi_' . $taxonomy, true);
                 } else {
                     wp_set_post_terms($post_id, [$term_id], 'ndpi_' . $taxonomy);
-                }  
+                }
                 wp_send_json_success();
             } else if ($delete) {
                 if ($post_id) { //delete term from post
@@ -284,10 +296,10 @@ class Taxonomy
                     update_term_meta($term_id, 'color', $color);
                     update_term_meta($term_id, 'bg_color', $bg_color);
 
-                    if ( $icon ) {
-                        update_term_meta($term_id, 'icon', $icon); 
+                    if ($icon) {
+                        update_term_meta($term_id, 'icon', $icon);
                     } else {
-                        delete_term_meta($term_id, 'icon'); 
+                        delete_term_meta($term_id, 'icon');
                     }
 
                     wp_send_json_success($term_id);

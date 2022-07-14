@@ -1,6 +1,6 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 import Spinner from 'block/preloader/spinner';
 import Taxonomy from 'block/field/taxonomy';
 import WithApi from 'hoc/Api';
@@ -254,7 +254,7 @@ class ListSingle extends Component {
                             </svg>
                         </li>
                         <li className="pi-active">
-                            {path == 'lead' && <>{( data.person ) ? data.person.first_name : data.org.name}</>}
+                            {path == 'lead' && <>{(data.person) ? data.person.first_name : data.org.name}</>}
                             {(path == 'deal' || path == 'project') && data.title}
                             {path == 'client' && contact.first_name}
                             {path == 'contact' && contact.first_name}
@@ -270,8 +270,8 @@ class ListSingle extends Component {
                                     <div className="pi-list-content">
                                         <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
-                                            <h3 className=""> 
-                                                { ( data.person ) ? data.person.first_name : data.org.name } 
+                                            <h3 className="">
+                                                {(data.person) ? data.person.first_name : data.org.name}
                                                 <button
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ leadModal: true })}
@@ -280,7 +280,7 @@ class ListSingle extends Component {
                                                 </button>
                                             </h3>
                                             <address>
-                                                { ( data.person ) ? data.person.email : data.org.email } <br />
+                                                {(data.person) ? data.person.email : data.org.email} <br />
                                                 {data.person && data.org && <>Organization/Company: {data.org_name}<br /></>}
                                                 Budget ${data.budget}
                                             </address>
@@ -401,11 +401,11 @@ class ListSingle extends Component {
                                         <div className="pi-avatar-content">
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
-                                                <h5 style={{ fontSize: 12 }}>{ ( data.person ) ? data.person.first_name : data.org.name } </h5>
+                                                <h5 style={{ fontSize: 12 }}>{(data.person) ? data.person.first_name : data.org.name} </h5>
                                                 <p style={{ fontSize: 12 }}>
-                                                { ( data.person ) ? data.person.region : data.org.region }
+                                                    {(data.person) ? data.person.region : data.org.region}
 
-                                                { ( data.person ) ? data.person.country : data.org.country }
+                                                    {(data.person) ? data.person.country : data.org.country}
                                                 </p>
                                             </div>
                                         </div>
@@ -414,7 +414,7 @@ class ListSingle extends Component {
                                             <label htmlFor="field-probability">
                                                 Probability
                                             </label>
-                                            
+
                                             <input
                                                 id="field-probability"
                                                 type="range"
@@ -428,7 +428,7 @@ class ListSingle extends Component {
                                     </div>
                                 </div>
                                 <div className="col-lg-6">
-                                    <div className="pi-list-single-button-content"> 
+                                    <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Deal Stage:</label>
                                             {data.id && <Taxonomy id={data.id} taxonomy='deal_stage' title='Stage' color={true} />}
@@ -485,11 +485,8 @@ class ListSingle extends Component {
 
                                         <div
                                             className="pi-action-content pi-action-btn pi-bg-shadow"
-                                            style={{ top: 2 }}
                                         >
                                             <button
-                                                className='pi-bg-stroke pi-bg-shadow'
-                                                style={{ padding: '2px' }}
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
                                             >
                                                 <svg
@@ -564,11 +561,11 @@ class ListSingle extends Component {
                                         <div className="pi-avatar-content">
                                             <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                                             <div className="pi-avatar-text">
-                                            <h5 style={{ fontSize: 12 }}>{ ( data.person ) ? data.person.first_name : data.org.name } </h5>
+                                                <h5 style={{ fontSize: 12 }}>{(data.person) ? data.person.first_name : data.org.name} </h5>
                                                 <p style={{ fontSize: 12 }}>
-                                                { ( data.person ) ? data.person.region : data.org.region }
+                                                    {(data.person) ? data.person.region : data.org.region}
 
-                                                { ( data.person ) ? data.person.country : data.org.country }
+                                                    {(data.person) ? data.person.country : data.org.country}
                                                 </p>
                                             </div>
                                         </div>
@@ -965,25 +962,25 @@ class ListSingle extends Component {
                         <div className="pi-widget pi-info-box">
                             <h3 className="pi-widget-title">Additional Info</h3>
                             <address>
-                            
+
                                 {true &&
                                     <>
                                         <span>Mobile:</span>
-                                        {( data.person ) ? data.person.mobile : data.org.mobile}
+                                        {(data.person) ? data.person.mobile : data.org.mobile}
                                     </>
                                 }
 
                                 {true &&
                                     <>
                                         <span>Website:</span>
-                                        {( data.person ) ? data.person.web : data.org.web}
+                                        {(data.person) ? data.person.web : data.org.web}
                                     </>
                                 }
 
                                 {true &&
                                     <>
                                         <span>Address:</span>
-                                        {( data.person ) ? data.person.address : data.org.address}
+                                        {(data.person) ? data.person.address : data.org.address}
                                     </>
                                 }
 
@@ -1004,7 +1001,7 @@ class ListSingle extends Component {
                                 }
                             </div>
                         </div>
-                        
+
                         {false && <div className="pi-widget pi-timeline-box">
                             <h3 className="pi-widget-title">Timeline Info</h3>
                             <ul>

@@ -111,7 +111,7 @@ export default class Welcome extends Component {
             <div className="pi-main-content">
 
                 <div className="pi-container">
-                    <div className="pi-logo-content">
+                    <div className="pi-logo-content" style={{ justifyContent: 'center' }}>
                         <img src={ncpi.assetImgUri + 'logo.png'} />
                         <strong >Propovoice</strong>
                     </div>
@@ -228,7 +228,7 @@ export default class Welcome extends Component {
                                                     </div>
                                                 </div>
                                             </a>
-                                        </div> 
+                                        </div>
                                         <div className="col-md-6 col-lg-6">
                                             <a href={ncpi.dashboard + '#/lead'}>
                                                 <div className="pi-item-content pi-bg-stroke">
