@@ -1216,14 +1216,14 @@ html {
 
 .ncpi .pi-accordion-table-list ul li .pi-dropdown-content {
   top: 30px;
-  left: -70px !important;
+  left: -70px;
 }
 
-.ncpi .pi-accordion-table-list .pi-action-content .pi-active {
+.ncpi .pi-accordion-table-list .pi-action-content button {
   padding: 0px 5px;
 }
 
-.ncpi .pi-accordion-table-list .pi-action-content .pi-active svg {
+.ncpi .pi-accordion-table-list .pi-action-content button svg {
   position: relative;
   top: 2px;
 }
@@ -3044,7 +3044,7 @@ input[type=checkbox] {
 
 .ncpi .pi-modal-sidebar .pi-modal-footer {
   margin-top: 20px;
-  padding: 20px 40px 5px;
+  padding: 20px 35px 5px;
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
 }
 
@@ -3055,7 +3055,7 @@ input[type=checkbox] {
 }
 
 .ncpi .pi-modal-sidebar .pi-modal-footer .pi-btn {
-  margin-left: -30px;
+  margin-left: -25px;
 }
 
 .ncpi .pi-modal-sidebar .pi-title-field {
@@ -3114,6 +3114,41 @@ input[type=checkbox] {
   position: relative;
   top: 1px;
   margin-right: 10px;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist-content input[type=url],
+.ncpi .pi-modal-sidebar-two .pi-checklist-content input[type=number],
+.ncpi .pi-modal-sidebar-two .pi-checklist-content input[type=email],
+.ncpi .pi-modal-sidebar-two .pi-checklist-content input[type=text] {
+  border: none;
+  margin-left: -10px;
+  padding: 7px 15px;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist-content ::-moz-placeholder {
+  color: #000;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist-content :-ms-input-placeholder {
+  color: #000;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist-content ::placeholder {
+  color: #000;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist-content .pi-action-content {
+  margin-left: 30px;
+  padding: 3px;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist-content .pi-action-content button {
+  border-radius: 5px;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist-content .pi-action-content .pi-dropdown-content {
+  top: 25px;
+  left: -65px;
 }
 
 .ncpi .pi-modal-sidebar-two .pi-content {
@@ -4718,6 +4753,10 @@ input[type=checkbox] {
   margin-left: -15px;
 }
 
+.ncpi .pi-ml-m-35 {
+  left: -35px !important;
+}
+
 .ncpi .pi-mb-30 {
   margin-bottom: 30px !important;
 }
@@ -5297,6 +5336,7 @@ select {
   scroll-behavior: smooth;
   height: 100vh;
   padding-bottom: 50px;
+  padding-top: 80px;
 }
 
 .ncpi .pi-left-sidebar .pi-sidebar-menu ul li {
@@ -5421,7 +5461,6 @@ select {
 
 @media screen and (min-width: 768px) {
   .pi-collapse-menu {
-    padding-top: 80px;
     transition: all 0.2s ease-out;
     width: 90px !important;
   }
@@ -5452,6 +5491,6 @@ select {
 
   .pi-collapse-menu:hover ul li a span {
     display: table;
-    left: 30%;
+    left: 28%;
   }
 }

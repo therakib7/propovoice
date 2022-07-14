@@ -77,20 +77,20 @@ class Form extends Component {
     }
 
     onDateChange = (date, type = null) => {
-		let form = { ...this.state.form }
+        let form = { ...this.state.form }
 
         // const startDateStr = new Moment(date).format('YYYY-MM-DD HH:mm:ss')
         //  const endDateStr = moment(endDate).format('YYYY-MM-DD HH:mm:ss')    
         // console.log(startDateStr);
         // console.log(date);
         // console.log(date.toLocaleString());
-		if (type == 'start_date') {
-			form.start_date = date;
-		} else {
-			form.end_date = date;
-		}
-		this.setState({ form });
-	}
+        if (type == 'start_date') {
+            form.start_date = date;
+        } else {
+            form.end_date = date;
+        }
+        this.setState({ form });
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -140,7 +140,7 @@ class Form extends Component {
                     </div>
                     <div className="pi-tab-buttons">
                         <div className="pi-action-content">
-                            <DateField date={form.start_date} type='start_date' onDateChange={this.onDateChange} /> 
+                            <DateField date={form.start_date} type='start_date' onDateChange={this.onDateChange} />
                         </div>
                         <div className="pi-action-content">
                             <button className='pi-task-btn' type='button' onClick={() => this.showDropdown('type')}>
@@ -197,8 +197,7 @@ class Form extends Component {
                                 {priorityList && priorityList.map((item, itemIndex) => {
                                     return (
                                         <a onClick={(e) => this.setTax(e, item, 'priority_id')} key={itemIndex}>
-                                            <svg
-                                                ref={e => e && e.style.setProperty('top', '8px', 'important')}
+                                            <svg ref={e => e && e.style.setProperty('top', '8px', 'important')}
                                                 width={24}
                                                 height={24}
                                                 viewBox="0 0 24 24"
