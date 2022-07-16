@@ -117,8 +117,10 @@ class Project
             $query_data['title'] = get_the_title( $id );
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
-            $query_data['status_id'] = '';
+            $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
+            $query_data['desc'] = get_the_content();
 
+            $query_data['status_id'] = ''; 
             $status = get_the_terms($id, 'ndpi_project_status');
             if ($status) {
                 $query_data['status_id'] = [
@@ -191,7 +193,7 @@ class Project
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
-        $query_data['desc'] = isset($queryMeta['desc']) ? $queryMeta['desc'][0] : ''; 
+        $query_data['desc'] = get_post_field('post_content', $id); 
         
         $query_data['status_id'] = ''; 
         $status = get_the_terms($id, 'ndpi_project_status');
@@ -386,8 +388,10 @@ class Project
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
-        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null;  
+        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
+        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
+        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
         $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
         $status_id     = isset($params['status_id']) ? absint($params['status_id']) : null; 
@@ -405,6 +409,24 @@ class Project
         if (empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
+
+        $person = new Person();  
+        if ( $person_id ) {
+            $person->update( $params ); 
+        }
+
+        if ( ! $person_id && $first_name ) { 
+            $person_id = $person->create( $params ); 
+        } 
+
+        $org = new Org();
+        if ( ! $person_id && $org_id ) {
+            $org->update( $params ); 
+        }
+        
+        if ( ! $org_id && $org_name ) { 
+            $org_id = $org->create( $params ); 
+        } 
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());

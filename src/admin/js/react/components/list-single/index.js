@@ -1004,7 +1004,7 @@ class ListSingle extends Component {
                         </div>
 
                         {false && <div className="pi-widget pi-timeline-box">
-                            <h3 className="pi-widget-title">Timeline Info</h3>
+                            <h3 className="pi-widget-title pi-mb-15">Timeline Info</h3>
                             <ul>
                                 <li>
                                     <h4 className="timeline-title">Nabil Created Project Propovoice</h4>

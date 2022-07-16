@@ -7,10 +7,10 @@ class Contact extends Component {
         super(props);
 
         this.state = {
-            // form: {
-            //     first_name: '',
-            //     org_name: '',
-            // },
+            form: {
+                first_name: '',
+                org_name: '',
+            },
             personList: [],
             orgList: [],
             personModal: false,
@@ -20,19 +20,11 @@ class Contact extends Component {
         this.timeout = 0;
     }
 
-    componentDidMount() {
-        // console.log(this.props.data);
-    }
-
-    componentDidUpdate() {
-        // console.log(this.props.data);
-    }
-
     handleChange = e => {
         const { name, value } = e.target;
 
         if (value.length < 1) {
-            this.setState({ personModal: false, personList: [] });
+            this.setState({ personModal: false, personList: [], form: { ...this.state.form, [name]: value } });
             if (name == 'first_name') {
                 this.props.onChange('', 'person');
             } else {
@@ -41,7 +33,7 @@ class Contact extends Component {
             return;
         }
 
-        // this.setState({ form: { ...this.state.form, [name]: value } }, () => {
+        this.setState({ form: { ...this.state.form, [name]: value } }, () => {
             if (name == 'first_name') {
                 this.props.onChange(value, 'person');
             } else {
@@ -63,7 +55,7 @@ class Contact extends Component {
                 }
 
             }, 300);
-        // });
+        });
     }
 
     handleSelect = (e, val, type) => {
@@ -71,17 +63,17 @@ class Contact extends Component {
 
         this.props.onSelect(val, type);
 
-        // let form = this.state.form;
+        let form = this.state.form;
         if (type == 'person') {
-            /* if (val) {
+            if (val) {
                 form.first_name = val.first_name;
-            } */
-            this.setState({ personModal: false, personList: [] });
+            }
+            this.setState({ personModal: false, personList: [], form });
         } else {
-            /* if (val) {
+            if (val) {
                 form.org_name = val.name;
-            } */
-            this.setState({ orgModal: false, orgList: [] });
+            }
+            this.setState({ orgModal: false, orgList: [], form });
         }
     }
 
@@ -98,12 +90,12 @@ class Contact extends Component {
                             type="text"
                             name="first_name"
                             autoComplete='off'
-                            value={this.props.first_name}
+                            value={this.state.form.first_name}
                             onChange={this.handleChange}
                         />
 
                         {this.state.personModal && <div className="pi-dropdown-content pi-show">
-                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ Add '{this.props.first_name}' as New Contact</button>
+                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ Add '{this.state.form.first_name}' as New Contact</button>
                             {this.state.personList.map((item, i) => (
                                 <a key={i} onClick={(e) => this.handleSelect(e, item, 'person')}>{item.first_name}</a>
                             ))}
@@ -125,12 +117,12 @@ class Contact extends Component {
                             type="text"
                             name="org_name"
                             autoComplete='off'
-                            value={this.props.org_name}
+                            value={this.state.form.org_name}
                             onChange={this.handleChange}
                         />
 
                         {this.state.orgModal && <div className="pi-dropdown-content pi-show">
-                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'org')}>+ Add '{this.props.org_name}' as New Organization</button>
+                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'org')}>+ Add '{this.state.form.org_name}' as New Organization</button>
                             {this.state.orgList.map((item, i) => (
                                 <a key={i} onClick={(e) => this.handleSelect(e, item, 'org')}>{item.name}</a>
                             ))}

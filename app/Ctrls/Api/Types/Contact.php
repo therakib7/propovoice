@@ -85,6 +85,9 @@ class Contact
             $offset = ($per_page * $params['page']) - $per_page;
         }
 
+        //TODO: tem load 5 person and org in estvoice
+        $per_page = 5;
+
         $result = $data = []; 
 
         $contact_types = ['person', 'org'];
