@@ -895,6 +895,12 @@ html {
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.06);
 }
 
+.ncpi .pi-table-action input[type=checkbox] {
+  zoom: 1.2;
+  position: relative;
+  top: 2px;
+}
+
 .ncpi .pi-table-action span {
   color: #4A5568;
   margin-left: 10px;
@@ -989,7 +995,7 @@ html {
 }
 
 .ncpi .pi-table input[type=checkbox] {
-  zoom: 1.5;
+  zoom: 1.5 !important;
   border-radius: 3px;
   transform: scale(0.8);
   border: 1px solid rgba(147, 147, 147, 0.9411764706);
@@ -1219,15 +1225,6 @@ html {
   left: -70px;
 }
 
-.ncpi .pi-accordion-table-list .pi-action-content button {
-  padding: 0px 5px;
-}
-
-.ncpi .pi-accordion-table-list .pi-action-content button svg {
-  position: relative;
-  top: 2px;
-}
-
 .ncpi .pi-info-table-content {
   margin-top: 20px;
 }
@@ -1443,7 +1440,7 @@ html {
 }
 
 .ncpi .pi-calculation table tr:last-child td {
-  padding: 25px 0 15px 15px;
+  padding: 15px 0 15px 15px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -1624,7 +1621,7 @@ html {
 
 @media screen and (max-width: 820px) {
   .ncpi .pi-right-content .pi-right-content-data {
-    padding: 30px 0;
+    padding: 30px 15px;
   }
 }
 
@@ -1892,6 +1889,12 @@ html {
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.06);
 }
 
+@media screen and (max-width: 768px) {
+  .ncpi .pi-search-bar {
+    display: block;
+  }
+}
+
 @media screen and (max-width: 550px) {
   .ncpi .pi-search-bar {
     width: 100% px;
@@ -1902,11 +1905,16 @@ html {
 .ncpi .pi-search-bar button {
   background: transparent;
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
-  padding: 7px 8px;
+  padding: 5px 8px;
   border-radius: 8px;
-  line-height: 10px;
   margin-left: 10px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .ncpi .pi-search-bar button {
+    margin-left: 0px;
+  }
 }
 
 .ncpi .pi-search-bar .pi-total-list p {
@@ -2137,14 +2145,14 @@ html {
 }
 
 .ncpi .pi-pagination-content-two .pi-pagination {
-  margin-top: 25px;
-  margin-right: 30px;
+  margin-top: 55px;
+  margin-right: -30px;
 }
 
 .ncpi .pi-pagination {
   display: inline-flex;
   float: right;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 @media screen and (max-width: 450px) {
@@ -2409,7 +2417,7 @@ html {
 .wp-admin .pi-field-checkbox input[type=radio],
 .wp-admin .pi-field-checkbox input[type=checkbox] {
   margin-right: 8px;
-  zoom: 1;
+  zoom: 1 !important;
   position: relative;
   top: 2px;
 }
@@ -2458,11 +2466,17 @@ html {
   padding: 10px 20px !important;
 }
 
-.wp-admin .pi-field-radio input[type=radio],
-.wp-admin .pi-field-radio input[type=checkbox] {
-  zoom: 1;
-  position: relative;
-  top: 2px;
+.wp-admin .pi-accordion-table-list .pi-action-content button svg {
+  top: 0 !important;
+}
+
+.wp-admin .pi-checklist-content input[type=checkbox] {
+  position: relative !important;
+  top: -3px !important;
+}
+
+.wp-admin .pi-info-table-content .pi-info-table tbody tr td input[type=number] {
+  height: 35px !important;
 }
 
 .react-datepicker {
@@ -2570,8 +2584,8 @@ input[type=checkbox] {
   zoom: 1;
 }
 
-.twentytwentytwo-theme .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group input[type=radio] {
-  zoom: 1.3;
+ul {
+  margin: 0;
 }
 
 .twentytwenty-theme svg,
@@ -2589,14 +2603,12 @@ input[type=checkbox] {
   padding: 0;
 }
 
-.twentytwenty-theme input[type=checkbox] {
-  zoom: 0.6;
-  position: relative;
-  top: 0px;
+.twentytwenty-theme .pi-field-checkbox-input input[type=checkbox] {
+  margin-right: 15px;
 }
 
 .twentytwenty-theme .pi-table input[type=checkbox] {
-  zoom: 0.8;
+  zoom: 0.8 !important;
 }
 
 .twentytwenty-theme .pi-table tr th:first-child input[type=checkbox] {
@@ -2627,7 +2639,7 @@ input[type=checkbox] {
 }
 
 .twentytwenty-theme .pi-accordion-wrapper .pi-field-switch-big {
-  top: 6px;
+  top: 8px !important;
 }
 
 .twentytwenty-theme .pi-top-menu-content .pi-dropdown {
@@ -2642,6 +2654,44 @@ input[type=checkbox] {
 .twentytwenty-theme .pi-timeline-box ul {
   margin: 0;
   margin-top: 15px;
+}
+
+.twentytwenty-theme .pi-field-checkbox-input input[type=number] {
+  height: 33px !important;
+}
+
+.twentytwenty-theme input[type=checkbox] {
+  zoom: 0.6 !important;
+  position: relative;
+  top: 0px;
+}
+
+.twentytwenty-theme .pi-field-checkbox-input input[type=checkbox] {
+  margin-right: 15px;
+}
+
+.twentytwenty-theme .pi-info-table-content .pi-info-table tbody tr td textarea {
+  height: 5rem;
+  margin-top: -5px !important;
+}
+
+.twentytwenty-theme input[type=checkbox]+label {
+  margin-left: 0.3rem !important;
+}
+
+.twentytwenty-theme .pi-field-radio-input input[type=number],
+.twentytwenty-theme .pi-field-checkbox-input input[type=number] {
+  height: 33px !important;
+}
+
+.twentytwenty-theme .pi-form-accordion.pi-additional .pi-tab input[type=checkbox] {
+  top: 31px;
+  zoom: 1.2 !important;
+}
+
+.twentytwenty-theme .pi-form-accordion.pi-additional .pi-tab input[type=checkbox]::before {
+  height: 1rem;
+  width: 1rem;
 }
 
 .twentytwentyone-theme button:focus {
@@ -3091,62 +3141,73 @@ input[type=checkbox] {
 .ncpi .pi-modal-sidebar-two .pi-checklist-head {
   border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 10px 0;
+  display: flex;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist-head label {
+  margin-bottom: 0;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist-head label span {
+  cursor: pointer;
 }
 
 .ncpi .pi-modal-sidebar-two .pi-checklist-head span {
   font-size: 14px;
   color: #718096;
+  margin-left: auto;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-checklist-content ul {
+.ncpi .pi-modal-sidebar-two .pi-checklist ul {
   margin-bottom: 0px;
+  margin-top: 15px;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-checklist-content ul li {
+.ncpi .pi-modal-sidebar-two .pi-checklist ul li {
   font-size: 12px;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-checklist-content ul li label {
+.ncpi .pi-modal-sidebar-two .pi-checklist ul li label {
   color: #718096;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-checklist-content ul li input[type=checkbox] {
+.ncpi .pi-modal-sidebar-two .pi-checklist ul li input[type=checkbox] {
   position: relative;
   top: 1px;
   margin-right: 10px;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-checklist-content input[type=url],
-.ncpi .pi-modal-sidebar-two .pi-checklist-content input[type=number],
-.ncpi .pi-modal-sidebar-two .pi-checklist-content input[type=email],
-.ncpi .pi-modal-sidebar-two .pi-checklist-content input[type=text] {
+.ncpi .pi-modal-sidebar-two .pi-checklist ul li:hover .pi-action-content {
+  opacity: 1;
+}
+
+.ncpi .pi-modal-sidebar-two .pi-checklist input[type=url],
+.ncpi .pi-modal-sidebar-two .pi-checklist input[type=number],
+.ncpi .pi-modal-sidebar-two .pi-checklist input[type=email],
+.ncpi .pi-modal-sidebar-two .pi-checklist input[type=text] {
   border: none;
   margin-left: -10px;
   padding: 7px 15px;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-checklist-content ::-moz-placeholder {
-  color: #000;
+.ncpi .pi-modal-sidebar-two .pi-checklist input[type=url]:focus,
+.ncpi .pi-modal-sidebar-two .pi-checklist input[type=number]:focus,
+.ncpi .pi-modal-sidebar-two .pi-checklist input[type=email]:focus,
+.ncpi .pi-modal-sidebar-two .pi-checklist input[type=text]:focus {
+  border: none;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-checklist-content :-ms-input-placeholder {
-  color: #000;
-}
-
-.ncpi .pi-modal-sidebar-two .pi-checklist-content ::placeholder {
-  color: #000;
-}
-
-.ncpi .pi-modal-sidebar-two .pi-checklist-content .pi-action-content {
+.ncpi .pi-modal-sidebar-two .pi-checklist .pi-action-content {
   margin-left: 30px;
-  padding: 3px;
+  padding: 5px 3px 3px;
+  opacity: 0;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-checklist-content .pi-action-content button {
+.ncpi .pi-modal-sidebar-two .pi-checklist .pi-action-content button {
   border-radius: 5px;
 }
 
-.ncpi .pi-modal-sidebar-two .pi-checklist-content .pi-action-content .pi-dropdown-content {
+.ncpi .pi-modal-sidebar-two .pi-checklist .pi-action-content .pi-dropdown-content {
   top: 25px;
   left: -65px;
 }
@@ -3300,6 +3361,7 @@ input[type=checkbox] {
   z-index: 6;
   opacity: 1;
   border: 2px solid #4c6fff !important;
+  cursor: auto;
 }
 
 .ncpi .pi-welcome-tabs-content .pi-tab .pi-done svg path {
@@ -3370,6 +3432,7 @@ input[type=checkbox] {
   border: 3px solid var(--bg-color-blue);
   z-index: 1;
   opacity: 0;
+  cursor: auto;
 }
 
 .ncpi .pi-single-tabs .pi-tab-item .pi-arrow {
@@ -4049,7 +4112,7 @@ input[type=checkbox] {
 .pi-field-checkbox input[type=radio],
 .pi-field-checkbox input[type=checkbox] {
   margin-right: 8px;
-  zoom: 1.2;
+  zoom: 1.2 !important;
 }
 
 .pi-field-radio label,
@@ -4112,10 +4175,6 @@ input[type=checkbox] {
   background-color: #FAFAFB;
 }
 
-.ncpi .pi-search-btn .pi-search-form ul li:first-child svg {
-  top: 0px;
-}
-
 .ncpi .pi-search-btn .pi-search-form ul li:last-child {
   border-left: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 6px 8px;
@@ -4123,21 +4182,22 @@ input[type=checkbox] {
   cursor: pointer;
 }
 
+.ncpi .pi-search-btn .pi-search-form ul li:last-child span {
+  display: flex;
+}
+
 .ncpi .pi-search-btn .pi-search-form ul li {
-  padding: 6px 5px;
+  padding: 9px 5px;
   padding-left: 20px;
   margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 820px) {
   .ncpi .pi-search-btn .pi-search-form ul li {
     padding-left: 15px;
   }
-}
-
-.ncpi .pi-search-btn .pi-search-form ul li svg {
-  position: relative;
-  top: 4px;
 }
 
 .ncpi .pi-search-btn .pi-search-form ul li select {
