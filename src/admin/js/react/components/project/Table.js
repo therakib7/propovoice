@@ -126,14 +126,14 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>{row.title}</td>
-                <td>{ ( row.person ) ? row.person.email : row.org.email }</td>
-                <td>22 April, 2022</td>
-                <td>${row.budget}</td>
+                <td onClick={() => handleOverview(row.id)}>{row.title}</td>
+                <td onClick={() => handleOverview(row.id)}>{ ( row.person ) ? row.person.email : row.org.email }</td>
+                <td onClick={() => handleOverview(row.id)}>22 April, 2022</td>
+                <td onClick={() => handleOverview(row.id)}>${row.budget}</td>
                 <td>
                     <span className="pi-badge">{row.status_id && row.status_id.label}</span>
                 </td>
-                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td onClick={() => handleOverview(row.id)}><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <Action 
                         row={row}

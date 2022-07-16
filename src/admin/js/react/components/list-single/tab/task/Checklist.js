@@ -12,8 +12,10 @@ class Checklist extends Component {
             edit: false,
             checklist: [
                 {
-                    label: 'Checklist', 
-                    items: [{ text: '', done: false }]
+                    label: 'Checklist',
+                    // items: [{ text: '', done: false }]
+                    items: [],
+                    newItem: ''
                 }
             ],
         };
@@ -23,8 +25,8 @@ class Checklist extends Component {
         if (!this.state.edit && this.props.data) {
             this.setState({ edit: true, checklist: this.props.data });
         }
-    } 
-    
+    }
+
     handleChecklistLabel = (index, value = null) => {
         let items = this.state.checklist[index];
         items['label'] = value;
@@ -51,112 +53,163 @@ class Checklist extends Component {
         e.preventDefault();
         let checklist = this.state.checklist;
         checklist.push({
-            label: 'Checklist', 
-            items: [{ text: '', done: false }]
+            label: 'Checklist',
+            // items: [{ text: '', done: false }]
+            items: []
         });
         this.setState({ checklist: checklist });
-    };
+    }; 
 
-    addList = (e, index) => {
+    handleNewItem = (e, index) => {
+        let items = this.state.checklist[index]; 
+        items['newItem'] = e.target.value;
+
+        let checklist = this.state.checklist;
+        this.setState({ checklist: checklist });
+        this.handlePros();
+    }
+
+    addItem = (e, index) => {
         e.preventDefault();
         let items = this.state.checklist[index].items;
-        items.push({ text: '' });
+        let value = this.state.checklist[index].newItem
+        if ( ! value ) return;
+        items.push({ text: value });
+
+        //remove value after add
+        let newitems = this.state.checklist[index]; 
+        newitems['newItem'] = '';
+
         let checklist = this.state.checklist;
         this.setState({ checklist: checklist });
     };
 
     handlePros = () => {
         this.props.changeHandler(this.state.checklist);
-    }; 
+    };
 
-    deleteHandler = (checklist_index, list_index = null) => { 
-        let array = [...this.state.checklist]; 
+    deleteHandler = (checklist_index, list_index = null) => {
+        let array = [...this.state.checklist];
 
-        if ( list_index === null ) {
-            array.splice(checklist_index, 1); 
+        if (list_index === null) {
+            array.splice(checklist_index, 1);
         } else {
-           let items = array[checklist_index].items;
-           items.splice(list_index, 1); 
-        } 
+            let items = array[checklist_index].items;
+            items.splice(list_index, 1);
+        }
 
         this.setState({ checklist: array }, () => {
-            this.handlePros(); 
-        }); 
-    } 
+            this.handlePros();
+        });
+    }
 
     render = () => {
         const { checklist } = this.state;
 
         return (
             <>
-                {checklist.map((checklist_single, checklist_index) => { 
+                {checklist.map((checklist_single, checklist_index) => {
                     return (
-                        <div className="pi-checklist" key={checklist_index}>
-                            <div className="row">
-                                <div className="col-md-8">
+                        <div className="pi-checklist pi-mb-15" key={checklist_index}>
+                            <div className="pi-checklist-head">
+                                <span>
                                     <Editable
                                         key={checklist_index}
                                         value={checklist_single.label}
                                         index={checklist_index}
                                         changeHandler={this.handleChecklistLabel}
                                     />
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="">  
-                                        <span
-                                            className='pi-delate'
-                                            title='Delete this checklist'
-                                            onClick={() => this.deleteHandler(checklist_index)}
-                                        >
-                                            <svg
-                                                width={18}
-                                                height={18}
-                                                viewBox="0 0 9 9"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M8.073 2.387a.39.39 0 01-.345.388l-.045.003h-.33l-.48 4.886a1.073 1.073 0 01-1.069.967H2.927a1.073 1.073 0 01-1.068-.967l-.48-4.886h-.33a.39.39 0 010-.78h1.95a1.366 1.366 0 112.732 0h1.952a.39.39 0 01.39.39zm-2.83 1.269a.293.293 0 00-.29.253l-.002.04V6.68l.003.04a.293.293 0 00.58 0l.002-.04V3.948l-.002-.04a.293.293 0 00-.29-.252zm-1.756 0a.293.293 0 00-.29.253l-.002.04V6.68l.003.04a.293.293 0 00.58 0l.002-.04V3.948l-.003-.04a.293.293 0 00-.29-.252zm.879-2.244a.585.585 0 00-.586.585h1.17a.585.585 0 00-.584-.585z"
-                                                    fill="#718096"
-                                                />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
+                                </span>
+                                <span className="pi-float-right">45 Done</span>
                             </div>
-
-                            <div className="pi-checklist-item">
+                            <div className="pi-checklist-content">
                                 <ul>
                                     {checklist_single.items.map((item, list_index) => {
                                         return (
                                             <li key={list_index}>
-                                                <input
-                                                    type="text"
-                                                    name="text"
-                                                    value={item.text}
-                                                    onChange={this.handleChange(checklist_index, list_index)} />
-                                                <span className='pi-list-delete' onClick={() => this.deleteHandler(checklist_index, list_index)}>×</span>
+                                                <input id="checkbox" type="checkbox" />
+                                                <label htmlFor="checkbox">{item.text}</label>
+                                                <div className="pi-action-content pi-action-btn pi-bg-shadow">
+                                                    <button>
+                                                        <svg
+                                                            width={20}
+                                                            height={20}
+                                                            viewBox="0 0 22 13"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                        >
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                clipRule="evenodd"
+                                                                d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
+                                                                fill="#718096"
+                                                            />
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                clipRule="evenodd"
+                                                                d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
+                                                                fill="#718096"
+                                                            />
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                clipRule="evenodd"
+                                                                d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
+                                                                fill="#718096"
+                                                            />
+                                                        </svg>
+                                                    </button>
+                                                    <div className="pi-dropdown-content">
+                                                        <a href="#home">Edit</a>
+                                                        <a href="#contact">Delete</a>
+                                                    </div>
+                                                </div>
                                             </li>
                                         );
                                     })}
                                 </ul>
-
-                                <button
-                                    className="pi-btn pi-btn-small pi-bg-stroke"
-                                    onClick={(e) => this.addList(e, checklist_index)}
-                                > 
-                                    Add New Item
-                                </button>
+                                <input
+                                    type="text"
+                                    placeholder="Write new checklist item"
+                                    value={checklist_single.newItem} 
+                                    onChange={e => this.handleNewItem(e, checklist_index) }
+                                    onKeyPress={e => {
+                                        if (e.key === 'Enter') { 
+                                            this.addItem(e, checklist_index)
+                                        }
+                                    }}
+                                />
                             </div>
                         </div>
+
                     );
                 })}
 
                 <button
-                    className="pi-btn pi-btn-medium pi-bg-stroke"
+                    className="pi-btn pi-btn-small"
+                    style={{ color: "#718096", marginTop: 10 }}
                     onClick={(e) => this.addChecklist(e)}
-                > 
-                    Add New Checklist
+                >
+                    <svg
+                        width={12}
+                        height={12}
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M1.875 6H10.125"
+                            stroke="#718096"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M6 1.875V10.125"
+                            stroke="#718096"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                    Add Checklist
                 </button>
             </>
         )

@@ -485,6 +485,7 @@ class ListSingle extends Component {
 
                                         <div
                                             className="pi-action-content pi-action-btn pi-bg-shadow"
+                                            style={{padding: 1}}
                                         >
                                             <button
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
@@ -588,7 +589,7 @@ class ListSingle extends Component {
 
                                         <div
                                             className="pi-action-content pi-action-btn pi-bg-shadow"
-                                            style={{ padding: 3 }}
+                                            style={{ padding: 1 }}
                                         >
                                             <button
                                                 className={(this.state.action ? '' : '')}
