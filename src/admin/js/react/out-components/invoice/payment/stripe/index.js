@@ -38,11 +38,11 @@ const CARD_OPTIONS = {
     },
 };
 
-const SubmitButton = ({ processing, error, children, disabled }) => (     
+const SubmitButton = ({ processing, error, children, disabled }) => (
     <div className="row">
         <div className="col">
             <button
-                className={`pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto SubmitButton ${error ? 'SubmitButton--error' : ''}`}
+                className={`pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-m-auto SubmitButton ${error ? 'SubmitButton--error' : ''}`}
                 type="submit"
                 disabled={processing || disabled}
             >
@@ -121,10 +121,10 @@ class CheckoutForm extends Component {
         let client_secret = null;
         const url = apiUrl + 'payment-process';
         const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}`);
-        if ( indent_resp ) { 
+        if (indent_resp) {
             client_secret = indent_resp.data.data.intent_obj.client_secret
         }
-      
+
         const paymentPayload = await stripe.createPaymentMethod({
             type: 'card',
             card,
@@ -183,11 +183,32 @@ class CheckoutForm extends Component {
 
         return (
             <div className="pi-overlay pi-show">
-                {/* TODO: fixed reponsive width in mobile */}
-                <div className="pi-modal-content" style={{ width: '25%' }}>
+                <div className="pi-modal-content pi-modal-style-two pi-modal-small">
+
                     <div className="pi-modal-header">
-                        <h2 className="pi-modal-title pi-text-center">Pay With Stripe</h2>
-                        <span className="pi-close" onClick={() => this.props.close()}>×</span>
+                        <span className="pi-close" onClick={() => this.props.close()}>
+                            <svg
+                                width={25}
+                                height={25}
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.5 3.5L3.5 12.5"
+                                    stroke="#718096"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M12.5 12.5L3.5 3.5"
+                                    stroke="#718096"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </span>
+                        <h2 className="pi-modal-title">Pay With Stripe</h2>
                     </div>
 
                     <div className="pi-content">
@@ -197,8 +218,8 @@ class CheckoutForm extends Component {
                                     Payment successful
                                 </div>
                                 <div className="ResultMessage">
-                                    Thanks for trying Stripe payment. 
-                                    <div style={{marginTop: '7px', color: '#000'}}>
+                                    Thanks for trying Stripe payment.
+                                    <div style={{ marginTop: '7px', color: '#000' }}>
                                         <b>Transection ID:</b> {paymentMethod.paymentIntent.id}
                                     </div>
                                 </div>
@@ -232,7 +253,7 @@ class CheckoutForm extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div className="row">
                                     <div className="col-lg">
@@ -245,11 +266,11 @@ class CheckoutForm extends Component {
                                     </div>
                                 </div>
 
-                                <div className="row">
+                                {error &&<div className="row">
                                     <div className="col-lg">
-                                        {error && <ErrorMessage>{error.message}</ErrorMessage>}
+                                        <ErrorMessage>{error.message}</ErrorMessage>
                                     </div>
-                                </div>
+                                </div>}
 
                                 <SubmitButton processing={processing} error={error} disabled={!stripe}>
                                     Pay
@@ -257,6 +278,19 @@ class CheckoutForm extends Component {
                             </form>
                         )}
                     </div>
+
+                    {/* <div className="pi-modal-footer pi-mt-10">
+                        <div className="row">
+                            <div className="col">
+                                <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                            </div>
+                            <div className="col">
+                                <button onClick={this.handleSubmit} className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-medium pi-float-right pi-color-white">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </div> */}
                 </div>
             </div>
         );
@@ -282,7 +316,7 @@ class Stripe extends Component {
     render() {
         let public_key = this.props.invoice.payment_methods.stripe.public_key;
         const stripePromise = loadStripe(public_key);
-        
+
         return (
             <>
                 {this.props.show && (

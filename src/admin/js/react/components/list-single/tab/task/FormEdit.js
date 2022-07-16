@@ -288,72 +288,9 @@ class Form extends Component {
 
                             <div className="row">
                                 <div className="col">
-                                    {/* <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} /> */}
+                                    <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} />
                                 </div>
-                            </div>
-                            <div className="row">
-                                <div className="col">
-                                    <div className="pi-checklist-head">
-                                        <span>Checklist</span>
-                                        <span className="pi-float-right">45 Done</span>
-                                    </div>
-                                    <div className="pi-checklist-content">
-                                        <ul>
-                                            <li>
-                                                <input id="checkbox" type="checkbox" />
-                                                <label htmlFor="checkbox">Checkbox</label>
-                                            </li>
-                                            <li>
-                                                <input id="preparation" type="checkbox" />
-                                                <label htmlFor="preparation">Preparation</label>
-                                            </li>
-                                            <li>
-                                                <input id="mail" type="checkbox" />
-                                                <label htmlFor="mail">Mail</label>
-                                            </li>
-                                            <li>
-                                                <input id="feedback" type="checkbox" />
-                                                <label htmlFor="feedback">Feedback</label>
-                                            </li>
-                                            <li>
-                                                <input id="update" type="checkbox" />
-                                                <label htmlFor="update">Update</label>
-                                            </li>
-                                            <li>
-                                                <input id="testing" type="checkbox" />
-                                                <label htmlFor="testing">Testing</label>
-                                            </li>
-                                        </ul>
-                                        <button
-                                            className="pi-btn pi-btn-small"
-                                            style={{ color: "#CBD5E0", border: "none", marginLeft: "-10px" }}
-                                        >
-                                            <svg
-                                                width={12}
-                                                height={12}
-                                                viewBox="0 0 12 12"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M1.875 6H10.125"
-                                                    stroke="#CBD5E0"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                                <path
-                                                    d="M6 1.875V10.125"
-                                                    stroke="#CBD5E0"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
-                                            Write new checklist item
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
+                            </div>  
                         </div>
                     </div>
                 </div>

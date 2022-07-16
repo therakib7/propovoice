@@ -168,10 +168,8 @@ class Form extends Component {
                             <div className="pi-form-style-one"> 
 
                                 <Contact
-                                    data={{
-                                        first_name: form.first_name,
-                                        org_name: form.org_name
-                                    }}
+                                    first_name={form.first_name}
+                                    org_name={form.org_name}
                                     review={true}
                                     onChange={this.handleContactChange}
                                     onSelect={this.handleContactSelect}

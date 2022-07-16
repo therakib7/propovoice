@@ -389,8 +389,10 @@ class Deal
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id       = isset($params['org_id']) ? absint($params['org_id']) : null;
+        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
+        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
+        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
         $status       = isset($params['status']) ? sanitize_text_field($params['status']) : null;
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
         $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
@@ -409,6 +411,24 @@ class Deal
         if (empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
+
+        $person = new Person();  
+        if ( $person_id ) {
+            $person->update( $params ); 
+        }
+
+        if ( ! $person_id && $first_name ) { 
+            $person_id = $person->create( $params ); 
+        } 
+
+        $org = new Org();
+        if ( ! $person_id && $org_id ) {
+            $org->update( $params ); 
+        }
+        
+        if ( ! $org_id && $org_name ) { 
+            $org_id = $org->create( $params ); 
+        } 
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());

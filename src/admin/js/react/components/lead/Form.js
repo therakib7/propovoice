@@ -127,7 +127,24 @@ class Form extends Component {
         //condition added to stop multiple rendering 
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
+                let form = this.props.data;
+                if (form.person) { 
+                    form.first_name = (form.person) ? form.person.first_name : '';
+                    form.person_id = (form.person) ? form.person.id : null;
+                    form.email = (form.person) ? form.person.email : '';
+                    form.mobile = (form.person) ? form.person.mobile : '';
+                    form.web = (form.person) ? form.person.web : '';
+                } else {
+                    form.org_name = (form.org) ? form.org.name : ''; 
+                    form.email = (form.org) ? form.org.email : '';
+                    form.mobile = (form.org) ? form.org.mobile : '';
+                    form.web = (form.org) ? form.org.web : '';
+                } 
+
+                if ( form.org ) {
+                    form.org_id = (form.org) ? form.org.id : null;
+                }
+                this.setState({ form });
             }
         } else {
             if (this.state.form.id != null) {
@@ -233,12 +250,8 @@ class Form extends Component {
                         <div className="pi-content">
                             <div className="pi-form-style-one">
                                 <Contact
-                                    data={{
-                                        first_name: form.first_name,
-                                        org_name: form.org_name,
-                                        person_id: form.person_id,
-                                        org_id: form.org_id
-                                    }}
+                                    first_name={form.first_name}
+                                    org_name={form.org_name}
                                     onChange={this.handleContactChange}
                                     onSelect={this.handleContactSelect}
                                 />
@@ -367,14 +380,6 @@ class Form extends Component {
                                         />
                                     </div>
                                 </div>
-
-                                {/* <div className="row">
-                                    <div className="col">
-                                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
-                                            Save
-                                        </button>
-                                    </div>
-                                </div> */}
                             </div>
                         </div>
 

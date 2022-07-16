@@ -23,7 +23,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
     const amount = invoice.total;
     const invoice_id = invoice.id;
 
-    const [{ options, isPending }, dispatch] = usePayPalScriptReducer(); 
+    const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
     const [details, setDetails] = useState(null);
 
@@ -48,12 +48,12 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
                 </div>
                 <div className="ResultMessage">
                     Thanks for trying paypal payment.
-                    <div style={{marginTop: '7px', color: '#000'}}>
+                    <div style={{ marginTop: '7px', color: '#000' }}>
                         <b>Transection ID:</b> {details.id}
                     </div>
                 </div>
             </div>
-        ) : ( 
+        ) : (
             <PayPalButtons
                 style={style}
                 disabled={false}
@@ -79,7 +79,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
                 }}
                 onApprove={function (data, actions) {
                     return actions.order.capture().then((details) => {
-                        
+
                         let form = {
                             invoice_id,
                             payment_method: 'paypal',
@@ -117,47 +117,62 @@ class Paypal extends Component {
     }
 
     render() {
-        let client_id = this.props.invoice.payment_methods.paypal.client_id; 
-        return ( 
+        let client_id = this.props.invoice.payment_methods.paypal.client_id;
+        return (
             <>
                 {this.props.show && (
-                    <>
-                        <div className="pi-overlay pi-show">
-                            {/* TODO: fixed reponsive width in mobile */}
-                            <div className="pi-modal-content" style={{ minWidth: '320px', width: '25%' }}>
-                                <div className="pi-modal-header">
-                                    <h2 className="pi-modal-title pi-text-center">Pay With Paypal</h2>
-                                    <span className="pi-close" onClick={() => this.props.close()}>×</span>
-                                </div>
-
-                                <div className="pi-content">
-                                    <form onSubmit={this.handleSubmit} className="pi-form-style-one">
-
-                                        <div className="row">
-                                            <div className="col-lg">
-                                                <PayPalScriptProvider
-                                                    options={{
-                                                        "client-id": client_id,
-                                                        components: "buttons",
-                                                        currency: "USD"
-                                                    }}
-                                                >
-                                                    <ButtonWrapper 
-                                                        invoice={this.props.invoice}
-                                                        currency={currency}
-                                                        showSpinner={true}
-                                                    />
-                                                </PayPalScriptProvider>
-                                            </div>
-                                        </div>
-
-                                    </form>
-                                </div>
+                    <div className="pi-overlay pi-show">
+                        <div className="pi-modal-content pi-modal-style-two pi-modal-small"> 
+                            <div className="pi-modal-header">
+                                <span className="pi-close" onClick={() => this.props.close()}>
+                                    <svg
+                                        width={25}
+                                        height={25}
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M12.5 3.5L3.5 12.5"
+                                            stroke="#718096"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M12.5 12.5L3.5 3.5"
+                                            stroke="#718096"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </span>
+                                <h2 className="pi-modal-title">Pay With Paypal</h2>
                             </div>
+
+                            <div className="pi-content">
+                                <div className="pi-form-style-one">
+                                    <div className="row">
+                                        <div className="col-lg">
+                                            <PayPalScriptProvider
+                                                options={{
+                                                    "client-id": client_id,
+                                                    components: "buttons",
+                                                    currency: "USD"
+                                                }}
+                                            >
+                                                <ButtonWrapper
+                                                    invoice={this.props.invoice}
+                                                    currency={currency}
+                                                    showSpinner={true}
+                                                />
+                                            </PayPalScriptProvider>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
-                    </>
-                )
-                }
+                    </div>
+                )}
             </>
         );
     }

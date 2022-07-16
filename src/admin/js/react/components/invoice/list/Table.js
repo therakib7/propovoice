@@ -164,19 +164,19 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
+                <td onClick={() => { handleClick(row.id); }}>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
                 {/*<td>{row.project.name}</td>*/}
-                {!props.client_id && <td>
+                {!props.client_id && <td onClick={() => { handleClick(row.id); }}>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name } 
                 </td>}
-                <td>{row.total}</td>
+                <td onClick={() => { handleClick(row.id); }}>{row.total}</td>
                 {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>
                         <td>{row.due}</td>
                     </>
                 }
-                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td onClick={() => { handleClick(row.id); }}><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
                 <td className="pi-action">

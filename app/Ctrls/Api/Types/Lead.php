@@ -116,15 +116,10 @@ class Lead
 
             $queryMeta = get_post_meta($id);
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-            $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
-            $query_data['level_id'] = '';
+            $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
+            $query_data['desc'] = get_the_content();
 
-            /* $query_data['person_id'] = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
-            $query_data['first_name'] = $queryMeta['person_id'] ? get_post_meta($query_data['person_id'], 'first_name', true) : '';
-
-            $query_data['org_id'] = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
-            $query_data['org_name'] = $queryMeta['org_id'] ? get_post_meta($query_data['org_id'], 'name', true) : ''; */
-
+            $query_data['level_id'] = '';  
             $level = get_the_terms($id, 'ndpi_lead_level');
             if ($level) {
                 $term_id = $level[0]->term_id;
@@ -161,7 +156,7 @@ class Lead
             if ( $org_id ) {
                 $org = new Org();   
                 $query_data['org'] = $org->single( $org_id );
-            }
+            } 
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -187,7 +182,7 @@ class Lead
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
-        $query_data['desc'] = isset($queryMeta['desc']) ? $queryMeta['desc'][0] : '';
+        $query_data['desc'] = get_post_field('post_content', $id);
 
         $query_data['level_id'] = '';
         $level = get_the_terms($id, 'ndpi_lead_level');
@@ -331,8 +326,10 @@ class Lead
         $reg_errors = new \WP_Error;
 
         //lead
-        $person_id   = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id   = isset($params['org_id']) ? absint($params['org_id']) : null;
+        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
+        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
+        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
         $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
@@ -349,6 +346,24 @@ class Lead
         /* if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         } */
+
+        $person = new Person();  
+        if ( $person_id ) {
+            $person->update( $params ); 
+        }
+
+        if ( ! $person_id && $first_name ) { 
+            $person_id = $person->create( $params ); 
+        } 
+
+        $org = new Org();
+        if ( ! $person_id && $org_id ) {
+            $org->update( $params ); 
+        }
+        
+        if ( ! $org_id && $org_name ) { 
+            $org_id = $org->create( $params ); 
+        } 
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());

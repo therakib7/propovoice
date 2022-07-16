@@ -74,6 +74,24 @@ const TableHeader = props => {
                             strokeLinejoin="round"
                         />
                     </svg>
+                    Due Date
+                </th>
+                <th>
+                    <svg
+                        style={{ top: 2 }}
+                        width={15}
+                        height={10}
+                        viewBox="0 0 15 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M11.15 9.275L14 5 11.15.725A.493.493 0 0010.731.5H1.5A.5.5 0 001 1v8a.5.5 0 00.5.5h9.231a.494.494 0 00.419-.225v0z"
+                            stroke="#718096"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
                     Budget
                 </th>
                 <th>
@@ -95,9 +113,9 @@ const TableHeader = props => {
                     </svg>
                     Status
                 </th>
-                <th>
+                {/* <th>
                     Date
-                </th>
+                </th> */}
                 <th>
                     Action
                 </th>
@@ -126,14 +144,13 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>{row.title}</td>
-                <td>{ ( row.person ) ? row.person.email : row.org.email }</td>
-                <td>22 April, 2022</td>
-                <td>${row.budget}</td>
-                <td>
-                    <span className="pi-badge">{row.status_id && row.status_id.label}</span>
-                </td>
-                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td onClick={() => handleOverview(row.id)}>{row.title}</td>
+                <td onClick={() => handleOverview(row.id)}>{ ( row.person ) ? row.person.email : row.org.email }</td>
+                <td onClick={() => handleOverview(row.id)}>22 April, 2022</td>
+                <td onClick={() => handleOverview(row.id)}>22 July, 2022</td>
+                <td onClick={() => handleOverview(row.id)}>${row.budget}</td>
+                <td><span className="pi-badge">{row.status_id && row.status_id.label}</span></td>
+                {/* <td onClick={() => handleOverview(row.id)}><Moment format="YYYY-MM-DD">{row.date}</Moment></td> */}
                 <td className="pi-action">
                     <Action 
                         row={row}
