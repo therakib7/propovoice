@@ -23,8 +23,13 @@ const Taxonomy = (props) => {
 	useClickOutside(dropdownContent, close);
 
 	useEffect(() => {
-		if (props.data) {
-			setListById(props.data);
+		if ( props.data ) {
+			if ( props.multiple ) {
+				setListById(props.data);
+			} else {
+				setListById([props.data]);
+			}
+			
 			getData();
 		} else {
 			getDataWithSingle();

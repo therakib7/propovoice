@@ -222,9 +222,8 @@ class Deal
             ];
         }
 
-        $query_data['tags'] = [];
-
-        /* $tags = get_the_terms($id, 'ndpi_tag');
+        $query_data['tags'] = []; 
+        $tags = get_the_terms($id, 'ndpi_tag');
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
@@ -234,7 +233,7 @@ class Deal
                 ];
             }
             $query_data['tags'] = $tagList;
-        } */
+        }
 
         $query_data['person'] = null;
         $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
@@ -319,7 +318,7 @@ class Deal
 
             if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
+                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
                 $tab_id = $post_id;
                 if ($lead_id) {
                     $tab_id = $lead_id;

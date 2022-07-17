@@ -177,7 +177,7 @@ class Lead
         $query_data['id'] = absint($id);
 
         $queryMeta = get_post_meta($id);
-        $query_data['wp_id'] = isset($queryMeta['wp_id']) ? $queryMeta['wp_id'][0] : '';
+        $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
         $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
@@ -187,14 +187,38 @@ class Lead
         $query_data['level_id'] = '';
         $level = get_the_terms($id, 'ndpi_lead_level');
         if ($level) {
+            $term_id = $level[0]->term_id;
+            $color = get_term_meta($term_id, 'color', true);
+            $bg_color = get_term_meta($term_id, 'bg_color', true);
             $query_data['level_id'] = [
-                'id' => $level[0]->term_id,
-                'label' => $level[0]->name
+                'id' => $term_id,
+                'label' => $level[0]->name, 
+                'color' => '', 
+                'bg_color' => ''
+            ];
+
+            if ($color) {
+                $query_data['level_id']['color'] = $color;
+            }
+
+            if ($bg_color) {
+                $query_data['level_id']['bg_color'] = $bg_color;
+            }
+        }
+
+        $query_data['source_id'] = '';
+        $source = get_the_terms($id, 'ndpi_lead_source');
+        if ($source) {
+            $query_data['source_id'] = [
+                'id' => $source[0]->term_id,
+                'label' => $source[0]->name,
+                'bg_color' => '',
+                'color' => '#718096'
             ];
         }
-        $query_data['tags'] = [];
 
-        /* $tags = get_the_terms($id, 'ndpi_tag');
+        $query_data['tags'] = []; 
+        $tags = get_the_terms($id, 'ndpi_tag');
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
@@ -204,7 +228,7 @@ class Lead
                 ];
             }
             $query_data['tags'] = $tagList;
-        } */
+        }
 
         $query_data['person'] = null;
         $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
@@ -282,7 +306,7 @@ class Lead
             $post_id = wp_insert_post($data);
 
             if ( !is_wp_error($post_id) ) {
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
+                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
                 update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
 
                 if ( $level_id ) {

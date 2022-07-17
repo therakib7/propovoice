@@ -6,11 +6,7 @@ class Contact extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            // form: {
-            //     first_name: '',
-            //     org_name: '',
-            // },
+        this.state = { 
             personList: [],
             orgList: [],
             personModal: false,

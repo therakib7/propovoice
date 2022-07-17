@@ -134,15 +134,15 @@ export default class Example extends PureComponent {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="Sent" fill="#82ca9d" />
-              <Bar dataKey="Viewed" fill="#8884d8" />
+              <Bar dataKey="Sent" fill="#f7936f" />
+              <Bar dataKey="Viewed" fill="#4c6fff" />
               {this.props.type == 'estimate' && <>
-                <Bar dataKey="Accepted" fill="#00C49F" />
-                <Bar dataKey="Rejected" fill="#FFBB28" />
+                <Bar dataKey="Accepted" fill="#16B21D" />
+                <Bar dataKey="Rejected" fill="#FF6771" />
               </>}
               {this.props.type == 'invoice' && <>
-                <Bar dataKey="Paid" fill="#00C49F" />
-                <Bar dataKey="OverDue" fill="#FFBB28" />
+                <Bar dataKey="Paid" fill="#16B21D" />
+                <Bar dataKey="OverDue" fill="#FF6771" />
               </>}
             </BarChart>
           </ResponsiveContainer>

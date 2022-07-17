@@ -25,15 +25,27 @@ class Form extends Component {
             form: this.initialState,
             dropdown: null,
         };
+
+        this.timeout = 0;
     }
 
     handleChange = (e) => {
         const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
+        this.setState({ form: { ...this.state.form, [name]: value } }, () => {
+            // this.props.handleSubmit(this.state.form); 
+
+            if (this.timeout) clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                let form = {...this.state.form};
+                delete form.priority_id;
+                delete form.status_id;
+                delete form.type_id;
+                this.props.update('tasks', form.id, form); 
+            }, 300);
+        });
     }
 
-    componentDidMount() {
-
+    componentDidMount() { 
         //added this multiple place, because not working in invoice single
         this.editData();
     }
@@ -71,7 +83,16 @@ class Form extends Component {
     handleChecklistChange = (data) => {
         let form = { ...this.state.form }
         form.checklist = data;
-        this.setState({ form })
+        this.setState({ form }, () => { 
+            if (this.timeout) clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                let form = {...this.state.form};
+                delete form.priority_id;
+                delete form.status_id;
+                delete form.type_id;
+                this.props.update('tasks', form.id, form); 
+            }, 300);
+        })
     }
 
     handleTaskStatusChange = (val) => {

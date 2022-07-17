@@ -21,7 +21,7 @@ const TableBody = props => {
                     />
                 </div>}
                 <ul>
-                    <li className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
+                    <li style={{width: '45%'}} className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
                         <div className="pi-task-type">
                             {row.type_id.icon && <img src={row.type_id.icon.src} />}
                             {!row.type_id.icon && <svg
@@ -67,14 +67,12 @@ const TableBody = props => {
                                 <Moment format="YYYY-MM-DD">{row.date}</Moment>
                             </p>
                         </div>
+                    </li> 
+                    <li style={{width: '15%'}}>
+                        <Taxonomy id={row.id} data={row.status_id} taxonomy='task_status' title='Status' small={true} color={true} /> 
                     </li>
-                    <li>
-                    </li>
-                    <li>
-                        <Taxonomy id={row.id} taxonomy='task_status' title='Status' small={true} color={true} /> 
-                    </li>
-                    <li>
-                        <Taxonomy id={row.id} taxonomy='task_priority' title='Priority' small={true} color={true} />  
+                    <li style={{width: '15%'}}>
+                        <Taxonomy id={row.id} data={row.priority_id} taxonomy='task_priority' title='Priority' small={true} color={true} />  
                     </li>
                     <li> 
                         <Action

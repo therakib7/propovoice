@@ -253,7 +253,7 @@ class Media
                     $file_info = [];
                     if (!is_wp_error($attach_id)) {
                         // wp_update_attachment_metadata($attach_id, wp_generate_attachment_metadata($attach_id, $filename)); 
-                        update_post_meta($attach_id, 'wp_id', ncpi()->get_workplace() );
+                        update_post_meta($attach_id, 'ws_id', ncpi()->get_workspace() );
                         update_post_meta($attach_id, 'ncpi_attach_type', $attach_type); 
 
                         $file_info = [

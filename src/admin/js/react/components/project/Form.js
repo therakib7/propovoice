@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api';
 import WithRouter from 'hoc/Router';
 
 import Select from 'react-select';
 import Contact from 'block/field/contact';
+
+const DateField = lazy(() => import('block/date-picker'));
 
 class Form extends Component {
     constructor(props) {
@@ -23,6 +25,8 @@ class Form extends Component {
             status_id: '',
             budget: '',
             currency: 'USD',
+            start_date: null,
+            due_date: null,
             tags: [],
             desc: '',
             note: '',
@@ -205,6 +209,17 @@ class Form extends Component {
         this.setState({ form });
     }
 
+    onDateChange = (date, type = null) => {
+		let form = { ...this.state.form }
+
+		if (type == 'date') {
+			form.start_date = date;
+		} else {
+			form.due_date = date;
+		}
+		this.setState({ form });
+	}
+
     render() {
         const stageList = this.state.stages;
         const tagList = this.state.tags;
@@ -353,6 +368,26 @@ class Form extends Component {
                                             getOptionLabel={(stageList) => stageList.label}
                                             options={stageList}
                                         />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-start_date">
+                                            Start Date
+                                        </label> 
+                                        <div className='pi-field-date'>
+                                            <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
+                                        </div>
+                                    </div>
+
+                                    <div className="col-md">
+                                        <label htmlFor="field-start_date">
+                                            Due Date
+                                        </label> 
+                                        <div className='pi-field-date'>
+                                            <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
+                                        </div> 
                                     </div>
                                 </div>
 

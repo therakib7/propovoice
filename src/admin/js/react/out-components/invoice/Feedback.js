@@ -105,7 +105,7 @@ class Feedback extends Component {
                                                 </label>
                                                 <textarea
                                                     id="form-note"
-                                                    rows={4}
+                                                    rows={2}
                                                     name="note"
                                                     value={this.state.form.note}
                                                     onChange={this.handleChange}

@@ -249,7 +249,7 @@
   height: 36px;
 }
 .ncpi .pi-task-btn img {
-  max-width: 15px;
+  max-width: 20px;
   max-height: 20px;
 }
 .ncpi .pi-task-btn span {
@@ -458,6 +458,13 @@
 .ncpi .pi-note .pi-action-content {
   position: absolute;
   right: 0;
+}
+.ncpi .pi-note .pi-action-content button {
+  padding: 0 5px;
+}
+.ncpi .pi-note .pi-action-content button svg {
+  position: relative;
+  top: 2px;
 }
 .ncpi .pi-note .pi-avater {
   width: 40px;

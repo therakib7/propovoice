@@ -58,7 +58,7 @@ msgstr ""
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:272, ../app/Ctrls/Api/Types/Client.php:333, ../app/Ctrls/Api/Types/Contact.php:286, ../app/Ctrls/Api/Types/Org.php:209, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:230, ../app/Ctrls/Api/Types/Person.php:319, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
+#: ../app/Ctrls/Api/Types/Client.php:272, ../app/Ctrls/Api/Types/Client.php:333, ../app/Ctrls/Api/Types/Contact.php:289, ../app/Ctrls/Api/Types/Org.php:209, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:230, ../app/Ctrls/Api/Types/Person.php:319, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
 msgid "Email id is not valid!"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Contact.php:282, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:205, ../app/Ctrls/Api/Types/Org.php:293, ../app/Ctrls/Api/Types/Person.php:226, ../app/Ctrls/Api/Types/Person.php:315, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
+#: ../app/Ctrls/Api/Types/Contact.php:285, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:205, ../app/Ctrls/Api/Types/Org.php:293, ../app/Ctrls/Api/Types/Person.php:226, ../app/Ctrls/Api/Types/Person.php:315, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
 msgid "Name field is missing"
 msgstr ""
 
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Receiver is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Lead.php:251
+#: ../app/Ctrls/Api/Types/Lead.php:246
 msgid "Contact info is missing"
 msgstr ""
 
@@ -118,11 +118,11 @@ msgstr ""
 msgid "Tab is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Task.php:268
+#: ../app/Ctrls/Api/Types/Task.php:269
 msgid "Title field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Taxonomy.php:79, ../app/Ctrls/Api/Types/Taxonomy.php:202, ../app/Ctrls/Api/Types/Taxonomy.php:251
+#: ../app/Ctrls/Api/Types/Taxonomy.php:79, ../app/Ctrls/Api/Types/Taxonomy.php:216, ../app/Ctrls/Api/Types/Taxonomy.php:265
 msgid "Taxonomy is missing"
 msgstr ""
 

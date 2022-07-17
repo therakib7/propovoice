@@ -187,7 +187,7 @@ class Project
         $query_data['id'] = absint($id);
 
         $queryMeta = get_post_meta($id);
-        $query_data['wp_id'] = isset($queryMeta['wp_id']) ? $queryMeta['wp_id'][0] : '';
+        $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
         $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
         $query_data['title'] = get_the_title( $id );
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
@@ -208,8 +208,7 @@ class Project
             ];
         }
 
-        $query_data['tags'] = [];
-
+        $query_data['tags'] = []; 
         $tags = get_the_terms($id, 'ndpi_tag');
         if ($tags) {
             $tagList = [];
@@ -272,6 +271,8 @@ class Project
         $status_id   = isset($params['status_id']) ? absint($params['status_id']) : null; 
         $budget     = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
         $currency   = isset($params['currency']) ? sanitize_text_field($params['currency']) : null; 
+        $start_date = isset($params['start_date']) ? $params['start_date'] : null;
+        $due_date = isset($params['due_date']) ? $params['due_date'] : null;
         $tags       = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc       = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note       = isset($params['note']) ? nl2br($params['note']) : null;
@@ -320,7 +321,7 @@ class Project
 
             if ( !is_wp_error($post_id) ) {
 
-                update_post_meta($post_id, 'wp_id', ncpi()->get_workplace());
+                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
                 $tab_id = $post_id;
                 if ( $deal_id ) {
                     $tab_id = $deal_id;
@@ -365,6 +366,14 @@ class Project
                     update_post_meta($post_id, 'currency', $currency);
                 } 
 
+                if ( $start_date ) {
+                    update_post_meta($post_id, 'start_date', $start_date);
+                }
+
+                if ( $due_date ) {
+                    update_post_meta($post_id, 'due_date', $due_date);
+                }
+
                 if ( $tags ) {
                     wp_set_post_terms($post_id, $tags, 'ndpi_tag');
                 }
@@ -396,8 +405,9 @@ class Project
         $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
         $status_id     = isset($params['status_id']) ? absint($params['status_id']) : null; 
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $probability  = isset($params['probability']) ? absint($params['probability']) : null;
+        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null; 
+        $start_date = isset($params['start_date']) ? $params['start_date'] : null;
+        $due_date = isset($params['due_date']) ? $params['due_date'] : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
@@ -475,9 +485,13 @@ class Project
                     update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ($probability) {
-                    update_post_meta($post_id, 'probability', $probability);
+                if ( $start_date ) {
+                    update_post_meta($post_id, 'start_date', $start_date);
                 }
+
+                if ( $due_date ) {
+                    update_post_meta($post_id, 'due_date', $due_date);
+                } 
 
                 if ($tags) {
                     wp_set_post_terms($post_id, $tags, 'ndpi_tag');
