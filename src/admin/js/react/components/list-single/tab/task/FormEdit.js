@@ -168,7 +168,7 @@ class Form extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                Done
+                                Mark as Done
                             </button>}
                         </div>
                     </div>

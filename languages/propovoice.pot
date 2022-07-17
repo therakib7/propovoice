@@ -70,7 +70,7 @@ msgstr ""
 msgid "Name field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Deal.php:300
+#: ../app/Ctrls/Api/Types/Deal.php:299
 msgid "Please select a stage"
 msgstr ""
 
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Receiver is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Lead.php:246
+#: ../app/Ctrls/Api/Types/Lead.php:270
 msgid "Contact info is missing"
 msgstr ""
 
@@ -118,7 +118,7 @@ msgstr ""
 msgid "Tab is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Task.php:269
+#: ../app/Ctrls/Api/Types/Task.php:272
 msgid "Title field is missing"
 msgstr ""
 
