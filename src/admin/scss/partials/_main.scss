@@ -953,11 +953,8 @@ html {
   display: block;
 }
 @media screen and (max-width: 550px) {
-  .ncpi .pi-table-wrap {
+  .ncpi .pi-info-table-content {
     overflow-x: scroll;
-  }
-  .ncpi .pi-table-wrap .pi-table {
-    width: 200%;
   }
 }
 .ncpi .pi-table-two tr th .pi-project {
@@ -1200,6 +1197,7 @@ html {
 .ncpi .pi-info-table-content .pi-info-table tr td:last-child span {
   cursor: pointer;
   padding: 10px;
+  display: flex;
 }
 .ncpi .pi-info-table-content .pi-info-table tr td:last-child span:hover svg path {
   fill: var(--text-color-blue);
@@ -1223,19 +1221,6 @@ html {
   border: 1px solid rgba(221, 221, 221, 0.6588235294);
   font-weight: 500;
   border-radius: 4px;
-}
-@media screen and (max-width: 550px) {
-  .ncpi .pi-info-table-content {
-    width: 200%;
-    margin-bottom: 20px;
-    z-index: 9;
-    position: relative;
-    padding-left: 0;
-    border-radius: 10px;
-  }
-  .ncpi .pi-info-table-content .pi-info-table tbody tr td {
-    font-size: 12px;
-  }
 }
 .ncpi .pi-calculation {
   margin-top: 15px;
@@ -1570,7 +1555,7 @@ html {
 .ncpi .pi-punnel {
   background: #fff;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-punnel {
@@ -1655,7 +1640,6 @@ html {
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-search-bar {
-    width: 100% px;
     overflow-x: scroll;
   }
 }
@@ -1957,10 +1941,6 @@ html {
     font-size: 12px;
   }
 }
-.ncpi .pi-top-menu-content .pi-dropdown {
-  position: relative;
-  left: 5px;
-}
 @media screen and (max-width: 992px) {
   .ncpi .pi-top-menu-content .pi-dropdown {
     margin-right: 0px;
@@ -2144,6 +2124,28 @@ html {
 }
 .wp-admin .pi-info-table-content .pi-info-table tbody tr td input[type=number] {
   height: 35px !important;
+}
+.wp-admin .pi-from-content .pi-form-style-one .pi-dropdown-content {
+  top: auto;
+  right: auto;
+}
+.wp-admin .pi-info-input-field .pi-calendar {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  padding: 13px 11px;
+  border-left: 1px solid var(--border-color-gray);
+  cursor: pointer;
+  text-align: center;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8F8FA 100%);
+  display: flex;
+  align-items: center;
+  border-radius: 0 5px 5px 0;
+  height: 96%;
+}
+.wp-admin .react-datepicker__day--keyboard-selected {
+  background-color: #4c6fff !important;
+  color: #fff !important;
 }
 
 .react-datepicker {
@@ -2706,6 +2708,8 @@ ul {
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-head label {
   margin-bottom: 0;
+  font-weight: 600;
+  color: #2D3748;
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-head label span {
   cursor: pointer;
@@ -2715,6 +2719,7 @@ ul {
   color: #718096;
   margin-left: auto;
   margin-right: 30px;
+  align-self: center;
 }
 .ncpi .pi-modal-sidebar-two .pi-checklist-head .pi-close-icon {
   align-self: center;
@@ -3268,7 +3273,7 @@ ul {
   border-left: 3px solid #fff;
 }
 .ncpi .pi-settings-tab .pi-settings-tabs li a {
-  padding: 17px 25px;
+  padding: 15px 25px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -4107,6 +4112,9 @@ ul {
 .ncpi .pi-ml-10 {
   margin-left: 10px;
 }
+.ncpi .pi-ml-5 {
+  margin-left: 5px !important;
+}
 .ncpi .pi-ml-m-15 {
   margin-left: -15px;
 }
@@ -4622,7 +4630,7 @@ select {
   scroll-behavior: smooth;
   height: 100vh;
   padding-bottom: 50px;
-  padding-top: 80px;
+  padding-top: 95px;
 }
 .ncpi .pi-left-sidebar .pi-sidebar-menu ul li {
   display: block;

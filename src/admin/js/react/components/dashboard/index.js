@@ -37,9 +37,8 @@ const Dashboard = (props) => {
                     >
                         Overview
                     </h2>
-                    <select name="source" id="source" className="pi-overview-select">
-                        <option value="">This month</option>
-                        <option value="">This week</option>
+                    <select name="summary_by" id="summary_by" className="pi-overview-select">
+                        <option value="2022">2022</option> 
                     </select>
                 </div>
 
@@ -105,10 +104,10 @@ const Dashboard = (props) => {
             <div className="pi-block">
                 <div className="row">
                     <div className="col-7">
-                        <div className='pi-table-wrap pi-bg-white pi-border-gray' style={{ padding: '10px 20px 20px 30px', marginBottom: '30px' }}>
+                        <div className='pi-table-wrap pi-bg-white pi-border-gray' style={{ minHeight: '445px', padding: '10px 20px 5px 30px', marginBottom: '30px', borderRadius: '8px' }}>
                             <h3
                                 className="pi-title-medium pi-mb-20"
-                                style={{ fontWeight: "bold", color: "#718096" }}
+                                style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}
                             >
                                 Latest Task
                             </h3>

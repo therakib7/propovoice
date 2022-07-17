@@ -190,7 +190,9 @@ class Task
                 $query_data['type_id'] = [
                     'id' => $type[0]->term_id,
                     'label' => $type[0]->name,
-                    'icon' => $iconData ? $iconData : ''
+                    'icon' => $iconData ? $iconData : '',
+                    'color' => '#4a5568',
+                    'bg_color' => '#E2E8F0',
                 ];
             }
 

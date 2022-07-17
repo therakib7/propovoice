@@ -56,7 +56,49 @@ export default class Example extends PureComponent {
           Viewed: 3800,
           Accepted: 2500,
           Rejected: 700,
-        }
+        },
+        {
+          name: 'Jul',
+          Sent: 4000,
+          Viewed: 2400,
+          Paid: 2400,
+          OverDue: 2400,
+        },
+        {
+          name: 'Aug',
+          Sent: 3000,
+          Viewed: 1398,
+          Paid: 2210,
+          OverDue: 1400,
+        },
+        {
+          name: 'Sep',
+          Sent: 2000,
+          Viewed: 3800,
+          Paid: 2290,
+          OverDue: 2600,
+        },
+        {
+          name: 'Oct',
+          Sent: 2780,
+          Viewed: 3908,
+          Paid: 2000,
+          OverDue: 1400,
+        },
+        {
+          name: 'Nov',
+          Sent: 1890,
+          Viewed: 4800,
+          Paid: 2181,
+          OverDue: 900,
+        },
+        {
+          name: 'Dec',
+          Sent: 2390,
+          Viewed: 3800,
+          Paid: 2500,
+          OverDue: 700,
+        }, 
       ];
     } else {
       data = [
@@ -101,7 +143,49 @@ export default class Example extends PureComponent {
           Viewed: 3800,
           Paid: 2500,
           OverDue: 700,
-        }
+        }, 
+        {
+          name: 'Jul',
+          Sent: 4000,
+          Viewed: 2400,
+          Paid: 2400,
+          OverDue: 2400,
+        },
+        {
+          name: 'Aug',
+          Sent: 3000,
+          Viewed: 1398,
+          Paid: 2210,
+          OverDue: 1400,
+        },
+        {
+          name: 'Sep',
+          Sent: 2000,
+          Viewed: 3800,
+          Paid: 2290,
+          OverDue: 2600,
+        },
+        {
+          name: 'Oct',
+          Sent: 2780,
+          Viewed: 3908,
+          Paid: 2000,
+          OverDue: 1400,
+        },
+        {
+          name: 'Nov',
+          Sent: 1890,
+          Viewed: 4800,
+          Paid: 2181,
+          OverDue: 900,
+        },
+        {
+          name: 'Dec',
+          Sent: 0,
+          Viewed: 0,
+          Paid: 0,
+          OverDue: 0,
+        }, 
       ];
     }
     this.setState({ data });
@@ -128,11 +212,12 @@ export default class Example extends PureComponent {
                 left: 20,
                 bottom: 5,
               }}
+              // barSize={8}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip />
+              <Tooltip cursor={{fill: 'transparent'}} />
               <Legend />
               <Bar dataKey="Sent" fill="#f7936f" />
               <Bar dataKey="Viewed" fill="#4c6fff" />

@@ -146,6 +146,7 @@ const HOC = (Inner, mod, modPlural = '') => {
                         })
                     });
                 } */
+                console.log(module);
 
                 let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
                 axios.delete(`${url}/${ids}`, token).then(resp => {

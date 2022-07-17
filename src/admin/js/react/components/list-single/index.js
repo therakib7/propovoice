@@ -156,16 +156,18 @@ class ListSingle extends Component {
         if (val == 'won' || val == 'lost') {
             let obj = this.state.stages.find(o => o.type === val);
             data.stage_id = obj;
+            this.setState({ data }, () => {
+                let newData = {};
+                if (data.stage_id) {
+                    newData.stage_id = data.stage_id.id;
+                }
+                this.props.update('deals', this.props.id, newData);
+            });
         } else {
             data.stage_id = val;
+            this.setState({ data });
         }
-        this.setState({ data }, () => {
-            let newData = {};
-            if (data.stage_id) {
-                newData.stage_id = data.stage_id.id;
-            }
-            this.props.update('deals', this.props.id, newData);
-        });
+        
     }
 
     handleProjectStatusChange = (val) => {
@@ -432,7 +434,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Deal Stage:</label>
-                                            {data.id && <Taxonomy id={data.id} data={data.stage_id} taxonomy='deal_stage' title='Stage' color={true} />}
+                                            {data.id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={ this.handleStageChange } taxonomy='deal_stage' title='Stage' color={true} />}
                                         </div>
 
                                         <button

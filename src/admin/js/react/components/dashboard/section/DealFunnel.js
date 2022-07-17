@@ -27,7 +27,7 @@ const Summary = (props) => {
         "#d6defa",
     ];
     return (
-        <div className="pi-punnel pi-border-gray">
+        <div className="pi-punnel pi-border-gray" style={{ minHeight: '445px', marginBottom: '30px' }}>
             <h3
                 className="pi-title-medium pi-mb-20"
                 style={{ fontWeight: "bold", color: "#718096" }}

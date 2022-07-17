@@ -95,22 +95,25 @@ class Form extends Component {
         })
     }
 
-    handleTaskStatusChange = (val) => {
-
+    handleTaskStatusChange = (val) => { 
         let data = { ...this.state.form }
         if (val == 'done') {
-            let obj = this.state.status.find(o => o.type === val);
-            data.status_id = obj;
+            let obj = this.props.taxonomies.status.find(o => o.type === val);
+            data.status_id = obj; 
+
+            this.setState({ form: data }, () => {
+                let newData = {};
+                if (data.status_id) {
+                    newData.status_id = data.status_id.id;
+                }
+                this.props.update('tasks', data.id, newData);
+            });
+
         } else {
-            data.status_id = val;
-        }
-        this.setState({ data }, () => {
-            let newData = {};
-            if (data.status_id) {
-                newData.status_id = data.status_id.id;
-            }
-            this.props.update('tasks', data.id, newData);
-        });
+            data.status_id = val; 
+            this.setState({ form: data });
+        } 
+        
     }
 
     render() {
@@ -144,7 +147,7 @@ class Form extends Component {
                         </span>
 
                         <div className="pi-small-button-group">
-                            {form.id && <Taxonomy id={form.id} taxonomy='task_status' title='Status' btnMid={true} color={true} />}
+                            {form.id && <Taxonomy key={form.status_id.id} onChange={ this.handleTaskStatusChange } id={form.id} data={form.status_id} taxonomy='task_status' title='Status' color={true} />}
 
                             {(form.status_id && form.status_id.type != 'done') && <button
                                 className="pi-btn pi-btn-medium pi-float-right"
@@ -195,7 +198,7 @@ class Form extends Component {
                                         Task Type:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} taxonomy='task_type' title='Type' btnMid={true} color={true} />}
+                                        {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title='Type' small={true} color={true} />}
                                     </div>
                                 </div>
 
@@ -204,7 +207,7 @@ class Form extends Component {
                                         Task Priority:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} taxonomy='task_priority' title='Priority' btnMid={true} color={true} />}
+                                        {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title='Priority' small={true} color={true} />}
                                     </div>
                                 </div>
                             </div>

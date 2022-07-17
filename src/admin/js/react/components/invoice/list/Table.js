@@ -39,10 +39,7 @@ const TableHeader = props => {
                         <th>Paid</th>
                         <th>Due</th>
                     </>
-                }
-                <th>
-                    Date
-                </th>
+                } 
                 <th>
                     Status
                 </th>
@@ -51,6 +48,9 @@ const TableHeader = props => {
                         Payment Method
                     </th>
                 }
+                <th>
+                    Date
+                </th>
                 <th>
                     Action
                 </th>
@@ -175,10 +175,10 @@ const TableBody = props => {
                         <td>{row.paid}</td>
                         <td>{row.due}</td>
                     </>
-                }
-                <td onClick={() => { handleClick(row.id); }}><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                } 
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
+                <td onClick={() => { handleClick(row.id); }}><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <div className="pi-action-content">
                         <button className={(row.id == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(row.id)}>

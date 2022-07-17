@@ -69,7 +69,7 @@ const Task = (props) => {
 
             {props.state.preloader ? <Preloader /> :
                 <>
-                    {props.dashboard && <div style={{ marginTop: '20px' }}></div>}
+                    {props.dashboard && <div style={{ marginTop: '15px' }}></div>}
                     {props.dashboard && <Table dashboard={true} tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={props.deleteEntry} />}
 
                     {!props.dashboard &&
@@ -132,7 +132,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pi-table-close" htmlFor="pi-acc-close" />
                                         <div className="pi-accordion-content">
-                                            <Table tableData={lists.other} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
+                                            <Table tableData={lists.other} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
                                         </div>
                                     </section>
                                 </>
@@ -164,7 +164,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pi-table-close" htmlFor="pi-acc-close" />
                                         <div className="pi-accordion-content">
-                                            <Table tableData={lists.unschedule} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
+                                            <Table tableData={lists.unschedule} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
                                         </div>
                                     </section>
                                 </>

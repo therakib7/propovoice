@@ -1,8 +1,5 @@
 import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-
-
-// const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts'; 
 
 export default class Example extends PureComponent {
     constructor(props) {
