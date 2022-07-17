@@ -20,7 +20,7 @@ export default (props) => {
         <div className="">
             <div className="pi-form-style-one">
                 <div className="row">
-                    <div className="col">
+                    <div className="col-12">
                         <label>How often?</label>
                         <div className="pi-field-radio">
                             <input
@@ -85,7 +85,7 @@ export default (props) => {
                         </div>
                     </div>
 
-                    <div className="col">
+                    <div className="col-12">
                         <label>How Many?</label>
                         <div className="pi-field-radio">
                             <input
@@ -118,7 +118,7 @@ export default (props) => {
                         </div>
                     </div>
 
-                    <div className="col">
+                    <div className="col-12">
                         <label>Select delivery option</label>
                         <div className="pi-field-radio">
                             <input

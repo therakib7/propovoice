@@ -9,8 +9,8 @@ class ListSingle extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {  
-			action: false, 
+		this.state = {
+			action: false,
 		};
 
 		this.timeout = 0;
@@ -58,7 +58,7 @@ class ListSingle extends Component {
 					<div className="col-lg-3 pi-lead-right-content">
 
 						<div className="pi-widget pi-timeline-box">
-							<h3 className="pi-widget-title">Timeline Info</h3>
+							<h3 className="pi-widget-title pi-mb-15">Timeline Info</h3>
 							<ul>
 								<li>
 									<h4 className="timeline-title">Nabil Created Project Propovoice</h4>

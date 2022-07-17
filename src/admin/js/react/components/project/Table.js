@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import Moment from 'react-moment';  
-import Action from 'block/action/row'; 
+import Moment from 'react-moment';
+import Action from 'block/action/row';
 
 const TableHeader = props => {
     return (
@@ -106,14 +106,14 @@ const TableHeader = props => {
     );
 }
 
-const TableBody = props => { 
+const TableBody = props => {
 
     const navigate = useNavigate();
     const handleOverview = (id) => {
         navigate(`/project/single/${id}`, { replace: true });
     };
 
-    let rows = props.tableData.map((row, index) => { 
+    let rows = props.tableData.map((row, index) => {
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
@@ -127,7 +127,7 @@ const TableBody = props => {
                     />
                 </td>
                 <td>{row.title}</td>
-                <td>{ ( row.person ) ? row.person.email : row.org.email }</td>
+                <td>{(row.person) ? row.person.email : row.org.email}</td>
                 <td>22 April, 2022</td>
                 <td>${row.budget}</td>
                 <td>
@@ -135,12 +135,12 @@ const TableBody = props => {
                 </td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
-                    <Action 
+                    <Action
                         row={row}
                         handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
-                    /> 
+                    />
                 </td>
             </tr>
         );

@@ -90,7 +90,7 @@ class Items extends Component {
                             </DragDropContext>
                         </table>
 
-                        <button className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke"
+                        <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow" style={{ justifyContent: 'center' }}
                             onClick={addHandler}
                         >
                             <svg
