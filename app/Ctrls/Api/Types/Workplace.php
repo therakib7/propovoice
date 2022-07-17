@@ -15,7 +15,7 @@ class Workplace
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/workplaces', [
+        register_rest_route('ncpi/v1', '/workspaces', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -28,7 +28,7 @@ class Workplace
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/workplaces/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/workspaces/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +41,7 @@ class Workplace
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/workplaces/(?P<id>\d+)', array(
+        register_rest_route('ncpi/v1', '/workspaces/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -54,7 +54,7 @@ class Workplace
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/workplaces/(?P<id>[0-9,]+)', array(
+        register_rest_route('ncpi/v1', '/workspaces/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -82,7 +82,7 @@ class Workplace
         }
 
         $args = array(
-            'post_type' => 'ndpi_workplace',
+            'post_type' => 'ndpi_workspace',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -178,23 +178,23 @@ class Workplace
             $query_data['tags'] = $tagList;
         }
 
-        $workplace_id = $id;
-        $workplaceData = [];
+        $workspace_id = $id;
+        $workspaceData = [];
 
-        if ($workplace_id) {
-            $workplaceData['id'] = absint($workplace_id);
-            $workplaceMeta = get_post_meta($workplace_id);
-            $workplaceData['first_name'] = isset($workplaceMeta['first_name']) ? $workplaceMeta['first_name'][0] : '';
-            $workplaceData['last_name'] = isset($workplaceMeta['last_name']) ? $workplaceMeta['last_name'][0] : '';
-            $workplaceData['org_name'] = isset($workplaceMeta['org_name']) ? $workplaceMeta['org_name'][0] : '';
-            $workplaceData['email'] = isset($workplaceMeta['email']) ? $workplaceMeta['email'][0] : '';
-            $workplaceData['mobile'] = isset($workplaceMeta['mobile']) ? $workplaceMeta['mobile'][0] : '';
-            $workplaceData['web'] = isset($workplaceMeta['web']) ? $workplaceMeta['web'][0] : '';
-            $workplaceData['country'] = isset($workplaceMeta['country']) ? $workplaceMeta['country'][0] : '';
-            $workplaceData['region'] = isset($workplaceMeta['region']) ? $workplaceMeta['region'][0] : '';
-            $workplaceData['address'] = isset($workplaceMeta['address']) ? $workplaceMeta['address'][0] : '';
+        if ($workspace_id) {
+            $workspaceData['id'] = absint($workspace_id);
+            $workspaceMeta = get_post_meta($workspace_id);
+            $workspaceData['first_name'] = isset($workspaceMeta['first_name']) ? $workspaceMeta['first_name'][0] : '';
+            $workspaceData['last_name'] = isset($workspaceMeta['last_name']) ? $workspaceMeta['last_name'][0] : '';
+            $workspaceData['org_name'] = isset($workspaceMeta['org_name']) ? $workspaceMeta['org_name'][0] : '';
+            $workspaceData['email'] = isset($workspaceMeta['email']) ? $workspaceMeta['email'][0] : '';
+            $workspaceData['mobile'] = isset($workspaceMeta['mobile']) ? $workspaceMeta['mobile'][0] : '';
+            $workspaceData['web'] = isset($workspaceMeta['web']) ? $workspaceMeta['web'][0] : '';
+            $workspaceData['country'] = isset($workspaceMeta['country']) ? $workspaceMeta['country'][0] : '';
+            $workspaceData['region'] = isset($workspaceMeta['region']) ? $workspaceMeta['region'][0] : '';
+            $workspaceData['address'] = isset($workspaceMeta['address']) ? $workspaceMeta['address'][0] : '';
         }
-        $query_data['workplace'] = $workplaceData;
+        $query_data['workspace'] = $workspaceData;
 
         $query_data['date'] = get_the_time('j-M-Y');
 
@@ -230,7 +230,7 @@ class Workplace
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_workplace',
+                'post_type' => 'ndpi_workspace',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',

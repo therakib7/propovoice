@@ -206,8 +206,8 @@ final class Ncpi {
         return $result;
     }
 
-    public function get_workplace() {
-        $option = get_option( 'ndpi_workplace_default' );
+    public function get_workspace() {
+        $option = get_option( 'ndpi_workspace_default' );
         return $option ? absint( $option ) : null;
     }
 }

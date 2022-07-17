@@ -112,16 +112,17 @@ class Taxonomy
                         'icon' => $iconData ? $iconData : ''
                     ];
 
-                    if ($taxonomy == 'lead_source') {
-                        $term_property['bg_color'] = '';
-                    }
-
                     if ($color) {
                         $term_property['color'] = $color;
                     }
 
                     if ($bg_color) {
                         $term_property['bg_color'] = $bg_color;
+                    }
+
+                    if ($taxonomy == 'lead_source') {
+                        $term_property['bg_color'] = '';
+                        $term_property['color'] = '#718096';
                     }
 
                     if (
@@ -151,16 +152,17 @@ class Taxonomy
                                 'bg_color' => '#E2E8F0',
                             ];
 
-                            if ($taxonomy == 'lead_source') {
-                                $single_tag['bg_color'] = '';
-                            }
-
                             if ($color) {
                                 $single_tag['color'] = $color;
                             }
 
                             if ($bg_color) {
                                 $single_tag['bg_color'] = $bg_color;
+                            }
+
+                            if ($taxonomy == 'lead_source') {
+                                $single_tag['bg_color'] = '';
+                                $single_tag['color'] = '#718096';
                             }
 
                             $tagList[] = $single_tag;

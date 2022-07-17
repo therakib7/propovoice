@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api';
 import WithRouter from 'hoc/Router';
 
 import Select from 'react-select';
 import Contact from 'block/field/contact';
+
+const DateField = lazy(() => import('block/date-picker'));
 
 class Form extends Component {
     constructor(props) {
@@ -23,6 +25,8 @@ class Form extends Component {
             status_id: '',
             budget: '',
             currency: 'USD',
+            start_date: null,
+            due_date: null,
             tags: [],
             desc: '',
             note: '',
@@ -83,12 +87,29 @@ class Form extends Component {
         //condition added to stop multiple rendering 
         if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
-                let data = { ...this.props.data }
+                let form = { ...this.props.data }
                 if (this.props.modalType == 'move') {
-                    data.deal_id = data.id;
+                    form.deal_id = form.id;
                 }
 
-                this.setState({ form: data });
+                if (form.person) { 
+                    form.first_name = (form.person) ? form.person.first_name : '';
+                    form.person_id = (form.person) ? form.person.id : null;
+                    form.email = (form.person) ? form.person.email : '';
+                    form.mobile = (form.person) ? form.person.mobile : '';
+                    form.web = (form.person) ? form.person.web : '';
+                } else {
+                    form.org_name = (form.org) ? form.org.name : ''; 
+                    form.email = (form.org) ? form.org.email : '';
+                    form.mobile = (form.org) ? form.org.mobile : '';
+                    form.web = (form.org) ? form.org.web : '';
+                } 
+
+                if ( form.org ) {
+                    form.org_id = (form.org) ? form.org.id : null;
+                }
+
+                this.setState({ form });
             }
         } else {
             if (this.state.form.id != null) {
@@ -188,6 +209,17 @@ class Form extends Component {
         this.setState({ form });
     }
 
+    onDateChange = (date, type = null) => {
+		let form = { ...this.state.form }
+
+		if (type == 'date') {
+			form.start_date = date;
+		} else {
+			form.due_date = date;
+		}
+		this.setState({ form });
+	}
+
     render() {
         const stageList = this.state.stages;
         const tagList = this.state.tags;
@@ -238,12 +270,8 @@ class Form extends Component {
 
                                 {!this.props.reload && <>
                                     <Contact
-                                        data={{
-                                            first_name: form.first_name,
-                                            org_name: form.org_name,
-                                            person_id: form.person_id,
-                                            org_id: form.org_id
-                                        }}
+                                        first_name={form.first_name}
+                                        org_name={form.org_name}
                                         onChange={this.handleContactChange}
                                         onSelect={this.handleContactSelect}
                                     />
@@ -340,6 +368,26 @@ class Form extends Component {
                                             getOptionLabel={(stageList) => stageList.label}
                                             options={stageList}
                                         />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-start_date">
+                                            Start Date
+                                        </label> 
+                                        <div className='pi-field-date'>
+                                            <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
+                                        </div>
+                                    </div>
+
+                                    <div className="col-md">
+                                        <label htmlFor="field-start_date">
+                                            Due Date
+                                        </label> 
+                                        <div className='pi-field-date'>
+                                            <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
+                                        </div> 
                                     </div>
                                 </div>
 

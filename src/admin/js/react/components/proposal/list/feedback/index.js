@@ -56,7 +56,7 @@ class Feedback extends Component {
                                             </label>
                                             <textarea
                                                 id="form-note"
-                                                rows={4}
+                                                rows={2}
                                                 name="note"
                                                 value={data.feedback.note}
                                                 onChange={this.handleChange}

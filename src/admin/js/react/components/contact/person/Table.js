@@ -7,8 +7,7 @@ const TableHeader = props => {
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox"
-
+                    <input type="checkbox" 
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
@@ -58,16 +57,16 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td> 
+                <td /* onClick={() => handleOverview(row.id)} */> 
                     <div className="pi-avater">
                         <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                         <span>{row.first_name}</span>
                     </div>
                 </td>
-                <td>{row.email}</td>
-                <td>{row.org_name}</td> 
+                <td /* onClick={() => handleOverview(row.id)} */>{row.email}</td>
+                <td /* onClick={() => handleOverview(row.id)} */>{row.org_name}</td> 
                 <td><span className='pi-badge'>Client</span></td> 
-                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td /* onClick={() => handleOverview(row.id)} */><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <Action 
                         row={row}

@@ -83,7 +83,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        Dashboard
+                                        <span>Dashboard</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -105,7 +105,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        Task &amp; Activity
+                                        <span>Task &amp; Activity</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -142,7 +142,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        Lead
+                                        <span>Lead</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -179,7 +179,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        Deal Pipeline
+                                        <span>Deal Pipeline</span>
                                     </NavLink>
                                 </li>
                                 {false && <li>
@@ -205,7 +205,7 @@ const Home = () => {
                                                 fill="white"
                                             />
                                         </svg>
-                                        Proposal
+                                        <span>Proposal</span>
                                     </NavLink>
                                 </li>}
                                 <li>
@@ -231,7 +231,7 @@ const Home = () => {
                                                 fill="white"
                                             />
                                         </svg>
-                                        Estimate
+                                        <span>Estimate</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -256,7 +256,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        Invoice
+                                        <span>Invoice</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -293,7 +293,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        Client
+                                        <span>Client</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -321,7 +321,7 @@ const Home = () => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        Project
+                                        <span>Project</span>
                                     </NavLink>
                                 </li>
                                 {false && <li>
@@ -349,7 +349,7 @@ const Home = () => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        Accounting
+                                        <span>Accounting</span>
                                     </NavLink>
                                 </li>}
                                 <li>
@@ -386,7 +386,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        Contact
+                                        <span>Contact</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -403,7 +403,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        Settings
+                                        <span>Settings</span>
                                     </NavLink>
                                 </li>
                                 {false && <li>
@@ -425,7 +425,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        Need Support?
+                                        <span>Need Support?</span>
                                     </a>
                                 </li>}
                                 <li className="pi-mt-35">
@@ -462,7 +462,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        Doc &amp; Tutorial
+                                        <span>Doc &amp; Tutorial</span>
                                     </a>
                                 </li>
                             </ul>
