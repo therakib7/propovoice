@@ -168,6 +168,14 @@ const HOC = (Inner, mod, modPlural = '') => {
             if (type == 'new') {
                 this.setState({ formModal: true, formModalType: 'new' });
             } else {
+                //for project form
+                if ( list.hasOwnProperty('start_date') && list.start_date ) {
+                    list.start_date = new Date(list.start_date);
+                } 
+                if ( list.hasOwnProperty('due_date') && list.due_date ) {
+                    list.due_date = new Date(list.due_date);
+                }
+                 
                 this.setState({ formModal: true, formModalType: 'edit', list: list });
             }
         };

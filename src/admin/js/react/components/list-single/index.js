@@ -1,6 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
+import Moment from 'react-moment';  
 import Spinner from 'block/preloader/spinner';
 import Taxonomy from 'block/field/taxonomy';
 import WithApi from 'hoc/Api';
@@ -642,11 +643,11 @@ class ListSingle extends Component {
                                 </li>
                                 <li>
                                     <label htmlFor="">Start Date:</label>
-                                    <span className="pi-date">22 April, 2022</span>
+                                    <span className="pi-date">{data.start_date && <Moment format="YYYY-MM-DD">{data.start_date}</Moment>}</span>
                                 </li>
                                 <li>
                                     <label htmlFor="">Due Date:</label>
-                                    <span className="pi-date">2 April, 2022</span>
+                                    <span className="pi-date">{data.due_date && <Moment format="YYYY-MM-DD">{data.due_date}</Moment>}</span>
                                 </li>
                                 <li />
                             </ul>

@@ -1,4 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect, Suspense, lazy } from "react";
+import {
+    NavLink
+} from "react-router-dom";
 import Spinner from 'block/preloader/spinner';
 
 const Task = lazy(() => import('components/list-single/tab/task'));
@@ -75,9 +78,21 @@ const Dashboard = (props) => {
                         </button>
 
                         {dropdown && <div className="pi-dropdown-content pi-show" style={{ top: 40 }}>
-                            <a href="#">Create Project</a>
-                            <a href="#">Create Person</a>
-                            <a href="#">Create Organization</a>
+                            <NavLink to='/lead'>
+                                Create Lead
+                            </NavLink>
+                            <NavLink to='/deal'>
+                                Create Deal
+                            </NavLink>
+                            <NavLink to='/invoice'>
+                                Create Invoice
+                            </NavLink>
+                            <NavLink to='/estimate'>
+                                Create Estimate
+                            </NavLink>
+                            <NavLink to='/project'>
+                                Create Project
+                            </NavLink>
                         </div>}
                     </div>
                 </div>
