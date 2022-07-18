@@ -40,7 +40,7 @@ export default (props) => {
                 </div>
 
                 <div className="row">
-                    <div className="col">
+                    <div className="col-12">
                         <label>Reminder Before</label>
                         <div className="pi-field-checkbox">
                             <input
@@ -133,7 +133,7 @@ export default (props) => {
                             </button>
                         </>}
                     </div>
-                    <div className="col">
+                    <div className="col-12">
                         <label>Reminder After</label>
                         <div className="pi-field-checkbox">
                             <input
@@ -168,7 +168,7 @@ export default (props) => {
                             />
                             <label htmlFor="reminder-after-15">15 days</label>
                         </div>
-                        <div className="pi-field-checkbox pi-field-checkbox-input">
+                        {/* <div className="pi-field-checkbox pi-field-checkbox-input">
                             <input type="checkbox" id="date" name="date" />
                             <input
                                 type="number"
@@ -182,7 +182,7 @@ export default (props) => {
                                 <option value="week">Week</option>
                                 <option value="month">Month</option>
                             </select>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

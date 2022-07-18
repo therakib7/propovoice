@@ -97,6 +97,8 @@ class Project
         );
 
         if ( $s ) {
+            $args['s'] = $s;
+
             $contact_person = new Contact(); 
             $person_ids = $contact_person->query($s, 'person');  
             if ( $person_ids ) {

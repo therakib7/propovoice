@@ -3,6 +3,7 @@
 namespace Ncpi\Ctrls\Api\Types;
 
 use Ncpi\Models\Invoice as ModelsInvoice;
+use Ncpi\Models\Contact;
 use WP_Query;
 
 class Invoice
@@ -69,25 +70,26 @@ class Invoice
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
+
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
         }
-
-        $search_value = false; //empty value showing data
-        if (isset($request['s'])) {
+ 
+        if ( $s ) {
             /* $find = ['est', 'Est', 'inv', 'Inv'];
             $replace = ['', '', '', '']; 
-            $search_value = str_replace($find, $replace, trim($request['s'])); */
-            $search_value = preg_replace('/[^0-9.]+/', '', $request['s']);
+            $search_value = str_replace($find, $replace, trim($params['s'])); */
+            // $search_value = preg_replace('/[^0-9.]+/', '', $s);
         }
 
         $args = array(
@@ -105,20 +107,45 @@ class Invoice
             'relation' => 'OR'
         );
 
-        if (isset($request['client_id'])) {
+        /* if (isset($request['client_id'])) {
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'to',
                     'value'   => $request['client_id']
                 )
             );
+        } */
+
+        if ( $s ) {
+            $contact_person = new Contact(); 
+            $person_ids = $contact_person->query($s, 'person');  
+            if ( $person_ids ) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'to',
+                        'value'   => $person_ids,
+                        'compare' => 'IN'
+                    )
+                ); 
+            }
+
+            $org_ids = $contact_person->query($s, 'org');   
+            if ( $org_ids ) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'to',
+                        'value'   => $org_ids,
+                        'compare' => 'IN'
+                    )
+                ); 
+            }  
         }
 
         if (isset($request['path'])) {
             $args['meta_query'][] = array(
                 array(
-                    'key'     => 'path',
-                    'value'   => $request['path']
+                    'key'   => 'path',
+                    'value' => $request['path']
                 )
             );
         }

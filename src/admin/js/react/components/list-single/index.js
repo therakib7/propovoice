@@ -75,6 +75,7 @@ class ListSingle extends Component {
     }
 
     getData = () => {
+        // console.log(this.props.id);
         const url = this.props.path + 's';
         this.props.get(url, this.props.id).then(resp => {
             this.setState({ data: resp.data.data });
@@ -174,17 +175,18 @@ class ListSingle extends Component {
         let data = { ...this.state.data }
         if (val == 'completed') {
             let obj = this.state.project_status.find(o => o.type === val);
-            data.status_id = obj;
+            data.status_id = obj; 
+            this.setState({ data }, () => {
+                let newData = {};
+                if (data.status_id) {
+                    newData.status_id = data.status_id.id;
+                }
+                this.props.update('projects', this.props.id, newData);
+            });
         } else {
             data.status_id = val;
-        }
-        this.setState({ data }, () => {
-            let newData = {};
-            if (data.status_id) {
-                newData.status_id = data.status_id.id;
-            }
-            this.props.update('projects', this.props.id, newData);
-        });
+            this.setState({ data });
+        } 
     }
 
     deleteEntry = (type, id) => {
@@ -434,7 +436,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Deal Stage:</label>
-                                            {data.id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={ this.handleStageChange } taxonomy='deal_stage' title='Stage' color={true} />}
+                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={ this.handleStageChange } taxonomy='deal_stage' title='Stage' color={true} />}
                                         </div>
 
                                         <button
@@ -580,7 +582,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Project Status:</label>
-                                            {data.id && <Taxonomy id={data.id} data={data.status_id} taxonomy='project_status' title='Status' color={true} />}
+                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={ this.handleProjectStatusChange } title='Status' color={true} />} 
                                         </div>
 
                                         {(data.status_id && data.status_id.type != 'completed') && <button
@@ -698,7 +700,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Total Budget</p>
-                                        <h4>$ 14214</h4>
+                                        <h4>$ 14500</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -728,7 +730,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Paid Amount</p>
-                                        <h4>$ 14214</h4>
+                                        <h4>$ 7000</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -762,7 +764,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Due Amount</p>
-                                        <h4>$ 14214</h4>
+                                        <h4>$ 7500</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -799,7 +801,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Total Invoice</p>
-                                        <h4>23</h4>
+                                        <h4>3</h4>
                                     </div>
                                 </div>
                             </div>

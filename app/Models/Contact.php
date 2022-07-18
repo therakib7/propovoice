@@ -14,6 +14,7 @@ class Contact
         $args = array(
             'post_type' => 'ndpi_' . $type,
             'post_status' => 'publish',
+            'fields' => 'ids',
             'posts_per_page' => $per_page,
             'offset' => $offset,
         );
@@ -51,13 +52,6 @@ class Contact
         } 
 
         $query = new WP_Query($args); 
-        $data = [];
-        while ($query->have_posts()) {
-            $query->the_post();
-            $id = get_the_ID(); 
-            $data[] = $id;
-        }
-        wp_reset_postdata();
-        return $data;
+        return $query->posts;
     } 
 }

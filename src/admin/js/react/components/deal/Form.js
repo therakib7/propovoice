@@ -90,7 +90,7 @@ class Form extends Component {
                     form.lead_id = form.id;
                     form.probability = 50;
                 }
-                
+
                 form.first_name = (form.person) ? form.person.first_name : '';
                 if (form.person) {  
                     form.person_id = (form.person) ? form.person.id : null;
@@ -192,11 +192,13 @@ class Form extends Component {
         let form = { ...this.state.form }
 
         if (type == 'person') {
+            form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
         } else {
+            form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
             if (!form.first_name) {
                 form.email = (val) ? val.email : '';
@@ -255,17 +257,8 @@ class Form extends Component {
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
-                            <div className="pi-form-style-one">
-                                {/* {!this.props.reload && <Contact
-                                    data={{
-                                        person: this.state.form.person_id,
-                                        org: this.state.form.org_id
-                                    }}
-                                    onPersonChange={this.handlePersonSelect}
-                                    onOrgChange={this.handleOrgSelect}
-                                />} */}
-
-                                {/* {!this.props.reload && <> */} 
+                            <div className="pi-form-style-one"> 
+                                {/* {!this.props.reload && <>  */}
                                     <Contact
                                         first_name={form.first_name}
                                         org_name={form.org_name}
@@ -281,8 +274,8 @@ class Form extends Component {
                                             <input
                                                 id="form-email"
                                                 type="email"
-                                                required
                                                 name="email"
+                                                required
                                                 value={form.email}
                                                 onChange={this.handleChange}
                                             />
@@ -314,6 +307,7 @@ class Form extends Component {
                                             id="field-title"
                                             type="text"
                                             name="title"
+                                            required
                                             value={form.title}
                                             onChange={this.handleChange}
                                         />

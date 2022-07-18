@@ -65,18 +65,10 @@ class Contact extends Component {
     handleSelect = (e, val, type) => {
         e.preventDefault();
 
-        this.props.onSelect(val, type);
-
-        // let form = this.state.form;
-        if (type == 'person') {
-            /* if (val) {
-                form.first_name = val.first_name;
-            } */
+        this.props.onSelect(val, type); 
+        if (type == 'person') { 
             this.setState({ personModal: false, personList: [] });
-        } else {
-            /* if (val) {
-                form.org_name = val.name;
-            } */
+        } else { 
             this.setState({ orgModal: false, orgList: [] });
         }
     }

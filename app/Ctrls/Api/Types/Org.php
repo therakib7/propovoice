@@ -103,6 +103,13 @@ class Org
                     'compare' => 'Like',
                 )
             );
+            $args['meta_query'][] = array(
+                array(
+                    'key'     => 'email',
+                    'value'   => $s,
+                    'compare' => 'Like',
+                )
+            ); 
         }
 
         $query = new WP_Query($args);

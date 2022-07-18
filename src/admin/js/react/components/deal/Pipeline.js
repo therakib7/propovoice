@@ -143,7 +143,7 @@ function Pipeline(props) {
 									>
 										{/* <a onClick={() => props.editEntry('edit', columnId)}>Edit</a> */}
 										<a onClick={() => props.taxForm()}>Edit</a>
-										<a onClick={() => props.deleteEntry('single', columnId)}>Delete</a>
+										{/* <a onClick={() => props.deleteEntry('single', columnId)}>Delete</a> */}
 									</div>}
 								</div>
 							</div>
