@@ -124,17 +124,15 @@ class FormPaypal extends Component {
 
                             {this.state.form.account_type == 'personal' && <div className="row">
                                 <div className="col-lg">
-                                    <label
-                                        htmlFor="form-account_email">
+                                    <label htmlFor="form-account_email">
                                         Account Email
                                     </label>
-
                                     <input
                                         id="form-account_email"
                                         type="email" 
                                         name="account_email"
                                         value={this.state.form.account_email}
-                                        // onChange={this.handleChange}
+                                        //onChange={this.handleChange}
                                     />
                                 </div>
                             </div>}

@@ -90,19 +90,19 @@ class Form extends Component {
                     form.lead_id = form.id;
                     form.probability = 50;
                 }
-
-                if (form.person) { 
-                    form.first_name = (form.person) ? form.person.first_name : '';
+                
+                form.first_name = (form.person) ? form.person.first_name : '';
+                if (form.person) {  
                     form.person_id = (form.person) ? form.person.id : null;
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
-                } else {
-                    form.org_name = (form.org) ? form.org.name : ''; 
+                } else { 
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
                 } 
+                form.org_name = (form.org) ? form.org.name : ''; 
 
                 if ( form.org ) {
                     form.org_id = (form.org) ? form.org.id : null;
@@ -265,7 +265,7 @@ class Form extends Component {
                                     onOrgChange={this.handleOrgSelect}
                                 />} */}
 
-                                {!this.props.reload && <>
+                                {/* {!this.props.reload && <> */} 
                                     <Contact
                                         first_name={form.first_name}
                                         org_name={form.org_name}
@@ -281,6 +281,7 @@ class Form extends Component {
                                             <input
                                                 id="form-email"
                                                 type="email"
+                                                required
                                                 name="email"
                                                 value={form.email}
                                                 onChange={this.handleChange}
@@ -301,7 +302,7 @@ class Form extends Component {
                                             />
                                         </div>
                                     </div>
-                                </>}
+                                {/* </>} */}
 
                                 <div className="row">
                                     <div className="col-md">

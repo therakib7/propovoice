@@ -115,7 +115,7 @@ class Contact extends Component {
                     Contact Organization
                 </label>
                 <div className="pi-field-search">
-                    <div className="pi-action-content">
+                    <div className="pi-action-content"> 
                         <input
                             id="org_name"
                             type="text"

@@ -92,18 +92,18 @@ class Form extends Component {
                     form.deal_id = form.id;
                 }
 
+                form.first_name = (form.person) ? form.person.first_name : '';
                 if (form.person) { 
-                    form.first_name = (form.person) ? form.person.first_name : '';
                     form.person_id = (form.person) ? form.person.id : null;
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
                 } else {
-                    form.org_name = (form.org) ? form.org.name : ''; 
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
                 } 
+                form.org_name = (form.org) ? form.org.name : ''; 
 
                 if ( form.org ) {
                     form.org_id = (form.org) ? form.org.id : null;

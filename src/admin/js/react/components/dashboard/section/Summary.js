@@ -16,8 +16,7 @@ const Summary = (props) => {
             if ( resp.data.success ) {  
                 setSummary( resp.data.data );
             }
-        });
-
+        }); 
     }, []);
 
     return (

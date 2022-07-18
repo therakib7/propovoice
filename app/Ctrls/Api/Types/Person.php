@@ -73,6 +73,7 @@ class Person
 
         $per_page = 10;
         $offset = 0;
+        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
 
         if (isset($params['per_page'])) {
             $per_page = $params['per_page'];
@@ -80,9 +81,7 @@ class Person
 
         if (isset($params['page']) && $params['page'] > 1) {
             $offset = ($per_page * $params['page']) - $per_page;
-        }
-
-        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        } 
 
         $args = array(
             'post_type' => 'ndpi_person',
@@ -95,11 +94,11 @@ class Person
             'relation' => 'OR'
         );
 
-        if ( $first_name ) {
+        if ( $s ) {
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'first_name',
-                    'value'   => $first_name,
+                    'value'   => $s,
                     'compare' => 'Like',
                 )
             ); 

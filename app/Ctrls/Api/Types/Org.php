@@ -69,20 +69,20 @@ class Org
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
+
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
-        }
-
-        $name = isset($params['name']) ? sanitize_text_field($params['name']) : null;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
+        } 
 
         $args = array(
             'post_type' => 'ndpi_org',
@@ -95,11 +95,11 @@ class Org
             'relation' => 'OR'
         );
 
-        if ($name) {
+        if ($s) {
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'name',
-                    'value'   => $name,
+                    'value'   => $s,
                     'compare' => 'Like',
                 )
             );

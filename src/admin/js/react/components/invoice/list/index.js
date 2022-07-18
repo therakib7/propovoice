@@ -347,6 +347,7 @@ const Invoice = class Invoice extends Component {
                 <Search
                     title={title}
                     showing={invoices.length}
+                    showItem={this.showItem}
                     total={this.state.total}
                     handleSubmit={this.getLists}
                 />

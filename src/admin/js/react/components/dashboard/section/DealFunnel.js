@@ -19,12 +19,7 @@ const Summary = (props) => {
         "#d6defa",
         "#acbef4",
         "#829dee",
-        "#5b7cea",
-        "#d6defa",
-        "#d6defa",
-        "#d6defa",
-        "#d6defa",
-        "#d6defa",
+        "#5b7cea", 
     ];
     return (
         <div className="pi-punnel pi-border-gray" style={{ minHeight: '445px', marginBottom: '30px' }}>
@@ -36,7 +31,7 @@ const Summary = (props) => {
             </h3> 
             <ul> 
                 {funnel.common.map((item, i) => ( 
-                    <li key={i} style={{ color: ( i < 2 ) ? '#4A5568' : '', backgroundColor: funnelColor[i], width: item.width }}>
+                    <li key={i} style={{ color: ( i < 2 ) ? '#4A5568' : '', backgroundColor: ( i < 4 ) ? funnelColor[i] : '#345bde', width: item.width }}>
                         {item.name}<span>{item.items}</span>
                     </li>
                 ))} 

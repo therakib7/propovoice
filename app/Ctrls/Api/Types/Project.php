@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Contact;
 use Ncpi\Models\Org;
 use Ncpi\Models\Person;
 use WP_Query;
@@ -69,17 +70,19 @@ class Project
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
+
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
         }
 
         $args = array(
@@ -93,14 +96,29 @@ class Project
             'relation' => 'OR'
         );
 
-        if (isset($request['default'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'default',
-                    'value'   => 1,
-                    'compare' => 'LIKE'
-                )
-            );
+        if ( $s ) {
+            $contact_person = new Contact(); 
+            $person_ids = $contact_person->query($s, 'person');  
+            if ( $person_ids ) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'person_id',
+                        'value'   => $person_ids,
+                        'compare' => 'IN'
+                    )
+                ); 
+            }
+
+            $org_ids = $contact_person->query($s, 'org');   
+            if ( $org_ids ) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'org_id',
+                        'value'   => $org_ids,
+                        'compare' => 'IN'
+                    )
+                ); 
+            }  
         }
 
         $query = new WP_Query($args);

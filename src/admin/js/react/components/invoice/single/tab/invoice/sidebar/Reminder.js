@@ -75,61 +75,63 @@ export default (props) => {
                             />
                             <label htmlFor="reminder-before-15">15 days</label>
                         </div>
-                        <div className="pi-field-checkbox pi-field-checkbox-input pi-mb-10">
-                            <input type="checkbox" id="date" name="date" />
-                            <input
-                                type="number"
-                                id="unit-number"
-                                name="firstname"
-                                placeholder={1}
-                            />
-                            <select name="number-type">
-                                <option value="page">Days</option>
-                                <option value="hour">Hour</option>
-                                <option value="week">Week</option>
-                                <option value="month">Month</option>
-                            </select>
-                        </div>
-                        <div className="pi-field-checkbox pi-field-checkbox-input">
-                            <input type="checkbox" id="date" name="date" />
-                            <input
-                                type="number"
-                                id="unit-number"
-                                name="firstname"
-                                placeholder={1}
-                            />
-                            <select name="number-type">
-                                <option value="page">Days</option>
-                                <option value="hour">Hour</option>
-                                <option value="week">Week</option>
-                                <option value="month">Month</option>
-                            </select>
-                        </div>
-                        <button className="pi-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
-                            <svg
-                                width={12}
-                                height={13}
-                                viewBox="0 0 12 13"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M1.875 6.5H10.125"
-                                    stroke="#718096"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
+                        {false && <>
+                            <div className="pi-field-checkbox pi-field-checkbox-input pi-mb-10">
+                                <input type="checkbox" id="date" name="date" />
+                                <input
+                                    type="number"
+                                    id="unit-number"
+                                    name="firstname"
+                                    placeholder={1}
                                 />
-                                <path
-                                    d="M6 2.375V10.625"
-                                    stroke="#718096"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
+                                <select name="number-type">
+                                    <option value="page">Days</option>
+                                    <option value="hour">Hour</option>
+                                    <option value="week">Week</option>
+                                    <option value="month">Month</option>
+                                </select>
+                            </div>
+                            <div className="pi-field-checkbox pi-field-checkbox-input">
+                                <input type="checkbox" id="date" name="date" />
+                                <input
+                                    type="number"
+                                    id="unit-number"
+                                    name="firstname"
+                                    placeholder={1}
                                 />
-                            </svg>
-                            Add Another
-                        </button>
+                                <select name="number-type">
+                                    <option value="page">Days</option>
+                                    <option value="hour">Hour</option>
+                                    <option value="week">Week</option>
+                                    <option value="month">Month</option>
+                                </select>
+                            </div>
+                            <button className="pi-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
+                                <svg
+                                    width={12}
+                                    height={13}
+                                    viewBox="0 0 12 13"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M1.875 6.5H10.125"
+                                        stroke="#718096"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M6 2.375V10.625"
+                                        stroke="#718096"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                                Add Another
+                            </button>
+                        </>}
                     </div>
                     <div className="col">
                         <label>Reminder After</label>
@@ -183,7 +185,7 @@ export default (props) => {
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     );
 } 

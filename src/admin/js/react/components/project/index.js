@@ -118,6 +118,7 @@ const Project = (props) => {
       <Search
         title={title}
         showing={lists.length}
+        showItem={props.showItem}
         total={props.state.total}
         handleSubmit={props.getLists}
       />
