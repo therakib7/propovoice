@@ -14,19 +14,38 @@ import Crud from 'hoc/Crud';
 
 const Deal = (props) => {
 
-    const [list, setList] = useState([]);
-	const [listById, setListById] = useState([]);
-	const [dropdown, setDropdown] = useState(false);
+    // const [list, setList] = useState([]);
+	// const [listById, setListById] = useState([]);
+	// const [dropdown, setDropdown] = useState(false);
 	const [modal, setModal] = useState(false);
 	const [modalType, setModalType] = useState('new');
 	const newForm = {
+        id: null,
 		label: '',
 		color: '',
-		bg_color: ''
+		bg_color: '',
+        icon: null
 	};
 	const [form, setForm] = useState(newForm);
 
     const { title, lists } = props.state; 
+
+    const taxForm = ( type = 'new', data = null) => { 
+        setModal(true)
+        setModalType(type)
+        if ( type == 'new' ) {
+            setForm(newForm)
+        } else {
+            const newData = {
+                id: data.id,
+                label: data.name,
+                color: data.color,
+                bg_color: data.bg_color,
+                icon: null
+            } 
+            setForm(newData)
+        }
+    }; 
     
     useEffect(() => {
         props.onLoad(true); 
@@ -51,8 +70,7 @@ const Deal = (props) => {
 				taxonomy='deal_stage'
 				title='Stage'
                 reload={props.getLists}
-				modalType={modalType}
-				// reload={getData}
+				modalType={modalType} 
 				data={form}
 				color={true}
 				close={() => setModal(false)}
@@ -67,7 +85,7 @@ const Deal = (props) => {
                     <div className="pi-list-single-button-content">
                         <button 
                             className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow"
-                            onClick={() => setModal(true)}
+                            onClick={() => taxForm('new')}
                         >
                             <svg
                                 width={14}
@@ -130,7 +148,7 @@ const Deal = (props) => {
                 <Pipeline
                     new={props.openForm} 
                     data={lists}
-                    taxForm={() => setModal(true)}
+                    taxForm={taxForm}
                 />}
         </div>
     );

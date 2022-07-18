@@ -142,7 +142,7 @@ function Pipeline(props) {
 									// ref={popover}
 									>
 										{/* <a onClick={() => props.editEntry('edit', columnId)}>Edit</a> */}
-										<a onClick={() => props.taxForm()}>Edit</a>
+										<a onClick={() => { props.taxForm('edit', column); showDropdown(columnId); } }>Edit</a>
 										{/* <a onClick={() => props.deleteEntry('single', columnId)}>Delete</a> */}
 									</div>}
 								</div>
@@ -286,8 +286,7 @@ function Pipeline(props) {
 						Add New Stage
 					</button>
 				</div>
-			</DragDropContext>
-
+			</DragDropContext> 
 		</div>
 	);
 }

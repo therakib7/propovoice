@@ -177,7 +177,7 @@ class Deal
                 // $column[$stage_id] = [
                 'name' => $stage_name,
                 'id' => $stage_id,
-                // 'color' => get_term_meta($stage_id, 'color', true),
+                'color' => get_term_meta($stage_id, 'color', true),
                 'bg_color' => get_term_meta($stage_id, 'bg_color', true),
                 'type' => get_term_meta($stage_id, 'type', true),
                 'items' => $items

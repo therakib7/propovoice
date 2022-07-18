@@ -8,13 +8,13 @@ const Action = (props) => {
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
-    const showDropdown = () => {
+    /* const showDropdown = () => {
         if (dropdown) {
             setDropdown(false);
         } else {
             setDropdown(true);
         }
-    };
+    }; */
 
     return (
         <div className="pi-table-action pi-mb-10">
