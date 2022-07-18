@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Preloader from 'block/preloader/table';
-
+import { toast } from 'react-toastify';
 import Form from './Form';
 import FormEdit from './FormEdit';
 import Table from './Table';
 //import Search from './Search';
 //import Empty from 'block/empty';
-
+import WithApi from 'hoc/Api';
 import Crud from 'hoc/Crud';
 
 const Task = (props) => {
@@ -36,6 +36,21 @@ const Task = (props) => {
         }
     }
 
+    const handleDelete = ( type, id) => {
+		if ( confirm('Are you sure, to delete it?') ) { //TODO: translation 
+			props.remove('tasks', id).then(resp => {
+				if (resp.data.success) {
+					toast.success('Successfully deleted'); //TODO: translation
+					props.getLists({ status_id: activeTab });
+				} else {
+					resp.data.data.forEach(function (value, index, array) {
+						toast.error(value);
+					});
+				}
+			});
+		}
+	}
+
     return (
         <div className="">
             <Form
@@ -46,6 +61,7 @@ const Task = (props) => {
 
             {props.state.formModal && <FormEdit
                 tab_id={props.tab_id}
+                reload={props.getLists}
                 taxonomies={taxonomies}
                 handleSubmit={props.handleSubmit}
                 modalType={props.state.formModalType}
@@ -70,7 +86,7 @@ const Task = (props) => {
             {props.state.preloader ? <Preloader /> :
                 <>
                     {props.dashboard && <div style={{ marginTop: '15px' }}></div>}
-                    {props.dashboard && <Table dashboard={true} tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={props.deleteEntry} />}
+                    {props.dashboard && <Table dashboard={true} tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />}
 
                     {!props.dashboard &&
                         <div className="pi-accordion">
@@ -100,7 +116,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pi-table-close" htmlFor="pi-acc-close" />
                                         <div className="pi-accordion-content">
-                                            <Table tableData={lists.today} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={props.deleteEntry} />
+                                            <Table tableData={lists.today} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>
@@ -132,7 +148,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pi-table-close" htmlFor="pi-acc-close" />
                                         <div className="pi-accordion-content">
-                                            <Table tableData={lists.other} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
+                                            <Table tableData={lists.other} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>
@@ -164,7 +180,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pi-table-close" htmlFor="pi-acc-close" />
                                         <div className="pi-accordion-content">
-                                            <Table tableData={lists.unschedule} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
+                                            <Table tableData={lists.unschedule} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>
@@ -175,7 +191,6 @@ const Task = (props) => {
             }
         </div>
     );
-}
-
-
-export default Crud(Task, 'task');
+}  
+const TaskHoc = Crud(Task, 'task'); 
+export default WithApi(TaskHoc);

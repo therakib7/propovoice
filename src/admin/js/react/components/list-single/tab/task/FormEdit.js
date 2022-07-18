@@ -37,10 +37,15 @@ class Form extends Component {
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
                 let form = {...this.state.form};
+                let status_id = form.status_id.id;
                 delete form.priority_id;
                 delete form.status_id;
                 delete form.type_id;
-                this.props.update('tasks', form.id, form); 
+                this.props.update('tasks', form.id, form).then(resp => { 
+                    if ( resp.data.success && name == 'title') { 
+                        this.props.reload({ status_id })
+                    }
+                });  
             }, 300);
         });
     }
@@ -71,14 +76,14 @@ class Form extends Component {
         }
     }
 
-    handleSubmit = (e) => {
+    /* handleSubmit = (e) => {
         e.preventDefault();
         let form = { ...this.state.form }
 
         this.props.handleSubmit(form);
         this.props.close();
         this.setState({ form: this.initialState });
-    }
+    } */
 
     handleChecklistChange = (data) => {
         let form = { ...this.state.form }
