@@ -50,7 +50,7 @@ export default class Example extends PureComponent {
                         </PieChart>}
                     </div>
 
-                    <div className="col-6">
+                    <div className="col-6" style={{alignSelf: 'center'}}>
                         <div className="pi-field-color-ficker">
                             <ul> 
                                 {data.map((item, i) => (

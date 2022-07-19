@@ -17,6 +17,9 @@ const TableHeader = props => {
                     Organization
                 </th>
                 <th>
+                    Email
+                </th>
+                <th>
                     Location
                 </th>
                 <th>
@@ -54,6 +57,7 @@ const TableBody = props => {
                     />
                 </td>
                 <td>{row.name}</td>
+                <td /* onClick={() => handleOverview(row.id)} */>{row.email}</td>
                 <td>{row.address}</td> 
                 <td>{row.first_name}</td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>

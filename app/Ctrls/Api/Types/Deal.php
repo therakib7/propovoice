@@ -277,6 +277,10 @@ class Deal
             wp_send_json_success($lead_id);
         } */
 
+        if ( empty($first_name) &&  empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
+
         $person = new Person();  
         if ( $person_id ) {
             $person->update( $params ); 
@@ -410,6 +414,10 @@ class Deal
         if (empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
+
+        if ( empty($first_name) &&  empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
 
         $person = new Person();  
         if ( $person_id ) {

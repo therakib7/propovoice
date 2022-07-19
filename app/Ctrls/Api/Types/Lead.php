@@ -382,9 +382,9 @@ class Lead
 
         $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
-        /* if (empty($first_name)) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        } */
+        if ( empty($first_name) && empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
 
         /* if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));

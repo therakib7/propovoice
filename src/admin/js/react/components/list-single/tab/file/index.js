@@ -21,7 +21,7 @@ const File = (props) => {
         <>
             <div className="pi-small-button-group pi-small-button-group-two">
                 <div className="row">
-                    <div className="col">
+                    <div className="col-sm-5">
                         <h3 className="pi-title-small">My Files</h3>
                         <button
                             className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'all' ? 'pi-active' : '')}
@@ -43,7 +43,7 @@ const File = (props) => {
                         </button>
                     </div>
 
-                    <div className="col">
+                    <div className="col-sm-7">
                         <div className="pi-buttons-right pi-text-right">
                             <button
                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"

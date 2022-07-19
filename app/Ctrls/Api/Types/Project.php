@@ -282,6 +282,9 @@ class Project
         /* if ( !$deal_id && empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
+        if ( empty($first_name) &&  empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
 
         $person = new Person();  
         if ( $person_id ) {
@@ -407,6 +410,10 @@ class Project
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
+        if ( empty($first_name) &&  empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
+        
         /* if (empty($status_id)) {
             $reg_errors->add('field', esc_html__('Please select a status', 'propovoice'));
         }

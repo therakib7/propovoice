@@ -7,7 +7,6 @@ use WP_Query;
 
 class Org
 {
-
     public function __construct()
     {
         add_action('rest_api_init', [$this, 'create_rest_routes']);
@@ -15,7 +14,6 @@ class Org
 
     public function create_rest_routes()
     {
-
         register_rest_route('ncpi/v1', '/organizations', [
             [
                 'methods' => 'GET',
@@ -82,7 +80,7 @@ class Org
 
         if (isset($params['page']) && $params['page'] > 1) {
             $offset = ($per_page * $params['page']) - $per_page;
-        } 
+        }
 
         $args = array(
             'post_type' => 'ndpi_org',
@@ -109,11 +107,11 @@ class Org
                     'value'   => $s,
                     'compare' => 'Like',
                 )
-            ); 
+            );
         }
 
         $query = new WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
@@ -123,7 +121,7 @@ class Org
             $query_data['id'] = $id;
 
             $queryMeta = get_post_meta($id);
-            $query_data['name'] = isset($queryMeta['name']) ? $queryMeta['name'][0] : ''; 
+            $query_data['name'] = isset($queryMeta['name']) ? $queryMeta['name'][0] : '';
             $query_data['person_id'] = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
             $query_data['first_name'] = $queryMeta['person_id'] ? get_post_meta($query_data['person_id'], 'first_name', true) : '';
             $query_data['email'] = isset($queryMeta['email']) ? $queryMeta['email'][0] : '';
@@ -131,8 +129,8 @@ class Org
             $query_data['mobile'] = isset($queryMeta['mobile']) ? $queryMeta['mobile'][0] : '';
             $query_data['country'] = isset($queryMeta['country']) ? $queryMeta['country'][0] : '';
             $query_data['region'] = isset($queryMeta['region']) ? $queryMeta['region'][0] : '';
-            $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : ''; 
-            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : ''; 
+            $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : '';
+            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : '';
 
             $img_id = $query_data['img'];
             $imgData = null;
@@ -194,7 +192,7 @@ class Org
     public function create($req)
     {
         $params = $req->get_params();
-        $reg_errors = new \WP_Error; 
+        $reg_errors = new \WP_Error;
 
         $name         = isset($params['name']) ? sanitize_text_field($req['name']) : null;
         $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
@@ -219,7 +217,6 @@ class Org
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-
             $data = array(
                 'post_type' => 'ndpi_org',
                 'post_title'    => $name,
@@ -236,9 +233,9 @@ class Org
                     update_post_meta($post_id, 'name', $name);
                 }
 
-                if ( ! $person_id && $first_name ) {
+                if (! $person_id && $first_name) {
                     $person = new Person();
-                    $person_id = $person->create( [ 'first_name' => $first_name, 'org_id' => $post_id] );
+                    $person_id = $person->create([ 'first_name' => $first_name, 'org_id' => $post_id]);
                 }
 
                 if ($person_id) {
@@ -318,7 +315,6 @@ class Org
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
-
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
                 }

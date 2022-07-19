@@ -271,7 +271,7 @@ class ListSingle extends Component {
                     <>
                         <div className="pi-list-single-head">
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-content">
                                         <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
@@ -293,7 +293,7 @@ class ListSingle extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Lead Level:</label>
@@ -392,7 +392,7 @@ class ListSingle extends Component {
                     <>
                         <div className="pi-list-single-head pi-list-single-head-two">
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-content">
                                         <h3 className="">
                                             {data.title}
@@ -432,7 +432,7 @@ class ListSingle extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Deal Stage:</label>
@@ -553,7 +553,7 @@ class ListSingle extends Component {
                     <>
                         <div className="pi-list-single-head pi-list-single-head-two">
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-content">
                                         <h3 className="">
                                             {data.title}
@@ -578,7 +578,7 @@ class ListSingle extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Project Status:</label>
@@ -813,7 +813,7 @@ class ListSingle extends Component {
                     <>
                         <div className="pi-list-single-head">
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-content">
                                         <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
@@ -833,7 +833,7 @@ class ListSingle extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Status:</label>

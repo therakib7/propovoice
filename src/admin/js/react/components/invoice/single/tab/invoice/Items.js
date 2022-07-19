@@ -37,7 +37,7 @@ class Items extends Component {
 
         return (
             <>
-                <div className="pi-table-wrap">
+                <div className="pi-info-table-wrap">
                     <div className="pi-info-table-content">
                         <table className="pi-table pi-info-table">
                             <thead>

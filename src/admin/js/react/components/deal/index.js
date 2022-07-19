@@ -54,9 +54,7 @@ const Deal = (props) => {
 
     return (
         <div className="ncpi-components">
-            <Breadcrumb title={title + ' Pipeline'} /> 
-
-            {/* {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}  */}
+            <Breadcrumb title={title + ' Pipeline'} />  
 
             {props.state.formModal && <Form
                 handleSubmit={props.handleSubmit}
@@ -142,8 +140,9 @@ const Deal = (props) => {
                     </div>
                 </div>
             </div>
-
-
+            
+            {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />} 
+            
             {props.state.preloader ? <Preloader /> :
                 <Pipeline
                     new={props.openForm} 

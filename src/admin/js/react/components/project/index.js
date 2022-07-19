@@ -138,7 +138,7 @@ const Project = (props) => {
         close={props.closeForm}
       />}
 
-      {/* {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.newInvoie()} />} */}
+      {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />} 
 
       {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
