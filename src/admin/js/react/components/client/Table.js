@@ -59,16 +59,16 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>{row.type == 'person' ? row.first_name : row.org_name}</td>
-                <td>{row.email}</td>
-                {/* <td>{row.org_name}</td> */} 
-                <td>{row.mobile}</td>
+                <td onClick={() => handleOverview(row.id)}>{row.type == 'person' ? row.first_name : row.org_name}</td>
+                <td onClick={() => handleOverview(row.id)}>{row.email}</td>
+                {/*<td>{row.org_name}</td> */} 
+                <td onClick={() => handleOverview(row.id)}>{row.mobile}</td>
                 <td>{row.type == 'person' ? 'Person' : 'Organization'}</td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>  
                 <td className="pi-action">
                     <Action
                         row={row}
-                        // handleOverview={handleOverview}
+                        handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
                     /> 

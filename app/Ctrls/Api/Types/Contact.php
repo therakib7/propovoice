@@ -172,22 +172,27 @@ class Contact
         $id = $url_params['id'];
         $query_data = [];
         $query_data['id'] = absint($id);
- 
+
+        $queryMeta = get_post_meta($id);
+        $type = get_post_type( $id ) == 'ndpi_person' ? 'person' : 'org';
+        $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
         $query_data['tab_id'] = $id; 
+        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
 
-        $query_data['level_id'] = '';
+        $query_data['person'] = null;
 
-        $level = get_the_terms($id, 'ndpi_lead_level');
-        if ($level) {
-
-            $query_data['level_id'] = [
-                'id' => $level[0]->term_id,
-                'label' => $level[0]->name
-            ];
+        if ( $type == 'person' ) {
+            $person = new Person();   
+            $query_data['person'] = $person->single( $id, true );
         }
 
-        $query_data['tags'] = [];
+        $query_data['org'] = null; 
+        if ( $type == 'org' ) {
+            $org = new Org();   
+            $query_data['org'] = $org->single( $id, true );
+        } 
 
+        $query_data['tags'] = []; 
         $tags = get_the_terms($id, 'ndpi_tag');
         if ($tags) {
             $tagList = [];
@@ -199,24 +204,6 @@ class Contact
             }
             $query_data['tags'] = $tagList;
         }
-
-        $contact_id = $id;
-        $contactData = [];
-
-        if ($contact_id) {
-            $contactData['id'] = absint($contact_id);
-            $contactMeta = get_post_meta($contact_id);
-            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-            $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : '';
-            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
-            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
-            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
-            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
-            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
-        }
-        $query_data['contact'] = $contactData;
 
         $query_data['date'] = get_the_time('j-M-Y');
 

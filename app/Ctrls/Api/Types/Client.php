@@ -159,58 +159,7 @@ class Client
 
     public function get_single($req)
     {
-        $url_params = $req->get_url_params();
-        $id = $url_params['id'];
-        $query_data = [];
-        $query_data['id'] = absint($id);
-        $query_data['tab_id'] = $id;
-
-        $query_data['level_id'] = '';
-
-        $level = get_the_terms($id, 'ndpi_lead_level');
-        if ($level) {
-
-            $query_data['level_id'] = [
-                'id' => $level[0]->term_id,
-                'label' => $level[0]->name
-            ];
-        }
-
-        $query_data['tags'] = [];
-
-        $tags = get_the_terms($id, 'ndpi_tag');
-        if ($tags) {
-            $tagList = [];
-            foreach ($tags as $tag) {
-                $tagList[] = [
-                    'id' => $tag->term_id,
-                    'label' => $tag->name
-                ];
-            }
-            $query_data['tags'] = $tagList;
-        }
-
-        $person_id = $id;
-        $personData = [];
-
-        if ($person_id) {
-            $personData['id'] = absint($person_id);
-            $personMeta = get_post_meta($person_id);
-            $personData['first_name'] = isset($personMeta['first_name']) ? $personMeta['first_name'][0] : '';
-            $personData['last_name'] = isset($personMeta['last_name']) ? $personMeta['last_name'][0] : '';
-            $personData['org_name'] = isset($personMeta['org_name']) ? $personMeta['org_name'][0] : '';
-            $personData['email'] = isset($personMeta['email']) ? $personMeta['email'][0] : '';
-            $personData['mobile'] = isset($personMeta['mobile']) ? $personMeta['mobile'][0] : '';
-            $personData['web'] = isset($personMeta['web']) ? $personMeta['web'][0] : '';
-            $personData['country'] = isset($personMeta['country']) ? $personMeta['country'][0] : '';
-            $personData['region'] = isset($personMeta['region']) ? $personMeta['region'][0] : '';
-            $personData['address'] = isset($personMeta['address']) ? $personMeta['address'][0] : '';
-        }
-        $query_data['person'] = $personData;
-
-        $query_data['date'] = get_the_time('j-M-Y');
-
-        wp_send_json_success($query_data);
+         
     }
 
     public function create($req)

@@ -58,10 +58,7 @@ class ListSingle extends Component {
                 },
                 org: {
                     name: 'Name'
-                },
-                contact: {
-                    first_name: 'Name'
-                },
+                }, 
                 level_id: null,
                 stage_id: null,
                 probability: 0,
@@ -97,10 +94,11 @@ class ListSingle extends Component {
 
     getData = () => {
         // console.log(this.props.id);
-        const url = this.props.path + 's';
+        const path = this.props.path;
+        const url = ( path == 'client' ? 'contact' : path ) + 's';
         this.props.get(url, this.props.id).then(resp => {
             this.setState({ data: resp.data.data });
-            if (this.props.path == 'lead') {
+            if (path == 'lead') {
                 this.getLevelTagData();
             } else {
                 this.getStageTagData();
@@ -226,8 +224,7 @@ class ListSingle extends Component {
 
     render() {
         const { tabs = [], currentTab } = this.state;
-        const { path } = this.props;
-        const contact = this.state.data.contact;
+        const { path } = this.props; 
         const data = this.state.data;
         return (
             <div className="ncpi-components">
@@ -280,8 +277,8 @@ class ListSingle extends Component {
                         <li className="pi-active">
                             {path == 'lead' && <>{(data.person) ? data.person.first_name : data.org.name}</>}
                             {(path == 'deal' || path == 'project') && data.title}
-                            {path == 'client' && contact.first_name}
-                            {path == 'contact' && contact.first_name}
+                            {path == 'client' && <>{(data.person) ? data.person.first_name : data.org.name}</>}
+                            {path == 'contact' && <>{(data.person) ? data.person.first_name : data.org.name}</>}
                         </li>
                     </ul>
                 </nav>
@@ -828,8 +825,8 @@ class ListSingle extends Component {
                     </>
                 }
 
-                {path == 'contact' &&
-                    <>
+                { ( path == 'contact' || path == 'client' ) &&
+                    <> 
                         <div className="pi-list-single-head">
                             <div className="row">
                                 <div className="col-md-6">
@@ -837,7 +834,7 @@ class ListSingle extends Component {
                                         <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
                                             <h3 className="">
-                                                {contact.first_name}
+                                                {(data.person) ? data.person.first_name : data.org.name}
                                                 <button
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ contactModal: true })}
@@ -846,8 +843,8 @@ class ListSingle extends Component {
                                                 </button>
                                             </h3>
                                             <address>
-                                                {contact.email} <br />
-                                                Organization/Company: {contact.org_name}<br />
+                                                {data.email} <br />
+                                                Organization/Company: {(data.person) ? data.person.first_name : data.org.name}<br />
                                             </address>
                                         </div>
                                     </div>
