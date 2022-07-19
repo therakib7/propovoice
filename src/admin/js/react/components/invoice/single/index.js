@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, useNavigate, useLocation } from "react-router-dom"; 
+import { useParams, useSearchParams, useNavigate, useLocation } from "react-router-dom"; 
 import Style from './style.scoped.scss'
 import Invoice from './tab/invoice';
 
@@ -10,7 +10,13 @@ export default function InvoiceWrap() {
 
 	const location = useLocation(); 
 	let path = ''; 
+	let module_id = null;
+	const [searchParams, setSearchParams] = useSearchParams();
 	
+	if ( searchParams.get('module_id') ) {
+		module_id = searchParams.get('module_id');
+	}
+	 
 	if ( id === undefined ) {
 		path = location.pathname == '/invoice/single' ? 'invoice' : 'estimate';
 	} else {
@@ -31,6 +37,7 @@ export default function InvoiceWrap() {
 			<Invoice 
 				id={id} 
 				tab={tab} 
+				module_id={module_id} 
 				routeChange={routeChange} 
 				routeInvoice={routeInvoice} 
 				path={path} 

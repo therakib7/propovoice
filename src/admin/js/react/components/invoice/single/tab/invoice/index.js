@@ -65,7 +65,7 @@ class Invoice extends Component {
 			toData: null,
 			paymentBankData: null,
 			invoice: {
-				id: null,
+				id: null, 
 				token: '',
 				style: {
 					primary_color: '#4c6fff',
@@ -79,6 +79,12 @@ class Invoice extends Component {
 				from: null,
 				to: null,
 				to_type: '', //person, 'org'
+				module_id: null,
+				project: {
+					id: null,
+					title: '',
+					desc: ''
+				},
 				item_label: {
 					id: 'ID',
 					title: 'Title',
@@ -180,7 +186,13 @@ class Invoice extends Component {
 			dueDate.setDate(dueDate.getDate() + 30);
 
 			let invoice = { ...this.state.invoice }
-			invoice.due_date = dueDate;
+			invoice.due_date = dueDate; 
+
+			//deal, project id
+			if ( this.props.module_id ) {
+				invoice.module_id = parseInt( this.props.module_id );
+				console.log(invoice);
+			}
 
 			this.setState({
 				title,
@@ -796,9 +808,9 @@ class Invoice extends Component {
 											<h3 className="pi-color-blue pi-text-center">{title}</h3>
 											<div className="row">
 												<div className="col-12 col-md-6">
-													<div className="pi-info-logo pi-cursor-pointer">
+													<div className="pi-info-logo">
 														{this.state.fromData && this.state.fromData.logo && <img src={this.state.fromData.logo.src} />}
-														{this.state.fromData && !this.state.fromData.logo && <div className="pi-upload">
+														{this.state.fromData && !this.state.fromData.logo && <div className="pi-upload pi-cursor-pointer">
 															<svg
 																width={18}
 																height={18}

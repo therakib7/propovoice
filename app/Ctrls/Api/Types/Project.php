@@ -3,6 +3,7 @@
 namespace Ncpi\Ctrls\Api\Types;
 
 use Ncpi\Models\Contact;
+use Ncpi\Models\Invoice;
 use Ncpi\Models\Org;
 use Ncpi\Models\Person;
 use WP_Query;
@@ -206,6 +207,9 @@ class Project
         $query_data['due_date'] = isset($queryMeta['due_date']) ? $queryMeta['due_date'][0] : '';
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
         $query_data['desc'] = get_post_field('post_content', $id); 
+
+        $contact_person = new Invoice();  
+        $query_data['invoice'] = $contact_person->project_invoice( $id );
         
         $query_data['status_id'] = ''; 
         $status = get_the_terms($id, 'ndpi_project_status');

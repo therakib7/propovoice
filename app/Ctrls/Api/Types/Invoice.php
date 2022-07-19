@@ -99,12 +99,12 @@ class Invoice
             'offset' => $offset,
         );
 
-        if ($search_value) {
-            $args['p'] = $search_value;
-        }
+        /* if ( $s ) {
+            $args['p'] = $s;
+        } */
 
         $args['meta_query'] = array(
-            'relation' => 'OR'
+            'relation' => 'AND'
         );
 
         /* if (isset($request['client_id'])) {
@@ -141,11 +141,20 @@ class Invoice
             }  
         }
 
-        if (isset($request['path'])) {
+        if ( isset($params['path']) ) {
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'path',
-                    'value' => $request['path']
+                    'value' => $params['path']
+                )
+            );
+        }
+
+        if ( isset($params['module_id']) ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'module_id',
+                    'value' => $params['module_id']
                 )
             );
         }
@@ -205,6 +214,9 @@ class Invoice
             $query_data['invoice'] = get_post_meta($id, 'invoice', true);
 
             $query_data['total'] = get_post_meta($id, 'total', true);
+            if (!$query_data['total']) {
+                $query_data['total'] = 0;
+            }
             $query_data['paid'] = get_post_meta($id, 'paid', true);
             if (!$query_data['paid']) {
                 $query_data['paid'] = 0;
@@ -242,6 +254,7 @@ class Invoice
         $query_data['token'] = get_post_meta($id, 'token', true);
         $query_data['date'] = get_post_meta($id, 'date', true);
         $query_data['due_date'] = get_post_meta($id, 'due_date', true);
+        $query_data['module_id'] = get_post_meta($id, 'module_id', true);
         $from_id = get_post_meta($id, 'from', true);
         $query_data['invoice'] = get_post_meta($id, 'invoice', true);
 
@@ -372,6 +385,7 @@ class Invoice
         $reg_errors  = new \WP_Error;
         //TODO: sanitize later
         $invoice  = isset($params) ? $params : null;
+        $module_id = isset($params['module_id']) ? $params['module_id'] : null;
         $date     = isset($params['date']) ? $params['date'] : null;
         $path     = isset($params['path']) ? $params['path'] : '';
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
@@ -423,13 +437,17 @@ class Invoice
                 update_post_meta($post_id, 'status', 'draft');
                 update_post_meta($post_id, 'path', $path);
 
+                if ($module_id) {
+                    update_post_meta($post_id, 'module_id', $module_id);
+                }
+
                 if ($date) {
                     update_post_meta($post_id, 'date', $date);
                 }
 
                 if ($due_date) {
                     update_post_meta($post_id, 'due_date', $due_date);
-                }
+                } 
 
                 if ($from) {
                     update_post_meta($post_id, 'from', $from);
@@ -489,9 +507,10 @@ class Invoice
     public function update($req)
     {
         $params = $req->get_params();
-        $reg_errors             = new \WP_Error;
+        $reg_errors = new \WP_Error;
         $invoice  = isset($params) ? $params : null;
-
+        
+        $module_id = isset($params['module_id']) ? $params['module_id'] : null;
         $date     = isset($params['date']) ? $params['date'] : null;
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
         $payment_methods = isset($params['payment_methods']) ? $params['payment_methods'] : null;
@@ -535,6 +554,10 @@ class Invoice
             $post_id = wp_update_post($data);
 
             if ( !is_wp_error($post_id) ) {
+
+                if ($module_id) {
+                    update_post_meta($post_id, 'module_id', $module_id);
+                }
 
                 if ($date) {
                     update_post_meta($post_id, 'date', $date);

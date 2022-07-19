@@ -17,6 +17,7 @@ import ContactForm from 'components/contact/person/Form';
 const Task = lazy(() => import('./tab/task'));
 const Note = lazy(() => import('./tab/note'));
 const File = lazy(() => import('./tab/file'));
+const Invoice = lazy(() => import('components/invoice/list'));
 
 class ListSingle extends Component {
 
@@ -72,6 +73,26 @@ class ListSingle extends Component {
 
     componentDidMount() {
         this.getData();
+
+        if ( this.props.path == 'deal' ) {
+            let tabs = this.state.tabs 
+            tabs.push({
+                id: 'estimate',
+                text: 'Estimate'
+            }); 
+        }
+
+        if ( this.props.path == 'project' ) {
+            let tabs = this.state.tabs 
+            tabs.push({
+                id: 'invoice',
+                text: 'Invoice'
+            }); 
+            tabs.push({
+                id: 'estimate',
+                text: 'Estimate'
+            }); 
+        }
     }
 
     getData = () => {
@@ -112,9 +133,7 @@ class ListSingle extends Component {
 
     setActiveTab(e, id) {
         e.preventDefault();
-        this.setState({
-            currentTab: id
-        });
+        this.setState({ currentTab: id });
     }
 
     handleFindLevel = (val, callback) => {
@@ -700,7 +719,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Total Budget</p>
-                                        <h4>$ 14500</h4>
+                                        <h4>$ {data.invoice && data.invoice.total}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -730,7 +749,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Paid Amount</p>
-                                        <h4>$ 7000</h4>
+                                        <h4>$ {data.invoice && data.invoice.paid}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -764,7 +783,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Due Amount</p>
-                                        <h4>$ 7500</h4>
+                                        <h4>$ {data.invoice && data.invoice.due}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -801,7 +820,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Total Invoice</p>
-                                        <h4>3</h4>
+                                        <h4>{data.invoice && data.invoice.number}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -959,6 +978,8 @@ class ListSingle extends Component {
                                     {currentTab == 'task' && data.tab_id && <Task tab_id={data.tab_id} />}
                                     {currentTab == 'note' && data.tab_id && <Note tab_id={data.tab_id} />}
                                     {currentTab == 'file' && data.tab_id && <File tab_id={data.tab_id} />}
+                                    {currentTab == 'estimate' && data.id && <Invoice module_id={data.id} path={'estimate'} />}
+                                    {currentTab == 'invoice' && data.id && <Invoice module_id={data.id} path={'invoice'} />}
                                 </Suspense>
                             </div>
                         </div>

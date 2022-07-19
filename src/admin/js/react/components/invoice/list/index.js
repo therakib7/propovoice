@@ -72,8 +72,12 @@ const Invoice = class Invoice extends Component {
 
         args.path = this.state.path;
 
-        if (this.props.invoice_id) {
+        if ( this.props.invoice_id ) {
             args.invoice_id = this.props.invoice_id;
+        }
+
+        if ( this.props.module_id ) {
+            args.module_id = this.props.module_id;
         }
 
         if (searchArgs) {
@@ -244,7 +248,7 @@ const Invoice = class Invoice extends Component {
         const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
             <div className="ncpi-components">
-                <Breadcrumb title={title} />
+                { ! this.props.module_id && <Breadcrumb title={title} />}
 
                 <div className="row">
                     <div className="col-lg-6">
@@ -258,7 +262,7 @@ const Invoice = class Invoice extends Component {
                     </div>
                 </div>
 
-                <div className="pi-buttons-group pi-mb-20">
+                { ! this.props.module_id && <div className="pi-buttons-group pi-mb-20">
                     <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
                         <svg
                             width={20}
@@ -342,15 +346,15 @@ const Invoice = class Invoice extends Component {
                             />
                         </svg>
                     </button>
-                </div>
+                </div>}
 
-                <Search
+                { ! this.props.module_id && <Search
                     title={title}
                     showing={invoices.length}
                     showItem={this.showItem}
                     total={this.state.total}
                     handleSubmit={this.getLists}
-                />
+                />}
 
                 {checkedBoxes.length > 0 &&
                     <Action
@@ -372,18 +376,31 @@ const Invoice = class Invoice extends Component {
     }
 }
 
-function InvoiceWrap() {
+function InvoiceWrap( props ) {
     const location = useLocation();
-    const path = location.pathname;
+    let path = location.pathname;
+    //module id is, project, deal id etc
+    let module_id = null;
+    if ( props.path ) {
+        path = '/' + props.path;
+    }
+
+    if ( props.module_id ) {
+        module_id = props.module_id;
+    }
 
     let navigate = useNavigate();
     const routeChange = () => {
-        navigate(`${path}/single`, { replace: true });
+        if ( module_id ) {
+            navigate(`${path}/single?module_id=${module_id}`, { replace: true });
+        } else {
+            navigate(`${path}/single`, { replace: true });
+        } 
     };
 
     return (
         <>
-            <Invoice routeChange={routeChange} path={path} key={path} />
+            <Invoice routeChange={routeChange} path={path} module_id={module_id} key={path} />
         </>
     );
 }
