@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api';
-import styles from './Items.module.scss' 
+import styles from './Items.module.scss'
 import Form from './Form';
 
 const Taxonomy = (props) => {
@@ -38,9 +38,9 @@ const Taxonomy = (props) => {
 			setModalType(type);
 			setForm(tax);
 		}
-	} 
+	}
 
-	const handleDelete = (id) => { 
+	const handleDelete = (id) => {
 
 		if (confirm('Are you sure, to delete it?')) { //TODO: translation 
 			let newForm = {}
@@ -207,7 +207,7 @@ const Taxonomy = (props) => {
 																/>
 															</svg>
 														</span>
-														{ ( !item.hasOwnProperty('type') || ! item.type ) && <span onClick={() => { handleDelete(item.id) }}>
+														{(!item.hasOwnProperty('type') || !item.type) && <span onClick={() => { handleDelete(item.id) }}>
 															<svg
 																width={16}
 																height={16}
@@ -276,17 +276,17 @@ const Taxonomy = (props) => {
 					Add new {props.title}
 				</button>
 			</div>
-			
-			{modal && <Form 
+
+			{modal && <Form
 				{...props}
-                taxonomy={props.taxonomy}
-                title={props.title}
-                modalType={modalType}
+				taxonomy={props.taxonomy}
+				title={props.title}
+				modalType={modalType}
 				reload={getData}
-                data={form}
+				data={form}
 				color={props.color}
-                close={ () => setModal(false) }
-            />} 
+				close={() => setModal(false)}
+			/>}
 		</>
 	);
 }

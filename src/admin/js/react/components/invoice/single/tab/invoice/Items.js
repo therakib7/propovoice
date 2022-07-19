@@ -94,9 +94,9 @@ class Items extends Component {
                             onClick={addHandler}
                         >
                             <svg
-                                width={16}
-                                height={16}
-                                viewBox="0 0 12 10"
+                                width={15}
+                                height={14}
+                                viewBox="0 1 12 10"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >

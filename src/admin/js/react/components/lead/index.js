@@ -1,6 +1,6 @@
 import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
-import Action from 'block/action/table'; 
+import Action from 'block/action/table';
 import Preloader from 'block/preloader/table';
 import Pagination from 'block/pagination';
 
@@ -18,10 +18,10 @@ const Lead = (props) => {
 			<Breadcrumb title={title} />
 
 			<div className="row">
-				<div className="col-lg-6">
+				<div className="col">
 					<h2 className="pi-page-title">{title}</h2>
 				</div>
-				<div className="col-lg-6">
+				<div className="col">
 					<AddNew
 						title={title}
 						openForm={props.openForm}
@@ -123,13 +123,13 @@ const Lead = (props) => {
 				handleSubmit={props.getLists}
 			/>
 
-			{checkedBoxes.length > 0 && 
-				<Action 
-					length={checkedBoxes.length} 
-					uncheckAll={props.uncheckAll} 
+			{checkedBoxes.length > 0 &&
+				<Action
+					length={checkedBoxes.length}
+					uncheckAll={props.uncheckAll}
 					deleteEntry={props.deleteEntry}
-				/> 
-			} 
+				/>
+			}
 
 			{props.state.formModal && <Form
 				handleSubmit={props.handleSubmit}

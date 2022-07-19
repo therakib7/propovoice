@@ -316,7 +316,7 @@ class Dashboard extends Component {
                                 </svg>
                                 Add Contact
                             </button>
-                            <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke">
+                            <button className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
                                 <svg
                                     width={20}
                                     height={20}

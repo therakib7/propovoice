@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState } from 'react'; 
+import React, { useRef, useCallback, useState } from 'react';
 import useClickOutside from 'block/outside-click';
 
 const Action = (props) => {
@@ -14,7 +14,7 @@ const Action = (props) => {
         } else {
             setDropdown(true);
         }
-    }; 
+    };
 
     const row = props.row;
     return (

@@ -89,8 +89,8 @@ const Dashboard = (props) => {
 
             <div className="pi-block">
                 <div className="row">
-                    <div className="col-7">
-                        <div className='pi-table-wrap pi-bg-white pi-border-gray' style={{ padding: '10px 20px 20px 30px', marginBottom: '30px' }}>
+                    <div className="col-lg-7">
+                        <div className='pi-bg-white pi-border-gray' style={{ padding: '10px 20px 20px 30px', marginBottom: '20px' }}>
                             <h3
                                 className="pi-title-medium pi-mb-20"
                                 style={{ fontWeight: "bold", color: "#718096" }}
@@ -103,7 +103,7 @@ const Dashboard = (props) => {
                         </div>
                     </div>
 
-                    <div className="col-5">
+                    <div className="col-lg-5">
                         <Suspense fallback={<Spinner />}>
                             <DealFunnel {...props} />
                         </Suspense>
@@ -111,16 +111,16 @@ const Dashboard = (props) => {
                 </div>
             </div>
 
-            <div className="">
+            <div className="pi-mt-30">
                 <div className="row">
-                    <div className="col-8">
+                    <div className="col-lg-8">
                         <Suspense fallback={<Spinner />}>
                             <ChartLine />
                             <ChartBar {...props} type='estimate' />
                             <ChartBar {...props} type='invoice' />
                         </Suspense>
                     </div>
-                    <div className="col-4">
+                    <div className="col-lg-4">
                         <Suspense fallback={<Spinner />}>
                             <ChartPie {...props} type='lead_level' />
                             <ChartPie {...props} type='lead_source' />

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
-import Action from 'block/action/table'; 
+import Action from 'block/action/table';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
 
@@ -26,14 +26,14 @@ const Org = (props) => {
           <h2 className="pi-page-title">Contact Book</h2>
         </div>
         <div className="col-lg-6">
-          <AddNew 
-						title={title}
-						openForm={props.openForm}
-					/>
+          <AddNew
+            title={title}
+            openForm={props.openForm}
+          />
         </div>
       </div>
 
-      { true && <div className="pi-buttons-group pi-mb-20">
+      {true && <div className="pi-buttons-group pi-mb-20">
         <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
           <svg
             width={20}
@@ -141,13 +141,13 @@ const Org = (props) => {
         </button>
       </div>
 
-      {checkedBoxes.length > 0 && 
-				<Action 
-					length={checkedBoxes.length} 
-					uncheckAll={props.uncheckAll} 
-					deleteEntry={props.deleteEntry}
-				/> 
-			} 
+      {checkedBoxes.length > 0 &&
+        <Action
+          length={checkedBoxes.length}
+          uncheckAll={props.uncheckAll}
+          deleteEntry={props.deleteEntry}
+        />
+      }
 
       {props.state.formModal && <Form
         handleSubmit={props.handleSubmit}

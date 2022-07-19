@@ -36,16 +36,16 @@ class Form extends Component {
 
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
-                let form = {...this.state.form};
+                let form = { ...this.state.form };
                 delete form.priority_id;
                 delete form.status_id;
                 delete form.type_id;
-                this.props.update('tasks', form.id, form); 
+                this.props.update('tasks', form.id, form);
             }, 300);
         });
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         //added this multiple place, because not working in invoice single
         this.editData();
     }
@@ -83,14 +83,14 @@ class Form extends Component {
     handleChecklistChange = (data) => {
         let form = { ...this.state.form }
         form.checklist = data;
-        this.setState({ form }, () => { 
+        this.setState({ form }, () => {
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
-                let form = {...this.state.form};
+                let form = { ...this.state.form };
                 delete form.priority_id;
                 delete form.status_id;
                 delete form.type_id;
-                this.props.update('tasks', form.id, form); 
+                this.props.update('tasks', form.id, form);
             }, 300);
         })
     }
@@ -311,82 +311,7 @@ class Form extends Component {
                                 <div className="col">
                                     <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} />
                                 </div>
-<<<<<<< HEAD
                             </div>
-                            <div className="row">
-                                <div className="col">
-                                    <div class="pi-checklist-head">
-                                        <label>
-                                            Checklist
-                                            <span class="pi-mt-3 pi-ml-5">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M5.79375 13.4999H3C2.86739 13.4999 2.74022 13.4473 2.64645 13.3535C2.55268 13.2597 2.5 13.1326 2.5 12.9999V10.2062C2.49978 10.1413 2.51236 10.0769 2.53702 10.0169C2.56169 9.95682 2.59796 9.90222 2.64375 9.85619L10.1438 2.3562C10.1903 2.30895 10.2457 2.27144 10.3069 2.24583C10.3681 2.22022 10.4337 2.20703 10.5 2.20703C10.5663 2.20703 10.632 2.22022 10.6931 2.24583C10.7543 2.27144 10.8097 2.30895 10.8563 2.3562L13.6438 5.1437C13.691 5.19022 13.7285 5.24568 13.7541 5.30684C13.7797 5.368 13.7929 5.43364 13.7929 5.49995C13.7929 5.56625 13.7797 5.63189 13.7541 5.69305C13.7285 5.75421 13.691 5.80967 13.6438 5.85619L6.14375 13.3562C6.09773 13.402 6.04313 13.4383 5.98307 13.4629C5.92301 13.4876 5.85868 13.5002 5.79375 13.4999V13.4999Z" stroke="#CBD5E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M8.5 4L12 7.5" stroke="#CBD5E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                            </span>
-                                        </label>
-                                        <span>45 Done</span>
-                                    </div>
-                                    <div className="pi-checklist-content">
-                                        <ul>
-                                            <li>
-                                                <input id="checkbox" type="checkbox" />
-                                                <label htmlFor="checkbox">Checkbox</label>
-                                            </li>
-                                            <li>
-                                                <input id="preparation" type="checkbox" />
-                                                <label htmlFor="preparation">Preparation</label>
-                                            </li>
-                                            <li>
-                                                <input id="mail" type="checkbox" />
-                                                <label htmlFor="mail">Mail</label>
-                                            </li>
-                                            <li>
-                                                <input id="feedback" type="checkbox" />
-                                                <label htmlFor="feedback">Feedback</label>
-                                            </li>
-                                            <li>
-                                                <input id="update" type="checkbox" />
-                                                <label htmlFor="update">Update</label>
-                                            </li>
-                                            <li>
-                                                <input id="testing" type="checkbox" />
-                                                <label htmlFor="testing">Testing</label>
-                                            </li>
-                                        </ul>
-                                        <button
-                                            className="pi-btn pi-btn-small"
-                                            style={{ color: "#CBD5E0", border: "none", marginLeft: "-10px" }}
-                                        >
-                                            <svg
-                                                width={12}
-                                                height={12}
-                                                viewBox="0 0 12 12"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M1.875 6H10.125"
-                                                    stroke="#CBD5E0"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                                <path
-                                                    d="M6 1.875V10.125"
-                                                    stroke="#CBD5E0"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
-                                            Write new checklist item
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-=======
-                            </div>  
->>>>>>> 9b68f27384144555f8b930626040e26830fba3ff
                         </div>
                     </div>
                 </div>
