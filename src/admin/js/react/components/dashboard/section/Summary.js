@@ -83,8 +83,8 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Contact</p>
-                        <h4>23</h4>
+                        <p className="">Total Client</p>
+                        <h4>{summary.total_client}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
@@ -103,8 +103,8 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Total Client</p>
-                        <h4>23</h4>
+                        <p className="">Total Lead</p>
+                        <h4>{summary.total_client}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
@@ -133,8 +133,8 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Invoice Revenue</p>
-                        <h4>$ 23</h4>
+                        <p className="">Total Deal</p>
+                        <h4>{summary.total_invoice}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
@@ -173,8 +173,8 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Overdue</p>
-                        <h4>23</h4>
+                        <p className="">Total Invoice</p>
+                        <h4>{summary.total_invoice}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
@@ -203,8 +203,8 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Invoice Revenue</p>
-                        <h4>$ 23</h4>
+                        <p className="">Total Estimate</p>
+                        <h4>{summary.total_estimate}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
@@ -243,7 +243,7 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Overdue</p>
+                        <p className="">Total Project</p>
                         <h4>23</h4>
                     </div>
                 </div>

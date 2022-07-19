@@ -33,7 +33,7 @@ const Org = (props) => {
         </div>
       </div>
 
-      { true && <div className="pi-buttons-group pi-mb-20">
+      { false && <div className="pi-buttons-group pi-mb-20">
         <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
           <svg
             width={20}

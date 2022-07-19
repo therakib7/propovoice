@@ -963,6 +963,10 @@ html {
   .ncpi .pi-table-wrap .pi-table {
     width: 190%;
   }
+  .ncpi .pi-p-m {
+    padding-left: 15px;
+    margin-left: -15px;
+  }
 }
 .ncpi .pi-table-two tr th .pi-project {
   display: flex;
@@ -1451,7 +1455,6 @@ html {
 }
 .ncpi .pi-empty-content {
   padding: 150px 0 150px;
-  // margin-bottom: 225px;
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-empty-content {
@@ -1495,6 +1498,8 @@ html {
 .ncpi .pi-breadcrumb ul {
   margin: 0;
   display: flex;
+  z-index: 10;
+  position: relative;
 }
 .ncpi .pi-breadcrumb ul li {
   padding: 5px;
@@ -3056,7 +3061,6 @@ ul {
   border: 3px solid var(--bg-color-blue);
   z-index: 1;
   opacity: 0;
-  cursor: auto;
 }
 .ncpi .pi-single-tabs .pi-tab-item .pi-arrow {
   position: absolute;
@@ -3414,7 +3418,8 @@ ul {
 }
 @media screen and (max-width: 820px) {
   .ncpi .pi-settings-tab .pi-settings-subtabs .pi-subtab a {
-    padding-left: 30px;
+    padding-left: 20px;
+    padding: 10px 20px;
   }
 }
 .ncpi .pi-settings-tab .pi-settings-subtabs .pi-subtab a:hover,
@@ -3764,7 +3769,12 @@ ul {
   color: #718096;
   font-size: 14px;
   font-weight: 500;
-  margin-bottom: 0 !important;
+  margin-bottom: 12px !important;
+}
+@media screen and (max-width: 420px) {
+  .ncpi .pi-repeter-content .row .col {
+    flex-basis: inherit;
+  }
 }
 .ncpi .pi-field-repeater .row > div {
   margin-bottom: 0px !important;
@@ -3775,17 +3785,16 @@ ul {
 .ncpi .pi-field-repeater ul li {
   margin-bottom: 10px;
   border: 1px solid #e2e8f0;
-  padding: 10px 10px 10px 0px;
+  padding: 10px 5px 10px 0px;
   border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .ncpi .pi-field-repeater ul li .pi-badge {
   margin-left: 5px;
   position: relative;
   top: -5px;
-}
-.ncpi .pi-field-repeater ul li .pi-text-right span {
-  padding: 10px 5px;
-  cursor: pointer;
 }
 .ncpi .pi-field-repeater ul li .pi-dot-list {
   cursor: move;
@@ -4319,16 +4328,30 @@ body {
 /*--------------------------------------------------------------
 # Headings
 --------------------------------------------------------------*/
-.ncpi h1, .ncpi h2, .ncpi h3, .ncpi h4, .ncpi h5, .ncpi h6 {
+.ncpi h1,
+.ncpi h2,
+.ncpi h3,
+.ncpi h4,
+.ncpi h5,
+.ncpi h6 {
   clear: both;
 }
-.ncpi h1, .ncpi h2, .ncpi h3, .ncpi h4, .ncpi h5, .ncpi h6, .ncpi p {
+.ncpi h1,
+.ncpi h2,
+.ncpi h3,
+.ncpi h4,
+.ncpi h5,
+.ncpi h6,
+.ncpi p {
   font-family: "Inter", sans-serif;
 }
 .ncpi p {
   font-size: 14px;
 }
-.ncpi h1, .ncpi h2, .ncpi h3, .ncpi h4 {
+.ncpi h1,
+.ncpi h2,
+.ncpi h3,
+.ncpi h4 {
   font-weight: inherit;
   line-height: 30px;
   margin: 0;
@@ -4355,7 +4378,7 @@ body {
   font-weight: 500;
 }
 .ncpi .pi-title-small {
-  font-size: 16px;
+  font-size: 16px !important;
   font-weight: 500;
   margin-bottom: 15px;
   margin-top: 30px;

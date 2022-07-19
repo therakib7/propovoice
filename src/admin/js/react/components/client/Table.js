@@ -7,27 +7,26 @@ const TableHeader = props => {
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox"
-                        
+                    <input type="checkbox" 
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
                     />
                 </th>
                 <th>
-                    Client Name
+                    Name
                 </th>
                 <th>
                     Email
                 </th>
-                <th>
+                {/* <th>
                     Company Name
-                </th>
-                <th>
-                    Website
-                </th>
+                </th> */} 
                 <th>
                     Mobile
+                </th>
+                <th>
+                    Type
                 </th>
                 <th>
                     Date
@@ -60,11 +59,11 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>{row.first_name + ' ' + row.last_name}</td>
+                <td>{row.type == 'person' ? row.first_name : row.org_name}</td>
                 <td>{row.email}</td>
-                <td>{row.org_name}</td>
-                <td>{row.web}</td>
+                {/* <td>{row.org_name}</td> */} 
                 <td>{row.mobile}</td>
+                <td>{row.type == 'person' ? 'Person' : 'Organization'}</td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>  
                 <td className="pi-action">
                     <Action

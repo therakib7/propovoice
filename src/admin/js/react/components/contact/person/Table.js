@@ -22,9 +22,9 @@ const TableHeader = props => {
                 <th>
                     Organization
                 </th>
-                <th>
+                {/* <th>
                     Status
-                </th> 
+                </th>  */}
                 <th>
                     Date
                 </th>
@@ -65,7 +65,7 @@ const TableBody = props => {
                 </td>
                 <td /* onClick={() => handleOverview(row.id)} */>{row.email}</td>
                 <td /* onClick={() => handleOverview(row.id)} */>{row.org_name}</td> 
-                <td><span className='pi-badge'>Client</span></td> 
+                {/* <td><span className='pi-badge'>Client</span></td>  */}
                 <td /* onClick={() => handleOverview(row.id)} */><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <Action 

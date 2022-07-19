@@ -418,8 +418,7 @@
   margin-bottom: 15px;
 }
 .ncpi .pi-board-column .pi-board-column-item .pi-board-item-top {
-  padding: 15px;
-  border-bottom: 1px solid #dddddda8;
+  padding: 15px 15px 0;
   position: relative;
 }
 .ncpi .pi-board-column .pi-board-column-item .pi-board-item-top h4 {
@@ -433,8 +432,9 @@
 }
 .ncpi .pi-board-column .pi-board-column-item .pi-board-item-top span,
 .ncpi .pi-board-column .pi-board-column-item .pi-board-item-top p {
-  font-size: 12px;
+  font-size: 10px;
   color: #718096;
+  line-height: 150%;
 }
 .ncpi .pi-board-column .pi-bg-white {
   color: #718096;
@@ -446,8 +446,8 @@
   position: relative;
 }
 .ncpi .pi-avatar-content img {
-  width: 37px;
-  height: 38px;
+  width: 30px;
+  height: 30px;
 }
 .ncpi .pi-avatar-content .pi-avatar-text {
   margin-left: 8px;
@@ -459,7 +459,7 @@
   font-weight: 600;
 }
 .ncpi .pi-avatar-content .pi-avatar-text p {
-  color: #425466;
+  color: #718096;
 }
 .ncpi .pi-avatar-content .pi-avatar-text p,
 .ncpi .pi-avatar-content .pi-avatar-text h5 {

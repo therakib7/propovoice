@@ -262,7 +262,7 @@ const Invoice = class Invoice extends Component {
                     </div>
                 </div>
 
-                { ! this.props.module_id && <div className="pi-buttons-group pi-mb-20">
+                { ! this.props.module_id && false && <div className="pi-buttons-group pi-mb-20">
                     <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
                         <svg
                             width={20}

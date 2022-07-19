@@ -22,7 +22,7 @@ const ChartBar = lazy(() => import('./chart/Bar'));
 import WithApi from 'hoc/Api';
 
 const Dashboard = (props) => {
-    const [dropdown, setDropdown] = useState(false);
+    const [dropdown, setDropdown] = useState(false); 
 
     useEffect(() => {
     }, []);

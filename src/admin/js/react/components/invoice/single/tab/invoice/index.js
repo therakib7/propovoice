@@ -689,8 +689,8 @@ class Invoice extends Component {
 										Continue
 										<svg
 											className="pi-mr-0 pi-ml-10 pi-mt-1"
-											width={6}
-											height={12}
+											width={9}
+											height={11}
 											viewBox="0 0 6 9"
 											fill="none"
 											xmlns="http://www.w3.org/2000/svg"
@@ -711,8 +711,8 @@ class Invoice extends Component {
 										{this.state.msg.saveTxt} & Continue
 										<svg
 											className="pi-mr-0 pi-ml-10 pi-mt-1"
-											width={6}
-											height={12}
+											width={9}
+											height={11}
 											viewBox="0 0 6 9"
 											fill="none"
 											xmlns="http://www.w3.org/2000/svg"
@@ -744,8 +744,8 @@ class Invoice extends Component {
 											Send Email
 											<svg
 												className="pi-mr-0 pi-ml-10 pi-mt-1"
-												width={6}
-												height={12}
+												width={9}
+												height={11}
 												viewBox="0 0 6 9"
 												fill="none"
 												xmlns="http://www.w3.org/2000/svg"
@@ -772,7 +772,7 @@ class Invoice extends Component {
 								>
 									{<span className="pi-single-tab-done"><svg
 										width={12}
-										height={12}
+										height={11}
 										xmlns="http://www.w3.org/2000/svg"
 										viewBox="3.4 5.6 17.6 13.4"
 										xmlSpace="preserve"
