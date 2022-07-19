@@ -109,6 +109,13 @@ class Form extends Component {
                     form.org_id = (form.org) ? form.org.id : null;
                 }
 
+                if ( form.hasOwnProperty('start_date') && form.start_date ) {
+                    form.start_date = new Date(form.start_date);
+                } 
+                if ( form.hasOwnProperty('due_date') && form.due_date ) {
+                    form.due_date = new Date(form.due_date);
+                }
+
                 this.setState({ form });
             }
         } else {
