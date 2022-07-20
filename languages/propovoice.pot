@@ -70,11 +70,11 @@ msgstr ""
 msgid "Name field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Deal.php:281, ../app/Ctrls/Api/Types/Deal.php:419, ../app/Ctrls/Api/Types/Lead.php:289, ../app/Ctrls/Api/Types/Lead.php:386, ../app/Ctrls/Api/Types/Project.php:296, ../app/Ctrls/Api/Types/Project.php:436
+#: ../app/Ctrls/Api/Types/Deal.php:321, ../app/Ctrls/Api/Types/Deal.php:459, ../app/Ctrls/Api/Types/Lead.php:289, ../app/Ctrls/Api/Types/Lead.php:386, ../app/Ctrls/Api/Types/Project.php:305, ../app/Ctrls/Api/Types/Project.php:445
 msgid "Contact info is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Deal.php:303
+#: ../app/Ctrls/Api/Types/Deal.php:343
 msgid "Please select a stage"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Bank & Others"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Project.php:289
+#: ../app/Ctrls/Api/Types/Project.php:298
 msgid "Please title is required"
 msgstr ""
 
@@ -126,7 +126,7 @@ msgstr ""
 msgid "Title field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Taxonomy.php:79, ../app/Ctrls/Api/Types/Taxonomy.php:216, ../app/Ctrls/Api/Types/Taxonomy.php:265
+#: ../app/Ctrls/Api/Types/Taxonomy.php:79, ../app/Ctrls/Api/Types/Taxonomy.php:217, ../app/Ctrls/Api/Types/Taxonomy.php:266
 msgid "Taxonomy is missing"
 msgstr ""
 
