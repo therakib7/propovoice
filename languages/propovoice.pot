@@ -54,23 +54,23 @@ msgstr ""
 msgid "Name is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:268, ../app/Ctrls/Api/Types/Client.php:329
+#: ../app/Ctrls/Api/Types/Client copy.php:268, ../app/Ctrls/Api/Types/Client copy.php:329
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:272, ../app/Ctrls/Api/Types/Client.php:333, ../app/Ctrls/Api/Types/Contact.php:289, ../app/Ctrls/Api/Types/Org.php:214, ../app/Ctrls/Api/Types/Org.php:301, ../app/Ctrls/Api/Types/Person.php:236, ../app/Ctrls/Api/Types/Person.php:325, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
+#: ../app/Ctrls/Api/Types/Client copy.php:272, ../app/Ctrls/Api/Types/Client copy.php:333, ../app/Ctrls/Api/Types/Client.php:194, ../app/Ctrls/Api/Types/Client.php:283, ../app/Ctrls/Api/Types/Contact.php:283, ../app/Ctrls/Api/Types/Org.php:214, ../app/Ctrls/Api/Types/Org.php:301, ../app/Ctrls/Api/Types/Person.php:236, ../app/Ctrls/Api/Types/Person.php:325, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
 msgid "Email id is not valid!"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:276, ../app/Ctrls/Api/Types/Client.php:341
+#: ../app/Ctrls/Api/Types/Client copy.php:276, ../app/Ctrls/Api/Types/Client copy.php:341
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Contact.php:285, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:210, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:232, ../app/Ctrls/Api/Types/Person.php:321, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
+#: ../app/Ctrls/Api/Types/Client.php:190, ../app/Ctrls/Api/Types/Client.php:279, ../app/Ctrls/Api/Types/Contact.php:279, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:210, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:232, ../app/Ctrls/Api/Types/Person.php:321, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
 msgid "Name field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Deal.php:281, ../app/Ctrls/Api/Types/Deal.php:419, ../app/Ctrls/Api/Types/Lead.php:289, ../app/Ctrls/Api/Types/Lead.php:386, ../app/Ctrls/Api/Types/Project.php:286, ../app/Ctrls/Api/Types/Project.php:414
+#: ../app/Ctrls/Api/Types/Deal.php:281, ../app/Ctrls/Api/Types/Deal.php:419, ../app/Ctrls/Api/Types/Lead.php:289, ../app/Ctrls/Api/Types/Lead.php:386, ../app/Ctrls/Api/Types/Project.php:296, ../app/Ctrls/Api/Types/Project.php:436
 msgid "Contact info is missing"
 msgstr ""
 
@@ -90,15 +90,15 @@ msgstr ""
 msgid "Type is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Invoice.php:396, ../app/Ctrls/Api/Types/Invoice.php:517, ../app/Ctrls/Api/Types/Proposal.php:262, ../app/Ctrls/Api/Types/Proposal.php:366
+#: ../app/Ctrls/Api/Types/Invoice.php:410, ../app/Ctrls/Api/Types/Invoice.php:536, ../app/Ctrls/Api/Types/Proposal.php:262, ../app/Ctrls/Api/Types/Proposal.php:366
 msgid "Business is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Invoice.php:400, ../app/Ctrls/Api/Types/Proposal.php:266
+#: ../app/Ctrls/Api/Types/Invoice.php:414, ../app/Ctrls/Api/Types/Proposal.php:266
 msgid "Module is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Invoice.php:404, ../app/Ctrls/Api/Types/Invoice.php:521, ../app/Ctrls/Api/Types/Proposal.php:270, ../app/Ctrls/Api/Types/Proposal.php:370
+#: ../app/Ctrls/Api/Types/Invoice.php:418, ../app/Ctrls/Api/Types/Invoice.php:540, ../app/Ctrls/Api/Types/Proposal.php:270, ../app/Ctrls/Api/Types/Proposal.php:370
 msgid "Receiver is missing"
 msgstr ""
 
@@ -112,6 +112,10 @@ msgstr ""
 
 #: ../app/Ctrls/Api/Types/Payment.php:185
 msgid "Bank & Others"
+msgstr ""
+
+#: ../app/Ctrls/Api/Types/Project.php:289
+msgid "Please title is required"
 msgstr ""
 
 #: ../app/Ctrls/Api/Types/Setting.php:32, ../app/Ctrls/Api/Types/Setting.php:165
@@ -300,6 +304,56 @@ msgstr ""
 
 #: ../app/Ctrls/Setting/Types/Welcome.php:13, ../app/Ctrls/Setting/Types/Welcome.php:14
 msgid "Propovoice Welcome"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:20
+msgctxt "contact_status general name"
+msgid "Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:21
+msgctxt "contact_status singular name"
+msgid "Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:22
+msgid "Search Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:23
+msgid "All Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:24
+msgid "Parent Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:25
+msgid "Parent Contact Status:"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:26
+msgid "Edit Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:27
+msgid "Update Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:28
+msgid "Add New Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:29
+msgid "New Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:30
+msgid "Contact Status"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:31
+msgid "No contact status found."
 msgstr ""
 
 #: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:20
