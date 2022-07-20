@@ -7,7 +7,10 @@ const Summary = (props) => {
             total_estimate: 0,
             accepted_estimate: 0,
             total_invoice: 0,
-            paid_invoice: 0
+            paid_invoice: 0,
+            total_lead: 0,
+            total_deal: 0,
+            total_project: 0
         }
     );
 
@@ -104,7 +107,7 @@ const Summary = (props) => {
                             </svg>
                         </span>
                         <p className="">Total Lead</p>
-                        <h4>{summary.total_client}</h4>
+                        <h4>{summary.total_lead}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
@@ -134,7 +137,7 @@ const Summary = (props) => {
                             </svg>
                         </span>
                         <p className="">Total Deal</p>
-                        <h4>{summary.total_invoice}</h4>
+                        <h4>{summary.total_deal}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
@@ -244,7 +247,7 @@ const Summary = (props) => {
                             </svg>
                         </span>
                         <p className="">Total Project</p>
-                        <h4>23</h4>
+                        <h4>{summary.total_project}</h4>
                     </div>
                 </div>
             </div>

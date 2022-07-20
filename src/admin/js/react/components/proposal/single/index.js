@@ -18,11 +18,11 @@ export default function InvoiceWrap() {
 	}
 
 	const routeChange = id => {
-		navigate(`/${path}/single/${id}`, { replace: true });
+		navigate(`/${path}/single/${id}`);
 	};
 
 	const routeInvoice = () => {
-		navigate(`/${path}`, { replace: true });
+		navigate(`/${path}`);
 	};
 
 	return (

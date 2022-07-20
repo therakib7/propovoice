@@ -392,9 +392,9 @@ function InvoiceWrap( props ) {
     let navigate = useNavigate();
     const routeChange = () => {
         if ( module_id ) {
-            navigate(`${path}/single?module_id=${module_id}`, { replace: true });
+            navigate(`${path}/single?module_id=${module_id}`);
         } else {
-            navigate(`${path}/single`, { replace: true });
+            navigate(`${path}/single`);
         } 
     };
 

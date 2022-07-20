@@ -73,15 +73,15 @@ class ListSingle extends Component {
         this.getData();
         const path = this.props.path;
 
-        let tabs = this.state.tabs 
-        if ( path == 'deal' ) {
+        let tabs = this.state.tabs
+        if (path == 'deal') {
             tabs.push({
                 id: 'estimate',
                 text: 'Estimate'
             });
         }
 
-        if ( path == 'project' || path == 'client' ) { 
+        if (path == 'project' || path == 'client') {
             tabs.push({
                 id: 'invoice',
                 text: 'Invoice'
@@ -92,22 +92,22 @@ class ListSingle extends Component {
             });
         }
 
-        if ( path == 'client' || path == 'contact' ) { 
+        if (path == 'client' || path == 'contact') {
             tabs.push({
                 id: 'project',
                 text: 'Project'
-            });  
+            });
         }
 
-        if ( path == 'contact' ) { 
+        if (path == 'contact') {
             tabs.push({
                 id: 'deal',
                 text: 'Deal'
-            });  
+            });
         }
     }
 
-    getData = () => { 
+    getData = () => {
         const path = this.props.path;
         const url = (path == 'client' ? 'contact' : path) + 's';
         this.props.get(url, this.props.id).then(resp => {
@@ -226,7 +226,7 @@ class ListSingle extends Component {
             this.props.remove(type + 's', id).then(resp => {
                 if (resp.data.success) {
                     toast.success('Successfully deleted'); //TODO: translation
-                    this.props.navigate(`/${type}`, { replace: true });
+                    this.props.navigate(`/${type}`);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -868,23 +868,29 @@ class ListSingle extends Component {
                                         <div className="pi-select">
                                             <label>Status:</label>
                                             <div className="pi-action-content">
-                                                <button className="pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange">
-                                                    Lead
+                                                <button
+                                                    className="pi-btn pi-btn-medium"
+                                                    style={{ backgroundColor: "rgb(24, 149, 77)", color: "rgb(255, 255, 255)" }}
+                                                >
+                                                    Active
                                                     <svg
                                                         width={10}
                                                         height={6}
+                                                        className="pi-mr-0"
                                                         viewBox="0 0 10 6"
                                                         fill="none"
                                                         xmlns="http://www.w3.org/2000/svg"
+                                                        style={{ marginLeft: 10 }}
                                                     >
                                                         <path
                                                             d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
-                                                            fill="#F7936F"
+                                                            fill="#ffffff"
                                                         />
                                                     </svg>
                                                 </button>
+
                                                 <div className="pi-dropdown-content">
-                                                    <a href="#">Client</a>
+                                                    <a href="#">Block</a>
                                                 </div>
                                             </div>
                                         </div>

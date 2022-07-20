@@ -3,13 +3,13 @@ namespace Ncpi\Models;
  
 use WP_Query; 
 
-class Project {
+class Deal {
 
     public function total( $id = null )
     { 
 
         $args = array(
-            'post_type' => 'ndpi_project',
+            'post_type' => 'ndpi_deal',
             'post_status' => 'publish',
             'posts_per_page' => -1 
         ); 

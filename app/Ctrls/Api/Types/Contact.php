@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Deal;
 use Ncpi\Models\Org;
 use Ncpi\Models\Person;
 use Ncpi\Models\Project;
@@ -182,7 +183,9 @@ class Contact
 
         $project = new Project(); 
         $query_data['project'] = $project->total($id);
-        $query_data['deal'] = 3;
+        
+        $deal = new Deal(); 
+        $query_data['deal'] = $deal->total($id);
 
         $query_data['person'] = null; 
         if ( $type == 'person' ) {

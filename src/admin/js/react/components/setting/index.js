@@ -104,9 +104,9 @@ export default function SettingWrap() {
 
     const routeChange = (tab, subtab = null) => {
         if (subtab) {
-            navigate(`/setting/${tab}/${subtab}`, { replace: true });
+            navigate(`/setting/${tab}/${subtab}`);
         } else {
-            navigate(`/setting/${tab}`, { replace: true });
+            navigate(`/setting/${tab}`);
         }
     };
 

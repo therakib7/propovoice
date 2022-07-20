@@ -414,7 +414,7 @@ function InvoiceWrap() {
 
     let navigate = useNavigate();
     const routeChange = () => {
-        navigate(`${path}/single`, { replace: true });
+        navigate(`${path}/single`);
     };
 
     return (

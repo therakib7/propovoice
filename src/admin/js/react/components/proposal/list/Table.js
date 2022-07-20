@@ -63,7 +63,7 @@ const TableBody = props => {
     let navigate = useNavigate();
     function handleClick(id) {
         let path = props.path;
-        navigate(`/${path}/single/${id}`, { replace: true });
+        navigate(`/${path}/single/${id}`);
     }
 
     let rows = props.tableData.map((row, index) => {

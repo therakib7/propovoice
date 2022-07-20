@@ -3,6 +3,10 @@
 namespace Ncpi\Ctrls\Api\Types;
 
 use Ncpi\Helpers\Fns;
+use Ncpi\Models\Client;
+use Ncpi\Models\Deal;
+use Ncpi\Models\Lead;
+use Ncpi\Models\Project;
 use WP_Query;
 
 class Dashbaord
@@ -41,37 +45,22 @@ class Dashbaord
         }
     }
 
-    public function summary( $params ) {
-        $total_client = 0;
+    public function summary( $params ) { 
         $total_estimate = 0;
         $accepted_estimate = 0; 
         $total_invoice = 0;
-        $paid_invoice = 0; 
+        $paid_invoice = 0;   
 
-        $args = array(
-            'number' => -1,  
-            'orderby' => 'registered',
-            'order'   => 'DESC'
-        );
-
-        $args['meta_query'] = array(
-            'relation' => 'OR'
-        );
-
-        $args['meta_query'][] = array( 
-            array(
-                'key'     => 'ncpi_member',
-                'value'   => '1',
-                'compare' => 'LIKE'
-            )
-        );    
-
-        $all_users = new \WP_User_Query( $args );
-        $total_users = $all_users->get_total(); //use this for pagination 
-        if ( $total_users ) {
-            $total_client = $total_users;
-        }
-
+        $summary = [];
+        $client = new Client(); 
+        $lead = new Lead(); 
+        $deal = new Deal(); 
+        $project = new Project();  
+        $summary['total_client'] = $client->total(); 
+        $summary['total_lead'] = $lead->total(); 
+        $summary['total_deal'] = $deal->total(); 
+        $summary['total_project'] = $project->total();  
+        
         $args = array( 
             'post_type' => 'ncpi_estvoice',
             'post_status' => 'publish',
@@ -97,14 +86,13 @@ class Dashbaord
                 }  
             }
         } 
-        wp_reset_postdata();  
-
-        $summary = [];
-        $summary['total_client'] = $total_client;
+        wp_reset_postdata(); 
+        
         $summary['total_estimate'] = $total_estimate;
         $summary['accepted_estimate'] = $accepted_estimate;
         $summary['total_invoice'] = $total_invoice;
         $summary['paid_invoice'] = $paid_invoice;
+        
 
         wp_send_json_success($summary); 
     }
