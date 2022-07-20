@@ -107,26 +107,26 @@ const TableBody = props => {
                 break;
 
             case 'accept':
-                status = <span className='pi-badge pi-bg-blue pi-cursor-pointer' 
-                style={{color: '#fff'}}
-                onClick={() => props.infoModal(row, 'feedback')}>Accepted</span>
+                status = <span className='pi-badge pi-bg-blue pi-cursor-pointer'
+                    style={{ color: '#fff' }}
+                    onClick={() => props.infoModal(row, 'feedback')}>Accepted</span>
                 break;
 
             case 'decline':
-                status = <span className='pi-badge pi-bg-red pi-cursor-pointer' 
-                style={{color: '#fff'}}
-                onClick={() => props.infoModal(row, 'feedback')}>Declined</span>
+                status = <span className='pi-badge pi-bg-red pi-cursor-pointer'
+                    style={{ color: '#fff' }}
+                    onClick={() => props.infoModal(row, 'feedback')}>Declined</span>
                 break;
 
             case 'paid_req':
                 status = <span className='pi-badge pi-bg-orange'
-                style={{color: '#4a5568'}}
+                    style={{ color: '#4a5568' }}
                 >Paid Request</span>
                 break;
 
             case 'paid':
                 status = <span className='pi-badge pi-bg-blue'
-                style={{color: '#fff'}}
+                    style={{ color: '#fff' }}
                 >Paid</span>
                 break;
         }
@@ -167,7 +167,7 @@ const TableBody = props => {
                 <td onClick={() => { handleClick(row.id); }}>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
                 {/*<td>{row.project.name}</td>*/}
                 {!props.client_id && <td onClick={() => { handleClick(row.id); }}>
-                    {(row.to.type == 'person') ? row.to.first_name : row.to.org_name } 
+                    {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
                 </td>}
                 <td onClick={() => { handleClick(row.id); }}>{row.total}</td>
                 {/* {(props.path == 'invoice') &&

@@ -1010,7 +1010,7 @@ html {
 }
 
 .ncpi .pi-table input[type=checkbox] {
-  zoom: 1.5 !important;
+  zoom: 1.5;
   border-radius: 3px;
   transform: scale(0.8);
   border: 1px solid rgba(147, 147, 147, 0.9411764706);
@@ -3255,7 +3255,6 @@ ul {
 }
 
 .ncpi .pi-modal-sidebar-two .pi-modal-header .pi-btn-medium {
-  background: #16B21D !important;
   border-radius: 5px;
   border: none;
   margin-top: -8px;
@@ -5734,11 +5733,5 @@ select {
   .pi-collapse-menu:hover ul li a span {
     display: table;
     left: 28%;
-  }
-}
-
-@media screen and (max-width:550px) {
-  .pi-table input[type=checkbox] {
-    zoom: 0.8 !important;
   }
 }
