@@ -128,8 +128,9 @@ class Taxonomy
                     if (
                         $taxonomy == 'deal_stage' ||
                         $taxonomy == 'project_status' ||
+                        $taxonomy == 'contact_status' ||
                         $taxonomy == 'task_status'
-                    ) { // for deal won, deal lost, project complted, task done
+                    ) { // for deal won, deal lost, project complted, task done, contact active, block
                         $term_property['type'] = get_term_meta($single->term_id, 'type', true);
                     }
 

@@ -19,6 +19,7 @@ const Note = lazy(() => import('./tab/note'));
 const File = lazy(() => import('./tab/file'));
 const Invoice = lazy(() => import('components/invoice/list'));
 const Project = lazy(() => import('components/project'));
+const Deal = lazy(() => import('components/deal'));
 
 class ListSingle extends Component {
 
@@ -998,6 +999,7 @@ class ListSingle extends Component {
                                     {currentTab == 'estimate' && data.id && <Invoice module_id={data.id} path={'estimate'} />}
                                     {currentTab == 'invoice' && data.id && <Invoice module_id={data.id} path={'invoice'} />}
                                     {currentTab == 'project' && data.id && <Project module_id={data.id} />}
+                                    {currentTab == 'deal' && data.id && <Deal module_id={data.id} />}
                                 </Suspense>
                             </div>
                         </div>

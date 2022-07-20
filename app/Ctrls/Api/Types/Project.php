@@ -75,6 +75,7 @@ class Project
         $per_page = 10;
         $offset = 0;
 
+        $module_id = isset($params['module_id']) ? absint( $params['module_id']) : null;
         $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
 
         if (isset($params['per_page'])) {
@@ -121,13 +122,21 @@ class Project
                     )
                 );
             }
-        }
+        } 
+         
 
-        if ( isset($params['module_id']) ) {
+        if ( $module_id ) {
             $args['meta_query'][] = array(
                 array(
-                    'key'   => 'module_id',
-                    'value' => $params['module_id']
+                    'key'   => 'person_id',
+                    'value' => $module_id
+                )
+            );
+    
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'org_id',
+                    'value' => $module_id
                 )
             );
         }

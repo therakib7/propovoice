@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Taxonomy;
 
+use Ncpi\Ctrls\Taxonomy\Types\ContactStatus;
 use Ncpi\Ctrls\Taxonomy\Types\DealPipeline;
 use Ncpi\Ctrls\Taxonomy\Types\Tag;
 use Ncpi\Ctrls\Taxonomy\Types\DealStage;
@@ -24,5 +25,6 @@ class TaxonomyController {
 		new DealPipeline();
 		new DealStage();
 		new ProjectStatus();
+		new ContactStatus();
 	} 
 }

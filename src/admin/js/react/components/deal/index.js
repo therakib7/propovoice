@@ -6,34 +6,32 @@ import Preloader from 'block/preloader/table';
 import Pipeline from './Pipeline';
 import TaxonomyForm from 'block/field/taxonomy/Form';
 import Form from './Form';
-// import Table from './Table';
+import Table from './Table';
 // import Search from './Search';
-// import Empty from 'block/empty';
+import Empty from 'block/empty';
 
 import Crud from 'hoc/Crud';
 
 const Deal = (props) => {
 
     // const [list, setList] = useState([]);
-	// const [listById, setListById] = useState([]);
-	// const [dropdown, setDropdown] = useState(false);
-	const [modal, setModal] = useState(false);
-	const [modalType, setModalType] = useState('new');
-	const newForm = {
+    // const [listById, setListById] = useState([]);
+    // const [dropdown, setDropdown] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [modalType, setModalType] = useState('new');
+    const newForm = {
         id: null,
-		label: '',
-		color: '',
-		bg_color: '',
+        label: '',
+        color: '',
+        bg_color: '',
         icon: null
-	};
-	const [form, setForm] = useState(newForm);
+    };
+    const [form, setForm] = useState(newForm); 
 
-    const { title, lists } = props.state; 
-
-    const taxForm = ( type = 'new', data = null) => { 
+    const taxForm = (type = 'new', data = null) => {
         setModal(true)
         setModalType(type)
-        if ( type == 'new' ) {
+        if (type == 'new') {
             setForm(newForm)
         } else {
             const newData = {
@@ -42,19 +40,27 @@ const Deal = (props) => {
                 color: data.color,
                 bg_color: data.bg_color,
                 icon: null
-            } 
+            }
             setForm(newData)
         }
-    }; 
-    
-    useEffect(() => {
-        props.onLoad(true); 
-        return () => props.onLoad(false);
-    }, []);
+    };
 
+    useEffect(() => {
+        if (props.onLoad) {
+            props.onLoad(true);
+        }
+
+        return () => {
+            if (props.onLoad) {
+                props.onLoad(false);
+            }
+        }
+    }, []);
+    
+    const { title, lists, checkedBoxes, searchVal } = props.state;
     return (
         <div className="ncpi-components">
-            <Breadcrumb title={title + ' Pipeline'} />  
+            {!props.module_id && <Breadcrumb title={title + ' Pipeline'} />} 
 
             {props.state.formModal && <Form
                 handleSubmit={props.handleSubmit}
@@ -64,24 +70,24 @@ const Deal = (props) => {
             />}
 
             {modal && <TaxonomyForm
-				{...props}
-				taxonomy='deal_stage'
-				title='Stage'
+                {...props}
+                taxonomy='deal_stage'
+                title='Stage'
                 reload={props.getLists}
-				modalType={modalType} 
-				data={form}
-				color={true}
-				close={() => setModal(false)}
-			/>}
+                modalType={modalType}
+                data={form}
+                color={true}
+                close={() => setModal(false)}
+            />}
 
             <div className="row">
                 <div className="col-lg-6">
-                    <h2 className="pi-page-title pi-mb-15">{title + ' Pipeline'}</h2> 
+                    <h2 className="pi-page-title pi-mb-15">{title + ( !props.module_id  ? ' Pipeline' : '' )}</h2>
                 </div>
-                
+
                 <div className="col-lg-6 pi-text-right">
                     <div className="pi-list-single-button-content">
-                        <button 
+                        {!props.module_id && <button
                             className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow"
                             onClick={() => taxForm('new')}
                         >
@@ -108,10 +114,11 @@ const Deal = (props) => {
                                 />
                             </svg>
                             Add Stage
-                        </button>
-                        <button 
-                        className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white"
-                        onClick={() => props.openForm('new')}                        
+                        </button>}
+
+                        <button
+                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white"
+                            onClick={() => props.openForm('new')}
                         >
                             <svg
                                 width={14}
@@ -140,15 +147,26 @@ const Deal = (props) => {
                     </div>
                 </div>
             </div>
-            
-            {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />} 
-            
+
+            {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
+
             {props.state.preloader ? <Preloader /> :
-                <Pipeline
-                    new={props.openForm} 
-                    data={lists}
-                    taxForm={taxForm}
-                />}
+                <>
+                    {!props.module_id && <Pipeline
+                        new={props.openForm}
+                        data={lists}
+                        taxForm={taxForm}
+                    />}
+
+                    {props.module_id && <>
+                        <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
+                        <div className="pi-pagination-content">
+                            {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
+                        </div>
+                    </>}
+                </>
+            } 
+
         </div>
     );
 }
