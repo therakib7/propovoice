@@ -93,7 +93,7 @@ class Form extends Component {
                 }
 
                 form.first_name = (form.person) ? form.person.first_name : '';
-                if (form.person) { 
+                if (form.person) {
                     form.person_id = (form.person) ? form.person.id : null;
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
@@ -102,17 +102,17 @@ class Form extends Component {
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
-                } 
-                form.org_name = (form.org) ? form.org.name : ''; 
+                }
+                form.org_name = (form.org) ? form.org.name : '';
 
-                if ( form.org ) {
+                if (form.org) {
                     form.org_id = (form.org) ? form.org.id : null;
                 }
 
-                if ( form.hasOwnProperty('start_date') && form.start_date ) {
+                if (form.hasOwnProperty('start_date') && form.start_date) {
                     form.start_date = new Date(form.start_date);
-                } 
-                if ( form.hasOwnProperty('due_date') && form.due_date ) {
+                }
+                if (form.hasOwnProperty('due_date') && form.due_date) {
                     form.due_date = new Date(form.due_date);
                 }
 
@@ -219,15 +219,15 @@ class Form extends Component {
     }
 
     onDateChange = (date, type = null) => {
-		let form = { ...this.state.form }
+        let form = { ...this.state.form }
 
-		if (type == 'date') {
-			form.start_date = date;
-		} else {
-			form.due_date = date;
-		}
-		this.setState({ form });
-	}
+        if (type == 'date') {
+            form.start_date = date;
+        } else {
+            form.due_date = date;
+        }
+        this.setState({ form });
+    }
 
     render() {
         const stageList = this.state.stages;
@@ -275,7 +275,7 @@ class Form extends Component {
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
-                            <div className="pi-form-style-one"> 
+                            <div className="pi-form-style-one">
 
                                 {!this.props.reload && <>
                                     <Contact
@@ -385,7 +385,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label htmlFor="field-start_date">
                                             Start Date
-                                        </label> 
+                                        </label>
                                         <div className='pi-field-date'>
                                             <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
                                         </div>
@@ -394,10 +394,10 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label htmlFor="field-start_date">
                                             Due Date
-                                        </label> 
+                                        </label>
                                         <div className='pi-field-date'>
                                             <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
 

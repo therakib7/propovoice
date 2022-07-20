@@ -6,7 +6,7 @@ class Contact extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { 
+        this.state = {
             personList: [],
             orgList: [],
             personModal: false,
@@ -38,37 +38,37 @@ class Contact extends Component {
         }
 
         // this.setState({ form: { ...this.state.form, [name]: value } }, () => {
+        if (name == 'first_name') {
+            this.props.onChange(value, 'person');
+        } else {
+            this.props.onChange(value, 'org');
+        }
+        //search when typing stop
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
             if (name == 'first_name') {
-                this.props.onChange(value, 'person');
+                this.props.getAll('persons', 'first_name=' + value).then(resp => {
+                    let persons = resp.data.data.result;
+                    this.setState({ personModal: true, personList: persons });
+                });
             } else {
-                this.props.onChange(value, 'org');
+                this.props.getAll('organizations', 'name=' + value).then(resp => {
+                    let orgs = resp.data.data.result;
+                    this.setState({ orgModal: true, orgList: orgs });
+                });
             }
-            //search when typing stop
-            if (this.timeout) clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-                if (name == 'first_name') {
-                    this.props.getAll('persons', 'first_name=' + value).then(resp => {
-                        let persons = resp.data.data.result;
-                        this.setState({ personModal: true, personList: persons });
-                    });
-                } else {
-                    this.props.getAll('organizations', 'name=' + value).then(resp => {
-                        let orgs = resp.data.data.result;
-                        this.setState({ orgModal: true, orgList: orgs });
-                    });
-                }
 
-            }, 300);
+        }, 300);
         // });
     }
 
     handleSelect = (e, val, type) => {
         e.preventDefault();
 
-        this.props.onSelect(val, type); 
-        if (type == 'person') { 
+        this.props.onSelect(val, type);
+        if (type == 'person') {
             this.setState({ personModal: false, personList: [] });
-        } else { 
+        } else {
             this.setState({ orgModal: false, orgList: [] });
         }
     }
@@ -107,7 +107,7 @@ class Contact extends Component {
                     Contact Organization
                 </label>
                 <div className="pi-field-search">
-                    <div className="pi-action-content"> 
+                    <div className="pi-action-content">
                         <input
                             id="org_name"
                             type="text"
@@ -129,10 +129,10 @@ class Contact extends Component {
         );
 
         return (
-            <div className="row"> 
-                { ! this.props.personLast && person}
-                {org} 
-                { this.props.personLast && person}
+            <div className="row">
+                {!this.props.personLast && person}
+                {org}
+                {this.props.personLast && person}
             </div>
         );
     }

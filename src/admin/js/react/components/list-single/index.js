@@ -1,7 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
-import Moment from 'react-moment';  
+import Moment from 'react-moment';
 import Spinner from 'block/preloader/spinner';
 import Taxonomy from 'block/field/taxonomy';
 import WithApi from 'hoc/Api';
@@ -59,7 +59,7 @@ class ListSingle extends Component {
                 },
                 org: {
                     name: 'Name'
-                }, 
+                },
                 level_id: null,
                 stage_id: null,
                 probability: 0,
@@ -78,18 +78,18 @@ class ListSingle extends Component {
             tabs.push({
                 id: 'estimate',
                 text: 'Estimate'
-            }); 
+            });
         }
 
         if ( path == 'project' || path == 'client' ) { 
             tabs.push({
                 id: 'invoice',
                 text: 'Invoice'
-            }); 
+            });
             tabs.push({
                 id: 'estimate',
                 text: 'Estimate'
-            }); 
+            });
         }
 
         if ( path == 'client' ) { 
@@ -103,7 +103,7 @@ class ListSingle extends Component {
     getData = () => {
         // console.log(this.props.id);
         const path = this.props.path;
-        const url = ( path == 'client' ? 'contact' : path ) + 's';
+        const url = (path == 'client' ? 'contact' : path) + 's';
         this.props.get(url, this.props.id).then(resp => {
             this.setState({ data: resp.data.data });
             if (path == 'lead') {
@@ -193,14 +193,14 @@ class ListSingle extends Component {
             data.stage_id = val;
             this.setState({ data });
         }
-        
+
     }
 
     handleProjectStatusChange = (val) => {
         let data = { ...this.state.data }
         if (val == 'completed') {
             let obj = this.state.project_status.find(o => o.type === val);
-            data.status_id = obj; 
+            data.status_id = obj;
             this.setState({ data }, () => {
                 let newData = {};
                 if (data.status_id) {
@@ -211,7 +211,7 @@ class ListSingle extends Component {
         } else {
             data.status_id = val;
             this.setState({ data });
-        } 
+        }
     }
 
     deleteEntry = (type, id) => {
@@ -232,7 +232,7 @@ class ListSingle extends Component {
 
     render() {
         const { tabs = [], currentTab } = this.state;
-        const { path } = this.props; 
+        const { path } = this.props;
         const data = this.state.data;
         return (
             <div className="ncpi-components">
@@ -460,7 +460,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Deal Stage:</label>
-                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={ this.handleStageChange } taxonomy='deal_stage' title='Stage' color={true} />}
+                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title='Stage' color={true} />}
                                         </div>
 
                                         <button
@@ -514,7 +514,7 @@ class ListSingle extends Component {
 
                                         <div
                                             className="pi-action-content pi-action-btn pi-bg-shadow"
-                                            style={{padding: 1}}
+                                            style={{ padding: 1 }}
                                         >
                                             <button
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
@@ -606,7 +606,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Project Status:</label>
-                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={ this.handleProjectStatusChange } title='Status' color={true} />} 
+                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={this.handleProjectStatusChange} title='Status' color={true} />}
                                         </div>
 
                                         {(data.status_id && data.status_id.type != 'completed') && <button
@@ -833,8 +833,8 @@ class ListSingle extends Component {
                     </>
                 }
 
-                { ( path == 'contact' || path == 'client' ) &&
-                    <> 
+                {(path == 'contact' || path == 'client') &&
+                    <>
                         <div className="pi-list-single-head">
                             <div className="row">
                                 <div className="col-md-6">

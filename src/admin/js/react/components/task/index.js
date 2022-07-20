@@ -9,8 +9,8 @@ class ListSingle extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {  
-			action: false, 
+		this.state = {
+			action: false,
 		};
 
 		this.timeout = 0;

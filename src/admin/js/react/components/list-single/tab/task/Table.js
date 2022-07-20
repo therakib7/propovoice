@@ -3,14 +3,14 @@ import Moment from 'react-moment';
 import Action from 'block/action/row';
 import Taxonomy from 'block/field/taxonomy';
 
-const TableBody = props => {  
+const TableBody = props => {
 
     return props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
- 
+
         return (
-            <div className={"pi-accordion-table-list " + ( props.dashboard ? 'pi-mt-15 pi-mb-15' : '')} key={index}> 
+            <div className={"pi-accordion-table-list " + (props.dashboard ? 'pi-mt-15 pi-mb-15' : '')} key={index}>
                 {!props.dashboard && <div className="pi-checkbox">
                     <input type="checkbox"
                         value={row.id}
@@ -19,8 +19,8 @@ const TableBody = props => {
                     />
                 </div>}
                 <ul>
-                    <li style={{width: '45%'}} className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
-                        <div className={"pi-task-type " + ( props.dashboard ? 'pi-mt-10' : '' )}>
+                    <li style={{ width: '45%' }} className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
+                        <div className={"pi-task-type " + (props.dashboard ? 'pi-mt-10' : '')}>
                             {row.type_id.icon && <img src={row.type_id.icon.src} />}
                             {!row.type_id.icon && <svg
                                 width={16}
@@ -65,14 +65,17 @@ const TableBody = props => {
                                 <Moment format="YYYY-MM-DD">{row.date}</Moment>
                             </p>
                         </div>
-                    </li> 
-                    <li style={{width: '20%'}}> 
-                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title='Status' small={true} color={true} /> 
                     </li>
-                    <li style={{width: '20%'}}>
-                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title='Priority' small={true} color={true} />  
+                    <li style={{ width: '20%' }}>
+                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title='Status' small={true} color={true} />
                     </li>
-                    <li> 
+                    <li style={{ width: '20%' }}>
+                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title='Priority' small={true} color={true} />
+                    </li>
+                    <li style={{ width: '15%' }}>
+                        <Taxonomy id={row.id} data={row.priority_id} taxonomy='task_priority' title='Priority' small={true} color={true} />
+                    </li>
+                    <li>
                         <Action
                             row={row}
                             editEntry={props.editEntry}
@@ -88,9 +91,13 @@ const TableBody = props => {
 const Table = (props) => {
     return (
         <>
-            {props.tableData.length > 0 && <div className='pi-accordion-table-list-area'>
-                <TableBody {...props} />
-            </div>}
+            {props.tableData.length > 0 &&
+                <div className='pi-table-wrap pi-p-m'>
+                    <div className='pi-accordion-table-list-area'>
+                        <TableBody {...props} />
+                    </div>
+                </div>
+            }
         </>
     );
 }

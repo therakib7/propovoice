@@ -7,7 +7,7 @@ const TableHeader = props => {
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox" 
+                    <input type="checkbox"
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
@@ -21,7 +21,7 @@ const TableHeader = props => {
                 </th>
                 {/* <th>
                     Company Name
-                </th> */} 
+                </th> */}
                 <th>
                     Mobile
                 </th>
@@ -39,21 +39,21 @@ const TableHeader = props => {
     );
 }
 
-const TableBody = props => { 
+const TableBody = props => {
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const handleOverview = (id) => {
-		navigate(`/client/single/${id}`, { replace: true });
+        navigate(`/client/single/${id}`, { replace: true });
     };
 
-    let rows = props.tableData.map((row, index) => { 
+    let rows = props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
-        const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false; 
+        const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
         return (
             <tr key={index}>
                 <td>
                     <input type="checkbox"
-                        
+
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
@@ -61,17 +61,17 @@ const TableBody = props => {
                 </td>
                 <td onClick={() => handleOverview(row.id)}>{row.type == 'person' ? row.first_name : row.org_name}</td>
                 <td onClick={() => handleOverview(row.id)}>{row.email}</td>
-                {/*<td>{row.org_name}</td> */} 
+                {/*<td>{row.org_name}</td> */}
                 <td onClick={() => handleOverview(row.id)}>{row.mobile}</td>
                 <td>{row.type == 'person' ? 'Person' : 'Organization'}</td>
-                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>  
+                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <Action
                         row={row}
                         handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
-                    /> 
+                    />
                 </td>
             </tr>
         );

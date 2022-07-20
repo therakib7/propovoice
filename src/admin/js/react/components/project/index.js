@@ -18,10 +18,10 @@ const Project = (props) => {
       {!props.module_id && <Breadcrumb title={title} />}
 
       <div className="row">
-        <div className="col-lg-6">
+        <div className="col-5">
           <h2 className="pi-page-title">{title}</h2>
         </div>
-        <div className="col-lg-6">
+        <div className="col-7">
           <AddNew
             title={title}
             openForm={props.openForm}

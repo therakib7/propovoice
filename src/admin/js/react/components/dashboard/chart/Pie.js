@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts'; 
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
 export default class Example extends PureComponent {
     constructor(props) {
@@ -43,18 +43,18 @@ export default class Example extends PureComponent {
                                 //paddingAngle={5}
                                 dataKey="width"
                             >
-                                {data.map((entry, index) => (  
+                                {data.map((entry, index) => (
                                     <Cell key={`cell-${index}`} fill={data[index].bg_color} />
                                 ))}
                             </Pie>
                         </PieChart>}
                     </div>
 
-                    <div className="col-6" style={{alignSelf: 'center'}}>
+                    <div className="col-6" style={{ alignSelf: 'center' }}>
                         <div className="pi-field-color-ficker">
-                            <ul> 
+                            <ul>
                                 {data.map((item, i) => (
-                                    <li key={i} > 
+                                    <li key={i} >
                                         <span style={{ backgroundColor: item.bg_color }} /> {item.name} <b>{item.width}%</b>
                                     </li>
                                 ))}
@@ -62,7 +62,7 @@ export default class Example extends PureComponent {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }

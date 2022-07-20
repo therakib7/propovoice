@@ -117,8 +117,9 @@ const Taxonomy = (props) => {
 												style={provided.draggableProps.style}
 												className={snapshot.isDragging ? styles.listItemDragging : styles.listItem}
 											>
+
 												<div className="">
-													<span className="pi-mt-2 pi-dot-list">
+													<span className="pi-mt-3 pi-dot-list">
 														<svg
 															width={24}
 															height={24}
@@ -238,6 +239,7 @@ const Taxonomy = (props) => {
 														</svg>
 													</span>}
 												</div>
+
 											</li>
 										)}
 									</Draggable>

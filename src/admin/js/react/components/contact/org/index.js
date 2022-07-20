@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
-import Action from 'block/action/table'; 
+import Action from 'block/action/table';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
 
@@ -26,14 +26,14 @@ const Org = (props) => {
           <h2 className="pi-page-title">Contact Book</h2>
         </div>
         <div className="col-lg-6">
-          <AddNew 
-						title={title}
-						openForm={props.openForm}
-					/>
+          <AddNew
+            title={title}
+            openForm={props.openForm}
+          />
         </div>
       </div>
 
-      { false && <div className="pi-buttons-group pi-mb-20">
+      {false && <div className="pi-buttons-group pi-mb-20">
         <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
           <svg
             width={20}
@@ -142,13 +142,13 @@ const Org = (props) => {
         </button>
       </div>
 
-      {checkedBoxes.length > 0 && 
-				<Action 
-					length={checkedBoxes.length} 
-					uncheckAll={props.uncheckAll} 
-					deleteEntry={props.deleteEntry}
-				/> 
-			} 
+      {checkedBoxes.length > 0 &&
+        <Action
+          length={checkedBoxes.length}
+          uncheckAll={props.uncheckAll}
+          deleteEntry={props.deleteEntry}
+        />
+      }
 
       {props.state.formModal && <Form
         handleSubmit={props.handleSubmit}
@@ -157,7 +157,7 @@ const Org = (props) => {
         close={props.closeForm}
       />}
 
-      {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />} 
+      {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
 
       {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 

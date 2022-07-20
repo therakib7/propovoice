@@ -1,9 +1,9 @@
-import React, { Component } from 'react'; 
- 
+import React, { Component } from 'react';
+
 import ReactPaginate from 'react-paginate';
 
 import Preloader from 'block/preloader/table';
- 
+
 import Form from './Form';
 import Table from './Table';
 import Search from './Search';
@@ -13,27 +13,27 @@ import Crud from 'hoc/Crud';
 
 class Business extends Component {
     constructor(props) {
-        super(props);  
-    }  
+        super(props);
+    }
 
     render() {
         const { title, lists, checkedBoxes, searchVal } = this.props.state;
         return (
             <div className="ncpi-components">
                 {wage.length > 0 &&
-                <>
-                    <div className="pi-setting-heading-content">
-                        <h3>Business Info</h3>
-                        <p><b>Note:</b> In this version, You can add only one business info</p>
-                    </div>
-                </>}
+                    <>
+                        <div className="pi-setting-heading-content">
+                            <h3>Business Info</h3>
+                            <p><b>Note:</b> In this version, You can add only one business info</p>
+                        </div>
+                    </>}
 
                 <div className="pi-buttons">
                     <button
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.props.openForm('new')} >
                         Create New {title}
-                    </button> 
+                    </button>
 
                     <div className="pi-search-box pi-float-right">
                         <svg
@@ -106,7 +106,7 @@ class Business extends Component {
                             Delete
                         </button>
                     </p>
-                </div>} 
+                </div>}
                 {this.props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={this.props.openForm} checkedBoxes={{ data: checkedBoxes, handle: this.props.handleCheckbox }} deleteEntry={this.props.deleteEntry} />}
 
                 {this.props.state.totalPage > 1 && <ReactPaginate
@@ -129,5 +129,5 @@ class Business extends Component {
             </div>
         );
     }
-}  
+}
 export default Crud(Business, 'business', 'businesses');

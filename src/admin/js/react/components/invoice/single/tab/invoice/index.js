@@ -65,7 +65,7 @@ class Invoice extends Component {
 			toData: null,
 			paymentBankData: null,
 			invoice: {
-				id: null, 
+				id: null,
 				token: '',
 				style: {
 					primary_color: '#4c6fff',
@@ -186,11 +186,11 @@ class Invoice extends Component {
 			dueDate.setDate(dueDate.getDate() + 30);
 
 			let invoice = { ...this.state.invoice }
-			invoice.due_date = dueDate; 
+			invoice.due_date = dueDate;
 
 			//deal, project id
-			if ( this.props.module_id ) {
-				invoice.module_id = parseInt( this.props.module_id );
+			if (this.props.module_id) {
+				invoice.module_id = parseInt(this.props.module_id);
 				console.log(invoice);
 			}
 
@@ -238,7 +238,7 @@ class Invoice extends Component {
 		}
 	};
 
-	getData = () => { 
+	getData = () => {
 		Api.get(this.props.id).then(resp => {
 			let invoice = resp.data.data.invoice;
 			invoice.id = parseInt(resp.data.data.id);
@@ -627,7 +627,7 @@ class Invoice extends Component {
 			<>
 				<div>
 					<div className="row">
-						<div className="col-md-6">
+						<div className="col-md-4">
 							<nav className="pi-breadcrumb">
 								<ul className="">
 									<li>
@@ -652,7 +652,7 @@ class Invoice extends Component {
 										</svg>
 									</li>
 									<li>
-										<NavLink to={'/'+this.props.path}>{title}</NavLink>
+										<NavLink to={'/' + this.props.path}>{title}</NavLink>
 									</li>
 									<li>
 										<svg
@@ -678,7 +678,7 @@ class Invoice extends Component {
 								</ul>
 							</nav>
 						</div>
-						<div className="col-md-6">
+						<div className="col-md-8">
 							<div className="pi-invoice-single-btn pi-text-right">
 
 								{(currentTab == 'template') &&
@@ -909,11 +909,11 @@ class Invoice extends Component {
 										/>
 
 										<div className="row">
-											<div className="col">
+											<div className="col-sm-4">
 												<PaymentInfo data={this.state.paymentBankData} />
 											</div>
 
-											<div className="col">
+											<div className="col-sm-8">
 												<Total
 													currencyFormatter={this.formatCurrency}
 													itemsTotal={this.calcItemsTotal}

@@ -26,7 +26,7 @@ class Form extends Component {
             budget: '',
             currency: 'USD',
             desc: '',
-            note: '', 
+            note: '',
             date: false,
         };
 
@@ -129,7 +129,7 @@ class Form extends Component {
             if (this.state.form.id != this.props.data.id) {
                 let form = this.props.data;
                 form.first_name = (form.person) ? form.person.first_name : '';
-                if (form.person) { 
+                if (form.person) {
                     form.person_id = (form.person) ? form.person.id : null;
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
@@ -138,10 +138,10 @@ class Form extends Component {
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
-                } 
-                form.org_name = (form.org) ? form.org.name : ''; 
+                }
+                form.org_name = (form.org) ? form.org.name : '';
 
-                if ( form.org ) {
+                if (form.org) {
                     form.org_id = (form.org) ? form.org.id : null;
                 }
                 this.setState({ form });
@@ -198,7 +198,7 @@ class Form extends Component {
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
-        } else { 
+        } else {
             form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
             if (!form.first_name) {
@@ -338,7 +338,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
                                             Tags
-                                        </label> 
+                                        </label>
                                         {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple={true} /> */}
                                         <Select
                                             className={'pi-field-select'}

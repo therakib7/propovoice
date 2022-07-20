@@ -137,8 +137,8 @@ class Checklist extends Component {
                                     index={checklist_index}
                                     changeHandler={this.handleChecklistLabel}
                                 />
-                                <span>{this.doneCount(checklist_index, true)} task done out of {this.doneCount(checklist_index, false)}</span> 
-                                <div 
+                                <span>{this.doneCount(checklist_index, true)} task done out of {this.doneCount(checklist_index, false)}</span>
+                                <div
                                     className="pi-close-icon"
                                     onClick={() => this.deleteHandler(checklist_index)}
                                 >

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import Moment from 'react-moment';  
-import Action from 'block/action/row'; 
+import Moment from 'react-moment';
+import Action from 'block/action/row';
 
 const TableHeader = props => {
     return (
@@ -124,14 +124,14 @@ const TableHeader = props => {
     );
 }
 
-const TableBody = props => { 
+const TableBody = props => {
 
     const navigate = useNavigate();
     const handleOverview = (id) => {
         navigate(`/project/single/${id}`, { replace: true });
     };
 
-    let rows = props.tableData.map((row, index) => { 
+    let rows = props.tableData.map((row, index) => {
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
@@ -145,18 +145,18 @@ const TableBody = props => {
                     />
                 </td>
                 <td onClick={() => handleOverview(row.id)}>{row.title}</td>
-                <td onClick={() => handleOverview(row.id)}>{ ( row.person ) ? row.person.email : row.org.email }</td>
+                <td onClick={() => handleOverview(row.id)}>{(row.person) ? row.person.email : row.org.email}</td>
                 <td onClick={() => handleOverview(row.id)}>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)}>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)}>${row.budget}</td>
-                <td><span className="pi-badge">{row.status_id && row.status_id.label}</span></td> 
+                <td><span className="pi-badge">{row.status_id && row.status_id.label}</span></td>
                 <td className="pi-action">
-                    <Action 
+                    <Action
                         row={row}
                         handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
-                    /> 
+                    />
                 </td>
             </tr>
         );

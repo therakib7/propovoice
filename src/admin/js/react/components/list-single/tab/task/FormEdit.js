@@ -36,21 +36,21 @@ class Form extends Component {
 
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
-                let form = {...this.state.form};
+                let form = { ...this.state.form };
                 let status_id = form.status_id.id;
                 delete form.priority_id;
                 delete form.status_id;
                 delete form.type_id;
-                this.props.update('tasks', form.id, form).then(resp => { 
-                    if ( resp.data.success && name == 'title') { 
+                this.props.update('tasks', form.id, form).then(resp => {
+                    if (resp.data.success && name == 'title') {
                         this.props.reload({ status_id })
                     }
-                });  
+                });
             }, 300);
         });
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         //added this multiple place, because not working in invoice single
         this.editData();
     }
@@ -88,23 +88,23 @@ class Form extends Component {
     handleChecklistChange = (data) => {
         let form = { ...this.state.form }
         form.checklist = data;
-        this.setState({ form }, () => { 
+        this.setState({ form }, () => {
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
-                let form = {...this.state.form};
+                let form = { ...this.state.form };
                 delete form.priority_id;
                 delete form.status_id;
                 delete form.type_id;
-                this.props.update('tasks', form.id, form); 
+                this.props.update('tasks', form.id, form);
             }, 300);
         })
     }
 
-    handleTaskStatusChange = (val) => { 
+    handleTaskStatusChange = (val) => {
         let data = { ...this.state.form }
         if (val == 'done') {
             let obj = this.props.taxonomies.status.find(o => o.type === val);
-            data.status_id = obj; 
+            data.status_id = obj;
 
             this.setState({ form: data }, () => {
                 let newData = {};
@@ -115,10 +115,10 @@ class Form extends Component {
             });
 
         } else {
-            data.status_id = val; 
+            data.status_id = val;
             this.setState({ form: data });
-        } 
-        
+        }
+
     }
 
     render() {
@@ -152,7 +152,7 @@ class Form extends Component {
                         </span>
 
                         <div className="pi-small-button-group">
-                            {form.id && <Taxonomy key={form.status_id.id} onChange={ this.handleTaskStatusChange } id={form.id} data={form.status_id} taxonomy='task_status' title='Status' color={true} />}
+                            {form.id && <Taxonomy key={form.status_id.id} onChange={this.handleTaskStatusChange} id={form.id} data={form.status_id} taxonomy='task_status' title='Status' color={true} />}
 
                             {(form.status_id && form.status_id.type != 'done') && <button
                                 className="pi-btn pi-btn-medium pi-float-right"
@@ -319,7 +319,7 @@ class Form extends Component {
                                 <div className="col">
                                     <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} />
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                 </div>

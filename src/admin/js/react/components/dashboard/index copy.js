@@ -430,18 +430,18 @@ class Dashboard extends Component {
             </div>
         );
     }
-} 
+}
 
 function withRouter(Component) {
-    function ComponentWithRouterProp(props) { 
-        let navigate = useNavigate(); 
+    function ComponentWithRouterProp(props) {
+        let navigate = useNavigate();
         return (
             <Component
                 {...props}
                 router={{ navigate }}
             />
         );
-    } 
+    }
     return ComponentWithRouterProp;
 }
 

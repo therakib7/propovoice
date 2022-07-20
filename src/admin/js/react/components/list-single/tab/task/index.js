@@ -36,20 +36,20 @@ const Task = (props) => {
         }
     }
 
-    const handleDelete = ( type, id) => {
-		if ( confirm('Are you sure, to delete it?') ) { //TODO: translation 
-			props.remove('tasks', id).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully deleted'); //TODO: translation
-					props.getLists({ status_id: activeTab });
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});
-		}
-	}
+    const handleDelete = (type, id) => {
+        if (confirm('Are you sure, to delete it?')) { //TODO: translation 
+            props.remove('tasks', id).then(resp => {
+                if (resp.data.success) {
+                    toast.success('Successfully deleted'); //TODO: translation
+                    props.getLists({ status_id: activeTab });
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            });
+        }
+    }
 
     return (
         <div className="">
@@ -191,6 +191,6 @@ const Task = (props) => {
             }
         </div>
     );
-}  
-const TaskHoc = Crud(Task, 'task'); 
+}
+const TaskHoc = Crud(Task, 'task');
 export default WithApi(TaskHoc);
