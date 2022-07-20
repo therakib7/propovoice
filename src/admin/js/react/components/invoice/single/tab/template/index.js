@@ -99,8 +99,8 @@ export default class Template extends Component {
                         this.state.templates.map((row, index) => {
                             return (
                                 <div className="col-12 col-md-6 col-lg-3" key={index}>
-                                    <div className={(this.props.currentTemplate == row.id) ? 'pi-single-image-content pi-active' : 'pi-single-image-content'}>
-                                        <img src={row.src} className="pi-single-image" />
+                                    <div className='pi-single-image-content'>
+                                        <img src={row.src} className={ 'pi-single-image ' + (this.props.currentTemplate == row.id ? 'pi-active' : '')} />
                                         {(this.props.currentTemplate != row.id) && <div className="pi-overflow-content">
                                             <a className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
                                             <a

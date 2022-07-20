@@ -187,3 +187,8 @@ input:-webkit-autofill:active {
         transform: rotate(359deg);
     }
 }
+
+// toastify not showing in modal submit error
+.Toastify__toast-container {
+    z-index: 999999 !important;
+}

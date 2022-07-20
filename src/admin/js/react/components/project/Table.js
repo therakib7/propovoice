@@ -146,11 +146,10 @@ const TableBody = props => {
                 </td>
                 <td onClick={() => handleOverview(row.id)}>{row.title}</td>
                 <td onClick={() => handleOverview(row.id)}>{(row.person) ? row.person.email : row.org.email}</td>
-                <td onClick={() => handleOverview(row.id)}>22 April, 2022</td>
-                <td onClick={() => handleOverview(row.id)}>22 July, 2022</td>
+                <td onClick={() => handleOverview(row.id)}>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
+                <td onClick={() => handleOverview(row.id)}>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)}>${row.budget}</td>
                 <td><span className="pi-badge">{row.status_id && row.status_id.label}</span></td>
-                {/* <td onClick={() => handleOverview(row.id)}><Moment format="YYYY-MM-DD">{row.date}</Moment></td> */}
                 <td className="pi-action">
                     <Action
                         row={row}

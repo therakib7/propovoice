@@ -165,7 +165,6 @@ const Contact = (props) => {
         </button>
       </div>
 
-
       <Search
         title={title}
         showing={lists.length}

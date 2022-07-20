@@ -2,6 +2,9 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Org; 
+use WP_Query;
+
 class Client
 {
 
@@ -16,13 +19,11 @@ class Client
         register_rest_route('ncpi/v1', '/clients', [
             [
                 'methods' => 'GET',
-                // 'methods' => \WP_REST_Server::READABLE,
                 'callback' => [$this, 'get'],
                 'permission_callback' => [$this, 'get_permission'],
             ],
             [
                 'methods' => 'POST',
-                // 'methods' => \WP_REST_Server::CREATABLE,
                 'callback' => [$this, 'create'],
                 'permission_callback' => [$this, 'create_permission']
             ],
@@ -68,240 +69,182 @@ class Client
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
+        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
-        }
-
-        $search_value = isset($request['s'] ) ? trim($request['s']) : false;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
+        } 
 
         $args = array(
-            'number' => $per_page,
+            'post_type' => ['ndpi_person', 'ndpi_org'],
+            'post_status' => 'publish',
+            'posts_per_page' => $per_page,
             'offset' => $offset,
-            'orderby' => 'registered',
-            'order'   => 'DESC'
         );
-
-        if (isset($request['email'])) {
-            $args['search'] = $request['email']; //check email field
-            $args['search_columns'] = array(
-                'user_login',
-                'user_nicename',
-                'user_email',
-                'user_url',
-            );
-        }
-
-        if ( $search_value ) {
-            $args['search'] = "*{$search_value}*"; //check email field
-            $args['search_columns'] = array(
-                'user_login',
-                'user_nicename',
-                'user_email',
-                'user_url',
-            );
-        }
 
         $args['meta_query'] = array(
             'relation' => 'OR'
         );
 
-        $args['meta_query'][] = array(
-            array(
-                'key'     => 'ncpi_member',
-                'value'   => 1,
-                'compare' => 'LIKE'
-            )
-        );
-
-        if ( $search_value ) {
+        if ( $s ) {
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'first_name',
-                    'value'   => $search_value,
-                    'compare' => 'LIKE'
+                    'value'   => $s,
+                    'compare' => 'Like',
                 )
-            );
-        }
-
-        if (isset($request['first_name'])) {
+            ); 
             $args['meta_query'][] = array(
                 array(
-                    'key'     => 'first_name',
-                    'value'   => $request['first_name'],
-                    'compare' => 'LIKE'
+                    'key'     => 'email',
+                    'value'   => $s,
+                    'compare' => 'Like',
                 )
-            );
+            ); 
+        } 
+
+        $query = new WP_Query($args);
+        $total_data = $query->found_posts; //use this for pagination 
+        $result = $data = [];
+        while ($query->have_posts()) {
+            $query->the_post();
+            $id = get_the_ID();
+
+            $query_data = [];
+            $query_data['id'] = $id;
+
+            $queryMeta = get_post_meta($id);
+            $type = get_post_type( $id ) == 'ndpi_person' ? 'person' : 'org';
+            $query_data['type'] = $type; 
+            $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : '';  
+            $query_data['org_name'] = isset($queryMeta['org_name']) ? $queryMeta['org_name'][0] : '';  
+            $query_data['email'] = isset($queryMeta['email']) ? $queryMeta['email'][0] : '';
+            $query_data['web'] = isset($queryMeta['web']) ? $queryMeta['web'][0] : '';
+            $query_data['mobile'] = isset($queryMeta['mobile']) ? $queryMeta['mobile'][0] : '';
+            $query_data['country'] = isset($queryMeta['country']) ? $queryMeta['country'][0] : '';
+            $query_data['region'] = isset($queryMeta['region']) ? $queryMeta['region'][0] : '';
+            $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : ''; 
+            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : ''; 
+
+            $img_id = $query_data['img'];
+            $imgData = null;
+            if ($img_id) {
+                $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
+                if ($img_src) {
+                    $imgData = [];
+                    $imgData['id'] = $img_id;
+                    $imgData['src'] = $img_src[0];
+                }
+            }
+            $query_data['img'] = $imgData;
+
+            $query_data['date'] = get_the_time('j-M-Y');
+            $data[] = $query_data;
         }
-
-        if (isset($request['last_name'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'last_name',
-                    'value'   => $request['last_name'],
-                    'compare' => 'LIKE'
-                )
-            );
-        }
-
-        if (isset($request['mobile'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'mobile',
-                    'value'   => $request['mobile'],
-                    'compare' => 'LIKE'
-                )
-            );
-        }
-
-        if (isset($request['org_name'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'org_name',
-                    'value'   => $request['org_name'],
-                    'compare' => 'LIKE'
-                )
-            );
-        }
-
-        if (isset($request['web'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'web',
-                    'value'   => $request['web'],
-                    'compare' => 'LIKE'
-                )
-            );
-        }
-
-        $all_users = new \WP_User_Query($args);
-        $total_users = $all_users->get_total(); //use this for pagination
-        $filtered = count($all_users->get_results()); //use this for determining if you have any users, although it seems unnecessary
-        $result = [];
-
-        //if ( $filtered > 0 ) {
-        $data = [];
-        foreach ($all_users->get_results() as $user) {
-            $user_data = [];
-
-            $user_data['id'] = $user->ID;
-            $user_data['first_name'] = $user->first_name;
-            $user_data['last_name'] = $user->last_name;
-            $user_data['email'] = $user->user_email; 
-
-            $prefix = 'ncpi_';
-            $user_data['org_name'] = get_user_meta($user->ID, $prefix . 'org_name', true);
-            $user_data['web'] = get_user_meta($user->ID, $prefix . 'web', true);
-            $user_data['mobile'] = get_user_meta($user->ID, $prefix . 'mobile', true);
-            $user_data['country'] = get_user_meta($user->ID, $prefix . 'country', true); 
-            $user_data['region'] = get_user_meta($user->ID, $prefix . 'region', true); 
-            $user_data['address'] = get_user_meta($user->ID, $prefix . 'address', true); 
-        
-            $user_data['date'] = $user->user_registered;
-
-            $data[] = $user_data;
-        }
+        wp_reset_postdata();
 
         $result['result'] = $data;
-        $result['total'] = $total_users;
-        //}
+        $result['total'] = $total_data;
 
         wp_send_json_success($result);
     }
 
     public function get_single($req)
     {
-
-        $url_params = $req->get_url_params();
-        $user_id    = absint( $url_params['id'] );
-
-        $user = get_user_by('id', $user_id);
-
-        $data = [];
-
-        $field = [];
-        $field['id'] = $user->ID;
-        $field['first_name'] = $user->first_name;
-        $field['last_name'] = $user->last_name;
-        $field['email'] = $user->user_email;
-
-        $prefix = 'ncpi_';
-        $field['org_name'] = get_user_meta($user->ID, $prefix . 'org_name', true);
-        $field['web'] = get_user_meta($user->ID, $prefix . 'web', true);
-        $field['mobile'] = get_user_meta($user->ID, $prefix . 'mobile', true);
-        $field['country'] = get_user_meta($user->ID, $prefix . 'country', true); 
-        $field['region'] = get_user_meta($user->ID, $prefix . 'region', true); 
-        $field['address'] = get_user_meta($user->ID, $prefix . 'address', true); 
-        $field['date'] = $user->user_registered;
-        $data['tab_id'] = $user_id;
-        $data['contact'] = $field;
-
-        wp_send_json_success($data);
+         
     }
 
     public function create($req)
     {
+        $params = $req->get_params();
+        $reg_errors = new \WP_Error;
 
-        $reg_errors   = new \WP_Error;
-        $first_name   = sanitize_text_field($req['first_name']);
-        $last_name    = sanitize_text_field($req['last_name']);
-        $email        = strtolower(sanitize_email($req['email']));
-        $org_name = sanitize_text_field($req['org_name']);
-        $web          = esc_url_raw($req['web']);
-        $mobile       = sanitize_text_field($req['mobile']);
-        $country      = sanitize_text_field($req['country']);
-        $region       = sanitize_text_field($req['region']);
-        $address      = sanitize_text_field($req['address']);
+        $first_name = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
+        $org_id     = isset($params['org_id']) ? absint($params['org_id']) : null;
+        $email      = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
+        $web        = isset($params['web']) ? esc_url_raw($req['web']) : null;
+        $mobile     = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
+        $country    = isset($params['country']) ? sanitize_text_field($req['country']) : null;
+        $region     = isset($params['region']) ? sanitize_text_field($req['region']) : null;
+        $address    = isset($params['address']) ? sanitize_text_field($req['address']) : null;
+        $img        = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
 
-        if (
-            empty($first_name) ||
-            empty($email)
-        ) {
-            $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
+        if ( empty($first_name) ) {
+            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
-        if (!is_email($email)) {
+        if ( !is_email($email) ) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        }
-
-        if (email_exists($email)) {
-            $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
         }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-            $userdata = [
-                'user_login' => $email,
-                'user_email' => $email,
-                'user_pass'  => wp_generate_password(8, true, true),
-                'first_name' => $first_name,
-                'last_name'  => $last_name,
-            ];
-            $user_id = wp_insert_user($userdata);
 
-            if (!is_wp_error($user_id)) {
-                //set as propovoice member 
+            $data = array(
+                'post_type' => 'ndpi_person',
+                'post_title'    => $first_name,
+                'post_content'  => '',
+                'post_status'   => 'publish',
+                'post_author'   => get_current_user_id()
+            );
+            $post_id = wp_insert_post($data);
 
-                $prefix = 'ncpi_'; 
-                update_user_meta($user_id, $prefix . 'ws_id', ncpi()->get_workspace());
-                update_user_meta($user_id, $prefix . 'member', true);
-                update_user_meta($user_id, $prefix . 'org_name', $org_name);
-                update_user_meta($user_id, $prefix . 'web', $web);
-                update_user_meta($user_id, $prefix . 'mobile', $mobile);
-                update_user_meta($user_id, $prefix . 'country', $country);
-                update_user_meta($user_id, $prefix . 'region', $region);
-                update_user_meta($user_id, $prefix . 'address', $address);
+            if ( !is_wp_error($post_id) ) {
 
-                wp_send_json_success($user_id);
+                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
+
+                if ($first_name) {
+                    update_post_meta($post_id, 'first_name', $first_name);
+                } 
+
+                if ( ! $org_id && $org_name ) {
+                    $org = new Org();
+                    $org_id = $org->create( [ 'org_name' => $org_name, 'person_id' => $post_id] );
+                }
+
+                if ($org_id) {
+                    update_post_meta($post_id, 'org_id', $org_id);
+                }
+
+                if ($email) {
+                    update_post_meta($post_id, 'email', $email);
+                } 
+
+                if ($web) {
+                    update_post_meta($post_id, 'web', $web);
+                }
+
+                if ($mobile) {
+                    update_post_meta($post_id, 'mobile', $mobile);
+                }
+
+                if ($country) {
+                    update_post_meta($post_id, 'country', $country);
+                }
+
+                if ($region) {
+                    update_post_meta($post_id, 'region', $region);
+                }
+
+                if ($address) {
+                    update_post_meta($post_id, 'address', $address);
+                }
+
+                if ($img) {
+                    update_post_meta($post_id, 'img', $img);
+                }
+
+                wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
             }
@@ -311,58 +254,83 @@ class Client
     public function update($req)
     {
         $params = $req->get_params();
-        $reg_errors    = new \WP_Error;
-        $first_name    = sanitize_text_field($params['first_name']);
-        $last_name     = sanitize_text_field($params['last_name']);
-        $email     = strtolower(sanitize_email($params['email']));
-        $org_name  = sanitize_text_field($params['org_name']);
-        $web           = esc_url_raw($params['web']);
-        $mobile        = sanitize_text_field($params['mobile']);
-        $country       = sanitize_text_field($req['country']);
-        $region        = sanitize_text_field($req['region']);
-        $address       = sanitize_text_field($req['address']);
+        $reg_errors = new \WP_Error;
 
-        if (
-            empty($email) ||
-            empty($first_name)
-        ) {
-            $reg_errors->add('field', esc_html__('Required form field is missing', 'propovoice'));
+        $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
+        $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
+        $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
+        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
+        $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
+        $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
+        $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
+        $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
+        $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
+        $img = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+
+        if (empty($first_name)) {
+            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
         if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }
 
-        $url_params = $req->get_url_params();
-        $user_id      = $url_params['id'];
-        $current_user = get_user_by('id', $user_id);
-
-        if (($email != $current_user->user_email) && email_exists($email)) {
-            $reg_errors->add('email', esc_html__('Email Already exist!', 'propovoice'));
-        }
-
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-            $data = [
-                'ID'         => $user_id,
-                'user_login' => $email,
-                'user_email' => $email,
-                'first_name' => $first_name,
-                'last_name'  => $last_name,
-            ];
+            $url_params = $req->get_url_params();
+            $post_id    = $url_params['id'];
 
-            $user_data = wp_update_user($data);
+            $data = array(
+                'ID'          => $post_id,
+                'post_title'  => $first_name,
+                'post_author' => get_current_user_id()
+            );
+            $post_id = wp_update_post($data);
 
-            if (!is_wp_error($user_data)) {
-                $prefix = 'ncpi_';
-                update_user_meta($user_id, $prefix . 'org_name', $org_name);
-                update_user_meta($user_id, $prefix . 'web', $web);
-                update_user_meta($user_id, $prefix . 'mobile', $mobile);
-                update_user_meta($user_id, $prefix . 'country', $country);
-                update_user_meta($user_id, $prefix . 'region', $region);
-                update_user_meta($user_id, $prefix . 'address', $address);
-                wp_send_json_success($user_id);
+            if ( !is_wp_error($post_id) ) {
+
+                if ($first_name) {
+                    update_post_meta($post_id, 'first_name', $first_name);
+                }
+
+                if ($last_name) {
+                    update_post_meta($post_id, 'last_name', $last_name);
+                }
+
+                if ($email) {
+                    update_post_meta($post_id, 'email', $email);
+                }
+
+                if ($org_name) {
+                    update_post_meta($post_id, 'org_name', $org_name);
+                }
+
+                if ($web) {
+                    update_post_meta($post_id, 'web', $web);
+                }
+
+                if ($mobile) {
+                    update_post_meta($post_id, 'mobile', $mobile);
+                }
+
+                if ($country) {
+                    update_post_meta($post_id, 'country', $country);
+                }
+
+                if ($region) {
+                    update_post_meta($post_id, 'region', $region);
+                }
+
+                if ($address) {
+                    update_post_meta($post_id, 'address', $address);
+                }
+
+                if ($img) {
+                    update_post_meta($post_id, 'img', $img);
+                }
+
+                wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
             }
@@ -375,8 +343,7 @@ class Client
 
         $ids = explode(',', $url_params['id']);
         foreach ($ids as $id) {
-            require_once(ABSPATH . 'wp-admin/includes/user.php');
-            wp_delete_user($id);
+            wp_delete_post($id);
         }
         wp_send_json_success($ids);
     }

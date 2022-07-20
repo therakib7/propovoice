@@ -37,10 +37,15 @@ class Form extends Component {
             if (this.timeout) clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
                 let form = { ...this.state.form };
+                let status_id = form.status_id.id;
                 delete form.priority_id;
                 delete form.status_id;
                 delete form.type_id;
-                this.props.update('tasks', form.id, form);
+                this.props.update('tasks', form.id, form).then(resp => {
+                    if (resp.data.success && name == 'title') {
+                        this.props.reload({ status_id })
+                    }
+                });
             }, 300);
         });
     }
@@ -71,14 +76,14 @@ class Form extends Component {
         }
     }
 
-    handleSubmit = (e) => {
+    /* handleSubmit = (e) => {
         e.preventDefault();
         let form = { ...this.state.form }
 
         this.props.handleSubmit(form);
         this.props.close();
         this.setState({ form: this.initialState });
-    }
+    } */
 
     handleChecklistChange = (data) => {
         let form = { ...this.state.form }
@@ -96,21 +101,24 @@ class Form extends Component {
     }
 
     handleTaskStatusChange = (val) => {
-
         let data = { ...this.state.form }
         if (val == 'done') {
-            let obj = this.state.status.find(o => o.type === val);
+            let obj = this.props.taxonomies.status.find(o => o.type === val);
             data.status_id = obj;
+
+            this.setState({ form: data }, () => {
+                let newData = {};
+                if (data.status_id) {
+                    newData.status_id = data.status_id.id;
+                }
+                this.props.update('tasks', data.id, newData);
+            });
+
         } else {
             data.status_id = val;
+            this.setState({ form: data });
         }
-        this.setState({ data }, () => {
-            let newData = {};
-            if (data.status_id) {
-                newData.status_id = data.status_id.id;
-            }
-            this.props.update('tasks', data.id, newData);
-        });
+
     }
 
     render() {
@@ -144,7 +152,7 @@ class Form extends Component {
                         </span>
 
                         <div className="pi-small-button-group">
-                            {form.id && <Taxonomy id={form.id} taxonomy='task_status' title='Status' btnMid={true} color={true} />}
+                            {form.id && <Taxonomy key={form.status_id.id} onChange={this.handleTaskStatusChange} id={form.id} data={form.status_id} taxonomy='task_status' title='Status' color={true} />}
 
                             {(form.status_id && form.status_id.type != 'done') && <button
                                 className="pi-btn pi-btn-medium pi-float-right"
@@ -165,7 +173,7 @@ class Form extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                Done
+                                Mark as Done
                             </button>}
                         </div>
                     </div>
@@ -195,7 +203,7 @@ class Form extends Component {
                                         Task Type:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} taxonomy='task_type' title='Type' btnMid={true} color={true} />}
+                                        {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title='Type' small={true} color={true} />}
                                     </div>
                                 </div>
 
@@ -204,7 +212,7 @@ class Form extends Component {
                                         Task Priority:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} taxonomy='task_priority' title='Priority' btnMid={true} color={true} />}
+                                        {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title='Priority' small={true} color={true} />}
                                     </div>
                                 </div>
                             </div>

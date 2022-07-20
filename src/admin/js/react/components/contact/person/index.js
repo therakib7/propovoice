@@ -34,7 +34,7 @@ const Contact = (props) => {
         </div>
       </div>
 
-      {true && <div className="pi-buttons-group pi-mb-20">
+      {false && <div className="pi-buttons-group pi-mb-20">
         <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
           <svg
             width={20}
@@ -123,6 +123,7 @@ const Contact = (props) => {
       <Search
         title={title}
         showing={lists.length}
+        showItem={props.showItem}
         total={props.state.total}
         handleSubmit={props.getLists}
       />
@@ -156,6 +157,8 @@ const Contact = (props) => {
         data={props.state.list}
         close={props.closeForm}
       />}
+
+      {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
 
       {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 

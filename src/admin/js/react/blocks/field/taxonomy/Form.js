@@ -28,36 +28,36 @@ class Form extends Component {
 
     handleColorChange = (val, key) => {
         let form = { ...this.state.form }
-        if ( key == 'bg_color' ) {
+        if (key == 'bg_color') {
             form.bg_color = val;
             form.color = this.lightenDarkenColor(val, -80);
         } else {
-            form.color = val; 
+            form.color = val;
         }
-        
+
         this.setState({ form });
     }
 
     lightenDarkenColor = (color, percent) => {
 
-        let R = parseInt(color.substring(1,3),16);
-        let G = parseInt(color.substring(3,5),16);
-        let B = parseInt(color.substring(5,7),16);
-    
+        let R = parseInt(color.substring(1, 3), 16);
+        let G = parseInt(color.substring(3, 5), 16);
+        let B = parseInt(color.substring(5, 7), 16);
+
         R = parseInt(R * (100 + percent) / 100);
         G = parseInt(G * (100 + percent) / 100);
         B = parseInt(B * (100 + percent) / 100);
-    
-        R = (R<255)?R:255;  
-        G = (G<255)?G:255;  
-        B = (B<255)?B:255;  
-    
-        let RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
-        let GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
-        let BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
-    
-        return "#"+RR+GG+BB;
-    } 
+
+        R = (R < 255) ? R : 255;
+        G = (G < 255) ? G : 255;
+        B = (B < 255) ? B : 255;
+
+        let RR = ((R.toString(16).length == 1) ? "0" + R.toString(16) : R.toString(16));
+        let GG = ((G.toString(16).length == 1) ? "0" + G.toString(16) : G.toString(16));
+        let BB = ((B.toString(16).length == 1) ? "0" + B.toString(16) : B.toString(16));
+
+        return "#" + RR + GG + BB;
+    }
 
     componentDidMount() {
         //added this multiple place, because not working in invoice single
@@ -252,5 +252,5 @@ class Form extends Component {
             </div>
         );
     }
-} 
+}
 export default WithApi(Form); 

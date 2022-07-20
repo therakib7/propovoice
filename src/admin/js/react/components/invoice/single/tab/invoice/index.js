@@ -79,6 +79,12 @@ class Invoice extends Component {
 				from: null,
 				to: null,
 				to_type: '', //person, 'org'
+				module_id: null,
+				project: {
+					id: null,
+					title: '',
+					desc: ''
+				},
 				item_label: {
 					id: 'ID',
 					title: 'Title',
@@ -182,6 +188,12 @@ class Invoice extends Component {
 			let invoice = { ...this.state.invoice }
 			invoice.due_date = dueDate;
 
+			//deal, project id
+			if (this.props.module_id) {
+				invoice.module_id = parseInt(this.props.module_id);
+				console.log(invoice);
+			}
+
 			this.setState({
 				title,
 				currentTab: 'template',
@@ -226,7 +238,7 @@ class Invoice extends Component {
 		}
 	};
 
-	getData = () => { 
+	getData = () => {
 		Api.get(this.props.id).then(resp => {
 			let invoice = resp.data.data.invoice;
 			invoice.id = parseInt(resp.data.data.id);
@@ -615,7 +627,7 @@ class Invoice extends Component {
 			<>
 				<div>
 					<div className="row">
-						<div className="col-md-6">
+						<div className="col-md-4">
 							<nav className="pi-breadcrumb">
 								<ul className="">
 									<li>
@@ -640,7 +652,7 @@ class Invoice extends Component {
 										</svg>
 									</li>
 									<li>
-										<NavLink to={'/'+this.props.path}>{title}</NavLink>
+										<NavLink to={'/' + this.props.path}>{title}</NavLink>
 									</li>
 									<li>
 										<svg
@@ -666,7 +678,7 @@ class Invoice extends Component {
 								</ul>
 							</nav>
 						</div>
-						<div className="col-md-6">
+						<div className="col-md-8">
 							<div className="pi-invoice-single-btn pi-text-right">
 
 								{(currentTab == 'template') &&
@@ -677,8 +689,8 @@ class Invoice extends Component {
 										Continue
 										<svg
 											className="pi-mr-0 pi-ml-10 pi-mt-1"
-											width={6}
-											height={12}
+											width={9}
+											height={11}
 											viewBox="0 0 6 9"
 											fill="none"
 											xmlns="http://www.w3.org/2000/svg"
@@ -699,8 +711,8 @@ class Invoice extends Component {
 										{this.state.msg.saveTxt} & Continue
 										<svg
 											className="pi-mr-0 pi-ml-10 pi-mt-1"
-											width={6}
-											height={12}
+											width={9}
+											height={11}
 											viewBox="0 0 6 9"
 											fill="none"
 											xmlns="http://www.w3.org/2000/svg"
@@ -732,8 +744,8 @@ class Invoice extends Component {
 											Send Email
 											<svg
 												className="pi-mr-0 pi-ml-10 pi-mt-1"
-												width={6}
-												height={12}
+												width={9}
+												height={11}
 												viewBox="0 0 6 9"
 												fill="none"
 												xmlns="http://www.w3.org/2000/svg"
@@ -760,7 +772,7 @@ class Invoice extends Component {
 								>
 									{<span className="pi-single-tab-done"><svg
 										width={12}
-										height={12}
+										height={11}
 										xmlns="http://www.w3.org/2000/svg"
 										viewBox="3.4 5.6 17.6 13.4"
 										xmlSpace="preserve"
@@ -796,9 +808,9 @@ class Invoice extends Component {
 											<h3 className="pi-color-blue pi-text-center">{title}</h3>
 											<div className="row">
 												<div className="col-12 col-md-6">
-													<div className="pi-info-logo pi-cursor-pointer">
+													<div className="pi-info-logo">
 														{this.state.fromData && this.state.fromData.logo && <img src={this.state.fromData.logo.src} />}
-														{this.state.fromData && !this.state.fromData.logo && <div className="pi-upload">
+														{this.state.fromData && !this.state.fromData.logo && <div className="pi-upload pi-cursor-pointer">
 															<svg
 																width={18}
 																height={18}
@@ -897,11 +909,11 @@ class Invoice extends Component {
 										/>
 
 										<div className="row">
-											<div className="col">
+											<div className="col-sm-4">
 												<PaymentInfo data={this.state.paymentBankData} />
 											</div>
 
-											<div className="col">
+											<div className="col-sm-8">
 												<Total
 													currencyFormatter={this.formatCurrency}
 													itemsTotal={this.calcItemsTotal}

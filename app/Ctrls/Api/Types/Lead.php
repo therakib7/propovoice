@@ -2,6 +2,7 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Contact;
 use Ncpi\Models\Org;
 use Ncpi\Models\Person;
 use WP_Query;
@@ -70,17 +71,19 @@ class Lead
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
+
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
         }
 
         $args = array(
@@ -94,14 +97,29 @@ class Lead
             'relation' => 'OR'
         );
 
-        if (isset($request['default'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'default',
-                    'value'   => 1,
-                    'compare' => 'LIKE'
-                )
-            );
+        if ( $s ) {
+            $contact_person = new Contact(); 
+            $person_ids = $contact_person->query($s, 'person');  
+            if ( $person_ids ) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'person_id',
+                        'value'   => $person_ids,
+                        'compare' => 'IN'
+                    )
+                ); 
+            }
+
+            $org_ids = $contact_person->query($s, 'org');   
+            if ( $org_ids ) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'org_id',
+                        'value'   => $org_ids,
+                        'compare' => 'IN'
+                    )
+                ); 
+            } 
         }
 
         $query = new WP_Query($args);
@@ -116,6 +134,7 @@ class Lead
 
             $queryMeta = get_post_meta($id);
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+            $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
 
@@ -363,9 +382,9 @@ class Lead
 
         $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
-        /* if (empty($first_name)) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        } */
+        if ( empty($first_name) && empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
 
         /* if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));

@@ -17,6 +17,9 @@ const TableHeader = props => {
                     Organization
                 </th>
                 <th>
+                    Email
+                </th>
+                <th>
                     Location
                 </th>
                 <th>
@@ -53,14 +56,15 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td>{row.name}</td>
+                <td onClick={() => handleOverview(row.id)}>{row.name}</td>
+                <td onClick={() => handleOverview(row.id)}>{row.email}</td>
                 <td>{row.address}</td> 
                 <td>{row.first_name}</td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <Action 
                         row={row}
-                        // handleOverview={handleOverview}
+                        handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
                     />

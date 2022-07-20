@@ -23,7 +23,7 @@ const Taxonomy = (props) => {
 	useClickOutside(dropdownContent, close);
 
 	useEffect(() => {
-		if ( props.data ) {
+		if ( props.data ) { 
 			if ( props.multiple ) {
 				setListById(props.data);
 			} else {
@@ -36,7 +36,11 @@ const Taxonomy = (props) => {
 		}
 	}, []);
 
-	const getData = () => {
+	const getData = () => { 
+		if ( props.list ) {
+			setList(props.list);
+			return;
+		}
 		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
@@ -109,13 +113,18 @@ const Taxonomy = (props) => {
 		newForm.post_id = parseInt(props.id);
 		newForm.id = parseInt(item.id);
 
+		setDropdown(false);
+
+		if ( props.onChange ) {
+			props.onChange(item);
+		}
+		
 		if (!props.multiple) {
 			setListById([item]);
 		} else {
 			setListById([...listById, item]);
-		}
-
-		setDropdown(false);
+		} 
+		
 		props.update('taxonomies', newForm.id, newForm).then(resp => {
 			if (resp.data.success) {
 				getData();

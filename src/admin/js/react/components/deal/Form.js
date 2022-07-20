@@ -91,18 +91,18 @@ class Form extends Component {
                     form.probability = 50;
                 }
 
-                if (form.person) { 
-                    form.first_name = (form.person) ? form.person.first_name : '';
+                form.first_name = (form.person) ? form.person.first_name : '';
+                if (form.person) {  
                     form.person_id = (form.person) ? form.person.id : null;
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
-                } else {
-                    form.org_name = (form.org) ? form.org.name : ''; 
+                } else { 
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
                 } 
+                form.org_name = (form.org) ? form.org.name : ''; 
 
                 if ( form.org ) {
                     form.org_id = (form.org) ? form.org.id : null;
@@ -192,11 +192,13 @@ class Form extends Component {
         let form = { ...this.state.form }
 
         if (type == 'person') {
+            form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
         } else {
+            form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
             if (!form.first_name) {
                 form.email = (val) ? val.email : '';
@@ -255,17 +257,8 @@ class Form extends Component {
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
-                            <div className="pi-form-style-one">
-                                {/* {!this.props.reload && <Contact
-                                    data={{
-                                        person: this.state.form.person_id,
-                                        org: this.state.form.org_id
-                                    }}
-                                    onPersonChange={this.handlePersonSelect}
-                                    onOrgChange={this.handleOrgSelect}
-                                />} */}
-
-                                {!this.props.reload && <>
+                            <div className="pi-form-style-one"> 
+                                {/* {!this.props.reload && <>  */}
                                     <Contact
                                         first_name={form.first_name}
                                         org_name={form.org_name}
@@ -282,6 +275,7 @@ class Form extends Component {
                                                 id="form-email"
                                                 type="email"
                                                 name="email"
+                                                required
                                                 value={form.email}
                                                 onChange={this.handleChange}
                                             />
@@ -301,7 +295,7 @@ class Form extends Component {
                                             />
                                         </div>
                                     </div>
-                                </>}
+                                {/* </>} */}
 
                                 <div className="row">
                                     <div className="col-md">
@@ -313,6 +307,7 @@ class Form extends Component {
                                             id="field-title"
                                             type="text"
                                             name="title"
+                                            required
                                             value={form.title}
                                             onChange={this.handleChange}
                                         />

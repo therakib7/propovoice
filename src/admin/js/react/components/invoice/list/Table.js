@@ -34,15 +34,12 @@ const TableHeader = props => {
                     Total
                 </th>
 
-                {(props.path == 'invoice') &&
+                {/* {(props.path == 'invoice') &&
                     <>
                         <th>Paid</th>
                         <th>Due</th>
                     </>
-                }
-                <th>
-                    Date
-                </th>
+                }  */}
                 <th>
                     Status
                 </th>
@@ -51,6 +48,9 @@ const TableHeader = props => {
                         Payment Method
                     </th>
                 }
+                <th>
+                    Date
+                </th>
                 <th>
                     Action
                 </th>
@@ -120,7 +120,7 @@ const TableBody = props => {
 
             case 'paid_req':
                 status = <span className='pi-badge pi-bg-orange'
-                style={{color: '#fff'}}
+                style={{color: '#4a5568'}}
                 >Paid Request</span>
                 break;
 
@@ -170,15 +170,15 @@ const TableBody = props => {
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name } 
                 </td>}
                 <td onClick={() => { handleClick(row.id); }}>{row.total}</td>
-                {(props.path == 'invoice') &&
+                {/* {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>
                         <td>{row.due}</td>
                     </>
-                }
-                <td onClick={() => { handleClick(row.id); }}><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                }  */}
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
+                <td onClick={() => { handleClick(row.id); }}><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <div className="pi-action-content">
                         <button className={(row.id == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(row.id)}>

@@ -177,7 +177,7 @@ class Deal
                 // $column[$stage_id] = [
                 'name' => $stage_name,
                 'id' => $stage_id,
-                // 'color' => get_term_meta($stage_id, 'color', true),
+                'color' => get_term_meta($stage_id, 'color', true),
                 'bg_color' => get_term_meta($stage_id, 'bg_color', true),
                 'type' => get_term_meta($stage_id, 'type', true),
                 'items' => $items
@@ -276,6 +276,10 @@ class Deal
         /* if ( $lead_id ) {
             wp_send_json_success($lead_id);
         } */
+
+        if ( empty($first_name) &&  empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
 
         $person = new Person();  
         if ( $person_id ) {
@@ -410,6 +414,10 @@ class Deal
         if (empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
+
+        if ( empty($first_name) &&  empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
 
         $person = new Person();  
         if ( $person_id ) {

@@ -4,13 +4,11 @@ const Empty = (props) => {
         <>
             {/* <div className="pi-empty-content pi-text-center">
                 <img src={ncpi.assetImgUri + 'empty-data.png'} />
-                
-                
             </div> */}
 
             <div
                 className="pi-empty-content pi-text-center"
-                // style={{ backgroundImage: "url(assets/img/overlay-image.png)" }}
+            // style={{ backgroundImage: "url(assets/img/overlay-image.png)" }}
             >
                 <svg
                     width={80}
@@ -33,7 +31,7 @@ const Empty = (props) => {
                         fill="#4C6FFF"
                         fillOpacity="0.5"
                     />
-                </svg> 
+                </svg>
 
                 {!searchVal.length && <h2 className="pi-empty-title">You haven&apos;t  {title == 'Client' ? 'added' : 'created'} any {title} yet.</h2>}
                 {searchVal.length > 0 && <h2 className="pi-empty-title">No {title} found by your search query.</h2>}

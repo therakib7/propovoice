@@ -26,7 +26,7 @@ class Form extends Component {
             budget: '',
             currency: 'USD',
             desc: '',
-            note: '', 
+            note: '',
             date: false,
         };
 
@@ -128,20 +128,20 @@ class Form extends Component {
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
                 let form = this.props.data;
-                if (form.person) { 
-                    form.first_name = (form.person) ? form.person.first_name : '';
+                form.first_name = (form.person) ? form.person.first_name : '';
+                if (form.person) {
                     form.person_id = (form.person) ? form.person.id : null;
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
                 } else {
-                    form.org_name = (form.org) ? form.org.name : ''; 
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
-                } 
+                }
+                form.org_name = (form.org) ? form.org.name : '';
 
-                if ( form.org ) {
+                if (form.org) {
                     form.org_id = (form.org) ? form.org.id : null;
                 }
                 this.setState({ form });
@@ -193,11 +193,13 @@ class Form extends Component {
         let form = { ...this.state.form }
 
         if (type == 'person') {
+            form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
         } else {
+            form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
             if (!form.first_name) {
                 form.email = (val) ? val.email : '';
@@ -264,6 +266,7 @@ class Form extends Component {
                                         <input
                                             id="form-email"
                                             type="email"
+                                            required
                                             name="email"
                                             value={form.email}
                                             onChange={this.handleChange}
@@ -335,7 +338,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
                                             Tags
-                                        </label> 
+                                        </label>
                                         {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple={true} /> */}
                                         <Select
                                             className={'pi-field-select'}

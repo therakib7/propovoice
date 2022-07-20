@@ -1,6 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
+import Moment from 'react-moment';
 import Spinner from 'block/preloader/spinner';
 import Taxonomy from 'block/field/taxonomy';
 import WithApi from 'hoc/Api';
@@ -16,6 +17,7 @@ import ContactForm from 'components/contact/person/Form';
 const Task = lazy(() => import('./tab/task'));
 const Note = lazy(() => import('./tab/note'));
 const File = lazy(() => import('./tab/file'));
+const Invoice = lazy(() => import('components/invoice/list'));
 
 class ListSingle extends Component {
 
@@ -57,9 +59,6 @@ class ListSingle extends Component {
                 org: {
                     name: 'Name'
                 },
-                contact: {
-                    first_name: 'Name'
-                },
                 level_id: null,
                 stage_id: null,
                 probability: 0,
@@ -71,13 +70,35 @@ class ListSingle extends Component {
 
     componentDidMount() {
         this.getData();
+
+        if (this.props.path == 'deal') {
+            let tabs = this.state.tabs
+            tabs.push({
+                id: 'estimate',
+                text: 'Estimate'
+            });
+        }
+
+        if (this.props.path == 'project') {
+            let tabs = this.state.tabs
+            tabs.push({
+                id: 'invoice',
+                text: 'Invoice'
+            });
+            tabs.push({
+                id: 'estimate',
+                text: 'Estimate'
+            });
+        }
     }
 
     getData = () => {
-        const url = this.props.path + 's';
+        // console.log(this.props.id);
+        const path = this.props.path;
+        const url = (path == 'client' ? 'contact' : path) + 's';
         this.props.get(url, this.props.id).then(resp => {
             this.setState({ data: resp.data.data });
-            if (this.props.path == 'lead') {
+            if (path == 'lead') {
                 this.getLevelTagData();
             } else {
                 this.getStageTagData();
@@ -110,9 +131,7 @@ class ListSingle extends Component {
 
     setActiveTab(e, id) {
         e.preventDefault();
-        this.setState({
-            currentTab: id
-        });
+        this.setState({ currentTab: id });
     }
 
     handleFindLevel = (val, callback) => {
@@ -155,16 +174,18 @@ class ListSingle extends Component {
         if (val == 'won' || val == 'lost') {
             let obj = this.state.stages.find(o => o.type === val);
             data.stage_id = obj;
+            this.setState({ data }, () => {
+                let newData = {};
+                if (data.stage_id) {
+                    newData.stage_id = data.stage_id.id;
+                }
+                this.props.update('deals', this.props.id, newData);
+            });
         } else {
             data.stage_id = val;
+            this.setState({ data });
         }
-        this.setState({ data }, () => {
-            let newData = {};
-            if (data.stage_id) {
-                newData.stage_id = data.stage_id.id;
-            }
-            this.props.update('deals', this.props.id, newData);
-        });
+
     }
 
     handleProjectStatusChange = (val) => {
@@ -172,16 +193,17 @@ class ListSingle extends Component {
         if (val == 'completed') {
             let obj = this.state.project_status.find(o => o.type === val);
             data.status_id = obj;
+            this.setState({ data }, () => {
+                let newData = {};
+                if (data.status_id) {
+                    newData.status_id = data.status_id.id;
+                }
+                this.props.update('projects', this.props.id, newData);
+            });
         } else {
             data.status_id = val;
+            this.setState({ data });
         }
-        this.setState({ data }, () => {
-            let newData = {};
-            if (data.status_id) {
-                newData.status_id = data.status_id.id;
-            }
-            this.props.update('projects', this.props.id, newData);
-        });
     }
 
     deleteEntry = (type, id) => {
@@ -203,7 +225,6 @@ class ListSingle extends Component {
     render() {
         const { tabs = [], currentTab } = this.state;
         const { path } = this.props;
-        const contact = this.state.data.contact;
         const data = this.state.data;
         return (
             <div className="ncpi-components">
@@ -256,8 +277,8 @@ class ListSingle extends Component {
                         <li className="pi-active">
                             {path == 'lead' && <>{(data.person) ? data.person.first_name : data.org.name}</>}
                             {(path == 'deal' || path == 'project') && data.title}
-                            {path == 'client' && contact.first_name}
-                            {path == 'contact' && contact.first_name}
+                            {path == 'client' && <>{(data.person) ? data.person.first_name : data.org.name}</>}
+                            {path == 'contact' && <>{(data.person) ? data.person.first_name : data.org.name}</>}
                         </li>
                     </ul>
                 </nav>
@@ -266,7 +287,7 @@ class ListSingle extends Component {
                     <>
                         <div className="pi-list-single-head">
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-content">
                                         <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
@@ -288,7 +309,7 @@ class ListSingle extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Lead Level:</label>
@@ -387,7 +408,7 @@ class ListSingle extends Component {
                     <>
                         <div className="pi-list-single-head pi-list-single-head-two">
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-content">
                                         <h3 className="">
                                             {data.title}
@@ -427,11 +448,11 @@ class ListSingle extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Deal Stage:</label>
-                                            {data.id && <Taxonomy id={data.id} data={data.stage_id} taxonomy='deal_stage' title='Stage' color={true} />}
+                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title='Stage' color={true} />}
                                         </div>
 
                                         <button
@@ -485,7 +506,7 @@ class ListSingle extends Component {
 
                                         <div
                                             className="pi-action-content pi-action-btn pi-bg-shadow"
-                                            style={{padding: 1}}
+                                            style={{ padding: 1 }}
                                         >
                                             <button
                                                 onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
@@ -548,7 +569,7 @@ class ListSingle extends Component {
                     <>
                         <div className="pi-list-single-head pi-list-single-head-two">
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-content">
                                         <h3 className="">
                                             {data.title}
@@ -573,11 +594,11 @@ class ListSingle extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Project Status:</label>
-                                            {data.id && <Taxonomy id={data.id} data={data.status_id} taxonomy='project_status' title='Status' color={true} />}
+                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={this.handleProjectStatusChange} title='Status' color={true} />}
                                         </div>
 
                                         {(data.status_id && data.status_id.type != 'completed') && <button
@@ -642,11 +663,11 @@ class ListSingle extends Component {
                                 </li>
                                 <li>
                                     <label htmlFor="">Start Date:</label>
-                                    <span className="pi-date">22 April, 2022</span>
+                                    <span className="pi-date">{data.start_date && <Moment format="YYYY-MM-DD">{data.start_date}</Moment>}</span>
                                 </li>
                                 <li>
                                     <label htmlFor="">Due Date:</label>
-                                    <span className="pi-date">2 April, 2022</span>
+                                    <span className="pi-date">{data.due_date && <Moment format="YYYY-MM-DD">{data.due_date}</Moment>}</span>
                                 </li>
                                 <li />
                             </ul>
@@ -695,7 +716,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Total Budget</p>
-                                        <h4>$ 14214</h4>
+                                        <h4>$ {data.invoice && data.invoice.total}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -725,7 +746,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Paid Amount</p>
-                                        <h4>$ 14214</h4>
+                                        <h4>$ {data.invoice && data.invoice.paid}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -759,7 +780,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Due Amount</p>
-                                        <h4>$ 14214</h4>
+                                        <h4>$ {data.invoice && data.invoice.due}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -796,7 +817,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">Total Invoice</p>
-                                        <h4>23</h4>
+                                        <h4>{data.invoice && data.invoice.number}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -804,16 +825,16 @@ class ListSingle extends Component {
                     </>
                 }
 
-                {path == 'contact' &&
+                {(path == 'contact' || path == 'client') &&
                     <>
                         <div className="pi-list-single-head">
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-content">
                                         <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
                                             <h3 className="">
-                                                {contact.first_name}
+                                                {(data.person) ? data.person.first_name : data.org.name}
                                                 <button
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ contactModal: true })}
@@ -822,13 +843,13 @@ class ListSingle extends Component {
                                                 </button>
                                             </h3>
                                             <address>
-                                                {contact.email} <br />
-                                                Organization/Company: {contact.org_name}<br />
+                                                {data.email} <br />
+                                                Organization/Company: {(data.person) ? data.person.first_name : data.org.name}<br />
                                             </address>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-6">
+                                <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Status:</label>
@@ -954,6 +975,8 @@ class ListSingle extends Component {
                                     {currentTab == 'task' && data.tab_id && <Task tab_id={data.tab_id} />}
                                     {currentTab == 'note' && data.tab_id && <Note tab_id={data.tab_id} />}
                                     {currentTab == 'file' && data.tab_id && <File tab_id={data.tab_id} />}
+                                    {currentTab == 'estimate' && data.id && <Invoice module_id={data.id} path={'estimate'} />}
+                                    {currentTab == 'invoice' && data.id && <Invoice module_id={data.id} path={'invoice'} />}
                                 </Suspense>
                             </div>
                         </div>

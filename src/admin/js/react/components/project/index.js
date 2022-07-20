@@ -18,10 +18,10 @@ const Project = (props) => {
       <Breadcrumb title={title} />
 
       <div className="row">
-        <div className="col-lg-6">
+        <div className="col-5">
           <h2 className="pi-page-title">{title}</h2>
         </div>
-        <div className="col-lg-6">
+        <div className="col-7">
           <AddNew
             title={title}
             openForm={props.openForm}
@@ -29,7 +29,7 @@ const Project = (props) => {
         </div>
       </div>
 
-      {true && <div className="pi-buttons-group pi-mb-20">
+      {false && <div className="pi-buttons-group pi-mb-20">
         <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
           <svg
             width={20}
@@ -118,6 +118,7 @@ const Project = (props) => {
       <Search
         title={title}
         showing={lists.length}
+        showItem={props.showItem}
         total={props.state.total}
         handleSubmit={props.getLists}
       />
@@ -137,7 +138,7 @@ const Project = (props) => {
         close={props.closeForm}
       />}
 
-      {/* {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.newInvoie()} />} */}
+      {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
 
       {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 

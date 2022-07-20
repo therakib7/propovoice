@@ -9,10 +9,8 @@ const TableBody = props => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
 
-        const status = row.status_id;
-        const priority = row.priority_id;
         return (
-            <div className="pi-accordion-table-list" key={index}>
+            <div className={"pi-accordion-table-list " + (props.dashboard ? 'pi-mt-15 pi-mb-15' : '')} key={index}>
                 {!props.dashboard && <div className="pi-checkbox">
                     <input type="checkbox"
                         value={row.id}
@@ -22,7 +20,7 @@ const TableBody = props => {
                 </div>}
                 <ul>
                     <li style={{ width: '45%' }} className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
-                        <div className="pi-task-type">
+                        <div className={"pi-task-type " + (props.dashboard ? 'pi-mt-10' : '')}>
                             {row.type_id.icon && <img src={row.type_id.icon.src} />}
                             {!row.type_id.icon && <svg
                                 width={16}
@@ -68,8 +66,11 @@ const TableBody = props => {
                             </p>
                         </div>
                     </li>
-                    <li style={{ width: '15%' }}>
-                        <Taxonomy id={row.id} data={row.status_id} taxonomy='task_status' title='Status' small={true} color={true} />
+                    <li style={{ width: '20%' }}>
+                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title='Status' small={true} color={true} />
+                    </li>
+                    <li style={{ width: '20%' }}>
+                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title='Priority' small={true} color={true} />
                     </li>
                     <li style={{ width: '15%' }}>
                         <Taxonomy id={row.id} data={row.priority_id} taxonomy='task_priority' title='Priority' small={true} color={true} />

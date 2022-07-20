@@ -81,7 +81,8 @@ function Pipeline(props) {
 		if ( props.data.length ) {
 			//left right padding 140
 			//add new column 235
-			setWidth( props.data.length * 255 + 235 + 30); 
+			//setWidth( props.data.length * 255 + 235 + 30); 
+			setWidth( props.data.length * 255 + 25); 
 		}
 	}, [props.data]);
 
@@ -142,8 +143,8 @@ function Pipeline(props) {
 									// ref={popover}
 									>
 										{/* <a onClick={() => props.editEntry('edit', columnId)}>Edit</a> */}
-										<a onClick={() => props.taxForm()}>Edit</a>
-										<a onClick={() => props.deleteEntry('single', columnId)}>Delete</a>
+										<a onClick={() => { props.taxForm('edit', column); showDropdown(columnId); } }>Edit</a>
+										{/* <a onClick={() => props.deleteEntry('single', columnId)}>Delete</a> */}
 									</div>}
 								</div>
 							</div>
@@ -256,7 +257,7 @@ function Pipeline(props) {
 					);
 				})}
 
-				<div className="pi-board-column">
+				{/* <div className="pi-board-column">
 					<button
 						className="pi-btn pi-btn-big pi-bg-white pi-bg-hover-shadow"
 						onClick={() => props.taxForm()}
@@ -285,9 +286,8 @@ function Pipeline(props) {
 						</svg>
 						Add New Stage
 					</button>
-				</div>
-			</DragDropContext>
-
+				</div> */}
+			</DragDropContext> 
 		</div>
 	);
 }

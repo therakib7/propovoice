@@ -31,7 +31,37 @@ const data = [
     name: 'Jun',
     Won: 2390,
     Lost: 3800
-  }
+  },
+  {
+    name: 'Jan',
+    Won: 4000,
+    Lost: 2400
+  },
+  {
+    name: 'Feb',
+    Won: 3000,
+    Lost: 1398
+  },
+  {
+    name: 'Mar',
+    Won: 2000,
+    Lost: 9800
+  },
+  {
+    name: 'Apr',
+    Won: 2780,
+    Lost: 3908
+  },
+  {
+    name: 'May',
+    Won: 1890,
+    Lost: 4800
+  },
+  {
+    name: 'Jun',
+    Won: 2390,
+    Lost: 3800
+  },
 ];
 
 export default class Example extends PureComponent {

@@ -2,6 +2,8 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
+use Ncpi\Models\Contact;
+use Ncpi\Models\Invoice;
 use Ncpi\Models\Org;
 use Ncpi\Models\Person;
 use WP_Query;
@@ -69,17 +71,19 @@ class Project
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
+
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
         }
 
         $args = array(
@@ -93,14 +97,31 @@ class Project
             'relation' => 'OR'
         );
 
-        if (isset($request['default'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'default',
-                    'value'   => 1,
-                    'compare' => 'LIKE'
-                )
-            );
+        if ( $s ) {
+            $args['s'] = $s;
+
+            $contact_person = new Contact(); 
+            $person_ids = $contact_person->query($s, 'person');  
+            if ( $person_ids ) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'person_id',
+                        'value'   => $person_ids,
+                        'compare' => 'IN'
+                    )
+                ); 
+            }
+
+            $org_ids = $contact_person->query($s, 'org');   
+            if ( $org_ids ) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'org_id',
+                        'value'   => $org_ids,
+                        'compare' => 'IN'
+                    )
+                ); 
+            }  
         }
 
         $query = new WP_Query($args);
@@ -117,6 +138,8 @@ class Project
             $query_data['title'] = get_the_title( $id );
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
+            $query_data['start_date'] = isset($queryMeta['start_date']) ? $queryMeta['start_date'][0] : '';
+            $query_data['due_date'] = isset($queryMeta['due_date']) ? $queryMeta['due_date'][0] : '';
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
 
@@ -154,19 +177,7 @@ class Project
             if ($org_id) {
                 $org = new Org();
                 $query_data['org'] = $org->single($org_id);
-            }
-
-            /* $contact_id = get_post_meta($id, 'person_id', true);
-            $contactData = [];
-
-            if ($contact_id) {
-                $contactData['id'] = absint($contact_id);
-                $contactMeta = get_post_meta($contact_id);
-                $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-                $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-                // $contactData['last_name'] = isset($contactMeta['last_name']) ? $contactMeta['last_name'][0] : ''; 
-            }
-            $query_data['contact_id'] = $contactData; */
+            } 
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -192,8 +203,13 @@ class Project
         $query_data['title'] = get_the_title( $id );
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
+        $query_data['start_date'] = isset($queryMeta['start_date']) ? $queryMeta['start_date'][0] : '';
+        $query_data['due_date'] = isset($queryMeta['due_date']) ? $queryMeta['due_date'][0] : '';
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
         $query_data['desc'] = get_post_field('post_content', $id); 
+
+        $contact_person = new Invoice();  
+        $query_data['invoice'] = $contact_person->project_invoice( $id );
         
         $query_data['status_id'] = ''; 
         $status = get_the_terms($id, 'ndpi_project_status');
@@ -233,24 +249,7 @@ class Project
         if ( $org_id ) {
             $org = new Org();   
             $query_data['org'] = $org->single( $org_id, true );
-        } 
-
-        /* $contact_id = get_post_meta($id, 'person_id', true);
-        $contactData = [];
-
-        if ($contact_id) {
-            $contactData['id'] = absint($contact_id);
-            $contactMeta = get_post_meta($contact_id);
-            $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : ''; 
-            $contactData['org_name'] = isset($contactMeta['org_name']) ? $contactMeta['org_name'][0] : '';
-            $contactData['email'] = isset($contactMeta['email']) ? $contactMeta['email'][0] : '';
-            $contactData['mobile'] = isset($contactMeta['mobile']) ? $contactMeta['mobile'][0] : '';
-            $contactData['web'] = isset($contactMeta['web']) ? $contactMeta['web'][0] : '';
-            $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
-            $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-            $contactData['address'] = isset($contactMeta['address']) ? $contactMeta['address'][0] : '';
-        }
-        $query_data['contact'] = $contactData; */
+        }  
 
         $query_data['date'] = get_the_time('j-M-Y');
 
@@ -287,6 +286,9 @@ class Project
         /* if ( !$deal_id && empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
+        if ( empty($first_name) &&  empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
 
         $person = new Person();  
         if ( $person_id ) {
@@ -412,6 +414,10 @@ class Project
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
+        if ( empty($first_name) &&  empty($org_name) ) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
+        
         /* if (empty($status_id)) {
             $reg_errors->add('field', esc_html__('Please select a status', 'propovoice'));
         }
