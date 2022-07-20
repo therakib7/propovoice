@@ -123,6 +123,15 @@ class Project
             }
         }
 
+        if ( isset($params['module_id']) ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'module_id',
+                    'value' => $params['module_id']
+                )
+            );
+        }
+
         $query = new WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
@@ -207,8 +216,8 @@ class Project
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
         $query_data['desc'] = get_post_field('post_content', $id);
 
-        $contact_person = new Invoice();
-        $query_data['invoice'] = $contact_person->project_invoice($id);
+        $invoice = new Invoice();
+        $query_data['invoice'] = $invoice->project_invoice($id);
         
         $query_data['status_id'] = '';
         $status = get_the_terms($id, 'ndpi_project_status');

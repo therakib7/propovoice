@@ -4,6 +4,7 @@ namespace Ncpi\Ctrls\Api\Types;
 
 use Ncpi\Models\Org;
 use Ncpi\Models\Person;
+use Ncpi\Models\Project;
 use WP_Query;
 
 class Contact
@@ -179,8 +180,11 @@ class Contact
         $query_data['tab_id'] = $id; 
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
 
-        $query_data['person'] = null;
+        $project = new Project(); 
+        $query_data['project'] = $project->total($id);
+        $query_data['deal'] = 3;
 
+        $query_data['person'] = null; 
         if ( $type == 'person' ) {
             $person = new Person();   
             $query_data['person'] = $person->single( $id, true );

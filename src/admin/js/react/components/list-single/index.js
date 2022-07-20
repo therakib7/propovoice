@@ -92,16 +92,22 @@ class ListSingle extends Component {
             });
         }
 
-        if ( path == 'client' ) { 
+        if ( path == 'client' || path == 'contact' ) { 
             tabs.push({
                 id: 'project',
                 text: 'Project'
             });  
         }
+
+        if ( path == 'contact' ) { 
+            tabs.push({
+                id: 'deal',
+                text: 'Deal'
+            });  
+        }
     }
 
-    getData = () => {
-        // console.log(this.props.id);
+    getData = () => { 
         const path = this.props.path;
         const url = (path == 'client' ? 'contact' : path) + 's';
         this.props.get(url, this.props.id).then(resp => {
@@ -432,7 +438,7 @@ class ListSingle extends Component {
                                             <div className="pi-avatar-text">
                                                 <h5 style={{ fontSize: 12 }}>{(data.person) ? data.person.first_name : data.org.name} </h5>
                                                 <p style={{ fontSize: 12 }}>
-                                                    {(data.person) ? data.person.region : data.org.region}
+                                                    {(data.person) ? data.person.region + ' ' : data.org.region + ' '}
 
                                                     {(data.person) ? data.person.country : data.org.country}
                                                 </p>
@@ -932,8 +938,8 @@ class ListSingle extends Component {
                                     <label htmlFor="">Tag: </label>
                                     {data.id && <Taxonomy id={data.id} taxonomy='tag' title='Tag' small={true} multiple={true} />}
                                 </li>
-                                <li>Project 2</li>
-                                <li>Deal 2</li>
+                                <li>Project {data.project}</li>
+                                <li>Deal {data.deal}</li>
                             </ul>
                         </div>
                     </>

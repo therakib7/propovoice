@@ -128,7 +128,7 @@ const TableBody = props => {
 
     const navigate = useNavigate();
     const handleOverview = (id) => {
-        navigate(`/project/single/${id}`, { replace: true });
+        navigate(`/project/single/${id}`);
     };
 
     let rows = props.tableData.map((row, index) => {

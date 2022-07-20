@@ -10,7 +10,7 @@ import Search from './Search';
 import Empty from 'block/empty';
 
 import Crud from 'hoc/Crud';
-console.log(props);
+
 const Project = (props) => {
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
