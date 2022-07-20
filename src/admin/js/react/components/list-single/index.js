@@ -18,6 +18,7 @@ const Task = lazy(() => import('./tab/task'));
 const Note = lazy(() => import('./tab/note'));
 const File = lazy(() => import('./tab/file'));
 const Invoice = lazy(() => import('components/invoice/list'));
+const Project = lazy(() => import('components/project'));
 
 class ListSingle extends Component {
 
@@ -70,17 +71,17 @@ class ListSingle extends Component {
 
     componentDidMount() {
         this.getData();
+        const path = this.props.path;
 
-        if ( this.props.path == 'deal' ) {
-            let tabs = this.state.tabs 
+        let tabs = this.state.tabs 
+        if ( path == 'deal' ) {
             tabs.push({
                 id: 'estimate',
                 text: 'Estimate'
             }); 
         }
 
-        if ( this.props.path == 'project' ) {
-            let tabs = this.state.tabs 
+        if ( path == 'project' || path == 'client' ) { 
             tabs.push({
                 id: 'invoice',
                 text: 'Invoice'
@@ -89,6 +90,13 @@ class ListSingle extends Component {
                 id: 'estimate',
                 text: 'Estimate'
             }); 
+        }
+
+        if ( path == 'client' ) { 
+            tabs.push({
+                id: 'project',
+                text: 'Project'
+            });  
         }
     }
 
@@ -843,8 +851,8 @@ class ListSingle extends Component {
                                                 </button>
                                             </h3>
                                             <address>
-                                                {data.email} <br />
-                                                Organization/Company: {(data.person) ? data.person.first_name : data.org.name}<br />
+                                                {(data.person) ? data.person.email : data.org.email} <br />
+                                                Organization: {(data.person) ? data.person.first_name : data.org.name}<br />
                                             </address>
                                         </div>
                                     </div>
@@ -977,6 +985,7 @@ class ListSingle extends Component {
                                     {currentTab == 'file' && data.tab_id && <File tab_id={data.tab_id} />}
                                     {currentTab == 'estimate' && data.id && <Invoice module_id={data.id} path={'estimate'} />}
                                     {currentTab == 'invoice' && data.id && <Invoice module_id={data.id} path={'invoice'} />}
+                                    {currentTab == 'project' && data.id && <Project module_id={data.id} />}
                                 </Suspense>
                             </div>
                         </div>

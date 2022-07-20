@@ -325,6 +325,7 @@ class Form extends Component {
                                             id="field-title"
                                             type="text"
                                             name="title"
+                                            required
                                             value={form.title}
                                             onChange={this.handleChange}
                                         />

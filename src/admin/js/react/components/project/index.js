@@ -10,12 +10,12 @@ import Search from './Search';
 import Empty from 'block/empty';
 
 import Crud from 'hoc/Crud';
-
+console.log(props);
 const Project = (props) => {
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
     <div className="ncpi-components">
-      <Breadcrumb title={title} />
+      {!props.module_id && <Breadcrumb title={title} />}
 
       <div className="row">
         <div className="col-lg-6">
@@ -115,13 +115,13 @@ const Project = (props) => {
         </button>
       </div>}
 
-      <Search
+      {!props.module_id && <Search
         title={title}
         showing={lists.length}
         showItem={props.showItem}
         total={props.state.total}
         handleSubmit={props.getLists}
-      />
+      />}
 
       {checkedBoxes.length > 0 &&
         <Action
@@ -138,7 +138,7 @@ const Project = (props) => {
         close={props.closeForm}
       />}
 
-      {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />} 
+      {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
 
       {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
