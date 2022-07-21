@@ -58,7 +58,7 @@ msgstr ""
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client copy.php:272, ../app/Ctrls/Api/Types/Client copy.php:333, ../app/Ctrls/Api/Types/Client.php:194, ../app/Ctrls/Api/Types/Client.php:283, ../app/Ctrls/Api/Types/Contact.php:283, ../app/Ctrls/Api/Types/Org.php:214, ../app/Ctrls/Api/Types/Org.php:301, ../app/Ctrls/Api/Types/Person.php:236, ../app/Ctrls/Api/Types/Person.php:325, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
+#: ../app/Ctrls/Api/Types/Client copy.php:272, ../app/Ctrls/Api/Types/Client copy.php:333, ../app/Ctrls/Api/Types/Client.php:194, ../app/Ctrls/Api/Types/Client.php:283, ../app/Ctrls/Api/Types/Contact.php:283, ../app/Ctrls/Api/Types/Org.php:213, ../app/Ctrls/Api/Types/Org.php:300, ../app/Ctrls/Api/Types/Person.php:236, ../app/Ctrls/Api/Types/Person.php:325, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
 msgid "Email id is not valid!"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:190, ../app/Ctrls/Api/Types/Client.php:279, ../app/Ctrls/Api/Types/Contact.php:279, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:210, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:232, ../app/Ctrls/Api/Types/Person.php:321, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
+#: ../app/Ctrls/Api/Types/Client.php:190, ../app/Ctrls/Api/Types/Client.php:279, ../app/Ctrls/Api/Types/Contact.php:279, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:209, ../app/Ctrls/Api/Types/Org.php:296, ../app/Ctrls/Api/Types/Person.php:232, ../app/Ctrls/Api/Types/Person.php:321, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
 msgid "Name field is missing"
 msgstr ""
 

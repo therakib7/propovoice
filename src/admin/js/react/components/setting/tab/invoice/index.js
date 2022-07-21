@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import WithApi from 'hoc/Api';
 import Reminder from 'block/field/reminder';
+import AdditionalAmount from 'block/field/extra-amount/setting';
 import Recurring from './sub/Recurring';
 
 class General extends Component {
@@ -12,6 +13,10 @@ class General extends Component {
 				{
 					id: 'reminder',
 					text: 'Reminder'
+				},
+				{
+					id: 'extra-amount',
+					text: 'Additional Amount'
 				},
 				{
 					id: 'template',
@@ -48,6 +53,7 @@ class General extends Component {
 				</ul>
 		
 				{currentTab == 'reminder' && <Reminder {...this.props} path={'invoice'} />} 
+				{currentTab == 'extra-amount' && <AdditionalAmount taxonomy='extra_amount' title='Additional Amount' {...this.props} />} 
 				{currentTab == 'template' && <Recurring {...this.props} />}
 			</>
 		);

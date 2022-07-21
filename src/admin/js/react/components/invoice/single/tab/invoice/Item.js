@@ -58,12 +58,13 @@ class Item extends Component {
                         onChange={this.props.changeHandler(index)}
                         onFocus={this.props.focusHandler}
                     />
-                </td>
-
+                </td> 
+                {/* <td>
+                    
+                </td> */} 
                 <td>
                     {this.props.currencyFormatter(qty * price)}
                 </td>
-
                 <td>
                     <span
                         onClick={this.props.deleteHandler(index)}

@@ -44,9 +44,8 @@ class Items extends Component {
                                 <tr >
                                     <th>Title &amp; Description </th>
                                     <th>Quantity</th>
-                                    <th>
-                                        Rate (USD)
-                                    </th>
+                                    <th>Rate (USD)</th>
+                                    {/* <th>Tax</th> */}
                                     <th>Amount</th>
                                     <th></th>
                                 </tr>

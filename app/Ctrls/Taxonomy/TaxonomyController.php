@@ -6,6 +6,7 @@ use Ncpi\Ctrls\Taxonomy\Types\ContactStatus;
 use Ncpi\Ctrls\Taxonomy\Types\DealPipeline;
 use Ncpi\Ctrls\Taxonomy\Types\Tag;
 use Ncpi\Ctrls\Taxonomy\Types\DealStage;
+use Ncpi\Ctrls\Taxonomy\Types\ExtraAmount;
 use Ncpi\Ctrls\Taxonomy\Types\LeadLevel;
 use Ncpi\Ctrls\Taxonomy\Types\LeadSource;
 use Ncpi\Ctrls\Taxonomy\Types\ProjectStatus;
@@ -24,6 +25,7 @@ class TaxonomyController {
 		new TaskPriority(); 
 		new DealPipeline();
 		new DealStage();
+		new ExtraAmount();
 		new ProjectStatus();
 		new ContactStatus();
 	} 

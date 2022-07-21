@@ -196,8 +196,7 @@ class Org
 
         $name         = isset($params['name']) ? sanitize_text_field($req['name']) : null;
         $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null;
-
+        $person_id    = isset($params['person_id']) ? absint($params['person_id']) : null; 
         $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
         $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
