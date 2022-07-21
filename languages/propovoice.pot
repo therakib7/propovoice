@@ -14,11 +14,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %s template
-#: ../app/Helpers/Fns.php:211
+#: ../app/Helpers/Fns.php:224
 msgid "%s does not exist."
 msgstr ""
 
-#: ../app/Helpers/Fns.php:304, ../app/Helpers/Fns.php:376
+#: ../app/Helpers/Fns.php:317, ../app/Helpers/Fns.php:389
 msgid "Select"
 msgstr ""
 
@@ -126,7 +126,7 @@ msgstr ""
 msgid "Title field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Taxonomy.php:79, ../app/Ctrls/Api/Types/Taxonomy.php:217, ../app/Ctrls/Api/Types/Taxonomy.php:266
+#: ../app/Ctrls/Api/Types/Taxonomy.php:80, ../app/Ctrls/Api/Types/Taxonomy.php:232, ../app/Ctrls/Api/Types/Taxonomy.php:287
 msgid "Taxonomy is missing"
 msgstr ""
 
@@ -454,6 +454,56 @@ msgstr ""
 
 #: ../app/Ctrls/Taxonomy/Types/DealStage.php:31
 msgid "No deal stage found."
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:20
+msgctxt "extra_amount general name"
+msgid "Estvoice Extra Amounts"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:21
+msgctxt "extra_amount singular name"
+msgid "Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:22
+msgid "Search Estvoice Extra Amounts"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:23
+msgid "All Estvoice Extra Amounts"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:24
+msgid "Parent Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:25
+msgid "Parent Estvoice Extra Amount:"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:26
+msgid "Edit Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:27
+msgid "Update Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:28
+msgid "Add New Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:29
+msgid "New Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:30
+msgid "Estvoice Extra Amounts"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:31
+msgid "No Estvoice extra amount found."
 msgstr ""
 
 #: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:20
