@@ -1652,6 +1652,21 @@ html {
   color: #718096;
   font-weight: 500;
 }
+.ncpi .pi-top-menu-content .pi-search-box {
+  top: -2px;
+}
+@media screen and (max-width: 550px) {
+  .ncpi .pi-top-menu-content .pi-search-box .pi-search-input {
+    width: 200px !important;
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .ncpi .pi-top-menu-content .pi-search-box .pi-search-input {
+    width: 0px !important;
+    border: none;
+  }
+}
 .ncpi .pi-search-box {
   position: relative;
 }
@@ -1666,18 +1681,6 @@ html {
   border-radius: 8px;
   background: transparent;
   width: 330px;
-}
-@media screen and (max-width: 992px) {
-  .ncpi .pi-search-box .pi-search-input {
-    width: 200px !important;
-    font-size: 12px;
-  }
-}
-@media screen and (max-width: 420px) {
-  .ncpi .pi-search-box .pi-search-input {
-    width: 0;
-    border: none;
-  }
 }
 .ncpi .pi-search-box svg {
   position: absolute;
@@ -2112,6 +2115,32 @@ html {
 input[type=checkbox] {
     height: 18px;
     width: 18px;
+  }
+}
+@media screen and (max-width: 790px) {
+  .pi-additional input[type=radio],
+.pi-additional input[type=checkbox] {
+    height: 18px;
+    width: 18px;
+  }
+  .pi-additional input[type=radio]:before {
+    width: 10px !important;
+    height: 10px !important;
+    position: relative;
+    top: -4px;
+    left: -4px;
+  }
+  .pi-additional input[type=checkbox]:before {
+    width: 19px !important;
+  }
+}
+@media screen and (max-width: 550px) {
+  #pi-tab-share .pi-float-left {
+    margin-bottom: 30px;
+  }
+
+  #pi-tab-share .justify-content-md-center .col-md-8:first-child {
+    margin: 0px 0px 30px !important;
   }
 }
 .wp-admin .pi-overview-select {
@@ -3719,7 +3748,6 @@ ul {
   }
 }
 .ncpi .pi-search-btn .pi-search-form ul {
-  display: flex;
   border: 1px solid #dddddda8;
   display: flex;
   margin: 0;
