@@ -47,6 +47,9 @@
 .ncpi .pi-single-image-content:hover .pi-single-image {
   opacity: 0.3;
 }
+.ncpi .pi-single-image-content:hover .pi-active {
+  opacity: 1 !important;
+}
 .ncpi .pi-single-image-content:hover .pi-overflow-content {
   opacity: 1;
 }
@@ -78,6 +81,11 @@
 .ncpi .pi-info-content {
   padding: 35px 30px;
   border-radius: 8px;
+}
+@media screen and (max-width: 420px) {
+  .ncpi .pi-info-content {
+    padding: 15px 0px;
+  }
 }
 .ncpi .pi-add-info-content {
   margin-bottom: 20px;

@@ -18,10 +18,10 @@ const Client = (props) => {
             <Breadcrumb title={title} />
 
             <div className="row">
-                <div className="col-lg-6">
+                <div className="col-6">
                     <h2 className="pi-page-title">{title}</h2>
                 </div>
-                <div className="col-lg-6">
+                <div className="col-6">
                     <AddNew
                         title={title}
                         openForm={props.openForm}

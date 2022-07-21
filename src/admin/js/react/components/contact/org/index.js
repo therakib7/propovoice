@@ -22,10 +22,10 @@ const Org = (props) => {
       <Breadcrumb title='Contact Book' />
 
       <div className="row">
-        <div className="col-lg-6">
+        <div className="col-6">
           <h2 className="pi-page-title">Contact Book</h2>
         </div>
-        <div className="col-lg-6">
+        <div className="col-6">
           <AddNew
             title={title}
             openForm={props.openForm}

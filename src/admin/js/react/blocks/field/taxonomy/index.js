@@ -23,21 +23,21 @@ const Taxonomy = (props) => {
 	useClickOutside(dropdownContent, close);
 
 	useEffect(() => {
-		if ( props.data ) { 
-			if ( props.multiple ) {
+		if (props.data) {
+			if (props.multiple) {
 				setListById(props.data);
 			} else {
 				setListById([props.data]);
 			}
-			
+
 			getData();
 		} else {
 			getDataWithSingle();
 		}
 	}, []);
 
-	const getData = () => { 
-		if ( props.list ) {
+	const getData = () => {
+		if (props.list) {
 			setList(props.list);
 			return;
 		}
@@ -115,18 +115,18 @@ const Taxonomy = (props) => {
 
 		setDropdown(false);
 
-		if ( props.onChange ) {
+		if (props.onChange) {
 			props.onChange(item);
 		}
-		
+
 		if (!props.multiple) {
 			setListById([item]);
 		} else {
-			if ( !listById.some(e => e.id == item.id)) {
+			if (!listById.some(e => e.id == item.id)) {
 				setListById([...listById, item]);
 			}
-		} 
-		
+		}
+
 		props.update('taxonomies', newForm.id, newForm).then(resp => {
 			if (resp.data.success) {
 				getData();

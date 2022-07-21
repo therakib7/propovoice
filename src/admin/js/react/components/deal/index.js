@@ -26,7 +26,7 @@ const Deal = (props) => {
         bg_color: '',
         icon: null
     };
-    const [form, setForm] = useState(newForm); 
+    const [form, setForm] = useState(newForm);
 
     const taxForm = (type = 'new', data = null) => {
         setModal(true)
@@ -56,33 +56,37 @@ const Deal = (props) => {
             }
         }
     }, []);
-    
+
     const { title, lists, checkedBoxes, searchVal } = props.state;
     return (
         <div className="ncpi-components">
-            {!props.module_id && <Breadcrumb title={title + ' Pipeline'} />} 
+            {!props.module_id && <Breadcrumb title={title + ' Pipeline'} />}
 
-            {props.state.formModal && <Form
-                handleSubmit={props.handleSubmit}
-                modalType={props.state.formModalType}
-                data={props.state.list}
-                close={props.closeForm}
-            />}
+            {
+                props.state.formModal && <Form
+                    handleSubmit={props.handleSubmit}
+                    modalType={props.state.formModalType}
+                    data={props.state.list}
+                    close={props.closeForm}
+                />
+            }
 
-            {modal && <TaxonomyForm
-                {...props}
-                taxonomy='deal_stage'
-                title='Stage'
-                reload={props.getLists}
-                modalType={modalType}
-                data={form}
-                color={true}
-                close={() => setModal(false)}
-            />}
+            {
+                modal && <TaxonomyForm
+                    {...props}
+                    taxonomy='deal_stage'
+                    title='Stage'
+                    reload={props.getLists}
+                    modalType={modalType}
+                    data={form}
+                    color={true}
+                    close={() => setModal(false)}
+                />
+            }
 
             <div className="row">
                 <div className="col-lg-6">
-                    <h2 className="pi-page-title pi-mb-15">{title + ( !props.module_id  ? ' Pipeline' : '' )}</h2>
+                    <h2 className="pi-page-title pi-mb-15">{title + (!props.module_id ? ' Pipeline' : '')}</h2>
                 </div>
 
                 <div className="col-lg-6 pi-text-right">
@@ -144,30 +148,31 @@ const Deal = (props) => {
                             </svg>
                             Add {title}
                         </button>
-                    </div>
-                </div>
-            </div>
+                    </div >
+                </div >
+            </div >
 
             {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
 
-            {props.state.preloader ? <Preloader /> :
-                <>
-                    {!props.module_id && <Pipeline
-                        new={props.openForm}
-                        data={lists}
-                        taxForm={taxForm}
-                    />}
+            {
+                props.state.preloader ? <Preloader /> :
+                    <>
+                        {!props.module_id && <Pipeline
+                            new={props.openForm}
+                            data={lists}
+                            taxForm={taxForm}
+                        />}
 
-                    {props.module_id && <>
-                        <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
-                        <div className="pi-pagination-content">
-                            {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
-                        </div>
-                    </>}
-                </>
-            } 
+                        {props.module_id && <>
+                            <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
+                            <div className="pi-pagination-content">
+                                {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
+                            </div>
+                        </>}
+                    </>
+            }
 
-        </div>
+        </div >
     );
 }
 

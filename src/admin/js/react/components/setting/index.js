@@ -25,7 +25,7 @@ const Tag = lazy(() => import('./tab/tag'));
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
 
-const BusinessSingle = lazy(() => import('./tab/business/index')); 
+const BusinessSingle = lazy(() => import('./tab/business/index'));
 
 const Payment = lazy(() => import('components/payment'));
 
@@ -54,7 +54,7 @@ export default function SettingWrap() {
     const [tabs, setTabs] = useState(tab_data);
 
     useEffect(() => {
-        if ( !wage.length ) {
+        if (!wage.length) {
             const new_tab_data = {
                 general: {
                     label: 'General'
@@ -115,8 +115,8 @@ export default function SettingWrap() {
     };
 
     const addCurrentTab = (e, tab, subtab = null) => {
-        e.preventDefault(); 
-        setCurrentTab(tab); 
+        e.preventDefault();
+        setCurrentTab(tab);
         setCurrentSubtab(subtab);
         routeChange(tab, subtab);
     };
@@ -132,14 +132,14 @@ export default function SettingWrap() {
                             height={10}
                             viewBox="0 0 5 10"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg" 
+                            xmlns="http://www.w3.org/2000/svg"
                         >
-                        <path
-                            d="M.5 1.25L4.25 5 .5 8.75"
-                            stroke="#718096"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
+                            <path
+                                d="M.5 1.25L4.25 5 .5 8.75"
+                                stroke="#718096"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
                         </svg>
                     </li>
                     <li className='pi-active'>Settings</li>
@@ -155,7 +155,7 @@ export default function SettingWrap() {
                             {Object.keys(tabs).map(key =>
                                 <li
                                     key={key}
-                                    className={'pi-tab ' + (key == currentTab ? 'pi-active' : '')} 
+                                    className={'pi-tab ' + (key == currentTab ? 'pi-active' : '')}
                                 >
                                     <a onClick={(e) => addCurrentTab(e, key)}>
                                         {tabs[key].label}
@@ -165,7 +165,7 @@ export default function SettingWrap() {
                                         {Object.keys(tabs[key].subtabs).map(subkey =>
                                             <li
                                                 key={subkey}
-                                                className={'pi-subtab ' + ((subkey == currentSubtab) || (!currentSubtab && Object.keys(tabs[key].subtabs)[0] == subkey) ? 'pi-active' : '')} 
+                                                className={'pi-subtab ' + ((subkey == currentSubtab) || (!currentSubtab && Object.keys(tabs[key].subtabs)[0] == subkey) ? 'pi-active' : '')}
                                             >
                                                 <a onClick={(e) => addCurrentTab(e, key, subkey)}>
                                                     {tabs[key].subtabs[subkey].label}
@@ -175,7 +175,7 @@ export default function SettingWrap() {
                                     </ul>}
                                 </li>
                             )}
-                        </ul> 
+                        </ul>
                     </div>
 
                     <div className='col-md-9'>
@@ -185,9 +185,9 @@ export default function SettingWrap() {
                                 <p>note: in this version, you can add only bank info in your invoice</p>
                             </div> */}
 
-                            <h4 className='pi-title-medium pi-mb-15' style={{textTransform: 'capitalize'}}>{currentTab} Settings</h4>
+                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} Settings</h4>
 
-                            <Suspense fallback={<Spinner />}> 
+                            <Suspense fallback={<Spinner />}>
 
                                 {currentTab == 'general' && <General />}
                                 {currentTab == 'task' && <Task />}
@@ -207,7 +207,7 @@ export default function SettingWrap() {
                                     </>
                                 } */}
 
-                                {currentTab == 'business' && <BusinessSingle />} 
+                                {currentTab == 'business' && <BusinessSingle />}
                                 {currentTab == 'payment' && <Payment />}
 
                                 {!wage.length &&
@@ -215,7 +215,7 @@ export default function SettingWrap() {
                                         {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
                                         {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
                                     </>
-                                } 
+                                }
 
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}

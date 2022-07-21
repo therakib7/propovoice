@@ -19,7 +19,7 @@ const Action = (props) => {
     const row = props.row;
     return (
         <div className="pi-action-content">
-            <button className={(dropdown ? 'pi-active' : '')} onClick={() => showDropdown()}>
+            <button className={(dropdown ? 'pi-active' : '')} onClick={() => showDropdown()} style={{ padding: '0 5px' }} >
                 <svg
                     width={24}
                     height={24}

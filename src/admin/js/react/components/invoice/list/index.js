@@ -8,7 +8,7 @@ import AppContext from 'context/app-context';
 
 // import Preloader from 'block/preloader/table';
 import AddNew from 'block/add-new';
-import Action from 'block/action/table'; 
+import Action from 'block/action/table';
 import Breadcrumb from 'block/breadcrumb';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
@@ -72,11 +72,11 @@ const Invoice = class Invoice extends Component {
 
         args.path = this.state.path;
 
-        if ( this.props.invoice_id ) {
+        if (this.props.invoice_id) {
             args.invoice_id = this.props.invoice_id;
         }
 
-        if ( this.props.module_id ) {
+        if (this.props.module_id) {
             args.module_id = this.props.module_id;
         }
 
@@ -248,13 +248,13 @@ const Invoice = class Invoice extends Component {
         const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
             <div className="ncpi-components">
-                { ! this.props.module_id && <Breadcrumb title={title} />}
+                {!this.props.module_id && <Breadcrumb title={title} />}
 
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col">
                         <h2 className="pi-page-title">{title}</h2>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col">
                         <AddNew
                             title={title}
                             openForm={() => this.newInvoie()}
@@ -262,7 +262,7 @@ const Invoice = class Invoice extends Component {
                     </div>
                 </div>
 
-                { ! this.props.module_id && false && <div className="pi-buttons-group pi-mb-20">
+                {!this.props.module_id && false && <div className="pi-buttons-group pi-mb-20">
                     <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
                         <svg
                             width={20}
@@ -348,7 +348,7 @@ const Invoice = class Invoice extends Component {
                     </button>
                 </div>}
 
-                { ! this.props.module_id && <Search
+                {!this.props.module_id && <Search
                     title={title}
                     showing={invoices.length}
                     showItem={this.showItem}
@@ -359,7 +359,7 @@ const Invoice = class Invoice extends Component {
                 {checkedBoxes.length > 0 &&
                     <Action
                         length={checkedBoxes.length}
-                        uncheckAll={ () => this.setState({ checkedBoxes: [] }) }
+                        uncheckAll={() => this.setState({ checkedBoxes: [] })}
                         deleteEntry={this.deleteEntry}
                     />
                 }
@@ -376,26 +376,26 @@ const Invoice = class Invoice extends Component {
     }
 }
 
-function InvoiceWrap( props ) {
+function InvoiceWrap(props) {
     const location = useLocation();
     let path = location.pathname;
     //module id is, project, deal id etc
     let module_id = null;
-    if ( props.path ) {
+    if (props.path) {
         path = '/' + props.path;
     }
 
-    if ( props.module_id ) {
+    if (props.module_id) {
         module_id = props.module_id;
     }
 
     let navigate = useNavigate();
     const routeChange = () => {
-        if ( module_id ) {
+        if (module_id) {
             navigate(`${path}/single?module_id=${module_id}`);
         } else {
             navigate(`${path}/single`);
-        } 
+        }
     };
 
     return (

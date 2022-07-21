@@ -199,7 +199,7 @@ class Form extends Component {
                                         </label>
                                         <div className='pi-field-btn-preview'>
                                             <button
-                                                className='pi-btn pi-btn-medium'
+                                                className='pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange'
                                                 style={{
                                                     backgroundColor: form.bg_color,
                                                     color: form.color,

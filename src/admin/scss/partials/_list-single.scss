@@ -101,7 +101,6 @@
 @media screen and (max-width: 420px) {
   .ncpi .pi-list-single-button-content .pi-btn {
     padding: 10px !important;
-    margin-bottom: 10px;
   }
 }
 .ncpi .pi-list-single-button-content .pi-action-btn {
@@ -522,11 +521,6 @@
 }
 .ncpi .pi-accordion {
   margin-top: 15px;
-}
-@media screen and (max-width: 550px) {
-  .ncpi .pi-accordion {
-    width: 130%;
-  }
 }
 .ncpi .pi-accordion input[type=radio] {
   display: none;

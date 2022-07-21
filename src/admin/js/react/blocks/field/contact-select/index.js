@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
 import WithApi from 'hoc/Api';
 
-import ContactForm from 'components/contact/Form'; 
+import ContactForm from 'components/contact/Form';
 
 const Contact = (props) => {
 	const dropdownContent = useRef();
@@ -29,19 +29,19 @@ const Contact = (props) => {
 		getData();
 	}, []);
 
-	const getData = () => { 
+	const getData = () => {
 
 		let args = {
-            page: 1,
-            per_page: 10
-        }
-        let params = new URLSearchParams(args).toString(); 
+			page: 1,
+			per_page: 10
+		}
+		let params = new URLSearchParams(args).toString();
 		props.getAll('contacts', params).then(resp => {
-            if (resp.data.success) {
-                let toList = resp.data.data.result; 
-				setList(toList); 
-            }
-        }); 
+			if (resp.data.success) {
+				let toList = resp.data.data.result;
+				setList(toList);
+			}
+		});
 	}
 
 	const showDropdown = () => {
@@ -63,7 +63,7 @@ const Contact = (props) => {
 			setForm(tax);
 		}
 	}
- 
+
 
 	const handleDelete = (id) => {
 		if (confirm('Are you sure, to delete it?')) { //TODO: translation
@@ -87,35 +87,35 @@ const Contact = (props) => {
 		}
 	}
 
-	const handleSelect = ( data ) => {
-		props.onChange( data );
+	const handleSelect = (data) => {
+		props.onChange(data);
 		setDropdown(false);
 	}
 
 	const handleFindContact = (e) => {
 
-        const target = e.target;
-        const val = target.value;
+		const target = e.target;
+		const val = target.value;
 
-        if (val.length < 2) return;
+		if (val.length < 2) return;
 
-        //search when typing stop
-        if (timeout) clearTimeout(timeout);
+		//search when typing stop
+		if (timeout) clearTimeout(timeout);
 
-        timeout = setTimeout(() => {
-            props.getAll('contacts', 's=' + val).then(resp => {
-                if (resp.data.success) {
-                    let toList = resp.data.data.result; 
-					setList(toList); 
-                }
-            }); 
-        }, 300);
-    }
+		timeout = setTimeout(() => {
+			props.getAll('contacts', 's=' + val).then(resp => {
+				if (resp.data.success) {
+					let toList = resp.data.data.result;
+					setList(toList);
+				}
+			});
+		}, 300);
+	}
 
 	const handleContactSubmit = contact => {
-        props.onChange( contact );
+		props.onChange(contact);
 		setDropdown(false);
-    }
+	}
 
 	return (
 		<>
@@ -123,13 +123,13 @@ const Contact = (props) => {
 				className="pi-list"
 				onClick={() => showDropdown()}
 			>
-				
-				{ ! props.data && 'Select Receiver'}
 
-				{ props.data && <>
-					{(props.data.type == 'person') ? props.data.first_name : props.data.org_name }
-				</>} 
-				
+				{!props.data && 'Select Receiver'}
+
+				{props.data && <>
+					{(props.data.type == 'person') ? props.data.first_name : props.data.org_name}
+				</>}
+
 				<svg
 					style={{ marginTop: 6, float: "right" }}
 					width={12}
@@ -153,13 +153,13 @@ const Contact = (props) => {
 
 				{list && list.map((item, itemIndex) => {
 					return (
-						<a key={itemIndex} onClick={() => handleSelect(item)}>{(item.type == 'person') ? item.first_name : item.org_name }</a>
+						<a key={itemIndex} onClick={() => handleSelect(item)}>{(item.type == 'person') ? item.first_name : item.org_name}</a>
 					)
 				})}
 			</div>}
 
 			{modal && <ContactForm
-				handleSubmit={handleContactSubmit} 
+				handleSubmit={handleContactSubmit}
 				modalType={modalType}
 				data={form}
 				close={() => setModal(false)}
