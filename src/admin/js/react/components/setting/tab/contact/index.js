@@ -4,8 +4,8 @@ export default () => {
         <div className="pi-form-style-one"> 
             <div className="row">
                 <div className="col">
-                    <label>Tag</label>
-                    <Taxonomy taxonomy='tag' title='tag' />
+                    <label>Status</label>
+                    <Taxonomy taxonomy='contact_status' title='Status' color={true} />
                 </div>
                 <div className="col">
                 </div>

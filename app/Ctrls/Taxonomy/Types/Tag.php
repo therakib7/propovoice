@@ -37,7 +37,7 @@ class Tag {
             'show_ui'           => true,
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => array( 'slug' => 'deal_tag' ),
+            'rewrite'           => array( 'slug' => 'ndpi_tag' ),
         );
      
         register_taxonomy( 'ndpi_tag', array( 'ndpi_deal' ), apply_filters('ndpi_tag_taxonomy_args', $args) ); 

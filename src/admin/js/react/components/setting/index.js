@@ -10,6 +10,7 @@ const Deal = lazy(() => import('./tab/deal'));
 const Estimate = lazy(() => import('./tab/estimate'));
 const Invoice = lazy(() => import('./tab/invoice'));
 const Project = lazy(() => import('./tab/project'));
+const Contact = lazy(() => import('./tab/contact'));
 const Tag = lazy(() => import('./tab/tag'));
 
 //subtab: estimate
@@ -92,6 +93,9 @@ export default function SettingWrap() {
                             label: 'Invoice'
                         },
                     },
+                },
+                contact: {
+                    label: 'Contact'
                 },
                 tag: {
                     label: 'Tag'
@@ -213,6 +217,7 @@ export default function SettingWrap() {
                                     </>
                                 }
 
+                                {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
 
                             </Suspense>

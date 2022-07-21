@@ -39,7 +39,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
 
 
     return (<>
-        {(showSpinner && isPending) && <div className="spinner loading" />}
+        {(showSpinner && isPending) && <div className="pi-preloader" />}
 
         {details ? (
             <div className="Result">

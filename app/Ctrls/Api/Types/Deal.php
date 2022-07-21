@@ -70,40 +70,67 @@ class Deal
 
     public function get($req)
     {
-        $request = $req->get_params();
+        $params = $req->get_params(); 
 
+        $pipeline = true;
+        $module_id = isset($params['module_id']) ? absint( $params['module_id']) : null;
+        if ( $module_id ) {
+            $pipeline = false;
+        }
+        $result = [];
+        if ( $pipeline ) {
+            $get_stage = Fns::get_terms('deal_stage'); 
+            $column = [];
+            foreach ($get_stage as $stage) :
+                $stage_id = $stage->term_id;
+                $stage_name = $stage->name;
+                $items = $this->deal_query( $params, $stage_id);  
+                $column[] = [ 
+                    'name' => $stage_name,
+                    'id' => $stage_id,
+                    'color' => get_term_meta($stage_id, 'color', true),
+                    'bg_color' => get_term_meta($stage_id, 'bg_color', true),
+                    'type' => get_term_meta($stage_id, 'type', true),
+                    'items' => $items
+                ]; 
+                $result['result'] = $column; 
+            endforeach;  
+        } else {
+            $result = $this->deal_query( $params );  
+        }
+
+        wp_send_json_success($result);
+        
+    }
+
+    public function deal_query( $params, $stage_id = null ) {
         $per_page = 10;
         $offset = 0;
 
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
+        if (isset($params['per_page'])) {
+            $per_page = $params['per_page'];
         }
 
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
+        if (isset($params['page']) && $params['page'] > 1) {
+            $offset = ($per_page * $params['page']) - $per_page;
         }
 
-        $get_stage = Fns::get_terms('deal_stage');
+        $module_id = isset($params['module_id']) ? absint( $params['module_id']) : null;
+ 
+        $args = array(
+            'post_type' => 'ndpi_deal',
+            'post_status' => 'publish',
+            'orderby' => 'menu_order',
+            'order' => 'ASC',
+            'posts_per_page' => $per_page,
+            'offset' => $offset,
+        );
 
-        $result = $column = [];
-        foreach ($get_stage as $stage) :
-            $stage_id = $stage->term_id;
-            $stage_name = $stage->name;
+        $args['meta_query'] = array(
+            'relation' => 'OR'
+        );
 
-            $items = [];
-            $args = array(
-                'post_type' => 'ndpi_deal',
-                'post_status' => 'publish',
-                'orderby' => 'menu_order',
-                'order' => 'ASC',
-                'posts_per_page' => $per_page,
-                'offset' => $offset,
-            );
-
-            $args['meta_query'] = array(
-                'relation' => 'OR'
-            );
-
+        if ( $stage_id ) {
             $args['tax_query'] = array(
                 array(
                     'taxonomy' => 'ndpi_deal_stage',
@@ -111,84 +138,97 @@ class Deal
                     'field' => 'term_id',
                 )
             );
+        }
 
-            $query = new WP_Query($args);
-            // $total_data = $query->found_posts; //use this for pagination 
+        if ( $module_id ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'person_id',
+                    'value' => $module_id
+                )
+            );
+    
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'org_id',
+                    'value' => $module_id
+                )
+            );
+        }
 
-            while ($query->have_posts()) {
-                $query->the_post();
-                $id = get_the_ID();
+        $query = new WP_Query($args);
+        $total_data = null; 
+        if ( ! $stage_id ) {
+            $total_data = $query->found_posts; //use this for pagination 
+        }
+        $result = $data = [];
+        while ($query->have_posts()) {
+            $query->the_post();
+            $id = get_the_ID();
 
-                $query_data = [];
-                $query_data['id'] = (string) $id; //Invariant failed: Draggable requires a [string] draggableId. 
+            $query_data = [];
+            $query_data['id'] = (string) $id; //Invariant failed: Draggable requires a [string] draggableId. 
 
-                $queryMeta = get_post_meta($id);
-                $query_data['title'] = get_the_title();
-                $query_data['status'] = isset($queryMeta['status']) ? $queryMeta['status'][0] : '';
-                $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-                $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
-                $query_data['probability'] = isset($queryMeta['probability']) ? $queryMeta['probability'][0] : '';
-
-                /* $query_data['tags'] = [];
-                $tags = get_the_terms($id, 'ndpi_tag');
-                if ($tags) {
-                    $tagList = [];
-                    foreach ($tags as $tag) {
-                        $tagList[] = [
-                            'id' => $tag->term_id,
-                            'label' => $tag->name
-                        ];
-                    }
-                    $query_data['tags'] = $tagList;
-                } */
-
-                $query_data['person'] = null;
-                $person_id = get_post_meta($id, 'person_id', true);
-                if ($person_id) {
-                    $person = new Person();
-                    $query_data['person'] = $person->single($person_id);
+            $queryMeta = get_post_meta($id);
+            $query_data['title'] = get_the_title();
+            $query_data['status'] = isset($queryMeta['status']) ? $queryMeta['status'][0] : '';
+            $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+            $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
+            $query_data['probability'] = isset($queryMeta['probability']) ? $queryMeta['probability'][0] : '';
+ 
+            if ( ! $stage_id ) {
+                $query_data['stage_id'] = '';  
+                $stage = get_the_terms($id, 'ndpi_deal_stage');
+                if ($stage) {
+                    $term_id = $stage[0]->term_id;
+                    $query_data['stage_id'] = [
+                        'id' => $term_id,
+                        'label' => $stage[0]->name,
+                        'color' => get_term_meta($term_id, 'color', true),
+                        'bg_color' => get_term_meta($term_id, 'bg_color', true)
+                    ];
                 }
-
-                $query_data['org'] = null;
-                $org_id = get_post_meta($id, 'org_id', true);
-                if ($org_id) {
-                    $org = new Org();
-                    $query_data['org'] = $org->single($org_id);
-                }
-
-                /* $contact_id = get_post_meta($id, 'person_id', true);
-                $contactData = [];
-
-                if ($contact_id) {
-                    $contactData['id'] = absint($contact_id);
-                    $contactMeta = get_post_meta($contact_id);
-                    $contactData['first_name'] = isset($contactMeta['first_name']) ? $contactMeta['first_name'][0] : '';
-                    $contactData['country'] = isset($contactMeta['country']) ? $contactMeta['country'][0] : '';
-                    $contactData['region'] = isset($contactMeta['region']) ? $contactMeta['region'][0] : '';
-                }
-                $query_data['contact'] = $contactData; */
-
-                $query_data['date'] = get_the_time('j-M-Y');
-                $items[] = $query_data;
             }
-            wp_reset_postdata();
 
-            $column[] = [
-                // $column[$stage_id] = [
-                'name' => $stage_name,
-                'id' => $stage_id,
-                'color' => get_term_meta($stage_id, 'color', true),
-                'bg_color' => get_term_meta($stage_id, 'bg_color', true),
-                'type' => get_term_meta($stage_id, 'type', true),
-                'items' => $items
-            ];
+            $query_data['tags'] = [];
+            $tags = get_the_terms($id, 'ndpi_tag');
+            if ($tags) {
+                $tagList = [];
+                foreach ($tags as $tag) {
+                    $tagList[] = [
+                        'id' => $tag->term_id,
+                        'label' => $tag->name
+                    ];
+                }
+                $query_data['tags'] = $tagList;
+            } 
+            
+            $query_data['person'] = null;
+            $person_id = get_post_meta($id, 'person_id', true);
+            if ($person_id) {
+                $person = new Person();
+                $query_data['person'] = $person->single($person_id);
+            }
 
-            $result['result'] = $column;
-        // $result['total'] = $test;
+            $query_data['org'] = null;
+            $org_id = get_post_meta($id, 'org_id', true);
+            if ($org_id) {
+                $org = new Org();
+                $query_data['org'] = $org->single($org_id);
+            } 
 
-        endforeach;
+            $query_data['date'] = get_the_time('j-M-Y');
+            $data[] = $query_data;
+        }
+        wp_reset_postdata();
 
-        wp_send_json_success($result);
+        if ( $stage_id ) {
+            return $data;
+        } else {
+            $result['result'] = $data;
+            $result['total'] = $total_data; 
+            return $result;
+        }
     }
 
     public function get_single($req)

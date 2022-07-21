@@ -170,5 +170,29 @@ class Taxonomy
                 }
             }
         }
+
+        //contact status
+        $contact_status = [
+            'Active',
+            'Block' 
+        ];
+
+        foreach ($contact_status as $status) {
+            $term_id = wp_insert_term(
+                $status,   // the term 
+                'ndpi_contact_status', // the taxonomy 
+            );
+
+            if (!is_wp_error($term_id)) {
+                update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
+                if ($status == 'Active') {
+                    update_term_meta($term_id['term_id'], 'type', 'active');
+                }
+
+                if ($status == 'Block') {
+                    update_term_meta($term_id['term_id'], 'type', 'active');
+                }
+            }
+        }
     }
 }
