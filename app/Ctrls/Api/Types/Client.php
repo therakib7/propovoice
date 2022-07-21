@@ -111,6 +111,14 @@ class Client
             ); 
         } 
 
+        $args['meta_query'][] = array(
+            array(
+                'key'     => 'is_client',
+                'value'   => 1,
+                'compare' => '=',
+            )
+        ); 
+
         $query = new WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
         $result = $data = [];

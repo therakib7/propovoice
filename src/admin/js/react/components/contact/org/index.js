@@ -22,10 +22,10 @@ const Org = (props) => {
       <Breadcrumb title='Contact Book' />
 
       <div className="row">
-        <div className="col-lg-6">
+        <div className="col-6">
           <h2 className="pi-page-title">Contact Book</h2>
         </div>
-        <div className="col-lg-6">
+        <div className="col-6">
           <AddNew
             title={title}
             openForm={props.openForm}
@@ -130,13 +130,13 @@ const Org = (props) => {
       <div className="pi-small-button-group pi-mb-30">
         <button
           className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
-          onClick={() => navigate(`/contact/person`, { replace: true })}
+          onClick={() => navigate(`/contact/person`)}
         >
           Person
         </button>
         <button
           className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
-          onClick={() => navigate(`/contact/organization`, { replace: true })}
+          onClick={() => navigate(`/contact/organization`)}
         >
           Organization
         </button>

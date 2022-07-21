@@ -47,20 +47,21 @@ const HOC = (Inner, mod, modPlural = '') => {
             let args = {
                 page: this.state.currentPage,
                 per_page: this.state.perPage
-            }
-
-            /* if ( this.props.taxonomy ) {
-                args.taxonomy = this.props.taxonomy;
-            }  */
+            } 
 
             //this is for task tab
             if (this.props.tab_id) {
                 args.tab_id = this.props.tab_id;
             }
-
+            
             //this is for task tab
             if (this.props.dashboard) {
                 args.dashboard = this.props.dashboard;
+            }
+
+            //this is for task tab
+            if (this.props.module_id) {
+                args.module_id = this.props.module_id;
             }
 
             if (searchArgs) {

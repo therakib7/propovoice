@@ -15,7 +15,7 @@ const Project = (props) => {
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
     <div className="ncpi-components">
-      <Breadcrumb title={title} />
+      {!props.module_id && <Breadcrumb title={title} />}
 
       <div className="row">
         <div className="col-5">
@@ -115,13 +115,13 @@ const Project = (props) => {
         </button>
       </div>}
 
-      <Search
+      {!props.module_id && <Search
         title={title}
         showing={lists.length}
         showItem={props.showItem}
         total={props.state.total}
         handleSubmit={props.getLists}
-      />
+      />}
 
       {checkedBoxes.length > 0 &&
         <Action

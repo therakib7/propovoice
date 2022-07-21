@@ -627,7 +627,7 @@ class Invoice extends Component {
 			<>
 				<div>
 					<div className="row">
-						<div className="col-md-4">
+						<div className="col-6 col-md-4">
 							<nav className="pi-breadcrumb">
 								<ul className="">
 									<li>
@@ -678,7 +678,7 @@ class Invoice extends Component {
 								</ul>
 							</nav>
 						</div>
-						<div className="col-md-8">
+						<div className="col-6 col-md-8">
 							<div className="pi-invoice-single-btn pi-text-right">
 
 								{(currentTab == 'template') &&

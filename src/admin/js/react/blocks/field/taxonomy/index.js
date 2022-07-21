@@ -122,7 +122,9 @@ const Taxonomy = (props) => {
 		if (!props.multiple) {
 			setListById([item]);
 		} else {
-			setListById([...listById, item]);
+			if ( !listById.some(e => e.id == item.id)) {
+				setListById([...listById, item]);
+			}
 		} 
 		
 		props.update('taxonomies', newForm.id, newForm).then(resp => {

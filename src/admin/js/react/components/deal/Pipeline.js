@@ -88,7 +88,7 @@ function Pipeline(props) {
 
 	const navigate = useNavigate();
 	const goToSingle = (id) => {
-		navigate(`/deal/single/${id}`, { replace: true });
+		navigate(`/deal/single/${id}`);
 	}; 
 
 	const CharLimit = (string) => {

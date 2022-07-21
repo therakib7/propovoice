@@ -155,7 +155,7 @@ class Form extends Component {
                             {form.id && <Taxonomy key={form.status_id.id} onChange={this.handleTaskStatusChange} id={form.id} data={form.status_id} taxonomy='task_status' title='Status' color={true} />}
 
                             {(form.status_id && form.status_id.type != 'done') && <button
-                                className="pi-btn pi-btn-medium pi-float-right"
+                                className="pi-btn pi-btn-medium pi-float-right pi-bg-green"
                                 onClick={() => this.handleTaskStatusChange('done')}
                             >
                                 <svg

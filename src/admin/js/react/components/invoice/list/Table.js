@@ -75,7 +75,7 @@ const TableBody = props => {
     let navigate = useNavigate();
     function handleClick(id, view = '') {
         let path = props.path;
-        navigate(`/${path}/single/${id}${view}`, { replace: true });
+        navigate(`/${path}/single/${id}${view}`);
     }
 
     let rows = props.tableData.map((row, index) => {

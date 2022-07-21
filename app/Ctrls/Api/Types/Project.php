@@ -10,7 +10,6 @@ use WP_Query;
 
 class Project
 {
-
     public function __construct()
     {
         add_action('rest_api_init', [$this, 'create_rest_routes']);
@@ -97,35 +96,44 @@ class Project
             'relation' => 'OR'
         );
 
-        if ( $s ) {
+        if ($s) {
             $args['s'] = $s;
 
-            $contact_person = new Contact(); 
-            $person_ids = $contact_person->query($s, 'person');  
-            if ( $person_ids ) {
+            $contact_person = new Contact();
+            $person_ids = $contact_person->query($s, 'person');
+            if ($person_ids) {
                 $args['meta_query'][] = array(
                     array(
                         'key'     => 'person_id',
                         'value'   => $person_ids,
                         'compare' => 'IN'
                     )
-                ); 
+                );
             }
 
-            $org_ids = $contact_person->query($s, 'org');   
-            if ( $org_ids ) {
+            $org_ids = $contact_person->query($s, 'org');
+            if ($org_ids) {
                 $args['meta_query'][] = array(
                     array(
                         'key'     => 'org_id',
                         'value'   => $org_ids,
                         'compare' => 'IN'
                     )
-                ); 
-            }  
+                );
+            }
+        }
+
+        if ( isset($params['module_id']) ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'module_id',
+                    'value' => $params['module_id']
+                )
+            );
         }
 
         $query = new WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
@@ -134,8 +142,8 @@ class Project
             $query_data = [];
             $query_data['id'] = $id;
 
-            $queryMeta = get_post_meta($id); 
-            $query_data['title'] = get_the_title( $id );
+            $queryMeta = get_post_meta($id);
+            $query_data['title'] = get_the_title($id);
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['start_date'] = isset($queryMeta['start_date']) ? $queryMeta['start_date'][0] : '';
@@ -143,7 +151,7 @@ class Project
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
 
-            $query_data['status_id'] = ''; 
+            $query_data['status_id'] = '';
             $status = get_the_terms($id, 'ndpi_project_status');
             if ($status) {
                 $query_data['status_id'] = [
@@ -177,7 +185,7 @@ class Project
             if ($org_id) {
                 $org = new Org();
                 $query_data['org'] = $org->single($org_id);
-            } 
+            }
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -200,18 +208,18 @@ class Project
         $queryMeta = get_post_meta($id);
         $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
         $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
-        $query_data['title'] = get_the_title( $id );
+        $query_data['title'] = get_the_title($id);
         $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
         $query_data['start_date'] = isset($queryMeta['start_date']) ? $queryMeta['start_date'][0] : '';
         $query_data['due_date'] = isset($queryMeta['due_date']) ? $queryMeta['due_date'][0] : '';
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
-        $query_data['desc'] = get_post_field('post_content', $id); 
+        $query_data['desc'] = get_post_field('post_content', $id);
 
-        $contact_person = new Invoice();  
-        $query_data['invoice'] = $contact_person->project_invoice( $id );
+        $invoice = new Invoice();
+        $query_data['invoice'] = $invoice->project_invoice($id);
         
-        $query_data['status_id'] = ''; 
+        $query_data['status_id'] = '';
         $status = get_the_terms($id, 'ndpi_project_status');
         if ($status) {
             $term_id = $status[0]->term_id;
@@ -224,7 +232,7 @@ class Project
             ];
         }
 
-        $query_data['tags'] = []; 
+        $query_data['tags'] = [];
         $tags = get_the_terms($id, 'ndpi_tag');
         if ($tags) {
             $tagList = [];
@@ -239,17 +247,17 @@ class Project
 
         $query_data['person'] = null;
         $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
-        if ( $person_id ) {
-            $person = new Person();   
-            $query_data['person'] = $person->single( $person_id, true );
+        if ($person_id) {
+            $person = new Person();
+            $query_data['person'] = $person->single($person_id, true);
         }
 
         $query_data['org'] = null;
         $org_id = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
-        if ( $org_id ) {
-            $org = new Org();   
-            $query_data['org'] = $org->single( $org_id, true );
-        }  
+        if ($org_id) {
+            $org = new Org();
+            $query_data['org'] = $org->single($org_id, true);
+        }
 
         $query_data['date'] = get_the_time('j-M-Y');
 
@@ -267,51 +275,48 @@ class Project
         $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
         $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
         $title      = isset($params['title']) ? sanitize_text_field($params['title']) : null;
-        $status_id   = isset($params['status_id']) ? absint($params['status_id']) : null; 
+        $status_id   = isset($params['status_id']) ? absint($params['status_id']) : null;
         $budget     = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency   = isset($params['currency']) ? sanitize_text_field($params['currency']) : null; 
+        $currency   = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $start_date = isset($params['start_date']) ? $params['start_date'] : null;
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
         $tags       = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc       = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note       = isset($params['note']) ? nl2br($params['note']) : null;
 
-        /* if ( $deal_id ) {
-            wp_send_json_success($deal_id);
-        } */
-        /* if (empty($status_id)) {
-            $reg_errors->add('field', esc_html__('Please select a status', 'propovoice'));
-        } */
+         
+        if ( empty($title) ) {
+            $reg_errors->add('field', esc_html__('Please title is required', 'propovoice'));
+        }
 
         /* if ( !$deal_id && empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
-        if ( empty($first_name) &&  empty($org_name) ) {
+        if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 
-        $person = new Person();  
-        if ( $person_id ) {
-            $person->update( $params ); 
+        $person = new Person();
+        if ($person_id) {
+            $person->update($params);
         }
 
-        if ( ! $person_id && $first_name ) { 
-            $person_id = $person->create( $params ); 
-        } 
+        if (! $person_id && $first_name) {
+            $person_id = $person->create($params);
+        }
 
         $org = new Org();
-        if ( ! $person_id && $org_id ) {
-            $org->update( $params ); 
+        if (! $person_id && $org_id) {
+            $org->update($params);
         }
         
-        if ( ! $org_id && $org_name ) { 
-            $org_id = $org->create( $params ); 
-        } 
+        if (! $org_id && $org_name) {
+            $org_id = $org->create($params);
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-
             $data = array(
                 'post_type' => 'ndpi_project',
                 'post_title'   => $title,
@@ -321,11 +326,10 @@ class Project
             );
             $post_id = wp_insert_post($data);
 
-            if ( !is_wp_error($post_id) ) {
-
+            if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
                 $tab_id = $post_id;
-                if ( $deal_id ) {
+                if ($deal_id) {
                     $tab_id = $deal_id;
                     update_post_meta($post_id, 'deal_id', $deal_id);
                     update_post_meta($deal_id, 'project_id', $post_id);
@@ -334,57 +338,71 @@ class Project
 
                 if ($title) {
                     update_post_meta($post_id, 'title', $title);
-                } 
+                }
 
                 if ($status_id) {
                     wp_set_post_terms($post_id, [$status_id], 'ndpi_project_status');
                 }
 
-                if ( $deal_id ) {
+                if ($deal_id) {
                     $get_lead_person = get_post_meta($id, 'person_id', true);
-                    if ( $get_lead_person ) {
+                    if ($get_lead_person) {
                         $person_id = $get_lead_person;
                     }
 
                     $get_lead_org = get_post_meta($id, 'org_id', true);
-                    if ( $get_lead_org ) {
+                    if ($get_lead_org) {
                         $org_id = $get_lead_org;
                     }
                 }
 
-                if ( $person_id ) {
+                if ($person_id) {
                     update_post_meta($post_id, 'person_id', $person_id);
-                } 
+                }
 
-                if ( $org_id ) {
+                if ($org_id) {
                     update_post_meta($post_id, 'org_id', $org_id);
-                } 
+                }
 
-                if ( $budget ) {
+                //is_client
+                if ( $person_id && $org_id ) {
+                    update_post_meta($person_id, 'is_client', 1);
+                }
+
+                if ( $person_id && !$org_id ) {
+                    update_post_meta($person_id, 'is_client', 1);
+                }
+
+                if ( $org_id && !$person_id ) {
+                    update_post_meta($org_id, 'is_client', 1);
+                }
+                //end is_client
+
+                if ($budget) {
                     update_post_meta($post_id, 'budget', $budget);
                 }
 
-                if ( $currency ) {
+                if ($currency) {
                     update_post_meta($post_id, 'currency', $currency);
-                } 
+                }
 
-                if ( $start_date ) {
+                if ($start_date) {
                     update_post_meta($post_id, 'start_date', $start_date);
                 }
 
-                if ( $due_date ) {
+                if ($due_date) {
                     update_post_meta($post_id, 'due_date', $due_date);
                 }
 
-                if ( $tags ) {
+                if ($tags) {
                     wp_set_post_terms($post_id, $tags, 'ndpi_tag');
                 }
 
-                if ( $note ) {
+                if ($note) {
                     update_post_meta($post_id, 'note', $note);
                 }
 
-                /* if ( $deal_id ) { //when move to deal //TODO: think it 
+                /* if ( $deal_id ) { //when move to deal //TODO: think it
                     wp_delete_post( $deal_id );
                 } */
                 wp_send_json_success($post_id);
@@ -405,16 +423,16 @@ class Project
         $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
         $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
         $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
-        $status_id     = isset($params['status_id']) ? absint($params['status_id']) : null; 
+        $status_id     = isset($params['status_id']) ? absint($params['status_id']) : null;
         $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null; 
+        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
         $start_date = isset($params['start_date']) ? $params['start_date'] : null;
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
 
-        if ( empty($first_name) &&  empty($org_name) ) {
+        if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
         
@@ -426,23 +444,23 @@ class Project
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
 
-        $person = new Person();  
-        if ( $person_id ) {
-            $person->update( $params ); 
+        $person = new Person();
+        if ($person_id) {
+            $person->update($params);
         }
 
-        if ( ! $person_id && $first_name ) { 
-            $person_id = $person->create( $params ); 
-        } 
+        if (! $person_id && $first_name) {
+            $person_id = $person->create($params);
+        }
 
         $org = new Org();
-        if ( ! $person_id && $org_id ) {
-            $org->update( $params ); 
+        if (! $person_id && $org_id) {
+            $org->update($params);
         }
         
-        if ( ! $org_id && $org_name ) { 
-            $org_id = $org->create( $params ); 
-        } 
+        if (! $org_id && $org_name) {
+            $org_id = $org->create($params);
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -451,22 +469,21 @@ class Project
             $post_id    = $url_params['id'];
 
             $data = array(
-                'ID'          => $post_id,  
+                'ID'          => $post_id,
                 'post_author' => get_current_user_id()
             );
 
-            if ( $title ) {
+            if ($title) {
                 $data['post_title'] = $title;
             }
 
-            if ( $desc ) {
+            if ($desc) {
                 $data['post_content'] = $desc;
             }
 
             $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) { 
-
+            if (!is_wp_error($post_id)) {
                 if ($status_id) {
                     wp_set_post_terms($post_id, [$status_id], 'ndpi_project_status');
                 }
@@ -475,13 +492,13 @@ class Project
                     $this->reorder_posts($reorder);
                 }
 
-                if ( $person_id ) {
+                if ($person_id) {
                     update_post_meta($post_id, 'person_id', $person_id);
-                } 
+                }
 
-                if ( $org_id ) {
+                if ($org_id) {
                     update_post_meta($post_id, 'org_id', $org_id);
-                } 
+                }
 
                 if ($budget) {
                     update_post_meta($post_id, 'budget', $budget);
@@ -491,13 +508,13 @@ class Project
                     update_post_meta($post_id, 'currency', $currency);
                 }
 
-                if ( $start_date ) {
+                if ($start_date) {
                     update_post_meta($post_id, 'start_date', $start_date);
                 }
 
-                if ( $due_date ) {
+                if ($due_date) {
                     update_post_meta($post_id, 'due_date', $due_date);
-                } 
+                }
 
                 if ($tags) {
                     wp_set_post_terms($post_id, $tags, 'ndpi_tag');

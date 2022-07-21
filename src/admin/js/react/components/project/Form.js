@@ -166,7 +166,7 @@ class Form extends Component {
                         toast.success('Successfully moved to project');
                         let id = resp.data.data;
                         this.props.close();
-                        this.props.navigate(`/project/single/${id}`, { replace: true });
+                        this.props.navigate(`/project/single/${id}`);
                         this.props.reload();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -198,7 +198,7 @@ class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-
+        if ( ! val ) return;
         if (type == 'person') {
             form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
@@ -325,6 +325,7 @@ class Form extends Component {
                                             id="field-title"
                                             type="text"
                                             name="title"
+                                            required
                                             value={form.title}
                                             onChange={this.handleChange}
                                         />

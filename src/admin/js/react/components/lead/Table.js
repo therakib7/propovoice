@@ -91,7 +91,7 @@ const TableHeader = props => {
 const TableBody = props => {
     const navigate = useNavigate();
     const handleOverview = (id) => {
-        navigate(`/lead/single/${id}`, { replace: true });
+        navigate(`/lead/single/${id}`);
     };
 
     let rows = props.tableData.map((row, index) => {

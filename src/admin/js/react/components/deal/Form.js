@@ -131,15 +131,7 @@ class Form extends Component {
 
         if (form.stage_id) {
             form.stage_id = form.stage_id.id;
-        }
-
-        if (form.person_id) {
-            form.person_id = form.person_id.id;
-        }
-
-        if (form.org_id) {
-            form.org_id = form.org_id.id;
-        }
+        } 
 
         if (form.tags.length) {
             let finalArray = form.tags.map(function (obj) {
@@ -158,7 +150,7 @@ class Form extends Component {
                         toast.success('Successfully moved to deal');
                         let id = resp.data.data;
                         this.props.close();
-                        this.props.navigate(`/deal/single/${id}`, { replace: true });
+                        this.props.navigate(`/deal/single/${id}`);
                         this.props.reload();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -190,7 +182,7 @@ class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-
+        if ( ! val ) return;
         if (type == 'person') {
             form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
@@ -205,7 +197,7 @@ class Form extends Component {
                 form.mobile = (val) ? val.mobile : '';
                 form.web = (val) ? val.web : '';
             }
-        }
+        } 
 
         this.setState({ form });
     }

@@ -63,8 +63,7 @@ class Contact extends Component {
     }
 
     handleSelect = (e, val, type) => {
-        e.preventDefault();
-
+        e.preventDefault(); 
         this.props.onSelect(val, type);
         if (type == 'person') {
             this.setState({ personModal: false, personList: [] });
