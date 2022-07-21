@@ -103,21 +103,7 @@ class AdditionalAmount extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {/* <div class="pi-tab">
-                    <input type="radio" id="rd6" name="rd" />
-                    <label class="pi-tab-label pi-arrow-none" for="rd6"
-                        >None</label
-                    >
-                    </div> */}
-                    <div className="pi-payment-buttons">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-hover-color-white">
-                            Save
-                        </button>
-                        <button className="pi-btn pi-color-blue pi-bg-hover-blue pi-hover-color-white">
-                            Clear
-                        </button>
-                    </div>
+                    </div>  
                 </div>
             </li>
         );

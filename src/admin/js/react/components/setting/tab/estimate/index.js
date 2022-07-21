@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import WithApi from 'hoc/Api'; 
 import Reminder from 'block/field/reminder';
+import AdditionalAmount from '../estvoice/AdditionalAmount';
 import Template from './sub/Template';
 
 class General extends Component {
@@ -12,6 +13,10 @@ class General extends Component {
 				{
 					id: 'reminder',
 					text: 'Reminder'
+				},
+				{
+					id: 'extra-amount',
+					text: 'Additional Amount'
 				},
 				{
 					id: 'template',
@@ -48,6 +53,7 @@ class General extends Component {
 				</ul>
 		
 				{currentTab == 'reminder' && <Reminder {...this.props} path={'estimate'} />} 
+				{currentTab == 'extra-amount' && <AdditionalAmount {...this.props} />} 
 				{currentTab == 'template' && <Template {...this.props} />}
 			</>
 		);

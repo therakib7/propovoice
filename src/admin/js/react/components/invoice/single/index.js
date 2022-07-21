@@ -1,9 +1,11 @@
 import React from 'react'
 import { useParams, useSearchParams, useNavigate, useLocation } from "react-router-dom"; 
 import Style from './style.scoped.scss'
-import Invoice from './tab/invoice';
+import WithApi from 'hoc/Api';
 
-export default function InvoiceWrap() { 
+import Invoice from './tab/invoice';
+ 
+const InvoiceWrap = ( props ) => {
 
 	const { id, tab } = useParams();
 	let navigate = useNavigate();
@@ -35,6 +37,7 @@ export default function InvoiceWrap() {
 	return (
 		<>
 			<Invoice 
+				{...props}
 				id={id} 
 				tab={tab} 
 				module_id={module_id} 
@@ -46,3 +49,5 @@ export default function InvoiceWrap() {
 		</>
 	);
 } 
+
+export default WithApi(InvoiceWrap);

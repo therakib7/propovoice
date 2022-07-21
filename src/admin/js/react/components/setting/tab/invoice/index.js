@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import WithApi from 'hoc/Api';
 import Reminder from 'block/field/reminder'; 
-import AdditionalAmount from './sub/AdditionalAmount';
+import AdditionalAmount from '../estvoice/AdditionalAmount';
 import Recurring from './sub/Recurring';
 
 class General extends Component {

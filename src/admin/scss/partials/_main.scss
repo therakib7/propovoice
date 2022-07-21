@@ -4614,13 +4614,17 @@ select {
   --bg-color-orange: #FFF5E9;
   --bg-color-gray: #a0aec0;
   --bg-color-blue: #4c6fff;
-  --bg-color-green: #18954d;
+  --bg-color-pearl: #f7f8fa;
   --text-color-black: #000;
   --text-color-white: #fff;
   --text-color-orange: #F68A0B;
   --text-color-blue: #4c6fff;
   --text-color-green: #45ac9d;
   --border-color-gray: #dddddda8;
+}
+
+.pi-bg-pearl {
+  background-color: var(--bg-color-pearl) !important;
 }
 
 .pi-bg-blue {

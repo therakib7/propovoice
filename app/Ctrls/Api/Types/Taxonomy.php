@@ -141,7 +141,9 @@ class Taxonomy
                         $term_property['extra_amount_type'] = get_term_meta($single->term_id, 'extra_amount_type', true); 
                         $term_property['rate_type'] = get_term_meta($single->term_id, 'rate_type', true); 
                         if ( $taxonomy == 'extra_amount' && $extra_amount_type != $term_property['extra_amount_type'] ) {
-                            continue;
+                            if ( $extra_amount_type && $extra_amount_type != $term_property['extra_amount_type'] ) {
+                                continue;
+                            }
                         }
                     }
 

@@ -1014,6 +1014,7 @@ class Invoice extends Component {
 														<i />
 														<h3 className='pi-title-small'>Additional Amount</h3>
 														<AdditionalAmount
+															{...this.props}
 															handleChange={this.onExtraFieldChange}
 															data={invoice.extra_field}
 														/>
