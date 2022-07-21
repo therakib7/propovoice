@@ -455,7 +455,7 @@ class Deal
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
 
-        if ( empty($first_name) &&  empty($org_name) ) {
+        if ( !$reorder && ( empty($first_name) && empty($org_name) ) ) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 

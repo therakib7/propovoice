@@ -21,7 +21,12 @@ const Taxonomy = (props) => {
 	}, []);
 
 	const getData = () => {
-		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy).then(resp => {
+		let type = '';
+		if ( props.extra_amount_type ) {
+			type = '&extra_amount_type=' + props.extra_amount_type;
+		}
+
+		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + type).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 			}
@@ -207,7 +212,8 @@ const Taxonomy = (props) => {
 															/>
 														</svg>
 													</span>
-													{(!item.hasOwnProperty('type') || !item.type) && <span style={{ padding: '5px', cursor: 'pointer' }} onClick={() => { handleDelete(item.id) }}>
+
+													{ true && (!item.hasOwnProperty('type') || !item.type) && <span style={{ padding: '5px', cursor: 'pointer' }} onClick={() => { handleDelete(item.id) }}>
 														<svg
 															width={16}
 															height={16}

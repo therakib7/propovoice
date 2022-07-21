@@ -5,9 +5,10 @@ namespace Ncpi\Helpers;
 class Fns
 {
 
-    public static function get_terms($tax)
+    public static function get_terms($tax, $extra_amount_type = null)
     {
-        return get_terms(array(
+
+        $args = array(
             'taxonomy' => 'ndpi_' . $tax, 
             'meta_query' => array(
                 'relation' => 'OR',
@@ -19,11 +20,23 @@ class Fns
                 array(
                     'key' => 'tax_pos',
                     'compare' => 'EXISTS',
-                )
+                ),
             ),
             'orderby' => 'tax_pos',
             'hide_empty' => false
-        ));
+        );
+        
+        //TODO: this is not working, that's why temp added in tax js file 
+        /* if ( $extra_amount_type ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'     => 'extra_amount_type',
+                    'value'   => $extra_amount_type,
+                    'compare' => '=',
+                )
+            );
+        }  */
+        return get_terms( $args );
     }
 
     public static function locate_template($name)

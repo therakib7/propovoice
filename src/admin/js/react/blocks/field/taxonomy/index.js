@@ -199,6 +199,7 @@ const Taxonomy = (props) => {
 			{modal && <Form
 				{...props}
 				taxonomy={props.taxonomy}
+				extra_amount_type={props.extra_amount_type}
 				title={props.title}
 				modalType={modalType}
 				reload={getData}

@@ -73,6 +73,7 @@ class Taxonomy
         $reg_errors = new \WP_Error;
 
         $taxonomies = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
+        $extra_amount_type = isset($params['extra_amount_type']) ? sanitize_text_field($params['extra_amount_type']) : null;
         $id = isset($params['id']) ? sanitize_text_field($params['id']) : null; //post id
 
         if (empty($taxonomies)) {
@@ -86,7 +87,7 @@ class Taxonomy
 
             $taxonomies = explode(',', $taxonomies);
             foreach ($taxonomies as $taxonomy) {
-                $get_taxonomy = Fns::get_terms($taxonomy);
+                $get_taxonomy = Fns::get_terms($taxonomy, $extra_amount_type);
 
                 $format_taxonomy = [];
                 foreach ($get_taxonomy as $single) {
@@ -129,9 +130,19 @@ class Taxonomy
                         $taxonomy == 'deal_stage' ||
                         $taxonomy == 'project_status' ||
                         $taxonomy == 'contact_status' ||
-                        $taxonomy == 'task_status'
+                        $taxonomy == 'task_status' 
                     ) { // for deal won, deal lost, project complted, task done, contact active, block
-                        $term_property['type'] = get_term_meta($single->term_id, 'type', true);
+                        $term_property['type'] = get_term_meta($single->term_id, 'type', true);  
+                    }
+
+                    if ( 
+                        $taxonomy == 'extra_amount' 
+                    ) { // for deal won, deal lost, project complted, task done, contact active, block
+                        $term_property['extra_amount_type'] = get_term_meta($single->term_id, 'extra_amount_type', true); 
+                        $term_property['rate_type'] = get_term_meta($single->term_id, 'rate_type', true); 
+                        if ( $taxonomy == 'extra_amount' && $extra_amount_type != $term_property['extra_amount_type'] ) {
+                            continue;
+                        }
                     }
 
                     $format_taxonomy[] = $term_property;
@@ -212,6 +223,8 @@ class Taxonomy
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
         $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
         $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
+        $extra_amount_type = isset($params['extra_amount_type']) ? sanitize_text_field($params['extra_amount_type']) : null;
+        $rate_type = isset($params['rate_type']) ? sanitize_text_field($params['rate_type']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -224,19 +237,24 @@ class Taxonomy
                 $this->reorder_taxonomies($reorder);
                 wp_send_json_success();
             } else {
-                $taxonomy = wp_insert_term(
+                $add_taxonomy = wp_insert_term(
                     $label,   // the term 
-                    'ndpi_' . $taxonomy, // the taxonomy 
+                    'ndpi_' . $taxonomy, // the add_taxonomy 
                 );
 
-                if (!is_wp_error($taxonomy)) {
-                    $term_id = $taxonomy['term_id'];
+                if (!is_wp_error($add_taxonomy)) {
+                    $term_id = $add_taxonomy['term_id'];
                     update_term_meta($term_id, 'tax_pos', $term_id);
                     update_term_meta($term_id, 'color', $color);
                     update_term_meta($term_id, 'bg_color', $bg_color);
 
                     if ($icon) {
                         update_term_meta($term_id, 'icon', $icon);
+                    }
+ 
+                    if ( $taxonomy == 'extra_amount' && $extra_amount_type) {
+                        update_term_meta($term_id, 'extra_amount_type', $extra_amount_type);
+                        update_term_meta($term_id, 'rate_type', $rate_type);
                     }
 
                     wp_send_json_success($term_id);
@@ -261,6 +279,7 @@ class Taxonomy
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
         $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
         $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
+        $rate_type = isset($params['rate_type']) ? sanitize_text_field($params['rate_type']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -287,7 +306,7 @@ class Taxonomy
                 }
                 wp_send_json_success();
             } else {
-                $taxonomy = wp_update_term(
+                $add_taxonomy = wp_update_term(
                     $term_id,   // the term 
                     'ndpi_' . $taxonomy, // the taxonomy 
                     array(
@@ -295,7 +314,7 @@ class Taxonomy
                     )
                 );
 
-                if (!is_wp_error($taxonomy)) {
+                if (!is_wp_error($add_taxonomy)) {
                     update_term_meta($term_id, 'color', $color);
                     update_term_meta($term_id, 'bg_color', $bg_color);
 
@@ -303,6 +322,10 @@ class Taxonomy
                         update_term_meta($term_id, 'icon', $icon);
                     } else {
                         delete_term_meta($term_id, 'icon');
+                    }
+
+                    if ( $taxonomy == 'extra_amount') { 
+                        update_term_meta($term_id, 'rate_type', $rate_type);
                     }
 
                     wp_send_json_success($term_id);

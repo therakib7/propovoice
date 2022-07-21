@@ -70,38 +70,7 @@ export default class Recurring extends Component {
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
-                <div className="row">
-                    <div className="col">
-                        <table style={{ borderSpacing: '8px' }}>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <label htmlFor="recurring-status"><strong>Status</strong></label>
-                                    </td>
-                                    <td>
-                                        <label className='pi-switch'>
-                                            <input type='checkbox'
-                                                id="recurring-status"
-                                                name='status'
-                                                checked={this.state.form.status ? 'checked' : ''}
-                                                onChange={this.handleChange}
-                                            />
-                                            <span className='pi-switch-slider pi-round'></span>
-                                        </label>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Save
-                        </button>
-                    </div>
-                </div>
+                 
             </form>
         );
     }

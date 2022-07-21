@@ -14,6 +14,7 @@ class Form extends Component {
             color: '',
             bg_color: '',
             icon: null,
+            rate_type: 'fixed',
         };
 
         this.state = {
@@ -87,6 +88,9 @@ class Form extends Component {
         newForm.taxonomy = this.props.taxonomy;
 
         if (this.props.modalType == 'new') {
+            if ( this.props.extra_amount_type ) {
+                newForm.extra_amount_type = this.props.extra_amount_type;
+            }
             this.props.create('taxonomies', newForm).then(resp => {
                 if (resp.data.success) {
                     toast.success('Successfully added'); //TODO: translation
@@ -225,14 +229,24 @@ class Form extends Component {
                             </>}
 
                             {this.props.icon &&
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-icon">
-                                            Icon
-                                        </label>
-                                        <Upload data={form.icon} small={true} changeHandler={this.handleLogoChange} />
-                                    </div>
-                                </div>}
+                            <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-icon">
+                                        Icon
+                                    </label>
+                                    <Upload data={form.icon} small={true} changeHandler={this.handleLogoChange} />
+                                </div>
+                            </div>}
+
+                            {this.props.extra_amount_type && <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-label">Rate Type</label> 
+                                    <select name="rate_type" value={form.rate_type} onChange={(e) => this.handleChange(e)}>
+                                        <option value="percent">Percent</option> 
+                                        <option value="fixed">Fixed</option>
+                                    </select>
+                                </div>
+                            </div>}
                         </div>
                     </div>
 

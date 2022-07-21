@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context';
+import AppContext from 'context/app-context';  
 import Taxonomy from 'block/field/taxonomy/setting';
 
-export default class General extends Component {
+export default class AdditionalAmount extends Component {
     constructor(props) {
         super(props);
 
@@ -16,9 +16,10 @@ export default class General extends Component {
 
     componentDidMount() { 
     } 
+
     handleSubmit = (e) => {
         e.preventDefault();
- 
+         
     }
 
     render() {
@@ -26,8 +27,8 @@ export default class General extends Component {
             <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
                 <div className="row">
                     <div className="col">
-                        <label>Deal Stage</label>
-                        <Taxonomy taxonomy='deal_stage' title='stage' color={true} />
+                        <label>Tax Fields</label>
+                        <Taxonomy taxonomy='extra_amount' title='Tax Field' extra_amount_type={'tax'} /> 
                     </div>
                     <div className="col">
                     </div>
@@ -35,12 +36,12 @@ export default class General extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Save
-                        </button>
+                        <label>Discount Fields</label>
+                        <Taxonomy taxonomy='extra_amount' title='Discount Field' extra_amount_type={'discount'} />
                     </div>
-                </div>
-
+                    <div className="col">
+                    </div>
+                </div>  
             </form>
         );
     }
