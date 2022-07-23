@@ -129,7 +129,7 @@ const Dashboard = (props) => {
             <div className="row">
                 <div className="col-lg-8">
                     <Suspense fallback={<Spinner />}>
-                        <ChartLine />
+                        <ChartLine {...props} type='deal_tracking' />
                         <ChartBar {...props} type='estimate' />
                         <ChartBar {...props} type='invoice' />
                     </Suspense>
