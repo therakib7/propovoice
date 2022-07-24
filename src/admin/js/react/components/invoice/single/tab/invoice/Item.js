@@ -5,7 +5,7 @@ class Item extends Component {
 
     render = () => {
 
-        const { index, title, desc, qty, qty_type, price } = this.props
+        const { index, title, desc, qty, qty_type, item_tax, tax, tax_type, price } = this.props
 
         return (
             <>
@@ -24,6 +24,7 @@ class Item extends Component {
                         value={desc}
                         onChange={this.props.changeHandler(index)} />
                 </td>
+
                 <td>
                     <div className='pi-field-checkbox pi-field-checkbox-input'>
                         <input
@@ -47,10 +48,12 @@ class Item extends Component {
                         </select>
                     </div>
                 </td>
+
                 <td>
                     <input
                         name="price"
                         type="number"
+                        style={{width: '100px'}}
                         step="0.01"
                         min="0.00"
                         max="9999999.99"
@@ -58,10 +61,29 @@ class Item extends Component {
                         onChange={this.props.changeHandler(index)}
                         onFocus={this.props.focusHandler}
                     />
-                </td> 
-                {/* <td>
-                    
-                </td> */} 
+                </td>  
+
+                {item_tax && <td>
+                    <div className='pi-field-checkbox pi-field-checkbox-input'>
+                        <input
+                            name="tax"
+                            type="number"
+                            min="0.00"
+                            step="1"
+                            max="9999999.99"
+                            value={tax}
+                            onChange={this.props.changeHandler(index)}
+                            onFocus={this.props.focusHandler} />
+
+                        <select name="tax_type"
+                            value={tax_type}
+                            onChange={this.props.changeHandler(index)} >
+                            <option value="percent">%</option>
+                            <option value="fixed">$</option> 
+                        </select>
+                    </div>
+                </td>} 
+                
                 <td>
                     {this.props.currencyFormatter(qty * price)}
                 </td>

@@ -118,7 +118,7 @@ msgstr ""
 msgid "Please title is required"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Setting.php:32, ../app/Ctrls/Api/Types/Setting.php:165
+#: ../app/Ctrls/Api/Types/Setting.php:32, ../app/Ctrls/Api/Types/Setting.php:176
 msgid "Tab is missing"
 msgstr ""
 
@@ -126,7 +126,7 @@ msgstr ""
 msgid "Title field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Taxonomy.php:80, ../app/Ctrls/Api/Types/Taxonomy.php:232, ../app/Ctrls/Api/Types/Taxonomy.php:287
+#: ../app/Ctrls/Api/Types/Taxonomy.php:80, ../app/Ctrls/Api/Types/Taxonomy.php:234, ../app/Ctrls/Api/Types/Taxonomy.php:291
 msgid "Taxonomy is missing"
 msgstr ""
 

@@ -28,46 +28,26 @@ class Total extends Component {
     calcItemsTotal = () => {
 		return this.props.data.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
 	}
-
-	calcTaxTotal = () => {
+	
+	calcGrandTotal = () => { 
+		let item_total = this.calcItemsTotal();
+		let total = item_total;
 		let extra_field = this.props.data.invoice.extra_field;
-		if ( extra_field.hasOwnProperty('tax') && extra_field.tax == 'percent' ) {
-			return this.calcItemsTotal() * (this.props.data.invoice.tax / 100)
-		} else {
-			return this.props.data.invoice.tax;
-		} 
-	}
-
-	calcDiscountTotal = () => {
-		let extra_field = this.props.data.invoice.extra_field;
-		if ( extra_field.hasOwnProperty('discount') && extra_field.discount == 'percent' ) {
-			return this.calcItemsTotal() * (this.props.data.invoice.discount / 100)
-		} else {
-			return this.props.data.invoice.discount;
-		} 
-	}
-
-	calcLateFeeTotal = () => {
-		let extra_field = this.props.data.invoice.extra_field;
-		if ( extra_field.hasOwnProperty('late_fee') && extra_field.late_fee == 'percent' ) {
-			return this.calcItemsTotal() * (this.props.data.invoice.late_fee / 100)
-		} else {
-			return parseFloat( this.props.data.invoice.late_fee );
-		} 
-	} 
-
-	calcGrandTotal = () => {
-		let total = this.calcItemsTotal();
-		let extra_field = this.props.data.invoice.extra_field;
-		if (extra_field.hasOwnProperty('tax')) { 
-			total += this.calcTaxTotal();
-		}
-		if (extra_field.hasOwnProperty('discount')) {
-			total -= this.calcDiscountTotal();
-		}
-		if (extra_field.hasOwnProperty('late_fee')) { 
-			total += this.calcLateFeeTotal();
-		}
+		extra_field.map( ( item, i ) => {
+			if ( item.val_type == 'percent') {
+				if ( item.type == 'tax' || item.type == 'fee' ) {
+					total += item_total * (item.val / 100);
+				} else {
+					total -= item_total * (item.val / 100);
+				} 
+			} else { 
+				if ( item.type == 'tax' || item.type == 'fee' ) {
+					total += parseFloat(item.val);
+				} else {
+					total -= parseFloat(item.val);
+				}
+			}
+		}); 
 		return total;
 	}
 
@@ -78,27 +58,29 @@ class Total extends Component {
                 <table>
                     <tbody>
                         <tr>
-                            <th>Total:</th>
+                            <th>Total</th>
                             <td>{this.formatCurrency(this.calcItemsTotal())}</td>
                         </tr>
 
-                        {extra_field.hasOwnProperty('tax') && <tr>
-                            <th>Tax {this.props.data.invoice.tax}{extra_field.tax == 'percent' ? '%' : '$'}</th>
-                            <td>{this.formatCurrency(this.calcTaxTotal())}</td>
-                        </tr>}
+						{extra_field.map((item, i) => {
+                            let item_total = this.calcItemsTotal();
+                            let total = item_total;
+                            if (item.val_type == 'percent') {
+                                total = item_total * (item.val / 100);
+                            } else {
+                                total = parseFloat(item.val);
+                            }
 
-						{extra_field.hasOwnProperty('discount') && <tr>
-                            <th>Discount {this.props.data.invoice.discount}{extra_field.discount == 'percent' ? '%' : '$'}</th>
-                            <td>{this.formatCurrency(this.calcDiscountTotal())}</td>
-                        </tr>}
-
-						{extra_field.hasOwnProperty('late_fee') && <tr className="pi-before-total">
-                            <th>Late Fee {this.props.data.invoice.late_fee}{extra_field.late_fee == 'percent' ? '%' : '$'}</th>
-                            <td>{this.formatCurrency(this.calcLateFeeTotal())}</td>
-                        </tr>}
+                            return (<tr key={i}>
+                                <th>
+                                    {item.name} {item.val_type == 'percent' ? '%' : '$'}
+                                </th>
+                                <td>{this.formatCurrency(total)}</td> 
+                            </tr>)
+                        })} 
 
                         <tr className="pi-table-bg">
-                            <th>Subtotal:</th>
+                            <th>Subtotal</th>
                             <td>{this.formatCurrency(this.calcGrandTotal())}</td>
                         </tr>
                     </tbody>

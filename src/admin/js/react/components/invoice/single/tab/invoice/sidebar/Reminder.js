@@ -1,13 +1,11 @@
-import { useEffect } from "react";
-
-import ApiSetting from 'api/setting';
+import { useEffect } from "react"; 
 
 export default (props) => {
 
     useEffect(() => {
         if (!props.id) {
             const path = props.path;
-            ApiSetting.getAll('tab=' + path + '_reminder').then(resp => {
+            props.getAll('settings', 'tab=' + path + '_reminder').then(resp => { 
                 if (resp.data.success) {
                     props.handleDefault(resp.data.data);
                 }

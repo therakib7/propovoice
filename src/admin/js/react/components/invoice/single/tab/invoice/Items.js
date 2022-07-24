@@ -33,7 +33,7 @@ class Items extends Component {
 
     render = () => {
 
-        const { items, addHandler, reorderHandler, ...functions } = this.props
+        const { items, item_tax, addHandler, reorderHandler, ...functions } = this.props
 
         return (
             <>
@@ -45,7 +45,7 @@ class Items extends Component {
                                     <th>Title &amp; Description </th>
                                     <th>Quantity</th>
                                     <th>Rate (USD)</th>
-                                    {/* <th>Tax</th> */}
+                                    {item_tax && <th>Tax</th>}
                                     <th>Amount</th>
                                     <th></th>
                                 </tr>
@@ -75,6 +75,9 @@ class Items extends Component {
                                                                 desc={item.desc}
                                                                 qty={item.qty}
                                                                 qty_type={item.qty_type}
+                                                                item_tax={item_tax}
+                                                                tax={item.tax}
+                                                                tax_type={item.tax_type}
                                                                 price={item.price}
                                                                 {...functions}
                                                             />

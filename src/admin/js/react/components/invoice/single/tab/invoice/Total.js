@@ -5,78 +5,53 @@ class Total extends Component {
 
     render = () => {
 
-        const { currencyFormatter, itemsTotal, extra_field, tax, discount, late_fee, changeHandler, focusHandler, taxTotal, discountTotal, lateFeeTotal, grandTotal } = this.props
+        const { currencyFormatter, itemsTotal, extra_field, changeHandler, focusHandler, grandTotal } = this.props
 
-        return ( 
+        return (
             <div className="pi-calculation">
                 <table>
                     <tbody>
-                    <tr>
-                        <td>SubTotal</td>
-                        <td>{currencyFormatter(itemsTotal())}</td>
-                    </tr> 
+                        <tr>
+                            <td>SubTotal</td>
+                            <td>{currencyFormatter(itemsTotal())}</td>
+                        </tr> 
+                        {extra_field.map((item, i) => {
+                            let item_total = itemsTotal();
+                            let total = item_total;
+                            if (item.val_type == 'percent') {
+                                total = item_total * (item.val / 100);
+                            } else {
+                                total = parseFloat(item.val);
+                            }
 
-                    {extra_field.hasOwnProperty('tax') && <tr>
-                        <td>
-                        Tax 
-                        <input 
-                            name="tax" 
-                            type="number"  
-                            step="1" 
-                            min="0.00" 
-                            value={tax} 
-                            onChange={changeHandler} 
-                            onFocus={focusHandler} 
-                        />
-                        {extra_field.tax == 'percent' ? '%' : '$'}
-                        </td>
-                        <td>{currencyFormatter(taxTotal())}</td>
-                    </tr>}
+                            return (<tr key={i}>
+                                <td>
+                                    {item.name}
+                                    <input
+                                        name={"extra-item-" + i}
+                                        type="number"
+                                        step="1"
+                                        min="0.00"
+                                        value={item.val}
+                                        onChange={(e) => changeHandler(e, item)}
+                                        onFocus={focusHandler}
+                                    />
+                                    {item.val_type == 'percent' ? '%' : '$'}
+                                </td>
+                                <td>{currencyFormatter(total)}</td> 
+                            </tr>)
+                        })} 
 
-                    {extra_field.hasOwnProperty('discount') &&<tr>
-                        <td>
-                        Discount 
-                        <input 
-                            name="discount" 
-                            type="number"  
-                            step="1" 
-                            min="0.00" 
-                            value={discount} 
-                            onChange={changeHandler} 
-                            onFocus={focusHandler} 
-                        />
-                        {extra_field.discount == 'percent' ? '%' : '$'}
-                        </td>
-                        <td>{currencyFormatter(discountTotal())}</td>
-                    </tr>}
-
-                    {extra_field.hasOwnProperty('late_fee') &&<tr>
-                        <td>
-                        Late Fee 
-                        <input 
-                            name="late_fee" 
-                            type="number"  
-                            step="1" 
-                            min="0.00" 
-                            value={late_fee} 
-                            onChange={changeHandler} 
-                            onFocus={focusHandler} 
-                        />
-                        {extra_field.late_fee == 'percent' ? '%' : '$'}
-                        </td>
-                        <td>{currencyFormatter(lateFeeTotal())}</td>
-                    </tr>}
-
-                    <tr>
-                        <td>Total</td>
-                        <td>{currencyFormatter(grandTotal())}</td>
-                    </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>{currencyFormatter(grandTotal())}</td>
+                        </tr>
                     </tbody>
                 </table>
-            </div> 
+            </div>
         )
     }
-} 
+}
 
 export default Total
 
