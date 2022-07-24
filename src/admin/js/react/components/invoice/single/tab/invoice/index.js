@@ -110,10 +110,26 @@ class Invoice extends Component {
 				discount: 0,
 				late_fee: 0,
 				paid: 0,
-				extra_field: {
+				/* extra_field: {
 					tax: 'percent',
 					discount: 'fixed'
-				},
+				}, */
+				extra_field: [
+					/* {
+						id: null,
+						name: 'Tax',
+						type: 'tax',
+						val: 0,
+						val_type: 'percent'
+					},
+					{
+						id: null,
+						name: 'Discount',
+						type: 'discount',
+						val: 0,
+						val_type: 'fixed'
+					}, */
+				],
 				payment_methods: {},
 				//TODO: move the the field in single, if always not needed
 				reminder: {
@@ -566,7 +582,7 @@ class Invoice extends Component {
 		}
 	}
 
-	onExtraFieldChange = (data, type) => {
+	/* ddonExtraFieldChange = (data, type) => {
 		let invoice = { ...this.state.invoice }
 		if (type == 'field') {
 			if (invoice.extra_field.hasOwnProperty(data)) { // if payment method exist 
@@ -583,6 +599,32 @@ class Invoice extends Component {
 		} else { //type		
 
 			invoice.extra_field[data.field] = data.type;
+			this.setState({ invoice });
+		}
+	} */
+
+	onExtraFieldChange = (item, type, type_val) => {
+		let invoice = { ...this.state.invoice }
+		if (type == 'field') { 
+			let index = invoice.extra_field.findIndex(x => x.id == item.id );  
+			if ( index != -1 ) { // if payment method exist  
+				invoice.extra_field.splice(index, 1); 
+			} else {  
+				let data = {
+					id: item.id,
+					name: item.label,
+					type: item.extra_amount_type,
+					val: 0,
+					val_type: item.val_type
+				};
+
+				invoice.extra_field.push(data) 
+			}
+			this.setState({ invoice });
+			
+		} else { //type		
+			console.log('running');
+			//invoice.extra_field[item.field] = item.type;
 			this.setState({ invoice });
 		}
 	}
@@ -986,7 +1028,7 @@ class Invoice extends Component {
 
 										<div className="pi-accordion-wrapper pi-mt-25">
 											<ul>
-												<Suspense fallback={<Spinner />}>
+												<Suspense>
 
 													{(!sidebarActive || sidebarActive == 'style') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('style')} />
