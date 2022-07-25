@@ -2,7 +2,7 @@
 /*
  * Template Name: Propovoice Dashboard
  * Description: Template for Propovoice Dashboard
- */  
+ */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +12,41 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>  
-    <?php 
-        if ( is_user_logged_in() && current_user_can('administrator') ) {
+    <?php
+        if (is_user_logged_in() && current_user_can('administrator')) {
             echo '<div id="ncpi-dashboard"></div>';
         } else {
-            esc_html_e( 'Sorry!! You don\'t have permission to view this page', 'propovoice' );
+            //TODO: this css already has in all.scoped.css
+            ?>
+            <style>
+                .ncpi .pi-page-content {
+                    max-width: 30%;
+                    text-align: center;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    }
+                    @media screen and (max-width: 550px) {
+                    .ncpi .pi-page-content {
+                        max-width: 100%;
+                    }
+                    }
+                    .ncpi .pi-page-content p {
+                    font-size: 24px;
+                    font-weight: 600;
+                    line-height: 40px;
+                    color: #4A5568;
+                    }
+                    @media screen and (max-width: 550px) {
+                    .ncpi .pi-page-content p {
+                        font-size: 16px;
+                        line-height: 30px;
+                    }
+                }
+            </style>
+            <?php
+            ncpi()->render('template/partials/403');
         }
     ?>
     <?php wp_footer(); ?>
