@@ -98,9 +98,9 @@
   margin-left: 5px;
   border-radius: 4px;
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 550x) {
   .ncpi .pi-list-single-button-content .pi-btn {
-    padding: 10px !important;
+    padding: 10px;
   }
 }
 .ncpi .pi-list-single-button-content .pi-action-btn {
@@ -118,6 +118,11 @@
 .ncpi .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
   margin-top: 3px;
   left: -70px;
+}
+@media screen and (max-width: 992px) {
+  .ncpi .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
+    left: -150px;
+  }
 }
 .ncpi .pi-tag-content {
   padding: 30px;
@@ -486,6 +491,11 @@
 .ncpi .pi-note .pi-dropdown-content {
   top: 35px;
   left: -70px;
+}
+@media screen and (max-width: 992px) {
+  .ncpi .pi-note .pi-dropdown-content {
+    left: -115px;
+  }
 }
 .ncpi .pi-note .pi-action-content {
   position: absolute;

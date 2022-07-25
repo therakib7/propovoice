@@ -1000,6 +1000,11 @@ html {
   right: -80px;
   top: 30px;
 }
+@media screen and (max-width: 992px) {
+  .ncpi .pi-table .pi-dropdown-content {
+    right: 0;
+  }
+}
 .ncpi .pi-table .pi-action-content button {
   background-color: transparent;
   border: none;
@@ -1176,6 +1181,11 @@ html {
   top: 30px;
   left: -70px;
 }
+@media screen and (max-width: 992px) {
+  .ncpi .pi-accordion-table-list ul li .pi-dropdown-content {
+    left: -135px;
+  }
+}
 @media screen and (max-width: 550px) {
   .ncpi .pi-accordion-table-list {
     width: 150%;
@@ -1247,6 +1257,7 @@ html {
 .ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=text]:focus {
   border: 1px solid #4C6FFF !important;
   z-index: 5;
+  box-shadow: none !important;
 }
 @media screen and (max-width: 500px) {
   .ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=number],
@@ -1265,6 +1276,7 @@ html {
 }
 .ncpi .pi-info-table-content .pi-info-table tbody tr td textarea:focus {
   border: 1px solid #4C6FFF !important;
+  box-shadow: none !important;
 }
 .ncpi .pi-info-table-content .pi-info-table tbody tr td select {
   outline: none;
@@ -1591,6 +1603,11 @@ html {
 .ncpi .pi-cards {
   margin-bottom: 25px;
 }
+@media screen and (max-width: 992px) {
+  .ncpi .pi-cards .row .col-md-6.col-lg:nth-child(odd) {
+    padding-right: 0px !important;
+  }
+}
 .ncpi .pi-cards h2 {
   font-size: 24px;
   font-weight: 500;
@@ -1661,9 +1678,9 @@ html {
     margin-bottom: 15px;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 992px) {
   .ncpi .pi-cards {
-    margin-bottom: 0px;
+    margin-bottom: -15px;
   }
 }
 .ncpi .pi-punnel {
@@ -1798,6 +1815,11 @@ html {
   padding: 9px;
   padding-left: 40px;
   width: 240px;
+}
+@media screen and (max-width: 992px) {
+  .ncpi .pi-mediun-search-bar .pi-search-input {
+    width: 200px;
+  }
 }
 @media screen and (max-width: 820px) {
   .ncpi .pi-mediun-search-bar .pi-search-input {
@@ -2995,6 +3017,11 @@ ul {
   margin-top: 10px;
   align-items: center;
 }
+@media screen and (max-width: 992px) {
+  .ncpi .pi-range {
+    width: 100%;
+  }
+}
 .ncpi .pi-range label {
   font-size: 12px;
   color: #425466;
@@ -3756,7 +3783,7 @@ ul {
 
 .pi-field-radio-input input[type=number],
 .pi-field-checkbox-input input[type=number] {
-  width: 65px !important;
+  width: 65px;
   padding: 7px 6px !important;
   border-radius: 4px 0 0 4px !important;
 }

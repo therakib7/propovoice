@@ -439,9 +439,16 @@ class Invoice extends Component {
 	}
 
 	calcItemsTotal = () => {
-		return this.state.invoice.items.reduce((prev, cur) => {
-			let tax = 0;
-			return prev + (cur.qty * cur.price)
+		return this.state.invoice.items.reduce( (prev, cur) => {
+			let tax_total = 0;
+			if ( this.state.item_tax && cur.tax ) {
+				if ( cur.tax_type == 'percent') {
+					tax_total += cur.price * (cur.tax / 100);
+				} else { 
+					tax_total += parseFloat(cur.tax);
+				}
+			} 
+			return prev + (cur.qty * cur.price) + tax_total;
 		}, 0)
 	} 
 
