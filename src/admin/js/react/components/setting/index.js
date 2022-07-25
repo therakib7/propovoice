@@ -180,8 +180,7 @@ const SettingWrap = (props) => {
 
                             <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} Settings</h4>
 
-                            <Suspense fallback={<Spinner />}>
-
+                            <Suspense fallback={<Spinner />}> 
                                 {currentTab == 'general' && <General />}
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
@@ -189,15 +188,12 @@ const SettingWrap = (props) => {
                                 {currentTab == 'estimate' && <Estimate />}
                                 {currentTab == 'invoice' && <Invoice />}
                                 {currentTab == 'project' && <Project />}  
-                                {currentTab == 'payment' && <Payment />}
-
+                                {currentTab == 'payment' && <Payment />} 
                                 {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
                                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
-                                {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
-
+                                {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />} 
                                 {currentTab == 'contact' && <Contact />}
-                                {currentTab == 'tag' && <Tag />}
-
+                                {currentTab == 'tag' && <Tag />} 
                             </Suspense>
                         </div>
                     </div>

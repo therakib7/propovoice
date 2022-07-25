@@ -13,7 +13,7 @@
 </head>
 <body <?php body_class(); ?>>  
     <?php
-        if (is_user_logged_in() && current_user_can('administrator')) {
+        if ( is_user_logged_in() && current_user_can('administrator') ) {
             echo '<div id="ncpi-dashboard"></div>';
         } else {
             //TODO: this css already has in all.scoped.css

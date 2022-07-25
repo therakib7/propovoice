@@ -74,7 +74,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Status</label>
-                        <div className="pi-field-switch pi-mt-3 pi-ml-10">
+                        <div className="pi-field-switch pi-ml-10">
                             <label className='pi-switch'>
                                 <input type='checkbox'
                                     id="reminder-status"

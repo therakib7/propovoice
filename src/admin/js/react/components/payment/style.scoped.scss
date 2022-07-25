@@ -1,9 +1,5 @@
 .ncpi .pi-payment-tab-content {
-  width: 65%;
-  position: relative;
-  margin-top: 12px;
-  border: 1px solid #e2e8f0;
-  padding: 25px;
+  margin-top: 20px;
   border-radius: 8px;
 }
 @media screen and (max-width: 992px) {
@@ -13,73 +9,27 @@
 }
 .ncpi .pi-payment-tab-content .pi-title-content h2 {
   font-size: 20px;
-  font-weight: 500;
 }
 .ncpi .pi-payment-tab-content .pi-title-content h5 {
   font-size: 14px;
   font-weight: 500;
   margin-top: 5px;
   margin-bottom: 0;
-}
-.ncpi .pi-payment-tab-content .pi-payment-empty-content > div {
-  top: 50%;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.ncpi .pi-payment-tab-content .pi-payment-empty-content {
-  position: relative;
-  border-radius: 8px;
-  padding: 20px 0 25px;
-}
-.ncpi .pi-payment-tab-content .pi-payment-empty-content img {
-  display: block;
-  margin: auto;
-  margin-bottom: 20px;
-}
-.ncpi .pi-payment-tab-content .pi-payment-empty-content span {
-  background: var(--bg-color-air-white);
-  padding: 16px;
-  display: inline-block;
-  padding: 30px 15px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 16px;
-  position: relative;
-}
-.ncpi .pi-payment-tab-content .pi-payment-empty-content span:before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  right: 0;
-  border-top: 35px solid white;
-  border-left: 35px solid var(--bg-color-air-white);
-}
-.ncpi .pi-payment-tab-content .pi-payment-empty-content span:after {
-  content: "";
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-}
-.ncpi .pi-payment-tab-content .pi-payment-empty-content span svg {
-  display: block;
-  margin: auto;
-  margin-bottom: 10px;
+  color: #2D3748;
 }
 .ncpi .pi-payment-tab-content .pi-btn {
   display: block;
   margin: auto;
-  margin-top: 25px;
-}
-.ncpi .pi-payment-tab-content .pi-btn svg path {
-  fill: var(--text-color-white);
+  margin-top: 20px;
+  padding: 12px 15px;
+  font-weight: 500;
 }
 .ncpi .pi-payment-tab-content ul {
   margin: 0;
 }
 .ncpi .pi-payment-tab-content ul li {
   display: flex;
-  padding: 20px 15px;
+  padding: 15px;
   position: relative;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -91,11 +41,11 @@
   top: 0;
   border-radius: 25px;
   box-shadow: 3px 3px 4px 0px rgba(205, 202, 205, 0.12);
+  height: 22px;
 }
 .ncpi .pi-payment-tab-content ul li .pi-edit span {
   background: #fff;
-  display: inline-block;
-  padding: 0px 7px;
+  padding: 4px 6px;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -105,16 +55,26 @@
 .ncpi .pi-payment-tab-content ul li .pi-edit span:hover svg path {
   fill: var(--bg-color-blue);
 }
-.ncpi .pi-payment-tab-content ul li .payment-text-content {
-  margin-left: 20px;
+.ncpi .pi-payment-tab-content ul li .pi-item-content {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
-.ncpi .pi-payment-tab-content ul li .payment-text-content .pi-payment-title {
-  font-size: 18px;
-  font-weight: 600;
+.ncpi .pi-payment-tab-content ul li .pi-item-content span {
+  margin-right: 20px;
+  display: flex;
+  padding: 15px 13px;
+  background: #EDF2F7;
+  border-radius: 8px;
+  align-self: center;
 }
-.ncpi .pi-payment-tab-content ul li .payment-text-content .pi-bank-subtitle {
-  font-size: 15px;
-  font-weight: 500;
+.ncpi .pi-payment-tab-content ul li .pi-item-content h2 {
+  line-height: 100%;
+}
+.ncpi .pi-payment-tab-content ul li .pi-item-content p {
+  margin: 0;
+  color: #718096;
+  margin-top: 10px;
 }
 .ncpi .pi-payment-tab-content ul .pi-btn {
   display: flex;
@@ -129,10 +89,4 @@
   margin-top: 2px;
   margin-right: 5px;
   fill: var(--text-color-white);
-}
-.ncpi .pi-form-content.pi-form-style-two .pi-btn {
-  background: #e1e8ff;
-  margin-top: 15px;
-  border-radius: 5px;
-  display: inline-block;
 }

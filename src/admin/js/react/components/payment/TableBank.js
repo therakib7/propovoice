@@ -4,7 +4,7 @@ const TableBody = props => {
 
     let rows = props.tableData.map((row, index) => {
         return (
-            <li className="pi-bg-air-white" key={index}>
+            <li className="pi-bg-pearl" key={index}>
                 <div className="pi-edit">
                     <span onClick={() => props.editEntry('edit', row)}>
                         <svg
@@ -42,22 +42,69 @@ const TableBody = props => {
                         </svg>
                     </span>
                 </div>
-                <div className="pi-payment-image">
-                    <svg
-                        width={28}
-                        height={29}
-                        viewBox="0 0 28 29"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M12.3479 0.555556C13.3232 -0.185185 14.6789 -0.185185 15.6542 0.555556L27.2321 9.33565C28.7067 10.4537 27.9157 12.787 26.0631 12.7963H1.93665C0.0863324 12.787 -0.706994 10.4537 0.769993 9.33565L12.3479 0.555556ZM13.9999 8.74537C14.464 8.74537 14.9091 8.56246 15.2373 8.23688C15.5655 7.91129 15.7499 7.4697 15.7499 7.00926C15.7499 6.54881 15.5655 6.10723 15.2373 5.78164C14.9091 5.45606 14.464 5.27315 13.9999 5.27315C13.5357 5.27315 13.0906 5.45606 12.7624 5.78164C12.4343 6.10723 12.2499 6.54881 12.2499 7.00926C12.2499 7.4697 12.4343 7.91129 12.7624 8.23688C13.0906 8.56246 13.5357 8.74537 13.9999 8.74537ZM3.49997 15.1111V22.0556H6.99994V15.1111H3.49997ZM9.33325 15.1111V22.0556H12.8332V15.1111H9.33325ZM15.1665 15.1111V22.0556H18.6665V15.1111H15.1665ZM20.9998 15.1111V22.0556H24.4998V15.1111H20.9998ZM0 27.2639C0 25.6667 1.30665 24.3704 2.91664 24.3704H25.0831C26.6931 24.3704 27.9997 25.6667 27.9997 27.2639V27.8426C27.9997 28.1496 27.8768 28.4439 27.658 28.661C27.4392 28.8781 27.1425 29 26.8331 29H1.16666C0.85724 29 0.560496 28.8781 0.341706 28.661C0.122915 28.4439 0 28.1496 0 27.8426V27.2639Z"
-                            fill="#4A5568"
-                        />
-                    </svg>
+                <div className="pi-item-content">
+                    <span>
+                        <svg
+                            width={29}
+                            height={24}
+                            viewBox="0 0 29 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M2.71533 9H26.2479L14.4816 3L2.71533 9Z"
+                                stroke="#4A5568"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M6.33569 9V16.5"
+                                stroke="#4A5568"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M11.7664 9V16.5"
+                                stroke="#4A5568"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M17.1969 9V16.5"
+                                stroke="#4A5568"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M22.6277 9V16.5"
+                                stroke="#4A5568"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M3.62036 16.5H25.3427"
+                                stroke="#4A5568"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M1.81018 19.5H27.153"
+                                stroke="#4A5568"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    </span>
                 </div>
-                <div className="payment-text-content">
-                    <h2 className="pi-payment-title">{row.name}</h2> 
+                <div className="pi-text-content">
+                    <h2 className="pi-title-medium">{row.name}</h2>
                 </div>
             </li>
         );

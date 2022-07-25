@@ -84,7 +84,7 @@ class Payment extends Component {
                     return (
                         <div className="pi-tab" key={i}>
                             <input type="checkbox" defaultChecked={payment_methods.hasOwnProperty(row.method_id)} id={"pi-payment-" + row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pi-payment-type" />
-                            <label className="pi-tab-label" htmlFor={"pi-payment-" + row.method_id}>
+                            <label className={(payment_methods.hasOwnProperty(row.method_id) ? 'pi-active' : '') + ' pi-tab-label'} htmlFor={"pi-payment-" + row.method_id}>
                                 {row.method_name}
                             </label>
                             <div className="pi-tab-content">

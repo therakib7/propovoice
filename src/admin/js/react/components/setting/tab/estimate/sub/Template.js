@@ -72,26 +72,7 @@ export default class Recurring extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <table style={{ borderSpacing: '8px' }}>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <label htmlFor="recurring-status"><strong>Status</strong></label>
-                                    </td>
-                                    <td>
-                                        <label className='pi-switch'>
-                                            <input type='checkbox'
-                                                id="recurring-status"
-                                                name='status'
-                                                checked={this.state.form.status ? 'checked' : ''}
-                                                onChange={this.handleChange}
-                                            />
-                                            <span className='pi-switch-slider pi-round'></span>
-                                        </label>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                         
                     </div>
                 </div>
 

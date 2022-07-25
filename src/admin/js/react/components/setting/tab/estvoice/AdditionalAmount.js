@@ -58,7 +58,7 @@ export default class AdditionalAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label id="form-item_tax">Each Item Tax Field</label>
-                        <div className="pi-field-switch pi-mt-3 pi-ml-10">
+                        <div className="pi-field-switch pi-ml-10">
                             <label className='pi-switch'>
                                 <input type='checkbox'
                                     id="form-item_tax"

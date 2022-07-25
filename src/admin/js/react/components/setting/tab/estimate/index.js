@@ -18,14 +18,13 @@ class General extends Component {
 					id: 'extra-amount',
 					text: 'Additional Amount'
 				},
-				{
+				/* {
 					id: 'template',
 					text: 'Template'
-				} 
+				}  */
 			],
 			currentTab: '',
-		}
-
+		} 
 	} 
 
 	componentDidMount() {
