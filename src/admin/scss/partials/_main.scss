@@ -1126,6 +1126,7 @@ html {
 .ncpi .pi-accordion-table-list ul li {
   color: #718096;
   font-size: 12px;
+  margin-bottom: 0;
 }
 .ncpi .pi-accordion-table-list ul li .pi-badge {
   font-weight: 500;
@@ -1680,7 +1681,7 @@ html {
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-cards {
-    margin-bottom: -15px;
+    margin-bottom: 5px;
   }
 }
 .ncpi .pi-punnel {
@@ -1724,9 +1725,11 @@ html {
   color: #718096;
   font-weight: 500;
 }
-.ncpi .pi-top-menu-content .pi-search-box {
-  top: -1px;
-  margin-left: -30px;
+@media screen and (max-width: 420px) {
+  .ncpi .pi-top-menu-content .pi-search-box {
+    top: -1px;
+    margin-left: -30px;
+  }
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-top-menu-content .pi-search-box .pi-search-input {
@@ -2331,6 +2334,21 @@ input[type=checkbox] {
 .wp-admin .pi-list-single-button-content {
   margin-top: -5px;
 }
+@media screen and (max-width: 992px) {
+  .wp-admin .pi-modal-sidebar .pi-content {
+    padding: 20px 40px 15px 25px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .wp-admin .pi-modal-sidebar .pi-content {
+    padding: 15px 40px 15px 25px !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .wp-admin .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
+    left: -150px !important;
+  }
+}
 
 .react-datepicker {
   border: 1px solid #CBD5E0 !important;
@@ -2662,6 +2680,11 @@ ul {
     padding: 25px;
   }
 }
+@media screen and (max-width: 550px) {
+  .ncpi .pi-modal-content .pi-modal-header {
+    padding: 15px !important;
+  }
+}
 .ncpi .pi-modal-content .pi-modal-header p {
   margin: 0;
   padding-top: 15px;
@@ -2679,7 +2702,12 @@ ul {
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-modal-content .pi-content {
-    padding: 0px 25px 20px !important;
+    padding: 15px 25px 20px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .ncpi .pi-modal-content .pi-content {
+    padding: 15px !important;
   }
 }
 .ncpi .pi-modal-content .pi-modal-footer {
@@ -2728,15 +2756,14 @@ ul {
   color: #1a202c !important;
   text-transform: capitalize;
 }
-.ncpi .pi-modal-content .pi-form-style-two label {
-  top: 9px;
-}
-@media screen and (max-width: 700px) {
-  .ncpi .pi-modal-box {
-    width: 70%;
-  }
+@media screen and (max-width: 992px) {
   .ncpi .pi-modal-content {
-    width: 70% !important;
+    width: 65%;
+  }
+}
+@media screen and (max-width: 992px) {
+  .ncpi .pi-modal-content {
+    width: 60% !important;
   }
 }
 .ncpi .pi-modal-style-two .pi-modal-header {

@@ -144,11 +144,11 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)}>{row.title}</td>
-                <td onClick={() => handleOverview(row.id)}>{(row.person) ? row.person.email : row.org.email}</td>
-                <td onClick={() => handleOverview(row.id)}>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
-                <td onClick={() => handleOverview(row.id)}>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
-                <td onClick={() => handleOverview(row.id)}>${row.budget}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.title}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>${row.budget}</td>
                 <td><span className="pi-badge">{row.status_id && row.status_id.label}</span></td>
                 <td className="pi-action">
                     <Action

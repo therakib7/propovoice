@@ -164,12 +164,12 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => { handleClick(row.id); }}>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
+                <td onClick={() => { handleClick(row.id); }} className='pi-cursor-pointer'>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
                 {/*<td>{row.project.name}</td>*/}
-                {!props.client_id && <td onClick={() => { handleClick(row.id); }}>
+                {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pi-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
                 </td>}
-                <td onClick={() => { handleClick(row.id); }}>{row.total}</td>
+                <td onClick={() => { handleClick(row.id); }} className='pi-cursor-pointer'>{row.total}</td>
                 {/* {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>
@@ -178,7 +178,7 @@ const TableBody = props => {
                 }  */}
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
-                <td onClick={() => { handleClick(row.id); }}><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td onClick={() => { handleClick(row.id); }} className='pi-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <div className="pi-action-content">
                         <button className={(row.id == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(row.id)}>

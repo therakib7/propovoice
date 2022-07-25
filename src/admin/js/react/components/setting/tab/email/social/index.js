@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 
-export default class General extends Component {
+export default class Social extends Component {
     constructor(props) {
         super(props);
 
@@ -20,7 +20,7 @@ export default class General extends Component {
 
     componentDidMount() {
 
-        this.props.getAll('settings', 'tab=general_social').then(resp => {
+        this.props.getAll('settings', 'tab=email_social').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -40,7 +40,7 @@ export default class General extends Component {
         e.preventDefault();
 
         let form = this.state.form;
-        form.tab = 'general_social';
+        form.tab = 'email_social';
 
         this.props.create('settings', form).then(resp => {
             if (resp.data.success) {

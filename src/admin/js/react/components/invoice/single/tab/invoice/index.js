@@ -596,7 +596,12 @@ class Invoice extends Component {
 		const target = e.target;
 		const name = target.name;
 		const value = (name === 'status' || name === 'due_date') ? target.checked : target.value;
-		if (type) {
+
+		/* if ( name === 'status' && value ) {
+			this.setSidebarActive('reminder')
+		} */
+
+		if (type) { //before, after
 			let arr = invoice.reminder[type];
 			if (target.checked) {
 				arr.push(parseInt(value));

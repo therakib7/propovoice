@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import WithApi from 'hoc/Api';
 
-import SubGeneral from './sub/General'; 
-import Social from './sub/Social';
+import SubBusiness from './sub/Business';  
 
 class General extends Component {
 	constructor(props) {
@@ -11,13 +10,13 @@ class General extends Component {
 		this.state = {
 			tabs: [
 				{
-					id: 'general',
-					text: 'General'
+					id: 'business',
+					text: 'Business'
 				}, 
-				{
+				/* {
 					id: 'social',
 					text: 'Social'
-				} 
+				}  */
 			],
 			currentTab: '',
 		}
@@ -25,7 +24,7 @@ class General extends Component {
 	} 
 
 	componentDidMount() {
-		this.setState({ currentTab: 'general' });
+		this.setState({ currentTab: 'business' });
 	}
 
 	setActiveTab(id) { 
@@ -48,8 +47,7 @@ class General extends Component {
 					))}
 				</ul>
 		
-				{currentTab == 'general' && <SubGeneral {...this.props} />}  
-				{currentTab == 'social' && <Social {...this.props} />}
+				{currentTab == 'business' && <SubBusiness {...this.props} />}   
 			</>
 		);
 	}

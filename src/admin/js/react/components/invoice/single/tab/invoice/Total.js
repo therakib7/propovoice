@@ -51,8 +51,5 @@ class Total extends Component {
             </div>
         )
     }
-}
-
-export default Total
-
-
+} 
+export default Total 

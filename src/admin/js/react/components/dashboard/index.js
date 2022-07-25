@@ -104,7 +104,7 @@ const Dashboard = (props) => {
             <div className="pi-block">
                 <div className="row">
                     <div className="col-lg-7">
-                        <div className='pi-bg-white pi-border-gray' style={{ minHeight: '445px', padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
+                        <div className='pi-bg-white pi-border-gray' style={{ minHeight: '435px', padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
                             <h3
                                 className="pi-title-medium pi-mb-20"
                                 style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}

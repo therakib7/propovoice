@@ -56,11 +56,11 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)}>{row.name}</td>
-                <td onClick={() => handleOverview(row.id)}>{row.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.name}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.email}</td>
                 <td>{row.address}</td> 
                 <td>{row.first_name}</td>
-                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <Action 
                         row={row}

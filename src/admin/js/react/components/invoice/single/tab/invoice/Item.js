@@ -46,6 +46,7 @@ class Item extends Component {
                             max="9999999.99"
                             value={qty}
                             onChange={this.props.changeHandler(index)}
+                            style={{width: '60px'}}
                             onFocus={this.props.focusHandler} />
 
                         <select name="qty_type"
@@ -63,7 +64,7 @@ class Item extends Component {
                     <input
                         name="price"
                         type="number"
-                        style={{width: '100px'}}
+                        style={{width: '80px'}}
                         step="0.01"
                         min="0.00"
                         max="9999999.99"

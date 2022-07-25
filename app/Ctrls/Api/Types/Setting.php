@@ -37,7 +37,7 @@ class Setting {
         } else {
             $data = [];
 
-            if ( $tab == 'general_social' ) {
+            if ( $tab == 'email_social' ) {
                 $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
@@ -181,7 +181,7 @@ class Setting {
         } else { 
             $data = [];
 
-            if ( $tab == 'general_social' ) {
+            if ( $tab == 'email_social' ) {
                 //TODO: sanitization  
                 $data['social'] = isset( $params['social'] ) ? ( $params['social'] ) : null; 
 

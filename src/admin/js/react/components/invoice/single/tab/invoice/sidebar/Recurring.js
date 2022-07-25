@@ -70,6 +70,7 @@ export default (props) => {
                                 id="recurring-interval"
                                 name="interval"
                                 value={recurring.interval}
+                                style={{width: '55px'}}
                                 onChange={handleChange}
                             />
                             <select
@@ -114,6 +115,7 @@ export default (props) => {
                                 name="limit"
                                 value={recurring.limit}
                                 onChange={handleChange}
+                                style={{width: '55px'}}
                             /> <span className="pi-times">Times</span>
                         </div>
                     </div>

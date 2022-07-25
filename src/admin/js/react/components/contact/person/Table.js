@@ -57,16 +57,16 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)}>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>
                     <div className="pi-avater">
                         <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                         <span>{row.first_name}</span>
                     </div>
                 </td>
-                <td onClick={() => handleOverview(row.id)}>{row.email}</td>
-                <td onClick={() => handleOverview(row.id)}>{row.org_name}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.org_name}</td>
                 {/* <td><span className='pi-badge'>Client</span></td>  */}
-                <td onClick={() => handleOverview(row.id)}><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <Action
                         row={row}

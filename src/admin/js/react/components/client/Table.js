@@ -14,7 +14,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Name
+                    Contact Name
                 </th>
                 <th>
                     Email
@@ -59,12 +59,17 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)}>{row.type == 'person' ? row.first_name : row.org_name}</td>
-                <td onClick={() => handleOverview(row.id)}>{row.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>
+                    <div className="pi-avater">
+                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                        <span>{row.type == 'person' ? row.first_name : row.org_name}</span>
+                    </div>
+                </td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.email}</td>
                 {/*<td>{row.org_name}</td> */}
-                <td onClick={() => handleOverview(row.id)}>{row.mobile}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.mobile}</td>
                 <td>{row.type == 'person' ? 'Person' : 'Organization'}</td>
-                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">
                     <Action
                         row={row}
