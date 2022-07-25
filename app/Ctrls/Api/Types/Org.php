@@ -130,19 +130,18 @@ class Org
             $query_data['country'] = isset($queryMeta['country']) ? $queryMeta['country'][0] : '';
             $query_data['region'] = isset($queryMeta['region']) ? $queryMeta['region'][0] : '';
             $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : '';
-            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : '';
 
-            $img_id = $query_data['img'];
-            $imgData = null;
-            if ($img_id) {
-                $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-                if ($img_src) {
-                    $imgData = [];
-                    $imgData['id'] = $img_id;
-                    $imgData['src'] = $img_src[0];
+            $logo_id = isset($queryMeta['logo']) ? $queryMeta['logo'][0] : null; 
+            $logoData = null;  
+            if ( $logo_id ) {
+                $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+                if ( $logo_src ) {
+                    $logoData = []; 
+                    $logoData['id'] = $logo_id;  
+                    $logoData['src'] = $logo_src[0]; 
                 }
-            }
-            $query_data['img'] = $imgData;
+            } 
+            $query_data['logo'] = $logoData;
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -162,27 +161,25 @@ class Org
         $query_data = [];
         $query_data['id'] = $id;
 
-        $query_data['first_name'] = get_post_meta($id, 'first_name', true);
-        $query_data['last_name'] = get_post_meta($id, 'last_name', true);
-        $query_data['email'] = get_post_meta($id, 'email', true);
-        $query_data['name'] = get_post_meta($id, 'name', true);
+        $query_data['name'] = get_post_meta($id, 'name', true); 
+        $query_data['email'] = get_post_meta($id, 'email', true); 
         $query_data['web'] = get_post_meta($id, 'web', true);
         $query_data['mobile'] = get_post_meta($id, 'mobile', true);
         $query_data['country'] = get_post_meta($id, 'country', true);
         $query_data['region'] = get_post_meta($id, 'region', true);
         $query_data['address'] = get_post_meta($id, 'address', true);
 
-        $img_id = get_post_meta($id, 'img', true);
-        $imgData = null;
-        if ($img_id) {
-            $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-            if ($img_src) {
-                $imgData = [];
-                $imgData['id'] = $img_id;
-                $imgData['src'] = $img_src[0];
+        $logo_id = get_post_meta($id, 'logo', true);
+        $logoData = null;
+        if ($logo_id) {
+            $logo_src = wp_get_attachment_image_src($logo_id, 'thumbnail');
+            if ($logo_src) {
+                $logoData = [];
+                $logoData['id'] = $logo_id;
+                $logoData['src'] = $logo_src[0];
             }
         }
-        $query_data['img'] = $imgData;
+        $query_data['logo'] = $logoData;
         $data = [];
         $data['profile'] = $query_data;
 
@@ -203,7 +200,7 @@ class Org
         $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
 
         if (empty($name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -265,8 +262,8 @@ class Org
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ($img) {
-                    update_post_meta($post_id, 'img', $img);
+                if ($logo) {
+                    update_post_meta($post_id, 'logo', $logo);
                 }
 
                 wp_send_json_success($post_id);
@@ -290,7 +287,7 @@ class Org
         $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
 
         if (empty($name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -350,8 +347,10 @@ class Org
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ($img) {
-                    update_post_meta($post_id, 'img', $img);
+                if ( $logo ) {
+                    update_post_meta($post_id, 'logo', $logo); 
+                } else {
+                    delete_post_meta($post_id, 'logo'); 
                 }
 
                 wp_send_json_success($post_id);

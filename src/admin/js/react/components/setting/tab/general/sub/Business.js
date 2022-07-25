@@ -70,10 +70,13 @@ export default class Business extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let business = this.state.form;
+        let form = { ...this.state.form } 
+        if ( form.logo ) {
+            form.logo = form.logo.id;
+        }  
 
-        if (!business.id) {
-            Api.create(business)
+        if (!form.id) {
+            Api.create(form)
                 .then(resp => {
                     if (resp.data.success) {
                         toast.success(this.context.CrudMsg.create);
@@ -84,7 +87,7 @@ export default class Business extends Component {
                     }
                 })
         } else {
-            Api.update(business.id, business)
+            Api.update(form.id, form)
                 .then(resp => {
                     if (resp.data.success) {
                         toast.success(this.context.CrudMsg.update);
