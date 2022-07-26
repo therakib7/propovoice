@@ -2,7 +2,9 @@
 
 namespace Ncpi\Ctrls\Api\Types;
 
-use Ncpi\Models\Org; 
+use Ncpi\Models\Contact;
+use Ncpi\Models\Org;
+use Ncpi\Models\Person;
 use WP_Query;
 
 class Client
@@ -81,7 +83,7 @@ class Client
 
         if (isset($params['page']) && $params['page'] > 1) {
             $offset = ($per_page * $params['page']) - $per_page;
-        } 
+        }
 
         $args = array(
             'post_type' => ['ndpi_person', 'ndpi_org'],
@@ -94,22 +96,22 @@ class Client
             'relation' => 'OR'
         );
 
-        if ( $s ) {
+        if ($s) {
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'first_name',
                     'value'   => $s,
                     'compare' => 'Like',
                 )
-            ); 
+            );
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'email',
                     'value'   => $s,
                     'compare' => 'Like',
                 )
-            ); 
-        } 
+            );
+        }
 
         $args['meta_query'][] = array(
             array(
@@ -117,7 +119,7 @@ class Client
                 'value'   => 1,
                 'compare' => '=',
             )
-        ); 
+        );
 
         $query = new WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
@@ -130,17 +132,17 @@ class Client
             $query_data['id'] = $id;
 
             $queryMeta = get_post_meta($id);
-            $type = get_post_type( $id ) == 'ndpi_person' ? 'person' : 'org';
-            $query_data['type'] = $type; 
-            $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : '';  
-            $query_data['org_name'] = isset($queryMeta['org_name']) ? $queryMeta['org_name'][0] : '';  
+            $type = get_post_type($id) == 'ndpi_person' ? 'person' : 'org';
+            $query_data['type'] = $type;
+            $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : '';
+            $query_data['org_name'] = isset($queryMeta['name']) ? $queryMeta['name'][0] : '';
             $query_data['email'] = isset($queryMeta['email']) ? $queryMeta['email'][0] : '';
             $query_data['web'] = isset($queryMeta['web']) ? $queryMeta['web'][0] : '';
             $query_data['mobile'] = isset($queryMeta['mobile']) ? $queryMeta['mobile'][0] : '';
             $query_data['country'] = isset($queryMeta['country']) ? $queryMeta['country'][0] : '';
             $query_data['region'] = isset($queryMeta['region']) ? $queryMeta['region'][0] : '';
-            $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : ''; 
-            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : ''; 
+            $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : '';
+            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : '';
 
             $img_id = $query_data['img'];
             $imgData = null;
@@ -167,7 +169,6 @@ class Client
 
     public function get_single($req)
     {
-         
     }
 
     public function create($req)
@@ -175,87 +176,38 @@ class Client
         $params = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $org_name   = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
-        $org_id     = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $email      = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $web        = isset($params['web']) ? esc_url_raw($req['web']) : null;
-        $mobile     = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country    = isset($params['country']) ? sanitize_text_field($req['country']) : null;
-        $region     = isset($params['region']) ? sanitize_text_field($req['region']) : null;
-        $address    = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img        = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
+        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
+        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
+        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
+        $params['is_client'] = true;
 
-        if ( empty($first_name) ) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
+        if (empty($first_name) &&  empty($org_name)) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 
-        if ( !is_email($email) ) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
+        $person = new Person();
+        if ($person_id) {
+            $person->update($params);
+        }
+
+        if (!$person_id && $first_name) {
+            $person_id = $person->create($params);
+        }
+
+        $org = new Org();
+        if (!$person_id && $org_id) {
+            $org->update($params);
+        }
+
+        if (!$org_id && $org_name) {
+            $org_id = $org->create($params);
         }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-
-            $data = array(
-                'post_type' => 'ndpi_person',
-                'post_title'    => $first_name,
-                'post_content'  => '',
-                'post_status'   => 'publish',
-                'post_author'   => get_current_user_id()
-            );
-            $post_id = wp_insert_post($data);
-
-            if ( !is_wp_error($post_id) ) {
-
-                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
-
-                if ($first_name) {
-                    update_post_meta($post_id, 'first_name', $first_name);
-                } 
-
-                if ( ! $org_id && $org_name ) {
-                    $org = new Org();
-                    $org_id = $org->create( [ 'org_name' => $org_name, 'person_id' => $post_id] );
-                }
-
-                if ($org_id) {
-                    update_post_meta($post_id, 'org_id', $org_id);
-                }
-
-                if ($email) {
-                    update_post_meta($post_id, 'email', $email);
-                } 
-
-                if ($web) {
-                    update_post_meta($post_id, 'web', $web);
-                }
-
-                if ($mobile) {
-                    update_post_meta($post_id, 'mobile', $mobile);
-                }
-
-                if ($country) {
-                    update_post_meta($post_id, 'country', $country);
-                }
-
-                if ($region) {
-                    update_post_meta($post_id, 'region', $region);
-                }
-
-                if ($address) {
-                    update_post_meta($post_id, 'address', $address);
-                }
-
-                if ($img) {
-                    update_post_meta($post_id, 'img', $img);
-                }
-
-                wp_send_json_success($post_id);
-            } else {
-                wp_send_json_error();
-            }
+            wp_send_json_success();
         }
     }
 
@@ -296,7 +248,7 @@ class Client
             );
             $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
 
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);

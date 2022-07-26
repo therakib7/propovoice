@@ -956,6 +956,7 @@ html {
   color: #8492A6;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  line-height: 100%;
 }
 
 .ncpi .pi-table tr th svg {
@@ -1354,6 +1355,7 @@ html {
   text-align: center;
   line-height: 100%;
   height: 33px;
+  background: none;
 }
 
 .ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=number]:focus,
@@ -1379,6 +1381,7 @@ html {
   padding: 10px;
   width: 100%;
   color: #718096;
+  background: none;
 }
 
 .ncpi .pi-info-table-content .pi-info-table tbody tr td textarea:focus {
@@ -1474,7 +1477,8 @@ html {
 }
 
 .ncpi .pi-calculation table {
-  margin-left: auto;
+  justify-content: right;
+  display: flex;
   text-align: right;
   border-collapse: collapse;
   margin-top: 10px;
@@ -1609,6 +1613,12 @@ html {
 .ncpi .pi-avater {
   display: flex;
   align-items: center;
+}
+
+.ncpi .pi-avater img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
 
 .ncpi .pi-avater .pi-dropdown-angle {
@@ -2166,70 +2176,6 @@ html {
   margin-top: 0;
 }
 
-.ncpi .pi-client-feedback {
-  margin-top: 25px;
-}
-
-.ncpi .pi-client-feedback .row>div {
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.ncpi .pi-client-feedback .pi-feedback-content.pi-request {
-  padding: 30px 65px;
-}
-
-.ncpi .pi-client-feedback .pi-feedback-content {
-  padding: 30px 40px;
-  border-radius: 20px;
-  color: #fff;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.ncpi .pi-client-feedback .pi-feedback-content h2 {
-  font-weight: 700;
-  font-size: 24px;
-  color: #fff;
-}
-
-.ncpi .pi-client-feedback .pi-feedback-content p {
-  font-size: 12px;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  z-index: 9;
-  position: relative;
-}
-
-.ncpi .pi-client-feedback .pi-feedback-content svg {
-  position: absolute;
-  left: 0px;
-  top: -28px;
-  bottom: 0;
-}
-
-@media screen and (max-width: 1200px) {
-
-  .ncpi .pi-client-feedback .pi-feedback-content,
-  .ncpi .pi-client-feedback .pi-feedback-content.pi-request {
-    padding: 30px 30px;
-  }
-
-  .ncpi .pi-client-feedback .pi-feedback-content svg,
-  .ncpi .pi-client-feedback .pi-feedback-content.pi-request svg {
-    width: 240px;
-    height: 270px;
-  }
-}
-
-.ncpi .pi-client-feedback .pi-btn {
-  font-size: 12px;
-  padding: 12px 15px;
-  z-index: 1;
-  position: relative;
-}
-
 .ncpi .pi-pagination-content-two .pi-pagination {
   margin-top: 55px;
   margin-right: -30px;
@@ -2375,7 +2321,7 @@ html {
 
 .ncpi .pi-top-menu-content .pi-dropdown-content {
   top: 55px;
-  left: 10px;
+  right: 0;
 }
 
 @media screen and (max-width: 420px) {
@@ -4630,6 +4576,7 @@ ul {
 .ncpi .pi-widget .pi-avatar-content img {
   width: 30px;
   height: 30px;
+  border-radius: 50%;
 }
 
 .ncpi .pi-widget .pi-avatar-content h5,
@@ -5448,6 +5395,7 @@ select {
   line-height: 20px;
   border-radius: 8px;
   outline: none;
+  background: none;
 }
 
 @media screen and (max-width: 420px) {
@@ -5476,7 +5424,7 @@ select {
   border: 1px solid #CBD5E0;
   outline: none;
   line-height: 100%;
-  line-height: 100%;
+  background: none;
 }
 
 @media screen and (max-width: 550px) {

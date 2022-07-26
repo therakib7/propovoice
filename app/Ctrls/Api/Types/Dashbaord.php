@@ -164,8 +164,8 @@ class Dashbaord
             $percent = '';
 
             if ($type != 'won' || $type != 'lost') {
-                if ($item_percent < 32) {
-                    $item_percent = 32;
+                if ($item_percent < 35) {
+                    $item_percent = 35;
                 }
                 $percent = $item_percent . '%';
                 $item_percent -= $minus_percent;
@@ -251,12 +251,12 @@ class Dashbaord
 
         $get_tax = Fns::get_terms($params['section']);
 
-        $column = [];  
+        $column = [];
         $total_posts = 0;
-        foreach ($get_tax as $tax):
+        foreach ($get_tax as $tax) :
             $tax_id = $tax->term_id;
             $tax_name = $tax->name;
- 
+
             $args = array(
                 'post_type' => 'ndpi_lead',
                 'post_status' => 'publish',
@@ -264,10 +264,10 @@ class Dashbaord
                 'order' => 'ASC',
                 'posts_per_page' => $per_page,
                 'offset' => $offset,
-            ); 
+            );
             $args['meta_query'] = array(
                 'relation' => 'OR'
-            ); 
+            );
             $args['tax_query'] = array(
                 array(
                     'taxonomy' => 'ndpi_' . $params['section'],
@@ -282,8 +282,8 @@ class Dashbaord
 
             $bg_color = get_term_meta($tax_id, 'bg_color', true);
             $tax_single = [
-                'name' => $tax_name, 
-                'bg_color' => $bg_color ? $bg_color : '#B9C7FF', 
+                'name' => $tax_name,
+                'bg_color' => $bg_color ? $bg_color : '#B9C7FF',
                 'item' => $total_data,
                 'percent' => 0
             ];
@@ -291,9 +291,9 @@ class Dashbaord
             $column[] = $tax_single;
         endforeach;
 
-        $column_with_percent = []; 
-        foreach ($column as $col ) {
-            $col['percent'] = round( ($col['item'] / $total_posts) * 100 );
+        $column_with_percent = [];
+        foreach ($column as $col) {
+            $col['percent'] = round(($col['item'] / $total_posts) * 100);
             $column_with_percent[] = $col;
         }
 

@@ -320,6 +320,7 @@
   border: none;
   padding: 7px 0;
   width: 100%;
+  background: none;
 }
 
 .ncpi .pi-tab-buttons-group .pi-activity-field input:focus {
@@ -547,6 +548,7 @@
 .ncpi .pi-avatar-content img {
   width: 30px;
   height: 30px;
+  border-radius: 50%;
 }
 
 .ncpi .pi-avatar-content .pi-avatar-text {
