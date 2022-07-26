@@ -835,7 +835,7 @@ class Invoice extends Component {
 												</div>
 
 												<div className="col-12 col-md-6">
-													<div className="pi-info-form">
+													<div className="pi-info-form pi-form-style-one">
 														<div className="pi-info-form-list">
 															<div className="pi-info-lavel">
 																<label htmlFor="info-number">{title} number:</label>
