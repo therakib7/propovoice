@@ -22,7 +22,7 @@ const Summary = (props) => {
         "#5b7cea", 
     ];
     return (
-        <div className="pi-punnel pi-border-gray" style={{ minHeight: '445px', marginBottom: '30px' }}>
+        <div className="pi-punnel pi-border-gray" style={{ minHeight: '435px', marginBottom: '30px' }}>
             <h3
                 className="pi-title-medium pi-mb-20"
                 style={{ fontWeight: "bold", color: "#718096" }}

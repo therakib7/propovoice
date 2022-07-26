@@ -104,7 +104,7 @@ class Fns
         ];
 
         if ( function_exists('ncpip') ) {
-            $get_social = get_option('ncpi_general_social');
+            $get_social = get_option('ncpi_email_social');
             if (isset($get_social['social'])) {
                 $social_list = $get_social['social'];
             }

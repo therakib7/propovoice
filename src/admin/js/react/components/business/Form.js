@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'; 
 import Upload from 'block/field/upload';
 
 class Form extends Component {
@@ -68,7 +67,11 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.form);
+        let form = { ...this.state.form } 
+        if ( form.logo ) {
+            form.logo = form.logo.id;
+        }  
+        this.props.handleSubmit(form);
         //this.setState({ form: this.initialState });
     }
 
@@ -79,6 +82,7 @@ class Form extends Component {
     }
 
     render() {
+        const form = this.state.form;
 
         let title = '';
         if (this.props.modalType == 'new') {
@@ -132,7 +136,7 @@ class Form extends Component {
                                             id="field-name"
                                             type="text"
                                             name="name"
-                                            value={this.state.form.name}
+                                            value={form.name}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -147,7 +151,7 @@ class Form extends Component {
                                                 id="field-org_name"
                                                 type="text" 
                                                 name="org_name"
-                                                value={this.state.form.org_name}
+                                                value={form.org_name}
                                                 onChange={this.handleChange}
                                             />
                                         </div> */}
@@ -164,7 +168,7 @@ class Form extends Component {
                                             id="field-web"
                                             type="text"
                                             name="web"
-                                            value={this.state.form.web}
+                                            value={form.web}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -179,7 +183,7 @@ class Form extends Component {
                                             type="email"
                                             required
                                             name="email"
-                                            value={this.state.form.email}
+                                            value={form.email}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -197,7 +201,7 @@ class Form extends Component {
                                             type="text"
                                             required
                                             name="mobile"
-                                            value={this.state.form.mobile}
+                                            value={form.mobile}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -211,7 +215,7 @@ class Form extends Component {
                                             id="field-zip"
                                             type="number"
                                             name="zip"
-                                            value={this.state.form.zip}
+                                            value={form.zip}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -228,7 +232,7 @@ class Form extends Component {
                                             type="text"
                                             name="address"
                                             placeholder='Write you full address here'
-                                            value={this.state.form.address}
+                                            value={form.address}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -239,7 +243,7 @@ class Form extends Component {
                                             htmlFor="field-logo">
                                             Logo
                                         </label>
-                                        <Upload data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                                        <Upload data={form.logo} changeHandler={this.handleLogoChange} />
                                     </div>
                                 </div>
                             </div>

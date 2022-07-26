@@ -18,7 +18,7 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </div>}
-                <ul>
+                <ul style={{ padding: (props.dashboard ? '16px 10px 9px 0px' : '') }}>
                     <li style={{ width: '45%' }} className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
                         <div className={"pi-task-type " + (props.dashboard ? 'pi-mt-10' : '')}>
                             {row.type_id.icon && <img src={row.type_id.icon.src} />}

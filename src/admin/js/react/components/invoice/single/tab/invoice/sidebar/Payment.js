@@ -65,7 +65,7 @@ class Payment extends Component {
                     this.props.handleChange(resp.data.data, 'bank');
                     this.getLists();
                 } else {
-                    resp.data.data.forEach(function (value, index, array) {
+                    resp.data.data.forEach(function (value, i, array) {
                         toast.error(value);
                     });
                 }
@@ -76,21 +76,21 @@ class Payment extends Component {
         const { payment_methods } = this.props.data
         return (
             <div className="pi-form-accordion pi-additional">
-                {this.state.payments.map((row, index) => {
+                {this.state.payments.map((row, i) => {
                     if (wage.length > 0) {
                         if (row.method_id !== 'bank') return;
                     }
 
                     return (
-                        <div className="pi-tab" key={index}>
+                        <div className="pi-tab" key={i}>
                             <input type="checkbox" defaultChecked={payment_methods.hasOwnProperty(row.method_id)} id={"pi-payment-" + row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pi-payment-type" />
-                            <label className="pi-tab-label" htmlFor={"pi-payment-" + row.method_id}>
+                            <label className={(payment_methods.hasOwnProperty(row.method_id) ? 'pi-active' : '') + ' pi-tab-label'} htmlFor={"pi-payment-" + row.method_id}>
                                 {row.method_name}
                             </label>
                             <div className="pi-tab-content">
-                                {row.list.map((single, index_single) => {
+                                {row.list.map((single, i_single) => {
                                     return (
-                                        <div className="pi-payment-bank-content" key={index_single} onClick={() => this.setPayment(single, 'id')} >
+                                        <div className="pi-payment-bank-content" key={i_single} onClick={() => this.setPayment(single, 'id')} >
                                             <div className="pi-payment-image">
                                                 <span>
                                                     <svg

@@ -14,15 +14,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %s template
-#: ../app/Helpers/Fns.php:211
+#: ../app/Helpers/Fns.php:224
 msgid "%s does not exist."
 msgstr ""
 
-#: ../app/Helpers/Fns.php:304, ../app/Helpers/Fns.php:376
+#: ../app/Helpers/Fns.php:317, ../app/Helpers/Fns.php:389
 msgid "Select"
 msgstr ""
 
-#: ../app/Models/Org.php:82, ../app/Models/Org.php:166, ../app/Models/Person.php:84, ../app/Models/Person.php:163
+#: ../app/Models/Org.php:82, ../app/Models/Org.php:166, ../app/Models/Person.php:81, ../app/Models/Person.php:159
 msgid "Something wrong!"
 msgstr ""
 
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client copy.php:272, ../app/Ctrls/Api/Types/Client copy.php:333, ../app/Ctrls/Api/Types/Client.php:194, ../app/Ctrls/Api/Types/Client.php:283, ../app/Ctrls/Api/Types/Contact.php:283, ../app/Ctrls/Api/Types/Org.php:213, ../app/Ctrls/Api/Types/Org.php:300, ../app/Ctrls/Api/Types/Person.php:236, ../app/Ctrls/Api/Types/Person.php:325, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
+#: ../app/Ctrls/Api/Types/Client copy.php:272, ../app/Ctrls/Api/Types/Client copy.php:333, ../app/Ctrls/Api/Types/Client.php:194, ../app/Ctrls/Api/Types/Client.php:283, ../app/Ctrls/Api/Types/Contact.php:283, ../app/Ctrls/Api/Types/Org.php:210, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:246, ../app/Ctrls/Api/Types/Person.php:335, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
 msgid "Email id is not valid!"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:190, ../app/Ctrls/Api/Types/Client.php:279, ../app/Ctrls/Api/Types/Contact.php:279, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:209, ../app/Ctrls/Api/Types/Org.php:296, ../app/Ctrls/Api/Types/Person.php:232, ../app/Ctrls/Api/Types/Person.php:321, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
+#: ../app/Ctrls/Api/Types/Client.php:190, ../app/Ctrls/Api/Types/Client.php:279, ../app/Ctrls/Api/Types/Contact.php:279, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:206, ../app/Ctrls/Api/Types/Org.php:293, ../app/Ctrls/Api/Types/Person.php:242, ../app/Ctrls/Api/Types/Person.php:331, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
 msgid "Name field is missing"
 msgstr ""
 
@@ -118,7 +118,7 @@ msgstr ""
 msgid "Please title is required"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Setting.php:32, ../app/Ctrls/Api/Types/Setting.php:165
+#: ../app/Ctrls/Api/Types/Setting.php:32, ../app/Ctrls/Api/Types/Setting.php:176
 msgid "Tab is missing"
 msgstr ""
 
@@ -126,7 +126,7 @@ msgstr ""
 msgid "Title field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Taxonomy.php:79, ../app/Ctrls/Api/Types/Taxonomy.php:217, ../app/Ctrls/Api/Types/Taxonomy.php:266
+#: ../app/Ctrls/Api/Types/Taxonomy.php:80, ../app/Ctrls/Api/Types/Taxonomy.php:234, ../app/Ctrls/Api/Types/Taxonomy.php:291
 msgid "Taxonomy is missing"
 msgstr ""
 
@@ -454,6 +454,56 @@ msgstr ""
 
 #: ../app/Ctrls/Taxonomy/Types/DealStage.php:31
 msgid "No deal stage found."
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:20
+msgctxt "extra_amount general name"
+msgid "Estvoice Extra Amounts"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:21
+msgctxt "extra_amount singular name"
+msgid "Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:22
+msgid "Search Estvoice Extra Amounts"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:23
+msgid "All Estvoice Extra Amounts"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:24
+msgid "Parent Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:25
+msgid "Parent Estvoice Extra Amount:"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:26
+msgid "Edit Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:27
+msgid "Update Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:28
+msgid "Add New Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:29
+msgid "New Estvoice Extra Amount"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:30
+msgid "Estvoice Extra Amounts"
+msgstr ""
+
+#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:31
+msgid "No Estvoice extra amount found."
 msgstr ""
 
 #: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:20
@@ -816,10 +866,6 @@ msgstr ""
 
 #: ../views/template/dashboard-template.php:3
 msgid "Propovoice Dashboard"
-msgstr ""
-
-#: ../views/template/dashboard-template.php:19
-msgid "Sorry!! You don't have permission to view this page"
 msgstr ""
 
 #: ../views/template/estimate-template.php:3

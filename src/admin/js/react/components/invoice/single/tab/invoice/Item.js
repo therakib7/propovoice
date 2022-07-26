@@ -3,9 +3,21 @@ import PropTypes from 'prop-types'
 
 class Item extends Component {
 
+    calcItemTotal = ( qty, price, tax, tax_type ) => {
+		let tax_total = 0;
+        if ( this.props.item_tax && tax ) {
+            if ( tax_type == 'percent') {
+                tax_total += price * (tax / 100);
+            } else { 
+                tax_total += parseFloat(tax);
+            }
+        } 
+        return (qty * price) + tax_total;
+	} 
+
     render = () => {
 
-        const { index, title, desc, qty, qty_type, price } = this.props
+        const { index, title, desc, qty, qty_type, item_tax, tax, tax_type, price } = this.props
 
         return (
             <>
@@ -23,7 +35,7 @@ class Item extends Component {
                         placeholder='Description'
                         value={desc}
                         onChange={this.props.changeHandler(index)} />
-                </td>
+                </td> 
                 <td>
                     <div className='pi-field-checkbox pi-field-checkbox-input'>
                         <input
@@ -34,6 +46,7 @@ class Item extends Component {
                             max="9999999.99"
                             value={qty}
                             onChange={this.props.changeHandler(index)}
+                            style={{width: '60px'}}
                             onFocus={this.props.focusHandler} />
 
                         <select name="qty_type"
@@ -46,11 +59,12 @@ class Item extends Component {
                             <option value="month">Month</option>
                         </select>
                     </div>
-                </td>
+                </td> 
                 <td>
                     <input
                         name="price"
                         type="number"
+                        style={{width: '80px'}}
                         step="0.01"
                         min="0.00"
                         max="9999999.99"
@@ -58,12 +72,32 @@ class Item extends Component {
                         onChange={this.props.changeHandler(index)}
                         onFocus={this.props.focusHandler}
                     />
-                </td> 
-                {/* <td>
-                    
-                </td> */} 
+                </td>  
+                {item_tax && <td>
+                    <div className='pi-field-checkbox pi-field-checkbox-input'>
+                        <input
+                            name="tax"
+                            type="number"
+                            min="0.00"
+                            step="1"
+                            max="9999999.99"
+                            value={tax}
+                            onChange={this.props.changeHandler(index)}
+                            onFocus={this.props.focusHandler} />
+
+                        <select name="tax_type"
+                            value={tax_type}
+                            onChange={this.props.changeHandler(index)} 
+                            style={{width: '37px'}}
+                        >
+                            <option value="percent">%</option>
+                            <option value="fixed">$</option> 
+                        </select>
+                    </div>
+                </td>} 
+                
                 <td>
-                    {this.props.currencyFormatter(qty * price)}
+                    {this.props.currencyFormatter( this.calcItemTotal( qty, price, tax, tax_type ) )}
                 </td>
                 <td>
                     <span

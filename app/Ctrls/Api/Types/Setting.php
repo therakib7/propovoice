@@ -37,7 +37,7 @@ class Setting {
         } else {
             $data = [];
 
-            if ( $tab == 'general_social' ) {
+            if ( $tab == 'email_social' ) {
                 $option = get_option('ndpi_' . $tab);
 
                 if ( $option ) {
@@ -150,6 +150,17 @@ class Setting {
                 }
             }
 
+            if ( $tab == 'estvoice_tax' ) {
+                $option = get_option('ndpi_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {  
+                    $data['item_tax'] = false;
+                    // $data['item_tax_val_type'] = 'fixed';
+                }
+            }
+
             wp_send_json_success($data);
         }
     } 
@@ -170,7 +181,7 @@ class Setting {
         } else { 
             $data = [];
 
-            if ( $tab == 'general_social' ) {
+            if ( $tab == 'email_social' ) {
                 //TODO: sanitization  
                 $data['social'] = isset( $params['social'] ) ? ( $params['social'] ) : null; 
 
@@ -214,6 +225,12 @@ class Setting {
             if ( $tab == 'email_invoice_recurring' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
+                $option = update_option('ndpi_' . $tab, $data);                 
+            }
+
+            if ( $tab == 'estvoice_tax' ) {  
+                $data['item_tax'] = isset( $params['item_tax'] ) ? rest_sanitize_boolean( $params['item_tax'] ) : null;
+                // $data['item_tax_val_type'] = isset( $params['item_tax_val_type'] ) ? sanitize_textarea_field( $params['item_tax_val_type'] ) : null;  
                 $option = update_option('ndpi_' . $tab, $data);                 
             }
 

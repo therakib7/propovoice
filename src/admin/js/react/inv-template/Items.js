@@ -1,33 +1,28 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types' 
-import Item from './Item'  
-
-class Items extends Component { 
-
-    render = () => { 
-        return (   
-            <div className="pi-items-table">
-                <table>
-                    <thead>
-                        <tr>
+ 
+import Item from './Item' 
+const Items = props => {
+    return (
+        <div className="pi-items-table">
+            <table>
+                <thead>
+                    <tr>
                         <th>SL</th>
-                        <th>Item Description</th>
-                        <th>Quantity</th>
-                        <th>Rate</th>
-                        <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody> 
-                        {this.props.data.map((item, i) => { 
-                            return (
-                                <Item data={item} id={i} key={i} />
-                            )
-                        })} 
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+                        <th style={{ width: 'auto' }}>Title &amp; Description</th>
+                        <th style={{ width: '125px' }}>Quantity</th>
+                        <th style={{ width: '135px' }}>Rate (USD)</th>
+                        {props.item_tax && <th style={{ width: '125px' }}>Tax</th>}
+                        <th style={{ width: '90px' }}>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.data.map((item, i) => {
+                        return (
+                            <Item data={item} item_tax={props.item_tax} id={i} key={i} />
+                        )
+                    })}
+                </tbody>
+            </table>
+        </div>
+    )
 } 
-
-export default Items
+export default Items;

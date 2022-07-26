@@ -36,7 +36,7 @@ class General extends Component {
 		const { tabs = [], currentTab } = this.state;
 		return (
 			<>
-				<ul className='pi-settings-horizontal-tab'>
+				{false && <ul className='pi-settings-horizontal-tab'>
 					{tabs.map((tab, index) => (
 						<li
 							key={index}
@@ -46,7 +46,7 @@ class General extends Component {
 							{tab.text}
 						</li>
 					))}
-				</ul>
+				</ul>}
 		
 				{currentTab == 'general' && <SubGeneral {...this.props} />} 
 				{currentTab == 'other' && <Other {...this.props} />}

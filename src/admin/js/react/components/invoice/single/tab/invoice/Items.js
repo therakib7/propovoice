@@ -33,7 +33,7 @@ class Items extends Component {
 
     render = () => {
 
-        const { items, addHandler, reorderHandler, ...functions } = this.props
+        const { items, item_tax, addHandler, reorderHandler, ...functions } = this.props
 
         return (
             <>
@@ -41,12 +41,12 @@ class Items extends Component {
                     <div className="pi-info-table-content">
                         <table className="pi-table pi-info-table">
                             <thead>
-                                <tr >
-                                    <th>Title &amp; Description </th>
-                                    <th>Quantity</th>
-                                    <th>Rate (USD)</th>
-                                    {/* <th>Tax</th> */}
-                                    <th>Amount</th>
+                                <tr>
+                                    <th style={{width: 'auto'}}>Title &amp; Description </th>
+                                    <th style={{width: '125px'}}>Quantity</th>
+                                    <th style={{width: '85px'}}>Rate (USD)</th>
+                                    {item_tax && <th style={{width: '125px'}}>Tax</th>}
+                                    <th style={{width: '90px'}}>Amount</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -75,6 +75,9 @@ class Items extends Component {
                                                                 desc={item.desc}
                                                                 qty={item.qty}
                                                                 qty_type={item.qty_type}
+                                                                item_tax={item_tax}
+                                                                tax={item.tax}
+                                                                tax_type={item.tax_type}
                                                                 price={item.price}
                                                                 {...functions}
                                                             />

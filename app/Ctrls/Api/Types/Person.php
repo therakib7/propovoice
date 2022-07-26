@@ -131,18 +131,17 @@ class Person
             $query_data['country'] = isset($queryMeta['country']) ? $queryMeta['country'][0] : '';
             $query_data['region'] = isset($queryMeta['region']) ? $queryMeta['region'][0] : '';
             $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : ''; 
-            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : ''; 
-
-            $img_id = $query_data['img'];
-            $imgData = null;
-            if ($img_id) {
-                $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
-                if ($img_src) {
-                    $imgData = [];
-                    $imgData['id'] = $img_id;
-                    $imgData['src'] = $img_src[0];
+            
+            $img_id = isset($queryMeta['img']) ? $queryMeta['img'][0] : null; 
+            $imgData = null;  
+            if ( $img_id ) {
+                $img_src = wp_get_attachment_image_src( $img_id, 'thumbnail' );
+                if ( $img_src ) {
+                    $imgData = []; 
+                    $imgData['id'] = $img_id;  
+                    $imgData['src'] = $img_src[0]; 
                 }
-            }
+            } 
             $query_data['img'] = $imgData;
 
             $query_data['date'] = get_the_time('j-M-Y');
@@ -204,6 +203,17 @@ class Person
             $personData['country'] = isset($personMeta['country']) ? $personMeta['country'][0] : '';
             $personData['region'] = isset($personMeta['region']) ? $personMeta['region'][0] : '';
             $personData['address'] = isset($personMeta['address']) ? $personMeta['address'][0] : '';
+            $img_id = isset($personMeta['img']) ? $personMeta['img'][0] : null; 
+            $imgData = null;  
+            if ( $img_id ) {
+                $img_src = wp_get_attachment_image_src( $img_id, 'thumbnail' );
+                if ( $img_src ) {
+                    $imgData = []; 
+                    $imgData['id'] = $img_id;  
+                    $imgData['src'] = $img_src[0]; 
+                }
+            } 
+            $personData['img'] = $imgData;
         }
         $query_data['person'] = $personData;
 
@@ -226,7 +236,7 @@ class Person
         $country    = isset($params['country']) ? sanitize_text_field($req['country']) : null;
         $region     = isset($params['region']) ? sanitize_text_field($req['region']) : null;
         $address    = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img        = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+        $img = isset( $params['img'] ) ? absint( $params['img'] ) : null;
 
         if ( empty($first_name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -315,7 +325,7 @@ class Person
         $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+        $img = isset( $params['img'] ) ? absint( $params['img'] ) : null;
 
         if (empty($first_name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -375,9 +385,11 @@ class Person
                 if ($address) {
                     update_post_meta($post_id, 'address', $address);
                 }
-
-                if ($img) {
-                    update_post_meta($post_id, 'img', $img);
+                
+                if ( $img ) {
+                    update_post_meta($post_id, 'img', $img); 
+                } else {
+                    delete_post_meta($post_id, 'img'); 
                 }
 
                 wp_send_json_success($post_id);

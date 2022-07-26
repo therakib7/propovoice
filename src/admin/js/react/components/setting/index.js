@@ -2,8 +2,9 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 // import Style from './style.scoped.scss' 
 import Spinner from 'block/preloader/spinner';
-const General = lazy(() => import('./tab/general'));
+import WithApi from 'hoc/Api'; 
 
+const General = lazy(() => import('./tab/general')); 
 const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
 const Deal = lazy(() => import('./tab/deal'));
@@ -11,25 +12,17 @@ const Estimate = lazy(() => import('./tab/estimate'));
 const Invoice = lazy(() => import('./tab/invoice'));
 const Project = lazy(() => import('./tab/project'));
 const Contact = lazy(() => import('./tab/contact'));
-const Tag = lazy(() => import('./tab/tag'));
-
-//subtab: estimate
-// const EstimateReminder = lazy(() => import('./tab/estimate/Reminder'));
-// const EstimateRecurring = lazy(() => import('./tab/estimate/Recurring'));
-
-//subtab: invoice
-// const InvoiceReminder = lazy(() => import('./tab/invoice/Reminder'));
-// const InvoiceRecurring = lazy(() => import('./tab/invoice/Recurring'));
-
+const Tag = lazy(() => import('./tab/tag')); 
+ 
 //subtab: email 
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
-const EmailInvoice = lazy(() => import('./tab/email/invoice'));
-
-const BusinessSingle = lazy(() => import('./tab/business/index'));
+const EmailInvoice = lazy(() => import('./tab/email/invoice')); 
+const EmailSocial = lazy(() => import('./tab/email/social')); 
 
 const Payment = lazy(() => import('components/payment'));
 
-export default function SettingWrap() {
+
+const SettingWrap = (props) => {
 
     const { tab, subtab } = useParams();
     let navigate = useNavigate();
@@ -76,10 +69,7 @@ export default function SettingWrap() {
                 },
                 project: {
                     label: 'Project'
-                },
-                business: {
-                    label: 'Business'
-                },
+                }, 
                 payment: {
                     label: 'Payment'
                 },
@@ -91,6 +81,9 @@ export default function SettingWrap() {
                         },
                         invoice: {
                             label: 'Invoice'
+                        },
+                        social: {
+                            label: 'Social'
                         },
                     },
                 },
@@ -187,39 +180,20 @@ export default function SettingWrap() {
 
                             <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} Settings</h4>
 
-                            <Suspense fallback={<Spinner />}>
-
+                            <Suspense fallback={<Spinner />}> 
                                 {currentTab == 'general' && <General />}
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
                                 {currentTab == 'deal' && <Deal />}
                                 {currentTab == 'estimate' && <Estimate />}
                                 {currentTab == 'invoice' && <Invoice />}
-                                {currentTab == 'project' && <Project />}
-
-                                {/* {!wage.length &&
-                                    <>
-                                        {currentTab == 'estimate' && (currentSubtab == 'reminder' || !currentSubtab) && <EstimateReminder />}
-                                        {currentTab == 'estimate' && currentSubtab == 'recurring' && <EstimateRecurring />}
-
-                                        {currentTab == 'invoice' && (currentSubtab == 'reminder' || !currentSubtab) && <InvoiceReminder />}
-                                        {currentTab == 'invoice' && currentSubtab == 'recurring' && <InvoiceRecurring />}
-                                    </>
-                                } */}
-
-                                {currentTab == 'business' && <BusinessSingle />}
-                                {currentTab == 'payment' && <Payment />}
-
-                                {!wage.length &&
-                                    <>
-                                        {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
-                                        {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
-                                    </>
-                                }
-
+                                {currentTab == 'project' && <Project />}  
+                                {currentTab == 'payment' && <Payment />} 
+                                {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
+                                {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
+                                {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />} 
                                 {currentTab == 'contact' && <Contact />}
-                                {currentTab == 'tag' && <Tag />}
-
+                                {currentTab == 'tag' && <Tag />} 
                             </Suspense>
                         </div>
                     </div>
@@ -228,3 +202,5 @@ export default function SettingWrap() {
         </>
     );
 } 
+
+export default WithApi(SettingWrap); 

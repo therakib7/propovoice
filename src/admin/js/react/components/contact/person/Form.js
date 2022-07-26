@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Upload from 'block/field/upload';
 
 import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
@@ -18,6 +19,7 @@ class Form extends Component {
             country: '',
             region: '',
             address: '',
+            img: null,
             date: false
         };
 
@@ -93,8 +95,18 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.form);
+        let form = { ...this.state.form } 
+        if ( form.img ) {
+            form.img = form.img.id;
+        }  
+        this.props.handleSubmit(form);
         // this.setState({ form: this.initialState });
+    }
+
+    handleImgChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.img = data;
+        this.setState({ form })
     }
 
     render() {
@@ -152,7 +164,7 @@ class Form extends Component {
                                             type="email"
                                             required
                                             name="email"
-                                            value={this.state.form.email}
+                                            value={form.email}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -165,7 +177,7 @@ class Form extends Component {
                                             id="form-mobile"
                                             type="text"
                                             name="mobile"
-                                            value={this.state.form.mobile}
+                                            value={form.mobile}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -181,7 +193,7 @@ class Form extends Component {
                                             id="form-web"
                                             type="text"
                                             name="web"
-                                            value={this.state.form.web}
+                                            value={form.web}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -194,7 +206,7 @@ class Form extends Component {
                                         </label>
 
                                         <CountryDropdown
-                                            value={this.state.form.country}
+                                            value={form.country}
                                             valueType='short'
                                             onChange={(val) => this.selectCountry(val)}
                                         />
@@ -206,9 +218,9 @@ class Form extends Component {
                                         </label>
 
                                         <RegionDropdown
-                                            country={this.state.form.country}
+                                            country={form.country}
                                             countryValueType='short'
-                                            value={this.state.form.region}
+                                            value={form.region}
                                             onChange={(val) => this.selectRegion(val)}
                                         />
                                     </div>
@@ -225,9 +237,19 @@ class Form extends Component {
                                             id="form-address"
                                             type="text"
                                             name="address"
-                                            value={this.state.form.address}
+                                            value={form.address}
                                             onChange={this.handleChange}
                                         />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label
+                                            htmlFor="field-img">
+                                            Image
+                                        </label>
+                                        <Upload data={form.img} changeHandler={this.handleImgChange} />
                                     </div>
                                 </div>
                             </div>

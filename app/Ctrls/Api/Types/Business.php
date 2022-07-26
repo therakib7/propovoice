@@ -215,7 +215,7 @@ class Business
         $address = isset( $params['address'] ) ? sanitize_text_field( $params['address'] ) : null; 
         $zip = isset( $params['zip'] ) ? sanitize_text_field( $params['zip'] ) : null; 
         $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null;  
-        $logo = isset( $params['logo'] ) && isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
+        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));
@@ -297,7 +297,7 @@ class Business
         $address = isset( $params['address'] ) ? sanitize_text_field( $params['address'] ) : null; 
         $zip = isset( $params['zip'] ) ? sanitize_text_field( $params['zip'] ) : null; 
         $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null; 
-        $logo = isset( $params['logo'] ) && isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
+        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));

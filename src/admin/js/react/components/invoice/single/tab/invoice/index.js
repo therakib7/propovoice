@@ -105,15 +105,10 @@ class Invoice extends Component {
 						tax: 0,
 						tax_type: 'fixed',
 					},
-				],
-				tax: 0,
-				discount: 0,
-				late_fee: 0,
-				paid: 0,
-				extra_field: {
-					tax: 'percent',
-					discount: 'fixed'
-				},
+				], 
+				paid: 0, 
+				item_tax: false,
+				extra_field: [],
 				payment_methods: {},
 				//TODO: move the the field in single, if always not needed
 				reminder: {
@@ -328,12 +323,22 @@ class Invoice extends Component {
 		}
 		this.setState({ invoice })
 	}
-
-	handleTotalChange = (e) => {
-		const { name, value } = e.target;
+ 
+	itemTaxChange = (e) => {
 		let invoice = { ...this.state.invoice }
+		const target = e.target;
+		const name = target.name;
+		const value = target.type == 'checkbox' ? target.checked : target.value;
 		invoice[name] = value;
 		this.setState({ invoice })
+	}
+
+	handleTotalChange = (e, item) => { 
+		const { value } = e.target;
+		let invoice = { ...this.state.invoice }
+		let index = invoice.extra_field.findIndex(x => x.id == item.id );  
+		invoice.extra_field[index].val = value; 
+		this.setState({ invoice });
 	}
 
 	handleLineItemChange = (elementIndex) => (e) => {
@@ -434,48 +439,38 @@ class Invoice extends Component {
 	}
 
 	calcItemsTotal = () => {
-		return this.state.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
-	}
-
-	calcTaxTotal = () => {
-		let extra_field = this.state.invoice.extra_field;
-		if (extra_field.hasOwnProperty('tax') && extra_field.tax == 'percent') {
-			return this.calcItemsTotal() * (this.state.invoice.tax / 100)
-		} else {
-			return this.state.invoice.tax;
-		}
-	}
-
-	calcDiscountTotal = () => {
-		let extra_field = this.state.invoice.extra_field;
-		if (extra_field.hasOwnProperty('discount') && extra_field.discount == 'percent') {
-			return this.calcItemsTotal() * (this.state.invoice.discount / 100)
-		} else {
-			return this.state.invoice.discount;
-		}
-	}
-
-	calcLateFeeTotal = () => {
-		let extra_field = this.state.invoice.extra_field;
-		if (extra_field.hasOwnProperty('late_fee') && extra_field.late_fee == 'percent') {
-			return this.calcItemsTotal() * (this.state.invoice.late_fee / 100)
-		} else {
-			return parseFloat(this.state.invoice.late_fee);
-		}
-	}
+		return this.state.invoice.items.reduce( (prev, cur) => {
+			let tax_total = 0;
+			if ( this.state.item_tax && cur.tax ) {
+				if ( cur.tax_type == 'percent') {
+					tax_total += cur.price * (cur.tax / 100);
+				} else { 
+					tax_total += parseFloat(cur.tax);
+				}
+			} 
+			return prev + (cur.qty * cur.price) + tax_total;
+		}, 0)
+	} 
 
 	calcGrandTotal = () => {
-		let total = this.calcItemsTotal();
+		let item_total = this.calcItemsTotal();
+		let total = item_total;
 		let extra_field = this.state.invoice.extra_field;
-		if (extra_field.hasOwnProperty('tax')) {
-			total += this.calcTaxTotal();
-		}
-		if (extra_field.hasOwnProperty('discount')) {
-			total -= this.calcDiscountTotal();
-		}
-		if (extra_field.hasOwnProperty('late_fee')) {
-			total += this.calcLateFeeTotal();
-		}
+		extra_field.map( ( item, i ) => {
+			if ( item.val_type == 'percent') {
+				if ( item.type == 'tax' || item.type == 'fee' ) {
+					total += item_total * (item.val / 100);
+				} else {
+					total -= item_total * (item.val / 100);
+				} 
+			} else { 
+				if ( item.type == 'tax' || item.type == 'fee' ) {
+					total += parseFloat(item.val);
+				} else {
+					total -= parseFloat(item.val);
+				}
+			}
+		}); 
 		return total;
 	}
 
@@ -564,25 +559,28 @@ class Invoice extends Component {
 				this.setState({ invoice });
 			}
 		}
-	}
+	} 
 
-	onExtraFieldChange = (data, type) => {
+	onExtraFieldChange = (i, item, type, type_val) => {
 		let invoice = { ...this.state.invoice }
-		if (type == 'field') {
-			if (invoice.extra_field.hasOwnProperty(data)) { // if payment method exist 
-				delete invoice.extra_field[data];
-				this.setState({ invoice });
-			} else {
-				if (data == 'tax') {
-					invoice.extra_field[data] = 'percent';
-				} else {
-					invoice.extra_field[data] = 'fixed';
-				}
-				this.setState({ invoice });
+		let index = invoice.extra_field.findIndex(x => x.id == item.id );  
+		if (type == 'field') { 
+			if ( index != -1 ) { // if payment method exist  
+				invoice.extra_field.splice(index, 1); 
+			} else {  
+				let data = {
+					id: item.id,
+					name: item.label,
+					type: item.extra_amount_type,
+					val: 0,
+					val_type: item.val_type
+				};
+				invoice.extra_field.splice(i, 0, data);
 			}
-		} else { //type		
-
-			invoice.extra_field[data.field] = data.type;
+			this.setState({ invoice });
+			
+		} else { //type		 
+			invoice.extra_field[index].val_type = type_val; 
 			this.setState({ invoice });
 		}
 	}
@@ -598,7 +596,12 @@ class Invoice extends Component {
 		const target = e.target;
 		const name = target.name;
 		const value = (name === 'status' || name === 'due_date') ? target.checked : target.value;
-		if (type) {
+
+		/* if ( name === 'status' && value ) {
+			this.setSidebarActive('reminder')
+		} */
+
+		if (type) { //before, after
 			let arr = invoice.reminder[type];
 			if (target.checked) {
 				arr.push(parseInt(value));
@@ -900,6 +903,7 @@ class Invoice extends Component {
 
 										<Items
 											items={invoice.items}
+											item_tax={invoice.item_tax}
 											currencyFormatter={this.formatCurrency}
 											addHandler={this.handleAddLineItem}
 											changeHandler={this.handleLineItemChange}
@@ -917,13 +921,8 @@ class Invoice extends Component {
 												<Total
 													currencyFormatter={this.formatCurrency}
 													itemsTotal={this.calcItemsTotal}
-													extra_field={invoice.extra_field}
-													tax={invoice.tax}
-													discount={invoice.discount}
-													late_fee={invoice.late_fee}
-													taxTotal={this.calcTaxTotal}
-													discountTotal={this.calcDiscountTotal}
-													lateFeeTotal={this.calcLateFeeTotal}
+													item_tax={invoice.item_tax}  
+													extra_field={invoice.extra_field} 
 													grandTotal={this.calcGrandTotal}
 													changeHandler={this.handleTotalChange}
 													focusHandler={this.handleFocusSelect}
@@ -986,7 +985,7 @@ class Invoice extends Component {
 
 										<div className="pi-accordion-wrapper pi-mt-25">
 											<ul>
-												<Suspense fallback={<Spinner />}>
+												<Suspense>
 
 													{(!sidebarActive || sidebarActive == 'style') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('style')} />
@@ -1014,6 +1013,9 @@ class Invoice extends Component {
 														<i />
 														<h3 className='pi-title-small'>Additional Amount</h3>
 														<AdditionalAmount
+															{...this.props}
+															item_tax={invoice.item_tax}
+															itemTaxChange={this.itemTaxChange} 
 															handleChange={this.onExtraFieldChange}
 															data={invoice.extra_field}
 														/>
@@ -1037,6 +1039,7 @@ class Invoice extends Component {
 															</span>
 														</h3>
 														<Reminder
+															{...this.props}
 															handleChange={this.onReminderChange}
 															handleDefault={this.onReminderDefault}
 															id={this.props.id}
@@ -1062,6 +1065,7 @@ class Invoice extends Component {
 															</span>
 														</h3>
 														<Recurring
+															{...this.props}
 															handleChange={this.onRecurringChange}
 															data={invoice.recurring}
 														/>

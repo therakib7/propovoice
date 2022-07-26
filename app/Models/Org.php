@@ -15,7 +15,7 @@ class Org {
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null; 
+        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
         /* if ( empty($name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
@@ -73,8 +73,8 @@ class Org {
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
+                if ( $logo ) {
+                    update_post_meta($post_id, 'logo', $logo); 
                 } 
 
                 return $post_id;
@@ -97,7 +97,7 @@ class Org {
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $img = isset( $params['img'] ) && isset( $params['img']['id'] ) ? absint( $params['img']['id'] ) : null;
+        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
 
         /* if (empty($name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -157,8 +157,8 @@ class Org {
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
+                if ( $logo ) {
+                    update_post_meta($post_id, 'logo', $logo); 
                 } 
 
                 return $post_id;
@@ -173,16 +173,27 @@ class Org {
         if (!$id) return null;
         $Data = [];
 
-        $Data['id'] = absint($id);
-        $Meta = get_post_meta($id);
-        $Data['name'] = isset($Meta['name']) ? $Meta['name'][0] : '';
-        $Data['email'] = isset($Meta['email']) ? $Meta['email'][0] : '';
-        $Data['mobile'] = isset($Meta['mobile']) ? $Meta['mobile'][0] : '';
+        $data['id'] = absint($id);
+        $meta = get_post_meta($id);
+        $data['name'] = isset($meta['name']) ? $meta['name'][0] : '';
+        $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
+        $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
+        $logo_id = isset($meta['logo']) ? $meta['logo'][0] : ''; 
+        $logoData = null;  
+        if ( $logo_id ) {
+            $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+            if ( $logo_src ) {
+                $logoData = []; 
+                $logoData['id'] = $logo_id;  
+                $logoData['src'] = $logo_src[0]; 
+            }
+        } 
+        $data['logo'] = $logoData;
         if ( $details ) { 
-            $Data['web'] = isset($Meta['web']) ? $Meta['web'][0] : '';
-            $Data['country'] = isset($Meta['country']) ? $Meta['country'][0] : '';
-            $Data['region'] = isset($Meta['region']) ? $Meta['region'][0] : '';
-            $Data['address'] = isset($Meta['address']) ? $Meta['address'][0] : '';
+            $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
+            $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
+            $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
+            $data['address'] = isset($meta['address']) ? $meta['address'][0] : ''; 
         } 
         return $Data;
     }

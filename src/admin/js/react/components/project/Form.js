@@ -277,7 +277,7 @@ class Form extends Component {
                         <div className="pi-content">
                             <div className="pi-form-style-one">
 
-                                {!this.props.reload && <>
+                                {/* {!this.props.reload && <> */}
                                     <Contact
                                         first_name={form.first_name}
                                         org_name={form.org_name}
@@ -313,7 +313,7 @@ class Form extends Component {
                                             />
                                         </div>
                                     </div>
-                                </>}
+                                {/* </>} */}
 
                                 <div className="row">
                                     <div className="col-md">

@@ -70,6 +70,7 @@ export default (props) => {
                                 id="recurring-interval"
                                 name="interval"
                                 value={recurring.interval}
+                                style={{width: '55px'}}
                                 onChange={handleChange}
                             />
                             <select
@@ -114,6 +115,7 @@ export default (props) => {
                                 name="limit"
                                 value={recurring.limit}
                                 onChange={handleChange}
+                                style={{width: '55px'}}
                             /> <span className="pi-times">Times</span>
                         </div>
                     </div>
@@ -147,7 +149,7 @@ export default (props) => {
                 <div className="row">
                     <div className="col-12">
                         <label id="recurring-send_me">Send me a copy</label>
-                        <div className="pi-field-switch pi-mt-3 pi-ml-10">
+                        <div className="pi-field-switch pi-ml-10">
                             <label className='pi-switch'>
                                 <input type='checkbox'
                                     id="recurring-send_me"

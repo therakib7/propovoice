@@ -139,9 +139,12 @@ class Taxonomy
                         $taxonomy == 'extra_amount' 
                     ) { // for deal won, deal lost, project complted, task done, contact active, block
                         $term_property['extra_amount_type'] = get_term_meta($single->term_id, 'extra_amount_type', true); 
-                        $term_property['rate_type'] = get_term_meta($single->term_id, 'rate_type', true); 
+                        $term_property['val_type'] = get_term_meta($single->term_id, 'val_type', true); 
+                        $term_property['show'] = get_term_meta($single->term_id, 'show', true); 
                         if ( $taxonomy == 'extra_amount' && $extra_amount_type != $term_property['extra_amount_type'] ) {
-                            continue;
+                            if ( $extra_amount_type && $extra_amount_type != $term_property['extra_amount_type'] ) {
+                                continue;
+                            }
                         }
                     }
 
@@ -224,7 +227,8 @@ class Taxonomy
         $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
         $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
         $extra_amount_type = isset($params['extra_amount_type']) ? sanitize_text_field($params['extra_amount_type']) : null;
-        $rate_type = isset($params['rate_type']) ? sanitize_text_field($params['rate_type']) : null;
+        $val_type = isset($params['val_type']) ? sanitize_text_field($params['val_type']) : null;
+        $show = isset($params['show']) ? rest_sanitize_boolean($params['show']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -254,7 +258,8 @@ class Taxonomy
  
                     if ( $taxonomy == 'extra_amount' && $extra_amount_type) {
                         update_term_meta($term_id, 'extra_amount_type', $extra_amount_type);
-                        update_term_meta($term_id, 'rate_type', $rate_type);
+                        update_term_meta($term_id, 'val_type', $val_type);
+                        update_term_meta($term_id, 'show', $show);
                     }
 
                     wp_send_json_success($term_id);
@@ -279,7 +284,8 @@ class Taxonomy
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
         $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
         $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
-        $rate_type = isset($params['rate_type']) ? sanitize_text_field($params['rate_type']) : null;
+        $val_type = isset($params['val_type']) ? sanitize_text_field($params['val_type']) : null;
+        $show = isset($params['show']) ? rest_sanitize_boolean($params['show']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -325,7 +331,8 @@ class Taxonomy
                     }
 
                     if ( $taxonomy == 'extra_amount') { 
-                        update_term_meta($term_id, 'rate_type', $rate_type);
+                        update_term_meta($term_id, 'val_type', $val_type);
+                        update_term_meta($term_id, 'show', $show);
                     }
 
                     wp_send_json_success($term_id);

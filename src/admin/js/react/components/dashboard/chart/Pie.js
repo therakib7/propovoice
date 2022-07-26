@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
-export default class Example extends PureComponent {
+export default class Section extends PureComponent {
     constructor(props) {
         super(props);
 

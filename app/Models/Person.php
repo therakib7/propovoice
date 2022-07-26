@@ -4,7 +4,6 @@ namespace Ncpi\Models;
 
 class Person
 {
-
     public function create($params)
     {
         $reg_errors = new \WP_Error;
@@ -17,7 +16,7 @@ class Person
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $img = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+        $img = isset($params['img']) ? absint($params['img']) : null;
         /* if ( empty($first_name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
@@ -29,7 +28,6 @@ class Person
         if ($reg_errors->get_error_messages()) {
             return $reg_errors;
         } else {
-
             $data = array(
                 'post_type' => 'ndpi_person',
                 'post_title'    => $first_name,
@@ -40,7 +38,6 @@ class Person
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-
                 update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
 
                 if ($org_id) {
@@ -87,10 +84,10 @@ class Person
     }
 
     public function update($params)
-    { 
+    {
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null; 
+        $first_name   = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
         $org_id     = isset($params['org_id']) ? sanitize_text_field($params['org_id']) : null;
         $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
@@ -98,7 +95,7 @@ class Person
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $img = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+        $img = isset($params['img']) ? absint($params['img']) : null;
 
         /* if (empty($first_name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -110,7 +107,7 @@ class Person
 
         if ($reg_errors->get_error_messages()) {
             return $reg_errors;
-        } else { 
+        } else {
             $post_id = $params['person_id'];
 
             $data = array(
@@ -121,10 +118,9 @@ class Person
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
-
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
-                } 
+                }
 
                 if ($email) {
                     update_post_meta($post_id, 'email', $email);
@@ -165,23 +161,37 @@ class Person
         }
     }
 
-    function single($id, $details = false)
+    public function single($id, $details = false)
     {
-        if (!$id) return null;
-        $Data = [];
+        if (!$id) {
+            return null;
+        }
+        $data = [];
 
-        $Data['id'] = absint($id);
-        $Meta = get_post_meta($id);
-        $Data['first_name'] = isset($Meta['first_name']) ? $Meta['first_name'][0] : '';
-        $Data['email'] = isset($Meta['email']) ? $Meta['email'][0] : '';
-        $Data['mobile'] = isset($Meta['mobile']) ? $Meta['mobile'][0] : '';
-        if ( $details ) { 
-            $Data['web'] = isset($Meta['web']) ? $Meta['web'][0] : '';
-            $Data['country'] = isset($Meta['country']) ? $Meta['country'][0] : '';
-            $Data['region'] = isset($Meta['region']) ? $Meta['region'][0] : '';
-            $Data['address'] = isset($Meta['address']) ? $Meta['address'][0] : '';
-        } 
+        $data['id'] = absint($id);
+        $meta = get_post_meta($id);
+        $data['first_name'] = isset($meta['first_name']) ? $meta['first_name'][0] : '';
+        $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
+        $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
+        $img_id = isset($meta['img']) ? $meta['img'][0] : '';
+        $imgData = null;
+        if ($img_id) {
+            $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
+            if ($img_src) {
+                $imgData = [];
+                $imgData['id'] = $img_id;
+                $imgData['src'] = $img_src[0];
+            }
+        }
+        $data['img'] = $imgData;
+        
+        if ($details) {
+            $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
+            $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
+            $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
+            $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
+        }
 
-        return $Data;
+        return $data;
     }
 }
