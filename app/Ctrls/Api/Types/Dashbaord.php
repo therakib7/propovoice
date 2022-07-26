@@ -127,8 +127,8 @@ class Dashbaord
         $column = [];
         $total_stage = count($get_stage) - 2;
 
-        $item_width = 100;
-        $minus_width = 100 / $total_stage;
+        $item_percent = 100;
+        $minus_percent = 100 / $total_stage;
 
         foreach ($get_stage as $stage) :
             $stage_id = $stage->term_id;
@@ -161,14 +161,14 @@ class Dashbaord
 
             $type = get_term_meta($stage_id, 'type', true);
 
-            $width = '';
+            $percent = '';
 
             if ($type != 'won' || $type != 'lost') {
-                if ($item_width < 32) {
-                    $item_width = 32;
+                if ($item_percent < 32) {
+                    $item_percent = 32;
                 }
-                $width = $item_width . '%';
-                $item_width -= $minus_width;
+                $percent = $item_percent . '%';
+                $item_percent -= $minus_percent;
             }
 
             $bg_color = get_term_meta($stage_id, 'bg_color', true);
@@ -178,7 +178,7 @@ class Dashbaord
                 'color' => $color ? $color : '#fff',
                 'bg_color' => $bg_color ? $bg_color : '#345bde',
                 'type' => $type,
-                'width' => $width,
+                'percent' => $percent,
                 'items' => $total_data
             ];
 
@@ -251,16 +251,12 @@ class Dashbaord
 
         $get_tax = Fns::get_terms($params['section']);
 
-        $column = [];
-        $total_tax = count($get_tax);
-
-        $minus_width = 100 / $total_tax;
-
-        foreach ($get_tax as $tax) :
+        $column = [];  
+        $total_posts = 0;
+        foreach ($get_tax as $tax):
             $tax_id = $tax->term_id;
             $tax_name = $tax->name;
-
-            $items = [];
+ 
             $args = array(
                 'post_type' => 'ndpi_lead',
                 'post_status' => 'publish',
@@ -268,12 +264,10 @@ class Dashbaord
                 'order' => 'ASC',
                 'posts_per_page' => $per_page,
                 'offset' => $offset,
-            );
-
+            ); 
             $args['meta_query'] = array(
                 'relation' => 'OR'
-            );
-
+            ); 
             $args['tax_query'] = array(
                 array(
                     'taxonomy' => 'ndpi_' . $params['section'],
@@ -283,23 +277,27 @@ class Dashbaord
             );
 
             $query = new WP_Query($args);
-            $total_data = $query->found_posts; //use this for pagination   
-
-            $width = '';
-            $width = round($minus_width);
+            $total_data = $query->found_posts; //use this for pagination    
+            $total_posts += $total_data; //use this for pagination    
 
             $bg_color = get_term_meta($tax_id, 'bg_color', true);
             $tax_single = [
-                'name' => $tax_name,
-                'bg_color' => $bg_color ? $bg_color : '#B9C7FF',
-                'width' => $width,
-                'items' => $total_data
+                'name' => $tax_name, 
+                'bg_color' => $bg_color ? $bg_color : '#B9C7FF', 
+                'item' => $total_data,
+                'percent' => 0
             ];
 
             $column[] = $tax_single;
         endforeach;
 
-        wp_send_json_success($column);
+        $column_with_percent = []; 
+        foreach ($column as $col ) {
+            $col['percent'] = round( ($col['item'] / $total_posts) * 100 );
+            $column_with_percent[] = $col;
+        }
+
+        wp_send_json_success($column_with_percent);
     }
 
     public function estvoice($type)

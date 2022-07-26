@@ -41,7 +41,7 @@ export default class Section extends PureComponent {
                                 outerRadius={65}
                                 fill="#8884d8"
                                 //paddingAngle={5}
-                                dataKey="width"
+                                dataKey="percent"
                             >
                                 {data.map((entry, index) => (
                                     <Cell key={`cell-${index}`} fill={data[index].bg_color} />
@@ -55,7 +55,7 @@ export default class Section extends PureComponent {
                             <ul>
                                 {data.map((item, i) => (
                                     <li key={i} >
-                                        <span style={{ backgroundColor: item.bg_color }} /> {item.name} <b>{item.width}%</b>
+                                        <span style={{ backgroundColor: item.bg_color }} /> {item.name} <b>{item.percent}%</b>
                                     </li>
                                 ))}
                             </ul>

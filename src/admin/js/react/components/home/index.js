@@ -509,8 +509,8 @@ const Home = () => {
                             <div className="pi-avater">
                                 <div className="pi-dropdown">
                                     <button className="pi-dropbtn" onClick={() => setDropdown(val => !val)}>
-                                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
-                                        Nasir Uddin
+                                        <img src={ncpi.profile.img} alt="avatar" />
+                                        {ncpi.profile.name}
                                         <svg
                                             className="pi-dropdown-angle"
                                             width={12}
@@ -529,9 +529,8 @@ const Home = () => {
                                         </svg>
                                     </button>
 
-                                    {dropdown && <div className="pi-dropdown-content pi-show">
-                                        <a href="#home">Profile</a>
-                                        <a href="#home">Logout</a>
+                                    {dropdown && <div className="pi-dropdown-content pi-show"> 
+                                        <a href={ncpi.profile.logout}>Logout</a>
                                     </div>}
                                 </div>
                             </div>

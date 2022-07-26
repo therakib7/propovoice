@@ -31,7 +31,7 @@ const Summary = (props) => {
             </h3> 
             <ul> 
                 {funnel.common.map((item, i) => ( 
-                    <li key={i} style={{ color: ( i < 2 ) ? '#4A5568' : '', backgroundColor: ( i < 4 ) ? funnelColor[i] : '#345bde', width: item.width }}>
+                    <li key={i} style={{ color: ( i < 2 ) ? '#4A5568' : '', backgroundColor: ( i < 4 ) ? funnelColor[i] : '#345bde', width: item.percent }}>
                         {item.name}<span>{item.items}</span>
                     </li>
                 ))} 
