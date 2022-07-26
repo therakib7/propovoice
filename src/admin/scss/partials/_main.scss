@@ -952,11 +952,10 @@ html {
 .ncpi .pi-table tr th {
   font-weight: 600;
   font-size: 10px;
-  padding: 5px 0;
+  padding: 10px 0;
   color: #8492A6;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  line-height: 100%;
 }
 
 .ncpi .pi-table tr th svg {
@@ -1288,7 +1287,7 @@ html {
 }
 
 .ncpi .pi-info-table-content .pi-info-table thead tr th:nth-child(3) {
-  padding: 10px 15px;
+  padding: 0px 20px;
 }
 
 .ncpi .pi-info-table-content .pi-info-table thead tr th {
@@ -1301,7 +1300,7 @@ html {
 }
 
 .ncpi .pi-info-table-content .pi-info-table thead tr th:first-child {
-  padding: 14px 20px;
+  padding: 0px 20px;
 }
 
 .ncpi .pi-info-table-content .pi-info-table tbody tr:last-child {
@@ -2412,7 +2411,7 @@ html {
   }
 }
 
-.pi-overview-select .pi-overview-select:focus {
+.pi-overview-select:focus {
   box-shadow: none !important;
 }
 
@@ -2492,6 +2491,12 @@ html {
 
 .wp-admin .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group input[type=radio] {
   top: 2px;
+}
+
+@media screen and (max-width: 782px) {
+  .wp-admin input[type=checkbox]:checked:before {
+    width: 1.4rem;
+  }
 }
 
 .wp-admin .pi-field-radio input[type=radio],
@@ -2907,6 +2912,15 @@ ul {
   padding: 10px 20px !important;
 }
 
+.astra-theme .pi-table tr th {
+  padding: 8px 0;
+  line-height: inherit;
+}
+
+.astra-theme .pi-table tr th:first-child input[type=checkbox] {
+  top: 2px;
+}
+
 /*-------------------------------------------------------------- 
 # modal
 --------------------------------------------------------------*/
@@ -2993,7 +3007,7 @@ ul {
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 520px) {
   .ncpi .pi-modal-content .pi-modal-header {
     padding: 15px !important;
   }
@@ -3914,7 +3928,7 @@ ul {
   display: inline-flex;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-payment-tab .pi-tabs {
     display: block;
   }
@@ -4000,6 +4014,12 @@ ul {
 .ncpi .pi-setting-tab-content .pi-title-medium {
   font-size: 16px;
   font-weight: 500;
+}
+
+@media screen and (max-width: 550px) {
+  .ncpi .pi-setting-tab-content .pi-form-style-one .row .col {
+    flex-basis: auto;
+  }
 }
 
 .ncpi .pi-settings-tab {
@@ -4497,12 +4517,6 @@ ul {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 12px !important;
-}
-
-@media screen and (max-width: 420px) {
-  .ncpi .pi-repeter-content .row .col {
-    flex-basis: inherit;
-  }
 }
 
 .ncpi .pi-field-repeater .row>div {
@@ -5468,6 +5482,7 @@ select {
   --bg-color-orange: #FFF5E9;
   --bg-color-gray: #a0aec0;
   --bg-color-blue: #4c6fff;
+  --bg-color-green: #18954d;
   --bg-color-pearl: #f7f8fa;
   --text-color-black: #000;
   --text-color-white: #fff;
@@ -5505,6 +5520,10 @@ select {
 
 .pi-bg-white {
   background-color: var(--bg-color-white);
+}
+
+.pi-bg-black {
+  background-color: var(--bg-color-black);
 }
 
 .pi-bg-gray {

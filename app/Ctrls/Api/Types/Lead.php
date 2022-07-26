@@ -97,29 +97,29 @@ class Lead
             'relation' => 'OR'
         );
 
-        if ( $s ) {
-            $contact_person = new Contact(); 
-            $person_ids = $contact_person->query($s, 'person');  
-            if ( $person_ids ) {
+        if ($s) {
+            $contact_person = new Contact();
+            $person_ids = $contact_person->query($s, 'person');
+            if ($person_ids) {
                 $args['meta_query'][] = array(
                     array(
                         'key'     => 'person_id',
                         'value'   => $person_ids,
                         'compare' => 'IN'
                     )
-                ); 
+                );
             }
 
-            $org_ids = $contact_person->query($s, 'org');   
-            if ( $org_ids ) {
+            $org_ids = $contact_person->query($s, 'org');
+            if ($org_ids) {
                 $args['meta_query'][] = array(
                     array(
                         'key'     => 'org_id',
                         'value'   => $org_ids,
                         'compare' => 'IN'
                     )
-                ); 
-            } 
+                );
+            }
         }
 
         $query = new WP_Query($args);
@@ -138,7 +138,7 @@ class Lead
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
 
-            $query_data['level_id'] = '';  
+            $query_data['level_id'] = '';
             $level = get_the_terms($id, 'ndpi_lead_level');
             if ($level) {
                 $term_id = $level[0]->term_id;
@@ -161,21 +161,21 @@ class Lead
                     ];
                 }
                 $query_data['tags'] = $tagList;
-            } 
+            }
 
             $query_data['person'] = null;
             $person_id = get_post_meta($id, 'person_id', true);
-            if ( $person_id ) {
-                $person = new Person();   
-                $query_data['person'] = $person->single( $person_id );
+            if ($person_id) {
+                $person = new Person();
+                $query_data['person'] = $person->single($person_id);
             }
 
             $query_data['org'] = null;
             $org_id = get_post_meta($id, 'org_id', true);
-            if ( $org_id ) {
-                $org = new Org();   
-                $query_data['org'] = $org->single( $org_id );
-            } 
+            if ($org_id) {
+                $org = new Org();
+                $query_data['org'] = $org->single($org_id);
+            }
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
@@ -211,9 +211,9 @@ class Lead
             $bg_color = get_term_meta($term_id, 'bg_color', true);
             $query_data['level_id'] = [
                 'id' => $term_id,
-                'label' => $level[0]->name, 
-                'color' => '', 
-                'bg_color' => ''
+                'label' => $level[0]->name,
+                'color' => '#4a5568',
+                'bg_color' => '#E2E8F0',
             ];
 
             if ($color) {
@@ -236,7 +236,7 @@ class Lead
             ];
         }
 
-        $query_data['tags'] = []; 
+        $query_data['tags'] = [];
         $tags = get_the_terms($id, 'ndpi_tag');
         if ($tags) {
             $tagList = [];
@@ -251,17 +251,17 @@ class Lead
 
         $query_data['person'] = null;
         $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
-        if ( $person_id ) {
-            $person = new Person();   
-            $query_data['person'] = $person->single( $person_id, true );
+        if ($person_id) {
+            $person = new Person();
+            $query_data['person'] = $person->single($person_id, true);
         }
 
         $query_data['org'] = null;
         $org_id = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
-        if ( $org_id ) {
-            $org = new Org();   
-            $query_data['org'] = $org->single( $org_id, true );
-        } 
+        if ($org_id) {
+            $org = new Org();
+            $query_data['org'] = $org->single($org_id, true);
+        }
 
         $query_data['date'] = get_the_time('j-M-Y');
 
@@ -285,34 +285,34 @@ class Lead
         $desc      = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note      = isset($params['note']) ? nl2br($params['note']) : null;
 
-        if ( empty($first_name) &&  empty($org_name) ) {
+        if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 
         /* if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }  */
-        $person = new Person();  
-        if ( $person_id ) {
-            $person->update( $params ); 
+        $person = new Person();
+        if ($person_id) {
+            $person->update($params);
         }
 
-        if ( ! $person_id && $first_name ) { 
-            $person_id = $person->create( $params ); 
-        } 
+        if (!$person_id && $first_name) {
+            $person_id = $person->create($params);
+        }
 
         $org = new Org();
-        if ( ! $person_id && $org_id ) {
-            $org->update( $params ); 
+        if (!$person_id && $org_id) {
+            $org->update($params);
         }
-        
-        if ( ! $org_id && $org_name ) { 
-            $org_id = $org->create( $params ); 
-        } 
+
+        if (!$org_id && $org_name) {
+            $org_id = $org->create($params);
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
-        } else { 
+        } else {
 
             //insert lead
             $data = array(
@@ -324,11 +324,11 @@ class Lead
             );
             $post_id = wp_insert_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
                 update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
 
-                if ( $level_id ) {
+                if ($level_id) {
                     wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');
                 }
 
@@ -382,7 +382,7 @@ class Lead
 
         $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
-        if ( empty($first_name) && empty($org_name) ) {
+        if (empty($first_name) && empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 
@@ -390,23 +390,23 @@ class Lead
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         } */
 
-        $person = new Person();  
-        if ( $person_id ) {
-            $person->update( $params ); 
+        $person = new Person();
+        if ($person_id) {
+            $person->update($params);
         }
 
-        if ( ! $person_id && $first_name ) { 
-            $person_id = $person->create( $params ); 
-        } 
+        if (!$person_id && $first_name) {
+            $person_id = $person->create($params);
+        }
 
         $org = new Org();
-        if ( ! $person_id && $org_id ) {
-            $org->update( $params ); 
+        if (!$person_id && $org_id) {
+            $org->update($params);
         }
-        
-        if ( ! $org_id && $org_name ) { 
-            $org_id = $org->create( $params ); 
-        } 
+
+        if (!$org_id && $org_name) {
+            $org_id = $org->create($params);
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -422,7 +422,7 @@ class Lead
             );
             $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
 
                 if ($level_id) {
                     wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');
@@ -462,7 +462,7 @@ class Lead
     public function delete($req)
     {
         //TODO: when delete lead delete task note file, if not exist in deal project
-        $url_params = $req->get_url_params(); 
+        $url_params = $req->get_url_params();
         $ids = explode(',', $url_params['id']);
         foreach ($ids as $id) {
             wp_delete_post($id);

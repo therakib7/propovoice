@@ -134,9 +134,11 @@ class Taxonomy
 
         //task type
         $task_type = [
-            'Email',
+            'Task',
+            'Meeting',
             'Call',
-            'Meeting'
+            'Email',
+            'Presentation',
         ];
         foreach ($task_type as $type) {
             $term_id = wp_insert_term(
@@ -174,7 +176,7 @@ class Taxonomy
         //contact status
         $contact_status = [
             'Active',
-            'Block' 
+            'Block'
         ];
 
         foreach ($contact_status as $status) {

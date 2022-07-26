@@ -75,7 +75,7 @@ class Project
         $per_page = 10;
         $offset = 0;
 
-        $module_id = isset($params['module_id']) ? absint( $params['module_id']) : null;
+        $module_id = isset($params['module_id']) ? absint($params['module_id']) : null;
         $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
 
         if (isset($params['per_page'])) {
@@ -122,17 +122,17 @@ class Project
                     )
                 );
             }
-        } 
-         
+        }
 
-        if ( $module_id ) {
+
+        if ($module_id) {
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'person_id',
                     'value' => $module_id
                 )
             );
-    
+
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'org_id',
@@ -227,7 +227,7 @@ class Project
 
         $invoice = new Invoice();
         $query_data['invoice'] = $invoice->project_invoice($id);
-        
+
         $query_data['status_id'] = '';
         $status = get_the_terms($id, 'ndpi_project_status');
         if ($status) {
@@ -235,10 +235,21 @@ class Project
             $query_data['status_id'] = [
                 'id' => $term_id,
                 'label' => $status[0]->name,
-                'color' => get_term_meta($term_id, 'color', true),
-                'bg_color' => get_term_meta($term_id, 'bg_color', true),
+                'color' => '#4a5568',
+                'bg_color' => '#E2E8F0',
                 'type' => get_term_meta($term_id, 'type', true)
             ];
+
+            $color = get_term_meta($term_id, 'color', true);
+            $bg_color = get_term_meta($term_id, 'bg_color', true);
+
+            if ($color) {
+                $query_data['status_id']['color'] = $color;
+            }
+
+            if ($bg_color) {
+                $query_data['status_id']['bg_color'] = $bg_color;
+            }
         }
 
         $query_data['tags'] = [];
@@ -293,8 +304,8 @@ class Project
         $desc       = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note       = isset($params['note']) ? nl2br($params['note']) : null;
 
-         
-        if ( empty($title) ) {
+
+        if (empty($title)) {
             $reg_errors->add('field', esc_html__('Please title is required', 'propovoice'));
         }
 
@@ -310,16 +321,16 @@ class Project
             $person->update($params);
         }
 
-        if (! $person_id && $first_name) {
+        if (!$person_id && $first_name) {
             $person_id = $person->create($params);
         }
 
         $org = new Org();
-        if (! $person_id && $org_id) {
+        if (!$person_id && $org_id) {
             $org->update($params);
         }
-        
-        if (! $org_id && $org_name) {
+
+        if (!$org_id && $org_name) {
             $org_id = $org->create($params);
         }
 
@@ -374,15 +385,15 @@ class Project
                 }
 
                 //is_client
-                if ( $person_id && $org_id ) {
+                if ($person_id && $org_id) {
                     update_post_meta($person_id, 'is_client', 1);
                 }
 
-                if ( $person_id && !$org_id ) {
+                if ($person_id && !$org_id) {
                     update_post_meta($person_id, 'is_client', 1);
                 }
 
-                if ( $org_id && !$person_id ) {
+                if ($org_id && !$person_id) {
                     update_post_meta($org_id, 'is_client', 1);
                 }
                 //end is_client
@@ -444,7 +455,7 @@ class Project
         if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
-        
+
         /* if (empty($status_id)) {
             $reg_errors->add('field', esc_html__('Please select a status', 'propovoice'));
         }
@@ -458,16 +469,16 @@ class Project
             $person->update($params);
         }
 
-        if (! $person_id && $first_name) {
+        if (!$person_id && $first_name) {
             $person_id = $person->create($params);
         }
 
         $org = new Org();
-        if (! $person_id && $org_id) {
+        if (!$person_id && $org_id) {
             $org->update($params);
         }
-        
-        if (! $org_id && $org_name) {
+
+        if (!$org_id && $org_name) {
             $org_id = $org->create($params);
         }
 

@@ -19,7 +19,7 @@ class AssetContoller
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
 
         //remove thank you text from propovoice dashboard
-        if ( isset($_GET['page']) && $_GET['page'] == 'ncpi' ) {
+        if (isset($_GET['page']) && $_GET['page'] == 'ncpi') {
             add_filter('admin_footer_text', '__return_empty_string', 11);
             add_filter('update_footer', '__return_empty_string', 11);
         }
@@ -123,7 +123,7 @@ class AssetContoller
                 'profile' => [
                     'name' => $current_user->display_name,
                     'img' => get_avatar_url($current_user->ID, ['size' => '36']),
-                    'logout' => wp_logout_url( get_permalink() ),
+                    'logout' => wp_logout_url(get_permalink()),
                 ]
             ));
         }
