@@ -105,8 +105,8 @@ class Invoice extends Component {
 						tax: 0,
 						tax_type: 'fixed',
 					},
-				], 
-				paid: 0, 
+				],
+				paid: 0,
 				item_tax: false,
 				extra_field: [],
 				payment_methods: {},
@@ -323,7 +323,7 @@ class Invoice extends Component {
 		}
 		this.setState({ invoice })
 	}
- 
+
 	itemTaxChange = (e) => {
 		let invoice = { ...this.state.invoice }
 		const target = e.target;
@@ -333,11 +333,11 @@ class Invoice extends Component {
 		this.setState({ invoice })
 	}
 
-	handleTotalChange = (e, item) => { 
+	handleTotalChange = (e, item) => {
 		const { value } = e.target;
 		let invoice = { ...this.state.invoice }
-		let index = invoice.extra_field.findIndex(x => x.id == item.id );  
-		invoice.extra_field[index].val = value; 
+		let index = invoice.extra_field.findIndex(x => x.id == item.id);
+		invoice.extra_field[index].val = value;
 		this.setState({ invoice });
 	}
 
@@ -439,38 +439,38 @@ class Invoice extends Component {
 	}
 
 	calcItemsTotal = () => {
-		return this.state.invoice.items.reduce( (prev, cur) => {
+		return this.state.invoice.items.reduce((prev, cur) => {
 			let tax_total = 0;
-			if ( this.state.item_tax && cur.tax ) {
-				if ( cur.tax_type == 'percent') {
+			if (this.state.item_tax && cur.tax) {
+				if (cur.tax_type == 'percent') {
 					tax_total += cur.price * (cur.tax / 100);
-				} else { 
+				} else {
 					tax_total += parseFloat(cur.tax);
 				}
-			} 
+			}
 			return prev + (cur.qty * cur.price) + tax_total;
 		}, 0)
-	} 
+	}
 
 	calcGrandTotal = () => {
 		let item_total = this.calcItemsTotal();
 		let total = item_total;
 		let extra_field = this.state.invoice.extra_field;
-		extra_field.map( ( item, i ) => {
-			if ( item.val_type == 'percent') {
-				if ( item.type == 'tax' || item.type == 'fee' ) {
+		extra_field.map((item, i) => {
+			if (item.val_type == 'percent') {
+				if (item.type == 'tax' || item.type == 'fee') {
 					total += item_total * (item.val / 100);
 				} else {
 					total -= item_total * (item.val / 100);
-				} 
-			} else { 
-				if ( item.type == 'tax' || item.type == 'fee' ) {
+				}
+			} else {
+				if (item.type == 'tax' || item.type == 'fee') {
 					total += parseFloat(item.val);
 				} else {
 					total -= parseFloat(item.val);
 				}
 			}
-		}); 
+		});
 		return total;
 	}
 
@@ -559,15 +559,15 @@ class Invoice extends Component {
 				this.setState({ invoice });
 			}
 		}
-	} 
+	}
 
 	onExtraFieldChange = (i, item, type, type_val) => {
 		let invoice = { ...this.state.invoice }
-		let index = invoice.extra_field.findIndex(x => x.id == item.id );  
-		if (type == 'field') { 
-			if ( index != -1 ) { // if payment method exist  
-				invoice.extra_field.splice(index, 1); 
-			} else {  
+		let index = invoice.extra_field.findIndex(x => x.id == item.id);
+		if (type == 'field') {
+			if (index != -1) { // if payment method exist  
+				invoice.extra_field.splice(index, 1);
+			} else {
 				let data = {
 					id: item.id,
 					name: item.label,
@@ -578,9 +578,9 @@ class Invoice extends Component {
 				invoice.extra_field.splice(i, 0, data);
 			}
 			this.setState({ invoice });
-			
+
 		} else { //type		 
-			invoice.extra_field[index].val_type = type_val; 
+			invoice.extra_field[index].val_type = type_val;
 			this.setState({ invoice });
 		}
 	}
@@ -921,8 +921,8 @@ class Invoice extends Component {
 												<Total
 													currencyFormatter={this.formatCurrency}
 													itemsTotal={this.calcItemsTotal}
-													item_tax={invoice.item_tax}  
-													extra_field={invoice.extra_field} 
+													item_tax={invoice.item_tax}
+													extra_field={invoice.extra_field}
 													grandTotal={this.calcGrandTotal}
 													changeHandler={this.handleTotalChange}
 													focusHandler={this.handleFocusSelect}
@@ -1015,7 +1015,7 @@ class Invoice extends Component {
 														<AdditionalAmount
 															{...this.props}
 															item_tax={invoice.item_tax}
-															itemTaxChange={this.itemTaxChange} 
+															itemTaxChange={this.itemTaxChange}
 															handleChange={this.onExtraFieldChange}
 															data={invoice.extra_field}
 														/>
