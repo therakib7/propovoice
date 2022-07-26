@@ -59,7 +59,7 @@ const TableBody = props => {
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>
                     <div className="pi-avater">
-                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                        <img src={ row.img ? row.img.src : ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
                         <span>{row.first_name}</span>
                     </div>
                 </td>

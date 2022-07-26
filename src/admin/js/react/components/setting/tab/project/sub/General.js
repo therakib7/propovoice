@@ -66,13 +66,13 @@ export default class General extends Component {
                     </div>
                 </div>
 
-                <div className="row">
+                {/* <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
                             Save
                         </button>
                     </div>
-                </div>
+                </div> */}
 
             </form>
         );

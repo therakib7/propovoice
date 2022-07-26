@@ -149,7 +149,7 @@ function Pipeline(props) {
 								</div>
 							</div>
 							<Droppable droppableId={columnId} key={columnId}>
-								{(provided, snapshot) => {
+								{(provided, snapshot) => { 
 									return (
 										<div
 											{...provided.droppableProps}
@@ -165,6 +165,12 @@ function Pipeline(props) {
 										}} */
 										>
 											{column.items.map((item, index) => {
+												let img = ncpi.assetImgUri + 'avatar.png'; 
+												if ( item.person && item.person.img ) {
+													img = item.person.img.src;
+												} else if ( item.org && item.org.img ) {
+													img = item.org.img.src;
+												}
 												return (
 													<Draggable
 														key={item.id}
@@ -197,7 +203,7 @@ function Pipeline(props) {
 																		<p>Probability: {item.probability}%</p>
 																	</div>
 																	<div className="pi-avatar-content">
-																		<img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+																		<img src={img} alt="avatar" />
 																		<div className="pi-avatar-text">
 																			<h5>{ ( item.person ) ? item.person.first_name : item.org.name } </h5> 
 																			<p>

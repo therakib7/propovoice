@@ -99,6 +99,14 @@ const TableBody = props => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
         const level = row.level_id;
+
+        let img = ncpi.assetImgUri + 'avatar.png'; 
+        if ( row.person && row.person.img ) {
+            img = row.person.img.src;
+        } else if ( row.org && row.org.img ) {
+            img = row.org.img.src;
+        }
+
         return (
             <tr key={index}>
                 <td>
@@ -110,7 +118,7 @@ const TableBody = props => {
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>
                     <div className="pi-avater">
-                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                        <img src={img} alt="avatar" />
                         <span>{(row.person) ? row.person.first_name : row.org.name}</span>
                     </div>
                 </td>

@@ -241,6 +241,13 @@ class ListSingle extends Component {
         const { tabs = [], currentTab } = this.state;
         const { path } = this.props;
         const data = this.state.data;
+        
+        let img = ncpi.assetImgUri + 'avatar.png'; 
+        if ( data.person && data.person.img ) {
+            img = data.person.img.src;
+        } else if ( data.org && data.org.img ) {
+            img = data.org.img.src;
+        }
         return (
             <div className="ncpi-components">
                 <nav className="pi-breadcrumb">
@@ -304,7 +311,7 @@ class ListSingle extends Component {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="pi-list-content">
-                                        <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
+                                        <img src={img} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
                                             <h3 className="">
                                                 {(data.person) ? data.person.first_name : data.org.name}
@@ -436,7 +443,7 @@ class ListSingle extends Component {
                                             </button>
                                         </h3>
                                         <div className="pi-avatar-content">
-                                            <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                                            <img src={img} alt="avatar" />
                                             <div className="pi-avatar-text">
                                                 <h5 style={{ fontSize: 12 }}>{(data.person) ? data.person.first_name : data.org.name} </h5>
                                                 <p style={{ fontSize: 12 }}>
@@ -598,7 +605,7 @@ class ListSingle extends Component {
                                             </button>
                                         </h3>
                                         <div className="pi-avatar-content">
-                                            <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                                            <img src={img} alt="avatar" />
                                             <div className="pi-avatar-text">
                                                 <h5 style={{ fontSize: 12 }}>{(data.person) ? data.person.first_name : data.org.name} </h5>
                                                 <p style={{ fontSize: 12 }}>
@@ -848,7 +855,7 @@ class ListSingle extends Component {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="pi-list-content">
-                                        <img src={ncpi.assetImgUri + 'logo.png'} alt="logo" className="logo" />
+                                        <img src={img} alt="logo" className="logo" />
                                         <div className="pi-lead-address">
                                             <h3 className="">
                                                 {(data.person) ? data.person.first_name : data.org.name}
