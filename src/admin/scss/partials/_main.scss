@@ -956,6 +956,7 @@ html {
   color: #8492A6;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  line-height: 100%;
 }
 
 .ncpi .pi-table tr th svg {
@@ -1291,7 +1292,7 @@ html {
 }
 
 .ncpi .pi-info-table-content .pi-info-table thead tr th {
-  padding: 15px;
+  //padding: 15px;
 }
 
 .ncpi .pi-info-table-content .pi-info-table thead tr th span {
@@ -1300,7 +1301,7 @@ html {
 }
 
 .ncpi .pi-info-table-content .pi-info-table thead tr th:first-child {
-  padding: 14px 20px;
+  padding: 0px 20px;
 }
 
 .ncpi .pi-info-table-content .pi-info-table tbody tr:last-child {
@@ -1354,6 +1355,7 @@ html {
   text-align: center;
   line-height: 100%;
   height: 33px;
+  background: none;
 }
 
 .ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=number]:focus,
@@ -1379,6 +1381,7 @@ html {
   padding: 10px;
   width: 100%;
   color: #718096;
+  background: none;
 }
 
 .ncpi .pi-info-table-content .pi-info-table tbody tr td textarea:focus {
@@ -1474,7 +1477,8 @@ html {
 }
 
 .ncpi .pi-calculation table {
-  margin-left: auto;
+  display: flex;
+  justify-content: right;
   text-align: right;
   border-collapse: collapse;
   margin-top: 10px;
@@ -5448,6 +5452,7 @@ select {
   line-height: 20px;
   border-radius: 8px;
   outline: none;
+  background: none;
 }
 
 @media screen and (max-width: 420px) {
@@ -5476,7 +5481,7 @@ select {
   border: 1px solid #CBD5E0;
   outline: none;
   line-height: 100%;
-  line-height: 100%;
+  background: none;
 }
 
 @media screen and (max-width: 550px) {
@@ -5818,5 +5823,26 @@ select {
   .pi-collapse-menu:hover ul li a span {
     display: table;
     left: 28%;
+  }
+}
+
+.pi-modal-sidebar-two .pi-modal-style-two {
+  .pi-modal-header {
+    padding: 30px 35px;
+  }
+
+  .pi-close {
+    left: auto;
+  }
+
+  .pi-content {
+    height: auto;
+    padding: 20px 35px 0px;
+  }
+
+  .pi-modal-footer {
+    padding: 20px 30px 15px !important;
+    border-radius: 0 0 12px 12px;
+    margin-top: 5px;
   }
 }
