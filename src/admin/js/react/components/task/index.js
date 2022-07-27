@@ -58,30 +58,24 @@ class ListSingle extends Component {
 					<div className="col-lg-3 pi-lead-right-content">
 
 						<div className="pi-widget pi-timeline-box">
-							<h3 className="pi-widget-title pi-mb-15">Timeline Info</h3>
+							<h3 className="pi-widget-title pi-mb-15">Timeline Info (Upcoming)</h3>
 							<ul>
 								<li>
-									<h4 className="timeline-title">Nabil Created Project Propovoice</h4>
+									<h4 className="timeline-title">Nasir Created a Project</h4>
 									<span>Aprill 12, 2022</span>
 									<span>4.10 PM</span>
 								</li>
 								<li>
-									<h4 className="timeline-title">Nabil Created Project Propovoice</h4>
-									<span>Aprill 12, 2022</span>
+									<h4 className="timeline-title">Rakib Created a Task</h4>
+									<span>Aprill 11, 2022</span>
 									<span>4.10 PM</span>
 								</li>
 								<li>
-									<h4 className="timeline-title">Nabil Created Project Propovoice</h4>
-									<span>Aprill 12, 2022</span>
-									<span>4.10 PM</span>
-								</li>
-								<li>
-									<h4 className="timeline-title">Nabil Created Project Propovoice</h4>
-									<span>Aprill 12, 2022</span>
+									<h4 className="timeline-title">Manir Crated a Lead</h4>
+									<span>Aprill 10, 2022</span>
 									<span>4.10 PM</span>
 								</li>
 							</ul>
-							{/* ./ widget */}
 						</div>
 					</div>
 				</div>

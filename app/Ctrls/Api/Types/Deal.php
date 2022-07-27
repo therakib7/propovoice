@@ -70,40 +70,40 @@ class Deal
 
     public function get($req)
     {
-        $params = $req->get_params(); 
+        $params = $req->get_params();
 
         $pipeline = true;
-        $module_id = isset($params['module_id']) ? absint( $params['module_id']) : null;
-        if ( $module_id ) {
+        $module_id = isset($params['module_id']) ? absint($params['module_id']) : null;
+        if ($module_id) {
             $pipeline = false;
         }
         $result = [];
-        if ( $pipeline ) {
-            $get_stage = Fns::get_terms('deal_stage'); 
+        if ($pipeline) {
+            $get_stage = Fns::get_terms('deal_stage');
             $column = [];
             foreach ($get_stage as $stage) :
                 $stage_id = $stage->term_id;
                 $stage_name = $stage->name;
-                $items = $this->deal_query( $params, $stage_id);  
-                $column[] = [ 
+                $items = $this->deal_query($params, $stage_id);
+                $column[] = [
                     'name' => $stage_name,
                     'id' => $stage_id,
                     'color' => get_term_meta($stage_id, 'color', true),
                     'bg_color' => get_term_meta($stage_id, 'bg_color', true),
                     'type' => get_term_meta($stage_id, 'type', true),
                     'items' => $items
-                ]; 
-                $result['result'] = $column; 
-            endforeach;  
+                ];
+                $result['result'] = $column;
+            endforeach;
         } else {
-            $result = $this->deal_query( $params );  
+            $result = $this->deal_query($params);
         }
 
         wp_send_json_success($result);
-        
     }
 
-    public function deal_query( $params, $stage_id = null ) {
+    public function deal_query($params, $stage_id = null)
+    {
         $per_page = 10;
         $offset = 0;
 
@@ -115,8 +115,8 @@ class Deal
             $offset = ($per_page * $params['page']) - $per_page;
         }
 
-        $module_id = isset($params['module_id']) ? absint( $params['module_id']) : null;
- 
+        $module_id = isset($params['module_id']) ? absint($params['module_id']) : null;
+
         $args = array(
             'post_type' => 'ndpi_deal',
             'post_status' => 'publish',
@@ -130,7 +130,7 @@ class Deal
             'relation' => 'OR'
         );
 
-        if ( $stage_id ) {
+        if ($stage_id) {
             $args['tax_query'] = array(
                 array(
                     'taxonomy' => 'ndpi_deal_stage',
@@ -140,14 +140,14 @@ class Deal
             );
         }
 
-        if ( $module_id ) {
+        if ($module_id) {
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'person_id',
                     'value' => $module_id
                 )
             );
-    
+
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'org_id',
@@ -157,8 +157,8 @@ class Deal
         }
 
         $query = new WP_Query($args);
-        $total_data = null; 
-        if ( ! $stage_id ) {
+        $total_data = null;
+        if (!$stage_id) {
             $total_data = $query->found_posts; //use this for pagination 
         }
         $result = $data = [];
@@ -175,9 +175,9 @@ class Deal
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['probability'] = isset($queryMeta['probability']) ? $queryMeta['probability'][0] : '';
- 
-            if ( ! $stage_id ) {
-                $query_data['stage_id'] = '';  
+
+            if (!$stage_id) {
+                $query_data['stage_id'] = '';
                 $stage = get_the_terms($id, 'ndpi_deal_stage');
                 if ($stage) {
                     $term_id = $stage[0]->term_id;
@@ -201,8 +201,8 @@ class Deal
                     ];
                 }
                 $query_data['tags'] = $tagList;
-            } 
-            
+            }
+
             $query_data['person'] = null;
             $person_id = get_post_meta($id, 'person_id', true);
             if ($person_id) {
@@ -215,18 +215,18 @@ class Deal
             if ($org_id) {
                 $org = new Org();
                 $query_data['org'] = $org->single($org_id);
-            } 
+            }
 
             $query_data['date'] = get_the_time('j-M-Y');
             $data[] = $query_data;
         }
         wp_reset_postdata();
 
-        if ( $stage_id ) {
+        if ($stage_id) {
             return $data;
         } else {
             $result['result'] = $data;
-            $result['total'] = $total_data; 
+            $result['total'] = $total_data;
             return $result;
         }
     }
@@ -256,13 +256,24 @@ class Deal
             $query_data['stage_id'] = [
                 'id' => $term_id,
                 'label' => $stage[0]->name,
-                'color' => get_term_meta($term_id, 'color', true),
-                'bg_color' => get_term_meta($term_id, 'bg_color', true),
+                'color' => '#4a5568',
+                'bg_color' => '#E2E8F0',
                 'type' => get_term_meta($term_id, 'type', true)
             ];
+
+            $color = get_term_meta($term_id, 'color', true);
+            $bg_color = get_term_meta($term_id, 'bg_color', true);
+
+            if ($color) {
+                $query_data['stage_id']['color'] = $color;
+            }
+
+            if ($bg_color) {
+                $query_data['stage_id']['bg_color'] = $bg_color;
+            }
         }
 
-        $query_data['tags'] = []; 
+        $query_data['tags'] = [];
         $tags = get_the_terms($id, 'ndpi_tag');
         if ($tags) {
             $tagList = [];
@@ -277,17 +288,17 @@ class Deal
 
         $query_data['person'] = null;
         $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
-        if ( $person_id ) {
-            $person = new Person();   
-            $query_data['person'] = $person->single( $person_id, true );
+        if ($person_id) {
+            $person = new Person();
+            $query_data['person'] = $person->single($person_id, true);
         }
 
         $query_data['org'] = null;
         $org_id = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
-        if ( $org_id ) {
-            $org = new Org();   
-            $query_data['org'] = $org->single( $org_id, true );
-        } 
+        if ($org_id) {
+            $org = new Org();
+            $query_data['org'] = $org->single($org_id, true);
+        }
 
         $query_data['date'] = get_the_time('j-M-Y');
 
@@ -317,27 +328,27 @@ class Deal
             wp_send_json_success($lead_id);
         } */
 
-        if ( empty($first_name) &&  empty($org_name) ) {
+        if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 
-        $person = new Person();  
-        if ( $person_id ) {
-            $person->update( $params ); 
+        $person = new Person();
+        if ($person_id) {
+            $person->update($params);
         }
 
-        if ( ! $person_id && $first_name ) { 
-            $person_id = $person->create( $params ); 
-        } 
+        if (!$person_id && $first_name) {
+            $person_id = $person->create($params);
+        }
 
         $org = new Org();
-        if ( ! $person_id && $org_id ) {
-            $org->update( $params ); 
+        if (!$person_id && $org_id) {
+            $org->update($params);
         }
-        
-        if ( ! $org_id && $org_name ) { 
-            $org_id = $org->create( $params ); 
-        } 
+
+        if (!$org_id && $org_name) {
+            $org_id = $org->create($params);
+        }
 
         if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
@@ -455,27 +466,27 @@ class Deal
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
 
-        if ( !$reorder && ( empty($first_name) && empty($org_name) ) ) {
+        if (!$reorder && (empty($first_name) && empty($org_name))) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 
-        $person = new Person();  
-        if ( $person_id ) {
-            $person->update( $params ); 
+        $person = new Person();
+        if ($person_id) {
+            $person->update($params);
         }
 
-        if ( ! $person_id && $first_name ) { 
-            $person_id = $person->create( $params ); 
-        } 
+        if (!$person_id && $first_name) {
+            $person_id = $person->create($params);
+        }
 
         $org = new Org();
-        if ( ! $person_id && $org_id ) {
-            $org->update( $params ); 
+        if (!$person_id && $org_id) {
+            $org->update($params);
         }
-        
-        if ( ! $org_id && $org_name ) { 
-            $org_id = $org->create( $params ); 
-        } 
+
+        if (!$org_id && $org_name) {
+            $org_id = $org->create($params);
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());

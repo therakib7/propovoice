@@ -19,7 +19,7 @@ class AssetContoller
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
 
         //remove thank you text from propovoice dashboard
-        if ( isset($_GET['page']) && $_GET['page'] == 'ncpi' ) {
+        if (isset($_GET['page']) && $_GET['page'] == 'ncpi') {
             add_filter('admin_footer_text', '__return_empty_string', 11);
             add_filter('update_footer', '__return_empty_string', 11);
         }
@@ -98,7 +98,7 @@ class AssetContoller
         ) {
             wp_enqueue_style('ncpi-dashboard', ncpi()->get_assets_uri("admin/css/dashboard{$this->suffix}.css"), array(), $this->version);
             wp_enqueue_script('ncpi-dashboard', ncpi()->get_assets_uri("/admin/js/dashboard{$this->suffix}.js"), array(), $this->version, true);
-
+            $current_user = wp_get_current_user();
             wp_localize_script('ncpi-dashboard', 'ncpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'version' => ncpi()->version(),
@@ -120,6 +120,11 @@ class AssetContoller
                 'nonce' => wp_create_nonce('wp_rest'),
                 'assetImgUri' => ncpi()->get_assets_uri('admin/img/'),
                 'assetUri' => trailingslashit(NCPI_URL),
+                'profile' => [
+                    'name' => $current_user->display_name,
+                    'img' => get_avatar_url($current_user->ID, ['size' => '36']),
+                    'logout' => wp_logout_url(get_permalink()),
+                ]
             ));
         }
     }

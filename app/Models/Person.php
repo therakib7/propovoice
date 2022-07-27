@@ -17,6 +17,7 @@ class Person
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
         $img = isset($params['img']) ? absint($params['img']) : null;
+        $is_client  = isset($params['is_client']) ? true : null;
         /* if ( empty($first_name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
@@ -74,6 +75,10 @@ class Person
 
                 if ($img) {
                     update_post_meta($post_id, 'img', $img);
+                }
+
+                if ($is_client) {
+                    update_post_meta($post_id, 'is_client', $is_client);
                 }
 
                 return $post_id;
@@ -184,7 +189,7 @@ class Person
             }
         }
         $data['img'] = $imgData;
-        
+
         if ($details) {
             $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
             $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';

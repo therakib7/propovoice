@@ -1,13 +1,15 @@
 <?php
-namespace Ncpi\Models; 
 
-class Org {
+namespace Ncpi\Models;
+
+class Org
+{
 
     public function create($params)
-    {  
+    {
         $reg_errors = new \WP_Error;
 
-        $name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null; 
+        $name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
         $person_id     = isset($params['person_id']) ? sanitize_text_field($params['person_id']) : null;
         $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
         $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
@@ -15,7 +17,8 @@ class Org {
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
+        $logo = isset($params['logo']) ? absint($params['logo']) : null;
+        $is_client  = isset($params['is_client']) ? true : null;
         /* if ( empty($name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
@@ -24,7 +27,7 @@ class Org {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }  */
 
-        if ( $reg_errors->get_error_messages() ) {
+        if ($reg_errors->get_error_messages()) {
             return $reg_errors;
         } else {
 
@@ -37,13 +40,13 @@ class Org {
             );
             $post_id = wp_insert_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace() );
-                
+                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
+
                 if ($name) {
                     update_post_meta($post_id, 'name', $name);
-                } 
+                }
 
                 if ($email) {
                     update_post_meta($post_id, 'email', $email);
@@ -73,9 +76,13 @@ class Org {
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ( $logo ) {
-                    update_post_meta($post_id, 'logo', $logo); 
-                } 
+                if ($logo) {
+                    update_post_meta($post_id, 'logo', $logo);
+                }
+
+                if ($is_client) {
+                    update_post_meta($post_id, 'is_client', $is_client);
+                }
 
                 return $post_id;
             } else {
@@ -97,7 +104,7 @@ class Org {
         $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
+        $logo = isset($params['logo']) ? absint($params['logo']) : null;
 
         /* if (empty($name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -119,7 +126,7 @@ class Org {
             );
             $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
 
                 if ($name) {
                     update_post_meta($post_id, 'name', $name);
@@ -157,9 +164,9 @@ class Org {
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ( $logo ) {
-                    update_post_meta($post_id, 'logo', $logo); 
-                } 
+                if ($logo) {
+                    update_post_meta($post_id, 'logo', $logo);
+                }
 
                 return $post_id;
             } else {
@@ -178,24 +185,23 @@ class Org {
         $data['name'] = isset($meta['name']) ? $meta['name'][0] : '';
         $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
         $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
-        $logo_id = isset($meta['logo']) ? $meta['logo'][0] : ''; 
-        $logoData = null;  
-        if ( $logo_id ) {
-            $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
-            if ( $logo_src ) {
-                $logoData = []; 
-                $logoData['id'] = $logo_id;  
-                $logoData['src'] = $logo_src[0]; 
+        $logo_id = isset($meta['logo']) ? $meta['logo'][0] : '';
+        $logoData = null;
+        if ($logo_id) {
+            $logo_src = wp_get_attachment_image_src($logo_id, 'thumbnail');
+            if ($logo_src) {
+                $logoData = [];
+                $logoData['id'] = $logo_id;
+                $logoData['src'] = $logo_src[0];
             }
-        } 
+        }
         $data['logo'] = $logoData;
-        if ( $details ) { 
+        if ($details) {
             $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
             $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
             $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
-            $data['address'] = isset($meta['address']) ? $meta['address'][0] : ''; 
-        } 
+            $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
+        }
         return $Data;
     }
- 
 }

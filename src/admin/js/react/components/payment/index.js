@@ -439,7 +439,7 @@ export default class Payment extends Component {
                                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                                         onClick={() => this.openForm('new')}
                                     >
-                                        Add Account
+                                        Add {currentTabTitle} Account
                                     </button>
                                 </>
                             )}

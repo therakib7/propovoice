@@ -184,7 +184,7 @@ class FromTo extends Component {
                                         </address>
                                     </> : <>
                                         {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>Create New Business</a>
+                                        <a className="pi-color-blue pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>Create New Business</a>
                                     </>
                                 }
                             </div>
@@ -203,8 +203,8 @@ class FromTo extends Component {
                             <div className="pi-from pi-bg-white">
                                 {toData ?
                                     <>
-                                        <h4 className="pi-title-small"> 
-                                            {(toData.type == 'person') ? toData.first_name : toData.org_name }
+                                        <h4 className="pi-title-small">
+                                            {(toData.type == 'person') ? toData.first_name : toData.org_name}
                                             <span>
                                                 <button
                                                     className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
@@ -227,7 +227,7 @@ class FromTo extends Component {
                                         </address>
                                     </> : <>
                                         {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ contactModal: true, contactModalTYpe: 'new' })}>Add New</a>
+                                        <a className="pi-color-blue pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ contactModal: true, contactModalTYpe: 'new' })}>Add New</a>
                                     </>
                                 }
                             </div>

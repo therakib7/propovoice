@@ -1,6 +1,7 @@
 <?php
 
 namespace Ncpi\Ctrls\Setting\Types;
+
 use Ncpi\Helpers\Fns;
 
 class Dashboard
@@ -8,9 +9,9 @@ class Dashboard
 
     public function __construct()
     {
-        add_action('admin_menu', [$this, 'add_settings_menu'], 30);  
+        add_action('admin_menu', [$this, 'add_settings_menu'], 30);
     }
- 
+
 
     public function add_settings_menu()
     {
@@ -22,7 +23,7 @@ class Dashboard
             array($this, 'main_settings'),
             'dashicons-groups',
             30
-        ); 
+        );
 
         add_submenu_page(
             'ncpi',
@@ -35,16 +36,16 @@ class Dashboard
 
         $settings_menu = [
             [
-				'id' => 'task',
-				'label' => esc_html__('Task & Activity', 'propovoice'),
+                'id' => 'task',
+                'label' => esc_html__('Task & Activity', 'propovoice'),
             ],
             [
-				'id' => 'lead',
-				'label' => esc_html__('Lead', 'propovoice'),
-			],
-			[
-				'id' => 'deal',
-				'label' => esc_html__('Deal Pipeline', 'propovoice'),
+                'id' => 'lead',
+                'label' => esc_html__('Lead', 'propovoice'),
+            ],
+            [
+                'id' => 'deal',
+                'label' => esc_html__('Deal Pipeline', 'propovoice'),
             ],
             [
                 'id' => 'client',
@@ -57,22 +58,22 @@ class Dashboard
             [
                 'id' => 'invoice',
                 'label' => esc_html__('Invoice', 'propovoice'),
-            ], 
+            ],
             [
                 'id' => 'project',
                 'label' => esc_html__('Project', 'propovoice'),
-            ], 
+            ],
             [
                 'id' => 'contact',
                 'label' => esc_html__('Contact', 'propovoice'),
-            ] 
+            ]
         ];
 
-        $settings_menu = apply_filters( 'ncpi_sidebar_menu', $settings_menu ); 
+        $settings_menu = apply_filters('ncpi_sidebar_menu', $settings_menu);
 
-        foreach( $settings_menu as $menu ) {
+        foreach ($settings_menu as $menu) {
             $menu_id = $menu['id'];
-            if ( $menu_id == 'contact' ) {
+            if ($menu_id == 'contact') {
                 $menu_id = $menu_id . '/person';
             }
 
@@ -84,9 +85,9 @@ class Dashboard
                 'ncpi#/' . $menu_id,
                 array($this, 'render')
             );
-        }  
-         
-        $setting_main = function_exists('ncpip') ? 'general': 'business';
+        }
+
+        $setting_main = function_exists('ncpip') ? 'general' : 'business';
         add_submenu_page(
             'ncpi',
             esc_html__('Settings', 'propovoice'),
@@ -96,11 +97,11 @@ class Dashboard
             array($this, 'render')
         );
 
-        if ( function_exists('ncpip') ) { 
+        if (function_exists('ncpip')) {
             global $submenu;
             $permalink = Fns::client_page_url('dashboard');
-            if ( $permalink ) {
-                $submenu['ncpi'][] = array( 'Go to Frontend', 'manage_options', $permalink );
+            if ($permalink) {
+                $submenu['ncpi'][] = array('Go to Frontend', 'manage_options', $permalink);
             }
         }
 
@@ -109,6 +110,6 @@ class Dashboard
 
     function main_settings()
     {
-        echo '<div class="wrap"><div id="ncpi-dashboard" class="flex"></div></div>';
+        echo '<div class="wrap"><div id="ncpi-dashboard"></div></div>';
     }
 }

@@ -91,8 +91,6 @@ class Taxonomy
 
                 $format_taxonomy = [];
                 foreach ($get_taxonomy as $single) {
-                    $color = get_term_meta($single->term_id, 'color', true);
-                    $bg_color = get_term_meta($single->term_id, 'bg_color', true);
 
                     $icon_id = get_term_meta($single->term_id, 'icon', true);
                     $iconData = null;
@@ -113,6 +111,9 @@ class Taxonomy
                         'icon' => $iconData ? $iconData : ''
                     ];
 
+                    $color = get_term_meta($single->term_id, 'color', true);
+                    $bg_color = get_term_meta($single->term_id, 'bg_color', true);
+
                     if ($color) {
                         $term_property['color'] = $color;
                     }
@@ -130,19 +131,19 @@ class Taxonomy
                         $taxonomy == 'deal_stage' ||
                         $taxonomy == 'project_status' ||
                         $taxonomy == 'contact_status' ||
-                        $taxonomy == 'task_status' 
+                        $taxonomy == 'task_status'
                     ) { // for deal won, deal lost, project complted, task done, contact active, block
-                        $term_property['type'] = get_term_meta($single->term_id, 'type', true);  
+                        $term_property['type'] = get_term_meta($single->term_id, 'type', true);
                     }
 
-                    if ( 
-                        $taxonomy == 'extra_amount' 
+                    if (
+                        $taxonomy == 'extra_amount'
                     ) { // for deal won, deal lost, project complted, task done, contact active, block
-                        $term_property['extra_amount_type'] = get_term_meta($single->term_id, 'extra_amount_type', true); 
-                        $term_property['val_type'] = get_term_meta($single->term_id, 'val_type', true); 
-                        $term_property['show'] = get_term_meta($single->term_id, 'show', true); 
-                        if ( $taxonomy == 'extra_amount' && $extra_amount_type != $term_property['extra_amount_type'] ) {
-                            if ( $extra_amount_type && $extra_amount_type != $term_property['extra_amount_type'] ) {
+                        $term_property['extra_amount_type'] = get_term_meta($single->term_id, 'extra_amount_type', true);
+                        $term_property['val_type'] = get_term_meta($single->term_id, 'val_type', true);
+                        $term_property['show'] = get_term_meta($single->term_id, 'show', true);
+                        if ($taxonomy == 'extra_amount' && $extra_amount_type != $term_property['extra_amount_type']) {
+                            if ($extra_amount_type && $extra_amount_type != $term_property['extra_amount_type']) {
                                 continue;
                             }
                         }
@@ -255,8 +256,8 @@ class Taxonomy
                     if ($icon) {
                         update_term_meta($term_id, 'icon', $icon);
                     }
- 
-                    if ( $taxonomy == 'extra_amount' && $extra_amount_type) {
+
+                    if ($taxonomy == 'extra_amount' && $extra_amount_type) {
                         update_term_meta($term_id, 'extra_amount_type', $extra_amount_type);
                         update_term_meta($term_id, 'val_type', $val_type);
                         update_term_meta($term_id, 'show', $show);
@@ -330,7 +331,7 @@ class Taxonomy
                         delete_term_meta($term_id, 'icon');
                     }
 
-                    if ( $taxonomy == 'extra_amount') { 
+                    if ($taxonomy == 'extra_amount') {
                         update_term_meta($term_id, 'val_type', $val_type);
                         update_term_meta($term_id, 'show', $show);
                     }

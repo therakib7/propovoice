@@ -10,7 +10,7 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
-            first_name: '', 
+            first_name: '',
             org_name: '',
             org_id: null,
             email: '',
@@ -95,10 +95,10 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let form = { ...this.state.form } 
-        if ( form.img ) {
+        let form = { ...this.state.form }
+        if (form.img) {
             form.img = form.img.id;
-        }  
+        }
         this.props.handleSubmit(form);
         // this.setState({ form: this.initialState });
     }
@@ -144,14 +144,14 @@ class Form extends Component {
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
-                            <div className="pi-form-style-one"> 
+                            <div className="pi-form-style-one">
                                 <Contact
                                     first_name={form.first_name}
                                     org_name={form.org_name}
                                     review={true}
-                                    onChange={this.handleContactChange} 
+                                    onChange={this.handleContactChange}
                                     onSelect={this.handleContactSelect}
-                                /> 
+                                />
 
                                 <div className="row">
                                     <div className="col-lg">
@@ -200,7 +200,7 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col">
+                                    <div className="col-md-6">
                                         <label htmlFor="form-country">
                                             Country
                                         </label>
@@ -212,7 +212,7 @@ class Form extends Component {
                                         />
                                     </div>
 
-                                    <div className="col">
+                                    <div className="col-md-6">
                                         <label htmlFor="form-region">
                                             Region
                                         </label>

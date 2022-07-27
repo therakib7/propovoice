@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import WithApi from 'hoc/Api';
 import Contact from 'block/field/contact';
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector'; 
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 class Form extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class Form extends Component {
         };
     }
 
-    static contextType = AppContext; 
+    static contextType = AppContext;
 
     componentDidMount() {
         //added this multiple place, because not working in invoice single
@@ -38,7 +38,7 @@ class Form extends Component {
 
     componentDidUpdate() {
         this.editData();
-    } 
+    }
 
     editData = () => {
         //condition added to stop multiple rendering 
@@ -128,8 +128,8 @@ class Form extends Component {
                 }
             })
         }
-    } 
-    
+    }
+
     render() {
         const form = this.state.form;
         return (
@@ -165,7 +165,7 @@ class Form extends Component {
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
-                            <div className="pi-form-style-one"> 
+                            <div className="pi-form-style-one">
 
                                 <Contact
                                     first_name={form.first_name}
@@ -222,7 +222,7 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col">
+                                    <div className="col-md-6">
                                         <label htmlFor="form-country">
                                             Country
                                         </label>
@@ -234,7 +234,7 @@ class Form extends Component {
                                         />
                                     </div>
 
-                                    <div className="col">
+                                    <div className="col-md-6">
                                         <label htmlFor="form-region">
                                             Region
                                         </label>

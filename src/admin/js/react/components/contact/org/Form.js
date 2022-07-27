@@ -10,8 +10,8 @@ class Form extends Component {
         this.initialState = {
             id: null,
             name: '',
-            first_name: '', 
-            person_id: null, 
+            first_name: '',
+            person_id: null,
             email: '',
             web: '',
             mobile: '',
@@ -94,10 +94,10 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let form = { ...this.state.form } 
-        if ( form.logo ) {
+        let form = { ...this.state.form }
+        if (form.logo) {
             form.logo = form.logo.id;
-        }  
+        }
         this.props.handleSubmit(form);
         // this.setState({ form: this.initialState });
     }
@@ -149,9 +149,9 @@ class Form extends Component {
                                     org_name={form.org_name}
                                     review={true}
                                     personLast={true}
-                                    onChange={this.handleContactChange} 
+                                    onChange={this.handleContactChange}
                                     onSelect={this.handleContactSelect}
-                                /> 
+                                />
 
                                 <div className="row">
                                     <div className="col-lg">
@@ -183,7 +183,7 @@ class Form extends Component {
                                     </div>
                                 </div>
 
-                                <div className="row"> 
+                                <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-web">
                                             Website
@@ -200,7 +200,7 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col">
+                                    <div className="col-md-6">
                                         <label htmlFor="form-country">
                                             Country
                                         </label>
@@ -212,7 +212,7 @@ class Form extends Component {
                                         />
                                     </div>
 
-                                    <div className="col">
+                                    <div className="col-md-6">
                                         <label htmlFor="form-region">
                                             Region
                                         </label>

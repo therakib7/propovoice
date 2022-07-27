@@ -5,27 +5,27 @@ import useClickOutside from 'block/outside-click';
 const AddNew = (props) => {
 
     const dropdownRef = useRef();
-	const [dropdown, setDropdown] = useState(false); 
-	const close = useCallback(() => setDropdown(false), []);
-	useClickOutside(dropdownRef, close); 
+    const [dropdown, setDropdown] = useState(false);
+    const close = useCallback(() => setDropdown(false), []);
+    useClickOutside(dropdownRef, close);
 
     useEffect(() => {
 
     }, []);
 
     const showDropdown = () => {
-		if ( dropdown ) {
-			setDropdown(false);
-		} else {
-			setDropdown(true);
-		}
-	};
+        if (dropdown) {
+            setDropdown(false);
+        } else {
+            setDropdown(true);
+        }
+    };
 
     const ImportExport = (e, type) => {
-		e.preventDefault();
+        e.preventDefault();
         setDropdown(false);
         alert('Features, In progressing...');
-	};
+    };
 
     return (
         <div className='pi-list-single-button-content'>
@@ -58,8 +58,8 @@ const AddNew = (props) => {
                 Add {props.title}
             </button>
 
-            <div className="pi-action-content pi-action-btn" ref={dropdownRef}>
-                <button 
+            {false && <div className="pi-action-content pi-action-btn" ref={dropdownRef}>
+                <button
                     className="pi-bg-stroke pi-bg-shadow"
                     onClick={() => showDropdown()}
                 >
@@ -95,7 +95,7 @@ const AddNew = (props) => {
                     <a onClick={(e) => ImportExport(e, 'import')}>Import</a>
                     <a onClick={(e) => ImportExport(e, 'exoprt')}>Export</a>
                 </div>}
-            </div>
+            </div>}
         </div>
     );
 }

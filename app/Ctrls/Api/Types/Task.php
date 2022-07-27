@@ -168,10 +168,21 @@ class Task
                 $query_data['status_id'] = [
                     'id' => $term_id,
                     'label' => $status[0]->name,
-                    'color' => get_term_meta($term_id, 'color', true),
-                    'bg_color' => get_term_meta($term_id, 'bg_color', true),
+                    'color' => '#4a5568',
+                    'bg_color' => '#E2E8F0',
                     'type' => get_term_meta($term_id, 'type', true),
                 ];
+
+                $color = get_term_meta($term_id, 'color', true);
+                $bg_color = get_term_meta($term_id, 'bg_color', true);
+
+                if ($color) {
+                    $query_data['status_id']['color'] = $color;
+                }
+
+                if ($bg_color) {
+                    $query_data['status_id']['bg_color'] = $bg_color;
+                }
             }
 
             $query_data['type_id'] = '';
@@ -203,9 +214,20 @@ class Task
                 $query_data['priority_id'] = [
                     'id' => $term_id,
                     'label' => $priority[0]->name,
-                    'color' => get_term_meta($term_id, 'color', true),
-                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
+                    'color' => '#4a5568',
+                    'bg_color' => '#E2E8F0',
                 ];
+
+                $color = get_term_meta($term_id, 'color', true);
+                $bg_color = get_term_meta($term_id, 'bg_color', true);
+
+                if ($color) {
+                    $query_data['priority_id']['color'] = $color;
+                }
+
+                if ($bg_color) {
+                    $query_data['priority_id']['bg_color'] = $bg_color;
+                }
             }
 
             $query_data['desc'] = get_the_content();
