@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Preloader from 'block/preloader/table';
 
 import FormDrive from './FormDrive';
@@ -12,6 +12,10 @@ import Crud from 'hoc/Crud';
 
 const File = (props) => {
 
+    useEffect(() => {
+        props.getLists();
+    }, []);
+    
     const [fileModal, setFileModal] = useState(false);
     const [driveModal, setDriveModal] = useState(false);
     const [activeTab, setActiveTab] = useState('all');

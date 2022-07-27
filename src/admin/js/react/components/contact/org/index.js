@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
@@ -13,9 +14,10 @@ import Empty from 'block/empty';
 import Crud from 'hoc/Crud';
 
 const Org = (props) => {
-
+  useEffect(() => {
+    props.getLists();
+  }, []);
   const navigate = useNavigate();
-
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
     <div className="ncpi-components">

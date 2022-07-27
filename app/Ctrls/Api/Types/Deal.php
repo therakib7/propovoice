@@ -72,13 +72,14 @@ class Deal
     {
         $params = $req->get_params();
 
-        $pipeline = true;
+        $board_view = true;
         $module_id = isset($params['module_id']) ? absint($params['module_id']) : null;
-        if ($module_id) {
-            $pipeline = false;
+        $table_view = isset($params['table_view']) ? true : false;
+        if ($module_id || $table_view ) {
+            $board_view = false;
         }
         $result = [];
-        if ($pipeline) {
+        if ($board_view) {
             $get_stage = Fns::get_terms('deal_stage');
             $column = [];
             foreach ($get_stage as $stage) :
@@ -140,7 +141,7 @@ class Deal
             );
         }
 
-        if ($module_id) {
+        if ( $module_id ) {
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'person_id',

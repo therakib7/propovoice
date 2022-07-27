@@ -14,7 +14,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Project Title
+                    Title
                 </th>
                 <th>
                     <svg
