@@ -108,7 +108,7 @@ const Deal = (props) => {
                 </div>
                 <div className="col">
                     <div className="pi-list-single-button-content">
-                        {!props.module_id && <button
+                        {!wage.length && !props.module_id && <button
                             className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow"
                             onClick={() => taxForm('new')}
                         >
@@ -169,7 +169,7 @@ const Deal = (props) => {
                 </div>
             </div>
 
-            <div className="pi-buttons-group pi-mb-20">
+            {!wage.length && <div className="pi-buttons-group pi-mb-20">
 
                 <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5"
                     onClick={() => viewChange('board')}
@@ -259,7 +259,7 @@ const Deal = (props) => {
                         />
                     </svg>
                 </button>
-            </div>
+            </div>}
 
             <Search
                 title={title}

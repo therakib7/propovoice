@@ -453,7 +453,8 @@ class ListSingle extends Component {
                                                 </p>
                                             </div>
                                         </div>
-                                        <div className="pi-range">
+
+                                        {!wage.length && <div className="pi-range">
                                             <span>{data.probability}%</span>
                                             <label htmlFor="field-probability">
                                                 Probability
@@ -468,7 +469,7 @@ class ListSingle extends Component {
                                                 style={{ background: `linear-gradient(to right, #3264fe ${(data.probability / 100) * 100}%, #ccd6ff ${(data.probability / 100) * 100}%)` }}
                                                 onChange={this.handleprobabilityChange}
                                             />
-                                        </div>
+                                        </div>}
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -697,7 +698,7 @@ class ListSingle extends Component {
                             </ul>
                         </div>
 
-                        <div className="pi-cards pi-mt-25">
+                        {!wage.length && <div className="pi-cards pi-mt-25">
                             <div className="row">
                                 <div className="col-md-6 col-lg">
                                     <div className="pi-cards-content ">
@@ -845,7 +846,7 @@ class ListSingle extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>}
                     </>
                 }
 

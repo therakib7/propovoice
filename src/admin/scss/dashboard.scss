@@ -133,6 +133,9 @@
 
     .pi-right-content {
         height: auto !important;
+        .pi-right-content-data {
+            padding: 55px 70px;
+        }
     }
 
     .pi-board-content {
