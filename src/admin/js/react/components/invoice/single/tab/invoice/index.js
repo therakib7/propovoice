@@ -1027,11 +1027,7 @@ class Invoice extends Component {
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'reminder') && !wage.length && <li>
-<<<<<<< HEAD
-														<input type="checkbox" defaultChecked={true} onClick={() => this.setSidebarActive('reminder')} />
-=======
 														<input type="checkbox" ref={this.reminderRef} defaultChecked={true} onClick={() => this.setSidebarActive('reminder')} />
->>>>>>> 6b387a66a7c10697e2b786d71a2d60d5318accae
 														<i />
 														<h3 className='pi-title-small' >
 															Reminder
