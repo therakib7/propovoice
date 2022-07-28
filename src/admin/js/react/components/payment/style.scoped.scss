@@ -53,7 +53,7 @@
   box-shadow: 3px 3px 4px 3px rgba(205, 202, 205, 0.18);
 }
 .ncpi .pi-payment-tab-content ul li .pi-edit span:hover svg path {
-  fill: var(--bg-color-blue);
+  fill: var(--pi-bg-color-blue);
 }
 .ncpi .pi-payment-tab-content ul li .pi-item-content {
   display: flex;
@@ -88,5 +88,5 @@
 .ncpi .pi-payment-tab-content ul .pi-btn svg path {
   margin-top: 2px;
   margin-right: 5px;
-  fill: var(--text-color-white);
+  fill: var(--pi-text-color-white);
 }

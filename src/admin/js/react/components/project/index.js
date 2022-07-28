@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
 import Action from 'block/action/table';
@@ -12,6 +13,9 @@ import Empty from 'block/empty';
 import Crud from 'hoc/Crud';
 
 const Project = (props) => {
+  useEffect(() => {
+    props.getLists();
+  }, []);
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
     <div className="ncpi-components">

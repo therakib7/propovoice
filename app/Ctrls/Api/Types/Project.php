@@ -98,7 +98,7 @@ class Project
         );
 
         if ($s) {
-            $args['s'] = $s;
+            $args['_meta_or_title'] = $s;
 
             $contact_person = new Contact();
             $person_ids = $contact_person->query($s, 'person');

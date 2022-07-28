@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Preloader from 'block/preloader/table';
 import { toast } from 'react-toastify';
 import Form from './Form';
@@ -11,6 +11,10 @@ import Crud from 'hoc/Crud';
 
 const Task = (props) => {
 
+    useEffect(() => {
+        props.getLists();
+    }, []);
+    
     const [activeTab, setActiveTab] = useState(null);
     const [taxonomies, setTaxonomies] = useState({
         status: [],

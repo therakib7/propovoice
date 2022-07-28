@@ -27,7 +27,7 @@
 }
 //from reza start
 .ncpi .pi-main-content {
-  background-color: var(--bg-color-white);
+  background-color: var(--pi-bg-color-white);
   margin: 80px 0;
 }
 .ncpi .pi-welcome-tabs-content {
@@ -85,7 +85,7 @@
   font-weight: 600;
 }
 .ncpi #pi-finished .pi-buttons.pi-text-center a:last-child {
-  color: var(--text-color-white);
+  color: var(--pi-text-color-white);
   margin-right: 0;
 }
 @media screen and (max-width: 500px) {

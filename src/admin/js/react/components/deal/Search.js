@@ -25,7 +25,11 @@ export default class Form extends Component {
                 //search when typing stop
                 if ( this.timeout ) clearTimeout(this.timeout);
                 this.timeout = setTimeout(() => {
-                    this.props.handleSubmit(this.state.form);
+                    let form = {...this.state.form} 
+                    if ( ! this.props.boardView ) {
+                        form.table_view = true;
+                    }
+                    this.props.handleSubmit(form);
                 }, 300);
             } else {
                 this.props.handleSubmit(this.state.form);
@@ -34,7 +38,7 @@ export default class Form extends Component {
     } 
 
     render() {
-        const { title, showing, total } = this.props;
+        const { title, showing, showItem, total } = this.props;
         return (
             <div className="pi-search-bar">
                 <div className="pi-search-box pi-mediun-search-bar">
@@ -57,7 +61,7 @@ export default class Form extends Component {
                         onChange={this.handleChange}
                     /> 
                 </div>
-                <div className="pi-search-btn">
+                {false && <div className="pi-search-btn">
                     <button className={this.state.searchModal ? 'pi-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
                         <svg
                             width={20}
@@ -203,9 +207,18 @@ export default class Form extends Component {
                             </li>
                         </ul>
                     </div>}
-                </div>
-                <div className="pi-total-list">
-                    <p>{showing} {title} showing from <span>{total}</span></p>
+                </div>}
+                <div className="pi-total-list">  
+                    <p>
+                        Show <select onChange={showItem} >
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                            <option value="99">99</option>
+                        </select>  
+                         {title} {this.props.boardView ? 'Per Stage' : <>from <span>{total}</span></> } 
+                    </p>
                 </div>
             </div>
         );

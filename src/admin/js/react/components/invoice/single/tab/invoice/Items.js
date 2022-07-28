@@ -42,9 +42,9 @@ class Items extends Component {
                         <table className="pi-table pi-info-table">
                             <thead>
                                 <tr>
-                                    <th>Title &amp; Description </th>
+                                    <th style={{ width: 'auto' }}>Title &amp; Description </th>
                                     <th style={{ width: '125px' }}>Quantity</th>
-                                    <th style={{ width: '85px' }}>Rate (USD)</th>
+                                    <th style={{ width: '105px' }}>Rate (USD)</th>
                                     {item_tax && <th style={{ width: '125px' }}>Tax</th>}
                                     <th style={{ width: '90px' }}>Amount</th>
                                     <th></th>

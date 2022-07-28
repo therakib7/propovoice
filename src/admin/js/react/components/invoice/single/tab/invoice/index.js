@@ -133,7 +133,8 @@ class Invoice extends Component {
 				sign: null
 			},
 			previewHeight: '',
-			previewScale: ''
+			previewScale: '',
+
 		};
 
 		this.sidebarRef = React.createRef();
@@ -597,10 +598,6 @@ class Invoice extends Component {
 		const name = target.name;
 		const value = (name === 'status' || name === 'due_date') ? target.checked : target.value;
 
-		/* if ( name === 'status' && value ) {
-			this.setSidebarActive('reminder')
-		} */
-
 		if (type) { //before, after
 			let arr = invoice.reminder[type];
 			if (target.checked) {
@@ -612,6 +609,10 @@ class Invoice extends Component {
 			invoice.reminder[name] = value;
 		}
 
+		/* if ( name === 'status' && value ) {
+			this.setSidebarActive('reminder')
+			this.setState({ invoice, showReminder: false })
+		} */
 		this.setState({ invoice })
 	}
 
@@ -630,7 +631,7 @@ class Invoice extends Component {
 			<>
 				<div>
 					<div className="row">
-						<div className="col-6 col-md-4">
+						<div className="col-6 col-md-5">
 							<nav className="pi-breadcrumb">
 								<ul className="">
 									<li>
@@ -681,7 +682,7 @@ class Invoice extends Component {
 								</ul>
 							</nav>
 						</div>
-						<div className="col-6 col-md-8">
+						<div className="col-6 col-md-7">
 							<div className="pi-invoice-single-btn pi-text-right">
 
 								{(currentTab == 'template') &&
@@ -1022,7 +1023,7 @@ class Invoice extends Component {
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'reminder') && !wage.length && <li>
-														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('reminder')} />
+														<input type="checkbox" defaultChecked={true} onClick={() => this.setSidebarActive('reminder')} />
 														<i />
 														<h3 className='pi-title-small'>
 															Reminder
