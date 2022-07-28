@@ -15,7 +15,7 @@ const TaskList = (props) => {
 				</div> */}
 
 			<div className="row pi-mt-25">
-				<div className="col-lg-9">
+				<div className="col-lg-12">
 					<div className="pi-horizontal-tab">
 						<ul className="pi-tabs">
 							<li className={"pi-tab "}>
@@ -31,7 +31,7 @@ const TaskList = (props) => {
 					</div>
 				</div>
 
-				<div className="col-lg-3 pi-lead-right-content">
+				{false && <div className="col-lg-3 pi-lead-right-content">
 
 					<div className="pi-widget pi-timeline-box">
 						<h3 className="pi-widget-title pi-mb-15">Timeline Info (Upcoming)</h3>
@@ -53,7 +53,7 @@ const TaskList = (props) => {
 							</li>
 						</ul>
 					</div>
-				</div>
+				</div>}
 			</div>
 		</div>
 	);

@@ -355,7 +355,7 @@ class Form extends Component {
 
                                 </div>
 
-                                <div className="row">
+                                {!wage.length && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-probability">
                                             Probability <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
@@ -371,7 +371,7 @@ class Form extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div>
+                                </div>}
 
                                 <div className="row">
                                     <div className="col-md">

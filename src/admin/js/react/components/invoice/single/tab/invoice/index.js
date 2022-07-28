@@ -127,14 +127,14 @@ class Invoice extends Component {
 					limit: 5,
 					send_me: false,
 					delivery: 1, //1=auto, 0=manual
-				}, 
+				},
 				sections: null,
 				attach: [],
 				sign: null
 			},
 			previewHeight: '',
 			previewScale: '',
-			
+
 		};
 
 		this.sidebarRef = React.createRef();
@@ -598,7 +598,7 @@ class Invoice extends Component {
 		let invoice = { ...this.state.invoice }
 		const target = e.target;
 		const name = target.name;
-		const value = (name === 'status' || name === 'due_date') ? target.checked : target.value; 
+		const value = (name === 'status' || name === 'due_date') ? target.checked : target.value;
 
 		if (type) { //before, after
 			let arr = invoice.reminder[type];
@@ -612,7 +612,7 @@ class Invoice extends Component {
 		}
 
 		this.setState({ invoice })
-		if ( name === 'status' && value ) { 
+		if (name === 'status' && value) {
 			this.reminderRef.current.click();
 		}
 	}
@@ -624,7 +624,7 @@ class Invoice extends Component {
 		const value = target.type == 'checkbox' ? target.checked : target.value;
 		invoice.recurring[name] = value;
 		this.setState({ invoice })
-		if ( name === 'status' && value ) { 
+		if (name === 'status' && value) {
 			this.recurringRef.current.click();
 		}
 	}
@@ -1026,7 +1026,7 @@ class Invoice extends Component {
 														/>
 													</li>}
 
-													{(!sidebarActive || sidebarActive == 'reminder') && !wage.length && <li> 
+													{(!sidebarActive || sidebarActive == 'reminder') && !wage.length && <li>
 														<input type="checkbox" ref={this.reminderRef} defaultChecked={true} onClick={() => this.setSidebarActive('reminder')} />
 														<i />
 														<h3 className='pi-title-small' >
