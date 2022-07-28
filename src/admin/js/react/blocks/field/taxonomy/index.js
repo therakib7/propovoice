@@ -68,6 +68,12 @@ const Taxonomy = (props) => {
 
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
+
+		if ( wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) ) {
+			alert('pro');
+			return;
+		}
+
 		setModal(true);
 		if (type == 'new') {
 			setModalType(type);
@@ -187,7 +193,12 @@ const Taxonomy = (props) => {
 				</button>}
 
 				{dropdown && <div className="pi-dropdown-content pi-show">
-					<button onClick={(e) => { openModal(e, 'new') }}>+ Add New {props.title}</button>
+					<button onClick={(e) => { openModal(e, 'new') }}>
+						+ Add New {props.title}
+						{wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) && <>
+							<span className="pi-pro-label">PRO</span>
+						</>}
+					</button>
 					{list && list.map((item, itemIndex) => {
 						return (
 							<a key={itemIndex} onClick={() => handleSelect(item)}>{item.label}</a>

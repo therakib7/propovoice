@@ -279,7 +279,10 @@ const Taxonomy = (props) => {
 							strokeLinejoin="round"
 						/>
 					</svg>
-					Add new {props.title}
+					Add new {props.title} 
+					{wage.length > 0 && <>
+						<span className="pi-pro-label">PRO</span>
+					</>}
 				</button>
 			</div>
 

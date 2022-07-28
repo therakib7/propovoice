@@ -25,6 +25,9 @@
   margin-bottom: 5px;
   font-size: 10px;
   margin-top: 4px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
 }
 .ncpi .pi-list-single-head .pi-list-content .logo {
   width: 90px;
@@ -328,6 +331,11 @@
   font-weight: 500;
   border: 1px solid #dddddda8;
   margin-right: 5px;
+}
+@media screen and (max-width: 420px) {
+  .ncpi .pi-small-button-group .pi-btn-small {
+    margin-bottom: 5px;
+  }
 }
 .ncpi .pi-small-button-group .pi-btn-small.pi-active, .ncpi .pi-small-button-group .pi-btn-small:hover {
   color: #2D3748 !important;

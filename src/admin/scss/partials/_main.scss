@@ -942,6 +942,9 @@ html {
 .ncpi .pi-table tbody tr {
   background-color: #fff;
 }
+.ncpi .pi-table tbody tr:hover {
+  background: #FAFAFB;
+}
 .ncpi .pi-table tbody tr td:last-child {
   text-align: center;
   width: 60px;
@@ -1034,7 +1037,7 @@ html {
     overflow-x: scroll;
   }
   .ncpi .pi-table-wrap .pi-table {
-    width: 190%;
+    width: 190% !important;
   }
   .ncpi .pi-p-m {
     padding-left: 15px;
@@ -1203,9 +1206,6 @@ html {
 }
 .ncpi .pi-info-table-content .pi-info-table thead tr th:nth-child(3) {
   padding: 0px 20px;
-}
-.ncpi .pi-info-table-content .pi-info-table thead tr th {
-  padding: 15px;
 }
 .ncpi .pi-info-table-content .pi-info-table thead tr th span {
   font-size: 10px;
@@ -1534,7 +1534,7 @@ html {
 }
 @media screen and (max-width: 992px) {
   .ncpi .pi-right-content .pi-right-content-data {
-    padding: 30px 15px;
+    padding: 30px 15px !important;
   }
 }
 .ncpi .pi-empty-content {
@@ -2175,6 +2175,9 @@ input[type=checkbox] {
     margin: 0px 0px 30px !important;
   }
 }
+.wp-admin a:focus {
+  box-shadow: none;
+}
 .wp-admin .pi-overview-select {
   padding: 3px 35px 3px 10px !important;
 }
@@ -2293,9 +2296,9 @@ input[type=checkbox] {
     padding: 20px 40px 15px 25px;
   }
 }
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 420px) {
   .wp-admin .pi-modal-sidebar .pi-content {
-    padding: 15px 40px 15px 25px !important;
+    padding: 15px 25px 15px 15px !important;
   }
 }
 @media screen and (max-width: 992px) {
@@ -2308,6 +2311,7 @@ input[type=checkbox] {
 }
 .wp-admin .pi-modal-sidebar-two .pi-modal-style-two .pi-close {
   left: auto;
+  top: 52%;
 }
 .wp-admin .pi-modal-sidebar-two .pi-modal-style-two .pi-content {
   height: auto;
@@ -2321,6 +2325,21 @@ input[type=checkbox] {
 }
 .wp-admin .pi-modal-sidebar-two .pi-modal-style-two .pi-modal-footer .btn {
   margin-left: -15px;
+}
+@media screen and (max-width: 992px) {
+  .wp-admin .pi-modal-content.pi-modal-sidebar {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 992px) {
+  .wp-admin .pi-modal-content {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 420px) {
+  .wp-admin .pi-modal-content {
+    width: 60%;
+  }
 }
 
 .react-datepicker {
@@ -2587,6 +2606,16 @@ ul {
 .astra-theme .pi-table tr th:first-child input[type=checkbox] {
   top: 2px;
 }
+.astra-theme .pi-form-style-one input[type=url],
+.astra-theme .pi-form-style-one input[type=number],
+.astra-theme .pi-form-style-one input[type=email],
+.astra-theme .pi-form-style-one input[type=text] {
+  background: none;
+}
+.astra-theme .pi-field-switch.pi-ml-10 {
+  position: relative;
+  top: 3px;
+}
 
 /*-------------------------------------------------------------- 
 # modal
@@ -2699,17 +2728,17 @@ ul {
     padding: 0 25px 25px;
   }
 }
+@media screen and (max-width: 420px) {
+  .ncpi .pi-modal-content .pi-modal-footer {
+    padding: 0 15px 15px !important;
+  }
+}
 .ncpi .pi-modal-content .pi-modal-footer .pi-btn {
-  background-color: #fff;
+  background: none;
   color: #4A5568;
   margin-left: -20px;
-}
-.ncpi .pi-modal-content .pi-modal-footer .pi-btn {
   text-transform: capitalize;
   font-size: 14px;
-}
-.ncpi .pi-modal-content .pi-form-style-two .pi-btn {
-  margin-bottom: 35px;
 }
 .ncpi .pi-modal-content .pi-close {
   background: #fff;
@@ -2767,6 +2796,11 @@ ul {
   top: 48%;
   right: 15px;
 }
+@media screen and (max-width: 420px) {
+  .ncpi .pi-modal-style-two .pi-close {
+    right: 0 !important;
+  }
+}
 .ncpi .pi-modal-style-two .pi-color-white {
   border-radius: 4px !important;
   padding: 10px 25px !important;
@@ -2820,6 +2854,11 @@ ul {
   background: #fff;
   border-radius: 5px;
 }
+@media screen and (max-width: 550px) {
+  .ncpi .pi-field-copy .pi-copy {
+    padding: 8px 12px;
+  }
+}
 .ncpi .pi-field-share {
   margin-top: 10px;
   text-align: center;
@@ -2838,6 +2877,13 @@ ul {
   width: 80px;
   height: 80px;
   line-height: 103px;
+}
+@media screen and (max-width: 550px) {
+  .ncpi .pi-field-share a span {
+    width: 70px;
+    height: 70px;
+    line-height: 98px;
+  }
 }
 .ncpi .pi-field-share p {
   color: #718096;
@@ -2865,11 +2911,6 @@ ul {
 .ncpi .pi-modal-sidebar .pi-modal-header {
   padding: 40px 35px;
 }
-@media screen and (max-width: 992px) {
-  .ncpi .pi-modal-sidebar .pi-modal-header {
-    padding: 25px;
-  }
-}
 .ncpi .pi-modal-sidebar .pi-content {
   padding: 20px 35px 15px;
   height: calc(100vh - 219px);
@@ -2877,11 +2918,6 @@ ul {
 @media screen and (max-width: 992px) {
   .ncpi .pi-modal-sidebar .pi-content {
     padding: 20px 25px 15px;
-    height: calc(100vh - 208px);
-  }
-}
-@media screen and (max-width: 992px) {
-  .ncpi .pi-modal-sidebar .pi-content {
     height: calc(100vh - 202px);
   }
 }
@@ -2962,7 +2998,7 @@ ul {
   display: flex;
   cursor: pointer;
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 550px) {
   .ncpi .pi-modal-sidebar-two .pi-buttons .pi-btn:first-child {
     margin-bottom: 10px;
   }
@@ -3014,6 +3050,11 @@ ul {
 }
 .ncpi .pi-modal-sidebar-two .pi-content {
   height: calc(100vh - 78px);
+}
+@media screen and (max-width: 420px) {
+  .ncpi .pi-modal-sidebar-two .pi-content {
+    height: calc(100vh - 58px);
+  }
 }
 .ncpi .pi-modal-sidebar input[type=range] {
   margin-top: 0;
@@ -3542,6 +3583,9 @@ ul {
   background-color: #f7f8fa;
   border-left: 3px solid var(--pi-bg-color-blue);
 }
+.ncpi .pi-settings-tab .pi-settings-tabs .pi-field-desc {
+  margin-top: 10px;
+}
 .ncpi .pi-settings-tab .pi-setting-heading-content {
   margin-top: 10px;
 }
@@ -3604,9 +3648,6 @@ ul {
 .ncpi .pi-settings-horizontal-tab .pi-tab:hover {
   border-bottom: 3px solid var(--pi-bg-color-blue);
   color: var(--pi-bg-color-blue);
-}
-.ncpi .pi-settings-horizontal-tab .pi-field-desc {
-  margin-top: 10px;
 }
 
 .pi-form-accordion {
@@ -4669,11 +4710,11 @@ select {
 .ncpi select {
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: transparent !important;
+  background: transparent;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAHCAYAAAA8sqwkAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACFSURBVHgBdZDBEUBADEX/OnBVAh1oQSfuLqsC2wEHRjla0AEluHJZCWPIsjkl+e/nzwSg0nWntWkSeIo1bfqCe0VDrBDO1K4WW96aanFhhWgEbGyxpwEBBCLnBQvvJAmDj63qEfuMhvFOOuMFXE7XTsQ/pmsj4Y9Bmgh3YPi/MvBXsj/tAGFQP1QFEIIIAAAAAElFTkSuQmCC) !important;
-  background-repeat: no-repeat !important;
-  background-position-x: 97% !important;
-  background-position-y: 50% !important;
+  background-repeat: no-repeat;
+  background-position-x: 97%;
+  background-position-y: 50%;
 }
 .ncpi .pi-form-style-one textarea {
   border-radius: 10px;
@@ -4711,7 +4752,6 @@ select {
   border: 1px solid #CBD5E0;
   outline: none;
   line-height: 100%;
-  background: none;
 }
 @media screen and (max-width: 550px) {
   .ncpi .pi-form-style-one select,
