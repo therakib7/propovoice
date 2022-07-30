@@ -13,6 +13,7 @@ const Invoice = lazy(() => import('./tab/invoice'));
 const Project = lazy(() => import('./tab/project'));
 const Contact = lazy(() => import('./tab/contact'));
 const Tag = lazy(() => import('./tab/tag'));
+const License = lazy(() => import('./tab/license'));
 
 //subtab: email 
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
@@ -86,7 +87,11 @@ const SettingWrap = (props) => {
 
     useEffect(() => {
         if (!wage.length) {
-            
+            let new_tabs = { ...tabs }
+            new_tabs.license = {
+                label: 'License Manager'
+            }
+            setTabs(new_tabs);
         }
     }, []);
 
@@ -180,6 +185,7 @@ const SettingWrap = (props) => {
                                 {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
+                                {currentTab == 'license' && <License {...props} />}
                             </Suspense>
                         </div>
                     </div>
