@@ -133,10 +133,13 @@ class Invoice extends Component {
 				sign: null
 			},
 			previewHeight: '',
-			previewScale: ''
+			previewScale: '',
+
 		};
 
 		this.sidebarRef = React.createRef();
+		this.reminderRef = React.createRef();
+		this.recurringRef = React.createRef();
 	}
 
 	isPreviewLoaded = () => {
@@ -597,10 +600,6 @@ class Invoice extends Component {
 		const name = target.name;
 		const value = (name === 'status' || name === 'due_date') ? target.checked : target.value;
 
-		/* if ( name === 'status' && value ) {
-			this.setSidebarActive('reminder')
-		} */
-
 		if (type) { //before, after
 			let arr = invoice.reminder[type];
 			if (target.checked) {
@@ -613,6 +612,9 @@ class Invoice extends Component {
 		}
 
 		this.setState({ invoice })
+		if (name === 'status' && value) {
+			this.reminderRef.current.click();
+		}
 	}
 
 	onRecurringChange = (e) => {
@@ -622,6 +624,9 @@ class Invoice extends Component {
 		const value = target.type == 'checkbox' ? target.checked : target.value;
 		invoice.recurring[name] = value;
 		this.setState({ invoice })
+		if (name === 'status' && value) {
+			this.recurringRef.current.click();
+		}
 	}
 
 	render = () => {
@@ -630,7 +635,7 @@ class Invoice extends Component {
 			<>
 				<div>
 					<div className="row">
-						<div className="col-6 col-md-4">
+						<div className="col-6 col-md-5">
 							<nav className="pi-breadcrumb">
 								<ul className="">
 									<li>
@@ -681,7 +686,7 @@ class Invoice extends Component {
 								</ul>
 							</nav>
 						</div>
-						<div className="col-6 col-md-8">
+						<div className="col-6 col-md-7">
 							<div className="pi-invoice-single-btn pi-text-right">
 
 								{(currentTab == 'template') &&
@@ -871,7 +876,7 @@ class Invoice extends Component {
 															</div>
 														</div>
 
-														<div className="pi-info-form-list">
+														{false && <div className="pi-info-form-list">
 															<div className="pi-info-lavel">
 																<label htmlFor="info-currency">Currency:</label>
 															</div>
@@ -885,7 +890,7 @@ class Invoice extends Component {
 																// onChange={() => this.changeCurrency}
 																/>
 															</div>
-														</div>
+														</div>}
 
 													</div>
 													{/* ./ pi-info-form */}
@@ -1022,9 +1027,9 @@ class Invoice extends Component {
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'reminder') && !wage.length && <li>
-														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('reminder')} />
+														<input type="checkbox" ref={this.reminderRef} defaultChecked={true} onClick={() => this.setSidebarActive('reminder')} />
 														<i />
-														<h3 className='pi-title-small'>
+														<h3 className='pi-title-small' >
 															Reminder
 															<span className="pi-field-switch-content">
 																<label className="pi-field-switch pi-field-switch-big">
@@ -1049,7 +1054,7 @@ class Invoice extends Component {
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'recurring') && !wage.length && this.props.path == 'invoice' && <li>
-														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('recurring')} />
+														<input type="checkbox" ref={this.recurringRef} defaultChecked="checked" onClick={() => this.setSidebarActive('recurring')} />
 														<i />
 														<h3 className='pi-title-small'>Recurring
 															<span className="pi-field-switch-content">

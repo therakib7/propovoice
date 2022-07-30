@@ -3,6 +3,7 @@
 namespace Ncpi\Ctrls\Api\Types;
 
 use Ncpi\Helpers\Fns;
+use Ncpi\Models\Contact;
 use Ncpi\Models\Org;
 use Ncpi\Models\Person;
 use WP_Query;
@@ -72,13 +73,14 @@ class Deal
     {
         $params = $req->get_params();
 
-        $pipeline = true;
+        $board_view = true;
         $module_id = isset($params['module_id']) ? absint($params['module_id']) : null;
-        if ($module_id) {
-            $pipeline = false;
+        $table_view = isset($params['table_view']) ? true : false;
+        if ($module_id || $table_view ) {
+            $board_view = false;
         }
         $result = [];
-        if ($pipeline) {
+        if ($board_view) {
             $get_stage = Fns::get_terms('deal_stage');
             $column = [];
             foreach ($get_stage as $stage) :
@@ -116,6 +118,7 @@ class Deal
         }
 
         $module_id = isset($params['module_id']) ? absint($params['module_id']) : null;
+        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
 
         $args = array(
             'post_type' => 'ndpi_deal',
@@ -128,7 +131,7 @@ class Deal
 
         $args['meta_query'] = array(
             'relation' => 'OR'
-        );
+        );  
 
         if ($stage_id) {
             $args['tax_query'] = array(
@@ -140,7 +143,7 @@ class Deal
             );
         }
 
-        if ($module_id) {
+        if ( $module_id ) {
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'person_id',
@@ -154,6 +157,34 @@ class Deal
                     'value' => $module_id
                 )
             );
+        }
+
+        if ($s) {
+
+            $args['_meta_or_title'] = $s; 
+
+            $contact_person = new Contact();
+            $person_ids = $contact_person->query($s, 'person');
+            if ($person_ids) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'person_id',
+                        'value'   => $person_ids,
+                        'compare' => 'IN'
+                    )
+                );
+            }
+
+            $org_ids = $contact_person->query($s, 'org');
+            if ($org_ids) {
+                $args['meta_query'][] = array(
+                    array(
+                        'key'     => 'org_id',
+                        'value'   => $org_ids,
+                        'compare' => 'IN'
+                    )
+                );
+            }
         }
 
         $query = new WP_Query($args);

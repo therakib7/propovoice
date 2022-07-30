@@ -39,11 +39,11 @@ const HOC = (Inner, mod, modPlural = '') => {
         // static contextType = AppContext;
 
         componentDidMount() {
-            this.getLists();
+            // this.getLists();
         }
 
         getLists = (searchArgs = null) => {
-
+            // this.setState({ preloader: true });
             let args = {
                 page: this.state.currentPage,
                 per_page: this.state.perPage
@@ -72,12 +72,14 @@ const HOC = (Inner, mod, modPlural = '') => {
 
             let params = new URLSearchParams(args).toString();
 
-            axios.get(`${url}/?${params}`).then(resp => {
+            const promise = axios.get(`${url}/?${params}`);
+            const dataPromise = promise.then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
                 this.setState({ lists: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
             })
+            return promise;
         };
 
         handleSearch = (e) => {
@@ -146,8 +148,7 @@ const HOC = (Inner, mod, modPlural = '') => {
                             return list.id !== index;
                         })
                     });
-                } */
-                console.log(module);
+                } */ 
 
                 let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
                 axios.delete(`${url}/${ids}`, token).then(resp => {

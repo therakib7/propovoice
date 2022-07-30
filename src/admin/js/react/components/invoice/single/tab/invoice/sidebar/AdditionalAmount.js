@@ -45,13 +45,11 @@ export default (props) => {
 
     const extra_field = props.data;
     return (
-        <>
-
-
+        <> 
             <div className="pi-form-accordion pi-additional">
                 <div className="pi-form-style-one">
                     <div className="row">
-                        <div className="col">
+                        <div className="col" style={{marginBottom: '10px'}}>
                             <label id="form-item_tax">Each Item Tax Field</label>
                             <div className="pi-field-switch pi-ml-10">
                                 <label className='pi-switch'>

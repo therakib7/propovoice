@@ -35,7 +35,7 @@ msgid "Every 1 Minute"
 msgstr ""
 
 #: ../app/Ctrls/Template/PageTemplater.php:24
-msgid "Propovoice Workplace"
+msgid "Propovoice Workspace"
 msgstr ""
 
 #: ../app/Ctrls/Template/PageTemplater.php:26
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Required form field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client copy.php:272, ../app/Ctrls/Api/Types/Client copy.php:333, ../app/Ctrls/Api/Types/Client.php:235, ../app/Ctrls/Api/Types/Contact.php:283, ../app/Ctrls/Api/Types/Org.php:210, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:246, ../app/Ctrls/Api/Types/Person.php:335, ../app/Ctrls/Api/Types/Workplace.php:225, ../app/Ctrls/Api/Types/Workplace.php:311
+#: ../app/Ctrls/Api/Types/Client copy.php:272, ../app/Ctrls/Api/Types/Client copy.php:333, ../app/Ctrls/Api/Types/Client.php:235, ../app/Ctrls/Api/Types/Contact.php:283, ../app/Ctrls/Api/Types/Org.php:210, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:246, ../app/Ctrls/Api/Types/Person.php:335, ../app/Ctrls/Api/Types/Workspace.php:225, ../app/Ctrls/Api/Types/Workspace.php:311
 msgid "Email id is not valid!"
 msgstr ""
 
@@ -66,15 +66,15 @@ msgstr ""
 msgid "Email Already exist!"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:186, ../app/Ctrls/Api/Types/Deal.php:332, ../app/Ctrls/Api/Types/Deal.php:470, ../app/Ctrls/Api/Types/Lead.php:289, ../app/Ctrls/Api/Types/Lead.php:386, ../app/Ctrls/Api/Types/Project.php:316, ../app/Ctrls/Api/Types/Project.php:456
+#: ../app/Ctrls/Api/Types/Client.php:186, ../app/Ctrls/Api/Types/Deal.php:363, ../app/Ctrls/Api/Types/Deal.php:501, ../app/Ctrls/Api/Types/Lead.php:289, ../app/Ctrls/Api/Types/Lead.php:386, ../app/Ctrls/Api/Types/Project.php:316, ../app/Ctrls/Api/Types/Project.php:456
 msgid "Contact info is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:231, ../app/Ctrls/Api/Types/Contact.php:279, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:206, ../app/Ctrls/Api/Types/Org.php:293, ../app/Ctrls/Api/Types/Person.php:242, ../app/Ctrls/Api/Types/Person.php:331, ../app/Ctrls/Api/Types/Workplace.php:221, ../app/Ctrls/Api/Types/Workplace.php:307
+#: ../app/Ctrls/Api/Types/Client.php:231, ../app/Ctrls/Api/Types/Contact.php:279, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:206, ../app/Ctrls/Api/Types/Org.php:293, ../app/Ctrls/Api/Types/Person.php:242, ../app/Ctrls/Api/Types/Person.php:331, ../app/Ctrls/Api/Types/Workspace.php:221, ../app/Ctrls/Api/Types/Workspace.php:307
 msgid "Name field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Deal.php:354
+#: ../app/Ctrls/Api/Types/Deal.php:385
 msgid "Please select a stage"
 msgstr ""
 

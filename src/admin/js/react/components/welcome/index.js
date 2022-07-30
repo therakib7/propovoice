@@ -112,7 +112,7 @@ export default class Welcome extends Component {
 
                 <div className="pi-container">
                     <div className="pi-logo-content" style={{ justifyContent: 'center' }}>
-                        <img src={ncpi.assetImgUri + 'logo.png'} />
+                        <img src={ncpi.assetImgUri + 'site-logo.png'} />
                         <strong >Propovoice</strong>
                     </div>
 

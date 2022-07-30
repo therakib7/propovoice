@@ -84,7 +84,7 @@ class Form extends Component {
         //condition added to stop multiple rendering 
         if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
-                
+
                 let form = { ...this.props.data }
                 if (this.props.modalType == 'move') {
                     form.lead_id = form.id;
@@ -92,22 +92,22 @@ class Form extends Component {
                 }
 
                 form.first_name = (form.person) ? form.person.first_name : '';
-                if (form.person) {  
+                if (form.person) {
                     form.person_id = (form.person) ? form.person.id : null;
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
-                } else { 
+                } else {
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
-                } 
-                form.org_name = (form.org) ? form.org.name : ''; 
+                }
+                form.org_name = (form.org) ? form.org.name : '';
 
-                if ( form.org ) {
+                if (form.org) {
                     form.org_id = (form.org) ? form.org.id : null;
                 }
-                
+
                 this.setState({ form });
             }
         } else {
@@ -131,7 +131,7 @@ class Form extends Component {
 
         if (form.stage_id) {
             form.stage_id = form.stage_id.id;
-        } 
+        }
 
         if (form.tags.length) {
             let finalArray = form.tags.map(function (obj) {
@@ -182,7 +182,7 @@ class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-        if ( ! val ) return;
+        if (!val) return;
         if (type == 'person') {
             form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
@@ -197,7 +197,7 @@ class Form extends Component {
                 form.mobile = (val) ? val.mobile : '';
                 form.web = (val) ? val.web : '';
             }
-        } 
+        }
 
         this.setState({ form });
     }
@@ -249,44 +249,44 @@ class Form extends Component {
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
-                            <div className="pi-form-style-one"> 
+                            <div className="pi-form-style-one">
                                 {/* {!this.props.reload && <>  */}
-                                    <Contact
-                                        first_name={form.first_name}
-                                        org_name={form.org_name}
-                                        onChange={this.handleContactChange}
-                                        onSelect={this.handleContactSelect}
-                                    />
+                                <Contact
+                                    first_name={form.first_name}
+                                    org_name={form.org_name}
+                                    onChange={this.handleContactChange}
+                                    onSelect={this.handleContactSelect}
+                                />
 
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label htmlFor="form-email">
-                                                Email
-                                            </label>
-                                            <input
-                                                id="form-email"
-                                                type="email"
-                                                name="email"
-                                                required
-                                                value={form.email}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-
-                                        <div className="col-lg">
-                                            <label htmlFor="form-mobile">
-                                                Mobile Number
-                                            </label>
-
-                                            <input
-                                                id="form-mobile"
-                                                type="text"
-                                                name="mobile"
-                                                value={form.mobile}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label htmlFor="form-email">
+                                            Email
+                                        </label>
+                                        <input
+                                            id="form-email"
+                                            type="email"
+                                            name="email"
+                                            required
+                                            value={form.email}
+                                            onChange={this.handleChange}
+                                        />
                                     </div>
+
+                                    <div className="col-lg">
+                                        <label htmlFor="form-mobile">
+                                            Mobile Number
+                                        </label>
+
+                                        <input
+                                            id="form-mobile"
+                                            type="text"
+                                            name="mobile"
+                                            value={form.mobile}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
                                 {/* </>} */}
 
                                 <div className="row">
@@ -355,7 +355,7 @@ class Form extends Component {
 
                                 </div>
 
-                                <div className="row">
+                                {!wage.length && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-probability">
                                             Probability <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
@@ -371,7 +371,7 @@ class Form extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div>
+                                </div>}
 
                                 <div className="row">
                                     <div className="col-md">

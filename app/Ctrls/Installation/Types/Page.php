@@ -9,7 +9,7 @@ class Page {
     }   
 
     function create_custom_page() {
-        //Workplace pro  
+        //Workspace pro  
         //Estimate
         //Invoice
         //Proposal

@@ -14,7 +14,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Project Title
+                    Title
                 </th>
                 <th>
                     <svg
@@ -126,10 +126,10 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)}>{row.title}</td>
-                <td onClick={() => handleOverview(row.id)}>{(row.person) ? row.person.email : row.org.email}</td> 
-                <td onClick={() => handleOverview(row.id)}>${row.budget}</td>
-                <td onClick={() => handleOverview(row.id)}>{row.probability}%</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.title}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td> 
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>${row.budget}</td>
+                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.probability}%</td>
                 <td><span className="pi-badge">{row.stage_id && row.stage_id.label}</span></td>
                 <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pi-action">

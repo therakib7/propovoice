@@ -14,10 +14,10 @@ class Taxonomy
     {
         //when install set workspace for all previous data
 
-        //Workplace pro 
+        //Workspace pro 
         $data = array(
             'post_type'     => 'ndpi_workspace',
-            'post_title'    => 'Workplace',
+            'post_title'    => 'Workspace',
             'post_content'  => '',
             'post_status'   => 'publish', //TODO: is it public or private for workspace
             'post_author'   => get_current_user_id()
@@ -56,42 +56,40 @@ class Taxonomy
             );
 
             if (!is_wp_error($pipeline_add)) {
-                update_term_meta($pipeline_add['term_id'], 'tax_pos', $pipeline_add['term_id']);
-            }
+                update_term_meta($pipeline_add['term_id'], 'tax_pos', $pipeline_add['term_id']); 
 
-            $pipeline_id = isset($pipeline_add['term_id']) ? $pipeline_add['term_id'] : 0;
+                $pipeline_id = isset($pipeline_add['term_id']) ? $pipeline_add['term_id'] : 0; 
 
+                $temp_stage = [
+                    'Opportunity',
+                    'Contracting',
+                    'Engaging',
+                    'Proposing',
+                    'Closing Won',
+                    'Lost',
+                ];
 
-            $temp_stage = [
-                'Opportunity',
-                'Contracting',
-                'Engaging',
-                'Proposing',
-                'Closing Won',
-                'Lost',
-            ];
+                foreach ($temp_stage as $stage) {
+                    $stage_add = wp_insert_term(
+                        $stage, //the term
+                        'ndpi_deal_stage', //the taxonomy
+                    );
 
-            foreach ($temp_stage as $stage) {
-                $stage_add = wp_insert_term(
-                    $stage,  //the term 
-                    'ndpi_deal_stage', //the taxonomy 
-                );
+                    if (!is_wp_error($stage_add)) {
+                        update_term_meta($stage_add['term_id'], 'tax_pos', $stage_add['term_id']);
 
-                if (!is_wp_error($stage_add)) {
-                    update_term_meta($stage_add['term_id'], 'tax_pos', $stage_add['term_id']);
-
-                    //TODO: Check the stage name for specific type
-                    if ($stage == 'Closing Won') {
-                        update_term_meta($stage_add['term_id'], 'type', 'won');
-                    } else if ($stage == 'Lost') {
-                        update_term_meta($stage_add['term_id'], 'type', 'lost');
+                        //TODO: Check the stage name for specific type
+                        if ($stage == 'Closing Won') {
+                            update_term_meta($stage_add['term_id'], 'type', 'won');
+                        } elseif ($stage == 'Lost') {
+                            update_term_meta($stage_add['term_id'], 'type', 'lost');
+                        }
                     }
-                }
 
-                if (!is_wp_error($stage_add)) {
-
-                    $stage_id = isset($stage_add['term_id']) ? $stage_add['term_id'] : 0;
-                    add_term_meta($stage_id, 'deal_pipeline_id', $pipeline_id);
+                    if (!is_wp_error($stage_add)) {
+                        $stage_id = isset($stage_add['term_id']) ? $stage_add['term_id'] : 0;
+                        add_term_meta($stage_id, 'deal_pipeline_id', $pipeline_id);
+                    }
                 }
             }
         }
@@ -191,8 +189,12 @@ class Taxonomy
                     update_term_meta($term_id['term_id'], 'type', 'active');
                 }
 
+                if ($status == 'Inactive') {
+                    update_term_meta($term_id['term_id'], 'type', 'inactive');
+                }
+
                 if ($status == 'Block') {
-                    update_term_meta($term_id['term_id'], 'type', 'active');
+                    update_term_meta($term_id['term_id'], 'type', 'block');
                 }
             }
         }

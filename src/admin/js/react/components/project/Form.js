@@ -198,7 +198,7 @@ class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-        if ( ! val ) return;
+        if (!val) return;
         if (type == 'person') {
             form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
@@ -278,41 +278,41 @@ class Form extends Component {
                             <div className="pi-form-style-one">
 
                                 {/* {!this.props.reload && <> */}
-                                    <Contact
-                                        first_name={form.first_name}
-                                        org_name={form.org_name}
-                                        onChange={this.handleContactChange}
-                                        onSelect={this.handleContactSelect}
-                                    />
+                                <Contact
+                                    first_name={form.first_name}
+                                    org_name={form.org_name}
+                                    onChange={this.handleContactChange}
+                                    onSelect={this.handleContactSelect}
+                                />
 
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label htmlFor="form-email">
-                                                Email
-                                            </label>
-                                            <input
-                                                id="form-email"
-                                                type="email"
-                                                name="email"
-                                                value={form.email}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-
-                                        <div className="col-lg">
-                                            <label htmlFor="form-mobile">
-                                                Mobile Number
-                                            </label>
-
-                                            <input
-                                                id="form-mobile"
-                                                type="text"
-                                                name="mobile"
-                                                value={form.mobile}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label htmlFor="form-email">
+                                            Email
+                                        </label>
+                                        <input
+                                            id="form-email"
+                                            type="email"
+                                            name="email"
+                                            value={form.email}
+                                            onChange={this.handleChange}
+                                        />
                                     </div>
+
+                                    <div className="col-lg">
+                                        <label htmlFor="form-mobile">
+                                            Mobile Number
+                                        </label>
+
+                                        <input
+                                            id="form-mobile"
+                                            type="text"
+                                            name="mobile"
+                                            value={form.mobile}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
                                 {/* </>} */}
 
                                 <div className="row">

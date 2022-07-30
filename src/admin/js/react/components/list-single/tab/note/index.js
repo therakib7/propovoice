@@ -1,4 +1,4 @@
-
+import { useEffect } from "react";
 import Preloader from 'block/preloader/table';
 import Pagination from 'block/pagination';
 
@@ -11,6 +11,9 @@ import Table from './Table';
 import Crud from 'hoc/Crud';
 
 const Note = (props) => {
+    useEffect(() => {
+        props.getLists();
+    }, []);
     const { lists, checkedBoxes, searchVal } = props.state;
     return (
         <div className="">

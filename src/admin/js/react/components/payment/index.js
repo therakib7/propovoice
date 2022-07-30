@@ -223,15 +223,7 @@ export default class Payment extends Component {
     render() {
         const { payments, title, currentTab, currentTabTitle } = this.state;
         return (
-            <div className="ncpi-components">
-
-                {wage.length > 0 &&
-                    <>
-                        <div className="pi-setting-heading-content">
-                            <h3>Payment Info</h3>
-                            <p><b>Note:</b> In this version, You can add only bank info</p>
-                        </div>
-                    </>}
+            <div className="ncpi-components"> 
 
                 <div className="pi-payment-tab">
                     <ul className="pi-tabs">

@@ -198,7 +198,7 @@ class Form extends Component {
                             </div>
 
                             <div className="row">
-                                <div className="col">
+                                <div className="col-md-6">
                                     <label htmlFor="form-desc">
                                         Task Type:
                                     </label>
@@ -207,7 +207,7 @@ class Form extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col">
+                                <div className="col-md-6">
                                     <label htmlFor="form-desc">
                                         Task Priority:
                                     </label>
@@ -226,7 +226,7 @@ class Form extends Component {
                                         name="name"
                                         defaultValue="Add Location"
                                     />
-                                    <div className="pi-buttons pi-mt-15">
+                                    {!wage.length && <div className="pi-buttons pi-mt-15">
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-mr-10">
                                             <svg
                                                 width={17}
@@ -281,7 +281,7 @@ class Form extends Component {
                                             </svg>
                                             Connect Zoom
                                         </button>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
 
@@ -315,11 +315,11 @@ class Form extends Component {
                                 </div>
                             </div>
 
-                            <div className="row">
+                            {!wage.length && <div className="row">
                                 <div className="col">
                                     <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} />
                                 </div>
-                            </div>
+                            </div>}
                         </div>
                     </div>
                 </div>

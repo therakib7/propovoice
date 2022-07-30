@@ -190,7 +190,7 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col">
+                                    <div className="col-md-6">
                                         <label htmlFor="form-country">
                                             Country
                                         </label>
@@ -202,7 +202,7 @@ class Form extends Component {
                                         />
                                     </div>
 
-                                    <div className="col">
+                                    <div className="col-md-6">
                                         <label htmlFor="form-region">
                                             Region
                                         </label>

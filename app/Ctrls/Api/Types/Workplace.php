@@ -4,7 +4,7 @@ namespace Ncpi\Ctrls\Api\Types;
 
 use WP_Query;
 
-class Workplace
+class Workspace
 {
 
     public function __construct()
