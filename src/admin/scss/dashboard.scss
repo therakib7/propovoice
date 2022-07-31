@@ -89,7 +89,7 @@
 .pi-inv-preview-wrap {
     border: 1px solid #dfdfdf;
     margin: auto;
-    display: table;
+    //display: table;
 }
 
 .pi-inv-hidden-preview {
@@ -132,6 +132,7 @@
     background-color: #f7f8fa !important;
 
     .pi-right-content {
+
         // height: auto !important;
         .pi-right-content-data {
             padding: 55px 70px;
