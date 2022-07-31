@@ -185,7 +185,7 @@ export default class Welcome extends Component {
                                         </p>
                                     </div>
                                     <div className="row pi-item-main-content pi-mt-m-15">
-                                        <div className="col-md-6 col-lg-6">
+                                        <div className="col-md-6">
                                             <a href={ncpi.dashboard + '#/client'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
@@ -229,7 +229,7 @@ export default class Welcome extends Component {
                                                 </div>
                                             </a>
                                         </div>
-                                        <div className="col-md-6 col-lg-6">
+                                        <div className="col-md-6">
                                             <a href={ncpi.dashboard + '#/lead'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
@@ -273,7 +273,7 @@ export default class Welcome extends Component {
                                                 </div>
                                             </a>
                                         </div>
-                                        <div className="col-md-6 col-lg-6">
+                                        <div className="col-md-6">
                                             <a href={ncpi.dashboard + '#/estimate'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
@@ -315,7 +315,7 @@ export default class Welcome extends Component {
                                                 </div>
                                             </a>
                                         </div>
-                                        <div className="col-md-6 col-lg-6">
+                                        <div className="col-md-6">
                                             <a href={ncpi.dashboard + '#/invoice'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
