@@ -574,7 +574,7 @@ html {
   max-width: 100%;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 540px) {
   .col-sm {
     flex-basis: 0;
     flex-grow: 1;
@@ -1686,7 +1686,7 @@ html {
 
 @media screen and (max-width: 992px) {
   .ncpi .pi-right-content .pi-right-content-data {
-    padding: 30px 15px;
+    padding: 30px 15px !important;
   }
 }
 
@@ -2448,6 +2448,14 @@ html {
   }
 }
 
+.wp-admin {
+  overflow: hidden;
+}
+
+.wp-admin a:focus {
+  box-shadow: none;
+}
+
 .wp-admin .pi-overview-select {
   padding: 3px 35px 3px 10px !important;
 }
@@ -2647,6 +2655,10 @@ html {
   .wp-admin .pi-modal-content {
     width: 60%;
   }
+}
+
+.wp-admin .wrap {
+  margin: 0;
 }
 
 .react-datepicker {
@@ -2948,11 +2960,6 @@ ul {
   padding: 10px 20px !important;
 }
 
-.astra-theme .pi-table tr th {
-  padding: 8px 0;
-  line-height: inherit;
-}
-
 .astra-theme .pi-table tr th:first-child input[type=checkbox] {
   top: 2px;
 }
@@ -3251,6 +3258,12 @@ ul {
   border-radius: 5px;
 }
 
+@media screen and (max-width: 550px) {
+  .ncpi .pi-field-copy .pi-copy {
+    padding: 8px 12px;
+  }
+}
+
 .ncpi .pi-field-share {
   margin-top: 10px;
   text-align: center;
@@ -3272,6 +3285,14 @@ ul {
   width: 80px;
   height: 80px;
   line-height: 103px;
+}
+
+@media screen and (max-width: 550px) {
+  .ncpi .pi-field-share a span {
+    width: 70px;
+    height: 70px;
+    line-height: 98px;
+  }
 }
 
 .ncpi .pi-field-share p {
@@ -4501,7 +4522,6 @@ ul {
   font-weight: 500;
   color: #4A5568;
   outline: none;
-  background: transparent;
   -webkit-appearance: auto;
   padding: 0px 3px 0 10px;
 }
