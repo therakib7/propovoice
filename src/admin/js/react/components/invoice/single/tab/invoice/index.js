@@ -876,7 +876,7 @@ class Invoice extends Component {
 															</div>
 														</div>
 
-														<div className="pi-info-form-list">
+														{false && <div className="pi-info-form-list">
 															<div className="pi-info-lavel">
 																<label htmlFor="info-currency">Currency:</label>
 															</div>
@@ -890,7 +890,7 @@ class Invoice extends Component {
 																// onChange={() => this.changeCurrency}
 																/>
 															</div>
-														</div>
+														</div>}
 
 													</div>
 													{/* ./ pi-info-form */}

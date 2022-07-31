@@ -2,9 +2,9 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 // import Style from './style.scoped.scss' 
 import Spinner from 'block/preloader/spinner';
-import WithApi from 'hoc/Api'; 
+import WithApi from 'hoc/Api';
 
-const General = lazy(() => import('./tab/general')); 
+const General = lazy(() => import('./tab/general'));
 const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
 const Deal = lazy(() => import('./tab/deal'));
@@ -12,12 +12,13 @@ const Estimate = lazy(() => import('./tab/estimate'));
 const Invoice = lazy(() => import('./tab/invoice'));
 const Project = lazy(() => import('./tab/project'));
 const Contact = lazy(() => import('./tab/contact'));
-const Tag = lazy(() => import('./tab/tag')); 
- 
+const Tag = lazy(() => import('./tab/tag'));
+const License = lazy(() => import('./tab/license'));
+
 //subtab: email 
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
-const EmailInvoice = lazy(() => import('./tab/email/invoice')); 
-const EmailSocial = lazy(() => import('./tab/email/social')); 
+const EmailInvoice = lazy(() => import('./tab/email/invoice'));
+const EmailSocial = lazy(() => import('./tab/email/social'));
 
 const Payment = lazy(() => import('components/payment'));
 
@@ -34,11 +35,49 @@ const SettingWrap = (props) => {
     }
 
     const tab_data = {
-        business: {
-            label: 'Business'
+        general: {
+            label: 'General'
+        },
+        task: {
+            label: 'Task & Activity'
+        },
+        lead: {
+            label: 'Lead'
+        },
+        deal: {
+            label: 'Deal'
+        },
+        estimate: {
+            label: 'Estimate'
+        },
+        invoice: {
+            label: 'Invoice'
+        },
+        project: {
+            label: 'Project'
         },
         payment: {
             label: 'Payment'
+        },
+        email: {
+            label: 'Email Template',
+            subtabs: {
+                estimate: {
+                    label: 'Estimate',
+                },
+                invoice: {
+                    label: 'Invoice'
+                },
+                social: {
+                    label: 'Social'
+                },
+            },
+        },
+        contact: {
+            label: 'Contact'
+        },
+        tag: {
+            label: 'Tag'
         },
     };
 
@@ -48,55 +87,12 @@ const SettingWrap = (props) => {
 
     useEffect(() => {
         if (!wage.length) {
-            const new_tab_data = {
-                general: {
-                    label: 'General'
-                },
-                task: {
-                    label: 'Task & Activity'
-                },
-                lead: {
-                    label: 'Lead'
-                },
-                deal: {
-                    label: 'Deal'
-                },
-                estimate: {
-                    label: 'Estimate'
-                },
-                invoice: {
-                    label: 'Invoice'
-                },
-                project: {
-                    label: 'Project'
-                }, 
-                payment: {
-                    label: 'Payment'
-                },
-                email: {
-                    label: 'Email Template',
-                    subtabs: {
-                        estimate: {
-                            label: 'Estimate',
-                        },
-                        invoice: {
-                            label: 'Invoice'
-                        },
-                        social: {
-                            label: 'Social'
-                        },
-                    },
-                },
-                contact: {
-                    label: 'Contact'
-                },
-                tag: {
-                    label: 'Tag'
-                },
-            };
-            setTabs(new_tab_data);
+            let new_tabs = { ...tabs }
+            new_tabs.license = {
+                label: 'License Manager'
+            }
+            setTabs(new_tabs);
         }
-
     }, []);
 
     const routeChange = (tab, subtab = null) => {
@@ -173,27 +169,23 @@ const SettingWrap = (props) => {
 
                     <div className='col-md-9'>
                         <div className="pi-setting-tab-content">
-                            {/* <div className="pi-setting-heading-content">
-                                <h3>Payment Info</h3>
-                                <p>note: in this version, you can add only bank info in your invoice</p>
-                            </div> */}
-
                             <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} Settings</h4>
 
-                            <Suspense fallback={<Spinner />}> 
+                            <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && <General />}
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
                                 {currentTab == 'deal' && <Deal />}
                                 {currentTab == 'estimate' && <Estimate />}
                                 {currentTab == 'invoice' && <Invoice />}
-                                {currentTab == 'project' && <Project />}  
-                                {currentTab == 'payment' && <Payment />} 
+                                {currentTab == 'project' && <Project />}
+                                {currentTab == 'payment' && <Payment />}
                                 {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
                                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
-                                {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />} 
+                                {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
                                 {currentTab == 'contact' && <Contact />}
-                                {currentTab == 'tag' && <Tag />} 
+                                {currentTab == 'tag' && <Tag />}
+                                {currentTab == 'license' && <License {...props} />}
                             </Suspense>
                         </div>
                     </div>
@@ -201,6 +193,6 @@ const SettingWrap = (props) => {
             </div>
         </>
     );
-} 
+}
 
 export default WithApi(SettingWrap); 

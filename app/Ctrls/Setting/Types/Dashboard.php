@@ -86,14 +86,13 @@ class Dashboard
                 array($this, 'render')
             );
         }
-
-        $setting_main = function_exists('ncpip') ? 'general' : 'business';
+ 
         add_submenu_page(
             'ncpi',
             esc_html__('Settings', 'propovoice'),
             esc_html__('Settings', 'propovoice'),
             'manage_options',
-            'ncpi#/setting/' . $setting_main,
+            'ncpi#/setting/general',
             array($this, 'render')
         );
 

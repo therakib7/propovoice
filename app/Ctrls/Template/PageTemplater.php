@@ -21,7 +21,7 @@ class PageTemplater
 	{ 
 		//TODO: dashboard is pro features
 		if ( function_exists('ncpip') ) {
-			$post_templates['dashboard-template.php'] = esc_html__('Propovoice Workplace', 'propovoice');
+			$post_templates['dashboard-template.php'] = esc_html__('Propovoice Workspace', 'propovoice');
 		}
 		$post_templates['invoice-template.php'] = esc_html__('Propovoice Client Invoice', 'propovoice');
 		$post_templates['estimate-template.php'] = esc_html__('Propovoice Client Estimate', 'propovoice');
