@@ -185,55 +185,7 @@ export default class Welcome extends Component {
                                         </p>
                                     </div>
                                     <div className="row pi-item-main-content pi-mt-m-15">
-<<<<<<< HEAD
                                         <div className="col-md-6">
-                                            <a href={ncpi.dashboard + '#/client'}>
-                                                <div className="pi-item-content pi-bg-stroke">
-                                                    <div className="pi-add-image-content">
-                                                        <svg
-                                                            width={36}
-                                                            height={32}
-                                                            viewBox="0 0 36 32"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <path
-                                                                d="M18 12.2344C21.3784 12.2344 24.1172 9.49562 24.1172 6.11719C24.1172 2.73876 21.3784 0 18 0C14.6216 0 11.8828 2.73876 11.8828 6.11719C11.8828 9.49562 14.6216 12.2344 18 12.2344Z"
-                                                                fill="#4C6FFF"
-                                                            />
-                                                            <path
-                                                                d="M30.375 12.2343C32.5108 12.2343 34.2422 10.5029 34.2422 8.36713C34.2422 6.23134 32.5108 4.49994 30.375 4.49994C28.2392 4.49994 26.5078 6.23134 26.5078 8.36713C26.5078 10.5029 28.2392 12.2343 30.375 12.2343Z"
-                                                                fill="#C1CDFF"
-                                                            />
-                                                            <path
-                                                                d="M5.625 12.2343C7.76079 12.2343 9.49219 10.5029 9.49219 8.36713C9.49219 6.23134 7.76079 4.49994 5.625 4.49994C3.48921 4.49994 1.75781 6.23134 1.75781 8.36713C1.75781 10.5029 3.48921 12.2343 5.625 12.2343Z"
-                                                                fill="#C1CDFF"
-                                                            />
-                                                            <path
-                                                                d="M9.43523 15.7071C7.91297 14.4599 6.53435 14.625 4.77422 14.625C2.14172 14.625 0 16.7541 0 19.3704V27.0492C0 28.1855 0.927422 29.1094 2.06789 29.1094C6.99159 29.1094 6.39844 29.1985 6.39844 28.897C6.39844 23.4558 5.75395 19.4655 9.43523 15.7071Z"
-                                                                fill="#C1CDFF"
-                                                            />
-                                                            <path
-                                                                d="M19.6741 14.6531C16.5998 14.3966 13.9275 14.656 11.6226 16.5585C7.76549 19.6481 8.50777 23.808 8.50777 28.897C8.50777 30.2434 9.60324 31.3593 10.9701 31.3593C25.8118 31.3593 26.4025 31.8381 27.2826 29.8891C27.5713 29.23 27.4921 29.4394 27.4921 23.1342C27.4921 18.1261 23.1558 14.6531 19.6741 14.6531Z"
-                                                                fill="#4C6FFF"
-                                                            />
-                                                            <path
-                                                                d="M31.2257 14.6249C29.4559 14.6249 28.0849 14.4615 26.5647 15.707C30.2185 19.4375 29.6015 23.1556 29.6015 28.8969C29.6015 29.2003 29.1091 29.1093 33.8582 29.1093C35.0395 29.1093 35.9999 28.1523 35.9999 26.976V19.3703C35.9999 16.754 33.8582 14.6249 31.2257 14.6249Z"
-                                                                fill="#C1CDFF"
-                                                            />
-                                                        </svg>
-                                                    </div>
-                                                    <div className="pi-add-item-text">
-                                                        <h3>Add Client</h3>
-                                                        <p>Easily add new client with just a few clicks.</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div className="col-md-6">
-=======
-                                        <div className="col-md-6 col-lg-6">
->>>>>>> f3406be88d67391576ead9dfcf3aa12878f072c8
                                             <a href={ncpi.dashboard + '#/lead'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
@@ -277,10 +229,7 @@ export default class Welcome extends Component {
                                                 </div>
                                             </a>
                                         </div>
-<<<<<<< HEAD
                                         <div className="col-md-6">
-=======
-                                        <div className="col-md-6 col-lg-6">
                                             <a href={ncpi.dashboard + '#/client'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
@@ -324,8 +273,7 @@ export default class Welcome extends Component {
                                                 </div>
                                             </a>
                                         </div>
-                                        <div className="col-md-6 col-lg-6">
->>>>>>> f3406be88d67391576ead9dfcf3aa12878f072c8
+                                        <div className="col-md-6">
                                             <a href={ncpi.dashboard + '#/estimate'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
