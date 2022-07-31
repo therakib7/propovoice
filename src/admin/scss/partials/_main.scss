@@ -1022,7 +1022,7 @@ html {
   text-align: left;
 }
 .ncpi .pi-table .pi-dropdown a:hover {
-  background-color: var(--bg-color-deutzia-white);
+  background-color: var(--pi-bg-color-pearl);
   color: black;
 }
 .ncpi .pi-table .pi-show {
@@ -2075,7 +2075,7 @@ html {
 .ncpi .pi-dropdown-content {
   display: none;
   position: absolute;
-  min-width: 180px;
+  min-width: 200px;
   overflow: auto;
   box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.13);
   z-index: 1;
@@ -2105,7 +2105,7 @@ html {
   margin-left: 0px !important;
 }
 .ncpi .pi-dropdown-content a:hover {
-  background-color: var(--bg-color-deutzia-white);
+  background-color: var(--pi-bg-color-pearl);
   color: #2D3748;
 }
 .ncpi .pi-dropdown-content a {
@@ -2180,6 +2180,11 @@ input[type=checkbox] {
 }
 .wp-admin a:focus {
   box-shadow: none;
+}
+.wp-admin .pi-dropdown-content button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .wp-admin .pi-overview-select {
   padding: 3px 35px 3px 10px !important;

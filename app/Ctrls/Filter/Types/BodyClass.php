@@ -15,7 +15,7 @@ class BodyClass
 	{
 		if (
 			is_page_template([
-				'dashboard-template.php',
+				'workspace-template.php',
 				'invoice-template.php',
 				'estimate-template.php'
 			])

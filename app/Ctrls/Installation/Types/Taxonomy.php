@@ -357,26 +357,26 @@ class Taxonomy
         $project_status = [
             [
                 'label' => 'New',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#F4F2FE',
+                'color' => '#8775EC',
                 'type' => '',
             ],
             [
                 'label' => 'In Progress',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#ECF9FC',
+                'color' => '#33C3E2',
                 'type' => '',
             ],
             [
                 'label' => 'Done',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#E0F0EC',
+                'color' => '#4BB99E',
                 'type' => '',
             ],
             [
                 'label' => 'Completed',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#DDFFDE',
+                'color' => '#0BA24B',
                 'type' => 'completed',
             ]
         ];

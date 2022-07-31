@@ -864,7 +864,7 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: ../views/template/dashboard-template.php:3
+#: ../views/template/workspace-template.php:3
 msgid "Propovoice Dashboard"
 msgstr ""
 
