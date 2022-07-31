@@ -21,7 +21,7 @@ class PageTemplater
 	{ 
 		//TODO: dashboard is pro features
 		if ( function_exists('ncpip') ) {
-			$post_templates['dashboard-template.php'] = esc_html__('Propovoice Workspace', 'propovoice');
+			$post_templates['workspace-template.php'] = esc_html__('Propovoice Workspace', 'propovoice');
 		}
 		$post_templates['invoice-template.php'] = esc_html__('Propovoice Client Invoice', 'propovoice');
 		$post_templates['estimate-template.php'] = esc_html__('Propovoice Client Estimate', 'propovoice');
@@ -35,8 +35,8 @@ class PageTemplater
 	 */
 	function load_plugin_template($template)
 	{ 
-		if (get_page_template_slug() === 'dashboard-template.php') {
-			$custom_template = ncpi()->plugin_path() . '/views/template/dashboard-template.php';
+		if (get_page_template_slug() === 'workspace-template.php') {
+			$custom_template = ncpi()->plugin_path() . '/views/template/workspace-template.php';
 			if (file_exists($custom_template)) {
 				return $custom_template;
 			}

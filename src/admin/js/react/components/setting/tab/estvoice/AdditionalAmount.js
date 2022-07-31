@@ -8,7 +8,7 @@ export default class AdditionalAmount extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { 
+        this.state = {
             form: {
                 item_tax: false,
                 // item_tax_val_type: '',
@@ -31,9 +31,14 @@ export default class AdditionalAmount extends Component {
     handleChange = (e) => {
         let form = { ...this.state.form }
         const target = e.target;
-		const name = target.name;
-		const value = target.type == 'checkbox' ? target.checked : target.value;
-		form[name] = value;
+        const name = target.name;
+        const value = target.type == 'checkbox' ? target.checked : target.value;
+        form[name] = value;
+
+        if ( wage.length > 0 && ( name == 'item_tax' ) ) {
+			alert('This is pro features');
+			return;
+		}
 
         this.setState({ form }, () => {
             let form = this.state.form;
@@ -49,7 +54,7 @@ export default class AdditionalAmount extends Component {
                 } */
             });
         });
-    } 
+    }
 
     render() {
         const form = this.state.form;
@@ -57,7 +62,11 @@ export default class AdditionalAmount extends Component {
             <div className="pi-form-style-one">
                 <div className="row">
                     <div className="col">
-                        <label id="form-item_tax">Each Item Tax Field</label>
+                        <label id="form-item_tax">Each Item Tax Field
+                            {wage.length > 0 && <>
+                                <span className="pi-pro-label">PRO</span>
+                            </>}
+                        </label>
                         <div className="pi-field-switch pi-ml-10">
                             <label className='pi-switch'>
                                 <input type='checkbox'

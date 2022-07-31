@@ -226,7 +226,7 @@ class Form extends Component {
                                         name="name"
                                         defaultValue="Add Location"
                                     />
-                                    {!wage.length && <div className="pi-buttons pi-mt-15">
+                                    { false && !wage.length && <div className="pi-buttons pi-mt-15">
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-mr-10">
                                             <svg
                                                 width={17}
