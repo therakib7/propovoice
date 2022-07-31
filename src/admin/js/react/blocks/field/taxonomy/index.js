@@ -69,8 +69,8 @@ const Taxonomy = (props) => {
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
 
-		if ( wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) ) {
-			alert('pro');
+		if ( type == 'new' && wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) ) {
+			alert('This is pro features');
 			return;
 		}
 

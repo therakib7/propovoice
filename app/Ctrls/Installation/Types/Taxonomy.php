@@ -157,8 +157,8 @@ class Taxonomy
                     ],
                     [
                         'label' => 'Closing Won',
-                        'bg_color' => '#E7ECFE',
-                        'color' => '#4B6EFE',
+                        'bg_color' => '#DDFFDE',
+                        'color' => '#0BA24B',
                         'type' => 'won',
                     ],
                     [

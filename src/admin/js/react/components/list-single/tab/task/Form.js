@@ -185,7 +185,7 @@ class Form extends Component {
                                 >
                                     <path
                                         d="M10 1.5V7M1 19V15V19ZM1 15V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H9.5L10.5 2H19L16 8L19 14H10.5L9.5 13H3C2.46957 13 1.96086 13.2107 1.58579 13.5858C1.21071 13.9609 1 14.4696 1 15V15Z"
-                                        stroke={form.priority_id && form.priority_id.bg_color ? form.priority_id.bg_color : '#CBD5E0'}
+                                        stroke={form.priority_id && form.priority_id.color ? form.priority_id.color : '#CBD5E0'}
                                         strokeWidth="1.5"
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
@@ -206,14 +206,14 @@ class Form extends Component {
                                             >
                                                 <path
                                                     d="M3.75 20.25V4.5"
-                                                    stroke={item.bg_color ? item.bg_color : "#CBD5E0"}
+                                                    stroke={item.color ? item.color : "#CBD5E0"}
                                                     strokeWidth={2}
                                                     strokeLinecap="round"
                                                     strokeLinejoin="round"
                                                 />
                                                 <path
                                                     d="M3.75 15.75C9.75 11.25 14.25 20.25 20.25 15.75V4.49997C14.25 8.99997 9.75 -3.40939e-05 3.75 4.49997"
-                                                    fill={item.bg_color ? item.bg_color : "#CBD5E0"}
+                                                    fill={item.color ? item.color : "#CBD5E0"}
                                                 />
                                             </svg>
                                             {item.label}

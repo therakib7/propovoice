@@ -35,6 +35,12 @@ const Taxonomy = (props) => {
 
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
+
+		if ( type == 'new' && wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) ) {
+			alert('This is pro features');
+			return;
+		}
+
 		setModal(true);
 		if (type == 'new') {
 			setModalType(type);
@@ -280,7 +286,7 @@ const Taxonomy = (props) => {
 						/>
 					</svg>
 					Add new {props.title} 
-					{wage.length > 0 && <>
+					{wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) && <>
 						<span className="pi-pro-label">PRO</span>
 					</>}
 				</button>

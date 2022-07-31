@@ -3,7 +3,7 @@ Contributors: propovoice, nurcreation, therakib7
 Donate link:
 Tags: proposal, estimate, invoice, payment, crm, project, client, template, transaction, billing, automation, management
 Requires at least: 5.0
-Tested up to: 5.9
+Tested up to: 6.0
 Stable tag: 0.1.6
 Requires PHP: 7.1
 License: GPLv3
