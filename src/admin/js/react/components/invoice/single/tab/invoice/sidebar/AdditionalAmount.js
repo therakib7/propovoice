@@ -40,17 +40,28 @@ export default (props) => {
     }
 
     const itemTaxChange = (e) => {
+
+        if ( wage.length > 0 ) {
+			alert('This is pro features');
+			return;
+		}
+        
         props.itemTaxChange(e);
     }
 
     const extra_field = props.data;
     return (
-        <> 
+        <>
             <div className="pi-form-accordion pi-additional">
                 <div className="pi-form-style-one">
                     <div className="row">
-                        <div className="col" style={{marginBottom: '10px'}}>
-                            <label id="form-item_tax">Each Item Tax Field</label>
+                        <div className="col" style={{ marginBottom: '10px' }}>
+                            <label id="form-item_tax">
+                                Each Item Tax Field
+                                {wage.length > 0 && <>
+                                    <span className="pi-pro-label">PRO</span>
+                                </>}
+                            </label>
                             <div className="pi-field-switch pi-ml-10">
                                 <label className='pi-switch'>
                                     <input type='checkbox'

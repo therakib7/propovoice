@@ -31,7 +31,7 @@ class AssetContoller
     {
         if (
             is_page_template([
-                'dashboard-template.php',
+                'workspace-template.php',
                 'invoice-template.php',
                 'estimate-template.php'
             ])
@@ -52,7 +52,7 @@ class AssetContoller
             (isset($_GET['page']) && $_GET['page'] == 'ncpi-welcome') ||
             (isset($_GET['page']) && $_GET['page'] == 'ncpi') ||
             is_page_template([
-                'dashboard-template.php',
+                'workspace-template.php',
                 'invoice-template.php',
                 'estimate-template.php'
             ])
@@ -91,7 +91,7 @@ class AssetContoller
         if (
             (isset($_GET['page']) && $_GET['page'] == 'ncpi') ||
             is_page_template([
-                'dashboard-template.php',
+                'workspace-template.php',
                 'invoice-template.php',
                 'estimate-template.php'
             ])

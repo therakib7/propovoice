@@ -107,7 +107,7 @@ function Pipeline(props) {
 				{Object.entries(columns).map(([columnId, column], index) => {
 					return (
 						<div className="pi-board-column" key={columnId}>
-							<div className="pi-board-column-title pi-bg-shadow" style={{ borderColor: column.bg_color, color: column.bg_color }}>
+							<div className="pi-board-column-title pi-bg-shadow" style={{ borderColor: column.color, color: column.color }}>
 								<h4 className="">{column.name}</h4>
 								<div className="pi-action-content">
 									<button className={(columnId == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(columnId)}>
