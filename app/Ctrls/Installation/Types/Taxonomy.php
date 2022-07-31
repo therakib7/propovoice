@@ -31,20 +31,20 @@ class Taxonomy
         $lead_level = [
             [
                 'label' => 'Hot',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#FFE8F1',
+                'color' => '#EE0D69',
                 'type' => '',
             ],
             [
                 'label' => 'Warm',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#FFEED9',
+                'color' => '#FF6B00',
                 'type' => '',
             ],
             [
                 'label' => 'Cold',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#E7ECFE',
+                'color' => '#4B6EFE',
                 'type' => '',
             ]
         ];
@@ -214,6 +214,47 @@ class Taxonomy
 
             if (!is_wp_error($term_id)) {
                 update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
+            }
+        }
+
+        //task priority
+        $task_priority = [
+            [
+                'label' => 'High',
+                'bg_color' => '',
+                'color' => '',
+                'type' => '',
+            ],
+            [
+                'label' => 'Medium',
+                'bg_color' => '',
+                'color' => '',
+                'type' => '',
+            ],
+            [
+                'label' => 'High',
+                'bg_color' => '',
+                'color' => '',
+                'type' => '',
+            ]
+        ];
+        foreach ($task_priority as $priority) {
+            $term_id = wp_insert_term(
+                $priority['label'], // the term
+                'ndpi_task_priority', // the taxonomy
+            );
+
+            if (!is_wp_error($term_id)) {
+                update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
+                if ($priority['bg_color']) {
+                    update_term_meta($term_id['term_id'], 'bg_color', $priority['bg_color']);
+                }
+                if ($priority['color']) {
+                    update_term_meta($term_id['term_id'], 'color', $priority['color']);
+                }
+                if ($priority['type']) {
+                    update_term_meta($term_id['term_id'], 'type', $priority['type']);
+                }
             }
         }
 
