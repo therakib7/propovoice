@@ -11,8 +11,10 @@ export default class License extends Component {
         this.state = {
             form: {
                 key: '',
-                status: ''
-            }
+                type: 'activate_license',
+                status: '',
+            },
+            btn_txt: 'Activate License'
         };
     }
 
@@ -21,7 +23,7 @@ export default class License extends Component {
     componentDidMount() {
         this.props.getAll('pro-settings', 'tab=license').then(resp => {
             if (resp.data.success) {
-                this.setState({ form: resp.data.data });
+                // this.setState({ form: resp.data.data });
             }
         });
     }
@@ -39,12 +41,12 @@ export default class License extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let form = this.state.form;
+        let form = { ...this.state.form }
         form.tab = 'license';
-
         this.props.create('pro-settings', form).then(resp => {
             if (resp.data.success) {
-                toast.success(this.context.CrudMsg.update);
+                toast.success(resp.data.data.msg);
+                this.setState({ btn_txt: resp.data.data.value })
             } else {
                 resp.data.data.forEach(function (value, index, array) {
                     toast.error(value);
@@ -76,7 +78,7 @@ export default class License extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Activate License
+                            {this.state.btn_txt}
                         </button>
                     </div>
                 </div>

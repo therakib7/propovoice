@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === 'package') {
             'app',
             'assets',
             'languages',
-            'templates',
+            //'templates',
             'vendor',
             'views',
             'index.php',
