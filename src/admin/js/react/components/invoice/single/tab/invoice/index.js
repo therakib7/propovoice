@@ -818,7 +818,7 @@ class Invoice extends Component {
 												<div className="col-12 col-md-6">
 													<div className="pi-info-logo">
 														{this.state.fromData && this.state.fromData.logo && <img src={this.state.fromData.logo.src} />}
-														{this.state.fromData && !this.state.fromData.logo && <div className="pi-upload pi-cursor-pointer">
+														{false && this.state.fromData && !this.state.fromData.logo && <div className="pi-upload pi-cursor-pointer">
 															<svg
 																width={18}
 																height={18}

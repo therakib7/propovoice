@@ -138,7 +138,7 @@ class Taxonomy
 
                     if (
                         $taxonomy == 'extra_amount'
-                    ) { // for deal won, deal lost, project complted, task done, contact active, block
+                    ) { // for, tax, fee, discount
                         $term_property['extra_amount_type'] = get_term_meta($single->term_id, 'extra_amount_type', true);
                         $term_property['val_type'] = get_term_meta($single->term_id, 'val_type', true);
                         $term_property['show'] = get_term_meta($single->term_id, 'show', true);

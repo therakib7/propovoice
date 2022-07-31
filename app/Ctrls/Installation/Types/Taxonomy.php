@@ -194,6 +194,48 @@ class Taxonomy
             }
         }
 
+        //estvoice extra_amount
+        $estvoice_extra_amount = [
+            [
+                'label' => 'Tax',
+                'extra_amount_type' => 'tax',
+                'val_type' => 'fixed',
+                'show' => true,
+            ],
+            [
+                'label' => 'Fee',
+                'extra_amount_type' => 'fee',
+                'val_type' => 'fixed',
+                'show' => true,
+            ],
+            [
+                'label' => 'Discount',
+                'extra_amount_type' => 'discount',
+                'val_type' => 'fixed',
+                'show' => true,
+            ]  
+        ];
+        foreach ($estvoice_extra_amount as $extra_amount) {
+            $term_id = wp_insert_term(
+                $extra_amount['label'], // the term
+                'ndpi_extra_amount', // the taxonomy
+            );
+
+            if (!is_wp_error($term_id)) {
+                update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
+                if ($extra_amount['extra_amount_type']) {
+                    update_term_meta($term_id['term_id'], 'extra_amount_type', $extra_amount['extra_amount_type']);
+                }
+                if ($extra_amount['val_type']) {
+                    update_term_meta($term_id['term_id'], 'val_type', $extra_amount['val_type']);
+                }
+                if ($extra_amount['show']) {
+                    update_term_meta($term_id['term_id'], 'show', $extra_amount['show']);
+                }
+            }
+        }
+
+        //tag
         $temp_tag = [
             'Design',
             'Development',
