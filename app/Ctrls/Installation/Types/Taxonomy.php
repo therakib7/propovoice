@@ -27,7 +27,7 @@ class Taxonomy
             update_option('ndpi_workspace_default', $post_id);
         }
 
-        //lead
+        //lead level
         $lead_level = [
             [
                 'label' => 'Hot',
@@ -68,6 +68,53 @@ class Taxonomy
             }
         }
 
+        //lead source
+        $lead_source = [
+            [
+                'label' => 'Upwork',
+                'bg_color' => '#6fda44',
+                'color' => '#fff',
+                'type' => '',
+            ],
+            [
+                'label' => 'Behance',
+                'bg_color' => '##0057ff',
+                'color' => '#fff',
+                'type' => '',
+            ],
+            [
+                'label' => 'Dribble',
+                'bg_color' => '#ea4c89',
+                'color' => '#fff',
+                'type' => '',
+            ],
+            [
+                'label' => 'Facebook',
+                'bg_color' => '#4267B2',
+                'color' => '#fff',
+                'type' => '',
+            ]
+        ];
+        foreach ($lead_source as $source) {
+            $term_id = wp_insert_term(
+                $source['label'], // the term
+                'ndpi_lead_source', // the taxonomy
+            );
+
+            if (!is_wp_error($term_id)) {
+                update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
+                if ($source['bg_color']) {
+                    update_term_meta($term_id['term_id'], 'bg_color', $source['bg_color']);
+                }
+                if ($source['color']) {
+                    update_term_meta($term_id['term_id'], 'color', $source['color']);
+                }
+                if ($source['type']) {
+                    update_term_meta($term_id['term_id'], 'type', $source['type']);
+                }
+            }
+        }
+
         //deal
         $temp_pipeline = [
             'Deal Pipeline'
@@ -86,32 +133,38 @@ class Taxonomy
                 $temp_stage = [
                     [
                         'label' => 'Opportunity',
-                        'bg_color' => '',
-                        'color' => '',
+                        'bg_color' => '#FFF0F1',
+                        'color' => '#EBA45D',
                         'type' => '',
                     ],
                     [
                         'label' => 'Contracting',
-                        'bg_color' => '',
-                        'color' => '',
+                        'bg_color' => '#E0F0EC',
+                        'color' => '#4BB99E',
                         'type' => '',
                     ],
                     [
                         'label' => 'Engaging',
-                        'bg_color' => '',
-                        'color' => '',
+                        'bg_color' => '#F4F2FE',
+                        'color' => '#8775EC',
+                        'type' => '',
+                    ],
+                    [
+                        'label' => 'Proposing',
+                        'bg_color' => '#ECF9FC',
+                        'color' => '#33C3E2',
                         'type' => '',
                     ],
                     [
                         'label' => 'Closing Won',
-                        'bg_color' => '',
-                        'color' => '',
+                        'bg_color' => '#E7ECFE',
+                        'color' => '#4B6EFE',
                         'type' => 'won',
                     ],
                     [
                         'label' => 'Lost',
-                        'bg_color' => '',
-                        'color' => '',
+                        'bg_color' => '#FFF0F1',
+                        'color' => '#FF6771',
                         'type' => 'lost',
                     ],
                 ];
@@ -161,20 +214,20 @@ class Taxonomy
         $task_status = [
             [
                 'label' => 'Todo',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#FFF0F1',
+                'color' => '#FF6771',
                 'type' => '',
             ],
             [
                 'label' => 'In Progress',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#ECF9FC',
+                'color' => '#33C3E2',
                 'type' => '',
             ],
             [
                 'label' => 'Done',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#E0F0EC',
+                'color' => '#4BB99E',
                 'type' => 'done',
             ]
         ];
@@ -220,21 +273,21 @@ class Taxonomy
         //task priority
         $task_priority = [
             [
-                'label' => 'High',
-                'bg_color' => '',
-                'color' => '',
+                'label' => 'Low',
+                'bg_color' => '#2D3748',
+                'color' => '#CBD5E0',
                 'type' => '',
             ],
             [
                 'label' => 'Medium',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#ECF9FC',
+                'color' => '#33C3E2',
                 'type' => '',
             ],
             [
                 'label' => 'High',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#FFF0F1',
+                'color' => '#FF6771',
                 'type' => '',
             ]
         ];
@@ -310,20 +363,20 @@ class Taxonomy
         $contact_status = [
             [
                 'label' => 'Active',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#E0F0EC',
+                'color' => '#4BB99E',
                 'type' => 'active',
             ],
             [
                 'label' => 'Inactive',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#EFE7DF',
+                'color' => '#A49485',
                 'type' => 'inactive',
             ],
             [
                 'label' => 'Block',
-                'bg_color' => '',
-                'color' => '',
+                'bg_color' => '#FFF0F1',
+                'color' => '#FF6771',
                 'type' => 'block',
             ]
         ];
