@@ -102,6 +102,14 @@ class Business
             );
         }
 
+        $args['meta_query'][] = array( 
+            array(
+                'key'     => 'ws_id',
+                'value'   => ncpi()->get_workspace(),
+                'compare' => 'LIKE'
+            )
+        );
+
         $query = new WP_Query( $args );
         $total_data = $query->found_posts; //use this for pagination 
         $result = $data = [];
@@ -215,7 +223,7 @@ class Business
         $address = isset( $params['address'] ) ? sanitize_text_field( $params['address'] ) : null; 
         $zip = isset( $params['zip'] ) ? sanitize_text_field( $params['zip'] ) : null; 
         $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null;  
-        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
+        $logo = isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));
@@ -297,7 +305,7 @@ class Business
         $address = isset( $params['address'] ) ? sanitize_text_field( $params['address'] ) : null; 
         $zip = isset( $params['zip'] ) ? sanitize_text_field( $params['zip'] ) : null; 
         $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null; 
-        $logo = isset( $params['logo'] ) ? absint( $params['logo'] ) : null;
+        $logo = isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));

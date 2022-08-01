@@ -86,7 +86,7 @@ class Dashboard
                 array($this, 'render')
             );
         }
- 
+
         add_submenu_page(
             'ncpi',
             esc_html__('Settings', 'propovoice'),
@@ -98,7 +98,7 @@ class Dashboard
 
         if (function_exists('ncpip')) {
             global $submenu;
-            $permalink = Fns::client_page_url('dashboard');
+            $permalink = Fns::client_page_url('workspace');
             if ($permalink) {
                 $submenu['ncpi'][] = array('Go to Frontend', 'manage_options', $permalink);
             }

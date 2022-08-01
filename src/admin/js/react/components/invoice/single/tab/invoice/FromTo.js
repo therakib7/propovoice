@@ -42,7 +42,8 @@ class FromTo extends Component {
          */
         let args = {
             page: 1,
-            per_page: 1
+            per_page: 1,
+            default: true,
         }
         let params = new URLSearchParams(args).toString();
 
@@ -83,7 +84,6 @@ class FromTo extends Component {
                 });
             }
         }
-
     }
 
     handleContactSelect = (val) => {
@@ -101,7 +101,7 @@ class FromTo extends Component {
         }
     }
 
-    handleBusinessSubmit = business => {
+    handleBusinessSubmit = business => { 
         if (this.state.businessModalType == 'new') {
             this.props.create('businesses', business).then(resp => {
                 if (resp.data.success) {
