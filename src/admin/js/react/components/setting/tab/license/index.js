@@ -49,10 +49,10 @@ export default class License extends Component {
                 toast.success(data.msg);
                 if (data.data) {
                     form.type = data.data.type;
-                    form.expires = data.data.expires;
                     form.status = data.data.status;
+                    form.for = data.data.for;
+                    form.expires = data.data.expires;
                 }
-                console.log(form);
                 this.setState({ form })
             } else {
                 data.forEach(function (value, index, array) {
@@ -90,7 +90,16 @@ export default class License extends Component {
                                 License Status:
                                 <span className="pi-pro-label pi-bg-green">Valid</span>
                             </label>
+                        </div>
+                    </div>
 
+                    <div className="row">
+                        <div className="col">
+                            <label htmlFor="form-status">
+                                License For: <span style={{ color: '#2D3748' }}>
+                                    {form.for == '1' || form.for == '3' ? 'Freelancer' : 'Agency'}
+                                </span>
+                            </label>
                         </div>
                     </div>
 
