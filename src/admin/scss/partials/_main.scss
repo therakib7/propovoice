@@ -2448,137 +2448,137 @@ html {
   }
 }
 
-.wp-admin.ncpi {
+.wp-admin {
   overflow: hidden;
 }
 
-.wp-admin.ncpi a:focus {
+.wp-admin a:focus {
   box-shadow: none;
 }
 
-.wp-admin.ncpi .pi-dropdown-content button {
+.wp-admin .pi-dropdown-content button {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.wp-admin.ncpi .pi-overview-select {
+.wp-admin .pi-overview-select {
   padding: 3px 35px 3px 10px !important;
 }
 
-.wp-admin.ncpi .pi-search-form ul li {
+.wp-admin .pi-search-form ul li {
   padding: 3px 5px !important;
 }
 
-.wp-admin.ncpi .pi-search-btn .pi-search-form ul li:last-child svg {
+.wp-admin .pi-search-btn .pi-search-form ul li:last-child svg {
   top: 7px;
 }
 
-.wp-admin.ncpi .pi-table tr th:first-child input[type=checkbox] {
+.wp-admin .pi-table tr th:first-child input[type=checkbox] {
   top: 1px !important;
 }
 
-.wp-admin.ncpi .pi-info-table .pi-field-checkbox select {
+.wp-admin .pi-info-table .pi-field-checkbox select {
   padding: 5px 6px !important;
   height: 35px;
 }
 
-.wp-admin.ncpi .pi-info-form-list input[type=number],
-.wp-admin.ncpi .pi-info-form-list input[type=text] {
+.wp-admin .pi-info-form-list input[type=number],
+.wp-admin .pi-info-form-list input[type=text] {
   padding: 6px 6px !important;
 }
 
-.wp-admin.ncpi .pi-info-form-list .pi-calendar {
+.wp-admin .pi-info-form-list .pi-calendar {
   padding: 8px 7px !important;
 }
 
-.wp-admin.ncpi .pi-form-accordion.pi-additional .pi-tab input[type=checkbox] {
+.wp-admin .pi-form-accordion.pi-additional .pi-tab input[type=checkbox] {
   top: 30px;
 }
 
-.wp-admin.ncpi .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group input[type=radio] {
+.wp-admin .pi-form-accordion.pi-additional .pi-radio-content .pi-radio-group input[type=radio] {
   top: 2px;
 }
 
 @media screen and (max-width: 782px) {
-  .wp-admin.ncpi input[type=checkbox]:checked:before {
+  .wp-admin input[type=checkbox]:checked:before {
     width: 1.4rem;
   }
 }
 
-.wp-admin.ncpi .pi-field-radio input[type=radio],
-.wp-admin.ncpi .pi-field-radio input[type=checkbox],
-.wp-admin.ncpi .pi-field-checkbox input[type=radio],
-.wp-admin.ncpi .pi-field-checkbox input[type=checkbox] {
+.wp-admin .pi-field-radio input[type=radio],
+.wp-admin .pi-field-radio input[type=checkbox],
+.wp-admin .pi-field-checkbox input[type=radio],
+.wp-admin .pi-field-checkbox input[type=checkbox] {
   margin-right: 8px;
   zoom: 1 !important;
   position: relative;
   top: 2px;
 }
 
-.wp-admin.ncpi .pi-accordion-wrapper .pi-field-switch-big {
+.wp-admin .pi-accordion-wrapper .pi-field-switch-big {
   top: -1px !important;
 }
 
-.wp-admin.ncpi .pi-from-content .pi-from-to .pi-sendlist .pi-list {
+.wp-admin .pi-from-content .pi-from-to .pi-sendlist .pi-list {
   margin-top: -10px;
 }
 
-.wp-admin.ncpi .pi-accordion-wrapper>ul>li>input[type=checkbox] {
+.wp-admin .pi-accordion-wrapper>ul>li>input[type=checkbox] {
   height: 56px !important;
 }
 
-.wp-admin.ncpi .pi-search-bar .pi-total-list p select {
+.wp-admin .pi-search-bar .pi-total-list p select {
   padding: 0px 20px 0px 4px !important;
 }
 
-.wp-admin.ncpi .pi-table input[type=checkbox] {
+.wp-admin .pi-table input[type=checkbox] {
   zoom: 1.2 !important;
   top: -1px !important;
 }
 
-.wp-admin.ncpi .pi-info-table-content .pi-info-table td select {
+.wp-admin .pi-info-table-content .pi-info-table td select {
   padding: 11px 6px !important;
   line-height: 100%;
 }
 
-.wp-admin.ncpi .pi-field-select textarea:focus,
-.wp-admin.ncpi .pi-field-select select:focus,
-.wp-admin.ncpi .pi-field-select input[type=url]:focus,
-.wp-admin.ncpi .pi-field-select input[type=number]:focus,
-.wp-admin.ncpi .pi-field-select input[type=email]:focus,
-.wp-admin.ncpi .pi-field-select input[type=text]:focus {
+.wp-admin .pi-field-select textarea:focus,
+.wp-admin .pi-field-select select:focus,
+.wp-admin .pi-field-select input[type=url]:focus,
+.wp-admin .pi-field-select input[type=number]:focus,
+.wp-admin .pi-field-select input[type=email]:focus,
+.wp-admin .pi-field-select input[type=text]:focus {
   border: 0 !important;
   box-shadow: none !important;
 }
 
-.wp-admin.ncpi .pi-modal-style-two .pi-modal-footer .row>.col {
+.wp-admin .pi-modal-style-two .pi-modal-footer .row>.col {
   margin-bottom: 0px;
 }
 
-.wp-admin.ncpi .pi-modal-style-two .pi-modal-footer .row>.col .pi-btn {
+.wp-admin .pi-modal-style-two .pi-modal-footer .row>.col .pi-btn {
   padding: 10px 20px !important;
 }
 
-.wp-admin.ncpi .pi-accordion-table-list .pi-action-content button svg {
+.wp-admin .pi-accordion-table-list .pi-action-content button svg {
   top: 0 !important;
 }
 
-.wp-admin.ncpi .pi-checklist-content input[type=checkbox] {
+.wp-admin .pi-checklist-content input[type=checkbox] {
   position: relative !important;
   top: -3px !important;
 }
 
-.wp-admin.ncpi .pi-info-table-content .pi-info-table tbody tr td input[type=number] {
+.wp-admin .pi-info-table-content .pi-info-table tbody tr td input[type=number] {
   height: 35px !important;
 }
 
-.wp-admin.ncpi .pi-from-content .pi-form-style-one .pi-dropdown-content {
+.wp-admin .pi-from-content .pi-form-style-one .pi-dropdown-content {
   top: auto;
   right: auto;
 }
 
-.wp-admin.ncpi .pi-info-input-field .pi-calendar {
+.wp-admin .pi-info-input-field .pi-calendar {
   position: absolute;
   top: 1px;
   right: 1px;
@@ -2593,77 +2593,77 @@ html {
   height: 96%;
 }
 
-.wp-admin.ncpi .react-datepicker__day--keyboard-selected {
+.wp-admin .react-datepicker__day--keyboard-selected {
   background-color: #4c6fff !important;
   color: #fff !important;
 }
 
-.wp-admin.ncpi .pi-list-single-button-content {
+.wp-admin .pi-list-single-button-content {
   margin-top: -5px;
 }
 
 @media screen and (max-width: 992px) {
-  .wp-admin.ncpi .pi-modal-sidebar .pi-content {
+  .wp-admin .pi-modal-sidebar .pi-content {
     padding: 20px 40px 15px 25px;
   }
 }
 
 @media screen and (max-width: 420px) {
-  .wp-admin.ncpi .pi-modal-sidebar .pi-content {
+  .wp-admin .pi-modal-sidebar .pi-content {
     padding: 15px 25px 15px 15px !important;
   }
 }
 
 @media screen and (max-width: 992px) {
-  .wp-admin.ncpi .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
+  .wp-admin .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
     left: -150px !important;
   }
 }
 
-.wp-admin.ncpi .pi-modal-sidebar-two .pi-modal-style-two .pi-modal-header {
+.wp-admin .pi-modal-sidebar-two .pi-modal-style-two .pi-modal-header {
   padding: 30px 35px;
 }
 
-.wp-admin.ncpi .pi-modal-sidebar-two .pi-modal-style-two .pi-close {
+.wp-admin .pi-modal-sidebar-two .pi-modal-style-two .pi-close {
   left: auto;
   top: 52%;
 }
 
-.wp-admin.ncpi .pi-modal-sidebar-two .pi-modal-style-two .pi-content {
+.wp-admin .pi-modal-sidebar-two .pi-modal-style-two .pi-content {
   height: auto;
   padding: 20px 35px 0px;
 }
 
-.wp-admin.ncpi .pi-modal-sidebar-two .pi-modal-style-two .pi-modal-footer {
+.wp-admin .pi-modal-sidebar-two .pi-modal-style-two .pi-modal-footer {
   padding: 20px 30px 15px !important;
   border-radius: 0 0 12px 12px;
   margin-top: -25px;
   border: none;
 }
 
-.wp-admin.ncpi .pi-modal-sidebar-two .pi-modal-style-two .pi-modal-footer .btn {
+.wp-admin .pi-modal-sidebar-two .pi-modal-style-two .pi-modal-footer .btn {
   margin-left: -15px;
 }
 
 @media screen and (max-width: 992px) {
-  .wp-admin.ncpi .pi-modal-content.pi-modal-sidebar {
+  .wp-admin .pi-modal-content.pi-modal-sidebar {
     width: 60%;
   }
 }
 
 @media screen and (max-width: 992px) {
-  .wp-admin.ncpi .pi-modal-content {
+  .wp-admin .pi-modal-content {
     width: 70%;
   }
 }
 
 @media screen and (max-width: 420px) {
-  .wp-admin.ncpi .pi-modal-content {
+  .wp-admin .pi-modal-content {
     width: 60%;
   }
 }
 
-.wp-admin.ncpi .wrap {
+.wp-admin .wrap {
   margin: 0;
 }
 
