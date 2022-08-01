@@ -2521,6 +2521,12 @@ html {
   top: -1px !important;
 }
 
+@media screen and (max-width: 768px) {
+  .wp-admin.ncpi .pi-table input[type=checkbox] {
+    zoom: 0.8 !important;
+  }
+}
+
 .wp-admin.ncpi .pi-info-table-content .pi-info-table td select {
   padding: 11px 6px !important;
   line-height: 100%;
@@ -2713,52 +2719,6 @@ html {
   color: #fff !important;
 }
 
-.twentytwentyone-theme button:focus {
-  outline: none;
-}
-
-.twentytwentyone-theme button {
-  background-color: transparent !important;
-}
-
-.twentytwentyone-theme .pi-timeline-box ul {
-  margin-top: 15px;
-}
-
-.twentytwentyone-theme .pi-accordion-table-list ul li {
-  margin-bottom: 0;
-}
-
-.twentytwentyone-theme .pi-table-action input[type=checkbox] {
-  zoom: 0.6 !important;
-  border: 1px solid rgba(147, 147, 147, 0.9411764706);
-  top: 2px;
-}
-
-.twentytwentyone-theme input[type=checkbox] {
-  zoom: 0.8 !important;
-}
-
-.twentytwentyone-theme table,
-.twentytwentyone-theme th,
-.twentytwentyone-theme td {
-  border: none;
-}
-
-.twentytwentyone-theme .pi-accordion-table input[type=checkbox] {
-  zoom: 0.6;
-  top: 6px;
-  border: 1px solid rgba(147, 147, 147, 0.9411764706);
-}
-
-.twentytwentyone-theme .pi-table tr th:first-child input[type=checkbox] {
-  top: 4px;
-}
-
-.twentytwentyone-theme input[type=checkbox]:focus {
-  outline: none !important;
-}
-
 button {
   padding: 0;
 }
@@ -2891,6 +2851,10 @@ ul {
   width: 1rem;
 }
 
+.wp-admin.twentytwentyone-theme input[type=checkbox] {
+  zoom: 1.2 !important;
+}
+
 .twentytwentyone-theme button:focus {
   outline: none;
 }
@@ -2915,6 +2879,29 @@ ul {
 
 .twentytwentyone-theme input[type=checkbox] {
   zoom: 0.8 !important;
+  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+}
+
+.twentytwentyone-theme .pi-field-radio input[type=radio],
+.twentytwentyone-theme .pi-field-checkbox input[type=checkbox] {
+  zoom: 0.6 !important;
+  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+}
+
+.twentytwentyone-theme input[type=radio]:after {
+  width: 15px;
+  height: 15px;
+  background: #3582c4;
+}
+
+.twentytwentyone-theme input[type=checkbox]+label,
+.twentytwentyone-theme input[type=radio]+label {
+  padding-left: 0px;
+}
+
+.twentytwentyone-theme .pi-field-radio-input input[type=number] {
+  height: 33px;
+  margin-left: -2px;
 }
 
 .twentytwentyone-theme table,
@@ -4419,7 +4406,7 @@ ul {
 .pi-field-checkbox input[type=radio],
 .pi-field-checkbox input[type=checkbox] {
   margin-right: 8px;
-  zoom: 1.2 !important;
+  zoom: 1.2;
 }
 
 .pi-field-radio label,
@@ -5846,5 +5833,20 @@ select {
   .pi-collapse-menu:hover ul li a span {
     display: table;
     left: 28%;
+  }
+}
+
+.pi-checkbox {
+  width: 45px;
+  padding: 17px 0;
+
+  input[type=checkbox] {
+    @media screen and (max-width: 768px) {
+      zoom: 0.6;
+    }
+
+    @media screen and (max-width: 768px) {
+      zoom: 0.8;
+    }
   }
 }
