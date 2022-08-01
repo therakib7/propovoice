@@ -889,7 +889,7 @@ html {
 }
 
 .ncpi .pi-table-action {
-  padding: 20px 18px;
+  padding: 15px 18px 20px;
   background: #FAFAFB;
   border-radius: 8px;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.06);
@@ -952,7 +952,7 @@ html {
 .ncpi .pi-table tr th {
   font-weight: 600;
   font-size: 10px;
-  padding: 10px 0;
+  padding: 10px 0px;
   color: #8492A6;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1020,12 +1020,6 @@ html {
   box-shadow: none;
   position: relative;
   top: 2px;
-}
-
-@media screen and (max-width: 550px) {
-  .ncpi .pi-table input[type=checkbox] {
-    zoom: 1.2;
-  }
 }
 
 .ncpi .pi-table tr {
@@ -1263,7 +1257,7 @@ html {
 
 .ncpi .pi-accordion-table-list ul li .pi-dropdown-content {
   top: 30px;
-  left: -70px;
+  left: -80px;
 }
 
 @media screen and (max-width: 992px) {
@@ -1283,7 +1277,7 @@ html {
 }
 
 .ncpi .pi-info-table-content .pi-info-table thead tr th:first-child {
-  width: 40%;
+  width: 40% !important;
 }
 
 .ncpi .pi-info-table-content .pi-info-table tbody tr td:first-child {
@@ -1292,6 +1286,10 @@ html {
 
 .ncpi .pi-info-table-content .pi-info-table thead tr th:nth-child(3) {
   padding: 0px 20px;
+}
+
+.ncpi .pi-info-table-content .pi-info-table thead tr th {
+  padding: 10px 15px;
 }
 
 .ncpi .pi-info-table-content .pi-info-table thead tr th span {
@@ -2410,15 +2408,6 @@ html {
 
 @media screen and (max-width: 790px) {
 
-  input[type=radio],
-  input[type=checkbox] {
-    height: 18px;
-    width: 18px;
-  }
-}
-
-@media screen and (max-width: 790px) {
-
   .pi-additional input[type=radio],
   .pi-additional input[type=checkbox] {
     height: 18px;
@@ -2483,11 +2472,6 @@ html {
   height: 35px;
 }
 
-.wp-admin.ncpi .pi-info-form-list input[type=number],
-.wp-admin.ncpi .pi-info-form-list input[type=text] {
-  padding: 6px 6px !important;
-}
-
 .wp-admin.ncpi .pi-info-form-list .pi-calendar {
   padding: 8px 7px !important;
 }
@@ -2533,7 +2517,7 @@ html {
 }
 
 .wp-admin.ncpi .pi-table input[type=checkbox] {
-  zoom: 1.2 !important;
+  zoom: 1.2;
   top: -1px !important;
 }
 
@@ -2635,7 +2619,7 @@ html {
 }
 
 .wp-admin.ncpi .pi-modal-sidebar-two .pi-modal-style-two .pi-modal-footer {
-  padding: 20px 30px 15px !important;
+  padding: 20px 30px 15px;
   border-radius: 0 0 12px 12px;
   margin-top: -25px;
   border: none;
@@ -2982,6 +2966,10 @@ ul {
   top: 3px;
 }
 
+.astra-theme .pi-additional .pi-field-switch {
+  top: 1px !important;
+}
+
 /*-------------------------------------------------------------- 
 # modal
 --------------------------------------------------------------*/
@@ -3191,7 +3179,7 @@ ul {
 .ncpi .pi-modal-style-two .pi-close {
   background: none;
   top: 48%;
-  right: 15px;
+  right: 10px;
 }
 
 @media screen and (max-width: 420px) {
@@ -3367,10 +3355,6 @@ ul {
   .ncpi .pi-modal-sidebar .pi-modal-footer {
     margin-top: 30px;
   }
-}
-
-.ncpi .pi-modal-sidebar .pi-modal-footer .pi-btn {
-  margin-left: -25px;
 }
 
 .ncpi .pi-modal-sidebar .pi-title-field {
