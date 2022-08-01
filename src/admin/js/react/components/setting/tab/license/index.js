@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-import Api from 'api/setting';
+import Moment from 'react-moment';
+
 
 export default class License extends Component {
     constructor(props) {
@@ -14,7 +15,6 @@ export default class License extends Component {
                 type: 'activate_license',
                 status: '',
             },
-            btn_txt: 'Activate License'
         };
     }
 
@@ -23,7 +23,7 @@ export default class License extends Component {
     componentDidMount() {
         this.props.getAll('pro-settings', 'tab=license').then(resp => {
             if (resp.data.success) {
-                // this.setState({ form: resp.data.data });
+                this.setState({ form: resp.data.data });
             }
         });
     }
@@ -44,11 +44,18 @@ export default class License extends Component {
         let form = { ...this.state.form }
         form.tab = 'license';
         this.props.create('pro-settings', form).then(resp => {
+            let data = resp.data.data;
             if (resp.data.success) {
-                toast.success(resp.data.data.msg);
-                this.setState({ btn_txt: resp.data.data.value })
+                toast.success(data.msg);
+                if (data.data) {
+                    form.type = data.data.type;
+                    form.expires = data.data.expires;
+                    form.status = data.data.status;
+                }
+                console.log(form);
+                this.setState({ form })
             } else {
-                resp.data.data.forEach(function (value, index, array) {
+                data.forEach(function (value, index, array) {
                     toast.error(value);
                 });
             }
@@ -56,6 +63,7 @@ export default class License extends Component {
     }
 
     render() {
+        const form = this.state.form;
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
@@ -69,16 +77,36 @@ export default class License extends Component {
                             type="text"
                             required
                             name="key"
-                            value={this.state.form.key}
+                            value={form.key}
                             onChange={this.handleChange}
                         />
                     </div>
                 </div>
 
+                {form.status == 'valid' && <>
+                    <div className="row">
+                        <div className="col">
+                            <label htmlFor="form-status">
+                                License Status:
+                                <span className="pi-pro-label pi-bg-green">Valid</span>
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col">
+                            <label htmlFor="form-status">
+                                License Expires: <span style={{ color: '#2D3748' }}><Moment format="YYYY-MM-DD">{form.expires}</Moment></span>
+                            </label>
+                        </div>
+                    </div>
+                </>}
+
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            {this.state.btn_txt}
+                            {form.type == 'activate_license' ? 'Activate License' : 'Deactivate License'}
                         </button>
                     </div>
                 </div>
