@@ -86,7 +86,7 @@ const SettingWrap = (props) => {
     const [tabs, setTabs] = useState(tab_data);
 
     useEffect(() => {
-        if (!wage.length) {
+        if ( has_wage.ins ) {
             let new_tabs = { ...tabs }
             new_tabs.license = {
                 label: 'License Manager'

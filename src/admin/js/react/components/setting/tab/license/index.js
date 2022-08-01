@@ -53,7 +53,11 @@ export default class License extends Component {
                     form.for = data.data.for;
                     form.expires = data.data.expires;
                 }
-                this.setState({ form })
+                this.setState({ form }); 
+
+                setTimeout(function(){
+                    window.location.reload(1);
+                }, 1000);
             } else {
                 data.forEach(function (value, index, array) {
                     toast.error(value);

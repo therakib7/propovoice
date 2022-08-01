@@ -69,7 +69,10 @@ class Form extends Component {
         e.preventDefault();
         let form = { ...this.state.form } 
         if ( form.logo ) {
-            form.logo = form.logo.id;
+            form.logo = {
+                id: form.logo.id,
+                src: form.logo.src
+            }
         }  
         this.props.handleSubmit(form);
         //this.setState({ form: this.initialState });
