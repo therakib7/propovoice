@@ -25,7 +25,6 @@ class Form extends Component {
             form: this.initialState,
             dropdown: null,
         };
-
         this.timeout = 0;
     }
 
@@ -223,7 +222,7 @@ class Form extends Component {
                                         Task Type:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title='Type' small={true} color={true} />}
+                                        {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title='Type' /* small={true} */ color={true} />}
                                     </div>
                                 </div>
 
@@ -232,7 +231,7 @@ class Form extends Component {
                                         Task Priority:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title='Priority' small={true} color={true} />}
+                                        {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title='Priority' /* small={true} */ color={true} />}
                                     </div>
                                 </div>
                             </div>

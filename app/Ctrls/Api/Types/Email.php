@@ -185,63 +185,7 @@ class Email
         //$headers[] = 'Cc: therakib7@gmail.com'; // note you can just use a simple email address
 
         //attachment
-        $attachments = [];
-        if ($mail_invoice_img) {
-            ob_start();
-    ?>
-            <!DOCTYPE html>
-            <html>
-
-            <head>
-                <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-                <title>PDF</title>
-                <style type="text/css">
-                    @media print {
-                        * {
-                            box-sizing: border-box;
-                            margin: 0;
-                            padding: 0;
-                        }
-
-                        @page {
-                            margin: 0;
-                        }
-
-                        .page {
-                            width: 803px;
-                            /* height: 1132px; */
-                            height: 1110px;
-                            page-break-after: always;
-                        }
-                    }
-                </style>
-            </head>
-
-            <body>
-                <div class="page" style="background-image: url(<?php echo $mail_invoice_img; ?>);"></div>
-            </body>
-
-            </html>
-        <?php
-            $invoice_html = ob_get_clean();
-            $dompdf = new \Dompdf\Dompdf();
-            $dompdf->set_option('enable_css_float', true);
-            $dompdf->set_option('enable_remote', true);
-            $dompdf->setPaper('A4', 'portrait');
-            $invoice_html = preg_replace('/>\s+</', "><", $invoice_html);
-            $dompdf->loadHtml($invoice_html);
-            $dompdf->render();
-            //TODO: change directory later
-            $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
-            $filename = $uploads_dir . '/invoice.pdf';
-
-            $output = $dompdf->output();
-            file_put_contents($filename, $output);
-
-            $attachments = array(
-                $filename
-            );
-        }
+        $attachments = []; 
 
         $send_mail = wp_mail($mail_to, $subject, $body, $headers, $attachments);
 

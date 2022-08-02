@@ -96,12 +96,17 @@ class Dashboard
             array($this, 'render')
         );
 
-        if (function_exists('ncpip')) {
+        if ( function_exists('ncpip') && ncpip()->wage() ) {
             global $submenu;
             $permalink = Fns::client_page_url('workspace');
             if ($permalink) {
                 $submenu['ncpi'][] = array('Go to Frontend', 'manage_options', $permalink);
             }
+        }
+
+        if ( ! function_exists('ncpip') ) {
+            global $submenu;
+            $submenu['ncpi'][] = array('Upgrade to Pro', 'manage_options', 'https://propovoice.com/pricing');
         }
 
         remove_submenu_page('ncpi', 'ncpi');
