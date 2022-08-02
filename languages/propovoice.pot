@@ -50,7 +50,7 @@ msgstr ""
 msgid "Required field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Business.php:221, ../app/Ctrls/Api/Types/Business.php:303
+#: ../app/Ctrls/Api/Types/Business.php:229, ../app/Ctrls/Api/Types/Business.php:311
 msgid "Name is missing"
 msgstr ""
 
