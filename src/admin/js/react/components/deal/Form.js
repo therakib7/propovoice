@@ -142,7 +142,6 @@ class Form extends Component {
 
         if (this.props.reload) {
 
-
             if (this.props.modalType == 'move') {
 
                 this.props.create('deals', form).then(resp => {

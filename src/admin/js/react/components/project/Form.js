@@ -141,14 +141,6 @@ class Form extends Component {
             form.status_id = form.status_id.id;
         }
 
-        if (form.person_id) {
-            form.person_id = form.person_id.id;
-        }
-
-        if (form.org_id) {
-            form.org_id = form.org_id.id;
-        }
-
         if (form.tags.length) {
             let finalArray = form.tags.map(function (obj) {
                 return obj.id;
@@ -157,7 +149,6 @@ class Form extends Component {
         }
 
         if (this.props.reload) {
-
 
             if (this.props.modalType == 'move') {
 

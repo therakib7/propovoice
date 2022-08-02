@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 
 import WithApi from 'hoc/Api';
 import Taxonomy from 'block/field/taxonomy';
-
+const DateField = lazy(() => import('block/date-picker'));
 import Checklist from './Checklist';
 
 class Form extends Component {
@@ -32,21 +32,8 @@ class Form extends Component {
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } }, () => {
-            // this.props.handleSubmit(this.state.form); 
-
-            if (this.timeout) clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-                let form = { ...this.state.form };
-                let status_id = form.status_id.id;
-                delete form.priority_id;
-                delete form.status_id;
-                delete form.type_id;
-                this.props.update('tasks', form.id, form).then(resp => {
-                    if (resp.data.success && name == 'title') {
-                        this.props.reload({ status_id })
-                    }
-                });
-            }, 300);
+            let reload = name == 'title' ? true : false;
+            this.updateRequest(reload);
         });
     }
 
@@ -76,28 +63,28 @@ class Form extends Component {
         }
     }
 
-    /* handleSubmit = (e) => {
-        e.preventDefault();
-        let form = { ...this.state.form }
-
-        this.props.handleSubmit(form);
-        this.props.close();
-        this.setState({ form: this.initialState });
-    } */
-
     handleChecklistChange = (data) => {
         let form = { ...this.state.form }
         form.checklist = data;
         this.setState({ form }, () => {
-            if (this.timeout) clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-                let form = { ...this.state.form };
-                delete form.priority_id;
-                delete form.status_id;
-                delete form.type_id;
-                this.props.update('tasks', form.id, form);
-            }, 300);
+            this.updateRequest();
         })
+    }
+
+    updateRequest = (reload = false) => {
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+            let form = { ...this.state.form };
+            let status_id = form.status_id.id;
+            delete form.priority_id;
+            delete form.status_id;
+            delete form.type_id;
+            this.props.update('tasks', form.id, form).then(resp => {
+                if (resp.data.success && reload) {
+                    this.props.reload({ status_id })
+                }
+            });
+        }, 300);
     }
 
     handleTaskStatusChange = (val) => {
@@ -118,7 +105,20 @@ class Form extends Component {
             data.status_id = val;
             this.setState({ form: data });
         }
+    }
 
+    onDateChange = (date, type = null) => {
+        let form = { ...this.state.form }
+
+        if (type == 'date') {
+            form.start_date = date;
+        } else {
+            form.due_date = date;
+        }
+
+        this.setState({ form }, () => {
+            this.updateRequest();
+        })
     }
 
     render() {
@@ -198,6 +198,26 @@ class Form extends Component {
                             </div>
 
                             <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-start_date">
+                                        Start Date
+                                    </label>
+                                    <div className='pi-field-date'>
+                                        <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
+                                    </div>
+                                </div>
+
+                                <div className="col-md">
+                                    <label htmlFor="field-start_date">
+                                        Due Date
+                                    </label>
+                                    <div className='pi-field-date'>
+                                        <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row">
                                 <div className="col-md-6">
                                     <label htmlFor="form-desc">
                                         Task Type:
@@ -226,7 +246,7 @@ class Form extends Component {
                                         name="name"
                                         defaultValue="Add Location"
                                     />
-                                    { false && !wage.length && <div className="pi-buttons pi-mt-15">
+                                    {false && !wage.length && <div className="pi-buttons pi-mt-15">
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-mr-10">
                                             <svg
                                                 width={17}
