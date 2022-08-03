@@ -100,17 +100,14 @@ function Pipeline(props) {
 	};
 
 	return (
-<<<<<<< HEAD
-		<div className="pi-board">
-=======
+
 		<div className="pi-board" /* style={{ width: width + 'px' }} */>
->>>>>>> d46517e6c3e070ad3158245b61a2b9099bc2f95f
 			<DragDropContext
 				onDragEnd={result => onDragEnd(props.update, result, columns, setColumns)}
 			>
 				{Object.entries(columns).map(([columnId, column], index) => {
 					return (
-						<div className="pi-board-column" key={columnId}>
+						<div className="-column" key={columnId}>
 							<div className="pi-board-column-title pi-bg-shadow" style={{ borderColor: column.color, color: column.color }}>
 								<h4 className="">{column.name}</h4>
 								<div className="pi-action-content">
