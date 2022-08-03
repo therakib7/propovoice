@@ -178,7 +178,7 @@ class Org
     function single($id, $details = false)
     {
         if (!$id) return null;
-        $Data = [];
+        $data = [];
 
         $data['id'] = absint($id);
         $meta = get_post_meta($id);
@@ -202,6 +202,6 @@ class Org
             $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
             $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
         }
-        return $Data;
+        return $data;
     }
 }

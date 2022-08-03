@@ -15,7 +15,7 @@ class Form extends Component {
             type_id: '',
             priority_id: '',
             start_date: false,
-            end_date: false,
+            due_date: false,
             date: false,
         };
 
@@ -87,7 +87,7 @@ class Form extends Component {
         if (type == 'start_date') {
             form.start_date = date;
         } else {
-            form.end_date = date;
+            form.due_date = date;
         }
         this.setState({ form });
     }

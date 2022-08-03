@@ -63,8 +63,8 @@ const onDragEnd = (update, result, columns, setColumns) => {
 
 function Pipeline(props) {
 	// const [columns, setColumns] = useState(columnsFromBackend);
-	const [columns, setColumns] = useState({}); 
-	const [width, setWidth] = useState(1590); 
+	const [columns, setColumns] = useState({});
+	const [width, setWidth] = useState(1590);
 
 	const [dropdown, setDropdown] = useState(null);
 
@@ -78,18 +78,18 @@ function Pipeline(props) {
 
 	useEffect(() => {
 		setColumns(props.data);
-		if ( props.data.length ) {
+		if (props.data.length) {
 			//left right padding 140
 			//add new column 235
 			//setWidth( props.data.length * 255 + 235 + 30); 
-			setWidth( props.data.length * 255 + 25); 
+			setWidth(props.data.length * 255 + 25);
 		}
 	}, [props.data]);
 
 	const navigate = useNavigate();
 	const goToSingle = (id) => {
 		navigate(`/deal/single/${id}`);
-	}; 
+	};
 
 	const CharLimit = (string) => {
 		let limit = 28;
@@ -100,7 +100,7 @@ function Pipeline(props) {
 	};
 
 	return (
-		<div className="pi-board" style={{width: width + 'px'}}>
+		<div className="pi-board" style={{ width: width + 'px' }}>
 			<DragDropContext
 				onDragEnd={result => onDragEnd(props.update, result, columns, setColumns)}
 			>
@@ -138,18 +138,18 @@ function Pipeline(props) {
 											/>
 										</svg>
 									</button>
-									
+
 									{columnId == dropdown && <div className="pi-dropdown-content pi-show"
 									// ref={popover}
 									>
 										{/* <a onClick={() => props.editEntry('edit', columnId)}>Edit</a> */}
-										<a onClick={() => { props.taxForm('edit', column); showDropdown(columnId); } }>Edit</a>
+										<a onClick={() => { props.taxForm('edit', column); showDropdown(columnId); }}>Edit</a>
 										{/* <a onClick={() => props.deleteEntry('single', columnId)}>Delete</a> */}
 									</div>}
 								</div>
 							</div>
 							<Droppable droppableId={columnId} key={columnId}>
-								{(provided, snapshot) => { 
+								{(provided, snapshot) => {
 									return (
 										<div
 											{...provided.droppableProps}
@@ -165,10 +165,10 @@ function Pipeline(props) {
 										}} */
 										>
 											{column.items.map((item, index) => {
-												let img = ncpi.assetImgUri + 'avatar.png'; 
-												if ( item.person && item.person.img ) {
+												let img = ncpi.assetImgUri + 'avatar.png';
+												if (item.person && item.person.img) {
 													img = item.person.img.src;
-												} else if ( item.org && item.org.img ) {
+												} else if (item.org && item.org.img) {
 													img = item.org.img.src;
 												}
 												return (
@@ -205,11 +205,11 @@ function Pipeline(props) {
 																	<div className="pi-avatar-content">
 																		<img src={img} alt="avatar" />
 																		<div className="pi-avatar-text">
-																			<h5>{ ( item.person ) ? item.person.first_name : item.org.name } </h5> 
+																			<h5>{(item.person) ? item.person.first_name : item.org.name} </h5>
 																			<p>
-																			{ ( item.person ) ? item.person.region : item.org.region }
+																				{(item.person) ? item.person.region : item.org.region}
 
-																			{ ( item.person ) ? item.person.country : item.org.country }
+																				{(item.person) ? item.person.country : item.org.country}
 																			</p>
 
 																			{column.type == 'won' && <span className="pi-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>Won</span>}
@@ -293,7 +293,7 @@ function Pipeline(props) {
 						Add New Stage
 					</button>
 				</div> */}
-			</DragDropContext> 
+			</DragDropContext>
 		</div>
 	);
 }

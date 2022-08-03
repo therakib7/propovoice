@@ -61,8 +61,9 @@ const TableBody = props => {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                {/* May 09, 12:30 PM-01:00 PM */}
-                                <Moment format="YYYY-MM-DD">{row.date}</Moment>
+                                {row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}
+                                {row.start_date && row.due_date && ' - '}
+                                {row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}
                             </p>
                         </div>
                     </li>

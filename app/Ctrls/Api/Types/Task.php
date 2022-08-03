@@ -232,7 +232,7 @@ class Task
 
             $query_data['desc'] = get_the_content();
             $query_data['start_date'] = get_post_meta($id, 'start_date', true);
-            $query_data['end_date'] = get_post_meta($id, 'end_date', true);
+            $query_data['due_date'] = get_post_meta($id, 'due_date', true);
             $query_data['checklist'] = get_post_meta($id, 'checklist', true);
             $query_data['date'] = get_the_time('j-M-Y');
 
@@ -288,7 +288,7 @@ class Task
         $priority_id = isset($params['priority_id']) ? absint($params['priority_id']) : null;
 
         $start_date = isset($params['start_date']) ? $params['start_date'] : null;
-        $end_date = isset($params['end_date']) ? $params['end_date'] : null;
+        $due_date = isset($params['due_date']) ? $params['due_date'] : null;
 
         if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
@@ -330,8 +330,8 @@ class Task
                     update_post_meta($post_id, 'start_date', $start_date);
                 }
 
-                if ($end_date) {
-                    update_post_meta($post_id, 'end_date', $end_date);
+                if ($due_date) {
+                    update_post_meta($post_id, 'due_date', $due_date);
                 }
 
                 wp_send_json_success($post_id);
@@ -351,7 +351,7 @@ class Task
         $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
 
         $start_date = isset($params['start_date']) ? $params['start_date'] : null;
-        $end_date = isset($params['end_date']) ? $params['end_date'] : null;
+        $due_date = isset($params['due_date']) ? $params['due_date'] : null;
         $checklist = isset($params['checklist']) ? $params['checklist'] : null;
 
         /* if (empty($title)) {
@@ -397,8 +397,8 @@ class Task
                     update_post_meta($post_id, 'start_date', $start_date);
                 }
 
-                if ($end_date) {
-                    update_post_meta($post_id, 'end_date', $end_date);
+                if ($due_date) {
+                    update_post_meta($post_id, 'due_date', $due_date);
                 }
 
                 if ($checklist) {
