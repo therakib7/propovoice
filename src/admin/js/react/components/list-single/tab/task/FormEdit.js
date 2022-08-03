@@ -202,7 +202,7 @@ class Form extends Component {
                                     <label htmlFor="form-desc">
                                         Task Type:
                                     </label>
-                                    <div className='pi-field-action'>
+                                    <div className='pi-field-action pi-mt-m-4'>
                                         {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title='Type' small={true} color={true} />}
                                     </div>
                                 </div>
@@ -211,7 +211,7 @@ class Form extends Component {
                                     <label htmlFor="form-desc">
                                         Task Priority:
                                     </label>
-                                    <div className='pi-field-action'>
+                                    <div className='pi-field-action pi-mt-m-4'>
                                         {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title='Priority' small={true} color={true} />}
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@ class Form extends Component {
                                         name="name"
                                         defaultValue="Add Location"
                                     />
-                                    { false && !wage.length && <div className="pi-buttons pi-mt-15">
+                                    {false && !wage.length && <div className="pi-buttons pi-mt-15">
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-mr-10">
                                             <svg
                                                 width={17}

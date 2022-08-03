@@ -912,10 +912,8 @@ html {
   }
 }
 
-.ncpi .pi-table-action input[type=checkbox] {
-  zoom: 1.2;
-  position: relative;
-  top: 2px;
+.ncpi .pi-table-action input[type=checkbox]::before {
+  width: 28px;
 }
 
 .ncpi .pi-table-action span {
@@ -1170,6 +1168,12 @@ html {
 .ncpi .pi-accordion-table-list .pi-checkbox {
   width: 45px;
   padding: 17px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .ncpi .pi-accordion-table-list .pi-checkbox input[type=checkbox] {
+    zoom: 0.6;
+  }
 }
 
 .ncpi .pi-accordion-table-list ul {
@@ -2484,12 +2488,6 @@ html {
   top: 2px;
 }
 
-@media screen and (max-width: 782px) {
-  .wp-admin.ncpi input[type=checkbox]:checked:before {
-    width: 1.4rem;
-  }
-}
-
 .wp-admin.ncpi .pi-field-radio input[type=radio],
 .wp-admin.ncpi .pi-field-radio input[type=checkbox],
 .wp-admin.ncpi .pi-field-checkbox input[type=radio],
@@ -2594,19 +2592,19 @@ html {
 
 @media screen and (max-width: 992px) {
   .wp-admin.ncpi .pi-modal-sidebar .pi-content {
-    padding: 20px 40px 15px 25px;
+    padding: 20px 35px 15px 25px;
   }
 }
 
 @media screen and (max-width: 420px) {
   .wp-admin.ncpi .pi-modal-sidebar .pi-content {
-    padding: 15px 25px 15px 15px !important;
+    padding: 15px 30px 15px 15px !important;
   }
 }
 
 @media screen and (max-width: 992px) {
   .wp-admin.ncpi .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
-    left: -150px !important;
+    left: -125px !important;
   }
 }
 
@@ -2880,6 +2878,12 @@ ul {
 .twentytwentyone-theme input[type=checkbox] {
   zoom: 0.8 !important;
   border: 1px solid rgba(147, 147, 147, 0.9411764706);
+  border-radius: 7px;
+}
+
+.twentytwentyone-theme input[type=checkbox]::after {
+  border-color: blue;
+  width: 10px;
 }
 
 .twentytwentyone-theme .pi-field-radio input[type=radio],
@@ -2955,6 +2959,32 @@ ul {
 
 .astra-theme .pi-additional .pi-field-switch {
   top: 1px !important;
+}
+
+@media screen and (max-width: 550px) {
+  .astra-theme .pi-field-radio-input input[type=number] {
+    height: 33px;
+    margin-left: -2px;
+  }
+}
+
+.astra-theme .pi-field-checkbox input[type=checkbox] {
+  zoom: 0.7 !important;
+}
+
+@media screen and (max-width: 992px) {
+  .astra-theme .pi-field-radio input[type=radio]::before {
+    width: 17px;
+    height: 17px;
+    position: relative;
+    top: -4px;
+    left: -4px;
+  }
+
+  .astra-theme .pi-field-radio input[type=radio],
+  .astra-theme .pi-field-checkbox input[type=checkbox] {
+    zoom: 0.8 !important;
+  }
 }
 
 /*-------------------------------------------------------------- 
@@ -3363,6 +3393,12 @@ ul {
 .ncpi .pi-modal-sidebar .pi-action-content .pi-dropdown-content {
   top: 35px;
   left: 0;
+}
+
+@media screen and (max-width: 550px) {
+  .ncpi .pi-modal-sidebar .pi-action-content .pi-dropdown-content {
+    left: -65px !important;
+  }
 }
 
 .ncpi .pi-modal-sidebar-two {
@@ -4443,6 +4479,15 @@ ul {
   color: #4A5568;
   margin-left: -2px;
   height: 33px;
+}
+
+@media screen and (max-width: 992px) {
+
+  .pi-field-radio-input .pi-times,
+  .pi-field-checkbox-input .pi-times {
+    height: 40px !important;
+    line-height: 30px !important;
+  }
 }
 
 .ncpi .pi-search-btn {
@@ -5833,20 +5878,5 @@ select {
   .pi-collapse-menu:hover ul li a span {
     display: table;
     left: 28%;
-  }
-}
-
-.pi-checkbox {
-  width: 45px;
-  padding: 17px 0;
-
-  input[type=checkbox] {
-    @media screen and (max-width: 768px) {
-      zoom: 0.6;
-    }
-
-    @media screen and (max-width: 768px) {
-      zoom: 0.8;
-    }
   }
 }

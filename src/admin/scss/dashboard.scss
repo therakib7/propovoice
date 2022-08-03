@@ -132,26 +132,15 @@
     background-color: #f7f8fa !important;
 
     .pi-right-content {
-
-        // height: auto !important;
         .pi-right-content-data {
             padding: 55px 70px;
         }
-    }
-
-    .pi-board-content {
-        height: calc(100vh - 587px);
     }
 }
 
 .ncpi {
     .pi-deal-content {
         max-width: none !important;
-        overflow-x: scroll;
-    }
-
-    .pi-board-content {
-        height: calc(100vh - 538px);
     }
 }
 
