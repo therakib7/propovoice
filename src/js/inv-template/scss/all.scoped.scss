@@ -341,7 +341,7 @@
 }
 
 .ncpi .pi-badge-border {
-  border: 1px solid var(--text-color-red);
+  border: 1px solid var(--pi-text-color-red);
   padding: 5px;
   border-radius: 17px;
   margin-bottom: 30px;
@@ -349,16 +349,16 @@
 }
 
 .ncpi .pi-badge-border.pi-green-color {
-  border: 1px solid var(--text-color-green);
+  border: 1px solid var(--pi-text-color-green);
 }
 
 .ncpi .pi-badge-border.pi-green-color .pi-badge-style-one {
-  border: 1px dashed var(--text-color-green);
+  border: 1px dashed var(--pi-text-color-green);
 }
 
 .ncpi .pi-badge-style-one {
   padding: 15px;
-  border: 1px dashed var(--text-color-red);
+  border: 1px dashed var(--pi-text-color-red);
   border-radius: 12px;
   text-align: center;
 }
@@ -366,15 +366,15 @@
 .ncpi .pi-badge-style-one h4 {
   font-size: 14px;
   font-weight: 700;
-  color: var(--text-color-red);
-  border-bottom: 2px solid var(--text-color-red);
+  color: var(--pi-text-color-red);
+  border-bottom: 2px solid var(--pi-text-color-red);
 }
 
 .ncpi .pi-badge-style-one p {
   font-size: 12px;
   margin-top: 5px;
   line-height: 15px;
-  color: var(--text-color-red);
+  color: var(--pi-text-color-red);
 }
 
 .ncpi .pi-green-color h4 {
@@ -390,14 +390,14 @@
 
 .ncpi .pi-badge-style-two {
   padding: 8px 50px;
-  border: 1px solid var(--border-color-gray);
+  border: 1px solid var(--pi-border-color-gray);
   margin-bottom: 10px;
 }
 
 .ncpi .pi-badge-style-two h4 {
   font-size: 14px;
   font-weight: 700;
-  color: var(--text-color-red);
+  color: var(--pi-text-color-red);
 }
 
 .ncpi .pi-badge-style-two p {
