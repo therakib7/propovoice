@@ -100,11 +100,7 @@ function Pipeline(props) {
 	};
 
 	return (
-<<<<<<< HEAD
-		<div className="pi-board">
-=======
 		<div className="pi-board" /* style={{ width: width + 'px' }} */>
->>>>>>> d46517e6c3e070ad3158245b61a2b9099bc2f95f
 			<DragDropContext
 				onDragEnd={result => onDragEnd(props.update, result, columns, setColumns)}
 			>
