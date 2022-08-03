@@ -1,15 +1,16 @@
+import { Search } from 'block/icon';
 import React, { Component } from 'react';
 
 export default class Form extends Component {
 
     constructor(props) {
-        super(props); 
+        super(props);
 
         this.state = {
-            form: { 
+            form: {
                 text: '',
                 level: '',
-                tag: '', 
+                tag: '',
             },
             searchModal: false,
         };
@@ -21,12 +22,12 @@ export default class Form extends Component {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } }, () => {
 
-            if ( name == 'text' ) { 
+            if (name == 'text') {
                 //search when typing stop
-                if ( this.timeout ) clearTimeout(this.timeout);
+                if (this.timeout) clearTimeout(this.timeout);
                 this.timeout = setTimeout(() => {
-                    let form = {...this.state.form} 
-                    if ( ! this.props.boardView ) {
+                    let form = { ...this.state.form }
+                    if (!this.props.boardView) {
                         form.table_view = true;
                     }
                     this.props.handleSubmit(form);
@@ -35,7 +36,7 @@ export default class Form extends Component {
                 this.props.handleSubmit(this.state.form);
             }
         });
-    } 
+    }
 
     render() {
         const { title, showing, showItem, total } = this.props;
@@ -59,7 +60,7 @@ export default class Form extends Component {
                         name="text"
                         value={this.state.form.text}
                         onChange={this.handleChange}
-                    /> 
+                    />
                 </div>
                 {false && <div className="pi-search-btn">
                     <button className={this.state.searchModal ? 'pi-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
@@ -208,7 +209,7 @@ export default class Form extends Component {
                         </ul>
                     </div>}
                 </div>}
-                <div className="pi-total-list">  
+                <div className="pi-total-list">
                     <p>
                         Show <select onChange={showItem} >
                             <option value="10">10</option>
@@ -216,8 +217,8 @@ export default class Form extends Component {
                             <option value="30">30</option>
                             <option value="50">50</option>
                             <option value="99">99</option>
-                        </select>  
-                         {title} {this.props.boardView ? 'Per Stage' : <>from <span>{total}</span></> } 
+                        </select>
+                        {title} {this.props.boardView ? 'Per Stage' : <>from <span>{total}</span></>}
                     </p>
                 </div>
             </div>
