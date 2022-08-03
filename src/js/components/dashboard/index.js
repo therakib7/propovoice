@@ -1,11 +1,8 @@
-import React, { useCallback, useRef, useState, useEffect, Suspense, lazy } from "react";
-import {
-    NavLink
-} from "react-router-dom";
+import React, { useState, useEffect, Suspense, lazy } from "react";
+import { NavLink } from "react-router-dom";
 import Spinner from 'block/preloader/spinner';
 
 const Task = lazy(() => import('components/list-single/tab/task'));
-
 
 const Summary = lazy(() => import('./section/Summary'));
 const DealFunnel = lazy(() => import('./section/DealFunnel'));
@@ -28,7 +25,7 @@ const Dashboard = (props) => {
     }, []);
 
     return (
-        <div className="ncpi-components">
+        <div className="ncpi-dashboard">
             <div className="row">
                 <div className="col">
                     <h2
@@ -123,8 +120,7 @@ const Dashboard = (props) => {
                         </Suspense>
                     </div>
                 </div>
-            </div>
-
+            </div> 
 
             <div className="row">
                 <div className="col-lg-8">
@@ -140,10 +136,8 @@ const Dashboard = (props) => {
                         <ChartPie {...props} type='lead_source' />
                     </Suspense>
                 </div>
-            </div>
-
-        </div>
-
+            </div> 
+        </div> 
     );
 }
 export default WithApi(Dashboard);

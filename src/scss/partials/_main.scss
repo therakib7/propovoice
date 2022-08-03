@@ -896,10 +896,8 @@ html {
     margin-top: 15px;
   }
 }
-.ncpi .pi-table-action input[type=checkbox] {
-  zoom: 1.2;
-  position: relative;
-  top: 2px;
+.ncpi .pi-table-action input[type=checkbox]::before {
+  width: 28px;
 }
 .ncpi .pi-table-action span {
   color: #4A5568;
@@ -2303,7 +2301,7 @@ html {
 }
 @media screen and (max-width: 992px) {
   .wp-admin.ncpi .pi-list-single-button-content .pi-action-btn .pi-dropdown-content {
-    left: -150px !important;
+    left: -125px !important;
   }
 }
 .wp-admin.ncpi .pi-modal-sidebar-two .pi-modal-style-two .pi-modal-header {
@@ -2955,6 +2953,11 @@ ul {
 .ncpi .pi-modal-sidebar .pi-action-content .pi-dropdown-content {
   top: 35px;
   left: 0;
+}
+@media screen and (max-width: 550px) {
+  .ncpi .pi-modal-sidebar .pi-action-content .pi-dropdown-content {
+    left: -65px !important;
+  }
 }
 .ncpi .pi-modal-sidebar-two {
   width: 760px;
@@ -3870,6 +3873,13 @@ ul {
   color: #4A5568;
   margin-left: -2px;
   height: 33px;
+}
+@media screen and (max-width: 992px) {
+  .pi-field-radio-input .pi-times,
+.pi-field-checkbox-input .pi-times {
+    height: 40px !important;
+    line-height: 30px !important;
+  }
 }
 
 .ncpi .pi-search-btn {

@@ -17,20 +17,37 @@ mix.webpackConfig({
         publicPath: '/wp-content/plugins/propovoice/', //TODO: this not working in xampp 
         // path: path.join(__dirname, 'root'),
         //publicPath: '/nurency-plugin/wp-content/plugins/propovoice/',
-        chunkFilename: 'assets/admin/js/component/chunks/[chunkhash].js', //[name][chunkhash]
+        chunkFilename: 'assets/js/component/chunks/[chunkhash].js', //[name][chunkhash]
     },
+    plugins: [
+        new webpack.DefinePlugin({ //<--key to reduce React's size
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.AggressiveMergingPlugin(),
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$/,
+            threshold: 10240,
+            minRatio: 0.8
+        })
+    ],
     resolve: {
         alias: {
             //adding react and react-dom may not be necessary for you but it did fix some issues in my setup.
-            //'react' : path.resolve('node_modules/react'),
-            //'react-dom' : path.resolve('node_modules/react-dom'), 
-            'api': path.resolve('src/admin/js/react/api'),
-            'block': path.resolve('src/admin/js/react/blocks'),
-            'hoc': path.resolve('src/admin/js/react/hoc'),
-            'context': path.resolve('src/admin/js/react/context'),
-            'components': path.resolve('src/admin/js/react/components'),
-            'out-components': path.resolve('src/admin/js/react/out-components'),
-            'inv-template': path.resolve('src/admin/js/react/inv-template'),
+            //'react' : path.resolve('node_modules'),
+            //'react-dom' : path.resolve('node_modules-dom'), 
+            'api': path.resolve('src/js/api'),
+            'block': path.resolve('src/js/blocks'),
+            'hoc': path.resolve('src/js/hoc'),
+            'context': path.resolve('src/js/context'),
+            'components': path.resolve('src/js/components'),
+            'out-components': path.resolve('src/js/out-components'),
+            'inv-template': path.resolve('src/js/inv-template'),
         },
     },
 });
@@ -103,18 +120,17 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
         processCssUrls: false
     });
 
-    mix.sass(`src/admin/scss/dashboard.scss`, `assets/admin/css/dashboard${min}.css`)
-        .sass(`src/admin/scss/welcome.scss`, `assets/admin/css/welcome${min}.css`)
-        .sass(`src/admin/scss/invoice.scss`, `assets/admin/css/invoice${min}.css`)
+    mix.sass(`src/scss/dashboard.scss`, `assets/css/dashboard${min}.css`)
+        .sass(`src/scss/welcome.scss`, `assets/css/welcome${min}.css`)
+        .sass(`src/scss/invoice.scss`, `assets/css/invoice${min}.css`)
         /* .postCss('src/vendor/tailwind/tailwind.css', `assets/vendor/tailwind/tailwind${min}.css`, [
             require('tailwindcss'),
         ]) */
-        .copyDirectory('src/admin/img', 'assets/admin/img')
-        .copyDirectory('src/vendor', 'assets/vendor');
+        .copyDirectory('src/img', 'assets/img')
 
-    mix.js(`src/admin/js/react/welcome.jsx`, `assets/admin/js/welcome${min}.js`).react()
-    mix.js(`src/admin/js/react/dashboard.jsx`, `assets/admin/js/dashboard${min}.js`).react()
-    mix.js(`src/admin/js/react/invoice.jsx`, `assets/admin/js/invoice${min}.js`).react()
+    mix.js(`src/js/welcome.jsx`, `assets/js/welcome${min}.js`).react()
+    mix.js(`src/js/dashboard.jsx`, `assets/js/dashboard${min}.js`).react()
+    mix.js(`src/js/invoice.jsx`, `assets/js/invoice${min}.js`).react()
 }
 
 if (process.env.NODE_ENV === 'zip') {
