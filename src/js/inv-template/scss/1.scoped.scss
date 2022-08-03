@@ -1,20 +1,16 @@
 /* ====template one===*/
-.pi-inv {
-  .pi-inv-one {
-    .pi-inv-body {
-      margin: 0 35px;
-    }
-    .pi-inv-header {
-      padding-top: 50px;
-    }
-    .pi-inv-items table thead {
-      background: var(--pi-inv-primary);
-    }
-    .pi-inv-items table tbody tr:nth-child(even) {
-      background-color: var(--pi-inv-even);
-    }
-    .pi-inv-items table tbody tr:nth-child(odd) {
-      background-color: var(--pi-inv-odd);
-    }
-  }
+.pi-inv .pi-inv-one .pi-inv-body {
+  margin: 0 35px;
+}
+.pi-inv .pi-inv-one .pi-inv-header {
+  padding-top: 50px;
+}
+.pi-inv .pi-inv-one .pi-inv-items table thead {
+  background: var(--pi-inv-primary);
+}
+.pi-inv .pi-inv-one .pi-inv-items table tbody tr:nth-child(even) {
+  background-color: var(--pi-inv-even);
+}
+.pi-inv .pi-inv-one .pi-inv-items table tbody tr:nth-child(odd) {
+  background-color: var(--pi-inv-odd);
 }

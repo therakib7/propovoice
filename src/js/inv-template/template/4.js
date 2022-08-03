@@ -33,8 +33,8 @@ export default class Four extends Component {
         return (
             <div className="pi-inv" style={{ height: this.props.height }}>
                 <Seal status={status} />
-                <div className="pi-inv-five">
-                    <div className="pi-top-shape">
+                <div className="pi-inv-four">
+                    <div className="pi-inv-top-shape">
                         <svg
                             viewBox="0 0 595 117"
                             fill="none"
@@ -48,7 +48,7 @@ export default class Four extends Component {
                         <div className="pi-inv-title">
                             <h2>{title}</h2>
                         </div>
-                        <div className="pi-inv-hedear">
+                        <div className="pi-inv-header">
                             <div className="pi-inv-from">
                                 {fromData && fromData.logo &&
                                     <div className="pi-inv-from-logo">
@@ -63,27 +63,20 @@ export default class Four extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="pi-to">
+                            <div className="pi-inv-to">
                                 <To data={toData} />
                             </div>
                         </div>
 
                         {items && <Items data={items} item_tax={item_tax} />}
-
-                        <div className="pi-inv-bank">
+                        <div className="pi-inv-account">
                             <Payment {...this.props} />
                             <Total {...this.props} />
-                        </div>
-                        <div className="pi-note-wrap">
-
-                            <div className="pi-note-term">
-                                {sections && <Section data={sections} />}
-                            </div>
-
-                            {sign && <Sign data={sign} />}
-                        </div>
+                        </div>  
+                        {sections && <Section data={sections} />}
+                        {sign && <Sign data={sign} />}
                     </div>
-                    <div className="pi-footer-shape">
+                    <div className="pi-inv-footer-shape">
                         <svg
                             viewBox="0 0 595 136"
                             fill="none"

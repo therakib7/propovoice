@@ -36,7 +36,7 @@ export default class Four extends Component {
                 <Seal status={status} />
                 <div className="pi-inv-four">
                     <div className="pi-inv-body">
-                        <div className="pi-inv-hedear">
+                        <div className="pi-inv-header">
                             <div className="pi-inv-from">
                                 {fromData && fromData.logo &&
                                     <div className="pi-inv-from-logo pi-bg-one">
@@ -51,7 +51,7 @@ export default class Four extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="pi-to">
+                            <div className="pi-inv-to">
                                 <div className="pi-inv-title">
                                     <h2>{title}</h2>
                                 </div>
@@ -134,10 +134,10 @@ export default class Four extends Component {
                         </div>
 
                     </div>
-                    <div className="pi-footer-shape">
-                        <div className="pi-shape1 pi-bg-one" />
-                        <div className="pi-shape2 pi-bg-one" />
-                        <div className="pi-shape3 pi-bg-one" />
+                    <div className="pi-inv-footer-shape">
+                        <div className="pi-inv-shape1 pi-bg-one" />
+                        <div className="pi-inv-shape2 pi-bg-one" />
+                        <div className="pi-inv-shape3 pi-bg-one" />
                     </div>
                 </div>
             </div>
