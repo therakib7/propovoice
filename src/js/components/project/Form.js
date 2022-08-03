@@ -1,10 +1,11 @@
-import React, { Component, lazy } from 'react';
-import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api';
 import WithRouter from 'hoc/Router';
+import React, { Component, lazy } from 'react';
+import { toast } from 'react-toastify';
 
-import Select from 'react-select';
 import Contact from 'block/field/contact';
+import { Cross } from 'block/icon';
+import Select from 'react-select';
 
 const DateField = lazy(() => import('block/date-picker'));
 
@@ -239,26 +240,7 @@ class Form extends Component {
 
                     <div className="pi-modal-header pi-gradient">
                         <span className="pi-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Cross />
                         </span>
                         <h2 className="pi-modal-title">{title} Project</h2>
                         <p>Add new project from here</p>
