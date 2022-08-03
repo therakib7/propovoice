@@ -44,18 +44,18 @@ export default class Two extends Component {
                             <path d="M595 29.2L575.167 22.6C555.333 16 515.667 2.80004 476 7.21378C436.333 11.4625 396.667 33.7375 357 33.6138C317.333 33.7375 277.667 10.0762 238 -3C219.166 -9.32618 198.87 -10.7301 178.5 -10.5162C155.968 -10.2796 133.347 -7.36757 112.514 -0.499996C72.8471 12.8237 39.6666 37.8625 19.8333 53.4137L0 68.8L6.01468e-06 1.38921e-06L19.8333 3.12309e-06C39.6667 4.85698e-06 72.8471 -0.5 112.514 -0.499996C152.18 -0.499993 198.333 -3 238 -3C277.667 -3 308.614 -1.61374 348.28 -1.61374C387.947 -1.61373 427.614 -1.61373 467.28 -1.61373C506.947 -1.61372 555.333 -1.61374 575.167 -1.61374L595 -1.61372L595 29.2Z" />
                         </svg>
                     </div>
-                    <div className="pi-body">
-                        <div className="pi-hedear">
-                            <div className="pi-from">
+                    <div className="pi-inv-body">
+                        <div className="pi-inv-hedear">
+                            <div className="pi-inv-from">
                                 {fromData && fromData.logo &&
-                                    <div className="pi-from-logo">
+                                    <div className="pi-inv-from-logo">
                                         <img src={fromData.logo.src} alt="" />
                                     </div>}
                                 <From data={fromData} />
 
-                                <div className="pi-from-date">
+                                <div className="pi-inv-from-date">
                                     <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                    <div className="pi-from-time">
+                                    <div className="pi-inv-from-time">
                                         <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
                                         <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                     </div>
@@ -71,7 +71,7 @@ export default class Two extends Component {
 
                         {items && <Items data={items} item_tax={item_tax} />}
 
-                        <div className="pi-bank-info">
+                        <div className="pi-inv-bank">
                             <Payment {...this.props} />
                             <Total {...this.props} />
                         </div>

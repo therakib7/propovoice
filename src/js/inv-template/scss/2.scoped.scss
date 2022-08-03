@@ -1,38 +1,44 @@
+/* ====template two===*/
 .pi-inv {
-  /* ====template two===*/
-}
-.pi-inv .pi-inv-two .pi-top-shape svg {
-  width: 100%;
-  display: block;
-}
-.pi-inv .pi-inv-two .pi-top-shape svg path {
-  fill: var(--pi-inv-primary);
-}
-.pi-inv .pi-inv-two .pi-body {
-  margin: 0 35px;
-}
-.pi-inv .pi-inv-two .pi-items-table table thead {
-  background-color: var(--pi-inv-primary);
-  color: var(--pi-inv-white);
-}
-.pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(even) {
-  background-color: var(--pi-inv-even);
-}
-.pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(odd) {
-  background-color: var(--pi-inv-odd);
-}
-.pi-inv .pi-inv-two tr.pi-table-bg {
-  background-color: var(--pi-inv-primary);
-}
-.pi-inv .pi-inv-two .pi-footer-shape {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-.pi-inv .pi-inv-two .pi-footer-shape svg {
-  display: block;
-}
-.pi-inv .pi-inv-two .pi-footer-shape svg path {
-  width: 100%;
-  fill: var(--pi-inv-primary);
+  .pi-inv-two {
+    .pi-top-shape svg {
+      width: 100%;
+      display: block;
+    }
+    .pi-top-shape svg path {
+      fill: var(--pi-inv-primary);
+    }
+    .pi-body {
+      margin: 0 35px;
+    }
+    .pi-from-logo {
+      margin-bottom: 18px;
+    }
+    .pi-items-table table thead {
+      background-color: var(--pi-inv-primary);
+      color: var(--pi-inv-white);
+    }
+    .pi-items-table table tbody tr:nth-child(even) {
+      background-color: var(--pi-inv-even);
+    }
+    .pi-items-table table tbody tr:nth-child(odd) {
+      background-color: var(--pi-inv-odd);
+    }
+    .pi-sign {
+      bottom: 80px;
+      right: 20px;
+    }
+    .pi-footer-shape {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+    .pi-footer-shape svg {
+      display: block;
+    }
+    .pi-footer-shape svg path {
+      width: 100%;
+      fill: var(--pi-inv-primary);
+    }
+  }
 }

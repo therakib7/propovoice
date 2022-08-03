@@ -1,4 +1,3 @@
- 
 import Item from './Item' 
 const Items = props => {
     return (

@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react' 
 
 class Total extends Component {
 
@@ -88,8 +87,7 @@ class Total extends Component {
             </div> 
         )
     }
-} 
-
+}  
 export default Total
 
 

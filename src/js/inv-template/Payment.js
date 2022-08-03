@@ -1,4 +1,3 @@
-
 const Payment = props => {
     const { bankData } = props.data;
     return (
