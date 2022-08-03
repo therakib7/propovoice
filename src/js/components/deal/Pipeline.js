@@ -106,7 +106,7 @@ function Pipeline(props) {
 			>
 				{Object.entries(columns).map(([columnId, column], index) => {
 					return (
-						<div className="-column" key={columnId}>
+						<div className="pi-board-column" key={columnId}>
 							<div className="pi-board-column-title pi-bg-shadow" style={{ borderColor: column.color, color: column.color }}>
 								<h4 className="">{column.name}</h4>
 								<div className="pi-action-content">
