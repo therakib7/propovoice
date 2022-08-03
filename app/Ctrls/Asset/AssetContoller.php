@@ -60,13 +60,13 @@ class AssetContoller
             wp_enqueue_style('ncpi-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), $this->version);
         }
         if (isset($_GET['page']) && $_GET['page'] == 'ncpi-welcome') {
-            wp_enqueue_style('ncpi-welcome', ncpi()->get_assets_uri("admin/css/welcome{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ncpi-welcome', ncpi()->get_assets_uri("/admin/js/welcome{$this->suffix}.js"), array(), $this->version, true);
+            wp_enqueue_style('ncpi-welcome', ncpi()->get_assets_uri("css/welcome{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_script('ncpi-welcome', ncpi()->get_assets_uri("/js/welcome{$this->suffix}.js"), array(), $this->version, true);
             wp_localize_script('ncpi-welcome', 'ncpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'nonce' => wp_create_nonce('wp_rest'),
                 'dashboard' => menu_page_url('ncpi', false),
-                'assetImgUri' => ncpi()->get_assets_uri('admin/img/')
+                'assetImgUri' => ncpi()->get_assets_uri('img/')
             ));
         }
 
@@ -79,12 +79,12 @@ class AssetContoller
 
             //TODO: Remove all wordpress unused file from frontend
 
-            wp_enqueue_style('ncpi-invoice', ncpi()->get_assets_uri("admin/css/invoice{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ncpi-invoice', ncpi()->get_assets_uri("/admin/js/invoice{$this->suffix}.js"), array(), $this->version, true);
+            wp_enqueue_style('ncpi-invoice', ncpi()->get_assets_uri("css/invoice{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_script('ncpi-invoice', ncpi()->get_assets_uri("/js/invoice{$this->suffix}.js"), array(), $this->version, true);
             wp_localize_script('ncpi-invoice', 'ncpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'nonce' => wp_create_nonce('wp_rest'),
-                'assetImgUri' => ncpi()->get_assets_uri('admin/img/')
+                'assetImgUri' => ncpi()->get_assets_uri('img/')
             ));
         }
 
@@ -96,8 +96,8 @@ class AssetContoller
                 'estimate-template.php'
             ])
         ) {
-            wp_enqueue_style('ncpi-dashboard', ncpi()->get_assets_uri("admin/css/dashboard{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ncpi-dashboard', ncpi()->get_assets_uri("/admin/js/dashboard{$this->suffix}.js"), array(), $this->version, true);
+            wp_enqueue_style('ncpi-dashboard', ncpi()->get_assets_uri("css/dashboard{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_script('ncpi-dashboard', ncpi()->get_assets_uri("/js/dashboard{$this->suffix}.js"), array(), $this->version, true);
             $current_user = wp_get_current_user();
             wp_localize_script('ncpi-dashboard', 'ncpi', array(
                 'apiUrl' => esc_url(rest_url()),
@@ -118,7 +118,7 @@ class AssetContoller
                 //'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
                 'apiServerUrl' => 'https://appux.co/propovoice-server/wp-json/', //TODO: change server URL later
                 'nonce' => wp_create_nonce('wp_rest'),
-                'assetImgUri' => ncpi()->get_assets_uri('admin/img/'),
+                'assetImgUri' => ncpi()->get_assets_uri('img/'),
                 'assetUri' => trailingslashit(NCPI_URL),
                 'profile' => [
                     'name' => $current_user->display_name,

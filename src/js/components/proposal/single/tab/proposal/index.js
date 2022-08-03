@@ -154,7 +154,7 @@ class Invoice extends Component {
 
 	bgColor = () => {
 		if (this.state.currentTab == 'info') {
-			document.body.style.backgroundColor = "#f1f1f7";
+			document.body.style.backgroundColor = "#f7f8fa";
 		} else {
 			document.body.style.backgroundColor = "#fff";
 		}

@@ -1,7 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrls\Hook;
-
+namespace Ncpi\Ctrls\Hook; 
 
 class HookController { 
 

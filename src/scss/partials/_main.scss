@@ -911,7 +911,10 @@ html {
     margin-top: 15px;
   }
 }
+<<<<<<< HEAD:src/admin/scss/partials/_main.scss
 
+=======
+>>>>>>> b54434e6f3c6e6cf302b83a5dc975ded504c6f6d:src/scss/partials/_main.scss
 .ncpi .pi-table-action input[type=checkbox]::before {
   width: 28px;
 }
@@ -1012,7 +1015,7 @@ html {
 
 .ncpi .pi-table input[type=checkbox] {
   zoom: 1.5;
-  border-radius: 5px;
+  border-radius: 7px;
   transform: scale(0.8);
   border: 1px solid rgba(147, 147, 147, 0.9411764706);
   box-shadow: none;
@@ -3400,13 +3403,19 @@ ul {
   top: 35px;
   left: 0;
 }
+<<<<<<< HEAD:src/admin/scss/partials/_main.scss
 
+=======
+>>>>>>> b54434e6f3c6e6cf302b83a5dc975ded504c6f6d:src/scss/partials/_main.scss
 @media screen and (max-width: 550px) {
   .ncpi .pi-modal-sidebar .pi-action-content .pi-dropdown-content {
     left: -65px !important;
   }
 }
+<<<<<<< HEAD:src/admin/scss/partials/_main.scss
 
+=======
+>>>>>>> b54434e6f3c6e6cf302b83a5dc975ded504c6f6d:src/scss/partials/_main.scss
 .ncpi .pi-modal-sidebar-two {
   width: 760px;
 }
@@ -4485,6 +4494,13 @@ ul {
   color: #4A5568;
   margin-left: -2px;
   height: 33px;
+}
+@media screen and (max-width: 992px) {
+  .pi-field-radio-input .pi-times,
+.pi-field-checkbox-input .pi-times {
+    height: 40px !important;
+    line-height: 30px !important;
+  }
 }
 
 @media screen and (max-width: 992px) {
