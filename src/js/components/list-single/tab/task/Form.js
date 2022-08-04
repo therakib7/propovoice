@@ -89,8 +89,7 @@ const Form = (props) => {
             mForm.start_date = date;
         } else {
             mForm.due_date = date;
-        }
-        // setState({ mForm });
+        } 
         setForm( mForm )
     }
 
@@ -117,7 +116,7 @@ const Form = (props) => {
         newFrom.status_id = status[0];
         newFrom.type_id = types[0];
         newFrom.priority_id = priorities[0]; 
-        
+
         setForm( newFrom )
     } 
     
@@ -127,8 +126,7 @@ const Form = (props) => {
                 <div className="pi-activity-field">
                     <input
                         id="field-title"
-                        type="text"
-                        //className='pi-mb-20'
+                        type="text" 
                         required
                         name="title"
                         value={form.title}

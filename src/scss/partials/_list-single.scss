@@ -1,7 +1,7 @@
 .ncpi .pi-list-single-head {
   background-color: #fff;
   padding: 30px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   border-radius: 8px 8px 0 0;
 }
 .ncpi .pi-list-single-head .pi-list-content {
@@ -20,7 +20,7 @@
   }
 }
 .ncpi .pi-list-single-head .pi-list-content h3 .pi-btn {
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   margin-left: 20px;
   margin-bottom: 5px;
   font-size: 10px;
@@ -45,7 +45,7 @@
   display: block;
 }
 .ncpi .pi-list-single-head .pi-edit-btn .pi-btn {
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 5px 12px !important;
 }
 .ncpi .pi-list-single-head-two {
@@ -135,7 +135,7 @@
 .ncpi .pi-tag-content {
   padding: 30px;
   background-color: #fff;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   border-top: none;
   border-radius: 0 0 8px 8px;
 }
@@ -223,7 +223,7 @@
   display: inline;
 }
 .ncpi .pi-tag-content ul .pi-action-content .pi-btn {
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 3px 10px !important;
   color: #718096 !important;
   line-height: 100%;
@@ -259,7 +259,7 @@
   font-size: 12px !important;
 }
 .ncpi .pi-tab-buttons-group {
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 5px 10px 10px;
   border-radius: 8px;
   background-color: #fff;
@@ -334,7 +334,7 @@
 .ncpi .pi-small-button-group .pi-btn-small {
   color: #718096 !important;
   font-weight: 500;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   margin-right: 5px;
 }
 @media screen and (max-width: 420px) {
@@ -420,10 +420,14 @@
 .ncpi .pi-board-column .pi-action-content button {
   top: -4px;
   position: relative;
+  padding: 0 5px;
 }
 .ncpi .pi-board-column .pi-action-content button svg {
   position: relative;
   top: 1px;
+}
+.ncpi .pi-board-column .pi-action-content button:hover {
+  background-color: #edf2f7;
 }
 .ncpi .pi-board-column .pi-action-content .pi-dropdown-content {
   top: 39px;
@@ -431,7 +435,7 @@
 }
 .ncpi .pi-board-column .pi-board-column-item {
   background-color: #fff;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   border-radius: 8px;
   margin-bottom: 15px;
 }
