@@ -912,8 +912,10 @@ html {
   }
 }
 
-.ncpi .pi-table-action input[type=checkbox]::before {
-  width: 20px;
+.ncpi .pi-table-action input[type=checkbox] {
+  zoom: 1.2;
+  top: 2px;
+  position: relative;
 }
 
 .ncpi .pi-table-action span {
@@ -2040,13 +2042,13 @@ html {
 }
 
 @media screen and (max-width: 992px) {
-  .ncpi .pi-mediun-search-bar .pi-search-input {
+  .ncpi .pi-medium-search-bar .pi-search-input {
     width: 200px;
   }
 }
 
 @media screen and (max-width: 820px) {
-  .ncpi .pi-mediun-search-bar .pi-search-input {
+  .ncpi .pi-medium-search-bar .pi-search-input {
     width: 150px;
     padding: 10px;
     padding-left: 40px;
@@ -2054,7 +2056,7 @@ html {
 }
 
 @media screen and (max-width: 768px) {
-  .ncpi .pi-mediun-search-bar .pi-search-input {
+  .ncpi .pi-medium-search-bar .pi-search-input {
     width: 100%;
     margin-bottom: 15px;
   }
@@ -2449,6 +2451,15 @@ html {
   box-shadow: none;
 }
 
+.wp-admin.ncpi .pi-right-content-data {
+  padding: 45px 70px 40px !important;
+}
+
+.wp-admin.ncpi input[type=checkbox]:focus {
+  box-shadow: none;
+  border-color: #8c8f94;
+}
+
 .wp-admin.ncpi .pi-total-list select {
   min-height: 25px;
   position: relative;
@@ -2480,6 +2491,15 @@ html {
 .wp-admin.ncpi .pi-info-table .pi-field-checkbox select {
   padding: 5px 6px !important;
   height: 35px;
+}
+
+.wp-admin.ncpi .pi-table-action input[type=checkbox] {
+  zoom: 1;
+  top: 0px;
+}
+
+.wp-admin.ncpi .pi-table-action input[type=checkbox]::before {
+  width: 20px;
 }
 
 .wp-admin.ncpi .pi-info-form-list .pi-calendar {
@@ -2661,6 +2681,10 @@ html {
   margin: 0;
 }
 
+.react-datepicker-popper {
+  z-index: 11 !important;
+}
+
 .react-datepicker {
   border: 1px solid #CBD5E0 !important;
 }
@@ -2721,6 +2745,10 @@ html {
 .pi-field-date .react-datepicker__day--keyboard-selected {
   background-color: #4c6fff !important;
   color: #fff !important;
+}
+
+.pi-board-content {
+  height: calc(100vh - 475px);
 }
 
 button {
@@ -3335,9 +3363,9 @@ ul {
   margin-right: 17px;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 420px) {
   .ncpi .pi-modal-sidebar {
-    max-width: 430px;
+    max-width: 350px;
   }
 }
 
@@ -3516,7 +3544,7 @@ ul {
 }
 
 .ncpi .pi-modal-sidebar-two .pi-content {
-  height: calc(100vh - 78px);
+  height: calc(100vh - 108px);
 }
 
 @media screen and (max-width: 420px) {
@@ -4552,6 +4580,10 @@ ul {
   outline: none;
   -webkit-appearance: auto;
   padding: 0px 3px 0 10px;
+}
+
+.ncpi .pi-search-btn .pi-search-form ul li select:focus {
+  box-shadow: none;
 }
 
 @media screen and (max-width: 820px) {
@@ -5804,8 +5836,85 @@ select {
   }
 }
 
+@media screen and (max-width: 992px) {
+  .ncpi .pi-left-sidebar {
+    position: fixed;
+    overflow-x: visible;
+    scroll-behavior: smooth;
+    z-index: 99;
+    left: -220px;
+    transition: all 0.3s ease-out;
+    width: 220px;
+    border-right: 1px solid rgba(221, 221, 221, 0.6588235294);
+  }
 
+  .ncpi .pi-left-sidebar .pi-logo-content {
+    width: 220px;
+  }
 
-.pi-right-content-data {
-  padding: 45px 70px 40px !important;
+  .ncpi .pi-menubar-icon {
+    display: block;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-right: 15px;
+  }
+
+  .ncpi .pi-menu-open {
+    left: 0 !important;
+  }
+
+  .ncpi .pi-left-sidebar.pi-menu-left .pi-menubar-icon {
+    left: 235px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .ncpi .pi-menubar-icon {
+    left: 235px;
+  }
+}
+
+.pi-sub-menu {
+  display: none;
+}
+
+.pi-sub-menu-show {
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  .pi-collapse-menu {
+    transition: all 0.2s ease-out;
+    width: 90px !important;
+  }
+
+  .pi-collapse-menu ul li a {
+    display: inline-table !important;
+  }
+
+  .pi-collapse-menu ul li a span {
+    position: absolute;
+    display: none;
+    top: 25%;
+    left: 25%;
+    transition: all 0.9s ease-out;
+  }
+
+  .pi-collapse-menu ul li a:hover svg path {
+    fill: #3157f0;
+  }
+
+  .pi-collapse-menu .pi-menu-buttons {
+    display: none;
+  }
+
+  .pi-collapse-menu:hover {
+    width: 242px !important;
+  }
+
+  .pi-collapse-menu:hover ul li a span {
+    display: table;
+    left: 28%;
+  }
 }
