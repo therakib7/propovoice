@@ -56,7 +56,7 @@ class Total extends Component {
             <div className="pi-inv-total">
                 <table>
                     <tbody>
-                        <tr>
+                        <tr className='pi-inv-e-bold'>
                             <th>Total</th>
                             <td>{this.formatCurrency(this.calcItemsTotal())}</td>
                         </tr>
