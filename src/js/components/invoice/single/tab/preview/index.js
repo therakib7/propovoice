@@ -95,74 +95,83 @@ export default class Preview extends Component {
                 <iframe id="ncpi-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
-                        <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
-                            <EditDownload componentRef={this.componentRef} path={this.props.path} handleEdit={this.props.editTab} />
-
-                            <ReactToPrint
-                                content={() => this.componentRef}
-                                trigger={() => <button
-                                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
-                                // style={{ color: '#000', marginRight: '5px' }}
-                                // onClick={() => props.handleDownload()}
-                                >
-                                    <svg
-                                        width={17}
-                                        height={16}
-                                        viewBox="0 0 17 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                        <div className='' style={{ width: '788px', margin: '0 auto' }}>
+                            <div className='pi-float-left'>
+                                <EditDownload componentRef={this.componentRef} path={this.props.path} handleEdit={this.props.editTab} />
+                                <ReactToPrint
+                                    content={() => this.componentRef}
+                                    trigger={() => <button
+                                        className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
+                                    // style={{ color: '#000', marginRight: '5px' }}
+                                    // onClick={() => props.handleDownload()}
                                     >
-                                        <path
-                                            d="M8.5 3.5C3.5 3.5 1.5 8 1.5 8C1.5 8 3.5 12.5 8.5 12.5C13.5 12.5 15.5 8 15.5 8C15.5 8 13.5 3.5 8.5 3.5Z"
-                                            stroke="#2D3748"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M8.5 10.5C9.88071 10.5 11 9.38071 11 8C11 6.61929 9.88071 5.5 8.5 5.5C7.11929 5.5 6 6.61929 6 8C6 9.38071 7.11929 10.5 8.5 10.5Z"
-                                            stroke="#2D3748"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                    Download
-                                </button>}
-                            />
-
-                            <ReactToPrint
-                                content={() => this.componentRef}
-                                trigger={() => <button
-                                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
-                                // style={{ color: '#000', marginRight: '5px' }}
-                                // onClick={() => props.handlePrint()}
-                                >
-                                    <svg
-                                        width={17}
-                                        height={16}
-                                        viewBox="0 0 17 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        <svg
+                                            width={17}
+                                            height={16}
+                                            viewBox="0 0 17 16"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M8.5 3.5C3.5 3.5 1.5 8 1.5 8C1.5 8 3.5 12.5 8.5 12.5C13.5 12.5 15.5 8 15.5 8C15.5 8 13.5 3.5 8.5 3.5Z"
+                                                stroke="#2D3748"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                            <path
+                                                d="M8.5 10.5C9.88071 10.5 11 9.38071 11 8C11 6.61929 9.88071 5.5 8.5 5.5C7.11929 5.5 6 6.61929 6 8C6 9.38071 7.11929 10.5 8.5 10.5Z"
+                                                stroke="#2D3748"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
+                                        Download
+                                    </button>}
+                                />
+                                <ReactToPrint
+                                    content={() => this.componentRef}
+                                    trigger={() => <button
+                                        className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
+                                    // style={{ color: '#000', marginRight: '5px' }}
+                                    // onClick={() => props.handlePrint()}
                                     >
-                                        <path
-                                            d="M8.5 3.5C3.5 3.5 1.5 8 1.5 8C1.5 8 3.5 12.5 8.5 12.5C13.5 12.5 15.5 8 15.5 8C15.5 8 13.5 3.5 8.5 3.5Z"
-                                            stroke="#2D3748"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M8.5 10.5C9.88071 10.5 11 9.38071 11 8C11 6.61929 9.88071 5.5 8.5 5.5C7.11929 5.5 6 6.61929 6 8C6 9.38071 7.11929 10.5 8.5 10.5Z"
-                                            stroke="#2D3748"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                    Print
-                                </button>}
-                            />
+                                        <svg
+                                            width={17}
+                                            height={16}
+                                            viewBox="0 0 17 16"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M8.5 3.5C3.5 3.5 1.5 8 1.5 8C1.5 8 3.5 12.5 8.5 12.5C13.5 12.5 15.5 8 15.5 8C15.5 8 13.5 3.5 8.5 3.5Z"
+                                                stroke="#2D3748"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                            <path
+                                                d="M8.5 10.5C9.88071 10.5 11 9.38071 11 8C11 6.61929 9.88071 5.5 8.5 5.5C7.11929 5.5 6 6.61929 6 8C6 9.38071 7.11929 10.5 8.5 10.5Z"
+                                                stroke="#2D3748"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
+                                        Print
+                                    </button>}
+                                />
+                            </div>
+                            <div className='pi-float-right'>
+                                <button
+                                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5 pi-br-4"
+                                    // style={{ color: '#000', marginRight: '5px' }}
+                                    onClick={() => this.props.showShareModal()}
+                                >
+                                    Share
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -182,7 +191,7 @@ export default class Preview extends Component {
                     </div>
 
                     <div className='col-md-8' style={{ margin: '30px 0' }}>
-                        <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
+                        <div className='' style={{ width: '788px', margin: '0 auto' }}>
                             <div className='pi-float-left'>
                                 <EditDownload componentRef={this.componentRef} path={this.props.path} handleEdit={this.props.editTab} />
                                 <ReactToPrint

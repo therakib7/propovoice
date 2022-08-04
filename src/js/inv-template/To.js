@@ -1,33 +1,26 @@
-import React, { Component } from 'react' 
+const To = (props) => {
+    const data = props.data
+    return (
+        <>
+            {data ?
+                <>
+                    <h5>Bill to</h5>
+                    <h6>{data.first_name} {data.last_name}</h6>
+                    <p>
+                        {data.address &&
+                            <>{data.address}.<br /></>
+                        }
+                        {data.email},
 
-class To extends Component {  
-
-    render = () => {  
-        const data = this.props.data 
-        return (
-            <> 
-                {data ?  
-                    <>
-                        <p>Bill to</p>
-                        <h6>{data.first_name} {data.last_name}</h6>
-                        <address>
-                            <p>
-                                {data.address &&
-                                    <>{data.address}.<br /></>
-                                }   
-                                {data.email},
-
-                                {data.mobile &&
-                                    <><br />{data.mobile}</>
-                                }
-                            </p>
-                        </address>           
-                    </> : ''
-                }
-            </>
-        )
-    }
-} 
+                        {data.mobile &&
+                            <><br />{data.mobile}</>
+                        }
+                    </p>
+                </> : ''
+            }
+        </>
+    )
+}
 
 export default To
 

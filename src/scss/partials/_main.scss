@@ -2033,7 +2033,7 @@ html {
   color: #2D3748;
 }
 
-.ncpi .pi-mediun-search-bar .pi-search-input {
+.ncpi .pi-medium-search-bar .pi-search-input {
   padding: 9px;
   padding-left: 40px;
   width: 240px;
@@ -2060,7 +2060,7 @@ html {
   }
 }
 
-.ncpi .pi-mediun-search-bar svg {
+.ncpi .pi-medium-search-bar svg {
   top: 7px;
 }
 
@@ -5801,88 +5801,5 @@ select {
 
   .ncpi .pi-menubar-icon svg {
     width: 17px;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .ncpi .pi-left-sidebar {
-    position: fixed;
-    overflow-x: visible;
-    scroll-behavior: smooth;
-    z-index: 9;
-    left: -220px;
-    transition: all 0.3s ease-out;
-    width: 220px;
-    border-right: 1px solid rgba(221, 221, 221, 0.6588235294);
-  }
-
-  .ncpi .pi-left-sidebar .pi-logo-content {
-    width: 220px;
-  }
-
-  .ncpi .pi-menubar-icon {
-    display: block;
-    cursor: pointer;
-    font-size: 15px;
-    margin-top: 10px;
-    margin-right: 15px;
-  }
-
-  .ncpi .pi-menu-open {
-    left: 0 !important;
-  }
-
-  .ncpi .pi-left-sidebar.pi-menu-left .pi-menubar-icon {
-    left: 235px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .ncpi .pi-menubar-icon {
-    left: 235px;
-  }
-}
-
-.pi-sub-menu {
-  display: none;
-}
-
-.pi-sub-menu-show {
-  display: block;
-}
-
-@media screen and (min-width: 768px) {
-  .pi-collapse-menu {
-    transition: all 0.2s ease-out;
-    width: 90px !important;
-  }
-
-  .pi-collapse-menu ul li a {
-    display: inline-table !important;
-  }
-
-  .pi-collapse-menu ul li a span {
-    position: absolute;
-    display: none;
-    top: 25%;
-    left: 25%;
-    transition: all 0.9s ease-out;
-  }
-
-  .pi-collapse-menu ul li a:hover svg path {
-    fill: #3157f0;
-  }
-
-  .pi-collapse-menu .pi-menu-buttons {
-    display: none;
-  }
-
-  .pi-collapse-menu:hover {
-    width: 242px !important;
-  }
-
-  .pi-collapse-menu:hover ul li a span {
-    display: table;
-    left: 28%;
   }
 }

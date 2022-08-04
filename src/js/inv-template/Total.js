@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react' 
 
 class Total extends Component {
 
@@ -54,7 +53,7 @@ class Total extends Component {
     render = () => { 
 		const extra_field = this.props.data.invoice.extra_field;
         return ( 
-            <div className="pi-amounting">
+            <div className="pi-inv-total">
                 <table>
                     <tbody>
                         <tr>
@@ -79,7 +78,7 @@ class Total extends Component {
                             </tr>)
                         })} 
 
-                        <tr className="pi-table-bg">
+                        <tr className="pi-inv-table-bg">
                             <th>Subtotal</th>
                             <td>{this.formatCurrency(this.calcGrandTotal())}</td>
                         </tr>
@@ -88,8 +87,7 @@ class Total extends Component {
             </div> 
         )
     }
-} 
-
+}  
 export default Total
 
 

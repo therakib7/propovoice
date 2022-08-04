@@ -1,6 +1,6 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
-import { NavLink } from "react-router-dom";
 import Spinner from 'block/preloader/spinner';
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Task = lazy(() => import('components/list-single/tab/task'));
 
@@ -42,19 +42,16 @@ const Dashboard = (props) => {
                 <div className="col">
                     <div
                         className="pi-action-content"
-                        style={{ display: "flex", justifyContent: "right" }}
-                    >
+                        style={{ display: "flex", justifyContent: "right" }}>
                         <button
                             className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-br-4"
-                            onClick={() => setDropdown(val => !val)}
-                        >
+                            onClick={() => setDropdown(val => !val)}>
                             <svg
                                 width={14}
                                 height={12}
                                 viewBox="0 0 12 15"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M2.5 8H13.5"
                                     stroke="white"
@@ -67,8 +64,7 @@ const Dashboard = (props) => {
                                     stroke="white"
                                     strokeWidth="1.5"
                                     strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
+                                    strokeLinejoin="round" />
                             </svg>
                             Create
                         </button>
@@ -120,7 +116,7 @@ const Dashboard = (props) => {
                         </Suspense>
                     </div>
                 </div>
-            </div> 
+            </div>
 
             <div className="row">
                 <div className="col-lg-8">
@@ -136,8 +132,8 @@ const Dashboard = (props) => {
                         <ChartPie {...props} type='lead_source' />
                     </Suspense>
                 </div>
-            </div> 
-        </div> 
+            </div>
+        </div>
     );
 }
 export default WithApi(Dashboard);

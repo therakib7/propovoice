@@ -45,6 +45,5 @@ const Item = props => {
             <td>{formatCurrency( calcItemTotal( qty, price, tax, tax_type ) )}</td>
         </tr>
     )
-}
-
+}  
 export default Item 

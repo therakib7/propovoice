@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import Moment from 'react-moment';
 import Action from 'block/action/row';
+import { Arrow, Email, Tag } from 'block/icon';
+import Moment from 'react-moment';
+import { useNavigate } from 'react-router-dom';
 
 const TableHeader = props => {
     return (
@@ -17,64 +18,15 @@ const TableHeader = props => {
                     Contact Name
                 </th>
                 <th>
-                    <svg
-                        className='pi-mt-4'
-                        width={16}
-                        height={16}
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M2 3.5h12V12a.5.5 0 01-.5.5h-11A.5.5 0 012 12V3.5z"
-                            stroke="#718096"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path
-                            d="M14 3.5L8 9 2 3.5"
-                            stroke="#718096"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
+                    <Email />
                     Email
                 </th>
                 <th>
-                    <svg
-                        style={{ top: 1 }}
-                        width={15}
-                        height={10}
-                        viewBox="0 0 15 10"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M11.15 9.275L14 5 11.15.725A.493.493 0 0010.731.5H1.5A.5.5 0 001 1v8a.5.5 0 00.5.5h9.231a.494.494 0 00.419-.225v0z"
-                            stroke="#718096"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
+                    <Arrow />
                     Lead Level
                 </th>
                 <th>
-                    <svg
-                        className='pi-mt-4'
-                        width={16}
-                        height={16}
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M7.669 1.619L2.625 2.625 1.619 7.669a.5.5 0 00.137.45l6.525 6.525a.496.496 0 00.706 0l5.657-5.657a.496.496 0 000-.706L8.119 1.756a.5.5 0 00-.45-.137v0z"
-                            stroke="#718096"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path d="M5.25 6a.75.75 0 100-1.5.75.75 0 000 1.5z" fill="#718096" />
-                    </svg>
+                    <Tag/>
                     Tag
                 </th>
                 <th>
@@ -100,10 +52,10 @@ const TableBody = props => {
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
         const level = row.level_id;
 
-        let img = ncpi.assetImgUri + 'avatar.png'; 
-        if ( row.person && row.person.img ) {
+        let img = ncpi.assetImgUri + 'avatar.png';
+        if (row.person && row.person.img) {
             img = row.person.img.src;
-        } else if ( row.org && row.org.img ) {
+        } else if (row.org && row.org.img) {
             img = row.org.img.src;
         }
 

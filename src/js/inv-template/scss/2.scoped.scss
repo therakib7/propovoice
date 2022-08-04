@@ -1,38 +1,40 @@
-.pi-inv {
-  /* ====template two===*/
-}
-.pi-inv .pi-inv-two .pi-top-shape svg {
+/* ====template two===*/
+.pi-inv .pi-inv-two .pi-inv-top-shape svg {
   width: 100%;
   display: block;
 }
-.pi-inv .pi-inv-two .pi-top-shape svg path {
+.pi-inv .pi-inv-two .pi-inv-top-shape svg path {
   fill: var(--pi-inv-primary);
 }
-.pi-inv .pi-inv-two .pi-body {
+.pi-inv .pi-inv-two .pi-inv-body {
   margin: 0 35px;
 }
-.pi-inv .pi-inv-two .pi-items-table table thead {
+.pi-inv .pi-inv-two .pi-inv-from-logo {
+  margin-bottom: 18px;
+}
+.pi-inv .pi-inv-two .pi-inv-items table thead {
   background-color: var(--pi-inv-primary);
   color: var(--pi-inv-white);
 }
-.pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(even) {
+.pi-inv .pi-inv-two .pi-inv-items table tbody tr:nth-child(even) {
   background-color: var(--pi-inv-even);
 }
-.pi-inv .pi-inv-two .pi-items-table table tbody tr:nth-child(odd) {
+.pi-inv .pi-inv-two .pi-inv-items table tbody tr:nth-child(odd) {
   background-color: var(--pi-inv-odd);
 }
-.pi-inv .pi-inv-two tr.pi-table-bg {
-  background-color: var(--pi-inv-primary);
+.pi-inv .pi-inv-two .pi-inv-sign {
+  bottom: 80px;
+  right: 20px;
 }
-.pi-inv .pi-inv-two .pi-footer-shape {
+.pi-inv .pi-inv-two .pi-inv-footer-shape {
   position: absolute;
   bottom: 0;
   width: 100%;
 }
-.pi-inv .pi-inv-two .pi-footer-shape svg {
+.pi-inv .pi-inv-two .pi-inv-footer-shape svg {
   display: block;
 }
-.pi-inv .pi-inv-two .pi-footer-shape svg path {
+.pi-inv .pi-inv-two .pi-inv-footer-shape svg path {
   width: 100%;
   fill: var(--pi-inv-primary);
 }

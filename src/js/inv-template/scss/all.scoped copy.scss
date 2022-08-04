@@ -1,0 +1,333 @@
+:root {
+  --pi-inv-secondary: #4c6fff;
+  --pi-inv-text-primary: #000000;
+  --pi-inv-text-secondary: #1a202c;
+  --pi-inv-text-3th: #2d3748;
+  --pi-inv-text-4th: #31343d;
+  --pi-inv-text-5th: #4a5568;
+  --pi-inv-white: #fff;
+  --pi-inv-medium: 16px;
+  --pi-inv-small: 12px;
+  --pi-inv-primary: #4c6fff;
+  --pi-inv-odd: #f7fafc;
+  --pi-inv-even: #edf2f7;
+}
+
+.pi-inv {
+  width: 794px;
+  height: 1120px;
+  overflow: hidden;
+  margin: 0 auto;
+  background-color: var(--pi-inv-white);
+  position: relative;
+  /* ==== invoece to address */
+  /* pi-banking wrap */
+}
+
+.pi-inv a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.pi-inv * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pi-inv .pi-hedear {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pi-inv .pi-from {
+  width: 45%;
+}
+
+.pi-inv .pi-from address {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+  color: var(--pi-inv-text-4th);
+  margin-bottom: 15px;
+  margin-top: 18px;
+}
+
+.pi-inv .pi-from address span,
+.pi-inv .pi-from address a {
+  font-weight: 500;
+}
+
+.pi-inv .pi-from-date p {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+}
+
+.pi-inv .pi-from-date p span {
+  font-weight: 400;
+}
+
+.pi-inv .pi-from-time {
+  display: flex;
+  -moz-column-gap: 18px;
+  column-gap: 18px;
+}
+
+.pi-inv .pi-inv-title h2 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 100%;
+  color: var(--pi-inv-text-4th);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.pi-inv .pi-to {
+  width: 35%;
+}
+
+.pi-inv .pi-to p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+  color: var(--pi-inv-text-3th);
+  font-family: Inter;
+  letter-spacing: 0.07px;
+}
+
+.pi-inv .pi-to h6 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+  color: var(--pi-inv-text-3th);
+  font-family: Inter;
+  letter-spacing: 0.07px;
+}
+
+.pi-inv .pi-to address {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+  color: var(--pi-inv-text-3th);
+  margin-top: 5px;
+}
+
+.pi-inv .pi-to address p,
+.pi-inv .pi-to address a,
+.pi-inv .pi-to address span {
+  font-weight: 400;
+  margin-top: -5px;
+}
+
+.pi-inv .pi-items-table table {
+  border-spacing: 0;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 24px;
+}
+
+.pi-inv .pi-items-table table thead th {
+  color: var(--pi-inv-white);
+  padding: 10px 35px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--pi-inv-small);
+  line-height: 140%;
+  text-align: left;
+}
+
+.pi-inv .pi-items-table table td {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+  padding: 10px 0px 10px 35px;
+  color: var(--pi-inv-text-3th);
+}
+
+.pi-inv .pi-items-table table td span {
+  color: var(--pi-inv-text-5th);
+  font-weight: 400;
+}
+
+.pi-inv .pi-items-table table tr th:first-child {
+  padding: 10px 0px 10px 20px;
+}
+
+.pi-inv .pi-items-table table tr td:first-child {
+  padding: 10px 0px 10px 20px;
+}
+
+.pi-inv .pi-bank-info {
+  display: flex;
+  justify-content: space-between;
+  -moz-column-gap: 30px;
+  column-gap: 30px;
+  margin-bottom: 15px;
+}
+
+.pi-inv .pi-bank-info h4 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--pi-inv-medium);
+  line-height: 140%;
+  color: #1a202c;
+}
+
+.pi-inv .pi-bank-info table {
+  margin-top: 10px;
+}
+
+.pi-inv .pi-bank-info table th {
+  text-align: left;
+  padding-right: 20px;
+  padding-left: 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+  color: var(--pi-inv-text-primary);
+  padding-bottom: 4px;
+}
+
+.pi-inv .pi-bank-info table td {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+  color: var(--pi-inv-text-primary);
+  text-align: left;
+  padding-bottom: 4px;
+}
+
+.pi-inv .pi-amounting table {
+  border-spacing: 0;
+  width: 210px;
+}
+
+.pi-inv .pi-amounting table tr.pi-before-total th {
+  padding-bottom: 10px;
+}
+
+.pi-inv .pi-amounting table th {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--pi-inv-medium);
+  line-height: 140%;
+  color: var(--pi-inv-text-primary);
+  padding-left: 28px;
+}
+
+.pi-inv .pi-amounting .pi-table-bg th {
+  color: var(--pi-inv-white);
+  padding: 6px;
+  padding-left: 28px;
+  padding-right: 10px;
+}
+
+.pi-inv .pi-amounting .pi-table-bg td {
+  color: var(--pi-inv-white);
+  line-height: 140%;
+}
+
+.pi-inv .pi-note-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.pi-inv .pi-terms h4 {
+  margin-top: 10px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--pi-inv-medium);
+  line-height: 150%;
+  color: var(--pi-inv-text-secondary);
+}
+
+.pi-inv .pi-terms ul {
+  list-style-type: dot;
+}
+
+.pi-inv .pi-terms ul li {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+  color: var(--pi-inv-text-5th);
+  margin-left: 15px;
+}
+
+.pi-inv .mt-35 {
+  margin-top: 35px;
+}
+
+.pi-inv .pi-note h4 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--pi-inv-medium);
+  line-height: 150%;
+  color: var(--pi-inv-text-secondary);
+}
+
+.pi-inv .pi-note p {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--pi-inv-small);
+  line-height: 150%;
+  color: var(--pi-inv-text-5th);
+}
+
+.pi-inv .pi-sign {
+  text-align: center;
+  margin-right: 60px;
+}
+
+.pi-inv .pi-sign h4 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: var(--pi-inv-medium);
+  line-height: 150%;
+  color: var(--pi-inv-text-secondary);
+}
+
+.pi-inv .pi-border {
+  border: 0.5px solid #a0aec0;
+  margin: 0 -30px;
+  margin-top: 8px;
+}
+
+@media screen and (max-width: 500px) {
+  .pi-inv .pi-body {
+    margin: 0 15px;
+  }
+}
+
+
+
+
+.pi-inv .pi-sign {
+  img {
+    max-width: 190px;
+  }
+}

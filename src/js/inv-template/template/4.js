@@ -33,8 +33,8 @@ export default class Four extends Component {
         return (
             <div className="pi-inv" style={{ height: this.props.height }}>
                 <Seal status={status} />
-                <div className="pi-inv-five">
-                    <div className="pi-top-shape">
+                <div className="pi-inv-four">
+                    <div className="pi-inv-top-shape">
                         <svg
                             viewBox="0 0 595 117"
                             fill="none"
@@ -44,46 +44,39 @@ export default class Four extends Component {
                             <path d="M478.8 33.838a562.361 562.361 0 00-15.522-6.309c-1.595-.614-3.214-1.249-4.857-1.863a284.849 284.849 0 00-3.785-1.434 419.59 419.59 0 00-5.523-2.049 5.944 5.944 0 01-.548-.204c-2.5-.922-5.023-1.823-7.57-2.725a879.463 879.463 0 00-26.497-8.93 230.619 230.619 0 00-5.38-1.7c-1.262-.41-2.5-.8-3.762-1.189a556.549 556.549 0 00-7.166-2.191A1244.362 1244.362 0 00380.359 0H0v42.072S150.125 5.532 305.678 8.603c.285 0 .571.02.857.02 1.69.041 3.404.062 5.118.123 3.762.103 7.499.205 11.261.37 2.523.081 5.047.183 7.57.327 1.333.04 2.666.123 3.976.184 2.309.123 4.618.266 6.904.41 1.809.102 3.618.225 5.428.348 1.738.102 3.475.246 5.19.369 3.023.225 6.046.47 9.07.737 2.047.164 4.095.348 6.118.553 4.047.39 8.071.799 12.07 1.27 1.786.205 3.571.41 5.357.635.785.082 1.547.184 2.333.287 1.547.184 3.095.389 4.642.594a229.6 229.6 0 013.714.512c1.762.246 3.547.492 5.309.758 2.142.307 4.261.635 6.38.983 1.405.205 2.785.43 4.19.676 1.762.287 3.499.573 5.261.901 2.976.533 5.928 1.065 8.88 1.639a508.69 508.69 0 018.118 1.618c.214.041.452.102.667.143.285.062.595.123.881.185 1.404.307 2.785.594 4.166.921 2.095.451 4.19.922 6.261 1.434.143.02.262.041.405.082 1.309.308 2.595.615 3.904.943.214.04.405.102.619.163 2.381.574 4.761 1.188 7.118 1.803l.024.02c1.809.471 3.595.963 5.38 1.455 3.5.983 6.976 1.987 10.428 3.031 1.856.574 3.69 1.147 5.523 1.741z" />
                         </svg>
                     </div>
-                    <div className="pi-body">
+                    <div className="pi-inv-body">
                         <div className="pi-inv-title">
                             <h2>{title}</h2>
                         </div>
-                        <div className="pi-hedear">
-                            <div className="pi-from">
+                        <div className="pi-inv-header">
+                            <div className="pi-inv-from">
                                 {fromData && fromData.logo &&
-                                    <div className="pi-from-logo">
+                                    <div className="pi-inv-from-logo">
                                         <img src={fromData.logo.src} alt="" />
                                     </div>}
                                 <From data={fromData} />
-                                <div className="pi-from-date">
+                                <div className="pi-inv-from-date">
                                     <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                    <div className="pi-from-time">
+                                    <div className="pi-inv-from-time">
                                         <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
                                         <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="pi-to">
+                            <div className="pi-inv-to">
                                 <To data={toData} />
                             </div>
                         </div>
 
                         {items && <Items data={items} item_tax={item_tax} />}
-
-                        <div className="pi-bank-info">
+                        <div className="pi-inv-account">
                             <Payment {...this.props} />
                             <Total {...this.props} />
-                        </div>
-                        <div className="pi-note-wrap">
-
-                            <div className="pi-note-term">
-                                {sections && <Section data={sections} />}
-                            </div>
-
-                            {sign && <Sign data={sign} />}
-                        </div>
+                        </div>  
+                        {sections && <Section data={sections} />}
+                        {sign && <Sign data={sign} />}
                     </div>
-                    <div className="pi-footer-shape">
+                    <div className="pi-inv-footer-shape">
                         <svg
                             viewBox="0 0 595 136"
                             fill="none"

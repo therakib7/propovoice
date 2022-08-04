@@ -1,8 +1,7 @@
- 
 import Item from './Item' 
 const Items = props => {
     return (
-        <div className="pi-items-table">
+        <div className="pi-inv-items">
             <table>
                 <thead>
                     <tr>

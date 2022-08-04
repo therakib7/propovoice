@@ -1,41 +1,33 @@
-import React, { Component } from 'react'
+const Seal = (props) => {
+	let status = false;
+	let title, desc;
+	let extraClass = '';
+	switch (props.status) {
+		case 'overdue':
+			status = true;
+			title = 'Overdue';
+			desc = 'You haven’t pay yet';
+			break;
 
-class Seal extends Component {
+		case 'paid_req':
+			status = true;
+			title = 'Approval Pending';
+			desc = 'You have submited your payment information. it will take a while to approve the payment';
+			break;
 
-	constructor(props) {
-		super(props);
+		case 'paid':
+			status = true;
+			title = 'Paid';
+			extraClass = 'pi-green-color';
+			desc = 'Thanks, We have received the payment';
+			break;
 	}
 
-	render = () => {
-		let status = false;
-		let title, desc;
-		let extraClass = ''; 
-		switch (this.props.status) { 
-			case 'overdue':
-				status = true;
-				title = 'Overdue';
-				desc = 'You haven’t pay yet';
-				break;
-
-			case 'paid_req':
-				status = true;
-				title = 'Approval Pending';
-				desc = 'You have submited your payment information. it will take a while to approve the payment';
-				break;
-
-			case 'paid':
-				status = true;
-				title = 'Paid';
-				extraClass = 'pi-green-color';
-				desc = 'Thanks, We have received the payment';
-				break;
-		}
-
-		if ( this.props.status =='accept' || this.props.status =='decline' ) return null;
-		return (
-			<>
-				{status && <div className="pi-inv-seal"> 
-					<div 
+	if (props.status == 'accept' || props.status == 'decline') return null;
+	return (
+		<>
+			{status && <div className="pi-inv-seal">
+				<div
 					className={'pi-badge-border ' + extraClass}
 					style={{
 						position: "absolute",
@@ -45,16 +37,14 @@ class Seal extends Component {
 						width: 185,
 						transform: "rotate(340deg)"
 					}}
-					>
-						<div className="pi-badge-style-one">
-							<h4>{title}</h4>
-							<p>{desc}</p>
-						</div>
+				>
+					<div className="pi-badge-style-one">
+						<h4>{title}</h4>
+						<p>{desc}</p>
 					</div>
-				</div>}
-			</>
-		)
-	}
+				</div>
+			</div>}
+		</>
+	)
 }
-
-export default Seal
+export default Seal 

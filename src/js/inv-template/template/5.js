@@ -35,23 +35,23 @@ export default class Four extends Component {
             <div className="pi-inv ">
                 <Seal status={status} />
                 <div className="pi-inv-four">
-                    <div className="pi-body">
-                        <div className="pi-hedear">
-                            <div className="pi-from">
+                    <div className="pi-inv-body">
+                        <div className="pi-inv-header">
+                            <div className="pi-inv-from">
                                 {fromData && fromData.logo &&
-                                    <div className="pi-from-logo pi-bg-one">
+                                    <div className="pi-inv-from-logo pi-bg-one">
                                         <img src={fromData.logo.src} alt="" />
                                     </div>}
                                 <From data={fromData} />
-                                <div className="pi-from-date">
+                                <div className="pi-inv-from-date">
                                     <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                    <div className="pi-from-time">
+                                    <div className="pi-inv-from-time">
                                         <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
                                         <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="pi-to">
+                            <div className="pi-inv-to">
                                 <div className="pi-inv-title">
                                     <h2>{title}</h2>
                                 </div>
@@ -119,7 +119,7 @@ export default class Four extends Component {
                             </table>
                         </div>
 
-                        <div className="pi-bank-info">
+                        <div className="pi-inv-bank">
                             <Payment {...this.props} />
                             <Total {...this.props} />
                         </div>
@@ -134,10 +134,10 @@ export default class Four extends Component {
                         </div>
 
                     </div>
-                    <div className="pi-footer-shape">
-                        <div className="pi-shape1 pi-bg-one" />
-                        <div className="pi-shape2 pi-bg-one" />
-                        <div className="pi-shape3 pi-bg-one" />
+                    <div className="pi-inv-footer-shape">
+                        <div className="pi-inv-shape1 pi-bg-one" />
+                        <div className="pi-inv-shape2 pi-bg-one" />
+                        <div className="pi-inv-shape3 pi-bg-one" />
                     </div>
                 </div>
             </div>
