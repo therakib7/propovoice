@@ -53,7 +53,8 @@ export default class Form extends Component {
                         onChange={this.handleChange}
                     />
                 </div>
-                {true && <div className="pi-search-btn">
+                
+                {false && <div className="pi-search-btn">
                     <button className={this.state.searchModal ? 'pi-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
                         <Filter />
                     </button>
