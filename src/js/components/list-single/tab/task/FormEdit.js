@@ -1,4 +1,5 @@
 import React, { Component, lazy } from 'react';
+import moment from 'moment';
 
 import WithApi from 'hoc/Api';
 import Taxonomy from 'block/field/taxonomy';
@@ -78,6 +79,17 @@ class Form extends Component {
             delete form.priority_id;
             delete form.status_id;
             delete form.type_id;
+
+            if ( form.start_date ) {
+                let startDate = moment(form.start_date).format('YYYY-MM-DD'); 
+                form.start_date = startDate;
+            }
+
+            if ( form.end_date ) {
+                let endDate = moment(form.end_date).format('YYYY-MM-DD'); 
+                form.end_date = endDate;
+            }
+
             this.props.update('tasks', form.id, form).then(resp => {
                 if (resp.data.success && reload) {
                     this.props.reload({ status_id })
@@ -116,7 +128,7 @@ class Form extends Component {
         }
 
         this.setState({ form }, () => {
-            this.updateRequest();
+            this.updateRequest( true );
         })
     }
 

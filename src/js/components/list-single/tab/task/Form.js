@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState, useEffect, lazy } from "react";
 import useClickOutside from 'block/outside-click';
 
 import WithApi from 'hoc/Api';
-import Moment from 'react-moment';
+import moment from 'moment';
 const DateField = lazy(() => import('block/date-picker'));
 
 const Form = (props) => {
@@ -78,13 +78,7 @@ const Form = (props) => {
     }
 
     const onDateChange = (date, type = null) => {
-        let mForm = { ...form }
-
-        // const startDateStr = new Moment(date).format('YYYY-MM-DD HH:mm:ss')
-        //  const endDateStr = moment(endDate).format('YYYY-MM-DD HH:mm:ss')    
-        // console.log(startDateStr);
-        // console.log(date);
-        // console.log(date.toLocaleString());
+        let mForm = { ...form } 
         if (type == 'start_date') {
             mForm.start_date = date;
         } else {
@@ -102,6 +96,11 @@ const Form = (props) => {
             mForm.status_id = parseInt(mForm.status_id.id);
         }
 
+        if ( mForm.start_date ) {
+            let startDate = moment(mForm.start_date).format('YYYY-MM-DD'); 
+            mForm.start_date = startDate;
+        }
+
         if (mForm.type_id) {
             mForm.type_id = parseInt(mForm.type_id.id);
         }
@@ -109,7 +108,7 @@ const Form = (props) => {
         if (mForm.priority_id) {
             mForm.priority_id = parseInt(mForm.priority_id.id);
         }
-
+         
         props.handleSubmit(mForm, 'new');
 
         let newFrom = { ...initialState };

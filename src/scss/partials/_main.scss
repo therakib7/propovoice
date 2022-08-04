@@ -896,8 +896,10 @@ html {
     margin-top: 15px;
   }
 }
-.ncpi .pi-table-action input[type=checkbox]::before {
-  width: 28px;
+.ncpi .pi-table-action input[type=checkbox] {
+  zoom: 1.2;
+  top: 2px;
+  position: relative;
 }
 .ncpi .pi-table-action span {
   color: #4A5568;
@@ -2175,6 +2177,9 @@ html {
 .wp-admin.ncpi a:focus {
   box-shadow: none;
 }
+.wp-admin.ncpi .pi-right-content-data {
+  padding: 45px 70px 40px !important;
+}
 .wp-admin.ncpi .pi-total-list select {
   min-height: 25px;
   position: relative;
@@ -2200,6 +2205,13 @@ html {
 .wp-admin.ncpi .pi-info-table .pi-field-checkbox select {
   padding: 5px 6px !important;
   height: 35px;
+}
+.wp-admin.ncpi .pi-table-action input[type=checkbox] {
+  zoom: 1;
+  top: 0px;
+}
+.wp-admin.ncpi .pi-table-action input[type=checkbox]::before {
+  width: 20px;
 }
 .wp-admin.ncpi .pi-info-form-list .pi-calendar {
   padding: 8px 7px !important;
@@ -5023,7 +5035,7 @@ select {
     position: fixed;
     overflow-x: visible;
     scroll-behavior: smooth;
-    z-index: 9;
+    z-index: 99;
     left: -220px;
     transition: all 0.3s ease-out;
     width: 220px;
