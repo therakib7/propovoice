@@ -1,6 +1,7 @@
+import React, { useCallback, useRef, lazy, Suspense, useEffect, useState } from "react";
 import Spinner from 'block/preloader/spinner';
-import React, { lazy, Suspense, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import useClickOutside from 'block/outside-click';
 
 const Task = lazy(() => import('components/list-single/tab/task'));
 
@@ -21,8 +22,9 @@ import WithApi from 'hoc/Api';
 const Dashboard = (props) => {
     const [dropdown, setDropdown] = useState(false);
 
-    useEffect(() => {
-    }, []);
+    const dropdownRef = useRef(); 
+    const close = useCallback(() => setDropdown(false), []);
+    useClickOutside(dropdownRef, close); 
 
     return (
         <div className="ncpi-dashboard">
@@ -42,7 +44,9 @@ const Dashboard = (props) => {
                 <div className="col">
                     <div
                         className="pi-action-content"
-                        style={{ display: "flex", justifyContent: "right" }}>
+                        style={{ display: "flex", justifyContent: "right" }}
+                        ref={dropdownRef}
+                    >
                         <button
                             className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-br-4"
                             onClick={() => setDropdown(val => !val)}>

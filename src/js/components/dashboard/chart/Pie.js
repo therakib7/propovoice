@@ -29,7 +29,7 @@ export default class Section extends PureComponent {
                     {this.props.type == 'lead_level' ? 'Lead' : 'Source'}
                 </h3>
 
-                <div className="row">
+                <div className="row" style={{minHeight: '100px'}}>
                     <div className="col-6">
                         {data.length > 0 && <PieChart width={130} height={140} onMouseEnter={this.onPieEnter}>
                             <Pie
