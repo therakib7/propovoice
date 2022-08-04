@@ -29,6 +29,8 @@ class Form extends Component {
         this.timeout = 0;
     }
 
+    myRef = React.createRef();
+
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } }, () => {
@@ -38,13 +40,25 @@ class Form extends Component {
     }
 
     componentDidMount() {
+        document.addEventListener("mousedown", this.handleClickOutside);
+
         //added this multiple place, because not working in invoice single
         this.editData();
     }
 
+    componentWillUnmount() {
+        document.removeEventListener("mousedown", this.handleClickOutside);
+    } 
+
     componentDidUpdate() {
         this.editData();
     }
+
+    handleClickOutside = e => {
+        if (!this.myRef.current.contains(e.target)) {
+            this.props.close()
+        }
+    }; 
 
     editData = () => {
         //condition added to stop multiple rendering 
@@ -137,7 +151,7 @@ class Form extends Component {
 
         return (
             <div className="pi-overlay">
-                <div className="pi-modal-content pi-modal-sidebar pi-modal-sidebar-two">
+                <div className="pi-modal-content pi-modal-sidebar pi-modal-sidebar-two" ref={this.myRef}>
                     <div className="pi-modal-header pi-gradient">
                         <span className="pi-close" onClick={() => this.props.close()}>
                             <svg
