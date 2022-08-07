@@ -66,7 +66,7 @@ class Info extends Component {
                             />
                         </div>
 
-                        <div className="col-md">
+                        {/* <div className="col-md">
                             <label
                                 htmlFor="field-org_name">
                                 Company Name
@@ -79,7 +79,7 @@ class Info extends Component {
                                 value={this.state.form.org_name}
                                 onChange={this.handleChange}
                             />
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="row">

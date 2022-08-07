@@ -82,7 +82,7 @@ if (process.env.NODE_ENV === 'package') {
 }
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
 
-    if (Mix.inProduction()) {
+    if (mix.inProduction()) {
         let languages = path.resolve('languages');
         fs.ensureDir(languages, function (err) {
             if (err) return console.error(err); // if file or folder does not exist
