@@ -1086,6 +1086,10 @@ html {
 .ncpi .pi-table-three th:nth-child(n+3) {
   text-align: center;
 }
+.ncpi .pi-table-three td:nth-child(n+3) svg,
+.ncpi .pi-table-three th:nth-child(n+3) svg {
+  top: 3px;
+}
 @media screen and (max-width: 550px) {
   .ncpi .pi-table-three {
     width: 130% !important;
@@ -1576,6 +1580,7 @@ html {
 .ncpi .pi-breadcrumb {
   margin-bottom: 18px;
   margin-left: -5px;
+  display: inline-block;
 }
 .ncpi .pi-breadcrumb ul {
   margin: 0;
@@ -3931,13 +3936,6 @@ ul {
   margin-left: -2px;
   height: 33px;
 }
-@media screen and (max-width: 992px) {
-  .pi-field-radio-input .pi-times,
-.pi-field-checkbox-input .pi-times {
-    height: 40px !important;
-    line-height: 30px !important;
-  }
-}
 
 .ncpi .pi-search-btn {
   display: flex;
@@ -4824,7 +4822,7 @@ select {
 .ncpi .pi-form-style-one input[type=number],
 .ncpi .pi-form-style-one input[type=email],
 .ncpi .pi-form-style-one input[type=text] {
-    padding: 10px !important;
+    padding: 10px;
   }
 }
 .ncpi .pi-form-style-one textarea:focus,
