@@ -26,11 +26,11 @@ msgstr ""
 msgid "Something wrong!"
 msgstr ""
 
-#: ../app/Ctrls/Installation/InstallationController.php:22
+#: ../app/Ctrls/Installation/InstallationController.php:23
 msgid "Every Half Minute"
 msgstr ""
 
-#: ../app/Ctrls/Installation/InstallationController.php:27
+#: ../app/Ctrls/Installation/InstallationController.php:28
 msgid "Every 1 Minute"
 msgstr ""
 
