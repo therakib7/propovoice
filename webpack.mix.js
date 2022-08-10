@@ -5,9 +5,8 @@ const cliColor = require("cli-color");
 const emojic = require("emojic");
 const wpPot = require('wp-pot');
 const os = require('os');
-const min = Mix.inProduction() ? '.min' : '';
+const min = mix.inProduction() ? '.min' : '';
 const archiver = require('archiver');
-
 const package_path = path.resolve(__dirname);
 const package_slug = path.basename(path.resolve(package_path));
 
@@ -32,7 +31,7 @@ mix.webpackConfig({
             'out-components': path.resolve('src/js/out-components'),
             'inv-template': path.resolve('src/js/inv-template'),
         },
-    },
+    }
 });
 
 async function getVersion() {

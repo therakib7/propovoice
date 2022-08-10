@@ -263,31 +263,31 @@ msgid "Dashboard"
 msgstr ""
 
 #: ../app/Ctrls/Setting/Types/Dashboard.php:40
-msgid "Task & Activity"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Dashboard.php:44
 msgid "Lead"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:48
+#: ../app/Ctrls/Setting/Types/Dashboard.php:44
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:52
-msgid "Client"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Dashboard.php:56
+#: ../app/Ctrls/Setting/Types/Dashboard.php:48
 msgid "Estimate"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:60
+#: ../app/Ctrls/Setting/Types/Dashboard.php:52
 msgid "Invoice"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:64
+#: ../app/Ctrls/Setting/Types/Dashboard.php:56
+msgid "Client"
+msgstr ""
+
+#: ../app/Ctrls/Setting/Types/Dashboard.php:60
 msgid "Project"
+msgstr ""
+
+#: ../app/Ctrls/Setting/Types/Dashboard.php:64
+msgid "Task & Activity"
 msgstr ""
 
 #: ../app/Ctrls/Setting/Types/Dashboard.php:68
