@@ -70,15 +70,15 @@ msgstr ""
 msgid "Please select a stage"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/File.php:145
+#: ../app/Ctrls/Api/Types/File.php:147
 msgid "ago"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/File.php:182, ../app/Ctrls/Api/Types/Note.php:150
+#: ../app/Ctrls/Api/Types/File.php:184, ../app/Ctrls/Api/Types/Note.php:150
 msgid "Tab ID is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/File.php:186
+#: ../app/Ctrls/Api/Types/File.php:188
 msgid "Type is missing"
 msgstr ""
 
