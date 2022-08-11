@@ -2835,6 +2835,33 @@ ul {
     width: 60% !important;
   }
 }
+.ncpi .pi-modal-pro-alert .pi-modal-header {
+  padding: 35px 50px 0px !important;
+}
+.ncpi .pi-modal-pro-alert .pi-lock {
+  background: #F16063;
+  display: inline-block;
+  padding: 35px;
+  border-radius: 50%;
+  position: relative;
+  top: 65px;
+}
+.ncpi .pi-modal-pro-alert .pi-pro-text {
+  padding: 90px 150px 75px;
+}
+.ncpi .pi-modal-pro-alert .pi-pro-text .pi-modal-title {
+  position: relative;
+}
+.ncpi .pi-modal-pro-alert .pi-pro-text .pi-modal-title svg {
+  position: absolute;
+  top: -30px;
+  right: 21%;
+}
+.ncpi .pi-modal-pro-alert .pi-pro-text p {
+  color: #718096;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
 .ncpi .pi-modal-style-two .pi-modal-header {
   padding: 20px 30px;
   background: transparent;
