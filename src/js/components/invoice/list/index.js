@@ -368,9 +368,7 @@ const Invoice = class Invoice extends Component {
 
                 {this.state.preloader ? <Preloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} action={this.handleAction} />}
 
-                <div className="pi-pagination-content">
-                    {this.state.totalPage > 1 && <Pagination forcePage={this.state.currentPage - 1} pageCount={this.state.totalPage} onPageChange={this.handlePageClick} />}
-                </div>
+                {this.state.totalPage > 1 && <Pagination forcePage={this.state.currentPage - 1} pageCount={this.state.totalPage} onPageChange={this.handlePageClick} />}
             </div>
         );
     }
