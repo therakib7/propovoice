@@ -49,7 +49,7 @@ const File = (props) => {
 
                     <div className="col-sm-7">
                         <div className="pi-buttons-right pi-text-right">
-                            <button
+                            {false && <button
                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
                                 onClick={() => setDriveModal(true)}
                             >
@@ -83,9 +83,9 @@ const File = (props) => {
                                     />
                                 </svg>
                                 Upload Drive
-                            </button>
+                            </button>}
 
-                            {false && <button
+                            {true && <button
                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
                                 onClick={() => setFileModal(true)}
                             >

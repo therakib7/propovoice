@@ -1,5 +1,5 @@
-import React, { Suspense, lazy, useRef, useState } from 'react';
-
+import React, { Suspense, lazy, useRef, useCallback, useState } from 'react';
+import useClickOutside from 'block/outside-click';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -10,6 +10,7 @@ import {
     Route,
     NavLink
 } from "react-router-dom";
+
 import Spinner from 'block/preloader/spinner';
 const Dashboard = lazy(() => import('components/dashboard'));
 const Client = lazy(() => import('components/client'));
@@ -40,7 +41,12 @@ const Setting = lazy(() => import('components/setting'));
 
 const Home = () => {
     const contentRef = useRef();
-    const [dropdown, setDropdown] = useState(false);
+    const [dropdown, setDropdown] = useState(false); 
+ 
+    const sidebarRef = useRef();
+    const [sidebar, setSidebar] = useState(false);
+    const close = useCallback(() => setSidebar(false), []);
+    useClickOutside(sidebarRef, close);
 
     const dealLoad = (load = true) => {
         const span = contentRef.current; // corresponding DOM node
@@ -50,12 +56,12 @@ const Home = () => {
             span.className = 'pi-right-content-data';
         }
     };
-
+ 
     return (
         <HashRouter>
             <ToastContainer hideProgressBar />
             <div className="pi-grid-container pi-main-content">
-                <div className="pi-left-sidebar">
+                <div ref={sidebarRef} className={ "pi-left-sidebar " + ( sidebar ? 'pi-menu-open' : '') }>
 
                     <div className="">
                         <div className="pi-logo-content pi-site-logo">
@@ -482,7 +488,7 @@ const Home = () => {
                 <div className='pi-right-content pi-bg-pearl'>
                     <div className="pi-top-menu-content">
                         <div className="pi-width-content">
-                            <div className="pi-menubar-icon">
+                            <div ref={sidebarRef} className="pi-menubar-icon" onClick={() => setSidebar(val => !val)}>
                                 <svg viewBox="0 0 100 80" width={20} height={25}>
                                     <rect width={100} height={12} />
                                     <rect y={29} width={100} height={12} />

@@ -94,7 +94,7 @@ const TableBody = props => {
                 </td>
                 <td>
                     <div className="pi-avater">
-                        <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                        <img src={row.upload_by} alt="avatar" />
                     </div>
                 </td>
                 <td>{row.date}</td>

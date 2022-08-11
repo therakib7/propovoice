@@ -12,11 +12,11 @@ class Merging
     {
         $this->user_to_contact();
         $this->extra_amount();
+        $this->business_under_workspace();
     }
 
     public function user_to_contact()
-    {
-
+    { 
         $args = array(
             'orderby' => 'registered',
             'order'   => 'DESC',
@@ -175,6 +175,24 @@ class Merging
                 $invoice['extra_field'] = $extra_field;
                 update_post_meta($id, 'invoice', $invoice);
             }
+        }
+        wp_reset_postdata();
+    }
+
+    function business_under_workspace()
+    {
+        $args = array(
+            'post_type' => 'ncpi_business',
+            'post_status' => 'publish',
+            'posts_per_page' => -1
+        );
+
+        $query = new WP_Query($args);
+        while ($query->have_posts()) {
+            $query->the_post();
+            $id = get_the_ID();
+ 
+            update_post_meta($id, 'ws_id', ncpi()->get_workspace() ); 
         }
         wp_reset_postdata();
     }

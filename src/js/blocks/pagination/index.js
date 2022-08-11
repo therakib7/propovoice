@@ -66,8 +66,7 @@ const Pagination = (props) => {
 				containerClassName={"pi-pagination"}
 				activeClassName='pi-active'
 			/>
-		</div>
-
+		</div> 
 	);
 };
 
