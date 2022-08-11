@@ -24,10 +24,9 @@ class Merging
         );
 
         $all_users = new \WP_User_Query($args);
-        foreach ($all_users->get_results() as $user) {
-            $user_data = [];
+        foreach ($all_users->get_results() as $user) { 
 
-            $user_data['id'] = $user->ID;
+            $user_id = $user->ID;
             $first_name = $user->first_name;
             $email = $user->user_email;
 
@@ -52,7 +51,7 @@ class Merging
                 );
                 $post_id = wp_insert_post($data);
 
-                if (!is_wp_error($post_id)) {
+                if ( !is_wp_error($post_id) ) {
 
                     update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
 
@@ -94,12 +93,42 @@ class Merging
                     }
 
                     /* if ($img) {
-                    update_post_meta($post_id, 'img', $img);
-                } */
+                        update_post_meta($post_id, 'img', $img);
+                    } */ 
+                }  
 
-                    // wp_send_json_success($post_id);
-                } else {
-                    // wp_send_json_error();
+                if ( !is_wp_error($post_id) ) {
+                    $args = array(
+                        'post_type' => 'ncpi_estvoice',
+                        'post_status' => 'publish',
+                        'posts_per_page' => -1
+                    );
+
+                    $args['meta_query'] = array(
+                        'relation' => 'AND'
+                    ); 
+            
+                    $args['meta_query'][] = array(
+                        array(
+                            'key'     => 'to',
+                            'value'   => $user_id,
+                            'compare' => '='
+                        )
+                    ); 
+            
+                    $query = new WP_Query($args);
+                    while ($query->have_posts()) {
+                        $query->the_post();
+                        $id = get_the_ID();  
+
+                        update_post_meta($id, 'to', $post_id);
+                        update_post_meta($id, 'to_type', 'person');  
+                    }
+                    wp_reset_postdata();
+
+                    //delete user and move to contact
+                    require_once(ABSPATH . 'wp-admin/includes/user.php');
+                    wp_delete_user($user_id);
                 }
             }
         }
