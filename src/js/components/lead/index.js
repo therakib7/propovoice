@@ -12,7 +12,10 @@ import Empty from 'block/empty';
 
 import Crud from 'hoc/Crud';
 
-const Lead = (props) => {
+import { __ } from '@wordpress/i18n';
+
+const Lead = (props) => { 
+
 	useEffect(() => {
 		props.getLists();
 	}, []);
@@ -20,11 +23,10 @@ const Lead = (props) => {
 	const { title, lists, checkedBoxes, searchVal } = props.state;
 	return (
 		<div className="ncpi-components">
-			<Breadcrumb title={title} />
-
+			<Breadcrumb title={title} /> 
 			<div className="row">
 				<div className="col">
-					<h2 className="pi-page-title">{title}</h2>
+					<h2 className="pi-page-title">{__( 'Hello, world!', 'propovoice' )} {title}</h2>
 				</div>
 				<div className="col">
 					<AddNew

@@ -25,6 +25,8 @@ class AssetContoller
         }
 
         add_filter('show_admin_bar', [$this, 'hide_admin_bar']);
+
+        add_action( 'init', [$this, 'set_script_translations'] );
     }
 
     public function hide_admin_bar($show)
@@ -142,5 +144,9 @@ class AssetContoller
     {
         $this->admin_public_script();
         $this->dashboard_script();
+    }
+
+    function set_script_translations() {
+        wp_set_script_translations( 'ncpi-dashboard', 'propovoice' );
     }
 }
