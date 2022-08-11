@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
 
 class Feedback extends Component {
@@ -28,55 +28,75 @@ class Feedback extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
-    handleUploadChange = (data, type = null) => { 
-		let form = { ...this.state.form }
-		form.attachment = data;
-		this.setState({ form })
-	}
+    handleUploadChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.attachment = data;
+        this.setState({ form })
+    }
 
     render() {
         const data = this.props.data;
         return (
-            <>
-                {this.props.show && (
-                    <div className="pi-overlay pi-show">
-                        <div className="pi-modal-content">
-                            <div className="pi-modal-header">
-                                <h2 className="pi-modal-title pi-text-center">Feedback</h2>
-                                <span className="pi-close" onClick={() => this.props.close()}>×</span>
+            <div className="pi-overlay pi-show">
+                <div className="pi-modal-content">
+
+                    <div className="pi-modal-header pi-gradient">
+                        <span className="pi-close" onClick={() => this.props.close()}>
+                            <svg
+                                width={25}
+                                height={25}
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.5 3.5L3.5 12.5"
+                                    stroke="#718096"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M12.5 12.5L3.5 3.5"
+                                    stroke="#718096"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </span>
+                        <h2 className="pi-modal-title">Feedback</h2>
+                        <p>Here is the client feedback</p>
+                    </div>
+                    <div className="pi-content">
+                        <div className="pi-form-style-one">
+                            <div className="row">
+                                <div className="col-lg">
+                                    <label htmlFor="form-note">
+                                        Additional Note
+                                    </label>
+                                    <textarea
+                                        id="form-note"
+                                        rows={2}
+                                        name="note"
+                                        value={data.feedback.note}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
                             </div>
 
-                            <div className="pi-content">
-                                <div className="pi-form-style-one">
-
-                                    <div className="row">
-                                        <div className="col-lg">
-                                            <label htmlFor="form-note">
-                                                Additional Note
-                                            </label>
-                                            <textarea
-                                                id="form-note"
-                                                rows={2}
-                                                name="note"
-                                                value={data.feedback.note}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-md">
-                                            <label htmlFor="field-receipt">Additional Attachment</label>
-                                            <Upload label={'Upload'} attach_type='secret' library={false} data={data.feedback.attachment} changeHandler={this.handleUploadChange} remove={false} />
-                                        </div> 
-                                    </div> 
-
+                            <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-receipt">Additional Attachment</label>
+                                    <Upload label={'Upload'} attach_type='secret' library={false} data={data.feedback.attachment} changeHandler={this.handleUploadChange} remove={false} />
                                 </div>
                             </div>
                         </div>
                     </div>
-                )}
-            </>
+
+                    <div className="pi-modal-footer">
+
+                    </div>
+                </div>
+            </div>
         );
     }
 }

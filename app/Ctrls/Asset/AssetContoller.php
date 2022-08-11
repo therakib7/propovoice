@@ -26,7 +26,7 @@ class AssetContoller
 
         add_filter('show_admin_bar', [$this, 'hide_admin_bar']);
 
-        add_action( 'init', [$this, 'set_script_translations'] );
+        // add_action( 'init', [$this, 'set_script_translations'] );
     }
 
     public function hide_admin_bar($show)

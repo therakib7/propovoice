@@ -39,6 +39,8 @@ const ContactOrg = lazy(() => import('components/contact/org'));
 
 const Setting = lazy(() => import('components/setting'));
 
+const ProModal = lazy(() => import('block/pro-alert/modal')); 
+
 const Home = () => {
     const contentRef = useRef();
     const [dropdown, setDropdown] = useState(false); 
@@ -59,7 +61,11 @@ const Home = () => {
  
     return (
         <HashRouter>
-            <ToastContainer hideProgressBar />
+            <ToastContainer hideProgressBar /> 
+            <Suspense fallback={''}>
+                <ProModal />
+            </Suspense>
+            
             <div className="pi-grid-container pi-main-content">
                 <div ref={sidebarRef} className={ "pi-left-sidebar " + ( sidebar ? 'pi-menu-open' : '') }>
 

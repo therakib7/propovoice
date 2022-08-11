@@ -1,4 +1,5 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import pro from 'block/pro-alert';
 
 export default (props) => {
     const [list, setList] = useState([]);
@@ -41,8 +42,8 @@ export default (props) => {
 
     const itemTaxChange = (e) => {
 
-        if (wage.length > 0) {
-            alert('This is pro features');
+        if ( wage.length > 0 ) {
+            pro();
             return;
         }
 

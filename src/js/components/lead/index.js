@@ -26,7 +26,8 @@ const Lead = (props) => {
 			<Breadcrumb title={title} /> 
 			<div className="row">
 				<div className="col">
-					<h2 className="pi-page-title">{__( 'Hello, world!', 'propovoice' )} {title}</h2>
+					{/* <h2 className="pi-page-title">{__( 'Hello, world!', 'propovoice' )} {title}</h2> */}
+					<h2 className="pi-page-title">{title}</h2>
 				</div>
 				<div className="col">
 					<AddNew

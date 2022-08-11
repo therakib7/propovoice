@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Taxonomy from 'block/field/taxonomy/setting';
+import pro from 'block/pro-alert';
 
 export default class AdditionalAmount extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ export default class AdditionalAmount extends Component {
         form[name] = value;
 
         if ( wage.length > 0 && ( name == 'item_tax' ) ) {
-			alert('This is pro features');
+			pro();
 			return;
 		}
 
