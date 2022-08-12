@@ -3,6 +3,8 @@ import useClickOutside from 'block/outside-click';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { __ } from '@wordpress/i18n';
+
 import {
     HashRouter,
     useHistory,
@@ -39,12 +41,12 @@ const ContactOrg = lazy(() => import('components/contact/org'));
 
 const Setting = lazy(() => import('components/setting'));
 
-const ProModal = lazy(() => import('block/pro-alert/modal')); 
+const ProModal = lazy(() => import('block/pro-alert/modal'));
 
 const Home = () => {
     const contentRef = useRef();
-    const [dropdown, setDropdown] = useState(false); 
- 
+    const [dropdown, setDropdown] = useState(false);
+
     const sidebarRef = useRef();
     const [sidebar, setSidebar] = useState(false);
     const close = useCallback(() => setSidebar(false), []);
@@ -58,21 +60,21 @@ const Home = () => {
             span.className = 'pi-right-content-data';
         }
     };
- 
+
     return (
         <HashRouter>
-            <ToastContainer hideProgressBar /> 
+            <ToastContainer hideProgressBar />
             <Suspense fallback={''}>
                 <ProModal />
             </Suspense>
-            
+
             <div className="pi-grid-container pi-main-content">
-                <div ref={sidebarRef} className={ "pi-left-sidebar " + ( sidebar ? 'pi-menu-open' : '') }>
+                <div ref={sidebarRef} className={"pi-left-sidebar " + (sidebar ? 'pi-menu-open' : '')}>
 
                     <div className="">
                         <div className="pi-logo-content pi-site-logo">
                             <img src={ncpi.assetImgUri + 'site-logo.png'} alt="favicon" />
-                            <strong>Propovoice</strong>
+                            <strong>Propovoice {__('RRR!', 'propovoice')}</strong>
                         </div>
                         <div className='pi-sidebar-menu dpi-collapse-menu'>
                             <ul>
@@ -97,7 +99,7 @@ const Home = () => {
                                         </svg>
                                         <span>Dashboard</span>
                                     </NavLink>
-                                </li> 
+                                </li>
                                 <li>
                                     <NavLink to='lead' className={({ isActive }) => isActive ? 'pi-active' : ''}>
                                         <svg

@@ -3,6 +3,7 @@
 namespace Ncpi\Ctrls\Asset;
 
 use Ncpi\Helpers\Fns;
+use Ncpi\Helpers\I18n;
 
 class AssetContoller
 {
@@ -26,7 +27,7 @@ class AssetContoller
 
         add_filter('show_admin_bar', [$this, 'hide_admin_bar']);
 
-        add_action( 'init', [$this, 'set_script_translations'] );
+        add_action('init', [$this, 'set_script_translations']);
     }
 
     public function hide_admin_bar($show)
@@ -99,7 +100,7 @@ class AssetContoller
             ])
         ) {
             wp_enqueue_style('ncpi-dashboard', ncpi()->get_assets_uri("css/dashboard{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ncpi-dashboard', ncpi()->get_assets_uri("/js/dashboard{$this->suffix}.js"), array(), $this->version, true);
+            wp_enqueue_script('ncpi-dashboard', ncpi()->get_assets_uri("/js/dashboard{$this->suffix}.js"), array('wp-i18n'), $this->version, true);
             $current_user = wp_get_current_user();
             wp_localize_script('ncpi-dashboard', 'ncpi', array(
                 'apiUrl' => esc_url(rest_url()),
@@ -126,8 +127,14 @@ class AssetContoller
                     'name' => $current_user->display_name,
                     'img' => get_avatar_url($current_user->ID, ['size' => '36']),
                     'logout' => wp_logout_url(get_permalink()),
-                ]
+                ],
+                'i18n' => I18n::dashboard()
             ));
+            wp_set_script_translations(
+                'ncpi-dashboard',
+                'propovoice',
+                NCPI_PATH . 'languages'
+            );
         }
     }
 
@@ -146,7 +153,8 @@ class AssetContoller
         $this->dashboard_script();
     }
 
-    function set_script_translations() {
-        wp_set_script_translations( 'ncpi-dashboard', 'propovoice' );
+    function set_script_translations()
+    {
+        // wp_set_script_translations('ncpi-dashboard', 'propovoice');
     }
 }
