@@ -26,7 +26,7 @@ class AssetContoller
 
         add_filter('show_admin_bar', [$this, 'hide_admin_bar']);
 
-        // add_action( 'init', [$this, 'set_script_translations'] );
+        add_action( 'init', [$this, 'set_script_translations'] );
     }
 
     public function hide_admin_bar($show)
@@ -63,7 +63,7 @@ class AssetContoller
         }
         if (isset($_GET['page']) && $_GET['page'] == 'ncpi-welcome') {
             wp_enqueue_style('ncpi-welcome', ncpi()->get_assets_uri("css/welcome{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ncpi-welcome', ncpi()->get_assets_uri("/js/welcome{$this->suffix}.js"), array(), $this->version, true);
+            wp_enqueue_script('ncpi-welcome', ncpi()->get_assets_uri("/js/welcome{$this->suffix}.js"), array('wp-i18n'), $this->version, true);
             wp_localize_script('ncpi-welcome', 'ncpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'nonce' => wp_create_nonce('wp_rest'),
