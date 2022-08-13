@@ -5,7 +5,7 @@ import AppContext from 'context/app-context';
 import axios from 'axios';
 import { apiUrl, token } from 'api/helper'
 
-const HOC = (Inner, mod, modPlural = '') => {
+const HOC = (Inner, mod, title, modPlural = '') => {
     // console.log("data", module);
     if (!modPlural) {
         modPlural = mod + 's';
@@ -17,7 +17,8 @@ const HOC = (Inner, mod, modPlural = '') => {
             super(props);
 
             this.state = {
-                title: mod.charAt(0).toUpperCase() + mod.slice(1), //capitalize
+                title: title, //capitalize
+                // title: mod.charAt(0).toUpperCase() + mod.slice(1), //capitalize
                 empty: false,
                 preloader: true,
                 formModal: false,
@@ -47,13 +48,13 @@ const HOC = (Inner, mod, modPlural = '') => {
             let args = {
                 page: this.state.currentPage,
                 per_page: this.state.perPage
-            } 
+            }
 
             //this is for task tab
             if (this.props.tab_id) {
                 args.tab_id = this.props.tab_id;
             }
-            
+
             //this is for task tab
             if (this.props.dashboard) {
                 args.dashboard = this.props.dashboard;
@@ -148,7 +149,7 @@ const HOC = (Inner, mod, modPlural = '') => {
                             return list.id !== index;
                         })
                     });
-                } */ 
+                } */
 
                 let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
                 axios.delete(`${url}/${ids}`, token).then(resp => {
@@ -172,13 +173,13 @@ const HOC = (Inner, mod, modPlural = '') => {
                 this.setState({ formModal: true, formModalType: 'new' });
             } else {
                 //for project form
-                if ( list.hasOwnProperty('start_date') && list.start_date ) {
+                if (list.hasOwnProperty('start_date') && list.start_date) {
                     list.start_date = new Date(list.start_date);
-                } 
-                if ( list.hasOwnProperty('due_date') && list.due_date ) {
+                }
+                if (list.hasOwnProperty('due_date') && list.due_date) {
                     list.due_date = new Date(list.due_date);
                 }
-                 
+
                 this.setState({ formModal: true, formModalType: 'edit', list: list });
             }
         };

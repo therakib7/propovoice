@@ -2,9 +2,6 @@ import React, { Suspense, lazy, useRef, useCallback, useState } from 'react';
 import useClickOutside from 'block/outside-click';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { __ } from '@wordpress/i18n';
-
 import {
     HashRouter,
     useHistory,
@@ -74,7 +71,7 @@ const Home = () => {
                     <div className="">
                         <div className="pi-logo-content pi-site-logo">
                             <img src={ncpi.assetImgUri + 'site-logo.png'} alt="favicon" />
-                            <strong>Propovoice {__('RRR!', 'propovoice')}</strong>
+                            <strong>Propovoice</strong>
                         </div>
                         <div className='pi-sidebar-menu dpi-collapse-menu'>
                             <ul>

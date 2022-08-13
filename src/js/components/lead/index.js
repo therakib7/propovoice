@@ -11,10 +11,6 @@ import Search from './Search';
 import Empty from 'block/empty';
 
 import Crud from 'hoc/Crud';
-
-import { __ } from '@wordpress/i18n';
-// const { __, _e } = wp.i18n;
-
 const Lead = (props) => {
 
 	useEffect(() => {
@@ -27,8 +23,7 @@ const Lead = (props) => {
 			<Breadcrumb title={title} />
 			<div className="row">
 				<div className="col">
-					<h2 className="pi-page-title">{ncpi.i18n.common.search}{ncpi.i18n.lead.label}{__('Hello, world!', 'propovoice')} {title}</h2>
-					{/* <h2 className="pi-page-title">{title}</h2> */}
+					<h2 className="pi-page-title">{title}</h2>
 				</div>
 				<div className="col">
 					<AddNew
@@ -156,4 +151,4 @@ const Lead = (props) => {
 	);
 }
 
-export default Crud(Lead, 'lead');
+export default Crud(Lead, 'lead', ncpi.i18n.mod.lead);

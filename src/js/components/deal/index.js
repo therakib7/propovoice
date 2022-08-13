@@ -292,7 +292,7 @@ const Deal = (props) => {
 
                 {(props.module_id || !boardView) && <>
                     <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
-                    
+
                     {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
                 </>}
             </>}
@@ -300,4 +300,4 @@ const Deal = (props) => {
     );
 }
 
-export default Crud(Deal, 'deal');
+export default Crud(Deal, 'deal', ncpi.i18n.mod.deal);

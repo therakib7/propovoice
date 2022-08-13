@@ -130,4 +130,4 @@ class Business extends Component {
         );
     }
 }
-export default Crud(Business, 'business', 'businesses');
+export default Crud(Business, 'business', '', 'businesses');
