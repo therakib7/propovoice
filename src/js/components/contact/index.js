@@ -196,4 +196,4 @@ const Contact = (props) => {
   );
 }
 
-export default Crud(Contact, 'person');
+export default Crud(Contact, 'person', ndpi.i18n.mod.contact.person);

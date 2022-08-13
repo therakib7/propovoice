@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useState } from 'react';
 import Moment from 'react-moment';
 import Action from 'block/action/row';
 
-const TableBody = props => { 
+const TableBody = props => {
 
     let rows = props.tableData.map((row, index) => {
         return (
@@ -11,10 +11,10 @@ const TableBody = props => {
                     row={row}
                     editEntry={props.editEntry}
                     deleteEntry={props.deleteEntry}
-                /> 
+                />
 
                 <div className="pi-avater">
-                    <img src={ncpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                    <img src={ndpi.assetImgUri + 'avatar.png'} alt="avatar" />
                 </div>
 
                 <div className="pi-note-text">

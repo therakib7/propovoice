@@ -14,7 +14,7 @@ const Task = (props) => {
     useEffect(() => {
         props.getLists();
     }, []);
-    
+
     const [activeTab, setActiveTab] = useState(null);
     const [taxonomies, setTaxonomies] = useState({
         status: [],
@@ -196,5 +196,5 @@ const Task = (props) => {
         </div>
     );
 }
-const TaskHoc = Crud(Task, 'task');
+const TaskHoc = Crud(Task, 'task', ndpi.i18n.mod.task);
 export default WithApi(TaskHoc);

@@ -151,4 +151,4 @@ const Lead = (props) => {
 	);
 }
 
-export default Crud(Lead, 'lead', ncpi.i18n.mod.lead);
+export default Crud(Lead, 'lead', ndpi.i18n.mod.lead);

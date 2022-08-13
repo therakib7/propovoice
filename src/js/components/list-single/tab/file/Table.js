@@ -89,7 +89,7 @@ const TableBody = props => {
                 </td>
                 <td>
                     {row.file && <img src={row.file.src} alt="file" width="40" />}
-                    { ! row.file && <img src={ncpi.assetImgUri + 'file.png'} alt="file" />}
+                    {!row.file && <img src={ndpi.assetImgUri + 'file.png'} alt="file" />}
                     <span><a target='_blank' href={row.url}>{row.title}</a></span>
                 </td>
                 <td>

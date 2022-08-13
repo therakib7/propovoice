@@ -11,18 +11,18 @@ class Share extends Component {
         this.client_url = React.createRef();
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         let data = this.props.data;
-        if ( data.fromData == null || data.toData == null ) {
-            toast.error('First fill up necessary information, From content tab'); 
+        if (data.fromData == null || data.toData == null) {
+            toast.error('First fill up necessary information, From content tab');
             return;
         }
 
         let invoice_path = this.props.path;
-        
+
         let invoice_id = this.props.data.invoice.id;
-        let invoice_token = this.props.data.invoice.token; 
-        let url = invoice_path == 'invoice' ? ncpi.invoice_page_url : ncpi.estimate_page_url;
+        let invoice_token = this.props.data.invoice.token;
+        let url = invoice_path == 'invoice' ? ndpi.invoice_page_url : ndpi.estimate_page_url;
 
         //replace text with id and token
         let result = url.replace('invoice_id', invoice_id);
@@ -37,11 +37,11 @@ class Share extends Component {
         // This is just personal preference.
         // I prefer to not show the whole text area selected. 
         e.target.focus();
-        toast.success('Copied!');  
+        toast.success('Copied!');
     };
 
     render() {
-        
+
         return (
             <>
                 {this.props.show && (
@@ -108,7 +108,7 @@ class Share extends Component {
                                                     </svg>
                                                 </span>
                                                 <p>Messenger</p>
-                                            </a> 
+                                            </a>
                                             <a href="https://web.telegram.org/z/" target="_blank" className="pi-social-icon">
                                                 <span className="pi-telegrame">
                                                     <svg

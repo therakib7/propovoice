@@ -7,7 +7,7 @@
 ## install
 - Clone git repository
 ```shell script
-git clone git@github.com:therakib7/ncpi.git
+git clone git@github.com:therakib7/ndpi.git
 cd ncpi
 ```
 - Generate vendor autoload files

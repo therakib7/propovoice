@@ -20,7 +20,7 @@ class BodyClass
 				'estimate-template.php'
 			])
 		) {
-			$classes[] = 'ncpi';
+			$classes[] = 'ndpi';
 			$classes[] = get_option('template') . '-theme';
 		}
 		return $classes;
@@ -29,10 +29,10 @@ class BodyClass
 	function admin_body_class($classes)
 	{
 		if (
-			(isset($_GET['page']) && $_GET['page'] == 'ncpi') ||
-			(isset($_GET['page']) && $_GET['page'] == 'ncpi-welcome')
+			(isset($_GET['page']) && $_GET['page'] == 'ndpi') ||
+			(isset($_GET['page']) && $_GET['page'] == 'ndpi-welcome')
 		) {
-			$classes .= ' ncpi ' . get_option('template') . '-theme';
+			$classes .= ' ndpi ' . get_option('template') . '-theme';
 		}
 
 		return $classes;

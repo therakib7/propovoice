@@ -1,4 +1,4 @@
-import React, { Component } from 'react' 
+import React, { Component } from 'react'
 import { toast } from 'react-toastify';
 import Api from 'api/media';
 
@@ -8,7 +8,7 @@ class Branding extends Component {
 		super(props);
 
 		this.state = {
-			edit: false 
+			edit: false
 		};
 
 		this.inputRef = React.createRef();
@@ -26,8 +26,8 @@ class Branding extends Component {
 		formData.append('type', 'business_logo');
 
 		Api.create(formData)
-			.then(resp => { 
-				if (resp.data.success) { 
+			.then(resp => {
+				if (resp.data.success) {
 					this.props.changeHandler(resp.data.data);
 				} else {
 					resp.data.data.forEach(function (value, index, array) {
@@ -48,7 +48,7 @@ class Branding extends Component {
 					});
 				}
 			})
-	}; 
+	};
 
 	// On file select (from the pop up) 
 	onFileChange = event => {
@@ -56,36 +56,36 @@ class Branding extends Component {
 	};
 
 	handleUploadFile = () => {
-		const business = this.props.data; 
-		if ( business.id ) {
+		const business = this.props.data;
+		if (business.id) {
 			this.inputRef.current.click();
-		} else { 
+		} else {
 			//TODO: translation
 			toast.error('Please fill up Business info first');
-		} 
+		}
 	};
 
 	render = () => {
-		const business = this.props.data;  
+		const business = this.props.data;
 		return (
-			<> 
-				{ !business.logo &&
+			<>
+				{!business.logo &&
 					<>
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='hidden' />
 						<div className="pi-text-center" onClick={() => this.handleUploadFile()}>
-							<img src={ncpi.assetImgUri+'upload-img.png'} width="120" />
+							<img src={ndpi.assetImgUri + 'upload-img.png'} width="120" />
 							<h3 className="pi-upload pi-color-blue">Upload Logo</h3>
 						</div>
 					</>
 				}
-				
-				{ business.id && business.logo &&
-				<div className="pi-field-logo-wrap pi-text-center pi-mb-30">
-					<div className='pi-field-logo'>
-						<img src={business.logo.src} width="120" /> 
-						<span className='pi-field-logo-close' onClick={() => this.handleDelete(business.logo.id)}>×</span>
-					</div> 
-				</div>}
+
+				{business.id && business.logo &&
+					<div className="pi-field-logo-wrap pi-text-center pi-mb-30">
+						<div className='pi-field-logo'>
+							<img src={business.logo.src} width="120" />
+							<span className='pi-field-logo-close' onClick={() => this.handleDelete(business.logo.id)}>×</span>
+						</div>
+					</div>}
 
 				<div className="pi-buttons pi-text-center">
 					<button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big" onClick={() => this.props.handleSubmit('', 'branding')}>Save &amp; Continue</button>

@@ -15,6 +15,7 @@ class I18n
                 'inv' => esc_html__('Invoice', 'propovoice'),
                 'client' => esc_html__('Client', 'propovoice'),
                 'project' => esc_html__('Project', 'propovoice'),
+                'task' => esc_html__('Task & Activity', 'propovoice'),
                 'contact' => esc_html__('Contact', 'propovoice'),
             ],
             'db' => [
@@ -22,12 +23,10 @@ class I18n
                 'tracking' => esc_html__('Tracking', 'propovoice'),
             ],
             'lead' => [
-                'label' => esc_html__('Lead', 'propovoice'),
                 'level' => esc_html__('Level', 'propovoice'),
                 'source' => esc_html__('Source', 'propovoice'),
             ],
             'deal' => [
-                'label' => esc_html__('Deal', 'propovoice'),
                 'stage' => esc_html__('Stage', 'propovoice'),
                 'won' => esc_html__('Won', 'propovoice'),
                 'lost' => esc_html__('Lost', 'propovoice'),
@@ -42,11 +41,8 @@ class I18n
                 'paid' => esc_html__('Paid', 'propovoice'),
                 'overdue' => esc_html__('Overdue', 'propovoice'),
             ],
-            'task' => [
-                'label' => esc_html__('Task & Activity', 'propovoice'),
-            ],
+            'task' => [],
             'project' => [
-                'label' => esc_html__('Project', 'propovoice'),
                 'currency' => esc_html__('Currency', 'propovoice'),
                 'budget' => esc_html__('Budget', 'propovoice'),
             ],
@@ -97,7 +93,7 @@ class I18n
                 'save' => esc_html__('Save', 'propovoice'),
             ],
             'ext' => [
-                'pipeline' => esc_html__('Pipeline', 'propovoice')
+                'pipeline' => esc_html__('Pipeline', 'propovoice'),
             ]
         ];
     }

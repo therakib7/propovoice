@@ -1,30 +1,34 @@
 <?php
 
-namespace Ncpi\Ctrls\Setting\Types;  
+namespace Ncpi\Ctrls\Setting\Types;
 
-class Welcome {
+class Welcome
+{
 
-	public function __construct() { 
-        add_action('admin_menu', [$this, 'add_settings_menu'], 30); 
-	}  
+	public function __construct()
+	{
+		add_action('admin_menu', [$this, 'add_settings_menu'], 30);
+	}
 
-	public function add_settings_menu() { 
+	public function add_settings_menu()
+	{
 		add_menu_page(
 			esc_html__('Propovoice Welcome', 'propovoice'),
 			esc_html__('Propovoice Welcome', 'propovoice'),
 			'manage_options',
-			'ncpi-welcome',
+			'ndpi-welcome',
 			array($this, 'main_settings'),
-			'dashicons-groups', 
+			'dashicons-groups',
 			30
-		); 
+		);
 
-		add_action( 'admin_menu', function() {
-            remove_menu_page( 'ncpi-welcome' );
-        }, 100 );
-	} 
+		add_action('admin_menu', function () {
+			remove_menu_page('ndpi-welcome');
+		}, 100);
+	}
 
-	function main_settings() {  
-        echo '<div class="wrap" id="ncpi-welcome"></div>'; 
-    } 
-} 
+	function main_settings()
+	{
+		echo '<div class="wrap" id="ndpi-welcome"></div>';
+	}
+}

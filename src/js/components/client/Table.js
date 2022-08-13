@@ -50,10 +50,10 @@ const TableBody = props => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
 
-        let img = ncpi.assetImgUri + 'avatar.png'; 
-        if ( row.img ) {
+        let img = ndpi.assetImgUri + 'avatar.png';
+        if (row.img) {
             img = row.img.src;
-        }  
+        }
 
         return (
             <tr key={index}>

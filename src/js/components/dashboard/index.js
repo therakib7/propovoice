@@ -22,12 +22,12 @@ import WithApi from 'hoc/Api';
 const Dashboard = (props) => {
     const [dropdown, setDropdown] = useState(false);
 
-    const dropdownRef = useRef(); 
+    const dropdownRef = useRef();
     const close = useCallback(() => setDropdown(false), []);
-    useClickOutside(dropdownRef, close); 
+    useClickOutside(dropdownRef, close);
 
     return (
-        <div className="ncpi-dashboard">
+        <div className="ndpi-dashboard">
             <div className="row">
                 <div className="col">
                     <h2

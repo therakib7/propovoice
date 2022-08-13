@@ -26,7 +26,7 @@ const TableHeader = props => {
                     Lead Level
                 </th>
                 <th>
-                    <Tag/>
+                    <Tag />
                     Tag
                 </th>
                 <th>
@@ -52,7 +52,7 @@ const TableBody = props => {
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
         const level = row.level_id;
 
-        let img = ncpi.assetImgUri + 'avatar.png';
+        let img = ndpi.assetImgUri + 'avatar.png';
         if (row.person && row.person.img) {
             img = row.person.img.src;
         } else if (row.org && row.org.img) {

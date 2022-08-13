@@ -241,11 +241,11 @@ class ListSingle extends Component {
         const { tabs = [], currentTab } = this.state;
         const { path } = this.props;
         const data = this.state.data;
-        
-        let img = ncpi.assetImgUri + 'avatar.png'; 
-        if ( data.person && data.person.img ) {
+
+        let img = ndpi.assetImgUri + 'avatar.png';
+        if (data.person && data.person.img) {
             img = data.person.img.src;
-        } else if ( data.org && data.org.img ) {
+        } else if (data.org && data.org.img) {
             img = data.org.img.src;
         }
         return (
@@ -514,7 +514,7 @@ class ListSingle extends Component {
                                                     style={{ padding: "9px 15px !important" }}
                                                     onClick={() => this.handleStageChange('won')}
                                                 >
-                                                    <img className='pi-mr-5' src={ncpi.assetImgUri + 'happy.png'} alt="won" />
+                                                    <img className='pi-mr-5' src={ndpi.assetImgUri + 'happy.png'} alt="won" />
                                                     Won
                                                 </button>}
 
@@ -523,7 +523,7 @@ class ListSingle extends Component {
                                                     style={{ padding: "9px 15px !important" }}
                                                     onClick={() => this.handleStageChange('lost')}
                                                 >
-                                                    <img className='pi-mr-5' src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
+                                                    <img className='pi-mr-5' src={ndpi.assetImgUri + 'sad.png'} alt="sad" />
                                                     Lost
                                                 </button>}
                                             </>}

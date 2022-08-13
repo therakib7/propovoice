@@ -4,15 +4,15 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Spinner from 'block/preloader/spinner';
 import {
-    HashRouter, 
+    HashRouter,
     useHistory,
     Routes,
     Route,
     NavLink
-} from "react-router-dom"; 
+} from "react-router-dom";
 
 const Dashboard = lazy(() => import('components/dashboard'));
-const Client = lazy(() => import('components/client')); 
+const Client = lazy(() => import('components/client'));
 
 const Lead = lazy(() => import('components/lead'));
 const Deal = lazy(() => import('components/deal'));
@@ -38,13 +38,13 @@ const ContactOrg = lazy(() => import('components/contact/org'));
 
 const Setting = lazy(() => import('components/setting'));
 
-const Home = () => {  
+const Home = () => {
     let deal_papge = false;
     let url = location.href;
-    if ( url.includes('/deal') && ! url.includes('/deal/single') ) {
+    if (url.includes('/deal') && !url.includes('/deal/single')) {
         console.log(url);
-    } 
-    return ( 
+    }
+    return (
         <HashRouter>
             <ToastContainer />
             <div className="pi-grid-container pi-main-content">
@@ -58,7 +58,7 @@ const Home = () => {
                     </div>
                     <div >
                         <div className="pi-logo-content">
-                            <img src={ncpi.assetImgUri + 'logo.png'} />
+                            <img src={ndpi.assetImgUri + 'logo.png'} />
                             <strong >Propovoice</strong>
                         </div>
                         <ul>
@@ -307,7 +307,7 @@ const Home = () => {
                 </div>
 
                 <div className='pi-right-content pi-bg-pearl'>
-                    <div className='pi-right-content-data '> {/* TODO: conditional class pi-deal-content */} 
+                    <div className='pi-right-content-data '> {/* TODO: conditional class pi-deal-content */}
                         <Suspense fallback={<Spinner />}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
@@ -344,8 +344,8 @@ const Home = () => {
                                 <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
                                 <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} />
 
-                                <Route path="/payment" element={<Payment />} /> 
-                                <Route path="/business" element={<Business />} /> 
+                                <Route path="/payment" element={<Payment />} />
+                                <Route path="/business" element={<Business />} />
 
                                 <Route path="/contact/person" exact element={<ContactPerson />} />
                                 <Route path="/contact/organization" exact element={<ContactOrg />} />
@@ -361,7 +361,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-        </HashRouter> 
+        </HashRouter>
     )
 }
 

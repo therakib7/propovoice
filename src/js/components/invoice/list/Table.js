@@ -148,7 +148,7 @@ const TableBody = props => {
 
         let invoice_id = row.id;
         let invoice_token = row.token;
-        let url = row.path == 'invoice' ? ncpi.invoice_page_url : ncpi.estimate_page_url;
+        let url = row.path == 'invoice' ? ndpi.invoice_page_url : ndpi.estimate_page_url;
 
         //replace text with id and token
         let result = url.replace('invoice_id', invoice_id);

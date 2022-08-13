@@ -20,14 +20,12 @@ class AssetContoller
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
 
         //remove thank you text from propovoice dashboard
-        if (isset($_GET['page']) && $_GET['page'] == 'ncpi') {
+        if (isset($_GET['page']) && $_GET['page'] == 'ndpi') {
             add_filter('admin_footer_text', '__return_empty_string', 11);
             add_filter('update_footer', '__return_empty_string', 11);
         }
 
         add_filter('show_admin_bar', [$this, 'hide_admin_bar']);
-
-        add_action('init', [$this, 'set_script_translations']);
     }
 
     public function hide_admin_bar($show)
@@ -52,8 +50,8 @@ class AssetContoller
     {
         //font family
         if (
-            (isset($_GET['page']) && $_GET['page'] == 'ncpi-welcome') ||
-            (isset($_GET['page']) && $_GET['page'] == 'ncpi') ||
+            (isset($_GET['page']) && $_GET['page'] == 'ndpi-welcome') ||
+            (isset($_GET['page']) && $_GET['page'] == 'ndpi') ||
             is_page_template([
                 'workspace-template.php',
                 'invoice-template.php',
@@ -62,13 +60,13 @@ class AssetContoller
         ) {
             wp_enqueue_style('ncpi-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), $this->version);
         }
-        if (isset($_GET['page']) && $_GET['page'] == 'ncpi-welcome') {
-            wp_enqueue_style('ncpi-welcome', ncpi()->get_assets_uri("css/welcome{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ncpi-welcome', ncpi()->get_assets_uri("/js/welcome{$this->suffix}.js"), array('wp-i18n'), $this->version, true);
-            wp_localize_script('ncpi-welcome', 'ncpi', array(
+        if (isset($_GET['page']) && $_GET['page'] == 'ndpi-welcome') {
+            wp_enqueue_style('ndpi-welcome', ncpi()->get_assets_uri("css/welcome{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_script('ndpi-welcome', ncpi()->get_assets_uri("/js/welcome{$this->suffix}.js"), array('wp-i18n'), $this->version, true);
+            wp_localize_script('ndpi-welcome', 'ndpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'nonce' => wp_create_nonce('wp_rest'),
-                'dashboard' => menu_page_url('ncpi', false),
+                'dashboard' => menu_page_url('ndpi', false),
                 'assetImgUri' => ncpi()->get_assets_uri('img/')
             ));
         }
@@ -82,9 +80,9 @@ class AssetContoller
 
             //TODO: Remove all wordpress unused file from frontend
 
-            wp_enqueue_style('ncpi-invoice', ncpi()->get_assets_uri("css/invoice{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ncpi-invoice', ncpi()->get_assets_uri("/js/invoice{$this->suffix}.js"), array(), $this->version, true);
-            wp_localize_script('ncpi-invoice', 'ncpi', array(
+            wp_enqueue_style('ndpi-invoice', ncpi()->get_assets_uri("css/invoice{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_script('ndpi-invoice', ncpi()->get_assets_uri("/js/invoice{$this->suffix}.js"), array(), $this->version, true);
+            wp_localize_script('ndpi-invoice', 'ndpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'nonce' => wp_create_nonce('wp_rest'),
                 'assetImgUri' => ncpi()->get_assets_uri('img/')
@@ -92,20 +90,20 @@ class AssetContoller
         }
 
         if (
-            (isset($_GET['page']) && $_GET['page'] == 'ncpi') ||
+            (isset($_GET['page']) && $_GET['page'] == 'ndpi') ||
             is_page_template([
                 'workspace-template.php',
                 'invoice-template.php',
                 'estimate-template.php'
             ])
         ) {
-            wp_enqueue_style('ncpi-dashboard', ncpi()->get_assets_uri("css/dashboard{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ncpi-dashboard', ncpi()->get_assets_uri("/js/dashboard{$this->suffix}.js"), array('wp-i18n'), $this->version, true);
+            wp_enqueue_style('ndpi-dashboard', ncpi()->get_assets_uri("css/dashboard{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_script('ndpi-dashboard', ncpi()->get_assets_uri("/js/dashboard{$this->suffix}.js"), array('wp-i18n'), $this->version, true);
             $current_user = wp_get_current_user();
-            wp_localize_script('ncpi-dashboard', 'ncpi', array(
+            wp_localize_script('ndpi-dashboard', 'ndpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'version' => ncpi()->version(),
-                'dashboard' => admin_url('admin.php?page=ncpi'),
+                'dashboard' => admin_url('admin.php?page=ndpi'),
                 'invoice_page_url' => sprintf(
                     '%s?id=%s&token=%s',
                     Fns::client_page_url('invoice'),
@@ -130,11 +128,6 @@ class AssetContoller
                 ],
                 'i18n' => I18n::dashboard()
             ));
-            wp_set_script_translations(
-                'ncpi-dashboard',
-                'propovoice',
-                NCPI_PATH . 'languages'
-            );
         }
     }
 
@@ -151,10 +144,5 @@ class AssetContoller
     {
         $this->admin_public_script();
         $this->dashboard_script();
-    }
-
-    function set_script_translations()
-    {
-        // wp_set_script_translations('ncpi-dashboard', 'propovoice');
     }
 }

@@ -106,7 +106,7 @@ export default class Preview extends Component {
     printInvoice = () => {
         // html2canvas(document.querySelector('.pi-inv')).then(canvas => {
         //     const imgData = canvas.toDataURL('image/jpg');
-        //     let pri = document.getElementById("ncpi-invoice-print").contentWindow;
+        //     let pri = document.getElementById("ndpi-invoice-print").contentWindow;
         //     pri.document.open();
         //     pri.document.write(`<!DOCTYPE html>
         //     <html>
@@ -145,7 +145,7 @@ export default class Preview extends Component {
         const { id } = this.props.data.invoice.template;
         return (
             <div id="pi-share" className="pi-invoice-tab-content">
-                <iframe id="ncpi-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
+                <iframe id="ndpi-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>

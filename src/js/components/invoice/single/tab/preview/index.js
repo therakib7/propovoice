@@ -82,7 +82,7 @@ export default class Preview extends Component {
         return (
             <div id="pi-tab-share" className="pi-invoice-tab-content">
                 <h2 className='pi-page-title'>Preview &amp; Share</h2>
-                <iframe id="ncpi-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
+                <iframe id="ndpi-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
                         <div className='' style={{ width: '788px', margin: '0 auto' }}>
