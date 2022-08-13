@@ -69,7 +69,7 @@ const Taxonomy = (props) => {
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
 
-		if ( type == 'new' && wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) ) {
+		if (type == 'new' && wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source')) {
 			alert('This is pro features');
 			return;
 		}
@@ -195,7 +195,7 @@ const Taxonomy = (props) => {
 				{dropdown && <div className="pi-dropdown-content pi-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>
 						+ Add New {props.title}
-						{wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) && <>
+						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <>
 							<span className="pi-pro-label">PRO</span>
 						</>}
 					</button>

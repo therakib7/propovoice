@@ -1,7 +1,7 @@
 
 const Breadcrumb = (props) => {
 	return (
-		<nav className="pi-breadcrumb">
+		<nav className="">
 			<ul className="">
 				<li>
 					<a href="#" className="">
