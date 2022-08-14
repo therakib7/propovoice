@@ -148,7 +148,7 @@ class Form extends Component {
 
     render() {
         const form = this.state.form;
-
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay">
                 <div className="pi-modal-content pi-modal-sidebar pi-modal-sidebar-two" ref={this.myRef}>
@@ -198,7 +198,7 @@ class Form extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                Mark as Done
+                                {i18n.markdone}
                             </button>}
                         </div>
                     </div>
@@ -208,7 +208,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="title">
-                                        Title
+                                         {i18n.title}
                                     </label>
 
                                     <input
@@ -225,7 +225,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col-md">
                                     <label htmlFor="field-start_date">
-                                        Start Date
+                                    {i18n.start} {i18n.date}
                                     </label>
                                     <div className='pi-field-date'>
                                         <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
@@ -234,7 +234,7 @@ class Form extends Component {
 
                                 <div className="col-md">
                                     <label htmlFor="field-start_date">
-                                        Due Date
+                                    {i18n.due} {i18n.date}
                                     </label>
                                     <div className='pi-field-date'>
                                         <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />

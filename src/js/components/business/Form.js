@@ -93,7 +93,6 @@ class Form extends Component {
         } else if (this.props.modalType == 'edit') {
             title = 'Edit'
         }
-
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">

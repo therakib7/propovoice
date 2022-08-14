@@ -93,6 +93,10 @@ class I18n
             'rem' => esc_html__('Reminder', 'propovoice'), 
             'af' => esc_html__('After', 'propovoice'), 
             'bf' => esc_html__('Before', 'propovoice'), 
+            'markdone' => esc_html__('Mark as Done', 'propovoice'), 
+            'title' => esc_html__('Title', 'propovoice'), 
+            'start' => esc_html__('Start', 'propovoice'), 
+            'due' => esc_html__('Due', 'propovoice'), 
         ];
     }
 }

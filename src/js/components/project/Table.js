@@ -4,6 +4,7 @@ import Action from 'block/action/row';
 import { Arrow, Email, Tag } from '../../blocks/icon';
 
 const TableHeader = props => {
+    const i18n = ndpi.i18n;
     return (
         <thead>
             <tr>
@@ -23,11 +24,11 @@ const TableHeader = props => {
                 </th>
                 <th>
                 <Arrow/>
-                    Start Date
+                {i18n.start} {i18n.date}
                 </th>
                 <th>
                     <Arrow/>
-                    Due Date
+                    {i18n.due} {i18n.date}
                 </th>
                 <th>
                 <Arrow/>

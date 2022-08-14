@@ -215,6 +215,7 @@ class Form extends Component {
         } else if (this.props.modalType == 'move') {
             title = 'Move to'
         }
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">

@@ -248,6 +248,7 @@ class ListSingle extends Component {
         } else if (data.org && data.org.img) {
             img = data.org.img.src;
         }
+        const i18n = ndpi.i18n;
         return (
             <div className="ncpi-components">
                 <nav className="pi-breadcrumb">
@@ -687,11 +688,11 @@ class ListSingle extends Component {
                                     {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small={true} multiple={true} />}
                                 </li>
                                 <li>
-                                    <label htmlFor="">Start Date:</label>
+                                    <label htmlFor="">{i18n.start} {i18n.date}:</label>
                                     <span className="pi-date">{data.start_date && <Moment format="YYYY-MM-DD">{data.start_date}</Moment>}</span>
                                 </li>
                                 <li>
-                                    <label htmlFor="">Due Date:</label>
+                                    <label htmlFor="">{i18n.preventDefault} {i18n.date}:</label>
                                     <span className="pi-date">{data.due_date && <Moment format="YYYY-MM-DD">{data.due_date}</Moment>}</span>
                                 </li>
                                 <li />

@@ -234,6 +234,7 @@ class Form extends Component {
         } else if (this.props.modalType == 'move') {
             title = 'Move to'
         }
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -357,7 +358,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-start_date">
-                                            Start Date
+                                        {i18n.start} {i18n.date}
                                         </label>
                                         <div className='pi-field-date'>
                                             <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
@@ -366,7 +367,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-start_date">
-                                            Due Date
+                                        {i18n.due} {i18n.date}
                                         </label>
                                         <div className='pi-field-date'>
                                             <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />

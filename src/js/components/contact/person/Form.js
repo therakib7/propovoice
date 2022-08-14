@@ -110,6 +110,7 @@ class Form extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         const form = this.state.form;
         return (
             <div className="pi-overlay pi-show">
