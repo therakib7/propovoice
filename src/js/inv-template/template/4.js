@@ -27,7 +27,7 @@ export default class Four extends Component {
     }
 
     render() {
-        const { id, items, sections, item_tax, attach, sign, date, due_date } = this.props.data.invoice;
+        const { id, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
         return (
@@ -72,7 +72,7 @@ export default class Four extends Component {
                         <div className="pi-inv-account">
                             <Payment {...this.props} />
                             <Total {...this.props} />
-                        </div>  
+                        </div>
                         {sections && <Section data={sections} />}
                         {sign && <Sign data={sign} />}
                     </div>

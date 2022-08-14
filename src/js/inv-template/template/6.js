@@ -26,7 +26,7 @@ export default class six extends Component {
     }
 
     render() {
-        const { id, items, sections, item_tax, attach, sign, date, due_date } = this.props.data.invoice;
+        const { id, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
         return (
@@ -43,7 +43,7 @@ export default class six extends Component {
                                 </div>
                                 <div className="pi-inv-from-date">
                                     <div className="pi-inv-title">
-                                    <h2>{title}</h2>
+                                        <h2>{title}</h2>
                                     </div>
                                     <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
                                     <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
@@ -67,12 +67,12 @@ export default class six extends Component {
                                     <From data={fromData} />
                                 </div>
                                 <div className="pi-inv-to">
-                                <To data={toData} />
+                                    <To data={toData} />
                                 </div>
                             </div>
                         </div>
                         <div className="pi-inv-item-wrap">
-                        {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
+                            {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
 
                             <div className="pi-inv-account">
                                 <Payment {...this.props} />
