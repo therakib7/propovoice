@@ -3,8 +3,7 @@ import useClickOutside from 'block/outside-click';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-    HashRouter,
-    useHistory,
+    HashRouter, 
     Routes,
     Route,
     NavLink
@@ -29,8 +28,8 @@ const ProposalSingle = lazy(() => import('components/proposal/single'));
 const Invoice = lazy(() => import('components/invoice/list'));
 const InvoiceSingle = lazy(() => import('components/invoice/single'));
 
-const Payment = lazy(() => import('components/payment'));
-const Business = lazy(() => import('components/business'));
+// const Payment = lazy(() => import('components/payment'));
+// const Business = lazy(() => import('components/business'));
 
 const ContactPerson = lazy(() => import('components/contact/person'));
 const ContactOrg = lazy(() => import('components/contact/org'));
@@ -58,6 +57,7 @@ const Home = () => {
         }
     };
 
+    const i18n = ndpi.i18n;
     return (
         <HashRouter>
             <ToastContainer hideProgressBar />
@@ -94,7 +94,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        <span>Dashboard</span>
+                                        <span>{i18n.db}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -131,7 +131,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Lead</span>
+                                        <span>{i18n.lead}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -168,7 +168,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Deal Pipeline</span>
+                                        <span>{i18n.deal} {i18n.pipeline}</span>
                                     </NavLink>
                                 </li>
                                 {false && <li>
@@ -220,7 +220,7 @@ const Home = () => {
                                                 fill="white"
                                             />
                                         </svg>
-                                        <span>Estimate</span>
+                                        <span>{i18n.est}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -245,7 +245,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Invoice</span>
+                                        <span>{i18n.inv}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -282,7 +282,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Client</span>
+                                        <span>{i18n.client}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -310,7 +310,7 @@ const Home = () => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span>Project</span>
+                                        <span>{i18n.project}</span>
                                     </NavLink>
                                 </li>
                                 {false && <li>
@@ -360,7 +360,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        <span>Task &amp; Activity</span>
+                                        <span>{i18n.task}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -397,7 +397,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Contact</span>
+                                        <span>{i18n.contact}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -414,7 +414,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        <span>Settings</span>
+                                        <span>{i18n.settings}</span>
                                     </NavLink>
                                 </li>
                                 {false && <li>
@@ -482,8 +482,8 @@ const Home = () => {
                                 {false && <a href='https://propovoice.com/affilite' target='_blank' className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
                                     Refer &amp; Earn
                                 </a>}
-                                <a href={ndpi.dashboard} className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
-                                    Back to WP Dashboard
+                                <a href={ndpi.dashboard} className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"> 
+                                    {i18n.back_t_db}
                                 </a>
                             </div>
                         </div>
@@ -585,8 +585,8 @@ const Home = () => {
                                 <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
                                 <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} />
 
-                                <Route path="/payment" element={<Payment />} />
-                                <Route path="/business" element={<Business />} />
+                                {/* <Route path="/payment" element={<Payment />} /> */}
+                                {/* <Route path="/business" element={<Business />} /> */}
 
                                 <Route path="/contact/person" exact element={<ContactPerson />} />
                                 <Route path="/contact/organization" exact element={<ContactOrg />} />

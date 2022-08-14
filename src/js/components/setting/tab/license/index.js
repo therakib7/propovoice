@@ -92,7 +92,7 @@ export default class License extends Component {
                         <div className="col">
                             <label htmlFor="form-status">
                                 License Status:
-                                <span className="pi-pro-label pi-bg-green">Valid</span>
+                                <span className="pi-pro-label pi-bg-green pi-color-white">Valid</span>
                             </label>
                         </div>
                     </div>

@@ -27,7 +27,7 @@ const Summary = (props) => {
                 className="pi-title-medium pi-mb-20"
                 style={{ fontWeight: "bold", color: "#718096" }}
             >
-                Deal Funnel
+                {ndpi.i18n.deal} {ndpi.i18n.funnel}
             </h3> 
             <ul> 
                 {funnel.common.map((item, i) => ( 

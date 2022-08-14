@@ -10,8 +10,10 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 html {
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
 }
 
 /* Sections
@@ -46,9 +48,12 @@ h1 {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  box-sizing: content-box; /* 1 */
-  height: 0; /* 1 */
-  overflow: visible; /* 2 */
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
 }
 
 /**
@@ -56,8 +61,10 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 /* Text-level semantics
@@ -74,10 +81,13 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 abbr[title] {
-  border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2 */
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; /* 2 */
+          text-decoration: underline dotted;
+  /* 2 */
 }
 
 /**
@@ -95,8 +105,10 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 /**
@@ -146,10 +158,14 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
 }
 
 /**
@@ -157,7 +173,8 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -166,7 +183,8 @@ input { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -215,12 +233,18 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  box-sizing: border-box; /* 1 */
-  color: inherit; /* 2 */
-  display: table; /* 1 */
-  max-width: 100%; /* 1 */
-  padding: 0; /* 3 */
-  white-space: normal; /* 1 */
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
 }
 
 /**
@@ -243,8 +267,10 @@ textarea {
  */
 [type=checkbox],
 [type=radio] {
-  box-sizing: border-box; /* 1 */
-  padding: 0; /* 2 */
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
 }
 
 /**
@@ -260,8 +286,10 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 [type=search] {
-  -webkit-appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
 }
 
 /**
@@ -276,8 +304,10 @@ textarea {
  * 2. Change font properties to `inherit` in Safari.
  */
 ::-webkit-file-upload-button {
-  -webkit-appearance: button; /* 1 */
-  font: inherit; /* 2 */
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
 }
 
 /* Interactive
@@ -321,6 +351,9 @@ template {
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@-ms-viewport {
+  width: device-width;
+}
 html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;
@@ -541,55 +574,68 @@ html {
     flex-grow: 1;
     max-width: 100%;
   }
+
   .col-sm-auto {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
+
   .col-sm-1 {
     flex: 0 0 8.333333%;
     max-width: 8.333333%;
   }
+
   .col-sm-2 {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
   }
+
   .col-sm-3 {
     flex: 0 0 25%;
     max-width: 25%;
   }
+
   .col-sm-4 {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
   }
+
   .col-sm-5 {
     flex: 0 0 41.666667%;
     max-width: 41.666667%;
   }
+
   .col-sm-6 {
     flex: 0 0 50%;
     max-width: 50%;
   }
+
   .col-sm-7 {
     flex: 0 0 58.333333%;
     max-width: 58.333333%;
   }
+
   .col-sm-8 {
     flex: 0 0 66.666667%;
     max-width: 66.666667%;
   }
+
   .col-sm-9 {
     flex: 0 0 75%;
     max-width: 75%;
   }
+
   .col-sm-10 {
     flex: 0 0 83.333333%;
     max-width: 83.333333%;
   }
+
   .col-sm-11 {
     flex: 0 0 91.666667%;
     max-width: 91.666667%;
   }
+
   .col-sm-12 {
     flex: 0 0 100%;
     max-width: 100%;
@@ -601,55 +647,68 @@ html {
     flex-grow: 1;
     max-width: 100%;
   }
+
   .col-md-auto {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
+
   .col-md-1 {
     flex: 0 0 8.333333%;
     max-width: 8.333333%;
   }
+
   .col-md-2 {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
   }
+
   .col-md-3 {
     flex: 0 0 25%;
     max-width: 25%;
   }
+
   .col-md-4 {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
   }
+
   .col-md-5 {
     flex: 0 0 41.666667%;
     max-width: 41.666667%;
   }
+
   .col-md-6 {
     flex: 0 0 50%;
     max-width: 50%;
   }
+
   .col-md-7 {
     flex: 0 0 58.333333%;
     max-width: 58.333333%;
   }
+
   .col-md-8 {
     flex: 0 0 66.666667%;
     max-width: 66.666667%;
   }
+
   .col-md-9 {
     flex: 0 0 75%;
     max-width: 75%;
   }
+
   .col-md-10 {
     flex: 0 0 83.333333%;
     max-width: 83.333333%;
   }
+
   .col-md-11 {
     flex: 0 0 91.666667%;
     max-width: 91.666667%;
   }
+
   .col-md-12 {
     flex: 0 0 100%;
     max-width: 100%;
@@ -661,55 +720,68 @@ html {
     flex-grow: 1;
     max-width: 100%;
   }
+
   .col-lg-auto {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
+
   .col-lg-1 {
     flex: 0 0 8.333333%;
     max-width: 8.333333%;
   }
+
   .col-lg-2 {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
   }
+
   .col-lg-3 {
     flex: 0 0 25%;
     max-width: 25%;
   }
+
   .col-lg-4 {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
   }
+
   .col-lg-5 {
     flex: 0 0 41.666667%;
     max-width: 41.666667%;
   }
+
   .col-lg-6 {
     flex: 0 0 50%;
     max-width: 50%;
   }
+
   .col-lg-7 {
     flex: 0 0 58.333333%;
     max-width: 58.333333%;
   }
+
   .col-lg-8 {
     flex: 0 0 66.666667%;
     max-width: 66.666667%;
   }
+
   .col-lg-9 {
     flex: 0 0 75%;
     max-width: 75%;
   }
+
   .col-lg-10 {
     flex: 0 0 83.333333%;
     max-width: 83.333333%;
   }
+
   .col-lg-11 {
     flex: 0 0 91.666667%;
     max-width: 91.666667%;
   }
+
   .col-lg-12 {
     flex: 0 0 100%;
     max-width: 100%;
@@ -721,55 +793,68 @@ html {
     flex-grow: 1;
     max-width: 100%;
   }
+
   .col-xl-auto {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
+
   .col-xl-1 {
     flex: 0 0 8.333333%;
     max-width: 8.333333%;
   }
+
   .col-xl-2 {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
   }
+
   .col-xl-3 {
     flex: 0 0 25%;
     max-width: 25%;
   }
+
   .col-xl-4 {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
   }
+
   .col-xl-5 {
     flex: 0 0 41.666667%;
     max-width: 41.666667%;
   }
+
   .col-xl-6 {
     flex: 0 0 50%;
     max-width: 50%;
   }
+
   .col-xl-7 {
     flex: 0 0 58.333333%;
     max-width: 58.333333%;
   }
+
   .col-xl-8 {
     flex: 0 0 66.666667%;
     max-width: 66.666667%;
   }
+
   .col-xl-9 {
     flex: 0 0 75%;
     max-width: 75%;
   }
+
   .col-xl-10 {
     flex: 0 0 83.333333%;
     max-width: 83.333333%;
   }
+
   .col-xl-11 {
     flex: 0 0 91.666667%;
     max-width: 91.666667%;
   }
+
   .col-xl-12 {
     flex: 0 0 100%;
     max-width: 100%;
@@ -896,7 +981,7 @@ html {
   zoom: 1.5;
   border-radius: 5px;
   transform: scale(0.8);
-  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+  border: 1px solid #939393f0;
   box-shadow: none;
   position: relative;
   top: 2px;
@@ -1033,7 +1118,7 @@ html {
 .ndpi .pi-accordion-table-list ul {
   display: flex;
   margin: 0;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 20px 10px 17px 0px;
   width: 100%;
   border-radius: 5px;
@@ -1063,7 +1148,7 @@ html {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   margin-right: 10px;
   background-color: #fff;
   box-shadow: 0px 4.95074px 6.60099px rgba(0, 0, 0, 0.07);
@@ -1334,7 +1419,7 @@ html {
   background: #f1f1f1;
 }
 .ndpi ::-webkit-scrollbar-thumb {
-  background: rgb(202, 199, 199);
+  background: #cac7c7;
 }
 .ndpi .pi-logo-content img {
   width: 36px;
@@ -1365,6 +1450,21 @@ html {
   .ndpi .pi-width-content {
     padding: 0;
   }
+}
+.ndpi .pi-pro-label {
+  margin-left: 5px;
+  background: #ebcda878;
+  padding: 4px 8px 4px 4px;
+  font-size: 12px;
+  border-radius: 12px;
+  position: relative;
+  top: -1px;
+  color: #718096;
+}
+.ndpi .pi-pro-label svg {
+  position: relative;
+  top: 3px;
+  transform: rotate(-18deg);
 }
 .ndpi .pi-top-menu-content {
   position: fixed;
@@ -1447,7 +1547,7 @@ html {
 .ndpi .pi-right-content .pi-right-content-data {
   max-width: 1280px;
   margin: auto;
-  padding: 110px 70px 40px;
+  padding: 110px 70px 80px;
 }
 @media screen and (max-width: 992px) {
   .ndpi .pi-right-content .pi-right-content-data {
@@ -1475,7 +1575,7 @@ html {
 }
 .ndpi .pi-btn-icon {
   background: #fff;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294) !important;
+  border: 1px solid #dddddda8 !important;
   padding: 7px 8px !important;
   line-height: 10px;
   cursor: pointer !important;
@@ -1490,7 +1590,7 @@ html {
   top: 0px;
   border-radius: 5px;
   margin-left: 5px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 .ndpi .pi-breadcrumb {
   margin-bottom: 18px;
@@ -1509,7 +1609,7 @@ html {
   line-height: 100%;
 }
 .ndpi .pi-breadcrumb ul li a {
-  color: rgba(113, 128, 150, 0.7098039216);
+  color: #718096b5;
   font-weight: 500;
   text-transform: capitalize;
 }
@@ -1547,7 +1647,7 @@ html {
   border-radius: 8px;
   padding: 20px;
   background: #fff;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 .ndpi .pi-cards .pi-cards-content span {
   padding: 7px;
@@ -1678,7 +1778,7 @@ html {
   color: #1a202c;
   font-size: 14px;
   padding: 12px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   outline: none;
   line-height: 1;
   padding-left: 40px;
@@ -1711,7 +1811,7 @@ html {
 }
 .ndpi .pi-search-bar button {
   background: transparent;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 5px 8px;
   border-radius: 8px;
   margin-left: 10px;
@@ -1892,7 +1992,7 @@ html {
 .ndpi .pi-pagination .pi-next a,
 .ndpi .pi-pagination .pi-previous a {
   padding: 6px 12px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   margin-left: -1px;
   font-size: 18px;
   font-weight: 500;
@@ -1918,7 +2018,7 @@ html {
 }
 .ndpi .pi-pagination li a {
   padding: 8px 12px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   margin-left: -1px;
   color: #718096;
   font-size: 14px;
@@ -2081,6 +2181,7 @@ html {
   #pi-tab-share .pi-float-left {
     margin-bottom: 30px;
   }
+
   #pi-tab-share .justify-content-md-center .col-md-8:first-child {
     margin: 0px 0px 30px !important;
   }
@@ -3012,7 +3113,7 @@ ul {
 .ndpi .pi-modal-sidebar .pi-modal-footer {
   margin-top: 20px;
   padding: 20px 35px 5px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 @media screen and (max-width: 992px) {
   .ndpi .pi-modal-sidebar .pi-modal-footer {
@@ -3087,7 +3188,7 @@ ul {
 .ndpi .pi-modal-sidebar-two .pi-checklist-content ul {
   margin-bottom: 0px;
   padding-top: 15px;
-  border-top: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border-top: 1px solid #dddddda8;
 }
 .ndpi .pi-modal-sidebar-two .pi-checklist-content ul li {
   font-size: 12px;
@@ -3453,7 +3554,7 @@ ul {
   background-color: #fff;
   margin-bottom: 15px;
   border-radius: 10px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   margin-bottom: 10px;
   position: relative;
 }
@@ -3779,7 +3880,7 @@ ul {
 }
 .pi-form-accordion .pi-tab .pi-payment-btn {
   padding: 10px 25px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   border-radius: 5px;
   margin-top: 10px;
   font-weight: 600;
@@ -3853,7 +3954,7 @@ ul {
 
 .pi-form-accordion.pi-additional input:checked ~ .pi-tab-content {
   padding: 15px 15px 1px !important;
-  border-top: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border-top: 1px solid #dddddda8;
 }
 
 .pi-form-accordion.pi-additional .pi-tab {
@@ -3970,14 +4071,14 @@ ul {
   }
 }
 .ndpi .pi-search-btn .pi-search-form ul {
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   display: flex;
   margin: 0;
   border-radius: 0 8px 8px 0;
   background-color: #FAFAFB;
 }
 .ndpi .pi-search-btn .pi-search-form ul li:last-child {
-  border-left: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border-left: 1px solid #dddddda8;
   padding: 6px 8px;
   margin-left: 10px;
   cursor: pointer;
@@ -4019,14 +4120,14 @@ ul {
   background-color: #fff;
   width: 100%;
   border-radius: 8px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 .ndpi .pi-horizontal-tab .pi-tab-content {
   padding: 30px;
 }
 .ndpi .pi-horizontal-tab .pi-tabs {
   display: flex;
-  border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border-bottom: 1px solid #dddddda8;
   margin: 0;
 }
 @media screen and (max-width: 420px) {
@@ -4095,6 +4196,7 @@ ul {
   background: none;
   margin-left: -15px;
   margin-top: -10px;
+  display: inline-block;
 }
 
 /*-------------------------------------------------------------- 
@@ -4104,7 +4206,7 @@ ul {
   /* Rounded pi-switch-sliders */
 }
 .ndpi .pi-widget {
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -4151,7 +4253,7 @@ ul {
 .ndpi .pi-widget .pi-persons-content {
   margin-top: 15px;
   padding: 15px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   border-radius: 8px;
 }
 .ndpi .pi-widget .pi-persons-content address {
@@ -4184,7 +4286,7 @@ ul {
   text-align: left;
   font-size: 18px;
   color: #2D3748 !important;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 .ndpi .pi-button-group .pi-btn svg {
   margin-right: 20px;
@@ -4559,7 +4661,7 @@ ul {
   border: 1px solid rgba(221, 221, 221, 0.6588235294) !important;
 }
 .ndpi .pi-gradient {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4196078431) 0%, rgba(0, 0, 0, 0.0156862745) 100%);
+  background: linear-gradient(to bottom, #ffffff6b 0%, #00000004 100%);
 }
 .ndpi .pi-box-shodow {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 7px -3px, rgba(0, 0, 0, 0.06) 0px 2px 0px -1px;
@@ -4723,7 +4825,7 @@ body {
 .ndpi .pi-btn-medium {
   padding: 10px 15px !important;
   font-weight: 500;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 .ndpi .pi-btn-small {
   padding: 6px 10px !important;
@@ -4731,7 +4833,7 @@ body {
   font-size: 12px;
   border-radius: 4px;
   background-color: #fff;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
 }
 @media screen and (max-width: 768px) {
   .ndpi .pi-btn {
@@ -4751,6 +4853,11 @@ body {
 
 select {
   background: none;
+}
+
+:-ms-input-placeholder {
+  color: #718096 !important;
+  font-weight: 400 !important;
 }
 
 ::-moz-placeholder {
@@ -4800,7 +4907,7 @@ select {
   font-size: 14px;
   padding: 14px;
   width: 100%;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   line-height: 20px;
   border-radius: 8px;
   outline: none;
@@ -4988,7 +5095,7 @@ select {
   z-index: 9;
   background: #fff;
   width: 100%;
-  border-bottom: 1px solid rgba(221, 221, 221, 0.2117647059);
+  border-bottom: 1px solid #dddddd36;
   position: fixed;
 }
 @media screen and (max-width: 420px) {
@@ -5048,7 +5155,7 @@ select {
 }
 .ndpi .pi-left-sidebar .pi-menu-buttons a {
   width: 180px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  border: 1px solid #dddddda8;
   font-size: 13px;
   margin-bottom: 15px;
   padding: 15px 10px;
@@ -5130,6 +5237,7 @@ select {
   .pi-collapse-menu .pi-menu-buttons {
     display: none;
   }
+
   .pi-collapse-menu:hover {
     width: 242px !important;
   }

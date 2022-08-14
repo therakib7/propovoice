@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-14 05:08+0000\n"
-"PO-Revision-Date: 2022-08-14 05:09+0000\n"
+"PO-Revision-Date: 2022-08-14 05:08+0000\n"
 "Last-Translator: Rakib Hasan\n"
 "Language-Team: Bengali (Bangladesh)\n"
 "Language: bn_BD\n"
@@ -40,11 +40,11 @@ msgstr ""
 
 #: ../app/Helpers/I18n.php:12, ../app/Ctrls/Setting/Type/Dashboard.php:40
 msgid "Lead"
-msgstr "লিড"
+msgstr ""
 
 #: ../app/Helpers/I18n.php:13
 msgid "Deal"
-msgstr "ডিল"
+msgstr ""
 
 #: ../app/Helpers/I18n.php:14, ../app/Ctrls/Setting/Type/Dashboard.php:48
 msgid "Estimate"
@@ -184,7 +184,7 @@ msgstr ""
 
 #: ../app/Helpers/I18n.php:55
 msgid "Total"
-msgstr "মোট"
+msgstr ""
 
 #: ../app/Helpers/I18n.php:57, ../app/Ctrls/Setting/Type/Dashboard.php:92,
 #: ../app/Ctrls/Setting/Type/Dashboard.php:93

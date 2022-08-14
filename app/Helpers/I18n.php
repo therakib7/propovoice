@@ -15,9 +15,10 @@ class I18n
             'inv' => esc_html__('Invoice', 'propovoice'),
             'client' => esc_html__('Client', 'propovoice'),
             'project' => esc_html__('Project', 'propovoice'),
-            'task' => esc_html__('Task & Activity', 'propovoice'),
+            'task' => __('Task & Activity', 'propovoice'),
             'contact' => esc_html__('Contact', 'propovoice'),
             //dashboard
+            'latest' => esc_html__('Latest', 'propovoice'),
             'funnel' => esc_html__('Funnel', 'propovoice'),
             'tracking' => esc_html__('Tracking', 'propovoice'),
             //lead
@@ -80,7 +81,8 @@ class I18n
             'continue' => esc_html__('Continue', 'propovoice'),
             'save' => esc_html__('Save', 'propovoice'),
             //ext
-            'pipeline' => esc_html__('Pipeline', 'propovoice'),
+            'pipeline' => esc_html__('Pipeline', 'propovoice'), 
+            'back_t_db' => esc_html__('Back to WP Dashboard', 'propovoice'), 
         ];
     }
 }

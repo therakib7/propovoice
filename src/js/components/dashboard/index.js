@@ -106,7 +106,7 @@ const Dashboard = (props) => {
                                 className="pi-title-medium pi-mb-20"
                                 style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}
                             >
-                                Latest Task
+                                {ndpi.i18n.latest} {ndpi.i18n.task}
                             </h3>
                             <Suspense fallback={<Spinner />}>
                                 <Task tab_id={null} dashboard={true} />

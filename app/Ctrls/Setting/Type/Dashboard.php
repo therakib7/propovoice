@@ -100,7 +100,7 @@ class Dashboard
             global $submenu;
             $permalink = Fns::client_page_url('workspace');
             if ($permalink) {
-                $submenu['ndpi'][] = array('Go to Frontend', 'manage_options', $permalink);
+                $submenu['ndpi'][] = array(esc_html__('Go to Frontend', 'propovoice'), 'manage_options', $permalink);
             }
         }
 

@@ -22,6 +22,7 @@ const Summary = (props) => {
         }); 
     }, []);
 
+    const i18n = ndpi.i18n;
     return (
         <div className="pi-cards pi-mt-10 pi-cards-two">
             <div className="row">
@@ -86,7 +87,7 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Total Client</p>
+                        <p className="">{i18n.total} {i18n.client}</p>
                         <h4>{summary.total_client}</h4>
                     </div>
                 </div>
@@ -106,7 +107,7 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Total Lead</p>
+                        <p className="">{i18n.total} {i18n.lead}</p>
                         <h4>{summary.total_lead}</h4>
                     </div>
                 </div>
@@ -136,7 +137,7 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Total Deal</p>
+                        <p className="">{i18n.total} {i18n.deal}</p>
                         <h4>{summary.total_deal}</h4>
                     </div>
                 </div>
@@ -176,7 +177,7 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Total Invoice</p>
+                        <p className="">{i18n.total} {i18n.inv}</p>
                         <h4>{summary.total_invoice}</h4>
                     </div>
                 </div>
@@ -206,7 +207,7 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Total Estimate</p>
+                        <p className="">{i18n.total} {i18n.est}</p>
                         <h4>{summary.total_estimate}</h4>
                     </div>
                 </div>
@@ -246,7 +247,7 @@ const Summary = (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">Total Project</p>
+                        <p className="">{i18n.total} {i18n.project}</p>
                         <h4>{summary.total_project}</h4>
                     </div>
                 </div>
