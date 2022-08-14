@@ -2,7 +2,7 @@
 
 namespace Ncpi\Ctrls\Ajax;
 
-use Ncpi\Ctrls\Ajax\Types\Auth; 
+use Ncpi\Ctrls\Ajax\Type\Auth; 
 
 class AjaxController {
 

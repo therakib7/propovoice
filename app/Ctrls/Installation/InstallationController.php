@@ -2,10 +2,10 @@
 
 namespace Ncpi\Ctrls\Installation;
 
-use Ncpi\Ctrls\Installation\Types\DB;
-use Ncpi\Ctrls\Installation\Types\Merging;
-use Ncpi\Ctrls\Installation\Types\Page;
-use Ncpi\Ctrls\Installation\Types\Taxonomy;
+use Ncpi\Ctrls\Installation\Type\DB;
+use Ncpi\Ctrls\Installation\Type\Merging;
+use Ncpi\Ctrls\Installation\Type\Page;
+use Ncpi\Ctrls\Installation\Type\Taxonomy;
 
 class InstallationController
 {

@@ -2,8 +2,8 @@
 
 namespace Ncpi\Ctrls\Setting;
  
-use Ncpi\Ctrls\Setting\Types\Dashboard;
-use Ncpi\Ctrls\Setting\Types\Welcome;
+use Ncpi\Ctrls\Setting\Type\Dashboard;
+use Ncpi\Ctrls\Setting\Type\Welcome;
 
 class SettingController {
 	

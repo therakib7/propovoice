@@ -1,5 +1,5 @@
 === Propovoice CRM - Client, Estimate, Invoice automation ===
-Contributors: propovoice, nurcreation, therakib7
+Contributors: propovoice, therakib7
 Donate link:
 Tags: proposal, estimate, invoice, payment, crm, project, client, template, transaction, billing, automation, management
 Requires at least: 5.0

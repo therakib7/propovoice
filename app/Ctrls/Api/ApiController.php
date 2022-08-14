@@ -2,27 +2,27 @@
 
 namespace Ncpi\Ctrls\Api;
 
-use Ncpi\Ctrls\Api\Types\Action;
-use Ncpi\Ctrls\Api\Types\Business;
-use Ncpi\Ctrls\Api\Types\Client;
-use Ncpi\Ctrls\Api\Types\Contact;
-use Ncpi\Ctrls\Api\Types\Person;
-use Ncpi\Ctrls\Api\Types\Dashbaord;
-use Ncpi\Ctrls\Api\Types\Deal;
-use Ncpi\Ctrls\Api\Types\Email;
-use Ncpi\Ctrls\Api\Types\File;
-use Ncpi\Ctrls\Api\Types\Invoice;
-use Ncpi\Ctrls\Api\Types\Lead;
-use Ncpi\Ctrls\Api\Types\Media;
-use Ncpi\Ctrls\Api\Types\Note;
-use Ncpi\Ctrls\Api\Types\Org;
-use Ncpi\Ctrls\Api\Types\Payment;
-use Ncpi\Ctrls\Api\Types\PaymentProcess;
-use Ncpi\Ctrls\Api\Types\Project;
-use Ncpi\Ctrls\Api\Types\Proposal;
-use Ncpi\Ctrls\Api\Types\Setting;
-use Ncpi\Ctrls\Api\Types\Task;
-use Ncpi\Ctrls\Api\Types\Taxonomy;
+use Ncpi\Ctrls\Api\Type\Action;
+use Ncpi\Ctrls\Api\Type\Business;
+use Ncpi\Ctrls\Api\Type\Client;
+use Ncpi\Ctrls\Api\Type\Contact;
+use Ncpi\Ctrls\Api\Type\Person;
+use Ncpi\Ctrls\Api\Type\Dashbaord;
+use Ncpi\Ctrls\Api\Type\Deal;
+use Ncpi\Ctrls\Api\Type\Email;
+use Ncpi\Ctrls\Api\Type\File;
+use Ncpi\Ctrls\Api\Type\Invoice;
+use Ncpi\Ctrls\Api\Type\Lead;
+use Ncpi\Ctrls\Api\Type\Media;
+use Ncpi\Ctrls\Api\Type\Note;
+use Ncpi\Ctrls\Api\Type\Org;
+use Ncpi\Ctrls\Api\Type\Payment;
+use Ncpi\Ctrls\Api\Type\PaymentProcess;
+use Ncpi\Ctrls\Api\Type\Project;
+use Ncpi\Ctrls\Api\Type\Proposal;
+use Ncpi\Ctrls\Api\Type\Setting;
+use Ncpi\Ctrls\Api\Type\Task;
+use Ncpi\Ctrls\Api\Type\Taxonomy;
 
 class ApiController
 {

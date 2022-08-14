@@ -2,7 +2,7 @@
 
 namespace Ncpi\Ctrls\Marketing;
 
-use Ncpi\Ctrls\Marketing\Types\Link;
+use Ncpi\Ctrls\Marketing\Type\Link;
 
 class MarketingController {
 	
