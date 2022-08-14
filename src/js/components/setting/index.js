@@ -58,7 +58,7 @@ const SettingWrap = (props) => {
             label: i18n.payment
         },
         email: {
-            label: 'Email Template',
+            label: i18n.email + ' ' + i18n.tmpl,
             subtabs: {
                 estimate: {
                     label: i18n.est,
