@@ -68,6 +68,7 @@ export default class Reminder extends Component {
 
     render() {
         const form = this.state.form;
+        const i18n = ndpi.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
@@ -90,7 +91,7 @@ export default class Reminder extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>Reminder</label>
+                        <label>{i18n.rem}</label>
                         <div className="pi-field-checkbox">
                             <input
                                 type='checkbox'
@@ -106,7 +107,7 @@ export default class Reminder extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>Reminder Before</label>
+                        <label>{i18n.rem} {i18n.bf}</label>
                         <div className="pi-field-checkbox">
                             <input
                                 type='checkbox'
@@ -142,64 +143,64 @@ export default class Reminder extends Component {
                         </div>
                         {false && <>
                             <div className="pi-field-checkbox pi-field-checkbox-input pi-mb-10">
-                            <input type="checkbox" id="date" name="date" />
-                            <input
-                                type="number"
-                                id="unit-number"
-                                name="firstname"
-                                placeholder={1}
-                            />
-                            <select name="number-type">
-                                <option value="page">Days</option>
-                                <option value="hour">Hour</option>
-                                <option value="week">Week</option>
-                                <option value="month">Month</option>
-                            </select>
-                        </div>
-                        <div className="pi-field-checkbox pi-field-checkbox-input">
-                            <input type="checkbox" id="date" name="date" />
-                            <input
-                                type="number"
-                                id="unit-number"
-                                name="firstname"
-                                placeholder={1}
-                            />
-                            <select name="number-type">
-                                <option value="page">Days</option>
-                                <option value="hour">Hour</option>
-                                <option value="week">Week</option>
-                                <option value="month">Month</option>
-                            </select>
-                        </div>
-                        <button className="pi-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
-                            <svg
-                                width={12}
-                                height={13}
-                                viewBox="0 0 12 13"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M1.875 6.5H10.125"
-                                    stroke="#718096"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
+                                <input type="checkbox" id="date" name="date" />
+                                <input
+                                    type="number"
+                                    id="unit-number"
+                                    name="firstname"
+                                    placeholder={1}
                                 />
-                                <path
-                                    d="M6 2.375V10.625"
-                                    stroke="#718096"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
+                                <select name="number-type">
+                                    <option value="page">Days</option>
+                                    <option value="hour">Hour</option>
+                                    <option value="week">Week</option>
+                                    <option value="month">Month</option>
+                                </select>
+                            </div>
+                            <div className="pi-field-checkbox pi-field-checkbox-input">
+                                <input type="checkbox" id="date" name="date" />
+                                <input
+                                    type="number"
+                                    id="unit-number"
+                                    name="firstname"
+                                    placeholder={1}
                                 />
-                            </svg>
-                            Add Another
-                        </button>
+                                <select name="number-type">
+                                    <option value="page">Days</option>
+                                    <option value="hour">Hour</option>
+                                    <option value="week">Week</option>
+                                    <option value="month">Month</option>
+                                </select>
+                            </div>
+                            <button className="pi-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
+                                <svg
+                                    width={12}
+                                    height={13}
+                                    viewBox="0 0 12 13"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M1.875 6.5H10.125"
+                                        stroke="#718096"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M6 2.375V10.625"
+                                        stroke="#718096"
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                                {i18n.add} {i18n.another}
+                            </button>
                         </>}
                     </div>
                     <div className="col">
-                        <label>Reminder After</label>
+                        <label>{i18n.rem} {i18n.af}</label>
                         <div className="pi-field-checkbox">
                             <input
                                 type='checkbox'
@@ -287,7 +288,7 @@ export default class Reminder extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                Add Another
+                                {i18n.add} {i18n.another}
                             </button>
                         </>}
                     </div>
@@ -296,7 +297,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Save
+                            {i18n.save}
                         </button>
                     </div>
                 </div>

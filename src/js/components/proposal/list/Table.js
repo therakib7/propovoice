@@ -14,7 +14,7 @@ const TableHeader = props => {
             <tr>
                 <th>
                     <input type="checkbox"
-                        
+
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
@@ -120,7 +120,7 @@ const TableBody = props => {
             <tr key={index}>
                 <td>
                     <input type="checkbox"
-                        
+
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
@@ -194,7 +194,7 @@ const TableBody = props => {
                                             fill="#A0AEC0"
                                         />
                                     </svg>
-                                    Home
+                                    {ndpi.i18n.home}
                                 </a>
                                 <a href="#about">
                                     <svg width={13} height={13}>

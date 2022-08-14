@@ -73,9 +73,9 @@ class Send extends Component {
         let date = this.convertDate(data.invoice.date);
         let due_date = this.convertDate(data.invoice.due_date);
         let amount = this.calcGrandTotal();
-        
+
         let org_name = data.fromData.name;
-        let client_name = ( data.toData.type == 'person' ) ? data.toData.first_name : data.toData.org_name;
+        let client_name = (data.toData.type == 'person') ? data.toData.first_name : data.toData.org_name;
 
         formState.invoice_id = id;
         formState.path = path_title;
@@ -202,7 +202,7 @@ class Send extends Component {
 
                                     <div className="col-lg">
                                         <label htmlFor="form-email">
-                                            Email
+                                            {i18n.email}
                                         </label>
 
                                         <input
@@ -252,7 +252,7 @@ class Send extends Component {
                         <div className="pi-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">

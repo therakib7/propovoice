@@ -37,7 +37,7 @@ const SettingWrap = (props) => {
     const tab_data = {
         general: {
             label: 'General'
-        }, 
+        },
         lead: {
             label: 'Lead'
         },
@@ -86,7 +86,7 @@ const SettingWrap = (props) => {
     const [tabs, setTabs] = useState(tab_data);
 
     useEffect(() => {
-        if ( has_wage.ins ) {
+        if (has_wage.ins) {
             let new_tabs = { ...tabs }
             new_tabs.license = {
                 label: 'License Manager'
@@ -114,7 +114,7 @@ const SettingWrap = (props) => {
         <>
             <nav className='pi-breadcrumb'>
                 <ul>
-                    <li><a href='#'>Home</a></li>
+                    <li><a href='#'>{ndpi.i18n.home}</a></li>
                     <li>
                         <svg
                             width={5}

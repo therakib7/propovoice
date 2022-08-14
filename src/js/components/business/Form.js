@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import Upload from 'block/field/upload';
 
 class Form extends Component {
@@ -67,13 +67,13 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let form = { ...this.state.form } 
-        if ( form.logo ) {
+        let form = { ...this.state.form }
+        if (form.logo) {
             form.logo = {
                 id: form.logo.id,
                 src: form.logo.src
             }
-        }  
+        }
         this.props.handleSubmit(form);
         //this.setState({ form: this.initialState });
     }
@@ -86,7 +86,7 @@ class Form extends Component {
 
     render() {
         const form = this.state.form;
-
+        const i18n = ndpi.i18n;
         let title = '';
         if (this.props.modalType == 'new') {
             title = 'New'
@@ -121,7 +121,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{title} Business</h2>
+                        <h2 className="pi-modal-title">{title} {i18n.business}</h2>
                         <p>Add new business from here</p>
                     </div>
 
@@ -132,7 +132,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label
                                             htmlFor="field-name">
-                                            Name
+                                            {i18n.name}
                                         </label>
 
                                         <input
@@ -164,7 +164,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label
                                             htmlFor="field-web">
-                                            Website
+                                            {i18n.web}
                                         </label>
 
                                         <input
@@ -178,7 +178,9 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label
                                             htmlFor="field-email">
-                                            Email
+
+                                            {i18n.email}
+
                                         </label>
 
                                         <input
@@ -196,7 +198,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label
                                             htmlFor="field-mobile">
-                                            Mobile Number
+                                            {i18n.mbl}
                                         </label>
 
                                         <input
@@ -211,7 +213,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label
                                             htmlFor="field-zip">
-                                            Zip Code
+                                            {i18n.zip}
                                         </label>
 
                                         <input
@@ -227,7 +229,7 @@ class Form extends Component {
                                     <div className="col">
                                         <label
                                             htmlFor="field-address">
-                                            Address
+                                            {i18n.address}
                                         </label>
 
                                         <input
@@ -244,7 +246,7 @@ class Form extends Component {
                                     <div className="col">
                                         <label
                                             htmlFor="field-logo">
-                                            Logo
+                                            {i18n.logo}
                                         </label>
                                         <Upload data={form.logo} changeHandler={this.handleLogoChange} />
                                     </div>
@@ -255,11 +257,11 @@ class Form extends Component {
                         <div className="pi-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        Save
+                                    {i18n.save}
                                     </button>
                                 </div>
                             </div>

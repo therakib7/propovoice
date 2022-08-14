@@ -6,9 +6,9 @@ class Owner extends Component {
 
         this.initialState = {
             id: null,
-            name: '', 
+            name: '',
             web: '',
-            email: '', 
+            email: '',
             mobile: '',
             zip: '',
             address: '',
@@ -27,7 +27,7 @@ class Owner extends Component {
     }
 
     toggle = () => {
-        let show = ! this.state.show;
+        let show = !this.state.show;
         this.setState({ show });
     };
 
@@ -43,34 +43,33 @@ class Owner extends Component {
     render() {
         return (
             <div className='mb-6'>
-                <div 
-                    className={'flex items-center cursor-pointer justify-between rounded-t p-3 w-full font-medium text-left border border-gray-200 text-gray-900 rounded-t ' + ( this.state.show ? '' : 'rounded-b' )} 
-                    onClick={() => this.toggle()} 
-                    >
-                    <span>Edit Owner</span>  
-                    <svg 
-                        className={'w-6 h-6 shrink-0 ' + ( this.state.show ? 'rotate-180' : '' )}
+                <div
+                    className={'flex items-center cursor-pointer justify-between rounded-t p-3 w-full font-medium text-left border border-gray-200 text-gray-900 rounded-t ' + (this.state.show ? '' : 'rounded-b')}
+                    onClick={() => this.toggle()}
+                >
+                    <span>Edit Owner</span>
+                    <svg
+                        className={'w-6 h-6 shrink-0 ' + (this.state.show ? 'rotate-180' : '')}
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clipRule="evenodd"
+                            fillRule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clipRule="evenodd"
                         />
-                    </svg> 
-                </div> 
- 
-                <div className={'border border-t-0 border-gray-200 rounded-b ' + ( this.state.show ? '' : 'hidden' )}>
+                    </svg>
+                </div>
+
+                <div className={'border border-t-0 border-gray-200 rounded-b ' + (this.state.show ? '' : 'hidden')}>
                     <form onSubmit={this.handleSubmit} noValidate>
-                        <div className="relative px-6 py-5 flex-auto">  
+                        <div className="relative px-6 py-5 flex-auto">
                             <div className="-mx-3 mb-2">
                                 <div className="w-full px-3 mb-6 md:mb-0">
                                     <label
                                         className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                        htmlFor="grid-name">
-                                        Name
+                                        htmlFor="grid-name">                    {i18n.name}
                                     </label>
 
                                     <input
@@ -98,7 +97,7 @@ class Owner extends Component {
                                         value={this.state.form.web}
                                         onChange={this.handleChange}
                                     />
-                                </div>  
+                                </div>
 
                                 <div className="w-full px-3 mb-6 md:mb-0">
                                     <label
@@ -132,7 +131,7 @@ class Owner extends Component {
                                         value={this.state.form.mobile}
                                         onChange={this.handleChange}
                                     />
-                                </div>  
+                                </div>
 
                                 <div className="w-full px-3 mb-6 md:mb-0">
                                     <label
@@ -149,8 +148,8 @@ class Owner extends Component {
                                         value={this.state.form.zip}
                                         onChange={this.handleChange}
                                     />
-                                </div> 
-                            </div> 
+                                </div>
+                            </div>
                         </div>
 
                         <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
@@ -167,8 +166,8 @@ class Owner extends Component {
                                 Save
                             </button>
                         </div>
-                    </form> 
-                </div> 
+                    </form>
+                </div>
             </div>
         );
     }

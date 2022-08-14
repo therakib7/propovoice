@@ -10,8 +10,8 @@ class Form extends Component {
             id: null,
             tab_id: this.props.tab_id,
             type: 'file',
-            title: '', 
-            file: '', 
+            title: '',
+            file: '',
         };
 
         this.state = {
@@ -22,7 +22,7 @@ class Form extends Component {
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } });
-    } 
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -71,7 +71,7 @@ class Form extends Component {
                         <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} File</h2>
                         <p>Add new file from here</p>
                     </div>
-                    
+
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
                             <div className="pi-form-style-one">
@@ -95,21 +95,21 @@ class Form extends Component {
                                     <div className="col-lg">
                                         <label htmlFor="file_id">
                                             File
-                                        </label> 
+                                        </label>
                                         <Upload data={form.file} changeHandler={this.handleUploadChange} />
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
 
                         <div className="pi-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        Save
+                                        {i18n.save}
                                     </button>
                                 </div>
                             </div>

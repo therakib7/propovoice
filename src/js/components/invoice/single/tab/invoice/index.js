@@ -479,11 +479,11 @@ class Invoice extends Component {
 
 	setActiveTab(e, id, index) {
 		e.preventDefault();
-		
-		if ( id == 'preview' ) {
+
+		if (id == 'preview') {
 			this.handleSave();
 		}
-		
+
 		this.setState({
 			currentTab: id,
 			currentTabIndex: index
@@ -645,7 +645,7 @@ class Invoice extends Component {
 								<ul className="">
 									<li>
 										<a href="#" className="">
-											Home
+											{ndpi.i18n.home}
 										</a>
 									</li>
 									<li>

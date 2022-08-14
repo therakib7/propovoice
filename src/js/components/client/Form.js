@@ -146,7 +146,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-email">
-                                            Email
+                                            {i18n.email}
                                         </label>
 
                                         <input
@@ -160,7 +160,7 @@ class Form extends Component {
                                     </div>
                                     <div className="col-lg">
                                         <label htmlFor="form-mobile">
-                                            Mobile Number
+                                            {i18n.mbl}
                                         </label>
 
                                         <input
@@ -176,7 +176,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-web">
-                                            Website
+                                            {i18n.web}
                                         </label>
 
                                         <input
@@ -192,7 +192,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label htmlFor="form-country">
-                                            Country
+                                            {i18n.country}
                                         </label>
 
                                         <CountryDropdown
@@ -204,7 +204,7 @@ class Form extends Component {
 
                                     <div className="col-md-6">
                                         <label htmlFor="form-region">
-                                            Region
+                                            {i18n.region}
                                         </label>
 
                                         <RegionDropdown
@@ -220,7 +220,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-address">
-                                            Address
+                                            {i18n.address}
                                         </label>
 
                                         <input
@@ -238,11 +238,11 @@ class Form extends Component {
                         <div className="pi-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        Save
+                                        {i18n.save}
                                     </button>
                                 </div>
                             </div>

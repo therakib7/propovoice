@@ -470,7 +470,7 @@ class Invoice extends Component {
 							<ul>
 								<li>
 									<a href='#' >
-										Home
+										{ndpi.i18n.home}
 									</a>
 								</li>
 								<li>&gt;</li>

@@ -50,9 +50,13 @@ class I18n
             'web' => esc_html__('Website', 'propovoice'),
             'zip' => esc_html__('Zip Code', 'propovoice'),
             'address' => esc_html__('Address', 'propovoice'),
+            'country' => esc_html__('Country', 'propovoice'),
+            'region' => esc_html__('Region', 'propovoice'),
             //common
             'home' => esc_html__('Home', 'propovoice'),
             'total' => esc_html__('Total', 'propovoice'),
+            'preview' => esc_html__('Preview', 'propovoice'),
+            'show' => esc_html__('Show', 'propovoice'),
             //settings
             'settings' => esc_html__('Settings', 'propovoice'),
             'general' => esc_html__('General', 'propovoice'),
@@ -63,6 +67,7 @@ class I18n
             'action' => esc_html__('Action', 'propovoice'),
             //form
             'add' => esc_html__('Add', 'propovoice'),
+            'another' => esc_html__('Another', 'propovoice'),
             'new' => esc_html__('New', 'propovoice'),
             'edit' => esc_html__('Edit', 'propovoice'),
             'del' => esc_html__('Delete', 'propovoice'),
@@ -76,6 +81,7 @@ class I18n
             'color' => esc_html__('Color', 'propovoice'),
             'desc' => esc_html__('Description', 'propovoice'),
             'note' => esc_html__('Note', 'propovoice'),
+            'clear' => esc_html__('Clear', 'propovoice'),
             //btn
             'logo' => esc_html__('Logo', 'propovoice'),
             'continue' => esc_html__('Continue', 'propovoice'),
@@ -83,6 +89,9 @@ class I18n
             //ext
             'pipeline' => esc_html__('Pipeline', 'propovoice'), 
             'back_t_db' => esc_html__('Back to WP Dashboard', 'propovoice'), 
+            'rem' => esc_html__('Reminder', 'propovoice'), 
+            'af' => esc_html__('After', 'propovoice'), 
+            'bf' => esc_html__('Before', 'propovoice'), 
         ];
     }
 }

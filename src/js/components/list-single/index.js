@@ -254,7 +254,7 @@ class ListSingle extends Component {
                     <ul className="">
                         <li>
                             <a href="#" className="">
-                                Home
+                                {ndpi.i18n.home}
                             </a>
                         </li>
                         <li>

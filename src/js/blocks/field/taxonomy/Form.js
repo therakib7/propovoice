@@ -128,6 +128,7 @@ class Form extends Component {
 
     render() {
         const form = this.state.form;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content pi-modal-style-two pi-modal-small">
@@ -163,7 +164,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col-md">
                                     <label htmlFor="field-label">
-                                        Name
+                                        {i18n.name}
                                     </label>
 
                                     <input
@@ -198,7 +199,7 @@ class Form extends Component {
                                 {false && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-color">
-                                            Preview
+                                            {i18n.preview}
                                         </label>
                                         <div className='pi-field-btn-preview'>
                                             <button
@@ -276,11 +277,11 @@ class Form extends Component {
                     <div className="pi-modal-footer pi-mt-10">
                         <div className="row">
                             <div className="col">
-                                <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                                <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
                             </div>
                             <div className="col">
                                 <button onClick={this.handleSubmit} className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-medium pi-float-right pi-color-white">
-                                    Save
+                                    {i18n.save}
                                 </button>
                             </div>
                         </div>
