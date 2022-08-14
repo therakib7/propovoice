@@ -153,4 +153,4 @@ const Client = (props) => {
     );
 }
 
-export default Crud(Client, 'client', ndpi.i18n.mod.client);
+export default Crud(Client, 'client', ndpi.i18n.client);

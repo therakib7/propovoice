@@ -300,4 +300,4 @@ const Deal = (props) => {
     );
 }
 
-export default Crud(Deal, 'deal', ndpi.i18n.mod.deal);
+export default Crud(Deal, 'deal', ndpi.i18n.deal);

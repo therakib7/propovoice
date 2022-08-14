@@ -175,7 +175,7 @@ class File
         $reg_errors = new \WP_Error;
         $tab_id = isset($params['tab_id']) ? absint($req['tab_id']) : null;          
         $type   = isset($params['type']) ? sanitize_text_field($params['type']) : null; 
-        $file = isset( $params['file'] ) && isset( $params['file']['id'] ) ? absint( $params['file']['id'] ) : null;
+        $file   = isset( $params['file'] ) && isset( $params['file']['id'] ) ? absint( $params['file']['id'] ) : null;
 
         $title  = isset($params['title']) ? sanitize_text_field($params['title']) : null;  
         $url    = isset($params['url']) ? sanitize_text_field($params['url']) : null;  
