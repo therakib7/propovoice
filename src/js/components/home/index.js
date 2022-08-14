@@ -20,10 +20,7 @@ const ListSingle = lazy(() => import('components/list-single'));
 
 const Project = lazy(() => import('components/project'));
 //const Proposal = lazy(() => import('components/proposal'));
-//const Editor = lazy(() => import('components/editor'));
-
-const Proposal = lazy(() => import('components/proposal/list'));
-const ProposalSingle = lazy(() => import('components/proposal/single'));
+//const Editor = lazy(() => import('components/editor')); 
 
 const Invoice = lazy(() => import('components/invoice/list'));
 const InvoiceSingle = lazy(() => import('components/invoice/single'));
@@ -568,12 +565,7 @@ const Home = () => {
                                 <Route path="/task/single/:id" exact element={<ListSingle />} />
 
                                 <Route path="/project" exact element={<Project />} />
-                                <Route path="/project/single/:id" exact element={<ListSingle />} />
-
-                                <Route path="/proposal" element={<Proposal />} />
-                                <Route path="/proposal/single" element={<ProposalSingle />} />
-                                <Route path="/proposal/single/:id" element={<ProposalSingle />} />
-                                <Route path="/proposal/single/:id/tab/:tab" element={<ProposalSingle />} />
+                                <Route path="/project/single/:id" exact element={<ListSingle />} /> 
 
                                 <Route path="/estimate" element={<Invoice />} />
                                 <Route path="/estimate/single" element={<InvoiceSingle />} />
@@ -583,10 +575,7 @@ const Home = () => {
                                 <Route path="/invoice" element={<Invoice />} />
                                 <Route path="/invoice/single" element={<InvoiceSingle />} />
                                 <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
-                                <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} />
-
-                                {/* <Route path="/payment" element={<Payment />} /> */}
-                                {/* <Route path="/business" element={<Business />} /> */}
+                                <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} /> 
 
                                 <Route path="/contact/person" exact element={<ContactPerson />} />
                                 <Route path="/contact/organization" exact element={<ContactOrg />} />

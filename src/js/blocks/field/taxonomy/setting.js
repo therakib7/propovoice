@@ -5,6 +5,7 @@ import WithApi from 'hoc/Api';
 import styles from './Items.module.scss'
 import Form from './Form';
 import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 
 const Taxonomy = (props) => {
 	const [list, setList] = useState([]);
@@ -288,7 +289,7 @@ const Taxonomy = (props) => {
 					</svg>
 					Add new {props.title} 
 					{wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) && <>
-						<span className="pi-pro-label">PRO</span>
+						<ProLabel />
 					</>}
 				</button>
 			</div>
