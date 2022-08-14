@@ -112,6 +112,8 @@ const Taxonomy = (props) => {
 
 	}
 
+	const i18n = ndpi.i18n; 
+
 	return (
 		<>
 			<div className="pi-field-repeater">
@@ -290,7 +292,7 @@ const Taxonomy = (props) => {
 							strokeLinejoin="round"
 						/>
 					</svg>
-					Add new {props.title} 
+					{i18n.add} {i18n.new} {props.title} 
 					{wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) && <>
 						<ProLabel />
 					</>}

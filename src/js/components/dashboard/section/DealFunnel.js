@@ -21,13 +21,15 @@ const Summary = (props) => {
         "#829dee",
         "#5b7cea", 
     ];
+
+    const i18n = ndpi.i18n;
     return (
         <div className="pi-punnel pi-border-gray" style={{ minHeight: '435px', marginBottom: '30px' }}>
             <h3
                 className="pi-title-medium pi-mb-20"
                 style={{ fontWeight: "bold", color: "#718096" }}
             >
-                {ndpi.i18n.deal} {ndpi.i18n.funnel}
+                {i18n.deal} {i18n.funnel}
             </h3> 
             <ul> 
                 {funnel.common.map((item, i) => ( 
@@ -37,11 +39,10 @@ const Summary = (props) => {
                 ))} 
 
                 {funnel.won && <li style={{ backgroundColor: "#345bde" }}>
-                    <span>{funnel.won.items}</span> Deal Won
+                    <span>{funnel.won.items}</span> {i18n.deal} {i18n.won}
                 </li>}
             </ul> 
-            {funnel.lost && <p className="pi-text-center">Deal Lost {funnel.lost.items}</p>}
-
+            {funnel.lost && <p className="pi-text-center">{i18n.deal} {i18n.lost} {funnel.lost.items}</p>} 
         </div>
     );
 }

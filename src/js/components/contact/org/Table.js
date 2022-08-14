@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import Action from 'block/action/row'; 
 
 const TableHeader = props => {
+    const i18n = ndpi.i18n;
     return (
         <thead>
             <tr>
@@ -14,22 +15,22 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Organization
+                    {i18n.org}
                 </th>
                 <th>
-                    Email
+                    {i18n.email}
                 </th>
                 <th>
-                    Location
+                    {i18n.loc}
                 </th>
                 <th>
-                    Contact Person
+                    {i18n.contact} {i18n.person}
                 </th> 
                 <th>
-                    Date
+                    {i18n.date}
                 </th>
                 <th>
-                    Action
+                    {i18n.action}
                 </th>
             </tr>
         </thead>

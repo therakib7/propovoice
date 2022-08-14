@@ -160,7 +160,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Contact</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Contact</h2>
                         <p>Add new contact from here</p>
                     </div>
 
@@ -193,7 +193,7 @@ class Form extends Component {
                                     </div>
                                     <div className="col-lg">
                                         <label htmlFor="form-mobile">
-                                            {i18n.mbl}
+                                            {i18n.mob}
                                         </label>
 
                                         <input

@@ -421,7 +421,7 @@ class ListSingle extends Component {
 
                                 <li>
                                     <label htmlFor="">Source: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.source_id} taxonomy='lead_source' title='Source' small={true} color={true} />}
+                                    {data.id && <Taxonomy id={data.id} data={data.source_id} taxonomy='lead_source' title='Source' small={true} color={true} hide_bg={true} />}
                                 </li>
                             </ul>
                         </div>

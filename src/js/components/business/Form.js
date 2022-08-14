@@ -197,7 +197,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label
                                             htmlFor="field-mobile">
-                                            {i18n.mbl}
+                                            {i18n.mob}
                                         </label>
 
                                         <input

@@ -69,7 +69,7 @@ export default class Two extends Component {
                             </div>
                         </div>
 
-                        {items && <Items data={items} item_tax={item_tax} />} 
+                        {items && <Items data={items} item_tax={item_tax} item_label={item_label} />} 
                         <div className="pi-inv-account">
                             <Payment {...this.props} />
                             <Total {...this.props} />

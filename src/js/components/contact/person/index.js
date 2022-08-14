@@ -168,4 +168,4 @@ const Contact = (props) => {
   );
 }
 
-export default Crud(Contact, 'person', ndpi.i18n.contact.person);
+export default Crud(Contact, 'person', ndpi.i18n.person);

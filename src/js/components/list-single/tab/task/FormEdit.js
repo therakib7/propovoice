@@ -360,11 +360,11 @@ class Form extends Component {
                                 </div>
                             </div>
 
-                            {!wage.length && <div className="row">
+                            <div className="row">
                                 <div className="col">
                                     <Checklist data={this.state.form.checklist} changeHandler={this.handleChecklistChange} />
                                 </div>
-                            </div>}
+                            </div>
                         </div>
                     </div>
                 </div>

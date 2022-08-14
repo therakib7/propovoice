@@ -136,6 +136,7 @@ class FromTo extends Component {
 
     render = () => {
         const { fromData, toData } = this.props;
+        const i18n = ndpi.i18n; 
         return (
             <div className="pi-from-content pi-border-right pi-mt-25">
 
@@ -156,7 +157,7 @@ class FromTo extends Component {
                 <div className="row">
                     <div className="col-md-6">
                         <div className="pi-from-to">
-                            <label className="pi-title-small">Sender</label>
+                            <label className="pi-title-small">{i18n.sender}</label>
                             <div className="pi-from pi-bg-white">
                                 {fromData ?
                                     <>
@@ -167,7 +168,7 @@ class FromTo extends Component {
                                                     className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ businessData: fromData, businessModal: true, businessModalType: 'edit' })}
                                                 >
-                                                    Edit
+                                                    {i18n.edit}
                                                 </button>
                                             </span>
                                         </h4>
@@ -194,7 +195,7 @@ class FromTo extends Component {
                     <div className="col-md-6">
                         <div className="pi-from-to pi-to">
                             <div className="pi-from-to-content">
-                                <label className="pi-title-small">Receiver</label>
+                                <label className="pi-title-small">{i18n.rec}</label>
                                 <div className="pi-sendlist pi-action-content">
                                     <Contact data={toData} onChange={this.handleContactSelect} />
                                 </div>
@@ -210,7 +211,7 @@ class FromTo extends Component {
                                                     className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ contactData: toData, contactModal: true, contactModalType: 'edit' })}
                                                 >
-                                                    Edit
+                                                    {i18n.edit}
                                                 </button>
                                             </span>
                                         </h4>
@@ -227,7 +228,7 @@ class FromTo extends Component {
                                         </address>
                                     </> : <>
                                         {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-color-blue pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ contactModal: true, contactModalTYpe: 'new' })}>Add New</a>
+                                        <a className="pi-color-blue pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ contactModal: true, contactModalTYpe: 'new' })}>{i18n.add} {i18n.new}</a>
                                     </>
                                 }
                             </div>

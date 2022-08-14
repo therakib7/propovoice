@@ -15,24 +15,23 @@ class Item extends Component {
         return (qty * price) + tax_total;
 	} 
 
-    render = () => {
-
+    render = () => { 
         const { index, title, desc, qty, qty_type, item_tax, tax, tax_type, price } = this.props
-
+        const i18n = ndpi.i18n; 
         return (
             <>
                 <td>
                     <input
                         name="title"
                         type="text"
-                        placeholder='Title'
+                        placeholder={i18n.title}
                         value={title}
                         onChange={this.props.changeHandler(index)} /> <br />
 
                     <textarea
                         name="desc"
                         type="text"
-                        placeholder='Description'
+                        placeholder={i18n.desc}
                         value={desc}
                         onChange={this.props.changeHandler(index)} />
                 </td> 

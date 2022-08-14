@@ -72,7 +72,7 @@ export default class six extends Component {
                             </div>
                         </div>
                         <div className="pi-inv-item-wrap">
-                        {items && <Items data={items} item_tax={item_tax} />}
+                        {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
 
                             <div className="pi-inv-account">
                                 <Payment {...this.props} />

@@ -168,4 +168,4 @@ const Org = (props) => {
   );
 }
 
-export default Crud(Org, 'organization', ndpi.i18n.contact.org);
+export default Crud(Org, 'organization', ndpi.i18n.org);

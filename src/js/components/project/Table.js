@@ -16,11 +16,11 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Project Title
+                    {i18n.project} {i18n.title}
                 </th>
                 <th>
-                <Email/>
-                    Client
+                    <Email/>
+                    {i18n.client}
                 </th>
                 <th>
                 <Arrow/>
@@ -31,18 +31,18 @@ const TableHeader = props => {
                     {i18n.due} {i18n.date}
                 </th>
                 <th>
-                <Arrow/>
-                    Budget
+                    <Arrow/>
+                    {i18n.budget}
                 </th>
                 <th>
                 <Tag/>
-                    Status
+                    {i18n.status}
                 </th>
                 {/* <th>
-                    Date
+                    {i18n.date}
                 </th> */}
                 <th>
-                    Action
+                    {i18n.action}
                 </th>
             </tr>
         </thead>

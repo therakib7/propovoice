@@ -119,7 +119,7 @@ export default class Reminder extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>{i18n.rem} {i18n.bf}</label>
+                        <label>{i18n.rem} {i18n.before}</label>
                         <div className="pi-field-checkbox">
                             <input
                                 type='checkbox'
@@ -207,12 +207,12 @@ export default class Reminder extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                {i18n.add} {i18n.another}
+                                {i18n.add} {i18n.new}
                             </button>
                         </>}
                     </div>
                     <div className="col">
-                        <label>{i18n.rem} {i18n.af}</label>
+                        <label>{i18n.rem} {i18n.after}</label>
                         <div className="pi-field-checkbox">
                             <input
                                 type='checkbox'
@@ -300,7 +300,7 @@ export default class Reminder extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                {i18n.add} {i18n.another}
+                                {i18n.add} {i18n.new}
                             </button>
                         </>}
                     </div>

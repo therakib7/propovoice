@@ -65,7 +65,7 @@ class Send extends Component {
 
         let path = this.props.path;
 
-        let path_title = path == 'invoice' ? 'Invoice' : 'Estimate';
+        let path_title = path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est;
         let formState = { ...this.state.form }
 
         let id = data.invoice.id;
@@ -148,8 +148,8 @@ class Send extends Component {
     render() {
 
         let path = this.props.path;
-        let path_title = path == 'invoice' ? 'Invoice' : 'Estimate';
-
+        let path_title = path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -177,8 +177,8 @@ class Send extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">Email {path_title}</h2>
-                        <p>Email {path} from here</p>
+                        <h2 className="pi-modal-title">{i18n.email} {path_title}</h2>
+                        <p>{i18n.email} {path} {i18n.from} {i18n.here}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pi-content">
@@ -186,7 +186,7 @@ class Send extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-name">
-                                            Client Name
+                                            {i18n.client} {i18n.name}
                                         </label>
 
                                         <input
@@ -219,7 +219,7 @@ class Send extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-subject">
-                                            Subject
+                                            {i18n.sub}
                                         </label>
 
                                         <input
@@ -235,7 +235,7 @@ class Send extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-msg">
-                                            Message
+                                            {i18n.msg}
                                         </label>
                                         <textarea
                                             id="form-msg"
@@ -256,7 +256,7 @@ class Send extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        Send Email
+                                        {i18n.send} {i18n.email}
                                     </button>
                                 </div>
                             </div>

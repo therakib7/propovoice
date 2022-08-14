@@ -9,8 +9,7 @@ import ApiSetting from 'api/setting';
 
 const EditDownload = props => {
 
-    let title = props.path == 'invoice' ? 'Invoice' : 'Estimate';
-
+    let title = props.path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est; 
     return (
         <>
             <button
@@ -30,7 +29,7 @@ const EditDownload = props => {
                         fill="#2D3748"
                     />
                 </svg>
-                Edit {title}
+                {ndpi.i18n.edit} {title}
             </button>
         </>
     );
@@ -79,9 +78,10 @@ export default class Preview extends Component {
 
     render() {
         // const { id } = this.props.data.invoice.template;
+        const i18n = ndpi.i18n; 
         return (
             <div id="pi-tab-share" className="pi-invoice-tab-content">
-                <h2 className='pi-page-title'>Preview &amp; Share</h2>
+                <h2 className='pi-page-title'>{i18n.preview} {i18n.nd} {i18n.Share}</h2>
                 <iframe id="ndpi-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
@@ -107,7 +107,7 @@ export default class Preview extends Component {
                                                 fill="#2D3748"
                                             />
                                         </svg>
-                                        Download
+                                        {i18n.down}
                                     </button>}
                                 />
                                 <ReactToPrint
@@ -129,7 +129,7 @@ export default class Preview extends Component {
                                                 fill="#2D3748"
                                             />
                                         </svg>
-                                        Print
+                                        {i18n.print}
                                     </button>}
                                 />
                             </div>
@@ -151,7 +151,7 @@ export default class Preview extends Component {
                                             fill="#2D3748"
                                         />
                                     </svg>
-                                    Share
+                                    {i18n.share}
                                 </button>
                             </div>
                         </div>
@@ -195,7 +195,7 @@ export default class Preview extends Component {
                                                 fill="#2D3748"
                                             />
                                         </svg>
-                                        Download
+                                        {i18n.down}
                                     </button>}
                                 />
 
@@ -218,7 +218,7 @@ export default class Preview extends Component {
                                                 fill="#2D3748"
                                             />
                                         </svg>
-                                        Print
+                                        {i18n.print}
                                     </button>}
                                 />
                             </div>
@@ -241,12 +241,12 @@ export default class Preview extends Component {
                                             fill="#2D3748"
                                         />
                                     </svg>
-                                    Share
+                                    {i18n.share}
                                 </button>
                                 <button
                                     className="pi-btn pi-btn-medium pi-bg-hover-blue pi-bg-blue pi-br-4"
                                     onClick={() => this.props.showEmailModal()} >
-                                    Send Email
+                                    {i18n.send} {i18n.email}
                                     <svg
                                         className="pi-ml-10 pi-mr-0"
                                         width={6}

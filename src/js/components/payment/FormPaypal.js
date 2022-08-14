@@ -87,7 +87,7 @@ class FormPaypal extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Paypal</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Paypal</h2>
                         <p>Please fill up necessary informaiton in the form.</p>
                     </div>
                     <form onSubmit={this.handleSubmit}>

@@ -136,7 +136,7 @@ class Taxonomy
                 ],
                 [
                     'label' => 'Behance',
-                    'bg_color' => '##0057ff',
+                    'bg_color' => '#0057ff',
                     'color' => '#fff',
                     'type' => '',
                 ],

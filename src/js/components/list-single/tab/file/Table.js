@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useState } from 'react';
 import Moment from 'react-moment';
 
 const TableHeader = props => {
+    const i18n = ndpi.i18n;
     return (
         <thead>
             <tr>
@@ -56,7 +57,7 @@ const TableHeader = props => {
                     Time
                 </th>
                 <th>
-                    Action
+                    {i18n.action}
                 </th>
             </tr>
         </thead>

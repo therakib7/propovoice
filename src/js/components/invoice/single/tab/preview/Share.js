@@ -41,7 +41,7 @@ class Share extends Component {
     render() {
 
         let path = this.props.path;
-        let path_title = path == 'invoice' ? 'Invoice' : 'Estimate';
+        let path_title = path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est;
 
         return (
             <div className="pi-overlay pi-show">

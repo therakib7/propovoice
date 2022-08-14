@@ -77,7 +77,7 @@ export default class Three extends Component {
                             </div>
                         </div>
 
-                        {items && <Items data={items} item_tax={item_tax} />}
+                        {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
 
                         <div className="pi-inv-account">
                             <Payment {...this.props} />

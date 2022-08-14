@@ -62,7 +62,7 @@ class AssetContoller
         }
         if (isset($_GET['page']) && $_GET['page'] == 'ndpi-welcome') {
             wp_enqueue_style('ndpi-welcome', ncpi()->get_assets_uri("css/welcome{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ndpi-welcome', ncpi()->get_assets_uri("/js/welcome{$this->suffix}.js"), array('wp-i18n'), $this->version, true);
+            wp_enqueue_script('ndpi-welcome', ncpi()->get_assets_uri("/js/welcome{$this->suffix}.js"), array(), $this->version, true);
             wp_localize_script('ndpi-welcome', 'ndpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'nonce' => wp_create_nonce('wp_rest'),
@@ -98,7 +98,7 @@ class AssetContoller
             ])
         ) {
             wp_enqueue_style('ndpi-dashboard', ncpi()->get_assets_uri("css/dashboard{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ndpi-dashboard', ncpi()->get_assets_uri("/js/dashboard{$this->suffix}.js"), array('wp-i18n'), $this->version, true);
+            wp_enqueue_script('ndpi-dashboard', ncpi()->get_assets_uri("/js/dashboard{$this->suffix}.js"), array(), $this->version, true);
             $current_user = wp_get_current_user();
             wp_localize_script('ndpi-dashboard', 'ndpi', array(
                 'apiUrl' => esc_url(rest_url()),

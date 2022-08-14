@@ -4,13 +4,13 @@ import Spinner from 'block/preloader/spinner';
 const Task = lazy(() => import('components/list-single/tab/task'));
 
 const TaskList = (props) => {
-	 
+	const i18n = ndpi.i18n;
 	return (
 		<div className="ncpi-components">
 			<Breadcrumb title={'Task & Activity'} />
 			{/* <div className="row">
 					<div className="col-lg">
-						<h2 className="pi-page-title">Task &amp; Activity</h2>
+						<h2 className="pi-page-title">{i18n.task}</h2>
 					</div>
 				</div> */}
 
@@ -19,7 +19,7 @@ const TaskList = (props) => {
 					<div className="pi-horizontal-tab">
 						<ul className="pi-tabs">
 							<li className={"pi-tab "}>
-								Task &amp; Activity
+								{i18n.task}
 							</li>
 						</ul>
 

@@ -43,7 +43,12 @@ const Taxonomy = (props) => {
 			setList(props.list);
 			return;
 		}
-		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy).then(resp => {
+		//this is for lead source
+		let hide_bg = '';
+		if ( props.hide_bg ) {
+			hide_bg = '&hide_bg=true';
+		}
+		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + hide_bg).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 			}

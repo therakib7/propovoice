@@ -67,18 +67,18 @@ const SettingWrap = (props) => {
                     label: i18n.inv
                 },
                 social: {
-                    label: 'Social'
+                    label: i18n.social
                 },
             },
         },
         task: {
-            label: 'Task & Activity'
+            label: i18n.task
         },
         contact: {
-            label: 'Contact'
+            label: i18n.contact
         },
         tag: {
-            label: 'Tag'
+            label: i18n.tag
         },
     };
 
@@ -132,11 +132,11 @@ const SettingWrap = (props) => {
                             />
                         </svg>
                     </li>
-                    <li className='pi-active'>Settings</li>
+                    <li className='pi-active'>{i18n.settings}</li>
                 </ul>
             </nav>
 
-            <h2 className='pi-page-title'>Settings</h2>
+            <h2 className='pi-page-title'>{i18n.settings}</h2>
 
             <div className='pi-settings-tab'>
                 <div className='row'>
@@ -170,7 +170,7 @@ const SettingWrap = (props) => {
 
                     <div className='col-md-9'>
                         <div className="pi-setting-tab-content">
-                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} Settings</h4>
+                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} {i18n.settings}</h4>
 
                             <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && <General />}

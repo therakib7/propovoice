@@ -26,6 +26,9 @@ const Dashboard = (props) => {
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
+    const i18n = ndpi.i18n;
+    const create = ndpi.i18n.create;
+
     return (
         <div className="ndpi-dashboard">
             <div className="row">
@@ -34,7 +37,7 @@ const Dashboard = (props) => {
                         className="pi-page-title"
                         style={{ color: "#2d3748", display: "inline-block" }}
                     >
-                        Overview
+                        {i18n.ov}
                     </h2>
                     <select name="summary_by" id="summary_by" className="pi-overview-select">
                         <option value="2022">2022</option>
@@ -70,24 +73,24 @@ const Dashboard = (props) => {
                                     strokeLinecap="round"
                                     strokeLinejoin="round" />
                             </svg>
-                            Create
+                            {create}
                         </button>
 
                         {dropdown && <div className="pi-dropdown-content pi-show" style={{ top: 40 }}>
                             <NavLink to='/lead'>
-                                Create Lead
+                                {create} {i18n.lead}
                             </NavLink>
                             <NavLink to='/deal'>
-                                Create Deal
-                            </NavLink>
-                            <NavLink to='/invoice'>
-                                Create Invoice
+                                {create} {i18n.deal}
                             </NavLink>
                             <NavLink to='/estimate'>
-                                Create Estimate
+                                {create} {i18n.est}
                             </NavLink>
+                            <NavLink to='/invoice'>
+                                {create} {i18n.inv}
+                            </NavLink> 
                             <NavLink to='/project'>
-                                Create Project
+                                {create} {i18n.project}
                             </NavLink>
                         </div>}
                     </div>

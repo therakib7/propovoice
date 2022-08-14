@@ -110,8 +110,8 @@ class Form extends Component {
     }
 
     render() {
-        const i18n = ndpi.i18n;
         const form = this.state.form;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -139,7 +139,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Person</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Person</h2>
                         <p>Add new person from here</p>
                     </div>
 
@@ -171,7 +171,7 @@ class Form extends Component {
                                     </div>
                                     <div className="col-lg">
                                         <label htmlFor="form-mobile">
-                                            {i18n.mbl}
+                                            {i18n.mob}
                                         </label>
 
                                         <input

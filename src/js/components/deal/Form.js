@@ -201,8 +201,7 @@ class Form extends Component {
         this.setState({ form });
     }
 
-    render() {
-        const i18n = ndpi.i18n;
+    render() { 
         const stageList = this.state.stages;
         const tagList = this.state.tags;
         const form = this.state.form;
@@ -244,7 +243,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{title} Deal</h2>
+                        <h2 className="pi-modal-title">{title} {i18n.deal}</h2>
                         <p>Add new deal from here</p>
                     </div>
 
@@ -276,7 +275,7 @@ class Form extends Component {
 
                                     <div className="col-lg">
                                         <label htmlFor="form-mobile">
-                                            {i18n.mbl}
+                                            {i18n.mob}
                                         </label>
 
                                         <input

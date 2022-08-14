@@ -20,13 +20,14 @@ export default class Section extends PureComponent {
 
     render() {
         const data = this.state.data;
+        const i18n = ndpi.i18n;
         return (
             <div className='pi-widget pi-lead pi-bg-white pi-border-gray'>
                 <h3
                     className="pi-title-medium pi-mb-10"
                     style={{ fontWeight: "bold", color: "#718096" }}
                 >
-                    {this.props.type == 'lead_level' ? 'Lead' : 'Source'}
+                    {this.props.type == 'lead_level' ? i18n.lead : i18n.source}
                 </h3>
 
                 <div className="row" style={{minHeight: '100px'}}>

@@ -162,7 +162,7 @@ class Invoice extends Component {
 
 	componentDidMount() {
 
-		let title = this.props.path == 'invoice' ? 'Invoice' : 'Estimate';
+		let title = this.props.path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est;
 
 		if (this.props.id) {
 			if (this.props.tab == 'preview') {
@@ -229,7 +229,7 @@ class Invoice extends Component {
 
 	updateEdit = (data = '') => {
 		let msg = { ...this.state.msg }
-		msg.saveTxt = 'Update';
+		msg.saveTxt = ndpi.i18n.upd;
 		if (data) {
 			let invoice = { ...this.state.invoice }
 			invoice.id = data.id;
@@ -652,6 +652,7 @@ class Invoice extends Component {
 
 	render = () => {
 		const { title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
+		const i18n = ndpi.i18n; 
 		return (
 			<>
 				<div>
@@ -661,7 +662,7 @@ class Invoice extends Component {
 								<ul className="">
 									<li>
 										<a href="#" className="">
-											{ndpi.i18n.home}
+											{i18n.home}
 										</a>
 									</li>
 									<li>
@@ -700,9 +701,9 @@ class Invoice extends Component {
 										</svg>
 									</li>
 									<li className="pi-active">
-										{currentTab == 'template' && 'Select Template'}
-										{currentTab == 'info' && 'Add Content'}
-										{currentTab == 'preview' && 'Preview & Share'}
+										{currentTab == 'template' && i18n.select + ' ' + i18n.tmpl}
+										{currentTab == 'info' && i18n.add + ' ' + i18n.con}
+										{currentTab == 'preview' && i18n.preview + ' ' + i18n.nd + ' ' + i18n.share}
 									</li>
 								</ul>
 							</nav>
@@ -715,7 +716,7 @@ class Invoice extends Component {
 										className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-mt-20"
 										onClick={() => this.continueTab('template')}
 									>
-										Continue
+										{i18n.contin}
 										<svg
 											className="pi-mr-0 pi-ml-10 pi-mt-1"
 											width={9}
@@ -737,7 +738,7 @@ class Invoice extends Component {
 										className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-mt-20"
 										onClick={this.handleSave}
 									>
-										{this.state.msg.saveTxt} & Continue
+										{this.state.msg.saveTxt} {i18n.nd} {i18n.contin}
 										<svg
 											className="pi-mr-0 pi-ml-10 pi-mt-1"
 											width={9}
@@ -770,7 +771,7 @@ class Invoice extends Component {
 										<button
 											className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-mt-20"
 											onClick={() => this.setState({ emailModal: true })} >
-											Send Email
+											{i18n.send} {i18n.email}
 											<svg
 												className="pi-mr-0 pi-ml-10 pi-mt-1"
 												width={9}
@@ -831,7 +832,7 @@ class Invoice extends Component {
 						{(currentTab == 'info') && <div id="pi-tab-info" className="pi-invoice-tab-content">
 							<div className="row">
 								<div className="col-lg-9">
-									<h2 className='pi-page-title'>Add Content</h2>
+									<h2 className='pi-page-title'>{i18n.home} {i18n.con}</h2>
 									<div className="pi-info-content pi-bg-white">
 										<div className="pi-add-info-content">
 											<h3 className="pi-color-blue pi-text-center">{title}</h3>
@@ -867,7 +868,7 @@ class Invoice extends Component {
 													<div className="pi-info-form pi-form-style-one">
 														<div className="pi-info-form-list">
 															<div className="pi-info-lavel">
-																<label htmlFor="info-number">{title} number:</label>
+																<label htmlFor="info-number">{title} {i18n.num}:</label>
 															</div>
 															<div className="pi-info-input-field">
 																<input
@@ -881,7 +882,7 @@ class Invoice extends Component {
 
 														<div className="pi-info-form-list">
 															<div className="pi-info-lavel">
-																<label htmlFor="date">{title} date:</label>
+																<label htmlFor="date">{title} {i18n.date}:</label>
 															</div>
 															<div className="pi-info-input-field">
 																<DateField date={invoice.date} type='date' onDateChange={this.onDateChange} />
@@ -890,7 +891,7 @@ class Invoice extends Component {
 
 														<div className="pi-info-form-list">
 															<div className="pi-info-lavel">
-																<label htmlFor="due">Due date:</label>
+																<label htmlFor="due">{i18n.due} {i18n.date}:</label>
 															</div>
 															<div className="pi-info-input-field">
 																<DateField date={invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
@@ -899,7 +900,7 @@ class Invoice extends Component {
 
 														{false && <div className="pi-info-form-list">
 															<div className="pi-info-lavel">
-																<label htmlFor="info-currency">Currency:</label>
+																<label htmlFor="info-currency">{i18n.currency}:</label>
 															</div>
 															<div className="pi-info-input-field">
 																<input
@@ -929,6 +930,7 @@ class Invoice extends Component {
 
 										<Items
 											items={invoice.items}
+											item_label={invoice.item_label}
 											item_tax={invoice.item_tax}
 											currencyFormatter={this.formatCurrency}
 											addHandler={this.handleAddLineItem}
@@ -992,7 +994,7 @@ class Invoice extends Component {
 												</div>
 
 												<div className="col-md-6 pi-text-right">
-													<Upload label={'Authorized Signature'} padding={'20px 30px'} data={invoice.sign} changeHandler={this.handleSignChange} />
+													<Upload label={i18n.aSign} padding={'20px 30px'} data={invoice.sign} changeHandler={this.handleSignChange} />
 												</div>
 											</div>
 										</div>
@@ -1003,7 +1005,7 @@ class Invoice extends Component {
 
 								<div className="col-lg-3">
 									<div id="pi-right-sidebar" className="pi-right-sidebar" ref={this.sidebarRef} >
-										<h2 className="pi-title-medium">Preview {title}</h2>
+										<h2 className="pi-title-medium">{i18n.preview} {title}</h2>
 
 										<div className='pi-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
 											<InvTemplate key={invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
@@ -1016,7 +1018,7 @@ class Invoice extends Component {
 													{(!sidebarActive || sidebarActive == 'style') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('style')} />
 														<i />
-														<h3 className='pi-title-small'>Edit Style</h3>
+														<h3 className='pi-title-small'>{i18n.edit} {i18n.style}</h3>
 														<Style
 															handleChange={this.onStyleChange}
 															data={invoice}
@@ -1026,7 +1028,7 @@ class Invoice extends Component {
 													{(!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
 														<i />
-														<h3 className='pi-title-small'>Accepted Payment</h3>
+														<h3 className='pi-title-small'>{i18n.accepted} {i18n.payment}</h3>
 														<Payment
 															handleChange={this.onPaymentChange}
 															data={invoice}
@@ -1037,7 +1039,7 @@ class Invoice extends Component {
 													{(!sidebarActive || sidebarActive == 'extra-field') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('extra-field')} />
 														<i />
-														<h3 className='pi-title-small'>Additional Amount</h3>
+														<h3 className='pi-title-small'>{i18n.addi} {i18n.amount}</h3>
 														<AdditionalAmount
 															{...this.props}
 															item_tax={invoice.item_tax}
@@ -1051,7 +1053,7 @@ class Invoice extends Component {
 														<input type="checkbox" ref={this.reminderRef} defaultChecked={true} onClick={() => this.setSidebarActive('reminder')} />
 														<i />
 														<h3 className='pi-title-small' >
-															Reminder
+															{i18n.rem}
 															{wage.length > 0 && <>
 																<ProLabel />
 															</>}
@@ -1081,7 +1083,7 @@ class Invoice extends Component {
 														<input type="checkbox" ref={this.recurringRef} defaultChecked="checked" onClick={() => this.setSidebarActive('recurring')} />
 														<i />
 														<h3 className='pi-title-small'>
-															Recurring
+															{i18n.recur}
 															{wage.length > 0 && <>
 																<ProLabel />
 															</>}

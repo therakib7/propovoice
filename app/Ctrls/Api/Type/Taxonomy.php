@@ -73,6 +73,7 @@ class Taxonomy
         $reg_errors = new \WP_Error;
 
         $taxonomies = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
+        $hide_bg = isset($params['hide_bg']) ? true : false;
         $extra_amount_type = isset($params['extra_amount_type']) ? sanitize_text_field($params['extra_amount_type']) : null;
         $id = isset($params['id']) ? sanitize_text_field($params['id']) : null; //post id
 
@@ -122,7 +123,7 @@ class Taxonomy
                         $term_property['bg_color'] = $bg_color;
                     }
 
-                    if ($taxonomy == 'lead_source') {
+                    if ($taxonomy == 'lead_source' && $hide_bg) {
                         $term_property['bg_color'] = '';
                         $term_property['color'] = '#718096';
                     }
