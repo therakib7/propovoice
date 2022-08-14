@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Style from './style.scoped.scss'
 
-import AppContext from 'context/app-context';
-import ReactPaginate from 'react-paginate';
-
-import Preloader from 'block/preloader/table';
-
+import AppContext from 'context/app-context'; 
+import Preloader from 'block/preloader/table'; 
 import Api from 'api/payment';
 
 //form

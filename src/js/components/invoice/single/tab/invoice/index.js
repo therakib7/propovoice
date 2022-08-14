@@ -2,6 +2,10 @@ import React, { Component, Suspense, lazy } from 'react'
 import { toast } from 'react-toastify';
 import { NavLink } from "react-router-dom";
 import Api from 'api/invoice';
+
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
+
 import Spinner from 'block/preloader/spinner';
 //self component
 import FromTo from './FromTo';
@@ -605,6 +609,11 @@ class Invoice extends Component {
 		const name = target.name;
 		const value = (name === 'status' || name === 'due_date') ? target.checked : target.value;
 
+		if ( wage.length > 0 && name == 'status' ) {
+			pro();
+			return;
+		}
+
 		if (type) { //before, after
 			let arr = invoice.reminder[type];
 			if (target.checked) {
@@ -614,7 +623,7 @@ class Invoice extends Component {
 			}
 		} else {
 			invoice.reminder[name] = value;
-		}
+		} 
 
 		this.setState({ invoice })
 		if (name === 'status' && value) {
@@ -627,7 +636,14 @@ class Invoice extends Component {
 		const target = e.target;
 		const name = target.name;
 		const value = target.type == 'checkbox' ? target.checked : target.value;
+
+		if ( wage.length > 0 && name == 'status' ) {
+			pro();
+			return;
+		}
+
 		invoice.recurring[name] = value;
+		
 		this.setState({ invoice })
 		if (name === 'status' && value) {
 			this.recurringRef.current.click();
@@ -1031,11 +1047,14 @@ class Invoice extends Component {
 														/>
 													</li>}
 
-													{(!sidebarActive || sidebarActive == 'reminder') && !wage.length && <li>
+													{(!sidebarActive || sidebarActive == 'reminder') && <li>
 														<input type="checkbox" ref={this.reminderRef} defaultChecked={true} onClick={() => this.setSidebarActive('reminder')} />
 														<i />
 														<h3 className='pi-title-small' >
 															Reminder
+															{wage.length > 0 && <>
+																<ProLabel />
+															</>}
 															<span className="pi-field-switch-content">
 																<label className="pi-field-switch pi-field-switch-big">
 																	<input type='checkbox'
@@ -1058,10 +1077,14 @@ class Invoice extends Component {
 														/>
 													</li>}
 
-													{(!sidebarActive || sidebarActive == 'recurring') && !wage.length && this.props.path == 'invoice' && <li>
+													{(!sidebarActive || sidebarActive == 'recurring') && this.props.path == 'invoice' && <li>
 														<input type="checkbox" ref={this.recurringRef} defaultChecked="checked" onClick={() => this.setSidebarActive('recurring')} />
 														<i />
-														<h3 className='pi-title-small'>Recurring
+														<h3 className='pi-title-small'>
+															Recurring
+															{wage.length > 0 && <>
+																<ProLabel />
+															</>}
 															<span className="pi-field-switch-content">
 																<label className="pi-field-switch pi-field-switch-big">
 																	<input type='checkbox'

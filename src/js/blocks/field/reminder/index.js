@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Api from 'api/setting';
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 
 export default class Reminder extends Component {
     constructor(props) {
@@ -45,6 +47,11 @@ export default class Reminder extends Component {
             reminder[name] = value;
         }
 
+        if ( wage.length > 0 && ( name == 'status' ) ) {
+			pro();
+			return;
+		}
+
         this.setState({ form: reminder })
     }
 
@@ -74,7 +81,12 @@ export default class Reminder extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>Status</label>
+                        <label>
+                            Status
+                            {wage.length > 0 && <>
+                                <ProLabel />
+                            </>}
+                        </label>
                         <div className="pi-field-switch pi-ml-10">
                             <label className='pi-switch'>
                                 <input type='checkbox'
