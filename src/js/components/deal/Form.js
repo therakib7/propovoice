@@ -202,6 +202,7 @@ class Form extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         const stageList = this.state.stages;
         const tagList = this.state.tags;
         const form = this.state.form;

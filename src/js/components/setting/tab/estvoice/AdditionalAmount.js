@@ -37,7 +37,7 @@ export default class AdditionalAmount extends Component {
         const value = target.type == 'checkbox' ? target.checked : target.value;
         form[name] = value;
 
-        if ( wage.length > 0 && ( name == 'item_tax' ) ) {
+        if ( wage.length > 0 && name == 'item_tax' ) {
 			pro();
 			return;
 		}
