@@ -34,36 +34,37 @@ const SettingWrap = (props) => {
         tabDefault = 'general'
     }
 
+    const i18n = ndpi.i18n;
     const tab_data = {
         general: {
-            label: 'General'
+            label: i18n.general
         },
         lead: {
-            label: 'Lead'
+            label: i18n.lead
         },
         deal: {
-            label: 'Deal'
+            label: i18n.deal
         },
         estimate: {
-            label: 'Estimate'
+            label: i18n.est
         },
         invoice: {
-            label: 'Invoice'
+            label: i18n.inv
         },
         project: {
-            label: 'Project'
+            label: i18n.project
         },
         payment: {
-            label: 'Payment'
+            label: i18n.payment
         },
         email: {
             label: 'Email Template',
             subtabs: {
                 estimate: {
-                    label: 'Estimate',
+                    label: i18n.est,
                 },
                 invoice: {
-                    label: 'Invoice'
+                    label: i18n.inv
                 },
                 social: {
                     label: 'Social'
@@ -114,7 +115,7 @@ const SettingWrap = (props) => {
         <>
             <nav className='pi-breadcrumb'>
                 <ul>
-                    <li><a href='#'>{ndpi.i18n.home}</a></li>
+                    <li><a href='#'>{i18n.home}</a></li>
                     <li>
                         <svg
                             width={5}

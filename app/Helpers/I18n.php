@@ -61,6 +61,7 @@ class I18n
             'settings' => esc_html__('Settings', 'propovoice'),
             'general' => esc_html__('General', 'propovoice'),
             'business' => esc_html__('Business', 'propovoice'),
+            'payment' => esc_html__('Payment', 'propovoice'),
             //table
             'status' => esc_html__('Status', 'propovoice'),
             'date' => esc_html__('Date', 'propovoice'),
