@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 
 import './style.css';
 
-import { apiUrl } from 'api/helper'
+import { apiProUrl } from 'api/helper'
 
 import Api from 'api/payment-process';
 
@@ -119,7 +119,7 @@ class CheckoutForm extends Component {
         //}
 
         let client_secret = null;
-        const url = apiUrl + 'payment-process';
+        const url = apiProUrl + 'payment-process';
         const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}`);
         if (indent_resp) {
             client_secret = indent_resp.data.data.intent_obj.client_secret
