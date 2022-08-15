@@ -55,7 +55,7 @@ export default class License extends Component {
                     form.for = data.data.for;
                     form.expires = data.data.expires;
                 }
-                this.setState({ form, loading: false });
+                this.setState({ form });
 
                 setTimeout(function () {
                     window.location.reload(1);
@@ -65,6 +65,7 @@ export default class License extends Component {
                     toast.error(value);
                 });
             }
+            this.setState({ loading: false });
         });
     }
 
