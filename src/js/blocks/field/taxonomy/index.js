@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
 import Form from './Form';
 import WithApi from 'hoc/Api';
-import pro from 'block/pro-alert'; 
+import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
 const Taxonomy = (props) => {
@@ -45,7 +45,7 @@ const Taxonomy = (props) => {
 		}
 		//this is for lead source
 		let hide_bg = '';
-		if ( props.hide_bg ) {
+		if (props.hide_bg) {
 			hide_bg = '&hide_bg=true';
 		}
 		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + hide_bg).then(resp => {
@@ -76,7 +76,8 @@ const Taxonomy = (props) => {
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
 
-		if ( type == 'new' && wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) ) {
+
+		if (type == 'new' && wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source')) {
 			pro();
 			return;
 		}
@@ -202,7 +203,7 @@ const Taxonomy = (props) => {
 				{dropdown && <div className="pi-dropdown-content pi-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>
 						+ Add New {props.title}
-						{wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) && <>
+						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <>
 							<ProLabel />
 						</>}
 					</button>

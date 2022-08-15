@@ -20,7 +20,7 @@ const Client = (props) => {
 
     const { title, lists, checkedBoxes, searchVal } = props.state;
     return (
-        <div className="ncpi-components">
+        <div className="">
             <Breadcrumb title={title} />
 
             <div className="row">
