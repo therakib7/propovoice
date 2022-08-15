@@ -63,7 +63,7 @@ class Contact extends Component {
     }
 
     handleSelect = (e, val, type) => {
-        e.preventDefault(); 
+        e.preventDefault();
         this.props.onSelect(val, type);
         if (type == 'person') {
             this.setState({ personModal: false, personList: [] });
@@ -71,12 +71,12 @@ class Contact extends Component {
             this.setState({ orgModal: false, orgList: [] });
         }
     }
-
     render() {
+        const i18n = ndpi.i18n;
         const person = (
             <div className="col-lg">
                 <label htmlFor="first_name">
-                    Contact Person
+                    {i18n.contact} {i18n.person}
                 </label>
                 <div className="pi-field-search">
                     <div className="pi-action-content">
@@ -90,7 +90,7 @@ class Contact extends Component {
                         />
 
                         {this.state.personModal && <div className="pi-dropdown-content pi-show">
-                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ {i18n.add} '{this.props.first_name}' as New Contact</button>
+                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ {i18n.add} '{this.props.first_name}' {i18n.as} {i18n.new} {i18n.contact}</button>
                             {this.state.personList.map((item, i) => (
                                 <a key={i} onClick={(e) => this.handleSelect(e, item, 'person')}>{item.first_name}</a>
                             ))}
@@ -103,7 +103,7 @@ class Contact extends Component {
         const org = (
             <div className="col-lg">
                 <label htmlFor="org_name">
-                    Contact Organization
+                    {i18n.contact} {i18n.org}
                 </label>
                 <div className="pi-field-search">
                     <div className="pi-action-content">
@@ -117,7 +117,7 @@ class Contact extends Component {
                         />
 
                         {this.state.orgModal && <div className="pi-dropdown-content pi-show">
-                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'org')}>+ Add '{this.props.org_name}' as New Organization</button>
+                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'org')}>+ {i18n.add} '{this.props.org_name}' {i18n.as} {i18n.new} {i18n.org}</button>
                             {this.state.orgList.map((item, i) => (
                                 <a key={i} onClick={(e) => this.handleSelect(e, item, 'org')}>{item.name}</a>
                             ))}
