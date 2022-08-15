@@ -2349,7 +2349,7 @@ html {
 .ndpi .pi-dropdown-content {
   display: none;
   position: absolute;
-  min-width: 200px;
+  min-width: 220px;
   overflow: auto;
   box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.13);
   z-index: 1;
@@ -2469,7 +2469,7 @@ html {
 }
 
 .wp-admin.ndpi .pi-right-content-data {
-  padding: 45px 70px 40px;
+  padding: 45px 70px 80px;
 }
 
 .wp-admin.ndpi input[type=checkbox]:focus {
@@ -2494,7 +2494,11 @@ html {
 }
 
 .wp-admin.ndpi .pi-board-content {
-  height: calc(100vh - 410px) !important;
+  height: calc(100vh - 330px) !important;
+}
+
+.wp-admin.ndpi #pi-pro-alert {
+  z-index: 999999;
 }
 
 .wp-admin.ndpi .pi-search-form ul li {
@@ -2540,9 +2544,29 @@ html {
 .wp-admin.ndpi .pi-field-checkbox input[type=radio],
 .wp-admin.ndpi .pi-field-checkbox input[type=checkbox] {
   margin-right: 8px;
-  zoom: 1 !important;
+  zoom: 1;
   position: relative;
   top: 2px;
+}
+
+@media (max-width: 768px) {
+
+  .wp-admin.ndpi .pi-field-radio input[type=radio],
+  .wp-admin.ndpi .pi-field-radio input[type=checkbox],
+  .wp-admin.ndpi .pi-field-checkbox input[type=radio],
+  .wp-admin.ndpi .pi-field-checkbox input[type=checkbox] {
+    zoom: 0.7 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .wp-admin.ndpi .pi-field-radio input[type=radio]:before {
+    width: 15px;
+    height: 15px;
+    left: -3px;
+    top: -4px;
+    position: relative;
+  }
 }
 
 .wp-admin.ndpi .pi-accordion-wrapper .pi-field-switch-big {
@@ -4058,6 +4082,19 @@ ul {
   }
 }
 
+@media (max-width: 992px) {
+  .ndpi .pi-accordion-wrapper {
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 992px) {
+  .ndpi .pi-accordion-wrapper {
+    margin-top: 25px;
+  }
+}
+
 .ndpi .pi-accordion-wrapper h3 {
   font-weight: 600;
   padding: 10px 15px;
@@ -4680,6 +4717,15 @@ ul {
   color: #4A5568;
   margin-left: -2px;
   height: 33px;
+}
+
+@media (max-width: 768px) {
+
+  .pi-field-radio-input .pi-times,
+  .pi-field-checkbox-input .pi-times {
+    height: auto !important;
+    padding: 9px 15px !important;
+  }
 }
 
 .ndpi .pi-search-btn {
