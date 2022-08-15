@@ -132,7 +132,7 @@ class FormStripe extends Component {
                                     <div className="col-lg">
                                         <label
                                             htmlFor="form-secret_key">
-                                            {i18n.secret} Key
+                                            {i18n.secret} {i18n.key}
                                         </label>
 
                                         <input

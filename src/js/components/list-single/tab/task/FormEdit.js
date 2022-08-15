@@ -309,7 +309,7 @@ class Form extends Component {
                                                     fill="#00831E"
                                                 />
                                             </svg>
-                                            Add Google meet
+                                            {ndpi.i18n.add} Google meet
                                         </button>
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow">
                                             <svg

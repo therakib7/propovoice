@@ -365,7 +365,7 @@ class ListSingle extends Component {
                                                         strokeLinejoin="round"
                                                     />
                                                 </svg>
-                                                Add to Deal Pipeline
+                                                {ndpi.i18n.add} to Deal Pipeline
                                             </button>
 
                                             <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
@@ -476,7 +476,7 @@ class ListSingle extends Component {
                                 <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label>Deal Stage:</label>
+                                            <label>Deal {i18n.stage}:</label>
                                             {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title='Stage' color={true} />}
                                         </div>
                                         <div className="pi-buttons pi-text-right">

@@ -309,7 +309,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-stage_id">
-                                            Stage
+                                            {i18n.stage}
                                         </label>
 
                                         <Select

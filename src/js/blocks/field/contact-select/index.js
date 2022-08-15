@@ -149,7 +149,7 @@ const Contact = (props) => {
 				<div className="pi-search-field">
 					<input type="text" onChange={handleFindContact} placeholder="Search" />
 				</div>
-				<button onClick={(e) => { openModal(e, 'new') }}>+ Add New</button>
+				<button onClick={(e) => { openModal(e, 'new') }}>+ {i18n.add} {i18n.new}</button>
 
 				{list && list.map((item, itemIndex) => {
 					return (

@@ -115,6 +115,8 @@ class I18n
             'key' => esc_html__('Key', 'propovoice'),
             'info' => esc_html__('Info', 'propovoice'),
             'personal' => esc_html__('Personal', 'propovoice'),
+            'profile' => esc_html__('Profile', 'propovoice'),
+            'section' => esc_html__('Section', 'propovoice'),
             //btn
             'logo' => esc_html__('Logo', 'propovoice'),
             'contin' => esc_html__('Continue', 'propovoice'),

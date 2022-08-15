@@ -990,7 +990,7 @@ class Invoice extends Component {
 																strokeLinejoin="round"
 															/>
 														</svg>
-														Add Attachments
+														{ndpi.i18n.add} Attachments
 													</button>}
 												</div>
 
