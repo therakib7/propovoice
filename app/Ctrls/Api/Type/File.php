@@ -2,8 +2,6 @@
 
 namespace Ncpi\Ctrls\Api\Type;
 
-use WP_Query;
-
 class File
 {
 
@@ -113,7 +111,7 @@ class File
             );
         }
 
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
         $result = $data = [];
         while ($query->have_posts()) {

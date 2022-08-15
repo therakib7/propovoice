@@ -6,8 +6,7 @@ use Ncpi\Helpers\Fns;
 use Ncpi\Models\Client;
 use Ncpi\Models\Deal;
 use Ncpi\Models\Lead;
-use Ncpi\Models\Project;
-use WP_Query;
+use Ncpi\Models\Project; 
 
 class Dashbaord
 {
@@ -77,7 +76,7 @@ class Dashbaord
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
@@ -156,7 +155,7 @@ class Dashbaord
                 )
             );
 
-            $query = new WP_Query($args);
+            $query = new \WP_Query($args);
             $total_data = $query->found_posts; //use this for pagination  
 
             $type = get_term_meta($stage_id, 'type', true);
@@ -211,7 +210,7 @@ class Dashbaord
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
@@ -276,7 +275,7 @@ class Dashbaord
                 )
             );
 
-            $query = new WP_Query($args);
+            $query = new \WP_Query($args);
             $total_data = $query->found_posts; //use this for pagination    
             $total_posts += $total_data; //use this for pagination    
 
@@ -329,7 +328,7 @@ class Dashbaord
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();

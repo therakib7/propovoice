@@ -4,8 +4,7 @@ namespace Ncpi\Ctrls\Api\Type;
 
 use Ncpi\Models\Contact;
 use Ncpi\Models\Org;
-use Ncpi\Models\Person;
-use WP_Query;
+use Ncpi\Models\Person; 
 
 class Lead
 {
@@ -122,7 +121,7 @@ class Lead
             }
         }
 
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
         $result = $data = [];
         while ($query->have_posts()) {

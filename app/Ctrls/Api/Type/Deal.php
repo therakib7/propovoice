@@ -6,7 +6,6 @@ use Ncpi\Helpers\Fns;
 use Ncpi\Models\Contact;
 use Ncpi\Models\Org;
 use Ncpi\Models\Person;
-use WP_Query;
 
 class Deal
 {
@@ -187,7 +186,7 @@ class Deal
             }
         }
 
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         $total_data = null;
         if (!$stage_id) {
             $total_data = $query->found_posts; //use this for pagination 

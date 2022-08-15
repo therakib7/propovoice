@@ -1,12 +1,9 @@
 <?php
 
-namespace Ncpi\Ctrls\Api\Type;
-
-use WP_Query;
+namespace Ncpi\Ctrls\Api\Type; 
 
 class Business
-{
-
+{ 
     public function __construct()
     {
         add_action('rest_api_init', [$this, 'create_rest_routes']);
@@ -110,7 +107,7 @@ class Business
             )
         );
 
-        $query = new WP_Query( $args );
+        $query = new \WP_Query( $args );
         $total_data = $query->found_posts; //use this for pagination 
         $result = $data = [];
         while ( $query->have_posts() ) {
@@ -203,7 +200,7 @@ class Business
             )
         );
         
-        $query = new WP_Query( $args ); 
+        $query = new \WP_Query( $args ); 
         foreach( $query->posts as $id ) {
             update_post_meta($id, 'default', false); 
         }

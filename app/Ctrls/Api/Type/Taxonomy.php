@@ -3,7 +3,7 @@
 namespace Ncpi\Ctrls\Api\Type;
 
 use Ncpi\Helpers\Fns;
-use WP_Query;
+
 
 class Taxonomy
 {

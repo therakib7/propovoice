@@ -3,7 +3,6 @@
 namespace Ncpi\Ctrls\Api\Type;
 
 use Ncpi\Models\Invoice;
-use WP_Query;
 
 class PaymentProcess
 {

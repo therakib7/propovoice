@@ -1,7 +1,7 @@
 <?php
 namespace Ncpi\Models;
  
-use WP_Query; 
+ 
 
 class Invoice {
 
@@ -69,7 +69,7 @@ class Invoice {
             )
         );
 
-        $query = new WP_Query($args);  
+        $query = new \WP_Query($args);  
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();  

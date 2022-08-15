@@ -152,6 +152,7 @@ const Taxonomy = (props) => {
 		});
 	}
 
+	const i18n = ndpi.i18n;
 	return (
 		<>
 			{props.multiple && listById && listById.map((item, itemIndex) => {
@@ -164,7 +165,7 @@ const Taxonomy = (props) => {
 				{props.multiple && <button
 					className={(!props.small) ? 'pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}>
-					+ Add {props.title}
+					+ {i18n.add} {props.title}
 				</button>}
 
 				{!props.multiple && listById.length > 0 && <button
@@ -197,12 +198,12 @@ const Taxonomy = (props) => {
 					className={(!props.small) ? 'pi-btn pi-btn-medium pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}
 				>
-					+ Add {props.title}
+					+ {i18n.add} {props.title}
 				</button>}
 
 				{dropdown && <div className="pi-dropdown-content pi-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>
-						+ Add New {props.title}
+						+ {i18n.add} {i18n.new} {props.title}
 						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <>
 							<ProLabel />
 						</>}
