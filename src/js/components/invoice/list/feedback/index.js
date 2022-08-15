@@ -64,7 +64,7 @@ class Feedback extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">Feedback</h2>
+                        <h2 className="pi-modal-title">{i18n.feedback}</h2>
                         <p>Here is the client feedback</p>
                     </div>
                     <div className="pi-content">
