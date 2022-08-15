@@ -292,7 +292,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-title">
-                                            Title
+                                        {i18n.title}
                                         </label>
 
                                         <input
@@ -309,7 +309,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-budget">
-                                            Budget
+                                        {i18n.budget}
                                         </label>
 
                                         <input
@@ -323,7 +323,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
-                                            Currency
+                                        {i18n.currency}
                                         </label>
 
                                         <input

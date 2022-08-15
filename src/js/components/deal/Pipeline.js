@@ -60,7 +60,7 @@ const onDragEnd = (update, result, columns, setColumns) => {
 
 function Pipeline(props) {
 	// const [columns, setColumns] = useState(columnsFromBackend);
-	const [columns, setColumns] = useState({}); 
+	const [columns, setColumns] = useState({});
 
 	const [dropdown, setDropdown] = useState(null);
 
@@ -88,7 +88,7 @@ function Pipeline(props) {
 		}
 		return string;
 	};
-
+	const i18n = ndpi.i18n;
 	return (
 		<div className="pi-board">
 			<DragDropContext
@@ -133,7 +133,7 @@ function Pipeline(props) {
 									// ref={popover}
 									>
 										{/* <a onClick={() => props.editEntry('edit', columnId)}>Edit</a> */}
-										<a onClick={() => { props.taxForm('edit', column); showDropdown(columnId); }}>Edit</a>
+										<a onClick={() => { props.taxForm('edit', column); showDropdown(columnId); }}>{i18n.edit}</a>
 										{/* <a onClick={() => props.deleteEntry('single', columnId)}>Delete</a> */}
 									</div>}
 								</div>
@@ -241,7 +241,7 @@ function Pipeline(props) {
 															strokeLinejoin="round"
 														/>
 													</svg>
-													New Deal
+													{i18n.new} {i18n.deal}
 												</button>
 											}
 
@@ -251,7 +251,7 @@ function Pipeline(props) {
 							</Droppable>
 						</div>
 					);
-				})} 
+				})}
 			</DragDropContext>
 		</div>
 	);

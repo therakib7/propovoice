@@ -85,7 +85,7 @@ class Bank extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pi-modal-title">Payment Info</h2>
+                                <h2 className="pi-modal-title">{i18n.payment} {i18n.info}</h2>
                                 <p>Add payment info from here</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >
@@ -109,7 +109,7 @@ class Bank extends Component {
 
                                         <div className="row">
                                             <div className="col-md">
-                                                <label htmlFor="field-receipt">Payment Receipt</label>
+                                                <label htmlFor="field-receipt">{i18n.payment} Receipt</label>
                                                 <Upload label={'Upload'} attach_type='secret' permission={true} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
                                             </div>
                                         </div>

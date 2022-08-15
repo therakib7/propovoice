@@ -136,6 +136,11 @@ class I18n
             'markdone' => esc_html__('Mark as Done', 'propovoice'),  
             'as' => esc_html__('as', 'propovoice'),  
             'suc' => esc_html__('successful', 'propovoice'),  
+            'submit' => esc_html__('Submit', 'propovoice'),  
+            'proposal' => esc_html__('Proposal', 'propovoice'),  
+            'account' => esc_html__('Accounting', 'propovoice'),  
+            'need' => esc_html__('Need Support', 'propovoice'),  
+            'feedback' => esc_html__('Feedback', 'propovoice'),  
         ];
     }
 }

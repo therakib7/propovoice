@@ -80,7 +80,7 @@ class Send extends Component {
                                             <div className="col">
                                                 <label
                                                     htmlFor="form-details">
-                                                    {i18n.dtl}
+                                                    {i18n.d}
                                                 </label>
 
                                                 <textarea
@@ -96,7 +96,7 @@ class Send extends Component {
                                         <div className="row">
                                             <div className="col"> 
                                                 <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
-                                                    Submit
+                                                {i18n.submit}
                                                 </button> 
                                             </div> 
                                         </div>

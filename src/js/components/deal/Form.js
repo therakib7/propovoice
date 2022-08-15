@@ -292,7 +292,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-title">
-                                            Title
+                                        {i18n.title}
                                         </label>
 
                                         <input
@@ -326,7 +326,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-budget">
-                                            Budget
+                                            {i18n.budget}
                                         </label>
 
                                         <input
@@ -340,7 +340,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
-                                            Currency
+                                        {i18n.currency}
                                         </label>
 
                                         <input
@@ -376,7 +376,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
-                                            Tags
+                                        {i18n.tag}
                                         </label>
                                         <Select
                                             className={'pi-field-select'}
@@ -393,7 +393,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-desc">
-                                            Description
+                                        {i18n.desc}
                                         </label>
 
                                         <textarea
@@ -409,7 +409,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-note">
-                                            Note
+                                        {i18n.note}
                                         </label>
 
                                         <textarea
