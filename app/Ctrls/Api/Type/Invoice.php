@@ -4,7 +4,6 @@ namespace Ncpi\Ctrls\Api\Type;
 
 use Ncpi\Models\Invoice as ModelsInvoice;
 use Ncpi\Models\Contact;
-use WP_Query;
 
 class Invoice
 {
@@ -159,7 +158,7 @@ class Invoice
             );
         }
 
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
         $result = $data = [];
         while ($query->have_posts()) {

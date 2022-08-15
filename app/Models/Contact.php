@@ -1,7 +1,7 @@
 <?php
 
 namespace Ncpi\Models;
-use WP_Query;
+
 
 class Contact
 {
@@ -51,7 +51,7 @@ class Contact
             ); 
         } 
 
-        $query = new WP_Query($args); 
+        $query = new \WP_Query($args); 
         return $query->posts;
     } 
 }

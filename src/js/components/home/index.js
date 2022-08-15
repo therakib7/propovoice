@@ -25,9 +25,6 @@ const Project = lazy(() => import('components/project'));
 const Invoice = lazy(() => import('components/invoice/list'));
 const InvoiceSingle = lazy(() => import('components/invoice/single'));
 
-// const Payment = lazy(() => import('components/payment'));
-// const Business = lazy(() => import('components/business'));
-
 const ContactPerson = lazy(() => import('components/contact/person'));
 const ContactOrg = lazy(() => import('components/contact/org'));
 // const ContactSummary = lazy(() => import('components/contact/summary'));

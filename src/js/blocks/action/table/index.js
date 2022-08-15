@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useState } from 'react';
 import useClickOutside from 'block/outside-click';
 
-const Action = (props) => {
+export default (props) => {
 
     const dropdownRef = useRef();
     const [dropdown, setDropdown] = useState(false);
@@ -19,7 +19,7 @@ const Action = (props) => {
     return (
         <div className="pi-table-action pi-mb-10">
             <div className="pi-checkbox-field pi-mt-6">
-                <input type="checkbox" defaultChecked={true} onChange={() => props.uncheckAll()} />
+                <input type="checkbox" defaultChecked onChange={() => props.uncheckAll()} />
                 <span>{props.length} Items Selected</span>
             </div>
             <div className="pi-small-button-group">
@@ -41,6 +41,4 @@ const Action = (props) => {
             </div>
         </div>
     );
-}
-
-export default Action;
+} 

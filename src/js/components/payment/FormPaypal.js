@@ -98,12 +98,12 @@ class FormPaypal extends Component {
                                     <div className="col-lg">
                                         <label
                                             htmlFor="form-account_type">
-                                            Account Type
+                                            {i18n.account} {i18n.type}
                                         </label>
 
                                         <div>
                                             <label htmlFor="form-account_type_personal">
-                                                Personal
+                                                {i18n.personal}
                                             </label>
                                             <input
                                                 id="form-account_type_personal"
@@ -114,7 +114,7 @@ class FormPaypal extends Component {
                                             />
 
                                             <label htmlFor="form-account_type_business">
-                                                Business
+                                                {i18n.business}
                                             </label>
                                             <input
                                                 id="form-account_type_business"
@@ -131,7 +131,7 @@ class FormPaypal extends Component {
                                     <div className="col-lg">
                                         <label
                                             htmlFor="form-account_name">
-                                            Account Name
+                                            {i18n.account} {i18n.name}
                                         </label>
 
                                         <input
@@ -148,7 +148,7 @@ class FormPaypal extends Component {
                                 {this.state.form.account_type == 'personal' && <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-account_email">
-                                            Account Email
+                                            {i18n.account} {i18n.email}
                                         </label>
                                         <input
                                             id="form-account_email"
@@ -164,7 +164,7 @@ class FormPaypal extends Component {
                                     <div className="col-lg">
                                         <label
                                             htmlFor="form-client_id">
-                                            Client ID
+                                            {i18n.client} {i18n.id}
                                         </label>
 
                                         <input
@@ -182,7 +182,7 @@ class FormPaypal extends Component {
                                     <div className="col-lg">
                                         <label
                                             htmlFor="form-secret_id">
-                                            Secret ID
+                                            {i18n.secret} {i18n.id}
                                         </label>
 
                                         <input

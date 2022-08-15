@@ -59,6 +59,7 @@ class AssetContoller
             ])
         ) {
             wp_enqueue_style('ncpi-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), $this->version);
+            wp_enqueue_style('ndpi-main', ncpi()->get_assets_uri("css/main{$this->suffix}.css"), array(), $this->version);
         }
         if (isset($_GET['page']) && $_GET['page'] == 'ndpi-welcome') {
             wp_enqueue_style('ndpi-welcome', ncpi()->get_assets_uri("css/welcome{$this->suffix}.css"), array(), $this->version);

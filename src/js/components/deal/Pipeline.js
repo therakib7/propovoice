@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useNavigate } from 'react-router-dom';
-
 import WithApi from 'hoc/Api';
-
-import { v4 as uuidv4 } from 'uuid';
 
 const onDragEnd = (update, result, columns, setColumns) => {
 	if (!result.destination) return;
@@ -63,8 +60,7 @@ const onDragEnd = (update, result, columns, setColumns) => {
 
 function Pipeline(props) {
 	// const [columns, setColumns] = useState(columnsFromBackend);
-	const [columns, setColumns] = useState({});
-	const [width, setWidth] = useState(1590);
+	const [columns, setColumns] = useState({}); 
 
 	const [dropdown, setDropdown] = useState(null);
 
@@ -78,12 +74,6 @@ function Pipeline(props) {
 
 	useEffect(() => {
 		setColumns(props.data);
-		if (props.data.length) {
-			//left right padding 140
-			//add new column 235
-			//setWidth( props.data.length * 255 + 235 + 30); 
-			setWidth(props.data.length * 255 + 25);
-		}
 	}, [props.data]);
 
 	const navigate = useNavigate();
@@ -100,7 +90,7 @@ function Pipeline(props) {
 	};
 
 	return (
-		<div className="pi-board" /* style={{ width: width + 'px' }} */>
+		<div className="pi-board">
 			<DragDropContext
 				onDragEnd={result => onDragEnd(props.update, result, columns, setColumns)}
 			>
@@ -261,38 +251,7 @@ function Pipeline(props) {
 							</Droppable>
 						</div>
 					);
-				})}
-
-				{/* <div className="pi-board-column">
-					<button
-						className="pi-btn pi-btn-big pi-bg-white pi-bg-hover-shadow"
-						onClick={() => props.taxForm()}
-					>
-						<svg
-							width={16}
-							height={14}
-							viewBox="0 0 12 15"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M2.5 8H13.5"
-								stroke="white"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<path
-								d="M8 2.5V13.5"
-								stroke="white"
-								strokeWidth="1.5"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-						</svg>
-						Add New Stage
-					</button>
-				</div> */}
+				})} 
 			</DragDropContext>
 		</div>
 	);

@@ -336,7 +336,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Lead Level:</label>
-                                            {data.id && <Taxonomy id={data.id} data={data.level_id} taxonomy='lead_level' title='Level' color={true} />}
+                                            {data.id && <Taxonomy id={data.id} data={data.level_id} taxonomy='lead_level' title='Level' color />}
                                         </div>
                                         <div className="pi-buttons pi-text-right">
                                             <button
@@ -365,7 +365,7 @@ class ListSingle extends Component {
                                                         strokeLinejoin="round"
                                                     />
                                                 </svg>
-                                                Add to Deal Pipeline
+                                                {ndpi.i18n.add} to Deal Pipeline
                                             </button>
 
                                             <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
@@ -416,12 +416,12 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small={true} multiple={true} />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small multiple />}
                                 </li>
 
                                 <li>
                                     <label htmlFor="">Source: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.source_id} taxonomy='lead_source' title='Source' small={true} color={true} hide_bg={true} />}
+                                    {data.id && <Taxonomy id={data.id} data={data.source_id} taxonomy='lead_source' title='Source' small color hide_bg />}
                                 </li>
                             </ul>
                         </div>
@@ -476,8 +476,8 @@ class ListSingle extends Component {
                                 <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label>Deal Stage:</label>
-                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title='Stage' color={true} />}
+                                            <label>Deal {i18n.stage}:</label>
+                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title='Stage' color />}
                                         </div>
                                         <div className="pi-buttons pi-text-right">
                                             <button
@@ -584,7 +584,7 @@ class ListSingle extends Component {
                                 </li>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small={true} multiple={true} />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small multiple />}
                                 </li>
                             </ul>
                         </div>
@@ -624,7 +624,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>Project Status:</label>
-                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={this.handleProjectStatusChange} title='Status' color={true} />}
+                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={this.handleProjectStatusChange} title='Status' color />}
                                         </div>
                                         <div className="pi-buttons pi-text-right">
                                             {(data.status_id && data.status_id.type != 'completed') && <button
@@ -685,7 +685,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small={true} multiple={true} />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small multiple />}
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.start} {i18n.date}:</label>
@@ -954,7 +954,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">Tag: </label>
-                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' title='Tag' small={true} multiple={true} />}
+                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' title='Tag' small multiple />}
                                 </li>
                                 <li>Project {data.project}</li>
                                 <li>Deal {data.deal}</li>

@@ -7,13 +7,7 @@ class Total extends Component {
 
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
-        /* this.setState({
-            invoice: this.props.data.invoice
-        }); */
-    }
+    } 
 
     formatCurrency = (amount) => {
         return (new Intl.NumberFormat(this.locale, {

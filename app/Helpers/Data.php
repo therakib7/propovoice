@@ -12,7 +12,7 @@ class Data
                     'default' => [
                         'subject' => '{org_name} sent you a Estimate #{id}',
                         'msg' => 'Hi <b>{client_name}</b>,
-Please find attached Estimate #{id}. Due Date was {due_date}.
+Please find attached Estimate #{id}. Due Date is {due_date}.
 
 Estimate No: #{id}
 Estimate Date: {date}
@@ -29,7 +29,7 @@ Regards
                     'default' => [
                         'subject' => '{org_name} sent you a Invoice #{id}',
                         'msg' => 'Hi <b>{client_name}</b>,
-Please find attached Invoice #{id}. Due Date was {due_date}.
+Please find attached Invoice #{id}. Due Date is {due_date}.
 
 Invoice No: #{id}
 Invoice Date: {date}

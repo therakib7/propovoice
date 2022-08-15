@@ -1,4 +1,5 @@
 export const apiUrl = `${ndpi.apiUrl}ncpi/v1/`;
+export const apiProUrl = `${ndpi.apiUrl}ndpip/v1/`;
 export const apiServerUrl = `${ndpi.apiServerUrl}ncpis/v1/`;
 
 export const token = {

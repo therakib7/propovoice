@@ -11,13 +11,14 @@ import Crud from 'hoc/Crud';
 
 const Contact = (props) => {
   const { title, lists, checkedBoxes, searchVal } = props.state;
+  const i18n = ndpi.i18n;
   return (
     <div className="ncpi-components">
       <Breadcrumb title='Contact Book' />
 
       <div className="row">
         <div className="col-6">
-          <h2 className="">Contact Book</h2>
+          <h2 className="">{i18n.contact} {i18n.book}</h2>
         </div>
         <div className="col-6 pi-text-right">
           <button
@@ -46,7 +47,7 @@ const Contact = (props) => {
                 strokeLinejoin="round"
               ></path>
             </svg>
-            Add {title}
+            {i18n.add} {title}
           </button>
           <span className="pi-action-btn">
             <svg
@@ -177,7 +178,7 @@ const Contact = (props) => {
           Person
         </button>
         <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
-          Organization
+        {i18n.org}
         </button>
       </div>
 

@@ -77,6 +77,7 @@ class Section extends Component {
 
     render = () => {
         const { sections } = this.state;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-inv-sections pi-form-style-one">
                 {sections.map((section_single, index) => {
@@ -150,7 +151,7 @@ class Section extends Component {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Add New Section
+                    {i18n.add} {i18n.new} {i18n.section}
                 </button>
             </div>
         )

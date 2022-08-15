@@ -54,6 +54,7 @@ class Bank extends Component {
 
     render() {
         const data = this.props.data;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -106,7 +107,7 @@ class Bank extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-receipt">Payment Receipt</label>
-                                        <Upload label={'Upload'} attach_type='secret' permission={true} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
+                                        <Upload label={'Upload'} attach_type='secret' permission library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
                                     </div>
                                 </div>
 

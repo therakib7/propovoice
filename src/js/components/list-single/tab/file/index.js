@@ -132,7 +132,7 @@ const File = (props) => {
                                         fill="#718096"
                                     />
                                 </svg>
-                                Add File Link
+                                {ndpi.i18n.add} File Link
                             </button>
                             <br />
                             <div className="pi-buttons-group pi-mb-20">

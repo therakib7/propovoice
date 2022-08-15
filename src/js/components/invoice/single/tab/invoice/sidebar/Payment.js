@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify'; 
-import AppContext from 'context/app-context'; 
+import { toast } from 'react-toastify';
+import AppContext from 'context/app-context';
 import Api from 'api/payment';
 
 //others component
@@ -45,11 +45,10 @@ class Payment extends Component {
 
         let params = new URLSearchParams(args).toString();
 
-        Api.getAll(params)
-            .then(resp => {
-                let result = resp.data.data.result;
-                this.setState({ payments: result, preloader: false });
-            })
+        Api.getAll(params).then(resp => {
+            let result = resp.data.data.result;
+            this.setState({ payments: result, preloader: false });
+        })
     };
 
     setPayment = (data, type) => {
@@ -74,6 +73,7 @@ class Payment extends Component {
 
     render() {
         const { payment_methods } = this.props.data
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-form-accordion pi-additional">
                 {this.state.payments.map((row, i) => {
@@ -157,7 +157,7 @@ class Payment extends Component {
                             // onClick={this.goToPayment}
                             onClick={() => this.setState({ bankModal: true })}
                         >
-                            Add New Payment
+                            {i18n.add} {i18n.new} Payment
                         </button>
                     </div>
                 }

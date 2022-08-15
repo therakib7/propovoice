@@ -238,7 +238,7 @@ class Form extends Component {
                                         <label htmlFor="field-icon">
                                             Icon
                                         </label>
-                                        <Upload data={form.icon} small={true} changeHandler={this.handleLogoChange} />
+                                        <Upload data={form.icon} small changeHandler={this.handleLogoChange} />
                                     </div>
                                 </div>}
 

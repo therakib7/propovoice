@@ -14,20 +14,18 @@ export default class General extends Component {
 
     static contextType = AppContext;
 
-    componentDidMount() { 
-    } 
     handleSubmit = (e) => {
         e.preventDefault();
- 
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
                 <div className="row">
                     <div className="col">
-                        <label>Deal Stage</label>
-                        <Taxonomy taxonomy='deal_stage' title='stage' color={true} />
+                        <label>{i18n.deal} {i18n.stage}</label>
+                        <Taxonomy taxonomy='deal_stage' title='stage' color />
                     </div>
                     <div className="col">
                     </div>

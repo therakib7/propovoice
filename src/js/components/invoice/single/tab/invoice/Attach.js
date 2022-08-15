@@ -54,7 +54,7 @@ class Attach extends Component {
 						fill="#18181B"
 					/>
 					</svg>
-					Add Attachment
+					{ndpi.i18n.add} Attachment
 				</button>					
 
 				{attach.map((item, index) => (

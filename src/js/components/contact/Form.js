@@ -160,7 +160,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Contact</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.contact}</h2>
                         <p>Add new contact from here</p>
                     </div>
 
@@ -171,7 +171,7 @@ class Form extends Component {
                                 <Contact
                                     first_name={form.first_name}
                                     org_name={form.org_name}
-                                    review={true}
+                                    review
                                     onChange={this.handleContactChange}
                                     onSelect={this.handleContactSelect}
                                 />

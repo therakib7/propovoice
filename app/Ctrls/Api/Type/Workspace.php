@@ -2,11 +2,8 @@
 
 namespace Ncpi\Ctrls\Api\Type;
 
-use WP_Query;
-
 class Workspace
-{
-
+{ 
     public function __construct()
     {
         add_action('rest_api_init', [$this, 'create_rest_routes']);
@@ -102,7 +99,7 @@ class Workspace
             );
         }
 
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination 
         $result = $data = [];
         while ($query->have_posts()) {

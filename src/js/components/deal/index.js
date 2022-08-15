@@ -87,6 +87,7 @@ const Deal = (props) => {
 
     const activeColor = '#4A5568';
     const inactiveColor = '#A0AEC0';
+    const i18n = ndpi.i18n;
     return (
         <div className="ncpi-components">
             {!props.module_id && <Breadcrumb title={title + ' Pipeline'} />}
@@ -105,7 +106,7 @@ const Deal = (props) => {
                 reload={props.getLists}
                 modalType={modalType}
                 data={form}
-                color={true}
+                color
                 close={() => setModal(false)}
             />}
 
@@ -141,7 +142,7 @@ const Deal = (props) => {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            Add Stage
+                            {i18n.add} {i18n.stage}
                         </button>
 
                         <button
@@ -170,7 +171,7 @@ const Deal = (props) => {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            Add {title}
+                            {ndpi.i18n.add} {title}
                         </button>
                     </div>
                 </div>

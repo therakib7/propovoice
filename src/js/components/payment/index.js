@@ -428,7 +428,7 @@ export default class Payment extends Component {
                                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                                         onClick={() => this.openForm('new')}
                                     >
-                                        Add {currentTabTitle} Account
+                                        {ndpi.i18n.add} {currentTabTitle} Account
                                     </button>
                                 </>
                             )}

@@ -1,4 +1,4 @@
-const Attach = (props) => {
+export default (props) => {
 	const attach = props.data;
 	return (
 		<div className=''>
@@ -10,6 +10,3 @@ const Attach = (props) => {
 		</div>
 	)
 }
-export default Attach
-
-

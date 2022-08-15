@@ -185,7 +185,7 @@ class FromTo extends Component {
                                         </address>
                                     </> : <>
                                         {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-color-blue pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>Create New Business</a>
+                                        <a className="pi-color-blue pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>{i18n.create} {i18n.new} {i18n.business}</a>
                                     </>
                                 }
                             </div>

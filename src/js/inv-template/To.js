@@ -1,4 +1,4 @@
-const To = (props) => {
+export default (props) => {
     const data = props.data
     return (
         <>
@@ -21,7 +21,3 @@ const To = (props) => {
         </>
     )
 }
-
-export default To
-
-

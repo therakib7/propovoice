@@ -1,8 +1,7 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
-import WithApi from 'hoc/Api';
+import React, { useCallback, useRef, useState, useEffect } from "react"; 
 import useClickOutside from 'block/outside-click';
 
-const AddNew = (props) => {
+export default (props) => {
 
     const dropdownRef = useRef();
     const [dropdown, setDropdown] = useState(false);
@@ -27,6 +26,7 @@ const AddNew = (props) => {
         alert('Features, In progressing...');
     };
 
+    const i18n = ndpi.i18n;
     return (
         <div className='pi-list-single-button-content'>
             <button
@@ -55,7 +55,7 @@ const AddNew = (props) => {
                         strokeLinejoin="round"
                     ></path>
                 </svg>
-                Add {props.title}
+                {i18n.add} {props.title}
             </button>
 
             {false && <div className="pi-action-content pi-action-btn" ref={dropdownRef}>
@@ -98,6 +98,4 @@ const AddNew = (props) => {
             </div>}
         </div>
     );
-}
-
-export default WithApi(AddNew);  
+} 

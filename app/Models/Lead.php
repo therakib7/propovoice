@@ -1,7 +1,7 @@
 <?php
 namespace Ncpi\Models;
  
-use WP_Query; 
+ 
 
 class Lead {
 
@@ -34,7 +34,7 @@ class Lead {
             );
         }
 
-        $query = new WP_Query($args);   
+        $query = new \WP_Query($args);   
         $total_data = $query->found_posts; 
         wp_reset_postdata();  
         return $total_data;

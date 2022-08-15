@@ -102,7 +102,8 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
         processCssUrls: false
     });
 
-    mix.sass(`src/scss/dashboard.scss`, `assets/css/dashboard${min}.css`)
+    mix.sass(`src/scss/main.scss`, `assets/css/main${min}.css`)
+        .sass(`src/scss/dashboard.scss`, `assets/css/dashboard${min}.css`)
         .sass(`src/scss/welcome.scss`, `assets/css/welcome${min}.css`)
         .sass(`src/scss/invoice.scss`, `assets/css/invoice${min}.css`)
         /* .postCss('src/vendor/tailwind/tailwind.css', `assets/vendor/tailwind/tailwind${min}.css`, [

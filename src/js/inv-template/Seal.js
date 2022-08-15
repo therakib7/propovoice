@@ -1,4 +1,4 @@
-const Seal = (props) => {
+export default (props) => {
 	let status = false;
 	let title, desc;
 	let extraClass = '';
@@ -46,5 +46,4 @@ const Seal = (props) => {
 			</div>}
 		</>
 	)
-}
-export default Seal 
+} 

@@ -2,8 +2,6 @@
 
 namespace Ncpi\Ctrls\Api\Type;
 
-use WP_Query;
-
 class Action
 {
 

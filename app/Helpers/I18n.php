@@ -37,8 +37,7 @@ class I18n
             'num' => esc_html__('Number', 'propovoice'),
             'sender' => esc_html__('Sender', 'propovoice'),
             'rec' => esc_html__('Receiver', 'propovoice'),
-            'item' => esc_html__('Item', 'propovoice'),
-            'sl' => esc_html__('SL', 'propovoice'),
+            'item' => esc_html__('Item', 'propovoice'), 
             'qty' => esc_html__('Quantity', 'propovoice'),
             'rate' => esc_html__('Quantity', 'propovoice'),
             'amount' => esc_html__('Amount', 'propovoice'),
@@ -66,7 +65,7 @@ class I18n
             //contact
             'book' => esc_html__('Book', 'propovoice'),
             'person' => esc_html__('Person', 'propovoice'),
-            'org' => esc_html__('organization', 'propovoice'),
+            'org' => esc_html__('Organization', 'propovoice'),
             'name' => esc_html__('Name', 'propovoice'),
             'email' => esc_html__('Email', 'propovoice'),
             'mob' => esc_html__('Mobile', 'propovoice'),
@@ -75,6 +74,7 @@ class I18n
             'address' => esc_html__('Address', 'propovoice'),
             'country' => esc_html__('Country', 'propovoice'),
             'region' => esc_html__('Region', 'propovoice'),
+            'contact ' => esc_html__('Contact ', 'propovoice'),
             //common
             'home' => esc_html__('Home', 'propovoice'),
             'total' => esc_html__('Total', 'propovoice'),
@@ -110,6 +110,14 @@ class I18n
             'sub' => esc_html__('Subject', 'propovoice'), 
             'msg' => esc_html__('Message', 'propovoice'), 
             'clear' => esc_html__('Clear', 'propovoice'),
+            'account' => esc_html__('Account', 'propovoice'),
+            'secret' => esc_html__('Secret', 'propovoice'),
+            'id' => esc_html__('ID', 'propovoice'),
+            'key' => esc_html__('Key', 'propovoice'),
+            'info' => esc_html__('Info', 'propovoice'),
+            'personal' => esc_html__('Personal', 'propovoice'),
+            'profile' => esc_html__('Profile', 'propovoice'),
+            'section' => esc_html__('Section', 'propovoice'),
             //btn
             'logo' => esc_html__('Logo', 'propovoice'),
             'contin' => esc_html__('Continue', 'propovoice'),
@@ -125,6 +133,7 @@ class I18n
             'pipeline' => esc_html__('Pipeline', 'propovoice'), 
             'back_t_db' => esc_html__('Back to WP Dashboard', 'propovoice'),  
             'markdone' => esc_html__('Mark as Done', 'propovoice'),  
+            'as' => esc_html__('as', 'propovoice'),  
         ];
     }
 }
