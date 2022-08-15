@@ -9,11 +9,9 @@ export default class General extends Component {
         super(props);
 
         this.state = {
-
             form: {
                 social: []
             }
-
         };
     }
 
@@ -60,7 +58,7 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Project Status</label>
-                        <Taxonomy taxonomy='project_status' title='Status' color={true} />
+                        <Taxonomy taxonomy='project_status' title='Status' color />
                     </div>
                     <div className="col">
                     </div>

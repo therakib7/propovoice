@@ -25,7 +25,7 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.deal} {i18n.stage}</label>
-                        <Taxonomy taxonomy='deal_stage' title='stage' color={true} />
+                        <Taxonomy taxonomy='deal_stage' title='stage' color />
                     </div>
                     <div className="col">
                     </div>

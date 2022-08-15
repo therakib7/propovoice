@@ -323,7 +323,7 @@ class Form extends Component {
                                         <label htmlFor="field-level_id">
                                             Level
                                         </label>
-                                        {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color={true} /> */}
+                                        {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color /> */}
                                         <Select
                                             className={'pi-field-select'}
                                             value={form.level_id}
@@ -338,7 +338,7 @@ class Form extends Component {
                                         <label htmlFor="field-tags">
                                             Tags
                                         </label>
-                                        {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple={true} /> */}
+                                        {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple /> */}
                                         <Select
                                             className={'pi-field-select'}
                                             value={form.tags}
