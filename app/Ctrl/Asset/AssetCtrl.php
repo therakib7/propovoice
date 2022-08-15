@@ -68,7 +68,8 @@ class AssetCtrl
                 'apiUrl' => esc_url(rest_url()),
                 'nonce' => wp_create_nonce('wp_rest'),
                 'dashboard' => menu_page_url('ndpi', false),
-                'assetImgUri' => ncpi()->get_assets_uri('img/')
+                'assetImgUri' => ncpi()->get_assets_uri('img/'),
+                'i18n' => I18n::dashboard()
             ));
         }
 

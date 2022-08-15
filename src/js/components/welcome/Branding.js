@@ -67,6 +67,7 @@ class Branding extends Component {
 
 	render = () => {
 		const business = this.props.data;
+		const i18n = ndpi.i18n;
 		return (
 			<>
 				{!business.logo &&
