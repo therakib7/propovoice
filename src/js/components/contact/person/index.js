@@ -18,6 +18,7 @@ const Contact = (props) => {
     props.getLists();
   }, []);
   const navigate = useNavigate();
+  const i18n = ndpi.i18n;
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
     <div className="ncpi-components">
@@ -25,7 +26,7 @@ const Contact = (props) => {
 
       <div className="row">
         <div className="col">
-          <h2 className="pi-page-title">Contact Book</h2>
+          <h2 className="pi-page-title">{i18n.contact} {i18n.book}</h2>
         </div>
         <div className="col">
           <AddNew
@@ -140,7 +141,7 @@ const Contact = (props) => {
           className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
           onClick={() => navigate(`/contact/organization`)}
         >
-          Organization
+          {i18n.org}
         </button>
       </div>
 

@@ -89,9 +89,9 @@ class Form extends Component {
         const i18n = ndpi.i18n;
         let title = '';
         if (this.props.modalType == 'new') {
-            title = 'New'
+            title = i18n.new
         } else if (this.props.modalType == 'edit') {
-            title = 'Edit'
+            title = i18n.edit
         }
         return (
             <div className="pi-overlay pi-show">

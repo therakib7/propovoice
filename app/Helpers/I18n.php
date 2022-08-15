@@ -74,6 +74,7 @@ class I18n
             'address' => esc_html__('Address', 'propovoice'),
             'country' => esc_html__('Country', 'propovoice'),
             'region' => esc_html__('Region', 'propovoice'),
+            'contact ' => esc_html__('Contact ', 'propovoice'),
             //common
             'home' => esc_html__('Home', 'propovoice'),
             'total' => esc_html__('Total', 'propovoice'),
@@ -132,6 +133,7 @@ class I18n
             'pipeline' => esc_html__('Pipeline', 'propovoice'), 
             'back_t_db' => esc_html__('Back to WP Dashboard', 'propovoice'),  
             'markdone' => esc_html__('Mark as Done', 'propovoice'),  
+            'as' => esc_html__('as', 'propovoice'),  
         ];
     }
 }
