@@ -42,7 +42,6 @@ class PaymentProcess
         $payment_method = isset($params['payment_method']) ? $params['payment_method'] : '';
 
         if ($invoice_id) {
-
             update_post_meta($invoice_id, 'payment_method', $payment_method);
 
             if ($payment_method == 'bank') {
