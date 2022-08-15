@@ -37,6 +37,7 @@ export default class Form extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <>
                 {this.props.show && (
@@ -60,7 +61,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="first_name">
-                                                    First Name
+                                                    {i18n.first} {i18n.name}
                                                 </label>
 
                                                 <input
@@ -77,7 +78,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="last_name">
-                                                    Last Name
+                                                    {i18n.last} {i18n.name}
                                                 </label>
 
                                                 <input
@@ -94,7 +95,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid_email">
-                                                    Email
+                                                    {i18n.email}
                                                 </label>
 
                                                 <input
@@ -111,7 +112,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid-mobile">
-                                                    Mobile Number
+                                                    {i18n.mob} {i18n.num}
                                                 </label>
 
                                                 <input
@@ -128,7 +129,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid-org_name">
-                                                    Company Name
+                                                    {i18n.company} {i18n.name}
                                                 </label>
 
                                                 <input
@@ -145,7 +146,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid-web">
-                                                    Website
+                                                    {i18n.web}
                                                 </label>
 
                                                 <input

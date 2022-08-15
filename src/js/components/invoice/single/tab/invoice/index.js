@@ -857,8 +857,8 @@ class Invoice extends Component {
 																/>
 															</svg>
 															<p>
-																Upload <br />
-																Logo
+															{i18n.upload} <br />
+															{i18n.logo}
 															</p>
 														</div>}
 													</div>
@@ -990,7 +990,7 @@ class Invoice extends Component {
 																strokeLinejoin="round"
 															/>
 														</svg>
-														{ndpi.i18n.add} Attachments
+														{i18n.add} {i18n.attachment}
 													</button>}
 												</div>
 

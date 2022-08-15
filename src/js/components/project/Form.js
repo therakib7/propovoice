@@ -411,7 +411,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-note">
-                                            Note
+                                        {i18n.note}
                                         </label>
 
                                         <textarea

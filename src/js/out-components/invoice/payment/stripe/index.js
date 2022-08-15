@@ -220,7 +220,7 @@ class CheckoutForm extends Component {
                                 <div className="ResultMessage">
                                     Thanks for trying Stripe payment.
                                     <div style={{ marginTop: '7px', color: '#000' }}>
-                                        <b>Transection ID:</b> {paymentMethod.paymentIntent.id}
+                                        <b>{i18n.transection} {i18n.id}:</b> {paymentMethod.paymentIntent.id}
                                     </div>
                                 </div>
                             </div>

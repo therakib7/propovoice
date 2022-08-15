@@ -20,7 +20,7 @@ export default class Form extends Component {
             date: false
         };
 
-        this.state = { 
+        this.state = {
             form: this.initialState
         };
     }
@@ -28,20 +28,21 @@ export default class Form extends Component {
     handleChange = e => {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } });
-    } 
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        this.props.handleSubmit(this.state.form); 
+        this.props.handleSubmit(this.state.form);
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <>
                 {this.props.show && (
                     <>
-                        <div className="ncpi-search absolute top-0 right-0">   
+                        <div className="ncpi-search absolute top-0 right-0">
                             <form onSubmit={this.handleSubmit} className="h-screen border-0 shadow-lg flex flex-col w-full bg-white">
                                 <div className="flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t">
                                     <h3 className="text-xl p-2 font-semibold">Search</h3>
@@ -60,7 +61,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="first_name">
-                                                    First Name
+                                                    {i18n.first} {i18n.name}
                                                 </label>
 
                                                 <input
@@ -77,7 +78,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="last_name">
-                                                    Last Name
+                                                    {i18n.last} {i18n.name}
                                                 </label>
 
                                                 <input
@@ -88,13 +89,13 @@ export default class Form extends Component {
                                                     value={this.state.form.last_name}
                                                     onChange={this.handleChange}
                                                 />
-                                            </div> 
+                                            </div>
 
                                             <div className="w-full px-3 mb-6 md:mb-0">
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid_email">
-                                                    Email
+                                                    {i18n.email}
                                                 </label>
 
                                                 <input
@@ -111,7 +112,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid-mobile">
-                                                    Mobile Number
+                                                    {i18n.mob} {i18n.num}
                                                 </label>
 
                                                 <input
@@ -122,7 +123,7 @@ export default class Form extends Component {
                                                     value={this.state.form.mobile}
                                                     onChange={this.handleChange}
                                                 />
-                                            </div> 
+                                            </div>
 
                                             <div className="w-full px-3 mb-6 md:mb-0">
                                                 <label
@@ -145,7 +146,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid-web">
-                                                    Website
+                                                    {i18n.web}
                                                 </label>
 
                                                 <input
@@ -156,7 +157,7 @@ export default class Form extends Component {
                                                     value={this.state.form.web}
                                                     onChange={this.handleChange}
                                                 />
-                                            </div>   
+                                            </div>
 
                                             <div className="w-full px-3 mb-6 md:mb-0">
                                                 <label
@@ -173,8 +174,8 @@ export default class Form extends Component {
                                                     value={this.state.form.zip}
                                                     onChange={this.handleChange}
                                                 />
-                                            </div> 
-                                        </div> 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -191,8 +192,8 @@ export default class Form extends Component {
                                         Search
                                     </button>
                                 </div>
-                            </form> 
-                        </div> 
+                            </form>
+                        </div>
                     </>
                 )
                 }

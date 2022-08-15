@@ -60,6 +60,7 @@ export default class AdditionalAmount extends Component {
 
     render() {
         const form = this.state.form;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-form-style-one">
                 <div className="row">
@@ -96,7 +97,7 @@ export default class AdditionalAmount extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>Tax Fields</label>
+                        <label>Tax {i18n.fields}</label>
                         <Taxonomy taxonomy='extra_amount' title='Tax Field' extra_amount_type={'tax'} />
                     </div>
                     <div className="col">
@@ -105,7 +106,7 @@ export default class AdditionalAmount extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>Additional Fee Fields</label>
+                        <label>{i18n.addi} {i18n.fee} {i18n.fields}</label>
                         <Taxonomy taxonomy='extra_amount' title='Additional Fee Field' extra_amount_type={'fee'} />
                     </div>
                     <div className="col">
@@ -114,7 +115,7 @@ export default class AdditionalAmount extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>Discount Fields</label>
+                        <label>{i18n.fields} {i18n.fields}</label>
                         <Taxonomy taxonomy='extra_amount' title='Discount Field' extra_amount_type={'discount'} />
                     </div>
                     <div className="col">

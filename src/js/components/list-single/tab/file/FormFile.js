@@ -68,7 +68,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} File</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.file}</h2>
                         <p>Add new file from here</p>
                     </div>
 
@@ -94,7 +94,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="file_id">
-                                            File
+                                        {i18n.file}
                                         </label>
                                         <Upload data={form.file} changeHandler={this.handleUploadChange} />
                                     </div>

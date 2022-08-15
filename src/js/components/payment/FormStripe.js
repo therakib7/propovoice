@@ -85,7 +85,7 @@ class FormStripe extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Stripe</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.stripe}</h2>
                         <p>Please fill up necessary informaiton in the form.</p>
                     </div>
                     <form onSubmit={this.handleSubmit}>
@@ -114,7 +114,7 @@ class FormStripe extends Component {
                                     <div className="col-lg">
                                         <label
                                             htmlFor="form-public_key">
-                                            Public Key
+                                            {i18n.pub} {i18n.key}
                                         </label>
 
                                         <input

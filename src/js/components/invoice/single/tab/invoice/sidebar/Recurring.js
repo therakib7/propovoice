@@ -14,7 +14,7 @@ export default (props) => {
     const handleChange = e => {
         props.handleChange(e);
     }
-
+    const i18n = ndpi.i18n;
     const recurring = props.data;
     return (
         <div className="">
@@ -121,7 +121,7 @@ export default (props) => {
                     </div>
 
                     <div className="col-12">
-                        <label>Select delivery option</label>
+                        <label>{i18n.select} {i18n.delivery} {i18n.option}</label>
                         <div className="pi-field-radio">
                             <input
                                 type='radio'

@@ -46,6 +46,7 @@ class Info extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <form onSubmit={this.handleSubmit}>
 
@@ -59,7 +60,7 @@ class Info extends Component {
 
                             <input
                                 id="field-name"
-                                type="text" 
+                                type="text"
                                 name="name"
                                 value={this.state.form.name}
                                 onChange={this.handleChange}
@@ -86,7 +87,7 @@ class Info extends Component {
                         <div className="col-md">
                             <label
                                 htmlFor="field-web">
-                                Website
+                                {i18n.web}
                             </label>
 
                             <input
@@ -101,7 +102,7 @@ class Info extends Component {
                         <div className="col-md">
                             <label
                                 htmlFor="field-email">
-                                Email
+                                {i18n.email}
                             </label>
 
                             <input
@@ -119,7 +120,7 @@ class Info extends Component {
                         <div className="col-md">
                             <label
                                 htmlFor="field-mobile">
-                                Mobile Number
+                                {i18n.mob} {i18n.num}
                             </label>
 
                             <input

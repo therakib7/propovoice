@@ -180,7 +180,7 @@ const Task = (props) => {
                                                     />
                                                 </svg>
                                             </span>
-                                            <b>Unschedule</b>
+                                            <b>{ndpi.i18n.unschedule}</b>
                                         </label>
                                         <label className="pi-table-close" htmlFor="pi-acc-close" />
                                         <div className="pi-accordion-content">

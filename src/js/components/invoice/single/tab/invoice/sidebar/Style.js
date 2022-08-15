@@ -14,7 +14,7 @@ export default (props) => {
         <div className="pi-form-style-one pi-edit">
             <div className="row">
                 <div className="col-12">
-                    <label htmlFor="name">Edit clolor</label>
+                    <label htmlFor="name">{ndpi.i18n.edit} {ndpi.i18n.clolor}</label>
                     <ColorPicker color={color} onChange={handleChange} />
                 </div>
             </div>

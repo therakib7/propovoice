@@ -32,6 +32,7 @@ class Form extends Component {
     } 
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="">
                 <div className="pi-tab-buttons-group pi-text-right"> 
@@ -49,7 +50,7 @@ class Form extends Component {
                     </div>
  
                     <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
-                        Save
+                        {i18n.save}
                     </button>
                 </div>
             </form>

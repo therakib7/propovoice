@@ -49,7 +49,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
                 <div className="ResultMessage">
                     Thanks for trying paypal payment.
                     <div style={{ marginTop: '7px', color: '#000' }}>
-                        <b>Transection ID:</b> {details.id}
+                        <b>{i18n.transection} {i18n.id}:</b> {details.id}
                     </div>
                 </div>
             </div>

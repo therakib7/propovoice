@@ -27,10 +27,10 @@ function App() {
     }
 
 
-
+    const i18n = ndpi.i18n;
     return (
         <div>
-            <button onClick={() => handleOpenPicker()}>Open Picker</button>
+            <button onClick={() => handleOpenPicker()}>{i18n.open} {i18n.picker}</button>
         </div>
     );
 }

@@ -62,6 +62,7 @@ class Feedback extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <>
                 {this.props.show && (
@@ -101,7 +102,7 @@ class Feedback extends Component {
                                             <div className="col-lg">
                                                 <label
                                                     htmlFor="form-note">
-                                                    Additional Note
+                                                    {i18n.addi} {i18n.note}
                                                 </label>
                                                 <textarea
                                                     id="form-note"
@@ -115,7 +116,7 @@ class Feedback extends Component {
 
                                         <div className="row">
                                             <div className="col-md">
-                                                <label htmlFor="field-receipt">Additional Attachment</label>
+                                                <label htmlFor="field-receipt">{i18n.addi} {i18n.attachment}</label>
                                                 <Upload label={'Upload'} attach_type='secret' permission library={false} data={this.state.form.attachment} changeHandler={this.handleUploadChange} />
                                             </div>
                                         </div>

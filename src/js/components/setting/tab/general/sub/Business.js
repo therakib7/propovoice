@@ -107,6 +107,7 @@ export default class Business extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">
                 <div className="row">
@@ -146,7 +147,7 @@ export default class Business extends Component {
                     <div className="col-md">
                         <label
                             htmlFor="field-web">
-                            Website
+                            {i18n.web}
                         </label>
 
                         <input
@@ -160,7 +161,7 @@ export default class Business extends Component {
                     <div className="col-md">
                         <label
                             htmlFor="field-email">
-                            Email
+                            {i18n.email}
                         </label>
 
                         <input
@@ -179,7 +180,7 @@ export default class Business extends Component {
                     <div className="col-md">
                         <label
                             htmlFor="field-mobile">
-                            Mobile Number
+                            {i18n.mob} {i18n.num}
                         </label>
 
                         <input

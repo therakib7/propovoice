@@ -324,7 +324,7 @@ class Form extends Component {
                                                     fill="#4A8CFF"
                                                 />
                                             </svg>
-                                            Connect Zoom
+                                            {i18n.zoomconn}
                                         </button>
                                     </div>}
                                 </div>
@@ -333,7 +333,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col">
                                     <label htmlFor="form-desc">
-                                        Description
+                                    {i18n.desc}
                                     </label>
 
                                     <textarea
@@ -348,7 +348,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col">
                                     <label htmlFor="form-note">
-                                        Note
+                                    {i18n.note}
                                     </label>
 
                                     <textarea

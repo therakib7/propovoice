@@ -28,6 +28,7 @@ class Attach extends Component {
 
 	render = () => {
 		const attach = this.props.data; 
+		const i18n = ndpi.i18n;
 		return (
 			<>   
 				<Media
@@ -54,7 +55,7 @@ class Attach extends Component {
 						fill="#18181B"
 					/>
 					</svg>
-					{ndpi.i18n.add} Attachment
+					{i18n.add} {i18n.attachment}
 				</button>					
 
 				{attach.map((item, index) => (

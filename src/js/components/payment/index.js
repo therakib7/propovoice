@@ -151,7 +151,7 @@ export default class Payment extends Component {
                 break;
 
             case 'stripe':
-                title = 'Stripe'
+                title = i18n.stripe
                 break;
 
         }
@@ -218,6 +218,7 @@ export default class Payment extends Component {
     };
 
     render() {
+        const i18n = ndpi.i18n;
         const { payments, title, currentTab, currentTabTitle } = this.state;
         return (
             <div className="ncpi-components"> 
@@ -337,7 +338,7 @@ export default class Payment extends Component {
                                             />
                                         </svg>
                                     </span>
-                                    <span>Stripe</span>
+                                    <span>{i18n.stripe}</span>
                                 </li>
                             </>
                         }

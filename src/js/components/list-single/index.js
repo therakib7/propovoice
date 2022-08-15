@@ -34,7 +34,7 @@ class ListSingle extends Component {
                 },
                 {
                     id: 'note',
-                    text: 'Note'
+                    text: i18n.note
                 },
                 {
                     id: 'file',
@@ -255,7 +255,7 @@ class ListSingle extends Component {
                     <ul className="">
                         <li>
                             <a href="#" className="">
-                                {ndpi.i18n.home}
+                                {i18n.home}
                             </a>
                         </li>
                         <li>
@@ -320,7 +320,7 @@ class ListSingle extends Component {
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ leadModal: true })}
                                                 >
-                                                    Edit
+                                                    {i18n.edit}
                                                 </button>
                                             </h3>
                                             <address>
@@ -365,7 +365,7 @@ class ListSingle extends Component {
                                                         strokeLinejoin="round"
                                                     />
                                                 </svg>
-                                                {ndpi.i18n.add} to Deal Pipeline
+                                                {ndpi.i18n.add} to {i18n.deal} Pipeline
                                             </button>
 
                                             <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
@@ -402,7 +402,7 @@ class ListSingle extends Component {
                                                 </button>
 
                                                 {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                    <a onClick={() => this.setState({ leadModal: true })}>Edit</a>
+                                                    <a onClick={() => this.setState({ leadModal: true })}>{i18n.edit}</a>
                                                     <a onClick={() => this.deleteEntry('lead', data.id)}>Delete</a>
                                                 </div>}
                                             </div>
@@ -415,7 +415,7 @@ class ListSingle extends Component {
                         <div className="pi-tag-content">
                             <ul>
                                 <li>
-                                    <label htmlFor="">Tag: </label>
+                                    <label htmlFor="">{i18n.tag}: </label>
                                     {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small multiple />}
                                 </li>
 
@@ -440,7 +440,7 @@ class ListSingle extends Component {
                                                 className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                 onClick={() => this.setState({ dealModal: true })}
                                             >
-                                                Edit
+                                                {i18n.edit}
                                             </button>
                                         </h3>
                                         <div className="pi-avatar-content">
@@ -458,7 +458,7 @@ class ListSingle extends Component {
                                         {!wage.length && <div className="pi-range">
                                             <span>{data.probability}%</span>
                                             <label htmlFor="field-probability">
-                                                Probability
+                                            {i18n.proba}
                                             </label>
 
                                             <input
@@ -565,7 +565,7 @@ class ListSingle extends Component {
                                                 </button>
 
                                                 {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                    <a onClick={() => this.setState({ dealModal: true })}>Edit</a>
+                                                    <a onClick={() => this.setState({ dealModal: true })}>{i18n.edit}</a>
                                                     <a onClick={() => this.deleteEntry('deal', data.id)}>Delete</a>
                                                 </div>}
 
@@ -603,7 +603,7 @@ class ListSingle extends Component {
                                                 className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                 onClick={() => this.setState({ projectModal: true })}
                                             >
-                                                Edit
+                                                {i18n.edit}
                                             </button>
                                         </h3>
                                         <div className="pi-avatar-content">
@@ -623,7 +623,7 @@ class ListSingle extends Component {
                                 <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label>Project Status:</label>
+                                            <label>{i18n.project} {i18n.status}:</label>
                                             {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={this.handleProjectStatusChange} title='Status' color />}
                                         </div>
                                         <div className="pi-buttons pi-text-right">
@@ -631,7 +631,7 @@ class ListSingle extends Component {
                                                 className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
                                                 onClick={() => this.handleProjectStatusChange('completed')}
                                             >
-                                                Mark as completed
+                                                {i18n.markcom}
                                             </button>}
 
                                             <div
@@ -671,8 +671,8 @@ class ListSingle extends Component {
                                                 </button>
 
                                                 {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                    <a onClick={() => this.setState({ projectModal: true })}>Edit</a>
-                                                    <a onClick={() => this.deleteEntry('project', data.id)}>Delete</a>
+                                                    <a onClick={() => this.setState({ projectModal: true })}>{i18n.edit}</a>
+                                                    <a onClick={() => this.deleteEntry('project', data.id)}>{i18n.del}</a>
                                                 </div>}
                                             </div>
                                         </div>
@@ -865,7 +865,7 @@ class ListSingle extends Component {
                                                     className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
                                                     onClick={() => this.setState({ contactModal: true })}
                                                 >
-                                                    Edit
+                                                    {i18n.edit}
                                                 </button>
                                             </h3>
                                             <address>
@@ -878,13 +878,13 @@ class ListSingle extends Component {
                                 <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label>Status:</label>
+                                            <label>{i18n.status}:</label>
                                             <div className="pi-action-content">
                                                 <button
                                                     className="pi-btn pi-btn-medium"
                                                     style={{ backgroundColor: "rgb(24, 149, 77)", color: "rgb(255, 255, 255)" }}
                                                 >
-                                                    Active
+                                                    {i18n.act}
                                                     <svg
                                                         width={10}
                                                         height={6}
@@ -941,8 +941,8 @@ class ListSingle extends Component {
                                             </button>
 
                                             {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                <a onClick={() => this.setState({ contactModal: true })}>Edit</a>
-                                                <a onClick={() => this.deleteEntry('contact', data.id)}>Delete</a>
+                                                <a onClick={() => this.setState({ contactModal: true })}>{i18n.edit}</a>
+                                                <a onClick={() => this.deleteEntry('contact', data.id)}>{i18n.del}</a>
                                             </div>}
                                         </div>
                                     </div>
@@ -956,8 +956,8 @@ class ListSingle extends Component {
                                     <label htmlFor="">Tag: </label>
                                     {data.id && <Taxonomy id={data.id} taxonomy='tag' title='Tag' small multiple />}
                                 </li>
-                                <li>Project {data.project}</li>
-                                <li>Deal {data.deal}</li>
+                                <li>{i18n.project} {data.project}</li>
+                                <li>{i18n.deal} {data.deal}</li>
                             </ul>
                         </div>
                     </>
@@ -1018,26 +1018,26 @@ class ListSingle extends Component {
 
                     <div className="col-lg-3 pi-lead-right-content">
                         <div className="pi-widget pi-info-box">
-                            <h3 className="pi-widget-title">Additional Info</h3>
+                            <h3 className="pi-widget-title">{i18n.addi} {i18n.info}</h3>
                             <address>
 
                                 {true &&
                                     <>
-                                        <span>Mobile:</span>
+                                        <span>{i18n.mol}:</span>
                                         {(data.person) ? data.person.mobile : data.org.mobile}
                                     </>
                                 }
 
                                 {true &&
                                     <>
-                                        <span>Website:</span>
+                                        <span>{i18n.web}:</span>
                                         {(data.person) ? data.person.web : data.org.web}
                                     </>
                                 }
 
                                 {true &&
                                     <>
-                                        <span>Address:</span>
+                                        <span>{i18n.addr}:</span>
                                         {(data.person) ? data.person.address : data.org.address}
                                     </>
                                 }
@@ -1053,7 +1053,7 @@ class ListSingle extends Component {
 
                                 {data.desc &&
                                     <>
-                                        <h5>Note:</h5>
+                                        <h5>{i18n.note}:</h5>
                                         <p className="" dangerouslySetInnerHTML={{ __html: data.note }}></p>
                                     </>
                                 }
@@ -1061,7 +1061,7 @@ class ListSingle extends Component {
                         </div>
 
                         {false && <div className="pi-widget pi-timeline-box">
-                            <h3 className="pi-widget-title pi-mb-15">Timeline Info</h3>
+                            <h3 className="pi-widget-title pi-mb-15">{i18n.timeline} {i18n.info}</h3>
                             <ul>
                                 <li>
                                     <h4 className="timeline-title">Nabil Created Project Propovoice</h4>

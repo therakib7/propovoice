@@ -70,6 +70,7 @@ export default class License extends Component {
 
     render() {
         const form = this.state.form;
+        const i18n = ndpi.i18n
         return (
             <>
                 {this.state.loading ? <Spinner /> : <form onSubmit={this.handleSubmit} className="pi-form-style-one">
@@ -94,7 +95,7 @@ export default class License extends Component {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="form-status">
-                                    License Status:
+                                    License {i18n.status}:
                                     <span className="pi-pro-label pi-bg-green pi-color-white">Valid</span>
                                 </label>
                             </div>

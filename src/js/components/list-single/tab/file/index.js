@@ -21,12 +21,13 @@ const File = (props) => {
     const [activeTab, setActiveTab] = useState('all');
 
     const { lists, checkedBoxes, searchVal } = props.state;
+    const i18n = ndpi.i18n;
     return (
         <>
             <div className="pi-small-button-group pi-small-button-group-two">
                 <div className="row">
                     <div className="col-sm-5">
-                        <h3 className="pi-title-small">My Files</h3>
+                        <h3 className="pi-title-small">My {i18n.file}</h3>
                         <button
                             className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'all' ? 'pi-active' : '')}
                             onClick={() => { setActiveTab('all'); props.getLists(); }}
@@ -37,13 +38,13 @@ const File = (props) => {
                             className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'file' ? 'pi-active' : '')}
                             onClick={() => { setActiveTab('file'); props.getLists({ type: 'file' }); }}
                         >
-                            File
+                            {i18n.file}
                         </button>
                         <button
                             className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'link' ? 'pi-active' : '')}
                             onClick={() => { setActiveTab('link'); props.getLists({ type: 'link' }); }}
                         >
-                            Link
+                            {i18n.link}
                         </button>
                     </div>
 
@@ -82,7 +83,7 @@ const File = (props) => {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                Upload Drive
+                                {i18n.upload} Drive
                             </button>}
 
                             {true && <button
@@ -118,7 +119,7 @@ const File = (props) => {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                Upload File
+                                {i18n.upload} {i18n.file}
                             </button>}
                             <button
                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
@@ -132,7 +133,7 @@ const File = (props) => {
                                         fill="#718096"
                                     />
                                 </svg>
-                                {ndpi.i18n.add} File Link
+                                {ndpi.i18n.add} {i18n.upload} {i18n.file}
                             </button>
                             <br />
                             <div className="pi-buttons-group pi-mb-20">

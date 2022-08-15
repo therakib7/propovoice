@@ -107,7 +107,7 @@ export default class Template extends Component {
                                                 href={'https://appux.co/ncpi/preview/inv' + row.id + '.html'}
                                                 target="_blank"
                                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
-                                            >Full Preview</a>
+                                            >{ndpi.i18n.full}</a>
                                         </div>}
                                     </div>
                                 </div>

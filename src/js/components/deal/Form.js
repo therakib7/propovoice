@@ -358,7 +358,7 @@ class Form extends Component {
                                 {!wage.length && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-probability">
-                                            Probability <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
+                                        {i18n.proba} <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
                                         </label>
 
                                         <input

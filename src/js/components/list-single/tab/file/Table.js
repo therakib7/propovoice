@@ -132,8 +132,8 @@ const TableBody = props => {
                         {row.id == dropdown && <div className="pi-dropdown-content pi-show"
                         // ref={popover}
                         >
-                            {row.type == 'link' && <a onClick={() => props.editEntry('edit', row)}>Edit</a>}
-                            <a onClick={() => props.deleteEntry('single', row.id)}>Delete</a>
+                            {row.type == 'link' && <a onClick={() => props.editEntry('edit', row)}>{i18n.edit}</a>}
+                            <a onClick={() => props.deleteEntry('single', row.id)}>{i18n.del}</a>
                         </div>}
                     </div>
                 </td>

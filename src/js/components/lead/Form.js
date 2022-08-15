@@ -244,7 +244,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Lead</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
                         <p>Add new lead from here</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
@@ -321,7 +321,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-level_id">
-                                            Level
+                                        {i18n.level}
                                         </label>
                                         {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color /> */}
                                         <Select
@@ -336,7 +336,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
-                                            Tags
+                                        {i18n.tag}
                                         </label>
                                         {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple /> */}
                                         <Select
@@ -354,7 +354,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-desc">
-                                            Description
+                                        {i18n.desc}
                                         </label>
 
                                         <textarea
@@ -370,7 +370,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-note">
-                                            Note
+                                        {i18n.note}
                                         </label>
 
                                         <textarea

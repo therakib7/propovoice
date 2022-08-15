@@ -49,7 +49,7 @@ const Action = (props) => {
             </button>
 
             {dropdown && <div className="pi-dropdown-content pi-show" ref={dropdownRef}>
-                <a onClick={() => { setDropdown(false); props.editEntry('edit', row) }}>Edit</a>
+                <a onClick={() => { setDropdown(false); props.editEntry('edit', row) }}>{ndpi.i18n.edit}</a>
                 <a onClick={() => { setDropdown(false); props.deleteEntry() }}>Delete</a>
             </div>}
         </div>

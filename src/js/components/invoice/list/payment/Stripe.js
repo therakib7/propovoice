@@ -55,7 +55,7 @@ class Stripe extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">Stripe Payment Info</h2>
+                        <h2 className="pi-modal-title">{i18n.stripe} {i18n.payment} {i18n.info}</h2>
                         <p>Here is the payment information</p>
                     </div>
                     <div className="pi-content">
@@ -76,7 +76,7 @@ class Stripe extends Component {
 
                                 <div className="col-lg">
                                     <label htmlFor="form-email">
-                                        Email
+                                    {i18n.email}
                                     </label>
 
                                     <input
@@ -93,7 +93,7 @@ class Stripe extends Component {
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="form-transection_id">
-                                        Transection ID
+                                    {i18n.transection} {i18n.id}
                                     </label>
 
                                     <input

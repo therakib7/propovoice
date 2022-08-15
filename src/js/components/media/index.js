@@ -91,6 +91,7 @@ export default class Template extends Component {
     };
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <>
                 {this.props.show &&
@@ -121,7 +122,7 @@ export default class Template extends Component {
                                             strokeLinejoin="round"
                                         />
                                     </svg>
-                                    Upload
+                                    {i18n.upload}
                                 </button>
 
                                 <button
