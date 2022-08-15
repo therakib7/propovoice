@@ -188,7 +188,7 @@ const Home = () => {
                                                 fill="white"
                                             />
                                         </svg>
-                                        <span>Proposal</span>
+                                    <span>{i18n.proposal}</span>
                                     </NavLink>
                                 </li>}
                                 <li>
@@ -332,7 +332,7 @@ const Home = () => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span>Accounting</span>
+                                        <span>{i18n.account}</span>
                                     </NavLink>
                                 </li>}
                                 <li>
@@ -430,7 +430,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        <span>Need Support?</span>
+                                        <span>{i18n.nedd}?</span>
                                     </a>
                                 </li>}
                                 <li className="pi-mt-35">

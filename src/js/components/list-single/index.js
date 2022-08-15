@@ -579,7 +579,7 @@ class ListSingle extends Component {
                         <div className="pi-tag-content">
                             <ul>
                                 <li className="pi-budget">
-                                    <label htmlFor="">Budget:</label>
+                                    <label htmlFor="">{i18n.budget}:</label>
                                     <span>${data.budget}</span>
                                 </li>
                                 <li>

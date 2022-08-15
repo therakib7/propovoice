@@ -36,6 +36,7 @@ class Feedback extends Component {
 
     render() {
         const data = this.props.data;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -63,7 +64,7 @@ class Feedback extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">Feedback</h2>
+                        <h2 className="pi-modal-title">{i18n.feedback}</h2>
                         <p>Here is the client feedback</p>
                     </div>
                     <div className="pi-content">

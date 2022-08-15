@@ -118,6 +118,7 @@ class I18n
             'personal' => esc_html__('Personal', 'propovoice'),
             'profile' => esc_html__('Profile', 'propovoice'),
             'section' => esc_html__('Section', 'propovoice'),
+            'dtl' => esc_html__('Details', 'propovoice'),
             //btn
             'logo' => esc_html__('Logo', 'propovoice'),
             'contin' => esc_html__('Continue', 'propovoice'),
@@ -134,6 +135,12 @@ class I18n
             'back_t_db' => esc_html__('Back to WP Dashboard', 'propovoice'),  
             'markdone' => esc_html__('Mark as Done', 'propovoice'),  
             'as' => esc_html__('as', 'propovoice'),  
+            'suc' => esc_html__('successful', 'propovoice'),  
+            'submit' => esc_html__('Submit', 'propovoice'),  
+            'proposal' => esc_html__('Proposal', 'propovoice'),  
+            'account' => esc_html__('Accounting', 'propovoice'),  
+            'need' => esc_html__('Need Support', 'propovoice'),  
+            'feedback' => esc_html__('Feedback', 'propovoice'),  
         ];
     }
 }

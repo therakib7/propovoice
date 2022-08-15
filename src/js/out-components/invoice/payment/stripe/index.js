@@ -180,7 +180,7 @@ class CheckoutForm extends Component {
     render() {
         const { error, processing, paymentMethod } = this.state;
         const { stripe } = this.props;
-
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content pi-modal-style-two pi-modal-small">
@@ -215,7 +215,7 @@ class CheckoutForm extends Component {
                         {paymentMethod ? (
                             <div className="Result">
                                 <div className="ResultTitle" role="alert">
-                                    Payment successful
+                                {i18n.payment} {i18n.succ}
                                 </div>
                                 <div className="ResultMessage">
                                     Thanks for trying Stripe payment.

@@ -139,7 +139,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Person</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.person}</h2>
                         <p>Add new person from here</p>
                     </div>
 
@@ -248,7 +248,7 @@ class Form extends Component {
                                     <div className="col">
                                         <label
                                             htmlFor="field-img">
-                                            Image
+                                            {i18n.img}
                                         </label>
                                         <Upload data={form.img} changeHandler={this.handleImgChange} />
                                     </div>

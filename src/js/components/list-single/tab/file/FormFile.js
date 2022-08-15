@@ -78,7 +78,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="title">
-                                            Title
+                                        {i18n.title}
                                         </label>
 
                                         <input

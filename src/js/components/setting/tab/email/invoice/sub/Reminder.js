@@ -56,13 +56,14 @@ export default class Reminder extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 
                 <div className="row">
                     <div className="col">
                         <label htmlFor="form-subject">
-                            Subject
+                        {i18n.sub}
                         </label>
                         <input
                             id="form-subject"

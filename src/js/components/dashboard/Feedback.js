@@ -43,6 +43,7 @@ class Send extends Component {
     }
     render() {
         const type = this.props.type;
+        const i18n = ndpi.i18n;
         return (
             <>
                 {this.props.show && (
@@ -61,7 +62,7 @@ class Send extends Component {
                                             <div className="col">
                                                 <label
                                                     htmlFor="form-subject">
-                                                    Subject
+                                                    {i18n.sub}
                                                 </label>
 
                                                 <input
@@ -79,7 +80,7 @@ class Send extends Component {
                                             <div className="col">
                                                 <label
                                                     htmlFor="form-details">
-                                                    Details
+                                                    {i18n.d}
                                                 </label>
 
                                                 <textarea
@@ -95,7 +96,7 @@ class Send extends Component {
                                         <div className="row">
                                             <div className="col"> 
                                                 <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
-                                                    Submit
+                                                {i18n.submit}
                                                 </button> 
                                             </div> 
                                         </div>

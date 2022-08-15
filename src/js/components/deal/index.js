@@ -171,7 +171,7 @@ const Deal = (props) => {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            {ndpi.i18n.add} {title}
+                            {i18n.add} {title}
                         </button>
                     </div>
                 </div>
