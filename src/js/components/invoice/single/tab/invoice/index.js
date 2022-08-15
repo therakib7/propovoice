@@ -609,7 +609,7 @@ class Invoice extends Component {
 		const name = target.name;
 		const value = (name === 'status' || name === 'due_date') ? target.checked : target.value;
 
-		if ( wage.length > 0 && name == 'status' ) {
+		if (wage.length > 0 && name == 'status') {
 			pro();
 			return;
 		}
@@ -623,7 +623,7 @@ class Invoice extends Component {
 			}
 		} else {
 			invoice.reminder[name] = value;
-		} 
+		}
 
 		this.setState({ invoice })
 		if (name === 'status' && value) {
@@ -637,13 +637,13 @@ class Invoice extends Component {
 		const name = target.name;
 		const value = target.type == 'checkbox' ? target.checked : target.value;
 
-		if ( wage.length > 0 && name == 'status' ) {
+		if (wage.length > 0 && name == 'status') {
 			pro();
 			return;
 		}
 
 		invoice.recurring[name] = value;
-		
+
 		this.setState({ invoice })
 		if (name === 'status' && value) {
 			this.recurringRef.current.click();
@@ -652,7 +652,7 @@ class Invoice extends Component {
 
 	render = () => {
 		const { title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
-		const i18n = ndpi.i18n; 
+		const i18n = ndpi.i18n;
 		return (
 			<>
 				<div>
@@ -939,25 +939,25 @@ class Invoice extends Component {
 											deleteHandler={this.handleRemoveLineItem}
 											reorderHandler={this.handleReorderItems}
 										/>
+										<div className="pi-calculation">
+											<div className="row">
+												<div className="col-sm-4">
+													<PaymentInfo data={this.state.paymentBankData} />
+												</div>
 
-										<div className="row">
-											<div className="col-sm-4">
-												<PaymentInfo data={this.state.paymentBankData} />
-											</div>
-
-											<div className="col-sm-8">
-												<Total
-													currencyFormatter={this.formatCurrency}
-													itemsTotal={this.calcItemsTotal}
-													item_tax={invoice.item_tax}
-													extra_field={invoice.extra_field}
-													grandTotal={this.calcGrandTotal}
-													changeHandler={this.handleTotalChange}
-													focusHandler={this.handleFocusSelect}
-												/>
+												<div className="col-sm-8">
+													<Total
+														currencyFormatter={this.formatCurrency}
+														itemsTotal={this.calcItemsTotal}
+														item_tax={invoice.item_tax}
+														extra_field={invoice.extra_field}
+														grandTotal={this.calcGrandTotal}
+														changeHandler={this.handleTotalChange}
+														focusHandler={this.handleFocusSelect}
+													/>
+												</div>
 											</div>
 										</div>
-
 										<Suspense fallback={<Spinner />}>
 											<Section data={invoice.sections} changeHandler={this.handleSectionChange} />
 										</Suspense>
@@ -1011,10 +1011,9 @@ class Invoice extends Component {
 											<InvTemplate key={invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
 										</div>
 
-										<div className="pi-accordion-wrapper pi-mt-25">
+										<div className="pi-accordion-wrapper pi-mt-15">
 											<ul>
 												<Suspense>
-
 													{(!sidebarActive || sidebarActive == 'style') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('style')} />
 														<i />
