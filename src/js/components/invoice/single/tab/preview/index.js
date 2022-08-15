@@ -81,7 +81,7 @@ export default class Preview extends Component {
         const i18n = ndpi.i18n; 
         return (
             <div id="pi-tab-share" className="pi-invoice-tab-content">
-                <h2 className='pi-page-title'>{i18n.preview} {i18n.nd} {i18n.Share}</h2>
+                <h2 className='pi-page-title'>{i18n.preview} {i18n.nd} {i18n.share}</h2>
                 <iframe id="ndpi-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>

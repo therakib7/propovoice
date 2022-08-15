@@ -832,7 +832,7 @@ class Invoice extends Component {
 						{(currentTab == 'info') && <div id="pi-tab-info" className="pi-invoice-tab-content">
 							<div className="row">
 								<div className="col-lg-9">
-									<h2 className='pi-page-title'>{i18n.home} {i18n.con}</h2>
+									<h2 className='pi-page-title'>{i18n.add} {i18n.con}</h2>
 									<div className="pi-info-content pi-bg-white">
 										<div className="pi-add-info-content">
 											<h3 className="pi-color-blue pi-text-center">{title}</h3>
@@ -939,6 +939,7 @@ class Invoice extends Component {
 											deleteHandler={this.handleRemoveLineItem}
 											reorderHandler={this.handleReorderItems}
 										/>
+
 										<div className="pi-calculation">
 											<div className="row">
 												<div className="col-sm-4">
