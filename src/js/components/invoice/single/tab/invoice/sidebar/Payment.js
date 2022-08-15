@@ -74,6 +74,7 @@ class Payment extends Component {
 
     render() {
         const { payment_methods } = this.props.data
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-form-accordion pi-additional">
                 {this.state.payments.map((row, i) => {

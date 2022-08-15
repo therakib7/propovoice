@@ -5,7 +5,7 @@ const Payment = props => {
             <div>
                 {bankData ? <>
                     <div className="pi-inv-bank">
-                        <h4>Payment Info: </h4>
+                        <h4>Payment Info:</h4>
                         <div className="pi-bank-info" dangerouslySetInnerHTML={{ __html: bankData.name + '<br />' + bankData.details.replaceAll('\n', '<br />') }}></div>
                     </div>
                 </> : ''}
