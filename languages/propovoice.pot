@@ -402,51 +402,59 @@ msgstr ""
 msgid "Personal"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:119
-msgid "Logo"
+#: ../app/Helpers/I18n.php:118
+msgid "Profile"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:120
-msgid "Continue"
+#: ../app/Helpers/I18n.php:119
+msgid "Section"
 msgstr ""
 
 #: ../app/Helpers/I18n.php:121
+msgid "Logo"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:122
+msgid "Continue"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:123
 msgid "Save"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:123, ../app/Ctrls/Setting/Type/Dashboard.php:92, ../app/Ctrls/Setting/Type/Dashboard.php:93
+#: ../app/Helpers/I18n.php:125, ../app/Ctrls/Setting/Type/Dashboard.php:92, ../app/Ctrls/Setting/Type/Dashboard.php:93
 msgid "Settings"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:124
+#: ../app/Helpers/I18n.php:126
 msgid "General"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:125
+#: ../app/Helpers/I18n.php:127
 msgid "Business"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:126
+#: ../app/Helpers/I18n.php:128
 msgid "Payment"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:127
+#: ../app/Helpers/I18n.php:129
 msgid "Method"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:128
+#: ../app/Helpers/I18n.php:130
 msgid "Social"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:130
+#: ../app/Helpers/I18n.php:132
 msgid "Pipeline"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:131
+#: ../app/Helpers/I18n.php:133
 msgid "Back to WP Dashboard"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:132
+#: ../app/Helpers/I18n.php:134
 msgid "Mark as Done"
 msgstr ""
 
