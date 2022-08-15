@@ -37,10 +37,7 @@ const SettingWrap = (props) => {
     const tab_data = {
         general: {
             label: 'General'
-        },
-        task: {
-            label: 'Task & Activity'
-        },
+        }, 
         lead: {
             label: 'Lead'
         },
@@ -72,6 +69,9 @@ const SettingWrap = (props) => {
                     label: 'Social'
                 },
             },
+        },
+        task: {
+            label: 'Task & Activity'
         },
         contact: {
             label: 'Contact'

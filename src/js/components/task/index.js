@@ -14,7 +14,7 @@ const TaskList = (props) => {
 					</div>
 				</div> */}
 
-			<div className="row pi-mt-25">
+			<div className="row">
 				<div className="col-lg-12">
 					<div className="pi-horizontal-tab">
 						<ul className="pi-tabs">

@@ -479,6 +479,11 @@ class Invoice extends Component {
 
 	setActiveTab(e, id, index) {
 		e.preventDefault();
+		
+		if ( id == 'preview' ) {
+			this.handleSave();
+		}
+		
 		this.setState({
 			currentTab: id,
 			currentTabIndex: index

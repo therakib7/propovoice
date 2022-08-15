@@ -326,33 +326,21 @@ class Business
 
             if ( !is_wp_error($post_id) ) {
                 
-                if ( $name ) {
-                    update_post_meta($post_id, 'name', $name); 
-                }
+                update_post_meta($post_id, 'name', $name); 
 
                 if ( $org_name ) {
                     update_post_meta($post_id, 'org_name', $org_name); 
                 }
                  
-                if ( $web ) {
-                    update_post_meta($post_id, 'web', $web); 
-                } 
+                update_post_meta($post_id, 'web', $web);  
 
-                if ( $email ) {
-                    update_post_meta($post_id, 'email', $email); 
-                } 
+                update_post_meta($post_id, 'email', $email);
 
-                if ( $mobile ) {
-                    update_post_meta($post_id, 'mobile', $mobile); 
-                } 
+                update_post_meta($post_id, 'mobile', $mobile);  
 
-                if ( $address ) {
-                    update_post_meta($post_id, 'address', $address); 
-                }
+                update_post_meta($post_id, 'address', $address);
 
-                if ( $zip ) {
-                    update_post_meta($post_id, 'zip', $zip); 
-                } 
+                update_post_meta($post_id, 'zip', $zip); 
 
                 if ( $default ) {
                     $this->set_default(); 

@@ -3,6 +3,7 @@
 namespace Ncpi\Ctrls\Installation;
 
 use Ncpi\Ctrls\Installation\Types\DB;
+use Ncpi\Ctrls\Installation\Types\Merging;
 use Ncpi\Ctrls\Installation\Types\Page;
 use Ncpi\Ctrls\Installation\Types\Taxonomy;
 
@@ -66,6 +67,7 @@ class InstallationController {
             if ( get_option( 'ncpi_role_version' ) < 1.1 ) { 
                 new DB(); 
                 new Taxonomy();
+                new Merging();
             }
 
             update_option( 'ncpi_role_version', 1.1 );

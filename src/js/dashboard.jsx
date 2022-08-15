@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from 'components/home';
 import AppContext from 'context/app-context';
-import msgData from 'context/data/msg';
+import msgData from 'context/data/msg'; 
 
 function Dashboard() {
     return (
@@ -18,16 +18,14 @@ function Dashboard() {
     )
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    //TODO: collapse menu for main page
-    // document.body.className+=' folded';  
-    let element = document.getElementById('ncpi-dashboard');
-    if (typeof element !== 'undefined' && element !== null) {
+document.addEventListener('DOMContentLoaded', function () { 
+    let el = document.getElementById('ncpi-dashboard');
+    if (typeof el !== 'undefined' && el !== null) {
         ReactDOM.render(
             <React.StrictMode>
                 <Dashboard />
             </React.StrictMode>,
-            element
+            el
         );
     }
 

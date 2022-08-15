@@ -352,10 +352,6 @@ template {
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-@-ms-viewport {
-  width: device-width;
-}
-
 html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;
@@ -1147,6 +1143,11 @@ html {
   text-align: center;
 }
 
+.ncpi .pi-table-three td:nth-child(n+3) svg,
+.ncpi .pi-table-three th:nth-child(n+3) svg {
+  top: 3px;
+}
+
 @media screen and (max-width: 550px) {
   .ncpi .pi-table-three {
     width: 130% !important;
@@ -1264,12 +1265,6 @@ html {
 .ncpi .pi-accordion-table-list ul li .pi-dropdown-content {
   top: 30px;
   left: -80px;
-}
-
-@media screen and (max-width: 992px) {
-  .ncpi .pi-accordion-table-list ul li .pi-dropdown-content {
-    left: -135px;
-  }
 }
 
 @media screen and (max-width: 550px) {
@@ -3229,6 +3224,136 @@ ul {
   }
 }
 
+.ncpi .pi-modal-pro-alert .pi-modal-header {
+  padding: 35px 50px 0px;
+}
+
+@media (max-width: 992px) {
+  .ncpi .pi-modal-pro-alert .pi-modal-header {
+    padding: 0 0px 0px !important;
+  }
+}
+
+.ncpi .pi-modal-pro-alert .pi-lock {
+  background: #F16063;
+  display: inline-block;
+  padding: 35px;
+  border-radius: 50%;
+  position: relative;
+  top: 65px;
+}
+
+.ncpi .pi-modal-pro-alert .pi-pro-text {
+  padding: 90px 150px 75px;
+}
+
+@media (max-width: 992px) {
+  .ncpi .pi-modal-pro-alert .pi-pro-text {
+    padding: 90px 80px 60px;
+  }
+}
+
+@media (max-width: 550px) {
+  .ncpi .pi-modal-pro-alert .pi-pro-text {
+    padding: 90px 50px 45px;
+  }
+}
+
+@media (max-width: 420px) {
+  .ncpi .pi-modal-pro-alert .pi-pro-text {
+    padding: 90px 30px 45px;
+  }
+}
+
+.ncpi .pi-modal-pro-alert .pi-pro-text .pi-modal-title {
+  position: relative;
+  display: inline-block;
+}
+
+@media (max-width: 420px) {
+  .ncpi .pi-modal-pro-alert .pi-pro-text .pi-modal-title {
+    font-size: 18px;
+  }
+}
+
+.ncpi .pi-modal-pro-alert .pi-pro-text .pi-modal-title svg {
+  position: absolute;
+  top: -30px;
+  right: -20px;
+}
+
+.ncpi .pi-modal-pro-alert .pi-pro-text p {
+  color: #718096;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.ncpi .pi-pro-failed-text,
+.ncpi .pi-pro-success-text {
+  padding: 70px 100px 90px;
+}
+
+@media (max-width: 992px) {
+
+  .ncpi .pi-pro-failed-text,
+  .ncpi .pi-pro-success-text {
+    padding: 60px 50px 70px;
+  }
+}
+
+@media (max-width: 550px) {
+
+  .ncpi .pi-pro-failed-text,
+  .ncpi .pi-pro-success-text {
+    padding: 40px 30px 50px;
+  }
+}
+
+.ncpi .pi-pro-failed-text h2,
+.ncpi .pi-pro-success-text h2 {
+  margin-bottom: 25px;
+  font-weight: 500 !important;
+  color: #2D3748 !important;
+}
+
+@media (max-width: 550px) {
+
+  .ncpi .pi-pro-failed-text h2,
+  .ncpi .pi-pro-success-text h2 {
+    margin-bottom: 15px;
+  }
+}
+
+.ncpi .pi-pro-failed-text h2,
+.ncpi .pi-pro-failed-text h3,
+.ncpi .pi-pro-success-text h2,
+.ncpi .pi-pro-success-text h3 {
+  font-size: 36px !important;
+}
+
+@media (max-width: 550px) {
+
+  .ncpi .pi-pro-failed-text h2,
+  .ncpi .pi-pro-failed-text h3,
+  .ncpi .pi-pro-success-text h2,
+  .ncpi .pi-pro-success-text h3 {
+    font-size: 24px !important;
+  }
+}
+
+.ncpi .pi-pro-failed-text h3,
+.ncpi .pi-pro-success-text h3 {
+  font-weight: 700;
+  margin-top: 25px;
+  color: #2D3748 !important;
+}
+
+.ncpi .pi-pro-failed-text p,
+.ncpi .pi-pro-success-text p {
+  color: #4A5568;
+  margin-bottom: 40px;
+}
+
 .ncpi .pi-modal-style-two .pi-modal-header {
   padding: 20px 30px;
   background: transparent;
@@ -4536,15 +4661,6 @@ ul {
   height: 33px;
 }
 
-@media screen and (max-width: 992px) {
-
-  .pi-field-radio-input .pi-times,
-  .pi-field-checkbox-input .pi-times {
-    height: 40px !important;
-    line-height: 30px !important;
-  }
-}
-
 .ncpi .pi-search-btn {
   display: flex;
 }
@@ -5499,11 +5615,6 @@ select {
   background: none;
 }
 
-:-ms-input-placeholder {
-  color: #718096 !important;
-  font-weight: 400 !important;
-}
-
 ::-moz-placeholder {
   color: #718096 !important;
   font-weight: 400 !important;
@@ -5600,7 +5711,7 @@ select {
   .ncpi .pi-form-style-one input[type=number],
   .ncpi .pi-form-style-one input[type=email],
   .ncpi .pi-form-style-one input[type=text] {
-    padding: 10px !important;
+    padding: 10px;
   }
 }
 

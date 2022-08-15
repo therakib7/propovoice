@@ -22,15 +22,23 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
+#: ../app/Helpers/I18n.php:11
+msgid "Search"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:14, ../app/Ctrls/Setting/Types/Dashboard.php:40
+msgid "Lead"
+msgstr ""
+
 #: ../app/Models/Org.php:89, ../app/Models/Org.php:173, ../app/Models/Person.php:86, ../app/Models/Person.php:164
 msgid "Something wrong!"
 msgstr ""
 
-#: ../app/Ctrls/Installation/InstallationController.php:22
+#: ../app/Ctrls/Installation/InstallationController.php:23
 msgid "Every Half Minute"
 msgstr ""
 
-#: ../app/Ctrls/Installation/InstallationController.php:27
+#: ../app/Ctrls/Installation/InstallationController.php:28
 msgid "Every 1 Minute"
 msgstr ""
 
@@ -70,15 +78,15 @@ msgstr ""
 msgid "Please select a stage"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/File.php:145
+#: ../app/Ctrls/Api/Types/File.php:147
 msgid "ago"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/File.php:182, ../app/Ctrls/Api/Types/Note.php:150
+#: ../app/Ctrls/Api/Types/File.php:184, ../app/Ctrls/Api/Types/Note.php:150
 msgid "Tab ID is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/File.php:186
+#: ../app/Ctrls/Api/Types/File.php:188
 msgid "Type is missing"
 msgstr ""
 
@@ -262,32 +270,28 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:40
-msgid "Task & Activity"
-msgstr ""
-
 #: ../app/Ctrls/Setting/Types/Dashboard.php:44
-msgid "Lead"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Dashboard.php:48
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:52
-msgid "Client"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Dashboard.php:56
+#: ../app/Ctrls/Setting/Types/Dashboard.php:48
 msgid "Estimate"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:60
+#: ../app/Ctrls/Setting/Types/Dashboard.php:52
 msgid "Invoice"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:64
+#: ../app/Ctrls/Setting/Types/Dashboard.php:56
+msgid "Client"
+msgstr ""
+
+#: ../app/Ctrls/Setting/Types/Dashboard.php:60
 msgid "Project"
+msgstr ""
+
+#: ../app/Ctrls/Setting/Types/Dashboard.php:64
+msgid "Task & Activity"
 msgstr ""
 
 #: ../app/Ctrls/Setting/Types/Dashboard.php:68

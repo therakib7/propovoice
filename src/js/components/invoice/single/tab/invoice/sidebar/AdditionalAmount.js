@@ -1,4 +1,5 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import pro from 'block/pro-alert';
 
 export default (props) => {
     const [list, setList] = useState([]);
@@ -42,10 +43,10 @@ export default (props) => {
     const itemTaxChange = (e) => {
 
         if ( wage.length > 0 ) {
-			alert('This is pro features');
-			return;
-		}
-        
+            pro();
+            return;
+        }
+
         props.itemTaxChange(e);
     }
 
@@ -81,11 +82,21 @@ export default (props) => {
                     let hasItem = extra_field.find(x => x.id == item.id);
                     let percent_val_type = false;
                     let fixed_val_type = false;
-                    if (item.val_type === 'fixed') {
-                        fixed_val_type = true;
+
+                    if (hasItem) {
+                        if (hasItem.val_type === 'percent') {
+                            percent_val_type = true;
+                        } else {
+                            fixed_val_type = true;
+                        }
                     } else {
-                        percent_val_type = true;
+                        if (item.val_type === 'percent') {
+                            percent_val_type = true;
+                        } else {
+                            fixed_val_type = true;
+                        }
                     }
+
                     return (
                         <div className="pi-tab" key={i}>
                             <input checked={hasItem ? true : false} onChange={() => setAdditional(i, item, 'field')} type="checkbox" id={'additional-field-' + i} name="additional-field" />

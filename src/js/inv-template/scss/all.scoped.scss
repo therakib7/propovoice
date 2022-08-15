@@ -9,7 +9,7 @@
   --pi-inv-white: #fff;
   --pi-inv-medium: 15px;
   --pi-inv-small: 12px;
-  --pi-inv-micro: 12px;
+  --pi-inv-micro: 10px;
   --pi-inv-primary: #4c6fff;
   --pi-inv-odd: #f7fafc;
   --pi-inv-even: #edf2f7;
@@ -195,7 +195,7 @@
   font-style: normal;
   text-align: left;
   font-weight: bold;
-  font-size: var(--pi-inv-medium);
+  font-size: var(--pi-inv-micro);
   line-height: 140%;
   color: var(--pi-inv-text-primary);
   letter-spacing: 0.5px;

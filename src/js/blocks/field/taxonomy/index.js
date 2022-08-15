@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
 import Form from './Form';
 import WithApi from 'hoc/Api';
+import pro from 'block/pro-alert';
 
 const Taxonomy = (props) => {
 	const dropdownContent = useRef();
@@ -69,8 +70,9 @@ const Taxonomy = (props) => {
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
 
+
 		if (type == 'new' && wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source')) {
-			alert('This is pro features');
+			pro();
 			return;
 		}
 

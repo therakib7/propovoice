@@ -34,11 +34,7 @@ class Dashboard
             array($this, 'render')
         );
 
-        $settings_menu = [
-            [
-                'id' => 'task',
-                'label' => esc_html__('Task & Activity', 'propovoice'),
-            ],
+        $settings_menu = [ 
             [
                 'id' => 'lead',
                 'label' => esc_html__('Lead', 'propovoice'),
@@ -46,11 +42,7 @@ class Dashboard
             [
                 'id' => 'deal',
                 'label' => esc_html__('Deal Pipeline', 'propovoice'),
-            ],
-            [
-                'id' => 'client',
-                'label' => esc_html__('Client', 'propovoice'),
-            ],
+            ], 
             [
                 'id' => 'estimate',
                 'label' => esc_html__('Estimate', 'propovoice'),
@@ -60,8 +52,16 @@ class Dashboard
                 'label' => esc_html__('Invoice', 'propovoice'),
             ],
             [
+                'id' => 'client',
+                'label' => esc_html__('Client', 'propovoice'),
+            ],
+            [
                 'id' => 'project',
                 'label' => esc_html__('Project', 'propovoice'),
+            ],
+            [
+                'id' => 'task',
+                'label' => esc_html__('Task & Activity', 'propovoice'),
             ],
             [
                 'id' => 'contact',

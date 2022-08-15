@@ -18,10 +18,10 @@ class General extends Component {
 					id: 'extra-amount',
 					text: 'Additional Amount'
 				},
-				{
-					id: 'template',
+				/* {
+					id: 'recurring',
 					text: 'Recurring'
-				} 
+				}  */
 			],
 			currentTab: '',
 		}
@@ -54,7 +54,7 @@ class General extends Component {
 		
 				{currentTab == 'reminder' && <Reminder {...this.props} path={'invoice'} />} 
 				{currentTab == 'extra-amount' && <AdditionalAmount {...this.props} />} 
-				{currentTab == 'template' && <Recurring {...this.props} />}
+				{currentTab == 'recurring' && <Recurring {...this.props} />}
 			</>
 		);
 	}

@@ -12,9 +12,9 @@ import Section from '../Section';
 import Sign from '../Sign';
 
 //style
-import Style from '../scss/5.scoped.scss'
+import Style from '../scss/8.scoped.scss'
 
-export default class Five extends Component {
+export default class Seven extends Component {
     constructor(props) {
         super(props);
     }
@@ -32,34 +32,31 @@ export default class Five extends Component {
         return (
             <div className="pi-inv" style={{ height: this.props.height }}>
                 <Seal status={status} />
-                <div className="pi-inv-five">
+                <div className="pi-inv-eight">
                     <div className="pi-inv-body">
+                        <div className="pi-inv-title">
+                            <h2>{title}</h2>
+                        </div>
                         <div className="pi-inv-header">
                             <div className="pi-inv-head">
                                 <div className="pi-inv-from-logo">
                                     {fromData && fromData.logo &&
                                         <img src={fromData.logo.src} alt="" />
                                     }
-                                    </div>
-                                <div className="pi-inv-from-date">
-                                    <div className="pi-inv-title">
-                                        <h2>{title}</h2>
-                                    </div>
-                                    <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                    <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
-                                    <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                 </div>
-                            </div>
-                            <div className="pi-inv-shapes">
-                                <div className="pi-inv-shape1" />
-                                <div className="pi-inv-shape2" />
-                            </div>
-                            <div className="pi-inv-address">
                                 <div className="pi-inv-from">
                                     <From data={fromData} />
                                 </div>
+                            </div>
+                            <div className="pi-inv-shapes" />
+                            <div className="pi-inv-address">
                                 <div className="pi-inv-to">
                                     <To data={toData} />
+                                </div>
+                                <div className="pi-inv-from-date">
+                                    <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
+                                    <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                    <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +72,10 @@ export default class Five extends Component {
                         </div>
                     </div>
                 </div>
+
             </div>
+
+
         );
     }
 } 

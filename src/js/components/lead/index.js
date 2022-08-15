@@ -12,19 +12,23 @@ import Empty from 'block/empty';
 
 import Crud from 'hoc/Crud';
 
+import { __ } from '@wordpress/i18n';
+// const { __, _e } = wp.i18n;
+
 const Lead = (props) => {
+
 	useEffect(() => {
-        props.getLists();
-    }, []);
+		props.getLists();
+	}, []);
 
 	const { title, lists, checkedBoxes, searchVal } = props.state;
 	return (
 		<div className="ncpi-components">
 			<Breadcrumb title={title} />
-
 			<div className="row">
 				<div className="col">
-					<h2 className="pi-page-title">{title}</h2>
+					<h2 className="pi-page-title">{ncpi.i18n.common.search}{ncpi.i18n.lead.label}{__('Hello, world!', 'propovoice')} {title}</h2>
+					{/* <h2 className="pi-page-title">{title}</h2> */}
 				</div>
 				<div className="col">
 					<AddNew
@@ -74,7 +78,7 @@ const Lead = (props) => {
 						<path
 							d="M3.125 10H4.375"
 							stroke="#4A5568"
-							strokeWidth="1.5"
+							strokeWidth="1.5" Lead
 							strokeLinecap="round"
 							strokeLinejoin="round"
 						/>
@@ -147,9 +151,7 @@ const Lead = (props) => {
 
 			{props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
-			<div className="pi-pagination-content">
-				{props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
-			</div>
+			{props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
 		</div>
 	);
 }
