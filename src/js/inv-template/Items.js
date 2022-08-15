@@ -1,5 +1,5 @@
 import Item from './Item' 
-const Items = props => {
+export default (props) => {
     const label = props.item_label;
     return (
         <div className="pi-inv-items">
@@ -24,5 +24,4 @@ const Items = props => {
             </table>
         </div>
     )
-} 
-export default Items;
+}  

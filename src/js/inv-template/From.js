@@ -1,4 +1,4 @@
-const From = (props) => {
+export default (props) => {
     const data = props.data  
     return (
         <>
@@ -20,5 +20,4 @@ const From = (props) => {
             }
         </>
     )
-}
-export default From 
+} 

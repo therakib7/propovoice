@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import Item from './Item'
 import styles from './scss/Items.module.scss'
 
-const Items = props => {
+export default (props) => {
     const handleDragEnd = (result) => {
 
         if (!result.destination) return
@@ -109,5 +109,4 @@ const Items = props => {
             </div>
         </>
     )
-}
-export default Items
+} 

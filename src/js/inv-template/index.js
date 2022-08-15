@@ -47,8 +47,7 @@ export default class Preview extends Component {
                     {id == 1 && <Template1 {...this.props} height={this.props.height} isPreviewLoaded={this.isPreviewLoaded} />}
                     {id == 2 && <Template2 {...this.props} height={this.props.height} isPreviewLoaded={this.isPreviewLoaded} />}
                     {id == 3 && <Template3 {...this.props} height={this.props.height} isPreviewLoaded={this.isPreviewLoaded} />}
-                    {id == 4 && <Template4 {...this.props} height={this.props.height} isPreviewLoaded={this.isPreviewLoaded} />} 
-                    {/* <Template8 {...this.props} height={this.props.height} isPreviewLoaded={this.isPreviewLoaded} /> */}
+                    {id == 4 && <Template4 {...this.props} height={this.props.height} isPreviewLoaded={this.isPreviewLoaded} />}  
                 </>
             </Suspense>
         );

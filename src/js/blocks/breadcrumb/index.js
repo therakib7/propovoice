@@ -1,5 +1,5 @@
 
-const Breadcrumb = (props) => {
+export default (props) => {
 	return (
 		<nav className="pi-breadcrumb">
 			<ul className="">
@@ -28,6 +28,4 @@ const Breadcrumb = (props) => {
 			</ul>
 		</nav>
 	);
-};
-
-export default Breadcrumb;
+}

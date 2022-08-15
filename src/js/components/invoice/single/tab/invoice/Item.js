@@ -1,4 +1,4 @@
-const Item = props => {
+export default (props) => {
     const calcItemTotal = (qty, price, tax, tax_type) => {
         let tax_total = 0;
         if (props.item_tax && tax) {
@@ -118,7 +118,3 @@ const Item = props => {
         </>
     )
 }
-
-export default Item
-
-

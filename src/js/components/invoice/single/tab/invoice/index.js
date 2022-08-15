@@ -1046,7 +1046,9 @@ class Invoice extends Component {
 															itemTaxChange={this.itemTaxChange}
 															handleChange={this.onExtraFieldChange}
 															data={invoice.extra_field}
-														/>
+														>
+															sdf
+														</AdditionalAmount>
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'reminder') && <li>

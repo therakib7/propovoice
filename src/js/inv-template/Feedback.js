@@ -1,4 +1,4 @@
-const Feedback = (props) => {
+export default (props) => {
 	let status = false;
 	let title, desc;
 	let extraColor = '';
@@ -28,5 +28,3 @@ const Feedback = (props) => {
 		</>
 	)
 }
-
-export default Feedback

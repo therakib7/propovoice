@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from "react"; 
 import useClickOutside from 'block/outside-click';
 
-const AddNew = (props) => {
+export default (props) => {
 
     const dropdownRef = useRef();
     const [dropdown, setDropdown] = useState(false);
@@ -98,6 +98,4 @@ const AddNew = (props) => {
             </div>}
         </div>
     );
-}
-
-export default AddNew;  
+} 

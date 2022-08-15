@@ -1,4 +1,4 @@
-const Icon = () => {
+export default () => {
   return (
     <svg width={24} height={24}>
     <path
@@ -11,5 +11,4 @@ const Icon = () => {
     />
 </svg>
   )
-}
-export default Icon
+} 

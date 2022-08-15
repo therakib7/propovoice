@@ -1,4 +1,4 @@
-const Section = (props) => { 
+export default (props) => { 
     const groups = props.data; 
     return (
         <div className="pi-inv-sections">
@@ -13,4 +13,3 @@ const Section = (props) => {
         </div>
     )
 }
-export default Section

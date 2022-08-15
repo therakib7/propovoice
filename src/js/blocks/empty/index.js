@@ -1,4 +1,4 @@
-const Empty = (props) => {
+export default (props) => {
     const { title, clickHandler, searchVal, logo = '' } = props;
     return (
         <> 
@@ -41,9 +41,7 @@ const Empty = (props) => {
                     </svg>
                     Let&apos;s Start {title == 'Client' ? 'Adding' : 'Creating'}
                 </button>
-            </div>
-
+            </div> 
         </>
     );
-}
-export default Empty;
+} 

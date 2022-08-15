@@ -1,4 +1,4 @@
-const Icon = (props) => {
+export default () => {
   let s = '25';
   if (props.size == 'small') {
     s = 16
@@ -25,5 +25,4 @@ const Icon = (props) => {
       />
     </svg>
   )
-}
-export default Icon
+} 

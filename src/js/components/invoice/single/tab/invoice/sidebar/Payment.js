@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify'; 
-import AppContext from 'context/app-context'; 
+import { toast } from 'react-toastify';
+import AppContext from 'context/app-context';
 import Api from 'api/payment';
 
 //others component
@@ -45,11 +45,10 @@ class Payment extends Component {
 
         let params = new URLSearchParams(args).toString();
 
-        Api.getAll(params)
-            .then(resp => {
-                let result = resp.data.data.result;
-                this.setState({ payments: result, preloader: false });
-            })
+        Api.getAll(params).then(resp => {
+            let result = resp.data.data.result;
+            this.setState({ payments: result, preloader: false });
+        })
     };
 
     setPayment = (data, type) => {

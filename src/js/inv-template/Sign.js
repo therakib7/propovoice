@@ -1,4 +1,4 @@
-const Sign = (props) => {
+export default (props) => {
 	const sign = props.data;
 	return (
 		<div className="pi-inv-sign">
@@ -11,5 +11,4 @@ const Sign = (props) => {
 			}
 		</div>
 	)
-}
-export default Sign
+} 

@@ -1,4 +1,4 @@
-const Payment = props => {
+export default (props) => {
     const { bankData } = props.data;
     return (
         <>
@@ -12,5 +12,4 @@ const Payment = props => {
             </div>
         </>
     )
-}
-export default Payment;
+} 

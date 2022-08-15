@@ -1,4 +1,4 @@
-const Item = props => {
+export default (props) => {
     const locale = 'en-US'
 	const currency = 'USD'
 
@@ -43,4 +43,3 @@ const Item = props => {
         </tr>
     )
 }  
-export default Item 
