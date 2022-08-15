@@ -27,52 +27,11 @@ class PaymentProcess
                 'permission_callback' => [$this, 'create_permission']
             ],
         ]);
-    }
-
-    
+    } 
 
     public function get($req)
     {
-        $request = $req->get_params();
-
-        $type = isset($request['type']) ? sanitize_text_field($request['type']) : '';
-
-        if ($type == 'payment_indent') {
-            $id = isset($request['id']) ? absint($request['id']) : '';  
-
-            $invoice = get_post_meta($id, 'invoice', true); 
-            $payment_methods = isset($invoice['payment_methods']) ? $invoice['payment_methods'] : null;
-            $stripe_id = isset($payment_methods['stripe']) ? $payment_methods['stripe'] : null; 
-
-            $invoice_model = new Invoice();
-            $amount = $invoice_model->getTotalAmount( $invoice );
-            // Create a stripe payment intent
-            $secret_key = get_post_meta($stripe_id, 'secret_key', true); 
-
-            try {
-                $stripe = new \Stripe\StripeClient($secret_key);
-
-                /* $customer = $stripe->customers->create([
-                    'email' => $user->user_email,
-                ]); */
-
-                $paymentIntents = $stripe->paymentIntents->create([
-                    'amount' => $amount,
-                    'currency' => 'USD',
-                    'description' => 'Propovoice Invoice', //TODO: check it
-                    // 'customer' => $customer,
-                    // 'receipt_email' => $user->user_email,
-                    'payment_method_types' => ['card'],
-                ]);
-            } catch (\Exception $e) {
-                // status_header(402);
-                // wp_send_json($e->jsonBody);
-            }
-
-            wp_send_json_success([
-                'intent_obj' => $paymentIntents
-            ]);
-        }
+        $request = $req->get_params(); 
     }
 
     public function create($req)

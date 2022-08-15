@@ -27,6 +27,7 @@ class Stripe extends Component {
 
     render() {
         const data = this.props.data;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -61,8 +62,7 @@ class Stripe extends Component {
                         <div className="pi-form-style-one">
                             <div className="row">
                                 <div className="col-lg">
-                                    <label htmlFor="form-name">                    {i18n.name}
-                                    </label>
+                                    <label htmlFor="form-name">{i18n.name}</label>
 
                                     <input
                                         id="form-name"

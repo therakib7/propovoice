@@ -37,8 +37,7 @@ class I18n
             'num' => esc_html__('Number', 'propovoice'),
             'sender' => esc_html__('Sender', 'propovoice'),
             'rec' => esc_html__('Receiver', 'propovoice'),
-            'item' => esc_html__('Item', 'propovoice'),
-            'sl' => esc_html__('SL', 'propovoice'),
+            'item' => esc_html__('Item', 'propovoice'), 
             'qty' => esc_html__('Quantity', 'propovoice'),
             'rate' => esc_html__('Quantity', 'propovoice'),
             'amount' => esc_html__('Amount', 'propovoice'),
@@ -66,7 +65,7 @@ class I18n
             //contact
             'book' => esc_html__('Book', 'propovoice'),
             'person' => esc_html__('Person', 'propovoice'),
-            'org' => esc_html__('organization', 'propovoice'),
+            'org' => esc_html__('Organization', 'propovoice'),
             'name' => esc_html__('Name', 'propovoice'),
             'email' => esc_html__('Email', 'propovoice'),
             'mob' => esc_html__('Mobile', 'propovoice'),
