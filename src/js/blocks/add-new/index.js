@@ -54,7 +54,7 @@ const AddNew = (props) => {
                         strokeLinejoin="round"
                     ></path>
                 </svg>
-                Add {props.title}
+                {i18n.add} {props.title}
             </button>
 
             {false && <div className="pi-action-content pi-action-btn" ref={dropdownRef}>

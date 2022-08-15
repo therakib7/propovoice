@@ -90,7 +90,7 @@ class Contact extends Component {
                         />
 
                         {this.state.personModal && <div className="pi-dropdown-content pi-show">
-                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ Add '{this.props.first_name}' as New Contact</button>
+                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ {i18n.add} '{this.props.first_name}' as New Contact</button>
                             {this.state.personList.map((item, i) => (
                                 <a key={i} onClick={(e) => this.handleSelect(e, item, 'person')}>{item.first_name}</a>
                             ))}

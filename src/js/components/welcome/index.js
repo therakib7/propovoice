@@ -107,6 +107,7 @@ export default class Welcome extends Component {
 
     render() {
         const { tabs = [], currentTab, currentTabIndex } = this.state;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-main-content">
 
@@ -149,7 +150,7 @@ export default class Welcome extends Component {
                                     </p>
                                     <div className="pi-buttons pi-text-center">
                                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
-                                            Create Business Profile
+                                        {i18n.create} {i18n.business} {i18n.profile}
                                         </button>
                                         <a href={ndpi.dashboard} className="pi-text-hover-blue">Skip and Go Dashboard</a>
                                     </div>
@@ -223,7 +224,7 @@ export default class Welcome extends Component {
                                                         </svg>
                                                     </div>
                                                     <div className="pi-add-item-text">
-                                                        <h3>Add Lead</h3>
+                                                        <h3>{i18n.add} Lead</h3>
                                                         <p>Easily add new client with just a few clicks.</p>
                                                     </div>
                                                 </div>
@@ -267,7 +268,7 @@ export default class Welcome extends Component {
                                                         </svg>
                                                     </div>
                                                     <div className="pi-add-item-text">
-                                                        <h3>Add Client</h3>
+                                                        <h3>{i18n.add} Client</h3>
                                                         <p>Easily add new client with just a few clicks.</p>
                                                     </div>
                                                 </div>

@@ -150,7 +150,7 @@ class Section extends Component {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Add New Section
+                    {i18n.add} {i18n.new} {i18n.section}
                 </button>
             </div>
         )

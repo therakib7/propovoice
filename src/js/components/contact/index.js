@@ -46,7 +46,7 @@ const Contact = (props) => {
                 strokeLinejoin="round"
               ></path>
             </svg>
-            Add {title}
+            {ndpi.i18n.add} {title}
           </button>
           <span className="pi-action-btn">
             <svg
