@@ -3,8 +3,7 @@ import { toast } from 'react-toastify';
 // import jsPDF from 'jspdf';
 // import html2canvas from 'html2canvas';
 
-import Api from 'api/email';
-
+import WithApi from 'hoc/Api';
 class Send extends Component {
     constructor(props) {
         super(props);
@@ -132,17 +131,17 @@ class Send extends Component {
     sendEmail = () => {
         let form = { ...this.state.form }
         form.type = 'sent';
-        Api.create(form)
-            .then(resp => {
-                if (resp.data.success) {
-                    toast.success('Mail sucessfully sent');
-                    this.props.close();
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            })
+
+        this.props.create('emails', form).then(resp => {
+            if (resp.data.success) {
+                toast.success('Mail sucessfully sent');
+                this.props.close();
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        });
     }
 
     render() {
@@ -267,5 +266,4 @@ class Send extends Component {
         );
     }
 }
-
-export default Send;
+export default WithApi(Send);  

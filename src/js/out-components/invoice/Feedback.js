@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
-import Api from 'api/email';
 
+import WithApi from 'hoc/Api';
 class Feedback extends Component {
     constructor(props) {
         super(props);
@@ -34,25 +34,25 @@ class Feedback extends Component {
 
         let form = { ...this.state.form }
         form.type = 'feedback';
-        Api.create(form)
-            .then(resp => {
-                if (resp.data.success) {
-                    this.props.close();
 
-                    if (form.feedback_type == 'accept') {
-                        this.props.handleSubmit('accept');
-                        toast.success('Thanks for accepting');
-                    } else {
-                        this.props.handleSubmit('decline');
-                        toast.success('Sorry for declining');
-                    }
+        this.props.create('emails', form).then(resp => {
+            if (resp.data.success) {
+                this.props.close();
 
+                if (form.feedback_type == 'accept') {
+                    this.props.handleSubmit('accept');
+                    toast.success('Thanks for accepting');
                 } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
+                    this.props.handleSubmit('decline');
+                    toast.success('Sorry for declining');
                 }
-            })
+
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        });
     }
 
     handleUploadChange = (data, type = null) => {
@@ -142,5 +142,4 @@ class Feedback extends Component {
         );
     }
 }
-
-export default Feedback; 
+export default WithApi(Feedback);  

@@ -1,8 +1,4 @@
-import React, { Component } from 'react';
-
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import Select from 'react-select';
-import ApiTaxonomy from 'api/taxonomy';
+import React, { Component } from 'react'; 
 
 class Form extends Component {
     constructor(props) {

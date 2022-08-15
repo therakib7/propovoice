@@ -1,5 +1,4 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
-import WithApi from 'hoc/Api';
+import React, { useCallback, useRef, useState, useEffect } from "react"; 
 import useClickOutside from 'block/outside-click';
 
 const AddNew = (props) => {
@@ -100,4 +99,4 @@ const AddNew = (props) => {
     );
 }
 
-export default WithApi(AddNew);  
+export default AddNew;  
