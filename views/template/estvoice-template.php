@@ -34,12 +34,12 @@
         }
 
         if ($check_permission) {
-            echo '<div id="ncpi-invoice"></div>';
+            echo '<div id="ndpi-invoice"></div>';
         } else {
             //esc_html_e('Sorry!! You don\'t have permission to view this page', 'propovoice'); 
             ncpi()->render('template/partials/403');
         }
-    } else {  
+    } else {
         //esc_html_e('Sorry!! page not found', 'propovoice');
         ncpi()->render('template/partials/404');
     }

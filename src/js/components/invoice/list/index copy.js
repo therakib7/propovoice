@@ -12,7 +12,6 @@ import Api from 'api/invoice';
 import ApiAction from 'api/action';
 
 import Table from './Table';
-import Search from './Search';
 import Empty from 'block/empty';
 
 const Invoice = class Invoice extends Component {
@@ -243,7 +242,7 @@ const Invoice = class Invoice extends Component {
                     <ul>
                         <li>
                             <a href='#' >
-                                Home
+                                {ndpi.i18n.home}
                             </a>
                         </li>
                         <li>

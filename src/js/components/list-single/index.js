@@ -241,20 +241,21 @@ class ListSingle extends Component {
         const { tabs = [], currentTab } = this.state;
         const { path } = this.props;
         const data = this.state.data;
-        
-        let img = ncpi.assetImgUri + 'avatar.png'; 
-        if ( data.person && data.person.img ) {
+
+        let img = ndpi.assetImgUri + 'avatar.png';
+        if (data.person && data.person.img) {
             img = data.person.img.src;
-        } else if ( data.org && data.org.img ) {
+        } else if (data.org && data.org.img) {
             img = data.org.img.src;
         }
+        const i18n = ndpi.i18n;
         return (
             <div className="ncpi-components">
                 <nav className="pi-breadcrumb">
                     <ul className="">
                         <li>
                             <a href="#" className="">
-                                Home
+                                {ndpi.i18n.home}
                             </a>
                         </li>
                         <li>
@@ -420,7 +421,7 @@ class ListSingle extends Component {
 
                                 <li>
                                     <label htmlFor="">Source: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.source_id} taxonomy='lead_source' title='Source' small={true} color={true} />}
+                                    {data.id && <Taxonomy id={data.id} data={data.source_id} taxonomy='lead_source' title='Source' small={true} color={true} hide_bg={true} />}
                                 </li>
                             </ul>
                         </div>
@@ -514,7 +515,7 @@ class ListSingle extends Component {
                                                     style={{ padding: "9px 15px !important" }}
                                                     onClick={() => this.handleStageChange('won')}
                                                 >
-                                                    <img className='pi-mr-5' src={ncpi.assetImgUri + 'happy.png'} alt="won" />
+                                                    <img className='pi-mr-5' src={ndpi.assetImgUri + 'happy.png'} alt="won" />
                                                     Won
                                                 </button>}
 
@@ -523,7 +524,7 @@ class ListSingle extends Component {
                                                     style={{ padding: "9px 15px !important" }}
                                                     onClick={() => this.handleStageChange('lost')}
                                                 >
-                                                    <img className='pi-mr-5' src={ncpi.assetImgUri + 'sad.png'} alt="sad" />
+                                                    <img className='pi-mr-5' src={ndpi.assetImgUri + 'sad.png'} alt="sad" />
                                                     Lost
                                                 </button>}
                                             </>}
@@ -687,11 +688,11 @@ class ListSingle extends Component {
                                     {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small={true} multiple={true} />}
                                 </li>
                                 <li>
-                                    <label htmlFor="">Start Date:</label>
+                                    <label htmlFor="">{i18n.start} {i18n.date}:</label>
                                     <span className="pi-date">{data.start_date && <Moment format="YYYY-MM-DD">{data.start_date}</Moment>}</span>
                                 </li>
                                 <li>
-                                    <label htmlFor="">Due Date:</label>
+                                    <label htmlFor="">{i18n.preventDefault} {i18n.date}:</label>
                                     <span className="pi-date">{data.due_date && <Moment format="YYYY-MM-DD">{data.due_date}</Moment>}</span>
                                 </li>
                                 <li />

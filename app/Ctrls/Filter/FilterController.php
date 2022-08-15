@@ -2,8 +2,8 @@
 
 namespace Ncpi\Ctrls\Filter;
 
-use Ncpi\Ctrls\Filter\Types\BodyClass;
-use Ncpi\Ctrls\Filter\Types\Media;
+use Ncpi\Ctrls\Filter\Type\BodyClass;
+use Ncpi\Ctrls\Filter\Type\Media;
 
 class FilterController
 {

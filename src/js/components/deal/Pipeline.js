@@ -165,7 +165,7 @@ function Pipeline(props) {
 										}} */
 										>
 											{column.items.map((item, index) => {
-												let img = ncpi.assetImgUri + 'avatar.png';
+												let img = ndpi.assetImgUri + 'avatar.png';
 												if (item.person && item.person.img) {
 													img = item.person.img.src;
 												} else if (item.org && item.org.img) {

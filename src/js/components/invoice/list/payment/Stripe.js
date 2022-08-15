@@ -61,8 +61,7 @@ class Stripe extends Component {
                         <div className="pi-form-style-one">
                             <div className="row">
                                 <div className="col-lg">
-                                    <label htmlFor="form-name">
-                                        Name
+                                    <label htmlFor="form-name">                    {i18n.name}
                                     </label>
 
                                     <input

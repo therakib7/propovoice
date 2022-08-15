@@ -217,7 +217,7 @@ class Form extends Component {
         const tagList = this.state.tags;
 
         const form = this.state.form;
-
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">
@@ -245,7 +245,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Lead</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Lead</h2>
                         <p>Add new lead from here</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
@@ -261,7 +261,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-email">
-                                            Email
+                                            {i18n.email}
                                         </label>
                                         <input
                                             id="form-email"
@@ -275,7 +275,7 @@ class Form extends Component {
 
                                     <div className="col-lg">
                                         <label htmlFor="form-mobile">
-                                            Mobile Number
+                                            {i18n.mob}
                                         </label>
 
                                         <input
@@ -389,11 +389,11 @@ class Form extends Component {
                         <div className="pi-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        Save
+                                        {i18n.save}
                                     </button>
                                 </div>
                             </div>

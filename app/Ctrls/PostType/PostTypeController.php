@@ -2,8 +2,8 @@
 
 namespace Ncpi\Ctrls\PostType;
 
-use Ncpi\Ctrls\PostType\Types\Invoice;
-use Ncpi\Ctrls\PostType\Types\Proposal;
+use Ncpi\Ctrls\PostType\Type\Invoice;
+use Ncpi\Ctrls\PostType\Type\Proposal;
 
 class PostTypeController {
 	

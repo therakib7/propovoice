@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import Editable from './ChecklistTitle';
 import Action from './Action';
 
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
+
 class Checklist extends Component {
 
     constructor(props) {
@@ -51,6 +54,11 @@ class Checklist extends Component {
 
     addChecklist = (e) => {
         e.preventDefault();
+        if ( wage.length > 0 ) {
+			pro();
+			return;
+		}
+
         let checklist = this.state.checklist;
         checklist.push({
             label: 'Checklist',
@@ -60,6 +68,10 @@ class Checklist extends Component {
     };
 
     handleNewItem = (e, index) => {
+        if ( wage.length > 0 ) {
+			pro();
+			return;
+		}
         let items = this.state.checklist[index];
         items['newItem'] = e.target.value;
         let checklist = this.state.checklist;
@@ -137,6 +149,9 @@ class Checklist extends Component {
                                     index={checklist_index}
                                     changeHandler={this.handleChecklistLabel}
                                 />
+                                {wage.length > 0 && <>
+                                    <ProLabel />
+                                </>}
                                 <span>{this.doneCount(checklist_index, true)} task done out of {this.doneCount(checklist_index, false)}</span>
                                 <div
                                     className="pi-close-icon"
@@ -255,6 +270,9 @@ class Checklist extends Component {
                         />
                     </svg>
                     Add Checklist
+                    {wage.length > 0 && <>
+                        <ProLabel />
+                    </>}
                 </button>
             </>
         )

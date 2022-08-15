@@ -6,13 +6,13 @@ class Total extends Component {
     render = () => {
 
         const { currencyFormatter, itemsTotal, extra_field, changeHandler, focusHandler, grandTotal } = this.props
-
+        const i18n = ndpi.i18n; 
         return (
             <div className="pi-calculation">
                 <table>
                     <tbody>
                         <tr>
-                            <td>SubTotal</td>
+                            <td>{i18n.subT}</td>
                             <td>{currencyFormatter(itemsTotal())}</td>
                         </tr> 
                         {extra_field.map((item, i) => {
@@ -43,7 +43,7 @@ class Total extends Component {
                         })} 
 
                         <tr>
-                            <td>Total</td>
+                            <td>{i18n.total}</td>
                             <td>{currencyFormatter(grandTotal())}</td>
                         </tr>
                     </tbody>

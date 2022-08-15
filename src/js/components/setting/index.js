@@ -34,50 +34,51 @@ const SettingWrap = (props) => {
         tabDefault = 'general'
     }
 
+    const i18n = ndpi.i18n;
     const tab_data = {
         general: {
-            label: 'General'
-        }, 
+            label: i18n.general
+        },
         lead: {
-            label: 'Lead'
+            label: i18n.lead
         },
         deal: {
-            label: 'Deal'
+            label: i18n.deal
         },
         estimate: {
-            label: 'Estimate'
+            label: i18n.est
         },
         invoice: {
-            label: 'Invoice'
+            label: i18n.inv
         },
         project: {
-            label: 'Project'
+            label: i18n.project
         },
         payment: {
-            label: 'Payment'
+            label: i18n.payment
         },
         email: {
-            label: 'Email Template',
+            label: i18n.email + ' ' + i18n.tmpl,
             subtabs: {
                 estimate: {
-                    label: 'Estimate',
+                    label: i18n.est,
                 },
                 invoice: {
-                    label: 'Invoice'
+                    label: i18n.inv
                 },
                 social: {
-                    label: 'Social'
+                    label: i18n.social
                 },
             },
         },
         task: {
-            label: 'Task & Activity'
+            label: i18n.task
         },
         contact: {
-            label: 'Contact'
+            label: i18n.contact
         },
         tag: {
-            label: 'Tag'
+            label: i18n.tag
         },
     };
 
@@ -86,7 +87,7 @@ const SettingWrap = (props) => {
     const [tabs, setTabs] = useState(tab_data);
 
     useEffect(() => {
-        if ( has_wage.ins ) {
+        if (has_wage.ins) {
             let new_tabs = { ...tabs }
             new_tabs.license = {
                 label: 'License Manager'
@@ -114,7 +115,7 @@ const SettingWrap = (props) => {
         <>
             <nav className='pi-breadcrumb'>
                 <ul>
-                    <li><a href='#'>Home</a></li>
+                    <li><a href='#'>{i18n.home}</a></li>
                     <li>
                         <svg
                             width={5}
@@ -131,11 +132,11 @@ const SettingWrap = (props) => {
                             />
                         </svg>
                     </li>
-                    <li className='pi-active'>Settings</li>
+                    <li className='pi-active'>{i18n.settings}</li>
                 </ul>
             </nav>
 
-            <h2 className='pi-page-title'>Settings</h2>
+            <h2 className='pi-page-title'>{i18n.settings}</h2>
 
             <div className='pi-settings-tab'>
                 <div className='row'>
@@ -169,7 +170,7 @@ const SettingWrap = (props) => {
 
                     <div className='col-md-9'>
                         <div className="pi-setting-tab-content">
-                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} Settings</h4>
+                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} {i18n.settings}</h4>
 
                             <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && <General />}

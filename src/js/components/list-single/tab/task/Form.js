@@ -17,25 +17,25 @@ const Form = (props) => {
         start_date: false,
         due_date: false,
         date: false,
-    }; 
+    };
 
     const [form, setForm] = useState(initialState);
     const [status, setStatus] = useState([]);
     const [types, setTypes] = useState([]);
     const [priorities, setPriorities] = useState([]);
 
-    const [dropdownType, setDropdownType] = useState( false );
-    const [dropdownPriorities, setDropdownPriorities] = useState( false );
+    const [dropdownType, setDropdownType] = useState(false);
+    const [dropdownPriorities, setDropdownPriorities] = useState(false);
 
-    const dropdownTypeRef = useRef(); 
+    const dropdownTypeRef = useRef();
     const closeType = useCallback(() => setDropdownType(false), []);
     useClickOutside(dropdownTypeRef, closeType);
 
-    const dropdownPrioritiesRef = useRef(); 
+    const dropdownPrioritiesRef = useRef();
     const closePriorities = useCallback(() => setDropdownPriorities(false), []);
     useClickOutside(dropdownPrioritiesRef, closePriorities);
 
-    useEffect(() => { 
+    useEffect(() => {
         props.getAll('taxonomies', 'taxonomy=task_status,task_type,task_priority').then(resp => {
             if (resp.data.success) {
                 let mform = { ...form }
@@ -45,11 +45,11 @@ const Form = (props) => {
                 //TODO: add fallback if no taxonomy
                 mform.status_id = status[0];
                 mform.type_id = types[0];
-                mform.priority_id = priorities[0]; 
+                mform.priority_id = priorities[0];
                 setForm(mform)
                 setStatus(status)
                 setTypes(types)
-                setPriorities(priorities) 
+                setPriorities(priorities)
 
                 props.setTaxonomies({
                     status,
@@ -58,33 +58,33 @@ const Form = (props) => {
                 });
             }
         });
-    }, []); 
+    }, []);
 
     const setTax = (e, value, key) => {
-        e.preventDefault(); 
-        if ( key == 'type_id' ) {
+        e.preventDefault();
+        if (key == 'type_id') {
             setDropdownType(false)
         } else {
             setDropdownPriorities(false)
         }
-        setForm( { ...form, [key]: value } )
+        setForm({ ...form, [key]: value })
     };
 
     const handleChange = e => {
         const target = e.target;
         const name = target.name;
-        const value = target.type === 'checkbox' ? target.checked : target.value; 
-        setForm( { ...form, [name]: value } )
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        setForm({ ...form, [name]: value })
     }
 
     const onDateChange = (date, type = null) => {
-        let mForm = { ...form } 
+        let mForm = { ...form }
         if (type == 'start_date') {
             mForm.start_date = date;
         } else {
             mForm.due_date = date;
-        } 
-        setForm( mForm )
+        }
+        setForm(mForm)
     }
 
     const handleSubmit = (e) => {
@@ -96,8 +96,8 @@ const Form = (props) => {
             mForm.status_id = parseInt(mForm.status_id.id);
         }
 
-        if ( mForm.start_date ) {
-            let startDate = moment(mForm.start_date).format('YYYY-MM-DD'); 
+        if (mForm.start_date) {
+            let startDate = moment(mForm.start_date).format('YYYY-MM-DD');
             mForm.start_date = startDate;
         }
 
@@ -108,24 +108,24 @@ const Form = (props) => {
         if (mForm.priority_id) {
             mForm.priority_id = parseInt(mForm.priority_id.id);
         }
-         
+
         props.handleSubmit(mForm, 'new');
 
         let newFrom = { ...initialState };
         newFrom.status_id = status[0];
         newFrom.type_id = types[0];
-        newFrom.priority_id = priorities[0]; 
+        newFrom.priority_id = priorities[0];
 
-        setForm( newFrom )
-    } 
-    
+        setForm(newFrom)
+    }
+
     return (
         <form onSubmit={handleSubmit} className="">
             <div className="pi-tab-buttons-group">
                 <div className="pi-activity-field">
                     <input
                         id="field-title"
-                        type="text" 
+                        type="text"
                         required
                         name="title"
                         value={form.title}
@@ -138,7 +138,7 @@ const Form = (props) => {
                         <DateField date={form.start_date} type='start_date' onDateChange={onDateChange} />
                     </div>
                     <div className="pi-action-content" ref={dropdownTypeRef}>
-                        <button className='pi-task-btn' type='button' onClick={() => setDropdownType(prevCheck => !prevCheck) }>
+                        <button className='pi-task-btn' type='button' onClick={() => setDropdownType(prevCheck => !prevCheck)}>
                             {form.type_id.icon && <img src={form.type_id.icon.src} />}
                             {!form.type_id.icon && <svg
                                 width={16}
@@ -170,7 +170,7 @@ const Form = (props) => {
                     </div>
 
                     <div className="pi-action-content" ref={dropdownPrioritiesRef}>
-                        <button className='pi-task-btn' type='button' onClick={() => setDropdownPriorities(prevCheck => !prevCheck) }>
+                        <button className='pi-task-btn' type='button' onClick={() => setDropdownPriorities(prevCheck => !prevCheck)}>
                             <svg
                                 width={18}
                                 height={18}
@@ -219,7 +219,7 @@ const Form = (props) => {
                     </div>
 
                     <button type='submit' className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-br-4">
-                        Save
+                        {ndpi.i18n.save}
                     </button>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import useClickOutside from 'block/outside-click';
 import Form from './Form';
 import WithApi from 'hoc/Api';
 import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 
 const Taxonomy = (props) => {
 	const dropdownContent = useRef();
@@ -42,7 +43,12 @@ const Taxonomy = (props) => {
 			setList(props.list);
 			return;
 		}
-		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy).then(resp => {
+		//this is for lead source
+		let hide_bg = '';
+		if (props.hide_bg) {
+			hide_bg = '&hide_bg=true';
+		}
+		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + hide_bg).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 			}
@@ -198,7 +204,7 @@ const Taxonomy = (props) => {
 					<button onClick={(e) => { openModal(e, 'new') }}>
 						+ Add New {props.title}
 						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <>
-							<span className="pi-pro-label">PRO</span>
+							<ProLabel />
 						</>}
 					</button>
 					{list && list.map((item, itemIndex) => {

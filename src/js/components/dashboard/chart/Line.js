@@ -27,7 +27,7 @@ export default class Section extends PureComponent {
                     className="pi-title-medium pi-mb-20"
                     style={{ fontWeight: "bold", color: "#718096" }}
                 >
-                    Deal Tracking
+                    {ndpi.i18n.deal} {ndpi.i18n.tracking}
                 </h3>
                 <div style={{ width: '100%', height: '300px' }}>
                     <ResponsiveContainer width="100%" height="100%">

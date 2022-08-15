@@ -1,11 +1,11 @@
-import { useEffect } from "react"; 
+import { useEffect } from "react";
 
 export default (props) => {
 
     useEffect(() => {
         if (!props.id) {
             const path = props.path;
-            props.getAll('settings', 'tab=' + path + '_reminder').then(resp => { 
+            props.getAll('settings', 'tab=' + path + '_reminder').then(resp => {
                 if (resp.data.success) {
                     props.handleDefault(resp.data.data);
                 }
@@ -18,12 +18,14 @@ export default (props) => {
     }
 
     const reminder = props.data;
+    const i18n = ndpi.i18n;
+
     return (
         <div>
             <div className="pi-form-style-one">
                 <div className="row">
                     <div className="col">
-                        <label>Reminder</label>
+                        <label>{i18n.rem}</label>
                         <div className="pi-field-checkbox">
                             <input
                                 type='checkbox'
@@ -39,7 +41,7 @@ export default (props) => {
 
                 <div className="row">
                     <div className="col-12">
-                        <label>Reminder Before</label>
+                        <label>{i18n.rem} {i18n.before}</label>
                         <div className="pi-field-checkbox">
                             <input
                                 type='checkbox'
@@ -127,12 +129,12 @@ export default (props) => {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                Add Another
+                                {i18n.add} {i18n.new}
                             </button>
                         </>}
                     </div>
                     <div className="col-12">
-                        <label>Reminder After</label>
+                        <label>{i18n.rem} {i18n.after}</label>
                         <div className="pi-field-checkbox">
                             <input
                                 type='checkbox'

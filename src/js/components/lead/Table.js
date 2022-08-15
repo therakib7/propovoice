@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 import { useNavigate } from 'react-router-dom';
 
 const TableHeader = props => {
+    const i18n = ndpi.i18n;
     return (
         <thead>
             <tr>
@@ -15,25 +16,25 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Contact Name
+                    {i18n.contact} {i18n.name}
                 </th>
                 <th>
                     <Email />
-                    Email
+                    {i18n.email}
                 </th>
                 <th>
                     <Arrow />
-                    Lead Level
+                    {i18n.lead} {i18n.level}
                 </th>
                 <th>
-                    <Tag/>
-                    Tag
+                    <Tag />
+                    {i18n.tag}
                 </th>
                 <th>
-                    Date
+                    {i18n.date}
                 </th>
                 <th>
-                    Action
+                    {i18n.action}
                 </th>
             </tr>
         </thead>
@@ -52,7 +53,7 @@ const TableBody = props => {
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
         const level = row.level_id;
 
-        let img = ncpi.assetImgUri + 'avatar.png';
+        let img = ndpi.assetImgUri + 'avatar.png';
         if (row.person && row.person.img) {
             img = row.person.img.src;
         } else if (row.org && row.org.img) {

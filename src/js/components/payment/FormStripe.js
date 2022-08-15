@@ -58,6 +58,7 @@ class FormStripe extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-overlay">
                 <div className="pi-modal-content">
@@ -84,7 +85,7 @@ class FormStripe extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? 'New' : 'Edit'} Stripe</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Stripe</h2>
                         <p>Please fill up necessary informaiton in the form.</p>
                     </div>
                     <form onSubmit={this.handleSubmit}>
@@ -149,11 +150,11 @@ class FormStripe extends Component {
                         <div className="pi-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">Clear</button>
+                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        Save
+                                        {i18n.save}
                                     </button>
                                 </div>
                             </div>

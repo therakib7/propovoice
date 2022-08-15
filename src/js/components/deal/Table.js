@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import Action from 'block/action/row';
 
 const TableHeader = props => {
+    const i18n = ndpi.i18n;
     return (
         <thead>
             <tr>
@@ -14,7 +15,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Title
+                    {i18n.title}
                 </th>
                 <th>
                     <svg
@@ -38,7 +39,7 @@ const TableHeader = props => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Client
+                    {i18n.client}
                 </th> 
                 <th>
                     <svg
@@ -56,7 +57,7 @@ const TableHeader = props => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Budget
+                    {i18n.budget}
                 </th>
                 <th>
                     <svg
@@ -74,7 +75,7 @@ const TableHeader = props => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Provability
+                    {i18n.proba}
                 </th>
                 <th>
                     <svg
@@ -93,13 +94,13 @@ const TableHeader = props => {
                         />
                         <path d="M5.25 6a.75.75 0 100-1.5.75.75 0 000 1.5z" fill="#718096" />
                     </svg>
-                    Stage
+                    {i18n.stage}
                 </th>
                 <th>
-                    Date
+                    {i18n.date}
                 </th>
                 <th>
-                    Action
+                    {i18n.action}
                 </th>
             </tr>
         </thead>

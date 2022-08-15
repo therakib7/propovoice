@@ -1,51 +1,60 @@
 //TODO: do it like main 
 //rakib code
-.ncpi .pi-field-logo-wrap {
+.ndpi .pi-field-logo-wrap {
   margin-top: 10px;
+
   .pi-field-logo {
-      position: relative;
-      display: inline-block;
-      img {
-          border-radius: 4px;
-      }
+    position: relative;
+    display: inline-block;
+
+    img {
+      border-radius: 4px;
+    }
   }
+
   .pi-field-logo-close {
-      background: #fff;
-      position: absolute;
-      top: -8px;
-      right: -5px;
-      font-size: 15px;
-      padding: 5px;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      line-height: 8px;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: rgb(23 10 18 / 18%) 0px 0px 4px;
+    background: #fff;
+    position: absolute;
+    top: -8px;
+    right: -5px;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 8px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: rgb(23 10 18 / 18%) 0px 0px 4px;
   }
 }
+
 //from reza start
-.ncpi .pi-main-content {
+.ndpi .pi-main-content {
   background-color: var(--pi-bg-color-white);
   margin: 80px 0;
 }
-.ncpi .pi-welcome-tabs-content {
+
+.ndpi .pi-welcome-tabs-content {
   position: relative;
 }
-.ncpi .pi-welcome-title-content {
+
+.ndpi .pi-welcome-title-content {
   text-align: center;
   margin-bottom: 30px;
 }
-.ncpi .pi-welcome-title-content .pi-welcome-title {
+
+.ndpi .pi-welcome-title-content .pi-welcome-title {
   font-weight: 700;
   font-size: 24px;
 }
-.ncpi .pi-welcome-title-content .pi-welcome-disc {
+
+.ndpi .pi-welcome-title-content .pi-welcome-disc {
   font-size: 14px;
   margin-top: 5px;
 }
-.ncpi .pi-container {
+
+.ndpi .pi-container {
   left: 0;
   right: 0;
   margin: auto;
@@ -54,28 +63,34 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 80px 60px 65px;
 }
-.ncpi .pi-container.pi-p-tb {
+
+.ndpi .pi-container.pi-p-tb {
   padding: 30px 60px 40px;
 }
+
 @media screen and (max-width: 768px) {
-  .ncpi .pi-container {
+  .ndpi .pi-container {
     padding: 30px !important;
   }
 }
+
 @media screen and (max-width: 500px) {
-  .ncpi .pi-container {
+  .ndpi .pi-container {
     padding: 15px;
   }
-  .ncpi .pi-main-content {
+
+  .ndpi .pi-main-content {
     margin-top: 30px;
     padding: 15px;
   }
 }
-.ncpi .pi-logo-content {
+
+.ndpi .pi-logo-content {
   text-align: center;
   margin-bottom: 40px;
 }
-.ncpi .pi-buttons.pi-text-center a {
+
+.ndpi .pi-buttons.pi-text-center a {
   display: table;
   color: #000;
   left: 0;
@@ -84,22 +99,27 @@
   padding: 10px;
   font-weight: 600;
 }
-.ncpi #pi-finished .pi-buttons.pi-text-center a:last-child {
+
+.ndpi #pi-finished .pi-buttons.pi-text-center a:last-child {
   color: var(--pi-text-color-white);
   margin-right: 0;
 }
+
 @media screen and (max-width: 500px) {
-  .ncpi #pi-finished .pi-buttons.pi-text-center a {
+  .ndpi #pi-finished .pi-buttons.pi-text-center a {
     margin-bottom: 15px;
   }
 }
-.ncpi .pi-welcome-tabs-content #pi-welcome p {
+
+.ndpi .pi-welcome-tabs-content #pi-welcome p {
   margin-bottom: 70px;
 }
-.ncpi .pi-welcome-tabs-content #pi-finished .pi-sub-title {
+
+.ndpi .pi-welcome-tabs-content #pi-finished .pi-sub-title {
   margin-bottom: 45px;
 }
-.ncpi .pi-welcome-tabs-content #pi-finished .pi-buttons a {
+
+.ndpi .pi-welcome-tabs-content #pi-finished .pi-buttons a {
   padding: 2px 10px;
   font-weight: 600;
   border-radius: 8px;
@@ -111,16 +131,19 @@
   display: inline-block;
   margin-top: 15px;
 }
-.ncpi .pi-welcome-tabs-content #pi-finished .pi-buttons a:first-child {
+
+.ndpi .pi-welcome-tabs-content #pi-finished .pi-buttons a:first-child {
   margin-left: 0px;
 }
-.ncpi .pi-tab-content #pi-brand img {
+
+.ndpi .pi-tab-content #pi-brand img {
   text-align: center;
   margin-bottom: 5px;
 }
-.ncpi .pi-tab-content #pi-brand .pi-upload {
+
+.ndpi .pi-tab-content #pi-brand .pi-upload {
   font-size: 14px;
-  margin-bottom: 100px !important;
+  margin-bottom: 60px !important;
   margin-top: 12px !important;
   font-weight: 500;
   position: relative;
@@ -130,7 +153,8 @@
   margin: auto;
   border-radius: 5px;
 }
-.ncpi .pi-tab-content #pi-brand input {
+
+.ndpi .pi-tab-content #pi-brand input {
   width: 120px;
   font-size: 10px;
   padding: 13px;
@@ -141,7 +165,8 @@
   transform: translateX(-50%);
   opacity: 0;
 }
-.ncpi #pi-finished h1 {
+
+.ndpi #pi-finished h1 {
   font-weight: 500;
   line-height: 40px;
   margin-top: 20px;

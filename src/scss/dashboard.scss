@@ -7,7 +7,7 @@
 
 //editor js
 //TODO: do it only for editor
-/* .ncpi-page-content {
+/* .ndpi-page-content {
     max-height: 600px; //TODO: add a4 size later
     overflow: hidden;
 } */
@@ -25,7 +25,7 @@
 
 
 //for backend only 
-/* .ncpi .pi-right-content {
+/* .ndpi .pi-right-content {
     padding: 20px 30px 15px;
     height: auto !important;
 }
@@ -35,7 +35,7 @@
     margin-top: 2px;
 } */
 
-.ncpi .pi-info-logo img,
+.ndpi .pi-info-logo img,
 .pi-inv .pi-from-logo img {
     max-width: 200px !important;
     max-height: 80px;
@@ -52,7 +52,7 @@
 }
 
 //temporary form css 
-.ncpi .pi-field-logo-wrap {
+.ndpi .pi-field-logo-wrap {
 
     .pi-field-logo {
         position: relative;
@@ -117,7 +117,7 @@
 }
 
 //TODO: this class already exist just add important
-.ncpi .pi-modal-sidebar {
+.ndpi .pi-modal-sidebar {
     margin: 0 !important;
 }
 
@@ -128,11 +128,11 @@
     position: relative;
 }
 
-.wp-admin.ncpi {
+.wp-admin.ndpi {
     background-color: #f7f8fa !important;
 }
 
-.ncpi {
+.ndpi {
     .pi-deal-content {
         max-width: none !important;
     }
@@ -181,14 +181,4 @@ input:-webkit-autofill:active {
 // toastify not showing in modal submit error
 .Toastify__toast-container {
     z-index: 999999 !important;
-}
-
-.pi-pro-label {
-    color: #fff;
-    background-color: #f16063;
-    font-size: 10px;
-    font-weight: 500;
-    padding: 5px 10px;
-    margin-left: 5px;
-    border-radius: 5px;
 }

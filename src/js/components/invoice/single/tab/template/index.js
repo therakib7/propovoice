@@ -19,28 +19,28 @@ export default class Template extends Component {
         };
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         this.getLists();
     }
 
-    getLists = (searchArgs = null) => { 
+    getLists = (searchArgs = null) => {
 
-        
-        const old_version = JSON.parse( localStorage.getItem('ncpi_version') );
-        const template = JSON.parse( localStorage.getItem('ncpi_templates') );
+
+        const old_version = JSON.parse(localStorage.getItem('ncpi_version'));
+        const template = JSON.parse(localStorage.getItem('ncpi_templates'));
 
         //version compire
-        let current_version = ncpi.version; 
+        let current_version = ndpi.version;
         let compare_version = current_version.localeCompare(old_version);
 
-        if ( template && old_version && compare_version !== 1 ) {  
-            
+        if (template && old_version && compare_version !== 1) {
+
             this.setState({ preloader: false, templates: template });
             if (!this.props.currentTemplate) {
                 this.props.changeHandler(template[0]);
             }
             return;
-        } 
+        }
 
         let args = {
             page: this.state.currentPage,
@@ -58,8 +58,8 @@ export default class Template extends Component {
         Api.getAllTemplate(params)
             .then(resp => {
                 let result = resp.data.data.result;
-                let total = resp.data.data.total; 
-                localStorage.setItem('ncpi_version', JSON.stringify( ncpi.version ))
+                let total = resp.data.data.total;
+                localStorage.setItem('ncpi_version', JSON.stringify(ndpi.version))
                 localStorage.setItem('ncpi_templates', JSON.stringify(result))
                 this.setState({ preloader: false, templates: result, totalPage: Math.ceil(total / this.state.perPage) });
 
@@ -67,7 +67,7 @@ export default class Template extends Component {
                 if (!this.props.currentTemplate) {
                     this.props.changeHandler(result[0]);
                 }
-                
+
             })
     };
 
@@ -87,7 +87,7 @@ export default class Template extends Component {
 
     };
 
-    render() { 
+    render() {
         return (
             <div id="pi-tab-template" className="pi-invoice-tab-content">
                 <h2 className='pi-page-title'>Select Template</h2>
@@ -100,7 +100,7 @@ export default class Template extends Component {
                             return (
                                 <div className="col-12 col-md-6 col-lg-3" key={index}>
                                     <div className='pi-single-image-content'>
-                                        <img src={row.src} className={ 'pi-single-image ' + (this.props.currentTemplate == row.id ? 'pi-active' : '')} />
+                                        <img src={row.src} className={'pi-single-image ' + (this.props.currentTemplate == row.id ? 'pi-active' : '')} />
                                         {(this.props.currentTemplate != row.id) && <div className="pi-overflow-content">
                                             <a className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
                                             <a

@@ -4,9 +4,12 @@ import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api';
 import styles from './Items.module.scss'
 import Form from './Form';
+import Spinner from 'block/preloader/spinner';
 import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 
 const Taxonomy = (props) => {
+	const [loading, setLoading] = useState(false);
 	const [list, setList] = useState([]);
 	const [modal, setModal] = useState(false);
 	const [modalType, setModalType] = useState('new');
@@ -18,6 +21,7 @@ const Taxonomy = (props) => {
 	const [form, setForm] = useState(newForm);
 
 	useEffect(() => {
+		setLoading(true);
 		getData();
 	}, []);
 
@@ -26,10 +30,10 @@ const Taxonomy = (props) => {
 		if ( props.extra_amount_type ) {
 			type = '&extra_amount_type=' + props.extra_amount_type;
 		}
-
 		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + type).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
+				setLoading(false);
 			}
 		});
 	}
@@ -108,10 +112,12 @@ const Taxonomy = (props) => {
 
 	}
 
+	const i18n = ndpi.i18n; 
+
 	return (
 		<>
 			<div className="pi-field-repeater">
-				<DragDropContext onDragEnd={handleDragEnd}>
+				{loading ? <Spinner /> : <DragDropContext onDragEnd={handleDragEnd}>
 					<Droppable droppableId="droppable">
 						{(provided, snapshot) => (
 							<ul
@@ -261,7 +267,7 @@ const Taxonomy = (props) => {
 							</ul>
 						)}
 					</Droppable>
-				</DragDropContext>
+				</DragDropContext>}
 
 				<button className="pi-btn" onClick={(e) => { openModal(e, 'new') }}>
 					<svg
@@ -286,9 +292,9 @@ const Taxonomy = (props) => {
 							strokeLinejoin="round"
 						/>
 					</svg>
-					Add new {props.title} 
+					{i18n.add} {i18n.new} {props.title} 
 					{wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) && <>
-						<span className="pi-pro-label">PRO</span>
+						<ProLabel />
 					</>}
 				</button>
 			</div>

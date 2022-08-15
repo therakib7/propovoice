@@ -1,40 +1,47 @@
-.ncpi .pi-payment-tab-content {
+.ndpi .pi-payment-tab-content {
   margin-top: 20px;
   border-radius: 8px;
 }
+
 @media screen and (max-width: 992px) {
-  .ncpi .pi-payment-tab-content {
+  .ndpi .pi-payment-tab-content {
     width: 100%;
   }
 }
-.ncpi .pi-payment-tab-content .pi-title-content h2 {
+
+.ndpi .pi-payment-tab-content .pi-title-content h2 {
   font-size: 20px;
 }
-.ncpi .pi-payment-tab-content .pi-title-content h5 {
+
+.ndpi .pi-payment-tab-content .pi-title-content h5 {
   font-size: 14px;
   font-weight: 500;
   margin-top: 5px;
   margin-bottom: 0;
   color: #2D3748;
 }
-.ncpi .pi-payment-tab-content .pi-btn {
+
+.ndpi .pi-payment-tab-content .pi-btn {
   display: block;
   margin: auto;
   margin-top: 20px;
   padding: 12px 15px;
   font-weight: 500;
 }
-.ncpi .pi-payment-tab-content ul {
+
+.ndpi .pi-payment-tab-content ul {
   margin: 0;
 }
-.ncpi .pi-payment-tab-content ul li {
+
+.ndpi .pi-payment-tab-content ul li {
   display: flex;
   padding: 15px;
   position: relative;
   border-radius: 10px;
   margin-bottom: 10px;
 }
-.ncpi .pi-payment-tab-content ul li .pi-edit {
+
+.ndpi .pi-payment-tab-content ul li .pi-edit {
   right: 0px;
   position: absolute;
   background: #fff;
@@ -43,24 +50,33 @@
   box-shadow: 3px 3px 4px 0px rgba(205, 202, 205, 0.12);
   height: 22px;
 }
-.ncpi .pi-payment-tab-content ul li .pi-edit span {
+
+.ndpi .pi-payment-tab-content ul li .pi-edit span {
   background: #fff;
   padding: 4px 6px;
   border-radius: 50%;
   cursor: pointer;
 }
-.ncpi .pi-payment-tab-content ul li .pi-edit span:hover {
+
+.ndpi .pi-payment-tab-content ul li .pi-edit span:hover {
   box-shadow: 3px 3px 4px 3px rgba(205, 202, 205, 0.18);
 }
-.ncpi .pi-payment-tab-content ul li .pi-edit span:hover svg path {
+
+.ndpi .pi-payment-tab-content ul li .pi-edit span:hover svg path {
   fill: var(--pi-bg-color-blue);
 }
-.ncpi .pi-payment-tab-content ul li .pi-item-content {
+
+.ndpi .pi-payment-tab-content ul li .pi-item-content {
   display: flex;
   align-items: center;
   overflow: hidden;
 }
-.ncpi .pi-payment-tab-content ul li .pi-item-content span {
+
+.ndpi .pi-payment-tab-content ul li .pi-item-content .pi-text-content {
+  align-self: center;
+}
+
+.ndpi .pi-payment-tab-content ul li .pi-item-content span {
   margin-right: 20px;
   display: flex;
   padding: 15px 13px;
@@ -68,24 +84,29 @@
   border-radius: 8px;
   align-self: center;
 }
-.ncpi .pi-payment-tab-content ul li .pi-item-content h2 {
+
+.ndpi .pi-payment-tab-content ul li .pi-item-content h2 {
   line-height: 100%;
 }
-.ncpi .pi-payment-tab-content ul li .pi-item-content p {
+
+.ndpi .pi-payment-tab-content ul li .pi-item-content p {
   margin: 0;
   color: #718096;
   margin-top: 10px;
 }
-.ncpi .pi-payment-tab-content ul .pi-btn {
+
+.ndpi .pi-payment-tab-content ul .pi-btn {
   display: flex;
   margin: auto;
   margin-top: 30px;
 }
-.ncpi .pi-payment-tab-content ul .pi-btn svg {
+
+.ndpi .pi-payment-tab-content ul .pi-btn svg {
   margin-top: 2px;
   margin-right: 5px;
 }
-.ncpi .pi-payment-tab-content ul .pi-btn svg path {
+
+.ndpi .pi-payment-tab-content ul .pi-btn svg path {
   margin-top: 2px;
   margin-right: 5px;
   fill: var(--pi-text-color-white);

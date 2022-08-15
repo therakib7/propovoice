@@ -18,27 +18,263 @@ msgstr ""
 msgid "%s does not exist."
 msgstr ""
 
-#: ../app/Helpers/Fns.php:317, ../app/Helpers/Fns.php:389
+#: ../app/Helpers/Fns.php:317, ../app/Helpers/Fns.php:389, ../app/Helpers/I18n.php:70
 msgid "Select"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:11
+#: ../app/Helpers/I18n.php:11, ../app/Ctrls/Setting/Type/Dashboard.php:30, ../app/Ctrls/Setting/Type/Dashboard.php:31
+msgid "Dashboard"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:12, ../app/Ctrls/Setting/Type/Dashboard.php:40
+msgid "Lead"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:13
+msgid "Deal"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:14, ../app/Ctrls/Setting/Type/Dashboard.php:48
+msgid "Estimate"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:15, ../app/Ctrls/Setting/Type/Dashboard.php:52
+msgid "Invoice"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:16, ../app/Ctrls/Setting/Type/Dashboard.php:56
+msgid "Client"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:17, ../app/Ctrls/Setting/Type/Dashboard.php:60
+msgid "Project"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:18, ../app/Ctrls/Setting/Type/Dashboard.php:64
+msgid "Task & Activity"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:19, ../app/Ctrls/Setting/Type/Dashboard.php:68
+msgid "Contact"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:21
+msgid "Latest"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:22
+msgid "Funnel"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:23
+msgid "Tracking"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:25
+msgid "Level"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:26
+msgid "Source"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:28
+msgid "Stage"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:29
+msgid "Won"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:30
+msgid "Lost"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:31
+msgid "Probability"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:33
+msgid "Template"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:34
+msgid "Sent"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:35
+msgid "Viewed"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:36
+msgid "Accepted"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:37
+msgid "Declined"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:38
+msgid "Paid"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:39
+msgid "Overdue"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:41
+msgid "Currency"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:42
+msgid "Budget"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:44
+msgid "Book"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:45
+msgid "Person"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:46
+msgid "organization"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:47
+msgid "Name"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:48
+msgid "Email"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:49
+msgid "Mobile"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:50
+msgid "Website"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:51
+msgid "Zip Code"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:52
+msgid "Address"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:54
+msgid "Home"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:55
+msgid "Total"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:57, ../app/Ctrls/Setting/Type/Dashboard.php:92, ../app/Ctrls/Setting/Type/Dashboard.php:93
+msgid "Settings"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:58
+msgid "General"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:59
+msgid "Business"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:61
+msgid "Status"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:62
+msgid "Date"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:63
+msgid "Action"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:65
+msgid "Add"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:66, ../app/Helpers/I18n.php:71
+msgid "New"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:67
+msgid "Edit"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:68
+msgid "Delete"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:69
 msgid "Search"
 msgstr ""
 
-#: ../app/Helpers/I18n.php:14, ../app/Ctrls/Setting/Types/Dashboard.php:40
-msgid "Lead"
+#: ../app/Helpers/I18n.php:72
+msgid "From"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:73
+msgid "Tag"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:74
+msgid "Background"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:75
+msgid "Text"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:76
+msgid "Color"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:77
+msgid "Description"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:78
+msgid "Note"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:80
+msgid "Logo"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:81
+msgid "Continue"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:82
+msgid "Save"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:84
+msgid "Pipeline"
+msgstr ""
+
+#: ../app/Helpers/I18n.php:85
+msgid "Back to WP Dashboard"
 msgstr ""
 
 #: ../app/Models/Org.php:89, ../app/Models/Org.php:173, ../app/Models/Person.php:86, ../app/Models/Person.php:164
 msgid "Something wrong!"
 msgstr ""
 
-#: ../app/Ctrls/Installation/InstallationController.php:23
+#: ../app/Ctrls/Installation/InstallationController.php:26
 msgid "Every Half Minute"
 msgstr ""
 
-#: ../app/Ctrls/Installation/InstallationController.php:28
+#: ../app/Ctrls/Installation/InstallationController.php:31
 msgid "Every 1 Minute"
 msgstr ""
 
@@ -54,91 +290,83 @@ msgstr ""
 msgid "Propovoice Client Estimate"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Action.php:97, ../app/Ctrls/Api/Types/Action.php:160
+#: ../app/Ctrls/Api/Type/Action.php:97, ../app/Ctrls/Api/Type/Action.php:160
 msgid "Required field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Business.php:229, ../app/Ctrls/Api/Types/Business.php:311
+#: ../app/Ctrls/Api/Type/Business.php:229, ../app/Ctrls/Api/Type/Business.php:311
 msgid "Name is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:186, ../app/Ctrls/Api/Types/Deal.php:363, ../app/Ctrls/Api/Types/Deal.php:501, ../app/Ctrls/Api/Types/Lead.php:289, ../app/Ctrls/Api/Types/Lead.php:386, ../app/Ctrls/Api/Types/Project.php:316, ../app/Ctrls/Api/Types/Project.php:456
+#: ../app/Ctrls/Api/Type/Client.php:186, ../app/Ctrls/Api/Type/Deal.php:363, ../app/Ctrls/Api/Type/Deal.php:501, ../app/Ctrls/Api/Type/Lead.php:289, ../app/Ctrls/Api/Type/Lead.php:386, ../app/Ctrls/Api/Type/Project.php:316, ../app/Ctrls/Api/Type/Project.php:456
 msgid "Contact info is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:231, ../app/Ctrls/Api/Types/Contact.php:303, ../app/Ctrls/Api/Types/Note.php:154, ../app/Ctrls/Api/Types/Note.php:189, ../app/Ctrls/Api/Types/Org.php:206, ../app/Ctrls/Api/Types/Org.php:293, ../app/Ctrls/Api/Types/Person.php:242, ../app/Ctrls/Api/Types/Person.php:331, ../app/Ctrls/Api/Types/Workspace.php:221, ../app/Ctrls/Api/Types/Workspace.php:307
+#: ../app/Ctrls/Api/Type/Client.php:231, ../app/Ctrls/Api/Type/Contact.php:303, ../app/Ctrls/Api/Type/Note.php:154, ../app/Ctrls/Api/Type/Note.php:189, ../app/Ctrls/Api/Type/Org.php:206, ../app/Ctrls/Api/Type/Org.php:293, ../app/Ctrls/Api/Type/Person.php:242, ../app/Ctrls/Api/Type/Person.php:331, ../app/Ctrls/Api/Type/Workspace.php:221, ../app/Ctrls/Api/Type/Workspace.php:307
 msgid "Name field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Client.php:235, ../app/Ctrls/Api/Types/Contact.php:307, ../app/Ctrls/Api/Types/Org.php:210, ../app/Ctrls/Api/Types/Org.php:297, ../app/Ctrls/Api/Types/Person.php:246, ../app/Ctrls/Api/Types/Person.php:335, ../app/Ctrls/Api/Types/Workspace.php:225, ../app/Ctrls/Api/Types/Workspace.php:311
+#: ../app/Ctrls/Api/Type/Client.php:235, ../app/Ctrls/Api/Type/Contact.php:307, ../app/Ctrls/Api/Type/Org.php:210, ../app/Ctrls/Api/Type/Org.php:297, ../app/Ctrls/Api/Type/Person.php:246, ../app/Ctrls/Api/Type/Person.php:335, ../app/Ctrls/Api/Type/Workspace.php:225, ../app/Ctrls/Api/Type/Workspace.php:311
 msgid "Email id is not valid!"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Deal.php:385
+#: ../app/Ctrls/Api/Type/Deal.php:385
 msgid "Please select a stage"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/File.php:147
+#: ../app/Ctrls/Api/Type/File.php:147
 msgid "ago"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/File.php:184, ../app/Ctrls/Api/Types/Note.php:150
+#: ../app/Ctrls/Api/Type/File.php:184, ../app/Ctrls/Api/Type/Note.php:150
 msgid "Tab ID is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/File.php:188
+#: ../app/Ctrls/Api/Type/File.php:188
 msgid "Type is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Invoice.php:410, ../app/Ctrls/Api/Types/Invoice.php:536, ../app/Ctrls/Api/Types/Proposal.php:262, ../app/Ctrls/Api/Types/Proposal.php:366
+#: ../app/Ctrls/Api/Type/Invoice.php:410, ../app/Ctrls/Api/Type/Invoice.php:536, ../app/Ctrls/Api/Type/Proposal.php:262, ../app/Ctrls/Api/Type/Proposal.php:366
 msgid "Business is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Invoice.php:414, ../app/Ctrls/Api/Types/Proposal.php:266
+#: ../app/Ctrls/Api/Type/Invoice.php:414, ../app/Ctrls/Api/Type/Proposal.php:266
 msgid "Module is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Invoice.php:418, ../app/Ctrls/Api/Types/Invoice.php:540, ../app/Ctrls/Api/Types/Proposal.php:270, ../app/Ctrls/Api/Types/Proposal.php:370
+#: ../app/Ctrls/Api/Type/Invoice.php:418, ../app/Ctrls/Api/Type/Invoice.php:540, ../app/Ctrls/Api/Type/Proposal.php:270, ../app/Ctrls/Api/Type/Proposal.php:370
 msgid "Receiver is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Media.php:208
+#: ../app/Ctrls/Api/Type/Media.php:208
 msgid "Invalid file type: %s. Supported file types: %s"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Media.php:220
+#: ../app/Ctrls/Api/Type/Media.php:220
 msgid "File is too large. Max. upload file size is %s"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Payment.php:185
+#: ../app/Ctrls/Api/Type/Payment.php:185
 msgid "Bank & Others"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Project.php:309
+#: ../app/Ctrls/Api/Type/Project.php:309
 msgid "Please title is required"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Setting.php:32, ../app/Ctrls/Api/Types/Setting.php:176
+#: ../app/Ctrls/Api/Type/Setting.php:32, ../app/Ctrls/Api/Type/Setting.php:176
 msgid "Tab is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Task.php:294
+#: ../app/Ctrls/Api/Type/Task.php:294
 msgid "Title field is missing"
 msgstr ""
 
-#: ../app/Ctrls/Api/Types/Taxonomy.php:80, ../app/Ctrls/Api/Types/Taxonomy.php:235, ../app/Ctrls/Api/Types/Taxonomy.php:292
+#: ../app/Ctrls/Api/Type/Taxonomy.php:80, ../app/Ctrls/Api/Type/Taxonomy.php:235, ../app/Ctrls/Api/Type/Taxonomy.php:292
 msgid "Taxonomy is missing"
 msgstr ""
 
-#: ../app/Ctrls/Marketing/Types/Link.php:22, ../app/Ctrls/Setting/Types/Dashboard.php:92, ../app/Ctrls/Setting/Types/Dashboard.php:93
-msgid "Settings"
-msgstr ""
-
-#: ../app/Ctrls/Marketing/Types/Link.php:27
-msgid "Documentation"
-msgstr ""
-
-#: ../app/Ctrls/Meta/User/User.php:19, ../app/Ctrls/Setting/Types/Dashboard.php:19, ../app/Ctrls/Setting/Types/Dashboard.php:20
+#: ../app/Ctrls/Meta/User/User.php:19, ../app/Ctrls/Setting/Type/Dashboard.php:19, ../app/Ctrls/Setting/Type/Dashboard.php:20
 msgid "Propovoice"
 msgstr ""
 
@@ -150,701 +378,677 @@ msgstr ""
 msgid "Show member in Propovoice"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:20
+#: ../app/Ctrls/PostType/Type/Invoice.php:20
 msgctxt "Post type general name"
 msgid "Invoices"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:21
+#: ../app/Ctrls/PostType/Type/Invoice.php:21
 msgctxt "Post type singular name"
 msgid "Invoice"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:22
+#: ../app/Ctrls/PostType/Type/Invoice.php:22
 msgctxt "Admin Menu text"
 msgid "Invoices"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:23
+#: ../app/Ctrls/PostType/Type/Invoice.php:23
 msgctxt "Add New on Toolbar"
 msgid "Invoice"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:24, ../app/Ctrls/PostType/Types/Proposal.php:24
+#: ../app/Ctrls/PostType/Type/Invoice.php:24, ../app/Ctrls/PostType/Type/Proposal.php:24
 msgid "Add New"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:25
+#: ../app/Ctrls/PostType/Type/Invoice.php:25
 msgid "Add New Invoice"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:26
+#: ../app/Ctrls/PostType/Type/Invoice.php:26
 msgid "New Invoice"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:27
+#: ../app/Ctrls/PostType/Type/Invoice.php:27
 msgid "Edit Invoice"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:28
+#: ../app/Ctrls/PostType/Type/Invoice.php:28
 msgid "View Invoice"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:29
+#: ../app/Ctrls/PostType/Type/Invoice.php:29
 msgid "All Invoices"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:30
+#: ../app/Ctrls/PostType/Type/Invoice.php:30
 msgid "Search Invoices"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:31
+#: ../app/Ctrls/PostType/Type/Invoice.php:31
 msgid "Parent Invoices:"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:32
+#: ../app/Ctrls/PostType/Type/Invoice.php:32
 msgid "No ncpi_estvoices found."
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Invoice.php:33
+#: ../app/Ctrls/PostType/Type/Invoice.php:33
 msgid "No ncpi_estvoices found in Trash."
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:20
+#: ../app/Ctrls/PostType/Type/Proposal.php:20
 msgctxt "Post type general name"
 msgid "Proposal"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:21
+#: ../app/Ctrls/PostType/Type/Proposal.php:21
 msgctxt "Post type singular name"
 msgid "Proposal"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:22
+#: ../app/Ctrls/PostType/Type/Proposal.php:22
 msgctxt "Admin Menu text"
 msgid "All Proposal"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:23
+#: ../app/Ctrls/PostType/Type/Proposal.php:23
 msgctxt "Add New on Toolbar"
 msgid "Proposal"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:25
+#: ../app/Ctrls/PostType/Type/Proposal.php:25
 msgid "Add New Proposal"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:26
+#: ../app/Ctrls/PostType/Type/Proposal.php:26
 msgid "New Proposal"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:27
+#: ../app/Ctrls/PostType/Type/Proposal.php:27
 msgid "Edit Proposal"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:28
+#: ../app/Ctrls/PostType/Type/Proposal.php:28
 msgid "View Proposal"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:29
+#: ../app/Ctrls/PostType/Type/Proposal.php:29
 msgid "All Proposals"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:30
+#: ../app/Ctrls/PostType/Type/Proposal.php:30
 msgid "Search Proposal"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:31
+#: ../app/Ctrls/PostType/Type/Proposal.php:31
 msgid "Parent Proposal:"
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:32
+#: ../app/Ctrls/PostType/Type/Proposal.php:32
 msgid "No proposal found."
 msgstr ""
 
-#: ../app/Ctrls/PostType/Types/Proposal.php:33
+#: ../app/Ctrls/PostType/Type/Proposal.php:33
 msgid "No proposal found in Trash."
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:30, ../app/Ctrls/Setting/Types/Dashboard.php:31
-msgid "Dashboard"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Dashboard.php:44
+#: ../app/Ctrls/Setting/Type/Dashboard.php:44
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:48
-msgid "Estimate"
+#: ../app/Ctrls/Setting/Type/Dashboard.php:103
+msgid "Go to Frontend"
 msgstr ""
 
-#: ../app/Ctrls/Setting/Types/Dashboard.php:52
-msgid "Invoice"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Dashboard.php:56
-msgid "Client"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Dashboard.php:60
-msgid "Project"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Dashboard.php:64
-msgid "Task & Activity"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Dashboard.php:68
-msgid "Contact"
-msgstr ""
-
-#: ../app/Ctrls/Setting/Types/Welcome.php:13, ../app/Ctrls/Setting/Types/Welcome.php:14
+#: ../app/Ctrls/Setting/Type/Welcome.php:16, ../app/Ctrls/Setting/Type/Welcome.php:17
 msgid "Propovoice Welcome"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:20
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:20
 msgctxt "contact_status general name"
 msgid "Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:21
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:21
 msgctxt "contact_status singular name"
 msgid "Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:22
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:22
 msgid "Search Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:23
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:23
 msgid "All Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:24
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:24
 msgid "Parent Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:25
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:25
 msgid "Parent Contact Status:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:26
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:26
 msgid "Edit Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:27
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:27
 msgid "Update Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:28
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:28
 msgid "Add New Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:29
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:29
 msgid "New Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:30
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:30
 msgid "Contact Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ContactStatus.php:31
+#: ../app/Ctrls/Taxonomy/Type/ContactStatus.php:31
 msgid "No contact status found."
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:20
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:20
 msgctxt "deal_pipeline general name"
 msgid "Deal Pipelines"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:21
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:21
 msgctxt "deal_pipeline singular name"
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:22
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:22
 msgid "Search Deal Pipelines"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:23
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:23
 msgid "All Deal Pipelines"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:24
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:24
 msgid "Parent Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:25
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:25
 msgid "Parent Deal Pipeline:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:26
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:26
 msgid "Edit Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:27
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:27
 msgid "Update Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:28
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:28
 msgid "Add New Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:29
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:29
 msgid "New Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:30
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:30
 msgid "Deal Pipelines"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealPipeline.php:31
+#: ../app/Ctrls/Taxonomy/Type/DealPipeline.php:31
 msgid "No deal pipeline found."
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:20
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:20
 msgctxt "deal_stage general name"
 msgid "Deal Stages"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:21
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:21
 msgctxt "deal_stage singular name"
 msgid "Deal Stage"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:22
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:22
 msgid "Search Deal Stages"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:23
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:23
 msgid "All Deal Stages"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:24
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:24
 msgid "Parent Deal Stage"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:25
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:25
 msgid "Parent Deal Stage:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:26
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:26
 msgid "Edit Deal Stage"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:27
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:27
 msgid "Update Deal Stage"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:28
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:28
 msgid "Add New Deal Stage"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:29
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:29
 msgid "New Deal Stage"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:30
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:30
 msgid "Deal Stages"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/DealStage.php:31
+#: ../app/Ctrls/Taxonomy/Type/DealStage.php:31
 msgid "No deal stage found."
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:20
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:20
 msgctxt "extra_amount general name"
 msgid "Estvoice Extra Amounts"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:21
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:21
 msgctxt "extra_amount singular name"
 msgid "Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:22
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:22
 msgid "Search Estvoice Extra Amounts"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:23
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:23
 msgid "All Estvoice Extra Amounts"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:24
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:24
 msgid "Parent Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:25
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:25
 msgid "Parent Estvoice Extra Amount:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:26
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:26
 msgid "Edit Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:27
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:27
 msgid "Update Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:28
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:28
 msgid "Add New Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:29
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:29
 msgid "New Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:30
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:30
 msgid "Estvoice Extra Amounts"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ExtraAmount.php:31
+#: ../app/Ctrls/Taxonomy/Type/ExtraAmount.php:31
 msgid "No Estvoice extra amount found."
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:20
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:20
 msgctxt "lead_level general name"
 msgid "Lead Levels"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:21
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:21
 msgctxt "lead_level singular name"
 msgid "Lead Level"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:22
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:22
 msgid "Search Lead Levels"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:23
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:23
 msgid "All Lead Levels"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:24
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:24
 msgid "Parent Lead Level"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:25
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:25
 msgid "Parent Lead Level:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:26
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:26
 msgid "Edit Lead Level"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:27
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:27
 msgid "Update Lead Level"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:28
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:28
 msgid "Add New Lead Level"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:29
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:29
 msgid "New Lead Level"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:30
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:30
 msgid "Lead Levels"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadLevel.php:31, ../app/Ctrls/Taxonomy/Types/LeadSource.php:31
+#: ../app/Ctrls/Taxonomy/Type/LeadLevel.php:31, ../app/Ctrls/Taxonomy/Type/LeadSource.php:31
 msgid "No lead stage found."
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:20
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:20
 msgctxt "lead_source general name"
 msgid "Lead Sources"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:21
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:21
 msgctxt "lead_source singular name"
 msgid "Lead Source"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:22
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:22
 msgid "Search Lead Sources"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:23
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:23
 msgid "All Lead Sources"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:24
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:24
 msgid "Parent Lead Source"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:25
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:25
 msgid "Parent Lead Source:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:26
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:26
 msgid "Edit Lead Source"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:27
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:27
 msgid "Update Lead Source"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:28
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:28
 msgid "Add New Lead Source"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:29
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:29
 msgid "New Lead Source"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/LeadSource.php:30
+#: ../app/Ctrls/Taxonomy/Type/LeadSource.php:30
 msgid "Lead Sources"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:20
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:20
 msgctxt "project_status general name"
 msgid "Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:21
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:21
 msgctxt "project_status singular name"
 msgid "Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:22
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:22
 msgid "Search Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:23
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:23
 msgid "All Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:24
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:24
 msgid "Parent Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:25
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:25
 msgid "Parent Project Status:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:26
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:26
 msgid "Edit Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:27
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:27
 msgid "Update Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:28
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:28
 msgid "Add New Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:29
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:29
 msgid "New Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:30
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:30
 msgid "Project Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/ProjectStatus.php:31
+#: ../app/Ctrls/Taxonomy/Type/ProjectStatus.php:31
 msgid "No project status found."
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:20
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:20
 msgctxt "deal_tag general name"
 msgid "Deal Tags"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:21
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:21
 msgctxt "deal_tag singular name"
 msgid "Deal Tag"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:22
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:22
 msgid "Search Deal Tags"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:23
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:23
 msgid "All Deal Tags"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:24
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:24
 msgid "Parent Deal Tag"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:25
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:25
 msgid "Parent Deal Tag:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:26
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:26
 msgid "Edit Deal Tag"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:27
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:27
 msgid "Update Deal Tag"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:28
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:28
 msgid "Add New Deal Tag"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:29
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:29
 msgid "New Deal Tag"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:30
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:30
 msgid "Deal Tags"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/Tag.php:31
+#: ../app/Ctrls/Taxonomy/Type/Tag.php:31
 msgid "No deal tag found."
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:20
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:20
 msgctxt "task_priority general name"
 msgid "Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:21
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:21
 msgctxt "task_priority singular name"
 msgid "Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:22
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:22
 msgid "Search Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:23
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:23
 msgid "All Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:24
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:24
 msgid "Parent Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:25
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:25
 msgid "Parent Task Priority:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:26
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:26
 msgid "Edit Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:27
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:27
 msgid "Update Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:28
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:28
 msgid "Add New Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:29
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:29
 msgid "New Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:30
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:30
 msgid "Task Priority"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskPriority.php:31
+#: ../app/Ctrls/Taxonomy/Type/TaskPriority.php:31
 msgid "No task priority found."
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:20
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:20
 msgctxt "task_status general name"
 msgid "Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:21
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:21
 msgctxt "task_status singular name"
 msgid "Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:22
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:22
 msgid "Search Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:23
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:23
 msgid "All Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:24
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:24
 msgid "Parent Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:25
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:25
 msgid "Parent Task Status:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:26
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:26
 msgid "Edit Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:27
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:27
 msgid "Update Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:28
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:28
 msgid "Add New Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:29
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:29
 msgid "New Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:30
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:30
 msgid "Task Status"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskStatus.php:31
+#: ../app/Ctrls/Taxonomy/Type/TaskStatus.php:31
 msgid "No task status found."
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:23
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:23
 msgctxt "task_type general name"
 msgid "Task Types"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:24
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:24
 msgctxt "task_type singular name"
 msgid "Task Type"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:25
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:25
 msgid "Search Task Types"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:26
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:26
 msgid "All Task Types"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:27
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:27
 msgid "Parent Task Type"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:28
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:28
 msgid "Parent Task Type:"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:29
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:29
 msgid "Edit Task Type"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:30
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:30
 msgid "Update Task Type"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:31
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:31
 msgid "Add New Task Type"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:32
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:32
 msgid "New Task Type"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:33
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:33
 msgid "Task Types"
 msgstr ""
 
-#: ../app/Ctrls/Taxonomy/Types/TaskType.php:34
+#: ../app/Ctrls/Taxonomy/Type/TaskType.php:34
 msgid "No task type found."
 msgstr ""
 

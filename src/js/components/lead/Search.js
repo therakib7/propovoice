@@ -36,6 +36,7 @@ export default class Form extends Component {
 
     render() {
         const { title, showing, showItem, total } = this.props;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-search-bar">
                 <div className="pi-search-box pi-medium-search-bar">
@@ -43,7 +44,7 @@ export default class Form extends Component {
                     <input
                         type="text"
                         className="pi-search-input"
-                        placeholder={'Search ' + title}
+                        placeholder={i18n.search+' '+ title}
                         name="text"
                         value={this.state.form.text}
                         onChange={this.handleChange}
@@ -72,7 +73,7 @@ export default class Form extends Component {
                 </div>}
                 <div className="pi-total-list">  
                     <p>
-                        Show <select onChange={showItem} >
+                        {i18n.show} <select onChange={showItem} >
                             <option value="10">10</option>
                             <option value="20">20</option>
                             <option value="30">30</option>
@@ -80,7 +81,7 @@ export default class Form extends Component {
                             <option value="99">99</option>
                         </select> 
                         {/* {showing}  */}
-                         {title} from <span>{total}</span>
+                         {title} {i18n.from} <span>{total}</span>
                     </p>
                 </div>
             </div>

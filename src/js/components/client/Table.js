@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import Action from 'block/action/row';
 
 const TableHeader = props => {
+    const i18n = ndpi.i18n;
     return (
         <thead>
             <tr>
@@ -14,25 +15,25 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    Contact Name
+                    {i18n.contact} {i18n.name}
                 </th>
                 <th>
-                    Email
+                    {i18n.email}
                 </th>
                 {/* <th>
                     Company Name
                 </th> */}
                 <th>
-                    Mobile
+                    {i18n.mob}
                 </th>
                 <th>
-                    Type
+                    {i18n.type}
                 </th>
                 <th>
-                    Date
+                    {i18n.date}
                 </th>
                 <th>
-                    Action
+                    {i18n.action}
                 </th>
             </tr>
         </thead>
@@ -50,10 +51,10 @@ const TableBody = props => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
 
-        let img = ncpi.assetImgUri + 'avatar.png'; 
-        if ( row.img ) {
+        let img = ndpi.assetImgUri + 'avatar.png';
+        if (row.img) {
             img = row.img.src;
-        }  
+        }
 
         return (
             <tr key={index}>

@@ -9,6 +9,7 @@ import Form from './Form';
 import Table from './Table';
 import Search from './Search';
 import Empty from 'block/empty';
+import pro from 'block/pro-alert';
 
 import Crud from 'hoc/Crud';
 
@@ -28,6 +29,12 @@ const Deal = (props) => {
     const [form, setForm] = useState(newForm);
 
     const taxForm = (type = 'new', data = null) => {
+
+        if ( type == 'new' && wage.length > 0 ) {
+			pro();
+			return;
+		}
+
         setModal(true)
         setModalType(type)
         if (type == 'new') {
@@ -108,7 +115,7 @@ const Deal = (props) => {
                 </div>
                 <div className="col">
                     <div className="pi-list-single-button-content">
-                        {!wage.length && !props.module_id && <button
+                        <button
                             className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow"
                             onClick={() => taxForm('new')}
                         >
@@ -135,7 +142,7 @@ const Deal = (props) => {
                                 />
                             </svg>
                             Add Stage
-                        </button>}
+                        </button>
 
                         <button
                             className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white"
@@ -292,7 +299,7 @@ const Deal = (props) => {
 
                 {(props.module_id || !boardView) && <>
                     <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
-                    
+
                     {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
                 </>}
             </>}
@@ -300,4 +307,4 @@ const Deal = (props) => {
     );
 }
 
-export default Crud(Deal, 'deal');
+export default Crud(Deal, 'deal', ndpi.i18n.deal);

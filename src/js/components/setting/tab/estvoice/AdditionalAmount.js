@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Taxonomy from 'block/field/taxonomy/setting';
 import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 
 export default class AdditionalAmount extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ export default class AdditionalAmount extends Component {
         const value = target.type == 'checkbox' ? target.checked : target.value;
         form[name] = value;
 
-        if ( wage.length > 0 && ( name == 'item_tax' ) ) {
+        if ( wage.length > 0 && name == 'item_tax' ) {
 			pro();
 			return;
 		}
@@ -65,7 +66,7 @@ export default class AdditionalAmount extends Component {
                     <div className="col">
                         <label id="form-item_tax">Each Item Tax Field
                             {wage.length > 0 && <>
-                                <span className="pi-pro-label">PRO</span>
+                                <ProLabel />
                             </>}
                         </label>
                         <div className="pi-field-switch pi-ml-10">

@@ -151,4 +151,4 @@ const Project = (props) => {
   );
 }
 
-export default Crud(Project, 'project');
+export default Crud(Project, 'project', ndpi.i18n.project);

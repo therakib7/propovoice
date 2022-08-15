@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import pro from 'block/pro-alert';
+import pro from 'block/pro-alert'; 
+import ProLabel from 'block/pro-alert/label';
 
 export default (props) => {
     const [list, setList] = useState([]);
@@ -60,7 +61,7 @@ export default (props) => {
                             <label id="form-item_tax">
                                 Each Item Tax Field
                                 {wage.length > 0 && <>
-                                    <span className="pi-pro-label">PRO</span>
+                                    <ProLabel />
                                 </>}
                             </label>
                             <div className="pi-field-switch pi-ml-10">

@@ -10,6 +10,7 @@ import Paypal from './payment/Paypal';
 import Stripe from './payment/Stripe';
 
 const TableHeader = props => {
+    const i18n = ndpi.i18n;
     return (
         <thead>
             <tr>
@@ -22,16 +23,16 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    {props.path == 'invoice' ? 'Invoice' : 'Estimate'} ID
+                    {props.path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est} ID
                 </th>
                 {/* <th>
                     Project
                 </th> */}
                 {!props.client_id && <th>
-                    Contact
+                    {i18n.contact}
                 </th>}
                 <th>
-                    Total
+                    {i18n.total}
                 </th>
 
                 {/* {(props.path == 'invoice') &&
@@ -41,18 +42,18 @@ const TableHeader = props => {
                     </>
                 }  */}
                 <th>
-                    Status
+                    {i18n.status}
                 </th>
                 {(props.path == 'invoice') &&
                     <th>
-                        Payment Method
+                        {i18n.payment} {i18n.method}
                     </th>
                 }
                 <th>
-                    Date
+                    {i18n.date}
                 </th>
                 <th>
-                    Action
+                    {i18n.action}
                 </th>
             </tr>
         </thead>
@@ -148,7 +149,7 @@ const TableBody = props => {
 
         let invoice_id = row.id;
         let invoice_token = row.token;
-        let url = row.path == 'invoice' ? ncpi.invoice_page_url : ncpi.estimate_page_url;
+        let url = row.path == 'invoice' ? ndpi.invoice_page_url : ndpi.estimate_page_url;
 
         //replace text with id and token
         let result = url.replace('invoice_id', invoice_id);

@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react' 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import Item from './Item'
@@ -27,14 +26,12 @@ class Items extends Component {
         )
 
         // call parent handler with new state representation
-        this.props.reorderHandler(Items)
-
+        this.props.reorderHandler(Items) 
     }
 
-    render = () => {
-
-        const { items, item_tax, addHandler, reorderHandler, ...functions } = this.props
-
+    render = () => { 
+        const { items, item_label, item_tax, addHandler, reorderHandler, ...functions } = this.props 
+        const i18n = ndpi.i18n; 
         return (
             <>
                 <div className="pi-info-table-wrap">
@@ -42,11 +39,11 @@ class Items extends Component {
                         <table className="pi-table pi-info-table">
                             <thead>
                                 <tr>
-                                    <th style={{ width: 'auto' }}>Title &amp; Description </th>
-                                    <th style={{ width: '125px' }}>Quantity</th>
-                                    <th style={{ width: '105px' }}>Rate (USD)</th>
-                                    {item_tax && <th style={{ width: '125px' }}>Tax</th>}
-                                    <th style={{ width: '90px' }}>Amount</th>
+                                    <th style={{ width: 'auto' }}>{item_label.desc}</th>
+                                    <th style={{ width: '125px' }}>{item_label.qty}</th>
+                                    <th style={{ width: '105px' }}>{item_label.price} (USD)</th>
+                                    {item_tax && <th style={{ width: '125px' }}>{item_label.tax}</th>}
+                                    <th style={{ width: '90px' }}>{item_label.amount}</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -109,23 +106,12 @@ class Items extends Component {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            Add Item
+                            {i18n.add} {i18n.item}
                         </button>
                     </div>
                 </div>
             </>
         )
     }
-}
-
-Items.propTypes = {
-    items: PropTypes.array.isRequired,
-    currencyFormatter: PropTypes.func.isRequired,
-    addHandler: PropTypes.func.isRequired,
-    changeHandler: PropTypes.func.isRequired,
-    focusHandler: PropTypes.func.isRequired,
-    deleteHandler: PropTypes.func.isRequired,
-    reorderHandler: PropTypes.func.isRequired,
-}
-
+} 
 export default Items

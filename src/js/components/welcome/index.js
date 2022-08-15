@@ -112,7 +112,7 @@ export default class Welcome extends Component {
 
                 <div className="pi-container">
                     <div className="pi-logo-content" style={{ justifyContent: 'center' }}>
-                        <img src={ncpi.assetImgUri + 'site-logo.png'} />
+                        <img src={ndpi.assetImgUri + 'site-logo.png'} />
                         <strong >Propovoice</strong>
                     </div>
 
@@ -151,7 +151,7 @@ export default class Welcome extends Component {
                                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
                                             Create Business Profile
                                         </button>
-                                        <a href={ncpi.dashboard} className="pi-text-hover-blue">Skip and Go Dashboard</a>
+                                        <a href={ndpi.dashboard} className="pi-text-hover-blue">Skip and Go Dashboard</a>
                                     </div>
                                 </div>}
 
@@ -178,7 +178,7 @@ export default class Welcome extends Component {
 
                                 <div id="pi-finished">
                                     <div className="pi-text-center">
-                                        <img src={ncpi.assetImgUri + 'rocket.png'} />
+                                        <img src={ndpi.assetImgUri + 'rocket.png'} />
                                         <h1 className="pi-title">Everything Done! What do you want to do first?</h1>
                                         <p className="pi-sub-title">
                                             You can create Estimate, Invoice and Others
@@ -186,7 +186,7 @@ export default class Welcome extends Component {
                                     </div>
                                     <div className="row pi-item-main-content pi-mt-m-15">
                                         <div className="col-md-6">
-                                            <a href={ncpi.dashboard + '#/lead'}>
+                                            <a href={ndpi.dashboard + '#/lead'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
                                                         <svg
@@ -230,7 +230,7 @@ export default class Welcome extends Component {
                                             </a>
                                         </div>
                                         <div className="col-md-6">
-                                            <a href={ncpi.dashboard + '#/client'}>
+                                            <a href={ndpi.dashboard + '#/client'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
                                                         <svg
@@ -274,7 +274,7 @@ export default class Welcome extends Component {
                                             </a>
                                         </div>
                                         <div className="col-md-6">
-                                            <a href={ncpi.dashboard + '#/estimate'}>
+                                            <a href={ndpi.dashboard + '#/estimate'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
                                                         <svg
@@ -316,7 +316,7 @@ export default class Welcome extends Component {
                                             </a>
                                         </div>
                                         <div className="col-md-6">
-                                            <a href={ncpi.dashboard + '#/invoice'}>
+                                            <a href={ndpi.dashboard + '#/invoice'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
                                                         <svg
@@ -359,7 +359,7 @@ export default class Welcome extends Component {
                                         </div>
                                     </div>
                                     <div className="pi-buttons pi-text-center">
-                                        <a href={ncpi.dashboard} className="pi-text-hover-blue pi-color-black">Skip and Explore</a>
+                                        <a href={ndpi.dashboard} className="pi-text-hover-blue pi-color-black">Skip and Explore</a>
                                     </div>
                                 </div>
 

@@ -2,12 +2,8 @@ import React, { Suspense, lazy, useRef, useCallback, useState } from 'react';
 import useClickOutside from 'block/outside-click';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { __ } from '@wordpress/i18n';
-
 import {
-    HashRouter,
-    useHistory,
+    HashRouter, 
     Routes,
     Route,
     NavLink
@@ -24,16 +20,13 @@ const ListSingle = lazy(() => import('components/list-single'));
 
 const Project = lazy(() => import('components/project'));
 //const Proposal = lazy(() => import('components/proposal'));
-//const Editor = lazy(() => import('components/editor'));
-
-const Proposal = lazy(() => import('components/proposal/list'));
-const ProposalSingle = lazy(() => import('components/proposal/single'));
+//const Editor = lazy(() => import('components/editor')); 
 
 const Invoice = lazy(() => import('components/invoice/list'));
 const InvoiceSingle = lazy(() => import('components/invoice/single'));
 
-const Payment = lazy(() => import('components/payment'));
-const Business = lazy(() => import('components/business'));
+// const Payment = lazy(() => import('components/payment'));
+// const Business = lazy(() => import('components/business'));
 
 const ContactPerson = lazy(() => import('components/contact/person'));
 const ContactOrg = lazy(() => import('components/contact/org'));
@@ -61,6 +54,7 @@ const Home = () => {
         }
     };
 
+    const i18n = ndpi.i18n;
     return (
         <HashRouter>
             <ToastContainer hideProgressBar />
@@ -73,8 +67,8 @@ const Home = () => {
 
                     <div className="">
                         <div className="pi-logo-content pi-site-logo">
-                            <img src={ncpi.assetImgUri + 'site-logo.png'} alt="favicon" />
-                            <strong>Propovoice {__('RRR!', 'propovoice')}</strong>
+                            <img src={ndpi.assetImgUri + 'site-logo.png'} alt="favicon" />
+                            <strong>Propovoice</strong>
                         </div>
                         <div className='pi-sidebar-menu dpi-collapse-menu'>
                             <ul>
@@ -97,7 +91,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        <span>Dashboard</span>
+                                        <span>{i18n.db}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -134,7 +128,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Lead</span>
+                                        <span>{i18n.lead}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -171,7 +165,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Deal Pipeline</span>
+                                        <span>{i18n.deal} {i18n.pipeline}</span>
                                     </NavLink>
                                 </li>
                                 {false && <li>
@@ -223,7 +217,7 @@ const Home = () => {
                                                 fill="white"
                                             />
                                         </svg>
-                                        <span>Estimate</span>
+                                        <span>{i18n.est}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -248,7 +242,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Invoice</span>
+                                        <span>{i18n.inv}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -285,7 +279,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Client</span>
+                                        <span>{i18n.client}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -313,7 +307,7 @@ const Home = () => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span>Project</span>
+                                        <span>{i18n.project}</span>
                                     </NavLink>
                                 </li>
                                 {false && <li>
@@ -363,7 +357,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        <span>Task &amp; Activity</span>
+                                        <span>{i18n.task}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -400,7 +394,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>Contact</span>
+                                        <span>{i18n.contact}</span>
                                     </NavLink>
                                 </li>
                                 <li>
@@ -417,7 +411,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        <span>Settings</span>
+                                        <span>{i18n.settings}</span>
                                     </NavLink>
                                 </li>
                                 {false && <li>
@@ -485,8 +479,8 @@ const Home = () => {
                                 {false && <a href='https://propovoice.com/affilite' target='_blank' className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
                                     Refer &amp; Earn
                                 </a>}
-                                <a href={ncpi.dashboard} className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow">
-                                    Back to WP Dashboard
+                                <a href={ndpi.dashboard} className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"> 
+                                    {i18n.back_t_db}
                                 </a>
                             </div>
                         </div>
@@ -523,8 +517,8 @@ const Home = () => {
                             <div className="pi-avater">
                                 <div className="pi-dropdown">
                                     <button className="pi-dropbtn" onClick={() => setDropdown(val => !val)}>
-                                        <img src={ncpi.profile.img} alt="avatar" />
-                                        {ncpi.profile.name}
+                                        <img src={ndpi.profile.img} alt="avatar" />
+                                        {ndpi.profile.name}
                                         <svg
                                             className="pi-dropdown-angle"
                                             width={12}
@@ -544,7 +538,7 @@ const Home = () => {
                                     </button>
 
                                     {dropdown && <div className="pi-dropdown-content pi-show">
-                                        <a href={ncpi.profile.logout}>Logout</a>
+                                        <a href={ndpi.profile.logout}>Logout</a>
                                     </div>}
                                 </div>
                             </div>
@@ -571,12 +565,7 @@ const Home = () => {
                                 <Route path="/task/single/:id" exact element={<ListSingle />} />
 
                                 <Route path="/project" exact element={<Project />} />
-                                <Route path="/project/single/:id" exact element={<ListSingle />} />
-
-                                <Route path="/proposal" element={<Proposal />} />
-                                <Route path="/proposal/single" element={<ProposalSingle />} />
-                                <Route path="/proposal/single/:id" element={<ProposalSingle />} />
-                                <Route path="/proposal/single/:id/tab/:tab" element={<ProposalSingle />} />
+                                <Route path="/project/single/:id" exact element={<ListSingle />} /> 
 
                                 <Route path="/estimate" element={<Invoice />} />
                                 <Route path="/estimate/single" element={<InvoiceSingle />} />
@@ -586,10 +575,7 @@ const Home = () => {
                                 <Route path="/invoice" element={<Invoice />} />
                                 <Route path="/invoice/single" element={<InvoiceSingle />} />
                                 <Route path="/invoice/single/:id" element={<InvoiceSingle />} />
-                                <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} />
-
-                                <Route path="/payment" element={<Payment />} />
-                                <Route path="/business" element={<Business />} />
+                                <Route path="/invoice/single/:id/tab/:tab" element={<InvoiceSingle />} /> 
 
                                 <Route path="/contact/person" exact element={<ContactPerson />} />
                                 <Route path="/contact/organization" exact element={<ContactOrg />} />

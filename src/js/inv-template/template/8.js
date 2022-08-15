@@ -26,7 +26,7 @@ export default class Seven extends Component {
     }
 
     render() {
-        const { id, items, sections, item_tax, attach, sign, date, due_date } = this.props.data.invoice;
+        const { id, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
         return (
@@ -61,7 +61,7 @@ export default class Seven extends Component {
                             </div>
                         </div>
                         <div className="pi-inv-item-wrap">
-                            {items && <Items data={items} item_tax={item_tax} />}
+                            {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
 
                             <div className="pi-inv-account">
                                 <Payment {...this.props} />
