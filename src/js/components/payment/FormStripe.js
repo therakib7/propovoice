@@ -96,7 +96,7 @@ class FormStripe extends Component {
                                     <div className="col-lg">
                                         <label
                                             htmlFor="form-account_name">
-                                            Account Name
+                                            {i18n.account} {i18n.name}
                                         </label>
 
                                         <input
@@ -132,7 +132,7 @@ class FormStripe extends Component {
                                     <div className="col-lg">
                                         <label
                                             htmlFor="form-secret_key">
-                                            Secret Key
+                                            {i18n.secret} Key
                                         </label>
 
                                         <input

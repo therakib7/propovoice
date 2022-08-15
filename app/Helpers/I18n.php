@@ -110,6 +110,12 @@ class I18n
             'sub' => esc_html__('Subject', 'propovoice'), 
             'msg' => esc_html__('Message', 'propovoice'), 
             'clear' => esc_html__('Clear', 'propovoice'),
+            'account' => esc_html__('Account', 'propovoice'),
+            'secret' => esc_html__('Secret', 'propovoice'),
+            'id' => esc_html__('ID', 'propovoice'),
+            'key' => esc_html__('Key', 'propovoice'),
+            'info' => esc_html__('Info', 'propovoice'),
+            'personal' => esc_html__('Personal', 'propovoice'),
             //btn
             'logo' => esc_html__('Logo', 'propovoice'),
             'contin' => esc_html__('Continue', 'propovoice'),
