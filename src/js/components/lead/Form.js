@@ -212,7 +212,6 @@ class Form extends Component {
     }
 
     render() {
-        const contact = this.state.form.contact;
         const levelList = this.state.levels;
         const tagList = this.state.tags;
 
