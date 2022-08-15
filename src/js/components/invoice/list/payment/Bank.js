@@ -82,7 +82,7 @@ class Bank extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">Payment Info</h2>
+                        <h2 className="pi-modal-title">{i18n.payment} Info</h2>
                         <p>Here is the payment information</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
@@ -91,7 +91,7 @@ class Bank extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-payment_details">
-                                            Payment Details
+                                        {i18n.payment} {i18n.dtl}
                                         </label>
                                         <textarea
                                             id="form-payment_details"
@@ -106,8 +106,13 @@ class Bank extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
+<<<<<<< HEAD
+                                        <label htmlFor="field-receipt">{i18n.payment} Receipt</label>
+                                        <Upload label={'Upload'} attach_type='secret' permission={true} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
+=======
                                         <label htmlFor="field-receipt">Payment Receipt</label>
                                         <Upload label={'Upload'} attach_type='secret' permission library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
+>>>>>>> c2fe5b6d1fa709a1de957f8985ecb76512407a75
                                     </div>
                                 </div>
 

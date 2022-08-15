@@ -56,7 +56,7 @@ class Paypal extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">Paypal Payment Info</h2>
+                        <h2 className="pi-modal-title">Paypal {i18n.payment} {i18n.info}</h2>
                         <p>Here is the payment information</p>
                     </div>
                     <div className="pi-content">

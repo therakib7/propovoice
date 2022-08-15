@@ -55,6 +55,7 @@ class Bank extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <>
                 {this.props.show && (
@@ -84,7 +85,7 @@ class Bank extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pi-modal-title">Payment Info</h2>
+                                <h2 className="pi-modal-title">{i18n.payment} {i18n.info}</h2>
                                 <p>Add payment info from here</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >
@@ -93,7 +94,7 @@ class Bank extends Component {
                                         <div className="row">
                                             <div className="col-lg">
                                                 <label htmlFor="form-payment_details">
-                                                    Payment Details
+                                                {i18n.payment} {i18n.dtl}
                                                 </label>
                                                 <textarea
                                                     id="form-payment_details"
@@ -108,8 +109,13 @@ class Bank extends Component {
 
                                         <div className="row">
                                             <div className="col-md">
+<<<<<<< HEAD
+                                                <label htmlFor="field-receipt">{i18n.payment} Receipt</label>
+                                                <Upload label={'Upload'} attach_type='secret' permission={true} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
+=======
                                                 <label htmlFor="field-receipt">Payment Receipt</label>
                                                 <Upload label={'Upload'} attach_type='secret' permission library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
+>>>>>>> c2fe5b6d1fa709a1de957f8985ecb76512407a75
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +128,7 @@ class Bank extends Component {
                                         </div>
                                         <div className="col">
                                             <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                                Payment
+                                            {i18n.payment}
                                             </button>
                                         </div>
                                     </div>
