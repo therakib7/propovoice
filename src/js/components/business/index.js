@@ -18,12 +18,13 @@ class Business extends Component {
 
     render() {
         const { title, lists, checkedBoxes, searchVal } = this.props.state;
+        const i18n = ndpi.i18n;
         return (
             <div className="ncpi-components">
                 {wage.length > 0 &&
                     <>
                         <div className="pi-setting-heading-content">
-                            <h3>Business Info</h3>
+                            <h3>{i18n.business} {i18n.info}</h3>
                             <p><b>Note:</b> In this version, You can add only one business info</p>
                         </div>
                     </>}
@@ -32,7 +33,7 @@ class Business extends Component {
                     <button
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.props.openForm('new')} >
-                        Create New {title}
+                        {i18n.create} {i18n.new} {title}
                     </button>
 
                     <div className="pi-search-box pi-float-right">
