@@ -135,7 +135,7 @@ const Contact = (props) => {
           className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
           onClick={() => navigate(`/contact/person`)}
         >
-          Person
+          {i18n.person}
         </button>
         <button
           className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow"

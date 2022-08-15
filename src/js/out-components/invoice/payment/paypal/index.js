@@ -37,14 +37,14 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
         });
     }, [currency, showSpinner]);
 
-
+    const i18n = ndpi.i18n;
     return (<>
         {(showSpinner && isPending) && <div className="pi-preloader" />}
 
         {details ? (
             <div className="Result">
                 <div className="ResultTitle" role="alert">
-                    Payment successful
+                {i18n.payment} successful
                 </div>
                 <div className="ResultMessage">
                     Thanks for trying paypal payment.

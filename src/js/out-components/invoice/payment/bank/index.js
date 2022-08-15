@@ -55,6 +55,7 @@ class Bank extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <>
                 {this.props.show && (
@@ -93,7 +94,7 @@ class Bank extends Component {
                                         <div className="row">
                                             <div className="col-lg">
                                                 <label htmlFor="form-payment_details">
-                                                    Payment Details
+                                                {i18n.payment} {i18n.dtl}
                                                 </label>
                                                 <textarea
                                                     id="form-payment_details"
@@ -122,7 +123,7 @@ class Bank extends Component {
                                         </div>
                                         <div className="col">
                                             <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                                Payment
+                                            {i18n.payment}
                                             </button>
                                         </div>
                                     </div>

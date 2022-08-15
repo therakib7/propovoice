@@ -247,7 +247,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-logo">
-                                            Logo
+                                        {i18n.logo}
                                         </label>
                                         <Upload data={form.logo} changeHandler={this.handleLogoChange} />
                                     </div>
