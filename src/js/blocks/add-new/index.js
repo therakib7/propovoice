@@ -26,6 +26,7 @@ const AddNew = (props) => {
         alert('Features, In progressing...');
     };
 
+    const i18n = ndpi.i18n;
     return (
         <div className='pi-list-single-button-content'>
             <button
