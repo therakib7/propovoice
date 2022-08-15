@@ -224,7 +224,7 @@ const Taxonomy = (props) => {
 				modalType={modalType}
 				reload={getData}
 				data={form}
-				color={true}
+				color
 				close={() => setModal(false)}
 			/>}
 		</>

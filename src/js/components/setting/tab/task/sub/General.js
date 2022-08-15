@@ -60,7 +60,7 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Task Status</label>
-                        <Taxonomy taxonomy='task_status' title='status' color={true} />
+                        <Taxonomy taxonomy='task_status' title='status' color />
                     </div>
                     <div className="col"></div>
                 </div> 
@@ -68,7 +68,7 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Task Type</label>
-                        <Taxonomy taxonomy='task_type' title='type' icon={true} />
+                        <Taxonomy taxonomy='task_type' title='type' icon />
                     </div>
                     <div className="col"></div>
                 </div> 
@@ -76,7 +76,7 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Task Priority</label>
-                        <Taxonomy taxonomy='task_priority' title='priority' color={true} />
+                        <Taxonomy taxonomy='task_priority' title='priority' color />
                     </div>
                     <div className="col"></div>
                 </div> 

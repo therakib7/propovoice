@@ -177,7 +177,7 @@ class Form extends Component {
                         </span>
 
                         <div className="pi-small-button-group">
-                            {form.id && <Taxonomy key={form.status_id.id} onChange={this.handleTaskStatusChange} id={form.id} data={form.status_id} taxonomy='task_status' title='Status' color={true} />}
+                            {form.id && <Taxonomy key={form.status_id.id} onChange={this.handleTaskStatusChange} id={form.id} data={form.status_id} taxonomy='task_status' title='Status' color />}
 
                             {(form.status_id && form.status_id.type != 'done') && <button
                                 className="pi-btn pi-btn-medium pi-float-right pi-bg-green"
@@ -248,7 +248,7 @@ class Form extends Component {
                                         Task Type:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title='Type' /* small={true} */ color={true} />}
+                                        {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title='Type' /* small */ color />}
                                     </div>
                                 </div>
 
@@ -257,7 +257,7 @@ class Form extends Component {
                                         Task Priority:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title='Priority' /* small={true} */ color={true} />}
+                                        {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title='Priority' /* small */ color />}
                                     </div>
                                 </div>
                             </div>

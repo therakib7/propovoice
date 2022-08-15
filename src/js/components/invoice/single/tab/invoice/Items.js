@@ -29,6 +29,7 @@ export default (props) => {
 
     const { items, item_label, item_tax, addHandler, reorderHandler, ...functions } = props
     const i18n = ndpi.i18n;
+    const { desc, qty, price, tax, amount } = item_label;
     return (
         <>
             <div className="pi-info-table-wrap">
@@ -36,11 +37,11 @@ export default (props) => {
                     <table className="pi-table pi-info-table">
                         <thead>
                             <tr>
-                                <th style={{ width: 'auto' }}>{item_label.desc}</th>
-                                <th style={{ width: '125px' }}>{item_label.qty}</th>
-                                <th style={{ width: '105px' }}>{item_label.price} (USD)</th>
-                                {item_tax && <th style={{ width: '125px' }}>{item_label.tax}</th>}
-                                <th style={{ width: '90px' }}>{item_label.amount}</th>
+                                <th style={{ width: 'auto' }}>{desc}</th>
+                                <th style={{ width: '125px' }}>{qty}</th>
+                                <th style={{ width: '105px' }}>{price} (USD)</th>
+                                {item_tax && <th style={{ width: '125px' }}>{tax}</th>}
+                                <th style={{ width: '90px' }}>{amount}</th>
                                 <th></th>
                             </tr>
                         </thead>

@@ -1,5 +1,5 @@
 
-const PaymentInfo = props => { 
+export default ( props ) => { 
     const bank_info = props.data;
     const i18n = ndpi.i18n;
     return (
@@ -13,4 +13,3 @@ const PaymentInfo = props => {
         </>
     )
 } 
-export default PaymentInfo

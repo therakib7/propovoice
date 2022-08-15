@@ -148,8 +148,8 @@ class Form extends Component {
                                 <Contact
                                     first_name={form.first_name}
                                     org_name={form.org_name}
-                                    review={true}
-                                    personLast={true}
+                                    review
+                                    personLast
                                     onChange={this.handleContactChange}
                                     onSelect={this.handleContactSelect}
                                 />

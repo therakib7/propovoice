@@ -6,4 +6,3 @@ import Tag from './Tag';
 import Filter from './Filter';
 
 export { Email, Arrow, Tag, Search, Cross, Filter }
-

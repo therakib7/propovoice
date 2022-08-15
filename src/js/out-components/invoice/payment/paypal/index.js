@@ -163,7 +163,7 @@ class Paypal extends Component {
                                                 <ButtonWrapper
                                                     invoice={this.props.invoice}
                                                     currency={currency}
-                                                    showSpinner={true}
+                                                    showSpinner
                                                 />
                                             </PayPalScriptProvider>
                                         </div>

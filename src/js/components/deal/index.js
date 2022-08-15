@@ -106,7 +106,7 @@ const Deal = (props) => {
                 reload={props.getLists}
                 modalType={modalType}
                 data={form}
-                color={true}
+                color
                 close={() => setModal(false)}
             />}
 

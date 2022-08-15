@@ -90,7 +90,7 @@ const Task = (props) => {
             {props.state.preloader ? <Preloader /> :
                 <>
                     {props.dashboard && <div style={{ marginTop: '15px' }}></div>}
-                    {props.dashboard && <Table dashboard={true} tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />}
+                    {props.dashboard && <Table dashboard tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />}
 
                     {!props.dashboard &&
                         <div className="pi-accordion">

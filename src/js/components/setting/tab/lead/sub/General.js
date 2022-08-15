@@ -61,7 +61,7 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Level</label>
-                        <Taxonomy taxonomy='lead_level' title='level' color={true} />
+                        <Taxonomy taxonomy='lead_level' title='level' color />
                     </div>
                     <div className="col">
                     </div>
@@ -70,7 +70,7 @@ export default class General extends Component {
                 <div className="row">
                     <div className="col">
                         <label>Source</label>
-                        <Taxonomy taxonomy='lead_source' title='Source' color={true} />
+                        <Taxonomy taxonomy='lead_source' title='Source' color />
                     </div>
                     <div className="col">
                     </div>

@@ -112,7 +112,7 @@ const Dashboard = (props) => {
                                 {ndpi.i18n.latest} {ndpi.i18n.task}
                             </h3>
                             <Suspense fallback={<Spinner />}>
-                                <Task tab_id={null} dashboard={true} />
+                                <Task tab_id={null} dashboard />
                             </Suspense>
                         </div>
                     </div>
