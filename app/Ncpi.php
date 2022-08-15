@@ -2,12 +2,12 @@
 
 require_once __DIR__ . './../vendor/autoload.php';
  
-use Ncpi\Ctrls\Installation\InstallationController;
+use Ncpi\Ctrl\Install\InstallCtrl;
 use Ncpi\Traits\SingletonTrait;
 use Ncpi\Helpers\Constant; 
 use Ncpi\Helpers\Fns; 
 use Ncpi\Helpers\Data;
-use Ncpi\Ctrls\MainController;   
+use Ncpi\Ctrl\MainCtrl;   
 
 /**
  * Class Ncpi
@@ -21,7 +21,7 @@ final class Ncpi {
      */
     public function __construct() { 
         new Constant();  
-        new InstallationController();
+        new InstallCtrl();
         $this->init_hooks(); 
     } 
 
@@ -36,7 +36,7 @@ final class Ncpi {
 
         $this->load_plugin_textdomain();
         
-        new MainController();  
+        new MainCtrl();  
 
         do_action('ncpi_init');
     }
