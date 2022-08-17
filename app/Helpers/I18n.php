@@ -132,6 +132,7 @@ class I18n
             'payment' => esc_html__('Payment', 'propovoice'),
             'method' => esc_html__('Method', 'propovoice'),
             'social' => esc_html__('Social', 'propovoice'), 
+            'var' => esc_html__('Variable', 'propovoice'), 
             //ext
             'pipeline' => esc_html__('Pipeline', 'propovoice'), 
             'back_t_db' => esc_html__('Back to WP Dashboard', 'propovoice'),  

@@ -63,7 +63,7 @@ export default class DefaultMail extends Component {
                 <div className="row">
                     <div className="col">
                         <label htmlFor="form-subject">
-                        {i18n.sub}
+                            {i18n.sub}
                         </label>
                         <input
                             id="form-subject"
@@ -73,7 +73,7 @@ export default class DefaultMail extends Component {
                             value={this.state.form.subject}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{org_name}'}, {'{client_name}'} </p>
+                        <p className='pi-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{org_name}'}, {'{client_name}'} </p>
                     </div>
                 </div>
 
@@ -88,14 +88,14 @@ export default class DefaultMail extends Component {
                             value={this.state.form.msg}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>Variable:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{org_name}'}</p>
+                        <p className='pi-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{org_name}'}</p>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Save
+                            {i18n.save}
                         </button>
                     </div>
                 </div>
