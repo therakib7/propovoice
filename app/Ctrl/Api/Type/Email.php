@@ -1,8 +1,8 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type;
+namespace Ndpi\Ctrl\Api\Type;
 
-use Ncpi\Helpers\Fns;
+use Ndpi\Helpers\Fns;
 
 class Email
 {
@@ -15,7 +15,7 @@ class Email
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/emails', [
+        register_rest_route('ndpi/v1', '/emails', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -28,7 +28,7 @@ class Email
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/emails/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/emails/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +41,7 @@ class Email
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/emails/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpi/v1', '/emails/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -169,7 +169,7 @@ class Email
         );
  
         $subject = Fns::templateVariable($mail_subject, []);
-        $template = ncpi()->render('email/invoice', [], true); 
+        $template = ndpi()->render('email/invoice', [], true); 
              
         $body = Fns::templateVariable($template, [
             'msg' => $msg,

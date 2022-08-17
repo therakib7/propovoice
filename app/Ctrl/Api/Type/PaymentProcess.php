@@ -1,8 +1,8 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type;
+namespace Ndpi\Ctrl\Api\Type;
 
-use Ncpi\Models\Invoice;
+use Ndpi\Models\Invoice;
 
 class PaymentProcess
 {
@@ -15,7 +15,7 @@ class PaymentProcess
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/payment-process', [
+        register_rest_route('ndpi/v1', '/payment-process', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],

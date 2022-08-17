@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Install\Type;
+namespace Ndpi\Ctrl\Install\Type;
 
 class Taxonomy
 {
@@ -303,30 +303,30 @@ class Taxonomy
                 if (!is_wp_error($term_id)) {
                     update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
 
-                    if ($taxonomy['bg_color']) {
+                    if ( isset( $taxonomy['bg_color'] ) && $taxonomy['bg_color']) {
                         update_term_meta($term_id['term_id'], 'bg_color', $taxonomy['bg_color']);
                     }
-                    if ($taxonomy['color']) {
+                    if ( isset( $taxonomy['color'] ) && $taxonomy['color']) {
                         update_term_meta($term_id['term_id'], 'color', $taxonomy['color']);
                     }
-                    if ($taxonomy['type']) {
+                    if ( isset( $taxonomy['type'] ) && $taxonomy['type']) {
                         update_term_meta($term_id['term_id'], 'type', $taxonomy['type']);
                     }
 
                     //this is for extra amount
-                    if ($taxonomy['extra_amount_type']) {
+                    if ( isset( $taxonomy['extra_amount_type'] ) && $taxonomy['extra_amount_type']) {
                         update_term_meta($term_id['term_id'], 'extra_amount_type', $taxonomy['extra_amount_type']);
                     }
-                    if ($taxonomy['val_type']) {
+                    if ( isset( $taxonomy['val_type'] ) && $taxonomy['val_type']) {
                         update_term_meta($term_id['term_id'], 'val_type', $taxonomy['val_type']);
                     }
-                    if ($taxonomy['show']) {
+                    if ( isset( $taxonomy['show'] ) && $taxonomy['show']) {
                         update_term_meta($term_id['term_id'], 'show', $taxonomy['show']);
                     }
 
                     //set icon
-                    if ($taxonomy['icon']) {
-                        $url = ncpi()->get_assets_uri('img/task-type/') . $taxonomy['icon'] .'.png';
+                    if ( isset( $taxonomy['icon'] ) && $taxonomy['icon']) {
+                        $url = ndpi()->get_assets_uri('img/task-type/') . $taxonomy['icon'] .'.png';
                         $icon_id = $this->custom_media_sideload_image( $url );
                         update_term_meta($term_id['term_id'], 'icon', $icon_id);
                     }

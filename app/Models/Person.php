@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Models;
+namespace Ndpi\Models;
 
 class Person
 {
@@ -39,7 +39,7 @@ class Person
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
 
                 if ($org_id) {
                     update_post_meta($post_id, 'org_id', $org_id);

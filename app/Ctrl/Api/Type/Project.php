@@ -1,11 +1,11 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type;
+namespace Ndpi\Ctrl\Api\Type;
 
-use Ncpi\Models\Contact;
-use Ncpi\Models\Invoice;
-use Ncpi\Models\Org;
-use Ncpi\Models\Person;
+use Ndpi\Models\Contact;
+use Ndpi\Models\Invoice;
+use Ndpi\Models\Org;
+use Ndpi\Models\Person;
 
 class Project
 {
@@ -16,7 +16,7 @@ class Project
 
     public function create_rest_routes()
     {
-        register_rest_route('ncpi/v1', '/projects', [
+        register_rest_route('ndpi/v1', '/projects', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -29,7 +29,7 @@ class Project
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/projects/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/projects/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -42,7 +42,7 @@ class Project
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/projects/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/projects/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -55,7 +55,7 @@ class Project
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/projects/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpi/v1', '/projects/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -346,7 +346,7 @@ class Project
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
                 $tab_id = $post_id;
                 if ($deal_id) {
                     $tab_id = $deal_id;

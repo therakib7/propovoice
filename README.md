@@ -1,4 +1,4 @@
-# WordPress Ncpi Plugin
+# WordPress Ndpi Plugin
 
 ## Requirement 
 - Composer [HERE](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
@@ -25,12 +25,12 @@ npm install
 - Set name space composer.json psr-4 to tour unique namespace for the app folder
 ```json
 {
-  "Ncpi\\": "app"
+  "Ndpi\\": "app"
 }
 ```
-- Rename app/Ncpi.php to your app class name
+- Rename app/Ndpi.php to your app class name
 ```php
-final class Ncpi{
+final class Ndpi{
 
 }
 // TO =>
@@ -38,14 +38,14 @@ final class YourPluginInitClass{
 
 }
 //================ Start up function ==============
-function ncpi() {
-    return Ncpi::getInstance();
+function ndpi() {
+    return Ndpi::getInstance();
 }
 
-ncpi();
+ndpi();
 // TO =>
 function your_ncpi_function() {
-    return Ncpi::getInstance();
+    return Ndpi::getInstance();
 }
 
 your_ncpi_function();

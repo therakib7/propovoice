@@ -8,7 +8,7 @@
  * @author NurCreation
  */
 
-namespace Ncpi\Traits;
+namespace Ndpi\Traits;
 
 trait SingletonTrait
 {

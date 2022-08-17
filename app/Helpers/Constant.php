@@ -1,13 +1,13 @@
 <?php
 
-namespace Ncpi\Helpers;
+namespace Ndpi\Helpers;
 
 class Constant
 {
     public function __construct()
     {
         if (!defined('NCPI_VERSION')) {
-            define('NCPI_VERSION', '0.5.0');
+            define('NCPI_VERSION', '0.6.0');
         }
 
         if (!defined('NCPI_PATH')) {

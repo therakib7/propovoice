@@ -20,11 +20,11 @@ if (!defined('ABSPATH')) {
  *
  */
 
-if (!class_exists('Ncpi')) {
+if (!class_exists('Ndpi')) {
 
     if (!defined('NCPI_FILE')) {
         define('NCPI_FILE', __FILE__);
     }
 
-    require_once plugin_dir_path(__FILE__) . 'app/Ncpi.php';
+    require_once plugin_dir_path(__FILE__) . 'app/Ndpi.php';
 } 

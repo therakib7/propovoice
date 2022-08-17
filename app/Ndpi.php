@@ -2,17 +2,17 @@
 
 require_once __DIR__ . './../vendor/autoload.php';
  
-use Ncpi\Ctrl\Install\InstallCtrl;
-use Ncpi\Traits\SingletonTrait;
-use Ncpi\Helpers\Constant; 
-use Ncpi\Helpers\Fns; 
-use Ncpi\Helpers\Data;
-use Ncpi\Ctrl\MainCtrl;   
+use Ndpi\Ctrl\Install\InstallCtrl;
+use Ndpi\Traits\SingletonTrait;
+use Ndpi\Helpers\Constant; 
+use Ndpi\Helpers\Fns; 
+use Ndpi\Helpers\Data;
+use Ndpi\Ctrl\MainCtrl;   
 
 /**
- * Class Ncpi
+ * Class Ndpi
  */
-final class Ncpi {
+final class Ndpi {
 
     use SingletonTrait; 
  
@@ -42,7 +42,7 @@ final class Ncpi {
     }
 
     public function on_plugins_loaded() { 
-        do_action('ncpi_loaded');        
+        do_action('ndpi_loaded');        
     }   
 
     /**
@@ -213,9 +213,9 @@ final class Ncpi {
 }
 
 /**
- * @return bool|SingletonTrait|Ncpi
+ * @return bool|SingletonTrait|Ndpi
  */
-function ncpi() {
-    return Ncpi::getInstance();
+function ndpi() {
+    return Ndpi::getInstance();
 } 
-ncpi(); // Run Ncpi Plugin  
+ndpi(); // Run Ndpi Plugin  

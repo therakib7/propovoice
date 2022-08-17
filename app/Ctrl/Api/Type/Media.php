@@ -1,8 +1,8 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type;
+namespace Ndpi\Ctrl\Api\Type;
 
-use Ncpi\Helpers\Fns; 
+use Ndpi\Helpers\Fns; 
 
 class Media
 {
@@ -15,7 +15,7 @@ class Media
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/media', [
+        register_rest_route('ndpi/v1', '/media', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -28,7 +28,7 @@ class Media
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/media/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/media/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +41,7 @@ class Media
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/media/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpi/v1', '/media/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -252,7 +252,7 @@ class Media
                     $file_info = [];
                     if (!is_wp_error($attach_id)) {
                         // wp_update_attachment_metadata($attach_id, wp_generate_attachment_metadata($attach_id, $filename)); 
-                        update_post_meta($attach_id, 'ws_id', ncpi()->get_workspace() );
+                        update_post_meta($attach_id, 'ws_id', ndpi()->get_workspace() );
                         update_post_meta($attach_id, 'ncpi_attach_type', $attach_type); 
 
                         $file_info = [

@@ -1,28 +1,28 @@
 <?php
 
-namespace Ncpi\Ctrl\Api;
+namespace Ndpi\Ctrl\Api;
 
-use Ncpi\Ctrl\Api\Type\Action;
-use Ncpi\Ctrl\Api\Type\Business;
-use Ncpi\Ctrl\Api\Type\Client;
-use Ncpi\Ctrl\Api\Type\Contact;
-use Ncpi\Ctrl\Api\Type\Person;
-use Ncpi\Ctrl\Api\Type\Dashbaord;
-use Ncpi\Ctrl\Api\Type\Deal;
-use Ncpi\Ctrl\Api\Type\Email;
-use Ncpi\Ctrl\Api\Type\File;
-use Ncpi\Ctrl\Api\Type\Invoice;
-use Ncpi\Ctrl\Api\Type\Lead;
-use Ncpi\Ctrl\Api\Type\Media;
-use Ncpi\Ctrl\Api\Type\Note;
-use Ncpi\Ctrl\Api\Type\Org;
-use Ncpi\Ctrl\Api\Type\Payment;
-use Ncpi\Ctrl\Api\Type\PaymentProcess;
-use Ncpi\Ctrl\Api\Type\Project;
-use Ncpi\Ctrl\Api\Type\Proposal;
-use Ncpi\Ctrl\Api\Type\Setting;
-use Ncpi\Ctrl\Api\Type\Task;
-use Ncpi\Ctrl\Api\Type\Taxonomy;
+use Ndpi\Ctrl\Api\Type\Action;
+use Ndpi\Ctrl\Api\Type\Business;
+use Ndpi\Ctrl\Api\Type\Client;
+use Ndpi\Ctrl\Api\Type\Contact;
+use Ndpi\Ctrl\Api\Type\Person;
+use Ndpi\Ctrl\Api\Type\Dashbaord;
+use Ndpi\Ctrl\Api\Type\Deal;
+use Ndpi\Ctrl\Api\Type\Email;
+use Ndpi\Ctrl\Api\Type\File;
+use Ndpi\Ctrl\Api\Type\Invoice;
+use Ndpi\Ctrl\Api\Type\Lead;
+use Ndpi\Ctrl\Api\Type\Media;
+use Ndpi\Ctrl\Api\Type\Note;
+use Ndpi\Ctrl\Api\Type\Org;
+use Ndpi\Ctrl\Api\Type\Payment;
+use Ndpi\Ctrl\Api\Type\PaymentProcess;
+use Ndpi\Ctrl\Api\Type\Project;
+use Ndpi\Ctrl\Api\Type\Proposal;
+use Ndpi\Ctrl\Api\Type\Setting;
+use Ndpi\Ctrl\Api\Type\Task;
+use Ndpi\Ctrl\Api\Type\Taxonomy;
 
 class ApiCtrl
 {

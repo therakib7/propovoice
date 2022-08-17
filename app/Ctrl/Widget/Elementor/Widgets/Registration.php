@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Widget\Elementor\Widgets;
+namespace Ndpi\Ctrl\Widget\Elementor\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
@@ -57,7 +57,7 @@ class Registration extends Widget_Base {
 	 */
 	protected function render() {  
 		$settings = $this->get_settings_for_display(); ?>   
-		<?php ncpi()->render('public/auth/registration'); ?> 
+		<?php ndpi()->render('public/auth/registration'); ?> 
 		<?php 
 	} 
 } 

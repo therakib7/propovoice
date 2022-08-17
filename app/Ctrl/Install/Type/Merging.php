@@ -1,8 +1,8 @@
 <?php
 
-namespace Ncpi\Ctrl\Install\Type;
+namespace Ndpi\Ctrl\Install\Type;
 
-use Ncpi\Models\Org;
+use Ndpi\Models\Org;
 
 
 class Merging
@@ -53,7 +53,7 @@ class Merging
 
                 if ( !is_wp_error($post_id) ) {
 
-                    update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
+                    update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
 
                     if ($first_name) {
                         update_post_meta($post_id, 'first_name', $first_name);
@@ -160,7 +160,7 @@ class Merging
             $invoice = get_post_meta($id, 'invoice', true);
 
             $extra_field = [];
-            if ($invoice['extra_field']) {
+            if ( isset( $invoice['extra_field'] ) && $invoice['extra_field']) {
                 foreach ($invoice['extra_field'] as $key => $value) {
                     $slug = ($key == 'late_fee') ? 'fee' : $key;
                     $term = get_term_by('slug', $slug, 'ndpi_extra_amount');
@@ -192,7 +192,7 @@ class Merging
             $query->the_post();
             $id = get_the_ID();
  
-            update_post_meta($id, 'ws_id', ncpi()->get_workspace() ); 
+            update_post_meta($id, 'ws_id', ndpi()->get_workspace() ); 
         }
         wp_reset_postdata();
     }

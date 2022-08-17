@@ -23,11 +23,10 @@ export default class Template extends Component {
         this.getLists();
     }
 
-    getLists = (searchArgs = null) => {
+    getLists = (searchArgs = null) => { 
 
-
-        const old_version = JSON.parse(localStorage.getItem('ncpi_version'));
-        const template = JSON.parse(localStorage.getItem('ncpi_templates'));
+        const old_version = JSON.parse(localStorage.getItem('ndpi_version'));
+        const template = JSON.parse(localStorage.getItem('ndpi_templates'));
 
         //version compire
         let current_version = ndpi.version;
@@ -59,8 +58,8 @@ export default class Template extends Component {
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
-                localStorage.setItem('ncpi_version', JSON.stringify(ndpi.version))
-                localStorage.setItem('ncpi_templates', JSON.stringify(result))
+                localStorage.setItem('ndpi_version', JSON.stringify(ndpi.version))
+                localStorage.setItem('ndpi_templates', JSON.stringify(result))
                 this.setState({ preloader: false, templates: result, totalPage: Math.ceil(total / this.state.perPage) });
 
                 //select default template

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Setting\Type;
+namespace Ndpi\Ctrl\Setting\Type;
 
 class Welcome
 {

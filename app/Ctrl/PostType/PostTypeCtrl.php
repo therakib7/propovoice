@@ -1,9 +1,9 @@
 <?php
 
-namespace Ncpi\Ctrl\PostType;
+namespace Ndpi\Ctrl\PostType;
 
-use Ncpi\Ctrl\PostType\Type\Invoice;
-use Ncpi\Ctrl\PostType\Type\Proposal;
+use Ndpi\Ctrl\PostType\Type\Invoice;
+use Ndpi\Ctrl\PostType\Type\Proposal;
 
 class PostTypeCtrl {
 	

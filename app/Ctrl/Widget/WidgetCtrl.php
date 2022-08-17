@@ -1,8 +1,8 @@
 <?php
 
-namespace Ncpi\Ctrl\Widget;
+namespace Ndpi\Ctrl\Widget;
 
-use Ncpi\Ctrl\Widget\Elementor\ElementorCtrl;
+use Ndpi\Ctrl\Widget\Elementor\ElementorCtrl;
 
 class WidgetCtrl {
 	public function __construct() {   
