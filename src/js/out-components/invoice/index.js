@@ -236,7 +236,7 @@ export default class Invoice extends Component {
                 };
 
                 if (!wage.length) {
-                    if (data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal) {
+                    if (data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal) { 
                         payment_methods.push(paypal);
                     }
 
@@ -247,18 +247,18 @@ export default class Invoice extends Component {
 
                 if (data.invoice.payment_methods.hasOwnProperty('bank') && data.invoice.payment_methods.bank) {
                     payment_methods.push(bank);
-                }
-
+                } 
+                
                 data.payment_methods = payment_methods;
 
-                if (!wage.length || data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal) {
+                if (!wage.length && data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal) {
                     data.selected_payment_method = paypal;
-                } else if (!wage.length || data.invoice.payment_methods.hasOwnProperty('stripe') && data.invoice.payment_methods.stripe) {
+                } else if (!wage.length && data.invoice.payment_methods.hasOwnProperty('stripe') && data.invoice.payment_methods.stripe) {
                     data.selected_payment_method = stripe;
                 } else if (data.invoice.payment_methods.hasOwnProperty('bank') && data.invoice.payment_methods.bank) {
                     data.selected_payment_method = bank;
                 }
-
+                
                 this.setState(data);
             })
     };

@@ -155,6 +155,7 @@ const TableBody = props => {
         let result = url.replace('invoice_id', invoice_id);
         let client_url = result.replace('invoice_token', invoice_token);
 
+        const i18n = ndpi.i18n;
         return (
             <tr key={index}>
                 <td>

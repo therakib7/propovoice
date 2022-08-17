@@ -139,8 +139,8 @@ const Form = (props) => {
                     </div>
                     <div className="pi-action-content" ref={dropdownTypeRef}>
                         <button className='pi-task-btn' type='button' onClick={() => setDropdownType(prevCheck => !prevCheck)}>
-                            {form.type_id.icon && <img src={form.type_id.icon.src} />}
-                            {!form.type_id.icon && <svg
+                            {form.type_id && form.type_id.icon && <img src={form.type_id.icon.src} />}
+                            {form.type_id && !form.type_id.icon && <svg
                                 width={16}
                                 height={20}
                                 viewBox="0 0 16 20"

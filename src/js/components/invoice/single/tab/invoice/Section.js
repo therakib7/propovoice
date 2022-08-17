@@ -13,7 +13,7 @@ class Section extends Component {
             edit: false,
             sections: [
                 {
-                    label: i18n.note,
+                    label: ndpi.i18n.note,
                     content: '',
                 },
                 {

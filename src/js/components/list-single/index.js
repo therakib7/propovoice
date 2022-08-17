@@ -34,7 +34,7 @@ class ListSingle extends Component {
                 },
                 {
                     id: 'note',
-                    text: i18n.note
+                    text: ndpi.i18n.note
                 },
                 {
                     id: 'file',
