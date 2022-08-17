@@ -633,7 +633,7 @@ class ListSingle extends Component {
                                                 className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
                                                 onClick={() => this.handleProjectStatusChange('completed')}
                                             >
-                                                {i18n.mark}{i18n.as}{i18n.comp}
+                                                {i18n.mark} {i18n.as} {i18n.comp}
                                             </button>}
 
                                             <div
