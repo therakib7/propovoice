@@ -114,7 +114,7 @@ export default class Business extends Component {
                     <div className="col-md">
                         <label
                             htmlFor="field-name">
-                            Name
+                            {i18n.name}
                         </label>
 
                         <input
@@ -195,7 +195,7 @@ export default class Business extends Component {
                     <div className="col-md">
                         <label
                             htmlFor="field-zip">
-                            Zip Code
+                            {i18n.zip}
                         </label>
 
                         <input
@@ -212,7 +212,7 @@ export default class Business extends Component {
                     <div className="col">
                         <label
                             htmlFor="field-address">
-                            Address
+                            {i18n.addr}
                         </label>
 
                         <input
@@ -228,7 +228,7 @@ export default class Business extends Component {
 
                 <div className="row">
                     <div className="col-md">
-                        <label htmlFor="field-logo">Upload Logo</label>
+                        <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
                         <Upload label={'Logo'} library={false} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
                     </div>
                 </div>
@@ -236,7 +236,7 @@ export default class Business extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Save
+                        {i18n.save}
                         </button>
                     </div>
                 </div>

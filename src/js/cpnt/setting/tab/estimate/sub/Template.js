@@ -79,7 +79,7 @@ export default class Recurring extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Save
+                        {ndpi.i18n.save}
                         </button>
                     </div>
                 </div>

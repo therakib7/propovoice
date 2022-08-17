@@ -135,7 +135,7 @@ class Info extends Component {
                         <div className="col-md">
                             <label
                                 htmlFor="field-zip">
-                                Zip Code
+                                {i18n.zip}
                             </label>
 
                             <input
