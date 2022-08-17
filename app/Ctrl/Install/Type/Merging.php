@@ -160,7 +160,7 @@ class Merging
             $invoice = get_post_meta($id, 'invoice', true);
 
             $extra_field = [];
-            if ($invoice['extra_field']) {
+            if ( isset( $invoice['extra_field'] ) && $invoice['extra_field']) {
                 foreach ($invoice['extra_field'] as $key => $value) {
                     $slug = ($key == 'late_fee') ? 'fee' : $key;
                     $term = get_term_by('slug', $slug, 'ndpi_extra_amount');

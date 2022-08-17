@@ -9,17 +9,20 @@ use Ndpi\Ctrl\Install\Type\Taxonomy;
 
 class InstallCtrl
 {
-
     public function __construct()
     {
         register_activation_hook(NCPI_FILE, array($this, 'plugin_activate'));
         add_filter('cron_schedules', array($this, 'custom_schedule'));
         register_activation_hook(NCPI_FILE, array($this, 'schedule_my_cron'));
 
+        add_action('admin_init', array($this, 'insertData'));
         add_action('admin_init', array($this, 'plugin_redirect'));
+
+        $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
+        wp_mkdir_p($uploads_dir);
     }
 
-    function custom_schedule($schedules)
+    public function custom_schedule($schedules)
     {
         $schedules['half_minute'] = array(
             'interval'  => 30,
@@ -33,7 +36,7 @@ class InstallCtrl
         return $schedules;
     }
 
-    function schedule_my_cron()
+    public function schedule_my_cron()
     {
 
         //set cron job
@@ -50,33 +53,37 @@ class InstallCtrl
         }
     }
 
-    function plugin_activate()
+    public function plugin_activate()
     {
-        add_option('ncpi_activation_redirect', true);
+        add_option('ndpi_active', true);
     }
 
-    function plugin_redirect()
+    public function plugin_redirect()
     {
-        if (get_option('ncpi_activation_redirect', false)) {
-            delete_option('ncpi_activation_redirect');
+        if (get_option('ndpi_active', false)) {
+            delete_option('ndpi_active');
 
-            //TODO: Check by plugin version
-            if (get_option('ncpi_role_version') < 1) {
-                new Page();
-
-                $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
-                wp_mkdir_p($uploads_dir);
-            }
-
-            if (get_option('ncpi_role_version') < 1.1) {
-                new DB();
-                new Taxonomy();
-                new Merging();
-            }
-
-            update_option('ncpi_role_version', 1.1);
+            // $this->insertData();
 
             wp_redirect(admin_url('admin.php?page=ndpi-welcome'));
         }
+    }
+
+    public function insertData()
+    {
+        $version = get_option('ndpi_version', '0.1.0');
+        if ( version_compare( $version, NCPI_VERSION, '<') ) {
+            update_option('ndpi_version', NCPI_VERSION);
+        }
+        
+        if ( version_compare( $version, '0.5.0', '<') ) { 
+            new Page();
+            new DB();
+            new Taxonomy();
+            new Merging();
+
+            // $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
+            // wp_mkdir_p($uploads_dir);
+        }  
     }
 }
