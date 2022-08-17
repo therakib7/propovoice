@@ -56,14 +56,11 @@
 		"@editorjs/table": "latest",
 		"@editorjs/underline": "latest",
 		"@editorjs/warning": "latest",
-		"@emotion/core": "^10.1.1",
 		"@paypal/react-paypal-js": "^7.6.0",
 		"@react-pdf/renderer": "^2.1.1",
 		"@stripe/react-stripe-js": "^1.7.0",
 		"@stripe/stripe-js": "^1.25.0",
 		"@tinymce/tinymce-react": "^4.0.0",
-		"@wordpress/i18n": "^4.5.0",
-		"@wordpress/react-i18n": "^3.1.1",
 		"axios": "^0.21.4",
 		"editorjs-blocks-react-renderer": "^1.2.4",
 		"editorjs-text-alignment-blocktune": "^1.0.3",
@@ -84,8 +81,6 @@
 		"react-to-print": "^2.14.6",
 		"react-toastify": "^8.1.1",
 		"recharts": "^2.1.12",
-		"tinymce": "^6.0.1",
-		"uuid": "^8.3.2",
-		"watch": "^0.13.0"
+		"tinymce": "^6.0.1" 
 	}
 }

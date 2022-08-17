@@ -162,5 +162,4 @@ class FormBank extends Component {
         );
     }
 }
-
 export default FormBank;

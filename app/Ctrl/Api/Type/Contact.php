@@ -200,6 +200,12 @@ class Contact
 
         $query_data['status_id'] = '';
         $status = get_the_terms($id, 'ndpi_contact_status');
+
+        //if not set any term, show active
+        if ( !$status ) {
+            $status[] = get_term_by('slug', 'active', 'ndpi_contact_status');
+        }
+
         if ($status) {
             $term_id = $status[0]->term_id;
             $query_data['status_id'] = [
