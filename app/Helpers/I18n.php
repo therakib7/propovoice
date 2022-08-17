@@ -191,6 +191,7 @@ class I18n
             'files' => esc_html__('Files', 'propovoice'),  
             'block' => esc_html__('Block', 'propovoice'),  
             'move' => esc_html__('Move', 'propovoice'),  
+            'go' => esc_html__('Go', 'propovoice'),  
         ];
     }
 }
