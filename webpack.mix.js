@@ -16,7 +16,7 @@ mix.webpackConfig({
         publicPath: '/wp-content/plugins/propovoice/', //TODO: this not working in xampp 
         // path: path.join(__dirname, 'root'),
         //publicPath: '/nurency-plugin/wp-content/plugins/propovoice/',
-        chunkFilename: 'assets/js/component/chunks/[chunkhash].js', //[name][chunkhash]
+        chunkFilename: 'assets/js/cpnt/chnk/[chunkhash].js', //[name][chunkhash]
     },
     resolve: {
         alias: {
@@ -27,8 +27,8 @@ mix.webpackConfig({
             'block': path.resolve('src/js/blocks'),
             'hoc': path.resolve('src/js/hoc'),
             'context': path.resolve('src/js/context'),
-            'components': path.resolve('src/js/components'),
-            'out-components': path.resolve('src/js/out-components'),
+            'cpnt': path.resolve('src/js/cpnt'),
+            'out-cpnt': path.resolve('src/js/out-cpnt'),
             'inv-template': path.resolve('src/js/inv-template'),
         },
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from 'components/home';
+import Home from 'cpnt/home';
 import AppContext from 'context/app-context';
 import msgData from 'context/data/msg';
 

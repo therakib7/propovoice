@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
 import WithApi from 'hoc/Api';
 
-import ContactForm from 'components/contact/Form';
+import ContactForm from 'cpnt/contact/Form';
 
 const Contact = (props) => {
 	const dropdownContent = useRef();

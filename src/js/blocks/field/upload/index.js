@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import AppContext from 'context/app-context';
 import Api from 'api/media';
-import Media from 'components/media';
+import Media from 'cpnt/media';
 
 class Upload extends Component {
 
