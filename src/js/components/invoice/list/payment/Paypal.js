@@ -77,7 +77,7 @@ class Paypal extends Component {
 
                                 <div className="col-lg">
                                     <label htmlFor="form-email">
-                                    {i18n.email}
+                                        {i18n.email}
                                     </label>
 
                                     <input
@@ -94,7 +94,7 @@ class Paypal extends Component {
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="form-transection_id">
-                                    {i18n.transection} {i18n.id}
+                                        {i18n.txn} {i18n.id}
                                     </label>
 
                                     <input

@@ -55,7 +55,7 @@ const TableBody = props => {
         if (row.img) {
             img = row.img.src;
         }
-
+        const i18n = ndpi.i18n;
         return (
             <tr key={index}>
                 <td>

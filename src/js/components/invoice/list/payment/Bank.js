@@ -135,7 +135,7 @@ class Bank extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        {i18n.markpaid}
+                                    {i18n.mark} {i18n.as} {i18n.paid}
                                     </button>
                                 </div>
                             </div>

@@ -92,7 +92,7 @@ class FormBank extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Account</h2>
+                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.account}</h2>
                         <p>Please fill up necessary information in the form.</p>
                     </div>
                     <form onSubmit={this.handleSubmit}>
@@ -120,7 +120,7 @@ class FormBank extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-details">
-                                            Details
+                                        {i18n.dtl}
                                         </label>
                                         <textarea
                                             id="form-details"

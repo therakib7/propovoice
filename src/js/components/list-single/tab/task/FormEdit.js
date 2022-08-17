@@ -198,7 +198,7 @@ class Form extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                {i18n.markdone}
+                                {i18n.mark} {i18n.as} {i18n.done}
                             </button>}
                         </div>
                     </div>

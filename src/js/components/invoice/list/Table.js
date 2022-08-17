@@ -218,7 +218,7 @@ const TableBody = props => {
                             <a onClick={() => handleClick(row.id, '/tab/preview')}>Preview</a>
                             <a target='_blank' href={client_url}>Client Preview</a>
                             <a onClick={() => { showDropdown(row.id); props.action('sent', row.id); }}>Mark As Sent</a>
-                            {row.path == 'invoice' && <a onClick={() => { showDropdown(row.id); props.action('paid', row.id); }}>{i18n.markpaid}</a>}
+                            {row.path == 'invoice' && <a onClick={() => { showDropdown(row.id); props.action('paid', row.id); }}>{i18n.mark}{i18n.as}{i18n.paid}</a>}
                             {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('accept', row.id); }}>Mark As Accepted</a>}
                             {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); }}>Mark As Declined</a>}
                             <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); }}>Duplicate</a>

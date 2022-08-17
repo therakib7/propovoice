@@ -631,7 +631,7 @@ class ListSingle extends Component {
                                                 className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
                                                 onClick={() => this.handleProjectStatusChange('completed')}
                                             >
-                                                {i18n.markcom}
+                                                {i18n.mark}{i18n.as}{i18n.comp}
                                             </button>}
 
                                             <div
@@ -1046,7 +1046,7 @@ class ListSingle extends Component {
                             <div className="pi-desc-content">
                                 {data.desc &&
                                     <>
-                                        <h5>Description:</h5>
+                                        <h5>{i18n.desc}:</h5>
                                         <p className="" dangerouslySetInnerHTML={{ __html: data.desc }}></p>
                                     </>
                                 }

@@ -341,7 +341,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-status_id">
-                                            Status
+                                        {i18n.status}
                                         </label>
 
                                         <Select
@@ -378,7 +378,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
-                                            Tags
+                                        {i18n.tag}
                                         </label>
                                         <Select
                                             className={'pi-field-select'}
@@ -395,7 +395,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-desc">
-                                            Description
+                                        {i18n.desc}
                                         </label>
 
                                         <textarea

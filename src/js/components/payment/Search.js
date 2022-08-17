@@ -129,7 +129,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid-org_name">
-                                                    Company Name
+                                                    {i18n.company} {i18n.name}
                                                 </label>
 
                                                 <input
@@ -183,13 +183,13 @@ export default class Form extends Component {
                                     <button
                                         className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         onClick={() => this.props.close('search')} >
-                                        Close
+                                        {i18n.close}
                                     </button>
 
                                     <button
                                         className="text-white bg-gray-800 hover:bg-gray-900 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="submit">
-                                        Search
+                                        {i18n.search}
                                     </button>
                                 </div>
                             </form>

@@ -98,7 +98,7 @@ export default class Template extends Component {
                     <div className="pi-overlay pi-show">
                         <div className="pi-modal-content">
                             <div className="pi-modal-header">
-                                <h2 className="pi-modal-title pi-text-center">Media Gallery</h2>
+                                <h2 className="pi-modal-title pi-text-center">{i18n.mi} {i18n.gallery}</h2>
                                 <span className="pi-close" onClick={() => this.props.close()}>×</span>
                             </div>
 
@@ -143,7 +143,7 @@ export default class Template extends Component {
                                             fill="#18181B"
                                         />
                                     </svg>
-                                    Gallery
+                                    {i18n.gallery}
                                 </button>
 
                                 {this.state.currentTab == 'upload' && <div className="pi-media-upload">
@@ -190,7 +190,7 @@ export default class Template extends Component {
                                             <button className="pi-btn pi-bg-blue pi-bg-hover-blue"
                                                 onClick={(e) => { e.preventDefault(); this.insertMedia() }}
                                             >
-                                                Insert
+                                                {i18n.in}
                                             </button>
                                         </div>
                                     </>

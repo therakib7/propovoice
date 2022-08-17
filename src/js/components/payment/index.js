@@ -285,7 +285,7 @@ export default class Payment extends Component {
                                     />
                                 </svg>
                             </span>
-                            <span>Bank & Others</span>
+                            <span>{i18n.bank} {i18n.nd} {i18n.other}</span>
                         </li>
                         {!wage.length &&
                             <>
@@ -429,7 +429,7 @@ export default class Payment extends Component {
                                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                                         onClick={() => this.openForm('new')}
                                     >
-                                        {ndpi.i18n.add} {currentTabTitle} Account
+                                        {i18n.add} {currentTabTitle} {i18n.account}
                                     </button>
                                 </>
                             )}

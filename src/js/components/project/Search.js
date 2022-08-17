@@ -60,7 +60,7 @@ export default class Form extends Component {
                             <li>
                                 <Arrow />
                                 <select name="" id="">
-                                    <option value="">Lead Label</option>
+                                    <option value="">{i18n.lead} Label</option>
                                 </select>
                             </li>
                             <li>

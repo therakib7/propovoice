@@ -44,12 +44,12 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
         {details ? (
             <div className="Result">
                 <div className="ResultTitle" role="alert">
-                {i18n.payment} successful
+                    {i18n.payment} successful
                 </div>
                 <div className="ResultMessage">
                     Thanks for trying paypal payment.
                     <div style={{ marginTop: '7px', color: '#000' }}>
-                        <b>{i18n.transection} {i18n.id}:</b> {details.id}
+                        <b>{i18n.txn} {i18n.id}:</b> {details.id}
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@ class Paypal extends Component {
             <>
                 {this.props.show && (
                     <div className="pi-overlay pi-show">
-                        <div className="pi-modal-content pi-modal-style-two pi-modal-small"> 
+                        <div className="pi-modal-content pi-modal-style-two pi-modal-small">
                             <div className="pi-modal-header">
                                 <span className="pi-close" onClick={() => this.props.close()}>
                                     <svg
@@ -169,7 +169,7 @@ class Paypal extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 )}
