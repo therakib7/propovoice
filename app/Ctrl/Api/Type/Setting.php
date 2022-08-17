@@ -112,8 +112,8 @@ class Setting {
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ndpip()->get_default('email_template', 'estimate', 'reminder', 'subject');
-                    $data['msg'] = ndpip()->get_default('email_template', 'estimate', 'reminder', 'msg');
+                    $data['subject'] = ndpi()->get_default('email_template', 'estimate', 'reminder', 'subject');
+                    $data['msg'] = ndpi()->get_default('email_template', 'estimate', 'reminder', 'msg');
                 }
             }
 
@@ -134,8 +134,8 @@ class Setting {
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ndpip()->get_default('email_template', 'invoice', 'reminder', 'subject');
-                    $data['msg'] = ndpip()->get_default('email_template', 'invoice', 'reminder', 'msg');
+                    $data['subject'] = ndpi()->get_default('email_template', 'invoice', 'reminder', 'subject');
+                    $data['msg'] = ndpi()->get_default('email_template', 'invoice', 'reminder', 'msg');
                 }
             }
 
@@ -145,8 +145,8 @@ class Setting {
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ndpip()->get_default('email_template', 'invoice', 'recurring', 'subject');
-                    $data['msg'] = ndpip()->get_default('email_template', 'invoice', 'recurring', 'msg');
+                    $data['subject'] = ndpi()->get_default('email_template', 'invoice', 'recurring', 'subject');
+                    $data['msg'] = ndpi()->get_default('email_template', 'invoice', 'recurring', 'msg');
                 }
             }
 
