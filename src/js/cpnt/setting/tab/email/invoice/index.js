@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import DefaultMail from './sub/DefaultMail';
 import Reminder from './sub/Reminder';
 import Recurring from './sub/Recurring';
+import ProLabel from 'block/pro-alert/label';
 
 export default class Invoice extends Component {
 	constructor(props) {
@@ -48,7 +49,7 @@ export default class Invoice extends Component {
 							className={'pi-tab ' + (tab.id == currentTab ? 'pi-active' : '')}
 							onClick={(e) => this.setActiveTab(tab.id)}
 						>
-							{tab.text}
+							{tab.text} { ( tab.id == 'reminder' || tab.id == 'recurring' ) && <ProLabel />}
 						</li>
 					))}
 				</ul>

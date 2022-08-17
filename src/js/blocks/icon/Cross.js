@@ -1,4 +1,4 @@
-export default () => {
+export default (props) => {
   let s = '25';
   if (props.size == 'small') {
     s = 16

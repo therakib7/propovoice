@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import Reminder from './sub/Reminder';
-import DefaultMail from './sub/DefaultMail';
+import DefaultMail from './sub/DefaultMail'; 
+import ProLabel from 'block/pro-alert/label';
 
 export default class Invoice extends Component {
 	constructor(props) {
@@ -40,9 +41,9 @@ export default class Invoice extends Component {
 						<li
 							key={index}
 							className={'pi-tab ' + (tab.id == currentTab ? 'pi-active' : '')}
-							onClick={(e) => this.setActiveTab(tab.id)}
+							onClick={() => this.setActiveTab(tab.id)}
 						>
-							{tab.text}
+							{tab.text} {tab.id == 'reminder' && <ProLabel />}
 						</li>
 					))}
 				</ul>
