@@ -4,7 +4,7 @@ Donate link:
 Tags: proposal, estimate, invoice, payment, crm, project, client, template, transaction, billing, automation, management
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 0.1.6
+Stable tag: 0.5.0
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -95,6 +95,14 @@ We have a long vision to make the service selling process easier. If you are loo
 * Please mail us at `support@propovoice.com` 
 
 == Changelog == 
+
+= 0.5.0 =
+* Added: Lead manamentment
+* Added: Deal manamentment
+* Added: Project manamentment
+* Added: Client manamentment
+* Added: Task manamentment 
+* Added: Contact manamentment 
 
 = 0.1.6 =
 * Fixed: Email body content issues
