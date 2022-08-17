@@ -79,7 +79,7 @@ export default class DefaultMail extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label htmlFor="form-msg">Message</label>
+                        <label htmlFor="form-msg">{i18n.msg}</label>
                         <textarea
                             id="form-msg"
                             required

@@ -163,7 +163,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid-zip">
-                                                    Zip Code
+                                                    {i18n.zip}
                                                 </label>
 
                                                 <input

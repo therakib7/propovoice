@@ -79,7 +79,7 @@ export default class Reminder extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label htmlFor="form-msg">Message</label>
+                        <label htmlFor="form-msg">{i18n.msg}</label>
                         <textarea
                             id="form-msg"
                             required
@@ -95,7 +95,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Save
+                        {i18n.save}
                         </button>
                     </div>
                 </div>

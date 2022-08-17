@@ -95,7 +95,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            Save
+                        {i18n.save}
                         </button>
                     </div>
                 </div>

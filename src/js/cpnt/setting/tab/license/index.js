@@ -71,7 +71,7 @@ export default class License extends Component {
 
     render() {
         const form = this.state.form;
-        const i18n = ndpi.i18n
+        const i18n = ndpi.i18n;
         return (
             <>
                 {this.state.loading ? <Spinner /> : <form onSubmit={this.handleSubmit} className="pi-form-style-one">
@@ -79,7 +79,7 @@ export default class License extends Component {
                     <div className="row">
                         <div className="col">
                             <label htmlFor="form-key">
-                                License Key
+                            {i18n.license} {i18n.key}
                             </label>
                             <input
                                 id="form-key"
@@ -96,8 +96,8 @@ export default class License extends Component {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="form-status">
-                                    License {i18n.status}:
-                                    <span className="pi-pro-label pi-bg-green pi-color-white">Valid</span>
+                                {i18n.license} {i18n.status}:
+                                    <span className="pi-pro-label pi-bg-green pi-color-white">{i18n.valid}</span>
                                 </label>
                             </div>
                         </div>
@@ -105,7 +105,7 @@ export default class License extends Component {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="form-status">
-                                    License For: <span style={{ color: '#2D3748' }}>
+                                {i18n.license} For: <span style={{ color: '#2D3748' }}>
                                         {form.for == '1' || form.for == '3' ? 'Freelancer' : 'Agency'}
                                     </span>
                                 </label>
@@ -115,7 +115,7 @@ export default class License extends Component {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="form-status">
-                                    License Expires: <span style={{ color: '#2D3748' }}>
+                                {i18n.license} {i18n.exp}: <span style={{ color: '#2D3748' }}>
                                         {form.expires == 'lifetime' ? 'Lifetime' : <Moment format="YYYY-MM-DD">{form.expires}</Moment>}
                                     </span>
                                 </label>

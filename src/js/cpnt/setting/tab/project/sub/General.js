@@ -53,12 +53,13 @@ export default class General extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
+            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
                 <div className="row">
                     <div className="col">
-                        <label>Project Status</label>
-                        <Taxonomy taxonomy='project_status' title='Status' color />
+                        <label>{i18n.project} {i18n.status}</label>
+                        <Taxonomy taxonomy='project_status' title={i18n.status} color />
                     </div>
                     <div className="col">
                     </div>

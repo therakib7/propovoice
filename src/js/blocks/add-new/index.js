@@ -92,8 +92,8 @@ export default (props) => {
                 </button>
 
                 {dropdown && <div className="pi-dropdown-content pi-show">
-                    <a onClick={(e) => ImportExport(e, 'import')}>Import</a>
-                    <a onClick={(e) => ImportExport(e, 'exoprt')}>Export</a>
+                    <a onClick={(e) => ImportExport(e, 'import')}>{i18n.imp}</a>
+                    <a onClick={(e) => ImportExport(e, 'exoprt')}>{i18n.imp}</a>
                 </div>}
             </div>}
         </div>
