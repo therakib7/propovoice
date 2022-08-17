@@ -1,11 +1,11 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type;
+namespace Ndpi\Ctrl\Api\Type;
 
-use Ncpi\Helpers\Fns;
-use Ncpi\Models\Contact;
-use Ncpi\Models\Org;
-use Ncpi\Models\Person;
+use Ndpi\Helpers\Fns;
+use Ndpi\Models\Contact;
+use Ndpi\Models\Org;
+use Ndpi\Models\Person;
 
 class Deal
 {
@@ -17,7 +17,7 @@ class Deal
 
     public function create_rest_routes()
     {
-        register_rest_route('ncpi/v1', '/deals', [
+        register_rest_route('ndpi/v1', '/deals', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -30,7 +30,7 @@ class Deal
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/deals/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/deals/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -43,7 +43,7 @@ class Deal
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/deals/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/deals/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -56,7 +56,7 @@ class Deal
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/deals/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpi/v1', '/deals/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -403,7 +403,7 @@ class Deal
 
             if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
                 $tab_id = $post_id;
                 if ($lead_id) {
                     $tab_id = $lead_id;

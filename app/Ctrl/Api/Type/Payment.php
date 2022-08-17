@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type;
+namespace Ndpi\Ctrl\Api\Type;
 
 class Payment
 {
@@ -13,7 +13,7 @@ class Payment
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/payments', [
+        register_rest_route('ndpi/v1', '/payments', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -26,7 +26,7 @@ class Payment
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/payments/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/payments/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -39,7 +39,7 @@ class Payment
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/payments/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/payments/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -52,7 +52,7 @@ class Payment
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/payments/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpi/v1', '/payments/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -249,7 +249,7 @@ class Payment
 
             if ( !is_wp_error($post_id) ) {
                 
-                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace() );
+                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace() );
 
                 if ($type) {
                     update_post_meta($post_id, 'type', $type);

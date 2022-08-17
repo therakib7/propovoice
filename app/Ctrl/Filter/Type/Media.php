@@ -1,5 +1,5 @@
 <?php
-namespace Ncpi\Ctrl\Filter\Type; 
+namespace Ndpi\Ctrl\Filter\Type; 
 
 class Media {
 

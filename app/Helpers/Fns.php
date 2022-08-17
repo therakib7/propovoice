@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Helpers;
+namespace Ndpi\Helpers;
 
 class Fns
 {
@@ -44,7 +44,7 @@ class Fns
         // Look within passed path within the theme - this is priority.
         $template = [];
 
-        $template[] = ncpi()->get_template_path() . $name . ".php";
+        $template[] = ndpi()->get_template_path() . $name . ".php";
 
         if (!$template_file = locate_template(apply_filters('ncpi_locate_template_names', $template))) {
             $template_file = NCPI_PATH . "templates/$name.php";
@@ -103,7 +103,7 @@ class Fns
             ],
         ];
 
-        if ( function_exists('ncpip') ) {
+        if ( function_exists('ndpip') ) {
             $get_social = get_option('ncpi_email_social');
             if (isset($get_social['social'])) {
                 $social_list = $get_social['social'];
@@ -170,19 +170,19 @@ class Fns
         $template = NCPI_TEMPLATE_DEBUG_MODE ? '' : locate_template(
             array(
                 "{$slug}.php",
-                ncpi()->get_template_path() . "{$slug}.php"
+                ndpi()->get_template_path() . "{$slug}.php"
             )
         );
 
         // load template from pro plugin if exist
-        if (!$template && function_exists('ncpip')) {
-            $fallback = ncpi()->plugin_path() . "-pro" . "/templates/{$slug}.php";
+        if (!$template && function_exists('ndpip')) {
+            $fallback = ndpi()->plugin_path() . "-pro" . "/templates/{$slug}.php";
             $template = file_exists($fallback) ? $fallback : '';
         }
 
         // load template from current plugin if exist
         if (!$template) {
-            $fallback = ncpi()->plugin_path() . "/templates/{$slug}.php";
+            $fallback = ndpi()->plugin_path() . "/templates/{$slug}.php";
             $template = file_exists($fallback) ? $fallback : '';
         }
 

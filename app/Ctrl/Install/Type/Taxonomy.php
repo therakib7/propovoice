@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Install\Type;
+namespace Ndpi\Ctrl\Install\Type;
 
 class Taxonomy
 {
@@ -326,7 +326,7 @@ class Taxonomy
 
                     //set icon
                     if ($taxonomy['icon']) {
-                        $url = ncpi()->get_assets_uri('img/task-type/') . $taxonomy['icon'] .'.png';
+                        $url = ndpi()->get_assets_uri('img/task-type/') . $taxonomy['icon'] .'.png';
                         $icon_id = $this->custom_media_sideload_image( $url );
                         update_term_meta($term_id['term_id'], 'icon', $icon_id);
                     }

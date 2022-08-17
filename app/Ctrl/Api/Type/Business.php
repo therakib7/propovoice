@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type; 
+namespace Ndpi\Ctrl\Api\Type; 
 
 class Business
 { 
@@ -12,7 +12,7 @@ class Business
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/businesses', [
+        register_rest_route('ndpi/v1', '/businesses', [
             [
                 'methods' => 'GET', 
                 'callback' => [$this, 'get'],
@@ -25,7 +25,7 @@ class Business
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/businesses/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/businesses/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -38,7 +38,7 @@ class Business
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/businesses/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/businesses/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -51,7 +51,7 @@ class Business
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/businesses/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpi/v1', '/businesses/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -102,7 +102,7 @@ class Business
         $args['meta_query'][] = array( 
             array(
                 'key'     => 'ws_id',
-                'value'   => ncpi()->get_workspace(),
+                'value'   => ndpi()->get_workspace(),
                 'compare' => 'LIKE'
             )
         );
@@ -241,7 +241,7 @@ class Business
 
             if ( !is_wp_error($post_id) ) {
                 
-                update_post_meta($post_id, 'ws_id', ncpi()->get_workspace() ); 
+                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace() ); 
 
                 if ( $name ) {
                     update_post_meta($post_id, 'name', $name); 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Ncpi\Ctrl\Install;
+namespace Ndpi\Ctrl\Install;
 
-use Ncpi\Ctrl\Install\Type\DB;
-use Ncpi\Ctrl\Install\Type\Merging;
-use Ncpi\Ctrl\Install\Type\Page;
-use Ncpi\Ctrl\Install\Type\Taxonomy;
+use Ndpi\Ctrl\Install\Type\DB;
+use Ndpi\Ctrl\Install\Type\Merging;
+use Ndpi\Ctrl\Install\Type\Page;
+use Ndpi\Ctrl\Install\Type\Taxonomy;
 
 class InstallCtrl
 {

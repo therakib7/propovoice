@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Template;
+namespace Ndpi\Ctrl\Template;
 
 class PageTemplater
 {
@@ -20,7 +20,7 @@ class PageTemplater
 	function add_template_to_select($post_templates, $wp_theme, $post, $post_type)
 	{
 		//TODO: dashboard is pro features
-		if (function_exists('ncpip')) {
+		if (function_exists('ndpip')) {
 			$post_templates['workspace-template.php'] = esc_html__('Propovoice Workspace', 'propovoice');
 		}
 		$post_templates['invoice-template.php'] = esc_html__('Propovoice Client Invoice', 'propovoice');
@@ -36,17 +36,17 @@ class PageTemplater
 	function load_plugin_template($template)
 	{
 		if (get_page_template_slug() === 'workspace-template.php') {
-			$custom_template = ncpi()->plugin_path() . '/views/template/workspace-template.php';
+			$custom_template = ndpi()->plugin_path() . '/views/template/workspace-template.php';
 			if (file_exists($custom_template)) {
 				return $custom_template;
 			}
 		} else if (get_page_template_slug() === 'invoice-template.php') {
-			$custom_template = ncpi()->plugin_path() . '/views/template/invoice-template.php';
+			$custom_template = ndpi()->plugin_path() . '/views/template/invoice-template.php';
 			if (file_exists($custom_template)) {
 				return $custom_template;
 			}
 		} else if (get_page_template_slug() === 'estimate-template.php') {
-			$custom_template = ncpi()->plugin_path() . '/views/template/estimate-template.php';
+			$custom_template = ndpi()->plugin_path() . '/views/template/estimate-template.php';
 			if (file_exists($custom_template)) {
 				return $custom_template;
 			}
@@ -62,8 +62,8 @@ class PageTemplater
 	 */
 	function wage_scripts()
 	{
-		wp_localize_script('ndpi-dashboard', 'wage', apply_filters('ncpi_wage', ['PT97']));
-		wp_localize_script('ndpi-invoice', 'wage', apply_filters('ncpi_wage', ['PT97']));
-		wp_localize_script('ndpi-dashboard', 'has_wage', ['ins' => function_exists('ncpip')]);
+		wp_localize_script('ndpi-dashboard', 'wage', apply_filters('ndpi_wage', ['PT97']));
+		wp_localize_script('ndpi-invoice', 'wage', apply_filters('ndpi_wage', ['PT97']));
+		wp_localize_script('ndpi-dashboard', 'has_wage', ['ins' => function_exists('ndpip')]);
 	}
 }

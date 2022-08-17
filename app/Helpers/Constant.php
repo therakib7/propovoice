@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Helpers;
+namespace Ndpi\Helpers;
 
 class Constant
 {

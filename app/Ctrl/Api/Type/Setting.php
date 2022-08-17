@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type; 
+namespace Ndpi\Ctrl\Api\Type; 
 
 class Setting {
 
@@ -9,13 +9,13 @@ class Setting {
     }
 
     public function create_rest_routes() {
-        register_rest_route( 'ncpi/v1', '/settings', [
+        register_rest_route( 'ndpi/v1', '/settings', [
             'methods' => 'GET',
             'callback' => [ $this, 'get' ],
             'permission_callback' => [ $this, 'get_permission' ]
         ] );
 
-        register_rest_route( 'ncpi/v1', '/settings', [
+        register_rest_route( 'ndpi/v1', '/settings', [
             'methods' => 'POST',
             'callback' => [ $this, 'create' ],
             'permission_callback' => [ $this, 'create_permission' ]
@@ -101,8 +101,8 @@ class Setting {
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ncpi()->get_default('email_template', 'estimate', 'default', 'subject');
-                    $data['msg'] = ncpi()->get_default('email_template', 'estimate', 'default', 'msg'); 
+                    $data['subject'] = ndpi()->get_default('email_template', 'estimate', 'default', 'subject');
+                    $data['msg'] = ndpi()->get_default('email_template', 'estimate', 'default', 'msg'); 
                 }
             }
 
@@ -112,8 +112,8 @@ class Setting {
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ncpip()->get_default('email_template', 'estimate', 'reminder', 'subject');
-                    $data['msg'] = ncpip()->get_default('email_template', 'estimate', 'reminder', 'msg');
+                    $data['subject'] = ndpip()->get_default('email_template', 'estimate', 'reminder', 'subject');
+                    $data['msg'] = ndpip()->get_default('email_template', 'estimate', 'reminder', 'msg');
                 }
             }
 
@@ -123,8 +123,8 @@ class Setting {
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ncpi()->get_default('email_template', 'invoice', 'default', 'subject');
-                    $data['msg'] = ncpi()->get_default('email_template', 'invoice', 'default', 'msg');
+                    $data['subject'] = ndpi()->get_default('email_template', 'invoice', 'default', 'subject');
+                    $data['msg'] = ndpi()->get_default('email_template', 'invoice', 'default', 'msg');
                 }
             }
 
@@ -134,8 +134,8 @@ class Setting {
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ncpip()->get_default('email_template', 'invoice', 'reminder', 'subject');
-                    $data['msg'] = ncpip()->get_default('email_template', 'invoice', 'reminder', 'msg');
+                    $data['subject'] = ndpip()->get_default('email_template', 'invoice', 'reminder', 'subject');
+                    $data['msg'] = ndpip()->get_default('email_template', 'invoice', 'reminder', 'msg');
                 }
             }
 
@@ -145,8 +145,8 @@ class Setting {
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ncpip()->get_default('email_template', 'invoice', 'recurring', 'subject');
-                    $data['msg'] = ncpip()->get_default('email_template', 'invoice', 'recurring', 'msg');
+                    $data['subject'] = ndpip()->get_default('email_template', 'invoice', 'recurring', 'subject');
+                    $data['msg'] = ndpip()->get_default('email_template', 'invoice', 'recurring', 'msg');
                 }
             }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Install\Type; 
+namespace Ndpi\Ctrl\Install\Type; 
 
 class Page {
 

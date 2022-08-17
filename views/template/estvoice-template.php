@@ -37,9 +37,9 @@
             echo '<div id="ndpi-invoice"></div>';
         } else {
             //esc_html_e('Sorry!! You don\'t have permission to view this page', 'propovoice'); 
-            ncpi()->render('template/partials/403');
+            ndpi()->render('template/partials/403');
         }
     } else {
         //esc_html_e('Sorry!! page not found', 'propovoice');
-        ncpi()->render('template/partials/404');
+        ndpi()->render('template/partials/404');
     }

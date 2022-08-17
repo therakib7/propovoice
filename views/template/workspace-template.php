@@ -46,17 +46,17 @@
 <body <?php body_class(); ?>>
     <?php
     if (is_user_logged_in() && current_user_can('administrator')) {
-        if (function_exists('ncpip') && ncpip()->wage()) {
+        if (function_exists('ndpip') && ndpip()->wage()) {
             echo '<div id="ndpi-dashboard"></div>';
         } else {
-            ncpi()->render('template/partials/403');
+            ndpi()->render('template/partials/403');
         }
     } else {
         //TODO: this css already has in all.scoped.css
     ?>
 
     <?php
-        ncpi()->render('template/partials/403');
+        ndpi()->render('template/partials/403');
     }
     ?>
     <?php wp_footer(); ?>

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ncpi\Ctrl\Widget\Gutenberg;
+namespace Ndpi\Ctrl\Widget\Gutenberg;
 
-// use Ncpi\Ctrl\Widget\Gutenberg\Blocks\Example; 
+// use Ndpi\Ctrl\Widget\Gutenberg\Blocks\Example; 
 
 class GutenbergCtrl {
     public function __construct() {  
