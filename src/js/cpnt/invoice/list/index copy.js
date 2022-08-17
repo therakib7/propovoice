@@ -234,6 +234,7 @@ const Invoice = class Invoice extends Component {
     }
 
     render() {
+        const i18n = ndpi.i18n;
         const { title, invoices, checkedBoxes, searchVal } = this.state;
         const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
@@ -242,7 +243,7 @@ const Invoice = class Invoice extends Component {
                     <ul>
                         <li>
                             <a href='#' >
-                                {ndpi.i18n.home}
+                                {i18n.home}
                             </a>
                         </li>
                         <li>
@@ -275,35 +276,35 @@ const Invoice = class Invoice extends Component {
                             <div className="row">
                                 <div className="col-md-4 col-lg">
                                     <div className="pi-cards-content pi-bg-husky">
-                                        <span>Total {title}</span>
+                                        <span>{i18n.total} {title}</span>
                                         <h4 className="pi-color-blue">{total}</h4>
                                     </div>
                                 </div>
 
                                 <div className="col-md-4 col-lg">
                                     <div className="pi-cards-content" style={{ backgroundColor: '#f9f6ea' }}>
-                                        <span>Paid {title}</span>
+                                        <span>{i18n.paid} {title}</span>
                                         <h4 style={{ color: '#c66542' }}>{paid}</h4>
                                     </div>
                                 </div>
 
                                 <div className="col-md-4 col-lg">
                                     <div className="pi-cards-content" style={{ backgroundColor: '#d7f4f1' }}>
-                                        <span>Unpaid {title}</span>
+                                        <span>{i18n.unpaid} {title}</span>
                                         <h4 style={{ color: '#45ac9d' }}>{unpaid}</h4>
                                     </div>
                                 </div>
 
                                 <div className="col-md-4 col-lg">
                                     <div className="pi-cards-content" style={{ backgroundColor: '#f7dfec' }}>
-                                        <span>Draft {title}</span>
+                                        <span>{i18n.dft} {title}</span>
                                         <h4 style={{ color: '#b66490' }}>{draft}</h4>
                                     </div>
                                 </div>
 
                                 <div className="col-md-4 col-lg">
                                     <div className="pi-cards-content" style={{ backgroundColor: '#e6ffe7' }}>
-                                        <span>Sent {title}</span>
+                                        <span>{i18n.sent} {title}</span>
                                         <h4 style={{ color: '#43ad47' }}>{sent}</h4>
                                     </div>
                                 </div>
@@ -315,7 +316,7 @@ const Invoice = class Invoice extends Component {
                     <button
                         className="pi-btn pi-bg-blue pi-bg-hover-blue"
                         onClick={() => this.newInvoie()} >
-                        Create New {title}
+                        {i18n.create} {i18n.new} {title}
                     </button>
 
                     <div className="pi-search-box pi-float-right">
@@ -378,7 +379,7 @@ const Invoice = class Invoice extends Component {
                         <button
                             style={{ marginLeft: '10px', backgroundColor: '#edf2f7' }} className="pi-btn"
                             onClick={() => this.deleteEntry('selected')} >
-                            Delete
+                            {i18n.del}
                         </button>
                     </p>
                 </div>}

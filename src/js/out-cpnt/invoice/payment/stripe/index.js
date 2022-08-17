@@ -208,7 +208,7 @@ class CheckoutForm extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">Pay With Stripe</h2>
+                        <h2 className="pi-modal-title">{i18n.pay} {i18n.with} {i18n.stripe}</h2>
                     </div>
 
                     <div className="pi-content">
@@ -229,7 +229,7 @@ class CheckoutForm extends Component {
 
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label htmlFor="form-name">Name</label>
+                                        <label htmlFor="form-name">{i18n.name}</label>
                                         <input
                                             id="form-name"
                                             type="text"
@@ -243,7 +243,7 @@ class CheckoutForm extends Component {
 
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label htmlFor="form-name">Email</label>
+                                        <label htmlFor="form-name">{i18n.email}</label>
                                         <input
                                             id="form-email"
                                             type="email"
@@ -273,7 +273,7 @@ class CheckoutForm extends Component {
                                 </div>}
 
                                 <SubmitButton processing={processing} error={error} disabled={!stripe}>
-                                    Pay
+                                    {i18n.pay}
                                 </SubmitButton>
                             </form>
                         )}

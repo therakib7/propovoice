@@ -6,7 +6,7 @@ export default (props) => {
 				<>
 					<img src={sign.src} alt="" />
 					<div className="pi-border" />
-					<h4>Signature</h4>
+					<h4>{ndpi.i18n.Sign}</h4>
 				</>
 			}
 		</div>

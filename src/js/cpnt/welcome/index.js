@@ -308,7 +308,7 @@ export default class Welcome extends Component {
                                                         </svg>
                                                     </div>
                                                     <div className="pi-add-item-text">
-                                                        <h3>Create Estimate</h3>
+                                                        <h3>{i18n.create} {i18n.est}</h3>
                                                         <p>
                                                             The easiest way to create a project estimate to send your client
                                                         </p>
@@ -350,7 +350,7 @@ export default class Welcome extends Component {
                                                         </svg>
                                                     </div>
                                                     <div className="pi-add-item-text">
-                                                        <h3>Create Estimate</h3>
+                                                        <h3>{i18n.create} {i18n.est}</h3>
                                                         <p>
                                                             The easiest way to create a project estimate to send your client
                                                         </p>
@@ -360,7 +360,7 @@ export default class Welcome extends Component {
                                         </div>
                                     </div>
                                     <div className="pi-buttons pi-text-center">
-                                        <a href={ndpi.dashboard} className="pi-text-hover-blue pi-color-black">Skip and Explore</a>
+                                        <a href={ndpi.dashboard} className="pi-text-hover-blue pi-color-black">{i18n.skip} {i18n.nd} {i18n.explore}</a>
                                     </div>
                                 </div>
 

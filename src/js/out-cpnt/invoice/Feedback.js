@@ -92,7 +92,7 @@ class Feedback extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pi-modal-title">{this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'} Estimate</h2>
+                                <h2 className="pi-modal-title">{this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'}{i18n.est}</h2>
                                 <p>{this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'} Estimate from here</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >

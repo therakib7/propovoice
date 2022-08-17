@@ -48,15 +48,17 @@ class I18n
             'send' => esc_html__('Send', 'propovoice'),
             'sent' => esc_html__('Sent', 'propovoice'),
             'viewed' => esc_html__('Viewed', 'propovoice'),
-            'accepted' => esc_html__('Accepted', 'propovoice'),
-            'declined' => esc_html__('Declined', 'propovoice'),
+            'accept' => esc_html__('Accepted', 'propovoice'),
+            'dec' => esc_html__('Declined', 'propovoice'),
             'paid' => esc_html__('Paid', 'propovoice'),
+            'unpaid' => esc_html__('Unpaid', 'propovoice'),
             'overdue' => esc_html__('Overdue', 'propovoice'), 
             'rem' => esc_html__('Reminder', 'propovoice'), 
             'recur' => esc_html__('Recurring', 'propovoice'), 
             'after' => esc_html__('After', 'propovoice'), 
             'before' => esc_html__('Before', 'propovoice'), 
             'aSign' => esc_html__('Authorized Signature', 'propovoice'),
+            'Sign' => esc_html__('Signature', 'propovoice'),
             'style' => esc_html__('Style', 'propovoice'),
             'addi' => esc_html__('Additional', 'propovoice'), 
             //project
@@ -90,6 +92,9 @@ class I18n
             'type' => esc_html__('Type', 'propovoice'),
             'loc' => esc_html__('Location', 'propovoice'),
             'rate' => esc_html__('Rate', 'propovoice'),
+            'dup' => esc_html__('Duplicate', 'propovoice'),
+            'dft' => esc_html__('Draft', 'propovoice'),
+            'req' => esc_html__('Request', 'propovoice'),
             //form
             'create' => esc_html__('Create', 'propovoice'),
             'icon' => esc_html__('Icon', 'propovoice'),
@@ -134,6 +139,7 @@ class I18n
             'settings' => esc_html__('Settings', 'propovoice'),
             'general' => esc_html__('General', 'propovoice'),
             'business' => esc_html__('Business', 'propovoice'),
+            'pay' => esc_html__('Pay', 'propovoice'),
             'payment' => esc_html__('Payment', 'propovoice'),
             'method' => esc_html__('Method', 'propovoice'),
             'social' => esc_html__('Social', 'propovoice'), 
@@ -192,6 +198,10 @@ class I18n
             'block' => esc_html__('Block', 'propovoice'),  
             'move' => esc_html__('Move', 'propovoice'),  
             'go' => esc_html__('Go', 'propovoice'),  
+            'receipt' => esc_html__('Receipt', 'propovoice'),  
+            'explore' => esc_html__('Explore', 'propovoice'),  
+            'subtotal' => esc_html__('Subtotal', 'propovoice'),  
+            'with' => esc_html__('With', 'propovoice'),  
         ];
     }
 }

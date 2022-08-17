@@ -78,6 +78,7 @@ const TableBody = props => {
         let path = props.path;
         navigate(`/${path}/single/${id}${view}`);
     }
+    const i18n = ndpi.i18n;
 
     let rows = props.tableData.map((row, index) => {
 
@@ -86,49 +87,49 @@ const TableBody = props => {
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
-
         let status;
         switch (row.status) {
+            
             case 'draft':
                 status = <span className='pi-badge pi-bg-pink'
                 // style={{color: '#fff'}}
-                >Draft</span>
+                >{ndpi.i18n.dft}</span>
                 break;
 
             case 'sent':
                 status = <span className='pi-badge pi-bg-gray'
                 // style={{color: '#fff'}}
-                >Sent</span>
+                >{ndpi.i18n.sent}</span>
                 break;
 
             case 'viewed':
                 status = <span className='pi-badge pi-bg-orange'
                 // style={{color: '#999'}}
-                >Viewed</span>
+                >{ndpi.i18n.viewed}</span>
                 break;
 
             case 'accept':
                 status = <span className='pi-badge pi-bg-blue pi-cursor-pointer'
                     style={{ color: '#fff' }}
-                    onClick={() => props.infoModal(row, 'feedback')}>Accepted</span>
+                    onClick={() => props.infoModal(row, 'feedback')}>{ndpi.i18n.accept}</span>
                 break;
 
             case 'decline':
                 status = <span className='pi-badge pi-bg-red pi-cursor-pointer'
                     style={{ color: '#fff' }}
-                    onClick={() => props.infoModal(row, 'feedback')}>Declined</span>
+                    onClick={() => props.infoModal(row, 'feedback')}>{ndpi.i18n.dec}</span>
                 break;
 
             case 'paid_req':
                 status = <span className='pi-badge pi-bg-orange'
                     style={{ color: '#4a5568' }}
-                >Paid Request</span>
+                >{ndpi.i18n.paid} {ndpi.i18n.req}</span>
                 break;
 
             case 'paid':
                 status = <span className='pi-badge pi-bg-blue'
                     style={{ color: '#fff' }}
-                >Paid</span>
+                >{ndpi.i18n.paid}</span>
                 break;
         }
 
@@ -219,9 +220,9 @@ const TableBody = props => {
                             <a target='_blank' href={client_url}>{i18n.client} {i18n.prv}</a>
                             <a onClick={() => { showDropdown(row.id); props.action('sent', row.id); }}>{i18n.mark} {i18n.as} {i18n.sent}</a>
                             {row.path == 'invoice' && <a onClick={() => { showDropdown(row.id); props.action('paid', row.id); }}>{i18n.mark}{i18n.as}{i18n.paid}</a>}
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('accept', row.id); }}>Mark As Accepted</a>}
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); }}>Mark As Declined</a>}
-                            <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); }}>Duplicate</a>
+                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('accept', row.id); }}>{i18n.mark} {i18n.as} {i18n.accept}</a>}
+                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); }}>{i18n.mark} {i18n.as} {i18n.dec}</a>}
+                            <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); }}>{i18n.dup}</a>
                             {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); }}>Copy To Invoice</a>}
                             <a onClick={() => { showDropdown(row.id); props.deleteEntry('single', row.id); }}>{i18n.del}</a>
                         </div>}
