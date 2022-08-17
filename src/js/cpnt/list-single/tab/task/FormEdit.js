@@ -245,7 +245,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col-md-6">
                                     <label htmlFor="form-desc">
-                                        Task Type:
+                                    {i18n.task} {i18n.type}:
                                     </label>
                                     <div className='pi-field-action'>
                                         {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title='Type' /* small */ color />}
@@ -254,7 +254,7 @@ class Form extends Component {
 
                                 <div className="col-md-6">
                                     <label htmlFor="form-desc">
-                                        Task Priority:
+                                    {i18n.task} {i18n.prior}:
                                     </label>
                                     <div className='pi-field-action'>
                                         {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title='Priority' /* small */ color />}
@@ -264,7 +264,7 @@ class Form extends Component {
 
                             <div className="row">
                                 <div className="col-lg">
-                                    <label htmlFor="name">Meeting Place or Link</label>
+                                    <label htmlFor="name">{i18n.meeting} {i18n.link}</label>
                                     <input
                                         type="text"
                                         id="name"
@@ -309,7 +309,7 @@ class Form extends Component {
                                                     fill="#00831E"
                                                 />
                                             </svg>
-                                            {ndpi.i18n.add} Google meet
+                                            {i18n.add} Google {i18n.meet}
                                         </button>
                                         <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow">
                                             <svg

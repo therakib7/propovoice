@@ -4,7 +4,7 @@ export default () => {
         <div className="pi-form-style-one"> 
             <div className="row">
                 <div className="col">
-                    <label>Tag</label>
+                    <label>{ndpi.i18n.tag}</label>
                     <Taxonomy taxonomy='tag' title='tag' />
                 </div>
                 <div className="col">

@@ -137,6 +137,9 @@ class I18n
             'license' => esc_html__('License', 'propovoice'), 
             'exp' => esc_html__('Expires', 'propovoice'), 
             'valid' => esc_html__('Valid', 'propovoice'), 
+            'prior' => esc_html__('Priority', 'propovoice'), 
+            'meeting' => esc_html__('Meeting Place or', 'propovoice'), 
+            'meet' => esc_html__('meet', 'propovoice'), 
             //ext
             'pipeline' => esc_html__('Pipeline', 'propovoice'), 
             'back_t_db' => esc_html__('Back to WP Dashboard', 'propovoice'),  
