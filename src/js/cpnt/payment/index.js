@@ -139,7 +139,7 @@ export default class Payment extends Component {
 
     setActiveTab(e, id) {
         e.preventDefault();
-
+        const i18n = ndpi.i18n;
         let title;
         switch (id) {
             case 'bank':
