@@ -87,9 +87,10 @@ export default class Template extends Component {
     };
 
     render() {
+        const i18n = ndpi.i18n;
         return (
             <div id="pi-tab-template" className="pi-invoice-tab-content">
-                <h2 className='pi-page-title'>Select Template</h2>
+                <h2 className='pi-page-title'>{i18n.select} {i18n.tmpl}</h2>
                 <div className="row pi-gap pi-margin-l-r">
 
                     {this.state.preloader && <Preloader />}
@@ -106,7 +107,7 @@ export default class Template extends Component {
                                                 href={'https://appux.co/ncpi/preview/inv' + row.id + '.html'}
                                                 target="_blank"
                                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
-                                            >{ndpi.i18n.full}</a>
+                                            >{i18n.full}</a>
                                         </div>}
                                     </div>
                                 </div>

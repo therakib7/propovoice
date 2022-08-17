@@ -39,7 +39,11 @@ class ListSingle extends Component {
                 },
                 {
                     id: 'file',
+<<<<<<< HEAD
                     text: 'File'
+=======
+                    text: ndpi.i18n.files
+>>>>>>> c08524fb02e54c2fe7f67cdd55eba2033bb8e3f3
                 },
             ],
             currentTab: 'task',
@@ -277,11 +281,11 @@ class ListSingle extends Component {
                             </svg>
                         </li>
                         <li>
-                            {path == 'lead' && <NavLink to='/lead'>Lead</NavLink>}
-                            {path == 'deal' && <NavLink to='/deal'>Deal</NavLink>}
-                            {path == 'client' && <NavLink to='/client'>Client</NavLink>}
-                            {path == 'project' && <NavLink to='/project'>Project</NavLink>}
-                            {path == 'contact' && <NavLink to='/contact'>Contact</NavLink>}
+                            {path == 'lead' && <NavLink to='/lead'>{i18n.lead}</NavLink>}
+                            {path == 'deal' && <NavLink to='/deal'>{i18n.deal}</NavLink>}
+                            {path == 'client' && <NavLink to='/client'>{i18n.client}</NavLink>}
+                            {path == 'project' && <NavLink to='/project'>{i18n.project}</NavLink>}
+                            {path == 'contact' && <NavLink to='/contact'>{i18n.contact}</NavLink>}
                         </li>
                         <li>
                             <svg
@@ -337,7 +341,7 @@ class ListSingle extends Component {
                                 <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label>Lead Level:</label>
+                                            <label>{i18n.lead} {i18n.level}:</label>
                                             {data.id && <Taxonomy id={data.id} data={data.level_id} taxonomy='lead_level' title='Level' color />}
                                         </div>
                                         <div className="pi-buttons pi-text-right">
@@ -405,7 +409,7 @@ class ListSingle extends Component {
 
                                                 {this.state.action && <div className="pi-dropdown-content pi-show">
                                                     <a onClick={() => this.setState({ leadModal: true })}>{i18n.edit}</a>
-                                                    <a onClick={() => this.deleteEntry('lead', data.id)}>Delete</a>
+                                                    <a onClick={() => this.deleteEntry('lead', data.id)}>{i18n.del}</a>
                                                 </div>}
                                             </div>
                                         </div>
@@ -422,7 +426,7 @@ class ListSingle extends Component {
                                 </li>
 
                                 <li>
-                                    <label htmlFor="">Source: </label>
+                                    <label htmlFor="">{i18n.source}: </label>
                                     {data.id && <Taxonomy id={data.id} data={data.source_id} taxonomy='lead_source' title='Source' small color hide_bg />}
                                 </li>
                             </ul>
@@ -478,7 +482,7 @@ class ListSingle extends Component {
                                 <div className="col-md-6">
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
-                                            <label>Deal {i18n.stage}:</label>
+                                            <label>{i18n.deal}  {i18n.stage}:</label>
                                             {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title='Stage' color />}
                                         </div>
                                         <div className="pi-buttons pi-text-right">
@@ -508,7 +512,7 @@ class ListSingle extends Component {
                                                         strokeLinejoin="round"
                                                     />
                                                 </svg>
-                                                Move to Project
+                                                {i18n.move}  to {i18n.project}
                                             </button>
 
                                             {data.stage_id && <>
@@ -518,7 +522,7 @@ class ListSingle extends Component {
                                                     onClick={() => this.handleStageChange('won')}
                                                 >
                                                     <img className='pi-mr-5' src={ndpi.assetImgUri + 'happy.png'} alt="won" />
-                                                    Won
+                                                    {i18n.won}
                                                 </button>}
 
                                                 {(data.stage_id.type == 'lost' || data.stage_id.type == '') && <button
@@ -527,7 +531,7 @@ class ListSingle extends Component {
                                                     onClick={() => this.handleStageChange('lost')}
                                                 >
                                                     <img className='pi-mr-5' src={ndpi.assetImgUri + 'sad.png'} alt="sad" />
-                                                    Lost
+                                                    {i18n.lost}
                                                 </button>}
                                             </>}
 
@@ -568,7 +572,7 @@ class ListSingle extends Component {
 
                                                 {this.state.action && <div className="pi-dropdown-content pi-show">
                                                     <a onClick={() => this.setState({ dealModal: true })}>{i18n.edit}</a>
-                                                    <a onClick={() => this.deleteEntry('deal', data.id)}>Delete</a>
+                                                    <a onClick={() => this.deleteEntry('deal', data.id)}>{i18n.del}</a>
                                                 </div>}
 
                                             </div>
@@ -585,7 +589,7 @@ class ListSingle extends Component {
                                     <span>${data.budget}</span>
                                 </li>
                                 <li>
-                                    <label htmlFor="">Tag: </label>
+                                    <label htmlFor="">{i18n.tag}: </label>
                                     {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small multiple />}
                                 </li>
                             </ul>
@@ -686,7 +690,7 @@ class ListSingle extends Component {
                         <div className="pi-tag-content">
                             <ul>
                                 <li>
-                                    <label htmlFor="">Tag: </label>
+                                    <label htmlFor="">{i18n.tag}: </label>
                                     {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small multiple />}
                                 </li>
                                 <li>
@@ -930,7 +934,7 @@ class ListSingle extends Component {
                         <div className="pi-tag-content">
                             <ul>
                                 <li>
-                                    <label htmlFor="">Tag: </label>
+                                    <label htmlFor="">{i18n.tag}: </label>
                                     {data.id && <Taxonomy id={data.id} taxonomy='tag' title='Tag' small multiple />}
                                 </li>
                                 <li>{i18n.project} {data.project}</li>

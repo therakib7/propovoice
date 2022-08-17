@@ -68,7 +68,7 @@ export default class General extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>{i18n.task} Type</label>
+                        <label>{i18n.task} {i18n.type}</label>
                         <Taxonomy taxonomy='task_type' title='type' icon />
                     </div>
                     <div className="col"></div>
