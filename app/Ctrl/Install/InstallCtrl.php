@@ -37,16 +37,16 @@ class InstallCtrl
     {
 
         //set cron job
-        if (!wp_next_scheduled('ncpi_hourly_event')) {
-            wp_schedule_event(time(), 'hourly', 'ncpi_hourly_event');
+        if (!wp_next_scheduled('ndpi_hourly_event')) {
+            wp_schedule_event(time(), 'hourly', 'ndpi_hourly_event');
         }
 
-        if (!wp_next_scheduled('ncpi_half_minute_event')) {
-            wp_schedule_event(time(), 'half_minute', 'ncpi_half_minute_event');
+        if (!wp_next_scheduled('ndpi_half_minute_event')) {
+            wp_schedule_event(time(), 'half_minute', 'ndpi_half_minute_event');
         }
 
-        if (!wp_next_scheduled('ncpi_one_minute_event')) {
-            wp_schedule_event(time(), 'one_minute', 'ncpi_one_minute_event');
+        if (!wp_next_scheduled('ndpi_one_minute_event')) {
+            wp_schedule_event(time(), 'one_minute', 'ndpi_one_minute_event');
         }
     }
 
