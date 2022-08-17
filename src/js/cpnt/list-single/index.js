@@ -9,7 +9,8 @@ import WithApi from 'hoc/Api';
 import LeadForm from 'cpnt/lead/Form';
 import DealForm from 'cpnt/deal/Form';
 import ProjectForm from 'cpnt/project/Form';
-import ContactForm from 'cpnt/contact/person/Form';
+import ContactPerson from 'cpnt/contact/person/Form';
+import ContactOrg from 'cpnt/contact/org/Form';
 
 // import DealForm from './dform/Deal';
 // import ProjectForm from './form/Project';
@@ -30,7 +31,7 @@ class ListSingle extends Component {
             tabs: [
                 {
                     id: 'task',
-                    text: 'Task & Activity'
+                    text: ndpi.i18n.task
                 },
                 {
                     id: 'note',
@@ -38,7 +39,7 @@ class ListSingle extends Component {
                 },
                 {
                     id: 'file',
-                    text: 'Files'
+                    text: 'File'
                 },
             ],
             currentTab: 'task',
@@ -63,6 +64,7 @@ class ListSingle extends Component {
                 },
                 level_id: null,
                 stage_id: null,
+                status_id: null,
                 probability: 0,
             }
         };
@@ -458,7 +460,7 @@ class ListSingle extends Component {
                                         {!wage.length && <div className="pi-range">
                                             <span>{data.probability}%</span>
                                             <label htmlFor="field-probability">
-                                            {i18n.proba}
+                                                {i18n.proba}
                                             </label>
 
                                             <input
@@ -879,32 +881,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>{i18n.status}:</label>
-                                            <div className="pi-action-content">
-                                                <button
-                                                    className="pi-btn pi-btn-medium"
-                                                    style={{ backgroundColor: "rgb(24, 149, 77)", color: "rgb(255, 255, 255)" }}
-                                                >
-                                                    {i18n.act}
-                                                    <svg
-                                                        width={10}
-                                                        height={6}
-                                                        className="pi-mr-0"
-                                                        viewBox="0 0 10 6"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        style={{ marginLeft: 10 }}
-                                                    >
-                                                        <path
-                                                            d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
-                                                            fill="#ffffff"
-                                                        />
-                                                    </svg>
-                                                </button>
-
-                                                <div className="pi-dropdown-content">
-                                                    <a href="#">Block</a>
-                                                </div>
-                                            </div>
+                                            {data.id && <Taxonomy id={data.id} data={data.status_id} taxonomy='contact_status' title={i18n.status} color />}
                                         </div>
 
                                         <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow pi-float-right">
@@ -984,12 +961,17 @@ class ListSingle extends Component {
                     reload={() => this.getData()}
                 />}
 
-                {this.state.contactModal && <ContactForm
-                    data={data}
+                {this.state.contactModal && (data.person ? <ContactPerson
+                    data={data.person}
                     modalType='edit'
                     close={() => this.setState({ contactModal: false })}
                     reload={() => this.getData()}
-                />}
+                /> : <ContactOrg
+                    data={data.org}
+                    modalType='edit'
+                    close={() => this.setState({ contactModal: false })}
+                    reload={() => this.getData()}
+                />)}
 
                 <div className="row pi-mt-25">
                     <div className="col-lg-9">
@@ -1023,7 +1005,7 @@ class ListSingle extends Component {
 
                                 {true &&
                                     <>
-                                        <span>{i18n.mol}:</span>
+                                        <span>{i18n.mob}:</span>
                                         {(data.person) ? data.person.mobile : data.org.mobile}
                                     </>
                                 }
@@ -1041,8 +1023,8 @@ class ListSingle extends Component {
                                         {(data.person) ? data.person.address : data.org.address}
                                     </>
                                 }
-
                             </address>
+
                             <div className="pi-desc-content">
                                 {data.desc &&
                                     <>
@@ -1064,22 +1046,7 @@ class ListSingle extends Component {
                             <h3 className="pi-widget-title pi-mb-15">{i18n.timeline} {i18n.info}</h3>
                             <ul>
                                 <li>
-                                    <h4 className="timeline-title">Nabil Created Project Propovoice</h4>
-                                    <span>Aprill 12, 2022</span>
-                                    <span>4.10 PM</span>
-                                </li>
-                                <li>
-                                    <h4 className="timeline-title">Nabil Created Project Propovoice</h4>
-                                    <span>Aprill 12, 2022</span>
-                                    <span>4.10 PM</span>
-                                </li>
-                                <li>
-                                    <h4 className="timeline-title">Nabil Created Project Propovoice</h4>
-                                    <span>Aprill 12, 2022</span>
-                                    <span>4.10 PM</span>
-                                </li>
-                                <li>
-                                    <h4 className="timeline-title">Nabil Created Project Propovoice</h4>
+                                    <h4 className="timeline-title">Rakib Created Project Propovoice</h4>
                                     <span>Aprill 12, 2022</span>
                                     <span>4.10 PM</span>
                                 </li>

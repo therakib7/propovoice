@@ -55,8 +55,7 @@ if (process.env.NODE_ENV === 'package') {
         let includes = [
             'app',
             'assets',
-            'languages',
-            //'templates',
+            'languages', 
             'vendor',
             'views',
             'index.php',
