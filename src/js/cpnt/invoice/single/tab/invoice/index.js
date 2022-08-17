@@ -36,21 +36,22 @@ class Invoice extends Component {
 
 	constructor(props) {
 		super(props);
-
+		const i18n = ndpi.i18n;
 		this.state = {
 			title: '',
 			tabs: [
 				{
 					id: 'template',
-					text: 'Select Template'
+					text: i18n.select + ' ' + i18n.tmpl,
+
 				},
 				{
 					id: 'info',
-					text: 'Add Content'
+					text: i18n.addi + ' ' + i18n.amount,
 				},
 				{
 					id: 'preview',
-					text: 'Preview & Share'
+					text: i18n.prv + ' ' + i18n.nd + ' ' + i18n.share,
 				},
 			],
 			sidebarActive: '',
@@ -703,7 +704,7 @@ class Invoice extends Component {
 									<li className="pi-active">
 										{currentTab == 'template' && i18n.select + ' ' + i18n.tmpl}
 										{currentTab == 'info' && i18n.add + ' ' + i18n.con}
-										{currentTab == 'preview' && i18n.preview + ' ' + i18n.nd + ' ' + i18n.share}
+										{currentTab == 'preview' && i18n.prv + ' ' + i18n.nd + ' ' + i18n.share}
 									</li>
 								</ul>
 							</nav>
@@ -857,8 +858,8 @@ class Invoice extends Component {
 																/>
 															</svg>
 															<p>
-															{i18n.upload} <br />
-															{i18n.logo}
+																{i18n.upload} <br />
+																{i18n.logo}
 															</p>
 														</div>}
 													</div>
@@ -1006,7 +1007,7 @@ class Invoice extends Component {
 
 								<div className="col-lg-3">
 									<div id="pi-right-sidebar" className="pi-right-sidebar" ref={this.sidebarRef} >
-										<h2 className="pi-title-medium">{i18n.preview} {title}</h2>
+										<h2 className="pi-title-medium">{i18n.prv} {title}</h2>
 
 										<div className='pi-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
 											<InvTemplate key={invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />

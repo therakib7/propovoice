@@ -215,7 +215,7 @@ const TableBody = props => {
                         // ref={popover}
                         >
                             <a onClick={() => { showDropdown(row.id); handleClick(row.id); }}>{i18n.edit}</a>
-                            <a onClick={() => handleClick(row.id, '/tab/preview')}>Preview</a>
+                            <a onClick={() => handleClick(row.id, '/tab/preview')}>{i18n.prv}</a>
                             <a target='_blank' href={client_url}>Client Preview</a>
                             <a onClick={() => { showDropdown(row.id); props.action('sent', row.id); }}>Mark As Sent</a>
                             {row.path == 'invoice' && <a onClick={() => { showDropdown(row.id); props.action('paid', row.id); }}>{i18n.mark}{i18n.as}{i18n.paid}</a>}
@@ -223,7 +223,7 @@ const TableBody = props => {
                             {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); }}>Mark As Declined</a>}
                             <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); }}>Duplicate</a>
                             {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); }}>Copy To Invoice</a>}
-                            <a onClick={() => { showDropdown(row.id); props.deleteEntry('single', row.id); }}>Delete</a>
+                            <a onClick={() => { showDropdown(row.id); props.deleteEntry('single', row.id); }}>{i18n.del}</a>
                         </div>}
                     </div>
                 </td>

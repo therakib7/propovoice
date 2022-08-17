@@ -132,9 +132,9 @@ function Pipeline(props) {
 									{columnId == dropdown && <div className="pi-dropdown-content pi-show"
 									// ref={popover}
 									>
-										{/* <a onClick={() => props.editEntry('edit', columnId)}>Edit</a> */}
+										{/* <a onClick={() => props.editEntry('edit', columnId)}>{i18n.edit}</a> */}
 										<a onClick={() => { props.taxForm('edit', column); showDropdown(columnId); }}>{i18n.edit}</a>
-										{/* <a onClick={() => props.deleteEntry('single', columnId)}>Delete</a> */}
+										{/* <a onClick={() => props.deleteEntry('single', columnId)}>{i18n.del}</a> */}
 									</div>}
 								</div>
 							</div>

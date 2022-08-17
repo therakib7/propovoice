@@ -75,7 +75,7 @@ class Branding extends Component {
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='hidden' />
 						<div className="pi-text-center" onClick={() => this.handleUploadFile()}>
 							<img src={ndpi.assetImgUri + 'upload-img.png'} width="120" />
-							<h3 className="pi-upload pi-color-blue">Upload Logo</h3>
+							<h3 className="pi-upload pi-color-blue">{i18n.upload} {i18n.logo}</h3>
 						</div>
 					</>
 				}
@@ -89,8 +89,8 @@ class Branding extends Component {
 					</div>}
 
 				<div className="pi-buttons pi-text-center">
-					<button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big" onClick={() => this.props.handleSubmit('', 'branding')}>Save &amp; Continue</button>
-					<a className="pi-text-hover-blue" onClick={() => this.props.handleSkip('branding')}>Skip</a>
+					<button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big" onClick={() => this.props.handleSubmit('', 'branding')}>{i18n.save} &amp; {i18n.contin}</button>
+					<a className="pi-text-hover-blue" onClick={() => this.props.handleSkip('branding')}>{i18n.skip}</a>
 				</div>
 			</>
 		)

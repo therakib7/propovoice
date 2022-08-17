@@ -109,9 +109,9 @@ export default class Form extends Component {
                                     />
                                 </svg>
                                 <select name="" id="">
-                                    <option value="">Lead Label</option>
-                                    <option value="">Lead Label</option>
-                                    <option value="">Lead Label</option>
+                                    <option value="">{i18n.lead} {i18n.level}</option>
+                                    <option value="">{i18n.lead} {i18n.level}</option>
+                                    <option value="">{i18n.lead} {i18n.level}</option>
                                 </select>
                             </li>
                             <li>

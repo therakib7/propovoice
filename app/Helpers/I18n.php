@@ -78,18 +78,23 @@ class I18n
             //common
             'home' => esc_html__('Home', 'propovoice'),
             'total' => esc_html__('Total', 'propovoice'),
-            'preview' => esc_html__('Preview', 'propovoice'), 
+            'prv' => esc_html__('Preview', 'propovoice'), 
             //table
             'status' => esc_html__('Status', 'propovoice'),
             'date' => esc_html__('Date', 'propovoice'),
             'action' => esc_html__('Action', 'propovoice'),
             'show' => esc_html__('Show', 'propovoice'), 
+            'alw' => esc_html__('Always', 'propovoice'), 
             'search' => esc_html__('Search', 'propovoice'),
             'select' => esc_html__('Select', 'propovoice'),
             'type' => esc_html__('Type', 'propovoice'),
             'loc' => esc_html__('Location', 'propovoice'),
+            'rate' => esc_html__('Rate', 'propovoice'),
             //form
             'create' => esc_html__('Create', 'propovoice'),
+            'icon' => esc_html__('Icon', 'propovoice'),
+            'text' => esc_html__('Text', 'propovoice'),
+            'img' => esc_html__('Image', 'propovoice'),
             'add' => esc_html__('Add', 'propovoice'),
             'new' => esc_html__('New', 'propovoice'), 
             'edit' => esc_html__('Edit', 'propovoice'),
@@ -183,6 +188,9 @@ class I18n
             'bank' => esc_html__('Bank', 'propovoice'),  
             'skip' => esc_html__('Skip', 'propovoice'),  
             'label' => esc_html__('Label', 'propovoice'),  
+            'files' => esc_html__('Files', 'propovoice'),  
+            'block' => esc_html__('Block', 'propovoice'),  
+            'move' => esc_html__('Move', 'propovoice'),  
         ];
     }
 }

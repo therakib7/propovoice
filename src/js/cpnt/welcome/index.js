@@ -152,7 +152,7 @@ export default class Welcome extends Component {
                                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
                                         {i18n.create} {i18n.business} {i18n.profile}
                                         </button>
-                                        <a href={ndpi.dashboard} className="pi-text-hover-blue">Skip and Go Dashboard</a>
+                                        <a href={ndpi.dashboard} className="pi-text-hover-blue">{i18n.skip} and Go Dashboard</a>
                                     </div>
                                 </div>}
 
