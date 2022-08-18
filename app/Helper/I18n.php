@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Helpers;
+namespace Ndpi\Helper;
 
 class I18n
 {
@@ -193,8 +193,7 @@ class I18n
             'other' => esc_html__('Others', 'propovoice'),  
             'bank' => esc_html__('Bank', 'propovoice'),  
             'skip' => esc_html__('Skip', 'propovoice'),  
-            'label' => esc_html__('Label', 'propovoice'),  
-            'files' => esc_html__('Files', 'propovoice'),  
+            'label' => esc_html__('Label', 'propovoice'),   
             'block' => esc_html__('Block', 'propovoice'),  
             'move' => esc_html__('Move', 'propovoice'),  
             'go' => esc_html__('Go', 'propovoice'),  

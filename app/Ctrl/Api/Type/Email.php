@@ -2,7 +2,7 @@
 
 namespace Ndpi\Ctrl\Api\Type;
 
-use Ndpi\Helpers\Fns;
+use Ndpi\Helper\Fns;
 
 class Email
 {

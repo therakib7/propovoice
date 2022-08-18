@@ -326,7 +326,7 @@ class Taxonomy
 
                     //set icon
                     if ( isset( $taxonomy['icon'] ) && $taxonomy['icon']) {
-                        $url = ndpi()->get_assets_uri('img/task-type/') . $taxonomy['icon'] .'.png';
+                        $url = ndpi()->get_asset_uri('img/task-type/') . $taxonomy['icon'] .'.png';
                         $icon_id = $this->custom_media_sideload_image( $url );
                         update_term_meta($term_id['term_id'], 'icon', $icon_id);
                     }

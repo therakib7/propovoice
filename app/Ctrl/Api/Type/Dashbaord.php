@@ -2,11 +2,11 @@
 
 namespace Ndpi\Ctrl\Api\Type;
 
-use Ndpi\Helpers\Fns;
-use Ndpi\Models\Client;
-use Ndpi\Models\Deal;
-use Ndpi\Models\Lead;
-use Ndpi\Models\Project; 
+use Ndpi\Helper\Fns;
+use Ndpi\Model\Client;
+use Ndpi\Model\Deal;
+use Ndpi\Model\Lead;
+use Ndpi\Model\Project; 
 
 class Dashbaord
 {

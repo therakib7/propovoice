@@ -2,10 +2,10 @@
 
 namespace Ndpi\Ctrl\Api\Type;
 
-use Ndpi\Models\Deal;
-use Ndpi\Models\Org;
-use Ndpi\Models\Person;
-use Ndpi\Models\Project;
+use Ndpi\Model\Deal;
+use Ndpi\Model\Org;
+use Ndpi\Model\Person;
+use Ndpi\Model\Project;
 
 class Contact
 {

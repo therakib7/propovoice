@@ -4,9 +4,9 @@ require_once __DIR__ . './../vendor/autoload.php';
  
 use Ndpi\Ctrl\Install\InstallCtrl;
 use Ndpi\Traits\SingletonTrait;
-use Ndpi\Helpers\Constant; 
-use Ndpi\Helpers\Fns; 
-use Ndpi\Helpers\Data;
+use Ndpi\Helper\Constant; 
+use Ndpi\Helper\Fns; 
+use Ndpi\Helper\Data;
 use Ndpi\Ctrl\MainCtrl;   
 
 /**
@@ -116,10 +116,10 @@ final class Ndpi {
      *
      * @return string
      */
-    public function get_assets_uri($file) {
+    public function get_asset_uri($file) {
         $file = ltrim($file, '/');
 
-        return trailingslashit(NCPI_URL . '/assets') . $file;
+        return trailingslashit(NCPI_URL . '/asset') . $file;
     }
 
     /**

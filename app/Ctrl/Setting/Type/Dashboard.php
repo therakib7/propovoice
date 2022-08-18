@@ -2,7 +2,7 @@
 
 namespace Ndpi\Ctrl\Setting\Type;
 
-use Ndpi\Helpers\Fns;
+use Ndpi\Helper\Fns;
 
 class Dashboard
 {

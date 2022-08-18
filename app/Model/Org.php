@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Models;
+namespace Ndpi\Model;
 
 class Org
 {

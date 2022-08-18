@@ -2,7 +2,7 @@
 
 namespace Ndpi\Ctrl\Api\Type;
 
-use Ndpi\Models\Invoice;
+use Ndpi\Model\Invoice;
 
 class PaymentProcess
 {

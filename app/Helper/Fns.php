@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Helpers;
+namespace Ndpi\Helper;
 
 class Fns
 {
@@ -114,11 +114,11 @@ class Fns
             $icon_url = $val['icon_url'];
             if (!$icon_url) {
                 if ($val['id'] == 'facebook') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/f.png';
+                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/asset/email/f.png';
                 } else if ($val['id'] == 'twitter') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/t.png';
+                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/asset/email/t.png';
                 } else if ($val['id'] == 'linkedin') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/i.png';
+                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/asset/email/i.png';
                 }
             }
 
@@ -244,7 +244,7 @@ class Fns
 
     public static function get_default_placeholder_url()
     {
-        $placeholder_url = NCPI_URL . '/assets/imgs/placeholder.jpg';
+        $placeholder_url = NCPI_URL . '/asset/imgs/placeholder.jpg';
         return apply_filters('ncpi_default_placeholder_url', $placeholder_url);
     }
 

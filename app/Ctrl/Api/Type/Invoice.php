@@ -2,8 +2,8 @@
 
 namespace Ndpi\Ctrl\Api\Type;
 
-use Ndpi\Models\Invoice as ModelsInvoice;
-use Ndpi\Models\Contact;
+use Ndpi\Model\Invoice as ModelInvoice;
+use Ndpi\Model\Contact;
 
 class Invoice
 {
@@ -345,7 +345,7 @@ class Invoice
                 $invoice['payment_methods'] = $new_payment_methods;
             }
 
-            $invoice_model = new ModelsInvoice();
+            $invoice_model = new ModelInvoice();
             $invoice['total'] = $invoice_model->getTotalAmount($invoice);
         }
 

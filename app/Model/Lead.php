@@ -1,15 +1,15 @@
 <?php
-namespace Ndpi\Models;
+namespace Ndpi\Model;
  
  
 
-class Deal {
+class Lead {
 
     public function total( $id = null )
     { 
 
         $args = array(
-            'post_type' => 'ndpi_deal',
+            'post_type' => 'ndpi_lead',
             'post_status' => 'publish',
             'posts_per_page' => -1 
         ); 
@@ -36,8 +36,7 @@ class Deal {
 
         $query = new \WP_Query($args);   
         $total_data = $query->found_posts; 
-        wp_reset_postdata(); 
-
+        wp_reset_postdata();  
         return $total_data;
     }
  

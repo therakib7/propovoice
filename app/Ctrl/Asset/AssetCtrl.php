@@ -2,8 +2,8 @@
 
 namespace Ndpi\Ctrl\Asset;
 
-use Ndpi\Helpers\Fns;
-use Ndpi\Helpers\I18n;
+use Ndpi\Helper\Fns;
+use Ndpi\Helper\I18n;
 
 class AssetCtrl
 {
@@ -59,16 +59,16 @@ class AssetCtrl
             ])
         ) {
             wp_enqueue_style('ncpi-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), $this->version);
-            wp_enqueue_style('ndpi-main', ndpi()->get_assets_uri("css/main{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_style('ndpi-main', ndpi()->get_asset_uri("css/main{$this->suffix}.css"), array(), $this->version);
         }
         if (isset($_GET['page']) && $_GET['page'] == 'ndpi-welcome') {
-            wp_enqueue_style('ndpi-welcome', ndpi()->get_assets_uri("css/welcome{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ndpi-welcome', ndpi()->get_assets_uri("/js/welcome{$this->suffix}.js"), array(), $this->version, true);
+            wp_enqueue_style('ndpi-welcome', ndpi()->get_asset_uri("css/welcome{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_script('ndpi-welcome', ndpi()->get_asset_uri("/js/welcome{$this->suffix}.js"), array(), $this->version, true);
             wp_localize_script('ndpi-welcome', 'ndpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'nonce' => wp_create_nonce('wp_rest'),
                 'dashboard' => menu_page_url('ndpi', false),
-                'assetImgUri' => ndpi()->get_assets_uri('img/'),
+                'assetImgUri' => ndpi()->get_asset_uri('img/'),
                 'i18n' => I18n::dashboard()
             ));
         }
@@ -82,12 +82,12 @@ class AssetCtrl
 
             //TODO: Remove all wordpress unused file from frontend
 
-            wp_enqueue_style('ndpi-invoice', ndpi()->get_assets_uri("css/invoice{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ndpi-invoice', ndpi()->get_assets_uri("/js/invoice{$this->suffix}.js"), array(), $this->version, true);
+            wp_enqueue_style('ndpi-invoice', ndpi()->get_asset_uri("css/invoice{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_script('ndpi-invoice', ndpi()->get_asset_uri("/js/invoice{$this->suffix}.js"), array(), $this->version, true);
             wp_localize_script('ndpi-invoice', 'ndpi', array(
                 'apiUrl' => esc_url(rest_url()),
                 'nonce' => wp_create_nonce('wp_rest'),
-                'assetImgUri' => ndpi()->get_assets_uri('img/')
+                'assetImgUri' => ndpi()->get_asset_uri('img/')
             ));
         }
 
@@ -99,8 +99,8 @@ class AssetCtrl
                 'estimate-template.php'
             ])
         ) {
-            wp_enqueue_style('ndpi-dashboard', ndpi()->get_assets_uri("css/dashboard{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ndpi-dashboard', ndpi()->get_assets_uri("/js/dashboard{$this->suffix}.js"), array(), $this->version, true);
+            wp_enqueue_style('ndpi-dashboard', ndpi()->get_asset_uri("css/dashboard{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_script('ndpi-dashboard', ndpi()->get_asset_uri("/js/dashboard{$this->suffix}.js"), array(), $this->version, true);
             $current_user = wp_get_current_user();
             wp_localize_script('ndpi-dashboard', 'ndpi', array(
                 'apiUrl' => esc_url(rest_url()),
@@ -121,7 +121,7 @@ class AssetCtrl
                 //'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
                 'apiServerUrl' => 'https://appux.co/propovoice-server/wp-json/', //TODO: change server URL later
                 'nonce' => wp_create_nonce('wp_rest'),
-                'assetImgUri' => ndpi()->get_assets_uri('img/'),
+                'assetImgUri' => ndpi()->get_asset_uri('img/'),
                 'assetUri' => trailingslashit(NCPI_URL),
                 'profile' => [
                     'name' => $current_user->display_name,
@@ -137,7 +137,7 @@ class AssetCtrl
     {
         $this->admin_public_script();
 
-        //wp_enqueue_style( 'propovoice-main', ndpi()->get_assets_uri( "public/css/main{$this->suffix}.css" ), array(), $this->version );
+        //wp_enqueue_style( 'propovoice-main', ndpi()->get_asset_uri( "public/css/main{$this->suffix}.css" ), array(), $this->version );
 
         $this->dashboard_script();
     }

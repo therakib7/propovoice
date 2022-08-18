@@ -1,5 +1,5 @@
 <?php
-namespace Ndpi\Models;
+namespace Ndpi\Model;
  
  
 

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb6f51bce73196b2fd040ce9a4f447766
+class ComposerStaticInit3f0b3e05358d4aa966d9b3171edb6baf
 {
     public static $prefixLengthsPsr4 = array (
         'N' => 
@@ -86,27 +86,27 @@ class ComposerStaticInitb6f51bce73196b2fd040ce9a4f447766
         'Ndpi\\Ctrl\\Widget\\Elementor\\Widgets\\Registration' => __DIR__ . '/../..' . '/app/Ctrl/Widget/Elementor/Widgets/Registration.php',
         'Ndpi\\Ctrl\\Widget\\Gutenberg\\GutenbergCtrl' => __DIR__ . '/../..' . '/app/Ctrl/Widget/Gutenberg/GutenbergCtrl.php',
         'Ndpi\\Ctrl\\Widget\\WidgetCtrl' => __DIR__ . '/../..' . '/app/Ctrl/Widget/WidgetCtrl.php',
-        'Ndpi\\Helpers\\Constant' => __DIR__ . '/../..' . '/app/Helpers/Constant.php',
-        'Ndpi\\Helpers\\Data' => __DIR__ . '/../..' . '/app/Helpers/Data.php',
-        'Ndpi\\Helpers\\Fns' => __DIR__ . '/../..' . '/app/Helpers/Fns.php',
-        'Ndpi\\Helpers\\I18n' => __DIR__ . '/../..' . '/app/Helpers/I18n.php',
-        'Ndpi\\Models\\Client' => __DIR__ . '/../..' . '/app/Models/Client.php',
-        'Ndpi\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
-        'Ndpi\\Models\\Deal' => __DIR__ . '/../..' . '/app/Models/Deal.php',
-        'Ndpi\\Models\\Invoice' => __DIR__ . '/../..' . '/app/Models/Invoice.php',
-        'Ndpi\\Models\\Lead' => __DIR__ . '/../..' . '/app/Models/Lead.php',
-        'Ndpi\\Models\\Org' => __DIR__ . '/../..' . '/app/Models/Org.php',
-        'Ndpi\\Models\\Person' => __DIR__ . '/../..' . '/app/Models/Person.php',
-        'Ndpi\\Models\\Project' => __DIR__ . '/../..' . '/app/Models/Project.php',
+        'Ndpi\\Helper\\Constant' => __DIR__ . '/../..' . '/app/Helper/Constant.php',
+        'Ndpi\\Helper\\Data' => __DIR__ . '/../..' . '/app/Helper/Data.php',
+        'Ndpi\\Helper\\Fns' => __DIR__ . '/../..' . '/app/Helper/Fns.php',
+        'Ndpi\\Helper\\I18n' => __DIR__ . '/../..' . '/app/Helper/I18n.php',
+        'Ndpi\\Model\\Client' => __DIR__ . '/../..' . '/app/Model/Client.php',
+        'Ndpi\\Model\\Contact' => __DIR__ . '/../..' . '/app/Model/Contact.php',
+        'Ndpi\\Model\\Deal' => __DIR__ . '/../..' . '/app/Model/Deal.php',
+        'Ndpi\\Model\\Invoice' => __DIR__ . '/../..' . '/app/Model/Invoice.php',
+        'Ndpi\\Model\\Lead' => __DIR__ . '/../..' . '/app/Model/Lead.php',
+        'Ndpi\\Model\\Org' => __DIR__ . '/../..' . '/app/Model/Org.php',
+        'Ndpi\\Model\\Person' => __DIR__ . '/../..' . '/app/Model/Person.php',
+        'Ndpi\\Model\\Project' => __DIR__ . '/../..' . '/app/Model/Project.php',
         'Ndpi\\Traits\\SingletonTrait' => __DIR__ . '/../..' . '/app/Traits/SingletonTrait.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb6f51bce73196b2fd040ce9a4f447766::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb6f51bce73196b2fd040ce9a4f447766::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb6f51bce73196b2fd040ce9a4f447766::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3f0b3e05358d4aa966d9b3171edb6baf::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3f0b3e05358d4aa966d9b3171edb6baf::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit3f0b3e05358d4aa966d9b3171edb6baf::$classMap;
 
         }, null, ClassLoader::class);
     }

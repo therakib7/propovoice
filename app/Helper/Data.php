@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Helpers;
+namespace Ndpi\Helper;
 
 class Data
 {

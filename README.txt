@@ -19,7 +19,7 @@ Propovoice CRM is a client relationship management solution for small, mid-level
 
 == The features: ==
 == 🏆 Business Profile ==
-You can easily create a business profile with the basic information and branding assets of your business. With P[ropovoice, managing service selling and billing of your business are simple and seamless. 
+You can easily create a business profile with the basic information and branding asset of your business. With P[ropovoice, managing service selling and billing of your business are simple and seamless. 
 
 == 🏆 Add Clients ==
 You can add a client to send him project estimates and invoices. You can input your client's contact information ( name, email, phone number, region, address, etc) while adding a client so that you can communicate with your clients easily whenever needed. It’s the first step of a long journey to build a good relationship with your clients.

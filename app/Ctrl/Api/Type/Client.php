@@ -2,8 +2,8 @@
 
 namespace Ndpi\Ctrl\Api\Type;
 
-use Ndpi\Models\Org;
-use Ndpi\Models\Person;
+use Ndpi\Model\Org;
+use Ndpi\Model\Person;
 
 class Client
 {

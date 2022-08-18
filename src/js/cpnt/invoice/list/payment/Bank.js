@@ -106,13 +106,8 @@ class Bank extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-<<<<<<< HEAD
                                         <label htmlFor="field-receipt">{i18n.payment} {i18n.receipt}</label>
-                                        <Upload label={'Upload'} attach_type='secret' permission={true} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
-=======
-                                        <label htmlFor="field-receipt">{i18n.payment} Receipt</label>
                                         <Upload label={'Upload'} attach_type='secret' permission library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
->>>>>>> ff968c47b0e4e5a438f280f16c80e956d6bdf208
                                     </div>
                                 </div>
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace Ndpi\Ctrl\Api\Type;
-use Ndpi\Models\Org; 
+use Ndpi\Model\Org; 
 
 class Person
 {

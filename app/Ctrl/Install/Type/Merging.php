@@ -2,7 +2,7 @@
 
 namespace Ndpi\Ctrl\Install\Type;
 
-use Ndpi\Models\Org;
+use Ndpi\Model\Org;
 
 
 class Merging

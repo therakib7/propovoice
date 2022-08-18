@@ -39,7 +39,7 @@ class ListSingle extends Component {
                 },
                 {
                     id: 'file',
-                    text: ndpi.i18n.files
+                    text: ndpi.i18n.file
                 },
             ],
             currentTab: 'task',
