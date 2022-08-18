@@ -1,16 +1,16 @@
 <?php
 
 /**
- * SingletonTrait 
+ * Singleton 
  * 
  * @since 0.1.0 
  * @package NCPI Project
- * @author NurCreation
+ * @author NurencyDigital
  */
 
 namespace Ndpi\Traits;
 
-trait SingletonTrait
+trait Singleton
 {
     /**
      * Store the singleton object.

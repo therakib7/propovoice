@@ -57,7 +57,7 @@ if (process.env.NODE_ENV === 'package') {
             'asset',
             'languages', 
             'vendor',
-            'views',
+            'view',
             'index.php',
             `${package_slug}.php`,
             'README.txt',

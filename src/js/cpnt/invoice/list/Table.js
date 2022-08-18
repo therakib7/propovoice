@@ -160,8 +160,7 @@ const TableBody = props => {
         return (
             <tr key={index}>
                 <td>
-                    <input type="checkbox"
-
+                    <input type="checkbox" 
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
@@ -300,4 +299,4 @@ const Table = (props) => {
     );
 }
 
-export default Table;
+export default Table; 

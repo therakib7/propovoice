@@ -4,10 +4,10 @@ if (!defined('ABSPATH')) {
 } // Cannot access directly.
 /**
  *
- * @package   NurCreation - Propovoice
- * @author    NurCreation <support@propovoice.com>
+ * @package   NurencyDigital - Propovoice
+ * @author    NurencyDigital <support@propovoice.com>
  * @link      https://propovoice.com
- * @copyright 2022 NurCreation 
+ * @copyright 2022 NurencyDigital 
  *
  * Plugin Name: Propovoice
  * Plugin URI: https://wordpress.org/plugins/propovoice

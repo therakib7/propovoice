@@ -98,7 +98,7 @@ class ComposerStaticInit3f0b3e05358d4aa966d9b3171edb6baf
         'Ndpi\\Model\\Org' => __DIR__ . '/../..' . '/app/Model/Org.php',
         'Ndpi\\Model\\Person' => __DIR__ . '/../..' . '/app/Model/Person.php',
         'Ndpi\\Model\\Project' => __DIR__ . '/../..' . '/app/Model/Project.php',
-        'Ndpi\\Traits\\SingletonTrait' => __DIR__ . '/../..' . '/app/Traits/SingletonTrait.php',
+        'Ndpi\\Traits\\Singleton' => __DIR__ . '/../..' . '/app/Traits/Singleton.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

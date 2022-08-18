@@ -49,14 +49,14 @@
         if (function_exists('ndpip') && ndpip()->wage()) {
             echo '<div id="ndpi-dashboard"></div>';
         } else {
-            ndpi()->render('template/partials/403');
+            ndpi()->render('template/partial/403');
         }
     } else {
         //TODO: this css already has in all.scoped.css
     ?>
 
     <?php
-        ndpi()->render('template/partials/403');
+        ndpi()->render('template/partial/403');
     }
     ?>
     <?php wp_footer(); ?>

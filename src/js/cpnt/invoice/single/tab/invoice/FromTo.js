@@ -158,7 +158,7 @@ class FromTo extends Component {
                     <div className="col-md-6">
                         <div className="pi-from-to">
                             <label className="pi-title-small">{i18n.sender}</label>
-                            <div className="pi-from pi-bg-white">
+                            <div className="pi-from">
                                 {fromData ?
                                     <>
                                         <h4 className="pi-title-small">
@@ -201,7 +201,7 @@ class FromTo extends Component {
                                 </div>
                             </div>
 
-                            <div className="pi-from pi-bg-white">
+                            <div className="pi-from">
                                 {toData ?
                                     <>
                                         <h4 className="pi-title-small">

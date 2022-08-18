@@ -36,17 +36,17 @@ class PageTemplater
 	function load_plugin_template($template)
 	{
 		if (get_page_template_slug() === 'workspace-template.php') {
-			$custom_template = ndpi()->plugin_path() . '/views/template/workspace-template.php';
+			$custom_template = ndpi()->plugin_path() . '/view/template/workspace-template.php';
 			if (file_exists($custom_template)) {
 				return $custom_template;
 			}
 		} else if (get_page_template_slug() === 'invoice-template.php') {
-			$custom_template = ndpi()->plugin_path() . '/views/template/invoice-template.php';
+			$custom_template = ndpi()->plugin_path() . '/view/template/invoice-template.php';
 			if (file_exists($custom_template)) {
 				return $custom_template;
 			}
 		} else if (get_page_template_slug() === 'estimate-template.php') {
-			$custom_template = ndpi()->plugin_path() . '/views/template/estimate-template.php';
+			$custom_template = ndpi()->plugin_path() . '/view/template/estimate-template.php';
 			if (file_exists($custom_template)) {
 				return $custom_template;
 			}

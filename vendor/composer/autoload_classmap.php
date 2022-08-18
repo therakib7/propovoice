@@ -83,5 +83,5 @@ return array(
     'Ndpi\\Model\\Org' => $baseDir . '/app/Model/Org.php',
     'Ndpi\\Model\\Person' => $baseDir . '/app/Model/Person.php',
     'Ndpi\\Model\\Project' => $baseDir . '/app/Model/Project.php',
-    'Ndpi\\Traits\\SingletonTrait' => $baseDir . '/app/Traits/SingletonTrait.php',
+    'Ndpi\\Traits\\Singleton' => $baseDir . '/app/Traits/Singleton.php',
 );

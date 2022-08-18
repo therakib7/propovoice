@@ -11,21 +11,12 @@ class Section extends Component {
 
         this.state = {
             edit: false,
-            sections: [
-                {
-                    label: ndpi.i18n.note,
-                    content: '',
-                },
-                {
-                    label: 'Terms & Conditions',
-                    content: '',
-                }
-            ],
+            sections: props.default,
         };
     }
 
     componentDidMount() {
-        if (!this.state.edit && this.props.data) {
+        if ( !this.state.edit && this.props.data ) { 
             this.setState({ edit: true, sections: this.props.data });
         }
     }
@@ -64,7 +55,7 @@ class Section extends Component {
     };
 
     handlePros = () => {
-        this.props.changeHandler(this.state.sections);
+        this.props.changeHandler(this.state.sections, this.props.top);
     };
 
     deleteHandler = (index) => {
@@ -79,7 +70,7 @@ class Section extends Component {
         const { sections } = this.state;
         const i18n = ndpi.i18n;
         return (
-            <div className="pi-inv-sections pi-form-style-one">
+            <div className='pi-inv-sections pi-form-style-one' style={ { margin: ( this.props.top ? '35px 0 45px' : '') }}>
                 {sections.map((section_single, index) => {
                     return (
                         <div className="pi-group-input" key={index}>
@@ -162,4 +153,4 @@ Section.propTypes = {
     title: PropTypes.string,
 }
 
-export default Section
+export default Section 

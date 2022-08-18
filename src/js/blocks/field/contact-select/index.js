@@ -117,6 +117,7 @@ const Contact = (props) => {
 		setDropdown(false);
 	}
 
+	const i18n = ndpi.i18n;
 	return (
 		<>
 			<span

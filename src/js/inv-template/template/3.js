@@ -27,9 +27,10 @@ export default class Three extends Component {
     }
 
     render() {
-        const { id, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
+        const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-inv" style={{ height: this.props.height }}>
                 <Seal status={status} />
@@ -76,7 +77,8 @@ export default class Three extends Component {
                                 <To data={toData} />
                             </div>
                         </div>
-
+                        
+                        {top_sections && <Section data={top_sections} top />} 
                         {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
 
                         <div className="pi-inv-account">

@@ -3,7 +3,7 @@
 require_once __DIR__ . './../vendor/autoload.php';
  
 use Ndpi\Ctrl\Install\InstallCtrl;
-use Ndpi\Traits\SingletonTrait;
+use Ndpi\Traits\Singleton;
 use Ndpi\Helper\Constant; 
 use Ndpi\Helper\Fns; 
 use Ndpi\Helper\Data;
@@ -14,7 +14,7 @@ use Ndpi\Ctrl\MainCtrl;
  */
 final class Ndpi {
 
-    use SingletonTrait; 
+    use Singleton; 
  
     /**
      * NCPI Project Constructor.
@@ -108,7 +108,7 @@ final class Ndpi {
      * @return string
      */
     public function get_partial_path( $path = null, $args = []) {
-        Fns::get_template_part( 'partials/' . $path, $args ); 
+        Fns::get_template_part( 'partial/' . $path, $args ); 
     } 
 
     /**
@@ -129,7 +129,7 @@ final class Ndpi {
      */
     public function render($viewName, $args = array(), $return = false) { 
         $path = str_replace(".", "/", $viewName);
-        $viewPath = NCPI_PATH . '/views/' . $path . '.php';
+        $viewPath = NCPI_PATH . '/view/' . $path . '.php';
         if ( !file_exists($viewPath) ) { 
             return;
         }
@@ -213,7 +213,7 @@ final class Ndpi {
 }
 
 /**
- * @return bool|SingletonTrait|Ndpi
+ * @return bool|Singleton|Ndpi
  */
 function ndpi() {
     return Ndpi::getInstance();

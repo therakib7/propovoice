@@ -90,6 +90,7 @@ class Invoice extends Component {
 					title: '',
 					desc: ''
 				},
+				top_sections: null,
 				item_label: {
 					id: 'ID',
 					title: 'Title',
@@ -307,9 +308,13 @@ class Invoice extends Component {
 		}
 	}
 
-	handleSectionChange = (data) => {
+	handleSectionChange = (data, top = false) => {
 		let invoice = { ...this.state.invoice }
-		invoice.sections = data;
+		if ( top ) {
+			invoice.top_sections = data; 
+		} else {
+			invoice.sections = data; 
+		}
 		this.setState({ invoice })
 	}
 
@@ -929,6 +934,18 @@ class Invoice extends Component {
 											editId={this.props.id}
 										/>
 
+										<Suspense fallback={<Spinner />}>
+											<Section
+												data={invoice.top_sections}
+												top 
+												changeHandler={this.handleSectionChange}
+												default={[{
+													label: ndpi.i18n.title,
+													content: ''
+												}]} 
+											/>
+										</Suspense>
+
 										<Items
 											items={invoice.items}
 											item_label={invoice.item_label}
@@ -960,8 +977,22 @@ class Invoice extends Component {
 												</div>
 											</div>
 										</div>
-										<Suspense fallback={<Spinner />}>
-											<Section data={invoice.sections} changeHandler={this.handleSectionChange} />
+
+										<Suspense fallback={<Spinner />}> 
+											<Section
+												data={invoice.sections} 
+												changeHandler={this.handleSectionChange}
+												default={[
+													{
+														label: ndpi.i18n.note,
+														content: '',
+													},
+													{
+														label: 'Terms & Conditions',
+														content: '',
+													}
+												]} 
+											/>
 										</Suspense>
 
 										<div className=" pi-inv-attachment pi-mt-30">
