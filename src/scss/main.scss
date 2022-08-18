@@ -6118,3 +6118,15 @@ select {
     left: 28%;
   }
 }
+
+.ndpi .pi-payment-tab .pi-tab .pi-pro-label {
+  background: rgba(235, 205, 168, 0.4705882353) !important;
+  padding: 2px 8px 2px 4px !important;
+  display: block;
+  font-size: 12px !important;
+  border-radius: 12px !important;
+
+  svg {
+    top: 4px;
+  }
+}
