@@ -1,8 +1,8 @@
 <?php
 
-namespace Ncpi\Ctrl\Ajax;
+namespace Ndpi\Ctrl\Ajax;
 
-use Ncpi\Ctrl\Ajax\Type\Auth; 
+use Ndpi\Ctrl\Ajax\Type\Auth; 
 
 class AjaxCtrl {
 

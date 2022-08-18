@@ -5,7 +5,7 @@ module.exports = {
       './src/**/*.php',
       './src/**/*.js',
       './templates/**/*.php',
-      './views/**/*.php'
+      './view/**/*.php'
     ]
   },
   darkMode: false, // or 'media' or 'class'

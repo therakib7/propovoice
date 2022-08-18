@@ -1,9 +1,9 @@
 <?php
 
-namespace Ncpi\Ctrl\Setting;
+namespace Ndpi\Ctrl\Setting;
  
-use Ncpi\Ctrl\Setting\Type\Dashboard;
-use Ncpi\Ctrl\Setting\Type\Welcome;
+use Ndpi\Ctrl\Setting\Type\Dashboard;
+use Ndpi\Ctrl\Setting\Type\Welcome;
 
 class SettingCtrl {
 	

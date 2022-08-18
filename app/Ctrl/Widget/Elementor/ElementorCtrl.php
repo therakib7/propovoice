@@ -1,9 +1,9 @@
 <?php
 
-namespace Ncpi\Ctrl\Widget\Elementor; 
+namespace Ndpi\Ctrl\Widget\Elementor; 
 
 use Elementor\Plugin; 
-use Ncpi\Ctrl\Widget\Elementor\Widgets\Registration; 
+use Ndpi\Ctrl\Widget\Elementor\Widgets\Registration; 
 
 class ElementorCtrl {
 

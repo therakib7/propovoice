@@ -1,11 +1,11 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type;
+namespace Ndpi\Ctrl\Api\Type;
 
-use Ncpi\Models\Deal;
-use Ncpi\Models\Org;
-use Ncpi\Models\Person;
-use Ncpi\Models\Project;
+use Ndpi\Model\Deal;
+use Ndpi\Model\Org;
+use Ndpi\Model\Person;
+use Ndpi\Model\Project;
 
 class Contact
 {
@@ -18,7 +18,7 @@ class Contact
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/contacts', [
+        register_rest_route('ndpi/v1', '/contacts', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -31,7 +31,7 @@ class Contact
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/contacts/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/contacts/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -44,7 +44,7 @@ class Contact
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/contacts/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/contacts/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -57,7 +57,7 @@ class Contact
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/contacts/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpi/v1', '/contacts/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -200,6 +200,12 @@ class Contact
 
         $query_data['status_id'] = '';
         $status = get_the_terms($id, 'ndpi_contact_status');
+
+        //if not set any term, show active
+        if ( !$status ) {
+            $status[] = get_term_by('slug', 'active', 'ndpi_contact_status');
+        }
+
         if ($status) {
             $term_id = $status[0]->term_id;
             $query_data['status_id'] = [

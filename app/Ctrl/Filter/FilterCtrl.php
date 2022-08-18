@@ -1,9 +1,9 @@
 <?php
 
-namespace Ncpi\Ctrl\Filter;
+namespace Ndpi\Ctrl\Filter;
 
-use Ncpi\Ctrl\Filter\Type\BodyClass;
-use Ncpi\Ctrl\Filter\Type\Media;
+use Ndpi\Ctrl\Filter\Type\BodyClass;
+use Ndpi\Ctrl\Filter\Type\Media;
 
 class FilterCtrl
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type;
+namespace Ndpi\Ctrl\Api\Type;
 
-use Ncpi\Helpers\Fns;
+use Ndpi\Helper\Fns;
 
 
 class Taxonomy
@@ -16,7 +16,7 @@ class Taxonomy
     public function create_rest_routes()
     {
 
-        register_rest_route('ncpi/v1', '/taxonomies', [
+        register_rest_route('ndpi/v1', '/taxonomies', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -29,7 +29,7 @@ class Taxonomy
             ],
         ]);
 
-        register_rest_route('ncpi/v1', '/taxonomies/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/taxonomies/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -42,7 +42,7 @@ class Taxonomy
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/taxonomies/(?P<id>\d+)', array(
+        register_rest_route('ndpi/v1', '/taxonomies/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -55,7 +55,7 @@ class Taxonomy
             ),
         ));
 
-        register_rest_route('ncpi/v1', '/taxonomies/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpi/v1', '/taxonomies/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],

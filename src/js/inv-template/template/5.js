@@ -26,9 +26,10 @@ export default class Five extends Component {
     }
 
     render() {
-        const { id, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
+        const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
+        const i18n = ndpi.i18n;
         return (
             <div className="pi-inv" style={{ height: this.props.height }}>
                 <Seal status={status} />
@@ -46,8 +47,8 @@ export default class Five extends Component {
                                         <h2>{title}</h2>
                                     </div>
                                     <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                    <p>Date:<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
-                                    <p>Due Date:<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
+                                    <p>{i18n.date}<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                    <p>{i18n.due} {i18n.date}<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                 </div>
                             </div>
                             <div className="pi-inv-shapes">
@@ -64,6 +65,7 @@ export default class Five extends Component {
                             </div>
                         </div>
                         <div className="pi-inv-item-wrap">
+                            {top_sections && <Section data={top_sections} top />} 
                             {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
 
                             <div className="pi-inv-account">

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\Taxonomy\Type; 
+namespace Ndpi\Ctrl\Taxonomy\Type; 
 
 class ContactStatus { 
 

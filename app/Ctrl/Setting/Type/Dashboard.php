@@ -1,8 +1,8 @@
 <?php
 
-namespace Ncpi\Ctrl\Setting\Type;
+namespace Ndpi\Ctrl\Setting\Type;
 
-use Ncpi\Helpers\Fns;
+use Ndpi\Helper\Fns;
 
 class Dashboard
 {
@@ -96,7 +96,7 @@ class Dashboard
             array($this, 'render')
         );
 
-        if (function_exists('ncpip') && ncpip()->wage()) {
+        if (function_exists('ndpip') && ndpip()->wage()) {
             global $submenu;
             $permalink = Fns::client_page_url('workspace');
             if ($permalink) {
@@ -104,7 +104,7 @@ class Dashboard
             }
         }
 
-        if (!function_exists('ncpip')) {
+        if (!function_exists('ndpip')) {
             global $submenu;
             $submenu['ndpi'][] = array('Upgrade to Pro', 'manage_options', 'https://propovoice.com/pricing');
         }

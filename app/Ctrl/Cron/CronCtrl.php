@@ -1,5 +1,5 @@
 <?php
-namespace Ncpi\Ctrl\Cron;
+namespace Ndpi\Ctrl\Cron;
  
 class CronCtrl
 {

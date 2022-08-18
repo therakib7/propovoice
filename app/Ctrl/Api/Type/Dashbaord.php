@@ -1,12 +1,12 @@
 <?php
 
-namespace Ncpi\Ctrl\Api\Type;
+namespace Ndpi\Ctrl\Api\Type;
 
-use Ncpi\Helpers\Fns;
-use Ncpi\Models\Client;
-use Ncpi\Models\Deal;
-use Ncpi\Models\Lead;
-use Ncpi\Models\Project; 
+use Ndpi\Helper\Fns;
+use Ndpi\Model\Client;
+use Ndpi\Model\Deal;
+use Ndpi\Model\Lead;
+use Ndpi\Model\Project; 
 
 class Dashbaord
 {
@@ -20,7 +20,7 @@ class Dashbaord
 
     public function create_rest_routes()
     {
-        register_rest_route('ncpi/v1', '/dashboard', [
+        register_rest_route('ndpi/v1', '/dashboard', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],

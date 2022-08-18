@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = `${ndpi.apiUrl}ncpi/v1/businesses`;
+const apiUrl = `${ndpi.apiUrl}ndpi/v1/businesses`;
 
 const token = {
 	headers: {

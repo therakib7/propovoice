@@ -1,6 +1,6 @@
 <?php
 
-namespace Ncpi\Ctrl\PostType\Type; 
+namespace Ndpi\Ctrl\PostType\Type; 
 
 class Proposal { 
 

@@ -11,12 +11,11 @@ const package_path = path.resolve(__dirname);
 const package_slug = path.basename(path.resolve(package_path));
 
 mix.webpackConfig({
-    output: {
-        // publicPath: '/', //TODO: this not working in xampp
+    output: { 
         publicPath: '/wp-content/plugins/propovoice/', //TODO: this not working in xampp 
         // path: path.join(__dirname, 'root'),
         //publicPath: '/nurency-plugin/wp-content/plugins/propovoice/',
-        chunkFilename: 'assets/js/component/chunks/[chunkhash].js', //[name][chunkhash]
+        chunkFilename: 'asset/js/cpnt/chnk/[chunkhash].js', //[name][chunkhash]
     },
     resolve: {
         alias: {
@@ -27,8 +26,8 @@ mix.webpackConfig({
             'block': path.resolve('src/js/blocks'),
             'hoc': path.resolve('src/js/hoc'),
             'context': path.resolve('src/js/context'),
-            'components': path.resolve('src/js/components'),
-            'out-components': path.resolve('src/js/out-components'),
+            'cpnt': path.resolve('src/js/cpnt'),
+            'out-cpnt': path.resolve('src/js/out-cpnt'),
             'inv-template': path.resolve('src/js/inv-template'),
         },
     }
@@ -55,11 +54,10 @@ if (process.env.NODE_ENV === 'package') {
         // Select All file then paste on list
         let includes = [
             'app',
-            'assets',
-            'languages',
-            //'templates',
+            'asset',
+            'languages', 
             'vendor',
-            'views',
+            'view',
             'index.php',
             `${package_slug}.php`,
             'README.txt',
@@ -102,18 +100,18 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
         processCssUrls: false
     });
 
-    mix.sass(`src/scss/main.scss`, `assets/css/main${min}.css`)
-        .sass(`src/scss/dashboard.scss`, `assets/css/dashboard${min}.css`)
-        .sass(`src/scss/welcome.scss`, `assets/css/welcome${min}.css`)
-        .sass(`src/scss/invoice.scss`, `assets/css/invoice${min}.css`)
-        /* .postCss('src/vendor/tailwind/tailwind.css', `assets/vendor/tailwind/tailwind${min}.css`, [
+    mix.sass(`src/scss/main.scss`, `asset/css/main${min}.css`)
+        .sass(`src/scss/dashboard.scss`, `asset/css/dashboard${min}.css`)
+        .sass(`src/scss/welcome.scss`, `asset/css/welcome${min}.css`)
+        .sass(`src/scss/invoice.scss`, `asset/css/invoice${min}.css`)
+        /* .postCss('src/vendor/tailwind/tailwind.css', `asset/vendor/tailwind/tailwind${min}.css`, [
             require('tailwindcss'),
         ]) */
-        .copyDirectory('src/img', 'assets/img')
+        .copyDirectory('src/img', 'asset/img')
 
-    mix.js(`src/js/welcome.jsx`, `assets/js/welcome${min}.js`).react()
-    mix.js(`src/js/dashboard.jsx`, `assets/js/dashboard${min}.js`).react()
-    mix.js(`src/js/invoice.jsx`, `assets/js/invoice${min}.js`).react()
+    mix.js(`src/js/welcome.jsx`, `asset/js/welcome${min}.js`).react()
+    mix.js(`src/js/dashboard.jsx`, `asset/js/dashboard${min}.js`).react()
+    mix.js(`src/js/invoice.jsx`, `asset/js/invoice${min}.js`).react()
 }
 
 if (process.env.NODE_ENV === 'zip') {

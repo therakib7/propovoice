@@ -73,7 +73,7 @@ class Total extends Component {
                         })}
 
                         <tr className="pi-inv-table-bg">
-                            <th>Subtotal</th>
+                            <th>{ndpi.i18n.subtotal}</th>
                             <td>{this.formatCurrency(this.calcGrandTotal())}</td>
                         </tr>
                     </tbody>

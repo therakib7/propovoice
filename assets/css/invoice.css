@@ -1,0 +1,8 @@
+/* @media print {
+  .pi-note-wrap {
+    page-break-before: always;
+  }
+} */
+body {
+  background-color: #f7f8fa !important;
+}
