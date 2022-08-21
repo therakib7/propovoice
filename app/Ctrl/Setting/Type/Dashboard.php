@@ -60,16 +60,12 @@ class Dashboard
                 'label' => esc_html__('Project', 'propovoice'),
             ],
             [
-                'id' => 'task',
-                'label' => esc_html__('Task & Activity', 'propovoice'),
-            ],
-            [
                 'id' => 'contact',
                 'label' => esc_html__('Contact', 'propovoice'),
             ]
-        ];
-
-        $settings_menu = apply_filters('ncpi_sidebar_menu', $settings_menu);
+        ]; 
+        
+        $settings_menu = apply_filters('ndpi_sidebar_menu', $settings_menu);
 
         foreach ($settings_menu as $menu) {
             $menu_id = $menu['id'];

@@ -2,14 +2,12 @@
 
 namespace Ndpi\Ctrl\Template;
 
-class PageTemplater
+class TemplateCtrl
 {
-
 	public function __construct()
 	{
-		add_filter('theme_page_templates', [$this, 'add_template_to_select'], 10, 4);
-		add_filter('template_include', [$this, 'load_plugin_template']);
-
+		add_filter('theme_page_templates', [$this, 'template_list'], 10, 4);
+		add_filter('template_include', [$this, 'template_path']); 
 		add_action('wp_enqueue_scripts', array($this, 'wage_scripts'), 999);
 		add_action('admin_enqueue_scripts', array($this, 'wage_scripts'));
 	}
@@ -17,9 +15,8 @@ class PageTemplater
 	/**
 	 * Add "Custom" template to page attirbute template section.
 	 */
-	function add_template_to_select($post_templates, $wp_theme, $post, $post_type)
-	{
-		//TODO: dashboard is pro features
+	function template_list($post_templates, $wp_theme, $post, $post_type)
+	{ 
 		if (function_exists('ndpip')) {
 			$post_templates['workspace-template.php'] = esc_html__('Propovoice Workspace', 'propovoice');
 		}
@@ -33,25 +30,25 @@ class PageTemplater
 	 * template from theme directory and if not exist load it 
 	 * from root plugin directory.
 	 */
-	function load_plugin_template($template)
-	{
-		if (get_page_template_slug() === 'workspace-template.php') {
-			$custom_template = ndpi()->plugin_path() . '/view/template/workspace-template.php';
-			if (file_exists($custom_template)) {
-				return $custom_template;
-			}
-		} else if (get_page_template_slug() === 'invoice-template.php') {
-			$custom_template = ndpi()->plugin_path() . '/view/template/invoice-template.php';
-			if (file_exists($custom_template)) {
-				return $custom_template;
-			}
-		} else if (get_page_template_slug() === 'estimate-template.php') {
-			$custom_template = ndpi()->plugin_path() . '/view/template/estimate-template.php';
-			if (file_exists($custom_template)) {
-				return $custom_template;
-			}
+	function template_path($default)
+	{ 
+		$templates = [
+			'workspace',
+			'invoice',
+			'estimate',
+		];
+
+		foreach ( $templates as $template ) {
+			if ( get_page_template_slug() === $template .'-template.php' ) {
+				$custom_template = ndpi()->plugin_path() . '/view/template/' . $template . '-template.php';
+				if ( file_exists($custom_template) ) {
+					return $custom_template;
+					break;
+				}
+			} 
 		}
-		return $template;
+
+		return $default;
 	}
 
 	/**

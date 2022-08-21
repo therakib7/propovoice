@@ -1,9 +1,13 @@
 <?php
 
-namespace Ndpi\Ctrl\Hook; 
+namespace Ndpi\Ctrl\Hook;
 
-class HookCtrl { 
+use Ndpi\Ctrl\Hook\Type\Filter;
 
-    public function __construct() {    
-    }     
+class HookCtrl
+{
+	public function __construct()
+	{
+		new Filter();
+	}
 }

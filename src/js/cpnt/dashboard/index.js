@@ -19,6 +19,22 @@ const ChartBar = lazy(() => import('./chart/Bar'));
 
 import WithApi from 'hoc/Api';
 
+const TaskCom = () => {
+    return (
+        <div className='pi-bg-white pi-border-gray' style={{ minHeight: '435px', padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
+            <h3
+                className="pi-title-medium pi-mb-20"
+                style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}
+            >
+                {ndpi.i18n.latest} {ndpi.i18n.task}
+            </h3>
+            <Suspense fallback={<Spinner />}>
+                <Task tab_id={null} dashboard />
+            </Suspense>
+        </div>
+    )
+}
+
 const Dashboard = (props) => {
     const [dropdown, setDropdown] = useState(false);
 
@@ -88,7 +104,7 @@ const Dashboard = (props) => {
                             </NavLink>
                             <NavLink to='/invoice'>
                                 {create} {i18n.inv}
-                            </NavLink> 
+                            </NavLink>
                             <NavLink to='/project'>
                                 {create} {i18n.project}
                             </NavLink>
@@ -101,20 +117,10 @@ const Dashboard = (props) => {
                 <Summary {...props} />
             </Suspense>
 
-            <div className="pi-block">
+            {!wage.length && <div className="pi-block">
                 <div className="row">
                     <div className="col-lg-7">
-                        <div className='pi-bg-white pi-border-gray' style={{ minHeight: '435px', padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
-                            <h3
-                                className="pi-title-medium pi-mb-20"
-                                style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}
-                            >
-                                {ndpi.i18n.latest} {ndpi.i18n.task}
-                            </h3>
-                            <Suspense fallback={<Spinner />}>
-                                <Task tab_id={null} dashboard />
-                            </Suspense>
-                        </div>
+                        <TaskCom />
                     </div>
 
                     <div className="col-lg-5">
@@ -123,12 +129,13 @@ const Dashboard = (props) => {
                         </Suspense>
                     </div>
                 </div>
-            </div>
+            </div>}
 
             <div className="row">
                 <div className="col-lg-8">
                     <Suspense fallback={<Spinner />}>
-                        <ChartLine {...props} type='deal_tracking' />
+                        {wage.length > 0 &&<div style={{marginBottom: 25}}><TaskCom /></div>}
+                        {!wage.length && <ChartLine {...props} type='deal_tracking' />}
                         <ChartBar {...props} type='estimate' />
                         <ChartBar {...props} type='invoice' />
                     </Suspense>

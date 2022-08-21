@@ -6,9 +6,8 @@ use Ndpi\Ctrl\Ajax\AjaxCtrl;
 use Ndpi\Ctrl\Api\ApiCtrl;
 use Ndpi\Ctrl\Asset\AssetCtrl;
 use Ndpi\Ctrl\Cron\CronCtrl;
-use Ndpi\Ctrl\Template\PageTemplater;
-use Ndpi\Ctrl\Filter\FilterCtrl;
-use Ndpi\Ctrl\Hook\HookCtrl;
+use Ndpi\Ctrl\Template\TemplateCtrl;
+use Ndpi\Ctrl\Hook\HookCtrl; 
 use Ndpi\Ctrl\Marketing\MarketingCtrl;
 use Ndpi\Ctrl\Meta\MetaCtrl;
 use Ndpi\Ctrl\Setting\SettingCtrl;
@@ -27,10 +26,9 @@ class MainCtrl {
             new MarketingCtrl();
         //}
         new AssetCtrl();
-        new PageTemplater();
+        new TemplateCtrl();
         new WidgetCtrl(); 
         new AjaxCtrl();
-        new FilterCtrl();
         new HookCtrl(); 
         new MetaCtrl();
         new ApiCtrl();

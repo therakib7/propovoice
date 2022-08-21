@@ -28,4 +28,9 @@ trait Singleton
 
         return self::$singleton;
     }
+
+    public function wage()
+    {
+        return function_exists('ndpip') && ndpip()->wage();
+    }
 }
