@@ -102,7 +102,7 @@ const Deal = (props) => {
             {modal && <TaxonomyForm
                 {...props}
                 taxonomy='deal_stage'
-                title='Stage'
+                title={i18n.stage}
                 reload={props.getLists}
                 modalType={modalType}
                 data={form}

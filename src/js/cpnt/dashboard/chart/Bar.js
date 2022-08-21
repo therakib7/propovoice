@@ -20,13 +20,14 @@ export default class Section extends PureComponent {
   }
 
   render() {
+    const i18n = ndpi.i18n;
     return (
       <div className='pi-widget pi-summery pi-bg-white pi-border-gray'>
         <h3
           className="pi-title-medium pi-mb-20"
           style={{ fontWeight: "bold", color: "#718096" }}
         >
-          {this.props.type == 'estimate' ? 'Estimate' : 'Invoice'}
+          {this.props.type == 'estimate' ? i18n.est : i18n.inv}
         </h3>
         <div style={{ width: '100%', height: '300px' }}>
           <ResponsiveContainer width="100%" height="100%">

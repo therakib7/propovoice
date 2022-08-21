@@ -7,7 +7,7 @@ const TaskList = (props) => {
 	const i18n = ndpi.i18n;
 	return (
 		<div className="ncpi-cpnt">
-			<Breadcrumb title={'Task & Activity'} />
+			<Breadcrumb title={i18n.task + ' ' + i18n.nd +' ' + i18n.acti } />
 			{/* <div className="row">
 					<div className="col-lg">
 						<h2 className="pi-page-title">{i18n.task}</h2>

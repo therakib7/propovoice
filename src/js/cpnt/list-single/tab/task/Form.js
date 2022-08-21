@@ -129,7 +129,7 @@ const Form = (props) => {
                         required
                         name="title"
                         value={form.title}
-                        placeholder='Add activity or task'
+                        placeholder={ndpi.i18n.add + ' ' + ' '+ ndpi.i18n.acti  + ' '+ ndpi.i18n.or +' '+ ' '+ ndpi.i18n.task}
                         onChange={handleChange}
                     />
                 </div>

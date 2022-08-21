@@ -222,7 +222,7 @@ const TableBody = props => {
                             {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('accept', row.id); }}>{i18n.mark} {i18n.as} {i18n.accept}</a>}
                             {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); }}>{i18n.mark} {i18n.as} {i18n.dec}</a>}
                             <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); }}>{i18n.dup}</a>
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); }}>Copy To Invoice</a>}
+                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); }}>{i18n.copy} {i18n.to} {i18n.inv}</a>}
                             <a onClick={() => { showDropdown(row.id); props.deleteEntry('single', row.id); }}>{i18n.del}</a>
                         </div>}
                     </div>

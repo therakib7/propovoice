@@ -197,10 +197,17 @@ class I18n
             'block' => esc_html__('Block', 'propovoice'),  
             'move' => esc_html__('Move', 'propovoice'),  
             'go' => esc_html__('Go', 'propovoice'),  
+            'or' => esc_html__('or', 'propovoice'),  
             'receipt' => esc_html__('Receipt', 'propovoice'),  
             'explore' => esc_html__('Explore', 'propovoice'),  
             'subtotal' => esc_html__('Subtotal', 'propovoice'),  
             'with' => esc_html__('With', 'propovoice'),  
+            'parent' => esc_html__('Parent', 'propovoice'),  
+            'widgets' => esc_html__('Widgets', 'propovoice'),  
+            'to' => esc_html__('To', 'propovoice'),  
+            'copy' => esc_html__('Copy', 'propovoice'),  
+            'acti' => esc_html__('activity ', 'propovoice'),  
+            'per' => esc_html__('Per ', 'propovoice'),  
         ];
     }
 }

@@ -22,7 +22,7 @@ const Org = (props) => {
   const i18n = ndpi.i18n;
   return (
     <div className="ncpi-cpnt">
-      <Breadcrumb title='Contact Book' />
+      <Breadcrumb title={i18n.contact + ' ' + i18n.book} />
 
       <div className="row">
         <div className="col-6">

@@ -183,7 +183,7 @@ export default class Form extends Component {
                             <option value="50">50</option>
                             <option value="99">99</option>
                         </select>
-                        {title} {this.props.boardView ? 'Per Stage' : <>from <span>{total}</span></>}
+                        {title} {this.props.boardView ? i18n.pre  + ' ' + i18n.stage : <>from <span>{total}</span></>}
                     </p>
                 </div>
             </div>

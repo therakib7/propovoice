@@ -39,9 +39,9 @@ class Share extends Component {
     };
 
     render() {
-
+        const i18n = ndpi.i18n;
         let path = this.props.path;
-        let path_title = path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est;
+        let path_title = path == 'invoice' ? i18n.inv : i18n.est;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content pi-modal-style-three pi-modal-medium">

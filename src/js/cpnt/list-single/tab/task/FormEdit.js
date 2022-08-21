@@ -177,7 +177,7 @@ class Form extends Component {
                         </span>
 
                         <div className="pi-small-button-group">
-                            {form.id && <Taxonomy key={form.status_id.id} onChange={this.handleTaskStatusChange} id={form.id} data={form.status_id} taxonomy='task_status' title='Status' color />}
+                            {form.id && <Taxonomy key={form.status_id.id} onChange={this.handleTaskStatusChange} id={form.id} data={form.status_id} taxonomy='task_status' title={i18n.status} color />}
 
                             {(form.status_id && form.status_id.type != 'done') && <button
                                 className="pi-btn pi-btn-medium pi-float-right pi-bg-green"
@@ -257,7 +257,7 @@ class Form extends Component {
                                     {i18n.task} {i18n.prior}:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title='Priority' /* small */ color />}
+                                        {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title={i18n.prior} /* small */ color />}
                                     </div>
                                 </div>
                             </div>

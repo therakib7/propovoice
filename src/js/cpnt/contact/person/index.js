@@ -22,7 +22,7 @@ const Contact = (props) => {
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
     <div className="ncpi-cpnt">
-      <Breadcrumb title='Contact Book' />
+      <Breadcrumb title={i18n.contact + ' ' + i18n.book} />
 
       <div className="row">
         <div className="col">

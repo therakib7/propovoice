@@ -80,7 +80,7 @@ class ListSingle extends Component {
         if (path == 'deal') {
             tabs.push({
                 id: 'estimate',
-                text: 'Estimate'
+                text: i18n.est
             });
         }
 
@@ -91,21 +91,21 @@ class ListSingle extends Component {
             });
             tabs.push({
                 id: 'estimate',
-                text: 'Estimate'
+                text: i18n.est
             });
         }
 
         if (path == 'client' || path == 'contact') {
             tabs.push({
                 id: 'project',
-                text: 'Project'
+                text: ndpi.i18n.project
             });
         }
 
         if (path == 'contact') {
             tabs.push({
                 id: 'deal',
-                text: 'Deal'
+                text: ndpi.i18n.deal
             });
         }
     }
@@ -367,7 +367,7 @@ class ListSingle extends Component {
                                                         strokeLinejoin="round"
                                                     />
                                                 </svg>
-                                                {ndpi.i18n.add} to {i18n.deal} Pipeline
+                                                {i18n.add} {i18n.to} {i18n.deal} {i18n.pipeline}
                                             </button>
 
                                             <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
@@ -479,7 +479,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>{i18n.deal}  {i18n.stage}:</label>
-                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title='Stage' color />}
+                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title={i18n.stage} color />}
                                         </div>
                                         <div className="pi-buttons pi-text-right">
                                             <button
@@ -626,7 +626,7 @@ class ListSingle extends Component {
                                     <div className="pi-list-single-button-content">
                                         <div className="pi-select">
                                             <label>{i18n.project} {i18n.status}:</label>
-                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={this.handleProjectStatusChange} title='Status' color />}
+                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={this.handleProjectStatusChange} title={i18n.status} color />}
                                         </div>
                                         <div className="pi-buttons pi-text-right">
                                             {(data.status_id && data.status_id.type != 'completed') && <button

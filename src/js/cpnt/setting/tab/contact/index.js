@@ -5,7 +5,7 @@ export default () => {
             <div className="row">
                 <div className="col">
                     <label>{ndpi.i18n.status}</label>
-                    <Taxonomy taxonomy='contact_status' title='Status' color />
+                    <Taxonomy taxonomy='contact_status' title={ndpi.i18n.status} color />
                 </div>
                 <div className="col">
                 </div>

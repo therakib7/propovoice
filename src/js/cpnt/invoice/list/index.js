@@ -55,7 +55,8 @@ const Invoice = class Invoice extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        let title = this.props.path == '/invoice' ? 'Invoice' : 'Estimate';
+        const i18n = ndpi.i18n;
+        let title = this.props.path == '/invoice' ? i18n.inv : i18n.est;
         let path = this.props.path == '/invoice' ? 'invoice' : 'estimate';
 
         this.setState({ title, path }, () => {

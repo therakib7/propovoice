@@ -54,10 +54,10 @@ const TableBody = props => {
                         </div>
                     </li>
                     <li style={{ width: '20%' }}>
-                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title='Status' small color />
+                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title={ndpi.i18n.status} small color />
                     </li>
                     <li style={{ width: '20%' }}>
-                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title='Priority' small color />
+                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title={ndpi.i18n.prior}  small color />
                     </li>
                     {/* <li style={{ width: '15%' }}>
                         <Taxonomy id={row.id} data={row.priority_id} taxonomy='task_priority' title='Priority' small color />
