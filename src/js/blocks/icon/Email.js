@@ -1,4 +1,4 @@
-const Icon = () => {
+export default () => {
   return (
     <svg
       className='pi-mt-4'
@@ -22,5 +22,4 @@ const Icon = () => {
       />
     </svg>
   )
-}
-export default Icon
+} 

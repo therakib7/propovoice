@@ -181,7 +181,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-bg_color">
-                                            Background Color
+                                        {i18n.bg} {i18n.color}
                                         </label>
                                         <ColorPicker color={form.bg_color} onChange={(val) => this.handleColorChange(val, 'bg_color')} />
                                     </div>
@@ -190,7 +190,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-color">
-                                            Text Color
+                                        {i18n.text} {i18n.color}
                                         </label>
                                         <ColorPicker color={form.color} onChange={(val) => this.handleColorChange(val, 'color')} />
                                     </div>
@@ -199,7 +199,7 @@ class Form extends Component {
                                 {false && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-color">
-                                            {i18n.preview}
+                                            {i18n.prv}
                                         </label>
                                         <div className='pi-field-btn-preview'>
                                             <button
@@ -236,9 +236,9 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-icon">
-                                            Icon
+                                        {i18n.icon}
                                         </label>
-                                        <Upload data={form.icon} small={true} changeHandler={this.handleLogoChange} />
+                                        <Upload data={form.icon} small changeHandler={this.handleLogoChange} />
                                     </div>
                                 </div>}
 
@@ -246,7 +246,7 @@ class Form extends Component {
                                 <>
                                     <div className="row">
                                         <div className="col-md">
-                                            <label htmlFor="field-label">Rate Type</label>
+                                            <label htmlFor="field-label">{i18n.rate} {i18n.type}</label>
                                             <select name="val_type" value={form.val_type} onChange={this.handleChange}>
                                                 <option value="percent">Percent</option>
                                                 <option value="fixed">Fixed</option>
@@ -255,7 +255,7 @@ class Form extends Component {
                                     </div>
                                     <div className="row">
                                         <div className="col">
-                                            <label id="form-show">Always Show</label>
+                                            <label id="form-show">{i18n.show} {i18n.show}</label>
                                             <div className="pi-field-switch pi-mt-3 pi-ml-10">
                                                 <label className='pi-switch'>
                                                     <input type='checkbox'

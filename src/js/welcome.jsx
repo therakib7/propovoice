@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Welcome from 'components/welcome';
+import Welcome from 'cpnt/welcome';
 
 document.addEventListener('DOMContentLoaded', function () {
     let element = document.getElementById('ndpi-welcome');

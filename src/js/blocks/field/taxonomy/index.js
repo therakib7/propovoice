@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
 import Form from './Form';
 import WithApi from 'hoc/Api';
-import pro from 'block/pro-alert'; 
+import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
 const Taxonomy = (props) => {
@@ -45,7 +45,7 @@ const Taxonomy = (props) => {
 		}
 		//this is for lead source
 		let hide_bg = '';
-		if ( props.hide_bg ) {
+		if (props.hide_bg) {
 			hide_bg = '&hide_bg=true';
 		}
 		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + hide_bg).then(resp => {
@@ -76,7 +76,8 @@ const Taxonomy = (props) => {
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
 
-		if ( type == 'new' && wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) ) {
+
+		if (type == 'new' && wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source')) {
 			pro();
 			return;
 		}
@@ -151,6 +152,7 @@ const Taxonomy = (props) => {
 		});
 	}
 
+	const i18n = ndpi.i18n;
 	return (
 		<>
 			{props.multiple && listById && listById.map((item, itemIndex) => {
@@ -163,7 +165,7 @@ const Taxonomy = (props) => {
 				{props.multiple && <button
 					className={(!props.small) ? 'pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}>
-					+ Add {props.title}
+					+ {i18n.add} {props.title}
 				</button>}
 
 				{!props.multiple && listById.length > 0 && <button
@@ -196,13 +198,13 @@ const Taxonomy = (props) => {
 					className={(!props.small) ? 'pi-btn pi-btn-medium pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}
 				>
-					+ Add {props.title}
+					+ {i18n.add} {props.title}
 				</button>}
 
 				{dropdown && <div className="pi-dropdown-content pi-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>
-						+ Add New {props.title}
-						{wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) && <>
+						+ {i18n.add} {i18n.new} {props.title}
+						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <>
 							<ProLabel />
 						</>}
 					</button>
@@ -222,7 +224,7 @@ const Taxonomy = (props) => {
 				modalType={modalType}
 				reload={getData}
 				data={form}
-				color={true}
+				color
 				close={() => setModal(false)}
 			/>}
 		</>

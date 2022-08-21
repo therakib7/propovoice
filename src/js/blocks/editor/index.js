@@ -50,7 +50,7 @@ class BlockEditor extends Component {
 						skin: false,
 						branding: false,
 						content_css: false,
-						height: 200,
+						height: 150,
 						menubar: false,
 						plugins: ['lists'],
 						toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',

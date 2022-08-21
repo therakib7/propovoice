@@ -1,17 +1,17 @@
 import Item from './Item' 
-const Items = props => {
-    const label = props.item_label;
+export default (props) => {
+    const {id, desc, qty, price, tax, amount} = props.item_label;
     return (
         <div className="pi-inv-items">
             <table>
                 <thead>
                     <tr>
-                        <th style={{ width: '35px' }}>{label.id}</th>
-                        <th style={{ width: 'auto' }}>{label.desc}</th>
-                        <th style={{ width: '125px' }}>{label.qty}</th>
-                        <th style={{ width: '135px' }}>{label.price} (USD)</th>
-                        {props.item_tax && <th style={{ width: '125px' }}>{label.tax}</th>}
-                        <th style={{ width: '90px' }}>{label.amount}</th>
+                        <th style={{ width: '35px' }}>{id}</th>
+                        <th style={{ width: 'auto' }}>{desc}</th>
+                        <th style={{ width: '125px' }}>{qty}</th>
+                        <th style={{ width: '135px' }}>{price} (USD)</th>
+                        {props.item_tax && <th style={{ width: '125px' }}>{tax}</th>}
+                        <th style={{ width: '90px' }}>{amount}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,5 +24,4 @@ const Items = props => {
             </table>
         </div>
     )
-} 
-export default Items;
+}  

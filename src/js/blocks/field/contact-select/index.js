@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
 import WithApi from 'hoc/Api';
 
-import ContactForm from 'components/contact/Form';
+import ContactForm from 'cpnt/contact/Form';
 
 const Contact = (props) => {
 	const dropdownContent = useRef();
@@ -117,6 +117,7 @@ const Contact = (props) => {
 		setDropdown(false);
 	}
 
+	const i18n = ndpi.i18n;
 	return (
 		<>
 			<span
@@ -149,7 +150,7 @@ const Contact = (props) => {
 				<div className="pi-search-field">
 					<input type="text" onChange={handleFindContact} placeholder="Search" />
 				</div>
-				<button onClick={(e) => { openModal(e, 'new') }}>+ Add New</button>
+				<button onClick={(e) => { openModal(e, 'new') }}>+ {i18n.add} {i18n.new}</button>
 
 				{list && list.map((item, itemIndex) => {
 					return (

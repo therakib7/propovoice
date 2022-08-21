@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import useClickOutside from 'block/outside-click';
 
-const Editable = (props) => {
+export default (props) => {
 
 	const inputRef = useRef();
 	const [dropdown, setDropdown] = useState(false);
@@ -95,6 +95,4 @@ const Editable = (props) => {
 				</label>}
 		</>
 	);
-}
-
-export default Editable;  
+} 

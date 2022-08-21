@@ -1,6 +1,4 @@
-import { sprintf, _n, __ } from '@wordpress/i18n';
-
-const Item = props => {
+export default (props) => {
     const locale = 'en-US'
 	const currency = 'USD'
 
@@ -28,8 +26,7 @@ const Item = props => {
     const { title, desc, qty, qty_type, tax, tax_type, price } = props.data
 
     return (
-        <tr>
-            {/* {__('hat test', 'propovoice')}{sprintf(_n('%d hat', '%d hats', 4, 'propovoice'), 4)} */}
+        <tr> 
             <td>{props.id + 1}.</td>
             <td>
                 {title}<br />
@@ -46,4 +43,3 @@ const Item = props => {
         </tr>
     )
 }  
-export default Item 

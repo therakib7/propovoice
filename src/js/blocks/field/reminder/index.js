@@ -82,10 +82,8 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <label>
-                            Status
-                            {wage.length > 0 && <>
-                                <ProLabel />
-                            </>}
+                            {i18n.status}
+                            {wage.length > 0 && <ProLabel />}
                         </label>
                         <div className="pi-field-switch pi-ml-10">
                             <label className='pi-switch'>
