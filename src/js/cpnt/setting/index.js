@@ -81,7 +81,7 @@ const SettingWrap = (props) => {
         tag: {
             label: i18n.tag
         },
-        intg: {
+        intregation: {
             label: 'Intregation'
         },
     };
@@ -190,7 +190,7 @@ const SettingWrap = (props) => {
                                 {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
-                                {currentTab == 'intg' && <Intg {...props} />}
+                                {currentTab == 'intregation' && <Intg {...props} />}
                                 {currentTab == 'license' && <License {...props} />}
                             </Suspense>
                         </div>
