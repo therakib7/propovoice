@@ -4,8 +4,7 @@ namespace Ndpi\Ctrl\Install\Type;
 
 use Ndpi\Model\Org;
 
-
-class Merging
+class Merge
 {
 
     public function __construct()
@@ -16,7 +15,7 @@ class Merging
     }
 
     public function user_to_contact()
-    { 
+    {
         $args = array(
             'orderby' => 'registered',
             'order'   => 'DESC',
@@ -24,7 +23,7 @@ class Merging
         );
 
         $all_users = new \WP_User_Query($args);
-        foreach ($all_users->get_results() as $user) { 
+        foreach ($all_users->get_results() as $user) {
 
             $user_id = $user->ID;
             $first_name = $user->first_name;
@@ -51,7 +50,7 @@ class Merging
                 );
                 $post_id = wp_insert_post($data);
 
-                if ( !is_wp_error($post_id) ) {
+                if (!is_wp_error($post_id)) {
 
                     update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
 
@@ -94,10 +93,10 @@ class Merging
 
                     /* if ($img) {
                         update_post_meta($post_id, 'img', $img);
-                    } */ 
-                }  
+                    } */
+                }
 
-                if ( !is_wp_error($post_id) ) {
+                if (!is_wp_error($post_id)) {
                     $args = array(
                         'post_type' => 'ncpi_estvoice',
                         'post_status' => 'publish',
@@ -106,23 +105,23 @@ class Merging
 
                     $args['meta_query'] = array(
                         'relation' => 'AND'
-                    ); 
-            
+                    );
+
                     $args['meta_query'][] = array(
                         array(
                             'key'     => 'to',
                             'value'   => $user_id,
                             'compare' => '='
                         )
-                    ); 
-            
+                    );
+
                     $query = new \WP_Query($args);
                     while ($query->have_posts()) {
                         $query->the_post();
-                        $id = get_the_ID();  
+                        $id = get_the_ID();
 
                         update_post_meta($id, 'to', $post_id);
-                        update_post_meta($id, 'to_type', 'person');  
+                        update_post_meta($id, 'to_type', 'person');
                     }
                     wp_reset_postdata();
 
@@ -160,7 +159,7 @@ class Merging
             $invoice = get_post_meta($id, 'invoice', true);
 
             $extra_field = [];
-            if ( isset( $invoice['extra_field'] ) && $invoice['extra_field']) {
+            if (isset($invoice['extra_field']) && $invoice['extra_field']) {
                 foreach ($invoice['extra_field'] as $key => $value) {
                     $slug = ($key == 'late_fee') ? 'fee' : $key;
                     $term = get_term_by('slug', $slug, 'ndpi_extra_amount');
@@ -191,8 +190,8 @@ class Merging
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
- 
-            update_post_meta($id, 'ws_id', ndpi()->get_workspace() ); 
+
+            update_post_meta($id, 'ws_id', ndpi()->get_workspace());
         }
         wp_reset_postdata();
     }

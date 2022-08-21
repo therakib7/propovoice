@@ -3,7 +3,7 @@
 namespace Ndpi\Ctrl\Install;
 
 use Ndpi\Ctrl\Install\Type\DB;
-use Ndpi\Ctrl\Install\Type\Merging;
+use Ndpi\Ctrl\Install\Type\Merge;
 use Ndpi\Ctrl\Install\Type\Page;
 use Ndpi\Ctrl\Install\Type\Taxonomy;
 
@@ -72,18 +72,18 @@ class InstallCtrl
     public function insertData()
     {
         $version = get_option('ndpi_version', '0.1.0');
-        if ( version_compare( $version, NCPI_VERSION, '<') ) {
+        if (version_compare($version, NCPI_VERSION, '<')) {
             update_option('ndpi_version', NCPI_VERSION);
         }
-        
-        if ( version_compare( $version, '0.5.0', '<') ) { 
+
+        if (version_compare($version, '0.5.0', '<')) {
             new Page();
             new DB();
             new Taxonomy();
-            new Merging();
+            new Merge();
 
             // $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
             // wp_mkdir_p($uploads_dir);
-        }  
+        }
     }
 }

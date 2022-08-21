@@ -174,7 +174,7 @@ const SettingWrap = (props) => {
 
                     <div className='col-md-9'>
                         <div className="pi-setting-tab-content">
-                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab].label} {i18n.settings}</h4>
+                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label} {i18n.settings}</h4>
 
                             <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && <General />}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Reminder from './sub/Reminder';
-import DefaultMail from './sub/DefaultMail'; 
+import DefaultMail from './sub/DefaultMail';
 import ProLabel from 'block/pro-alert/label';
 
 export default class Invoice extends Component {
@@ -17,18 +17,18 @@ export default class Invoice extends Component {
 				{
 					id: 'reminder',
 					text: 'Reminder'
-				} 
+				}
 			],
 			currentTab: '',
 		}
 
-	} 
+	}
 
 	componentDidMount() {
 		this.setState({ currentTab: 'default' });
 	}
 
-	setActiveTab(id) { 
+	setActiveTab(id) {
 		this.setState({ currentTab: id });
 	}
 
@@ -43,12 +43,12 @@ export default class Invoice extends Component {
 							className={'pi-tab ' + (tab.id == currentTab ? 'pi-active' : '')}
 							onClick={() => this.setActiveTab(tab.id)}
 						>
-							{tab.text} {tab.id == 'reminder' && <ProLabel />}
+							{tab.text} {tab.id == 'reminder' && wage.length > 0 && <ProLabel />}
 						</li>
 					))}
 				</ul>
-		
-				{currentTab == 'default' && <DefaultMail />} 
+
+				{currentTab == 'default' && <DefaultMail />}
 				{currentTab == 'reminder' && <Reminder />}
 			</>
 		);
