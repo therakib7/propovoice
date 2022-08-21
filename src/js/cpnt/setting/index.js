@@ -13,6 +13,7 @@ const Invoice = lazy(() => import('./tab/invoice'));
 const Project = lazy(() => import('./tab/project'));
 const Contact = lazy(() => import('./tab/contact'));
 const Tag = lazy(() => import('./tab/tag'));
+const Intg = lazy(() => import('./tab/intg'));
 const License = lazy(() => import('./tab/license'));
 
 //subtab: email 
@@ -79,6 +80,9 @@ const SettingWrap = (props) => {
         },
         tag: {
             label: i18n.tag
+        },
+        intg: {
+            label: 'Intregation'
         },
     };
 
@@ -170,7 +174,7 @@ const SettingWrap = (props) => {
 
                     <div className='col-md-9'>
                         <div className="pi-setting-tab-content">
-                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} {i18n.settings}</h4>
+                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab].label} {i18n.settings}</h4>
 
                             <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && <General />}
@@ -186,6 +190,7 @@ const SettingWrap = (props) => {
                                 {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
+                                {currentTab == 'intg' && <Intg {...props} />}
                                 {currentTab == 'license' && <License {...props} />}
                             </Suspense>
                         </div>
