@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 import { NavLink } from "react-router-dom";
 import Api from 'api/invoice';
 
-import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
+import pro from 'block/pro-alert';
 
 import Spinner from 'block/preloader/spinner';
 //self component
@@ -310,10 +310,10 @@ class Invoice extends Component {
 
 	handleSectionChange = (data, top = false) => {
 		let invoice = { ...this.state.invoice }
-		if ( top ) {
-			invoice.top_sections = data; 
+		if (top) {
+			invoice.top_sections = data;
 		} else {
-			invoice.sections = data; 
+			invoice.sections = data;
 		}
 		this.setState({ invoice })
 	}
@@ -763,23 +763,30 @@ class Invoice extends Component {
 
 								{(currentTab == 'preview') &&
 									<>
-										{/* <button
-										className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
-										onClick={() => this.props.routeInvoice()} >
-										Back to Invoice
-									</button> */}
-
-										{/* <button
-											className="pi-btn pi-border-blue pi-color-blue pi-bg-hover-blue pi-hover-color-white"
+										<button
+											className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-10 pi-br-4"
 											onClick={() => this.setState({ shareModal: true })} >
-											Share
-										</button> */}
+											<svg
+												width={14}
+												height={12}
+												viewBox="0 0 14 12"
+												fill="none"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													d="M6.667 8.333H5.333a6 6 0 00-5.312 3.206 6.667 6.667 0 016.645-7.207V.667l7 5.667-7 5.666V8.333zM5.333 6.999H8v2.206l3.547-2.872L8 3.46v2.205H6.667a5.321 5.321 0 00-4.038 1.849 7.325 7.325 0 012.704-.516z"
+													fill="#2D3748"
+												/>
+											</svg>
+											{i18n.share}
+										</button>
 										<button
 											className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-mt-20"
 											onClick={() => this.setState({ emailModal: true })} >
 											{i18n.send} {i18n.email}
-											<svg
-												className="pi-mr-0 pi-ml-10 pi-mt-1"
+											{wage.length > 0 && <ProLabel blueBtn />}
+											{!wage.length && <svg
+												className="pi-mr-0 pi-ml-10"
 												width={9}
 												height={11}
 												viewBox="0 0 6 9"
@@ -790,7 +797,7 @@ class Invoice extends Component {
 													d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
 													fill="white"
 												/>
-											</svg>
+											</svg>}
 										</button>
 									</>
 								}
@@ -937,12 +944,12 @@ class Invoice extends Component {
 										<Suspense fallback={<Spinner />}>
 											<Section
 												data={invoice.top_sections}
-												top 
+												top
 												changeHandler={this.handleSectionChange}
 												default={[{
 													label: ndpi.i18n.title,
 													content: ''
-												}]} 
+												}]}
 											/>
 										</Suspense>
 
@@ -978,9 +985,9 @@ class Invoice extends Component {
 											</div>
 										</div>
 
-										<Suspense fallback={<Spinner />}> 
+										<Suspense fallback={<Spinner />}>
 											<Section
-												data={invoice.sections} 
+												data={invoice.sections}
 												changeHandler={this.handleSectionChange}
 												default={[
 													{
@@ -991,7 +998,7 @@ class Invoice extends Component {
 														label: 'Terms & Conditions',
 														content: '',
 													}
-												]} 
+												]}
 											/>
 										</Suspense>
 
@@ -1088,9 +1095,7 @@ class Invoice extends Component {
 														<i />
 														<h3 className='pi-title-small' >
 															{i18n.rem}
-															{wage.length > 0 && <>
-																<ProLabel />
-															</>}
+															{wage.length > 0 && <ProLabel />}
 															<span className="pi-field-switch-content">
 																<label className="pi-field-switch pi-field-switch-big">
 																	<input type='checkbox'
@@ -1118,9 +1123,7 @@ class Invoice extends Component {
 														<i />
 														<h3 className='pi-title-small'>
 															{i18n.recur}
-															{wage.length > 0 && <>
-																<ProLabel />
-															</>}
+															{wage.length > 0 && <ProLabel />}
 															<span className="pi-field-switch-content">
 																<label className="pi-field-switch pi-field-switch-big">
 																	<input type='checkbox'

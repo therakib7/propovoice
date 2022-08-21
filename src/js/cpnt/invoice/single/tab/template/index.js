@@ -102,12 +102,12 @@ export default class Template extends Component {
                                     <div className='pi-single-image-content'>
                                         <img src={row.src} className={'pi-single-image ' + (this.props.currentTemplate == row.id ? 'pi-active' : '')} />
                                         {(this.props.currentTemplate != row.id) && <div className="pi-overflow-content">
-                                            <a className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
+                                            <a className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>{i18n.select}</a>
                                             <a
                                                 href={'https://appux.co/ncpi/preview/inv' + row.id + '.html'}
                                                 target="_blank"
                                                 className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
-                                            >{i18n.full}</a>
+                                            >{i18n.full} {i18n.prv}</a>
                                         </div>}
                                     </div>
                                 </div>

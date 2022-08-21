@@ -4,6 +4,7 @@ import InvTemplate from 'inv-template';
 
 import Share from './Share';
 import Send from './Send';
+import ProLabel from 'block/pro-alert/label';
 
 import ApiSetting from 'api/setting';
 
@@ -247,7 +248,8 @@ export default class Preview extends Component {
                                     className="pi-btn pi-btn-medium pi-bg-hover-blue pi-bg-blue pi-br-4"
                                     onClick={() => this.props.showEmailModal()} >
                                     {i18n.send} {i18n.email}
-                                    <svg
+                                    {wage.length > 0 && <ProLabel blueBtn />} 
+                                    {!wage.length && <svg
                                         className="pi-ml-10 pi-mr-0"
                                         width={6}
                                         height={12}
@@ -259,7 +261,7 @@ export default class Preview extends Component {
                                             d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
                                             fill="white"
                                         />
-                                    </svg>
+                                    </svg>}
                                 </button>
                             </div>
                         </div>

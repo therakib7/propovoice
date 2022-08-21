@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 // import jsPDF from 'jspdf';
 // import html2canvas from 'html2canvas';
+import ProLabel from 'block/pro-alert/label';
+import pro from 'block/pro-alert';
 
 import WithApi from 'hoc/Api';
 class Send extends Component {
@@ -111,6 +113,10 @@ class Send extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (wage.length > 0 ) {
+			pro();
+			return;
+		}
         // TODO: send with attachment pdf
         if (false) {
             /* html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
@@ -255,7 +261,7 @@ class Send extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        {i18n.send} {i18n.email}
+                                        {i18n.send} {i18n.email} {wage.length > 0 && <ProLabel blueBtn />}
                                     </button>
                                 </div>
                             </div>
