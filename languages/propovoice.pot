@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-18 07:28+0000\n"
+"POT-Creation-Date: 2022-08-21 05:43+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -51,11 +51,11 @@ msgstr ""
 msgid "Project"
 msgstr ""
 
-#: ../app/Helper/I18n.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:64
+#: ../app/Helper/I18n.php:18
 msgid "Task & Activity"
 msgstr ""
 
-#: ../app/Helper/I18n.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:68
+#: ../app/Helper/I18n.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:64
 msgid "Contact"
 msgstr ""
 
@@ -475,7 +475,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: ../app/Helper/I18n.php:139, ../app/Ctrl/Setting/Type/Dashboard.php:92, ../app/Ctrl/Setting/Type/Dashboard.php:93
+#: ../app/Helper/I18n.php:139, ../app/Ctrl/Setting/Type/Dashboard.php:88, ../app/Ctrl/Setting/Type/Dashboard.php:89
 msgid "Settings"
 msgstr ""
 
@@ -735,15 +735,15 @@ msgstr ""
 msgid "Every 1 Minute"
 msgstr ""
 
-#: ../app/Ctrl/Template/PageTemplater.php:24
+#: ../app/Ctrl/Template/TemplateCtrl.php:21
 msgid "Propovoice Workspace"
 msgstr ""
 
-#: ../app/Ctrl/Template/PageTemplater.php:26
+#: ../app/Ctrl/Template/TemplateCtrl.php:23
 msgid "Propovoice Client Invoice"
 msgstr ""
 
-#: ../app/Ctrl/Template/PageTemplater.php:27
+#: ../app/Ctrl/Template/TemplateCtrl.php:24
 msgid "Propovoice Client Estimate"
 msgstr ""
 
@@ -955,7 +955,7 @@ msgstr ""
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Dashboard.php:103
+#: ../app/Ctrl/Setting/Type/Dashboard.php:99
 msgid "Go to Frontend"
 msgstr ""
 
