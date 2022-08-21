@@ -8,11 +8,11 @@ use Elementor\Widget_Base;
 class Registration extends Widget_Base {
 
 	public function get_name() {
-		return 'ncpi-registration';
+		return 'ndpi-registration';
 	}
 
 	public function get_title() {
-		return esc_html__( 'NCPI: Registration', 'propovoice' );
+		return esc_html__( 'Propovoice: Registration', 'propovoice' );
 	}
 
 	public function get_icon() {
@@ -20,7 +20,7 @@ class Registration extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'ncpi-category' ];
+		return [ 'ndpi-category' ];
 	}
 
 	/**

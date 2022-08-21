@@ -6,10 +6,10 @@ class Workspace
 { 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
         register_rest_route('ndpi/v1', '/workspaces', [

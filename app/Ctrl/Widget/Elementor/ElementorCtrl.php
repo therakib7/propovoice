@@ -15,9 +15,8 @@ class ElementorCtrl {
 	/**
 	 * @since 1.0
 	 */
-	public function widgets_registered() {
-					
-        Plugin::instance()->widgets_manager->register_widget_type( new Registration() ); 
+	public function widgets_registered() {					
+        // Plugin::instance()->widgets_manager->register_widget_type( new Registration() ); 
 	}
 
 	/**
@@ -26,9 +25,9 @@ class ElementorCtrl {
 	public function ncpi_category( $elements_manager ) {
 
 		$elements_manager->add_category(
-			'ncpi-category',
+			'ndpi-category',
 			[
-				'title' => esc_html__( 'NCPI Widgets', 'propovoice' ),
+				'title' => esc_html__( 'Propovoice Widgets', 'propovoice' ),
 				'icon' => 'fa fa-plug',
 			]
 		);  

@@ -1,21 +1,26 @@
 import { useState, useEffect } from "react";
 import WithApi from 'hoc/Api';
 
-import Business from './sub/Business';   
+import Form from './sub/Form';  
+import Smtp from './sub/Smtp';  
 
 const Main = (props) => {
 	const [tabs, setTabs] = useState(
 		[
 			{
-				id: 'business',
-				text: ndpi.i18n.business
+				id: 'form',
+				text: 'Form'
+			}, 
+			{
+				id: 'smtp',
+				text: 'SMTP'
 			} 
 		]
 	);
 	const [currentTab, setCurrentTab] = useState(''); 
 
 	useEffect(() => { 
-        setCurrentTab('business') 
+        setCurrentTab('form') 
     }, []);
  
 	return (
@@ -32,7 +37,8 @@ const Main = (props) => {
 				))}
 			</ul>
 	
-			{currentTab == 'business' && <Business {...props} />}   
+			{currentTab == 'form' && <Form {...props} />}   
+			{currentTab == 'smtp' && <Smtp {...props} />}   
 		</>
 	) 
 }  
