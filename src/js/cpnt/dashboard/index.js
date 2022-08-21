@@ -20,13 +20,14 @@ const ChartBar = lazy(() => import('./chart/Bar'));
 import WithApi from 'hoc/Api';
 
 const TaskCom = () => {
+    const i18n = ndpi.i18n;
     return (
         <div className='pi-bg-white pi-border-gray' style={{ minHeight: '435px', padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
             <h3
                 className="pi-title-medium pi-mb-20"
                 style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}
             >
-                {ndpi.i18n.latest} {ndpi.i18n.task}
+                {i18n.latest} {i18n.task}
             </h3>
             <Suspense fallback={<Spinner />}>
                 <Task tab_id={null} dashboard />
@@ -42,9 +43,9 @@ const Dashboard = (props) => {
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
-    const i18n = ndpi.i18n;
-    const create = ndpi.i18n.create;
 
+    const create = ndpi.i18n.create;
+    const i18n = ndpi.i18n;
     return (
         <div className="ndpi-dashboard">
             <div className="row">
@@ -134,7 +135,7 @@ const Dashboard = (props) => {
             <div className="row">
                 <div className="col-lg-8">
                     <Suspense fallback={<Spinner />}>
-                        {wage.length > 0 &&<div style={{marginBottom: 25}}><TaskCom /></div>}
+                        {wage.length > 0 && <div style={{ marginBottom: 25 }}><TaskCom /></div>}
                         {!wage.length && <ChartLine {...props} type='deal_tracking' />}
                         <ChartBar {...props} type='estimate' />
                         <ChartBar {...props} type='invoice' />

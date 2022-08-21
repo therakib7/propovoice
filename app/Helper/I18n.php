@@ -15,7 +15,7 @@ class I18n
             'inv' => esc_html__('Invoice', 'propovoice'),
             'client' => esc_html__('Client', 'propovoice'),
             'project' => esc_html__('Project', 'propovoice'),
-            'task' => __('Task & Activity', 'propovoice'),
+            'task' => esc_html__('Task & Activity', 'propovoice'),
             'contact' => esc_html__('Contact', 'propovoice'),
             //dashboard
             'ov' => esc_html__('Overview', 'propovoice'),
@@ -206,7 +206,7 @@ class I18n
             'widgets' => esc_html__('Widgets', 'propovoice'),  
             'to' => esc_html__('To', 'propovoice'),  
             'copy' => esc_html__('Copy', 'propovoice'),  
-            'acti' => esc_html__('activity ', 'propovoice'),  
+            'acti' => esc_html__('Activity ', 'propovoice'),  
             'per' => esc_html__('Per ', 'propovoice'),  
         ];
     }
