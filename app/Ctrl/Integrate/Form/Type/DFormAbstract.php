@@ -1,10 +1,10 @@
 <?php
 
-namespace Ndpi\Ctrl\Intg\Form\Type; 
+namespace Ndpi\Ctrl\Integrate\Form\Type; 
  
 use WP_Error;
 
-abstract class FormAbstract {
+abstract class DFormAbstract {
 
     /**
      * Hold the value if plugin active or not

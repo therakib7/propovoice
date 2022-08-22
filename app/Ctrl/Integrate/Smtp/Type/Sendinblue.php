@@ -1,8 +1,8 @@
 <?php
 
-namespace Ndpi\Ctrl\Intg\Form\Type; 
+namespace Ndpi\Ctrl\Integrate\Smtp\Type; 
  
-class ContactFrom7
+class Sendinblue
 {
 
     public function __construct()
@@ -12,13 +12,13 @@ class ContactFrom7
 
     public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/intg-form', [
+        register_rest_route('ndpi/v1', '/intg-smtp/sendinblue', [
             'methods' => 'GET',
             'callback' => [$this, 'get'],
             'permission_callback' => [$this, 'get_permission']
         ]);
 
-        register_rest_route('ndpi/v1', '/intg-form', [
+        register_rest_route('ndpi/v1', '/intg-smtp/sendinblue', [
             'methods' => 'POST',
             'callback' => [$this, 'create'],
             'permission_callback' => [$this, 'create_permission']
@@ -49,7 +49,7 @@ class ContactFrom7
 
                 global $post;
 
-                $cf7 = \WPCF7_ContactForm::get_instance( $post->ID );
+                $cf7 = \WPCF7_ContactSmtp::get_instance( $post->ID );
 
                 $form = [
                     'id'     => $post->ID,
@@ -84,15 +84,7 @@ class ContactFrom7
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-            $data = [];
-
-            if ($tab == 'license') {
-                $key = isset($params['key']) ? sanitize_text_field($params['key']) : null;
-                $type = isset($params['type']) ? sanitize_textarea_field($params['type']) : null;
-                $license = new License();
-                $license->manage_licensing($key, $type);
-                // $option = update_option('ndpi_' . $tab, $data);
-            }
+            $data = []; 
 
             wp_send_json_success();
         }

@@ -13,7 +13,7 @@ const Invoice = lazy(() => import('./tab/invoice'));
 const Project = lazy(() => import('./tab/project'));
 const Contact = lazy(() => import('./tab/contact'));
 const Tag = lazy(() => import('./tab/tag'));
-const Intg = lazy(() => import('./tab/intg'));
+const Integrate = lazy(() => import('./tab/integrate'));
 const License = lazy(() => import('./tab/license'));
 
 //subtab: email 
@@ -21,10 +21,9 @@ const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
 const EmailSocial = lazy(() => import('./tab/email/social'));
 
-const Payment = lazy(() => import('cpnt/payment'));
+const Payment = lazy(() => import('cpnt/payment')); 
 
-
-const SettingWrap = (props) => {
+const Setting = (props) => {
 
     const { tab, subtab } = useParams();
     let navigate = useNavigate();
@@ -81,8 +80,8 @@ const SettingWrap = (props) => {
         tag: {
             label: i18n.tag
         },
-        intregation: {
-            label: 'Intregation'
+        integration: {
+            label: i18n.intg
         },
     };
 
@@ -190,7 +189,7 @@ const SettingWrap = (props) => {
                                 {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
-                                {currentTab == 'intregation' && <Intg {...props} />}
+                                {currentTab == 'integration' && <Integrate {...props} />}
                                 {currentTab == 'license' && <License {...props} />}
                             </Suspense>
                         </div>
@@ -201,4 +200,4 @@ const SettingWrap = (props) => {
     );
 }
 
-export default WithApi(SettingWrap); 
+export default WithApi(Setting); 

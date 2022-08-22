@@ -181,3 +181,17 @@ input:-webkit-autofill:active {
 .Toastify__toast-container {
     z-index: 999999 !important;
 }
+
+.pi-intg-list {
+    .pi-intg-item {
+        cursor: pointer;
+        border: 1px solid #E2E8F0;
+        padding: 30px 10px;
+        text-align: center;
+        h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #2D3748;
+        }
+    }
+}
