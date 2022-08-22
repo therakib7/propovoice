@@ -161,7 +161,7 @@ class Form extends Component {
                             </svg>
                         </span>
                         <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.contact}</h2>
-                        <p>Add new contact from here</p>
+                        <p>{i18n.client}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

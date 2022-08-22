@@ -139,7 +139,7 @@ class Form extends Component {
                             </svg>
                         </span>
                         <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.org}</h2>
-                        <p>Add new organization from here</p>
+                        <p>{i18n.add + ' ' +i18n.org + ' ' +i18n.client + ' ' +i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

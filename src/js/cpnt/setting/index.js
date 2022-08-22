@@ -82,7 +82,7 @@ const SettingWrap = (props) => {
             label: i18n.tag
         },
         intregation: {
-            label: 'Intregation'
+            label: i18n.intr
         },
     };
 
@@ -94,7 +94,7 @@ const SettingWrap = (props) => {
         if (has_wage.ins) {
             let new_tabs = { ...tabs }
             new_tabs.license = {
-                label: 'License Manager'
+                label: i18n.limang
             }
             setTabs(new_tabs);
         }

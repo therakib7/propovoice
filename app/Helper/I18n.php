@@ -130,6 +130,7 @@ class I18n
             'file' => esc_html__('File', 'propovoice'),
             'section' => esc_html__('Section', 'propovoice'),
             'dtl' => esc_html__('Details', 'propovoice'),
+            'cate' => esc_html__('Category', 'propovoice'),
             //btn
             'logo' => esc_html__('Logo', 'propovoice'),
             'contin' => esc_html__('Continue', 'propovoice'),
@@ -207,7 +208,15 @@ class I18n
             'to' => esc_html__('To', 'propovoice'),  
             'copy' => esc_html__('Copy', 'propovoice'),  
             'acti' => esc_html__('Activity ', 'propovoice'),  
-            'per' => esc_html__('Per ', 'propovoice'),  
+            'per' => esc_html__('Per', 'propovoice'),  
+            'eachitem' => esc_html__('Each Item Tax Field', 'propovoice'),  
+            'logout' => esc_html__('Logout', 'propovoice'),  
+            'intr' => esc_html__('Intregation', 'propovoice'),  
+            'limang' => esc_html__('License Manager', 'propovoice'),  
+            'my' => esc_html__('My', 'propovoice'),  
+            'work' => esc_html__('Work', 'propovoice'),  
+            'today' => esc_html__('Today', 'propovoice'),  
+            'othrday' => esc_html__('Others Day', 'propovoice'),  
         ];
     }
 }

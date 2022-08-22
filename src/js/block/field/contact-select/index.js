@@ -125,7 +125,7 @@ const Contact = (props) => {
 				onClick={() => showDropdown()}
 			>
 
-				{!props.data && 'Select Receiver'}
+				{!props.data &&  i18n.select +' ' +i18n.rec}
 
 				{props.data && <>
 					{(props.data.type == 'person') ? props.data.first_name : props.data.org_name}

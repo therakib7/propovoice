@@ -90,7 +90,7 @@ const Deal = (props) => {
     const i18n = ndpi.i18n;
     return (
         <div className="ncpi-cpnt">
-            {!props.module_id && <Breadcrumb title={title + ' Pipeline'} />}
+            {!props.module_id && <Breadcrumb title={title +  i18n.pipeline} />}
 
             {props.state.formModal && <Form
                 handleSubmit={props.handleSubmit}
@@ -112,7 +112,7 @@ const Deal = (props) => {
 
             <div className="row">
                 <div className="col">
-                    <h2 className="pi-page-title">{title + (!props.module_id ? ' Pipeline' : '')}</h2>
+                    <h2 className="pi-page-title">{title + (!props.module_id ? i18n.pipeline : '')}</h2>
                 </div>
                 <div className="col">
                     <div className="pi-list-single-button-content">

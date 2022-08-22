@@ -244,7 +244,7 @@ class Form extends Component {
                             </svg>
                         </span>
                         <h2 className="pi-modal-title">{title} {i18n.deal}</h2>
-                        <p>Add new deal from here</p>
+                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.deal + ' ' +i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
