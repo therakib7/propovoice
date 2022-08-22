@@ -1,9 +1,10 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 import WithApi from 'hoc/Api';
+import ProLabel from 'block/pro-alert/label';
 
-import Form from './sub/Form';  
-import Smtp from './sub/Smtp';  
+import Form from './form';  
+import Smtp from './smtp';  
 
 const Main = (props) => {
 

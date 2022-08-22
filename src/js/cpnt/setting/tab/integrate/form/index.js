@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context';
-import Moment from 'react-moment';
+import AppContext from 'context/app-context'; 
 import Spinner from 'block/preloader/spinner';
 
 export default class License extends Component {
@@ -38,7 +37,7 @@ export default class License extends Component {
 
     getFormList = () => {
         this.setState({ loading: true });
-        this.props.getAll('intg-smtp').then(resp => {
+        this.props.getAll('intg-form').then(resp => {
             if (resp.data.success) {
                 this.setState({ list: resp.data.data, loading: false });
             }
@@ -47,23 +46,23 @@ export default class License extends Component {
 
     getSingleList = (slug) => {
         this.setState({ loading: true });
-        this.props.getAll('intg-smtp/' + slug).then(resp => {
+        this.props.getAll('intg-form/' + slug).then(resp => {
             if (resp.data.success) {
                 this.setState({ singleList: resp.data.data, loading: false });
             }
         })
     };
 
-    addCurrentTab = (item) => { 
-
-        if (item.pro && wage.length > 0) {
-            pro();
+    addCurrentTab = (item) => {
+        
+        if (!item.active) {
+            toast.error('This plugin is not Install or Activated yet');
             return;
-        }
+        } 
 
         const slug = item.slug;
         this.setState({ currentTab: slug })
-        this.props.onChange('smtp', slug, false)
+        this.props.onChange('form', slug, false)
         this.getSingleList(slug)
     };
 
@@ -80,6 +79,11 @@ export default class License extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
+        return;
         let form = { ...this.state.form }
         form.tab = 'license';
         this.setState({ loading: true });
@@ -136,7 +140,7 @@ export default class License extends Component {
                                         </h3>
 
                                         <div>
-                                            <div className="pi-form-style-one">
+                                            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
                                                 <div className='pi-table-wrap'>
                                                     <table className='pi-table'>
                                                         <thead>
@@ -144,10 +148,10 @@ export default class License extends Component {
                                                                 <th>
                                                                 </th>
                                                                 <th>
-                                                                    Form Fields
+                                                                    Form Field
                                                                 </th>
                                                                 <th>
-                                                                    Lead Field
+                                                                    {i18n.lead + ' ' + i18n.fields}
                                                                 </th>
                                                                 <th>
                                                                 </th>
@@ -177,11 +181,11 @@ export default class License extends Component {
                                                 <div className="row">
                                                     <div className="col" style={{ textAlign: 'center', marginTop: 35 }}>
                                                         <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-color-white">
-                                                            {i18n.save}
+                                                            {i18n.save} {wage.length > 0 && <ProLabel blueBtn />}
                                                         </button>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </li>
                                 ))}

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ndpi\Ctrl\Integrate\Form\Type; 
+namespace Ndpi\Ctrl\Integrate\Smtp; 
  
-class FormList
+class SmtpList
 {
 
     public function __construct()
@@ -12,7 +12,7 @@ class FormList
 
     public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/intg-form', [
+        register_rest_route('ndpi/v1', '/intg-smtp', [
             'methods' => 'GET',
             'callback' => [$this, 'get'],
             'permission_callback' => [$this, 'get_permission']
@@ -25,17 +25,15 @@ class FormList
         $reg_errors = new \WP_Error;
 
         $form_list = [
-            [
-                'active' => class_exists( 'WPCF7_ContactForm' ),
-                'name' => 'Contact Form 7',
-                'slug' => 'cf7',
+            [ 
+                'name' => 'Sendinblue',
+                'slug' => 'sendinblue',
                 'img' => '',
-                'pro' => false,
+                'pro' => true,
             ],
-            [
-                'active' => class_exists( 'WPForms' ),
-                'name' => 'WPForms',
-                'slug' => 'wpforms',
+            [ 
+                'name' => 'SendLayer',
+                'slug' => 'sendLayer ',
                 'img' => '',
                 'pro' => true,
             ]

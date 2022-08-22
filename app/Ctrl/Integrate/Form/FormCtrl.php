@@ -1,17 +1,13 @@
 <?php
 
 namespace Ndpi\Ctrl\Integrate\Form;
-
-use Ndpi\Ctrl\Integrate\Form\Type\ContactFrom7;
-use Ndpi\Ctrl\Integrate\Form\Type\FormList;
-use Ndpi\Ctrl\Integrate\Form\Type\Wpforms;
+ 
+use Ndpi\Ctrl\Integrate\Form\FormList; 
 
 class FormCtrl
 { 
 	public function __construct()
 	{ 
-		new FormList();
-		new ContactFrom7();
-		new Wpforms();
+		new FormList(); 
 	}
 }

@@ -2,14 +2,12 @@
 
 namespace Ndpi\Ctrl\Integrate\Smtp;
 
-use Ndpi\Ctrl\Integrate\Smtp\Type\SmtpList;
-use Ndpi\Ctrl\Integrate\Smtp\Type\Sendinblue; 
+use Ndpi\Ctrl\Integrate\Smtp\SmtpList; 
 
 class SmtpCtrl
 { 
 	public function __construct()
 	{ 
-		new SmtpList();
-		new Sendinblue(); 
+		new SmtpList(); 
 	}
 }
