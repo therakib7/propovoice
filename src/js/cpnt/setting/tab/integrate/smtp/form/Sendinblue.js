@@ -1,16 +1,22 @@
-import React, { Component, Suspense, lazy } from 'react'
-// const Editor = lazy(() => import('block/editor'));
+import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+import AppContext from 'context/app-context';
 
-class FormBank extends Component {
+export default class Business extends Component {
     constructor(props) {
         super(props);
 
         this.initialState = {
             id: null,
-            type: 'bank',
             name: '',
-            details: '',
-            default: false,
+            org_name: '',
+            web: '',
+            email: '',
+            mobile: '',
+            address: '',
+            logo: null,
+            zip: '',
+            default: true,
             date: false
         };
 
@@ -19,15 +25,11 @@ class FormBank extends Component {
         };
     }
 
+    static contextType = AppContext;
+
     handleChange = e => {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } });
-    }
-
-    handleDesc = (value = null) => {
-        let form = this.state.form;
-        form['details'] = value;
-        this.setState({ form });
     }
 
     toggleChange = () => {
@@ -36,130 +38,95 @@ class FormBank extends Component {
     }
 
     componentDidMount() {
-        //added this multiple place, because not working in invoice single
-        this.editData();
+        this.getData();
     }
 
-    componentDidUpdate() {
-        this.editData();
-    }
-
-    editData = () => {
-        //condition added to stop multiple rendering  
-        if (this.props.modalType == 'edit') {
-
-            if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
+    getData = () => {
+        this.props.getAll('businesses', 'default=1').then(resp => {
+            let businessData = resp.data.data.result;
+            if (businessData.length) {
+                this.setState({ form: businessData[0] });
             }
-        } else {
-            if (this.state.form.id != null) {
-                this.setState({ form: this.initialState });
-            }
-        }
-    }
+        });
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.form);
-        // this.setState({ form: this.initialState });
+
+        let form = { ...this.state.form }
+        if (form.logo) {
+            form.logo = form.logo.id;
+        }
+
+        if (!form.id) {
+            this.props.create('businesses', form).then(resp => {
+                if (resp.data.success) {
+                    toast.success(this.context.CrudMsg.create);
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
+        } else {
+            this.props.update('businesses', form.id, form).then(resp => {
+                if (resp.data.success) {
+                    toast.success(this.context.CrudMsg.update);
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
+        }
     }
 
     render() {
         const i18n = ndpi.i18n;
         return (
-            <div className="pi-overlay">
-                <div className="pi-modal-content">
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()} >
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </span>
-                        <h2 className="pi-modal-title">Sendinblue SMTP</h2>
-                        <p>Please fill up necessary information in the form.</p>
+            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>Sendinblue</h4>
+                <div className="row">
+                    <div className="col-md">
+                        <label htmlFor="field-key">
+                            API Key
+                        </label>
+
+                        <input
+                            id="field-key"
+                            type="text"
+                            name="name"
+                            value={this.state.form.name}
+                            onChange={this.handleChange}
+                        />
                     </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="pi-content">
 
-                            <div className='pi-form-style-one'>
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="form-name">
-                                            {i18n.name}
-                                        </label>
-
-                                        <input
-                                            id="form-name"
-                                            type="text"
-                                            required
-                                            name="name"
-                                            value={this.state.form.name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="form-details">
-                                        {i18n.dtl}
-                                        </label>
-                                        <textarea
-                                            id="form-details"
-                                            rows={4}
-                                            name="details"
-                                            value={this.state.form.details}
-                                            onChange={this.handleChange}
-                                        />
-                                        {/*<Suspense fallback={<Spinner />}> 
-                                            <Editor
-                                                key={'pi-bank-details'}
-                                                value={this.state.form.details} 
-                                                changeHandler={this.handleDesc}
-                                            />
-                                        </Suspense> */}
-
-                                        <p className='pi-field-desc'>You need to mention bank details here, Like: Name, Routing No. etc</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="pi-modal-footer">
-                            <div className="row">
-                                <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
-                                </div>
-                                <div className="col">
-                                    <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        {i18n.save}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
-                {/* ./ pi-modal-content */}
-            </div>
+
+                <div className="row">
+                    <div className="col-md">
+                        <label htmlFor="field-web">
+                            {i18n.web}
+                        </label>
+
+                        <input
+                            id="field-web"
+                            type="text"
+                            name="web"
+                            value={this.state.form.web}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col">
+                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                            {i18n.save}
+                        </button>
+                    </div>
+                </div>
+            </form>
         );
     }
-}
-export default FormBank;
+} 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context'; 
+import AppContext from 'context/app-context';
 import Spinner from 'block/preloader/spinner';
 
 //form
@@ -57,11 +57,11 @@ export default class License extends Component {
         })
     };
 
-    addCurrentTab = (item) => {  
+    addCurrentTab = (item) => {
 
         const slug = item.slug;
-        this.setState({ currentTab: slug })
-        this.props.onChange('smtp', slug, false) 
+        this.setState({ currentTab: slug, formModal: true })
+        this.props.onChange('smtp', slug, false)
     };
 
     handleChange = (e) => {
@@ -98,6 +98,10 @@ export default class License extends Component {
         });
     }
 
+    close = () => {
+        this.setState({ formModal: false, currentTab: '' })
+    }
+
     render() {
         const { loading, currentTab, list, singleList, leadField } = this.state;
         const i18n = ndpi.i18n;
@@ -115,11 +119,12 @@ export default class License extends Component {
                             </div>
                         ))}
                     </div>}
-                     
-                    {currentTab == 'sendinblue' && this.state.formModal && <Sendinblue   
-                        close={ () => this.setState({ formModal: false }) }
+
+                    {currentTab == 'sendinblue' && this.state.formModal && <Sendinblue
+                        {...this.props}
+                        close={this.close}
                     />}
- 
+
                 </>}
             </>
         );

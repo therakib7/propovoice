@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Upload from 'block/field/upload';
-import Api from 'api/business';
 
 export default class Business extends Component {
     constructor(props) {
@@ -39,64 +38,47 @@ export default class Business extends Component {
         this.setState({ form: { ...this.state.form, ['default']: value } });
     }
 
-    /* componentDidUpdate() {
-        //condition added to stop multiple rendering
-        if (this.props.modalType == 'edit') {
-            
-            if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
-            }
-        } else {
-            if (this.state.form.id != null) {
-                this.setState({ form: this.initialState });
-            }
-        }
-    } */
-
     componentDidMount() {
         this.getData();
     }
 
     getData = () => {
-        Api.getAll('default=1')
-            .then(resp => {
-                let businessData = resp.data.data.result;
-                if (businessData.length) {
-                    this.setState({ form: businessData[0] });
-                }
-            });
+        this.props.getAll('businesses', 'default=1').then(resp => {
+            let businessData = resp.data.data.result;
+            if (businessData.length) {
+                this.setState({ form: businessData[0] });
+            }
+        });
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let form = { ...this.state.form } 
-        if ( form.logo ) {
+        let form = { ...this.state.form }
+        if (form.logo) {
             form.logo = form.logo.id;
-        }  
+        }
 
         if (!form.id) {
-            Api.create(form)
-                .then(resp => {
-                    if (resp.data.success) {
-                        toast.success(this.context.CrudMsg.create);
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
+            this.props.create('businesses', form).then(resp => {
+                if (resp.data.success) {
+                    toast.success(this.context.CrudMsg.create);
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
         } else {
-            Api.update(form.id, form)
-                .then(resp => {
-                    if (resp.data.success) {
-                        toast.success(this.context.CrudMsg.update);
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
-                    }
-                })
+            this.props.update('businesses', form.id, form).then(resp => {
+                if (resp.data.success) {
+                    toast.success(this.context.CrudMsg.update);
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
         }
     }
 
@@ -112,14 +94,13 @@ export default class Business extends Component {
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">
                 <div className="row">
                     <div className="col-md">
-                        <label
-                            htmlFor="field-name">
+                        <label htmlFor="field-name">
                             {i18n.name}
                         </label>
 
                         <input
                             id="field-name"
-                            type="text" 
+                            type="text"
                             name="name"
                             value={this.state.form.name}
                             onChange={this.handleChange}
@@ -127,8 +108,7 @@ export default class Business extends Component {
                     </div>
 
                     {/* <div className="col-md">
-                        <label
-                            htmlFor="field-org_name">
+                        <label htmlFor="field-org_name">
                             Company/Organization Name
                         </label>
 
@@ -145,8 +125,7 @@ export default class Business extends Component {
 
                 <div className="row">
                     <div className="col-md">
-                        <label
-                            htmlFor="field-web">
+                        <label htmlFor="field-web">
                             {i18n.web}
                         </label>
 
@@ -159,8 +138,7 @@ export default class Business extends Component {
                         />
                     </div>
                     <div className="col-md">
-                        <label
-                            htmlFor="field-email">
+                        <label htmlFor="field-email">
                             {i18n.email}
                         </label>
 
@@ -178,8 +156,7 @@ export default class Business extends Component {
 
                 <div className="row">
                     <div className="col-md">
-                        <label
-                            htmlFor="field-mobile">
+                        <label htmlFor="field-mobile">
                             {i18n.mob} {i18n.num}
                         </label>
 
@@ -193,8 +170,7 @@ export default class Business extends Component {
                         />
                     </div>
                     <div className="col-md">
-                        <label
-                            htmlFor="field-zip">
+                        <label htmlFor="field-zip">
                             {i18n.zip}
                         </label>
 
@@ -210,8 +186,7 @@ export default class Business extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label
-                            htmlFor="field-address">
+                        <label htmlFor="field-address">
                             {i18n.addr}
                         </label>
 
@@ -236,7 +211,7 @@ export default class Business extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                        {i18n.save}
+                            {i18n.save}
                         </button>
                     </div>
                 </div>
