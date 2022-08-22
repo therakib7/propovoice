@@ -204,9 +204,7 @@ const Taxonomy = (props) => {
 				{dropdown && <div className="pi-dropdown-content pi-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>
 						+ {i18n.add} {i18n.new} {props.title}
-						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <>
-							<ProLabel />
-						</>}
+						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <ProLabel />}
 					</button>
 					{list && list.map((item, itemIndex) => {
 						return (

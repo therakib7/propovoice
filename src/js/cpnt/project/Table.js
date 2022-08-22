@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Moment from 'react-moment';
 import Action from 'block/action/row';
-import { Arrow, Email, Tag } from '../../blocks/icon';
+import { Arrow, Email, Tag } from 'block/icon';
 
 const TableHeader = props => {
     const i18n = ndpi.i18n;
@@ -19,23 +19,23 @@ const TableHeader = props => {
                     {i18n.project} {i18n.title}
                 </th>
                 <th>
-                    <Email/>
+                    <Email />
                     {i18n.client}
                 </th>
                 <th>
-                <Arrow/>
-                {i18n.start} {i18n.date}
+                    <Arrow />
+                    {i18n.start} {i18n.date}
                 </th>
                 <th>
-                    <Arrow/>
+                    <Arrow />
                     {i18n.due} {i18n.date}
                 </th>
                 <th>
-                    <Arrow/>
+                    <Arrow />
                     {i18n.budget}
                 </th>
                 <th>
-                <Tag/>
+                    <Tag />
                     {i18n.status}
                 </th>
                 {/* <th>

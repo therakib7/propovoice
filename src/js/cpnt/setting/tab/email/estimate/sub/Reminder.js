@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Api from 'api/setting';
@@ -39,6 +40,11 @@ export default class Reminder extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
 
         let form = this.state.form;
         form.tab = 'email_estimate_reminder';
@@ -95,7 +101,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                        {i18n.save}
+                            {i18n.save} {wage.length > 0 && <ProLabel blueBtn />}
                         </button>
                     </div>
                 </div>

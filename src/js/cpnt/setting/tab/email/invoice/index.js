@@ -26,14 +26,13 @@ export default class Invoice extends Component {
 			],
 			currentTab: '',
 		}
-
-	} 
+	}
 
 	componentDidMount() {
 		this.setState({ currentTab: 'default' });
 	}
 
-	setActiveTab(id) { 
+	setActiveTab(id) {
 		this.setState({ currentTab: id });
 	}
 
@@ -41,7 +40,6 @@ export default class Invoice extends Component {
 		const { tabs = [], currentTab } = this.state;
 		return (
 			<>
-
 				<ul className='pi-settings-horizontal-tab'>
 					{tabs.map((tab, index) => (
 						<li
@@ -49,14 +47,14 @@ export default class Invoice extends Component {
 							className={'pi-tab ' + (tab.id == currentTab ? 'pi-active' : '')}
 							onClick={(e) => this.setActiveTab(tab.id)}
 						>
-							{tab.text} { ( tab.id == 'reminder' || tab.id == 'recurring' ) && <ProLabel />}
+							{tab.text} {(tab.id == 'reminder' || tab.id == 'recurring') && wage.length > 0 && <ProLabel />}
 						</li>
 					))}
 				</ul>
 
 				{currentTab == 'default' && <DefaultMail />}
 				{currentTab == 'reminder' && <Reminder />}
-				{currentTab == 'recurring' && <Recurring />} 
+				{currentTab == 'recurring' && <Recurring />}
 			</>
 		);
 	}
