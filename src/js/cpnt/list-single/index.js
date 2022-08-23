@@ -80,18 +80,18 @@ class ListSingle extends Component {
         if (path == 'deal') {
             tabs.push({
                 id: 'estimate',
-                text: i18n.est
+                text: ndpi.i18n.est
             });
         }
 
         if (path == 'project' || path == 'client') {
             tabs.push({
                 id: 'invoice',
-                text: 'Invoice'
+                text: ndpi.i18n.inv
             });
             tabs.push({
                 id: 'estimate',
-                text: i18n.est
+                text: ndpi.i18n.est
             });
         }
 

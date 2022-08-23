@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from "react"; 
 
-const Summary = (props) => {
+export default (props) => {
     const [summary, setSummary] = useState(
         {
             total_client: 0,
@@ -254,5 +254,4 @@ const Summary = (props) => {
             </div>
         </div>
     );
-}
-export default Summary;
+} 

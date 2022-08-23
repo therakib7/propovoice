@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Summary = (props) => {
+export default (props) => {
     const [funnel, setFunnel] = useState({
         common: [],
         won: null,
@@ -45,5 +45,4 @@ const Summary = (props) => {
             {funnel.lost && <p className="pi-text-center">{i18n.deal} {i18n.lost} {funnel.lost.items}</p>} 
         </div>
     );
-}
-export default Summary;
+} 

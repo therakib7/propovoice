@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-23 06:36+0000\n"
+"POT-Creation-Date: 2022-08-23 06:42+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,179 +15,179 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %s template
-#: ../app/Helper/Fns.php:224, ../propovoice/app/Helper/Fns.php:224
+#: ../app/Helper/Fns.php:224
 msgid "%s does not exist."
 msgstr ""
 
-#: ../app/Helper/Fns.php:317, ../app/Helper/Fns.php:389, ../app/Helper/I18n.php:93, ../propovoice/app/Helper/Fns.php:317, ../propovoice/app/Helper/Fns.php:389, ../propovoice/app/Helper/I18n.php:91
+#: ../app/Helper/Fns.php:317, ../app/Helper/Fns.php:389, ../app/Helper/I18n.php:93
 msgid "Select"
 msgstr ""
 
-#: ../app/Helper/I18n.php:11, ../app/Ctrl/Setting/Type/Dashboard.php:30, ../app/Ctrl/Setting/Type/Dashboard.php:31, ../propovoice/app/Helper/I18n.php:11, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:30, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:31
+#: ../app/Helper/I18n.php:11, ../app/Ctrl/Setting/Type/Dashboard.php:30, ../app/Ctrl/Setting/Type/Dashboard.php:31
 msgid "Dashboard"
 msgstr ""
 
-#: ../app/Helper/I18n.php:12, ../app/Ctrl/Setting/Type/Dashboard.php:40, ../propovoice/app/Helper/I18n.php:12, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:40
+#: ../app/Helper/I18n.php:12, ../app/Ctrl/Setting/Type/Dashboard.php:40
 msgid "Lead"
 msgstr ""
 
-#: ../app/Helper/I18n.php:13, ../propovoice/app/Helper/I18n.php:13
+#: ../app/Helper/I18n.php:13
 msgid "Deal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:14, ../app/Ctrl/Setting/Type/Dashboard.php:48, ../propovoice/app/Helper/I18n.php:14, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:48
+#: ../app/Helper/I18n.php:14, ../app/Ctrl/Setting/Type/Dashboard.php:48
 msgid "Estimate"
 msgstr ""
 
-#: ../app/Helper/I18n.php:15, ../app/Ctrl/Setting/Type/Dashboard.php:52, ../propovoice/app/Helper/I18n.php:15, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:52
+#: ../app/Helper/I18n.php:15, ../app/Ctrl/Setting/Type/Dashboard.php:52
 msgid "Invoice"
 msgstr ""
 
-#: ../app/Helper/I18n.php:16, ../app/Ctrl/Setting/Type/Dashboard.php:56, ../propovoice/app/Helper/I18n.php:16, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:56
+#: ../app/Helper/I18n.php:16, ../app/Ctrl/Setting/Type/Dashboard.php:56
 msgid "Client"
 msgstr ""
 
-#: ../app/Helper/I18n.php:17, ../app/Ctrl/Setting/Type/Dashboard.php:60, ../propovoice/app/Helper/I18n.php:17, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:60
+#: ../app/Helper/I18n.php:17, ../app/Ctrl/Setting/Type/Dashboard.php:60
 msgid "Project"
 msgstr ""
 
-#: ../app/Helper/I18n.php:18, ../propovoice/app/Helper/I18n.php:18
+#: ../app/Helper/I18n.php:18
 msgid "Task & Activity"
 msgstr ""
 
-#: ../app/Helper/I18n.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:64, ../propovoice/app/Helper/I18n.php:19, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:64
+#: ../app/Helper/I18n.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:64
 msgid "Contact"
 msgstr ""
 
-#: ../app/Helper/I18n.php:21, ../propovoice/app/Helper/I18n.php:21
+#: ../app/Helper/I18n.php:21
 msgid "Overview"
 msgstr ""
 
-#: ../app/Helper/I18n.php:22, ../propovoice/app/Helper/I18n.php:22
+#: ../app/Helper/I18n.php:22
 msgid "Latest"
 msgstr ""
 
-#: ../app/Helper/I18n.php:23, ../propovoice/app/Helper/I18n.php:23
+#: ../app/Helper/I18n.php:23
 msgid "Funnel"
 msgstr ""
 
-#: ../app/Helper/I18n.php:24, ../propovoice/app/Helper/I18n.php:24
+#: ../app/Helper/I18n.php:24
 msgid "Tracking"
 msgstr ""
 
-#: ../app/Helper/I18n.php:26, ../propovoice/app/Helper/I18n.php:26
+#: ../app/Helper/I18n.php:26
 msgid "Level"
 msgstr ""
 
-#: ../app/Helper/I18n.php:27, ../propovoice/app/Helper/I18n.php:27
+#: ../app/Helper/I18n.php:27
 msgid "Source"
 msgstr ""
 
-#: ../app/Helper/I18n.php:29, ../propovoice/app/Helper/I18n.php:29
+#: ../app/Helper/I18n.php:29
 msgid "Stage"
 msgstr ""
 
-#: ../app/Helper/I18n.php:30, ../propovoice/app/Helper/I18n.php:30
+#: ../app/Helper/I18n.php:30
 msgid "Won"
 msgstr ""
 
-#: ../app/Helper/I18n.php:31, ../propovoice/app/Helper/I18n.php:31
+#: ../app/Helper/I18n.php:31
 msgid "Lost"
 msgstr ""
 
-#: ../app/Helper/I18n.php:32, ../propovoice/app/Helper/I18n.php:32
+#: ../app/Helper/I18n.php:32
 msgid "Probability"
 msgstr ""
 
-#: ../app/Helper/I18n.php:34, ../propovoice/app/Helper/I18n.php:34
+#: ../app/Helper/I18n.php:34
 msgid "&"
 msgstr ""
 
-#: ../app/Helper/I18n.php:35, ../propovoice/app/Helper/I18n.php:35
+#: ../app/Helper/I18n.php:35
 msgid "Template"
 msgstr ""
 
-#: ../app/Helper/I18n.php:36, ../app/Ctrl/Widget/Elementor/Widgets/Registration.php:36, ../propovoice/app/Helper/I18n.php:36, ../propovoice/app/Ctrl/Widget/Elementor/Widgets/Registration.php:36
+#: ../app/Helper/I18n.php:36, ../app/Ctrl/Widget/Elementor/Widgets/Registration.php:36
 msgid "Content"
 msgstr ""
 
-#: ../app/Helper/I18n.php:37, ../propovoice/app/Helper/I18n.php:37
+#: ../app/Helper/I18n.php:37
 msgid "Number"
 msgstr ""
 
-#: ../app/Helper/I18n.php:38, ../propovoice/app/Helper/I18n.php:38
+#: ../app/Helper/I18n.php:38
 msgid "Sender"
 msgstr ""
 
-#: ../app/Helper/I18n.php:39, ../propovoice/app/Helper/I18n.php:39
+#: ../app/Helper/I18n.php:39
 msgid "Receiver"
 msgstr ""
 
-#: ../app/Helper/I18n.php:40, ../propovoice/app/Helper/I18n.php:40
+#: ../app/Helper/I18n.php:40
 msgid "Item"
 msgstr ""
 
-#: ../app/Helper/I18n.php:41, ../app/Helper/I18n.php:42, ../propovoice/app/Helper/I18n.php:41, ../propovoice/app/Helper/I18n.php:42
+#: ../app/Helper/I18n.php:41, ../app/Helper/I18n.php:42
 msgid "Quantity"
 msgstr ""
 
-#: ../app/Helper/I18n.php:43, ../propovoice/app/Helper/I18n.php:43
+#: ../app/Helper/I18n.php:43
 msgid "Amount"
 msgstr ""
 
-#: ../app/Helper/I18n.php:44, ../app/Helper/I18n.php:65, ../propovoice/app/Helper/I18n.php:63
+#: ../app/Helper/I18n.php:44, ../app/Helper/I18n.php:65
 msgid "Additional"
 msgstr ""
 
-#: ../app/Helper/I18n.php:45, ../propovoice/app/Helper/I18n.php:44
+#: ../app/Helper/I18n.php:45
 msgid "Sub Total"
 msgstr ""
 
-#: ../app/Helper/I18n.php:46, ../propovoice/app/Helper/I18n.php:45
+#: ../app/Helper/I18n.php:46
 msgid "Download"
 msgstr ""
 
-#: ../app/Helper/I18n.php:47, ../propovoice/app/Helper/I18n.php:46
+#: ../app/Helper/I18n.php:47
 msgid "Print"
 msgstr ""
 
-#: ../app/Helper/I18n.php:48, ../propovoice/app/Helper/I18n.php:47
+#: ../app/Helper/I18n.php:48
 msgid "Share"
 msgstr ""
 
-#: ../app/Helper/I18n.php:49, ../propovoice/app/Helper/I18n.php:48
+#: ../app/Helper/I18n.php:49
 msgid "Send"
 msgstr ""
 
-#: ../app/Helper/I18n.php:50, ../propovoice/app/Helper/I18n.php:49
+#: ../app/Helper/I18n.php:50
 msgid "Sent"
 msgstr ""
 
-#: ../app/Helper/I18n.php:51, ../propovoice/app/Helper/I18n.php:50
+#: ../app/Helper/I18n.php:51
 msgid "Viewed"
 msgstr ""
 
-#: ../app/Helper/I18n.php:52, ../propovoice/app/Helper/I18n.php:51
+#: ../app/Helper/I18n.php:52
 msgid "Accepted"
 msgstr ""
 
-#: ../app/Helper/I18n.php:53, ../propovoice/app/Helper/I18n.php:52
+#: ../app/Helper/I18n.php:53
 msgid "Declined"
 msgstr ""
 
-#: ../app/Helper/I18n.php:54, ../app/Helper/I18n.php:165, ../propovoice/app/Helper/I18n.php:53, ../propovoice/app/Helper/I18n.php:160
+#: ../app/Helper/I18n.php:54, ../app/Helper/I18n.php:165
 msgid "Paid"
 msgstr ""
 
-#: ../app/Helper/I18n.php:55, ../propovoice/app/Helper/I18n.php:54
+#: ../app/Helper/I18n.php:55
 msgid "Unpaid"
 msgstr ""
 
-#: ../app/Helper/I18n.php:56, ../propovoice/app/Helper/I18n.php:55
+#: ../app/Helper/I18n.php:56
 msgid "Overdue"
 msgstr ""
 
-#: ../app/Helper/I18n.php:57, ../propovoice/app/Helper/I18n.php:56
+#: ../app/Helper/I18n.php:57
 msgid "Reminder"
 msgstr ""
 
@@ -195,327 +195,327 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: ../app/Helper/I18n.php:59, ../propovoice/app/Helper/I18n.php:57
+#: ../app/Helper/I18n.php:59
 msgid "Recurring"
 msgstr ""
 
-#: ../app/Helper/I18n.php:60, ../propovoice/app/Helper/I18n.php:58
+#: ../app/Helper/I18n.php:60
 msgid "After"
 msgstr ""
 
-#: ../app/Helper/I18n.php:61, ../propovoice/app/Helper/I18n.php:59
+#: ../app/Helper/I18n.php:61
 msgid "Before"
 msgstr ""
 
-#: ../app/Helper/I18n.php:62, ../propovoice/app/Helper/I18n.php:60
+#: ../app/Helper/I18n.php:62
 msgid "Authorized Signature"
 msgstr ""
 
-#: ../app/Helper/I18n.php:63, ../propovoice/app/Helper/I18n.php:61
+#: ../app/Helper/I18n.php:63
 msgid "Signature"
 msgstr ""
 
-#: ../app/Helper/I18n.php:64, ../propovoice/app/Helper/I18n.php:62
+#: ../app/Helper/I18n.php:64
 msgid "Style"
 msgstr ""
 
-#: ../app/Helper/I18n.php:67, ../propovoice/app/Helper/I18n.php:65
+#: ../app/Helper/I18n.php:67
 msgid "Currency"
 msgstr ""
 
-#: ../app/Helper/I18n.php:68, ../propovoice/app/Helper/I18n.php:66
+#: ../app/Helper/I18n.php:68
 msgid "Budget"
 msgstr ""
 
-#: ../app/Helper/I18n.php:70, ../propovoice/app/Helper/I18n.php:68
+#: ../app/Helper/I18n.php:70
 msgid "Book"
 msgstr ""
 
-#: ../app/Helper/I18n.php:71, ../propovoice/app/Helper/I18n.php:69
+#: ../app/Helper/I18n.php:71
 msgid "Person"
 msgstr ""
 
-#: ../app/Helper/I18n.php:72, ../propovoice/app/Helper/I18n.php:70
+#: ../app/Helper/I18n.php:72
 msgid "Organization"
 msgstr ""
 
-#: ../app/Helper/I18n.php:73, ../propovoice/app/Helper/I18n.php:71
+#: ../app/Helper/I18n.php:73
 msgid "Name"
 msgstr ""
 
-#: ../app/Helper/I18n.php:74, ../propovoice/app/Helper/I18n.php:72
+#: ../app/Helper/I18n.php:74
 msgid "Email"
 msgstr ""
 
-#: ../app/Helper/I18n.php:75, ../propovoice/app/Helper/I18n.php:73
+#: ../app/Helper/I18n.php:75
 msgid "Mobile"
 msgstr ""
 
-#: ../app/Helper/I18n.php:76, ../propovoice/app/Helper/I18n.php:74
+#: ../app/Helper/I18n.php:76
 msgid "Website"
 msgstr ""
 
-#: ../app/Helper/I18n.php:77, ../propovoice/app/Helper/I18n.php:75
+#: ../app/Helper/I18n.php:77
 msgid "Zip Code"
 msgstr ""
 
-#: ../app/Helper/I18n.php:78, ../app/Helper/I18n.php:193, ../propovoice/app/Helper/I18n.php:76, ../propovoice/app/Helper/I18n.php:188
+#: ../app/Helper/I18n.php:78, ../app/Helper/I18n.php:193
 msgid "Address"
 msgstr ""
 
-#: ../app/Helper/I18n.php:79, ../propovoice/app/Helper/I18n.php:77
+#: ../app/Helper/I18n.php:79
 msgid "Country"
 msgstr ""
 
-#: ../app/Helper/I18n.php:80, ../propovoice/app/Helper/I18n.php:78
+#: ../app/Helper/I18n.php:80
 msgid "Region"
 msgstr ""
 
-#: ../app/Helper/I18n.php:81, ../propovoice/app/Helper/I18n.php:79
+#: ../app/Helper/I18n.php:81
 msgid "Contact "
 msgstr ""
 
-#: ../app/Helper/I18n.php:83, ../propovoice/app/Helper/I18n.php:81
+#: ../app/Helper/I18n.php:83
 msgid "Home"
 msgstr ""
 
-#: ../app/Helper/I18n.php:84, ../propovoice/app/Helper/I18n.php:82
+#: ../app/Helper/I18n.php:84
 msgid "Total"
 msgstr ""
 
-#: ../app/Helper/I18n.php:85, ../propovoice/app/Helper/I18n.php:83
+#: ../app/Helper/I18n.php:85
 msgid "Preview"
 msgstr ""
 
-#: ../app/Helper/I18n.php:87, ../propovoice/app/Helper/I18n.php:85
+#: ../app/Helper/I18n.php:87
 msgid "Status"
 msgstr ""
 
-#: ../app/Helper/I18n.php:88, ../propovoice/app/Helper/I18n.php:86
+#: ../app/Helper/I18n.php:88
 msgid "Date"
 msgstr ""
 
-#: ../app/Helper/I18n.php:89, ../propovoice/app/Helper/I18n.php:87
+#: ../app/Helper/I18n.php:89
 msgid "Action"
 msgstr ""
 
-#: ../app/Helper/I18n.php:90, ../propovoice/app/Helper/I18n.php:88
+#: ../app/Helper/I18n.php:90
 msgid "Show"
 msgstr ""
 
-#: ../app/Helper/I18n.php:91, ../propovoice/app/Helper/I18n.php:89
+#: ../app/Helper/I18n.php:91
 msgid "Always"
 msgstr ""
 
-#: ../app/Helper/I18n.php:92, ../propovoice/app/Helper/I18n.php:90
+#: ../app/Helper/I18n.php:92
 msgid "Search"
 msgstr ""
 
-#: ../app/Helper/I18n.php:94, ../propovoice/app/Helper/I18n.php:92
+#: ../app/Helper/I18n.php:94
 msgid "Type"
 msgstr ""
 
-#: ../app/Helper/I18n.php:95, ../propovoice/app/Helper/I18n.php:93
+#: ../app/Helper/I18n.php:95
 msgid "Location"
 msgstr ""
 
-#: ../app/Helper/I18n.php:96, ../propovoice/app/Helper/I18n.php:94
+#: ../app/Helper/I18n.php:96
 msgid "Rate"
 msgstr ""
 
-#: ../app/Helper/I18n.php:97, ../propovoice/app/Helper/I18n.php:95
+#: ../app/Helper/I18n.php:97
 msgid "Duplicate"
 msgstr ""
 
-#: ../app/Helper/I18n.php:98, ../propovoice/app/Helper/I18n.php:96
+#: ../app/Helper/I18n.php:98
 msgid "Draft"
 msgstr ""
 
-#: ../app/Helper/I18n.php:99, ../propovoice/app/Helper/I18n.php:97
+#: ../app/Helper/I18n.php:99
 msgid "Request"
 msgstr ""
 
-#: ../app/Helper/I18n.php:101, ../propovoice/app/Helper/I18n.php:99
+#: ../app/Helper/I18n.php:101
 msgid "Create"
 msgstr ""
 
-#: ../app/Helper/I18n.php:102, ../propovoice/app/Helper/I18n.php:100
+#: ../app/Helper/I18n.php:102
 msgid "Icon"
 msgstr ""
 
-#: ../app/Helper/I18n.php:103, ../app/Helper/I18n.php:115, ../propovoice/app/Helper/I18n.php:101, ../propovoice/app/Helper/I18n.php:113
+#: ../app/Helper/I18n.php:103, ../app/Helper/I18n.php:115
 msgid "Text"
 msgstr ""
 
-#: ../app/Helper/I18n.php:104, ../propovoice/app/Helper/I18n.php:102
+#: ../app/Helper/I18n.php:104
 msgid "Image"
 msgstr ""
 
-#: ../app/Helper/I18n.php:105, ../propovoice/app/Helper/I18n.php:103
+#: ../app/Helper/I18n.php:105
 msgid "Add"
 msgstr ""
 
-#: ../app/Helper/I18n.php:106, ../app/Helper/I18n.php:110, ../propovoice/app/Helper/I18n.php:104, ../propovoice/app/Helper/I18n.php:108
+#: ../app/Helper/I18n.php:106, ../app/Helper/I18n.php:110
 msgid "New"
 msgstr ""
 
-#: ../app/Helper/I18n.php:107, ../propovoice/app/Helper/I18n.php:105
+#: ../app/Helper/I18n.php:107
 msgid "Edit"
 msgstr ""
 
-#: ../app/Helper/I18n.php:108, ../propovoice/app/Helper/I18n.php:106
+#: ../app/Helper/I18n.php:108
 msgid "Update"
 msgstr ""
 
-#: ../app/Helper/I18n.php:109, ../propovoice/app/Helper/I18n.php:107
+#: ../app/Helper/I18n.php:109
 msgid "Delete"
 msgstr ""
 
-#: ../app/Helper/I18n.php:111, ../propovoice/app/Helper/I18n.php:109
+#: ../app/Helper/I18n.php:111
 msgid "From"
 msgstr ""
 
-#: ../app/Helper/I18n.php:112, ../propovoice/app/Helper/I18n.php:110
+#: ../app/Helper/I18n.php:112
 msgid "here"
 msgstr ""
 
-#: ../app/Helper/I18n.php:113, ../propovoice/app/Helper/I18n.php:111
+#: ../app/Helper/I18n.php:113
 msgid "Tag"
 msgstr ""
 
-#: ../app/Helper/I18n.php:114, ../propovoice/app/Helper/I18n.php:112
+#: ../app/Helper/I18n.php:114
 msgid "Background"
 msgstr ""
 
-#: ../app/Helper/I18n.php:116, ../propovoice/app/Helper/I18n.php:114
+#: ../app/Helper/I18n.php:116
 msgid "Color"
 msgstr ""
 
-#: ../app/Helper/I18n.php:117, ../propovoice/app/Helper/I18n.php:115
+#: ../app/Helper/I18n.php:117
 msgid "Description"
 msgstr ""
 
-#: ../app/Helper/I18n.php:118, ../propovoice/app/Helper/I18n.php:116
+#: ../app/Helper/I18n.php:118
 msgid "Note"
 msgstr ""
 
-#: ../app/Helper/I18n.php:119, ../propovoice/app/Helper/I18n.php:117
+#: ../app/Helper/I18n.php:119
 msgid "Title"
 msgstr ""
 
-#: ../app/Helper/I18n.php:120, ../propovoice/app/Helper/I18n.php:118
+#: ../app/Helper/I18n.php:120
 msgid "Start"
 msgstr ""
 
-#: ../app/Helper/I18n.php:121, ../propovoice/app/Helper/I18n.php:119
+#: ../app/Helper/I18n.php:121
 msgid "Due"
 msgstr ""
 
-#: ../app/Helper/I18n.php:122, ../propovoice/app/Helper/I18n.php:120
+#: ../app/Helper/I18n.php:122
 msgid "Subject"
 msgstr ""
 
-#: ../app/Helper/I18n.php:123, ../propovoice/app/Helper/I18n.php:121
+#: ../app/Helper/I18n.php:123
 msgid "Message"
 msgstr ""
 
-#: ../app/Helper/I18n.php:124, ../propovoice/app/Helper/I18n.php:122
+#: ../app/Helper/I18n.php:124
 msgid "Clear"
 msgstr ""
 
-#: ../app/Helper/I18n.php:125, ../propovoice/app/Helper/I18n.php:123
+#: ../app/Helper/I18n.php:125
 msgid "Account"
 msgstr ""
 
-#: ../app/Helper/I18n.php:126, ../propovoice/app/Helper/I18n.php:124
+#: ../app/Helper/I18n.php:126
 msgid "Secret"
 msgstr ""
 
-#: ../app/Helper/I18n.php:127, ../propovoice/app/Helper/I18n.php:125
+#: ../app/Helper/I18n.php:127
 msgid "ID"
 msgstr ""
 
-#: ../app/Helper/I18n.php:128, ../propovoice/app/Helper/I18n.php:126
+#: ../app/Helper/I18n.php:128
 msgid "Key"
 msgstr ""
 
-#: ../app/Helper/I18n.php:129, ../propovoice/app/Helper/I18n.php:127
+#: ../app/Helper/I18n.php:129
 msgid "Info"
 msgstr ""
 
-#: ../app/Helper/I18n.php:130, ../propovoice/app/Helper/I18n.php:128
+#: ../app/Helper/I18n.php:130
 msgid "Personal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:131, ../propovoice/app/Helper/I18n.php:129
+#: ../app/Helper/I18n.php:131
 msgid "Profile"
 msgstr ""
 
-#: ../app/Helper/I18n.php:132, ../propovoice/app/Helper/I18n.php:130
+#: ../app/Helper/I18n.php:132
 msgid "File"
 msgstr ""
 
-#: ../app/Helper/I18n.php:133, ../propovoice/app/Helper/I18n.php:131
+#: ../app/Helper/I18n.php:133
 msgid "Section"
 msgstr ""
 
-#: ../app/Helper/I18n.php:134, ../propovoice/app/Helper/I18n.php:132
+#: ../app/Helper/I18n.php:134
 msgid "Details"
 msgstr ""
 
-#: ../app/Helper/I18n.php:135, ../propovoice/app/Helper/I18n.php:133
+#: ../app/Helper/I18n.php:135
 msgid "Category"
 msgstr ""
 
-#: ../app/Helper/I18n.php:137, ../propovoice/app/Helper/I18n.php:135
+#: ../app/Helper/I18n.php:137
 msgid "Logo"
 msgstr ""
 
-#: ../app/Helper/I18n.php:138, ../propovoice/app/Helper/I18n.php:136
+#: ../app/Helper/I18n.php:138
 msgid "Continue"
 msgstr ""
 
-#: ../app/Helper/I18n.php:139, ../propovoice/app/Helper/I18n.php:137
+#: ../app/Helper/I18n.php:139
 msgid "Save"
 msgstr ""
 
-#: ../app/Helper/I18n.php:140, ../propovoice/app/Helper/I18n.php:138
+#: ../app/Helper/I18n.php:140
 msgid "Close"
 msgstr ""
 
-#: ../app/Helper/I18n.php:142, ../app/Ctrl/Setting/Type/Dashboard.php:88, ../app/Ctrl/Setting/Type/Dashboard.php:89, ../propovoice/app/Helper/I18n.php:140, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:88, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:89
+#: ../app/Helper/I18n.php:142, ../app/Ctrl/Setting/Type/Dashboard.php:88, ../app/Ctrl/Setting/Type/Dashboard.php:89
 msgid "Settings"
 msgstr ""
 
-#: ../app/Helper/I18n.php:143, ../propovoice/app/Helper/I18n.php:141
+#: ../app/Helper/I18n.php:143
 msgid "General"
 msgstr ""
 
-#: ../app/Helper/I18n.php:144, ../propovoice/app/Helper/I18n.php:142
+#: ../app/Helper/I18n.php:144
 msgid "Business"
 msgstr ""
 
-#: ../app/Helper/I18n.php:145, ../propovoice/app/Helper/I18n.php:143
+#: ../app/Helper/I18n.php:145
 msgid "Pay"
 msgstr ""
 
-#: ../app/Helper/I18n.php:146, ../propovoice/app/Helper/I18n.php:144
+#: ../app/Helper/I18n.php:146
 msgid "Payment"
 msgstr ""
 
-#: ../app/Helper/I18n.php:147, ../propovoice/app/Helper/I18n.php:145
+#: ../app/Helper/I18n.php:147
 msgid "Method"
 msgstr ""
 
-#: ../app/Helper/I18n.php:148, ../propovoice/app/Helper/I18n.php:146
+#: ../app/Helper/I18n.php:148
 msgid "Social"
 msgstr ""
 
-#: ../app/Helper/I18n.php:149, ../propovoice/app/Helper/I18n.php:147
+#: ../app/Helper/I18n.php:149
 msgid "Variable"
 msgstr ""
 
-#: ../app/Helper/I18n.php:150, ../propovoice/app/Helper/I18n.php:148
+#: ../app/Helper/I18n.php:150
 msgid "Import"
 msgstr ""
 
@@ -523,27 +523,27 @@ msgstr ""
 msgid "Integration"
 msgstr ""
 
-#: ../app/Helper/I18n.php:152, ../propovoice/app/Helper/I18n.php:149
+#: ../app/Helper/I18n.php:152
 msgid "License"
 msgstr ""
 
-#: ../app/Helper/I18n.php:153, ../propovoice/app/Helper/I18n.php:150
+#: ../app/Helper/I18n.php:153
 msgid "Expires"
 msgstr ""
 
-#: ../app/Helper/I18n.php:154, ../propovoice/app/Helper/I18n.php:151
+#: ../app/Helper/I18n.php:154
 msgid "Valid"
 msgstr ""
 
-#: ../app/Helper/I18n.php:155, ../propovoice/app/Helper/I18n.php:152
+#: ../app/Helper/I18n.php:155
 msgid "Priority"
 msgstr ""
 
-#: ../app/Helper/I18n.php:156, ../propovoice/app/Helper/I18n.php:153
+#: ../app/Helper/I18n.php:156
 msgid "Meeting Place or"
 msgstr ""
 
-#: ../app/Helper/I18n.php:157, ../propovoice/app/Helper/I18n.php:154
+#: ../app/Helper/I18n.php:157
 msgid "meet"
 msgstr ""
 
@@ -555,1064 +555,1056 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-#: ../app/Helper/I18n.php:161, ../propovoice/app/Helper/I18n.php:156
+#: ../app/Helper/I18n.php:161
 msgid "Pipeline"
 msgstr ""
 
-#: ../app/Helper/I18n.php:162, ../propovoice/app/Helper/I18n.php:157
+#: ../app/Helper/I18n.php:162
 msgid "Back to WP Dashboard"
 msgstr ""
 
-#: ../app/Helper/I18n.php:163, ../propovoice/app/Helper/I18n.php:158
+#: ../app/Helper/I18n.php:163
 msgid "Mark"
 msgstr ""
 
-#: ../app/Helper/I18n.php:164, ../propovoice/app/Helper/I18n.php:159
+#: ../app/Helper/I18n.php:164
 msgid "Done"
 msgstr ""
 
-#: ../app/Helper/I18n.php:166, ../propovoice/app/Helper/I18n.php:161
+#: ../app/Helper/I18n.php:166
 msgid "completed"
 msgstr ""
 
-#: ../app/Helper/I18n.php:167, ../propovoice/app/Helper/I18n.php:162
+#: ../app/Helper/I18n.php:167
 msgid "as"
 msgstr ""
 
-#: ../app/Helper/I18n.php:168, ../propovoice/app/Helper/I18n.php:163
+#: ../app/Helper/I18n.php:168
 msgid "successful"
 msgstr ""
 
-#: ../app/Helper/I18n.php:169, ../propovoice/app/Helper/I18n.php:164
+#: ../app/Helper/I18n.php:169
 msgid "Submit"
 msgstr ""
 
-#: ../app/Helper/I18n.php:170, ../propovoice/app/Helper/I18n.php:165
+#: ../app/Helper/I18n.php:170
 msgid "Proposal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:171, ../propovoice/app/Helper/I18n.php:166
+#: ../app/Helper/I18n.php:171
 msgid "Accounting"
 msgstr ""
 
-#: ../app/Helper/I18n.php:172, ../propovoice/app/Helper/I18n.php:167
+#: ../app/Helper/I18n.php:172
 msgid "Need Support"
 msgstr ""
 
-#: ../app/Helper/I18n.php:173, ../propovoice/app/Helper/I18n.php:168
+#: ../app/Helper/I18n.php:173
 msgid "Feedback"
 msgstr ""
 
-#: ../app/Helper/I18n.php:174, ../propovoice/app/Helper/I18n.php:169
+#: ../app/Helper/I18n.php:174
 msgid "Attachment"
 msgstr ""
 
-#: ../app/Helper/I18n.php:175, ../propovoice/app/Helper/I18n.php:170
+#: ../app/Helper/I18n.php:175
 msgid "Fee"
 msgstr ""
 
-#: ../app/Helper/I18n.php:176, ../propovoice/app/Helper/I18n.php:171
+#: ../app/Helper/I18n.php:176
 msgid "Fields"
 msgstr ""
 
-#: ../app/Helper/I18n.php:177, ../propovoice/app/Helper/I18n.php:172
+#: ../app/Helper/I18n.php:177
 msgid "Discount"
 msgstr ""
 
-#: ../app/Helper/I18n.php:178, ../propovoice/app/Helper/I18n.php:173
+#: ../app/Helper/I18n.php:178
 msgid "Transection"
 msgstr ""
 
-#: ../app/Helper/I18n.php:179, ../propovoice/app/Helper/I18n.php:174
+#: ../app/Helper/I18n.php:179
 msgid "Stripe"
 msgstr ""
 
-#: ../app/Helper/I18n.php:180, ../propovoice/app/Helper/I18n.php:175
+#: ../app/Helper/I18n.php:180
 msgid "Public"
 msgstr ""
 
-#: ../app/Helper/I18n.php:181, ../propovoice/app/Helper/I18n.php:176
+#: ../app/Helper/I18n.php:181
 msgid "Full"
 msgstr ""
 
-#: ../app/Helper/I18n.php:182, ../propovoice/app/Helper/I18n.php:177
+#: ../app/Helper/I18n.php:182
 msgid "delivery"
 msgstr ""
 
-#: ../app/Helper/I18n.php:183, ../propovoice/app/Helper/I18n.php:178
+#: ../app/Helper/I18n.php:183
 msgid "option"
 msgstr ""
 
-#: ../app/Helper/I18n.php:184, ../propovoice/app/Helper/I18n.php:179
+#: ../app/Helper/I18n.php:184
 msgid "Open"
 msgstr ""
 
-#: ../app/Helper/I18n.php:185, ../propovoice/app/Helper/I18n.php:180
+#: ../app/Helper/I18n.php:185
 msgid "Picker"
 msgstr ""
 
-#: ../app/Helper/I18n.php:186, ../propovoice/app/Helper/I18n.php:181
+#: ../app/Helper/I18n.php:186
 msgid "Upload"
 msgstr ""
 
-#: ../app/Helper/I18n.php:187, ../propovoice/app/Helper/I18n.php:182
+#: ../app/Helper/I18n.php:187
 msgid "link"
 msgstr ""
 
-#: ../app/Helper/I18n.php:188, ../propovoice/app/Helper/I18n.php:183
+#: ../app/Helper/I18n.php:188
 msgid "First"
 msgstr ""
 
-#: ../app/Helper/I18n.php:189, ../propovoice/app/Helper/I18n.php:184
+#: ../app/Helper/I18n.php:189
 msgid "Last"
 msgstr ""
 
-#: ../app/Helper/I18n.php:190, ../propovoice/app/Helper/I18n.php:185
+#: ../app/Helper/I18n.php:190
 msgid "Company"
 msgstr ""
 
-#: ../app/Helper/I18n.php:191, ../propovoice/app/Helper/I18n.php:186
+#: ../app/Helper/I18n.php:191
 msgid "Connect Zoom"
 msgstr ""
 
-#: ../app/Helper/I18n.php:192, ../propovoice/app/Helper/I18n.php:187
+#: ../app/Helper/I18n.php:192
 msgid "Unschedule"
 msgstr ""
 
-#: ../app/Helper/I18n.php:194, ../propovoice/app/Helper/I18n.php:189
+#: ../app/Helper/I18n.php:194
 msgid " Timeline"
 msgstr ""
 
-#: ../app/Helper/I18n.php:195, ../propovoice/app/Helper/I18n.php:190
+#: ../app/Helper/I18n.php:195
 msgid "Active"
 msgstr ""
 
-#: ../app/Helper/I18n.php:196, ../propovoice/app/Helper/I18n.php:191
+#: ../app/Helper/I18n.php:196
 msgid "Media"
 msgstr ""
 
-#: ../app/Helper/I18n.php:197, ../propovoice/app/Helper/I18n.php:192
+#: ../app/Helper/I18n.php:197
 msgid "Gallery"
 msgstr ""
 
-#: ../app/Helper/I18n.php:198, ../propovoice/app/Helper/I18n.php:193
+#: ../app/Helper/I18n.php:198
 msgid "Insert"
 msgstr ""
 
-#: ../app/Helper/I18n.php:199, ../propovoice/app/Helper/I18n.php:194
+#: ../app/Helper/I18n.php:199
 msgid "Others"
 msgstr ""
 
-#: ../app/Helper/I18n.php:200, ../propovoice/app/Helper/I18n.php:195
+#: ../app/Helper/I18n.php:200
 msgid "Bank"
 msgstr ""
 
-#: ../app/Helper/I18n.php:201, ../propovoice/app/Helper/I18n.php:196
+#: ../app/Helper/I18n.php:201
 msgid "Skip"
 msgstr ""
 
-#: ../app/Helper/I18n.php:202, ../propovoice/app/Helper/I18n.php:197
+#: ../app/Helper/I18n.php:202
 msgid "Label"
 msgstr ""
 
-#: ../app/Helper/I18n.php:203, ../propovoice/app/Helper/I18n.php:198
+#: ../app/Helper/I18n.php:203
 msgid "Block"
 msgstr ""
 
-#: ../app/Helper/I18n.php:204, ../propovoice/app/Helper/I18n.php:199
+#: ../app/Helper/I18n.php:204
 msgid "Move"
 msgstr ""
 
-#: ../app/Helper/I18n.php:205, ../propovoice/app/Helper/I18n.php:200
+#: ../app/Helper/I18n.php:205
 msgid "Go"
 msgstr ""
 
-#: ../app/Helper/I18n.php:206, ../propovoice/app/Helper/I18n.php:201
-msgid "or"
-msgstr ""
-
-#: ../app/Helper/I18n.php:207, ../propovoice/app/Helper/I18n.php:202
+#: ../app/Helper/I18n.php:206
 msgid "Receipt"
 msgstr ""
 
-#: ../app/Helper/I18n.php:208, ../propovoice/app/Helper/I18n.php:203
+#: ../app/Helper/I18n.php:207
 msgid "Explore"
 msgstr ""
 
-#: ../app/Helper/I18n.php:209, ../propovoice/app/Helper/I18n.php:204
+#: ../app/Helper/I18n.php:208
 msgid "Subtotal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:210, ../propovoice/app/Helper/I18n.php:205
+#: ../app/Helper/I18n.php:209
 msgid "With"
 msgstr ""
 
-#: ../app/Helper/I18n.php:211, ../propovoice/app/Helper/I18n.php:206
+#: ../app/Helper/I18n.php:210
 msgid "Parent"
 msgstr ""
 
-#: ../app/Helper/I18n.php:212, ../propovoice/app/Helper/I18n.php:207
+#: ../app/Helper/I18n.php:211
 msgid "Widgets"
 msgstr ""
 
-#: ../app/Helper/I18n.php:213, ../propovoice/app/Helper/I18n.php:208
+#: ../app/Helper/I18n.php:212
 msgid "To"
 msgstr ""
 
-#: ../app/Helper/I18n.php:214, ../propovoice/app/Helper/I18n.php:209
+#: ../app/Helper/I18n.php:213
 msgid "Copy"
 msgstr ""
 
-#: ../app/Helper/I18n.php:215, ../propovoice/app/Helper/I18n.php:210
-msgid "Activity "
-msgstr ""
-
-#: ../app/Helper/I18n.php:216, ../propovoice/app/Helper/I18n.php:211
+#: ../app/Helper/I18n.php:214
 msgid "Per"
 msgstr ""
 
-#: ../app/Helper/I18n.php:217, ../propovoice/app/Helper/I18n.php:212
+#: ../app/Helper/I18n.php:215
 msgid "Each Item Tax Field"
 msgstr ""
 
-#: ../app/Helper/I18n.php:218
+#: ../app/Helper/I18n.php:216
 msgid "Additional Fee Field"
 msgstr ""
 
-#: ../app/Helper/I18n.php:219
+#: ../app/Helper/I18n.php:217
 msgid "Tax"
 msgstr ""
 
-#: ../app/Helper/I18n.php:220, ../propovoice/app/Helper/I18n.php:213
+#: ../app/Helper/I18n.php:218
 msgid "Logout"
 msgstr ""
 
-#: ../app/Helper/I18n.php:221, ../propovoice/app/Helper/I18n.php:214
+#: ../app/Helper/I18n.php:219
 msgid "Intregation"
 msgstr ""
 
-#: ../app/Helper/I18n.php:222, ../propovoice/app/Helper/I18n.php:215
+#: ../app/Helper/I18n.php:220
 msgid "License Manager"
 msgstr ""
 
-#: ../app/Helper/I18n.php:223, ../propovoice/app/Helper/I18n.php:216
+#: ../app/Helper/I18n.php:221
 msgid "My"
 msgstr ""
 
-#: ../app/Helper/I18n.php:224, ../propovoice/app/Helper/I18n.php:217
+#: ../app/Helper/I18n.php:222
 msgid "Work"
 msgstr ""
 
-#: ../app/Helper/I18n.php:225, ../propovoice/app/Helper/I18n.php:218
+#: ../app/Helper/I18n.php:223
 msgid "Today"
 msgstr ""
 
-#: ../app/Helper/I18n.php:226, ../propovoice/app/Helper/I18n.php:219
+#: ../app/Helper/I18n.php:224
 msgid "Others Day"
 msgstr ""
 
-#: ../app/Model/Org.php:89, ../app/Model/Org.php:173, ../app/Model/Person.php:86, ../app/Model/Person.php:164, ../propovoice/app/Model/Org.php:89, ../propovoice/app/Model/Org.php:173, ../propovoice/app/Model/Person.php:86, ../propovoice/app/Model/Person.php:164
+#: ../app/Model/Org.php:89, ../app/Model/Org.php:173, ../app/Model/Person.php:86, ../app/Model/Person.php:164
 msgid "Something wrong!"
 msgstr ""
 
-#: ../app/Ctrl/Install/InstallCtrl.php:29, ../propovoice/app/Ctrl/Install/InstallCtrl.php:29
+#: ../app/Ctrl/Install/InstallCtrl.php:29
 msgid "Every Half Minute"
 msgstr ""
 
-#: ../app/Ctrl/Install/InstallCtrl.php:34, ../propovoice/app/Ctrl/Install/InstallCtrl.php:34
+#: ../app/Ctrl/Install/InstallCtrl.php:34
 msgid "Every 1 Minute"
 msgstr ""
 
-#: ../app/Ctrl/Template/TemplateCtrl.php:21, ../propovoice/app/Ctrl/Template/TemplateCtrl.php:21
+#: ../app/Ctrl/Template/TemplateCtrl.php:21
 msgid "Propovoice Workspace"
 msgstr ""
 
-#: ../app/Ctrl/Template/TemplateCtrl.php:23, ../propovoice/app/Ctrl/Template/TemplateCtrl.php:23
+#: ../app/Ctrl/Template/TemplateCtrl.php:23
 msgid "Propovoice Client Invoice"
 msgstr ""
 
-#: ../app/Ctrl/Template/TemplateCtrl.php:24, ../propovoice/app/Ctrl/Template/TemplateCtrl.php:24
+#: ../app/Ctrl/Template/TemplateCtrl.php:24
 msgid "Propovoice Client Estimate"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Action.php:95, ../app/Ctrl/Api/Type/Action.php:158, ../propovoice/app/Ctrl/Api/Type/Action.php:95, ../propovoice/app/Ctrl/Api/Type/Action.php:158
+#: ../app/Ctrl/Api/Type/Action.php:95, ../app/Ctrl/Api/Type/Action.php:158
 msgid "Required field is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Business.php:226, ../app/Ctrl/Api/Type/Business.php:308, ../propovoice/app/Ctrl/Api/Type/Business.php:226, ../propovoice/app/Ctrl/Api/Type/Business.php:308
+#: ../app/Ctrl/Api/Type/Business.php:226, ../app/Ctrl/Api/Type/Business.php:308
 msgid "Name is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:184, ../app/Ctrl/Api/Type/Deal.php:362, ../app/Ctrl/Api/Type/Deal.php:500, ../app/Ctrl/Api/Type/Lead.php:288, ../app/Ctrl/Api/Type/Lead.php:385, ../app/Ctrl/Api/Type/Project.php:315, ../app/Ctrl/Api/Type/Project.php:455, ../propovoice/app/Ctrl/Api/Type/Client.php:184, ../propovoice/app/Ctrl/Api/Type/Deal.php:362, ../propovoice/app/Ctrl/Api/Type/Deal.php:500, ../propovoice/app/Ctrl/Api/Type/Lead.php:288, ../propovoice/app/Ctrl/Api/Type/Lead.php:385, ../propovoice/app/Ctrl/Api/Type/Project.php:315, ../propovoice/app/Ctrl/Api/Type/Project.php:455
+#: ../app/Ctrl/Api/Type/Client.php:184, ../app/Ctrl/Api/Type/Deal.php:362, ../app/Ctrl/Api/Type/Deal.php:500, ../app/Ctrl/Api/Type/Lead.php:287, ../app/Ctrl/Api/Type/Lead.php:384, ../app/Ctrl/Api/Type/Project.php:315, ../app/Ctrl/Api/Type/Project.php:455
 msgid "Contact info is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:229, ../app/Ctrl/Api/Type/Contact.php:308, ../app/Ctrl/Api/Type/Note.php:152, ../app/Ctrl/Api/Type/Note.php:187, ../app/Ctrl/Api/Type/Org.php:204, ../app/Ctrl/Api/Type/Org.php:291, ../app/Ctrl/Api/Type/Person.php:240, ../app/Ctrl/Api/Type/Person.php:329, ../app/Ctrl/Api/Type/Workspace.php:218, ../app/Ctrl/Api/Type/Workspace.php:304, ../propovoice/app/Ctrl/Api/Type/Client.php:229, ../propovoice/app/Ctrl/Api/Type/Contact.php:308, ../propovoice/app/Ctrl/Api/Type/Note.php:152, ../propovoice/app/Ctrl/Api/Type/Note.php:187, ../propovoice/app/Ctrl/Api/Type/Org.php:204, ../propovoice/app/Ctrl/Api/Type/Org.php:291, ../propovoice/app/Ctrl/Api/Type/Person.php:240, ../propovoice/app/Ctrl/Api/Type/Person.php:329, ../propovoice/app/Ctrl/Api/Type/Workspace.php:218, ../propovoice/app/Ctrl/Api/Type/Workspace.php:304
+#: ../app/Ctrl/Api/Type/Client.php:229, ../app/Ctrl/Api/Type/Contact.php:308, ../app/Ctrl/Api/Type/Note.php:152, ../app/Ctrl/Api/Type/Note.php:187, ../app/Ctrl/Api/Type/Org.php:204, ../app/Ctrl/Api/Type/Org.php:291, ../app/Ctrl/Api/Type/Person.php:240, ../app/Ctrl/Api/Type/Person.php:329, ../app/Ctrl/Api/Type/Workspace.php:218, ../app/Ctrl/Api/Type/Workspace.php:304
 msgid "Name field is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:233, ../app/Ctrl/Api/Type/Contact.php:312, ../app/Ctrl/Api/Type/Org.php:208, ../app/Ctrl/Api/Type/Org.php:295, ../app/Ctrl/Api/Type/Person.php:244, ../app/Ctrl/Api/Type/Person.php:333, ../app/Ctrl/Api/Type/Workspace.php:222, ../app/Ctrl/Api/Type/Workspace.php:308, ../propovoice/app/Ctrl/Api/Type/Client.php:233, ../propovoice/app/Ctrl/Api/Type/Contact.php:312, ../propovoice/app/Ctrl/Api/Type/Org.php:208, ../propovoice/app/Ctrl/Api/Type/Org.php:295, ../propovoice/app/Ctrl/Api/Type/Person.php:244, ../propovoice/app/Ctrl/Api/Type/Person.php:333, ../propovoice/app/Ctrl/Api/Type/Workspace.php:222, ../propovoice/app/Ctrl/Api/Type/Workspace.php:308
+#: ../app/Ctrl/Api/Type/Client.php:233, ../app/Ctrl/Api/Type/Contact.php:312, ../app/Ctrl/Api/Type/Org.php:208, ../app/Ctrl/Api/Type/Org.php:295, ../app/Ctrl/Api/Type/Person.php:244, ../app/Ctrl/Api/Type/Person.php:333, ../app/Ctrl/Api/Type/Workspace.php:222, ../app/Ctrl/Api/Type/Workspace.php:308
 msgid "Email id is not valid!"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Deal.php:384, ../propovoice/app/Ctrl/Api/Type/Deal.php:384
+#: ../app/Ctrl/Api/Type/Deal.php:384
 msgid "Please select a stage"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/File.php:145, ../propovoice/app/Ctrl/Api/Type/File.php:145
+#: ../app/Ctrl/Api/Type/File.php:145
 msgid "ago"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/File.php:182, ../app/Ctrl/Api/Type/Note.php:148, ../propovoice/app/Ctrl/Api/Type/File.php:182, ../propovoice/app/Ctrl/Api/Type/Note.php:148
+#: ../app/Ctrl/Api/Type/File.php:182, ../app/Ctrl/Api/Type/Note.php:148
 msgid "Tab ID is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/File.php:186, ../propovoice/app/Ctrl/Api/Type/File.php:186
+#: ../app/Ctrl/Api/Type/File.php:186
 msgid "Type is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:409, ../app/Ctrl/Api/Type/Invoice.php:535, ../app/Ctrl/Api/Type/Proposal.php:260, ../app/Ctrl/Api/Type/Proposal.php:364, ../propovoice/app/Ctrl/Api/Type/Invoice.php:409, ../propovoice/app/Ctrl/Api/Type/Invoice.php:535, ../propovoice/app/Ctrl/Api/Type/Proposal.php:260, ../propovoice/app/Ctrl/Api/Type/Proposal.php:364
+#: ../app/Ctrl/Api/Type/Invoice.php:409, ../app/Ctrl/Api/Type/Invoice.php:535, ../app/Ctrl/Api/Type/Proposal.php:260, ../app/Ctrl/Api/Type/Proposal.php:364
 msgid "Business is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:413, ../app/Ctrl/Api/Type/Proposal.php:264, ../propovoice/app/Ctrl/Api/Type/Invoice.php:413, ../propovoice/app/Ctrl/Api/Type/Proposal.php:264
+#: ../app/Ctrl/Api/Type/Invoice.php:413, ../app/Ctrl/Api/Type/Proposal.php:264
 msgid "Module is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:417, ../app/Ctrl/Api/Type/Invoice.php:539, ../app/Ctrl/Api/Type/Proposal.php:268, ../app/Ctrl/Api/Type/Proposal.php:368, ../propovoice/app/Ctrl/Api/Type/Invoice.php:417, ../propovoice/app/Ctrl/Api/Type/Invoice.php:539, ../propovoice/app/Ctrl/Api/Type/Proposal.php:268, ../propovoice/app/Ctrl/Api/Type/Proposal.php:368
+#: ../app/Ctrl/Api/Type/Invoice.php:417, ../app/Ctrl/Api/Type/Invoice.php:539, ../app/Ctrl/Api/Type/Proposal.php:268, ../app/Ctrl/Api/Type/Proposal.php:368
 msgid "Receiver is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Media.php:207, ../propovoice/app/Ctrl/Api/Type/Media.php:207
+#: ../app/Ctrl/Api/Type/Media.php:207
 msgid "Invalid file type: %s. Supported file types: %s"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Media.php:219, ../propovoice/app/Ctrl/Api/Type/Media.php:219
+#: ../app/Ctrl/Api/Type/Media.php:219
 msgid "File is too large. Max. upload file size is %s"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Payment.php:183, ../propovoice/app/Ctrl/Api/Type/Payment.php:183
+#: ../app/Ctrl/Api/Type/Payment.php:183
 msgid "Bank & Others"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Project.php:308, ../propovoice/app/Ctrl/Api/Type/Project.php:308
+#: ../app/Ctrl/Api/Type/Project.php:308
 msgid "Please title is required"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Setting.php:32, ../app/Ctrl/Api/Type/Setting.php:176, ../propovoice/app/Ctrl/Api/Type/Setting.php:32, ../propovoice/app/Ctrl/Api/Type/Setting.php:176, ../propovoice/app/Ctrl/Intg/Form/Type/ContactFrom7.php:81
+#: ../app/Ctrl/Api/Type/Setting.php:32, ../app/Ctrl/Api/Type/Setting.php:176
 msgid "Tab is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Task.php:294, ../propovoice/app/Ctrl/Api/Type/Task.php:294
+#: ../app/Ctrl/Api/Type/Task.php:294
 msgid "Title field is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Taxonomy.php:81, ../app/Ctrl/Api/Type/Taxonomy.php:236, ../app/Ctrl/Api/Type/Taxonomy.php:293, ../propovoice/app/Ctrl/Api/Type/Taxonomy.php:81, ../propovoice/app/Ctrl/Api/Type/Taxonomy.php:236, ../propovoice/app/Ctrl/Api/Type/Taxonomy.php:293
+#: ../app/Ctrl/Api/Type/Taxonomy.php:81, ../app/Ctrl/Api/Type/Taxonomy.php:236, ../app/Ctrl/Api/Type/Taxonomy.php:293
 msgid "Taxonomy is missing"
 msgstr ""
 
-#: ../app/Ctrl/Meta/User/User.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:20, ../propovoice/app/Ctrl/Meta/User/User.php:19, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:19, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:20
+#: ../app/Ctrl/Meta/User/User.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:20
 msgid "Propovoice"
 msgstr ""
 
-#: ../app/Ctrl/Meta/User/User.php:23, ../propovoice/app/Ctrl/Meta/User/User.php:23
+#: ../app/Ctrl/Meta/User/User.php:23
 msgid "Propovoice Member?"
 msgstr ""
 
-#: ../app/Ctrl/Meta/User/User.php:27, ../propovoice/app/Ctrl/Meta/User/User.php:27
+#: ../app/Ctrl/Meta/User/User.php:27
 msgid "Show member in Propovoice"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:20, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:20
+#: ../app/Ctrl/PostType/Type/Invoice.php:20
 msgctxt "Post type general name"
 msgid "Invoices"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:21, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:21
+#: ../app/Ctrl/PostType/Type/Invoice.php:21
 msgctxt "Post type singular name"
 msgid "Invoice"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:22, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:22
+#: ../app/Ctrl/PostType/Type/Invoice.php:22
 msgctxt "Admin Menu text"
 msgid "Invoices"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:23, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:23
+#: ../app/Ctrl/PostType/Type/Invoice.php:23
 msgctxt "Add New on Toolbar"
 msgid "Invoice"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:24, ../app/Ctrl/PostType/Type/Proposal.php:24, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:24, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:24
+#: ../app/Ctrl/PostType/Type/Invoice.php:24, ../app/Ctrl/PostType/Type/Proposal.php:24
 msgid "Add New"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:25, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:25
+#: ../app/Ctrl/PostType/Type/Invoice.php:25
 msgid "Add New Invoice"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:26, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:26
+#: ../app/Ctrl/PostType/Type/Invoice.php:26
 msgid "New Invoice"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:27, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:27
+#: ../app/Ctrl/PostType/Type/Invoice.php:27
 msgid "Edit Invoice"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:28, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:28
+#: ../app/Ctrl/PostType/Type/Invoice.php:28
 msgid "View Invoice"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:29, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:29
+#: ../app/Ctrl/PostType/Type/Invoice.php:29
 msgid "All Invoices"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:30, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:30
+#: ../app/Ctrl/PostType/Type/Invoice.php:30
 msgid "Search Invoices"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:31, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:31
+#: ../app/Ctrl/PostType/Type/Invoice.php:31
 msgid "Parent Invoices:"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:32, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:32
+#: ../app/Ctrl/PostType/Type/Invoice.php:32
 msgid "No ncpi_estvoices found."
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Invoice.php:33, ../propovoice/app/Ctrl/PostType/Type/Invoice.php:33
+#: ../app/Ctrl/PostType/Type/Invoice.php:33
 msgid "No ncpi_estvoices found in Trash."
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:20, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:20
+#: ../app/Ctrl/PostType/Type/Proposal.php:20
 msgctxt "Post type general name"
 msgid "Proposal"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:21, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:21
+#: ../app/Ctrl/PostType/Type/Proposal.php:21
 msgctxt "Post type singular name"
 msgid "Proposal"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:22, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:22
+#: ../app/Ctrl/PostType/Type/Proposal.php:22
 msgctxt "Admin Menu text"
 msgid "All Proposal"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:23, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:23
+#: ../app/Ctrl/PostType/Type/Proposal.php:23
 msgctxt "Add New on Toolbar"
 msgid "Proposal"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:25, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:25
+#: ../app/Ctrl/PostType/Type/Proposal.php:25
 msgid "Add New Proposal"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:26, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:26
+#: ../app/Ctrl/PostType/Type/Proposal.php:26
 msgid "New Proposal"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:27, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:27
+#: ../app/Ctrl/PostType/Type/Proposal.php:27
 msgid "Edit Proposal"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:28, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:28
+#: ../app/Ctrl/PostType/Type/Proposal.php:28
 msgid "View Proposal"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:29, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:29
+#: ../app/Ctrl/PostType/Type/Proposal.php:29
 msgid "All Proposals"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:30, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:30
+#: ../app/Ctrl/PostType/Type/Proposal.php:30
 msgid "Search Proposal"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:31, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:31
+#: ../app/Ctrl/PostType/Type/Proposal.php:31
 msgid "Parent Proposal:"
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:32, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:32
+#: ../app/Ctrl/PostType/Type/Proposal.php:32
 msgid "No proposal found."
 msgstr ""
 
-#: ../app/Ctrl/PostType/Type/Proposal.php:33, ../propovoice/app/Ctrl/PostType/Type/Proposal.php:33
+#: ../app/Ctrl/PostType/Type/Proposal.php:33
 msgid "No proposal found in Trash."
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Dashboard.php:44, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:44
+#: ../app/Ctrl/Setting/Type/Dashboard.php:44
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Dashboard.php:99, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:99
+#: ../app/Ctrl/Setting/Type/Dashboard.php:99
 msgid "Go to Frontend"
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Welcome.php:16, ../app/Ctrl/Setting/Type/Welcome.php:17, ../propovoice/app/Ctrl/Setting/Type/Welcome.php:16, ../propovoice/app/Ctrl/Setting/Type/Welcome.php:17
+#: ../app/Ctrl/Setting/Type/Welcome.php:16, ../app/Ctrl/Setting/Type/Welcome.php:17
 msgid "Propovoice Welcome"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:20
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:20
 msgctxt "contact_status general name"
 msgid "Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:21
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:21
 msgctxt "contact_status singular name"
 msgid "Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:22
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:22
 msgid "Search Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:23
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:23
 msgid "All Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:24
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:24
 msgid "Parent Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:25
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:25
 msgid "Parent Contact Status:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:26
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:26
 msgid "Edit Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:27
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:27
 msgid "Update Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:28
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:28
 msgid "Add New Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:29
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:29
 msgid "New Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:30
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:30
 msgid "Contact Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/ContactStatus.php:31
+#: ../app/Ctrl/Taxonomy/Type/ContactStatus.php:31
 msgid "No contact status found."
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:20
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:20
 msgctxt "deal_pipeline general name"
 msgid "Deal Pipelines"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:21
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:21
 msgctxt "deal_pipeline singular name"
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:22
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:22
 msgid "Search Deal Pipelines"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:23
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:23
 msgid "All Deal Pipelines"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:24
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:24
 msgid "Parent Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:25
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:25
 msgid "Parent Deal Pipeline:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:26
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:26
 msgid "Edit Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:27
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:27
 msgid "Update Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:28
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:28
 msgid "Add New Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:29
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:29
 msgid "New Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:30
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:30
 msgid "Deal Pipelines"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/DealPipeline.php:31
+#: ../app/Ctrl/Taxonomy/Type/DealPipeline.php:31
 msgid "No deal pipeline found."
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:20
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:20
 msgctxt "deal_stage general name"
 msgid "Deal Stages"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:21
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:21
 msgctxt "deal_stage singular name"
 msgid "Deal Stage"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:22
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:22
 msgid "Search Deal Stages"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:23
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:23
 msgid "All Deal Stages"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:24
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:24
 msgid "Parent Deal Stage"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:25
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:25
 msgid "Parent Deal Stage:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:26
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:26
 msgid "Edit Deal Stage"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:27
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:27
 msgid "Update Deal Stage"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:28
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:28
 msgid "Add New Deal Stage"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:29
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:29
 msgid "New Deal Stage"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:30
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:30
 msgid "Deal Stages"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/DealStage.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/DealStage.php:31
+#: ../app/Ctrl/Taxonomy/Type/DealStage.php:31
 msgid "No deal stage found."
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:20
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:20
 msgctxt "extra_amount general name"
 msgid "Estvoice Extra Amounts"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:21
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:21
 msgctxt "extra_amount singular name"
 msgid "Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:22
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:22
 msgid "Search Estvoice Extra Amounts"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:23
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:23
 msgid "All Estvoice Extra Amounts"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:24
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:24
 msgid "Parent Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:25
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:25
 msgid "Parent Estvoice Extra Amount:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:26
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:26
 msgid "Edit Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:27
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:27
 msgid "Update Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:28
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:28
 msgid "Add New Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:29
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:29
 msgid "New Estvoice Extra Amount"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:30
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:30
 msgid "Estvoice Extra Amounts"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/ExtraAmount.php:31
+#: ../app/Ctrl/Taxonomy/Type/ExtraAmount.php:31
 msgid "No Estvoice extra amount found."
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:20
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:20
 msgctxt "lead_level general name"
 msgid "Lead Levels"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:21
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:21
 msgctxt "lead_level singular name"
 msgid "Lead Level"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:22
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:22
 msgid "Search Lead Levels"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:23
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:23
 msgid "All Lead Levels"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:24
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:24
 msgid "Parent Lead Level"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:25
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:25
 msgid "Parent Lead Level:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:26
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:26
 msgid "Edit Lead Level"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:27
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:27
 msgid "Update Lead Level"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:28
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:28
 msgid "Add New Lead Level"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:29
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:29
 msgid "New Lead Level"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:30
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:30
 msgid "Lead Levels"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:31, ../app/Ctrl/Taxonomy/Type/LeadSource.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/LeadLevel.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:31
+#: ../app/Ctrl/Taxonomy/Type/LeadLevel.php:31, ../app/Ctrl/Taxonomy/Type/LeadSource.php:31
 msgid "No lead stage found."
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:20
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:20
 msgctxt "lead_source general name"
 msgid "Lead Sources"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:21
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:21
 msgctxt "lead_source singular name"
 msgid "Lead Source"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:22
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:22
 msgid "Search Lead Sources"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:23
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:23
 msgid "All Lead Sources"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:24
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:24
 msgid "Parent Lead Source"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:25
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:25
 msgid "Parent Lead Source:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:26
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:26
 msgid "Edit Lead Source"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:27
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:27
 msgid "Update Lead Source"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:28
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:28
 msgid "Add New Lead Source"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:29
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:29
 msgid "New Lead Source"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:30
+#: ../app/Ctrl/Taxonomy/Type/LeadSource.php:30
 msgid "Lead Sources"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:20
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:20
 msgctxt "project_status general name"
 msgid "Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:21
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:21
 msgctxt "project_status singular name"
 msgid "Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:22
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:22
 msgid "Search Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:23
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:23
 msgid "All Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:24
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:24
 msgid "Parent Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:25
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:25
 msgid "Parent Project Status:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:26
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:26
 msgid "Edit Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:27
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:27
 msgid "Update Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:28
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:28
 msgid "Add New Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:29
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:29
 msgid "New Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:30
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:30
 msgid "Project Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:31
+#: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:31
 msgid "No project status found."
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:20
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:20
 msgctxt "deal_tag general name"
 msgid "Deal Tags"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:21
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:21
 msgctxt "deal_tag singular name"
 msgid "Deal Tag"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:22
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:22
 msgid "Search Deal Tags"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:23
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:23
 msgid "All Deal Tags"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:24
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:24
 msgid "Parent Deal Tag"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:25
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:25
 msgid "Parent Deal Tag:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:26
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:26
 msgid "Edit Deal Tag"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:27
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:27
 msgid "Update Deal Tag"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:28
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:28
 msgid "Add New Deal Tag"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:29
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:29
 msgid "New Deal Tag"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:30
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:30
 msgid "Deal Tags"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/Tag.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/Tag.php:31
+#: ../app/Ctrl/Taxonomy/Type/Tag.php:31
 msgid "No deal tag found."
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:20
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:20
 msgctxt "task_priority general name"
 msgid "Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:21
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:21
 msgctxt "task_priority singular name"
 msgid "Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:22
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:22
 msgid "Search Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:23
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:23
 msgid "All Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:24
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:24
 msgid "Parent Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:25
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:25
 msgid "Parent Task Priority:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:26
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:26
 msgid "Edit Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:27
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:27
 msgid "Update Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:28
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:28
 msgid "Add New Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:29
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:29
 msgid "New Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:30
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:30
 msgid "Task Priority"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/TaskPriority.php:31
+#: ../app/Ctrl/Taxonomy/Type/TaskPriority.php:31
 msgid "No task priority found."
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:20, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:20
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:20
 msgctxt "task_status general name"
 msgid "Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:21, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:21
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:21
 msgctxt "task_status singular name"
 msgid "Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:22, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:22
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:22
 msgid "Search Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:23
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:23
 msgid "All Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:24
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:24
 msgid "Parent Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:25
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:25
 msgid "Parent Task Status:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:26
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:26
 msgid "Edit Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:27
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:27
 msgid "Update Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:28
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:28
 msgid "Add New Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:29
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:29
 msgid "New Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:30
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:30
 msgid "Task Status"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/TaskStatus.php:31
+#: ../app/Ctrl/Taxonomy/Type/TaskStatus.php:31
 msgid "No task status found."
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:23, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:23
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:23
 msgctxt "task_type general name"
 msgid "Task Types"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:24, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:24
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:24
 msgctxt "task_type singular name"
 msgid "Task Type"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:25, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:25
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:25
 msgid "Search Task Types"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:26, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:26
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:26
 msgid "All Task Types"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:27, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:27
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:27
 msgid "Parent Task Type"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:28, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:28
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:28
 msgid "Parent Task Type:"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:29, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:29
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:29
 msgid "Edit Task Type"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:30, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:30
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:30
 msgid "Update Task Type"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:31, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:31
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:31
 msgid "Add New Task Type"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:32, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:32
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:32
 msgid "New Task Type"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:33, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:33
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:33
 msgid "Task Types"
 msgstr ""
 
-#: ../app/Ctrl/Taxonomy/Type/TaskType.php:34, ../propovoice/app/Ctrl/Taxonomy/Type/TaskType.php:34
+#: ../app/Ctrl/Taxonomy/Type/TaskType.php:34
 msgid "No task type found."
 msgstr ""
 
-#: ../app/Ctrl/Widget/Elementor/ElementorCtrl.php:30, ../propovoice/app/Ctrl/Widget/Elementor/ElementorCtrl.php:30
+#: ../app/Ctrl/Widget/Elementor/ElementorCtrl.php:30
 msgid "Propovoice Widgets"
 msgstr ""
 
-#: ../app/Ctrl/Widget/Elementor/Widgets/Registration.php:15, ../propovoice/app/Ctrl/Widget/Elementor/Widgets/Registration.php:15
+#: ../app/Ctrl/Widget/Elementor/Widgets/Registration.php:15
 msgid "Propovoice: Registration"
 msgstr ""
 
-#: ../propovoice/view/template/estimate-template.php:3, ../view/template/estimate-template.php:3
+#: ../view/template/estimate-template.php:3
 msgid "Propovoice Estimate"
 msgstr ""
 
-#: ../propovoice/view/template/invoice-template.php:3, ../view/template/invoice-template.php:3
+#: ../view/template/invoice-template.php:3
 msgid "Propovoice Invoice"
 msgstr ""
 
-#: ../propovoice/view/template/workspace-template.php:3, ../view/template/workspace-template.php:3
+#: ../view/template/workspace-template.php:3
 msgid "Propovoice Dashboard"
 msgstr ""
