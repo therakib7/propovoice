@@ -1,64 +1,65 @@
-.ndpi .pi-badge-border {
-	border: 1px solid var(--pi-text-color-red);
+.pi-inv .pi-badge-border {
+	border: 1px solid #da0f0f;
 	padding: 5px;
 	border-radius: 17px;
 	margin-bottom: 30px;
 	margin-top: 15px;
 }
 
-.ndpi .pi-badge-border.pi-green-color {
-	border: 1px solid var(--pi-text-color-green);
+.pi-inv .pi-badge-border.pi-green-color {
+	border: 1px solid #18954d;
 }
 
-.ndpi .pi-badge-border.pi-green-color .pi-badge-style-one {
-	border: 1px dashed var(--pi-text-color-green);
+.pi-inv .pi-badge-border.pi-green-color .pi-badge-style-one {
+	border: 1px dashed #18954d;
 }
 
-.ndpi .pi-badge-style-one {
+.pi-inv .pi-badge-style-one {
 	padding: 15px;
-	border: 1px dashed var(--pi-text-color-red);
+	border: 1px dashed #da0f0f;
 	border-radius: 12px;
 	text-align: center;
 }
 
-.ndpi .pi-badge-style-one h4 {
+.pi-inv .pi-badge-style-one h4 {
 	font-size: 14px;
+	line-height: 30px;
 	font-weight: 700;
-	color: var(--pi-text-color-red);
-	border-bottom: 2px solid var(--pi-text-color-red);
+	color: #da0f0f;
+	border-bottom: 2px solid #da0f0f;
 }
 
-.ndpi .pi-badge-style-one p {
+.pi-inv .pi-badge-style-one p {
 	font-size: 12px;
 	margin-top: 5px;
 	line-height: 15px;
-	color: var(--pi-text-color-red);
+	color: #da0f0f;
 }
 
-.ndpi .pi-green-color h4 {
+.pi-inv .pi-green-color h4 {
 	font-size: 14px;
 	font-weight: 700;
 	color: #00A74D;
 	border-bottom: 2px solid #00A74D;
 }
 
-.ndpi .pi-green-color p {
+.pi-inv .pi-green-color p {
 	color: #00A74D;
 }
 
-.ndpi .pi-badge-style-two {
+.pi-inv .pi-badge-style-two {
 	padding: 8px 50px;
-	border: 1px solid var(--pi-border-color-gray);
+	border: 1px solid #dddddda8;
 	margin-bottom: 10px;
 }
 
-.ndpi .pi-badge-style-two h4 {
+.pi-inv .pi-badge-style-two h4 {
 	font-size: 14px;
 	font-weight: 700;
-	color: var(--pi-text-color-red);
+	color: #da0f0f;
 }
 
-.ndpi .pi-badge-style-two p {
+.pi-inv .pi-badge-style-two p {
 	font-size: 12px;
 	margin-top: 0px;
 	color: #2D3748;

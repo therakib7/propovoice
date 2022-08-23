@@ -1,42 +1,38 @@
-export default (props) => { 
-    const i18n = ndpi.i18n;
+
+import { lazy, useState, Suspense } from "react"
+
+// const RequestForm = lazy(() => import('./Request'));
+
+export default ({ title, desc, btnTxt, btnUrl, contact, bgColor, children }) => {
+    const [request, setRequest] = useState(false);
+
     return (
         <div className="pi-widget">
-            <span className="widget-icon" style={{ background: "#FFEED9" }}>
-                <svg
-                    width={37}
-                    height={37}
-                    viewBox="0 0 37 37"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M7.0147 29.1727C7.05068 29.3206 7.11594 29.4598 7.20662 29.5821C7.2973 29.7043 7.41156 29.8071 7.54265 29.8845C7.67375 29.9618 7.81901 30.0121 7.96986 30.0324C8.12071 30.0526 8.27409 30.0424 8.42095 30.0024C15.1245 28.1463 22.2064 28.1463 28.91 30.0024C29.0569 30.0424 29.2102 30.0526 29.3611 30.0324C29.5119 30.0121 29.6572 29.9618 29.7883 29.8845C29.9194 29.8071 30.0337 29.7043 30.1243 29.5821C30.215 29.4598 30.2803 29.3206 30.3163 29.1727L33.9022 13.9431C33.9514 13.7392 33.9427 13.5257 33.877 13.3265C33.8113 13.1273 33.6913 12.9505 33.5304 12.816C33.3695 12.6814 33.1743 12.5945 32.9666 12.5651C32.759 12.5356 32.5473 12.5648 32.3553 12.6493L25.2397 15.8134C24.9819 15.9269 24.6911 15.9408 24.4236 15.8525C24.1561 15.7642 23.9308 15.5799 23.7913 15.3352L19.6569 7.88212C19.5596 7.70628 19.417 7.55971 19.2439 7.45765C19.0708 7.35559 18.8735 7.30176 18.6725 7.30176C18.4715 7.30176 18.2743 7.35559 18.1011 7.45765C17.928 7.55971 17.7854 7.70628 17.6881 7.88212L13.5538 15.3352C13.4142 15.5799 13.1889 15.7642 12.9214 15.8525C12.6539 15.9408 12.3631 15.9269 12.1053 15.8134L4.9897 12.6493C4.79776 12.5648 4.58603 12.5356 4.3784 12.5651C4.17076 12.5945 3.97549 12.6814 3.81463 12.816C3.65376 12.9505 3.53371 13.1273 3.46801 13.3265C3.40231 13.5257 3.39359 13.7392 3.44282 13.9431L7.0147 29.1727Z"
-                        stroke="#FF6B00"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M14.1725 23.4148C17.1638 23.0914 20.1812 23.0914 23.1725 23.4148"
-                        stroke="#FF6B00"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                </svg>
+            {/* {request && <Suspense fallback={<Spinner />}>
+                <RequestForm />
+            </Suspense>} */}
+
+            <span className="widget-icon" style={{ background: '#' + bgColor }}>
+                {children}
             </span>
             <h3
                 className="pi-title-medium pi-mb-20"
                 style={{ fontWeight: 700, fontSize: 20 }}
             >
-                {props.title}
+                {title}
             </h3>
             <p className="pi-mb-30" style={{ color: "#718096" }}>
-                {props.desc}
+                {desc}
             </p>
-            <a className="pi-btn pi-bg-blue pi-bg-hover-blue" href>{props.btnText}</a>
-            {/* ./ widget */}
+            <a className="pi-btn pi-bg-blue pi-bg-hover-blue pi-color-white" target='_blank' href={btnUrl}>{btnTxt}</a>
+            {contact && <a
+                target='_blank'
+                href="https://nurency.com/contact"
+                className="pi-btn pi-bg-stroke pi-border-gray pi-bg-hover-stroke"
+                style={{ color: "#4C6FFF", marginTop: 5 }}
+            >
+                Contact With Us
+            </a>}
         </div>
     );
 } 

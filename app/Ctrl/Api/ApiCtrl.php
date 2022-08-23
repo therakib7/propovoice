@@ -11,6 +11,7 @@ use Ndpi\Ctrl\Api\Type\Dashbaord;
 use Ndpi\Ctrl\Api\Type\Deal;
 use Ndpi\Ctrl\Api\Type\Email;
 use Ndpi\Ctrl\Api\Type\File;
+use Ndpi\Ctrl\Api\Type\Form;
 use Ndpi\Ctrl\Api\Type\Invoice;
 use Ndpi\Ctrl\Api\Type\Lead;
 use Ndpi\Ctrl\Api\Type\Media;
@@ -49,6 +50,7 @@ class ApiCtrl
 		new Dashbaord();
 		new Action();
 		new Taxonomy();
+		new Form();
 		new Setting();
 	}
 }
