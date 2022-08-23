@@ -46,7 +46,7 @@ export default class License extends Component {
 
     getSingleList = (slug) => {
         this.setState({ loading: true });
-        this.props.getAll('intg-form/' + slug).then(resp => {
+        this.props.getAll('forms', 'form=' + slug).then(resp => {
             if (resp.data.success) {
                 this.setState({ singleList: resp.data.data, loading: false });
             }
@@ -132,6 +132,7 @@ export default class License extends Component {
                                         <i />
                                         <h3 className='pi-title-small'>
                                             {item.title}
+                                            {wage.length > 0 && <ProLabel />}
                                             <span className="pi-field-switch-content">
                                                 <label className="pi-field-switch pi-field-switch-big">
                                                     <input type='checkbox' 
@@ -141,7 +142,7 @@ export default class License extends Component {
                                                     />
                                                     <span className="pi-switch-slider pi-round" />
                                                 </label>
-                                            </span>
+                                            </span> 
                                         </h3>
 
                                         <div>

@@ -142,33 +142,14 @@ const Dashboard = (props) => {
                         <ChartBar {...props} type='estimate' />
                         <ChartBar {...props} type='invoice' />
 
-                        <div className="row">
+                        {false && <div className="row">
                             <div className="col-md-6">
-                                <Widget
-                                    title='Newsletter Subscripstion'
-                                    desc='It is a long established fact that'
-                                    btnTxt='Subscribe Now'
-                                    btnUrl='https://propovoice.com'
-                                    bgColor='FAEADA'
-                                >
-                                    <svg
-                                        width={27}
-                                        height={28}
-                                        viewBox="0 0 27 28"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M0 21.0193C1.5913 21.0193 3.11742 21.6514 4.24264 22.7766C5.36786 23.9019 6 25.428 6 27.0193H0V21.0193ZM0 10.5193C9.1125 10.5193 16.5 17.9068 16.5 27.0193H13.5C13.5 23.4389 12.0777 20.0051 9.54594 17.4733C7.0142 14.9416 3.58042 13.5193 0 13.5193V10.5193ZM0 0.0192871C14.9115 0.0192871 27 12.1078 27 27.0193H24C24 13.7638 13.2555 3.01929 0 3.01929V0.0192871Z"
-                                            fill="#EBA45D"
-                                        />
-                                    </svg>
-                                </Widget>
+                                
                             </div>
                             <div className="col-md-6">
                                 <Widget
                                     title='Missing Any Feature?'
-                                    desc='It is a long established fact that'
+                                    desc='If you, unfortunately, find any features missing or struggle to use any of them, please inform us. We will try our level best to fix it as soon as possible.'
                                     btnTxt='Request Feature'
                                     btnUrl='#'
                                     bgColor='EFE7DF'
@@ -211,7 +192,7 @@ const Dashboard = (props) => {
                                     </svg>
                                 </Widget>
                             </div>
-                        </div>
+                        </div>}
 
                     </Suspense>
                 </div>
@@ -221,8 +202,8 @@ const Dashboard = (props) => {
                         <ChartPie {...props} type='lead_source' />
 
                         <Widget
-                            title='Upgrade pro to get access all insight'
-                            desc='It is a long established fact that'
+                            title='Upgrade Pro to Get Access All Insight'
+                            desc='Please upgrade to pro and get access to enjoy all the amazing features that accelerate your business growth and take your business experience to the next level.'
                             btnTxt='Upgrade Now'
                             btnUrl='https://propovoice.com/pricing'
                             bgColor='FFEED9'
@@ -252,8 +233,30 @@ const Dashboard = (props) => {
                         </Widget>
 
                         <Widget
-                            title='Support and Feedback'
-                            desc='It is a long established fact that'
+                            title='Newsletter Subscription'
+                            desc='Please subscribe now and get informative content and weekly updates on service business.
+                            Accurate information and timely updates take you ahead of your competitors.'
+                            btnTxt='Subscribe Now'
+                            btnUrl='https://propovoice.com'
+                            bgColor='FAEADA'
+                        >
+                            <svg
+                                width={27}
+                                height={28}
+                                viewBox="0 0 27 28"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M0 21.0193C1.5913 21.0193 3.11742 21.6514 4.24264 22.7766C5.36786 23.9019 6 25.428 6 27.0193H0V21.0193ZM0 10.5193C9.1125 10.5193 16.5 17.9068 16.5 27.0193H13.5C13.5 23.4389 12.0777 20.0051 9.54594 17.4733C7.0142 14.9416 3.58042 13.5193 0 13.5193V10.5193ZM0 0.0192871C14.9115 0.0192871 27 12.1078 27 27.0193H24C24 13.7638 13.2555 3.01929 0 3.01929V0.0192871Z"
+                                    fill="#EBA45D"
+                                />
+                            </svg>
+                        </Widget>
+
+                        <Widget
+                            title='Help and Support'
+                            desc='Feel free to ping us whenever you need any support. We will be happy to assist you and make your journey smooth. We keep our users satisfaction top of our minds.'
                             btnTxt='See Documentation'
                             btnUrl='https://propovoice.com/docs'
                             bgColor='E0F0EC'

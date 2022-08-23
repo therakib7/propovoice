@@ -3,6 +3,19 @@ export default (props) => {
 	let title, desc;
 	let extraClass = '';
 	switch (props.status) {
+		case 'accept':
+			status = true;
+			title = 'Accepted';
+			desc = 'Thanks for accepting';
+			extraClass = 'pi-green-color';
+			break;
+
+		case 'decline':
+			status = true;
+			title = 'Declined';
+			desc = 'Sorry for the decline';
+			break;
+			
 		case 'overdue':
 			status = true;
 			title = 'Overdue';
@@ -22,8 +35,7 @@ export default (props) => {
 			desc = 'Thanks, We have received the payment';
 			break;
 	}
-
-	if (props.status == 'accept' || props.status == 'decline') return null;
+ 
 	return (
 		<>
 			{status && <div className="pi-inv-seal">
