@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context'; 
+import AppContext from 'context/app-context';
 import Spinner from 'block/preloader/spinner';
 
 export default class License extends Component {
@@ -11,10 +11,12 @@ export default class License extends Component {
 
         this.state = {
             loading: false,
+            form: null,
             currentTab: this.props.tab,
             list: [],
-            singleList: [],
+            singleForm: [],
             leadField: {
+                '': 'Not Asign',
                 first_name: 'Name',
                 org_name: 'Org Name',
                 email: 'Email',
@@ -48,17 +50,17 @@ export default class License extends Component {
         this.setState({ loading: true });
         this.props.getAll('forms', 'form=' + slug).then(resp => {
             if (resp.data.success) {
-                this.setState({ singleList: resp.data.data, loading: false });
+                this.setState({ singleForm: resp.data.data, loading: false });
             }
         })
     };
 
     addCurrentTab = (item) => {
-        
+
         if (!item.active) {
             toast.error('This plugin is not Install or Activated yet');
             return;
-        } 
+        }
 
         const slug = item.slug;
         this.setState({ currentTab: slug })
@@ -66,23 +68,24 @@ export default class License extends Component {
         this.getSingleList(slug)
     };
 
-    handleChange = (e) => {
-        let form = { ...this.state.form }
+    handleChange = (e, i, si = null ) => { 
+        let singleForm = [...this.state.singleForm]
         const target = e.target;
         const name = target.name;
-        const value = target.value
-        form[name] = value;
-
-        this.setState({ form })
-    }
-
-    onStatusChange = (e) => {
+        const value = target.type === 'checkbox' ? target.checked : target.value; 
         
-    }
+        if ( name == 'active' ) {
+            singleForm[i].active = value;
+            this.setState({ singleForm })
+        } else {
+            singleForm[i].fields[si].value = value;
+            this.setState({ singleForm })
+        } 
+    } 
 
-    handleSubmit = (e) => {
+    handleSubmit = (e, i) => {
         e.preventDefault();
-
+        console.log(i);
         if (wage.length > 0) {
             pro();
             return;
@@ -106,7 +109,7 @@ export default class License extends Component {
     }
 
     render() {
-        const { loading, currentTab, list, singleList, leadField } = this.state;
+        const { loading, currentTab, list, singleForm, leadField } = this.state;
         const i18n = ndpi.i18n;
         return (
             <>
@@ -126,7 +129,7 @@ export default class License extends Component {
                     {currentTab && <div className="pi-intg-single">
                         <div className="pi-accordion-wrapper pi-mt-15">
                             <ul>
-                                {singleList.map((item, i) => (
+                                {singleForm.map((item, i) => (
                                     <li key={i}>
                                         <input type="checkbox" defaultChecked="checked" />
                                         <i />
@@ -135,18 +138,18 @@ export default class License extends Component {
                                             {wage.length > 0 && <ProLabel />}
                                             <span className="pi-field-switch-content">
                                                 <label className="pi-field-switch pi-field-switch-big">
-                                                    <input type='checkbox' 
-                                                        name='status'
-                                                        checked={item.active ? 'checked' : ''}
-                                                        onChange={this.onStatusChange}
+                                                    <input type='checkbox'
+                                                        name='active'
+                                                        checked={item.active ? 'checked' : ''} 
+                                                        onChange={(e) => this.handleChange(e, i)}
                                                     />
                                                     <span className="pi-switch-slider pi-round" />
                                                 </label>
-                                            </span> 
+                                            </span>
                                         </h3>
 
                                         <div>
-                                            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                                            <form onSubmit={(e) => this.handleSubmit(e, i)} className="pi-form-style-one">
                                                 <div className='pi-table-wrap'>
                                                     <table className='pi-table'>
                                                         <thead>
@@ -172,7 +175,12 @@ export default class License extends Component {
                                                                         {sitem.label}
                                                                     </td>
                                                                     <td>
-                                                                        <select name="lead_field" onChange={this.handleChange}>
+                                                                        <select
+                                                                            style={{lineHeight: '105%'}}
+                                                                            name="lead_field"
+                                                                            value={sitem.value}
+                                                                            onChange={(e) => this.handleChange(e, i, si)}
+                                                                        >
                                                                             {Object.entries(leadField).map((t, k) => <option key={k} value={t[0]}>{t[1]}</option>)}
                                                                         </select>
                                                                     </td>

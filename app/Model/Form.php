@@ -31,10 +31,11 @@ class Form {
                     'fields' => [],
                 ];
 
-                foreach ( $cf7->collect_mail_tags() as $tag ) {
+                foreach ( $cf7->collect_mail_tags() as $tag ) { 
                     $form['fields'][] = [
                         'id'    => $tag,
                         'label' => "[{$tag}]",
+                        'value' => '',
                     ];
                 }
 
@@ -63,6 +64,7 @@ class Form {
                 $form['fields'][] = [
                     'id'    => $wpform_field['id'],
                     'label' => $wpform_field['label'],
+                    'value' => '',
                 ];
             }
 
