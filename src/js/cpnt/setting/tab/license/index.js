@@ -126,7 +126,7 @@ export default class License extends Component {
                     <div className="row">
                         <div className="col">
                             <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                                {form.type == 'activate_license' ? 'Activate License' : 'Deactivate License'}
+                                {form.type == 'activate_license' ? i18n.activate + ' '+i18n.license : i18n.dactivate + ' '+i18n.license}
                             </button>
                         </div>
                     </div>

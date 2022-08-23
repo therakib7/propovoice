@@ -5,7 +5,7 @@ export default () => {
             <div className="row">
                 <div className="col">
                     <label>{ndpi.i18n.tag}</label>
-                    <Taxonomy taxonomy='tag' title='tag' />
+                    <Taxonomy taxonomy='tag' title={ndpi.i18n.tag} />
                 </div>
                 <div className="col">
                 </div>
