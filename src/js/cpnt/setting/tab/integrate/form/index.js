@@ -76,6 +76,10 @@ export default class License extends Component {
         this.setState({ form })
     }
 
+    onStatusChange = (e) => {
+        
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
 
@@ -130,9 +134,10 @@ export default class License extends Component {
                                             {item.title}
                                             <span className="pi-field-switch-content">
                                                 <label className="pi-field-switch pi-field-switch-big">
-                                                    <input type='checkbox'
-                                                        id="recurring-status"
+                                                    <input type='checkbox' 
                                                         name='status'
+                                                        checked={item.active ? 'checked' : ''}
+                                                        onChange={this.onStatusChange}
                                                     />
                                                     <span className="pi-switch-slider pi-round" />
                                                 </label>
@@ -180,7 +185,7 @@ export default class License extends Component {
 
                                                 <div className="row">
                                                     <div className="col" style={{ textAlign: 'center', marginTop: 35 }}>
-                                                        <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-color-white">
+                                                        <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-color-white">
                                                             {i18n.save} {wage.length > 0 && <ProLabel blueBtn />}
                                                         </button>
                                                     </div>

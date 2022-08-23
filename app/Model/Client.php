@@ -1,7 +1,5 @@
 <?php
-namespace Ndpi\Model;
- 
- 
+namespace Ndpi\Model; 
 
 class Client {
 
