@@ -535,7 +535,7 @@ const Home = () => {
                                     </button>
 
                                     {dropdown && <div className="pi-dropdown-content pi-show">
-                                        <a href={ndpi.profile.logout}>Logout</a>
+                                        <a href={ndpi.profile.logout}>{i18n.logout}</a>
                                     </div>}
                                 </div>
                             </div>

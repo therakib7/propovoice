@@ -190,7 +190,7 @@ function Pipeline(props) {
 																	<div className="pi-board-item-top">
 																		<h4>{CharLimit(item.title)}</h4>
 																		<span>$ {item.budget}</span>
-																		{!wage.length && <p>Probability: {item.probability}%</p>}
+																		{!wage.length && <p>{i18n.proba}: {item.probability}%</p>}
 																	</div>
 																	<div className="pi-avatar-content">
 																		<img src={img} alt="avatar" />

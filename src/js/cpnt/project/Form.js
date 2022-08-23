@@ -244,7 +244,7 @@ class Form extends Component {
                             <Cross />
                         </span>
                         <h2 className="pi-modal-title">{title} Project</h2>
-                        <p>Add new project from here</p>
+                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.project + ' ' +i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

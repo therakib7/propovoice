@@ -62,7 +62,7 @@ class Invoice extends Component {
 				update: 'Successfully Updated',
 				delete: 'Successfully Deleted',
 				confirm: 'Are you sure to delete it?',
-				saveTxt: 'Save'
+				saveTxt: ndpi.i18n.save
 			},
 			shareModal: false,
 			emailModal: false,

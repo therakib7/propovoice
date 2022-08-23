@@ -134,9 +134,9 @@ export default class Form extends Component {
                                     />
                                 </svg>
                                 <select name="" id="">
-                                    <option value="">Tag Name</option>
-                                    <option value="">Tag Name</option>
-                                    <option value="">Tag Name</option>
+                                    <option value="">{i18n.tag} {i18n.name}</option>
+                                    <option value="">{i18n.tag} {i18n.name}</option>
+                                    <option value="">{i18n.tag} {i18n.name}</option>
                                 </select>
                             </li>
                             <li>
@@ -173,9 +173,9 @@ export default class Form extends Component {
                                     />
                                 </svg>
                                 <select name="" id="">
-                                    <option value="">Category</option>
-                                    <option value="">Category</option>
-                                    <option value="">Category</option>
+                                    <option value="">{i18n.cate}</option>
+                                    <option value="">{i18n.cate}</option>
+                                    <option value="">{i18n.cate}</option>
                                 </select>
                             </li>
                             <li>

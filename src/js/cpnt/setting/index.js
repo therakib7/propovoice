@@ -80,8 +80,13 @@ const Setting = (props) => {
         tag: {
             label: i18n.tag
         },
+<<<<<<< HEAD
+        intregation: {
+            label: i18n.intr
+=======
         integration: {
             label: i18n.intg
+>>>>>>> 425c45f7089a199121d89bc32d44a67653a8e64e
         },
     };
 
@@ -93,7 +98,7 @@ const Setting = (props) => {
         if (has_wage.ins) {
             let new_tabs = { ...tabs }
             new_tabs.license = {
-                label: 'License Manager'
+                label: i18n.limang
             }
             setTabs(new_tabs);
         }

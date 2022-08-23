@@ -54,7 +54,7 @@ const Task = (props) => {
             });
         }
     }
-
+    const i18n = ndpi.i18n;
     return (
         <div className="">
             <Form
@@ -74,7 +74,7 @@ const Task = (props) => {
             />}
 
             {!props.dashboard && <div className="pi-small-button-group">
-                <h3 className="pi-title-small">My Work</h3>
+                <h3 className="pi-title-small">{i18n.my} {i18n.work}</h3>
                 {lists.task_status && lists.task_status.map((status, statusIndex) => {
                     return (
                         <button key={statusIndex}
@@ -116,7 +116,7 @@ const Task = (props) => {
                                                     />
                                                 </svg>
                                             </span>
-                                            <b>Today</b>
+                                            <b>{i18n.today}</b>
                                         </label>
                                         <label className="pi-table-close" htmlFor="pi-acc-close" />
                                         <div className="pi-accordion-content">
@@ -148,7 +148,7 @@ const Task = (props) => {
                                                     />
                                                 </svg>
                                             </span>
-                                            <b>Others Day</b>
+                                            <b>{i18n.othrday}</b>
                                         </label>
                                         <label className="pi-table-close" htmlFor="pi-acc-close" />
                                         <div className="pi-accordion-content">
@@ -180,7 +180,7 @@ const Task = (props) => {
                                                     />
                                                 </svg>
                                             </span>
-                                            <b>{ndpi.i18n.unschedule}</b>
+                                            <b>{i18n.unschedule}</b>
                                         </label>
                                         <label className="pi-table-close" htmlFor="pi-acc-close" />
                                         <div className="pi-accordion-content">

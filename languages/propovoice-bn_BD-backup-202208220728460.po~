@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-22 07:28+0000\n"
+"PO-Revision-Date: 2022-08-22 07:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: বাংলা\n"
 "Language: bn_BD\n"
@@ -639,8 +639,6 @@ msgstr ""
 #: ../app/Helper/I18n.php:212, ../propovoice/app/Helper/I18n.php:212
 msgid "Each Item Tax Field"
 msgstr ""
-"\n"
-"প্রতিটি আইটেম ট্যাক্স ক্ষেত্র"
 
 #: ../app/Helper/I18n.php:105, ../propovoice/app/Helper/I18n.php:105
 msgid "Edit"
@@ -916,7 +914,7 @@ msgstr ""
 
 #: ../app/Helper/I18n.php:214
 msgid "Intregation"
-msgstr "মিশ্রণ"
+msgstr ""
 
 #: ../app/Ctrl/Api/Type/Media.php:207,
 #: ../propovoice/app/Ctrl/Api/Type/Media.php:207
@@ -1015,7 +1013,7 @@ msgstr "লাইসেন্স"
 
 #: ../app/Helper/I18n.php:215
 msgid "License Manager"
-msgstr "লাইসেন্স ম্যানেজার"
+msgstr ""
 
 #: ../app/Helper/I18n.php:182, ../propovoice/app/Helper/I18n.php:182
 msgid "link"
@@ -1455,13 +1453,11 @@ msgstr ""
 #: ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:24
 msgid "Parent Lead Source"
 msgstr ""
-"\n"
-"অভিভাবক প্রধান উৎস"
 
 #: ../app/Ctrl/Taxonomy/Type/LeadSource.php:25,
 #: ../propovoice/app/Ctrl/Taxonomy/Type/LeadSource.php:25
 msgid "Parent Lead Source:"
-msgstr "অভিভাবক প্রধান উৎস:"
+msgstr ""
 
 #: ../app/Ctrl/Taxonomy/Type/ProjectStatus.php:24,
 #: ../propovoice/app/Ctrl/Taxonomy/Type/ProjectStatus.php:24

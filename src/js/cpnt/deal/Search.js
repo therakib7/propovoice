@@ -48,13 +48,13 @@ export default class Form extends Component {
                     <input
                         type="text"
                         className="pi-search-input"
-                        placeholder={i18n.search+' '+ title}
+                        placeholder={i18n.search + ' ' + title}
                         name="text"
                         value={this.state.form.text}
                         onChange={this.handleChange}
                     />
                 </div>
-                
+
                 {false && <div className="pi-search-btn">
                     <button className={this.state.searchModal ? 'pi-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
                         <Filter />
@@ -142,9 +142,9 @@ export default class Form extends Component {
                                     />
                                 </svg>
                                 <select name="" id="">
-                                    <option value="">Category</option>
-                                    <option value="">Category</option>
-                                    <option value="">Category</option>
+                                    <option value="">{i18n.cate}</option>
+                                    <option value="">{i18n.cate}</option>
+                                    <option value="">{i18n.cate}</option>
                                 </select>
                             </li>
                             <li>
@@ -183,7 +183,7 @@ export default class Form extends Component {
                             <option value="50">50</option>
                             <option value="99">99</option>
                         </select>
-                        {title} {this.props.boardView ? i18n.pre  + ' ' + i18n.stage : <>from <span>{total}</span></>}
+                        {title} {this.props.boardView ? i18n.per + ' ' + i18n.stage : <>from <span>{total}</span></>}
                     </p>
                 </div>
             </div>

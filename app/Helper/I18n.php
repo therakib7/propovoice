@@ -15,7 +15,7 @@ class I18n
             'inv' => esc_html__('Invoice', 'propovoice'),
             'client' => esc_html__('Client', 'propovoice'),
             'project' => esc_html__('Project', 'propovoice'),
-            'task' => __('Task & Activity', 'propovoice'),
+            'task' => esc_html__('Task & Activity', 'propovoice'),
             'contact' => esc_html__('Contact', 'propovoice'),
             //dashboard
             'ov' => esc_html__('Overview', 'propovoice'),
@@ -130,6 +130,7 @@ class I18n
             'file' => esc_html__('File', 'propovoice'),
             'section' => esc_html__('Section', 'propovoice'),
             'dtl' => esc_html__('Details', 'propovoice'),
+            'cate' => esc_html__('Category', 'propovoice'),
             //btn
             'logo' => esc_html__('Logo', 'propovoice'),
             'contin' => esc_html__('Continue', 'propovoice'),
@@ -207,8 +208,16 @@ class I18n
             'widgets' => esc_html__('Widgets', 'propovoice'),  
             'to' => esc_html__('To', 'propovoice'),  
             'copy' => esc_html__('Copy', 'propovoice'),  
-            'acti' => esc_html__('activity ', 'propovoice'),  
-            'per' => esc_html__('Per ', 'propovoice'),  
+            'acti' => esc_html__('Activity ', 'propovoice'),  
+            'per' => esc_html__('Per', 'propovoice'),  
+            'eachitem' => esc_html__('Each Item Tax Field', 'propovoice'),  
+            'logout' => esc_html__('Logout', 'propovoice'),  
+            'intr' => esc_html__('Intregation', 'propovoice'),  
+            'limang' => esc_html__('License Manager', 'propovoice'),  
+            'my' => esc_html__('My', 'propovoice'),  
+            'work' => esc_html__('Work', 'propovoice'),  
+            'today' => esc_html__('Today', 'propovoice'),  
+            'othrday' => esc_html__('Others Day', 'propovoice'),  
         ];
     }
 }
