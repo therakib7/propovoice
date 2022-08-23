@@ -11,15 +11,15 @@ const Main = (props) => {
 		[
 			{
 				id: 'default',
-				text: 'Default'
+				text: ndpi.i18n.def
 			},
 			{
 				id: 'reminder',
-				text: 'Reminder'
+				text: ndpi.i18n.rem
 			},
 			{
 				id: 'recurring',
-				text: 'Recurring'
+				text: ndpi.i18n.recur
 			}
 		]
 	);
