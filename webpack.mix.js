@@ -28,7 +28,7 @@ mix.webpackConfig({
             'context': path.resolve('src/js/context'),
             'cpnt': path.resolve('src/js/cpnt'),
             'out-cpnt': path.resolve('src/js/out-cpnt'),
-            'inv-template': path.resolve('src/js/inv-template'),
+            'inv-tmpl': path.resolve('src/js/inv-tmpl'),
         },
     }
 });

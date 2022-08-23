@@ -3,9 +3,9 @@ import { ToastContainer } from 'react-toastify';
 import Select from 'react-select';
 import ReactToPrint from 'react-to-print';
 import Spinner from 'block/preloader/spinner';
-// import Template from 'inv-template';
+// import Template from 'inv-tmpl';
 import Api from 'api/invoice';
-import InvTemplate from 'inv-template';
+import InvTemplate from 'inv-tmpl';
 
 import Feedback from './Feedback';
 //payment

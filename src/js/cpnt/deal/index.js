@@ -56,7 +56,12 @@ const Deal = (props) => {
             props.onLoad(true);
         }
 
-        props.getLists();
+        if ( wage.length > 0 ) {
+			setBoardView(false)
+            props.getLists({ table_view: true });
+		} else {
+            props.getLists()
+        }
 
         return () => {
             if (props.onLoad) {
@@ -67,6 +72,11 @@ const Deal = (props) => {
     }, []);
 
     const viewChange = (view = '') => {
+        if ( wage.length > 0 && ( view == 'board' ) ) {
+			pro();
+			return;
+		}
+
         setLoading(true);
         if (view == 'board') {
             const promise = props.getLists();
@@ -177,7 +187,7 @@ const Deal = (props) => {
                 </div>
             </div>
 
-            {!wage.length && <div className="pi-buttons-group pi-mb-20">
+            <div className="pi-buttons-group pi-mb-20">
 
                 <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5"
                     onClick={() => viewChange('board')}
@@ -267,7 +277,7 @@ const Deal = (props) => {
                         />
                     </svg>
                 </button>
-            </div>}
+            </div>
 
             <Search
                 title={title}

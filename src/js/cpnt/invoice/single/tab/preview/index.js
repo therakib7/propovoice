@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactToPrint from 'react-to-print';
-import InvTemplate from 'inv-template';
+import InvTemplate from 'inv-tmpl';
 
 import Share from './Share';
 import Send from './Send';

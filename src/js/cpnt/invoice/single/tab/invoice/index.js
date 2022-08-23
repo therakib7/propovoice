@@ -22,7 +22,7 @@ const DateField = lazy(() => import('block/date-picker'));
 import Upload from 'block/field/upload';
 
 //sidebar section
-const InvTemplate = lazy(() => import('inv-template'));
+const InvTemplate = lazy(() => import('inv-tmpl'));
 const Style = lazy(() => import('./sidebar/Style'));
 const Payment = lazy(() => import('./sidebar/Payment'));
 const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
