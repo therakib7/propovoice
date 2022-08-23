@@ -80,18 +80,18 @@ class ListSingle extends Component {
         if (path == 'deal') {
             tabs.push({
                 id: 'estimate',
-                text: i18n.est
+                text: ndpi.i18n.est
             });
         }
 
         if (path == 'project' || path == 'client') {
             tabs.push({
                 id: 'invoice',
-                text: 'Invoice'
+                text: ndpi.i18n.inv
             });
             tabs.push({
                 id: 'estimate',
-                text: i18n.est
+                text: ndpi.i18n.est
             });
         }
 
@@ -743,7 +743,7 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">Total Budget</p>
+                                        <p className="">{i18n.total} {i18n.budget}</p>
                                         <h4>$ {data.invoice && data.invoice.total}</h4>
                                     </div>
                                 </div>
@@ -773,7 +773,7 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">Paid Amount</p>
+                                        <p className="">{i18n.paid} {i18n.amount}</p>
                                         <h4>$ {data.invoice && data.invoice.paid}</h4>
                                     </div>
                                 </div>
@@ -807,7 +807,7 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">Due Amount</p>
+                                        <p className="">{i18n.due} {i18n.amount}</p>
                                         <h4>$ {data.invoice && data.invoice.due}</h4>
                                     </div>
                                 </div>
@@ -844,7 +844,7 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">Total Invoice</p>
+                                        <p className="">{i18n.total} {i18n.inv}</p>
                                         <h4>{data.invoice && data.invoice.number}</h4>
                                     </div>
                                 </div>

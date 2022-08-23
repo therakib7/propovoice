@@ -4315,6 +4315,21 @@ ul {
 .ndpi .pi-widget .pi-persons-content address {
   font-size: 10px;
 }
+.ndpi .pi-widget .widget-icon {
+  padding: 10px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+  line-height: 59px;
+}
+.ndpi .pi-widget .pi-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .ndpi .pi-widget-style-two {
   border-radius: 10px;
 }

@@ -122,7 +122,7 @@ export default class Business extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            {i18n.save}
+                            {i18n.act}
                         </button>
                     </div>
                 </div>

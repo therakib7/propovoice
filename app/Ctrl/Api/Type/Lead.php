@@ -7,8 +7,7 @@ use Ndpi\Model\Org;
 use Ndpi\Model\Person; 
 
 class Lead
-{
-
+{ 
     public function __construct()
     {
         add_action('rest_api_init', [$this, 'rest_routes']);
