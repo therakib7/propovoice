@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Intg\Form\Type; 
+namespace Ndpi\Ctrl\Integrate\Form; 
  
 class FormList
 {
@@ -26,14 +26,18 @@ class FormList
 
         $form_list = [
             [
+                'active' => class_exists( 'WPCF7_ContactForm' ),
                 'name' => 'Contact Form 7',
                 'slug' => 'cf7',
                 'img' => '',
+                'pro' => true,
             ],
             [
-                'name' => 'Gravity Form',
-                'slug' => 'gravity-form',
+                'active' => class_exists( 'WPForms' ),
+                'name' => 'WPForms',
+                'slug' => 'wpforms',
                 'img' => '',
+                'pro' => true,
             ]
         ];
          

@@ -8,14 +8,14 @@ import Api from 'api/payment';
 import ProLabel from 'block/pro-alert/label';
 
 //form
-import FormBank from './FormBank';
-import FormPaypal from './FormPaypal';
-import FormStripe from './FormStripe';
+import FormBank from './form/Bank';
+import FormPaypal from './form/Paypal';
+import FormStripe from './form/Stripe';
 
 //table
-import TableBank from './TableBank';
-import TablePaypal from './TablePaypal';
-import TableStripe from './TableStripe';
+import TableBank from './table/Bank';
+import TablePaypal from './table/Paypal';
+import TableStripe from './table/Stripe';
 import Search from './Search';
 import Empty from 'block/empty';
 

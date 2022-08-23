@@ -12,12 +12,7 @@ const Main = (props) => {
 			} 
 		]
 	);
-	const [currentTab, setCurrentTab] = useState(''); 
-
-	useEffect(() => { 
-        setCurrentTab('business') 
-    }, []);
- 
+	const [currentTab, setCurrentTab] = useState('business');  
 	return (
 		<>
 			<ul className='pi-settings-horizontal-tab'>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-import Upload from 'block/field/upload';
 
 export default class Business extends Component {
     constructor(props) {
@@ -82,44 +81,25 @@ export default class Business extends Component {
         }
     }
 
-    handleLogoChange = (data, type = null) => {
-        let form = { ...this.state.form }
-        form.logo = data;
-        this.setState({ form })
-    }
-
     render() {
         const i18n = ndpi.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>Sendinblue</h4>
                 <div className="row">
                     <div className="col-md">
-                        <label htmlFor="field-name">
-                            {i18n.name}
+                        <label htmlFor="field-key">
+                            API Key
                         </label>
 
                         <input
-                            id="field-name"
+                            id="field-key"
                             type="text"
                             name="name"
                             value={this.state.form.name}
                             onChange={this.handleChange}
                         />
                     </div>
-
-                    {/* <div className="col-md">
-                        <label htmlFor="field-org_name">
-                            Company/Organization Name
-                        </label>
-
-                        <input
-                            id="field-org_name"
-                            type="text" 
-                            name="org_name"
-                            value={this.state.form.org_name}
-                            onChange={this.handleChange}
-                        />
-                    </div> */}
 
                 </div>
 
@@ -136,75 +116,6 @@ export default class Business extends Component {
                             value={this.state.form.web}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <div className="col-md">
-                        <label htmlFor="field-email">
-                            {i18n.email}
-                        </label>
-
-                        <input
-                            id="field-email"
-                            type="email"
-                            required
-                            name="email"
-                            value={this.state.form.email}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-
-                </div>
-
-                <div className="row">
-                    <div className="col-md">
-                        <label htmlFor="field-mobile">
-                            {i18n.mob} {i18n.num}
-                        </label>
-
-                        <input
-                            id="field-mobile"
-                            type="text"
-                            required
-                            name="mobile"
-                            value={this.state.form.mobile}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className="col-md">
-                        <label htmlFor="field-zip">
-                            {i18n.zip}
-                        </label>
-
-                        <input
-                            id="field-zip"
-                            type="number"
-                            name="zip"
-                            value={this.state.form.zip}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col">
-                        <label htmlFor="field-address">
-                            {i18n.addr}
-                        </label>
-
-                        <input
-                            id="field-address"
-                            type="text"
-                            name="address"
-                            placeholder='Write you full address here'
-                            value={this.state.form.address}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-md">
-                        <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
-                        <Upload label={'Logo'} library={false} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
                     </div>
                 </div>
 

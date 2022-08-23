@@ -8,7 +8,7 @@ use Ndpi\Ctrl\Asset\AssetCtrl;
 use Ndpi\Ctrl\Cron\CronCtrl;
 use Ndpi\Ctrl\Template\TemplateCtrl;
 use Ndpi\Ctrl\Hook\HookCtrl;
-use Ndpi\Ctrl\Intg\IntgCtrl;
+use Ndpi\Ctrl\Integrate\IntegrateCtrl;
 use Ndpi\Ctrl\Marketing\MarketingCtrl;
 use Ndpi\Ctrl\Meta\MetaCtrl;
 use Ndpi\Ctrl\Setting\SettingCtrl;
@@ -34,6 +34,6 @@ class MainCtrl {
         new MetaCtrl();
         new ApiCtrl();
         new CronCtrl();
-        new IntgCtrl();
+        new IntegrateCtrl();
     } 
 }

@@ -4,7 +4,7 @@ import AppContext from 'context/app-context';
 import Api from 'api/payment';
 
 //others component
-import FormBank from 'cpnt/payment/FormBank';
+import FormBank from 'cpnt/payment/form/Bank';
 
 class Payment extends Component {
 
