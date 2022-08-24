@@ -8,7 +8,7 @@ import Spinner from 'block/preloader/spinner';
 export default class License extends Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             loading: false,
             form: null,

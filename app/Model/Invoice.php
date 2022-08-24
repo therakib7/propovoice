@@ -1,7 +1,5 @@
 <?php
-namespace Ndpi\Model;
- 
- 
+namespace Ndpi\Model; 
 
 class Invoice {
 
@@ -11,35 +9,30 @@ class Invoice {
             $total += ( $value['qty'] * $value['price'] );
         }
         return $total;
-    }
-    
-    public function calcExtraTotal( $total, $type, $value ) {  
-        if ( $type == 'percent' ) {
-            return $total * ( $value / 100);
-        } else {
-            return $value;
-        }
-    }  
+    } 
     
     public function getTotalAmount( $invoice )
     {
         $items = $invoice['items'];
         $extra_field = $invoice['extra_field']; 
         $item_total = $this->calcItemsTotal( $items );  
-        $total = $item_total;
+        $total = $item_total; 
         
-        if ( isset( $extra_field['tax'] ) ) {
-            $total += $this->calcExtraTotal($item_total, $extra_field['tax'], $invoice['tax']); 
+        foreach ( $extra_field as $val ) { 
+            if ($val['val_type'] == 'percent') {
+                if ($val['type'] == 'tax' || $val['type'] == 'fee') {
+                    $total += $item_total * ($val['val'] / 100);
+                } else {
+                    $total -= $item_total * ($val['val'] / 100);
+                }
+            } else {
+                if ($val['type'] == 'tax' || $val['type'] == 'fee') {
+                    $total += (float) $val['val'];
+                } else {
+                    $total -= (float) $val['val'];
+                }
+            }
         }
-    
-        if ( isset( $extra_field['discount'] ) ) {
-            $total -= $this->calcExtraTotal($item_total, $extra_field['discount'], $invoice['discount']); 
-        } 
-    
-        if ( isset( $extra_field['late_fee'] ) ) {
-            $total += $this->calcExtraTotal($item_total, $extra_field['late_fee'], $invoice['late_fee']);
-        }  
-    
         return $total; 
     }
 

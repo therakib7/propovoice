@@ -165,6 +165,5 @@ class FormStripe extends Component {
             </div>
         );
     }
-}
-
-export default FormStripe;
+} 
+export default FormStripe; 

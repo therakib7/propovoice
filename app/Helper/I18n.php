@@ -123,6 +123,7 @@ class I18n
             'msg' => esc_html__('Message', 'propovoice'), 
             'clear' => esc_html__('Clear', 'propovoice'),
             'account' => esc_html__('Account', 'propovoice'),
+            'pub' => esc_html__('Public', 'propovoice'),
             'secret' => esc_html__('Secret', 'propovoice'),
             'id' => esc_html__('ID', 'propovoice'),
             'key' => esc_html__('Key', 'propovoice'),
