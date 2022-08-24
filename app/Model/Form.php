@@ -3,7 +3,7 @@ namespace Ndpi\Model;
 
 class Form {
 
-    public function cf7()
+    public function contact_form_7()
     {  
         $forms = [];
 
@@ -64,6 +64,40 @@ class Form {
                 $form['fields'][] = [
                     'id'    => $wpform_field['id'],
                     'label' => $wpform_field['label'],
+                    'value' => '',
+                ];
+            }
+
+            $forms[] = $form;
+        }
+        return $forms;
+    }
+
+    public function ninja_forms()
+    {  
+        $forms = [];
+
+        $nf = Ninja_Forms();
+        $nf_forms = $nf->form()->get_forms();
+
+        foreach ( $nf_forms as $nform ) {
+            $form_id = absint( $nform->get_id() );
+            $form_settings = $nform->get_settings();
+            $fields = $nf->form( $form_id )->get_fields();
+
+            $form = [
+                'id'     => $form_id,
+                'title'  => $form_settings['title'],
+                'fields' => [],
+            ];
+
+            foreach ( $fields as $field ) {
+                $field_id = $field->get_id();
+                $field_settings = $field->get_settings();
+
+                $form['fields'][] = [
+                    'id'    => $field_id,
+                    'label' => $field_settings['label'],
                     'value' => '',
                 ];
             }
