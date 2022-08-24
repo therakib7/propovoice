@@ -8,15 +8,8 @@ export default class Business extends Component {
 
         this.initialState = {
             id: null,
-            name: '',
-            org_name: '',
-            web: '',
-            email: '',
-            mobile: '',
-            address: '',
-            logo: null,
-            zip: '',
-            default: true,
+            key: '', 
+            web: '', 
             date: false
         };
 
@@ -42,10 +35,10 @@ export default class Business extends Component {
     }
 
     getData = () => {
-        this.props.getAll('businesses', 'default=1').then(resp => {
-            let businessData = resp.data.data.result;
-            if (businessData.length) {
-                this.setState({ form: businessData[0] });
+
+        this.props.getAll('settings', 'tab=smtp_sendinblue').then(resp => {
+            if (resp.data.success) {
+                this.setState({ form: resp.data.data });
             }
         });
     };
@@ -53,32 +46,19 @@ export default class Business extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let form = { ...this.state.form }
-        if (form.logo) {
-            form.logo = form.logo.id;
-        }
+        let form = this.state.form;
+        form.tab = 'smtp_sendinblue';
 
-        if (!form.id) {
-            this.props.create('businesses', form).then(resp => {
-                if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.create);
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            })
-        } else {
-            this.props.update('businesses', form.id, form).then(resp => {
-                if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            })
-        }
+        this.props.create('settings', form).then(resp => {
+            if (resp.data.success) {
+                toast.success(this.context.CrudMsg.update);
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        })
+
     }
 
     render() {
@@ -95,8 +75,9 @@ export default class Business extends Component {
                         <input
                             id="field-key"
                             type="text"
-                            name="name"
-                            value={this.state.form.name}
+                            required
+                            name="key"
+                            value={this.state.form.key}
                             onChange={this.handleChange}
                         />
                     </div>
@@ -111,7 +92,8 @@ export default class Business extends Component {
 
                         <input
                             id="field-web"
-                            type="text"
+                            type="url"
+                            required
                             name="web"
                             value={this.state.form.web}
                             onChange={this.handleChange}
@@ -122,7 +104,7 @@ export default class Business extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            {i18n.act}
+                            {i18n.save}
                         </button>
                     </div>
                 </div>

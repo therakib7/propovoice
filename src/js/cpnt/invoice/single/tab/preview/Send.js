@@ -45,14 +45,28 @@ class Send extends Component {
     //try to call it from invoice to avoid duplication code
     calcItemsTotal = () => {
         return this.props.data.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
-    }
-
-    calcTaxTotal = () => {
-        return this.calcItemsTotal() * (this.props.data.invoice.tax / 100)
-    }
-
+    }  
+   
     calcGrandTotal = () => {
-        return this.calcItemsTotal() + this.calcTaxTotal();
+        let item_total = this.calcItemsTotal();
+        let total = item_total;
+        let extra_field = this.props.data.invoice.extra_field;
+        extra_field.map((item, i) => {
+            if (item.val_type == 'percent') {
+                if (item.type == 'tax' || item.type == 'fee') {
+                    total += item_total * (item.val / 100);
+                } else {
+                    total -= item_total * (item.val / 100);
+                }
+            } else {
+                if (item.type == 'tax' || item.type == 'fee') {
+                    total += parseFloat(item.val);
+                } else {
+                    total -= parseFloat(item.val);
+                }
+            }
+        });
+        return total;
     }
     //end try to call it from invoice to avoid duplication code
 
@@ -73,7 +87,7 @@ class Send extends Component {
         let currency = data.invoice.currency;
         let date = this.convertDate(data.invoice.date);
         let due_date = this.convertDate(data.invoice.due_date);
-        let amount = this.calcGrandTotal();
+        let amount = this.calcGrandTotal(); 
 
         let org_name = data.fromData.name;
         let client_name = (data.toData.type == 'person') ? data.toData.first_name : data.toData.org_name;

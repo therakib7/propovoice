@@ -38,21 +38,21 @@ class FormList
                 'active' => class_exists( 'WPCF7_ContactForm' ),
                 'name' => 'Contact Form 7',
                 'slug' => 'contact_form_7',
-                'img' => '',
+                'img' => 'https://ps.w.org/contact-form-7/assets/icon.svg',
                 'pro' => true,
             ],
             [
                 'active' => class_exists( 'WPForms' ),
                 'name' => 'WPForms',
                 'slug' => 'wpforms',
-                'img' => '',
+                'img' => 'https://ps.w.org/wpforms-lite/assets/icon.svg',
                 'pro' => true,
             ],
             [
                 'active' => $ninja_from,
                 'name' => 'Ninja Forms',
                 'slug' => 'ninja_forms',
-                'img' => '',
+                'img' => 'https://ps.w.org/ninja-forms/assets/icon-128x128.png',
                 'pro' => true,
             ]
         ];
