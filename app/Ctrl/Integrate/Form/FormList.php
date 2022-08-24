@@ -54,7 +54,21 @@ class FormList
                 'slug' => 'ninja_forms',
                 'img' => 'https://ps.w.org/ninja-forms/assets/icon-128x128.png',
                 'pro' => true,
-            ]
+            ],
+            [
+                'active' => class_exists( 'GFForms' ),
+                'name' => 'Gravity Forms',
+                'slug' => 'gravity_forms',
+                'img' => 'https://s38924.pcdn.co/wp-content/themes/gfcom-voyager/dist/images/logo-black.svg',
+                'pro' => true,
+            ],
+            [
+                'active' => defined( 'FLUENTFORM' ),
+                'name' => 'Fluent Forms',
+                'slug' => 'fluent_forms',
+                'img' => 'https://ps.w.org/fluentform/assets/icon-128x128.png',
+                'pro' => true,
+            ],
         ];
          
         wp_send_json_success($form_list);

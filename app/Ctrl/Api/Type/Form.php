@@ -36,7 +36,12 @@ class Form
             $data = $model->wpforms();
         } else if ( $form == 'ninja_forms' ) {
             $data = $model->ninja_forms();
+        } else if ( $form == 'gravity_forms' ) {
+            $data = $model->gravity_forms();
+        } else if ( $form == 'fluent_forms' ) {
+            $data = $model->fluent_forms();
         }
+        
         wp_send_json_success( $data );
     } 
 

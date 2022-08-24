@@ -30,14 +30,7 @@ class SmtpList
                 'slug' => 'default',
                 'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
                 'pro' => true,
-            ],
-            
-            [ 
-                'name' => 'Gmail',
-                'slug' => 'gmail',
-                'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
-                'pro' => true,
-            ],
+            ], 
             [ 
                 'name' => 'Mailgun',
                 'slug' => 'gailgun',

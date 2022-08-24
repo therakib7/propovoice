@@ -134,11 +134,165 @@ class Form
                     'id'    => $field_id,
                     'label' => $field_settings['label'],
                     'value' => $value,
-                ]; 
+                ];
             }
 
             $forms[] = $form;
         }
         return $forms;
+    }
+
+    public function gravity_forms()
+    {
+        $forms = [];
+
+        $gf_forms = \GFFormsModel::get_forms(true);
+
+        foreach ($gf_forms as $gf_form) {
+            $form_id = absint($gf_form->id);
+            $get_data = get_option("ndpi_gravity_forms_{$form_id}");
+            $form = [
+                'id'     => $form_id,
+                'active'  => isset($get_data['active']) ? $get_data['active'] : false,
+                'title'  => $gf_form->title,
+                'fields' => [],
+            ];
+
+            $form_meta = \GFFormsModel::get_form_meta($form_id);
+
+            foreach ($form_meta['fields'] as $field) {
+                $field = \GF_Fields::create($field);
+
+                if (empty($field['inputs'])) {
+                    $value = '';
+                    if ($get_data['fields']) {
+                        foreach ($get_data['fields'] as $svalue) {
+                            if ($svalue['id'] == $field->id) {
+                                $value = $svalue['value'];
+                                break;
+                            }
+                        }
+                    }
+                    $form['fields'][] = [
+                        'id'    => $field->id,
+                        'label' => $field->label,
+                        'value' => $value,
+                    ];
+                } else {
+                    foreach ($field['inputs'] as $i => $group_field) {
+                        if (empty($group_field['isHidden'])) {
+                            $value = '';
+                            if ($get_data['fields']) {
+                                foreach ($get_data['fields'] as $svalue) {
+                                    if ($svalue['id'] == $group_field['id']) {
+                                        $value = $svalue['value'];
+                                        break;
+                                    }
+                                }
+                            }
+                            $form['fields'][] = [
+                                'id'    => $group_field['id'],
+                                'label' => $group_field['label'],
+                                'value' => $value,
+                            ];
+                        }
+                    }
+                }
+            }
+
+            $forms[] = $form;
+        }
+
+        return $forms;
+    } 
+        
+    public function fluent_forms()
+    {
+        $forms = [];
+        
+        $forms = wpFluent()->table( 'fluentform_forms' )->get();
+        
+        return array_map(
+            function ( $form ) {
+                $get_data = get_option("ndpi_fluent_forms_{$form->id}");
+                return [
+                    'id'     => absint( $form->id ),
+                    'active'  => isset($get_data['active']) ? $get_data['active'] : false,
+                    'title'  => $form->title,
+                    'fields' => $this->transform_form_fields( json_decode( $form->form_fields, true ) ),
+                ];
+            },
+            $forms
+        );
+
+        return $forms;
+    }
+
+    protected function transform_form_fields( $fields ) {
+        $data = [];
+
+        foreach ( $fields['fields'] as $field ) {
+            if ( ! array_key_exists( 'name', $field['attributes'] ) ) {
+                continue;
+            }
+
+            if ( $this->has_sub_fields( $field ) ) {
+                $data = array_merge( $data, $this->get_sub_fields( $field ) );
+                continue;
+            }
+
+            $data[] = [
+                'id'    => $field['attributes']['name'],
+                'label' => $this->get_label( $field['attributes']['name'] ),
+            ];
+        }
+
+        return $data;
+    }
+
+    /**
+     * Check has sub fields
+     *
+     * @param $field
+     *
+     * @return bool
+     */
+    protected function has_sub_fields( $field ) {
+        return array_key_exists( 'fields', $field );
+    }
+
+    /**
+     * Get sub fields
+     *
+     * @param $field
+     *
+     * @return array
+     */
+    protected function get_sub_fields( $field ) {
+        $data = [];
+
+        foreach ( $field['fields'] as $sub_field ) {
+            if ( ! array_key_exists( 'name', $sub_field['attributes'] ) ) {
+                continue;
+            }
+
+            $data[] = [
+                'id' => $sub_field['attributes']['name'],
+                'label' => $this->get_label( $sub_field['attributes']['name'] ),
+            ];
+        }
+
+        return $data;
+    }
+
+    /**
+     * Format for label
+     *
+     * @param $label
+     *
+     * @return string
+     */
+    protected function get_label( $label ) {
+        return ucwords( str_replace( [ '-', '_' ], [ ' ', ' ' ], $label ) );
     }
 }
