@@ -63,48 +63,55 @@ export default class License extends Component {
         }
 
         const slug = item.slug;
-        this.setState({ currentTab: slug })
+        this.setState({ currentTab: item })
         this.props.onChange('form', slug, false)
         this.getSingleList(slug)
     };
 
-    handleChange = (e, i, si = null ) => { 
+    handleChange = (e, i, si = null) => {
         let singleForm = [...this.state.singleForm]
         const target = e.target;
         const name = target.name;
-        const value = target.type === 'checkbox' ? target.checked : target.value; 
-        
-        if ( name == 'active' ) {
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (name == 'active') {
             singleForm[i].active = value;
-            this.setState({ singleForm })
+            this.setState({ singleForm }, () => {
+                this.submitFormData(i);
+            })
         } else {
             singleForm[i].fields[si].value = value;
             this.setState({ singleForm })
-        } 
-    } 
+        }
+    }
 
     handleSubmit = (e, i) => {
         e.preventDefault();
-        console.log(i);
         if (wage.length > 0) {
             pro();
             return;
         }
-        return;
-        let form = { ...this.state.form }
-        form.tab = 'license';
-        this.setState({ loading: true });
-        this.props.create('pro-settings', form).then(resp => {
-            let data = resp.data.data;
-            if (resp.data.success) {
-                toast.success(data.msg);
 
+        this.submitFormData(i);
+    }
+
+    submitFormData = (i) => {
+        let form = [...this.state.singleForm];
+        form[i].form = this.state.currentTab.slug;
+
+        const newFields = form[i].fields.map(({ label, ...rest }) => {
+            return rest;
+        });
+        form[i].fields = newFields;
+
+        this.props.update('forms', form[i].id, form[i]).then(resp => {
+            if (resp.data.success) {
+                toast.success('Successfully updated'); //TODO: translation
             } else {
-                data.forEach(function (value, index, array) {
+                resp.data.data.forEach(function (value, index, array) {
                     toast.error(value);
                 });
             }
-            this.setState({ loading: false });
         });
     }
 
@@ -117,8 +124,9 @@ export default class License extends Component {
                     {!currentTab && <div className="row pi-intg-list">
                         {list.map((item, i) => (
                             <div className="col-md-4" key={i}>
-                                <div className="pi-intg-item">
-                                    <h4 onClick={() => this.addCurrentTab(item)}>
+                                <div className="pi-intg-item" onClick={() => this.addCurrentTab(item)}>
+                                    <img src={item.img} style={{ width: '80px' }} />
+                                    <h4>
                                         {item.name} {item.pro && wage.length > 0 && <ProLabel />}
                                     </h4>
                                 </div>
@@ -127,6 +135,7 @@ export default class License extends Component {
                     </div>}
 
                     {currentTab && <div className="pi-intg-single">
+                        <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab.name}</h4>
                         <div className="pi-accordion-wrapper pi-mt-15">
                             <ul>
                                 {singleForm.map((item, i) => (
@@ -140,7 +149,7 @@ export default class License extends Component {
                                                 <label className="pi-field-switch pi-field-switch-big">
                                                     <input type='checkbox'
                                                         name='active'
-                                                        checked={item.active ? 'checked' : ''} 
+                                                        checked={item.active ? 'checked' : ''}
                                                         onChange={(e) => this.handleChange(e, i)}
                                                     />
                                                     <span className="pi-switch-slider pi-round" />
@@ -176,7 +185,7 @@ export default class License extends Component {
                                                                     </td>
                                                                     <td>
                                                                         <select
-                                                                            style={{lineHeight: '105%'}}
+                                                                            style={{ lineHeight: '106%' }}
                                                                             name="lead_field"
                                                                             value={sitem.value}
                                                                             onChange={(e) => this.handleChange(e, i, si)}

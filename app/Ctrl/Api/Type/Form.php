@@ -30,10 +30,12 @@ class Form
         $data = [];
         $model = new ModelForm();
 
-        if ( $form == 'cf7' ) {
-            $data = $model->cf7();
+        if ( $form == 'contact_form_7' ) {
+            $data = $model->contact_form_7();
         } else if ( $form == 'wpforms' ) {
             $data = $model->wpforms();
+        } else if ( $form == 'ninja_forms' ) {
+            $data = $model->ninja_forms();
         }
         wp_send_json_success( $data );
     } 

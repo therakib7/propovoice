@@ -26,17 +26,23 @@ class SmtpList
 
         $form_list = [
             [ 
-                'name' => 'Sendinblue',
-                'slug' => 'sendinblue',
-                'img' => '',
+                'name' => 'Default',
+                'slug' => 'default',
+                'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
                 'pro' => true,
             ],
             [ 
-                'name' => 'SendLayer',
-                'slug' => 'sendLayer ',
-                'img' => '',
+                'name' => 'Sendinblue',
+                'slug' => 'sendinblue',
+                'img' => 'https://www.sendinblue.com/wp-content/themes/sendinblue2019/assets/images/common/logo-color.svg',
                 'pro' => true,
-            ]
+            ],
+            [ 
+                'name' => 'SendGrid',
+                'slug' => 'sendgrid ',
+                'img' => 'https://cdn.cdnlogo.com/logos/s/48/sendgrid.svg',
+                'pro' => true,
+            ] 
         ];
          
         wp_send_json_success($form_list);

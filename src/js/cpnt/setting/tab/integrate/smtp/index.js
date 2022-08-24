@@ -63,41 +63,7 @@ export default class License extends Component {
         this.setState({ currentTab: slug, formModal: true })
         this.props.onChange('smtp', slug, false)
     };
-
-    handleChange = (e) => {
-        let form = { ...this.state.form }
-        const target = e.target;
-        const name = target.name;
-        const value = target.value
-        form[name] = value;
-
-        this.setState({ form })
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (wage.length > 0) {
-            pro();
-            return;
-        }
-        let form = { ...this.state.form }
-        form.tab = 'license';
-        this.setState({ loading: true });
-        this.props.create('pro-settings', form).then(resp => {
-            let data = resp.data.data;
-            if (resp.data.success) {
-                toast.success(data.msg);
-
-            } else {
-                data.forEach(function (value, index, array) {
-                    toast.error(value);
-                });
-            }
-            this.setState({ loading: false });
-        });
-    }
-
+ 
     close = () => {
         this.setState({ formModal: false, currentTab: '' })
     }
@@ -111,8 +77,9 @@ export default class License extends Component {
                     {!currentTab && <div className="row pi-intg-list">
                         {list.map((item, i) => (
                             <div className="col-md-4" key={i}>
-                                <div className="pi-intg-item">
-                                    <h4 onClick={() => this.addCurrentTab(item)}>
+                                <div className="pi-intg-item" onClick={() => this.addCurrentTab(item)}>
+                                    <img src={item.img} style={{maxWidth: '150px', maxHeight: '22px'}} />
+                                    <h4>
                                         {item.name} {item.pro && wage.length > 0 && <ProLabel />}
                                     </h4>
                                 </div>

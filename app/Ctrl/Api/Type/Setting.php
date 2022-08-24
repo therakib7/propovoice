@@ -161,6 +161,17 @@ class Setting {
                 }
             }
 
+            if ( $tab == 'smtp_sendinblue' ) {
+                $option = get_option('ndpi_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {  
+                    $data['key'] = '';
+                    $data['web'] = '';
+                }
+            }
+
             wp_send_json_success($data);
         }
     } 
@@ -231,6 +242,13 @@ class Setting {
             if ( $tab == 'estvoice_tax' ) {  
                 $data['item_tax'] = isset( $params['item_tax'] ) ? rest_sanitize_boolean( $params['item_tax'] ) : null;
                 // $data['item_tax_val_type'] = isset( $params['item_tax_val_type'] ) ? sanitize_textarea_field( $params['item_tax_val_type'] ) : null;  
+                $option = update_option('ndpi_' . $tab, $data);                 
+            }
+
+            if ( $tab == 'smtp_sendinblue' ) {  
+                //Check valid key here
+                $data['key'] = isset( $params['key'] ) ? sanitize_text_field( $params['key'] ) : null;
+                $data['web'] = isset( $params['web'] ) ? esc_url_raw( $params['web'] ) : null;  
                 $option = update_option('ndpi_' . $tab, $data);                 
             }
 
