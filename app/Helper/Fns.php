@@ -114,11 +114,11 @@ class Fns
             $icon_url = $val['icon_url'];
             if (!$icon_url) {
                 if ($val['id'] == 'facebook') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/asset/email/f.png';
+                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/f.png';
                 } else if ($val['id'] == 'twitter') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/asset/email/t.png';
+                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/t.png';
                 } else if ($val['id'] == 'linkedin') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/asset/email/i.png';
+                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/i.png';
                 }
             }
 

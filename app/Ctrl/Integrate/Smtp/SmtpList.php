@@ -31,10 +31,17 @@ class SmtpList
                 'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
                 'pro' => true,
             ],
+            
             [ 
-                'name' => 'Sendinblue',
-                'slug' => 'sendinblue',
-                'img' => 'https://www.sendinblue.com/wp-content/themes/sendinblue2019/assets/images/common/logo-color.svg',
+                'name' => 'Gmail',
+                'slug' => 'gmail',
+                'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
+                'pro' => true,
+            ],
+            [ 
+                'name' => 'Mailgun',
+                'slug' => 'gailgun',
+                'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
                 'pro' => true,
             ],
             [ 
@@ -42,7 +49,25 @@ class SmtpList
                 'slug' => 'sendgrid ',
                 'img' => 'https://cdn.cdnlogo.com/logos/s/48/sendgrid.svg',
                 'pro' => true,
-            ] 
+            ],
+            [ 
+                'name' => 'Sendinblue',
+                'slug' => 'sendinblue',
+                'img' => 'https://www.sendinblue.com/wp-content/themes/sendinblue2019/assets/images/common/logo-color.svg',
+                'pro' => true,
+            ],
+            [ 
+                'name' => 'Mailtrap',
+                'slug' => 'mailtrap',
+                'img' => 'https://www.sendinblue.com/wp-content/themes/sendinblue2019/assets/images/common/logo-color.svg',
+                'pro' => true,
+            ],
+            [ 
+                'name' => 'SMTP',
+                'slug' => 'custom',
+                'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
+                'pro' => true,
+            ],
         ];
          
         wp_send_json_success($form_list);

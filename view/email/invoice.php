@@ -27,7 +27,7 @@
       .ndpi-shape {
          display: flex;
          height: 154px;
-         background-image: url(https://appux.co/wp-content/plugins/propovoice-server/asset/email/shape1.png);
+         background-image: url(https://appux.co/wp-content/plugins/propovoice-server/assets/email/shape1.png);
          /* filter: invert(38%) sepia(24%) saturate(6729%) hue-rotate(223deg) brightness(98%) contrast(94%); */
       }
 
@@ -102,7 +102,7 @@
 
       .ndpi-footer .ndpi-footer-shape {
          height: 60px;
-         background-image: url(https://appux.co/wp-content/plugins/propovoice-server/asset/email/shape2.png);
+         background-image: url(https://appux.co/wp-content/plugins/propovoice-server/assets/email/shape2.png);
          /* filter: invert(10%) sepia(10%) saturate(212%) hue-rotate(128deg) brightness(100%) contrast(112%);
          */
       }
