@@ -508,7 +508,7 @@ class ListSingle extends Component {
                                                         strokeLinejoin="round"
                                                     />
                                                 </svg>
-                                                {i18n.move}  to {i18n.project}
+                                                {i18n.move}  {i18n.to} {i18n.project}
                                             </button>
 
                                             {data.stage_id && <>

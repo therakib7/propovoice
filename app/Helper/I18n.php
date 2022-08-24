@@ -222,6 +222,7 @@ class I18n
             'work' => esc_html__('Work', 'propovoice'),  
             'today' => esc_html__('Today', 'propovoice'),  
             'othrday' => esc_html__('Others Day', 'propovoice'),  
+            'iselec' => esc_html__('Items Selected', 'propovoice'),  
         ];
     }
 }
