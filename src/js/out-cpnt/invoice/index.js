@@ -215,9 +215,8 @@ export default class Invoice extends Component {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const id = urlParams.get('id')
-        Api.get(id + '?client_view=1')
-            .then(resp => {
-                let data = resp.data.data;
+        Api.get(id + '?client_view=1').then(resp => {
+                let data = resp.data.data; 
                 let payment_methods = [];
 
                 let paypal = {
@@ -257,7 +256,9 @@ export default class Invoice extends Component {
                     data.selected_payment_method = stripe;
                 } else if (data.invoice.payment_methods.hasOwnProperty('bank') && data.invoice.payment_methods.bank) {
                     data.selected_payment_method = bank;
-                }
+                } 
+
+                data.invoice.id = data.id;
                 
                 this.setState(data);
             })
@@ -278,7 +279,7 @@ export default class Invoice extends Component {
         this.setState({ status });
     }
 
-    render() {
+    render() { 
         return (
             <div>
                 <ToastContainer hideProgressBar />
@@ -328,20 +329,19 @@ export default class Invoice extends Component {
                 {this.state.paymentModal &&
                     <>
                         <Suspense fallback={<Spinner />}>
-                            {this.state.payment_method == 'bank' && <Bank
+                            {this.state.payment_method == 'bank' && <Bank 
                                 show={this.state.paymentModal}
                                 invoice_id={this.state.id}
                                 handleSubmit={this.handleSubmit}
                                 close={() => this.setState({ paymentModal: false })}
                             />}
 
-                            {this.state.payment_method == 'paypal' && <Paypal
+                            {this.state.payment_method == 'paypal' && <Paypal 
                                 show={this.state.paymentModal}
                                 invoice={this.state.invoice}
                                 close={() => this.setState({ paymentModal: false })}
-                            />}
-
-                            {this.state.payment_method == 'stripe' && <Stripe
+                            />} 
+                            {this.state.payment_method == 'stripe' && <Stripe 
                                 show={this.state.paymentModal}
                                 invoice={this.state.invoice}
                                 close={() => this.setState({ paymentModal: false })}

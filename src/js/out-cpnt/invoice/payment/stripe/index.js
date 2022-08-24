@@ -82,7 +82,7 @@ class CheckoutForm extends Component {
                 phone: '',
                 name: '',
             }
-        };
+        }; 
     }
 
     handleChange = e => {
@@ -92,7 +92,7 @@ class CheckoutForm extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-
+        
         const { stripe, elements } = this.props;
         const { error, cardComplete } = this.state;
         const { email, phone, name } = this.state.form;
@@ -119,7 +119,7 @@ class CheckoutForm extends Component {
         //}
 
         let client_secret = null;
-        const url = apiProUrl + 'payment-process';
+        const url = apiProUrl + 'payment-process'; 
         const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}`);
         if (indent_resp) {
             client_secret = indent_resp.data.data.intent_obj.client_secret
