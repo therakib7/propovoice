@@ -248,7 +248,7 @@ class Form extends Component {
                                     {i18n.task} {i18n.type}:
                                     </label>
                                     <div className='pi-field-action'>
-                                        {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title='Type' /* small */ color />}
+                                        {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title={i18n.type} /* small */ color />}
                                     </div>
                                 </div>
 
