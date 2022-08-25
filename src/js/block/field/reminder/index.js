@@ -110,7 +110,7 @@ export default class Reminder extends Component {
                                 checked={form.due_date ? 'checked' : ''}
                                 onChange={this.handleChange}
                             />
-                            <label htmlFor="reminder-due_date">{i18n.on} {i18n.due} {i18n.date}</label>
+                            <label htmlFor="reminder-due_date">{i18n.ond}</label>
                         </div>
                     </div>
                 </div>
