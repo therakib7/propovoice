@@ -75,10 +75,10 @@ const TableBody = props => {
             setDropdown(id);
         }
     };
-
+    const i18n = ndpi.i18n;
     let rows = props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
-        const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
+        const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false; 
         return (
             <tr key={index}>
                 <td>

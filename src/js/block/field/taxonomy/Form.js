@@ -255,7 +255,7 @@ class Form extends Component {
                                     </div>
                                     <div className="row">
                                         <div className="col">
-                                            <label id="form-show">{i18n.show} {i18n.show}</label>
+                                            <label id="form-show">{i18n.alw} {i18n.show}</label>
                                             <div className="pi-field-switch pi-mt-3 pi-ml-10">
                                                 <label className='pi-switch'>
                                                     <input type='checkbox'
