@@ -7,8 +7,12 @@ export default class Form extends Component {
         super(props);
 
         this.initialState = { 
-            key: '', 
-            web: '' 
+            host: '', 
+            port: '', 
+            secure: '', 
+            auth: '', 
+            user: '', 
+            pass: '', 
         };
 
         this.state = {
@@ -34,7 +38,7 @@ export default class Form extends Component {
 
     getData = () => {
 
-        this.props.getAll('settings', 'tab=smtp_sendinblue').then(resp => {
+        this.props.getAll('settings', 'tab=smtp_other').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -45,7 +49,7 @@ export default class Form extends Component {
         e.preventDefault();
 
         let form = this.state.form;
-        form.tab = 'smtp_sendinblue';
+        form.tab = 'smtp_other';
 
         this.props.create('settings', form).then(resp => {
             if (resp.data.success) {
