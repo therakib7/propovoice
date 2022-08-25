@@ -28,19 +28,13 @@ class SmtpList
             [ 
                 'name' => 'Default',
                 'slug' => 'default',
-                'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
+                'img' => 'https://cdn.cdnlogo.com/logos/p/71/php.svg',
                 'pro' => true,
             ], 
             [ 
-                'name' => 'Mailgun',
-                'slug' => 'gailgun',
-                'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
-                'pro' => true,
-            ],
-            [ 
-                'name' => 'SendGrid',
-                'slug' => 'sendgrid ',
-                'img' => 'https://cdn.cdnlogo.com/logos/s/48/sendgrid.svg',
+                'name' => 'Other SMTP',
+                'slug' => 'other',
+                'img' => 'https://cdn.cdnlogo.com/logos/m/46/mail-ios.svg',
                 'pro' => true,
             ],
             [ 
@@ -50,17 +44,23 @@ class SmtpList
                 'pro' => true,
             ],
             [ 
-                'name' => 'Mailtrap',
-                'slug' => 'mailtrap',
-                'img' => 'https://www.sendinblue.com/wp-content/themes/sendinblue2019/assets/images/common/logo-color.svg',
+                'name' => 'SendGrid',
+                'slug' => 'sendgrid ',
+                'img' => 'https://cdn.cdnlogo.com/logos/s/48/sendgrid.svg',
                 'pro' => true,
             ],
             [ 
-                'name' => 'SMTP',
-                'slug' => 'custom',
-                'img' => 'https://cdn.cdnlogo.com/logos/w/28/wordpress.svg',
+                'name' => 'Mailgun',
+                'slug' => 'mailgun',
+                'img' => 'https://img001.prntscr.com/file/img001/4cQw2CQQRUep5qE5vFuWpw.png',
                 'pro' => true,
             ],
+            [ 
+                'name' => 'Mailtrap',
+                'slug' => 'mailtrap',
+                'img' => 'https://img001.prntscr.com/file/img001/msNOomOMTX28qqvOi4nEGg.png',
+                'pro' => true,
+            ]
         ];
          
         wp_send_json_success($form_list);

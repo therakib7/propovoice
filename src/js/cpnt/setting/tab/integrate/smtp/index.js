@@ -63,7 +63,7 @@ export default class License extends Component {
         this.setState({ currentTab: slug, formModal: true })
         this.props.onChange('smtp', slug, false)
     };
- 
+
     close = () => {
         this.setState({ formModal: false, currentTab: '' })
     }
@@ -74,15 +74,13 @@ export default class License extends Component {
         return (
             <>
                 {loading ? <Spinner /> : <>
-                    {!currentTab && <div className="row pi-intg-list">
+                    {!currentTab && <div className="pi-intg-list">
                         {list.map((item, i) => (
-                            <div className="col-md-4" key={i}>
-                                <div className="pi-intg-item" onClick={() => this.addCurrentTab(item)}>
-                                    <img src={item.img} style={{maxWidth: '150px', maxHeight: '22px'}} />
-                                    <h4>
-                                        {item.name} {item.pro && wage.length > 0 && <ProLabel />}
-                                    </h4>
-                                </div>
+                            <div key={i} className="pi-intg-item" onClick={() => this.addCurrentTab(item)}>
+                                <img src={item.img} style={{ maxWidth: '150px', maxHeight: '50px' }} />
+                                <h4>
+                                    {item.name} {item.pro && wage.length > 0 && <ProLabel />}
+                                </h4>
                             </div>
                         ))}
                     </div>}

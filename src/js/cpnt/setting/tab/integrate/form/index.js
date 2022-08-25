@@ -121,15 +121,13 @@ export default class License extends Component {
         return (
             <>
                 {loading ? <Spinner /> : <>
-                    {!currentTab && <div className="row pi-intg-list">
+                    {!currentTab && <div className="pi-intg-list">
                         {list.map((item, i) => (
-                            <div className="col-md-4" key={i}>
-                                <div className="pi-intg-item" onClick={() => this.addCurrentTab(item)}>
-                                    <img src={item.img} style={{ width: (item.slug == 'gravity_forms' ? '150px' : '80px') }} />
-                                    <h4>
-                                        {item.name} {item.pro && wage.length > 0 && <ProLabel />}
-                                    </h4>
-                                </div>
+                            <div key={i} className="pi-intg-item" onClick={() => this.addCurrentTab(item)}>
+                                <img src={item.img} style={{ width: (item.slug == 'gravity_forms' ? '150px' : '80px') }} />
+                                <h4>
+                                    {item.name} {item.pro && wage.length > 0 && <ProLabel />}
+                                </h4>
                             </div>
                         ))}
                     </div>}
