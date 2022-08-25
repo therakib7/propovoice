@@ -164,7 +164,11 @@ class Form extends Component {
                 this.props.reload();
             }
         } else {
-            this.props.handleSubmit(form);
+            let args = null;
+            if ( !this.props.boardView ) {
+                args = { table_view: true };
+            }
+            this.props.handleSubmit(form, null, args);
         }
         this.setState({ form: this.initialState });
     }

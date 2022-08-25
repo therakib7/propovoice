@@ -99,14 +99,14 @@ const HOC = (Inner, mod, title, modPlural = '') => {
             });
         }
 
-        showItem = (e) => {
+        showItem = (e, args = null) => {
             const { value } = e.target;
             this.setState({ perPage: value }, () => {
-                this.getLists();
+                this.getLists(args);
             });
         }
 
-        handleSubmit = (list, newType = null) => { //newType for task, note tab
+        handleSubmit = (list, newType = null, args = null) => { //newType for task, note tab
             let type = this.state.formModalType;
             if (newType) {
                 type = newType;
@@ -118,7 +118,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
                         toast.success(this.context.CrudMsg.create);
-                        this.getLists();
+                        this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -130,7 +130,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
                         toast.success(this.context.CrudMsg.update);
-                        this.getLists();
+                        this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -140,7 +140,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
             }
         }
 
-        deleteEntry = (type, index, module = null) => {
+        deleteEntry = (type, index, module = null, args = null) => {
             if (confirm(this.context.CrudMsg.confirm)) {
                 //TODO: instant delete do it later
                 /* if (type == 'single' && module != 'task' ) {
@@ -158,7 +158,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
                         if (type != 'single') {
                             this.setState({ checkedBoxes: [] });
                         }
-                        this.getLists();
+                        this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -214,16 +214,15 @@ const HOC = (Inner, mod, title, modPlural = '') => {
             }
         }
 
-        handlePageClick = (e) => {
+        handlePageClick = (e, args = null) => {
             const selectedPage = e.selected + 1;
             const offset = selectedPage * this.state.perPage;
             this.setState({
                 currentPage: selectedPage,
                 offset: offset
             }, () => {
-                this.getLists()
-            });
-
+                this.getLists(args)
+            })
         };
 
         render() {

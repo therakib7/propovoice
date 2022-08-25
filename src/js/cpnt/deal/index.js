@@ -93,6 +93,38 @@ const Deal = (props) => {
         }
     }
 
+    const getTaxList = () => {
+        if ( boardView ) {
+            props.getLists()
+        } else {
+            props.getLists({ table_view: true });
+        }
+    }
+
+    const handleSubmit = (data) => {
+        if ( boardView ) {
+            props.handleSubmit(data)
+        } else { 
+            props.handleSubmit(data, props.state.formModalType, { table_view: true });
+        }
+    }
+
+    const showItem = (e) => {
+        if ( boardView ) {
+            props.showItem(e)
+        } else { 
+            props.showItem(e, { table_view: true });
+        }
+    }
+
+    const deleteEntry = (type, id) => {
+        if ( boardView ) {
+            props.deleteEntry(type, id)
+        } else { 
+            props.deleteEntry(type, id, null, { table_view: true });
+        } 
+    } 
+
     const { title, lists, checkedBoxes, searchVal } = props.state;
 
     const activeColor = '#4A5568';
@@ -103,7 +135,7 @@ const Deal = (props) => {
             {!props.module_id && <Breadcrumb title={title + ' ' + i18n.pipeline} />}
 
             {props.state.formModal && <Form
-                handleSubmit={props.handleSubmit}
+                handleSubmit={handleSubmit}
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
@@ -114,7 +146,7 @@ const Deal = (props) => {
                 {...props}
                 taxonomy='deal_stage'
                 title={i18n.stage}
-                reload={props.getLists}
+                reload={getTaxList}
                 modalType={modalType}
                 data={form}
                 color
@@ -283,7 +315,7 @@ const Deal = (props) => {
             <Search
                 title={title}
                 showing={lists.length}
-                showItem={props.showItem}
+                showItem={showItem}
                 total={props.state.total}
                 handleSubmit={props.getLists}
                 boardView={boardView}
@@ -293,7 +325,7 @@ const Deal = (props) => {
                 <Action
                     length={checkedBoxes.length}
                     uncheckAll={props.uncheckAll}
-                    deleteEntry={props.deleteEntry}
+                    deleteEntry={deleteEntry}
                 />
             }
 
@@ -310,7 +342,7 @@ const Deal = (props) => {
                 </>} */}
 
                 {(props.module_id || !boardView) && <>
-                    <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />
+                    <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={deleteEntry} />
 
                     {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
                 </>}
