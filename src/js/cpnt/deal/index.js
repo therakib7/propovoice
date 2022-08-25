@@ -107,6 +107,7 @@ const Deal = (props) => {
                 modalType={props.state.formModalType}
                 data={props.state.list}
                 close={props.closeForm}
+                boardView={boardView}
             />}
 
             {modal && <TaxonomyForm
