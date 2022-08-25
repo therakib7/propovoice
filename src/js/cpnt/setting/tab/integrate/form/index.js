@@ -75,6 +75,10 @@ export default class License extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
 
         if (name == 'active') {
+            if (wage.length > 0) {
+                pro();
+                return;
+            }
             singleForm[i].active = value;
             this.setState({ singleForm }, () => {
                 this.submitFormData(i);

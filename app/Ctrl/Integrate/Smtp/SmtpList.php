@@ -29,36 +29,42 @@ class SmtpList
                 'name' => 'Default',
                 'slug' => 'default',
                 'img' => 'https://cdn.cdnlogo.com/logos/p/71/php.svg',
-                'pro' => true,
+                'active' => true,
+                'pro' => false,
             ], 
             [ 
                 'name' => 'Other SMTP',
                 'slug' => 'other',
                 'img' => 'https://cdn.cdnlogo.com/logos/m/46/mail-ios.svg',
+                'active' => false,
                 'pro' => true,
             ],
             [ 
                 'name' => 'Sendinblue',
                 'slug' => 'sendinblue',
                 'img' => 'https://www.sendinblue.com/wp-content/themes/sendinblue2019/assets/images/common/logo-color.svg',
+                'active' => false,
                 'pro' => true,
             ],
             [ 
                 'name' => 'SendGrid',
                 'slug' => 'sendgrid ',
                 'img' => 'https://cdn.cdnlogo.com/logos/s/48/sendgrid.svg',
+                'active' => false,
                 'pro' => true,
             ],
             [ 
                 'name' => 'Mailgun',
                 'slug' => 'mailgun',
                 'img' => 'https://img001.prntscr.com/file/img001/4cQw2CQQRUep5qE5vFuWpw.png',
+                'active' => false,
                 'pro' => true,
             ],
             [ 
                 'name' => 'Mailtrap',
                 'slug' => 'mailtrap',
                 'img' => 'https://img001.prntscr.com/file/img001/msNOomOMTX28qqvOi4nEGg.png',
+                'active' => false,
                 'pro' => true,
             ]
         ];
