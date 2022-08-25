@@ -225,6 +225,7 @@ class I18n
             'today' => esc_html__('Today', 'propovoice'),  
             'othrday' => esc_html__('Others Day', 'propovoice'),  
             'iselec' => esc_html__('Items Selected', 'propovoice'),  
+            'ond' => esc_html__('On due date', 'propovoice'),  
         ];
     }
 }
