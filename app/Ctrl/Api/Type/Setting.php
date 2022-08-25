@@ -161,6 +161,21 @@ class Setting {
                 }
             }
 
+            if ( $tab == 'smtp_other' ) {
+                $option = get_option('ndpi_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {  
+                    $data['host'] = '';
+                    $data['port'] = '';
+                    $data['secure'] = '';
+                    $data['auth'] = false;
+                    $data['user'] = '';
+                    $data['pass'] = '';
+                }
+            }
+
             if ( $tab == 'smtp_sendinblue' ) {
                 $option = get_option('ndpi_' . $tab);
 
@@ -242,6 +257,16 @@ class Setting {
             if ( $tab == 'estvoice_tax' ) {  
                 $data['item_tax'] = isset( $params['item_tax'] ) ? rest_sanitize_boolean( $params['item_tax'] ) : null;
                 // $data['item_tax_val_type'] = isset( $params['item_tax_val_type'] ) ? sanitize_textarea_field( $params['item_tax_val_type'] ) : null;  
+                $option = update_option('ndpi_' . $tab, $data);                 
+            }
+
+            if ( $tab == 'smtp_other' ) {   
+                $data['host'] = isset( $params['host'] ) ? sanitize_text_field( $params['host'] ) : null;
+                $data['port'] = isset( $params['port'] ) ? absint( $params['port'] ) : null;  
+                $data['secure'] = isset( $params['secure'] ) ? sanitize_text_field( $params['secure'] ) : null;
+                $data['auth'] = isset( $params['auth'] ) ? rest_sanitize_boolean( $params['auth'] ) : null;
+                $data['user'] = isset( $params['user'] ) ? sanitize_text_field( $params['user'] ) : null;
+                $data['pass'] = isset( $params['pass'] ) ? sanitize_text_field( $params['pass'] ) : null;
                 $option = update_option('ndpi_' . $tab, $data);                 
             }
 

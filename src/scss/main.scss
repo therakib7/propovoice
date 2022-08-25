@@ -3665,18 +3665,18 @@ ul {
   color: #4A5568;
   margin-left: -15px;
 }
-.ndpi .pi-accordion-wrapper .pi-field-switch-big {
-  width: 45px;
-  height: 22px;
+.ndpi .pi-field-switch-big {
+  width: 45px !important;
+  height: 22px !important;
   top: 4px;
   left: 20px;
 }
-.ndpi .pi-accordion-wrapper .pi-field-switch-big .pi-switch-slider:before {
+.ndpi .pi-field-switch-big .pi-switch-slider:before {
   height: 18px;
   width: 18px;
   left: 3px;
 }
-.ndpi .pi-accordion-wrapper .pi-field-switch-big input:checked + .pi-switch-slider:before {
+.ndpi .pi-field-switch-big input:checked + .pi-switch-slider:before {
   transform: translateX(21px);
 }
 .ndpi .pi-edit span {
@@ -4996,6 +4996,7 @@ select {
   display: inline-block;
 }
 .ndpi .pi-form-style-one select,
+.ndpi .pi-form-style-one input[type=password],
 .ndpi .pi-form-style-one input[type=url],
 .ndpi .pi-form-style-one input[type=number],
 .ndpi .pi-form-style-one input[type=email],
@@ -5011,6 +5012,7 @@ select {
 }
 @media screen and (max-width: 550px) {
   .ndpi .pi-form-style-one select,
+.ndpi .pi-form-style-one input[type=password],
 .ndpi .pi-form-style-one input[type=url],
 .ndpi .pi-form-style-one input[type=number],
 .ndpi .pi-form-style-one input[type=email],
@@ -5021,6 +5023,7 @@ select {
 .ndpi .pi-form-style-one textarea:focus,
 .ndpi .pi-form-style-one select:focus,
 .ndpi .pi-form-style-one input[type=url]:focus,
+.ndpi .pi-form-style-one input[type=password],
 .ndpi .pi-form-style-one input[type=number]:focus,
 .ndpi .pi-form-style-one input[type=email]:focus,
 .ndpi .pi-form-style-one input[type=text]:focus {
