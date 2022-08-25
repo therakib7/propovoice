@@ -6,6 +6,7 @@ import AppContext from 'context/app-context';
 import Spinner from 'block/preloader/spinner';
 
 //form
+import Other from './form/Other';
 import Sendinblue from './form/Sendinblue';
 
 export default class License extends Component {
@@ -95,6 +96,11 @@ export default class License extends Component {
                             </div>
                         ))}
                     </div>}
+                    
+                    {currentTab == 'other' && this.state.formModal && <Other
+                        {...this.props}
+                        close={this.close}
+                    />}
 
                     {currentTab == 'sendinblue' && this.state.formModal && <Sendinblue
                         {...this.props}

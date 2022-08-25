@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 
-export default class Business extends Component {
+export default class Form extends Component {
     constructor(props) {
         super(props);
 
-        this.initialState = {
-            id: null,
+        this.initialState = { 
             key: '', 
-            web: '', 
-            date: false
+            web: '' 
         };
 
         this.state = {
