@@ -34,10 +34,10 @@ export default class License extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        this.getFormList()
+        this.getList()
     }
 
-    getFormList = () => {
+    getList = () => {
         this.setState({ loading: true });
         this.props.getAll('intg-form').then(resp => {
             if (resp.data.success) {

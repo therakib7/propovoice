@@ -37,8 +37,7 @@ export default class Form extends Component {
         this.getData();
     }
 
-    getData = () => {
-
+    getData = () => { 
         this.props.getAll('settings', 'tab=smtp_other').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
@@ -55,13 +54,13 @@ export default class Form extends Component {
         this.props.create('settings', form).then(resp => {
             if (resp.data.success) {
                 toast.success(this.context.CrudMsg.update);
+                this.props.close();
             } else {
                 resp.data.data.forEach(function (value, index, array) {
                     toast.error(value);
                 });
             }
-        })
-
+        }) 
     }
 
     render() {
@@ -201,7 +200,7 @@ export default class Form extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                            {i18n.save}
+                            {i18n.act}
                         </button>
                     </div>
                 </div>

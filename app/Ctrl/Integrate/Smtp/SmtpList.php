@@ -27,7 +27,7 @@ class SmtpList
         $list = [
             [ 
                 'name' => 'Default',
-                'slug' => 'default',
+                'slug' => null,
                 'img' => 'https://cdn.cdnlogo.com/logos/p/71/php.svg',
                 'active' => false,
                 'pro' => false,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
@@ -9,7 +10,7 @@ import Spinner from 'block/preloader/spinner';
 import Other from './form/Other';
 import Sendinblue from './form/Sendinblue';
 
-export default class License extends Component {
+export default class Main extends Component {
     constructor(props) {
         super(props);
 
@@ -37,10 +38,10 @@ export default class License extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        this.getFormList()
+        this.getList()
     }
 
-    getFormList = () => {
+    getList = () => { 
         this.setState({ loading: true });
         this.props.getAll('intg-smtp').then(resp => {
             if (resp.data.success) {
@@ -61,12 +62,32 @@ export default class License extends Component {
     addCurrentTab = (item) => {
 
         const slug = item.slug;
+
+        if ( !slug ) { 
+
+            let form = {
+                tab: 'smtp_default'
+            }; 
+            this.props.create('settings', form).then(resp => {
+                if (resp.data.success) {
+                    toast.success(this.context.CrudMsg.update);
+                    this.getList();
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            })
+            return;
+        }
+
         this.setState({ currentTab: slug, formModal: true })
         this.props.onChange('smtp', slug, false)
     };
 
     close = () => {
-        this.setState({ formModal: false, currentTab: '' })
+        this.setState({ formModal: false, currentTab: '' });
+        this.getList();
     }
 
     render() {
@@ -96,14 +117,14 @@ export default class License extends Component {
                             </div>
                         ))}
                     </div>}
-                    
+
                     {currentTab == 'other' && this.state.formModal && <Other
-                        {...this.props}
+                        {...this.props} 
                         close={this.close}
                     />}
 
                     {currentTab == 'sendinblue' && this.state.formModal && <Sendinblue
-                        {...this.props}
+                        {...this.props} 
                         close={this.close}
                     />}
 
