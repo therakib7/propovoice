@@ -7,10 +7,10 @@ const TaskList = (props) => {
 const i18n = ndpi.i18n;
 	return (
 		<div className="ncpi-cpnt">
-			<Breadcrumb title={ndpi.i18n.task} />
+			<Breadcrumb title={ndpi.i18n.taska} />
 			{/* <div className="row">
 					<div className="col-lg">
-						<h2 className="pi-page-title">{i18n.task}</h2>
+						<h2 className="pi-page-title">{i18n.taska}</h2>
 					</div>
 				</div> */}
 
@@ -19,7 +19,7 @@ const i18n = ndpi.i18n;
 					<div className="pi-horizontal-tab">
 						<ul className="pi-tabs">
 							<li className={"pi-tab "}>
-								{i18n.task}
+								{i18n.taska}
 							</li>
 						</ul>
 

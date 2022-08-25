@@ -60,7 +60,7 @@ export default class General extends Component {
             <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
                 <div className="row">
                     <div className="col">
-                        <label>{i18n.task} {i18n.status}</label>
+                        <label>{i18n.taska} {i18n.status}</label>
                         <Taxonomy taxonomy='task_status' title={i18n.status} color />
                     </div>
                     <div className="col"></div>
@@ -68,7 +68,7 @@ export default class General extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>{i18n.task} {i18n.type}</label>
+                        <label>{i18n.taska} {i18n.type}</label>
                         <Taxonomy taxonomy='task_type' title={i18n.type} icon />
                     </div>
                     <div className="col"></div>
@@ -76,7 +76,7 @@ export default class General extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>{i18n.task} {i18n.prior}</label>
+                        <label>{i18n.taska} {i18n.prior}</label>
                         <Taxonomy taxonomy='task_priority' title={i18n.prior} color />
                     </div>
                     <div className="col"></div>

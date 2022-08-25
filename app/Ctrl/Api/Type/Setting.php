@@ -260,6 +260,10 @@ class Setting {
                 $option = update_option('ndpi_' . $tab, $data);                 
             }
 
+            if ( $tab == 'smtp_default' ) {                   
+                update_option('ndpi_smtp', null);                 
+            }
+
             if ( $tab == 'smtp_other' ) {   
                 $data['host'] = isset( $params['host'] ) ? sanitize_text_field( $params['host'] ) : null;
                 $data['port'] = isset( $params['port'] ) ? absint( $params['port'] ) : null;  
@@ -267,14 +271,16 @@ class Setting {
                 $data['auth'] = isset( $params['auth'] ) ? rest_sanitize_boolean( $params['auth'] ) : null;
                 $data['user'] = isset( $params['user'] ) ? sanitize_text_field( $params['user'] ) : null;
                 $data['pass'] = isset( $params['pass'] ) ? sanitize_text_field( $params['pass'] ) : null;
-                $option = update_option('ndpi_' . $tab, $data);                 
+                update_option('ndpi_' . $tab, $data);                 
+                update_option('ndpi_smtp', 'other');                 
             }
 
             if ( $tab == 'smtp_sendinblue' ) {  
                 //Check valid key here
                 $data['key'] = isset( $params['key'] ) ? sanitize_text_field( $params['key'] ) : null;
                 $data['web'] = isset( $params['web'] ) ? esc_url_raw( $params['web'] ) : null;  
-                $option = update_option('ndpi_' . $tab, $data);                 
+                update_option('ndpi_' . $tab, $data);   
+                update_option('ndpi_smtp', 'sendinblue');                 
             }
 
             wp_send_json_success();

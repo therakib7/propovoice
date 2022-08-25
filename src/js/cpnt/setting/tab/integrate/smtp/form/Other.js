@@ -8,7 +8,7 @@ export default class Form extends Component {
 
         this.initialState = {
             host: '',
-            port: '',
+            port: '587',
             secure: '',
             auth: false,
             user: '',
@@ -74,7 +74,7 @@ export default class Form extends Component {
                 <div className="row">
                     <div className="col-md">
                         <label htmlFor="field-host">
-                            Host
+                            SMTP Host
                         </label>
 
                         <input
@@ -88,7 +88,7 @@ export default class Form extends Component {
                     </div>
                     <div className="col-md">
                         <label htmlFor="field-port">
-                            Port
+                            SMTP Port
                         </label>
 
                         <input
@@ -107,23 +107,53 @@ export default class Form extends Component {
                     <div className="col-md">
                         <label htmlFor="field-secure">
                             Encryption
-                        </label>
+                        </label> 
 
-                        <input
-                            id="field-secure"
-                            type="text"
-                            required
-                            name="secure"
-                            value={secure}
-                            onChange={this.handleChange}
-                        />
+                        <div style={{ display: 'flex' }}>
+                            <div className="pi-field-radio" style={{marginRight: 20}}>
+                                <input
+                                    type='radio'
+                                    id="secure_"
+                                    name='secure'
+                                    value=''
+                                    checked={secure == ''}
+                                    onChange={this.handleChange}
+                                />
+                                <label htmlFor="secure_">None</label>
+                            </div>
+
+                            <div className="pi-field-radio" style={{marginRight: 20}}>
+                                <input
+                                    type='radio'
+                                    id="secure_ssl"
+                                    name='secure'
+                                    value='ssl'
+                                    checked={secure == 'ssl'}
+                                    onChange={this.handleChange}
+                                />
+                                <label htmlFor="secure_ssl">SSL</label>
+                            </div>
+
+                            <div className="pi-field-radio" style={{marginRight: 20}}>
+                                <input
+                                    type='radio'
+                                    id="secure_tls"
+                                    name='secure'
+                                    value='tls'
+                                    checked={secure == 'tls'}
+                                    onChange={this.handleChange}
+                                />
+                                <label htmlFor="secure_tls">TLS</label>
+                            </div> 
+                        </div>
+                        {/* <p class="pi-field-desc">TLS is not the same as STARTTLS, For Most servers SSL is the recommended option.</p> */}
                     </div>
                     <div className="col-md">
                         <label htmlFor="field-auth">
                             Authentication
                         </label>
 
-                        <div className="pi-field-switch" style={{display: 'block'}}>
+                        <div className="pi-field-switch pi-field-switch-big" style={{ display: 'block' }}>
                             <label className='pi-switch'>
                                 <input type='checkbox'
                                     id="reminder-auth"

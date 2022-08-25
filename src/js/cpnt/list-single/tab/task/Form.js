@@ -129,7 +129,7 @@ const Form = (props) => {
                         required
                         name="title"
                         value={form.title}
-                        placeholder={ndpi.i18n.add + ' ' + ndpi.i18n.task}
+                        placeholder={ndpi.i18n.add + ' ' + ndpi.i18n.taska}
                         onChange={handleChange}
                     />
                 </div>
