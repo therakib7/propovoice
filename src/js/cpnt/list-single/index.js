@@ -31,7 +31,7 @@ class ListSingle extends Component {
             tabs: [
                 {
                     id: 'task',
-                    text: ndpi.i18n.task
+                    text: ndpi.i18n.taska
                 },
                 {
                     id: 'note',

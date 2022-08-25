@@ -72,7 +72,7 @@ const Setting = (props) => {
             },
         },
         task: {
-            label: i18n.task
+            label: i18n.taska
         },
         contact: {
             label: i18n.contact

@@ -196,5 +196,5 @@ const Task = (props) => {
         </div>
     );
 }
-const TaskHoc = Crud(Task, 'task', ndpi.i18n.task);
+const TaskHoc = Crud(Task, 'task', ndpi.i18n.taska);
 export default WithApi(TaskHoc);

@@ -354,7 +354,7 @@ const Home = () => {
                                                 fill="#718096"
                                             />
                                         </svg>
-                                        <span>{i18n.task}</span>
+                                        <span>{i18n.taska}</span>
                                     </NavLink>
                                 </li>
                                 <li>

@@ -17,6 +17,7 @@ const Action = (props) => {
     };
 
     const row = props.row;
+    const i18n = ndpi.i18n;
     return (
         <div className="pi-action-content pi-action-btn pi-bg-shadow">
             <button className={(dropdown ? 'dpi-active' : '')} onClick={() => showDropdown()}>
@@ -49,7 +50,7 @@ const Action = (props) => {
             </button>
 
             {dropdown && <div className="pi-dropdown-content pi-show" ref={dropdownRef}>
-                <a onClick={() => { setDropdown(false); props.editEntry('edit', row) }}>{ndpi.i18n.edit}</a>
+                <a onClick={() => { setDropdown(false); props.editEntry('edit', row) }}>{i18n.edit}</a>
                 <a onClick={() => { setDropdown(false); props.deleteEntry() }}>{i18n.del}</a>
             </div>}
         </div>

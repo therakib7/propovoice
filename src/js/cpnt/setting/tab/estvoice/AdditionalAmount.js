@@ -65,7 +65,7 @@ export default class AdditionalAmount extends Component {
             <div className="pi-form-style-one">
                 <div className="row">
                     <div className="col">
-                        <label id="form-item_tax">{i18n.each-item}
+                        <label id="form-item_tax">{i18n.eachitem}
                             {wage.length > 0 && <>
                                 <ProLabel />
                             </>}

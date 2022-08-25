@@ -3665,11 +3665,14 @@ ul {
   color: #4A5568;
   margin-left: -15px;
 }
+.ndpi .pi-accordion-wrapper .pi-field-switch-big {
+  left: 20px;
+}
 .ndpi .pi-field-switch-big {
   width: 45px !important;
   height: 22px !important;
   top: 4px;
-  left: 20px;
+  left: 0px;
 }
 .ndpi .pi-field-switch-big .pi-switch-slider:before {
   height: 18px;
@@ -5023,7 +5026,7 @@ select {
 .ndpi .pi-form-style-one textarea:focus,
 .ndpi .pi-form-style-one select:focus,
 .ndpi .pi-form-style-one input[type=url]:focus,
-.ndpi .pi-form-style-one input[type=password],
+.ndpi .pi-form-style-one input[type=password]:focus,
 .ndpi .pi-form-style-one input[type=number]:focus,
 .ndpi .pi-form-style-one input[type=email]:focus,
 .ndpi .pi-form-style-one input[type=text]:focus {

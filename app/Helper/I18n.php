@@ -15,7 +15,8 @@ class I18n
             'inv' => esc_html__('Invoice', 'propovoice'),
             'client' => esc_html__('Client', 'propovoice'),
             'project' => esc_html__('Project', 'propovoice'),
-            'task' => __('Task & Activity', 'propovoice'),
+            'task' => esc_html__('Task', 'propovoice'),
+            'taska' => __('Task & Activity', 'propovoice'),
             'contact' => esc_html__('Contact', 'propovoice'),
             //dashboard
             'ov' => esc_html__('Overview', 'propovoice'),

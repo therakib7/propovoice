@@ -295,7 +295,7 @@ class Form extends Component {
 
                                         <input
                                             id="field-budget"
-                                            type="text"
+                                            type="number"
                                             name="budget"
                                             value={form.budget}
                                             onChange={this.handleChange}

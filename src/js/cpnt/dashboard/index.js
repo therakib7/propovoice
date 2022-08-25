@@ -29,7 +29,7 @@ const TaskCom = () => {
                 className="pi-title-medium pi-mb-20"
                 style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}
             >
-                {i18n.latest} {i18n.task}
+                {i18n.latest} {i18n.taska}
             </h3>
             <Suspense fallback={<Spinner />}>
                 <Task tab_id={null} dashboard />
