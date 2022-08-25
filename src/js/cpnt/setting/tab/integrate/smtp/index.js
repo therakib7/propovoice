@@ -77,6 +77,17 @@ export default class License extends Component {
                     {!currentTab && <div className="pi-intg-list">
                         {list.map((item, i) => (
                             <div key={i} className="pi-intg-item" onClick={() => this.addCurrentTab(item)}>
+                                {item.active && <div className="pi-checked">
+                                    <svg
+                                        width={12}
+                                        height={11}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="3.4 5.6 17.6 13.4"
+                                        xmlSpace="preserve"
+                                    >
+                                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+                                    </svg>
+                                </div>}
                                 <img src={item.img} style={{ maxWidth: '150px', maxHeight: '50px' }} />
                                 <h4>
                                     {item.name} {item.pro && wage.length > 0 && <ProLabel />}
