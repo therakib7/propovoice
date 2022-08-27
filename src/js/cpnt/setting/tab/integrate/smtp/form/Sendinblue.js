@@ -62,8 +62,8 @@ export default class Form extends Component {
     render() {
         const i18n = ndpv.i18n;
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
-                <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>Sendinblue</h4>
+            <form onSubmit={this.handleSubmit} className="pv-form-style-one">
+                <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>Sendinblue</h4>
                 <div className="row">
                     <div className="col-md">
                         <label htmlFor="field-key">
@@ -101,7 +101,7 @@ export default class Form extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
                             {i18n.save}
                         </button>
                     </div>

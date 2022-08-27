@@ -65,18 +65,18 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>
-                    <div className="pi-avater">
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
+                    <div className="pv-avater">
                         <img src={img} alt="avatar" />
                         <span>{row.type == 'person' ? row.first_name : row.org_name}</span>
                     </div>
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.email}</td>
                 {/*<td>{row.org_name}</td> */}
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.mobile}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.mobile}</td>
                 <td>{row.type == 'person' ? i18n.person : i18n.org}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
-                <td className="pi-action">
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td className="pv-action">
                     <Action
                         row={row}
                         handleOverview={handleOverview}
@@ -95,8 +95,8 @@ const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
-            {tableData.length > 0 && <div className='pi-table-wrap'>
-                <table className='pi-table'>
+            {tableData.length > 0 && <div className='pv-table-wrap'>
+                <table className='pv-table'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
                 </table>

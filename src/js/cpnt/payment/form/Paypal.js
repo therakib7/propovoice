@@ -62,10 +62,10 @@ class FormPaypal extends Component {
     render() {
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay">
-                <div className="pi-modal-content">
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()} >
+            <div className="pv-overlay">
+                <div className="pv-modal-content">
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()} >
                             <svg
                                 width={25}
                                 height={25}
@@ -87,13 +87,13 @@ class FormPaypal extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Paypal</h2>
+                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Paypal</h2>
                         <p>Please fill up necessary informaiton in the form.</p>
                     </div>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="pi-content">
+                        <div className="pv-content">
 
-                            <div className='pi-form-style-one'>
+                            <div className='pv-form-style-one'>
                                 <div className="row d-none">
                                     <div className="col-lg">
                                         <label
@@ -197,13 +197,13 @@ class FormPaypal extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="pi-modal-footer">
+                        <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
+                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
                                         {i18n.save}
                                     </button>
                                 </div>
@@ -211,7 +211,7 @@ class FormPaypal extends Component {
                         </div>
                     </form>
                 </div>
-                {/* ./ pi-modal-content */}
+                {/* ./ pv-modal-content */}
             </div>
         );
     }

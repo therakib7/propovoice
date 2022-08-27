@@ -4,9 +4,9 @@ export default (props) => {
     return (
         <div>
             {bankData ? <>
-                <div className="pi-inv-bank">
+                <div className="pv-inv-bank">
                     <h4>{i18n.payment} {i18n.info}:</h4>
-                    <div className="pi-bank-info" dangerouslySetInnerHTML={{ __html: bankData.name + '<br />' + bankData.details.replaceAll('\n', '<br />') }}></div>
+                    <div className="pv-bank-info" dangerouslySetInnerHTML={{ __html: bankData.name + '<br />' + bankData.details.replaceAll('\n', '<br />') }}></div>
                 </div>
             </> : ''}
         </div>

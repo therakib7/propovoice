@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Form as ModelForm;
@@ -7,7 +6,7 @@ use Ndpv\Model\Form as ModelForm;
 class Form
 { 
     public function __construct()
-    {
+    {         
         add_action('rest_api_init', [$this, 'rest_routes']);
     }
 

@@ -1,10 +1,10 @@
 const Label = ( props ) => { 
     const show = () => {
-        document.getElementById('pi-pro-alert').style.display = 'block';
+        document.getElementById('pv-pro-alert').style.display = 'block';
     };
 
     return (
-        <span className="pi-pro-label" onClick={() => show()} style={{background: ( props.blueBtn ) ? '#FFEED9' : 'auto'}}>
+        <span className="pv-pro-label" onClick={() => show()} style={{background: ( props.blueBtn ) ? '#FFEED9' : 'auto'}}>
             <svg
                 width={13}
                 height={10}

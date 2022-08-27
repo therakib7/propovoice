@@ -38,7 +38,7 @@ export default class Preview extends Component {
     render() {
         const id = this.props.data.invoice.template;
         return (
-            <Suspense fallback={<div className="pi-preloader" style={{ padding: 0 }} />}>
+            <Suspense fallback={<div className="pv-preloader" style={{ padding: 0 }} />}>
                 <> 
                     {id == 1 && <Template1 {...this.props} height={this.props.height} isPreviewLoaded={this.isPreviewLoaded} />}
                     {id == 2 && <Template2 {...this.props} height={this.props.height} isPreviewLoaded={this.isPreviewLoaded} />}

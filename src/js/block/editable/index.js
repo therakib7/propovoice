@@ -36,7 +36,7 @@ export default (props) => {
 	return (
 		<>
 			{dropdown &&
-				<div className='pi-editable'>
+				<div className='pv-editable'>
 					<input
 						type="text"
 						ref={inputRef}
@@ -45,7 +45,7 @@ export default (props) => {
 						name="text"
 						value={text}
 					/>
-					<span className='pi-cursor-pointer' style={{ marginLeft: '5px' }}>
+					<span className='pv-cursor-pointer' style={{ marginLeft: '5px' }}>
 						<svg
 							width={15}
 							height={15}

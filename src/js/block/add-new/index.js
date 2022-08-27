@@ -28,9 +28,9 @@ export default (props) => {
 
     const i18n = ndpv.i18n;
     return (
-        <div className='pi-list-single-button-content'>
+        <div className='pv-list-single-button-content'>
             <button
-                className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white"
+                className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
                 onClick={() => props.openForm('new')}
             >
                 <svg
@@ -58,9 +58,9 @@ export default (props) => {
                 {i18n.add} {props.title}
             </button>
 
-            {false && <div className="pi-action-content pi-action-btn" ref={dropdownRef}>
+            {false && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button
-                    className="pi-bg-stroke pi-bg-shadow"
+                    className="pv-bg-stroke pv-bg-shadow"
                     onClick={() => showDropdown()}
                 >
                     <svg
@@ -91,7 +91,7 @@ export default (props) => {
                     </svg>
                 </button>
 
-                {dropdown && <div className="pi-dropdown-content pi-show">
+                {dropdown && <div className="pv-dropdown-content pv-show">
                     <a onClick={(e) => ImportExport(e, 'import')}>{i18n.imp}</a>
                     <a onClick={(e) => ImportExport(e, 'exoprt')}>{i18n.imp}</a>
                 </div>}

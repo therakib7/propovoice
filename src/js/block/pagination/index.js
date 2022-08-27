@@ -2,11 +2,11 @@ import ReactPaginate from 'react-paginate';
 
 const Pagination = (props) => {
 	return (
-		<div className="pi-pagination-content">
+		<div className="pv-pagination-content">
 			<ReactPaginate
-				previousClassName='pi-previous'
-				nextClassName='pi-next'
-				disabledClassName='pi-disabled'
+				previousClassName='pv-previous'
+				nextClassName='pv-next'
+				disabledClassName='pv-disabled'
 				previousLabel={
 					<svg
 						width={9}
@@ -63,8 +63,8 @@ const Pagination = (props) => {
 				marginPagesDisplayed={2}
 				pageRangeDisplayed={5}
 				onPageChange={props.onPageChange}
-				containerClassName={"pi-pagination"}
-				activeClassName='pi-active'
+				containerClassName={"pv-pagination"}
+				activeClassName='pv-active'
 			/>
 		</div> 
 	);

@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Contact;
@@ -136,7 +135,7 @@ class Lead
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
 
-            $query_data['level_id'] = '';
+            $query_data['level_id'] = null;
             $level = get_the_terms($id, 'ndpv_lead_level');
             if ($level) {
                 $term_id = $level[0]->term_id;

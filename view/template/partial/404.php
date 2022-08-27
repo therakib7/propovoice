@@ -1,5 +1,5 @@
-<div class="pi-grid-container pi-main-content">
-    <div class="pi-page-content">
+<div class="pv-grid-container pv-main-content">
+    <div class="pv-page-content">
         <svg width="270" height="170" viewBox="0 0 270 170" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M146.743 162.431C190.991 162.431 226.863 126.559 226.863 82.1528C226.863 37.7467 190.833 1.87421 146.743 1.87421C102.495 1.87421 66.6221 37.7467 66.6221 82.1528C66.6221 126.559 102.495 162.431 146.743 162.431Z" fill="#F1F3F9" stroke="#D6DCE8" stroke-width="2" stroke-miterlimit="10" />
             <path d="M237.034 56.7174C240.612 56.7174 243.513 53.8166 243.513 50.2382C243.513 46.6599 240.612 43.759 237.034 43.759C233.456 43.759 230.555 46.6599 230.555 50.2382C230.555 53.8166 233.456 56.7174 237.034 56.7174Z" fill="#F1F3F9" />

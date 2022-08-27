@@ -21,7 +21,7 @@ export default class General extends Component {
     render() {
         const i18n = ndpv.i18n;
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
+            <form onSubmit={this.handleSubmit} className="pv-form-style-one"> 
                 <div className="row">
                     <div className="col">
                         <label>{i18n.deal} {i18n.stage}</label>
@@ -33,7 +33,7 @@ export default class General extends Component {
 
                 {/* <div className="row">
                     <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
                             Save
                         </button>
                     </div>

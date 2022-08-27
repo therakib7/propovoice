@@ -30,11 +30,11 @@ class Paypal extends Component {
         const data = this.props.data;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content">
 
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()}>
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()}>
                             <svg
                                 width={25}
                                 height={25}
@@ -56,11 +56,11 @@ class Paypal extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">Paypal {i18n.payment} {i18n.info}</h2>
+                        <h2 className="pv-modal-title">Paypal {i18n.payment} {i18n.info}</h2>
                         <p>Here is the payment information</p>
                     </div>
-                    <div className="pi-content">
-                        <div className="pi-form-style-one">
+                    <div className="pv-content">
+                        <div className="pv-form-style-one">
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="form-name">{i18n.name}</label>
@@ -110,7 +110,7 @@ class Paypal extends Component {
                         </div>
                     </div>
 
-                    <div className="pi-modal-footer">
+                    <div className="pv-modal-footer">
 
                     </div>
                 </div>

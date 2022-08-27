@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Hook\Type;
 
 class Action

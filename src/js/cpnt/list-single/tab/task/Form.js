@@ -121,8 +121,8 @@ const Form = (props) => {
 
     return (
         <form onSubmit={handleSubmit} className="">
-            <div className="pi-tab-buttons-group">
-                <div className="pi-activity-field">
+            <div className="pv-tab-buttons-group">
+                <div className="pv-activity-field">
                     <input
                         id="field-title"
                         type="text"
@@ -133,12 +133,12 @@ const Form = (props) => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="pi-tab-buttons">
-                    <div className="pi-action-content">
+                <div className="pv-tab-buttons">
+                    <div className="pv-action-content">
                         <DateField date={form.start_date} type='start_date' onDateChange={onDateChange} />
                     </div>
-                    <div className="pi-action-content" ref={dropdownTypeRef}>
-                        <button className='pi-task-btn' type='button' onClick={() => setDropdownType(prevCheck => !prevCheck)}>
+                    <div className="pv-action-content" ref={dropdownTypeRef}>
+                        <button className='pv-task-btn' type='button' onClick={() => setDropdownType(prevCheck => !prevCheck)}>
                             {form.type_id && form.type_id.icon && <img src={form.type_id.icon.src} />}
                             {form.type_id && !form.type_id.icon && <svg
                                 width={16}
@@ -157,7 +157,7 @@ const Form = (props) => {
                             </svg>}
                         </button>
 
-                        {dropdownType && <div className="pi-dropdown-content pi-show">
+                        {dropdownType && <div className="pv-dropdown-content pv-show">
                             {types && types.map((item, itemIndex) => {
                                 return (
                                     <a onClick={(e) => setTax(e, item, 'type_id')} key={itemIndex}>
@@ -169,8 +169,8 @@ const Form = (props) => {
                         </div>}
                     </div>
 
-                    <div className="pi-action-content" ref={dropdownPrioritiesRef}>
-                        <button className='pi-task-btn' type='button' onClick={() => setDropdownPriorities(prevCheck => !prevCheck)}>
+                    <div className="pv-action-content" ref={dropdownPrioritiesRef}>
+                        <button className='pv-task-btn' type='button' onClick={() => setDropdownPriorities(prevCheck => !prevCheck)}>
                             <svg
                                 width={18}
                                 height={18}
@@ -188,7 +188,7 @@ const Form = (props) => {
                             </svg>
                         </button>
 
-                        {dropdownPriorities && <div className="pi-dropdown-content pi-show">
+                        {dropdownPriorities && <div className="pv-dropdown-content pv-show">
                             {priorities && priorities.map((item, itemIndex) => {
                                 return (
                                     <a onClick={(e) => setTax(e, item, 'priority_id')} key={itemIndex}>
@@ -218,7 +218,7 @@ const Form = (props) => {
                         </div>}
                     </div>
 
-                    <button type='submit' className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-br-4">
+                    <button type='submit' className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-br-4">
                         {ndpv.i18n.save}
                     </button>
                 </div>

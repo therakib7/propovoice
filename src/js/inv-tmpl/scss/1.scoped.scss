@@ -1,16 +1,16 @@
 /* ====template one===*/
-.pi-inv .pi-inv-one .pi-inv-body {
+.pv-inv .pv-inv-one .pv-inv-body {
   margin: 0 35px;
 }
-.pi-inv .pi-inv-one .pi-inv-header {
+.pv-inv .pv-inv-one .pv-inv-header {
   padding-top: 50px;
 }
-.pi-inv .pi-inv-one .pi-inv-items table thead {
-  background: var(--pi-inv-primary);
+.pv-inv .pv-inv-one .pv-inv-items table thead {
+  background: var(--pv-inv-primary);
 }
-.pi-inv .pi-inv-one .pi-inv-items table tbody tr:nth-child(even) {
-  background-color: var(--pi-inv-even);
+.pv-inv .pv-inv-one .pv-inv-items table tbody tr:nth-child(even) {
+  background-color: var(--pv-inv-even);
 }
-.pi-inv .pi-inv-one .pi-inv-items table tbody tr:nth-child(odd) {
-  background-color: var(--pi-inv-odd);
+.pv-inv .pv-inv-one .pv-inv-items table tbody tr:nth-child(odd) {
+  background-color: var(--pv-inv-odd);
 }

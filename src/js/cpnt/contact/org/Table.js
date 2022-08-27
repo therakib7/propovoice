@@ -57,12 +57,12 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.name}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.name}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.email}</td>
                 <td>{row.address}</td> 
                 <td>{row.first_name}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
-                <td className="pi-action">
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td className="pv-action">
                     <Action 
                         row={row}
                         handleOverview={handleOverview}
@@ -81,8 +81,8 @@ const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
-            {tableData.length > 0 && <div className='pi-table-wrap pi-mt-15'>
-                <table className='pi-table'>
+            {tableData.length > 0 && <div className='pv-table-wrap pv-mt-15'>
+                <table className='pv-table'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
                 </table>

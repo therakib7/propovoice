@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Integrate\Smtp; 
  
 class SmtpList

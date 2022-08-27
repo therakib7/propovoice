@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Setting;
  
 use Ndpv\Ctrl\Setting\Type\Dashboard;

@@ -24,9 +24,9 @@ export default (props) => {
 
     const i18n = ndpv.i18n;
     return (
-        <div className="pi-punnel pi-border-gray" style={{ minHeight: '435px', marginBottom: '30px' }}>
+        <div className="pv-punnel pv-border-gray" style={{ minHeight: '435px', marginBottom: '30px' }}>
             <h3
-                className="pi-title-medium pi-mb-20"
+                className="pv-title-medium pv-mb-20"
                 style={{ fontWeight: "bold", color: "#718096" }}
             >
                 {i18n.deal} {i18n.funnel}
@@ -42,7 +42,7 @@ export default (props) => {
                     <span>{funnel.won.items}</span> {i18n.deal} {i18n.won}
                 </li>}
             </ul> 
-            {funnel.lost && <p className="pi-text-center">{i18n.deal} {i18n.lost} {funnel.lost.items}</p>} 
+            {funnel.lost && <p className="pv-text-center">{i18n.deal} {i18n.lost} {funnel.lost.items}</p>} 
         </div>
     );
 } 

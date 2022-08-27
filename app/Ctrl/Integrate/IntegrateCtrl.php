@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Integrate;
 
 use Ndpv\Ctrl\Integrate\Form\FormCtrl;

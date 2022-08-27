@@ -77,7 +77,7 @@ export default class Reminder extends Component {
         const form = this.state.form;
         const i18n = ndpv.i18n;
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pv-form-style-one">
 
                 <div className="row">
                     <div className="col">
@@ -85,15 +85,15 @@ export default class Reminder extends Component {
                             {i18n.status}
                             {wage.length > 0 && <ProLabel />}
                         </label>
-                        <div className="pi-field-switch pi-ml-10">
-                            <label className='pi-switch'>
+                        <div className="pv-field-switch pv-ml-10">
+                            <label className='pv-switch'>
                                 <input type='checkbox'
                                     id="reminder-status"
                                     name='status'
                                     checked={form.status ? 'checked' : ''}
                                     onChange={this.handleChange}
                                 />
-                                <span className='pi-switch-slider pi-round'></span>
+                                <span className='pv-switch-slider pv-round'></span>
                             </label>
                         </div>
                     </div>
@@ -102,7 +102,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.rem}</label>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-due_date"
@@ -118,7 +118,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.rem} {i18n.before}</label>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-before-1"
@@ -129,7 +129,7 @@ export default class Reminder extends Component {
                             />
                             <label htmlFor="reminder-before-1">1 day</label>
                         </div>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-before-7"
@@ -140,7 +140,7 @@ export default class Reminder extends Component {
                             />
                             <label htmlFor="reminder-before-7">7 days</label>
                         </div>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-before-15"
@@ -152,7 +152,7 @@ export default class Reminder extends Component {
                             <label htmlFor="reminder-before-15">15 days</label>
                         </div>
                         {false && <>
-                            <div className="pi-field-checkbox pi-field-checkbox-input pi-mb-10">
+                            <div className="pv-field-checkbox pv-field-checkbox-input pv-mb-10">
                                 <input type="checkbox" id="date" name="date" />
                                 <input
                                     type="number"
@@ -167,7 +167,7 @@ export default class Reminder extends Component {
                                     <option value="month">Month</option>
                                 </select>
                             </div>
-                            <div className="pi-field-checkbox pi-field-checkbox-input">
+                            <div className="pv-field-checkbox pv-field-checkbox-input">
                                 <input type="checkbox" id="date" name="date" />
                                 <input
                                     type="number"
@@ -182,7 +182,7 @@ export default class Reminder extends Component {
                                     <option value="month">Month</option>
                                 </select>
                             </div>
-                            <button className="pi-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
+                            <button className="pv-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
                                 <svg
                                     width={12}
                                     height={13}
@@ -211,7 +211,7 @@ export default class Reminder extends Component {
                     </div>
                     <div className="col">
                         <label>{i18n.rem} {i18n.after}</label>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-after-1"
@@ -222,7 +222,7 @@ export default class Reminder extends Component {
                             />
                             <label htmlFor="reminder-after-1">1 day</label>
                         </div>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-after-7"
@@ -233,7 +233,7 @@ export default class Reminder extends Component {
                             />
                             <label htmlFor="reminder-after-7">7 days</label>
                         </div>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-after-15"
@@ -245,7 +245,7 @@ export default class Reminder extends Component {
                             <label htmlFor="reminder-after-15">15 days</label>
                         </div>
                         {false && <>
-                            <div className="pi-field-checkbox pi-field-checkbox-input pi-mb-10">
+                            <div className="pv-field-checkbox pv-field-checkbox-input pv-mb-10">
                                 <input type="checkbox" id="date" name="date" />
                                 <input
                                     type="number"
@@ -260,7 +260,7 @@ export default class Reminder extends Component {
                                     <option value="month">Month</option>
                                 </select>
                             </div>
-                            <div className="pi-field-checkbox pi-field-checkbox-input">
+                            <div className="pv-field-checkbox pv-field-checkbox-input">
                                 <input type="checkbox" id="date" name="date" />
                                 <input
                                     type="number"
@@ -275,7 +275,7 @@ export default class Reminder extends Component {
                                     <option value="month">Month</option>
                                 </select>
                             </div>
-                            <button className="pi-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
+                            <button className="pv-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
                                 <svg
                                     width={12}
                                     height={13}
@@ -306,7 +306,7 @@ export default class Reminder extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
                             {i18n.save}
                         </button>
                     </div>

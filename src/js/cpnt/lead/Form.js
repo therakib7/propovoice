@@ -218,11 +218,11 @@ class Form extends Component {
         const form = this.state.form;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content">
 
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()}>
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()}>
                             <svg
                                 width={25}
                                 height={25}
@@ -244,12 +244,12 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
+                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
                         <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.lead + ' ' +i18n.from + ' ' + i18n.here}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
-                        <div className="pi-content">
-                            <div className="pi-form-style-one">
+                        <div className="pv-content">
+                            <div className="pv-form-style-one">
                                 <Contact
                                     first_name={form.first_name}
                                     org_name={form.org_name}
@@ -325,7 +325,7 @@ class Form extends Component {
                                         </label>
                                         {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color /> */}
                                         <Select
-                                            className={'pi-field-select'}
+                                            className={'pv-field-select'}
                                             value={form.level_id}
                                             onChange={this.handleLevelChange}
                                             getOptionValue={(levelList) => levelList.id}
@@ -340,7 +340,7 @@ class Form extends Component {
                                         </label>
                                         {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple /> */}
                                         <Select
-                                            className={'pi-field-select'}
+                                            className={'pv-field-select'}
                                             value={form.tags}
                                             onChange={this.handleTagChange}
                                             getOptionValue={(tagList) => tagList.id}
@@ -385,13 +385,13 @@ class Form extends Component {
                             </div>
                         </div>
 
-                        <div className="pi-modal-footer">
+                        <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
+                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
                                         {i18n.save}
                                     </button>
                                 </div>

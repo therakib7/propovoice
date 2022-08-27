@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Api;
 
 use Ndpv\Ctrl\Api\Type\Action;

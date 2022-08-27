@@ -32,9 +32,9 @@ export default (props) => {
     const { desc, qty, price, tax, amount } = item_label;
     return (
         <>
-            <div className="pi-info-table-wrap">
-                <div className="pi-info-table-content">
-                    <table className="pi-table pi-info-table">
+            <div className="pv-info-table-wrap">
+                <div className="pv-info-table-content">
+                    <table className="pv-table pv-info-table">
                         <thead>
                             <tr>
                                 <th style={{ width: 'auto' }}>{desc}</th>
@@ -87,7 +87,7 @@ export default (props) => {
                         </DragDropContext>
                     </table>
 
-                    <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow" style={{ justifyContent: 'center' }}
+                    <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow" style={{ justifyContent: 'center' }}
                         onClick={addHandler}
                     >
                         <svg

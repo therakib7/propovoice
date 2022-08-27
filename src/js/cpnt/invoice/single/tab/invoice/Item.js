@@ -31,7 +31,7 @@ export default (props) => {
                     onChange={props.changeHandler(index)} />
             </td>
             <td>
-                <div className='pi-field-checkbox pi-field-checkbox-input'>
+                <div className='pv-field-checkbox pv-field-checkbox-input'>
                     <input
                         name="qty"
                         type="number"
@@ -68,7 +68,7 @@ export default (props) => {
                 />
             </td>
             {item_tax && <td>
-                <div className='pi-field-checkbox pi-field-checkbox-input'>
+                <div className='pv-field-checkbox pv-field-checkbox-input'>
                     <input
                         name="tax"
                         type="number"

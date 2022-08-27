@@ -14,7 +14,7 @@ const EditDownload = props => {
     return (
         <>
             <button
-                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
+                className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
                 // style={{ color: '#000', marginRight: '5px' }}
                 onClick={() => props.handleEdit()}
             >
@@ -81,18 +81,18 @@ export default class Preview extends Component {
         // const { id } = this.props.data.invoice.template;
         const i18n = ndpv.i18n;
         return (
-            <div id="pi-tab-share" className="pi-invoice-tab-content">
-                <h2 className='pi-page-title'>{i18n.prv} {i18n.nd} {i18n.share}</h2>
+            <div id="pv-tab-share" className="pv-invoice-tab-content">
+                <h2 className='pv-page-title'>{i18n.prv} {i18n.nd} {i18n.share}</h2>
                 <iframe id="ndpv-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
                         <div className='' style={{ width: '788px', margin: '0 auto' }}>
-                            <div className='pi-float-left'>
+                            <div className='pv-float-left'>
                                 <EditDownload componentRef={this.componentRef} path={this.props.path} handleEdit={this.props.editTab} />
                                 <ReactToPrint
                                     content={() => this.componentRef}
                                     trigger={() => <button
-                                        className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
+                                        className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
                                     // style={{ color: '#000', marginRight: '5px' }}
                                     // onClick={() => props.handleDownload()}
                                     >
@@ -114,7 +114,7 @@ export default class Preview extends Component {
                                 <ReactToPrint
                                     content={() => this.componentRef}
                                     trigger={() => <button
-                                        className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
+                                        className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
                                     // style={{ color: '#000', marginRight: '5px' }}
                                     // onClick={() => props.handlePrint()}
                                     >
@@ -134,9 +134,9 @@ export default class Preview extends Component {
                                     </button>}
                                 />
                             </div>
-                            <div className='pi-float-right'>
+                            <div className='pv-float-right'>
                                 <button
-                                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5 pi-br-4"
+                                    className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5 pv-br-4"
                                     // style={{ color: '#000', marginRight: '5px' }}
                                     onClick={() => this.props.showShareModal()}
                                 >
@@ -159,15 +159,15 @@ export default class Preview extends Component {
                     </div>
 
                     <div className='col-md-8'>
-                        {/*<div className='pi-inv-preview' ref={(response) => (this.componentRef = response)} >
+                        {/*<div className='pv-inv-preview' ref={(response) => (this.componentRef = response)} >
                             <InvTemplate {...this.props} />
                         </div>*/}
-                        <div className='pi-inv-hidden-preview' style={{ position: 'absolute', left: 9999 }} ref={this.previewRef} >
+                        <div className='pv-inv-hidden-preview' style={{ position: 'absolute', left: 9999 }} ref={this.previewRef} >
                             {this.props.data.fromData && <InvTemplate {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
                         </div>
 
-                        <div className='pi-inv-preview-wrap'>
-                            <div className='pi-inv-preview' ref={(response) => (this.componentRef = response)} >
+                        <div className='pv-inv-preview-wrap'>
+                            <div className='pv-inv-preview' ref={(response) => (this.componentRef = response)} >
                                 {this.props.data.fromData && <InvTemplate {...this.props} height={this.state.previewHeight} />}
                             </div>
                         </div>
@@ -175,12 +175,12 @@ export default class Preview extends Component {
 
                     <div className='col-md-8' style={{ margin: '30px 0' }}>
                         <div className='' style={{ width: '788px', margin: '0 auto' }}>
-                            <div className='pi-float-left'>
+                            <div className='pv-float-left'>
                                 <EditDownload componentRef={this.componentRef} path={this.props.path} handleEdit={this.props.editTab} />
                                 <ReactToPrint
                                     content={() => this.componentRef}
                                     trigger={() => <button
-                                        className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
+                                        className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
                                         style={{ color: '#000', marginRight: '5px' }}
                                     //onClick={() => props.handleDownload()}
                                     >
@@ -203,7 +203,7 @@ export default class Preview extends Component {
                                 <ReactToPrint
                                     content={() => this.componentRef}
                                     trigger={() => <button
-                                        className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
+                                        className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
                                     // style={{ color: '#000', marginRight: '5px' }}
                                     // onClick={() => props.handlePrint()}
                                     >
@@ -224,9 +224,9 @@ export default class Preview extends Component {
                                 />
                             </div>
 
-                            <div className='pi-float-right'>
+                            <div className='pv-float-right'>
                                 <button
-                                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5 pi-br-4"
+                                    className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5 pv-br-4"
                                     // style={{ color: '#000', marginRight: '5px' }}
                                     onClick={() => this.props.showShareModal()}
                                 >
@@ -245,12 +245,12 @@ export default class Preview extends Component {
                                     {i18n.share}
                                 </button>
                                 <button
-                                    className="pi-btn pi-btn-medium pi-bg-hover-blue pi-bg-blue pi-br-4"
+                                    className="pv-btn pv-btn-medium pv-bg-hover-blue pv-bg-blue pv-br-4"
                                     onClick={() => this.props.showEmailModal()} >
                                     {i18n.send} {i18n.email}
                                     {wage.length > 0 && <ProLabel blueBtn />} 
                                     {!wage.length && <svg
-                                        className="pi-ml-10 pi-mr-0"
+                                        className="pv-ml-10 pv-mr-0"
                                         width={6}
                                         height={12}
                                         viewBox="0 0 6 9"

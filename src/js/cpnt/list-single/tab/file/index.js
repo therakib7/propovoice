@@ -24,24 +24,24 @@ const File = (props) => {
     const i18n = ndpv.i18n;
     return (
         <>
-            <div className="pi-small-button-group pi-small-button-group-two">
+            <div className="pv-small-button-group pv-small-button-group-two">
                 <div className="row">
                     <div className="col-sm-5">
-                        <h3 className="pi-title-small">My {i18n.file}</h3>
+                        <h3 className="pv-title-small">My {i18n.file}</h3>
                         <button
-                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'all' ? 'pi-active' : '')}
+                            className={'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow ' + (activeTab == 'all' ? 'pv-active' : '')}
                             onClick={() => { setActiveTab('all'); props.getLists(); }}
                         >
                             All
                         </button>
                         <button
-                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'file' ? 'pi-active' : '')}
+                            className={'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow ' + (activeTab == 'file' ? 'pv-active' : '')}
                             onClick={() => { setActiveTab('file'); props.getLists({ type: 'file' }); }}
                         >
                             {i18n.file}
                         </button>
                         <button
-                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + (activeTab == 'link' ? 'pi-active' : '')}
+                            className={'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow ' + (activeTab == 'link' ? 'pv-active' : '')}
                             onClick={() => { setActiveTab('link'); props.getLists({ type: 'link' }); }}
                         >
                             {i18n.link}
@@ -49,9 +49,9 @@ const File = (props) => {
                     </div>
 
                     <div className="col-sm-7">
-                        <div className="pi-buttons-right pi-text-right">
+                        <div className="pv-buttons-right pv-text-right">
                             {false && <button
-                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
+                                className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
                                 onClick={() => setDriveModal(true)}
                             >
                                 <svg
@@ -87,7 +87,7 @@ const File = (props) => {
                             </button>}
 
                             {true && <button
-                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
+                                className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
                                 onClick={() => setFileModal(true)}
                             >
                                 <svg
@@ -122,7 +122,7 @@ const File = (props) => {
                                 {i18n.upload} {i18n.file}
                             </button>}
                             <button
-                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
+                                className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
                                 onClick={() => props.openForm('new')}
                             >
                                 <svg width={12} height={12} viewBox="0 0 12 12">
@@ -136,8 +136,8 @@ const File = (props) => {
                                 {ndpv.i18n.add} {i18n.upload} {i18n.file}
                             </button>
                             <br />
-                            <div className="pi-buttons-group pi-mb-20">
-                                <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
+                            <div className="pv-buttons-group pv-mb-20">
+                                <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
                                     <svg
                                         width={16}
                                         height={16}
@@ -161,7 +161,7 @@ const File = (props) => {
                                         />
                                     </svg>
                                 </button>
-                                <button className="pi-btn pi-btn-icon pi-bg-hover-shadow">
+                                <button className="pv-btn pv-btn-icon pv-bg-hover-shadow">
                                     <svg
                                         width={16}
                                         height={16}

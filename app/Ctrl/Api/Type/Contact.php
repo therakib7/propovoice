@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Deal;

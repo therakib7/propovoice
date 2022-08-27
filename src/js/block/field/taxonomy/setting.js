@@ -116,7 +116,7 @@ const Taxonomy = (props) => {
 
 	return (
 		<>
-			<div className="pi-field-repeater">
+			<div className="pv-field-repeater">
 				{loading ? <Spinner /> : <DragDropContext onDragEnd={handleDragEnd}>
 					<Droppable droppableId="droppable">
 						{(provided, snapshot) => (
@@ -137,7 +137,7 @@ const Taxonomy = (props) => {
 											>
 
 												<div className="">
-													<span className="pi-mt-3 pi-dot-list">
+													<span className="pv-mt-3 pv-dot-list">
 														<svg
 															width={24}
 															height={24}
@@ -172,7 +172,7 @@ const Taxonomy = (props) => {
 														</svg>
 													</span>
 													{props.color && <>
-														{(item.color && item.bg_color) && <span className="pi-badge"
+														{(item.color && item.bg_color) && <span className="pv-badge"
 															style={{
 																backgroundColor: item.bg_color,
 																color: item.color
@@ -190,17 +190,17 @@ const Taxonomy = (props) => {
 															{item.label}
 														</span>}
 
-														{(!item.color || !item.bg_color) && <span className="pi-badge">
+														{(!item.color || !item.bg_color) && <span className="pv-badge">
 															{item.label}
 														</span>}
 													</>}
 
-													{!props.color && <span className="pi-badge">
+													{!props.color && <span className="pv-badge">
 														{item.label}
 													</span>}
 
 												</div>
-												<div className="pi-mt-3">
+												<div className="pv-mt-3">
 													<span style={{ padding: '5px', cursor: 'pointer' }} onClick={(e) => { openModal(e, 'edit', item) }}>
 														<svg
 															width={16}
@@ -269,7 +269,7 @@ const Taxonomy = (props) => {
 					</Droppable>
 				</DragDropContext>}
 
-				<button className="pi-btn" onClick={(e) => { openModal(e, 'new') }}>
+				<button className="pv-btn" onClick={(e) => { openModal(e, 'new') }}>
 					<svg
 						width={12}
 						height={13}

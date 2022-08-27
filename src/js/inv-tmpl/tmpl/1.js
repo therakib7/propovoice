@@ -21,7 +21,7 @@ export default class One extends Component {
     }
 
     componentDidMount() {
-        document.documentElement.style.setProperty('--pi-inv-primary', this.props.data.invoice.style.primary_color);
+        document.documentElement.style.setProperty('--pv-inv-primary', this.props.data.invoice.style.primary_color);
         this.props.isPreviewLoaded();
     }
 
@@ -31,31 +31,31 @@ export default class One extends Component {
         let title = this.props.data.title;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-inv" style={{ height: this.props.height }}>
+            <div className="pv-inv" style={{ height: this.props.height }}>
                 <Seal status={status} />
-                <div className="pi-inv-one">
-                    <div className="pi-inv-body">
-                        <div className="pi-inv-header">
-                            <div className="pi-inv-from">
+                <div className="pv-inv-one">
+                    <div className="pv-inv-body">
+                        <div className="pv-inv-header">
+                            <div className="pv-inv-from">
                                 {fromData && fromData.logo &&
-                                    <div className="pi-inv-from-logo">
+                                    <div className="pv-inv-from-logo">
                                         <img src={fromData.logo.src} alt="" />
                                     </div>}
 
                                 <From data={fromData} />
 
-                                <div className="pi-inv-from-date">
+                                <div className="pv-inv-from-date">
                                     <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
 
-                                    <div className="pi-inv-from-time">
+                                    <div className="pv-inv-from-time">
                                         <p>{i18n.date}<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
                                         <p>{i18n.due} {i18n.date}<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="pi-inv-to">
-                                <div className="pi-inv-title">
+                            <div className="pv-inv-to">
+                                <div className="pv-inv-title">
                                     <h2>{title}</h2>
                                 </div>
                                 <To data={toData} />
@@ -65,7 +65,7 @@ export default class One extends Component {
                         {top_sections && <Section data={top_sections} top />} 
                         {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
 
-                        <div className="pi-inv-account">
+                        <div className="pv-inv-account">
                             <Payment {...this.props} />
                             <Total {...this.props} />
                         </div>

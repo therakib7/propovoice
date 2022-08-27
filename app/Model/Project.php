@@ -1,7 +1,5 @@
 <?php
 namespace Ndpv\Model;
- 
- 
 
 class Project {
 
@@ -40,5 +38,4 @@ class Project {
 
         return $total_data;
     }
- 
 }

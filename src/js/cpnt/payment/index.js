@@ -224,9 +224,9 @@ export default class Payment extends Component {
         return (
             <div className="ndpv-cpnt"> 
 
-                <div className="pi-payment-tab">
-                    <ul className="pi-tabs">
-                        <li data-tab-target="#pi-bank" className={'pi-tab ' + (currentTab == 'bank' ? 'pi-active' : '')} onClick={(e) => this.setActiveTab(e, 'bank')}>
+                <div className="pv-payment-tab">
+                    <ul className="pv-tabs">
+                        <li data-tab-target="#pv-bank" className={'pv-tab ' + (currentTab == 'bank' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'bank')}>
                             <span>
                                 <svg
                                     width={29}
@@ -289,7 +289,7 @@ export default class Payment extends Component {
                             <span>{i18n.bank} {i18n.nd} {i18n.other}</span>
                         </li> 
 
-                        <li data-tab-target="#pi-paypal" className={'pi-tab ' + (currentTab == 'paypal' ? 'pi-active' : '')} onClick={(e) => this.setActiveTab(e, 'paypal')}>
+                        <li data-tab-target="#pv-paypal" className={'pv-tab ' + (currentTab == 'paypal' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'paypal')}>
                             <span>
                                 <svg
                                     width={23}
@@ -323,7 +323,7 @@ export default class Payment extends Component {
                             <span>Paypal</span>
                         </li>
 
-                        <li data-tab-target="#pi-stripe" className={'pi-tab ' + (currentTab == 'stripe' ? 'pi-active' : '')} onClick={(e) => this.setActiveTab(e, 'stripe')}>
+                        <li data-tab-target="#pv-stripe" className={'pv-tab ' + (currentTab == 'stripe' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'stripe')}>
                             <span>
                                 <svg
                                     width={29}
@@ -341,9 +341,9 @@ export default class Payment extends Component {
                             <span>{i18n.stripe}</span>
                         </li> 
                     </ul>
-                    <div className="pi-payment-tab-content">
+                    <div className="pv-payment-tab-content">
 
-                        <div id="pi-bank" className='pi-active'>
+                        <div id="pv-bank" className='pv-active'>
                             {currentTab == 'bank' && this.state.formModal && <FormBank
                                 handleSubmit={this.handleSubmit}
                                 modalType={this.state.formModalType}
@@ -365,7 +365,7 @@ export default class Payment extends Component {
                                 close={this.closeForm}
                             />}
 
-                            {/* {this.state.empty && <div className="pi-payment-empty-content pi-text-center">
+                            {/* {this.state.empty && <div className="pv-payment-empty-content pv-text-center">
                                 <span>
                                     {currentTab == 'bank' && <svg
                                         width={35}
@@ -424,7 +424,7 @@ export default class Payment extends Component {
                                         {currentTab == 'stripe' && <TableStripe tableData={payments} editEntry={this.openForm} deleteEntry={this.deleteEntry} />}
                                     </ul>
                                     <button
-                                        className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                                        className="pv-btn pv-bg-blue pv-bg-hover-blue"
                                         onClick={() => this.openForm('new')}
                                     >
                                         {i18n.add} {currentTabTitle} {i18n.account}
@@ -433,7 +433,7 @@ export default class Payment extends Component {
                             )}
                         </div>
                     </div>
-                    {/* ./ pi-tabs */}
+                    {/* ./ pv-tabs */}
                 </div>
 
             </div>

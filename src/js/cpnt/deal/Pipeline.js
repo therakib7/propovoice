@@ -90,17 +90,17 @@ function Pipeline(props) {
 	};
 	const i18n = ndpv.i18n;
 	return (
-		<div className="pi-board">
+		<div className="pv-board">
 			<DragDropContext
 				onDragEnd={result => onDragEnd(props.update, result, columns, setColumns)}
 			>
 				{Object.entries(columns).map(([columnId, column], index) => {
 					return (
-						<div className="pi-board-column" key={columnId}>
-							<div className="pi-board-column-title pi-bg-shadow" style={{ borderColor: column.color, color: column.color }}>
+						<div className="pv-board-column" key={columnId}>
+							<div className="pv-board-column-title pv-bg-shadow" style={{ borderColor: column.color, color: column.color }}>
 								<h4 className="">{column.name}</h4>
-								<div className="pi-action-content">
-									<button className={(columnId == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(columnId)}>
+								<div className="pv-action-content">
+									<button className={(columnId == dropdown ? 'pv-active' : '')} onClick={() => showDropdown(columnId)}>
 										<svg
 											width={24}
 											height={24}
@@ -129,7 +129,7 @@ function Pipeline(props) {
 										</svg>
 									</button>
 
-									{columnId == dropdown && <div className="pi-dropdown-content pi-show"
+									{columnId == dropdown && <div className="pv-dropdown-content pv-show"
 									// ref={popover}
 									>
 										{/* <a onClick={() => props.editEntry('edit', columnId)}>{i18n.edit}</a> */}
@@ -144,7 +144,7 @@ function Pipeline(props) {
 										<div
 											{...provided.droppableProps}
 											ref={provided.innerRef}
-											className="pi-board-content"
+											className="pv-board-content"
 										/* style={{
 											background: snapshot.isDraggingOver
 												? "lightblue"
@@ -185,16 +185,16 @@ function Pipeline(props) {
 																		color: "white",
 																		...provided.draggableProps.style
 																	}} */
-																	className="pi-board-column-item pi-bg-shadow"
+																	className="pv-board-column-item pv-bg-shadow"
 																>
-																	<div className="pi-board-item-top">
+																	<div className="pv-board-item-top">
 																		<h4>{CharLimit(item.title)}</h4>
 																		<span>$ {item.budget}</span>
 																		{!wage.length && <p>{i18n.proba}: {item.probability}%</p>}
 																	</div>
-																	<div className="pi-avatar-content">
+																	<div className="pv-avatar-content">
 																		<img src={img} alt="avatar" />
-																		<div className="pi-avatar-text">
+																		<div className="pv-avatar-text">
 																			<h5>{(item.person) ? item.person.first_name : item.org.name} </h5>
 																			<p>
 																				{(item.person) ? item.person.region : item.org.region}
@@ -202,8 +202,8 @@ function Pipeline(props) {
 																				{(item.person) ? item.person.country : item.org.country}
 																			</p>
 
-																			{column.type == 'won' && <span className="pi-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>Won</span>}
-																			{column.type == 'lost' && <span className="pi-badge" style={{ backgroundColor: '#FFDEEB', color: '#FF267F' }}>Lost</span>}
+																			{column.type == 'won' && <span className="pv-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>Won</span>}
+																			{column.type == 'lost' && <span className="pv-badge" style={{ backgroundColor: '#FFDEEB', color: '#FF267F' }}>Lost</span>}
 																		</div>
 																	</div>
 																</div>
@@ -216,7 +216,7 @@ function Pipeline(props) {
 
 											{index == 0 &&
 												<button
-													className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
+													className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
 													onClick={() => props.new('new')}
 												>
 													<svg

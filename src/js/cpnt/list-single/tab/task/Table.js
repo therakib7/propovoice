@@ -10,8 +10,8 @@ const TableBody = props => {
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
 
         return (
-            <div className={"pi-accordion-table-list " + (props.dashboard ? 'pi-mt-15 pi-mb-15' : '')} key={index}>
-                {!props.dashboard && <div className="pi-checkbox">
+            <div className={"pv-accordion-table-list " + (props.dashboard ? 'pv-mt-15 pv-mb-15' : '')} key={index}>
+                {!props.dashboard && <div className="pv-checkbox">
                     <input type="checkbox"
                         value={row.id}
                         checked={checkedCheckbox}
@@ -19,13 +19,13 @@ const TableBody = props => {
                     />
                 </div>}
                 <ul style={{ padding: (props.dashboard ? '16px 10px 9px 0px' : '') }}>
-                    <li style={{ width: '45%' }} className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
-                        <div className={"pi-task-type " + (props.dashboard ? 'pi-mt-10' : '')}>
+                    <li style={{ width: '45%' }} className="pv-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
+                        <div className={"pv-task-type " + (props.dashboard ? 'pv-mt-10' : '')}>
                             {row.type_id.icon && <img src={row.type_id.icon.src} />}
                             {!row.type_id.icon && <img src={ndpv.assetImgUri + 'task-type/task.png'} alt="" />}
 
                         </div>
-                        <div className="pi-task-type-text">
+                        <div className="pv-task-type-text">
                             <h4>{row.title}</h4>
                             <p>
                                 <svg
@@ -79,8 +79,8 @@ const Table = (props) => {
     return (
         <>
             {props.tableData.length > 0 &&
-                <div className='pi-table-wrap pi-p-m'>
-                    <div className='pi-accordion-table-list-area'>
+                <div className='pv-table-wrap pv-p-m'>
+                    <div className='pv-accordion-table-list-area'>
                         <TableBody {...props} />
                     </div>
                 </div>

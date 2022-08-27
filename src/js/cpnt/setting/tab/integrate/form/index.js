@@ -125,9 +125,9 @@ export default class License extends Component {
         return (
             <>
                 {loading ? <Spinner /> : <>
-                    {!currentTab && <div className="pi-intg-list">
+                    {!currentTab && <div className="pv-intg-list">
                         {list.map((item, i) => (
-                            <div key={i} className="pi-intg-item" onClick={() => this.addCurrentTab(item)}>
+                            <div key={i} className="pv-intg-item" onClick={() => this.addCurrentTab(item)}>
                                 <img src={item.img} style={{ width: (item.slug == 'gravity_forms' ? '150px' : '80px') }} />
                                 <h4>
                                     {item.name} {item.pro && wage.length > 0 && <ProLabel />}
@@ -136,33 +136,33 @@ export default class License extends Component {
                         ))}
                     </div>}
 
-                    {currentTab && <div className="pi-intg-single">
-                        <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab.name}</h4>
-                        <div className="pi-accordion-wrapper pi-mt-15">
+                    {currentTab && <div className="pv-intg-single">
+                        <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab.name}</h4>
+                        <div className="pv-accordion-wrapper pv-mt-15">
                             <ul>
                                 {singleForm.map((item, i) => (
                                     <li key={i}>
                                         <input type="checkbox" defaultChecked="checked" />
                                         <i />
-                                        <h3 className='pi-title-small'>
+                                        <h3 className='pv-title-small'>
                                             {item.title}
                                             {wage.length > 0 && <ProLabel />}
-                                            <span className="pi-field-switch-content">
-                                                <label className="pi-field-switch pi-field-switch-big">
+                                            <span className="pv-field-switch-content">
+                                                <label className="pv-field-switch pv-field-switch-big">
                                                     <input type='checkbox'
                                                         name='active'
                                                         checked={item.active ? 'checked' : ''}
                                                         onChange={(e) => this.handleChange(e, i)}
                                                     />
-                                                    <span className="pi-switch-slider pi-round" />
+                                                    <span className="pv-switch-slider pv-round" />
                                                 </label>
                                             </span>
                                         </h3>
 
                                         <div>
-                                            <form onSubmit={(e) => this.handleSubmit(e, i)} className="pi-form-style-one">
-                                                <div className='pi-table-wrap'>
-                                                    <table className='pi-table'>
+                                            <form onSubmit={(e) => this.handleSubmit(e, i)} className="pv-form-style-one">
+                                                <div className='pv-table-wrap'>
+                                                    <table className='pv-table'>
                                                         <thead>
                                                             <tr>
                                                                 <th>
@@ -205,7 +205,7 @@ export default class License extends Component {
 
                                                 <div className="row">
                                                     <div className="col" style={{ textAlign: 'center', marginTop: 35 }}>
-                                                        <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-color-white">
+                                                        <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white">
                                                             {i18n.save} {wage.length > 0 && <ProLabel blueBtn />}
                                                         </button>
                                                     </div>

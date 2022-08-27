@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Widget;
 
 use Ndpv\Ctrl\Widget\Elementor\ElementorCtrl;

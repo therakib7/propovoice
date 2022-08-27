@@ -6,8 +6,8 @@ export default ( props ) => {
         <>
             {bank_info ?
                 <>
-                    <h4 className='pi-title-small'>{i18n.payment} {i18n.info}:</h4>
-                    <address className='pi-mb-15' dangerouslySetInnerHTML={{ __html: bank_info.name + '<br />' + bank_info.details.replaceAll('\n', '<br />') }}></address>
+                    <h4 className='pv-title-small'>{i18n.payment} {i18n.info}:</h4>
+                    <address className='pv-mb-15' dangerouslySetInnerHTML={{ __html: bank_info.name + '<br />' + bank_info.details.replaceAll('\n', '<br />') }}></address>
                 </> : ''
             }
         </>

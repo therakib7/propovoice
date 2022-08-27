@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Helper;
 
 class Fns

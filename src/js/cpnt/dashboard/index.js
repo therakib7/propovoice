@@ -24,9 +24,9 @@ import WithApi from 'hoc/Api';
 const TaskCom = () => {
     const i18n = ndpv.i18n;
     return (
-        <div className='pi-bg-white pi-border-gray' style={{ minHeight: '435px', padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
+        <div className='pv-bg-white pv-border-gray' style={{ minHeight: '435px', padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
             <h3
-                className="pi-title-medium pi-mb-20"
+                className="pv-title-medium pv-mb-20"
                 style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}
             >
                 {i18n.latest} {i18n.taska}
@@ -53,24 +53,24 @@ const Dashboard = (props) => {
             <div className="row">
                 <div className="col">
                     <h2
-                        className="pi-page-title"
+                        className="pv-page-title"
                         style={{ color: "#2d3748", display: "inline-block" }}
                     >
                         {i18n.ov}
                     </h2>
-                    <select name="summary_by" id="summary_by" className="pi-overview-select">
+                    <select name="summary_by" id="summary_by" className="pv-overview-select">
                         <option value="2022">2022</option>
                     </select>
                 </div>
 
                 <div className="col">
                     <div
-                        className="pi-action-content"
+                        className="pv-action-content"
                         style={{ display: "flex", justifyContent: "right" }}
                         ref={dropdownRef}
                     >
                         <button
-                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-br-4"
+                            className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-br-4"
                             onClick={() => setDropdown(val => !val)}>
                             <svg
                                 width={14}
@@ -95,7 +95,7 @@ const Dashboard = (props) => {
                             {create}
                         </button>
 
-                        {dropdown && <div className="pi-dropdown-content pi-show" style={{ top: 40 }}>
+                        {dropdown && <div className="pv-dropdown-content pv-show" style={{ top: 40 }}>
                             <NavLink to='/lead'>
                                 {create} {i18n.lead}
                             </NavLink>
@@ -120,7 +120,7 @@ const Dashboard = (props) => {
                 <Summary {...props} />
             </Suspense>
 
-            {!wage.length && <div className="pi-block">
+            {!wage.length && <div className="pv-block">
                 <div className="row">
                     <div className="col-lg-7">
                         <TaskCom />

@@ -78,8 +78,8 @@ class Contact extends Component {
                 <label htmlFor="first_name">
                     {i18n.contact} {i18n.person}
                 </label>
-                <div className="pi-field-search">
-                    <div className="pi-action-content">
+                <div className="pv-field-search">
+                    <div className="pv-action-content">
                         <input
                             id="first_name"
                             type="text"
@@ -89,7 +89,7 @@ class Contact extends Component {
                             onChange={this.handleChange}
                         />
 
-                        {this.state.personModal && <div className="pi-dropdown-content pi-show">
+                        {this.state.personModal && <div className="pv-dropdown-content pv-show">
                             <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ {i18n.add} '{this.props.first_name}' {i18n.as} {i18n.new} {i18n.contact}</button>
                             {this.state.personList.map((item, i) => (
                                 <a key={i} onClick={(e) => this.handleSelect(e, item, 'person')}>{item.first_name}</a>
@@ -105,8 +105,8 @@ class Contact extends Component {
                 <label htmlFor="org_name">
                     {i18n.contact} {i18n.org}
                 </label>
-                <div className="pi-field-search">
-                    <div className="pi-action-content">
+                <div className="pv-field-search">
+                    <div className="pv-action-content">
                         <input
                             id="org_name"
                             type="text"
@@ -116,7 +116,7 @@ class Contact extends Component {
                             onChange={this.handleChange}
                         />
 
-                        {this.state.orgModal && <div className="pi-dropdown-content pi-show">
+                        {this.state.orgModal && <div className="pv-dropdown-content pv-show">
                             <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'org')}>+ {i18n.add} '{this.props.org_name}' {i18n.as} {i18n.new} {i18n.org}</button>
                             {this.state.orgList.map((item, i) => (
                                 <a key={i} onClick={(e) => this.handleSelect(e, item, 'org')}>{item.name}</a>

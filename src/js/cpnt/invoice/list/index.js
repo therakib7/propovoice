@@ -253,7 +253,7 @@ const Invoice = class Invoice extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <h2 className="pi-page-title">{title}</h2>
+                        <h2 className="pv-page-title">{title}</h2>
                     </div>
                     <div className="col">
                         <AddNew
@@ -263,8 +263,8 @@ const Invoice = class Invoice extends Component {
                     </div>
                 </div>
 
-                {!this.props.module_id && false && <div className="pi-buttons-group pi-mb-20">
-                    <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
+                {!this.props.module_id && false && <div className="pv-buttons-group pv-mb-20">
+                    <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
                         <svg
                             width={20}
                             height={20}
@@ -316,7 +316,7 @@ const Invoice = class Invoice extends Component {
                             />
                         </svg>
                     </button>
-                    <button className="pi-btn pi-btn-icon pi-bg-hover-shadow">
+                    <button className="pv-btn pv-btn-icon pv-bg-hover-shadow">
                         <svg
                             width={20}
                             height={20}

@@ -133,7 +133,7 @@ class Send extends Component {
 		}
         // TODO: send with attachment pdf
         if (false) {
-            /* html2canvas(document.querySelector(".pi-inv")).then(canvas => { 
+            /* html2canvas(document.querySelector(".pv-inv")).then(canvas => { 
                 const imgData = canvas.toDataURL('image/jpg'); 
                 
                 let formState = {...this.state.form} 
@@ -170,11 +170,11 @@ class Send extends Component {
         let path_title = path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content">
 
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()}>
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()}>
                             <svg
                                 width={25}
                                 height={25}
@@ -196,12 +196,12 @@ class Send extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{i18n.email} {path_title}</h2>
+                        <h2 className="pv-modal-title">{i18n.email} {path_title}</h2>
                         <p>{i18n.email} {path} {i18n.from} {i18n.here}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
-                        <div className="pi-content">
-                            <div className="pi-form-style-one">
+                        <div className="pv-content">
+                            <div className="pv-form-style-one">
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-name">
@@ -268,13 +268,13 @@ class Send extends Component {
                             </div>
                         </div>
 
-                        <div className="pi-modal-footer">
+                        <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
+                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
                                         {i18n.send} {i18n.email} {wage.length > 0 && <ProLabel blueBtn />}
                                     </button>
                                 </div>

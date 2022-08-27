@@ -35,9 +35,9 @@ class Form extends Component {
         const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="">
-                <div className="pi-tab-buttons-group pi-text-right"> 
+                <div className="pv-tab-buttons-group pv-text-right"> 
 
-                    <div className="pi-activity-field">
+                    <div className="pv-activity-field">
                         <input
                             id="field-text"
                             type="text"
@@ -49,7 +49,7 @@ class Form extends Component {
                         />
                     </div>
  
-                    <button className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
+                    <button className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow">
                         {i18n.save}
                     </button>
                 </div>

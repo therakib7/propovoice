@@ -43,12 +43,12 @@ class Share extends Component {
         let path = this.props.path;
         let path_title = path == 'invoice' ? i18n.inv : i18n.est;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content pi-modal-style-three pi-modal-medium">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content pv-modal-style-three pv-modal-medium">
 
-                    <div className="pi-modal-header">
-                        <h2 className="pi-modal-title pi-text-center">Share {path_title}</h2>
-                        <span className="pi-close" onClick={() => this.props.close()}>
+                    <div className="pv-modal-header">
+                        <h2 className="pv-modal-title pv-text-center">Share {path_title}</h2>
+                        <span className="pv-close" onClick={() => this.props.close()}>
                             <svg
                                 width={25}
                                 height={25}
@@ -72,11 +72,11 @@ class Share extends Component {
                         </span>
                     </div>
 
-                    <div className="pi-content">
-                        <div className="pi-form-style-one">
+                    <div className="pv-content">
+                        <div className="pv-form-style-one">
                             <div className="row">
                                 <div className="col-lg">
-                                    <div className="pi-field-copy">
+                                    <div className="pv-field-copy">
                                         <input
                                             type="text"
                                             id="name"
@@ -85,13 +85,13 @@ class Share extends Component {
                                             ref={(client_url) => this.client_url = client_url}
                                             readOnly
                                         />
-                                        <span className="pi-copy" onClick={this.copyToClipboard}>Copy</span>
+                                        <span className="pv-copy" onClick={this.copyToClipboard}>Copy</span>
                                     </div>
                                 </div>
                             </div>
-                            <div className="pi-field-share">
-                                <a href="https://web.whatsapp.com" target="_blank" className="pi-social-icon">
-                                    <span className="pi-whatsapp" style={{ background: "#E9FBEF" }}>
+                            <div className="pv-field-share">
+                                <a href="https://web.whatsapp.com" target="_blank" className="pv-social-icon">
+                                    <span className="pv-whatsapp" style={{ background: "#E9FBEF" }}>
                                         <svg
                                             width={40}
                                             height={40}
@@ -111,9 +111,9 @@ class Share extends Component {
                                     </span>
                                     <p>Whatsapp</p>
                                 </a>
-                                <a href="https://messenger.com" target="_blank" className="pi-social-icon">
+                                <a href="https://messenger.com" target="_blank" className="pv-social-icon">
                                     <span
-                                        className="pi-messenger"
+                                        className="pv-messenger"
                                         style={{ background: "rgba(0, 123, 255, 0.1)" }}
                                     >
                                         <svg
@@ -131,9 +131,9 @@ class Share extends Component {
                                     </span>
                                     <p>Messenger</p>
                                 </a>
-                                <a href="https://web.telegram.org/z/" target="_blank" className="pi-social-icon">
+                                <a href="https://web.telegram.org/z/" target="_blank" className="pv-social-icon">
                                     <span
-                                        className="pi-telegrame"
+                                        className="pv-telegrame"
                                         style={{ background: "rgba(64, 179, 224, 0.08)" }}
                                     >
                                         <svg
@@ -155,9 +155,9 @@ class Share extends Component {
                                     </span>
                                     <p>Telegrame</p>
                                 </a>
-                                <a href="https://web.skype.com/" target="_blank" className="pi-social-icon">
+                                <a href="https://web.skype.com/" target="_blank" className="pv-social-icon">
                                     <span
-                                        className="pi-skype"
+                                        className="pv-skype"
                                         style={{ background: "rgba(0, 175, 240, 0.08)" }}
                                     >
                                         <svg
@@ -176,7 +176,7 @@ class Share extends Component {
                                     <p>Skype</p>
                                 </a>
                             </div>
-                            {/* ./ pi-form-contnet */}
+                            {/* ./ pv-form-contnet */}
                         </div>
                     </div>
                 </div>

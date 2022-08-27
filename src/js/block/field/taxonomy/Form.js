@@ -130,11 +130,11 @@ class Form extends Component {
         const form = this.state.form;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content pi-modal-style-two pi-modal-small">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content pv-modal-style-two pv-modal-small">
 
-                    <div className="pi-modal-header">
-                        <span className="pi-close" onClick={() => this.props.close()}>
+                    <div className="pv-modal-header">
+                        <span className="pv-close" onClick={() => this.props.close()}>
                             <svg
                                 width={25}
                                 height={25}
@@ -156,11 +156,11 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {this.props.title}</h2>
+                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {this.props.title}</h2>
                     </div>
 
-                    <div className="pi-content">
-                        <div className="pi-form-style-one">
+                    <div className="pv-content">
+                        <div className="pv-form-style-one">
                             <div className="row">
                                 <div className="col-md">
                                     <label htmlFor="field-label">
@@ -201,9 +201,9 @@ class Form extends Component {
                                         <label htmlFor="field-color">
                                             {i18n.prv}
                                         </label>
-                                        <div className='pi-field-btn-preview'>
+                                        <div className='pv-field-btn-preview'>
                                             <button
-                                                className='pi-btn pi-btn-medium pi-bg-orange pi-bg-hover-shadow pi-color-orange'
+                                                className='pv-btn pv-btn-medium pv-bg-orange pv-bg-hover-shadow pv-color-orange'
                                                 style={{
                                                     backgroundColor: form.bg_color,
                                                     color: form.color,
@@ -216,7 +216,7 @@ class Form extends Component {
                                                     width={10}
                                                     height={6}
                                                     style={{ marginLeft: '10px' }}
-                                                    className='pi-mr-0'
+                                                    className='pv-mr-0'
                                                     viewBox="0 0 10 6"
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -256,15 +256,15 @@ class Form extends Component {
                                     <div className="row">
                                         <div className="col">
                                             <label id="form-show">{i18n.alw} {i18n.show}</label>
-                                            <div className="pi-field-switch pi-mt-3 pi-ml-10">
-                                                <label className='pi-switch'>
+                                            <div className="pv-field-switch pv-mt-3 pv-ml-10">
+                                                <label className='pv-switch'>
                                                     <input type='checkbox'
                                                         id="form-show"
                                                         name='show'
                                                         checked={form.show ? 'checked' : ''}
                                                         onChange={this.handleChange}
                                                     />
-                                                    <span className='pi-switch-slider pi-round'></span>
+                                                    <span className='pv-switch-slider pv-round'></span>
                                                 </label>
                                             </div>
                                         </div>
@@ -274,13 +274,13 @@ class Form extends Component {
                         </div>
                     </div>
 
-                    <div className="pi-modal-footer pi-mt-10">
+                    <div className="pv-modal-footer pv-mt-10">
                         <div className="row">
                             <div className="col">
-                                <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
+                                <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
                             </div>
                             <div className="col">
-                                <button onClick={this.handleSubmit} className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-medium pi-float-right pi-color-white">
+                                <button onClick={this.handleSubmit} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-medium pv-float-right pv-color-white">
                                     {i18n.save}
                                 </button>
                             </div>

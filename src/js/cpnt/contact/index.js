@@ -20,9 +20,9 @@ const Contact = (props) => {
         <div className="col-6">
           <h2 className="">{i18n.contact} {i18n.book}</h2>
         </div>
-        <div className="col-6 pi-text-right">
+        <div className="col-6 pv-text-right">
           <button
-            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
+            className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow"
             onClick={() => props.openForm('new')}
           >
             <svg
@@ -49,7 +49,7 @@ const Contact = (props) => {
             </svg>
             {i18n.add} {title}
           </button>
-          <span className="pi-action-btn">
+          <span className="pv-action-btn">
             <svg
               width={24}
               height={24}
@@ -80,8 +80,8 @@ const Contact = (props) => {
         </div>
       </div>
 
-      <div className="pi-buttons-group pi-mb-20">
-        <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
+      <div className="pv-buttons-group pv-mb-20">
+        <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
           <svg
             width={20}
             height={20}
@@ -133,7 +133,7 @@ const Contact = (props) => {
             />
           </svg>
         </button>
-        <button className="pi-btn pi-btn-icon pi-bg-hover-shadow">
+        <button className="pv-btn pv-btn-icon pv-bg-hover-shadow">
           <svg
             width={20}
             height={20}
@@ -173,11 +173,11 @@ const Contact = (props) => {
         handleSubmit={props.getLists}
       />
 
-      <div className="pi-small-button-group pi-mb-30">
-        <button className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+      <div className="pv-small-button-group pv-mb-30">
+        <button className="pv-btn pv-active pv-btn-small pv-bg-stroke pv-bg-hover-shadow">
         {i18n.person}
         </button>
-        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+        <button className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow">
         {i18n.org}
         </button>
       </div>

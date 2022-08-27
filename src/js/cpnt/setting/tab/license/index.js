@@ -74,7 +74,7 @@ export default class License extends Component {
         const i18n = ndpv.i18n;
         return (
             <>
-                {this.state.loading ? <Spinner /> : <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                {this.state.loading ? <Spinner /> : <form onSubmit={this.handleSubmit} className="pv-form-style-one">
 
                     <div className="row">
                         <div className="col">
@@ -97,7 +97,7 @@ export default class License extends Component {
                             <div className="col">
                                 <label htmlFor="form-status">
                                 {i18n.license} {i18n.status}:
-                                    <span className="pi-pro-label pi-bg-green pi-color-white">{i18n.valid}</span>
+                                    <span className="pv-pro-label pv-bg-green pv-color-white">{i18n.valid}</span>
                                 </label>
                             </div>
                         </div>
@@ -125,7 +125,7 @@ export default class License extends Component {
 
                     <div className="row">
                         <div className="col">
-                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                            <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
                                 {form.type == 'activate_license' ? i18n.activate + ' '+i18n.license : i18n.dactivate + ' '+i18n.license}
                             </button>
                         </div>

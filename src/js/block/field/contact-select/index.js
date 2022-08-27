@@ -121,7 +121,7 @@ const Contact = (props) => {
 	return (
 		<>
 			<span
-				className="pi-list"
+				className="pv-list"
 				onClick={() => showDropdown()}
 			>
 
@@ -146,8 +146,8 @@ const Contact = (props) => {
 				</svg>
 			</span>
 
-			{dropdown && <div className="pi-dropdown-content pi-show" ref={dropdownContent}>
-				<div className="pi-search-field">
+			{dropdown && <div className="pv-dropdown-content pv-show" ref={dropdownContent}>
+				<div className="pv-search-field">
 					<input type="text" onChange={handleFindContact} placeholder="Search" />
 				</div>
 				<button onClick={(e) => { openModal(e, 'new') }}>+ {i18n.add} {i18n.new}</button>

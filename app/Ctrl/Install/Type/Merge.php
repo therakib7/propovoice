@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Install\Type;
 
 use Ndpv\Model\Org;

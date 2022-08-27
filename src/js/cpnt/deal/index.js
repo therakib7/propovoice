@@ -155,12 +155,12 @@ const Deal = (props) => {
 
             <div className="row">
                 <div className="col">
-                    <h2 className="pi-page-title">{title + (!props.module_id ? ' ' + i18n.pipeline : '')}</h2>
+                    <h2 className="pv-page-title">{title + (!props.module_id ? ' ' + i18n.pipeline : '')}</h2>
                 </div>
                 <div className="col">
-                    <div className="pi-list-single-button-content">
+                    <div className="pv-list-single-button-content">
                         <button
-                            className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow"
+                            className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow"
                             onClick={() => taxForm('new')}
                         >
                             <svg
@@ -189,7 +189,7 @@ const Deal = (props) => {
                         </button>
 
                         <button
-                            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white"
+                            className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
                             onClick={() => props.openForm('new')}
                         >
                             <svg
@@ -220,9 +220,9 @@ const Deal = (props) => {
                 </div>
             </div>
 
-            <div className="pi-buttons-group pi-mb-20">
+            <div className="pv-buttons-group pv-mb-20">
 
-                <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5"
+                <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5"
                     onClick={() => viewChange('board')}
                 >
                     <svg
@@ -256,7 +256,7 @@ const Deal = (props) => {
                     </svg>
                 </button>
 
-                <button className="pi-btn pi-btn-icon pi-bg-hover-shadow"
+                <button className="pv-btn pv-btn-icon pv-bg-hover-shadow"
                     onClick={() => viewChange('table')}
                 >
                     <svg

@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl; 
 
 use Ndpv\Ctrl\Ajax\AjaxCtrl;

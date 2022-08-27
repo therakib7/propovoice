@@ -157,19 +157,19 @@ const Taxonomy = (props) => {
 		<>
 			{props.multiple && listById && listById.map((item, itemIndex) => {
 				return (
-					<span key={itemIndex} className="pi-badge">{item.label} <b onClick={() => handleDelete(item.id)}>X</b></span>
+					<span key={itemIndex} className="pv-badge">{item.label} <b onClick={() => handleDelete(item.id)}>X</b></span>
 				)
 			})}
 
-			<div className="pi-action-content" ref={dropdownContent}>
+			<div className="pv-action-content" ref={dropdownContent}>
 				{props.multiple && <button
-					className={(!props.small) ? 'pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
+					className={(!props.small) ? 'pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow' : 'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}>
 					+ {i18n.add} {props.title}
 				</button>}
 
 				{!props.multiple && listById.length > 0 && <button
-					className={(!props.small) ? 'pi-btn pi-btn-medium' : 'pi-btn pi-btn-small'}
+					className={(!props.small) ? 'pv-btn pv-btn-medium' : 'pv-btn pv-btn-small'}
 					style={{
 						backgroundColor: listById[0].bg_color,
 						color: listById[0].color
@@ -181,7 +181,7 @@ const Taxonomy = (props) => {
 						width={10}
 						height={6}
 						style={{ marginLeft: (!props.small) ? '10px' : '7px' }}
-						className='pi-mr-0'
+						className='pv-mr-0'
 						viewBox="0 0 10 6"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
@@ -195,13 +195,13 @@ const Taxonomy = (props) => {
 
 				{!props.multiple && !listById.length && <button
 					style={{ backgroundColor: '#E2E8F0', color: '#4a5568' }}
-					className={(!props.small) ? 'pi-btn pi-btn-medium pi-bg-hover-shadow' : 'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow'}
+					className={(!props.small) ? 'pv-btn pv-btn-medium pv-bg-hover-shadow' : 'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}
 				>
 					+ {i18n.add} {props.title}
 				</button>}
 
-				{dropdown && <div className="pi-dropdown-content pi-show">
+				{dropdown && <div className="pv-dropdown-content pv-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>
 						+ {i18n.add} {i18n.new} {props.title}
 						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <ProLabel />}

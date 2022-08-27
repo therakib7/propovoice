@@ -68,7 +68,7 @@ export default class Recurring extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pv-form-style-one">
 
                  
             </form>

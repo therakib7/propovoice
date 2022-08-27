@@ -2,7 +2,7 @@ import Item from './Item'
 export default (props) => {
     const {id, desc, qty, price, tax, amount} = props.item_label;
     return (
-        <div className="pi-inv-items">
+        <div className="pv-inv-items">
             <table>
                 <thead>
                     <tr>

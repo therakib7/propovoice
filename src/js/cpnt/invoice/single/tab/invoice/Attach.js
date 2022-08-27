@@ -38,7 +38,7 @@ class Attach extends Component {
                 />
 
 				<button 
-				className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+				className="pv-btn pv-bg-air-white pv-bg-hover-blue pv-hover-color-white"
 				onClick={() => this.setState({ media: true })}
 				>
 					<svg

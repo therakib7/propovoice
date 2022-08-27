@@ -7,7 +7,7 @@ export default ({ title, desc, btnTxt, btnUrl, contact, bgColor, children }) => 
     const [request, setRequest] = useState(false);
 
     return (
-        <div className="pi-widget">
+        <div className="pv-widget">
             {/* {request && <Suspense fallback={<Spinner />}>
                 <RequestForm />
             </Suspense>} */}
@@ -16,19 +16,19 @@ export default ({ title, desc, btnTxt, btnUrl, contact, bgColor, children }) => 
                 {children}
             </span>
             <h3
-                className="pi-title-medium pi-mb-20"
+                className="pv-title-medium pv-mb-20"
                 style={{ fontWeight: 700, fontSize: 20 }}
             >
                 {title}
             </h3>
-            <p className="pi-mb-30" style={{ color: "#718096" }}>
+            <p className="pv-mb-30" style={{ color: "#718096" }}>
                 {desc}
             </p>
-            <a className="pi-btn pi-bg-blue pi-bg-hover-blue pi-color-white" target='_blank' href={btnUrl}>{btnTxt}</a>
+            <a className="pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white" target='_blank' href={btnUrl}>{btnTxt}</a>
             {contact && <a
                 target='_blank'
                 href="https://nurency.com/contact"
-                className="pi-btn pi-bg-stroke pi-border-gray pi-bg-hover-stroke"
+                className="pv-btn pv-bg-stroke pv-border-gray pv-bg-hover-stroke"
                 style={{ color: "#4C6FFF", marginTop: 5 }}
             >
                 Contact With Us

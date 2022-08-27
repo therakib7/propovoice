@@ -99,7 +99,7 @@ class Upload extends Component {
 
 		let remove = this.props.remove !== undefined ? false : true;
 		return (
-			<div className={'pi-field-logo-wrap ' + imgClass}>
+			<div className={'pv-field-logo-wrap ' + imgClass}>
 				{this.props.library && this.state.media && <Media
 					insertHandler={this.handlePros}
 					show={this.state.media}
@@ -111,7 +111,7 @@ class Upload extends Component {
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='d-none' />
 
 						<button 
-							className={'pi-btn pi-bg-stroke pi-bg-hover-stroke ' + btnClass}
+							className={'pv-btn pv-bg-stroke pv-bg-hover-stroke ' + btnClass}
 							onClick={(e) => this.handleUploadFile(e)}
 							style={{ padding: ( this.props.padding ? this.props.padding : '10px 20px'), border: "1px solid #E2E8F0" }}
 						>
@@ -137,9 +137,9 @@ class Upload extends Component {
 
 				{logo &&
 					<>
-						<div className='pi-field-logo'>
+						<div className='pv-field-logo'>
 							<img src={logo.src} width={ ( this.props.small ) ? '40' : '100' } />
-							{remove && <span className='pi-field-logo-close' onClick={() => this.handleDelete(logo.id)}>×</span>}
+							{remove && <span className='pv-field-logo-close' onClick={() => this.handleDelete(logo.id)}>×</span>}
 						</div>
 					</>
 				}

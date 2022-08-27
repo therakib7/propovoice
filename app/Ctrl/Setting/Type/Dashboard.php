@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Setting\Type;
 
 use Ndpv\Helper\Fns;

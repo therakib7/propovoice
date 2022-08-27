@@ -15,11 +15,11 @@ const Main = (props) => {
 	const [currentTab, setCurrentTab] = useState('business');  
 	return (
 		<>
-			<ul className='pi-settings-horizontal-tab'>
+			<ul className='pv-settings-horizontal-tab'>
 				{tabs.map((tab, index) => (
 					<li
 						key={index}
-						className={'pi-tab ' + (tab.id == currentTab ? 'pi-active' : '')}
+						className={'pv-tab ' + (tab.id == currentTab ? 'pv-active' : '')}
 						onClick={(e) => setCurrentTab(tab.id)}
 					>
 						{tab.text}

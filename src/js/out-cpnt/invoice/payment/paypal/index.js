@@ -39,7 +39,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
 
     const i18n = ndpv.i18n;
     return (<>
-        {(showSpinner && isPending) && <div className="pi-preloader" />}
+        {(showSpinner && isPending) && <div className="pv-preloader" />}
 
         {details ? (
             <div className="Result">
@@ -121,10 +121,10 @@ class Paypal extends Component {
         return (
             <>
                 {this.props.show && (
-                    <div className="pi-overlay pi-show">
-                        <div className="pi-modal-content pi-modal-style-two pi-modal-small">
-                            <div className="pi-modal-header">
-                                <span className="pi-close" onClick={() => this.props.close()}>
+                    <div className="pv-overlay pv-show">
+                        <div className="pv-modal-content pv-modal-style-two pv-modal-small">
+                            <div className="pv-modal-header">
+                                <span className="pv-close" onClick={() => this.props.close()}>
                                     <svg
                                         width={25}
                                         height={25}
@@ -146,11 +146,11 @@ class Paypal extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pi-modal-title">Pay With Paypal</h2>
+                                <h2 className="pv-modal-title">Pay With Paypal</h2>
                             </div>
 
-                            <div className="pi-content">
-                                <div className="pi-form-style-one">
+                            <div className="pv-content">
+                                <div className="pv-form-style-one">
                                     <div className="row">
                                         <div className="col-lg">
                                             <PayPalScriptProvider

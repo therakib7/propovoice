@@ -62,7 +62,7 @@ export default class AdditionalAmount extends Component {
         const form = this.state.form;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-form-style-one">
+            <div className="pv-form-style-one">
                 <div className="row">
                     <div className="col">
                         <label id="form-item_tax">{i18n.eachitem}
@@ -70,15 +70,15 @@ export default class AdditionalAmount extends Component {
                                 <ProLabel />
                             </>}
                         </label>
-                        <div className="pi-field-switch pi-ml-10">
-                            <label className='pi-switch'>
+                        <div className="pv-field-switch pv-ml-10">
+                            <label className='pv-switch'>
                                 <input type='checkbox'
                                     id="form-item_tax"
                                     name='item_tax'
                                     checked={form.item_tax ? 'checked' : ''}
                                     onChange={this.handleChange}
                                 />
-                                <span className='pi-switch-slider pi-round'></span>
+                                <span className='pv-switch-slider pv-round'></span>
                             </label>
                         </div>
                     </div>

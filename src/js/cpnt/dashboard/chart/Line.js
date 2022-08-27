@@ -22,9 +22,9 @@ export default class Section extends PureComponent {
     render() {
         const data = this.state.data;
         return (
-            <div className='pi-widget pi-summery pi-bg-white pi-border-gray'>
+            <div className='pv-widget pv-summery pv-bg-white pv-border-gray'>
                 <h3
-                    className="pi-title-medium pi-mb-20"
+                    className="pv-title-medium pv-mb-20"
                     style={{ fontWeight: "bold", color: "#718096" }}
                 >
                     {ndpv.i18n.deal} {ndpv.i18n.tracking}

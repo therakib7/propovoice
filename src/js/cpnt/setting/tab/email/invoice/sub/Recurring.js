@@ -64,7 +64,7 @@ export default class Recurring extends Component {
     render() {
         const i18n = ndpv.i18n;
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pv-form-style-one">
 
                 <div className="row">
                     <div className="col">
@@ -79,7 +79,7 @@ export default class Recurring extends Component {
                             value={this.state.form.subject}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{org_name}'}, {'{client_name}'} </p>
+                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{org_name}'}, {'{client_name}'} </p>
                     </div>
                 </div>
 
@@ -94,13 +94,13 @@ export default class Recurring extends Component {
                             value={this.state.form.msg}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{org_name}'}</p>
+                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{org_name}'}</p>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
                             {i18n.save} {wage.length > 0 && <ProLabel blueBtn />}
                         </button>
                     </div>

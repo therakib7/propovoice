@@ -24,10 +24,10 @@ export default (props) => {
 
     const i18n = ndpv.i18n;
     return (
-        <div className="pi-cards pi-mt-10 pi-cards-two">
+        <div className="pv-cards pv-mt-10 pv-cards-two">
             <div className="row">
                 <div className="col-md-6 col-lg">
-                    <div className="pi-cards-content">
+                    <div className="pv-cards-content">
                         <span className="" style={{ background: "rgba(76, 111, 255, 0.12)" }}>
                             <svg
                                 width={24}
@@ -92,7 +92,7 @@ export default (props) => {
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
-                    <div className="pi-cards-content">
+                    <div className="pv-cards-content">
                         <span className="" style={{ background: "#f1faf1" }}>
                             <svg
                                 width={24}
@@ -112,7 +112,7 @@ export default (props) => {
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
-                    <div className="pi-cards-content">
+                    <div className="pv-cards-content">
                         <span className="" style={{ background: "rgba(69, 172, 157, 0.28)" }}>
                             <svg
                                 width={24}
@@ -142,7 +142,7 @@ export default (props) => {
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
-                    <div className="pi-cards-content">
+                    <div className="pv-cards-content">
                         <span
                             className=""
                             style={{ background: "rgba(182, 100, 144, 0.26)" }}
@@ -182,7 +182,7 @@ export default (props) => {
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
-                    <div className="pi-cards-content">
+                    <div className="pv-cards-content">
                         <span className="" style={{ background: "rgba(69, 172, 157, 0.28)" }}>
                             <svg
                                 width={24}
@@ -212,7 +212,7 @@ export default (props) => {
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
-                    <div className="pi-cards-content">
+                    <div className="pv-cards-content">
                         <span
                             className=""
                             style={{ background: "rgba(182, 100, 144, 0.26)" }}

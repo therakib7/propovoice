@@ -11,7 +11,7 @@ export default (props) => {
 
     const color = props.data.style.primary_color;
     return (
-        <div className="pi-form-style-one pi-edit">
+        <div className="pv-form-style-one pv-edit">
             <div className="row">
                 <div className="col-12">
                     <label htmlFor="name">{ndpv.i18n.edit} {ndpv.i18n.color}</label>

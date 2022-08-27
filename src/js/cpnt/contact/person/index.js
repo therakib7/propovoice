@@ -26,7 +26,7 @@ const Contact = (props) => {
 
       <div className="row">
         <div className="col">
-          <h2 className="pi-page-title">{i18n.contact} {i18n.book}</h2>
+          <h2 className="pv-page-title">{i18n.contact} {i18n.book}</h2>
         </div>
         <div className="col">
           <AddNew
@@ -36,8 +36,8 @@ const Contact = (props) => {
         </div>
       </div>
 
-      {false && <div className="pi-buttons-group pi-mb-20">
-        <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
+      {false && <div className="pv-buttons-group pv-mb-20">
+        <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
           <svg
             width={20}
             height={20}
@@ -89,7 +89,7 @@ const Contact = (props) => {
             />
           </svg>
         </button>
-        <button className="pi-btn pi-btn-icon pi-bg-hover-shadow">
+        <button className="pv-btn pv-btn-icon pv-bg-hover-shadow">
           <svg
             width={20}
             height={20}
@@ -130,15 +130,15 @@ const Contact = (props) => {
         handleSubmit={props.getLists}
       />
 
-      <div className="pi-small-button-group pi-mb-30">
+      <div className="pv-small-button-group pv-mb-30">
         <button
-          className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
+          className="pv-btn pv-active pv-btn-small pv-bg-stroke pv-bg-hover-shadow"
           onClick={() => navigate(`/contact/person`)}
         >
           {i18n.person}
         </button>
         <button
-          className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow"
+          className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow"
           onClick={() => navigate(`/contact/organization`)}
         >
           {i18n.org}

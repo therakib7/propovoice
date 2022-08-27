@@ -12,7 +12,7 @@ export default ({ color, onChange }) => {
 
 	return (
 		<>
-			<div className="pi-field-color-picker">
+			<div className="pv-field-color-picker">
 				<span style={{ background: "#edf2f7" }} onClick={() => onChange('')}>
 					<svg
 						width={24}
@@ -69,7 +69,7 @@ export default ({ color, onChange }) => {
 			</div>
 
 			{colorPicker && (
-				<div className="pi-popover" ref={popover}>
+				<div className="pv-popover" ref={popover}>
 					<HexColorPicker color={color} onChange={onChange} />
 					<span style={{ marginRight: '2px', width: 'auto' }}>#</span><HexColorInput color={color} onChange={onChange} />
 				</div>

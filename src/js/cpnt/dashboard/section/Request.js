@@ -45,15 +45,15 @@ class Send extends Component {
         const type = this.props.type;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
-                    <div className="pi-modal-header">
-                        <h2 className="pi-modal-title pi-text-center">{type == 'features' ? 'Features Request' : 'Facing Problem'} </h2>
-                        <span className="pi-close" onClick={() => this.props.close()}>×</span>
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content">
+                    <div className="pv-modal-header">
+                        <h2 className="pv-modal-title pv-text-center">{type == 'features' ? 'Features Request' : 'Facing Problem'} </h2>
+                        <span className="pv-close" onClick={() => this.props.close()}>×</span>
                     </div>
 
-                    <div className="pi-content">
-                        <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                    <div className="pv-content">
+                        <form onSubmit={this.handleSubmit} className="pv-form-style-one">
 
                             <div className="row">
                                 <div className="col">
@@ -92,7 +92,7 @@ class Send extends Component {
 
                             <div className="row">
                                 <div className="col">
-                                    <button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-m-auto">
+                                    <button className="pv-btn pv-bg-blue pv-bg-hover-blue pv-m-auto">
                                         {i18n.submit}
                                     </button>
                                 </div>

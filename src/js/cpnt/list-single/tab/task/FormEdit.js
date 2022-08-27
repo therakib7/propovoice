@@ -150,10 +150,10 @@ class Form extends Component {
         const form = this.state.form;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay">
-                <div className="pi-modal-content pi-modal-sidebar pi-modal-sidebar-two" ref={this.myRef}>
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()}>
+            <div className="pv-overlay">
+                <div className="pv-modal-content pv-modal-sidebar pv-modal-sidebar-two" ref={this.myRef}>
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()}>
                             <svg
                                 width={25}
                                 height={25}
@@ -176,11 +176,11 @@ class Form extends Component {
                             </svg>
                         </span>
 
-                        <div className="pi-small-button-group">
+                        <div className="pv-small-button-group">
                             {form.id && <Taxonomy key={form.status_id.id} onChange={this.handleTaskStatusChange} id={form.id} data={form.status_id} taxonomy='task_status' title={i18n.status} color />}
 
                             {(form.status_id && form.status_id.type != 'done') && <button
-                                className="pi-btn pi-btn-medium pi-float-right pi-bg-green"
+                                className="pv-btn pv-btn-medium pv-float-right pv-bg-green"
                                 onClick={() => this.handleTaskStatusChange('done')}
                             >
                                 <svg
@@ -203,8 +203,8 @@ class Form extends Component {
                         </div>
                     </div>
 
-                    <div className="pi-content">
-                        <div className="pi-form-style-one">
+                    <div className="pv-content">
+                        <div className="pv-form-style-one">
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="title">
@@ -213,7 +213,7 @@ class Form extends Component {
 
                                     <input
                                         id="title"
-                                        className='pi-title-field'
+                                        className='pv-title-field'
                                         type="text"
                                         name="title"
                                         value={form.title}
@@ -227,7 +227,7 @@ class Form extends Component {
                                     <label htmlFor="field-start_date">
                                     {i18n.start} {i18n.date}
                                     </label>
-                                    <div className='pi-field-date'>
+                                    <div className='pv-field-date'>
                                         <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
                                     </div>
                                 </div>
@@ -236,7 +236,7 @@ class Form extends Component {
                                     <label htmlFor="field-start_date">
                                     {i18n.due} {i18n.date}
                                     </label>
-                                    <div className='pi-field-date'>
+                                    <div className='pv-field-date'>
                                         <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
                                     </div>
                                 </div>
@@ -247,7 +247,7 @@ class Form extends Component {
                                     <label htmlFor="form-desc">
                                     {i18n.task} {i18n.type}:
                                     </label>
-                                    <div className='pi-field-action'>
+                                    <div className='pv-field-action'>
                                         {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title={i18n.type} /* small */ color />}
                                     </div>
                                 </div>
@@ -256,7 +256,7 @@ class Form extends Component {
                                     <label htmlFor="form-desc">
                                     {i18n.task} {i18n.prior}:
                                     </label>
-                                    <div className='pi-field-action'>
+                                    <div className='pv-field-action'>
                                         {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title={i18n.prior} /* small */ color />}
                                     </div>
                                 </div>
@@ -271,8 +271,8 @@ class Form extends Component {
                                         name="name"
                                         defaultValue="Add Location"
                                     />
-                                    {false && !wage.length && <div className="pi-buttons pi-mt-15">
-                                        <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow pi-mr-10">
+                                    {false && !wage.length && <div className="pv-buttons pv-mt-15">
+                                        <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-mr-10">
                                             <svg
                                                 width={17}
                                                 height={14}
@@ -311,7 +311,7 @@ class Form extends Component {
                                             </svg>
                                             {i18n.add} Google {i18n.meet}
                                         </button>
-                                        <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow">
+                                        <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow">
                                             <svg
                                                 width={17}
                                                 height={10}

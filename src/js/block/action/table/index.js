@@ -17,23 +17,23 @@ export default (props) => {
     }; */
 
     return (
-        <div className="pi-table-action pi-mb-10">
-            <div className="pi-checkbox-field pi-mt-6">
+        <div className="pv-table-action pv-mb-10">
+            <div className="pv-checkbox-field pv-mt-6">
                 <input type="checkbox" defaultChecked onChange={() => props.uncheckAll()} />
                 <span>{props.length}  {ndpv.i18n.iselec} </span>
             </div>
-            <div className="pi-small-button-group">
-                {/*<button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
+            <div className="pv-small-button-group">
+                {/*<button className="pv-btn pv-btn-small pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow">
                     Export CVC
                 </button>
-                <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
+                <button className="pv-btn pv-btn-small pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow">
                     Active
                 </button>
-                <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
+                <button className="pv-btn pv-btn-small pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow">
                     Archive
                 </button>*/}
                 <button
-                    className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
+                    className="pv-btn pv-btn-small pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
                     onClick={() => props.deleteEntry('selected')}
                 >
                     {ndpv.i18n.del}

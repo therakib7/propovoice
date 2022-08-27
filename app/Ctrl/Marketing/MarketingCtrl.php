@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Marketing;
 
 use Ndpv\Ctrl\Marketing\Type\Link;

@@ -27,11 +27,11 @@ const Main = (props) => {
  
 	return (
 		<>
-			<ul className='pi-settings-horizontal-tab'>
+			<ul className='pv-settings-horizontal-tab'>
 				{tabs.map((tab, index) => (
 					<li
 						key={index}
-						className={'pi-tab ' + (tab.id == currentTab ? 'pi-active' : '')}
+						className={'pv-tab ' + (tab.id == currentTab ? 'pv-active' : '')}
 						onClick={(e) => setCurrentTab(tab.id)}
 					>
 						{tab.text} {(tab.id == 'reminder' || tab.id == 'recurring') && wage.length > 0 && <ProLabel />}

@@ -7,7 +7,7 @@ export default (props) => {
 			status = true;
 			title = 'Accepted';
 			desc = 'Thanks for accepting';
-			extraClass = 'pi-green-color';
+			extraClass = 'pv-green-color';
 			break;
 
 		case 'decline':
@@ -31,16 +31,16 @@ export default (props) => {
 		case 'paid':
 			status = true;
 			title = 'Paid';
-			extraClass = 'pi-green-color';
+			extraClass = 'pv-green-color';
 			desc = 'Thanks, We have received the payment';
 			break;
 	}
  
 	return (
 		<>
-			{status && <div className="pi-inv-seal">
+			{status && <div className="pv-inv-seal">
 				<div
-					className={'pi-badge-border ' + extraClass}
+					className={'pv-badge-border ' + extraClass}
 					style={{
 						position: "absolute",
 						top: 120,
@@ -50,7 +50,7 @@ export default (props) => {
 						transform: "rotate(340deg)"
 					}}
 				>
-					<div className="pi-badge-style-one">
+					<div className="pv-badge-style-one">
 						<h4>{title}</h4>
 						<p>{desc}</p>
 					</div>

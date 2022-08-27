@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Install;
 
 use Ndpv\Ctrl\Install\Type\DB;

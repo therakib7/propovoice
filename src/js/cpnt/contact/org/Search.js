@@ -38,24 +38,24 @@ export default class Form extends Component {
         const { title, showing, showItem, total } = this.props;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-search-bar">
-                <div className="pi-search-box pi-medium-search-bar">
+            <div className="pv-search-bar">
+                <div className="pv-search-box pv-medium-search-bar">
                     <Search />
                     <input
                         type="text"
-                        className="pi-search-input"
+                        className="pv-search-input"
                         placeholder={i18n.search+' '+ title}
                         name="text"
                         value={this.state.form.text}
                         onChange={this.handleChange}
                     />
                 </div>
-                {false && <div className="pi-search-btn">
-                    <button className={this.state.searchModal ? 'pi-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
+                {false && <div className="pv-search-btn">
+                    <button className={this.state.searchModal ? 'pv-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
                         <Filter />
                     </button>
 
-                    {this.state.searchModal && <div className="pi-search-form">
+                    {this.state.searchModal && <div className="pv-search-form">
                         <ul>
                             <li>
                                 <Arrow />
@@ -71,7 +71,7 @@ export default class Form extends Component {
                         </ul>
                     </div>}
                 </div>}
-                <div className="pi-total-list">
+                <div className="pv-total-list">
                     <p>
                         {i18n.show} <select onChange={showItem} >
                             <option value="10">10</option>

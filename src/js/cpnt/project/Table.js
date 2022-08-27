@@ -69,13 +69,13 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.title}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>${row.budget}</td>
-                <td><span className="pi-badge">{row.status_id && row.status_id.label}</span></td>
-                <td className="pi-action">
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.title}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>${row.budget}</td>
+                <td><span className="pv-badge">{row.status_id && row.status_id.label}</span></td>
+                <td className="pv-action">
                     <Action
                         row={row}
                         handleOverview={handleOverview}
@@ -94,8 +94,8 @@ const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
-            {tableData.length > 0 && <div className='pi-table-wrap'>
-                <table className='pi-table'>
+            {tableData.length > 0 && <div className='pv-table-wrap'>
+                <table className='pv-table'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
                 </table>

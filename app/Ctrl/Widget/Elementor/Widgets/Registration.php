@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Widget\Elementor\Widgets;
 
 use Elementor\Controls_Manager;

@@ -1,24 +1,24 @@
 @import "_seal.scss";
 :root {
-  --pi-inv-secondary: #4c6fff;
-  --pi-inv-text-primary: #000000;
-  --pi-inv-text-secondary: #1a202c;
-  --pi-inv-text-3th: #2d3748;
-  --pi-inv-text-4th: #31343d;
-  --pi-inv-text-5th: #4a5568;
-  --pi-inv-white: #fff;
-  --pi-inv-medium: 15px;
-  --pi-inv-small: 12px;
-  --pi-inv-micro: 12px;
-  --pi-inv-primary: #4c6fff;
-  --pi-inv-odd: #f7fafc;
-  --pi-inv-even: #edf2f7;
-  --pi-inv-font-family-1: "Inter", sans-serif;
-  --pi-inv-font-family-2: "Inter", sans-serif;
-  // --pi-inv-font-family-2: "Roboto", sans-serif;a
+  --pv-inv-secondary: #4c6fff;
+  --pv-inv-text-primary: #000000;
+  --pv-inv-text-secondary: #1a202c;
+  --pv-inv-text-3th: #2d3748;
+  --pv-inv-text-4th: #31343d;
+  --pv-inv-text-5th: #4a5568;
+  --pv-inv-white: #fff;
+  --pv-inv-medium: 15px;
+  --pv-inv-small: 12px;
+  --pv-inv-micro: 12px;
+  --pv-inv-primary: #4c6fff;
+  --pv-inv-odd: #f7fafc;
+  --pv-inv-even: #edf2f7;
+  --pv-inv-font-family-1: "Inter", sans-serif;
+  --pv-inv-font-family-2: "Inter", sans-serif;
+  // --pv-inv-font-family-2: "Roboto", sans-serif;a
 }
 
-.pi-inv {
+.pv-inv {
   height: 1120px;
   width: 784px;
   overflow: hidden;
@@ -33,47 +33,47 @@
     box-sizing: border-box;
   }
   margin: 0 auto;
-  background-color: var(--pi-inv-white);
+  background-color: var(--pv-inv-white);
   position: relative;
 
-  .pi-inv-header {
+  .pv-inv-header {
     display: flex;
     justify-content: space-between;
   }
-  .pi-inv-head {
+  .pv-inv-head {
     display: grid;
     grid-template-columns: 2fr 1fr;
     align-items: center;
     margin-left: 34px;
     margin-bottom: 10px;
   }
-  .pi-inv-shapes {
+  .pv-inv-shapes {
     display: grid;
     align-items: center;
     grid-template-columns: 2fr 1fr;
   }
 
-  .pi-inv-address {
+  .pv-inv-address {
     display: flex;
     justify-content: space-around;
     margin-top: 31px;
   }
-  .pi-inv-from {
+  .pv-inv-from {
     width: 45%;
   }
-  .pi-inv-from-date {
+  .pv-inv-from-date {
     margin-top: 18px;
   }
-  .pi-inv-from-logo {
+  .pv-inv-from-logo {
     margin-bottom: 18px;
   }
-  .pi-inv-from-logo img {
+  .pv-inv-from-logo img {
     max-width: 200px !important;
     max-height: 80px;
     border-radius: 10px;
   }
-  .pi-inv-from h5 {
-    font-family: var(--pi-inv-font-family-2);
+  .pv-inv-from h5 {
+    font-family: var(--pv-inv-font-family-2);
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -81,8 +81,8 @@
     color: #000000;
     margin-bottom: 9px;
   }
-  .pi-inv-from h6 {
-    font-family: var(--pi-inv-font-family-2);
+  .pv-inv-from h6 {
+    font-family: var(--pv-inv-font-family-2);
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -90,29 +90,29 @@
     color: #2d3748;
     margin-bottom: 3px;
   }
-  .pi-inv-from p {
-    font-family: var(--pi-inv-font-family-1);
+  .pv-inv-from p {
+    font-family: var(--pv-inv-font-family-1);
     font-style: normal;
     font-weight: 400;
-    font-size: var(--pi-inv-small);
+    font-size: var(--pv-inv-small);
     line-height: 140%;
     color: #4a5568;
   }
-  .pi-inv-from-date p {
+  .pv-inv-from-date p {
     font-style: normal;
     font-weight: 700;
-    font-size: var(--pi-inv-small);
+    font-size: var(--pv-inv-small);
     line-height: 200%;
     span {
       font-weight: 400;
     }
   }
-  .pi-inv-from-time {
+  .pv-inv-from-time {
     display: flex;
     column-gap: 18px;
   }
-  .pi-inv-to h5 {
-    font-family: var(--pi-inv-font-family-2);
+  .pv-inv-to h5 {
+    font-family: var(--pv-inv-font-family-2);
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -121,8 +121,8 @@
     margin-bottom: 9px;
     margin-top: 18px;
   }
-  .pi-inv-to h6 {
-    font-family: var(--pi-inv-font-family-2);
+  .pv-inv-to h6 {
+    font-family: var(--pv-inv-font-family-2);
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -130,202 +130,202 @@
     color: #2d3748;
     margin-bottom: 3px;
   }
-  .pi-inv-to p {
-    font-family: var(--pi-inv-font-family-1);
+  .pv-inv-to p {
+    font-family: var(--pv-inv-font-family-1);
     font-style: normal;
     font-weight: 400;
-    font-size: var(--pi-inv-small);
+    font-size: var(--pv-inv-small);
     line-height: 140%;
     color: #4a5568;
   }
 
   /* ==== invoice to address */
-  .pi-inv-title h2 {
-    font-family: var(--pi-inv-font-family-1);
+  .pv-inv-title h2 {
+    font-family: var(--pv-inv-font-family-1);
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
     line-height: 100%;
-    color: var(--pi-inv-text-4th);
+    color: var(--pv-inv-text-4th);
     margin-bottom: 18px;
     text-transform: uppercase;
   }
-  .pi-inv-to {
+  .pv-inv-to {
     width: 35%;
   }
 
   // invoice common table
-  .pi-inv-items table {
+  .pv-inv-items table {
     border-spacing: 0;
     width: 100%;
     margin-top: 30px;
     margin-bottom: 24px;
   }
-  .pi-inv-items table thead th {
+  .pv-inv-items table thead th {
     padding: 10px;
-    color: var(--pi-inv-white);
+    color: var(--pv-inv-white);
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
-    font-size: var(--pi-inv-small);
+    font-size: var(--pv-inv-small);
     line-height: 140%;
     text-align: left;
   }
 
-  .pi-inv-items table td {
+  .pv-inv-items table td {
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
-    font-size: var(--pi-inv-small);
+    font-size: var(--pv-inv-small);
     line-height: 150%;
     padding: 15px 10px;
-    color: var(--pi-inv-text-3th);
+    color: var(--pv-inv-text-3th);
 
     span {
-      color: var(--pi-inv-text-5th);
+      color: var(--pv-inv-text-5th);
       font-weight: 400;
     }
   }
 
-  .pi-inv-account {
+  .pv-inv-account {
     display: flex;
     justify-content: space-between;
   }
-  .pi-inv-total table {
+  .pv-inv-total table {
     border-spacing: 0;
     min-width: 200px;
   }
 
-  .pi-inv-total table th {
+  .pv-inv-total table th {
     padding: 8px 23px;
     display: block;
     font-family: Inter;
     font-style: normal;
     text-align: left;
     font-weight: bold;
-    font-size: var(--pi-inv-small);
+    font-size: var(--pv-inv-small);
     line-height: 140%;
-    color: var(--pi-inv-text-primary);
+    color: var(--pv-inv-text-primary);
     letter-spacing: 0.5px;
   }
-  .pi-inv-total table td {
+  .pv-inv-total table td {
     text-align: right;
-    font-family: var(--pi-inv-font-family-1);
+    font-family: var(--pv-inv-font-family-1);
     font-style: normal;
     font-weight: 400;
-    font-size: var(--pi-inv-small);
+    font-size: var(--pv-inv-small);
     line-height: 14px;
     color: #718096;
     padding-right: 10px;
   }
   // TODO margin-top
-  .pi-inv-total .pi-inv-table-bg th {
-    color: var(--pi-inv-white);
+  .pv-inv-total .pv-inv-table-bg th {
+    color: var(--pv-inv-white);
     padding: 6px;
     padding-left: 28px;
     padding-right: 10px;
   }
-  .pi-inv-total .pi-inv-table-bg td {
-    color: var(--pi-inv-white);
+  .pv-inv-total .pv-inv-table-bg td {
+    color: var(--pv-inv-white);
     line-height: 140%;
   }
-  tr.pi-inv-table-bg {
-    background-color: var(--pi-inv-primary);
+  tr.pv-inv-table-bg {
+    background-color: var(--pv-inv-primary);
   }
-  .pi-inv-total .subtotal th {
+  .pv-inv-total .subtotal th {
     font-weight: 800;
     color: #1a202c;
   }
-  .pi-inv-total .subtotal td {
+  .pv-inv-total .subtotal td {
     font-weight: 800;
     color: #1a202c;
   }
-  .pi-inv-total .total {
+  .pv-inv-total .total {
     padding-top: 20px;
   }
-  .pi-inv-total .light th {
+  .pv-inv-total .light th {
     font-weight: 400;
   }
-  .pi-inv-total .total td {
+  .pv-inv-total .total td {
     font-weight: 800;
     color: #1a202c;
     font-size: 15px;
   }
-  .pi-inv-total table tr.pi-inv-before-total th {
+  .pv-inv-total table tr.pv-inv-before-total th {
     padding-bottom: 10px;
   }
-  .pi-inv-section {
+  .pv-inv-section {
     margin-bottom: 10px;
   }
 
-  .pi-inv-section-content ul {
+  .pv-inv-section-content ul {
     list-style-type: dot;
     li {
       font-family: Inter;
       font-style: normal;
       font-weight: normal;
-      font-size: var(--pi-inv-micro);
+      font-size: var(--pv-inv-micro);
       line-height: 150%;
-      color: var(--pi-inv-text-5th);
+      color: var(--pv-inv-text-5th);
       margin-left: 15px;
     }
   }
-  .pi-inv-mt-35 {
+  .pv-inv-mt-35 {
     margin-top: 35px;
   }
-  .pi-inv-section-title {
-    font-family: var(--pi-inv-font-family-1);
+  .pv-inv-section-title {
+    font-family: var(--pv-inv-font-family-1);
     font-style: normal;
     font-weight: 500;
-    font-size: var(--pi-inv-medium);
+    font-size: var(--pv-inv-medium);
     line-height: 150%;
-    color: var(--pi-inv-text-secondary);
+    color: var(--pv-inv-text-secondary);
   }
-  .pi-inv-section-content p {
+  .pv-inv-section-content p {
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
-    font-size: var(--pi-inv-micro);
+    font-size: var(--pv-inv-micro);
     line-height: 200%;
-    color: var(--pi-inv-text-5th);
+    color: var(--pv-inv-text-5th);
   }
-  .pi-inv-sign {
+  .pv-inv-sign {
     float: right;
     padding-right: 40px;
     margin-top: 20px;
   }
-  .pi-inv-sign img {
+  .pv-inv-sign img {
     max-width: 190px;
   }
-  .pi-inv-bank {
+  .pv-inv-bank {
     overflow: hidden;
   }
-  .pi-inv-bank h4 {
-    font-family: var(--pi-inv-font-family-1);
+  .pv-inv-bank h4 {
+    font-family: var(--pv-inv-font-family-1);
     font-style: normal;
     font-weight: 700;
-    font-size: var(--pi-inv-small);
+    font-size: var(--pv-inv-small);
     line-height: 140%;
     color: #1a202c;
     margin-bottom: 6px;
   }
 
-  .pi-inv-bank p {
-    font-family: var(--pi-inv-font-family-1);
+  .pv-inv-bank p {
+    font-family: var(--pv-inv-font-family-1);
     font-style: normal;
     font-weight: 400;
-    font-size: var(--pi-inv-micro);
+    font-size: var(--pv-inv-micro);
     line-height: 150%;
     color: #4a5568;
   }
-  .pi-inv-border {
+  .pv-inv-border {
     border: 0.5px solid #a0aec0;
     margin: 0 -30px;
     margin-top: 8px;
   }
 
   @media screen and (max-width: 500px) {
-    .pi-inv-body {
+    .pv-inv-body {
       margin: 0 15px;
     }
   }

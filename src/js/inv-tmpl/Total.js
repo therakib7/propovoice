@@ -47,10 +47,10 @@ class Total extends Component {
     render = () => {
         const extra_field = this.props.data.invoice.extra_field;
         return (
-            <div className="pi-inv-total">
+            <div className="pv-inv-total">
                 <table>
                     <tbody>
-                        <tr className='pi-inv-e-bold'>
+                        <tr className='pv-inv-e-bold'>
                             <th>Total</th>
                             <td>{this.formatCurrency(this.calcItemsTotal())}</td>
                         </tr>
@@ -72,7 +72,7 @@ class Total extends Component {
                             </tr>)
                         })}
 
-                        <tr className="pi-inv-table-bg">
+                        <tr className="pv-inv-table-bg">
                             <th>{ndpv.i18n.subtotal}</th>
                             <td>{this.formatCurrency(this.calcGrandTotal())}</td>
                         </tr>

@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Widget\Gutenberg;
 
 // use Ndpv\Ctrl\Widget\Gutenberg\Blocks\Example; 

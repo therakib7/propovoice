@@ -1,10 +1,7 @@
 <?php
 namespace Ndpv\Model;
- 
- 
-
-class Deal {
-
+  
+class Deal { 
     public function total( $id = null )
     { 
 
@@ -39,6 +36,5 @@ class Deal {
         wp_reset_postdata(); 
 
         return $total_data;
-    }
- 
+    } 
 }

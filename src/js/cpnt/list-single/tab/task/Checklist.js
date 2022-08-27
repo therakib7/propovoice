@@ -141,8 +141,8 @@ class Checklist extends Component {
             <>
                 {checklist.map((checklist_single, checklist_index) => {
                     return (
-                        <div className="pi-checklist pi-mb-15" key={checklist_index}>
-                            <div className="pi-checklist-head">
+                        <div className="pv-checklist pv-mb-15" key={checklist_index}>
+                            <div className="pv-checklist-head">
                                 <Editable
                                     key={checklist_index}
                                     value={checklist_single.label}
@@ -154,7 +154,7 @@ class Checklist extends Component {
                                 </>}
                                 <span>{this.doneCount(checklist_index, true)} task done out of {this.doneCount(checklist_index, false)}</span>
                                 <div
-                                    className="pi-close-icon"
+                                    className="pv-close-icon"
                                     onClick={() => this.deleteHandler(checklist_index)}
                                 >
                                     <svg
@@ -176,7 +176,7 @@ class Checklist extends Component {
                                 </div>
 
                             </div>
-                            <div className="pi-checklist-content">
+                            <div className="pv-checklist-content">
                                 <ul>
                                     {checklist_single.items.map((item, list_index) => {
                                         return (
@@ -245,7 +245,7 @@ class Checklist extends Component {
                 })}
 
                 <button
-                    className="pi-btn pi-btn-small"
+                    className="pv-btn pv-btn-small"
                     style={{ color: "#718096", marginTop: 10 }}
                     onClick={(e) => this.addChecklist(e)}
                 >

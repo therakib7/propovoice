@@ -45,7 +45,7 @@ const Editable = (props) => {
 						name="text"
 						value={text}
 					/>
-					<span className='pi-cursor-pointer' style={{ marginLeft: '5px', alignSelf: 'center' }}>
+					<span className='pv-cursor-pointer' style={{ marginLeft: '5px', alignSelf: 'center' }}>
 						<svg
 							width={15}
 							height={15}
@@ -68,7 +68,7 @@ const Editable = (props) => {
 					onClick={() => { setText(props.value); setDropdown(true); }}
 				>
 					{props.value} 
-					<span className="pi-mt-3 pi-ml-5">
+					<span className="pv-mt-3 pv-ml-5">
 						<svg
 							width={16}
 							height={16}

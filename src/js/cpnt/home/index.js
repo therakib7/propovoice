@@ -45,9 +45,9 @@ const Home = () => {
     const dealLoad = (load = true) => {
         const span = contentRef.current; // corresponding DOM node
         if (load) {
-            span.className = 'pi-right-content-data pi-deal-content';
+            span.className = 'pv-right-content-data pv-deal-content';
         } else {
-            span.className = 'pi-right-content-data';
+            span.className = 'pv-right-content-data';
         }
     };
 
@@ -59,20 +59,20 @@ const Home = () => {
                 <ProModal />
             </Suspense>
 
-            <div className="pi-grid-container pi-main-content">
-                <div ref={sidebarRef} className={"pi-left-sidebar " + (sidebar ? 'pi-menu-open' : '')}>
+            <div className="pv-grid-container pv-main-content">
+                <div ref={sidebarRef} className={"pv-left-sidebar " + (sidebar ? 'pv-menu-open' : '')}>
 
                     <div className="">
-                        <div className="pi-logo-content pi-site-logo">
+                        <div className="pv-logo-content pv-site-logo">
                             <img src={ndpv.assetImgUri + 'site-logo.png'} alt="favicon" />
                             <strong>Propovoice</strong>
                         </div>
-                        <div className='pi-sidebar-menu dpi-collapse-menu'>
+                        <div className='pv-sidebar-menu dpv-collapse-menu'>
                             <ul>
                                 <li>
-                                    <NavLink to='/' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='/' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
-                                            className="pi-mr-14"
+                                            className="pv-mr-14"
                                             width={16}
                                             height={16}
                                             viewBox="0 0 16 16"
@@ -92,7 +92,7 @@ const Home = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='lead' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='lead' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
                                             width={20}
                                             height={18}
@@ -129,7 +129,7 @@ const Home = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='deal' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='deal' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
                                             width={20}
                                             height={18}
@@ -166,9 +166,9 @@ const Home = () => {
                                     </NavLink>
                                 </li>
                                 {false && <li>
-                                    <NavLink to='proposal' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='proposal' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
-                                            className="pi-mr-14"
+                                            className="pv-mr-14"
                                             width={16}
                                             height={20}
                                             viewBox="0 0 16 20"
@@ -192,9 +192,9 @@ const Home = () => {
                                     </NavLink>
                                 </li>}
                                 <li>
-                                    <NavLink to='estimate' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='estimate' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
-                                            className="pi-mr-14"
+                                            className="pv-mr-14"
                                             width={16}
                                             height={20}
                                             viewBox="0 0 16 20"
@@ -218,7 +218,7 @@ const Home = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='invoice' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='invoice' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
                                             width={20}
                                             height={20}
@@ -243,7 +243,7 @@ const Home = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='client' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='client' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
                                             width={20}
                                             height={18}
@@ -280,7 +280,7 @@ const Home = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='project' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='project' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
                                             width={20}
                                             height={20}
@@ -308,7 +308,7 @@ const Home = () => {
                                     </NavLink>
                                 </li>
                                 {false && <li>
-                                    <NavLink to='accounting' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='accounting' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
                                             width={20}
                                             height={20}
@@ -336,9 +336,9 @@ const Home = () => {
                                     </NavLink>
                                 </li>}
                                 <li>
-                                    <NavLink to='task' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='task' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
-                                            className="pi-mr-14"
+                                            className="pv-mr-14"
                                             width={16}
                                             height={16}
                                             viewBox="0 0 16 16"
@@ -358,7 +358,7 @@ const Home = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='contact/person' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='contact/person' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
                                             width={20}
                                             height={18}
@@ -395,7 +395,7 @@ const Home = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='setting/general' className={({ isActive }) => isActive ? 'pi-active' : ''}>
+                                    <NavLink to='setting/general' className={({ isActive }) => isActive ? 'pv-active' : ''}>
                                         <svg
                                             width={20}
                                             height={18}
@@ -414,7 +414,7 @@ const Home = () => {
                                 {false && <li>
                                     <a href='https://propovoice.com/support' target='_blank'>
                                         <svg
-                                            className="pi-mr-14"
+                                            className="pv-mr-14"
                                             width={16}
                                             height={16}
                                             viewBox="0 0 16 16"
@@ -433,7 +433,7 @@ const Home = () => {
                                         <span>{i18n.nedd}?</span>
                                     </a>
                                 </li>}
-                                <li className="pi-mt-35">
+                                <li className="pv-mt-35">
                                     <a href='https://propovoice.com/docs' target='_blank'>
                                         <svg
                                             width={20}
@@ -472,11 +472,11 @@ const Home = () => {
                                 </li>
                             </ul>
 
-                            <div className="pi-menu-buttons">
-                                {false && <a href='https://propovoice.com/affilite' target='_blank' className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
+                            <div className="pv-menu-buttons">
+                                {false && <a href='https://propovoice.com/affilite' target='_blank' className="pv-btn pv-btn-big pv-bg-blue pv-bg-hover-blue pv-bg-shadow">
                                     Refer &amp; Earn
                                 </a>}
-                                <a href={ndpv.dashboard} className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"> 
+                                <a href={ndpv.dashboard} className="pv-btn pv-btn-big pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"> 
                                     {i18n.back_t_db}
                                 </a>
                             </div>
@@ -484,17 +484,17 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className='pi-right-content pi-bg-pearl'>
-                    <div className="pi-top-menu-content">
-                        <div className="pi-width-content">
-                            <div ref={sidebarRef} className="pi-menubar-icon" onClick={() => setSidebar(val => !val)}>
+                <div className='pv-right-content pv-bg-pearl'>
+                    <div className="pv-top-menu-content">
+                        <div className="pv-width-content">
+                            <div ref={sidebarRef} className="pv-menubar-icon" onClick={() => setSidebar(val => !val)}>
                                 <svg viewBox="0 0 100 80" width={20} height={25}>
                                     <rect width={100} height={12} />
                                     <rect y={29} width={100} height={12} />
                                     <rect y={57} width={100} height={12} />
                                 </svg>
                             </div>
-                            <div className="pi-search-box" style={{ visibility: 'hidden' }}>
+                            <div className="pv-search-box" style={{ visibility: 'hidden' }}>
                                 <svg width={24} height={24}>
                                     <path
                                         d="M10.77 18.3C9.2807 18.3 7.82485 17.8584 6.58655 17.031C5.34825 16.2036 4.38311 15.0275 3.81318 13.6516C3.24325 12.2757 3.09413 10.7616 3.38468 9.30096C3.67523 7.84029 4.39239 6.49857 5.44548 5.44548C6.49857 4.39239 7.84029 3.67523 9.30096 3.38468C10.7616 3.09413 12.2757 3.24325 13.6516 3.81318C15.0275 4.38311 16.2036 5.34825 17.031 6.58655C17.8584 7.82485 18.3 9.2807 18.3 10.77C18.3 11.7588 18.1052 12.738 17.7268 13.6516C17.3484 14.5652 16.7937 15.3953 16.0945 16.0945C15.3953 16.7937 14.5652 17.3484 13.6516 17.7268C12.738 18.1052 11.7588 18.3 10.77 18.3V18.3ZM10.77 4.74999C9.58331 4.74999 8.42327 5.10189 7.43657 5.76118C6.44988 6.42046 5.68084 7.35754 5.22672 8.45389C4.77259 9.55025 4.65377 10.7566 4.88528 11.9205C5.11679 13.0844 5.68824 14.1535 6.52735 14.9926C7.36647 15.8317 8.43556 16.4032 9.59945 16.6347C10.7633 16.8662 11.9697 16.7474 13.0661 16.2933C14.1625 15.8391 15.0995 15.0701 15.7588 14.0834C16.4181 13.0967 16.77 11.9367 16.77 10.75C16.77 9.15869 16.1379 7.63257 15.0126 6.50735C13.8874 5.38213 12.3613 4.74999 10.77 4.74999Z"
@@ -507,17 +507,17 @@ const Home = () => {
                                 </svg>
                                 <input
                                     type="text"
-                                    className="pi-search-input"
+                                    className="pv-search-input"
                                     placeholder="Search Contact, Invoice, Proposal "
                                 />
                             </div>
-                            <div className="pi-avater">
-                                <div className="pi-dropdown">
-                                    <button className="pi-dropbtn" onClick={() => setDropdown(val => !val)}>
+                            <div className="pv-avater">
+                                <div className="pv-dropdown">
+                                    <button className="pv-dropbtn" onClick={() => setDropdown(val => !val)}>
                                         <img src={ndpv.profile.img} alt="avatar" />
                                         {ndpv.profile.name}
                                         <svg
-                                            className="pi-dropdown-angle"
+                                            className="pv-dropdown-angle"
                                             width={12}
                                             height={7}
                                             viewBox="0 0 12 7"
@@ -534,7 +534,7 @@ const Home = () => {
                                         </svg>
                                     </button>
 
-                                    {dropdown && <div className="pi-dropdown-content pi-show">
+                                    {dropdown && <div className="pv-dropdown-content pv-show">
                                         <a href={ndpv.profile.logout}>{i18n.logout}</a>
                                     </div>}
                                 </div>
@@ -542,7 +542,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className='pi-right-content-data' ref={contentRef}>
+                    <div className='pv-right-content-data' ref={contentRef}>
                         <Suspense fallback={<Spinner />}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />

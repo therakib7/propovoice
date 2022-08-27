@@ -1,11 +1,11 @@
 export default (props) => {
 	const sign = props.data;
 	return (
-		<div className="pi-inv-sign">
+		<div className="pv-inv-sign">
 			{sign &&
 				<>
 					<img src={sign.src} alt="" />
-					{/* <div className="pi-inv-border" />
+					{/* <div className="pv-inv-border" />
 					<h4>{ndpv.i18n.Sign}</h4> */}
 				</>
 			}

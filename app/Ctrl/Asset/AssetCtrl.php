@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Asset;
 
 use Ndpv\Helper\Fns;

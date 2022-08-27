@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Meta; 
  
 use Ndpv\Ctrl\Meta\User\User;

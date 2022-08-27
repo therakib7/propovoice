@@ -75,23 +75,23 @@ class Payment extends Component {
         const { payment_methods } = this.props.data
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-form-accordion pi-additional">
+            <div className="pv-form-accordion pv-additional">
                 {this.state.payments.map((row, i) => {
                     if (wage.length > 0) {
                         if (row.method_id !== 'bank') return;
                     }
 
                     return (
-                        <div className="pi-tab" key={i}>
-                            <input type="checkbox" defaultChecked={payment_methods.hasOwnProperty(row.method_id)} id={"pi-payment-" + row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pi-payment-type" />
-                            <label className={(payment_methods.hasOwnProperty(row.method_id) ? 'pi-active' : '') + ' pi-tab-label'} htmlFor={"pi-payment-" + row.method_id}>
+                        <div className="pv-tab" key={i}>
+                            <input type="checkbox" defaultChecked={payment_methods.hasOwnProperty(row.method_id)} id={"pv-payment-" + row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pv-payment-type" />
+                            <label className={(payment_methods.hasOwnProperty(row.method_id) ? 'pv-active' : '') + ' pv-tab-label'} htmlFor={"pv-payment-" + row.method_id}>
                                 {row.method_name}
                             </label>
-                            <div className="pi-tab-content">
+                            <div className="pv-tab-content">
                                 {row.list.map((single, i_single) => {
                                     return (
-                                        <div className="pi-payment-bank-content" key={i_single} onClick={() => this.setPayment(single, 'id')} >
-                                            <div className="pi-payment-image">
+                                        <div className="pv-payment-bank-content" key={i_single} onClick={() => this.setPayment(single, 'id')} >
+                                            <div className="pv-payment-image">
                                                 <span>
                                                     <svg
                                                         width={20}
@@ -125,13 +125,13 @@ class Payment extends Component {
 
                                                 {(row.method_id == 'paypal' || row.method_id == 'stripe') &&
                                                     <>
-                                                        <h4 className="pi-payment-title">{single.account_name}</h4>
+                                                        <h4 className="pv-payment-title">{single.account_name}</h4>
                                                     </>
                                                 }
 
                                                 {row.method_id == 'bank' &&
                                                     <>
-                                                        <h4 className="pi-payment-title">{single.name}</h4>
+                                                        <h4 className="pv-payment-title">{single.name}</h4>
                                                     </>
                                                 }
                                             </div>
@@ -144,7 +144,7 @@ class Payment extends Component {
                 })}
 
                 {!this.state.payments.length &&
-                    <div className='pi-payment-buttons'>
+                    <div className='pv-payment-buttons'>
                         {this.state.bankModal && <FormBank
                             handleSubmit={this.handleSubmit}
                             show={this.state.bankModal}
@@ -153,7 +153,7 @@ class Payment extends Component {
                             close={() => this.setState({ bankModal: false })}
                         />}
                         <button
-                            className='pi-btn pi-bg-blue pi-bg-hover-blue pi-hover-color-white'
+                            className='pv-btn pv-bg-blue pv-bg-hover-blue pv-hover-color-white'
                             // onClick={this.goToPayment}
                             onClick={() => this.setState({ bankModal: true })}
                         >

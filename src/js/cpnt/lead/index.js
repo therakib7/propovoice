@@ -23,7 +23,7 @@ const Lead = (props) => {
 			<Breadcrumb title={title} />
 			<div className="row">
 				<div className="col">
-					<h2 className="pi-page-title">{title}</h2>
+					<h2 className="pv-page-title">{title}</h2>
 				</div>
 				<div className="col">
 					<AddNew
@@ -33,8 +33,8 @@ const Lead = (props) => {
 				</div>
 			</div>
 
-			{false && <div className="pi-buttons-group pi-mb-20">
-				<button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
+			{false && <div className="pv-buttons-group pv-mb-20">
+				<button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
 					<svg
 						width={20}
 						height={20}
@@ -86,7 +86,7 @@ const Lead = (props) => {
 						/>
 					</svg>
 				</button>
-				<button className="pi-btn pi-btn-icon pi-bg-hover-shadow">
+				<button className="pv-btn pv-btn-icon pv-bg-hover-shadow">
 					<svg
 						width={20}
 						height={20}

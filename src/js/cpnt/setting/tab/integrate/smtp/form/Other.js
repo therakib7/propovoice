@@ -67,8 +67,8 @@ export default class Form extends Component {
         const i18n = ndpv.i18n;
         const { host, port, secure, auth, user, pass } = this.state.form;
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
-                <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>Other SMTP</h4>
+            <form onSubmit={this.handleSubmit} className="pv-form-style-one">
+                <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>Other SMTP</h4>
 
                 <div className="row">
                     <div className="col-md">
@@ -109,7 +109,7 @@ export default class Form extends Component {
                         </label> 
 
                         <div style={{ display: 'flex' }}>
-                            <div className="pi-field-radio" style={{marginRight: 20}}>
+                            <div className="pv-field-radio" style={{marginRight: 20}}>
                                 <input
                                     type='radio'
                                     id="secure_"
@@ -121,7 +121,7 @@ export default class Form extends Component {
                                 <label htmlFor="secure_">None</label>
                             </div>
 
-                            <div className="pi-field-radio" style={{marginRight: 20}}>
+                            <div className="pv-field-radio" style={{marginRight: 20}}>
                                 <input
                                     type='radio'
                                     id="secure_ssl"
@@ -133,7 +133,7 @@ export default class Form extends Component {
                                 <label htmlFor="secure_ssl">SSL</label>
                             </div>
 
-                            <div className="pi-field-radio" style={{marginRight: 20}}>
+                            <div className="pv-field-radio" style={{marginRight: 20}}>
                                 <input
                                     type='radio'
                                     id="secure_tls"
@@ -145,22 +145,22 @@ export default class Form extends Component {
                                 <label htmlFor="secure_tls">TLS</label>
                             </div> 
                         </div>
-                        {/* <p class="pi-field-desc">TLS is not the same as STARTTLS, For Most servers SSL is the recommended option.</p> */}
+                        {/* <p class="pv-field-desc">TLS is not the same as STARTTLS, For Most servers SSL is the recommended option.</p> */}
                     </div>
                     <div className="col-md">
                         <label htmlFor="field-auth">
                             Authentication
                         </label>
 
-                        <div className="pi-field-switch pi-field-switch-big" style={{ display: 'block' }}>
-                            <label className='pi-switch'>
+                        <div className="pv-field-switch pv-field-switch-big" style={{ display: 'block' }}>
+                            <label className='pv-switch'>
                                 <input type='checkbox'
                                     id="reminder-auth"
                                     name='auth'
                                     checked={auth ? 'checked' : ''}
                                     onChange={this.handleChange}
                                 />
-                                <span className='pi-switch-slider pi-round'></span>
+                                <span className='pv-switch-slider pv-round'></span>
                             </label>
                         </div>
                     </div>
@@ -199,7 +199,7 @@ export default class Form extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
+                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
                             {i18n.act}
                         </button>
                     </div>

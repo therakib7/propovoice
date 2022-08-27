@@ -116,7 +116,7 @@ const Setting = (props) => {
 
     return (
         <>
-            <nav className='pi-breadcrumb'>
+            <nav className='pv-breadcrumb'>
                 <ul>
                     <li><a href='#'>{i18n.home}</a></li>
                     <li>
@@ -135,30 +135,30 @@ const Setting = (props) => {
                             />
                         </svg>
                     </li>
-                    <li className='pi-active'>{i18n.settings}</li>
+                    <li className='pv-active'>{i18n.settings}</li>
                 </ul>
             </nav>
 
-            <h2 className='pi-page-title'>{i18n.settings}</h2>
+            <h2 className='pv-page-title'>{i18n.settings}</h2>
 
-            <div className='pi-settings-tab'>
+            <div className='pv-settings-tab'>
                 <div className='row'>
                     <div className='col-md-3'>
-                        <ul className='pi-settings-tabs'>
+                        <ul className='pv-settings-tabs'>
                             {Object.keys(tabs).map(key =>
                                 <li
                                     key={key}
-                                    className={'pi-tab ' + (key == currentTab ? 'pi-active' : '')}
+                                    className={'pv-tab ' + (key == currentTab ? 'pv-active' : '')}
                                 >
                                     <a onClick={(e) => addCurrentTab(e, key)}>
                                         {tabs[key].label}
                                     </a>
 
-                                    {tabs[key].hasOwnProperty('subtabs') && tabs[key].subtabs && <ul className='pi-settings-subtabs'>
+                                    {tabs[key].hasOwnProperty('subtabs') && tabs[key].subtabs && <ul className='pv-settings-subtabs'>
                                         {Object.keys(tabs[key].subtabs).map(subkey =>
                                             <li
                                                 key={subkey}
-                                                className={'pi-subtab ' + ((subkey == currentSubtab) || (!currentSubtab && Object.keys(tabs[key].subtabs)[0] == subkey) ? 'pi-active' : '')}
+                                                className={'pv-subtab ' + ((subkey == currentSubtab) || (!currentSubtab && Object.keys(tabs[key].subtabs)[0] == subkey) ? 'pv-active' : '')}
                                             >
                                                 <a onClick={(e) => addCurrentTab(e, key, subkey)}>
                                                     {tabs[key].subtabs[subkey].label}
@@ -172,8 +172,8 @@ const Setting = (props) => {
                     </div>
 
                     <div className='col-md-9'>
-                        <div className="pi-setting-tab-content">
-                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label} {i18n.settings}</h4>
+                        <div className="pv-setting-tab-content">
+                            <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label} {i18n.settings}</h4>
 
                             <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && <General />}

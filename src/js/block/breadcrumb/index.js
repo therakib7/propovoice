@@ -1,7 +1,7 @@
 
 export default (props) => {
 	return (
-		<nav className="pi-breadcrumb">
+		<nav className="pv-breadcrumb">
 			<ul className="">
 				<li>
 					<a href="#" className="">
@@ -24,7 +24,7 @@ export default (props) => {
 						/>
 					</svg>
 				</li>
-				<li className="pi-active">{props.title}</li>
+				<li className="pv-active">{props.title}</li>
 			</ul>
 		</nav>
 	);

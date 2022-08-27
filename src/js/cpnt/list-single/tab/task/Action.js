@@ -19,8 +19,8 @@ const Action = (props) => {
     const row = props.row;
     const i18n = ndpv.i18n;
     return (
-        <div className="pi-action-content pi-action-btn pi-bg-shadow">
-            <button className={(dropdown ? 'dpi-active' : '')} onClick={() => showDropdown()}>
+        <div className="pv-action-content pv-action-btn pv-bg-shadow">
+            <button className={(dropdown ? 'dpv-active' : '')} onClick={() => showDropdown()}>
                 <svg
                     width={20}
                     height={20}
@@ -49,7 +49,7 @@ const Action = (props) => {
                 </svg>
             </button>
 
-            {dropdown && <div className="pi-dropdown-content pi-show" ref={dropdownRef}>
+            {dropdown && <div className="pv-dropdown-content pv-show" ref={dropdownRef}>
                 <a onClick={() => { setDropdown(false); props.editEntry('edit', row) }}>{i18n.edit}</a>
                 <a onClick={() => { setDropdown(false); props.deleteEntry() }}>{i18n.del}</a>
             </div>}

@@ -1,6 +1,6 @@
 const Snipper = props => {
   return (
-    <div className="pi-preloader"></div>
+    <div className="pv-preloader"></div>
   )
 }
 export default Snipper

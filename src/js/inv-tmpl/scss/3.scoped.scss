@@ -1,31 +1,31 @@
 /* ====template three===*/
-.pi-inv .pi-inv-three .pi-inv-body {
+.pv-inv .pv-inv-three .pv-inv-body {
   margin: 0 35px;
 }
-.pi-inv .pi-inv-three .pi-inv-top-shape {
+.pv-inv .pv-inv-three .pv-inv-top-shape {
   padding-bottom: 30px;
   position: relative;
 }
-.pi-inv .pi-inv-three .pi-inv-top-shape .pi-inv-shape1 {
+.pv-inv .pv-inv-three .pv-inv-top-shape .pv-inv-shape1 {
   width: 170px;
   position: absolute;
   top: -2px;
   z-index: 10;
   left: -36px;
 }
-.pi-inv .pi-inv-three .pi-inv-top-shape .pi-inv-shape1 svg {
-  fill: var(--pi-inv-primary);
+.pv-inv .pv-inv-three .pv-inv-top-shape .pv-inv-shape1 svg {
+  fill: var(--pv-inv-primary);
 }
-.pi-inv .pi-inv-three .pi-inv-top-shape .pi-inv-shape2 {
+.pv-inv .pv-inv-three .pv-inv-top-shape .pv-inv-shape2 {
   position: absolute;
   top: 8px;
   left: -36px;
   z-index: 10;
 }
-.pi-inv .pi-inv-three .pi-inv-top-shape .pi-inv-shape2 svg {
-  fill: var(--pi-inv-primary);
+.pv-inv .pv-inv-three .pv-inv-top-shape .pv-inv-shape2 svg {
+  fill: var(--pv-inv-primary);
 }
-.pi-inv .pi-inv-three .pi-inv-top-shape .pi-inv-shape3 {
+.pv-inv .pv-inv-three .pv-inv-top-shape .pv-inv-shape3 {
   width: 187px;
   height: 187px;
   position: absolute;
@@ -33,25 +33,25 @@
   z-index: 0;
   left: -36px;
 }
-.pi-inv .pi-inv-three .pi-inv-top-shape .pi-inv-shape3 svg {
-  fill: var(--pi-inv-primary);
+.pv-inv .pv-inv-three .pv-inv-top-shape .pv-inv-shape3 svg {
+  fill: var(--pv-inv-primary);
 }
-.pi-inv .pi-inv-three .pi-inv-title h2 {
+.pv-inv .pv-inv-three .pv-inv-title h2 {
   text-align: center;
 }
-.pi-inv .pi-inv-from-logo {
+.pv-inv .pv-inv-from-logo {
   margin-bottom: 18px;
 }
-.pi-inv .pi-inv-three .pi-inv-items table thead {
-  background-color: var(--pi-inv-primary);
+.pv-inv .pv-inv-three .pv-inv-items table thead {
+  background-color: var(--pv-inv-primary);
 }
-.pi-inv .pi-inv-three .pi-inv-items table tbody tr:nth-child(even) {
-  background-color: var(--pi-inv-even);
+.pv-inv .pv-inv-three .pv-inv-items table tbody tr:nth-child(even) {
+  background-color: var(--pv-inv-even);
 }
-.pi-inv .pi-inv-three .pi-inv-items table tbody tr:nth-child(odd) {
-  background-color: var(--pi-inv-odd);
+.pv-inv .pv-inv-three .pv-inv-items table tbody tr:nth-child(odd) {
+  background-color: var(--pv-inv-odd);
 }
-.pi-inv .pi-inv-three .pi-inv-footer-shape {
+.pv-inv .pv-inv-three .pv-inv-footer-shape {
   position: absolute;
   right: 34px;
   bottom: 0;

@@ -18,11 +18,11 @@ export default (props) => {
     const recurring = props.data;
     return (
         <div className="">
-            <div className="pi-form-style-one">
+            <div className="pv-form-style-one">
                 <div className="row">
                     <div className="col-12">
                         <label>How often?</label>
-                        <div className="pi-field-radio">
+                        <div className="pv-field-radio">
                             <input
                                 type='radio'
                                 id="interval_type_day"
@@ -33,7 +33,7 @@ export default (props) => {
                             />
                             <label htmlFor="interval_type_day">Daily</label>
                         </div>
-                        <div className="pi-field-radio">
+                        <div className="pv-field-radio">
                             <input
                                 type='radio'
                                 id="interval_type_week"
@@ -44,7 +44,7 @@ export default (props) => {
                             />
                             <label htmlFor="interval_type_week">Weekly</label>
                         </div>
-                        <div className="pi-field-radio">
+                        <div className="pv-field-radio">
                             <input
                                 type='radio'
                                 id="interval_type_month"
@@ -55,7 +55,7 @@ export default (props) => {
                             />
                             <label htmlFor="interval_type_month">Monthly</label>
                         </div>
-                        <div className="pi-field-radio pi-field-radio-input">
+                        <div className="pv-field-radio pv-field-radio-input">
                             <input
                                 type='radio'
                                 id="interval_type_custom"
@@ -64,7 +64,7 @@ export default (props) => {
                                 checked={recurring.interval_type == 'custom'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="interval_type_custom" className="pi-mr-10">Interval In</label>
+                            <label htmlFor="interval_type_custom" className="pv-mr-10">Interval In</label>
                             <input
                                 type="number"
                                 id="recurring-interval"
@@ -88,7 +88,7 @@ export default (props) => {
 
                     <div className="col-12">
                         <label>How Many?</label>
-                        <div className="pi-field-radio">
+                        <div className="pv-field-radio">
                             <input
                                 type='radio'
                                 id="limit_type_0"
@@ -99,7 +99,7 @@ export default (props) => {
                             />
                             <label htmlFor="limit_type_0">On going</label>
                         </div>
-                        <div className="pi-field-radio pi-field-radio-input">
+                        <div className="pv-field-radio pv-field-radio-input">
                             <input
                                 type='radio'
                                 id="limit_type_1"
@@ -108,7 +108,7 @@ export default (props) => {
                                 checked={recurring.limit_type == '1'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="limit_type_1" className="pi-mr-10">Limit</label>
+                            <label htmlFor="limit_type_1" className="pv-mr-10">Limit</label>
                             <input
                                 type="number"
                                 id="recurring-limit"
@@ -116,13 +116,13 @@ export default (props) => {
                                 value={recurring.limit}
                                 onChange={handleChange}
                                 style={{width: '55px'}}
-                            /> <span className="pi-times">Times</span>
+                            /> <span className="pv-times">Times</span>
                         </div>
                     </div>
 
                     <div className="col-12">
                         <label>{i18n.select} {i18n.delivery} {i18n.option}</label>
-                        <div className="pi-field-radio">
+                        <div className="pv-field-radio">
                             <input
                                 type='radio'
                                 id="recurring-delivery-auto"
@@ -133,7 +133,7 @@ export default (props) => {
                             />
                             <label htmlFor="recurring-delivery-auto">Send automatically</label>
                         </div>
-                        <div className="pi-field-radio">
+                        <div className="pv-field-radio">
                             <input
                                 type='radio'
                                 id="recurring-delivery-manual"
@@ -149,15 +149,15 @@ export default (props) => {
                 <div className="row">
                     <div className="col-12">
                         <label id="recurring-send_me">Send me a copy</label>
-                        <div className="pi-field-switch pi-ml-10">
-                            <label className='pi-switch'>
+                        <div className="pv-field-switch pv-ml-10">
+                            <label className='pv-switch'>
                                 <input type='checkbox'
                                     id="recurring-send_me"
                                     name='send_me'
                                     checked={recurring.send_me ? 'checked' : ''}
                                     onChange={handleChange}
                                 />
-                                <span className='pi-switch-slider pi-round'></span>
+                                <span className='pv-switch-slider pv-round'></span>
                             </label>
                         </div>
                     </div>

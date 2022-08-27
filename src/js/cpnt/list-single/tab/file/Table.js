@@ -94,14 +94,14 @@ const TableBody = props => {
                     <span><a target='_blank' href={row.url}>{row.title}</a></span>
                 </td>
                 <td>
-                    <div className="pi-avater">
+                    <div className="pv-avater">
                         <img src={row.upload_by} alt="avatar" />
                     </div>
                 </td>
                 <td>{row.date}</td>
-                <td className="pi-action">
-                    <div className="pi-action-content">
-                        <button className={(row.id == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(row.id)}>
+                <td className="pv-action">
+                    <div className="pv-action-content">
+                        <button className={(row.id == dropdown ? 'pv-active' : '')} onClick={() => showDropdown(row.id)}>
                             <svg
                                 width={24}
                                 height={24}
@@ -129,7 +129,7 @@ const TableBody = props => {
                                 />
                             </svg>
                         </button>
-                        {row.id == dropdown && <div className="pi-dropdown-content pi-show"
+                        {row.id == dropdown && <div className="pv-dropdown-content pv-show"
                         // ref={popover}
                         >
                             {row.type == 'link' && <a onClick={() => props.editEntry('edit', row)}>{i18n.edit}</a>}
@@ -148,8 +148,8 @@ const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
-            {tableData.length > 0 && <div className='pi-table-wrap'>
-                <table className='pi-table pi-table-three'>
+            {tableData.length > 0 && <div className='pv-table-wrap'>
+                <table className='pv-table pv-table-three'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
                 </table>

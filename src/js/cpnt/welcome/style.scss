@@ -1,9 +1,9 @@
 //TODO: do it like main 
 //rakib code
-.ndpv .pi-field-logo-wrap {
+.ndpv .pv-field-logo-wrap {
   margin-top: 10px;
 
-  .pi-field-logo {
+  .pv-field-logo {
     position: relative;
     display: inline-block;
 
@@ -12,7 +12,7 @@
     }
   }
 
-  .pi-field-logo-close {
+  .pv-field-logo-close {
     background: #fff;
     position: absolute;
     top: -8px;
@@ -30,31 +30,31 @@
 }
 
 //from reza start
-.ndpv .pi-main-content {
-  background-color: var(--pi-bg-color-white);
+.ndpv .pv-main-content {
+  background-color: var(--pv-bg-color-white);
   margin: 80px 0;
 }
 
-.ndpv .pi-welcome-tabs-content {
+.ndpv .pv-welcome-tabs-content {
   position: relative;
 }
 
-.ndpv .pi-welcome-title-content {
+.ndpv .pv-welcome-title-content {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.ndpv .pi-welcome-title-content .pi-welcome-title {
+.ndpv .pv-welcome-title-content .pv-welcome-title {
   font-weight: 700;
   font-size: 24px;
 }
 
-.ndpv .pi-welcome-title-content .pi-welcome-disc {
+.ndpv .pv-welcome-title-content .pv-welcome-disc {
   font-size: 14px;
   margin-top: 5px;
 }
 
-.ndpv .pi-container {
+.ndpv .pv-container {
   left: 0;
   right: 0;
   margin: auto;
@@ -64,33 +64,33 @@
   padding: 80px 60px 65px;
 }
 
-.ndpv .pi-container.pi-p-tb {
+.ndpv .pv-container.pv-p-tb {
   padding: 30px 60px 40px;
 }
 
 @media screen and (max-width: 768px) {
-  .ndpv .pi-container {
+  .ndpv .pv-container {
     padding: 30px !important;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .ndpv .pi-container {
+  .ndpv .pv-container {
     padding: 15px;
   }
 
-  .ndpv .pi-main-content {
+  .ndpv .pv-main-content {
     margin-top: 30px;
     padding: 15px;
   }
 }
 
-.ndpv .pi-logo-content {
+.ndpv .pv-logo-content {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.ndpv .pi-buttons.pi-text-center a {
+.ndpv .pv-buttons.pv-text-center a {
   display: table;
   color: #000;
   left: 0;
@@ -100,26 +100,26 @@
   font-weight: 600;
 }
 
-.ndpv #pi-finished .pi-buttons.pi-text-center a:last-child {
-  color: var(--pi-text-color-white);
+.ndpv #pv-finished .pv-buttons.pv-text-center a:last-child {
+  color: var(--pv-text-color-white);
   margin-right: 0;
 }
 
 @media screen and (max-width: 500px) {
-  .ndpv #pi-finished .pi-buttons.pi-text-center a {
+  .ndpv #pv-finished .pv-buttons.pv-text-center a {
     margin-bottom: 15px;
   }
 }
 
-.ndpv .pi-welcome-tabs-content #pi-welcome p {
+.ndpv .pv-welcome-tabs-content #pv-welcome p {
   margin-bottom: 70px;
 }
 
-.ndpv .pi-welcome-tabs-content #pi-finished .pi-sub-title {
+.ndpv .pv-welcome-tabs-content #pv-finished .pv-sub-title {
   margin-bottom: 45px;
 }
 
-.ndpv .pi-welcome-tabs-content #pi-finished .pi-buttons a {
+.ndpv .pv-welcome-tabs-content #pv-finished .pv-buttons a {
   padding: 2px 10px;
   font-weight: 600;
   border-radius: 8px;
@@ -132,16 +132,16 @@
   margin-top: 15px;
 }
 
-.ndpv .pi-welcome-tabs-content #pi-finished .pi-buttons a:first-child {
+.ndpv .pv-welcome-tabs-content #pv-finished .pv-buttons a:first-child {
   margin-left: 0px;
 }
 
-.ndpv .pi-tab-content #pi-brand img {
+.ndpv .pv-tab-content #pv-brand img {
   text-align: center;
   margin-bottom: 5px;
 }
 
-.ndpv .pi-tab-content #pi-brand .pi-upload {
+.ndpv .pv-tab-content #pv-brand .pv-upload {
   font-size: 14px;
   margin-bottom: 60px !important;
   margin-top: 12px !important;
@@ -154,7 +154,7 @@
   border-radius: 5px;
 }
 
-.ndpv .pi-tab-content #pi-brand input {
+.ndpv .pv-tab-content #pv-brand input {
   width: 120px;
   font-size: 10px;
   padding: 13px;
@@ -166,7 +166,7 @@
   opacity: 0;
 }
 
-.ndpv #pi-finished h1 {
+.ndpv #pv-finished h1 {
   font-weight: 500;
   line-height: 40px;
   margin-top: 20px;

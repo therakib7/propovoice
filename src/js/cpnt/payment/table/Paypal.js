@@ -4,8 +4,8 @@ const TableBody = props => {
 
     let rows = props.tableData.map((row, index) => {
         return (
-            <li className="pi-bg-pearl" key={index}>
-                <div className="pi-edit">
+            <li className="pv-bg-pearl" key={index}>
+                <div className="pv-edit">
                     <span onClick={() => props.editEntry('edit', row)}>
                         <svg
                             width={10}
@@ -42,7 +42,7 @@ const TableBody = props => {
                         </svg>
                     </span>
                 </div>
-                <div className="pi-item-content">
+                <div className="pv-item-content">
                     <span>
                         <svg
                             width={23}
@@ -74,8 +74,8 @@ const TableBody = props => {
                         </svg>
                     </span>
                 </div>
-                <div className="pi-text-content">
-                    <h2 className="pi-title-medium">{row.account_name}</h2>
+                <div className="pv-text-content">
+                    <h2 className="pv-title-medium">{row.account_name}</h2>
                 </div>
             </li>
         );

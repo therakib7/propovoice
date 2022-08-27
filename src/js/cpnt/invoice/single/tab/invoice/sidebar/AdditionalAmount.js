@@ -54,8 +54,8 @@ export default (props) => {
     const extra_field = props.data;
     return (
         <>
-            <div className="pi-form-accordion pi-additional">
-                <div className="pi-form-style-one">
+            <div className="pv-form-accordion pv-additional">
+                <div className="pv-form-style-one">
                     <div className="row">
                         <div className="col" style={{ marginBottom: '10px' }}>
                             <label id="form-item_tax">
@@ -64,15 +64,15 @@ export default (props) => {
                                     <ProLabel />
                                 </>}
                             </label>
-                            <div className="pi-field-switch pi-ml-10">
-                                <label className='pi-switch'>
+                            <div className="pv-field-switch pv-ml-10">
+                                <label className='pv-switch'>
                                     <input type='checkbox'
                                         id="form-item_tax"
                                         name='item_tax'
                                         checked={props.item_tax ? 'checked' : ''}
                                         onChange={itemTaxChange}
                                     />
-                                    <span className='pi-switch-slider pi-round'></span>
+                                    <span className='pv-switch-slider pv-round'></span>
                                 </label>
                             </div>
                         </div>
@@ -99,25 +99,25 @@ export default (props) => {
                     }
 
                     return (
-                        <div className="pi-tab" key={i}>
+                        <div className="pv-tab" key={i}>
                             <input checked={hasItem ? true : false} onChange={() => setAdditional(i, item, 'field')} type="checkbox" id={'additional-field-' + i} name="additional-field" />
-                            <label className={(hasItem ? 'pi-active' : '') + ' pi-tab-label'} htmlFor={'additional-field-' + i}>
+                            <label className={(hasItem ? 'pv-active' : '') + ' pv-tab-label'} htmlFor={'additional-field-' + i}>
                                 {item.label}
                             </label>
-                            <div className="pi-tab-content">
-                                <div className="pi-form-style-one">
-                                    <div className="pi-radio-content">
-                                        <div className="pi-radio-group">
+                            <div className="pv-tab-content">
+                                <div className="pv-form-style-one">
+                                    <div className="pv-radio-content">
+                                        <div className="pv-radio-group">
                                             <h4>{item.label} Type:</h4>
                                             <div className='row'>
                                                 <div className='col'>
-                                                    <div className='pi-field-radio'>
+                                                    <div className='pv-field-radio'>
                                                         <input onChange={() => setAdditional(i, item, 'type', 'percent')} defaultChecked={percent_val_type} type="radio" name={"val-type-" + i} id={"val-type-percent-" + i} value='percent' />
                                                         <label htmlFor={"val-type-percent-" + i}>Percent</label>
                                                     </div>
                                                 </div>
-                                                <div className='col pi-p-0'>
-                                                    <div className='pi-field-radio'>
+                                                <div className='col pv-p-0'>
+                                                    <div className='pv-field-radio'>
                                                         <input onChange={() => setAdditional(i, item, 'type', 'fixed')} defaultChecked={fixed_val_type} type="radio" name={"val-type-" + i} id={"val-type-fixed-" + i} value='fixed' />
                                                         <label htmlFor={"val-type-fixed-" + i}>Fixed</label>
                                                     </div>

@@ -73,12 +73,12 @@ const Task = (props) => {
                 close={props.closeForm}
             />}
 
-            {!props.dashboard && <div className="pi-small-button-group">
-                <h3 className="pi-title-small">{i18n.my} {i18n.work}</h3>
+            {!props.dashboard && <div className="pv-small-button-group">
+                <h3 className="pv-title-small">{i18n.my} {i18n.work}</h3>
                 {lists.task_status && lists.task_status.map((status, statusIndex) => {
                     return (
                         <button key={statusIndex}
-                            className={'pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow ' + ((activeTab == status.id) || (!activeTab && statusIndex == 0) ? 'pi-active' : '')}
+                            className={'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow ' + ((activeTab == status.id) || (!activeTab && statusIndex == 0) ? 'pv-active' : '')}
                             onClick={() => { setActiveTab(status.id); props.getLists({ status_id: status.id }); }}
                         >
                             {status.label}
@@ -93,13 +93,13 @@ const Task = (props) => {
                     {props.dashboard && <Table dashboard tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />}
 
                     {!props.dashboard &&
-                        <div className="pi-accordion">
+                        <div className="pv-accordion">
                             {lists.today.length > 0 &&
                                 <>
-                                    <input type="radio" name="pi-accordion" defaultChecked={openTodayTab} id="pi-task-today" />
-                                    <section className="pi-accordion-table">
-                                        <label className="pi-accordion-title" htmlFor="pi-task-today">
-                                            <span className="pi-down-angle">
+                                    <input type="radio" name="pv-accordion" defaultChecked={openTodayTab} id="pv-task-today" />
+                                    <section className="pv-accordion-table">
+                                        <label className="pv-accordion-title" htmlFor="pv-task-today">
+                                            <span className="pv-down-angle">
                                                 <svg
                                                     width={11}
                                                     height={7}
@@ -118,8 +118,8 @@ const Task = (props) => {
                                             </span>
                                             <b>{i18n.today}</b>
                                         </label>
-                                        <label className="pi-table-close" htmlFor="pi-acc-close" />
-                                        <div className="pi-accordion-content">
+                                        <label className="pv-table-close" htmlFor="pv-acc-close" />
+                                        <div className="pv-accordion-content">
                                             <Table tableData={lists.today} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
@@ -128,10 +128,10 @@ const Task = (props) => {
 
                             {lists.other.length > 0 &&
                                 <>
-                                    <input type="radio" name="pi-accordion" defaultChecked={openOtherTab} id="pi-task-other" />
-                                    <section className="pi-accordion-table">
-                                        <label className="pi-accordion-title" htmlFor="pi-task-other">
-                                            <span className="pi-down-angle">
+                                    <input type="radio" name="pv-accordion" defaultChecked={openOtherTab} id="pv-task-other" />
+                                    <section className="pv-accordion-table">
+                                        <label className="pv-accordion-title" htmlFor="pv-task-other">
+                                            <span className="pv-down-angle">
                                                 <svg
                                                     width={11}
                                                     height={7}
@@ -150,8 +150,8 @@ const Task = (props) => {
                                             </span>
                                             <b>{i18n.othrday}</b>
                                         </label>
-                                        <label className="pi-table-close" htmlFor="pi-acc-close" />
-                                        <div className="pi-accordion-content">
+                                        <label className="pv-table-close" htmlFor="pv-acc-close" />
+                                        <div className="pv-accordion-content">
                                             <Table tableData={lists.other} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
@@ -160,10 +160,10 @@ const Task = (props) => {
 
                             {lists.unschedule.length > 0 &&
                                 <>
-                                    <input type="radio" name="pi-accordion" defaultChecked={openUnscheduleTab} id="pi-task-unschedule" />
-                                    <section className="pi-accordion-table">
-                                        <label className="pi-accordion-title" htmlFor="pi-task-unschedule">
-                                            <span className="pi-down-angle">
+                                    <input type="radio" name="pv-accordion" defaultChecked={openUnscheduleTab} id="pv-task-unschedule" />
+                                    <section className="pv-accordion-table">
+                                        <label className="pv-accordion-title" htmlFor="pv-task-unschedule">
+                                            <span className="pv-down-angle">
                                                 <svg
                                                     width={11}
                                                     height={7}
@@ -182,14 +182,14 @@ const Task = (props) => {
                                             </span>
                                             <b>{i18n.unschedule}</b>
                                         </label>
-                                        <label className="pi-table-close" htmlFor="pi-acc-close" />
-                                        <div className="pi-accordion-content">
+                                        <label className="pv-table-close" htmlFor="pv-acc-close" />
+                                        <div className="pv-accordion-content">
                                             <Table tableData={lists.unschedule} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>
                             }
-                            <input type="radio" name="pi-accordion" id="pi-acc-close" />
+                            <input type="radio" name="pv-accordion" id="pv-acc-close" />
                         </div>}
                 </>
             }

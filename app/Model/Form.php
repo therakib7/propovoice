@@ -1,9 +1,21 @@
-<?php
-
+<?php 
 namespace Ndpv\Model;
 
 class Form
 {
+    protected function get_value( $fields, $tag ) {
+        $value = '';
+        if (  $fields ) {
+            foreach ( $fields as $svalue) {
+                if ($svalue['id'] == $tag) {
+                    $value = $svalue['value'];
+                    break;
+                }
+            }
+        }
+        return $value;
+    }
+
     public function contact_form_7()
     {
         $forms = [];
@@ -34,15 +46,8 @@ class Form
                 ];
 
                 foreach ($cf7->collect_mail_tags() as $tag) {
-                    $value = '';
-                    if ($get_data['fields']) {
-                        foreach ($get_data['fields'] as $svalue) {
-                            if ($svalue['id'] == $tag) {
-                                $value = $svalue['value'];
-                                break;
-                            }
-                        }
-                    }
+                    $value = $this->get_value( $get_data['fields'], $tag); 
+
                     $form['fields'][] = [
                         'id'    => $tag,
                         'label' => "[{$tag}]",
@@ -74,15 +79,7 @@ class Form
             $wpform_fields = wpforms_get_form_fields($wpform);
 
             foreach ($wpform_fields as $wpform_field) {
-                $value = '';
-                if ($get_data['fields']) {
-                    foreach ($get_data['fields'] as $svalue) {
-                        if ($svalue['id'] == $wpform_field['id']) {
-                            $value = $svalue['value'];
-                            break;
-                        }
-                    }
-                }
+                $value = $this->get_value( $get_data['fields'], $wpform_field['id']);  
 
                 $form['fields'][] = [
                     'id'    => $wpform_field['id'],
@@ -119,16 +116,8 @@ class Form
             foreach ($fields as $field) {
                 $field_id = $field->get_id();
                 $field_settings = $field->get_settings();
-
-                $value = '';
-                if ($get_data['fields']) {
-                    foreach ($get_data['fields'] as $svalue) {
-                        if ($svalue['id'] == $field_id) {
-                            $value = $svalue['value'];
-                            break;
-                        }
-                    }
-                }
+ 
+                $value = $this->get_value( $get_data['fields'], $field_id);  
 
                 $form['fields'][] = [
                     'id'    => $field_id,
@@ -163,16 +152,10 @@ class Form
             foreach ($form_meta['fields'] as $field) {
                 $field = \GF_Fields::create($field);
 
-                if (empty($field['inputs'])) {
-                    $value = '';
-                    if ($get_data['fields']) {
-                        foreach ($get_data['fields'] as $svalue) {
-                            if ($svalue['id'] == $field->id) {
-                                $value = $svalue['value'];
-                                break;
-                            }
-                        }
-                    }
+                if (empty($field['inputs'])) { 
+
+                    $value = $this->get_value( $get_data['fields'], $field->id);  
+                    
                     $form['fields'][] = [
                         'id'    => $field->id,
                         'label' => $field->label,

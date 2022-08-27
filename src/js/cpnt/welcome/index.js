@@ -109,20 +109,20 @@ export default class Welcome extends Component {
         const { tabs = [], currentTab, currentTabIndex } = this.state;
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-main-content">
+            <div className="pv-main-content">
 
-                <div className="pi-container">
-                    <div className="pi-logo-content" style={{ justifyContent: 'center' }}>
+                <div className="pv-container">
+                    <div className="pv-logo-content" style={{ justifyContent: 'center' }}>
                         <img src={ndpv.assetImgUri + 'site-logo.png'} />
                         <strong >Propovoice</strong>
                     </div>
 
-                    <div className="pi-welcome-tabs-content">
-                        <ul className="pi-tabs">
+                    <div className="pv-welcome-tabs-content">
+                        <ul className="pv-tabs">
                             {tabs.map((tab, index) => (
-                                <li className={'pi-tab ' + (index <= currentTabIndex ? 'pi-active' : '')} key={index} onClick={(e) => this.setActiveTab(tab.id, index)}>
+                                <li className={'pv-tab ' + (index <= currentTabIndex ? 'pv-active' : '')} key={index} onClick={(e) => this.setActiveTab(tab.id, index)}>
                                     {index <= currentTabIndex &&
-                                        <span className="pi-done">
+                                        <span className="pv-done">
                                             <svg
                                                 width={10}
                                                 height={10}
@@ -142,22 +142,22 @@ export default class Welcome extends Component {
                             ))}
                         </ul>
 
-                        <div className="pi-tab-content">
+                        <div className="pv-tab-content">
                             {currentTab == 'welcome' &&
-                                <div id="pi-welcome">
+                                <div id="pv-welcome">
                                     <p>
                                         Welcome to Propovice. Propovice help you to create professional invoice and estimate for your client. You can send and track easily.
                                     </p>
-                                    <div className="pi-buttons pi-text-center">
-                                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
+                                    <div className="pv-buttons pv-text-center">
+                                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
                                         {i18n.create} {i18n.business} {i18n.profile}
                                         </button>
-                                        <a href={ndpv.dashboard} className="pi-text-hover-blue">{i18n.skip} {i18n.nd} {i18n.go} {i18n.db}</a>
+                                        <a href={ndpv.dashboard} className="pv-text-hover-blue">{i18n.skip} {i18n.nd} {i18n.go} {i18n.db}</a>
                                     </div>
                                 </div>}
 
                             {currentTab == 'info' &&
-                                <div id="pi-business">
+                                <div id="pv-business">
                                     <Info
                                         data={this.state.business}
                                         handleSubmit={this.handleSubmit}
@@ -166,7 +166,7 @@ export default class Welcome extends Component {
                                 </div>}
 
                             {currentTab == 'branding' &&
-                                <div id="pi-brand">
+                                <div id="pv-brand">
                                     <Branding
                                         data={this.state.business}
                                         changeHandler={this.handleBrandingChange}
@@ -177,19 +177,19 @@ export default class Welcome extends Component {
 
                             {currentTab == 'finish' &&
 
-                                <div id="pi-finished">
-                                    <div className="pi-text-center">
+                                <div id="pv-finished">
+                                    <div className="pv-text-center">
                                         <img src={ndpv.assetImgUri + 'rocket.png'} />
-                                        <h1 className="pi-title">Everything Done! What do you want to do first?</h1>
-                                        <p className="pi-sub-title">
+                                        <h1 className="pv-title">Everything Done! What do you want to do first?</h1>
+                                        <p className="pv-sub-title">
                                             You can create Estimate, Invoice and Others
                                         </p>
                                     </div>
-                                    <div className="row pi-item-main-content pi-mt-m-15">
+                                    <div className="row pv-item-main-content pv-mt-m-15">
                                         <div className="col-md-6">
                                             <a href={ndpv.dashboard + '#/lead'}>
-                                                <div className="pi-item-content pi-bg-stroke">
-                                                    <div className="pi-add-image-content">
+                                                <div className="pv-item-content pv-bg-stroke">
+                                                    <div className="pv-add-image-content">
                                                         <svg
                                                             width={36}
                                                             height={32}
@@ -223,7 +223,7 @@ export default class Welcome extends Component {
                                                             />
                                                         </svg>
                                                     </div>
-                                                    <div className="pi-add-item-text">
+                                                    <div className="pv-add-item-text">
                                                         <h3>{i18n.add} {i18n.lead}</h3>
                                                         <p>Easily add new client with just a few clicks.</p>
                                                     </div>
@@ -232,8 +232,8 @@ export default class Welcome extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <a href={ndpv.dashboard + '#/client'}>
-                                                <div className="pi-item-content pi-bg-stroke">
-                                                    <div className="pi-add-image-content">
+                                                <div className="pv-item-content pv-bg-stroke">
+                                                    <div className="pv-add-image-content">
                                                         <svg
                                                             width={36}
                                                             height={32}
@@ -267,7 +267,7 @@ export default class Welcome extends Component {
                                                             />
                                                         </svg>
                                                     </div>
-                                                    <div className="pi-add-item-text">
+                                                    <div className="pv-add-item-text">
                                                         <h3>{i18n.add} {i18n.client} </h3>
                                                         <p>Easily add new client with just a few clicks.</p>
                                                     </div>
@@ -276,8 +276,8 @@ export default class Welcome extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <a href={ndpv.dashboard + '#/estimate'}>
-                                                <div className="pi-item-content pi-bg-stroke">
-                                                    <div className="pi-add-image-content">
+                                                <div className="pv-item-content pv-bg-stroke">
+                                                    <div className="pv-add-image-content">
                                                         <svg
                                                             width={36}
                                                             height={36}
@@ -307,7 +307,7 @@ export default class Welcome extends Component {
                                                             />
                                                         </svg>
                                                     </div>
-                                                    <div className="pi-add-item-text">
+                                                    <div className="pv-add-item-text">
                                                         <h3>{i18n.create} {i18n.est}</h3>
                                                         <p>
                                                             The easiest way to create a project estimate to send your client
@@ -318,8 +318,8 @@ export default class Welcome extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <a href={ndpv.dashboard + '#/invoice'}>
-                                                <div className="pi-item-content pi-bg-stroke">
-                                                    <div className="pi-add-image-content">
+                                                <div className="pv-item-content pv-bg-stroke">
+                                                    <div className="pv-add-image-content">
                                                         <svg
                                                             width={36}
                                                             height={36}
@@ -349,7 +349,7 @@ export default class Welcome extends Component {
                                                             />
                                                         </svg>
                                                     </div>
-                                                    <div className="pi-add-item-text">
+                                                    <div className="pv-add-item-text">
                                                         <h3>{i18n.create} {i18n.est}</h3>
                                                         <p>
                                                             The easiest way to create a project estimate to send your client
@@ -359,8 +359,8 @@ export default class Welcome extends Component {
                                             </a>
                                         </div>
                                     </div>
-                                    <div className="pi-buttons pi-text-center">
-                                        <a href={ndpv.dashboard} className="pi-text-hover-blue pi-color-black">{i18n.skip} {i18n.nd} {i18n.explore}</a>
+                                    <div className="pv-buttons pv-text-center">
+                                        <a href={ndpv.dashboard} className="pv-text-hover-blue pv-color-black">{i18n.skip} {i18n.nd} {i18n.explore}</a>
                                     </div>
                                 </div>
 

@@ -10,14 +10,14 @@ const ProModal = () => {
     useClickOutside(myRef, close);
 
     const hide = () => {
-        document.getElementById('pi-pro-alert').style.display = 'none';
+        document.getElementById('pv-pro-alert').style.display = 'none';
     };
 
     return (
-        <div id="pi-pro-alert" className="pi-overlay" style={{ display: 'none' }}>
-            <div className="pi-modal-content pi-text-center pi-modal-pro-alert" ref={myRef}>
-                <div className="pi-modal-header">
-                    <span className="pi-close" onClick={() => hide()}>
+        <div id="pv-pro-alert" className="pv-overlay" style={{ display: 'none' }}>
+            <div className="pv-modal-content pv-text-center pv-modal-pro-alert" ref={myRef}>
+                <div className="pv-modal-header">
+                    <span className="pv-close" onClick={() => hide()}>
                         <svg
                             width={24}
                             height={24}
@@ -41,7 +41,7 @@ const ProModal = () => {
                             />
                         </svg>
                     </span>
-                    <span className="pi-lock">
+                    <span className="pv-lock">
                         <svg
                             width={63}
                             height={62}
@@ -80,8 +80,8 @@ const ProModal = () => {
                         </svg>
                     </span>
                 </div>
-                <div className="pi-pro-text">
-                    <h2 className="pi-modal-title">
+                <div className="pv-pro-text">
+                    <h2 className="pv-modal-title">
                         <svg
                             width={41}
                             height={41}
@@ -106,7 +106,7 @@ const ProModal = () => {
                     <p>This is pro features, To use this features you need to upgrade with Pro plugin</p>
                     <a
                         href='https://propovoice.com/pricing'
-                        className='pi-btn pi-bg-blue pi-bg-hover-blue pi-color-white'
+                        className='pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white'
                         target='_blank'
                         onClick={() => hide()}
                     >Upgrade to Pro</a>

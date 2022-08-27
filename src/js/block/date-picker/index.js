@@ -6,9 +6,9 @@ import "react-datepicker/dist/react-datepicker.css";
 const CustomInput = React.forwardRef((props, ref) => {
 	return (
 		<>
-			{props.type != 'start_date' && <div className="pi-info-input-field">
+			{props.type != 'start_date' && <div className="pv-info-input-field">
 				<input type="text" onClick={props.onClick} ref={ref} placeholder={props.value || props.placeholder} />
-				<span className="pi-calendar" onClick={props.onClick}>
+				<span className="pv-calendar" onClick={props.onClick}>
 					<svg
 						width={16}
 						height={16}
@@ -26,7 +26,7 @@ const CustomInput = React.forwardRef((props, ref) => {
 				</span>
 			</div>}
 
-			{props.type == 'start_date' && <button className='pi-task-btn' type='button' onClick={props.onClick}>
+			{props.type == 'start_date' && <button className='pv-task-btn' type='button' onClick={props.onClick}>
 				{props.value && <span>{props.value}</span>}
 				{/* {props.value && <span onClick={() => props.clear(null, props.type)}>x</span>} */}
 				<svg

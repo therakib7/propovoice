@@ -70,12 +70,12 @@ class Section extends Component {
         const { sections } = this.state;
         const i18n = ndpv.i18n;
         return (
-            <div className='pi-inv-sections pi-form-style-one' style={ { margin: ( this.props.top ? '35px 0 45px' : '') }}>
+            <div className='pv-inv-sections pv-form-style-one' style={ { margin: ( this.props.top ? '35px 0 45px' : '') }}>
                 {sections.map((section_single, index) => {
                     return (
-                        <div className="pi-group-input" key={index}>
+                        <div className="pv-group-input" key={index}>
 
-                            <div className='pi-field-label'>
+                            <div className='pv-field-label'>
                                 <Editable
                                     key={index}
                                     value={section_single.label}
@@ -83,7 +83,7 @@ class Section extends Component {
                                     changeHandler={this.handleSectionLabel}
                                 />
                                 <span
-                                    className="pi-close-icon"
+                                    className="pv-close-icon"
                                     onClick={() => this.deleteHandler(index)}
                                 >
                                     <svg
@@ -105,7 +105,7 @@ class Section extends Component {
                                 </span>
                             </div>
 
-                            <div className="pi-editor" style={{ marginBottom: '25px' }}>
+                            <div className="pv-editor" style={{ marginBottom: '25px' }}>
                                 <Editor
                                     key={index}
                                     value={section_single.content}
@@ -118,7 +118,7 @@ class Section extends Component {
                 })}
 
                 <button
-                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
+                    className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
                     onClick={() => this.addSection()}
                     style={{ width: "100%", justifyContent: "center" }}
                 >

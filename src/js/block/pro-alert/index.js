@@ -1,3 +1,3 @@
 export default function pro() { 
-    document.getElementById('pi-pro-alert').style.display = 'block';
+    document.getElementById('pv-pro-alert').style.display = 'block';
 }

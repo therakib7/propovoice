@@ -57,7 +57,7 @@ export default class General extends Component {
     render() {
         const i18n = ndpv.i18n;
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one"> 
+            <form onSubmit={this.handleSubmit} className="pv-form-style-one"> 
                 <div className="row">
                     <div className="col">
                         <label>{i18n.taska} {i18n.status}</label>

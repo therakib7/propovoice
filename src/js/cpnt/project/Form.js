@@ -236,20 +236,20 @@ class Form extends Component {
         }
         const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content">
 
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()}>
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()}>
                             <Cross />
                         </span>
-                        <h2 className="pi-modal-title">{title} Project</h2>
+                        <h2 className="pv-modal-title">{title} Project</h2>
                         <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.project + ' ' +i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
-                        <div className="pi-content">
-                            <div className="pi-form-style-one">
+                        <div className="pv-content">
+                            <div className="pv-form-style-one">
 
                                 {/* {!this.props.reload && <> */}
                                 <Contact
@@ -345,7 +345,7 @@ class Form extends Component {
                                         </label>
 
                                         <Select
-                                            className={'pi-field-select'}
+                                            className={'pv-field-select'}
                                             value={form.status_id}
                                             onChange={this.handleStageChange}
                                             getOptionValue={(stageList) => stageList.id}
@@ -360,7 +360,7 @@ class Form extends Component {
                                         <label htmlFor="field-start_date">
                                         {i18n.start} {i18n.date}
                                         </label>
-                                        <div className='pi-field-date'>
+                                        <div className='pv-field-date'>
                                             <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
                                         </div>
                                     </div>
@@ -369,7 +369,7 @@ class Form extends Component {
                                         <label htmlFor="field-start_date">
                                         {i18n.due} {i18n.date}
                                         </label>
-                                        <div className='pi-field-date'>
+                                        <div className='pv-field-date'>
                                             <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
                                         </div>
                                     </div>
@@ -381,7 +381,7 @@ class Form extends Component {
                                         {i18n.tag}
                                         </label>
                                         <Select
-                                            className={'pi-field-select'}
+                                            className={'pv-field-select'}
                                             value={form.tags}
                                             onChange={this.handleTagChange}
                                             getOptionValue={(tagList) => tagList.id}
@@ -426,13 +426,13 @@ class Form extends Component {
                             </div>
                         </div>
 
-                        <div className="pi-modal-footer">
+                        <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
+                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
                                         {i18n.save}
                                     </button>
                                 </div>

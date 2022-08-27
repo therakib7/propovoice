@@ -96,10 +96,10 @@ export default class Main extends Component {
         return (
             <>
                 {loading ? <Spinner /> : <>
-                    {!currentTab && <div className="pi-intg-list">
+                    {!currentTab && <div className="pv-intg-list">
                         {list.map((item, i) => (
-                            <div key={i} className="pi-intg-item" onClick={() => this.addCurrentTab(item)}>
-                                {item.active && <div className="pi-checked">
+                            <div key={i} className="pv-intg-item" onClick={() => this.addCurrentTab(item)}>
+                                {item.active && <div className="pv-checked">
                                     <svg
                                         width={12}
                                         height={11}

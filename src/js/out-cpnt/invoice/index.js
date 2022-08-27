@@ -23,7 +23,7 @@ const EditDownload = props => {
             <ReactToPrint
                 content={() => props.componentRef}
                 trigger={() => <button
-                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
+                    className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
                 // style={{ color: '#000', marginRight: '5px' }}
                 // onClick={() => props.handleDownload()}
                 >
@@ -57,7 +57,7 @@ const EditDownload = props => {
                 content={() => props.componentRef}
                 // pageStyle="@page { size: 2.5in 4in }"
                 trigger={() => <button
-                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow pi-mr-5"
+                    className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
                 // style={{ color: '#000', marginRight: '5px' }}
                 // onClick={() => props.handlePrint()}
                 >
@@ -111,7 +111,7 @@ const InvoiceBtn = props => {
             {props.type == 'estimate' &&
                 <>
                     <button
-                        className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white"
+                        className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
                         onClick={() => props.handleChange('feedback', 'accept')}
                         style={{ marginRight: '5px' }}
                     >
@@ -119,7 +119,7 @@ const InvoiceBtn = props => {
                     </button>
 
                     <button
-                        className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
+                        className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
                         style={{ color: '#000' }}
                         onClick={() => props.handleChange('feedback', 'decline')}
                     >
@@ -142,7 +142,7 @@ const InvoiceBtn = props => {
                     </div>
 
                     <button
-                        className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white"
+                        className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
                         style={{ marginLeft: '10px' }}
                         onClick={() => props.handleChange('payment', selected_method.id)}
                     >
@@ -285,31 +285,31 @@ export default class Invoice extends Component {
                 <ToastContainer hideProgressBar />
                 <iframe id="ndpv-invoice-print" style={{ margin: 0, padding: 0, height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
-                    <div className='col-md-8 pi-no-print' style={{ margin: '30px 0' }}>
+                    <div className='col-md-8 pv-no-print' style={{ margin: '30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
-                            <div className='pi-float-left'><EditDownload componentRef={this.componentRef} /></div>
-                            <div className='pi-float-right'>
+                            <div className='pv-float-left'><EditDownload componentRef={this.componentRef} /></div>
+                            <div className='pv-float-right'>
                                 <InvoiceBtn status={this.state.status} handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{ list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod }} />
                             </div>
                         </div>
                     </div>
 
                     <div className='col-md-8'>
-                        <div className='pi-inv-hidden-preview' style={{ position: 'absolute', left: 9999 }} ref={this.previewRef} >
+                        <div className='pv-inv-hidden-preview' style={{ position: 'absolute', left: 9999 }} ref={this.previewRef} >
                             {this.state.fromData && <InvTemplate data={this.state} isPreviewLoaded={this.isPreviewLoaded} />}
                         </div>
 
-                        <div className='pi-inv-preview-wrap'>
-                            <div className='pi-inv-preview' ref={(response) => (this.componentRef = response)} >
+                        <div className='pv-inv-preview-wrap'>
+                            <div className='pv-inv-preview' ref={(response) => (this.componentRef = response)} >
                                 {this.state.fromData && <InvTemplate data={this.state} height={this.state.previewHeight} />}
                             </div>
                         </div>
                     </div>
 
-                    <div className='col-md-8 pi-no-print' style={{ margin: '30px 0' }}>
+                    <div className='col-md-8 pv-no-print' style={{ margin: '30px 0' }}>
                         <div className='' style={{ maxWidth: '794px', margin: '0 auto' }}>
-                            <div className='pi-float-left'><EditDownload componentRef={this.componentRef} /></div>
-                            <div className='pi-float-right'>
+                            <div className='pv-float-left'><EditDownload componentRef={this.componentRef} /></div>
+                            <div className='pv-float-right'>
                                 <InvoiceBtn status={this.state.status} handleChange={this.handleClick} type={this.state.invoice.path} payment_methods={{ list: this.state.payment_methods, selected: this.state.selected_payment_method, changeMethod: this.changePaymentMethod }} />
                             </div>
                         </div>

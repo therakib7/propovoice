@@ -89,9 +89,9 @@ export default class Template extends Component {
     render() {
         const i18n = ndpv.i18n;
         return (
-            <div id="pi-tab-template" className="pi-invoice-tab-content">
-                <h2 className='pi-page-title'>{i18n.select} {i18n.tmpl}</h2>
-                <div className="row pi-gap pi-margin-l-r">
+            <div id="pv-tab-template" className="pv-invoice-tab-content">
+                <h2 className='pv-page-title'>{i18n.select} {i18n.tmpl}</h2>
+                <div className="row pv-gap pv-margin-l-r">
 
                     {this.state.preloader && <Preloader />}
 
@@ -99,14 +99,14 @@ export default class Template extends Component {
                         this.state.templates.map((row, index) => {
                             return (
                                 <div className="col-12 col-md-6 col-lg-3" key={index}>
-                                    <div className='pi-single-image-content'>
-                                        <img src={row.src} className={'pi-single-image ' + (this.props.currentTemplate == row.id ? 'pi-active' : '')} />
-                                        {(this.props.currentTemplate != row.id) && <div className="pi-overflow-content">
-                                            <a className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>{i18n.select}</a>
+                                    <div className='pv-single-image-content'>
+                                        <img src={row.src} className={'pv-single-image ' + (this.props.currentTemplate == row.id ? 'pv-active' : '')} />
+                                        {(this.props.currentTemplate != row.id) && <div className="pv-overflow-content">
+                                            <a className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue" onClick={() => this.selectEntry(row)}>{i18n.select}</a>
                                             <a
                                                 href={'https://appux.co/ncpi/preview/inv' + row.id + '.html'}
                                                 target="_blank"
-                                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
+                                                className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
                                             >{i18n.full} {i18n.prv}</a>
                                         </div>}
                                     </div>
@@ -125,7 +125,7 @@ export default class Template extends Component {
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
-                    containerClassName={"pi-pagination"}
+                    containerClassName={"pv-pagination"}
                     activeClassName={"active"} />
                 }
             </div>

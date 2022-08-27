@@ -1,19 +1,19 @@
-.ndpv .pi-payment-tab-content {
+.ndpv .pv-payment-tab-content {
   margin-top: 20px;
   border-radius: 8px;
 }
 
 @media screen and (max-width: 992px) {
-  .ndpv .pi-payment-tab-content {
+  .ndpv .pv-payment-tab-content {
     width: 100%;
   }
 }
 
-.ndpv .pi-payment-tab-content .pi-title-content h2 {
+.ndpv .pv-payment-tab-content .pv-title-content h2 {
   font-size: 20px;
 }
 
-.ndpv .pi-payment-tab-content .pi-title-content h5 {
+.ndpv .pv-payment-tab-content .pv-title-content h5 {
   font-size: 14px;
   font-weight: 500;
   margin-top: 5px;
@@ -21,7 +21,7 @@
   color: #2D3748;
 }
 
-.ndpv .pi-payment-tab-content .pi-btn {
+.ndpv .pv-payment-tab-content .pv-btn {
   display: block;
   margin: auto;
   margin-top: 20px;
@@ -29,11 +29,11 @@
   font-weight: 500;
 }
 
-.ndpv .pi-payment-tab-content ul {
+.ndpv .pv-payment-tab-content ul {
   margin: 0;
 }
 
-.ndpv .pi-payment-tab-content ul li {
+.ndpv .pv-payment-tab-content ul li {
   display: flex;
   padding: 15px;
   position: relative;
@@ -41,7 +41,7 @@
   margin-bottom: 10px;
 }
 
-.ndpv .pi-payment-tab-content ul li .pi-edit {
+.ndpv .pv-payment-tab-content ul li .pv-edit {
   right: 0px;
   position: absolute;
   background: #fff;
@@ -51,32 +51,32 @@
   height: 22px;
 }
 
-.ndpv .pi-payment-tab-content ul li .pi-edit span {
+.ndpv .pv-payment-tab-content ul li .pv-edit span {
   background: #fff;
   padding: 4px 6px;
   border-radius: 50%;
   cursor: pointer;
 }
 
-.ndpv .pi-payment-tab-content ul li .pi-edit span:hover {
+.ndpv .pv-payment-tab-content ul li .pv-edit span:hover {
   box-shadow: 3px 3px 4px 3px rgba(205, 202, 205, 0.18);
 }
 
-.ndpv .pi-payment-tab-content ul li .pi-edit span:hover svg path {
-  fill: var(--pi-bg-color-blue);
+.ndpv .pv-payment-tab-content ul li .pv-edit span:hover svg path {
+  fill: var(--pv-bg-color-blue);
 }
 
-.ndpv .pi-payment-tab-content ul li .pi-item-content {
+.ndpv .pv-payment-tab-content ul li .pv-item-content {
   display: flex;
   align-items: center;
   overflow: hidden;
 }
 
-.ndpv .pi-payment-tab-content ul li .pi-item-content .pi-text-content {
+.ndpv .pv-payment-tab-content ul li .pv-item-content .pv-text-content {
   align-self: center;
 }
 
-.ndpv .pi-payment-tab-content ul li .pi-item-content span {
+.ndpv .pv-payment-tab-content ul li .pv-item-content span {
   margin-right: 20px;
   display: flex;
   padding: 15px 13px;
@@ -85,29 +85,29 @@
   align-self: center;
 }
 
-.ndpv .pi-payment-tab-content ul li .pi-item-content h2 {
+.ndpv .pv-payment-tab-content ul li .pv-item-content h2 {
   line-height: 100%;
 }
 
-.ndpv .pi-payment-tab-content ul li .pi-item-content p {
+.ndpv .pv-payment-tab-content ul li .pv-item-content p {
   margin: 0;
   color: #718096;
   margin-top: 10px;
 }
 
-.ndpv .pi-payment-tab-content ul .pi-btn {
+.ndpv .pv-payment-tab-content ul .pv-btn {
   display: flex;
   margin: auto;
   margin-top: 30px;
 }
 
-.ndpv .pi-payment-tab-content ul .pi-btn svg {
+.ndpv .pv-payment-tab-content ul .pv-btn svg {
   margin-top: 2px;
   margin-right: 5px;
 }
 
-.ndpv .pi-payment-tab-content ul .pi-btn svg path {
+.ndpv .pv-payment-tab-content ul .pv-btn svg path {
   margin-top: 2px;
   margin-right: 5px;
-  fill: var(--pi-text-color-white);
+  fill: var(--pv-text-color-white);
 }

@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Taxonomy;
 
 use Ndpv\Ctrl\Taxonomy\Type\ContactStatus;

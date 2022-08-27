@@ -95,16 +95,16 @@ export default class Template extends Component {
         return (
             <>
                 {this.props.show &&
-                    <div className="pi-overlay pi-show">
-                        <div className="pi-modal-content">
-                            <div className="pi-modal-header">
-                                <h2 className="pi-modal-title pi-text-center">{i18n.mi} {i18n.gallery}</h2>
-                                <span className="pi-close" onClick={() => this.props.close()}>×</span>
+                    <div className="pv-overlay pv-show">
+                        <div className="pv-modal-content">
+                            <div className="pv-modal-header">
+                                <h2 className="pv-modal-title pv-text-center">{i18n.mi} {i18n.gallery}</h2>
+                                <span className="pv-close" onClick={() => this.props.close()}>×</span>
                             </div>
 
-                            <div className="pi-content">
+                            <div className="pv-content">
                                 <button
-                                    className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'upload' ? 'pi-bg-blue pi-color-white' : '')}
+                                    className={'pv-btn pv-bg-air-white pv-bg-hover-blue pv-hover-color-white ' + (this.state.currentTab == 'upload' ? 'pv-bg-blue pv-color-white' : '')}
                                     onClick={(e) => { e.preventDefault(); this.setState({ currentTab: 'upload' }) }}
                                 >
                                     <svg
@@ -126,7 +126,7 @@ export default class Template extends Component {
                                 </button>
 
                                 <button
-                                    className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'gallery' ? 'pi-bg-blue pi-color-white' : '')}
+                                    className={'pv-btn pv-bg-air-white pv-bg-hover-blue pv-hover-color-white ' + (this.state.currentTab == 'gallery' ? 'pv-bg-blue pv-color-white' : '')}
                                     onClick={(e) => { e.preventDefault(); this.setState({ currentTab: 'gallery' }) }}
                                 >
                                     <svg
@@ -146,14 +146,14 @@ export default class Template extends Component {
                                     {i18n.gallery}
                                 </button>
 
-                                {this.state.currentTab == 'upload' && <div className="pi-media-upload">
+                                {this.state.currentTab == 'upload' && <div className="pv-media-upload">
                                     <Dropzone newMedia={this.newMedia} />
                                 </div>}
 
                                 {this.state.currentTab == 'gallery' &&
                                     <>
-                                        <div className="pi-media-gallery">
-                                            <div className="row pi-gap pi-margin-l-r">
+                                        <div className="pv-media-gallery">
+                                            <div className="row pv-gap pv-margin-l-r">
 
                                                 {this.state.preloader && <Preloader />}
 
@@ -161,10 +161,10 @@ export default class Template extends Component {
                                                     this.state.templates.map((row, index) => {
                                                         return (
                                                             <div className="col-12 col-md-6 col-lg-3" key={index}>
-                                                                <div className={(this.state.selectedItem.id == row.id) ? 'pi-single-image-content pi-active' : 'pi-single-image-content'}>
-                                                                    <img src={row.src} className="pi-single-image" />
-                                                                    {(this.state.selectedItem.id != row.id) && <div className="pi-overflow-content">
-                                                                        <a className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
+                                                                <div className={(this.state.selectedItem.id == row.id) ? 'pv-single-image-content pv-active' : 'pv-single-image-content'}>
+                                                                    <img src={row.src} className="pv-single-image" />
+                                                                    {(this.state.selectedItem.id != row.id) && <div className="pv-overflow-content">
+                                                                        <a className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
                                                                     </div>}
                                                                 </div>
                                                             </div>
@@ -186,8 +186,8 @@ export default class Template extends Component {
                                                 activeClassName={"active"} />
                                             }
                                         </div>
-                                        <div className="pi-footer-content pi-text-center">
-                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                                        <div className="pv-footer-content pv-text-center">
+                                            <button className="pv-btn pv-bg-blue pv-bg-hover-blue"
                                                 onClick={(e) => { e.preventDefault(); this.insertMedia() }}
                                             >
                                                 {i18n.in}
