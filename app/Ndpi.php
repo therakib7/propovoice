@@ -32,17 +32,17 @@ final class Ndpi {
     }
 
     public function init() {
-        do_action('ncpi_before_init');
+        do_action('ndpv_before_init');
 
         $this->load_plugin_textdomain();
         
         new MainCtrl();  
 
-        do_action('ncpi_init');
+        do_action('ndpv_init');
     }
 
     public function on_plugins_loaded() { 
-        do_action('ndpi_loaded');        
+        do_action('ndpv_loaded');        
     }   
 
     /**
@@ -51,9 +51,9 @@ final class Ndpi {
     public function load_plugin_textdomain() {
          
         $locale = determine_locale();
-        $locale = apply_filters('ncpi_plugin_locale', $locale );
+        $locale = apply_filters('ndpv_plugin_locale', $locale );
         unload_textdomain('propovoice');
-        load_textdomain('propovoice', WP_LANG_DIR . '/ncpi/ncpi-' . $locale . '.mo');
+        load_textdomain('propovoice', WP_LANG_DIR . '/ndpv/ndpv-' . $locale . '.mo');
         load_plugin_textdomain('propovoice', false, plugin_basename(dirname(NCPI_FILE)) . '/languages');
     }
  

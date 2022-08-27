@@ -8,7 +8,7 @@
 - Clone git repository
 ```shell script
 git clone git@github.com:therakib7/ndpi.git
-cd ncpi
+cd ndpv
 ```
 - Generate vendor autoload files
 ```shell script
@@ -21,7 +21,7 @@ npm install
 
 ## Changes
 - You need to change NCPI Project to your plugin name
-- You need to change ncpi to your plugin slug
+- You need to change ndpv to your plugin slug
 - Set name space composer.json psr-4 to tour unique namespace for the app folder
 ```json
 {
@@ -44,11 +44,11 @@ function ndpi() {
 
 ndpi();
 // TO =>
-function your_ncpi_function() {
+function your_ndpv_function() {
     return Ndpi::getInstance();
 }
 
-your_ncpi_function();
+your_ndpv_function();
 ```
 
 ## NPM Helper comment
