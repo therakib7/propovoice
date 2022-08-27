@@ -22,7 +22,7 @@ const TableBody = props => {
                     <li style={{ width: '45%' }} className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
                         <div className={"pi-task-type " + (props.dashboard ? 'pi-mt-10' : '')}>
                             {row.type_id.icon && <img src={row.type_id.icon.src} />}
-                            {!row.type_id.icon && <img src={ndpi.assetImgUri + 'task-type/task.png'} alt="" />}
+                            {!row.type_id.icon && <img src={ndpv.assetImgUri + 'task-type/task.png'} alt="" />}
 
                         </div>
                         <div className="pi-task-type-text">
@@ -54,10 +54,10 @@ const TableBody = props => {
                         </div>
                     </li>
                     <li style={{ width: '20%' }}>
-                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title={ndpi.i18n.status} small color />
+                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title={ndpv.i18n.status} small color />
                     </li>
                     <li style={{ width: '20%' }}>
-                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title={ndpi.i18n.prior}  small color />
+                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title={ndpv.i18n.prior}  small color />
                     </li>
                     {/* <li style={{ width: '15%' }}>
                         <Taxonomy id={row.id} data={row.priority_id} taxonomy='task_priority' title='Priority' small color />

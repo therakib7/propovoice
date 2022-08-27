@@ -22,7 +22,7 @@ export default (props) => {
         "#5b7cea", 
     ];
 
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <div className="pi-punnel pi-border-gray" style={{ minHeight: '435px', marginBottom: '30px' }}>
             <h3

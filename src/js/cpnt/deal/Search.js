@@ -40,7 +40,7 @@ export default class Form extends Component {
 
     render() {
         const { title, showing, showItem, total } = this.props;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-search-bar">
                 <div className="pi-search-box pi-medium-search-bar">

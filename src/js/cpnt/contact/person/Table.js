@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import Action from 'block/action/row';
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
@@ -60,7 +60,7 @@ const TableBody = props => {
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>
                     <div className="pi-avater">
-                        <img src={row.img ? row.img.src : ndpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                        <img src={row.img ? row.img.src : ndpv.assetImgUri + 'avatar.png'} alt="avatar" />
                         <span>{row.first_name}</span>
                     </div>
                 </td>

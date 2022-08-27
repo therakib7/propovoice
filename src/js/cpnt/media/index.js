@@ -91,7 +91,7 @@ export default class Template extends Component {
     };
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <>
                 {this.props.show &&
@@ -182,7 +182,7 @@ export default class Template extends Component {
                                                 marginPagesDisplayed={2}
                                                 pageRangeDisplayed={5}
                                                 onPageChange={this.handlePageClick}
-                                                containerClassName={"ncpi-pagination text-base mt-5 shadow"}
+                                                containerClassName={"ndpv-pagination text-base mt-5 shadow"}
                                                 activeClassName={"active"} />
                                             }
                                         </div>

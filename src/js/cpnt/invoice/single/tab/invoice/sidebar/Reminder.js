@@ -18,7 +18,7 @@ export default (props) => {
     }
 
     const reminder = props.data;
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <div>
             <div className="pi-form-style-one">

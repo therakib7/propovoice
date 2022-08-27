@@ -10,7 +10,7 @@ import Paypal from './payment/Paypal';
 import Stripe from './payment/Stripe';
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
@@ -23,7 +23,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    {props.path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est} ID
+                    {props.path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est} ID
                 </th>
                 {/* <th>
                     Project
@@ -78,7 +78,7 @@ const TableBody = props => {
         let path = props.path;
         navigate(`/${path}/single/${id}${view}`);
     }
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
 
     let rows = props.tableData.map((row, index) => {
 
@@ -93,43 +93,43 @@ const TableBody = props => {
             case 'draft':
                 status = <span className='pi-badge pi-bg-pink'
                 // style={{color: '#fff'}}
-                >{ndpi.i18n.dft}</span>
+                >{ndpv.i18n.dft}</span>
                 break;
 
             case 'sent':
                 status = <span className='pi-badge pi-bg-gray'
                 // style={{color: '#fff'}}
-                >{ndpi.i18n.sent}</span>
+                >{ndpv.i18n.sent}</span>
                 break;
 
             case 'viewed':
                 status = <span className='pi-badge pi-bg-orange'
                 // style={{color: '#999'}}
-                >{ndpi.i18n.viewed}</span>
+                >{ndpv.i18n.viewed}</span>
                 break;
 
             case 'accept':
                 status = <span className='pi-badge pi-bg-blue pi-cursor-pointer'
                     style={{ color: '#fff' }}
-                    onClick={() => props.infoModal(row, 'feedback')}>{ndpi.i18n.accept}</span>
+                    onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.accept}</span>
                 break;
 
             case 'decline':
                 status = <span className='pi-badge pi-bg-red pi-cursor-pointer'
                     style={{ color: '#fff' }}
-                    onClick={() => props.infoModal(row, 'feedback')}>{ndpi.i18n.dec}</span>
+                    onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.dec}</span>
                 break;
 
             case 'paid_req':
                 status = <span className='pi-badge pi-bg-orange'
                     style={{ color: '#4a5568' }}
-                >{ndpi.i18n.paid} {ndpi.i18n.req}</span>
+                >{ndpv.i18n.paid} {ndpv.i18n.req}</span>
                 break;
 
             case 'paid':
                 status = <span className='pi-badge pi-bg-blue'
                     style={{ color: '#fff' }}
-                >{ndpi.i18n.paid}</span>
+                >{ndpv.i18n.paid}</span>
                 break;
         }
 
@@ -150,13 +150,13 @@ const TableBody = props => {
 
         let invoice_id = row.id;
         let invoice_token = row.token;
-        let url = row.path == 'invoice' ? ndpi.invoice_page_url : ndpi.estimate_page_url;
+        let url = row.path == 'invoice' ? ndpv.invoice_page_url : ndpv.estimate_page_url;
 
         //replace text with id and token
         let result = url.replace('invoice_id', invoice_id);
         let client_url = result.replace('invoice_token', invoice_token);
 
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <tr key={index}>
                 <td>

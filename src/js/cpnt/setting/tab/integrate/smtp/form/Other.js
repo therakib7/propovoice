@@ -64,7 +64,7 @@ export default class Form extends Component {
     }
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         const { host, port, secure, auth, user, pass } = this.state.form;
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">

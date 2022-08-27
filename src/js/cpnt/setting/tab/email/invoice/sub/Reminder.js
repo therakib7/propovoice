@@ -62,7 +62,7 @@ export default class Reminder extends Component {
     }
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">
 

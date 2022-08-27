@@ -152,7 +152,7 @@ const Taxonomy = (props) => {
 		});
 	}
 
-	const i18n = ndpi.i18n;
+	const i18n = ndpv.i18n;
 	return (
 		<>
 			{props.multiple && listById && listById.map((item, itemIndex) => {

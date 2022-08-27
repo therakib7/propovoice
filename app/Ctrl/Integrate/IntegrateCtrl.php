@@ -1,9 +1,9 @@
 <?php
 
-namespace Ndpi\Ctrl\Integrate;
+namespace Ndpv\Ctrl\Integrate;
 
-use Ndpi\Ctrl\Integrate\Form\FormCtrl;
-use Ndpi\Ctrl\Integrate\Smtp\SmtpCtrl;
+use Ndpv\Ctrl\Integrate\Form\FormCtrl;
+use Ndpv\Ctrl\Integrate\Smtp\SmtpCtrl;
 
 class IntegrateCtrl
 {

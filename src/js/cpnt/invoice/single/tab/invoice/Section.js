@@ -68,7 +68,7 @@ class Section extends Component {
 
     render = () => {
         const { sections } = this.state;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className='pi-inv-sections pi-form-style-one' style={ { margin: ( this.props.top ? '35px 0 45px' : '') }}>
                 {sections.map((section_single, index) => {

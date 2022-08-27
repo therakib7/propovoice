@@ -14,7 +14,7 @@ const TableBody = props => {
                 />
 
                 <div className="pi-avater">
-                    <img src={ndpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                    <img src={ndpv.assetImgUri + 'avatar.png'} alt="avatar" />
                 </div>
 
                 <div className="pi-note-text">

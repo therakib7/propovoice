@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Model;
+namespace Ndpv\Model;
 
 
 class Contact
@@ -12,7 +12,7 @@ class Contact
         $offset = 0;  
 
         $args = array(
-            'post_type' => 'ndpi_' . $type,
+            'post_type' => 'ndpv_' . $type,
             'post_status' => 'publish',
             'fields' => 'ids',
             'posts_per_page' => $per_page,

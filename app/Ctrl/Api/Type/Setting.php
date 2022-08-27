@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Api\Type; 
+namespace Ndpv\Ctrl\Api\Type; 
 
 class Setting {
 
@@ -9,13 +9,13 @@ class Setting {
     }
 
     public function rest_routes() {
-        register_rest_route( 'ndpi/v1', '/settings', [
+        register_rest_route( 'ndpv/v1', '/settings', [
             'methods' => 'GET',
             'callback' => [ $this, 'get' ],
             'permission_callback' => [ $this, 'get_permission' ]
         ] );
 
-        register_rest_route( 'ndpi/v1', '/settings', [
+        register_rest_route( 'ndpv/v1', '/settings', [
             'methods' => 'POST',
             'callback' => [ $this, 'create' ],
             'permission_callback' => [ $this, 'create_permission' ]
@@ -38,7 +38,7 @@ class Setting {
             $data = [];
 
             if ( $tab == 'email_social' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -70,7 +70,7 @@ class Setting {
             }
 
             if ( $tab == 'estimate_reminder' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -83,7 +83,7 @@ class Setting {
             }
 
             if ( $tab == 'invoice_reminder' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -96,62 +96,62 @@ class Setting {
             }
 
             if ( $tab == 'email_estimate_default' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ndpi()->get_default('email_template', 'estimate', 'default', 'subject');
-                    $data['msg'] = ndpi()->get_default('email_template', 'estimate', 'default', 'msg'); 
+                    $data['subject'] = ndpv()->get_default('email_template', 'estimate', 'default', 'subject');
+                    $data['msg'] = ndpv()->get_default('email_template', 'estimate', 'default', 'msg'); 
                 }
             }
 
             if ( $tab == 'email_estimate_reminder' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ndpi()->get_default('email_template', 'estimate', 'reminder', 'subject');
-                    $data['msg'] = ndpi()->get_default('email_template', 'estimate', 'reminder', 'msg');
+                    $data['subject'] = ndpv()->get_default('email_template', 'estimate', 'reminder', 'subject');
+                    $data['msg'] = ndpv()->get_default('email_template', 'estimate', 'reminder', 'msg');
                 }
             }
 
             if ( $tab == 'email_invoice_default' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ndpi()->get_default('email_template', 'invoice', 'default', 'subject');
-                    $data['msg'] = ndpi()->get_default('email_template', 'invoice', 'default', 'msg');
+                    $data['subject'] = ndpv()->get_default('email_template', 'invoice', 'default', 'subject');
+                    $data['msg'] = ndpv()->get_default('email_template', 'invoice', 'default', 'msg');
                 }
             }
 
             if ( $tab == 'email_invoice_reminder' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ndpi()->get_default('email_template', 'invoice', 'reminder', 'subject');
-                    $data['msg'] = ndpi()->get_default('email_template', 'invoice', 'reminder', 'msg');
+                    $data['subject'] = ndpv()->get_default('email_template', 'invoice', 'reminder', 'subject');
+                    $data['msg'] = ndpv()->get_default('email_template', 'invoice', 'reminder', 'msg');
                 }
             }
 
             if ( $tab == 'email_invoice_recurring' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
                 } else {  
-                    $data['subject'] = ndpi()->get_default('email_template', 'invoice', 'recurring', 'subject');
-                    $data['msg'] = ndpi()->get_default('email_template', 'invoice', 'recurring', 'msg');
+                    $data['subject'] = ndpv()->get_default('email_template', 'invoice', 'recurring', 'subject');
+                    $data['msg'] = ndpv()->get_default('email_template', 'invoice', 'recurring', 'msg');
                 }
             }
 
             if ( $tab == 'estvoice_tax' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -162,7 +162,7 @@ class Setting {
             }
 
             if ( $tab == 'smtp_other' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -177,7 +177,7 @@ class Setting {
             }
 
             if ( $tab == 'smtp_sendinblue' ) {
-                $option = get_option('ndpi_' . $tab);
+                $option = get_option('ndpv_' . $tab);
 
                 if ( $option ) {
                     $data = $option;
@@ -211,7 +211,7 @@ class Setting {
                 //TODO: sanitization  
                 $data['social'] = isset( $params['social'] ) ? ( $params['social'] ) : null; 
 
-                $option = update_option('ndpi_' . $tab , $data);                 
+                $option = update_option('ndpv_' . $tab , $data);                 
             }
 
             if ( $tab == 'estimate_reminder' || $tab == 'invoice_reminder' ) {
@@ -221,47 +221,47 @@ class Setting {
                 $data['before'] = isset( $params['before'] ) ? ( $params['before'] ) : null;
                 $data['after'] = isset( $params['after'] ) ? ( $params['after'] ) : null; 
 
-                $option = update_option('ndpi_' . $tab , $data);                 
+                $option = update_option('ndpv_' . $tab , $data);                 
             }
 
             if ( $tab == 'email_estimate_default' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ndpi_' . $tab, $data);                 
+                $option = update_option('ndpv_' . $tab, $data);                 
             }
 
             if ( $tab == 'email_estimate_reminder' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ndpi_' . $tab, $data);                 
+                $option = update_option('ndpv_' . $tab, $data);                 
             }
 
             if ( $tab == 'email_invoice_default' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ndpi_' . $tab, $data);                 
+                $option = update_option('ndpv_' . $tab, $data);                 
             }
 
             if ( $tab == 'email_invoice_reminder' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ndpi_' . $tab, $data);                 
+                $option = update_option('ndpv_' . $tab, $data);                 
             }
 
             if ( $tab == 'email_invoice_recurring' ) {  
                 $data['subject'] = isset( $params['subject'] ) ? sanitize_text_field( $params['subject'] ) : null;
                 $data['msg'] = isset( $params['msg'] ) ? sanitize_textarea_field( $params['msg'] ) : null;  
-                $option = update_option('ndpi_' . $tab, $data);                 
+                $option = update_option('ndpv_' . $tab, $data);                 
             }
 
             if ( $tab == 'estvoice_tax' ) {  
                 $data['item_tax'] = isset( $params['item_tax'] ) ? rest_sanitize_boolean( $params['item_tax'] ) : null;
                 // $data['item_tax_val_type'] = isset( $params['item_tax_val_type'] ) ? sanitize_textarea_field( $params['item_tax_val_type'] ) : null;  
-                $option = update_option('ndpi_' . $tab, $data);                 
+                $option = update_option('ndpv_' . $tab, $data);                 
             }
 
             if ( $tab == 'smtp_default' ) {                   
-                update_option('ndpi_smtp', null);                 
+                update_option('ndpv_smtp', null);                 
             }
 
             if ( $tab == 'smtp_other' ) {   
@@ -271,16 +271,16 @@ class Setting {
                 $data['auth'] = isset( $params['auth'] ) ? rest_sanitize_boolean( $params['auth'] ) : null;
                 $data['user'] = isset( $params['user'] ) ? sanitize_text_field( $params['user'] ) : null;
                 $data['pass'] = isset( $params['pass'] ) ? sanitize_text_field( $params['pass'] ) : null;
-                update_option('ndpi_' . $tab, $data);                 
-                update_option('ndpi_smtp', 'other');                 
+                update_option('ndpv_' . $tab, $data);                 
+                update_option('ndpv_smtp', 'other');                 
             }
 
             if ( $tab == 'smtp_sendinblue' ) {  
                 //Check valid key here
                 $data['key'] = isset( $params['key'] ) ? sanitize_text_field( $params['key'] ) : null;
                 $data['web'] = isset( $params['web'] ) ? esc_url_raw( $params['web'] ) : null;  
-                update_option('ndpi_' . $tab, $data);   
-                update_option('ndpi_smtp', 'sendinblue');                 
+                update_option('ndpv_' . $tab, $data);   
+                update_option('ndpv_smtp', 'sendinblue');                 
             }
 
             wp_send_json_success();

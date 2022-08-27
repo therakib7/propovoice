@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Hook\Type;
+namespace Ndpv\Ctrl\Hook\Type;
 
 class Action
 {

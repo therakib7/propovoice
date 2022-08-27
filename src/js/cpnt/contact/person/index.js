@@ -18,10 +18,10 @@ const Contact = (props) => {
     props.getLists();
   }, []);
   const navigate = useNavigate();
-  const i18n = ndpi.i18n;
+  const i18n = ndpv.i18n;
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
-    <div className="ncpi-cpnt">
+    <div className="ndpv-cpnt">
       <Breadcrumb title={i18n.contact + ' ' + i18n.book} />
 
       <div className="row">
@@ -169,4 +169,4 @@ const Contact = (props) => {
   );
 }
 
-export default Crud(Contact, 'person', ndpi.i18n.person);
+export default Crud(Contact, 'person', ndpv.i18n.person);

@@ -19,7 +19,7 @@ const Lead = (props) => {
 
 	const { title, lists, checkedBoxes, searchVal } = props.state;
 	return (
-		<div className="ncpi-cpnt">
+		<div className="ndpv-cpnt">
 			<Breadcrumb title={title} />
 			<div className="row">
 				<div className="col">
@@ -151,4 +151,4 @@ const Lead = (props) => {
 	);
 }
 
-export default Crud(Lead, 'lead', ndpi.i18n.lead);
+export default Crud(Lead, 'lead', ndpv.i18n.lead);

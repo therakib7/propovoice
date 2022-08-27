@@ -20,7 +20,7 @@ export default class Section extends PureComponent {
 
     render() {
         const data = this.state.data;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className='pi-widget pi-lead pi-bg-white pi-border-gray'>
                 <h3

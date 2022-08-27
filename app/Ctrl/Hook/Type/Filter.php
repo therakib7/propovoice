@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Hook\Type;
+namespace Ndpv\Ctrl\Hook\Type;
 
 class Filter
 {
@@ -20,7 +20,7 @@ class Filter
 				'estimate-template.php'
 			])
 		) {
-			$classes[] = 'ndpi';
+			$classes[] = 'ndpv';
 			$classes[] = get_option('template') . '-theme';
 		}
 		return $classes;
@@ -29,10 +29,10 @@ class Filter
 	function admin_body_class($classes)
 	{
 		if (
-			(isset($_GET['page']) && $_GET['page'] == 'ndpi') ||
-			(isset($_GET['page']) && $_GET['page'] == 'ndpi-welcome')
+			(isset($_GET['page']) && $_GET['page'] == 'ndpv') ||
+			(isset($_GET['page']) && $_GET['page'] == 'ndpv-welcome')
 		) {
-			$classes .= ' ndpi ' . get_option('template') . '-theme';
+			$classes .= ' ndpv ' . get_option('template') . '-theme';
 		}
 
 		return $classes;

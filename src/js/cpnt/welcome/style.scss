@@ -1,6 +1,6 @@
 //TODO: do it like main 
 //rakib code
-.ndpi .pi-field-logo-wrap {
+.ndpv .pi-field-logo-wrap {
   margin-top: 10px;
 
   .pi-field-logo {
@@ -30,31 +30,31 @@
 }
 
 //from reza start
-.ndpi .pi-main-content {
+.ndpv .pi-main-content {
   background-color: var(--pi-bg-color-white);
   margin: 80px 0;
 }
 
-.ndpi .pi-welcome-tabs-content {
+.ndpv .pi-welcome-tabs-content {
   position: relative;
 }
 
-.ndpi .pi-welcome-title-content {
+.ndpv .pi-welcome-title-content {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.ndpi .pi-welcome-title-content .pi-welcome-title {
+.ndpv .pi-welcome-title-content .pi-welcome-title {
   font-weight: 700;
   font-size: 24px;
 }
 
-.ndpi .pi-welcome-title-content .pi-welcome-disc {
+.ndpv .pi-welcome-title-content .pi-welcome-disc {
   font-size: 14px;
   margin-top: 5px;
 }
 
-.ndpi .pi-container {
+.ndpv .pi-container {
   left: 0;
   right: 0;
   margin: auto;
@@ -64,33 +64,33 @@
   padding: 80px 60px 65px;
 }
 
-.ndpi .pi-container.pi-p-tb {
+.ndpv .pi-container.pi-p-tb {
   padding: 30px 60px 40px;
 }
 
 @media screen and (max-width: 768px) {
-  .ndpi .pi-container {
+  .ndpv .pi-container {
     padding: 30px !important;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .ndpi .pi-container {
+  .ndpv .pi-container {
     padding: 15px;
   }
 
-  .ndpi .pi-main-content {
+  .ndpv .pi-main-content {
     margin-top: 30px;
     padding: 15px;
   }
 }
 
-.ndpi .pi-logo-content {
+.ndpv .pi-logo-content {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.ndpi .pi-buttons.pi-text-center a {
+.ndpv .pi-buttons.pi-text-center a {
   display: table;
   color: #000;
   left: 0;
@@ -100,26 +100,26 @@
   font-weight: 600;
 }
 
-.ndpi #pi-finished .pi-buttons.pi-text-center a:last-child {
+.ndpv #pi-finished .pi-buttons.pi-text-center a:last-child {
   color: var(--pi-text-color-white);
   margin-right: 0;
 }
 
 @media screen and (max-width: 500px) {
-  .ndpi #pi-finished .pi-buttons.pi-text-center a {
+  .ndpv #pi-finished .pi-buttons.pi-text-center a {
     margin-bottom: 15px;
   }
 }
 
-.ndpi .pi-welcome-tabs-content #pi-welcome p {
+.ndpv .pi-welcome-tabs-content #pi-welcome p {
   margin-bottom: 70px;
 }
 
-.ndpi .pi-welcome-tabs-content #pi-finished .pi-sub-title {
+.ndpv .pi-welcome-tabs-content #pi-finished .pi-sub-title {
   margin-bottom: 45px;
 }
 
-.ndpi .pi-welcome-tabs-content #pi-finished .pi-buttons a {
+.ndpv .pi-welcome-tabs-content #pi-finished .pi-buttons a {
   padding: 2px 10px;
   font-weight: 600;
   border-radius: 8px;
@@ -132,16 +132,16 @@
   margin-top: 15px;
 }
 
-.ndpi .pi-welcome-tabs-content #pi-finished .pi-buttons a:first-child {
+.ndpv .pi-welcome-tabs-content #pi-finished .pi-buttons a:first-child {
   margin-left: 0px;
 }
 
-.ndpi .pi-tab-content #pi-brand img {
+.ndpv .pi-tab-content #pi-brand img {
   text-align: center;
   margin-bottom: 5px;
 }
 
-.ndpi .pi-tab-content #pi-brand .pi-upload {
+.ndpv .pi-tab-content #pi-brand .pi-upload {
   font-size: 14px;
   margin-bottom: 60px !important;
   margin-top: 12px !important;
@@ -154,7 +154,7 @@
   border-radius: 5px;
 }
 
-.ndpi .pi-tab-content #pi-brand input {
+.ndpv .pi-tab-content #pi-brand input {
   width: 120px;
   font-size: 10px;
   padding: 13px;
@@ -166,7 +166,7 @@
   opacity: 0;
 }
 
-.ndpi #pi-finished h1 {
+.ndpv #pi-finished h1 {
   font-weight: 500;
   line-height: 40px;
   margin-top: 20px;

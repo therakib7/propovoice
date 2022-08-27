@@ -36,7 +36,7 @@ class Invoice extends Component {
 
 	constructor(props) {
 		super(props);
-		const i18n = ndpi.i18n;
+		const i18n = ndpv.i18n;
 		this.state = {
 			title: '',
 			tabs: [
@@ -62,7 +62,7 @@ class Invoice extends Component {
 				update: 'Successfully Updated',
 				delete: 'Successfully Deleted',
 				confirm: 'Are you sure to delete it?',
-				saveTxt: ndpi.i18n.save
+				saveTxt: ndpv.i18n.save
 			},
 			shareModal: false,
 			emailModal: false,
@@ -164,7 +164,7 @@ class Invoice extends Component {
 
 	componentDidMount() {
 
-		let title = this.props.path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est;
+		let title = this.props.path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est;
 
 		if (this.props.id) {
 			if (this.props.tab == 'preview') {
@@ -231,7 +231,7 @@ class Invoice extends Component {
 
 	updateEdit = (data = '') => {
 		let msg = { ...this.state.msg }
-		msg.saveTxt = ndpi.i18n.upd;
+		msg.saveTxt = ndpv.i18n.upd;
 		if (data) {
 			let invoice = { ...this.state.invoice }
 			invoice.id = data.id;
@@ -658,7 +658,7 @@ class Invoice extends Component {
 
 	render = () => {
 		const { title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
-		const i18n = ndpi.i18n;
+		const i18n = ndpv.i18n;
 		return (
 			<>
 				<div>
@@ -947,7 +947,7 @@ class Invoice extends Component {
 												top
 												changeHandler={this.handleSectionChange}
 												default={[{
-													label: ndpi.i18n.title,
+													label: ndpv.i18n.title,
 													content: ''
 												}]}
 											/>
@@ -991,7 +991,7 @@ class Invoice extends Component {
 												changeHandler={this.handleSectionChange}
 												default={[
 													{
-														label: ndpi.i18n.note,
+														label: ndpv.i18n.note,
 														content: '',
 													},
 													{

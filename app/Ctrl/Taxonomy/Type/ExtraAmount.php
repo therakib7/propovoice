@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy\Type; 
+namespace Ndpv\Ctrl\Taxonomy\Type; 
 
 class ExtraAmount { 
 
@@ -10,11 +10,11 @@ class ExtraAmount {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_extra_amount' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpv_extra_amount' ) ) {
             return;
         }
          
-        do_action('ndpi_extra_amount_taxonomy');  
+        do_action('ndpv_extra_amount_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Estvoice Extra Amounts', 'extra_amount general name', 'propovoice' ),
@@ -37,11 +37,11 @@ class ExtraAmount {
             'show_ui'           => true,
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => array( 'slug' => 'ndpi_extra_amount' ),
+            'rewrite'           => array( 'slug' => 'ndpv_extra_amount' ),
         );
      
-        register_taxonomy( 'ndpi_extra_amount', array( 'ndpi_deal' ), apply_filters('ndpi_extra_amount_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpv_extra_amount', array( 'ndpv_deal' ), apply_filters('ndpv_extra_amount_taxonomy_args', $args) ); 
         
-        do_action('ncpi_after_extra_amount_taxonomy');          
+        do_action('ndpv_after_extra_amount_taxonomy');          
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ndpi\Ctrl\Install\Type;
+namespace Ndpv\Ctrl\Install\Type;
 
-use Ndpi\Model\Org;
+use Ndpv\Model\Org;
 
 class Merge
 {
@@ -42,7 +42,7 @@ class Merge
                 $org_id = null;
 
                 $data = array(
-                    'post_type' => 'ndpi_person',
+                    'post_type' => 'ndpv_person',
                     'post_title'    => $first_name,
                     'post_content'  => '',
                     'post_status'   => 'publish',
@@ -52,7 +52,7 @@ class Merge
 
                 if (!is_wp_error($post_id)) {
 
-                    update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                    update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
 
                     if ($first_name) {
                         update_post_meta($post_id, 'first_name', $first_name);
@@ -162,7 +162,7 @@ class Merge
             if (isset($invoice['extra_field']) && $invoice['extra_field']) {
                 foreach ($invoice['extra_field'] as $key => $value) {
                     $slug = ($key == 'late_fee') ? 'fee' : $key;
-                    $term = get_term_by('slug', $slug, 'ndpi_extra_amount');
+                    $term = get_term_by('slug', $slug, 'ndpv_extra_amount');
                     $extra_field[] = [
                         'id' => $term->term_id,
                         'name' => $term->name,
@@ -191,7 +191,7 @@ class Merge
             $query->the_post();
             $id = get_the_ID();
 
-            update_post_meta($id, 'ws_id', ndpi()->get_workspace());
+            update_post_meta($id, 'ws_id', ndpv()->get_workspace());
         }
         wp_reset_postdata();
     }

@@ -71,7 +71,7 @@ export default class License extends Component {
 
     render() {
         const form = this.state.form;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <>
                 {this.state.loading ? <Spinner /> : <form onSubmit={this.handleSubmit} className="pi-form-style-one">

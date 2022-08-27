@@ -121,7 +121,7 @@ export default class License extends Component {
 
     render() {
         const { loading, currentTab, list, singleForm, leadField } = this.state;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <>
                 {loading ? <Spinner /> : <>

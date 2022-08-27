@@ -6,7 +6,7 @@
 
 //editor js
 //TODO: do it only for editor
-/* .ndpi-page-content {
+/* .ndpv-page-content {
     max-height: 600px; //TODO: add a4 size later
     overflow: hidden;
 } */
@@ -24,7 +24,7 @@
 
 
 //for backend only 
-/* .ndpi .pi-right-content {
+/* .ndpv .pi-right-content {
     padding: 20px 30px 15px;
     height: auto !important;
 }
@@ -34,7 +34,7 @@
     margin-top: 2px;
 } */
 
-.ndpi .pi-info-logo img,
+.ndpv .pi-info-logo img,
 .pi-inv .pi-from-logo img {
     max-width: 200px !important;
     max-height: 80px;
@@ -51,7 +51,7 @@
 }
 
 //temporary form css 
-.ndpi .pi-field-logo-wrap {
+.ndpv .pi-field-logo-wrap {
 
     .pi-field-logo {
         position: relative;
@@ -116,7 +116,7 @@
 }
 
 //TODO: this class already exist just add important
-.ndpi .pi-modal-sidebar {
+.ndpv .pi-modal-sidebar {
     margin: 0 !important;
 }
 
@@ -127,11 +127,11 @@
     position: relative;
 }
 
-.wp-admin.ndpi {
+.wp-admin.ndpv {
     background-color: #f7f8fa !important;
 }
 
-.ndpi {
+.ndpv {
     .pi-deal-content {
         max-width: none !important;
     }

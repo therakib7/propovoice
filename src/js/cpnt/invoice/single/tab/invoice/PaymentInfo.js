@@ -1,7 +1,7 @@
 
 export default ( props ) => { 
     const bank_info = props.data;
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <>
             {bank_info ?

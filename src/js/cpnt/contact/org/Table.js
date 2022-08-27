@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import Action from 'block/action/row'; 
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>

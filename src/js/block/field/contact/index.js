@@ -72,7 +72,7 @@ class Contact extends Component {
         }
     }
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         const person = (
             <div className="col-lg">
                 <label htmlFor="first_name">

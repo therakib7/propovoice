@@ -11,9 +11,9 @@ import Crud from 'hoc/Crud';
 
 const Contact = (props) => {
   const { title, lists, checkedBoxes, searchVal } = props.state;
-  const i18n = ndpi.i18n;
+  const i18n = ndpv.i18n;
   return (
-    <div className="ncpi-cpnt">
+    <div className="ndpv-cpnt">
       <Breadcrumb title={i18n.contact + ' ' + i18n.book} />
 
       <div className="row">
@@ -197,4 +197,4 @@ const Contact = (props) => {
   );
 }
 
-export default Crud(Contact, 'person', ndpi.i18n.person);
+export default Crud(Contact, 'person', ndpv.i18n.person);

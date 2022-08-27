@@ -269,7 +269,7 @@ class Checklist extends Component {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    {ndpi.i18n.add} Checklist
+                    {ndpv.i18n.add} Checklist
                     {wage.length > 0 && <>
                         <ProLabel />
                     </>}

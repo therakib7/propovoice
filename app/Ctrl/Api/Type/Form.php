@@ -1,8 +1,8 @@
 <?php
 
-namespace Ndpi\Ctrl\Api\Type;
+namespace Ndpv\Ctrl\Api\Type;
 
-use Ndpi\Model\Form as ModelForm;
+use Ndpv\Model\Form as ModelForm;
 
 class Form
 { 
@@ -13,7 +13,7 @@ class Form
 
     public function rest_routes()
     { 
-        register_rest_route('ndpi/v1', '/forms', [
+        register_rest_route('ndpv/v1', '/forms', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],

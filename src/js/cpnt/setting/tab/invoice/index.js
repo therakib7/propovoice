@@ -12,11 +12,11 @@ class General extends Component {
 			tabs: [
 				{
 					id: 'reminder',
-					text: ndpi.i18n.rem
+					text: ndpv.i18n.rem
 				},
 				{
 					id: 'extra-amount',
-					text: ndpi.i18n.Addt +' '+ndpi.i18n.amount
+					text: ndpv.i18n.Addt +' '+ndpv.i18n.amount
 				},
 				/* {
 					id: 'recurring',

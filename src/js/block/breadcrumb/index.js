@@ -5,7 +5,7 @@ export default (props) => {
 			<ul className="">
 				<li>
 					<a href="#" className="">
-						{ndpi.i18n.home}
+						{ndpv.i18n.home}
 					</a>
 				</li>
 				<li>

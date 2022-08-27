@@ -60,7 +60,7 @@ class FormPaypal extends Component {
     }
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-overlay">
                 <div className="pi-modal-content">

@@ -107,13 +107,13 @@ export default class Welcome extends Component {
 
     render() {
         const { tabs = [], currentTab, currentTabIndex } = this.state;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-main-content">
 
                 <div className="pi-container">
                     <div className="pi-logo-content" style={{ justifyContent: 'center' }}>
-                        <img src={ndpi.assetImgUri + 'site-logo.png'} />
+                        <img src={ndpv.assetImgUri + 'site-logo.png'} />
                         <strong >Propovoice</strong>
                     </div>
 
@@ -152,7 +152,7 @@ export default class Welcome extends Component {
                                         <button className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
                                         {i18n.create} {i18n.business} {i18n.profile}
                                         </button>
-                                        <a href={ndpi.dashboard} className="pi-text-hover-blue">{i18n.skip} {i18n.nd} {i18n.go} {i18n.db}</a>
+                                        <a href={ndpv.dashboard} className="pi-text-hover-blue">{i18n.skip} {i18n.nd} {i18n.go} {i18n.db}</a>
                                     </div>
                                 </div>}
 
@@ -179,7 +179,7 @@ export default class Welcome extends Component {
 
                                 <div id="pi-finished">
                                     <div className="pi-text-center">
-                                        <img src={ndpi.assetImgUri + 'rocket.png'} />
+                                        <img src={ndpv.assetImgUri + 'rocket.png'} />
                                         <h1 className="pi-title">Everything Done! What do you want to do first?</h1>
                                         <p className="pi-sub-title">
                                             You can create Estimate, Invoice and Others
@@ -187,7 +187,7 @@ export default class Welcome extends Component {
                                     </div>
                                     <div className="row pi-item-main-content pi-mt-m-15">
                                         <div className="col-md-6">
-                                            <a href={ndpi.dashboard + '#/lead'}>
+                                            <a href={ndpv.dashboard + '#/lead'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
                                                         <svg
@@ -231,7 +231,7 @@ export default class Welcome extends Component {
                                             </a>
                                         </div>
                                         <div className="col-md-6">
-                                            <a href={ndpi.dashboard + '#/client'}>
+                                            <a href={ndpv.dashboard + '#/client'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
                                                         <svg
@@ -275,7 +275,7 @@ export default class Welcome extends Component {
                                             </a>
                                         </div>
                                         <div className="col-md-6">
-                                            <a href={ndpi.dashboard + '#/estimate'}>
+                                            <a href={ndpv.dashboard + '#/estimate'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
                                                         <svg
@@ -317,7 +317,7 @@ export default class Welcome extends Component {
                                             </a>
                                         </div>
                                         <div className="col-md-6">
-                                            <a href={ndpi.dashboard + '#/invoice'}>
+                                            <a href={ndpv.dashboard + '#/invoice'}>
                                                 <div className="pi-item-content pi-bg-stroke">
                                                     <div className="pi-add-image-content">
                                                         <svg
@@ -360,7 +360,7 @@ export default class Welcome extends Component {
                                         </div>
                                     </div>
                                     <div className="pi-buttons pi-text-center">
-                                        <a href={ndpi.dashboard} className="pi-text-hover-blue pi-color-black">{i18n.skip} {i18n.nd} {i18n.explore}</a>
+                                        <a href={ndpv.dashboard} className="pi-text-hover-blue pi-color-black">{i18n.skip} {i18n.nd} {i18n.explore}</a>
                                     </div>
                                 </div>
 

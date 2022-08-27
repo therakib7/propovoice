@@ -28,7 +28,7 @@ class Attach extends Component {
 
 	render = () => {
 		const attach = this.props.data; 
-		const i18n = ndpi.i18n;
+		const i18n = ndpv.i18n;
 		return (
 			<>   
 				<Media

@@ -10,7 +10,7 @@ import ApiSetting from 'api/setting';
 
 const EditDownload = props => {
 
-    let title = props.path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est;
+    let title = props.path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est;
     return (
         <>
             <button
@@ -30,7 +30,7 @@ const EditDownload = props => {
                         fill="#2D3748"
                     />
                 </svg>
-                {ndpi.i18n.edit} {title}
+                {ndpv.i18n.edit} {title}
             </button>
         </>
     );
@@ -79,11 +79,11 @@ export default class Preview extends Component {
 
     render() {
         // const { id } = this.props.data.invoice.template;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div id="pi-tab-share" className="pi-invoice-tab-content">
                 <h2 className='pi-page-title'>{i18n.prv} {i18n.nd} {i18n.share}</h2>
-                <iframe id="ndpi-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
+                <iframe id="ndpv-invoice-print" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
                 <div className='row justify-content-md-center'>
                     <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
                         <div className='' style={{ width: '788px', margin: '0 auto' }}>

@@ -1,7 +1,7 @@
 <?php
 
-namespace Ndpi\Ctrl\Api\Type;
-use Ndpi\Model\Org; 
+namespace Ndpv\Ctrl\Api\Type;
+use Ndpv\Model\Org; 
 
 class Person
 {
@@ -14,7 +14,7 @@ class Person
     public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/persons', [
+        register_rest_route('ndpv/v1', '/persons', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -27,7 +27,7 @@ class Person
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/persons/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/persons/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -40,7 +40,7 @@ class Person
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/persons/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/persons/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -53,7 +53,7 @@ class Person
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/persons/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/persons/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -82,7 +82,7 @@ class Person
         } 
 
         $args = array(
-            'post_type' => 'ndpi_person',
+            'post_type' => 'ndpv_person',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -163,7 +163,7 @@ class Person
 
         $query_data['level_id'] = '';
 
-        $level = get_the_terms($id, 'ndpi_lead_level');
+        $level = get_the_terms($id, 'ndpv_lead_level');
         if ($level) {
 
             $query_data['level_id'] = [
@@ -174,7 +174,7 @@ class Person
 
         $query_data['tags'] = [];
 
-        $tags = get_the_terms($id, 'ndpi_tag');
+        $tags = get_the_terms($id, 'ndpv_tag');
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
@@ -249,7 +249,7 @@ class Person
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_person',
+                'post_type' => 'ndpv_person',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -259,7 +259,7 @@ class Person
 
             if ( !is_wp_error($post_id) ) {
 
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
 
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);

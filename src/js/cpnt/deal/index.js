@@ -129,9 +129,9 @@ const Deal = (props) => {
 
     const activeColor = '#4A5568';
     const inactiveColor = '#A0AEC0';
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
-        <div className="ncpi-cpnt">
+        <div className="ndpv-cpnt">
             {!props.module_id && <Breadcrumb title={title + ' ' + i18n.pipeline} />}
 
             {props.state.formModal && <Form
@@ -351,4 +351,4 @@ const Deal = (props) => {
     );
 }
 
-export default Crud(Deal, 'deal', ndpi.i18n.deal);
+export default Crud(Deal, 'deal', ndpv.i18n.deal);

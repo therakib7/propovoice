@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Model;
+namespace Ndpv\Model;
 
 class Org
 {
@@ -32,7 +32,7 @@ class Org
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_org',
+                'post_type' => 'ndpv_org',
                 'post_title'    => $name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -42,7 +42,7 @@ class Org
 
             if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
 
                 if ($name) {
                     update_post_meta($post_id, 'name', $name);

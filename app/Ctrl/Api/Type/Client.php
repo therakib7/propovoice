@@ -1,9 +1,9 @@
 <?php
 
-namespace Ndpi\Ctrl\Api\Type;
+namespace Ndpv\Ctrl\Api\Type;
 
-use Ndpi\Model\Org;
-use Ndpi\Model\Person;
+use Ndpv\Model\Org;
+use Ndpv\Model\Person;
 
 class Client
 {
@@ -16,7 +16,7 @@ class Client
     public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/clients', [
+        register_rest_route('ndpv/v1', '/clients', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -29,7 +29,7 @@ class Client
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/clients/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/clients/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -42,7 +42,7 @@ class Client
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/clients/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/clients/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -55,7 +55,7 @@ class Client
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/clients/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/clients/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -84,7 +84,7 @@ class Client
         }
 
         $args = array(
-            'post_type' => ['ndpi_person', 'ndpi_org'],
+            'post_type' => ['ndpv_person', 'ndpv_org'],
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -130,7 +130,7 @@ class Client
             $query_data['id'] = $id;
 
             $queryMeta = get_post_meta($id);
-            $type = get_post_type($id) == 'ndpi_person' ? 'person' : 'org';
+            $type = get_post_type($id) == 'ndpv_person' ? 'person' : 'org';
             $query_data['type'] = $type;
             $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : '';
             $query_data['org_name'] = isset($queryMeta['name']) ? $queryMeta['name'][0] : '';

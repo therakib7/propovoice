@@ -1,8 +1,8 @@
 <?php
 
-namespace Ndpi\Ctrl\Api\Type;
+namespace Ndpv\Ctrl\Api\Type;
 
-use Ndpi\Helper\Fns;
+use Ndpv\Helper\Fns;
 
 
 class Taxonomy
@@ -16,7 +16,7 @@ class Taxonomy
     public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/taxonomies', [
+        register_rest_route('ndpv/v1', '/taxonomies', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -29,7 +29,7 @@ class Taxonomy
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/taxonomies/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/taxonomies/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -42,7 +42,7 @@ class Taxonomy
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/taxonomies/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/taxonomies/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -55,7 +55,7 @@ class Taxonomy
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/taxonomies/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/taxonomies/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -155,7 +155,7 @@ class Taxonomy
                 $data[$taxonomy] = $format_taxonomy;
 
                 if ($id) {
-                    $tags = get_the_terms($id, 'ndpi_' . $taxonomy);
+                    $tags = get_the_terms($id, 'ndpv_' . $taxonomy);
                     $tagList = [];
                     if ($tags) {
                         foreach ($tags as $tag) {
@@ -245,7 +245,7 @@ class Taxonomy
             } else {
                 $add_taxonomy = wp_insert_term(
                     $label,   // the term 
-                    'ndpi_' . $taxonomy, // the add_taxonomy 
+                    'ndpv_' . $taxonomy, // the add_taxonomy 
                 );
 
                 if (!is_wp_error($add_taxonomy)) {
@@ -301,22 +301,22 @@ class Taxonomy
 
             if ($add) {
                 if ($append) {
-                    wp_set_object_terms($post_id, $term_id, 'ndpi_' . $taxonomy, true);
+                    wp_set_object_terms($post_id, $term_id, 'ndpv_' . $taxonomy, true);
                 } else {
-                    wp_set_post_terms($post_id, [$term_id], 'ndpi_' . $taxonomy);
+                    wp_set_post_terms($post_id, [$term_id], 'ndpv_' . $taxonomy);
                 }
                 wp_send_json_success();
             } else if ($delete) {
                 if ($post_id) { //delete term from post
-                    wp_remove_object_terms($post_id, $term_id, 'ndpi_' . $taxonomy);
+                    wp_remove_object_terms($post_id, $term_id, 'ndpv_' . $taxonomy);
                 } else { // delte term
-                    wp_delete_term($term_id, 'ndpi_' . $taxonomy);
+                    wp_delete_term($term_id, 'ndpv_' . $taxonomy);
                 }
                 wp_send_json_success();
             } else {
                 $add_taxonomy = wp_update_term(
                     $term_id,   // the term 
-                    'ndpi_' . $taxonomy, // the taxonomy 
+                    'ndpv_' . $taxonomy, // the taxonomy 
                     array(
                         'name' => $label,
                     )

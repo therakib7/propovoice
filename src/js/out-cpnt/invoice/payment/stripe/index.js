@@ -180,7 +180,7 @@ class CheckoutForm extends Component {
     render() {
         const { error, processing, paymentMethod } = this.state;
         const { stripe } = this.props;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content pi-modal-style-two pi-modal-small">

@@ -55,7 +55,7 @@ const Invoice = class Invoice extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         let title = this.props.path == '/invoice' ? i18n.inv : i18n.est;
         let path = this.props.path == '/invoice' ? 'invoice' : 'estimate';
 
@@ -248,7 +248,7 @@ const Invoice = class Invoice extends Component {
         const { title, invoices, checkedBoxes, searchVal } = this.state;
         const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
-            <div className="ncpi-cpnt">
+            <div className="ndpv-cpnt">
                 {!this.props.module_id && <Breadcrumb title={title} />}
 
                 <div className="row">

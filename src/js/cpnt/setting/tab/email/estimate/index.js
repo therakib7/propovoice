@@ -10,11 +10,11 @@ const Main = (props) => {
 		[
 			{
 				id: 'default',
-				text: ndpi.i18n.def
+				text: ndpv.i18n.def
 			},
 			{
 				id: 'reminder',
-				text: ndpi.i18n.rem
+				text: ndpv.i18n.rem
 			}
 		]
 	);

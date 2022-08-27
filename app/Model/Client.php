@@ -1,5 +1,5 @@
 <?php
-namespace Ndpi\Model; 
+namespace Ndpv\Model; 
 
 class Client {
 
@@ -7,7 +7,7 @@ class Client {
     { 
 
         $args = array(
-            'post_type' => ['ndpi_person', 'ndpi_org'],
+            'post_type' => ['ndpv_person', 'ndpv_org'],
             'post_status' => 'publish',
             'posts_per_page' => -1 
         ); 

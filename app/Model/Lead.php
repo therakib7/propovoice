@@ -1,5 +1,5 @@
 <?php
-namespace Ndpi\Model;
+namespace Ndpv\Model;
  
  
 
@@ -9,7 +9,7 @@ class Lead {
     { 
 
         $args = array(
-            'post_type' => 'ndpi_lead',
+            'post_type' => 'ndpv_lead',
             'post_status' => 'publish',
             'posts_per_page' => -1 
         ); 

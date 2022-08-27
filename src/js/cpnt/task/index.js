@@ -4,10 +4,10 @@ import Spinner from 'block/preloader/spinner';
 const Task = lazy(() => import('cpnt/list-single/tab/task'));
 
 const TaskList = (props) => {
-const i18n = ndpi.i18n;
+const i18n = ndpv.i18n;
 	return (
-		<div className="ncpi-cpnt">
-			<Breadcrumb title={ndpi.i18n.taska} />
+		<div className="ndpv-cpnt">
+			<Breadcrumb title={ndpv.i18n.taska} />
 			{/* <div className="row">
 					<div className="col-lg">
 						<h2 className="pi-page-title">{i18n.taska}</h2>

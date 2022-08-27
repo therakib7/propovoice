@@ -92,7 +92,7 @@ export default class Main extends Component {
 
     render() {
         const { loading, currentTab, list, singleList, leadField } = this.state;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <>
                 {loading ? <Spinner /> : <>

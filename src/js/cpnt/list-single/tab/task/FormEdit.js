@@ -148,7 +148,7 @@ class Form extends Component {
 
     render() {
         const form = this.state.form;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-overlay">
                 <div className="pi-modal-content pi-modal-sidebar pi-modal-sidebar-two" ref={this.myRef}>

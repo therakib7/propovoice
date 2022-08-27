@@ -2,22 +2,22 @@
 
 require_once __DIR__ . './../vendor/autoload.php';
  
-use Ndpi\Ctrl\Install\InstallCtrl;
-use Ndpi\Traits\Singleton;
-use Ndpi\Helper\Constant; 
-use Ndpi\Helper\Fns; 
-use Ndpi\Helper\Data;
-use Ndpi\Ctrl\MainCtrl;   
+use Ndpv\Ctrl\Install\InstallCtrl;
+use Ndpv\Traits\Singleton;
+use Ndpv\Helper\Constant; 
+use Ndpv\Helper\Fns; 
+use Ndpv\Helper\Data;
+use Ndpv\Ctrl\MainCtrl;   
 
 /**
- * Class Ndpi
+ * Class Ndpv
  */
-final class Ndpi {
+final class Ndpv {
 
     use Singleton; 
  
     /**
-     * NCPI Project Constructor.
+     * NDPV Project Constructor.
      */
     public function __construct() { 
         new Constant();  
@@ -54,7 +54,7 @@ final class Ndpi {
         $locale = apply_filters('ndpv_plugin_locale', $locale );
         unload_textdomain('propovoice');
         load_textdomain('propovoice', WP_LANG_DIR . '/ndpv/ndpv-' . $locale . '.mo');
-        load_plugin_textdomain('propovoice', false, plugin_basename(dirname(NCPI_FILE)) . '/languages');
+        load_plugin_textdomain('propovoice', false, plugin_basename(dirname(NDPV_FILE)) . '/languages');
     }
  
     /**
@@ -83,14 +83,14 @@ final class Ndpi {
      * @return string
      */
     public function plugin_path() {
-        return untrailingslashit(plugin_dir_path(NCPI_FILE));
+        return untrailingslashit(plugin_dir_path(NDPV_FILE));
     } 
 
     /**
      * @return mixed
      */
     public function version() {
-        return NCPI_VERSION;
+        return NDPV_VERSION;
     }  
 
     /**
@@ -99,7 +99,7 @@ final class Ndpi {
      * @return string
      */
     public function get_template_path() {
-        return apply_filters('ncpi_template_path', 'ncpi/templates/');
+        return apply_filters('ndpv_template_path', 'ndpv/templates/');
     } 
 
     /**
@@ -119,7 +119,7 @@ final class Ndpi {
     public function get_asset_uri($file) {
         $file = ltrim($file, '/');
 
-        return trailingslashit(NCPI_URL . '/asset') . $file;
+        return trailingslashit(NDPV_URL . '/asset') . $file;
     }
 
     /**
@@ -129,7 +129,7 @@ final class Ndpi {
      */
     public function render($viewName, $args = array(), $return = false) { 
         $path = str_replace(".", "/", $viewName);
-        $viewPath = NCPI_PATH . '/view/' . $path . '.php';
+        $viewPath = NDPV_PATH . '/view/' . $path . '.php';
         if ( !file_exists($viewPath) ) { 
             return;
         }
@@ -207,15 +207,15 @@ final class Ndpi {
     }
 
     public function get_workspace() {
-        $option = get_option( 'ndpi_workspace_default' );
+        $option = get_option( 'ndpv_workspace_default' );
         return $option ? absint( $option ) : null;
     }
 }
 
 /**
- * @return bool|Singleton|Ndpi
+ * @return bool|Singleton|Ndpv
  */
-function ndpi() {
-    return Ndpi::getInstance();
+function ndpv() {
+    return Ndpv::getInstance();
 } 
-ndpi(); // Run Ndpi Plugin  
+ndpv(); // Run Ndpv Plugin  

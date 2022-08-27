@@ -37,12 +37,12 @@ export default class Form extends Component {
     }
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <>
                 {this.props.show && (
                     <>
-                        <div className="ncpi-search absolute top-0 right-0">
+                        <div className="ndpv-search absolute top-0 right-0">
                             <form onSubmit={this.handleSubmit} className="h-screen border-0 shadow-lg flex flex-col w-full bg-white">
                                 <div className="flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t">
                                     <h3 className="text-xl p-2 font-semibold">{i18n.search}</h3>

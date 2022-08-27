@@ -67,14 +67,14 @@ class Branding extends Component {
 
 	render = () => {
 		const business = this.props.data;
-		const i18n = ndpi.i18n;
+		const i18n = ndpv.i18n;
 		return (
 			<>
 				{!business.logo &&
 					<>
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='hidden' />
 						<div className="pi-text-center" onClick={() => this.handleUploadFile()}>
-							<img src={ndpi.assetImgUri + 'upload-img.png'} width="120" />
+							<img src={ndpv.assetImgUri + 'upload-img.png'} width="120" />
 							<h3 className="pi-upload pi-color-blue">{i18n.upload} {i18n.logo}</h3>
 						</div>
 					</>

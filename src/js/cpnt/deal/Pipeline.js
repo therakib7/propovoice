@@ -88,7 +88,7 @@ function Pipeline(props) {
 		}
 		return string;
 	};
-	const i18n = ndpi.i18n;
+	const i18n = ndpv.i18n;
 	return (
 		<div className="pi-board">
 			<DragDropContext
@@ -155,7 +155,7 @@ function Pipeline(props) {
 										}} */
 										>
 											{column.items.map((item, index) => {
-												let img = ndpi.assetImgUri + 'avatar.png';
+												let img = ndpv.assetImgUri + 'avatar.png';
 												if (item.person && item.person.img) {
 													img = item.person.img.src;
 												} else if (item.org && item.org.img) {

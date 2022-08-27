@@ -80,7 +80,7 @@ class Send extends Component {
 
         let path = this.props.path;
 
-        let path_title = path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est;
+        let path_title = path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est;
         let formState = { ...this.state.form }
 
         let id = data.invoice.id;
@@ -167,8 +167,8 @@ class Send extends Component {
     render() {
 
         let path = this.props.path;
-        let path_title = path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est;
-        const i18n = ndpi.i18n;
+        let path_title = path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">

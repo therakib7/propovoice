@@ -129,7 +129,7 @@ const Form = (props) => {
                         required
                         name="title"
                         value={form.title}
-                        placeholder={ndpi.i18n.add + ' ' + ndpi.i18n.taska}
+                        placeholder={ndpv.i18n.add + ' ' + ndpv.i18n.taska}
                         onChange={handleChange}
                     />
                 </div>
@@ -219,7 +219,7 @@ const Form = (props) => {
                     </div>
 
                     <button type='submit' className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-br-4">
-                        {ndpi.i18n.save}
+                        {ndpv.i18n.save}
                     </button>
                 </div>
             </div>

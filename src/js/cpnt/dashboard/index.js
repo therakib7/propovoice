@@ -22,7 +22,7 @@ const Widget = lazy(() => import('./section/Widget'));
 import WithApi from 'hoc/Api';
 
 const TaskCom = () => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <div className='pi-bg-white pi-border-gray' style={{ minHeight: '435px', padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
             <h3
@@ -46,10 +46,10 @@ const Dashboard = (props) => {
     useClickOutside(dropdownRef, close);
 
 
-    const create = ndpi.i18n.create;
-    const i18n = ndpi.i18n;
+    const create = ndpv.i18n.create;
+    const i18n = ndpv.i18n;
     return (
-        <div className="ndpi-dashboard">
+        <div className="ndpv-dashboard">
             <div className="row">
                 <div className="col">
                     <h2

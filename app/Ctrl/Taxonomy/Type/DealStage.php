@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy\Type; 
+namespace Ndpv\Ctrl\Taxonomy\Type; 
 
 class DealStage { 
 
@@ -10,11 +10,11 @@ class DealStage {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_deal_stage' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpv_deal_stage' ) ) {
             return;
         }
          
-        do_action('ndpi_deal_stage_taxonomy');  
+        do_action('ndpv_deal_stage_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Deal Stages', 'deal_stage general name', 'propovoice' ),
@@ -40,8 +40,8 @@ class DealStage {
             'rewrite'           => array( 'slug' => 'deal_stage' ),
         );
      
-        register_taxonomy( 'ndpi_deal_stage', array( 'ndpi_deal' ), apply_filters('ndpi_deal_stage_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpv_deal_stage', array( 'ndpv_deal' ), apply_filters('ndpv_deal_stage_taxonomy_args', $args) ); 
         
-        do_action('ncpi_after_deal_stage_taxonomy');          
+        do_action('ndpv_after_deal_stage_taxonomy');          
     }
 }

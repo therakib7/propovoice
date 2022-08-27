@@ -1,5 +1,5 @@
 {
-	"name": "therakib7/ndpi",
+	"name": "therakib7/ndpv",
 	"description": "Propovoice",
 	"authors": [
 		{
@@ -11,7 +11,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Ndpi\\": "app"
+			"Ndpv\\": "app"
 		}
 	}
 }

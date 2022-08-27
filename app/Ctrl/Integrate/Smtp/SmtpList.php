@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Integrate\Smtp; 
+namespace Ndpv\Ctrl\Integrate\Smtp; 
  
 class SmtpList
 {
@@ -12,7 +12,7 @@ class SmtpList
 
     public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/intg-smtp', [
+        register_rest_route('ndpv/v1', '/intg-smtp', [
             'methods' => 'GET',
             'callback' => [$this, 'get'],
             'permission_callback' => [$this, 'get_permission']
@@ -70,7 +70,7 @@ class SmtpList
         ];
 
         $form_list = [];
-        $smtp = get_option('ndpi_smtp');
+        $smtp = get_option('ndpv_smtp');
         foreach ($list as $value) {
             if ( $value['slug'] == $smtp ) {
                 $value['active'] = true;

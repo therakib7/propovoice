@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy\Type; 
+namespace Ndpv\Ctrl\Taxonomy\Type; 
 
 class Tag { 
 
@@ -10,11 +10,11 @@ class Tag {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_tag' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpv_tag' ) ) {
             return;
         }
          
-        do_action('ndpi_tag_taxonomy');  
+        do_action('ndpv_tag_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Deal Tags', 'deal_tag general name', 'propovoice' ),
@@ -37,11 +37,11 @@ class Tag {
             'show_ui'           => true,
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => array( 'slug' => 'ndpi_tag' ),
+            'rewrite'           => array( 'slug' => 'ndpv_tag' ),
         );
      
-        register_taxonomy( 'ndpi_tag', array( 'ndpi_deal' ), apply_filters('ndpi_tag_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpv_tag', array( 'ndpv_deal' ), apply_filters('ndpv_tag_taxonomy_args', $args) ); 
         
-        do_action('ncpi_after_deal_tag_taxonomy');          
+        do_action('ndpv_after_deal_tag_taxonomy');          
     }
 }

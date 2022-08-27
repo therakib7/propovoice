@@ -30,7 +30,7 @@ export default class Four extends Component {
         const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
         const { fromData, toData, status } = this.props.data;
         let title = this.props.data.title;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-inv" style={{ height: this.props.height }}>
                 <Seal status={status} />

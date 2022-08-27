@@ -21,7 +21,7 @@ const File = (props) => {
     const [activeTab, setActiveTab] = useState('all');
 
     const { lists, checkedBoxes, searchVal } = props.state;
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <>
             <div className="pi-small-button-group pi-small-button-group-two">
@@ -133,7 +133,7 @@ const File = (props) => {
                                         fill="#718096"
                                     />
                                 </svg>
-                                {ndpi.i18n.add} {i18n.upload} {i18n.file}
+                                {ndpv.i18n.add} {i18n.upload} {i18n.file}
                             </button>
                             <br />
                             <div className="pi-buttons-group pi-mb-20">

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Meta\User;
+namespace Ndpv\Ctrl\Meta\User;
 
 class User
 {

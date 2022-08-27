@@ -1,8 +1,8 @@
 <?php
 
-namespace Ndpi\Ctrl\Setting\Type;
+namespace Ndpv\Ctrl\Setting\Type;
 
-use Ndpi\Helper\Fns;
+use Ndpv\Helper\Fns;
 
 class Dashboard
 {
@@ -19,18 +19,18 @@ class Dashboard
             esc_html__('Propovoice', 'propovoice'),
             esc_html__('Propovoice', 'propovoice'),
             'manage_options',
-            'ndpi',
+            'ndpv',
             array($this, 'main_settings'),
             'dashicons-groups',
             30
         );
 
         add_submenu_page(
-            'ndpi',
+            'ndpv',
             esc_html__('Dashboard', 'propovoice'),
             esc_html__('Dashboard', 'propovoice'),
             'manage_options',
-            'ndpi#',
+            'ndpv#',
             array($this, 'render')
         );
 
@@ -65,7 +65,7 @@ class Dashboard
             ]
         ]; 
         
-        $settings_menu = apply_filters('ndpi_sidebar_menu', $settings_menu);
+        $settings_menu = apply_filters('ndpv_sidebar_menu', $settings_menu);
 
         foreach ($settings_menu as $menu) {
             $menu_id = $menu['id'];
@@ -74,42 +74,42 @@ class Dashboard
             }
 
             add_submenu_page(
-                'ndpi',
+                'ndpv',
                 $menu['label'],
                 $menu['label'],
                 'manage_options',
-                'ndpi#/' . $menu_id,
+                'ndpv#/' . $menu_id,
                 array($this, 'render')
             );
         }
 
         add_submenu_page(
-            'ndpi',
+            'ndpv',
             esc_html__('Settings', 'propovoice'),
             esc_html__('Settings', 'propovoice'),
             'manage_options',
-            'ndpi#/setting/general',
+            'ndpv#/setting/general',
             array($this, 'render')
         );
 
-        if (function_exists('ndpip') && ndpip()->wage()) {
+        if (function_exists('ndpvp') && ndpvp()->wage()) {
             global $submenu;
             $permalink = Fns::client_page_url('workspace');
             if ($permalink) {
-                $submenu['ndpi'][] = array(esc_html__('Go to Frontend', 'propovoice'), 'manage_options', $permalink);
+                $submenu['ndpv'][] = array(esc_html__('Go to Frontend', 'propovoice'), 'manage_options', $permalink);
             }
         }
 
-        if (!function_exists('ndpip')) {
+        if (!function_exists('ndpvp')) {
             global $submenu;
-            $submenu['ndpi'][] = array('Upgrade to Pro', 'manage_options', 'https://propovoice.com/pricing');
+            $submenu['ndpv'][] = array('Upgrade to Pro', 'manage_options', 'https://propovoice.com/pricing');
         }
 
-        remove_submenu_page('ndpi', 'ndpi');
+        remove_submenu_page('ndpv', 'ndpv');
     }
 
     function main_settings()
     {
-        echo '<div class="wrap"><div id="ndpi-dashboard"></div></div>';
+        echo '<div class="wrap"><div id="ndpv-dashboard"></div></div>';
     }
 }

@@ -17,7 +17,7 @@ const Action = (props) => {
     };
 
     const row = props.row;
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <div className="pi-action-content pi-action-btn pi-bg-shadow">
             <button className={(dropdown ? 'dpi-active' : '')} onClick={() => showDropdown()}>

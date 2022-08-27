@@ -32,7 +32,7 @@ class Form extends Component {
     } 
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="">
                 <div className="pi-tab-buttons-group pi-text-right"> 

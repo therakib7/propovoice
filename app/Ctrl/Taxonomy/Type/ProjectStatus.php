@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy\Type; 
+namespace Ndpv\Ctrl\Taxonomy\Type; 
 
 class ProjectStatus { 
 
@@ -10,11 +10,11 @@ class ProjectStatus {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_project_status' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpv_project_status' ) ) {
             return;
         }
          
-        do_action('ndpi_project_status_taxonomy');  
+        do_action('ndpv_project_status_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Project Status', 'project_status general name', 'propovoice' ),
@@ -40,8 +40,8 @@ class ProjectStatus {
             'rewrite'           => array( 'slug' => 'project_status' ),
         );
      
-        register_taxonomy( 'ndpi_project_status', array( 'ndpi_project' ), apply_filters('ndpi_project_status_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpv_project_status', array( 'ndpv_project' ), apply_filters('ndpv_project_status_taxonomy_args', $args) ); 
         
-        do_action('ncpi_after_project_status_taxonomy');          
+        do_action('ndpv_after_project_status_taxonomy');          
     }
 }

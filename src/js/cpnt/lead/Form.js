@@ -216,7 +216,7 @@ class Form extends Component {
         const tagList = this.state.tags;
 
         const form = this.state.form;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">

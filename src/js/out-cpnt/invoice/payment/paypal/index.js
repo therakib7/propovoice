@@ -37,7 +37,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
         });
     }, [currency, showSpinner]);
 
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (<>
         {(showSpinner && isPending) && <div className="pi-preloader" />}
 

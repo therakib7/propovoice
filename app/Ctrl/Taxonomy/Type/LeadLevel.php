@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy\Type; 
+namespace Ndpv\Ctrl\Taxonomy\Type; 
 
 class LeadLevel { 
 
@@ -10,11 +10,11 @@ class LeadLevel {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_lead_level' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpv_lead_level' ) ) {
             return;
         }
          
-        do_action('ndpi_lead_level_taxonomy');  
+        do_action('ndpv_lead_level_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Lead Levels', 'lead_level general name', 'propovoice' ),
@@ -40,8 +40,8 @@ class LeadLevel {
             'rewrite'           => array( 'slug' => 'lead_level' ),
         );
      
-        register_taxonomy( 'ndpi_lead_level', array( 'ndpi_lead' ), apply_filters('ndpi_lead_level_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpv_lead_level', array( 'ndpv_lead' ), apply_filters('ndpv_lead_level_taxonomy_args', $args) ); 
         
-        do_action('ncpi_after_lead_level_taxonomy');          
+        do_action('ndpv_after_lead_level_taxonomy');          
     }
 }

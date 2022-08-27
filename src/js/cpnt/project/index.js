@@ -18,7 +18,7 @@ const Project = (props) => {
   }, []);
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
-    <div className="ncpi-cpnt">
+    <div className="ndpv-cpnt">
       {!props.module_id && <Breadcrumb title={title} />}
 
       <div className="row">
@@ -151,4 +151,4 @@ const Project = (props) => {
   );
 }
 
-export default Crud(Project, 'project', ndpi.i18n.project);
+export default Crud(Project, 'project', ndpv.i18n.project);

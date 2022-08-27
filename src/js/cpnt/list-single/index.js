@@ -31,15 +31,15 @@ class ListSingle extends Component {
             tabs: [
                 {
                     id: 'task',
-                    text: ndpi.i18n.taska
+                    text: ndpv.i18n.taska
                 },
                 {
                     id: 'note',
-                    text: ndpi.i18n.note
+                    text: ndpv.i18n.note
                 },
                 {
                     id: 'file',
-                    text: ndpi.i18n.file
+                    text: ndpv.i18n.file
                 },
             ],
             currentTab: 'task',
@@ -80,32 +80,32 @@ class ListSingle extends Component {
         if (path == 'deal') {
             tabs.push({
                 id: 'estimate',
-                text: ndpi.i18n.est
+                text: ndpv.i18n.est
             });
         }
 
         if (path == 'project' || path == 'client') {
             tabs.push({
                 id: 'invoice',
-                text: ndpi.i18n.inv
+                text: ndpv.i18n.inv
             });
             tabs.push({
                 id: 'estimate',
-                text: ndpi.i18n.est
+                text: ndpv.i18n.est
             });
         }
 
         if (path == 'client' || path == 'contact') {
             tabs.push({
                 id: 'project',
-                text: ndpi.i18n.project
+                text: ndpv.i18n.project
             });
         }
 
         if (path == 'contact') {
             tabs.push({
                 id: 'deal',
-                text: ndpi.i18n.deal
+                text: ndpv.i18n.deal
             });
         }
     }
@@ -244,15 +244,15 @@ class ListSingle extends Component {
         const { path } = this.props;
         const data = this.state.data;
 
-        let img = ndpi.assetImgUri + 'avatar.png';
+        let img = ndpv.assetImgUri + 'avatar.png';
         if (data.person && data.person.img) {
             img = data.person.img.src;
         } else if (data.org && data.org.img) {
             img = data.org.img.src;
         }
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
-            <div className="ncpi-cpnt">
+            <div className="ndpv-cpnt">
                 <nav className="pi-breadcrumb">
                     <ul className="">
                         <li>
@@ -517,7 +517,7 @@ class ListSingle extends Component {
                                                     style={{ padding: "9px 15px !important" }}
                                                     onClick={() => this.handleStageChange('won')}
                                                 >
-                                                    <img className='pi-mr-5' src={ndpi.assetImgUri + 'happy.png'} alt="won" />
+                                                    <img className='pi-mr-5' src={ndpv.assetImgUri + 'happy.png'} alt="won" />
                                                     {i18n.won}
                                                 </button>}
 
@@ -526,7 +526,7 @@ class ListSingle extends Component {
                                                     style={{ padding: "9px 15px !important" }}
                                                     onClick={() => this.handleStageChange('lost')}
                                                 >
-                                                    <img className='pi-mr-5' src={ndpi.assetImgUri + 'sad.png'} alt="sad" />
+                                                    <img className='pi-mr-5' src={ndpv.assetImgUri + 'sad.png'} alt="sad" />
                                                     {i18n.lost}
                                                 </button>}
                                             </>}

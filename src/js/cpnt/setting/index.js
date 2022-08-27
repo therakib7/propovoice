@@ -34,7 +34,7 @@ const Setting = (props) => {
         tabDefault = 'general'
     }
 
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     const tab_data = {
         general: {
             label: i18n.general

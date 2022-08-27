@@ -1,10 +1,10 @@
-export const apiUrl = `${ndpi.apiUrl}ndpi/v1/`;
-export const apiProUrl = `${ndpi.apiUrl}ndpip/v1/`;
-export const apiServerUrl = `${ndpi.apiServerUrl}ncpis/v1/`;
+export const apiUrl = `${ndpv.apiUrl}ndpv/v1/`;
+export const apiProUrl = `${ndpv.apiUrl}ndpvp/v1/`;
+export const apiServerUrl = `${ndpv.apiServerUrl}ncpis/v1/`;
 
 export const token = {
 	headers: {
 		'content-type': 'application/json',
-		'X-WP-NONCE': ndpi.nonce
+		'X-WP-NONCE': ndpv.nonce
 	}
 };

@@ -1,14 +1,14 @@
 <?php
 
-namespace Ndpi\Ctrl\Widget\Elementor; 
+namespace Ndpv\Ctrl\Widget\Elementor; 
 
 use Elementor\Plugin; 
-use Ndpi\Ctrl\Widget\Elementor\Widgets\Registration; 
+use Ndpv\Ctrl\Widget\Elementor\Widgets\Registration; 
 
 class ElementorCtrl {
 
     public function __construct() {  
-		add_action( 'elementor/elements/categories_registered', array( $this, 'ncpi_category' ) );
+		add_action( 'elementor/elements/categories_registered', array( $this, 'ndpv_category' ) );
         add_action( 'elementor/widgets/widgets_registered', array( $this, 'widgets_registered' ) );
     }  
 
@@ -22,10 +22,10 @@ class ElementorCtrl {
 	/**
 	 * @since 1.0
 	 */
-	public function ncpi_category( $elements_manager ) {
+	public function ndpv_category( $elements_manager ) {
 
 		$elements_manager->add_category(
-			'ndpi-category',
+			'ndpv-category',
 			[
 				'title' => esc_html__( 'Propovoice Widgets', 'propovoice' ),
 				'icon' => 'fa fa-plug',

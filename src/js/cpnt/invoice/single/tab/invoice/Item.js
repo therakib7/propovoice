@@ -12,7 +12,7 @@ export default (props) => {
     }
 
     const { index, title, desc, qty, qty_type, item_tax, tax, tax_type, price } = props
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <>
             <td>

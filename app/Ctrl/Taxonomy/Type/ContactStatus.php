@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy\Type; 
+namespace Ndpv\Ctrl\Taxonomy\Type; 
 
 class ContactStatus { 
 
@@ -10,11 +10,11 @@ class ContactStatus {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_contact_status' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpv_contact_status' ) ) {
             return;
         }
          
-        do_action('ndpi_contact_status_taxonomy');  
+        do_action('ndpv_contact_status_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Contact Status', 'contact_status general name', 'propovoice' ),
@@ -40,8 +40,8 @@ class ContactStatus {
             'rewrite'           => array( 'slug' => 'contact_status' ),
         );
      
-        register_taxonomy( 'ndpi_contact_status', array( 'ndpi_person', 'ndpi_org' ), apply_filters('ndpi_contact_status_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpv_contact_status', array( 'ndpv_person', 'ndpv_org' ), apply_filters('ndpv_contact_status_taxonomy_args', $args) ); 
         
-        do_action('ncpi_after_contact_status_taxonomy');          
+        do_action('ndpv_after_contact_status_taxonomy');          
     }
 }

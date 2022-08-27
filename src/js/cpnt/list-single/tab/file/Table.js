@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useState } from 'react';
 import Moment from 'react-moment';
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
@@ -75,7 +75,7 @@ const TableBody = props => {
             setDropdown(id);
         }
     };
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     let rows = props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false; 
@@ -90,7 +90,7 @@ const TableBody = props => {
                 </td>
                 <td>
                     {row.file && <img src={row.file.src} alt="file" width="40" />}
-                    {!row.file && <img src={ndpi.assetImgUri + 'file.png'} alt="file" />}
+                    {!row.file && <img src={ndpv.assetImgUri + 'file.png'} alt="file" />}
                     <span><a target='_blank' href={row.url}>{row.title}</a></span>
                 </td>
                 <td>

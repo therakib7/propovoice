@@ -1,5 +1,5 @@
 <?php
-namespace Ndpi\Model;
+namespace Ndpv\Model;
  
  
 
@@ -9,7 +9,7 @@ class Deal {
     { 
 
         $args = array(
-            'post_type' => 'ndpi_deal',
+            'post_type' => 'ndpv_deal',
             'post_status' => 'publish',
             'posts_per_page' => -1 
         ); 

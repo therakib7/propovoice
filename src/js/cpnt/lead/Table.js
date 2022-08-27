@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import { useNavigate } from 'react-router-dom';
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
@@ -53,7 +53,7 @@ const TableBody = props => {
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
         const level = row.level_id;
 
-        let img = ndpi.assetImgUri + 'avatar.png';
+        let img = ndpv.assetImgUri + 'avatar.png';
         if (row.person && row.person.img) {
             img = row.person.img.src;
         } else if (row.org && row.org.img) {

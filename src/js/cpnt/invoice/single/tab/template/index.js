@@ -25,11 +25,11 @@ export default class Template extends Component {
 
     getLists = (searchArgs = null) => { 
 
-        const old_version = JSON.parse(localStorage.getItem('ndpi_version'));
-        const template = JSON.parse(localStorage.getItem('ndpi_templates'));
+        const old_version = JSON.parse(localStorage.getItem('ndpv_version'));
+        const template = JSON.parse(localStorage.getItem('ndpv_templates'));
 
         //version compire
-        let current_version = ndpi.version;
+        let current_version = ndpv.version;
         let compare_version = current_version.localeCompare(old_version);
 
         if (template && old_version && compare_version !== 1) {
@@ -58,8 +58,8 @@ export default class Template extends Component {
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
-                localStorage.setItem('ndpi_version', JSON.stringify(ndpi.version))
-                localStorage.setItem('ndpi_templates', JSON.stringify(result))
+                localStorage.setItem('ndpv_version', JSON.stringify(ndpv.version))
+                localStorage.setItem('ndpv_templates', JSON.stringify(result))
                 this.setState({ preloader: false, templates: result, totalPage: Math.ceil(total / this.state.perPage) });
 
                 //select default template
@@ -87,7 +87,7 @@ export default class Template extends Component {
     };
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div id="pi-tab-template" className="pi-invoice-tab-content">
                 <h2 className='pi-page-title'>{i18n.select} {i18n.tmpl}</h2>

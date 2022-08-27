@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Template;
+namespace Ndpv\Ctrl\Template;
 
 class TemplateCtrl
 {
@@ -17,7 +17,7 @@ class TemplateCtrl
 	 */
 	function template_list($post_templates, $wp_theme, $post, $post_type)
 	{ 
-		if (function_exists('ndpip')) {
+		if (function_exists('ndpvp')) {
 			$post_templates['workspace-template.php'] = esc_html__('Propovoice Workspace', 'propovoice');
 		}
 		$post_templates['invoice-template.php'] = esc_html__('Propovoice Client Invoice', 'propovoice');
@@ -40,7 +40,7 @@ class TemplateCtrl
 
 		foreach ( $templates as $template ) {
 			if ( get_page_template_slug() === $template .'-template.php' ) {
-				$custom_template = ndpi()->plugin_path() . '/view/template/' . $template . '-template.php';
+				$custom_template = ndpv()->plugin_path() . '/view/template/' . $template . '-template.php';
 				if ( file_exists($custom_template) ) {
 					return $custom_template;
 					break;
@@ -52,15 +52,15 @@ class TemplateCtrl
 	}
 
 	/**
-	 *  NCPI Project Entity Star Icon
+	 *  NDPV Project Entity Star Icon
 	 *
-	 * @package NCPI Project
+	 * @package NDPV Project
 	 * @since 1.0
 	 */
 	function wage_scripts()
 	{
-		wp_localize_script('ndpi-dashboard', 'wage', apply_filters('ndpi_wage', ['PT97']));
-		wp_localize_script('ndpi-invoice', 'wage', apply_filters('ndpi_wage', ['PT97']));
-		wp_localize_script('ndpi-dashboard', 'has_wage', ['ins' => function_exists('ndpip')]);
+		wp_localize_script('ndpv-dashboard', 'wage', apply_filters('ndpv_wage', ['PT97']));
+		wp_localize_script('ndpv-invoice', 'wage', apply_filters('ndpv_wage', ['PT97']));
+		wp_localize_script('ndpv-dashboard', 'has_wage', ['ins' => function_exists('ndpvp')]);
 	}
 }

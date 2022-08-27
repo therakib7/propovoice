@@ -1,8 +1,8 @@
 <?php
 
-namespace Ndpi\Ctrl\Integrate\Smtp;
+namespace Ndpv\Ctrl\Integrate\Smtp;
 
-use Ndpi\Ctrl\Integrate\Smtp\SmtpList; 
+use Ndpv\Ctrl\Integrate\Smtp\SmtpList; 
 
 class SmtpCtrl
 { 

@@ -140,7 +140,7 @@ export default class Payment extends Component {
 
     setActiveTab(e, id) {
         e.preventDefault();
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         let title;
         switch (id) {
             case 'bank':
@@ -219,10 +219,10 @@ export default class Payment extends Component {
     };
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         const { payments, title, currentTab, currentTabTitle } = this.state;
         return (
-            <div className="ncpi-cpnt"> 
+            <div className="ndpv-cpnt"> 
 
                 <div className="pi-payment-tab">
                     <ul className="pi-tabs">

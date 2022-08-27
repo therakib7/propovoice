@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy\Type; 
+namespace Ndpv\Ctrl\Taxonomy\Type; 
 
 class LeadSource { 
 
@@ -10,11 +10,11 @@ class LeadSource {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_lead_source' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpv_lead_source' ) ) {
             return;
         }
          
-        do_action('ndpi_lead_source_taxonomy');  
+        do_action('ndpv_lead_source_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Lead Sources', 'lead_source general name', 'propovoice' ),
@@ -40,8 +40,8 @@ class LeadSource {
             'rewrite'           => array( 'slug' => 'lead_source' ),
         );
      
-        register_taxonomy( 'ndpi_lead_source', array( 'ndpi_lead' ), apply_filters('ndpi_lead_source_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpv_lead_source', array( 'ndpv_lead' ), apply_filters('ndpv_lead_source_taxonomy_args', $args) ); 
         
-        do_action('ncpi_after_lead_source_taxonomy');          
+        do_action('ndpv_after_lead_source_taxonomy');          
     }
 }

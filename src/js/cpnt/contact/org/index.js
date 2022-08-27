@@ -19,9 +19,9 @@ const Org = (props) => {
   }, []);
   const navigate = useNavigate();
   const { title, lists, checkedBoxes, searchVal } = props.state;
-  const i18n = ndpi.i18n;
+  const i18n = ndpv.i18n;
   return (
-    <div className="ncpi-cpnt">
+    <div className="ndpv-cpnt">
       <Breadcrumb title={i18n.contact + ' ' + i18n.book} />
 
       <div className="row">
@@ -169,4 +169,4 @@ const Org = (props) => {
   );
 }
 
-export default Crud(Org, 'organization', ndpi.i18n.org);
+export default Crud(Org, 'organization', ndpv.i18n.org);

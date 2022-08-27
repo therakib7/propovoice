@@ -136,7 +136,7 @@ class FromTo extends Component {
 
     render = () => {
         const { fromData, toData } = this.props;
-        const i18n = ndpi.i18n; 
+        const i18n = ndpv.i18n; 
         return (
             <div className="pi-from-content pi-border-right pi-mt-25">
 

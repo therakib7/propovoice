@@ -1,6 +1,6 @@
 const Total = props => {
     const { currencyFormatter, itemsTotal, extra_field, changeHandler, focusHandler, grandTotal } = props
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <table>
             <tbody>

@@ -54,7 +54,7 @@ const Task = (props) => {
             });
         }
     }
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <div className="">
             <Form
@@ -196,5 +196,5 @@ const Task = (props) => {
         </div>
     );
 }
-const TaskHoc = Crud(Task, 'task', ndpi.i18n.taska);
+const TaskHoc = Crud(Task, 'task', ndpv.i18n.taska);
 export default WithApi(TaskHoc);

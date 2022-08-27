@@ -28,7 +28,7 @@ export default (props) => {
     }
 
     const { items, item_label, item_tax, addHandler, reorderHandler, ...functions } = props
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     const { desc, qty, price, tax, amount } = item_label;
     return (
         <>

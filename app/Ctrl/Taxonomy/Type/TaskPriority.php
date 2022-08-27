@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy\Type; 
+namespace Ndpv\Ctrl\Taxonomy\Type; 
 
 class TaskPriority { 
 
@@ -10,11 +10,11 @@ class TaskPriority {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_task_priority' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpv_task_priority' ) ) {
             return;
         }
          
-        do_action('ndpi_task_priority_taxonomy');  
+        do_action('ndpv_task_priority_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Task Priority', 'task_priority general name', 'propovoice' ),
@@ -40,8 +40,8 @@ class TaskPriority {
             'rewrite'           => array( 'slug' => 'task_priority' ),
         );
      
-        register_taxonomy( 'ndpi_task_priority', array( 'ndpi_task' ), apply_filters('ndpi_task_priority_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpv_task_priority', array( 'ndpv_task' ), apply_filters('ndpv_task_priority_taxonomy_args', $args) ); 
         
-        do_action('ncpi_after_task_priority_taxonomy');          
+        do_action('ndpv_after_task_priority_taxonomy');          
     }
 }

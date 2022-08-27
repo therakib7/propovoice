@@ -14,7 +14,7 @@ export default (props) => {
     const handleChange = e => {
         props.handleChange(e);
     }
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     const recurring = props.data;
     return (
         <div className="">

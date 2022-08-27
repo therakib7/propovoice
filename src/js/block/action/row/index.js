@@ -17,7 +17,7 @@ export default (props) => {
     };
 
     const row = props.row;
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <div className="pi-action-content">
             <button className={(dropdown ? 'pi-active' : '')} onClick={() => showDropdown()} style={{ padding: '0 5px' }} >

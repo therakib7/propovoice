@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Setting\Type;
+namespace Ndpv\Ctrl\Setting\Type;
 
 class Welcome
 {
@@ -16,19 +16,19 @@ class Welcome
 			esc_html__('Propovoice Welcome', 'propovoice'),
 			esc_html__('Propovoice Welcome', 'propovoice'),
 			'manage_options',
-			'ndpi-welcome',
+			'ndpv-welcome',
 			array($this, 'main_settings'),
 			'dashicons-groups',
 			30
 		);
 
 		add_action('admin_menu', function () {
-			remove_menu_page('ndpi-welcome');
+			remove_menu_page('ndpv-welcome');
 		}, 100);
 	}
 
 	function main_settings()
 	{
-		echo '<div class="wrap" id="ndpi-welcome"></div>';
+		echo '<div class="wrap" id="ndpv-welcome"></div>';
 	}
 }

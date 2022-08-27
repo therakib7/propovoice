@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Model;
+namespace Ndpv\Model;
 
 class Person
 {
@@ -30,7 +30,7 @@ class Person
             return $reg_errors;
         } else {
             $data = array(
-                'post_type' => 'ndpi_person',
+                'post_type' => 'ndpv_person',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -39,7 +39,7 @@ class Person
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
 
                 if ($org_id) {
                     update_post_meta($post_id, 'org_id', $org_id);

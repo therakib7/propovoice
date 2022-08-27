@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Api\Type;
+namespace Ndpv\Ctrl\Api\Type;
 
 class File
 {
@@ -13,7 +13,7 @@ class File
     public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/files', [
+        register_rest_route('ndpv/v1', '/files', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -26,7 +26,7 @@ class File
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/files/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/files/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -39,7 +39,7 @@ class File
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/files/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/files/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -52,7 +52,7 @@ class File
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/files/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/files/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -83,7 +83,7 @@ class File
         }
 
         $args = array(
-            'post_type' => 'ndpi_file',
+            'post_type' => 'ndpv_file',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -191,7 +191,7 @@ class File
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_file',
+                'post_type' => 'ndpv_file',
                 'post_title' => '',
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -200,7 +200,7 @@ class File
             $post_id = wp_insert_post($data);
 
             if ( !is_wp_error($post_id) ) {
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace() );
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace() );
                 update_post_meta($post_id, 'tab_id', $tab_id);
                 update_post_meta($post_id, 'type', $type);
 

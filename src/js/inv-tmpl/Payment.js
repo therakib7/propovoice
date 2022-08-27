@@ -1,6 +1,6 @@
 export default (props) => {
     const { bankData } = props.data;
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <div>
             {bankData ? <>

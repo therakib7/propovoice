@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy\Type; 
+namespace Ndpv\Ctrl\Taxonomy\Type; 
 
 class DealPipeline { 
 
@@ -10,11 +10,11 @@ class DealPipeline {
 
     public function create_taxonomy() {
         
-        if ( !is_blog_installed() || taxonomy_exists( 'ndpi_deal_pipeline' ) ) {
+        if ( !is_blog_installed() || taxonomy_exists( 'ndpv_deal_pipeline' ) ) {
             return;
         }
          
-        do_action('ndpi_deal_pipeline_taxonomy');  
+        do_action('ndpv_deal_pipeline_taxonomy');  
 
         $labels = array(
             'name'              => esc_html_x( 'Deal Pipelines', 'deal_pipeline general name', 'propovoice' ),
@@ -40,8 +40,8 @@ class DealPipeline {
             'rewrite'           => array( 'slug' => 'deal_pipeline' ),
         );
      
-        register_taxonomy( 'ndpi_deal_pipeline', array( 'ndpi_deal' ), apply_filters('ndpi_deal_pipeline_taxonomy_args', $args) ); 
+        register_taxonomy( 'ndpv_deal_pipeline', array( 'ndpv_deal' ), apply_filters('ndpv_deal_pipeline_taxonomy_args', $args) ); 
         
-        do_action('ncpi_after_deal_pipeline_taxonomy');          
+        do_action('ndpv_after_deal_pipeline_taxonomy');          
     }
 }

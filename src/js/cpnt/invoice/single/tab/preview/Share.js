@@ -20,7 +20,7 @@ class Share extends Component {
 
         let invoice_id = this.props.data.invoice.id;
         let invoice_token = this.props.data.invoice.token;
-        let url = this.props.path == 'invoice' ? ndpi.invoice_page_url : ndpi.estimate_page_url;
+        let url = this.props.path == 'invoice' ? ndpv.invoice_page_url : ndpv.estimate_page_url;
 
         //replace text with id and token
         let result = url.replace('invoice_id', invoice_id);
@@ -39,7 +39,7 @@ class Share extends Component {
     };
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         let path = this.props.path;
         let path_title = path == 'invoice' ? i18n.inv : i18n.est;
         return (

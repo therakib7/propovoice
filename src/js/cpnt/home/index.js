@@ -51,7 +51,7 @@ const Home = () => {
         }
     };
 
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <HashRouter>
             <ToastContainer hideProgressBar />
@@ -64,7 +64,7 @@ const Home = () => {
 
                     <div className="">
                         <div className="pi-logo-content pi-site-logo">
-                            <img src={ndpi.assetImgUri + 'site-logo.png'} alt="favicon" />
+                            <img src={ndpv.assetImgUri + 'site-logo.png'} alt="favicon" />
                             <strong>Propovoice</strong>
                         </div>
                         <div className='pi-sidebar-menu dpi-collapse-menu'>
@@ -476,7 +476,7 @@ const Home = () => {
                                 {false && <a href='https://propovoice.com/affilite' target='_blank' className="pi-btn pi-btn-big pi-bg-blue pi-bg-hover-blue pi-bg-shadow">
                                     Refer &amp; Earn
                                 </a>}
-                                <a href={ndpi.dashboard} className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"> 
+                                <a href={ndpv.dashboard} className="pi-btn pi-btn-big pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"> 
                                     {i18n.back_t_db}
                                 </a>
                             </div>
@@ -514,8 +514,8 @@ const Home = () => {
                             <div className="pi-avater">
                                 <div className="pi-dropdown">
                                     <button className="pi-dropbtn" onClick={() => setDropdown(val => !val)}>
-                                        <img src={ndpi.profile.img} alt="avatar" />
-                                        {ndpi.profile.name}
+                                        <img src={ndpv.profile.img} alt="avatar" />
+                                        {ndpv.profile.name}
                                         <svg
                                             className="pi-dropdown-angle"
                                             width={12}
@@ -535,7 +535,7 @@ const Home = () => {
                                     </button>
 
                                     {dropdown && <div className="pi-dropdown-content pi-show">
-                                        <a href={ndpi.profile.logout}>{i18n.logout}</a>
+                                        <a href={ndpv.profile.logout}>{i18n.logout}</a>
                                     </div>}
                                 </div>
                             </div>

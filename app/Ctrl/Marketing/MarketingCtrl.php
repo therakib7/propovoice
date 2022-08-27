@@ -1,8 +1,8 @@
 <?php
 
-namespace Ndpi\Ctrl\Marketing;
+namespace Ndpv\Ctrl\Marketing;
 
-use Ndpi\Ctrl\Marketing\Type\Link;
+use Ndpv\Ctrl\Marketing\Type\Link;
 
 class MarketingCtrl {
 	

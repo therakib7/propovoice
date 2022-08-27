@@ -1,18 +1,18 @@
 <?php
 
-namespace Ndpi\Ctrl\Taxonomy;
+namespace Ndpv\Ctrl\Taxonomy;
 
-use Ndpi\Ctrl\Taxonomy\Type\ContactStatus;
-use Ndpi\Ctrl\Taxonomy\Type\DealPipeline;
-use Ndpi\Ctrl\Taxonomy\Type\Tag;
-use Ndpi\Ctrl\Taxonomy\Type\DealStage;
-use Ndpi\Ctrl\Taxonomy\Type\ExtraAmount;
-use Ndpi\Ctrl\Taxonomy\Type\LeadLevel;
-use Ndpi\Ctrl\Taxonomy\Type\LeadSource;
-use Ndpi\Ctrl\Taxonomy\Type\ProjectStatus;
-use Ndpi\Ctrl\Taxonomy\Type\TaskPriority;
-use Ndpi\Ctrl\Taxonomy\Type\TaskStatus;
-use Ndpi\Ctrl\Taxonomy\Type\TaskType;
+use Ndpv\Ctrl\Taxonomy\Type\ContactStatus;
+use Ndpv\Ctrl\Taxonomy\Type\DealPipeline;
+use Ndpv\Ctrl\Taxonomy\Type\Tag;
+use Ndpv\Ctrl\Taxonomy\Type\DealStage;
+use Ndpv\Ctrl\Taxonomy\Type\ExtraAmount;
+use Ndpv\Ctrl\Taxonomy\Type\LeadLevel;
+use Ndpv\Ctrl\Taxonomy\Type\LeadSource;
+use Ndpv\Ctrl\Taxonomy\Type\ProjectStatus;
+use Ndpv\Ctrl\Taxonomy\Type\TaskPriority;
+use Ndpv\Ctrl\Taxonomy\Type\TaskStatus;
+use Ndpv\Ctrl\Taxonomy\Type\TaskType;
 
 class TaxonomyCtrl {
 	

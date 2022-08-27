@@ -1,27 +1,25 @@
 <?php
 
-namespace Ndpi\Ctrl; 
+namespace Ndpv\Ctrl; 
 
-use Ndpi\Ctrl\Ajax\AjaxCtrl;
-use Ndpi\Ctrl\Api\ApiCtrl;
-use Ndpi\Ctrl\Asset\AssetCtrl;
-use Ndpi\Ctrl\Cron\CronCtrl;
-use Ndpi\Ctrl\Template\TemplateCtrl;
-use Ndpi\Ctrl\Hook\HookCtrl;
-use Ndpi\Ctrl\Integrate\IntegrateCtrl;
-use Ndpi\Ctrl\Marketing\MarketingCtrl;
-use Ndpi\Ctrl\Meta\MetaCtrl;
-use Ndpi\Ctrl\Setting\SettingCtrl;
-use Ndpi\Ctrl\PostType\PostTypeCtrl;
-use Ndpi\Ctrl\Taxonomy\TaxonomyCtrl; 
-use Ndpi\Ctrl\Widget\WidgetCtrl;
+use Ndpv\Ctrl\Ajax\AjaxCtrl;
+use Ndpv\Ctrl\Api\ApiCtrl;
+use Ndpv\Ctrl\Asset\AssetCtrl;
+use Ndpv\Ctrl\Cron\CronCtrl;
+use Ndpv\Ctrl\Template\TemplateCtrl;
+use Ndpv\Ctrl\Hook\HookCtrl;
+use Ndpv\Ctrl\Integrate\IntegrateCtrl;
+use Ndpv\Ctrl\Marketing\MarketingCtrl;
+use Ndpv\Ctrl\Meta\MetaCtrl;
+use Ndpv\Ctrl\Setting\SettingCtrl; 
+use Ndpv\Ctrl\Taxonomy\TaxonomyCtrl; 
+use Ndpv\Ctrl\Widget\WidgetCtrl;
 
 class MainCtrl {
 
     public function __construct() {    
         
-        //if ( is_admin() ) {
-            new PostTypeCtrl();
+        //if ( is_admin() ) { 
             new TaxonomyCtrl(); 
             new SettingCtrl(); 
             new MarketingCtrl();

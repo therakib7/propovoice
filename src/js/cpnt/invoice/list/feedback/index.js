@@ -36,7 +36,7 @@ class Feedback extends Component {
 
     render() {
         const data = this.props.data;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-overlay pi-show">
                 <div className="pi-modal-content">

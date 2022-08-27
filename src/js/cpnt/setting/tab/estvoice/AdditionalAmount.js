@@ -60,7 +60,7 @@ export default class AdditionalAmount extends Component {
 
     render() {
         const form = this.state.form;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <div className="pi-form-style-one">
                 <div className="row">

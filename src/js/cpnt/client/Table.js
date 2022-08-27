@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import Action from 'block/action/row';
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
@@ -51,11 +51,11 @@ const TableBody = props => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
 
-        let img = ndpi.assetImgUri + 'avatar.png';
+        let img = ndpv.assetImgUri + 'avatar.png';
         if (row.img) {
             img = row.img.src;
         }
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <tr key={index}>
                 <td>

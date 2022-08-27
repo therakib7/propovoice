@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Integrate\Form; 
+namespace Ndpv\Ctrl\Integrate\Form; 
  
 class FormList
 {
@@ -12,7 +12,7 @@ class FormList
 
     public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/intg-form', [
+        register_rest_route('ndpv/v1', '/intg-form', [
             'methods' => 'GET',
             'callback' => [$this, 'get'],
             'permission_callback' => [$this, 'get_permission']

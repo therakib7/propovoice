@@ -60,7 +60,7 @@ export default class Form extends Component {
     }
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pi-form-style-one">
                 <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>Sendinblue</h4>

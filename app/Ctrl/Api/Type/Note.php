@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Api\Type;
+namespace Ndpv\Ctrl\Api\Type;
 
 class Note
 {
@@ -13,7 +13,7 @@ class Note
     public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/notes', [
+        register_rest_route('ndpv/v1', '/notes', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -26,7 +26,7 @@ class Note
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/notes/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/notes/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -39,7 +39,7 @@ class Note
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/notes/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/notes/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -52,7 +52,7 @@ class Note
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/notes/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/notes/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -82,7 +82,7 @@ class Note
         }
 
         $args = array(
-            'post_type' => 'ndpi_note',
+            'post_type' => 'ndpv_note',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -157,7 +157,7 @@ class Note
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_note',
+                'post_type' => 'ndpv_note',
                 'post_title' => '',
                 'post_content'  => $text,
                 'post_status'   => 'publish',
@@ -166,7 +166,7 @@ class Note
             $post_id = wp_insert_post($data);
 
             if ( !is_wp_error($post_id) ) {
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace() );
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace() );
                 update_post_meta($post_id, 'tab_id', $tab_id); 
                 
                 wp_send_json_success($post_id);

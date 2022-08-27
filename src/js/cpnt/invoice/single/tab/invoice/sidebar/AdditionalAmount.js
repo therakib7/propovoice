@@ -59,7 +59,7 @@ export default (props) => {
                     <div className="row">
                         <div className="col" style={{ marginBottom: '10px' }}>
                             <label id="form-item_tax">
-                                {ndpi.i18n.eachitem}
+                                {ndpv.i18n.eachitem}
                                 {wage.length > 0 && <>
                                     <ProLabel />
                                 </>}

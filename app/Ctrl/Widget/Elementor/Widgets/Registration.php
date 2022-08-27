@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Ctrl\Widget\Elementor\Widgets;
+namespace Ndpv\Ctrl\Widget\Elementor\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
@@ -8,7 +8,7 @@ use Elementor\Widget_Base;
 class Registration extends Widget_Base {
 
 	public function get_name() {
-		return 'ndpi-registration';
+		return 'ndpv-registration';
 	}
 
 	public function get_title() {
@@ -20,7 +20,7 @@ class Registration extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'ndpi-category' ];
+		return [ 'ndpv-category' ];
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Registration extends Widget_Base {
 	 */
 	protected function render() {  
 		$settings = $this->get_settings_for_display(); ?>   
-		<?php ndpi()->render('public/auth/registration'); ?> 
+		<?php ndpv()->render('public/auth/registration'); ?> 
 		<?php 
 	} 
 } 

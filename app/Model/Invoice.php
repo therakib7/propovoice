@@ -1,5 +1,5 @@
 <?php
-namespace Ndpi\Model; 
+namespace Ndpv\Model; 
 
 class Invoice {
 

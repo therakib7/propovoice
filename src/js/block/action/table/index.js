@@ -20,7 +20,7 @@ export default (props) => {
         <div className="pi-table-action pi-mb-10">
             <div className="pi-checkbox-field pi-mt-6">
                 <input type="checkbox" defaultChecked onChange={() => props.uncheckAll()} />
-                <span>{props.length}  {ndpi.i18n.iselec} </span>
+                <span>{props.length}  {ndpv.i18n.iselec} </span>
             </div>
             <div className="pi-small-button-group">
                 {/*<button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow">
@@ -36,7 +36,7 @@ export default (props) => {
                     className="pi-btn pi-btn-small pi-bg-stroke pi-bg-shadow pi-bg-hover-shadow"
                     onClick={() => props.deleteEntry('selected')}
                 >
-                    {ndpi.i18n.del}
+                    {ndpv.i18n.del}
                 </button>
             </div>
         </div>

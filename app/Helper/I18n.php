@@ -1,6 +1,6 @@
 <?php
 
-namespace Ndpi\Helper;
+namespace Ndpv\Helper;
 
 class I18n
 {

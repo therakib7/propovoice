@@ -7,7 +7,7 @@ import Template from './sub/Template';
 class General extends Component {
 	constructor(props) {
 		super(props);
-		const i18n = ndpi.i18n;
+		const i18n = ndpv.i18n;
 		this.state = {
 			tabs: [
 				{

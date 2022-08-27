@@ -1,12 +1,12 @@
 <?php
 
-namespace Ndpi\Ctrl\Api\Type;
+namespace Ndpv\Ctrl\Api\Type;
 
-use Ndpi\Helper\Fns;
-use Ndpi\Model\Client;
-use Ndpi\Model\Deal;
-use Ndpi\Model\Lead;
-use Ndpi\Model\Project; 
+use Ndpv\Helper\Fns;
+use Ndpv\Model\Client;
+use Ndpv\Model\Deal;
+use Ndpv\Model\Lead;
+use Ndpv\Model\Project; 
 
 class Dashbaord
 {
@@ -20,7 +20,7 @@ class Dashbaord
 
     public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/dashboard', [
+        register_rest_route('ndpv/v1', '/dashboard', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -135,7 +135,7 @@ class Dashbaord
 
             $items = [];
             $args = array(
-                'post_type' => 'ndpi_deal',
+                'post_type' => 'ndpv_deal',
                 'post_status' => 'publish',
                 'orderby' => 'menu_order',
                 'order' => 'ASC',
@@ -149,7 +149,7 @@ class Dashbaord
 
             $args['tax_query'] = array(
                 array(
-                    'taxonomy' => 'ndpi_deal_stage',
+                    'taxonomy' => 'ndpv_deal_stage',
                     'terms' => $stage_id,
                     'field' => 'term_id',
                 )
@@ -206,7 +206,7 @@ class Dashbaord
         }
 
         $args = array(
-            'post_type' => 'ndpi_deal',
+            'post_type' => 'ndpv_deal',
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
@@ -216,7 +216,7 @@ class Dashbaord
             $id = get_the_ID();
 
             $query_data['stage_id'] = '';
-            $stage = get_the_terms($id, 'ndpi_deal_stage');
+            $stage = get_the_terms($id, 'ndpv_deal_stage');
             if ($stage) {
                 $month_num = ((int) get_the_time('m')) - 1;
                 $type = get_term_meta($stage[0]->term_id, 'type', true);
@@ -257,7 +257,7 @@ class Dashbaord
             $tax_name = $tax->name;
 
             $args = array(
-                'post_type' => 'ndpi_lead',
+                'post_type' => 'ndpv_lead',
                 'post_status' => 'publish',
                 'orderby' => 'menu_order',
                 'order' => 'ASC',
@@ -269,7 +269,7 @@ class Dashbaord
             );
             $args['tax_query'] = array(
                 array(
-                    'taxonomy' => 'ndpi_' . $params['section'],
+                    'taxonomy' => 'ndpv_' . $params['section'],
                     'terms' => $tax_id,
                     'field' => 'term_id',
                 )

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ndpi\Ctrl\Meta; 
+namespace Ndpv\Ctrl\Meta; 
  
-use Ndpi\Ctrl\Meta\User\User;
+use Ndpv\Ctrl\Meta\User\User;
 
 class MetaCtrl {
 
