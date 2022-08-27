@@ -72,16 +72,15 @@ export default class License extends Component {
         let singleForm = [...this.state.singleForm]
         const target = e.target;
         const name = target.name;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-
+        const value = target.type === 'checkbox' ? target.checked : target.value; 
         if (name == 'active') {
             if (wage.length > 0) {
                 pro();
                 return;
             }
-            singleForm[i].active = value;
+            singleForm[i].active = value; 
             this.setState({ singleForm }, () => {
-                this.submitFormData(i);
+                this.submitFormData(i); 
             })
         } else {
             singleForm[i].fields[si].value = value;
@@ -99,15 +98,14 @@ export default class License extends Component {
         this.submitFormData(i);
     }
 
-    submitFormData = (i) => {
-        let form = [...this.state.singleForm];
-        form[i].form = this.state.currentTab.slug;
-
+    submitFormData = (i) => { 
+        let form = JSON.parse(JSON.stringify(this.state.singleForm));
+        form[i].form = this.state.currentTab.slug; 
         const newFields = form[i].fields.map(({ label, ...rest }) => {
             return rest;
         });
         form[i].fields = newFields;
-
+        
         this.props.update('forms', form[i].id, form[i]).then(resp => {
             if (resp.data.success) {
                 toast.success('Successfully updated'); //TODO: translation
