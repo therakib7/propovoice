@@ -28,25 +28,15 @@ const EditDownload = props => {
                 // onClick={() => props.handleDownload()}
                 >
                     <svg
-                        width={17}
-                        height={16}
-                        viewBox="0 0 17 16"
+                        width={12}
+                        height={14}
+                        viewBox="0 0 12 14"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
-                            d="M8.5 3.5C3.5 3.5 1.5 8 1.5 8C1.5 8 3.5 12.5 8.5 12.5C13.5 12.5 15.5 8 15.5 8C15.5 8 13.5 3.5 8.5 3.5Z"
-                            stroke="#2D3748"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path
-                            d="M8.5 10.5C9.88071 10.5 11 9.38071 11 8C11 6.61929 9.88071 5.5 8.5 5.5C7.11929 5.5 6 6.61929 6 8C6 9.38071 7.11929 10.5 8.5 10.5Z"
-                            stroke="#2D3748"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                            d="M6.667 7h2L6 9.668 3.333 7.001h2V4.334h1.334v2.667zM8 1.668H1.333v10.667h9.334v-8H8V1.667zM0 .995C0 .63.298.334.666.334h8L12 3.667v9.329a.666.666 0 01-.662.671H.662A.666.666 0 010 13.006V.996z"
+                            fill="#2D3748"
                         />
                     </svg>
                     Download
@@ -62,25 +52,15 @@ const EditDownload = props => {
                 // onClick={() => props.handlePrint()}
                 >
                     <svg
-                        width={17}
-                        height={16}
-                        viewBox="0 0 17 16"
+                        width={15}
+                        height={14}
+                        viewBox="0 0 15 14"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
-                            d="M8.5 3.5C3.5 3.5 1.5 8 1.5 8C1.5 8 3.5 12.5 8.5 12.5C13.5 12.5 15.5 8 15.5 8C15.5 8 13.5 3.5 8.5 3.5Z"
-                            stroke="#2D3748"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path
-                            d="M8.5 10.5C9.88071 10.5 11 9.38071 11 8C11 6.61929 9.88071 5.5 8.5 5.5C7.11929 5.5 6 6.61929 6 8C6 9.38071 7.11929 10.5 8.5 10.5Z"
-                            stroke="#2D3748"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                            d="M3.5 11.667h-2a.667.667 0 01-.667-.666V4.334a.667.667 0 01.667-.667h2V1.001a.667.667 0 01.667-.667h6.666a.667.667 0 01.667.667v2.666h2a.666.666 0 01.667.667v6.667a.667.667 0 01-.667.666h-2v1.334a.667.667 0 01-.667.666H4.167a.667.667 0 01-.667-.666v-1.334zm0-1.333v-.667a.667.667 0 01.667-.666h6.666a.667.667 0 01.667.666v.667h1.333V5.001H2.167v5.333H3.5zm1.333-8.667v2h5.334v-2H4.833zm0 8.667v2h5.334v-2H4.833zm-2-4.667h2v1.334h-2V5.667z"
+                            fill="#2D3748"
                         />
                     </svg>
                     Print
@@ -216,52 +196,52 @@ export default class Invoice extends Component {
         const urlParams = new URLSearchParams(queryString);
         const id = urlParams.get('id')
         Api.get(id + '?client_view=1').then(resp => {
-                let data = resp.data.data; 
-                let payment_methods = [];
+            let data = resp.data.data;
+            let payment_methods = [];
 
-                let paypal = {
-                    id: 'paypal',
-                    label: 'Paypal',
-                };
+            let paypal = {
+                id: 'paypal',
+                label: 'Paypal',
+            };
 
-                let stripe = {
-                    id: 'stripe',
-                    label: 'Stripe',
-                };
+            let stripe = {
+                id: 'stripe',
+                label: 'Stripe',
+            };
 
-                let bank = {
-                    id: 'bank',
-                    label: 'Bank',
-                };
+            let bank = {
+                id: 'bank',
+                label: 'Bank',
+            };
 
-                if (!wage.length) {
-                    if (data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal) { 
-                        payment_methods.push(paypal);
-                    }
-
-                    if (data.invoice.payment_methods.hasOwnProperty('stripe') && data.invoice.payment_methods.stripe) {
-                        payment_methods.push(stripe);
-                    }
+            if (!wage.length) {
+                if (data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal) {
+                    payment_methods.push(paypal);
                 }
 
-                if (data.invoice.payment_methods.hasOwnProperty('bank') && data.invoice.payment_methods.bank) {
-                    payment_methods.push(bank);
-                } 
-                
-                data.payment_methods = payment_methods;
+                if (data.invoice.payment_methods.hasOwnProperty('stripe') && data.invoice.payment_methods.stripe) {
+                    payment_methods.push(stripe);
+                }
+            }
 
-                if (!wage.length && data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal) {
-                    data.selected_payment_method = paypal;
-                } else if (!wage.length && data.invoice.payment_methods.hasOwnProperty('stripe') && data.invoice.payment_methods.stripe) {
-                    data.selected_payment_method = stripe;
-                } else if (data.invoice.payment_methods.hasOwnProperty('bank') && data.invoice.payment_methods.bank) {
-                    data.selected_payment_method = bank;
-                } 
+            if (data.invoice.payment_methods.hasOwnProperty('bank') && data.invoice.payment_methods.bank) {
+                payment_methods.push(bank);
+            }
 
-                data.invoice.id = data.id;
-                
-                this.setState(data);
-            })
+            data.payment_methods = payment_methods;
+
+            if (!wage.length && data.invoice.payment_methods.hasOwnProperty('paypal') && data.invoice.payment_methods.paypal) {
+                data.selected_payment_method = paypal;
+            } else if (!wage.length && data.invoice.payment_methods.hasOwnProperty('stripe') && data.invoice.payment_methods.stripe) {
+                data.selected_payment_method = stripe;
+            } else if (data.invoice.payment_methods.hasOwnProperty('bank') && data.invoice.payment_methods.bank) {
+                data.selected_payment_method = bank;
+            }
+
+            data.invoice.id = data.id;
+
+            this.setState(data);
+        })
     };
     handleClick = (type, data = null) => {
         if (type == 'feedback') {
@@ -279,7 +259,7 @@ export default class Invoice extends Component {
         this.setState({ status });
     }
 
-    render() { 
+    render() {
         return (
             <div>
                 <ToastContainer hideProgressBar />
@@ -329,19 +309,19 @@ export default class Invoice extends Component {
                 {this.state.paymentModal &&
                     <>
                         <Suspense fallback={<Spinner />}>
-                            {this.state.payment_method == 'bank' && <Bank 
+                            {this.state.payment_method == 'bank' && <Bank
                                 show={this.state.paymentModal}
                                 invoice_id={this.state.id}
                                 handleSubmit={this.handleSubmit}
                                 close={() => this.setState({ paymentModal: false })}
                             />}
 
-                            {this.state.payment_method == 'paypal' && <Paypal 
+                            {this.state.payment_method == 'paypal' && <Paypal
                                 show={this.state.paymentModal}
                                 invoice={this.state.invoice}
                                 close={() => this.setState({ paymentModal: false })}
-                            />} 
-                            {this.state.payment_method == 'stripe' && <Stripe 
+                            />}
+                            {this.state.payment_method == 'stripe' && <Stripe
                                 show={this.state.paymentModal}
                                 invoice={this.state.invoice}
                                 close={() => this.setState({ paymentModal: false })}
