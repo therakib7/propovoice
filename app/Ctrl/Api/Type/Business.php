@@ -78,7 +78,7 @@ class Business
         }
 
         $args = array( 
-            'post_type' => 'ncpi_business',
+            'post_type' => 'ndpv_business',
             'post_status' => 'publish',
             'posts_per_page' => $per_page, 
             'offset' => $offset,
@@ -181,7 +181,7 @@ class Business
 
     public function set_default() {
         $args = array( 
-            'post_type' => 'ncpi_business',
+            'post_type' => 'ndpv_business',
             'post_status' => 'publish',
             'posts_per_page' => -1,
             'fields' => 'ids'
@@ -230,7 +230,7 @@ class Business
         } else {
          
             $data = array(
-                'post_type' => 'ncpi_business',
+                'post_type' => 'ndpv_business',
                 'post_title'    => $name,
                 'post_content'  => '',
                 'post_status'   => 'publish',

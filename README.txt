@@ -4,7 +4,7 @@ Donate link:
 Tags: proposal, estimate, invoice, payment, crm, project, client, template, transaction, billing, automation, management
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 0.5.0
+Stable tag: 1.0.0
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -96,7 +96,7 @@ We have a long vision to make the service selling process easier. If you are loo
 
 == Changelog == 
 
-= 0.5.0 =
+= 1.0.0 =
 * Added: Lead manamentment
 * Added: Deal manamentment
 * Added: Project manamentment

@@ -10,7 +10,7 @@ class Merge
     {
         $this->user_to_contact();
         $this->extra_amount();
-        $this->business_under_workspace();
+        $this->posttype_under_workspace();
     }
 
     public function user_to_contact()
@@ -97,7 +97,7 @@ class Merge
 
                 if (!is_wp_error($post_id)) {
                     $args = array(
-                        'post_type' => 'ncpi_estvoice',
+                        'post_type' => 'ndpv_estinv',
                         'post_status' => 'publish',
                         'posts_per_page' => -1
                     );
@@ -135,7 +135,7 @@ class Merge
     function extra_amount()
     {
         $args = array(
-            'post_type' => 'ncpi_estvoice',
+            'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
             'posts_per_page' => -1
         );
@@ -177,20 +177,27 @@ class Merge
         wp_reset_postdata();
     }
 
-    function business_under_workspace()
-    {
-        $args = array(
-            'post_type' => 'ncpi_business',
+    function posttype_under_workspace()
+    {  
+        $args = array( 
+            'post_type' => ['ncpi_business', 'ncpi_estvoice', 'ncpi_payment'],
             'post_status' => 'publish',
-            'posts_per_page' => -1
-        );
+            'posts_per_page' => -1,
+            'fields' => 'ids'
+        );   
+        $query = new \WP_Query( $args );  
+        $get_workspace_id = ndpv()->get_workspace();
+        foreach( $query->posts as $id ) {
+            update_post_meta($id, 'ws_id', $get_workspace_id);
 
-        $query = new \WP_Query($args);
-        while ($query->have_posts()) {
-            $query->the_post();
-            $id = get_the_ID();
-
-            update_post_meta($id, 'ws_id', ndpv()->get_workspace());
+            $post_type = get_post_type($id);
+            if ( $post_type == 'ncpi_business' ) {
+                set_post_type($id, 'ndpv_business');
+            } else if ( $post_type == 'ncpi_estvoice' ) {
+                set_post_type($id, 'ndpv_estinv');
+            } else if ( $post_type == 'ncpi_payment' ) {
+                set_post_type($id, 'ndpv_payment');
+            }
         }
         wp_reset_postdata();
     }

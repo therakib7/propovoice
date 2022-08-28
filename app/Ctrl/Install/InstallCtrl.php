@@ -59,7 +59,7 @@ class InstallCtrl
 
     public function plugin_redirect()
     {
-        if (get_option('ndpv_active', false)) {
+        if ( get_option('ndpv_active', false) ) {
             delete_option('ndpv_active');
 
             // $this->insertData();
@@ -75,7 +75,7 @@ class InstallCtrl
             update_option('ndpv_version', NDPV_VERSION);
         }
 
-        if (version_compare($version, '0.5.0', '<')) {
+        if ( version_compare($version, '1.0.0', '<') ) {
             new Page();
             new DB();
             new Taxonomy();

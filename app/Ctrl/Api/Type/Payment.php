@@ -79,7 +79,7 @@ class Payment
         }
 
         $args = array(
-            'post_type' => 'ncpi_payment',
+            'post_type' => 'ndpv_payment',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -238,7 +238,7 @@ class Payment
         } else {
 
             $data = array(
-                'post_type' => 'ncpi_payment',
+                'post_type' => 'ndpv_payment',
                 'post_title'    => $type,
                 'post_content'  => '',
                 'post_status'   => 'publish',

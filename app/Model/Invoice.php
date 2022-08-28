@@ -46,7 +46,7 @@ class Invoice {
         ];  
 
         $args = array(
-            'post_type' => 'ncpi_estvoice',
+            'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
             'posts_per_page' => -1 
         ); 

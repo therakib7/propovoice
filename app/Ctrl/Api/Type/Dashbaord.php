@@ -71,7 +71,7 @@ class Dashbaord
         $summary['total_project'] = $project->total();
 
         $args = array(
-            'post_type' => 'ncpi_estvoice',
+            'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
@@ -323,7 +323,7 @@ class Dashbaord
         }
 
         $args = array(
-            'post_type' => 'ncpi_estvoice',
+            'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );

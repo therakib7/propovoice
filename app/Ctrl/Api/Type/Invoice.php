@@ -91,7 +91,7 @@ class Invoice
         }
 
         $args = array(
-            'post_type' => 'ncpi_estvoice',
+            'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -422,7 +422,7 @@ class Invoice
             //TODO: give proper title
             $title = '';
             $data = array(
-                'post_type' => 'ncpi_estvoice',
+                'post_type' => 'ndpv_estinv',
                 'post_title'   => $title,
                 'post_content'  => '',
                 'post_status'   => 'publish',
