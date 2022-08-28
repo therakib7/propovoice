@@ -92,8 +92,8 @@ class Feedback extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pv-modal-title">{this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'}{i18n.est}</h2>
-                                <p>{this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'} Estimate from here</p>
+                                <h2 className="pv-modal-title">{this.props.data.feedback_type == 'accept' ? i18n.acce : 'Decline'} {i18n.est}</h2>
+                                <p>{this.props.data.feedback_type == 'accept' ? i18n.acce  : 'Decline'} {i18n.est} {i18n.from} {i18n.here}</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >
                                 <div className="pv-content">
@@ -130,7 +130,7 @@ class Feedback extends Component {
                                         </div>
                                         <div className="col">
                                             <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                                {this.props.data.feedback_type == 'accept' ? 'Accept' : 'Decline'}
+                                                {this.props.data.feedback_type == 'accept' ? i18n.acce : 'Decline'}
                                             </button>
                                         </div>
                                     </div>
