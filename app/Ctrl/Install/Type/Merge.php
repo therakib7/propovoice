@@ -9,8 +9,8 @@ class Merge
     public function __construct()
     {
         $this->user_to_contact();
+        $this->change_posttype();
         $this->extra_amount();
-        $this->posttype_under_workspace();
     }
 
     public function user_to_contact()
@@ -162,13 +162,15 @@ class Merge
                 foreach ($invoice['extra_field'] as $key => $value) {
                     $slug = ($key == 'late_fee') ? 'fee' : $key;
                     $term = get_term_by('slug', $slug, 'ndpv_extra_amount');
-                    $extra_field[] = [
-                        'id' => $term->term_id,
-                        'name' => $term->name,
-                        'type' => $slug,
-                        'val' => $invoice[$key],
-                        'val_type' => $value,
-                    ];
+                    if ( isset( $term->term_id ) && isset( $invoice[$key] ) ) {
+                        $extra_field[] = [
+                            'id' => $term->term_id,
+                            'name' => $term->name,
+                            'type' => $slug,
+                            'val' => $invoice[$key],
+                            'val_type' => $value,
+                        ];
+                    }
                 }
                 $invoice['extra_field'] = $extra_field;
                 update_post_meta($id, 'invoice', $invoice);
@@ -177,7 +179,7 @@ class Merge
         wp_reset_postdata();
     }
 
-    function posttype_under_workspace()
+    function change_posttype()
     {  
         $args = array( 
             'post_type' => ['ncpi_business', 'ncpi_estvoice', 'ncpi_payment'],
@@ -200,5 +202,16 @@ class Merge
             }
         }
         wp_reset_postdata();
+
+        $this->update_attach_meta_key();
+    }
+
+    function update_attach_meta_key() {
+        global $wpdb;
+    
+        $query = "UPDATE ".$wpdb->prefix."postmeta SET meta_key = 'ndpv_attach_type' WHERE meta_key = 'ncpi_attach_type'";
+        $results = $wpdb->get_results( $query, ARRAY_A );
+    
+        return $results;
     }
 }

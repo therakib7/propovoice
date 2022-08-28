@@ -38,7 +38,7 @@ class SmtpList
                 'active' => false,
                 'pro' => true,
             ],
-            [ 
+            /* [ 
                 'name' => 'Sendinblue',
                 'slug' => 'sendinblue',
                 'img' => 'https://www.sendinblue.com/wp-content/themes/sendinblue2019/assets/images/common/logo-color.svg',
@@ -65,7 +65,7 @@ class SmtpList
                 'img' => 'https://img001.prntscr.com/file/img001/msNOomOMTX28qqvOi4nEGg.png',
                 'active' => false,
                 'pro' => true,
-            ]
+            ] */
         ];
 
         $form_list = [];
