@@ -968,6 +968,7 @@ html {
   font-size: 12px;
   font-weight: 600;
   margin-left: 10px;
+  color: #2D3748;
 }
 .ndpv .pv-table tr td .pv-bg-orange {
   color: #F68A0B;
@@ -1905,9 +1906,9 @@ html {
   font-weight: 500;
 }
 .ndpv .pv-item-main-content .pv-item-content .pv-add-item-text p {
-  margin-top: 0px;
-  font-size: 12px;
+  font-size: 12px !important;
   margin-bottom: 0;
+  color: #718096 !important;
 }
 .ndpv .pv-item-main-content .pv-btn {
   width: 100%;

@@ -86,6 +86,7 @@ class I18n
             //table
             'status' => esc_html__('Status', 'propovoice'),
             'date' => esc_html__('Date', 'propovoice'),
+            'invDate' => esc_html_x('Date', 'Invoice', 'propovoice'),
             'action' => esc_html__('Action', 'propovoice'),
             'show' => esc_html__('Show', 'propovoice'), 
             'alw' => esc_html__('Always', 'propovoice'), 
