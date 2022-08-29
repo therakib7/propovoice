@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react"; 
+import React, { useState, useEffect } from "react";
 
 export default (props) => {
     const [summary, setSummary] = useState(
@@ -14,12 +14,12 @@ export default (props) => {
         }
     );
 
-    useEffect(() => { 
-        props.getAll('dashboard', 'section=summary').then(resp => { 
-            if ( resp.data.success ) {  
-                setSummary( resp.data.data );
+    useEffect(() => {
+        props.getAll('dashboard', 'section=summary').then(resp => {
+            if (resp.data.success) {
+                setSummary(resp.data.data);
             }
-        }); 
+        });
     }, []);
 
     const i18n = ndpv.i18n;
@@ -28,7 +28,7 @@ export default (props) => {
             <div className="row">
                 <div className="col-md-6 col-lg">
                     <div className="pv-cards-content">
-                        <span className="" style={{ background: "rgba(76, 111, 255, 0.12)" }}>
+                        <span style={{ background: "rgba(76, 111, 255, 0.12)" }}>
                             <svg
                                 width={24}
                                 height={24}
@@ -87,13 +87,13 @@ export default (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">{i18n.total} {i18n.client}</p>
+                        <p>{i18n.total} {i18n.client}</p>
                         <h4>{summary.total_client}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
                     <div className="pv-cards-content">
-                        <span className="" style={{ background: "#f1faf1" }}>
+                        <span style={{ background: "#f1faf1" }}>
                             <svg
                                 width={24}
                                 height={24}
@@ -107,83 +107,75 @@ export default (props) => {
                                 />
                             </svg>
                         </span>
-                        <p className="">{i18n.total} {i18n.lead}</p>
+                        <p>{i18n.total} {i18n.lead}</p>
                         <h4>{summary.total_lead}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
                     <div className="pv-cards-content">
-                        <span className="" style={{ background: "rgba(69, 172, 157, 0.28)" }}>
+                        <span style={{ background: "rgba(69, 172, 157, 0.28)" }}>
                             <svg
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
+                                width={25}
+                                height={25}
+                                viewBox="0 0 25 25"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    d="M21.75 5.25L12.75 14.25L9 10.5L2.25 17.25"
+                                    d="M22.822 12.385l-2.316 1.153-3-5.737 2.344-1.172a.74.74 0 01.993.318l2.307 4.416a.75.75 0 01-.328 1.022v0zM4.006 13.444L1.69 12.28a.741.741 0 01-.328-1.012l2.306-4.416a.75.75 0 01.994-.328l2.344 1.172-3 5.747zM20.506 13.538l-1.5 1.763-3.45 3.45a.798.798 0 01-.713.197l-5.437-1.36a.751.751 0 01-.272-.14l-5.128-4.004"
                                     stroke="#45AC9D"
-                                    strokeWidth={2}
+                                    strokeWidth={1.5}
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                 />
                                 <path
-                                    d="M21.75 11.25V5.25H15.75"
+                                    d="M19.006 15.3l-4.125-3-1.2.9a3.01 3.01 0 01-3.6 0l-.506-.385a.758.758 0 01-.085-1.134l3.675-3.666a.742.742 0 01.525-.215h3.816"
                                     stroke="#45AC9D"
-                                    strokeWidth={2}
+                                    strokeWidth={1.5}
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M7.063 7.697l4.809-1.406a.75.75 0 01.515.037L15.631 7.8M10.756 20.925l-2.822-.712a.694.694 0 01-.31-.16l-2.118-1.837"
+                                    stroke="#45AC9D"
+                                    strokeWidth={1.5}
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                 />
                             </svg>
                         </span>
-                        <p className="">{i18n.total} {i18n.deal}</p>
+                        <p>{i18n.total} {i18n.deal}</p>
                         <h4>{summary.total_deal}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
                     <div className="pv-cards-content">
-                        <span
-                            className=""
-                            style={{ background: "rgba(182, 100, 144, 0.26)" }}
+                        <span 
+                            style={{ background: "#F4F2FE" }}
                         >
                             <svg
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
+                                width={25}
+                                height={25}
+                                viewBox="0 0 25 25"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    d="M5.55929 3.75H18.4405C18.5893 3.75025 18.7345 3.7947 18.8579 3.87772C18.9813 3.96073 19.0773 4.07856 19.1335 4.21622C19.1898 4.35388 19.2039 4.50517 19.174 4.65085C19.1441 4.79653 19.0715 4.93002 18.9655 5.03438L11.9999 12L5.03429 5.03438C4.92833 4.93002 4.85579 4.79653 4.82587 4.65085C4.79596 4.50517 4.81004 4.35388 4.86631 4.21622C4.92258 4.07856 5.0185 3.96073 5.1419 3.87772C5.26529 3.7947 5.41058 3.75025 5.55929 3.75V3.75Z"
-                                    stroke="#B66490"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M5.55929 20.25H18.4405C18.5893 20.2498 18.7345 20.2053 18.8579 20.1223C18.9813 20.0393 19.0773 19.9214 19.1335 19.7838C19.1898 19.6461 19.2039 19.4948 19.174 19.3492C19.1441 19.2035 19.0715 19.07 18.9655 18.9656L11.9999 12L5.03429 18.9656C4.92833 19.07 4.85579 19.2035 4.82587 19.3492C4.79596 19.4948 4.81004 19.6461 4.86631 19.7838C4.92258 19.9214 5.0185 20.0393 5.1419 20.1223C5.26529 20.2053 5.41058 20.2498 5.55929 20.25Z"
-                                    stroke="#B66490"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M16.5 16.5H7.5"
-                                    stroke="#B66490"
+                                    d="M8.027 10.707h9.75M8.027 13.707h9.75M3.902 20.457V6.207a.75.75 0 01.75-.75h16.5a.75.75 0 01.75.75v14.25l-3-1.5-3 1.5-3-1.5-3 1.5-3-1.5-3 1.5z"
+                                    stroke="#8775EC"
                                     strokeWidth={2}
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                 />
                             </svg>
                         </span>
-                        <p className="">{i18n.total} {i18n.inv}</p>
+                        <p>{i18n.total} {i18n.inv}</p>
                         <h4>{summary.total_invoice}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
                     <div className="pv-cards-content">
-                        <span className="" style={{ background: "rgba(69, 172, 157, 0.28)" }}>
+                        <span style={{ background: "rgba(182, 100, 144, .26)" }}>
                             <svg
                                 width={24}
                                 height={24}
@@ -192,62 +184,61 @@ export default (props) => {
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    d="M21.75 5.25L12.75 14.25L9 10.5L2.25 17.25"
-                                    stroke="#45AC9D"
+                                    d="M9 9h6M9 12h6M9 15h3M14.69 20.25H4.5a.75.75 0 01-.75-.75v-15a.75.75 0 01.75-.75h15a.75.75 0 01.75.75v10.19a.742.742 0 01-.216.526l-4.818 4.818a.74.74 0 01-.525.216v0z"
+                                    stroke="#B66490"
                                     strokeWidth={2}
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                 />
                                 <path
-                                    d="M21.75 11.25V5.25H15.75"
-                                    stroke="#45AC9D"
+                                    d="M20.184 15H15v5.184"
+                                    stroke="#B66490"
                                     strokeWidth={2}
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                 />
                             </svg>
                         </span>
-                        <p className="">{i18n.total} {i18n.est}</p>
+                        <p>{i18n.total} {i18n.est}</p>
                         <h4>{summary.total_estimate}</h4>
                     </div>
                 </div>
                 <div className="col-md-6 col-lg">
                     <div className="pv-cards-content">
                         <span
-                            className=""
-                            style={{ background: "rgba(182, 100, 144, 0.26)" }}
+                            style={{ background: "#ECF9FC" }}
                         >
                             <svg
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
+                                width={25}
+                                height={25}
+                                viewBox="0 0 25 25"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    d="M5.55929 3.75H18.4405C18.5893 3.75025 18.7345 3.7947 18.8579 3.87772C18.9813 3.96073 19.0773 4.07856 19.1335 4.21622C19.1898 4.35388 19.2039 4.50517 19.174 4.65085C19.1441 4.79653 19.0715 4.93002 18.9655 5.03438L11.9999 12L5.03429 5.03438C4.92833 4.93002 4.85579 4.79653 4.82587 4.65085C4.79596 4.50517 4.81004 4.35388 4.86631 4.21622C4.92258 4.07856 5.0185 3.96073 5.1419 3.87772C5.26529 3.7947 5.41058 3.75025 5.55929 3.75V3.75Z"
-                                    stroke="#B66490"
-                                    strokeWidth={2}
+                                    d="M18.96 10.648v8.335a.666.666 0 01-.666.665H3.96a.75.75 0 01-.75-.75v-10.5a.75.75 0 01.75-.75h4.247a.76.76 0 01.45.15l2.606 1.95a.76.76 0 00.45.15h6.497a.75.75 0 01.75.75z"
+                                    stroke="#33C3E2"
+                                    strokeWidth={1.8}
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                 />
                                 <path
-                                    d="M5.55929 20.25H18.4405C18.5893 20.2498 18.7345 20.2053 18.8579 20.1223C18.9813 20.0393 19.0773 19.9214 19.1335 19.7838C19.1898 19.6461 19.2039 19.4948 19.174 19.3492C19.1441 19.2035 19.0715 19.07 18.9655 18.9656L11.9999 12L5.03429 18.9656C4.92833 19.07 4.85579 19.2035 4.82587 19.3492C4.79596 19.4948 4.81004 19.6461 4.86631 19.7838C4.92258 19.9214 5.0185 20.0393 5.1419 20.1223C5.26529 20.2053 5.41058 20.2498 5.55929 20.25Z"
-                                    stroke="#B66490"
-                                    strokeWidth={2}
+                                    d="M18.96 10.648v8.335a.666.666 0 01-.666.665H3.96a.75.75 0 01-.75-.75v-10.5a.75.75 0 01.75-.75h4.247a.76.76 0 01.45.15l2.606 1.95a.76.76 0 00.45.15h6.497a.75.75 0 01.75.75z"
+                                    stroke="#33C3E2"
+                                    strokeWidth={1.8}
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                 />
                                 <path
-                                    d="M16.5 16.5H7.5"
-                                    stroke="#B66490"
-                                    strokeWidth={2}
+                                    d="M6.21 7.648v-2.25a.75.75 0 01.75-.75h4.247a.76.76 0 01.45.15l2.606 1.95a.76.76 0 00.45.15h6.497a.75.75 0 01.75.75v8.335a.666.666 0 01-.666.665H18.96"
+                                    stroke="#33C3E2"
+                                    strokeWidth={1.8}
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                 />
                             </svg>
                         </span>
-                        <p className="">{i18n.total} {i18n.project}</p>
+                        <p>{i18n.total} {i18n.project}</p>
                         <h4>{summary.total_project}</h4>
                     </div>
                 </div>
