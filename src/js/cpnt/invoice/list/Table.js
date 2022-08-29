@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ProLabel from 'block/pro-alert/label';
 import Moment from 'react-moment';
 import Feedback from './feedback';
-import useClickOutside from 'block/outside-click';
+import Action from 'block/action/row/invoice';
 
 //payment
 import Bank from './payment/Bank';
@@ -16,8 +16,7 @@ const TableHeader = props => {
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox"
-
+                    <input type="checkbox" 
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
@@ -62,18 +61,6 @@ const TableHeader = props => {
 }
 
 const TableBody = props => {
-
-    const [dropdown, setDropdown] = useState(null);
-    // const close = useCallback(() => setDropdown(null), []);	
-
-    const showDropdown = (id) => {
-        if (dropdown == id) {
-            setDropdown(null);
-        } else {
-            setDropdown(id);
-        }
-    };
-
     let navigate = useNavigate();
     function handleClick(id, view = '') {
         let path = props.path;
@@ -81,10 +68,7 @@ const TableBody = props => {
     }
     const i18n = ndpv.i18n;
 
-    let rows = props.tableData.map((row, index) => {
-
-        // const popover = useRef();
-        // useClickOutside(popover, close);
+    let rows = props.tableData.map((row, index) => { 
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
@@ -183,50 +167,13 @@ const TableBody = props => {
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
                 <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pv-action">
-                    <div className="pv-action-content">
-                        <button className={(row.id == dropdown ? 'pv-active' : '')} onClick={() => showDropdown(row.id)}>
-                            <svg
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                    fill="#718096"
-                                />
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                    fill="#718096"
-                                />
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                    fill="#718096"
-                                />
-                            </svg>
-                        </button>
-                        {row.id == dropdown && <div className="pv-dropdown-content pv-show"
-                        // ref={popover}
-                        >
-                            <a onClick={() => { showDropdown(row.id); handleClick(row.id); }}>{i18n.edit}</a>
-                            <a onClick={() => handleClick(row.id, '/tab/preview')}>{i18n.prv}</a>
-                            <a target='_blank' href={client_url}>{i18n.client} {i18n.prv}</a>
-                            <a onClick={() => { showDropdown(row.id); props.action('sent', row.id); }}>{i18n.mark} {i18n.as} {i18n.sent}</a>
-                            {row.path == 'invoice' && <a onClick={() => { showDropdown(row.id); props.action('paid', row.id); }}>{i18n.mark} {i18n.as} {i18n.paid}</a>}
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('accept', row.id); }}>{i18n.mark} {i18n.as} {i18n.accept}</a>}
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); }}>{i18n.mark} {i18n.as} {i18n.dec}</a>}
-                            <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); }}>{i18n.dup} <ProLabel /></a>
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); }}>{i18n.copy} {i18n.to} {i18n.inv} <ProLabel /></a>}
-                            <a onClick={() => { showDropdown(row.id); props.deleteEntry('single', row.id); }}>{i18n.del}</a>
-                        </div>}
-                    </div>
+                    <Action
+                        row={row}
+                        client_url={ client_url } 
+                        single={ handleClick } 
+                        action={props.action}
+                        deleteEntry={props.deleteEntry}
+                    /> 
                 </td>
             </tr>
         );
