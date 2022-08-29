@@ -11,10 +11,7 @@ import LeadForm from 'cpnt/lead/Form';
 import DealForm from 'cpnt/deal/Form';
 import ProjectForm from 'cpnt/project/Form';
 import ContactPerson from 'cpnt/contact/person/Form';
-import ContactOrg from 'cpnt/contact/org/Form';
-
-// import DealForm from './dform/Deal';
-// import ProjectForm from './form/Project';
+import ContactOrg from 'cpnt/contact/org/Form'; 
 
 const Task = lazy(() => import('./tab/task'));
 const Note = lazy(() => import('./tab/note'));
