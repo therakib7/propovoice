@@ -1,7 +1,7 @@
-=== Propovoice CRM - Client, Estimate, Invoice automation ===
+=== Propovoice CRM - Lead, Estimate, Invoice, Billing, Client, Project Automation ===
 Contributors: propovoice, therakib7
 Donate link:
-Tags: proposal, estimate, invoice, payment, crm, project, client, template, transaction, billing, automation, management
+Tags: proposal, estimate, invoice, payment, crm, project, client, lead, transaction, billing, automation, management
 Requires at least: 5.0
 Tested up to: 6.0
 Stable tag: 1.0.0
@@ -15,11 +15,13 @@ It's simple to create estimates and invoices and manage clients for WordPress wi
 
 👉 [Documentation](https://propovoice.com/docs) 👈
 
+<p>🚀 <a href="https://propovoice.com">propovoice.com</a> | 📚 <a href="https://propovoice.com/docs">Knowledge base</a> | 🏆 <a href="https://propovoice.com/pricing/">Get Pro</a></p>
+
 Propovoice CRM is a client relationship management solution for small, mid-level service agencies and freelancers. It will help you manage your key business process - nurturing clients, creating project quotation/estimation, and invoice on a single self-hosted web platform. Propovoice's vision is to make a complete and easier solution that will facilitate managing service agency leads, selling, billing, accounting, and managing projects.
 
 == The features: ==
 == 🏆 Business Profile ==
-You can easily create a business profile with the basic information and branding asset of your business. With P[ropovoice, managing service selling and billing of your business are simple and seamless. 
+You can easily create a business profile with the basic information and branding asset of your business. With Propovoice, managing service selling and billing of your business are simple and seamless. 
 
 == 🏆 Add Clients ==
 You can add a client to send him project estimates and invoices. You can input your client's contact information ( name, email, phone number, region, address, etc) while adding a client so that you can communicate with your clients easily whenever needed. It’s the first step of a long journey to build a good relationship with your clients.
@@ -97,12 +99,14 @@ We have a long vision to make the service selling process easier. If you are loo
 == Changelog == 
 
 = 1.0.0 =
-* Added: Lead manamentment
-* Added: Deal manamentment
-* Added: Project manamentment
-* Added: Client manamentment
-* Added: Task manamentment 
-* Added: Contact manamentment 
+* Added: Lead management
+* Added: Deal management
+* Added: Project management
+* Update: Estimate management
+* Update: Invoice management
+* Added: Client management
+* Added: Task management 
+* Added: Contact management 
 
 = 0.1.6 =
 * Fixed: Email body content issues
