@@ -201,7 +201,7 @@ const Dashboard = (props) => {
                         <ChartPie {...props} type='lead_level' />
                         <ChartPie {...props} type='lead_source' />
 
-                        <Widget
+                        {wage.length > 0 && <Widget
                             title='Upgrade Pro to Get Access All Insight'
                             desc='Please upgrade to pro and get access to enjoy all the amazing features that accelerate your business growth and take your business experience to the next level.'
                             btnTxt='Upgrade Now'
@@ -230,9 +230,9 @@ const Dashboard = (props) => {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                        </Widget>
+                        </Widget>}
 
-                        <Widget
+                        {false && <Widget
                             title='Newsletter Subscription'
                             desc='Please subscribe now and get informative content and weekly updates on service business.
                             Accurate information and timely updates take you ahead of your competitors.'
@@ -252,7 +252,7 @@ const Dashboard = (props) => {
                                     fill="#EBA45D"
                                 />
                             </svg>
-                        </Widget>
+                        </Widget>}
 
                         <Widget
                             title='Help and Support'
