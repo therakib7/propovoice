@@ -78,7 +78,6 @@ class AssetCtrl
                 'estimate-template.php'
             ])
         ) {
-
             //TODO: Remove all wordpress unused file from frontend
 
             wp_enqueue_style('ndpv-invoice', ndpv()->get_asset_uri("css/invoice{$this->suffix}.css"), array(), $this->version);

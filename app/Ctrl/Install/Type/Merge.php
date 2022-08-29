@@ -152,8 +152,8 @@ class Merge
                 $fromData['name'] = get_post_meta($from_id, 'name', true);
             }
 
-            $contact_id = get_post_meta($id, 'to', true);
-            $to_type = get_post_meta($id, 'to_type', true);
+            /* $contact_id = get_post_meta($id, 'to', true);
+            $to_type = get_post_meta($id, 'to_type', true); */
 
             $invoice = get_post_meta($id, 'invoice', true);
 
