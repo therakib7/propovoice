@@ -1,4 +1,4 @@
-const Label = (props) => {
+export default (props) => {
     const show = () => {
         document.getElementById('pv-pro-alert').style.display = 'block';
     };
@@ -22,6 +22,4 @@ const Label = (props) => {
             </span>}
         </>
     );
-};
-
-export default Label; 
+}

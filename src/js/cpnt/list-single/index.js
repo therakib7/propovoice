@@ -2,6 +2,7 @@ import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
 import Moment from 'react-moment';
+import Action from 'block/action/row/single';
 import Spinner from 'block/preloader/spinner';
 import Taxonomy from 'block/field/taxonomy';
 import WithApi from 'hoc/Api';
@@ -42,8 +43,7 @@ class ListSingle extends Component {
                     text: ndpv.i18n.file
                 },
             ],
-            currentTab: 'task',
-            action: false,
+            currentTab: 'task', 
             leadModal: false,
             dealModal: false,
             dealModalType: 'edit',
@@ -370,44 +370,12 @@ class ListSingle extends Component {
                                                 {i18n.add} {i18n.to} {i18n.deal} {i18n.pipeline}
                                             </button>
 
-                                            <div className="pv-action-content pv-action-btn pv-bg-stroke pv-bg-shadow">
-                                                <button
-                                                    className={(this.state.action ? '' : '')}
-                                                    onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
-                                                >
-                                                    <svg
-                                                        width={24}
-                                                        height={24}
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                    </svg>
-                                                </button>
-
-                                                {this.state.action && <div className="pv-dropdown-content pv-show">
-                                                    <a onClick={() => this.setState({ leadModal: true })}>{i18n.edit}</a>
-                                                    <a onClick={() => this.deleteEntry('lead', data.id)}>{i18n.del}</a>
-                                                </div>}
-                                            </div>
+                                            <Action
+                                                id={data.id}
+                                                module='lead'  
+                                                edit={ () => this.setState({ leadModal: true }) }
+                                                del={this.deleteEntry} 
+                                            /> 
                                         </div>
                                     </div>
                                 </div>
@@ -530,48 +498,14 @@ class ListSingle extends Component {
                                                     {i18n.lost}
                                                 </button>}
                                             </>}
-
-                                            <div
-                                                className="pv-action-content pv-action-btn pv-bg-shadow"
-                                                style={{ padding: 1 }}
-                                            >
-                                                <button
-                                                    onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
-                                                >
-                                                    <svg
-                                                        width={24}
-                                                        height={24}
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                    </svg>
-                                                </button>
-
-                                                {this.state.action && <div className="pv-dropdown-content pv-show">
-                                                    <a onClick={() => this.setState({ dealModal: true })}>{i18n.edit}</a>
-                                                    <a onClick={() => this.deleteEntry('deal', data.id)}>{i18n.del}</a>
-                                                </div>}
-
-                                            </div>
+                                            
+                                            <Action
+                                                id={data.id}
+                                                module='deal'  
+                                                edit={ () => this.setState({ dealModal: true }) }
+                                                del={this.deleteEntry} 
+                                                padding={1}
+                                            /> 
                                         </div>
                                     </div>
                                 </div>
@@ -636,47 +570,13 @@ class ListSingle extends Component {
                                                 {i18n.mark} {i18n.as} {i18n.comp}
                                             </button>}
 
-                                            <div
-                                                className="pv-action-content pv-action-btn pv-bg-shadow"
-                                                style={{ padding: 1 }}
-                                            >
-                                                <button
-                                                    className={(this.state.action ? '' : '')}
-                                                    onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
-                                                >
-                                                    <svg
-                                                        width={24}
-                                                        height={24}
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                    </svg>
-                                                </button>
-
-                                                {this.state.action && <div className="pv-dropdown-content pv-show">
-                                                    <a onClick={() => this.setState({ projectModal: true })}>{i18n.edit}</a>
-                                                    <a onClick={() => this.deleteEntry('project', data.id)}>{i18n.del}</a>
-                                                </div>}
-                                            </div>
+                                            <Action
+                                                id={data.id}
+                                                module='project'  
+                                                edit={ () => this.setState({ projectModal: true }) }
+                                                del={this.deleteEntry} 
+                                                padding={1}
+                                            /> 
                                         </div>
                                     </div>
                                 </div>
@@ -884,44 +784,13 @@ class ListSingle extends Component {
                                             {data.id && <Taxonomy id={data.id} data={data.status_id} taxonomy='contact_status' title={i18n.status} color />}
                                         </div>
 
-                                        <div className="pv-action-content pv-action-btn pv-bg-stroke pv-bg-shadow pv-float-right">
-                                            <button
-                                                className={(this.state.action ? '' : '')}
-                                                onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
-                                            >
-                                                <svg
-                                                    width={24}
-                                                    height={24}
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                        d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                                        fill="#718096"
-                                                    />
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                        d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                                        fill="#718096"
-                                                    />
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                        d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                                        fill="#718096"
-                                                    />
-                                                </svg>
-                                            </button>
-
-                                            {this.state.action && <div className="pv-dropdown-content pv-show">
-                                                <a onClick={() => this.setState({ contactModal: true })}>{i18n.edit}</a>
-                                                <a onClick={() => this.deleteEntry('contact', data.id)}>{i18n.del}</a>
-                                            </div>}
-                                        </div>
+                                        <Action
+                                            id={data.id}
+                                            module='contact'  
+                                            edit={ () => this.setState({ contactModal: true }) }
+                                            del={this.deleteEntry} 
+                                            class='pv-float-right'
+                                        />  
                                     </div>
                                 </div>
                             </div>
