@@ -281,7 +281,7 @@ class ListSingle extends Component {
                             {path == 'deal' && <NavLink to='/deal'>{i18n.deal}</NavLink>}
                             {path == 'client' && <NavLink to='/client'>{i18n.client}</NavLink>}
                             {path == 'project' && <NavLink to='/project'>{i18n.project}</NavLink>}
-                            {path == 'contact' && <NavLink to='/contact'>{i18n.contact}</NavLink>}
+                            {path == 'contact' && <NavLink to='/contact'>{i18n.ct}</NavLink>}
                         </li>
                         <li>
                             <svg
@@ -773,7 +773,7 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">{i18n.paid} {i18n.amount}</p>
+                                        <p className="">{i18n.paid} {i18n.amt}</p>
                                         <h4>$ {data.invoice && data.invoice.paid}</h4>
                                     </div>
                                 </div>
@@ -807,7 +807,7 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">{i18n.due} {i18n.amount}</p>
+                                        <p className="">{i18n.due} {i18n.amt}</p>
                                         <h4>$ {data.invoice && data.invoice.due}</h4>
                                     </div>
                                 </div>

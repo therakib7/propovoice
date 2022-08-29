@@ -98,7 +98,7 @@ export default class Template extends Component {
                     <div className="pv-overlay pv-show">
                         <div className="pv-modal-content">
                             <div className="pv-modal-header">
-                                <h2 className="pv-modal-title pv-text-center">{i18n.mi} {i18n.gallery}</h2>
+                                <h2 className="pv-modal-title pv-text-center">{i18n.media} {i18n.gal}</h2>
                                 <span className="pv-close" onClick={() => this.props.close()}>×</span>
                             </div>
 
@@ -143,7 +143,7 @@ export default class Template extends Component {
                                             fill="#18181B"
                                         />
                                     </svg>
-                                    {i18n.gallery}
+                                    {i18n.gal}
                                 </button>
 
                                 {this.state.currentTab == 'upload' && <div className="pv-media-upload">
@@ -190,7 +190,7 @@ export default class Template extends Component {
                                             <button className="pv-btn pv-bg-blue pv-bg-hover-blue"
                                                 onClick={(e) => { e.preventDefault(); this.insertMedia() }}
                                             >
-                                                {i18n.in}
+                                                {i18n.ins}
                                             </button>
                                         </div>
                                     </>

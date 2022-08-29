@@ -55,7 +55,7 @@ class Attach extends Component {
 						fill="#18181B"
 					/>
 					</svg>
-					{i18n.add} {i18n.attachment}
+					{i18n.add} {i18n.atch}
 				</button>					
 
 				{attach.map((item, index) => (

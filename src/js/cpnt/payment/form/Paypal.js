@@ -103,7 +103,7 @@ class FormPaypal extends Component {
 
                                         <div>
                                             <label htmlFor="form-account_type_personal">
-                                                {i18n.personal}
+                                                {i18n.pers}
                                             </label>
                                             <input
                                                 id="form-account_type_personal"
@@ -114,7 +114,7 @@ class FormPaypal extends Component {
                                             />
 
                                             <label htmlFor="form-account_type_business">
-                                                {i18n.business}
+                                                {i18n.biz}
                                             </label>
                                             <input
                                                 id="form-account_type_business"

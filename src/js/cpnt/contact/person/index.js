@@ -22,11 +22,11 @@ const Contact = (props) => {
   const { title, lists, checkedBoxes, searchVal } = props.state;
   return (
     <div className="ndpv-cpnt">
-      <Breadcrumb title={i18n.contact + ' ' + i18n.book} />
+      <Breadcrumb title={i18n.ct + ' ' + i18n.book} />
 
       <div className="row">
         <div className="col">
-          <h2 className="pv-page-title">{i18n.contact} {i18n.book}</h2>
+          <h2 className="pv-page-title">{i18n.ct} {i18n.book}</h2>
         </div>
         <div className="col">
           <AddNew
@@ -135,7 +135,7 @@ const Contact = (props) => {
           className="pv-btn pv-active pv-btn-small pv-bg-stroke pv-bg-hover-shadow"
           onClick={() => navigate(`/contact/person`)}
         >
-          {i18n.person}
+          {i18n.prsn}
         </button>
         <button
           className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow"
@@ -169,4 +169,4 @@ const Contact = (props) => {
   );
 }
 
-export default Crud(Contact, 'person', ndpv.i18n.person);
+export default Crud(Contact, 'person', ndpv.i18n.prsn);

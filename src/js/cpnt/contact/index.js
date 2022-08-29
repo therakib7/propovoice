@@ -14,11 +14,11 @@ const Contact = (props) => {
   const i18n = ndpv.i18n;
   return (
     <div className="ndpv-cpnt">
-      <Breadcrumb title={i18n.contact + ' ' + i18n.book} />
+      <Breadcrumb title={i18n.ct + ' ' + i18n.book} />
 
       <div className="row">
         <div className="col-6">
-          <h2 className="">{i18n.contact} {i18n.book}</h2>
+          <h2 className="">{i18n.ct} {i18n.book}</h2>
         </div>
         <div className="col-6 pv-text-right">
           <button
@@ -175,7 +175,7 @@ const Contact = (props) => {
 
       <div className="pv-small-button-group pv-mb-30">
         <button className="pv-btn pv-active pv-btn-small pv-bg-stroke pv-bg-hover-shadow">
-        {i18n.person}
+        {i18n.prsn}
         </button>
         <button className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow">
         {i18n.org}
@@ -197,4 +197,4 @@ const Contact = (props) => {
   );
 }
 
-export default Crud(Contact, 'person', ndpv.i18n.person);
+export default Crud(Contact, 'person', ndpv.i18n.prsn);

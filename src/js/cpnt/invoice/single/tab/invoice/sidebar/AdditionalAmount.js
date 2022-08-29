@@ -52,6 +52,7 @@ export default (props) => {
     }
 
     const extra_field = props.data;
+    const i18n = ndpv.i18n;
     return (
         <>
             <div className="pv-form-accordion pv-additional">
@@ -59,7 +60,7 @@ export default (props) => {
                     <div className="row">
                         <div className="col" style={{ marginBottom: '10px' }}>
                             <label id="form-item_tax">
-                                {ndpv.i18n.eachitem}
+                                {i18n.eachitem} {i18n.tax} {i18n.field}
                                 {wage.length > 0 && <>
                                     <ProLabel />
                                 </>}

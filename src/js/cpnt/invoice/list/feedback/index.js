@@ -64,7 +64,7 @@ class Feedback extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pv-modal-title">{i18n.feedback}</h2>
+                        <h2 className="pv-modal-title">{i18n.fdbk}</h2>
                         <p>Here is the client feedback</p>
                     </div>
                     <div className="pv-content">
@@ -86,7 +86,7 @@ class Feedback extends Component {
 
                             <div className="row">
                                 <div className="col-md">
-                                    <label htmlFor="field-receipt">{i18n.addi} {i18n.attachment}</label>
+                                    <label htmlFor="field-receipt">{i18n.addi} {i18n.atch}</label>
                                     <Upload label={'Upload'} attach_type='secret' library={false} data={data.feedback.attachment} changeHandler={this.handleUploadChange} remove={false} />
                                 </div>
                             </div>

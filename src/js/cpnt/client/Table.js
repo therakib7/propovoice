@@ -15,7 +15,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    {i18n.contact} {i18n.name}
+                    {i18n.ct} {i18n.name}
                 </th>
                 <th>
                     {i18n.email}
@@ -74,7 +74,7 @@ const TableBody = props => {
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.email}</td>
                 {/*<td>{row.org_name}</td> */}
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.mobile}</td>
-                <td>{row.type == 'person' ? i18n.person : i18n.org}</td>
+                <td>{row.type == 'person' ? i18n.prsn : i18n.org}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
                 <td className="pv-action">
                     <Action

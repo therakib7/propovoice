@@ -29,7 +29,7 @@ const TableHeader = props => {
                     Project
                 </th> */}
                 {!props.client_id && <th>
-                    {i18n.contact}
+                    {i18n.ct}
                 </th>}
                 <th>
                     {i18n.total}

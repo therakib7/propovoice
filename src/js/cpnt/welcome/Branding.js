@@ -89,7 +89,7 @@ class Branding extends Component {
 					</div>}
 
 				<div className="pv-buttons pv-text-center">
-					<button className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big" onClick={() => this.props.handleSubmit('', 'branding')}>{i18n.save} &amp; {i18n.contin}</button>
+					<button className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big" onClick={() => this.props.handleSubmit('', 'branding')}>{i18n.save} {i18n.nd} {i18n.cont}</button>
 					<a className="pv-text-hover-blue" onClick={() => this.props.handleSkip('branding')}>{i18n.skip}</a>
 				</div>
 			</>

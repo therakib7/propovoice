@@ -139,8 +139,8 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.person}</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.person + ' ' +i18n.from + ' ' + i18n.here}</p>
+                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.prsn}</h2>
+                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.prsn + ' ' +i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
@@ -231,7 +231,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-address">
-                                            {i18n.address}
+                                            {i18n.addr}
                                         </label>
 
                                         <input

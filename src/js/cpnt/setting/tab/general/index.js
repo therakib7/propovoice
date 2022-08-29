@@ -8,7 +8,7 @@ const Main = (props) => {
 		[
 			{
 				id: 'business',
-				text: ndpv.i18n.business
+				text: ndpv.i18n.biz
 			} 
 		]
 	);

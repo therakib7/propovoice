@@ -120,8 +120,8 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pv-modal-title">{title} {i18n.business}</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.business + ' ' +i18n.from + ' ' + i18n.here}</p>
+                        <h2 className="pv-modal-title">{title} {i18n.biz}</h2>
+                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.biz + ' ' +i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
@@ -228,7 +228,7 @@ class Form extends Component {
                                     <div className="col">
                                         <label
                                             htmlFor="field-address">
-                                            {i18n.address}
+                                            {i18n.addr}
                                         </label>
 
                                         <input

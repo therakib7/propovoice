@@ -30,7 +30,7 @@ function App() {
     const i18n = ndpv.i18n;
     return (
         <div>
-            <button onClick={() => handleOpenPicker()}>{i18n.open} {i18n.picker}</button>
+            <button onClick={() => handleOpenPicker()}>Open Picker</button>
         </div>
     );
 }
