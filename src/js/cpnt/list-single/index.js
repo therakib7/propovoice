@@ -817,14 +817,28 @@ class ListSingle extends Component {
                     data={data}
                     modalType={this.state.dealModalType}
                     close={() => this.setState({ dealModal: false })}
-                    reload={() => this.getData()}
+                    reload={() => {
+                        let tabs = this.state.tabs
+                        tabs.push({
+                            id: 'estimate',
+                            text: i18n.est
+                        });
+                        this.getData();
+                    }}
                 />}
 
                 {this.state.projectModal && <ProjectForm
                     data={data}
                     modalType={this.state.projectModalType}
                     close={() => this.setState({ projectModal: false })}
-                    reload={() => this.getData()}
+                    reload={() => {
+                        let tabs = this.state.tabs  
+                        tabs.push({
+                            id: 'invoice',
+                            text: i18n.inv
+                        })
+                        this.getData()
+                    }}
                 />}
 
                 {this.state.contactModal && (data.person ? <ContactPerson
