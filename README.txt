@@ -13,7 +13,7 @@ It's simple to create estimates and invoices and manage clients for WordPress wi
 
 == Description ==
 
-🚀 <a href="https://propovoice.com">Official Website</a> | 📚 <a href="https://propovoice.com/docs">Documentation</a> | 🚀 <a href="https://www.facebook.com/groups/837677640524915">Propovoice Community</a> | 🏆 <a href="https://propovoice.com/pricing/">Get Pro</a>
+🚀 <a href="https://propovoice.com">Official Website</a> | 📚 <a href="https://propovoice.com/docs">Documentation</a> | 🚀 <a href="https://www.facebook.com/groups/837677640524915">Community</a> | 🏆 <a href="https://propovoice.com/pricing/">Get Pro</a>
 
 Propovoice CRM is a client relationship management solution for small to mid-level service agencies and freelancers in WordPress. It will help you manage your business process – managing leads & clients, creating project estimations and invoices on a single self-hosted web platform. 
 
@@ -41,15 +41,15 @@ Your self-hosted CRM automates your service business and other key benefits
 == Core Module: ==
 Propovoice comes with the following powerful core modules-
  
-* Leads Management
-* Deals Management
-* Estimate Builder
-* Invoice Builder
-* Clients Management
-* Projects Management
-* Contacts Management
-* Business Setup
-* Settings
+* **Leads Management**
+* **Deals Management**
+* **Estimate Builder**
+* **Invoice Builder**
+* **Clients Management**
+* **Projects Management**
+* **Contacts Management**
+* **Business Setup**
+* **Settings**
 
 == The features: ==
 == 🏆 Business Profile ==
