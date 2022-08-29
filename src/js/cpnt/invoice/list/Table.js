@@ -116,7 +116,7 @@ const TableBody = props => {
 
             case 'decline':
                 status = <span className='pv-badge pv-bg-red pv-cursor-pointer'
-                    style={{ color: '#fff' }}
+                    style={{ color: '#4a5568' }}
                     onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.dec}</span>
                 break;
 
@@ -166,7 +166,7 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><span className='pv-list-title'>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</span></td>
                 {/*<td>{row.project.name}</td>*/}
                 {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
@@ -281,7 +281,7 @@ const Table = (props) => {
                     </>
                 }
 
-                <table className='pv-table'>
+                <table className='pv-table pv-table-four'>
                     <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} path={path} />
                     <TableBody
                         infoModal={handleInfoModal}

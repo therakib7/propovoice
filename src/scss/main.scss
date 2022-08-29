@@ -872,6 +872,7 @@ html {
   border-radius: 5px;
   background-color: #E2E8F0;
   color: #4a5568;
+  font-weight: 500;
 }
 .ndpv .pv-badge svg {
   margin-right: 3px;
@@ -2232,7 +2233,7 @@ html {
   padding: 3px 35px 3px 10px !important;
 }
 .wp-admin.ndpv .pv-board-content {
-  height: calc(100vh - 395px) !important;
+  height: calc(100vh - 449px) !important;
 }
 .wp-admin.ndpv #pv-pro-alert {
   z-index: 999999;
@@ -2486,16 +2487,16 @@ html {
   color: #fff !important;
 }
 
-.page-template .pv-board-content {
-  height: calc(100vh - 475px) !important;
+.ndpv .pv-board-content {
+  height: calc(100vh - 516px) !important;
 }
 @media screen and (max-width: 550px) {
-  .page-template .pv-board-content {
+  .ndpv .pv-board-content {
     height: calc(100vh - 510px) !important;
   }
 }
 @media screen and (max-width: 420px) {
-  .page-template .pv-board-content {
+  .ndpv .pv-board-content {
     height: calc(100vh - 520px) !important;
   }
 }

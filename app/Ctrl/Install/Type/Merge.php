@@ -97,7 +97,7 @@ class Merge
 
                 if (!is_wp_error($post_id)) {
                     $args = array(
-                        'post_type' => 'ndpv_estinv',
+                        'post_type' => 'ncpi_estvoice',
                         'post_status' => 'publish',
                         'posts_per_page' => -1
                     );

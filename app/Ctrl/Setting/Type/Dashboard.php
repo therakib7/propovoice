@@ -32,7 +32,7 @@ class Dashboard
             'ndpv#',
             array($this, 'render')
         );
-
+         
         $settings_menu = [
             [
                 'id' => 'lead',
@@ -40,7 +40,7 @@ class Dashboard
             ],
             [
                 'id' => 'deal',
-                'label' => esc_html__('Deal Pipeline', 'propovoice'),
+                'label' => (function_exists('ndpvp') && ndpvp()->wage()) ? esc_html__('Deal Pipeline', 'propovoice') : esc_html__('Deal', 'propovoice'),
             ],
             [
                 'id' => 'estimate',

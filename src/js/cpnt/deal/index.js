@@ -53,7 +53,11 @@ const Deal = (props) => {
 
     useEffect(() => {
         if (props.onLoad) {
-            props.onLoad(true);
+            if ( wage.length > 0 ) {
+                props.onLoad(false);
+            } else {
+                props.onLoad(true);
+            }
         }
 
         if ( wage.length > 0 ) {
@@ -82,12 +86,14 @@ const Deal = (props) => {
             const promise = props.getLists();
             promise.then(resp => {
                 setBoardView(true);
+                props.onLoad(true);
                 setLoading(false);
             })
         } else {
             const promise = props.getLists({ table_view: true });
             promise.then(resp => {
                 setBoardView(false);
+                props.onLoad(false);
                 setLoading(false);
             })
         }
@@ -130,9 +136,10 @@ const Deal = (props) => {
     const activeColor = '#4A5568';
     const inactiveColor = '#A0AEC0';
     const i18n = ndpv.i18n;
+    const pipeline = !wage.length ? i18n.pipeline : '';
     return (
         <div className="ndpv-cpnt">
-            {!props.module_id && <Breadcrumb title={title + ' ' + i18n.pipeline} />}
+            {!props.module_id && <Breadcrumb title={title + ' ' + pipeline} />}
 
             {props.state.formModal && <Form
                 handleSubmit={handleSubmit}
@@ -155,7 +162,7 @@ const Deal = (props) => {
 
             <div className="row">
                 <div className="col">
-                    <h2 className="pv-page-title">{title + (!props.module_id ? ' ' + i18n.pipeline : '')}</h2>
+                    <h2 className="pv-page-title">{title + (!props.module_id ? ' ' + pipeline : '')}</h2>
                 </div>
                 <div className="col">
                     <div className="pv-list-single-button-content">
