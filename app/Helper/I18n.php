@@ -50,6 +50,7 @@ class I18n
             'sent' => esc_html__('Sent', 'propovoice'),
             'viewed' => esc_html__('Viewed', 'propovoice'),
             'accept' => esc_html__('Accepted', 'propovoice'),
+            'acce' => esc_html__('Accept', 'propovoice'),
             'dec' => esc_html__('Declined', 'propovoice'),
             'paid' => esc_html__('Paid', 'propovoice'),
             'unpaid' => esc_html__('Unpaid', 'propovoice'),
