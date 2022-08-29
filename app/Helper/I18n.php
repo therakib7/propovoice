@@ -16,7 +16,7 @@ class I18n
             'project' => esc_html__('Project', 'propovoice'),
             'task' => esc_html__('Task', 'propovoice'),
             'taska' => __('Task & Activity', 'propovoice'), 
-            'ct ' => esc_html__('Contact', 'propovoice'),
+            'ct' => esc_html__('Contact', 'propovoice'),
             //dashboard
             'ov' => esc_html__('Overview', 'propovoice'),
             'latest' => esc_html__('Latest', 'propovoice'),

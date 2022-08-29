@@ -144,7 +144,7 @@ export default class License extends Component {
                                         <i />
                                         <h3 className='pv-title-small'>
                                             {item.title}
-                                            {wage.length > 0 && <ProLabel />}
+                                            <ProLabel />
                                             <span className="pv-field-switch-content">
                                                 <label className="pv-field-switch pv-field-switch-big">
                                                     <input type='checkbox'

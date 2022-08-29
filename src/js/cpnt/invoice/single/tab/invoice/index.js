@@ -1093,7 +1093,7 @@ class Invoice extends Component {
 														<i />
 														<h3 className='pv-title-small' >
 															{i18n.rem}
-															{wage.length > 0 && <ProLabel />}
+															<ProLabel />
 															<span className="pv-field-switch-content">
 																<label className="pv-field-switch pv-field-switch-big">
 																	<input type='checkbox'
@@ -1121,7 +1121,7 @@ class Invoice extends Component {
 														<i />
 														<h3 className='pv-title-small'>
 															{i18n.recur}
-															{wage.length > 0 && <ProLabel />}
+															<ProLabel />
 															<span className="pv-field-switch-content">
 																<label className="pv-field-switch pv-field-switch-big">
 																	<input type='checkbox'
