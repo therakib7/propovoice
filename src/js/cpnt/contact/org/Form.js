@@ -231,7 +231,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-address">
-                                            {i18n.address}
+                                            {i18n.addr}
                                         </label>
 
                                         <input

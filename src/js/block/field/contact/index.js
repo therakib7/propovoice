@@ -76,7 +76,7 @@ class Contact extends Component {
         const person = (
             <div className="col-lg">
                 <label htmlFor="first_name">
-                    {i18n.contact} {i18n.person}
+                    {i18n.ct} {i18n.prsn}
                 </label>
                 <div className="pv-field-search">
                     <div className="pv-action-content">
@@ -90,7 +90,7 @@ class Contact extends Component {
                         />
 
                         {this.state.personModal && <div className="pv-dropdown-content pv-show">
-                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ {i18n.add} '{this.props.first_name}' {i18n.as} {i18n.new} {i18n.contact}</button>
+                            <button style={{ color: '#4c6fff' }} onClick={(e) => this.handleSelect(e, null, 'person')}>+ {i18n.add} '{this.props.first_name}' {i18n.as} {i18n.new} {i18n.ct}</button>
                             {this.state.personList.map((item, i) => (
                                 <a key={i} onClick={(e) => this.handleSelect(e, item, 'person')}>{item.first_name}</a>
                             ))}
@@ -103,7 +103,7 @@ class Contact extends Component {
         const org = (
             <div className="col-lg">
                 <label htmlFor="org_name">
-                    {i18n.contact} {i18n.org}
+                    {i18n.ct} {i18n.org}
                 </label>
                 <div className="pv-field-search">
                     <div className="pv-action-content">

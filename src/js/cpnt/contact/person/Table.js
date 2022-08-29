@@ -15,7 +15,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    {i18n.contact} {i18n.person}
+                    {i18n.ct} {i18n.prsn}
                 </th>
                 <th>
                     {i18n.email}

@@ -78,13 +78,13 @@ class AssetCtrl
                 'estimate-template.php'
             ])
         ) {
-
             //TODO: Remove all wordpress unused file from frontend
 
             wp_enqueue_style('ndpv-invoice', ndpv()->get_asset_uri("css/invoice{$this->suffix}.css"), array(), $this->version);
             wp_enqueue_script('ndpv-invoice', ndpv()->get_asset_uri("/js/invoice{$this->suffix}.js"), array(), $this->version, true);
             wp_localize_script('ndpv-invoice', 'ndpv', array(
                 'apiUrl' => esc_url(rest_url()),
+                'assetUri' => trailingslashit(NDPV_URL),
                 'nonce' => wp_create_nonce('wp_rest'),
                 'assetImgUri' => ndpv()->get_asset_uri('img/')
             ));

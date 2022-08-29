@@ -47,7 +47,7 @@ class Invoice extends Component {
 				},
 				{
 					id: 'info',
-					text: i18n.addi + ' ' + i18n.amount,
+					text: i18n.addi + ' ' + i18n.amt,
 				},
 				{
 					id: 'preview',
@@ -722,7 +722,7 @@ class Invoice extends Component {
 										className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-mt-20"
 										onClick={() => this.continueTab('template')}
 									>
-										{i18n.contin}
+										{i18n.cont}
 										<svg
 											className="pv-mr-0 pv-ml-10 pv-mt-1"
 											width={9}
@@ -744,7 +744,7 @@ class Invoice extends Component {
 										className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-mt-20"
 										onClick={this.handleSave}
 									>
-										{this.state.msg.saveTxt} {i18n.nd} {i18n.contin}
+										{this.state.msg.saveTxt} {i18n.nd} {i18n.cont}
 										<svg
 											className="pv-mr-0 pv-ml-10 pv-mt-1"
 											width={9}
@@ -784,7 +784,7 @@ class Invoice extends Component {
 											className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-mt-20"
 											onClick={() => this.setState({ emailModal: true })} >
 											{i18n.send} {i18n.email}
-											{wage.length > 0 && <ProLabel blueBtn />}
+											<ProLabel blueBtn />
 											{!wage.length && <svg
 												className="pv-mr-0 pv-ml-10"
 												width={9}
@@ -913,7 +913,7 @@ class Invoice extends Component {
 
 														{false && <div className="pv-info-form-list">
 															<div className="pv-info-lavel">
-																<label htmlFor="info-currency">{i18n.currency}:</label>
+																<label htmlFor="info-currency">{i18n.cur}:</label>
 															</div>
 															<div className="pv-info-input-field">
 																<input
@@ -1029,7 +1029,7 @@ class Invoice extends Component {
 																strokeLinejoin="round"
 															/>
 														</svg>
-														{i18n.add} {i18n.attachment}
+														{i18n.add} {i18n.atch}
 													</button>}
 												</div>
 
@@ -1078,7 +1078,7 @@ class Invoice extends Component {
 													{(!sidebarActive || sidebarActive == 'extra-field') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('extra-field')} />
 														<i />
-														<h3 className='pv-title-small'>{i18n.addi} {i18n.amount}</h3>
+														<h3 className='pv-title-small'>{i18n.addi} {i18n.amt}</h3>
 														<AdditionalAmount
 															{...this.props}
 															item_tax={invoice.item_tax}
@@ -1093,7 +1093,7 @@ class Invoice extends Component {
 														<i />
 														<h3 className='pv-title-small' >
 															{i18n.rem}
-															{wage.length > 0 && <ProLabel />}
+															<ProLabel />
 															<span className="pv-field-switch-content">
 																<label className="pv-field-switch pv-field-switch-big">
 																	<input type='checkbox'
@@ -1121,7 +1121,7 @@ class Invoice extends Component {
 														<i />
 														<h3 className='pv-title-small'>
 															{i18n.recur}
-															{wage.length > 0 && <ProLabel />}
+															<ProLabel />
 															<span className="pv-field-switch-content">
 																<label className="pv-field-switch pv-field-switch-big">
 																	<input type='checkbox'

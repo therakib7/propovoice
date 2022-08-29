@@ -142,9 +142,9 @@ export default class Form extends Component {
                                     />
                                 </svg>
                                 <select name="" id="">
-                                    <option value="">{i18n.cate}</option>
-                                    <option value="">{i18n.cate}</option>
-                                    <option value="">{i18n.cate}</option>
+                                    <option value="">{i18n.cat}</option>
+                                    <option value="">{i18n.cat}</option>
+                                    <option value="">{i18n.cat}</option>
                                 </select>
                             </li>
                             <li>

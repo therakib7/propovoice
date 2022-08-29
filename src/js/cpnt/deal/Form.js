@@ -344,7 +344,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
-                                        {i18n.currency}
+                                        {i18n.cur}
                                         </label>
 
                                         <input

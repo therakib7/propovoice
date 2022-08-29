@@ -138,8 +138,8 @@ class File
             } 
             $query_data['file'] = $fileData;
             
-            $post_author_id = get_post_field( 'post_author', $id );
-            $query_data['upload_by'] = get_avatar_url($post_author_id, ['size' => '36']);
+            $author_id = get_post_field( 'post_author', $id );
+            $query_data['upload_by'] = get_avatar_url($author_id, ['size' => '36']);
             $posted = get_the_time('U'); 
             $query_data['date'] = human_time_diff($posted, current_time( 'U' )). ' ' . esc_html__( 'ago', 'propovoice' );
 

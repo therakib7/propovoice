@@ -332,7 +332,7 @@ const Home = () => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span>{i18n.accounting}</span>
+                                        <span>{i18n.acct}</span>
                                     </NavLink>
                                 </li>}
                                 <li>
@@ -391,7 +391,7 @@ const Home = () => {
                                                 fill="#CBD5E0"
                                             />
                                         </svg>
-                                        <span>{i18n.contact}</span>
+                                        <span>{i18n.ct}</span>
                                     </NavLink>
                                 </li>
                                 <li>

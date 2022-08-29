@@ -16,7 +16,7 @@ class General extends Component {
 				},
 				{
 					id: 'extra-amount',
-					text: i18n.addi + ' ' + i18n.amount,
+					text: i18n.addi + ' ' + i18n.amt,
 				},
 				/* {
 					id: 'template',

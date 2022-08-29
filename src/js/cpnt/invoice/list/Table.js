@@ -1,5 +1,6 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ProLabel from 'block/pro-alert/label';
 import Moment from 'react-moment';
 import Feedback from './feedback';
 import useClickOutside from 'block/outside-click';
@@ -28,9 +29,9 @@ const TableHeader = props => {
                 {/* <th>
                     Project
                 </th> */}
-                {!props.client_id && <th>
-                    {i18n.contact}
-                </th>}
+                <th>
+                    {i18n.ct}
+                </th>
                 <th>
                     {i18n.total}
                 </th>
@@ -116,7 +117,7 @@ const TableBody = props => {
 
             case 'decline':
                 status = <span className='pv-badge pv-bg-red pv-cursor-pointer'
-                    style={{ color: '#fff' }}
+                    style={{ color: '#4a5568' }}
                     onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.dec}</span>
                 break;
 
@@ -166,12 +167,12 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><span className='pv-list-title'>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</span></td>
                 {/*<td>{row.project.name}</td>*/}
                 {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
                 </td>}
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>{row.total}</td>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>${row.total}</td>
                 {/* {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>
@@ -221,8 +222,8 @@ const TableBody = props => {
                             {row.path == 'invoice' && <a onClick={() => { showDropdown(row.id); props.action('paid', row.id); }}>{i18n.mark} {i18n.as} {i18n.paid}</a>}
                             {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('accept', row.id); }}>{i18n.mark} {i18n.as} {i18n.accept}</a>}
                             {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); }}>{i18n.mark} {i18n.as} {i18n.dec}</a>}
-                            <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); }}>{i18n.dup}</a>
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); }}>{i18n.copy} {i18n.to} {i18n.inv}</a>}
+                            <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); }}>{i18n.dup} <ProLabel /></a>
+                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); }}>{i18n.copy} {i18n.to} {i18n.inv} <ProLabel /></a>}
                             <a onClick={() => { showDropdown(row.id); props.deleteEntry('single', row.id); }}>{i18n.del}</a>
                         </div>}
                     </div>
@@ -281,7 +282,7 @@ const Table = (props) => {
                     </>
                 }
 
-                <table className='pv-table'>
+                <table className='pv-table pv-table-four'>
                     <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} path={path} />
                     <TableBody
                         infoModal={handleInfoModal}

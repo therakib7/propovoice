@@ -248,7 +248,7 @@ export default class Preview extends Component {
                                     className="pv-btn pv-btn-medium pv-bg-hover-blue pv-bg-blue pv-br-4"
                                     onClick={() => this.props.showEmailModal()} >
                                     {i18n.send} {i18n.email}
-                                    {wage.length > 0 && <ProLabel blueBtn />} 
+                                    <ProLabel blueBtn /> 
                                     {!wage.length && <svg
                                         className="pv-ml-10 pv-mr-0"
                                         width={6}

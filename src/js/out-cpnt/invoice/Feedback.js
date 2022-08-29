@@ -116,7 +116,7 @@ class Feedback extends Component {
 
                                         <div className="row">
                                             <div className="col-md">
-                                                <label htmlFor="field-receipt">{i18n.addi} {i18n.attachment}</label>
+                                                <label htmlFor="field-receipt">{i18n.addi} {i18n.atch}</label>
                                                 <Upload label={'Upload'} attach_type='secret' permission library={false} data={this.state.form.attachment} changeHandler={this.handleUploadChange} />
                                             </div>
                                         </div>

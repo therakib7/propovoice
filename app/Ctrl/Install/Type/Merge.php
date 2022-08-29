@@ -97,7 +97,7 @@ class Merge
 
                 if (!is_wp_error($post_id)) {
                     $args = array(
-                        'post_type' => 'ndpv_estinv',
+                        'post_type' => 'ncpi_estvoice',
                         'post_status' => 'publish',
                         'posts_per_page' => -1
                     );
@@ -152,8 +152,8 @@ class Merge
                 $fromData['name'] = get_post_meta($from_id, 'name', true);
             }
 
-            $contact_id = get_post_meta($id, 'to', true);
-            $to_type = get_post_meta($id, 'to_type', true);
+            /* $contact_id = get_post_meta($id, 'to', true);
+            $to_type = get_post_meta($id, 'to_type', true); */
 
             $invoice = get_post_meta($id, 'invoice', true);
 

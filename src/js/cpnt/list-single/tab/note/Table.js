@@ -18,7 +18,7 @@ const TableBody = props => {
                 </div>
 
                 <div className="pv-note-text">
-                    <h4>Nabil Ahmed <span>10 min ago</span></h4>
+                    <h4>{row.by} <span>{row.date}</span></h4>
                     <p>{row.text}</p>
                 </div>
             </div>

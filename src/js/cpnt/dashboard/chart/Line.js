@@ -27,7 +27,7 @@ export default class Section extends PureComponent {
                     className="pv-title-medium pv-mb-20"
                     style={{ fontWeight: "bold", color: "#718096" }}
                 >
-                    {ndpv.i18n.deal} {ndpv.i18n.tracking}
+                    {ndpv.i18n.deal} {ndpv.i18n.trk}
                 </h3>
                 <div style={{ width: '100%', height: '300px' }}>
                     <ResponsiveContainer width="100%" height="100%">

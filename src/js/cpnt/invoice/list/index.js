@@ -19,6 +19,7 @@ import ApiAction from 'api/action';
 import Table from './Table';
 import Search from './Search';
 import Empty from 'block/empty';
+import pro from 'block/pro-alert';
 
 const Invoice = class Invoice extends Component {
     constructor(props) {
@@ -196,7 +197,13 @@ const Invoice = class Invoice extends Component {
         this.props.routeChange();
     };
 
-    handleAction = (type, id) => {
+    handleAction = (type, id) => { 
+
+        if ( wage.length > 0 && ( type == 'copy' || type == 'copy-to-inv' ) ) {
+			pro();
+			return;
+		}
+
         if (
             type == 'sent' ||
             type == 'paid' ||

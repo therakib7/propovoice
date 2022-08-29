@@ -161,6 +161,9 @@
 .ndpv .pv-tag-content .pv-badge {
   position: relative;
   padding: 5px 6px 5px 10px;
+  color: #4A5568;
+  font-size: 10px;
+  font-weight: 500;
 }
 .ndpv .pv-tag-content .pv-badge b {
   color: #fff;
@@ -290,8 +293,8 @@
   height: 36px;
 }
 .ndpv .pv-task-btn img {
-  max-width: 20px;
-  max-height: 20px;
+  max-width: 24px;
+  max-height: 24px;
 }
 .ndpv .pv-task-btn span {
   font-size: 12px;
@@ -325,6 +328,8 @@
 }
 .ndpv .pv-tab-buttons .pv-dropdown-content img {
   margin-right: 10px;
+  max-width: 24px;
+  max-height: 24px;
 }
 @media screen and (max-width: 550px) {
   .ndpv .pv-small-button-group .col-sm-5 {
@@ -540,10 +545,13 @@
   font-size: 14px;
   font-weight: 600;
   margin-top: 7px;
+  color: #2d3748;
 }
 .ndpv .pv-note h4 span {
   color: #A0AEC0;
   margin-left: 25px;
+  font-weight: 600;
+  font-size: 14px;
 }
 .ndpv .pv-note p {
   margin-top: 10px;

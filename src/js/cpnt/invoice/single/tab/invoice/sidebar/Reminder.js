@@ -33,7 +33,7 @@ export default (props) => {
                                 checked={reminder.due_date ? 'checked' : ''}
                                 onChange={handleChange}
                             />
-                            <label htmlFor="reminder-due_date">{i18n.ond}</label>
+                            <label htmlFor="reminder-due_date">{i18n.on} {i18n.due} {i18n.date}</label>
                         </div>
                     </div>
                 </div>

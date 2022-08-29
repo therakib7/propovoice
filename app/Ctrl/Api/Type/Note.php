@@ -111,7 +111,11 @@ class Note
 
             $query_data['text'] = get_the_content();  
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $author_id = get_post_field( 'post_author', $id );
+            $query_data['by'] = get_the_author_meta('display_name', $author_id);
+
+            $posted = get_the_time('U'); 
+            $query_data['date'] = human_time_diff($posted, current_time( 'U' )). ' ' . esc_html__( 'ago', 'propovoice' );
             $data[] = $query_data;
         }
         wp_reset_postdata();

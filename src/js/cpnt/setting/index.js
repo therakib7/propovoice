@@ -75,7 +75,7 @@ const Setting = (props) => {
             label: i18n.taska
         },
         contact: {
-            label: i18n.contact
+            label: i18n.ct
         },
         tag: {
             label: i18n.tag

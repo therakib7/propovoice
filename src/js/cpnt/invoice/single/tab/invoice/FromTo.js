@@ -157,7 +157,7 @@ class FromTo extends Component {
                 <div className="row">
                     <div className="col-md-6">
                         <div className="pv-from-to">
-                            <label className="pv-title-small">{i18n.sender}</label>
+                            <label className="pv-title-small">{i18n.sndr}</label>
                             <div className="pv-from">
                                 {fromData ?
                                     <>
@@ -185,7 +185,7 @@ class FromTo extends Component {
                                         </address>
                                     </> : <>
                                         {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pv-color-blue pv-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>{i18n.create} {i18n.new} {i18n.business}</a>
+                                        <a className="pv-color-blue pv-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>{i18n.create} {i18n.new} {i18n.biz}</a>
                                     </>
                                 }
                             </div>

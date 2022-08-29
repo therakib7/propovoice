@@ -101,7 +101,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                            {i18n.save} {wage.length > 0 && <ProLabel blueBtn />}
+                            {i18n.save} <ProLabel blueBtn />
                         </button>
                     </div>
                 </div>

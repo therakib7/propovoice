@@ -160,7 +160,7 @@ class Form extends Component {
                                 />
                             </svg>
                         </span>
-                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.contact}</h2>
+                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.ct}</h2>
                         <p>{i18n.client}</p>
                     </div>
 
@@ -253,7 +253,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-address">
-                                            {i18n.address}
+                                            {i18n.addr}
                                         </label>
 
                                         <input

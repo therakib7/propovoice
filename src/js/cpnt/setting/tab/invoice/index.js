@@ -16,7 +16,7 @@ class General extends Component {
 				},
 				{
 					id: 'extra-amount',
-					text: ndpv.i18n.Addt +' '+ndpv.i18n.amount
+					text: ndpv.i18n.Addt +' '+ndpv.i18n.amt
 				},
 				/* {
 					id: 'recurring',

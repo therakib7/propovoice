@@ -150,7 +150,7 @@ export default class Welcome extends Component {
                                     </p>
                                     <div className="pv-buttons pv-text-center">
                                         <button className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
-                                        {i18n.create} {i18n.business} {i18n.profile}
+                                        {i18n.create} {i18n.biz} {i18n.profile}
                                         </button>
                                         <a href={ndpv.dashboard} className="pv-text-hover-blue">{i18n.skip} {i18n.nd} {i18n.go} {i18n.db}</a>
                                     </div>

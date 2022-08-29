@@ -144,7 +144,7 @@ export default class License extends Component {
                                         <i />
                                         <h3 className='pv-title-small'>
                                             {item.title}
-                                            {wage.length > 0 && <ProLabel />}
+                                            <ProLabel />
                                             <span className="pv-field-switch-content">
                                                 <label className="pv-field-switch pv-field-switch-big">
                                                     <input type='checkbox'
@@ -204,7 +204,7 @@ export default class License extends Component {
                                                 <div className="row">
                                                     <div className="col" style={{ textAlign: 'center', marginTop: 35 }}>
                                                         <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white">
-                                                            {i18n.save} {wage.length > 0 && <ProLabel blueBtn />}
+                                                            {i18n.save} <ProLabel blueBtn />
                                                         </button>
                                                     </div>
                                                 </div>
