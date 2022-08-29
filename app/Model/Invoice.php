@@ -57,6 +57,13 @@ class Invoice {
 
         $args['meta_query'][] = array(
             array(
+                'key'   => 'path',
+                'value' => 'invoice'
+            )
+        );
+
+        $args['meta_query'][] = array(
+            array(
                 'key'   => 'module_id',
                 'value' => $id 
             )
@@ -78,11 +85,6 @@ class Invoice {
             } else {
                 $data['due'] += $query_data['total'];
             }
-
-            /* $query_data['due'] = get_post_meta($id, 'due', true);
-            if ( $query_data['due'] ) { 
-                $data['due'] += $query_data['due'];
-            } */
 
             $data['number']++;
 

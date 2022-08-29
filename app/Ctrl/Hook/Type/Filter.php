@@ -53,11 +53,11 @@ class Filter
 		$args['meta_query'] = [ 
 			'relation' => 'OR',
 			[
-				'key' => 'ncpi_attach_type',
+				'key' => 'ndpv_attach_type',
 				'compare' => 'NOT EXISTS'
 			],
 			[
-				'key'     => 'ncpi_attach_type',
+				'key'     => 'ndpv_attach_type',
 				'value'   => 'secret',
 				'compare' => '!=',
 			],

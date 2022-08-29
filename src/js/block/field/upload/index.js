@@ -68,7 +68,7 @@ class Upload extends Component {
 		if (this.props.attach_type) {
 			formData.append('attach_type', this.props.attach_type);
 		} else {
-			formData.append('attach_type', 'ncpi');
+			formData.append('attach_type', 'ndpv');
 		}
 
 		let permission = this.props.permission !== undefined ? true : false;

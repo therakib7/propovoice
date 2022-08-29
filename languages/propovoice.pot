@@ -6,7 +6,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2022-08-28 05:06+0000\n"
+=======
+"POT-Creation-Date: 2022-08-28 04:51+0000\n"
+>>>>>>> b81a4465e6ca7b8d7d11228c8a8e45b98d2393c3
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -919,6 +923,7 @@ msgstr ""
 msgid "Taxonomy is missing"
 msgstr ""
 
+<<<<<<< HEAD
 #: ../app/Ctrl/Meta/User/User.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:19, ../propovoice/app/Ctrl/Meta/User/User.php:19, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:19, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:20
 msgid "Propovoice"
 msgstr ""
@@ -932,6 +937,13 @@ msgid "Show member in Propovoice"
 msgstr ""
 
 #: ../app/Ctrl/Setting/Type/Dashboard.php:43, ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:44
+=======
+#: ../app/Ctrl/Setting/Type/Dashboard.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:19
+msgid "Propovoice"
+msgstr ""
+
+#: ../app/Ctrl/Setting/Type/Dashboard.php:43
+>>>>>>> b81a4465e6ca7b8d7d11228c8a8e45b98d2393c3
 msgid "Deal Pipeline"
 msgstr ""
 

@@ -240,8 +240,7 @@ class Media
                             'post_title'      => sanitize_text_field(preg_replace('/\.[^.]+$/', '', basename($filename))),
                             'post_excerpt'    => '',
                             'post_content'    => '',
-                            'post_mime_type'  => sanitize_text_field($filetype['type']),
-                            'post_status'     => 'ncpi-inherit',
+                            'post_mime_type'  => sanitize_text_field($filetype['type']), 
                             'comments_status' => 'closed',
                         ],
                         $uploaded['file'],
@@ -252,7 +251,7 @@ class Media
                     if (!is_wp_error($attach_id)) {
                         // wp_update_attachment_metadata($attach_id, wp_generate_attachment_metadata($attach_id, $filename)); 
                         update_post_meta($attach_id, 'ws_id', ndpv()->get_workspace() );
-                        update_post_meta($attach_id, 'ncpi_attach_type', $attach_type); 
+                        update_post_meta($attach_id, 'ndpv_attach_type', $attach_type); 
 
                         $file_info = [
                             'id'  => $attach_id,
