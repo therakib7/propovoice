@@ -73,7 +73,7 @@ class Total extends Component {
                         })}
 
                         <tr className="pv-inv-table-bg">
-                            <th>{ndpv.i18n.subtotal}</th>
+                            <th>Subtotal</th>
                             <td>{this.formatCurrency(this.calcGrandTotal())}</td>
                         </tr>
                     </tbody>

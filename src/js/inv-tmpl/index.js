@@ -37,7 +37,7 @@ export default (props) => {
 
     const id = props.data.invoice.template;
     return (
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<Spinner />}> 
             <style>{"@media print { body {--pv-inv-primary: "+props.data.invoice.style.primary_color+"} } "}</style>
             {id == 1 && <Template1 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
             {id == 2 && <Template2 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
