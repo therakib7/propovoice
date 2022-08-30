@@ -161,7 +161,7 @@ class Form extends Component {
                             </svg>
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.ct}</h2>
-                        <p>{i18n.client}</p>
+                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.client + ' ' +i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
