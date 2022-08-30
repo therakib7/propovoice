@@ -14,7 +14,7 @@ export default (props) => {
 						height={10}
 						viewBox="0 0 5 10"
 						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+						
 					>
 						<path
 							d="M0.5 1.25L4.25 5L0.5 8.75"

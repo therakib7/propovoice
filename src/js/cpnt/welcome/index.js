@@ -126,7 +126,7 @@ export default class Welcome extends Component {
                                             <svg
                                                 width={10}
                                                 height={10}
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                
                                                 xmlnsXlink="http://www.w3.org/1999/xlink"
                                                 viewBox="3.4 5.6 17.6 13.4"
                                                 enableBackground="new 3.4 5.6 17.6 13.4"
@@ -195,7 +195,7 @@ export default class Welcome extends Component {
                                                             height={32}
                                                             viewBox="0 0 36 32"
                                                             fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            
                                                         >
                                                             <path
                                                                 d="M18 12.2344C21.3784 12.2344 24.1172 9.49562 24.1172 6.11719C24.1172 2.73876 21.3784 0 18 0C14.6216 0 11.8828 2.73876 11.8828 6.11719C11.8828 9.49562 14.6216 12.2344 18 12.2344Z"
@@ -239,7 +239,7 @@ export default class Welcome extends Component {
                                                             height={32}
                                                             viewBox="0 0 36 32"
                                                             fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            
                                                         >
                                                             <path
                                                                 d="M18 12.2344C21.3784 12.2344 24.1172 9.49562 24.1172 6.11719C24.1172 2.73876 21.3784 0 18 0C14.6216 0 11.8828 2.73876 11.8828 6.11719C11.8828 9.49562 14.6216 12.2344 18 12.2344Z"
@@ -283,7 +283,7 @@ export default class Welcome extends Component {
                                                             height={36}
                                                             viewBox="0 0 36 36"
                                                             fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            
                                                         >
                                                             <path
                                                                 d="M26.8039 7.03125L20.3906 0.617554V7.03125H26.8039Z"
@@ -325,7 +325,7 @@ export default class Welcome extends Component {
                                                             height={36}
                                                             viewBox="0 0 36 36"
                                                             fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            
                                                         >
                                                             <path
                                                                 d="M26.8039 7.03125L20.3906 0.617554V7.03125H26.8039Z"

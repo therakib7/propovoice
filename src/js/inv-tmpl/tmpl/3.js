@@ -32,18 +32,18 @@ export default (props) => {
                 <div className="pv-inv-body">
                     <div className="pv-inv-top-shape">
                         <div className="pv-inv-shape1">
-                            <svg width="165" height="19" viewBox="0 0 165 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="165" height="19" viewBox="0 0 165 19" fill="none" >
                                 <path d="M0 0L8.30517e-07 19L142.676 19L165 -7.21238e-06L0 0Z" />
                             </svg>
                         </div>
                         <div className="pv-inv-shape2">
-                            <svg width="19" height="165" viewBox="0 0 19 165" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="19" height="165" viewBox="0 0 19 165" fill="none" >
                                 <path d="M0 0H19V142.676L0 165V0Z" />
                             </svg>
 
                         </div>
                         <div className="pv-inv-shape3">
-                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" >
                                 <circle cx="16.5" cy="16.5" r="16.5" />
                             </svg>
 
@@ -84,18 +84,18 @@ export default (props) => {
                 </div>
                 <div className="pv-inv-top-shape pv-inv-footer-shape">
                     <div className="pv-inv-shape1">
-                        <svg width="165" height="19" viewBox="0 0 165 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="165" height="19" viewBox="0 0 165 19" fill="none" >
                             <path d="M0 0L8.30517e-07 19L142.676 19L165 -7.21238e-06L0 0Z" />
                         </svg>
                     </div>
                     <div className="pv-inv-shape2">
-                        <svg width="19" height="165" viewBox="0 0 19 165" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="19" height="165" viewBox="0 0 19 165" fill="none" >
                             <path d="M0 0H19V142.676L0 165V0Z" />
                         </svg>
 
                     </div>
                     <div className="pv-inv-shape3">
-                        <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="33" height="33" viewBox="0 0 33 33" fill="none" >
                             <circle cx="16.5" cy="16.5" r="16.5" />
                         </svg>
 

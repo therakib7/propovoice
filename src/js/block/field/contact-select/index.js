@@ -137,7 +137,7 @@ const Contact = (props) => {
 					height={10}
 					viewBox="0 0 10 6"
 					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
+					
 				>
 					<path
 						d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
