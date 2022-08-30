@@ -49,7 +49,7 @@ class Taxonomy
                         'type' => '',
                     ],
                     [
-                        'label' => 'Contracting',
+                        'label' => 'Contacting',
                         'bg_color' => '#E0F0EC',
                         'color' => '#4BB99E',
                         'type' => '',

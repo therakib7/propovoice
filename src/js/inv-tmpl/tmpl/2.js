@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import { useEffect } from "react"; 
 import Moment from 'react-moment';
-
 import From from '../From';
 import To from '../To';
 import Payment from '../Payment';
@@ -15,30 +14,19 @@ import Seal from '../Seal';
 //style
 import Style from '../scss/2.scoped.scss'
 
-export default class Two extends Component {
-    constructor(props) {
-        super(props);
-    }
+export default (props) => {
 
-    componentDidMount() {
-        document.documentElement.style.setProperty('--pv-inv-primary', this.props.data.invoice.style.primary_color);
-
-        this.props.isPreviewLoaded();
-    }
-
-    render() {
-        const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
-        const { fromData, toData, status } = this.props.data;
-        let title = this.props.data.title;
+    useEffect(() => {
+        props.isPrvwLoad();
+    }, []); 
+ 
+        const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = props.data.invoice;
+        const { fromData, toData, status } = props.data;
+        let title = props.data.title;
         const i18n = ndpv.i18n;
         return (
-            <div className="pv-inv" style={{ height: this.props.height }}>
-                <Seal status={status} />
-                {/* <style>
-                    :root {
-                        --pv-inv-primary: this.props.data.invoice.style.primary_color;
-                    }
-                </style> */}
+            <div className="pv-inv" style={{ height: props.height }}>
+                <Seal status={status} /> 
                 <div className="pv-inv-two">
                     <div className="pv-inv-top-shape">
                         <svg viewBox="0 0 595 69" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,8 +61,8 @@ export default class Two extends Component {
                         {top_sections && <Section data={top_sections} top />} 
                         {items && <Items data={items} item_tax={item_tax} item_label={item_label} />} 
                         <div className="pv-inv-account">
-                            <Payment {...this.props} />
-                            <Total {...this.props} />
+                            <Payment {...props} />
+                            <Total {...props} />
                         </div>  
                         {sections && <Section data={sections} />}
                         {sign && <Sign data={sign} />}
@@ -87,6 +75,5 @@ export default class Two extends Component {
                     </div>
                 </div>
             </div>
-        );
-    }
+        ) 
 } 
