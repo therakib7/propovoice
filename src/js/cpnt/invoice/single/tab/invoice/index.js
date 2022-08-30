@@ -148,7 +148,7 @@ class Invoice extends Component {
 		this.recurringRef = React.createRef();
 	}
 
-	isPreviewLoaded = () => {
+	isPrvwLoad = () => {
 		// let sidebarRef = this.sidebarRef.current; 
 		//TODO: ref not working
 		let sidebarRef = document.getElementById('pv-right-sidebar')
@@ -1048,7 +1048,7 @@ class Invoice extends Component {
 										<h2 className="pv-title-medium">{i18n.prv} {title}</h2>
 
 										<div className='pv-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
-											<InvTemplate key={invoice.style.primary_color} data={this.state} isPreviewLoaded={this.isPreviewLoaded} />
+											<InvTemplate key={invoice.style.primary_color} data={this.state} isPrvwLoad={this.isPrvwLoad} />
 										</div>
 
 										<div className="pv-accordion-wrapper pv-mt-15">

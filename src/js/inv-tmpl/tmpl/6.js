@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useEffect } from "react";
 import Moment from 'react-moment';
 
 import From from '../From';
@@ -14,79 +14,71 @@ import Sign from '../Sign';
 //style
 import Style from '../scss/6.scoped.scss'
 
-export default class six extends Component {
-    constructor(props) {
-        super(props);
-    }
+export default (props) => {
 
-    componentDidMount() {
-        document.documentElement.style.setProperty('--pv-inv-primary', this.props.data.invoice.style.primary_color);
+    useEffect(() => {
+        props.isPrvwLoad();
+    }, []);
 
-        this.props.isPreviewLoaded();
-    }
-
-    render() {
-        const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = this.props.data.invoice;
-        const { fromData, toData, status } = this.props.data;
-        let title = this.props.data.title;
-        const i18n = ndpv.i18n;
-        return (
-            <div className="pv-inv" style={{ height: this.props.height }}>
-                <Seal status={status} />
-                <div className="pv-inv-six">
-                    <div className="pv-inv-body">
-                        <div className="pv-inv-header">
-                            <div className="pv-inv-head">
-                                <div className="pv-inv-from-logo">
-                                    {fromData && fromData.logo &&
-                                        <img src={fromData.logo.src} alt="" />
-                                    }
-                                </div>
-                                <div className="pv-inv-from-date">
-                                    <div className="pv-inv-title">
-                                        <h2>{title}</h2>
-                                    </div>
-                                    <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                    <p>{i18n.date}<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
-                                    <p>{i18n.due} {i18n.date}<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
-                                </div>
+    const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = props.data.invoice;
+    const { fromData, toData, status } = props.data;
+    let title = props.data.title;
+    const i18n = ndpv.i18n;
+    return (
+        <div className="pv-inv" style={{ height: props.height }}>
+            <Seal status={status} />
+            <div className="pv-inv-six">
+                <div className="pv-inv-body">
+                    <div className="pv-inv-header">
+                        <div className="pv-inv-head">
+                            <div className="pv-inv-from-logo">
+                                {fromData && fromData.logo &&
+                                    <img src={fromData.logo.src} alt="" />
+                                }
                             </div>
-                            <div className="pv-inv-shapes">
-                                <div className="pv-inv-shape2">
-                                    <svg
-                                        viewBox="0 0 209 7"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path d="M0 0H209L203.5 7H0V0Z" fill="#2D3748" />
-                                    </svg>
+                            <div className="pv-inv-from-date">
+                                <div className="pv-inv-title">
+                                    <h2>{title}</h2>
                                 </div>
-                                <div className="pv-inv-shape1" />
-                            </div>
-                            <div className="pv-inv-address">
-                                <div className="pv-inv-from">
-                                    <From data={fromData} />
-                                </div>
-                                <div className="pv-inv-to">
-                                    <To data={toData} />
-                                </div>
+                                <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
+                                <p>{i18n.date}<span> <Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                <p>{i18n.due} {i18n.date}<span> <Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                             </div>
                         </div>
-                        <div className="pv-inv-item-wrap">
-                            {top_sections && <Section data={top_sections} top />} 
-                            {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
-
-                            <div className="pv-inv-account">
-                                <Payment {...this.props} />
-                                <Total {...this.props} />
+                        <div className="pv-inv-shapes">
+                            <div className="pv-inv-shape2">
+                                <svg
+                                    viewBox="0 0 209 7"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M0 0H209L203.5 7H0V0Z" fill="#2D3748" />
+                                </svg>
                             </div>
-                            {sections && <Section data={sections} />}
-                            {sign && <Sign data={sign} />}
+                            <div className="pv-inv-shape1" />
                         </div>
+                        <div className="pv-inv-address">
+                            <div className="pv-inv-from">
+                                <From data={fromData} />
+                            </div>
+                            <div className="pv-inv-to">
+                                <To data={toData} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="pv-inv-item-wrap">
+                        {top_sections && <Section data={top_sections} top />}
+                        {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
+
+                        <div className="pv-inv-account">
+                            <Payment {...props} />
+                            <Total {...props} />
+                        </div>
+                        {sections && <Section data={sections} />}
+                        {sign && <Sign data={sign} />}
                     </div>
                 </div>
             </div>
-
-        );
-    }
+        </div>
+    )
 } 

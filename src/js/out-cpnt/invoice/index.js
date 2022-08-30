@@ -177,7 +177,7 @@ export default class Invoice extends Component {
         this.getData();
     }
 
-    isPreviewLoaded = () => {
+    isPrvwLoad = () => {
         let previewRef = this.previewRef.current;
         if (previewRef) {
             let height;
@@ -276,7 +276,7 @@ export default class Invoice extends Component {
 
                     <div className='col-md-8'>
                         <div className='pv-inv-hidden-preview' style={{ position: 'absolute', left: 9999 }} ref={this.previewRef} >
-                            {this.state.fromData && <InvTemplate data={this.state} isPreviewLoaded={this.isPreviewLoaded} />}
+                            {this.state.fromData && <InvTemplate data={this.state} isPrvwLoad={this.isPrvwLoad} />}
                         </div>
 
                         <div className='pv-inv-preview-wrap'>

@@ -52,7 +52,7 @@ export default class Preview extends Component {
     }
 
     componentDidMount() {
-        this.isPreviewLoaded();
+        this.isPrvwLoad();
 
         ApiSetting.getAll('tab=email_' + this.props.path + '_default')
             .then(resp => {
@@ -63,7 +63,7 @@ export default class Preview extends Component {
 
     }
 
-    isPreviewLoaded = () => {
+    isPrvwLoad = () => {
         let previewRef = this.previewRef.current;
         if (previewRef) {
             let height = 'auto';
@@ -80,6 +80,7 @@ export default class Preview extends Component {
     render() {
         // const { id } = this.props.data.invoice.template;
         const i18n = ndpv.i18n;
+        const color = this.props.data.invoice.style.primary_color;
         return (
             <div id="pv-tab-share" className="pv-invoice-tab-content">
                 <h2 className='pv-page-title'>{i18n.prv} {i18n.nd} {i18n.share}</h2>
@@ -163,7 +164,7 @@ export default class Preview extends Component {
                             <InvTemplate {...this.props} />
                         </div>*/}
                         <div className='pv-inv-hidden-preview' style={{ position: 'absolute', left: 9999 }} ref={this.previewRef} >
-                            {this.props.data.fromData && <InvTemplate {...this.props} isPreviewLoaded={this.isPreviewLoaded} />}
+                            {this.props.data.fromData && <InvTemplate {...this.props} isPrvwLoad={this.isPrvwLoad} />}
                         </div>
 
                         <div className='pv-inv-preview-wrap'>

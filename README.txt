@@ -160,7 +160,7 @@ The super fantastic pro features that accelerate your business growth and improv
 2. Lead
 3. Lead Managing
 4. Select Template
-5.Invoice Estimate Builder
+5. Invoice Estimate Builder
 6. Preview
 7. Settings
 
