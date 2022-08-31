@@ -51,9 +51,9 @@ export default (props) => {
                     <div className="pv-inv-header">
                         <div className="pv-inv-from">
                             {fromData && fromData.logo &&
-                            <div className="pv-inv-from-logo">
-                                <img src={fromData.logo.src} alt="" />
-                            </div>}
+                                <div className="pv-inv-from-logo">
+                                    <img src={fromData.logo.src} alt="" />
+                                </div>}
                             <From data={fromData} />
                             <div className="pv-inv-from-date">
                                 <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>

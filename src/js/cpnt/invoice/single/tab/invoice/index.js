@@ -1051,7 +1051,7 @@ class Invoice extends Component {
 
 								<div className="col-lg-3">
 									<div id="pv-right-sidebar" className="pv-right-sidebar" ref={this.sidebarRef} >
-										<h2 className="pv-title-medium">{i18n.prv} {title}</h2>
+										<h2 className="pv-title-medium" style={{ fontSize: '18px' }}>{i18n.prv} {title}</h2>
 
 										<div className='pv-inv-sidebar-preview' style={{ transformOrigin: 'top left', marginBottom: 'calc((' + this.state.previewScale + ' - 1) * 1120px)', transform: 'scale(' + this.state.previewScale + ')' }}>
 											<InvTemplate key={invoice.style.primary_color} data={this.state} isPrvwLoad={this.isPrvwLoad} />
