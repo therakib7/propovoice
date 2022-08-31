@@ -1,5 +1,5 @@
 export default (props) => {
-    const { bankData } = props.data;
+    const { paymentBankData: bankData } = props.data;
     return (
         <div>
             {bankData ? <>
