@@ -41,8 +41,8 @@ export default (props) => {
                                     <h2>{title}</h2>
                                 </div>
                                 <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                <p>{i18n.invDate} <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
-                                <p>{i18n.invDue} {i18n.invDate} <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
+                                <p>{i18n.invDate}: <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                <p>{i18n.invDue} {i18n.invDate}: <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                             </div>
                         </div>
                         <div className="pv-inv-shapes">
