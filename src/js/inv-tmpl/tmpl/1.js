@@ -40,7 +40,7 @@ export default (props) => {
                             <From data={fromData} />
 
                             <div className="pv-inv-from-date">
-                                <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
+                                <p>{title} {i18n.invNo}: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
 
                                 <div className="pv-inv-from-time">
                                     <p>{i18n.invDate} <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>

@@ -90,6 +90,12 @@ class I18n
             'invTotal' => esc_html_x('Total', 'Invoice', 'propovoice'),
             'invStotal' => esc_html_x('Subtotal', 'Invoice', 'propovoice'),
             'invPayinfo' => esc_html_x('Payment Info', 'Invoice', 'propovoice'),
+            'invNo' => esc_html_x('No', 'Invoice', 'propovoice'),
+            'invDown' => esc_html_x('Download', 'Invoice', 'propovoice'),
+            'invPrint' => esc_html_x('Print', 'Invoice', 'propovoice'),
+            'invAcc' => esc_html_x('Accept', 'Invoice', 'propovoice'),
+            'invDec' => esc_html_x('Decline', 'Invoice', 'propovoice'),
+            'invPay' => esc_html_x('Pay', 'Invoice', 'propovoice'),
             //table
             'status' => esc_html__('Status', 'propovoice'),
             'date' => esc_html__('Date', 'propovoice'), 
