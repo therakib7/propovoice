@@ -41,8 +41,8 @@ export default (props) => {
                                     <h2>{title}</h2>
                                 </div>
                                 <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                <p>Date: <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
-                                <p>Due Date: <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
+                                <p>{i18n.invDate} <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                <p>{i18n.invDue} {i18n.invDate} <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                             </div>
                         </div>
                         <div className="pv-inv-shapes">
@@ -50,7 +50,7 @@ export default (props) => {
                                 <svg
                                     viewBox="0 0 209 7"
                                     fill="none"
-                                    
+
                                 >
                                     <path d="M0 0H209L203.5 7H0V0Z" fill="#2D3748" />
                                 </svg>

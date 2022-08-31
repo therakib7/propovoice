@@ -1,4 +1,4 @@
-import { useEffect } from "react"; 
+import { useEffect } from "react";
 import Moment from 'react-moment';
 
 import From from '../From';
@@ -19,8 +19,8 @@ export default (props) => {
 
     useEffect(() => {
         props.isPrvwLoad();
-    }, []); 
- 
+    }, []);
+
     const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = props.data.invoice;
     const { fromData, toData, status } = props.data;
     let title = props.data.title;
@@ -43,8 +43,8 @@ export default (props) => {
                                 <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
 
                                 <div className="pv-inv-from-time">
-                                    <p>Date: <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
-                                    <p>Due Date: <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
+                                    <p>{i18n.invDate} <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                    <p>{i18n.invDue} {i18n.invDate} <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                 </div>
                             </div>
                         </div>
@@ -56,8 +56,8 @@ export default (props) => {
                             <To data={toData} />
                         </div>
                     </div>
-                    
-                    {top_sections && <Section data={top_sections} top />} 
+
+                    {top_sections && <Section data={top_sections} top />}
                     {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
 
                     <div className="pv-inv-account">
@@ -69,5 +69,5 @@ export default (props) => {
                 </div>
             </div>
         </div>
-    ) 
+    )
 } 
