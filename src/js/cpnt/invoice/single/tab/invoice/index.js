@@ -92,8 +92,7 @@ class Invoice extends Component {
 				},
 				top_sections: null,
 				item_label: {
-					id: 'ID',
-					title: 'Title',
+					id: 'ID', 
 					desc: 'Description',
 					qty: 'Quantity',
 					price: 'Rate',

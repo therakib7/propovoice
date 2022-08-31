@@ -52,7 +52,7 @@ export default (props) => {
                         </div>
                         <div className="pv-inv-to">
                             <div className="pv-inv-title">
-                                <h2>invoice</h2>
+                                <h2>{title}</h2>
                             </div>
                             <To data={toData} />
                         </div>
