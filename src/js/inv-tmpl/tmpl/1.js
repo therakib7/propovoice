@@ -41,6 +41,7 @@ export default (props) => {
 
                             <div className="pv-inv-from-date">
                                 <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
+
                                 <div className="pv-inv-from-time">
                                     <p>{i18n.invDate}: <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
                                     <p>{i18n.invDue} {i18n.invDate}: <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>

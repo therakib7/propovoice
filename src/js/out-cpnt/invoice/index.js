@@ -18,6 +18,7 @@ const Paypal = lazy(() => import('./payment/paypal'));
 // import Paypal from './payment/paypal';
 
 const EditDownload = props => {
+    const i18n = ndpv.i18n;
     return (
         <>
             <ReactToPrint
@@ -39,7 +40,7 @@ const EditDownload = props => {
                             fill="#2D3748"
                         />
                     </svg>
-                    Download
+                    {i18n.invDown}
                 </button>}
             />
 
@@ -63,7 +64,7 @@ const EditDownload = props => {
                             fill="#2D3748"
                         />
                     </svg>
-                    Print
+                    {i18n.invPrint}
                 </button>}
             />
         </>
@@ -86,6 +87,7 @@ const InvoiceBtn = props => {
     ) {
         return null;
     }
+    const i18n = ndpv.i18n;
     return (
         <>
             {props.type == 'estimate' &&
@@ -95,7 +97,7 @@ const InvoiceBtn = props => {
                         onClick={() => props.handleChange('feedback', 'accept')}
                         style={{ marginRight: '5px' }}
                     >
-                        Accept
+                        {i18n.invAcc}
                     </button>
 
                     <button
@@ -103,7 +105,7 @@ const InvoiceBtn = props => {
                         style={{ color: '#000' }}
                         onClick={() => props.handleChange('feedback', 'decline')}
                     >
-                        Decline
+                        {i18n.invDec}
                     </button>
                 </>
             }
@@ -126,7 +128,7 @@ const InvoiceBtn = props => {
                         style={{ marginLeft: '10px' }}
                         onClick={() => props.handleChange('payment', selected_method.id)}
                     >
-                        Pay
+                        {i18n.invPay}
                     </button>
                 </>
             }
