@@ -19,7 +19,7 @@ export default (props) => {
     useEffect(() => {
         props.isPrvwLoad();
     }, []);
-    
+
     const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = props.data.invoice;
     const { fromData, toData, status } = props.data;
     let title = props.data.title;
@@ -50,8 +50,8 @@ export default (props) => {
                             </div>
                             <div className="pv-inv-from-date">
                                 <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                <p>Date: <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
-                                <p>Due Date: <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
+                                <p>{i18n.invDate} <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                <p>{i18n.invDue} {i18n.invDate} <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                             </div>
                         </div>
                     </div>

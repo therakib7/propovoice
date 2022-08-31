@@ -35,7 +35,7 @@ export default (props) => {
                             width={182}
                             height={183}
                             viewBox="0 0 182 183"
-                            fill="none" 
+                            fill="none"
                         >
                             <path d="M0 13H19V160L0 183V13Z" fill="#E2E8F0" />
                             <path d="M0 0H19V142.676L0 165V0Z" />
@@ -58,8 +58,8 @@ export default (props) => {
                             <div className="pv-inv-from-date">
                                 <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
                                 <div className="pv-inv-from-time">
-                                    <p>Date: <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
-                                    <p>Due Date: <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
+                                    <p>{i18n.invDate} <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
+                                    <p>{i18n.invDue}{i18n.invDate} <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
                                 </div>
                             </div>
                         </div>
@@ -83,14 +83,14 @@ export default (props) => {
                         width={182}
                         height={183}
                         viewBox="0 0 182 183"
-                        fill="none" 
+                        fill="none"
                     >
                         <path d="M0 13H19V160L0 183V13Z" fill="#E2E8F0" />
                         <path d="M0 0H19V142.676L0 165V0Z" />
                         <path d="M12 0L12 19L159 19L182 -7.43094e-06L12 0Z" fill="#E2E8F0" />
                         <path d="M0 0L8.30517e-07 19L142.676 19L165 -7.21238e-06L0 0Z" />
                         <circle cx="16.5" cy="16.5" r="16.5" />
-                    </svg> 
+                    </svg>
                 </div>
             </div>
         </div>
