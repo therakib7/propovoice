@@ -21,7 +21,7 @@ class Dashboard
             'ndpv',
             array($this, 'main_settings'),
             'dashicons-groups',
-            30
+            5
         );
 
         add_submenu_page(

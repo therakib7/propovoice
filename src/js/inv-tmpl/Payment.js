@@ -1,11 +1,10 @@
 export default (props) => {
-    const { bankData } = props.data;
-    const i18n = ndpv.i18n;
+    const { paymentBankData: bankData } = props.data;
     return (
         <div>
             {bankData ? <>
                 <div className="pv-inv-bank">
-                    <h4>{i18n.payment} {i18n.info}:</h4>
+                    <h4>{ndpv.i18n.invPayinfo}:</h4>
                     <div className="pv-bank-info" dangerouslySetInnerHTML={{ __html: bankData.name + '<br />' + bankData.details.replaceAll('\n', '<br />') }}></div>
                 </div>
             </> : ''}

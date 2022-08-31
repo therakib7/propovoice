@@ -7,7 +7,7 @@ class Total extends Component {
 
     constructor(props) {
         super(props);
-    } 
+    }
 
     formatCurrency = (amount) => {
         return (new Intl.NumberFormat(this.locale, {
@@ -51,7 +51,7 @@ class Total extends Component {
                 <table>
                     <tbody>
                         <tr className='pv-inv-e-bold'>
-                            <th>Total</th>
+                            <th>{ndpv.i18n.invTotal}</th>
                             <td>{this.formatCurrency(this.calcItemsTotal())}</td>
                         </tr>
 
@@ -73,7 +73,7 @@ class Total extends Component {
                         })}
 
                         <tr className="pv-inv-table-bg">
-                            <th>{ndpv.i18n.subtotal}</th>
+                            <th>{ndpv.i18n.invStotal}</th>
                             <td>{this.formatCurrency(this.calcGrandTotal())}</td>
                         </tr>
                     </tbody>

@@ -4,7 +4,7 @@ Donate link:
 Tags: proposal, estimate, invoice, payment, crm, project, client, lead, transaction, billing, automation, management
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1.3
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -16,6 +16,10 @@ It's simple to create estimates and invoices and manage clients for WordPress wi
 🚀 <a href="https://propovoice.com">Official Website</a> | 📚 <a href="https://propovoice.com/docs">Documentation</a> | 🚀 <a href="https://www.facebook.com/groups/837677640524915">Community</a> | 🏆 <a href="https://propovoice.com/pricing/">Get Pro</a>
 
 Propovoice CRM is a client relationship management solution for small to mid-level service agencies and freelancers in WordPress. It will help you manage your business process – managing leads & clients, creating project estimations and invoices on a single self-hosted web platform. 
+
+== 🏆 Live Demo Access ==
+> URL: [Demo](https://demo.propovoice.com/wp-login.php?redirect_to=https://demo.propovoice.com/wp-admin/admin.php?page=ndpv&reauth=1)
+> Username: demo || Password: demo
 
 All the important features that you need to manage your service business are free in Propovoice. Its intuitive design makes it easy to use. 
 
@@ -160,11 +164,24 @@ The super fantastic pro features that accelerate your business growth and improv
 2. Lead
 3. Lead Managing
 4. Select Template
-5.Invoice Estimate Builder
+5. Invoice Estimate Builder
 6. Preview
 7. Settings
 
 == Changelog == 
+
+= 1.0.1.3 =
+* Added: Invoice ltem Lebel edit option
+* Update: Localization
+* Fixed: Bank Payment Info
+
+= 1.0.1.2 =
+* Fixed: Invoice template layout css
+* Update: Optimize code
+
+= 1.0.1.1 =
+* Fixed: Dynamic color in print and download
+* Fixed: CSS Issue
 
 = 1.0.0 =
 * Added: Lead management

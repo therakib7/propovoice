@@ -74,8 +74,8 @@ class Branding extends Component {
 					<>
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='hidden' />
 						<div className="pv-text-center" onClick={() => this.handleUploadFile()}>
-							<img src={ndpv.assetImgUri + 'upload-img.png'} width="120" />
-							<h3 className="pv-upload pv-color-blue">{i18n.upload} {i18n.logo}</h3>
+							<img className="pv-cursor-pointer" src={ndpv.assetImgUri + 'upload-img.png'} width="120" />
+							<h3 className="pv-cursor-pointer pv-upload pv-color-blue">{i18n.upload} {i18n.logo}</h3>
 						</div>
 					</>
 				}

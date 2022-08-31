@@ -59,7 +59,7 @@ const File = (props) => {
                                     height={14}
                                     viewBox="0 0 17 16"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M5.875 5.125L8.5 2.5L11.125 5.125"
@@ -95,7 +95,7 @@ const File = (props) => {
                                     height={14}
                                     viewBox="0 0 17 16"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M5.875 5.125L8.5 2.5L11.125 5.125"
@@ -143,7 +143,7 @@ const File = (props) => {
                                         height={16}
                                         viewBox="0 0 16 16"
                                         fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        
                                     >
                                         <path
                                             d="M12.9999 9H2.99988C2.72374 9 2.49988 9.22386 2.49988 9.5V12C2.49988 12.2761 2.72374 12.5 2.99988 12.5H12.9999C13.276 12.5 13.4999 12.2761 13.4999 12V9.5C13.4999 9.22386 13.276 9 12.9999 9Z"
@@ -167,7 +167,7 @@ const File = (props) => {
                                         height={16}
                                         viewBox="0 0 16 16"
                                         fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        
                                     >
                                         <path
                                             d="M7 3H3V7H7V3Z"

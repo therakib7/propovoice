@@ -103,7 +103,7 @@ export default class Main extends Component {
                                     <svg
                                         width={12}
                                         height={11}
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        
                                         viewBox="3.4 5.6 17.6 13.4"
                                         xmlSpace="preserve"
                                     >

@@ -130,7 +130,7 @@ class Paypal extends Component {
                                         height={25}
                                         viewBox="0 0 16 16"
                                         fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        
                                     >
                                         <path
                                             d="M12.5 3.5L3.5 12.5"
@@ -146,7 +146,7 @@ class Paypal extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pv-modal-title">Pay With Paypal</h2>
+                                <h2 className="pv-modal-title">{ndpv.i18n.pay} {ndpv.i18n.with} Paypal</h2>
                             </div>
 
                             <div className="pv-content">

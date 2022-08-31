@@ -11,13 +11,17 @@
     overflow: hidden;
 } */
 
-.ce-block__content,
+/* .ce-block__content,
 .ce-toolbar__content {
     max-width: calc(100% - 80px) !important;
 }
 
 .cdx-block {
     max-width: 100% !important;
+} */
+//tiny mce editor
+.tox .tox-tbtn svg { 
+    fill: #4A5568 !important;
 }
 
 //invoice item radius without edit column
@@ -230,4 +234,4 @@ input:-webkit-autofill:active {
     .pv-intg-list {
         grid-template-columns: 1fr;
     }
-}
+} 

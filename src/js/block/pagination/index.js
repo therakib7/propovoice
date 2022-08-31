@@ -13,7 +13,7 @@ const Pagination = (props) => {
 						height={14}
 						viewBox="0 0 9 14"
 						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+						
 					>
 						<path
 							d="M7.5 12.833L1.667 7 7.5 1.167"
@@ -30,7 +30,7 @@ const Pagination = (props) => {
 						height={14}
 						viewBox="0 0 9 14"
 						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+						
 					>
 						<path
 							d="M1.5 12.833L7.333 7 1.5 1.167"
@@ -47,7 +47,7 @@ const Pagination = (props) => {
 						height={15}
 						viewBox="0 0 24 24"
 						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
+						
 					>
 						<path
 							fillRule="evenodd"

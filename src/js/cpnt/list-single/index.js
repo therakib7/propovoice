@@ -263,7 +263,7 @@ class ListSingle extends Component {
                                 height={10}
                                 viewBox="0 0 5 10"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                                
                             >
                                 <path
                                     d="M0.5 1.25L4.25 5L0.5 8.75"
@@ -286,7 +286,7 @@ class ListSingle extends Component {
                                 height={10}
                                 viewBox="0 0 5 10"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                                
                             >
                                 <path
                                     d="M0.5 1.25L4.25 5L0.5 8.75"
@@ -347,7 +347,7 @@ class ListSingle extends Component {
                                                     height={12}
                                                     viewBox="0 0 12 15"
                                                     fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    
                                                 >
                                                     <path
                                                         d="M2.5 8H13.5"
@@ -456,7 +456,7 @@ class ListSingle extends Component {
                                                     height={15}
                                                     viewBox="0 0 16 16"
                                                     fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    
                                                 >
                                                     <path
                                                         d="M2.5 8H13.5"
@@ -608,7 +608,7 @@ class ListSingle extends Component {
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                
                                             >
                                                 <path
                                                     d="M12 6.75V8.25"
@@ -652,7 +652,7 @@ class ListSingle extends Component {
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                
                                             >
                                                 <path
                                                     d="M3.75 10.7531V5.25C3.75 5.05109 3.82902 4.86032 3.96967 4.71967C4.11032 4.57902 4.30109 4.5 4.5 4.5H19.5C19.6989 4.5 19.8897 4.57902 20.0303 4.71967C20.171 4.86032 20.25 5.05109 20.25 5.25V10.7531C20.25 18.6281 13.5656 21.2344 12.2344 21.675C12.0831 21.731 11.9169 21.731 11.7656 21.675C10.4344 21.2344 3.75 18.6281 3.75 10.7531Z"
@@ -682,7 +682,7 @@ class ListSingle extends Component {
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                
                                             >
                                                 <path
                                                     d="M3.75 10.7531V5.25C3.75 5.05109 3.82902 4.86032 3.96967 4.71967C4.11032 4.57902 4.30109 4.5 4.5 4.5H19.5C19.6989 4.5 19.8897 4.57902 20.0303 4.71967C20.171 4.86032 20.25 5.05109 20.25 5.25V10.7531C20.25 18.6281 13.5656 21.2344 12.2344 21.675C12.0831 21.731 11.9169 21.731 11.7656 21.675C10.4344 21.2344 3.75 18.6281 3.75 10.7531Z"
@@ -716,7 +716,7 @@ class ListSingle extends Component {
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                
                                             >
                                                 <path
                                                     d="M7.125 9.75H16.875"

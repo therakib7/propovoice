@@ -18,6 +18,7 @@ const Paypal = lazy(() => import('./payment/paypal'));
 // import Paypal from './payment/paypal';
 
 const EditDownload = props => {
+    const i18n = ndpv.i18n;
     return (
         <>
             <ReactToPrint
@@ -32,14 +33,14 @@ const EditDownload = props => {
                         height={14}
                         viewBox="0 0 12 14"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        
                     >
                         <path
                             d="M6.667 7h2L6 9.668 3.333 7.001h2V4.334h1.334v2.667zM8 1.668H1.333v10.667h9.334v-8H8V1.667zM0 .995C0 .63.298.334.666.334h8L12 3.667v9.329a.666.666 0 01-.662.671H.662A.666.666 0 010 13.006V.996z"
                             fill="#2D3748"
                         />
                     </svg>
-                    Download
+                    {i18n.invDown}
                 </button>}
             />
 
@@ -56,14 +57,14 @@ const EditDownload = props => {
                         height={14}
                         viewBox="0 0 15 14"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        
                     >
                         <path
                             d="M3.5 11.667h-2a.667.667 0 01-.667-.666V4.334a.667.667 0 01.667-.667h2V1.001a.667.667 0 01.667-.667h6.666a.667.667 0 01.667.667v2.666h2a.666.666 0 01.667.667v6.667a.667.667 0 01-.667.666h-2v1.334a.667.667 0 01-.667.666H4.167a.667.667 0 01-.667-.666v-1.334zm0-1.333v-.667a.667.667 0 01.667-.666h6.666a.667.667 0 01.667.666v.667h1.333V5.001H2.167v5.333H3.5zm1.333-8.667v2h5.334v-2H4.833zm0 8.667v2h5.334v-2H4.833zm-2-4.667h2v1.334h-2V5.667z"
                             fill="#2D3748"
                         />
                     </svg>
-                    Print
+                    {i18n.invPrint}
                 </button>}
             />
         </>
@@ -86,6 +87,7 @@ const InvoiceBtn = props => {
     ) {
         return null;
     }
+    const i18n = ndpv.i18n;
     return (
         <>
             {props.type == 'estimate' &&
@@ -95,7 +97,7 @@ const InvoiceBtn = props => {
                         onClick={() => props.handleChange('feedback', 'accept')}
                         style={{ marginRight: '5px' }}
                     >
-                        Accept
+                        {i18n.invAcc}
                     </button>
 
                     <button
@@ -103,7 +105,7 @@ const InvoiceBtn = props => {
                         style={{ color: '#000' }}
                         onClick={() => props.handleChange('feedback', 'decline')}
                     >
-                        Decline
+                        {i18n.invDec}
                     </button>
                 </>
             }
@@ -126,7 +128,7 @@ const InvoiceBtn = props => {
                         style={{ marginLeft: '10px' }}
                         onClick={() => props.handleChange('payment', selected_method.id)}
                     >
-                        Pay
+                        {i18n.invPay}
                     </button>
                 </>
             }
@@ -177,7 +179,7 @@ export default class Invoice extends Component {
         this.getData();
     }
 
-    isPreviewLoaded = () => {
+    isPrvwLoad = () => {
         let previewRef = this.previewRef.current;
         if (previewRef) {
             let height;
@@ -276,7 +278,7 @@ export default class Invoice extends Component {
 
                     <div className='col-md-8'>
                         <div className='pv-inv-hidden-preview' style={{ position: 'absolute', left: 9999 }} ref={this.previewRef} >
-                            {this.state.fromData && <InvTemplate data={this.state} isPreviewLoaded={this.isPreviewLoaded} />}
+                            {this.state.fromData && <InvTemplate data={this.state} isPrvwLoad={this.isPrvwLoad} />}
                         </div>
 
                         <div className='pv-inv-preview-wrap'>

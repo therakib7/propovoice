@@ -105,7 +105,7 @@ const Task = (props) => {
                                                     height={7}
                                                     viewBox="0 0 11 7"
                                                     fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    
                                                 >
                                                     <path
                                                         d="M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915"
@@ -137,7 +137,7 @@ const Task = (props) => {
                                                     height={7}
                                                     viewBox="0 0 11 7"
                                                     fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    
                                                 >
                                                     <path
                                                         d="M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915"
@@ -169,7 +169,7 @@ const Task = (props) => {
                                                     height={7}
                                                     viewBox="0 0 11 7"
                                                     fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    
                                                 >
                                                     <path
                                                         d="M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915"

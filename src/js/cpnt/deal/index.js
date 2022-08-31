@@ -175,7 +175,7 @@ const Deal = (props) => {
                                 height={12}
                                 viewBox="0 0 12 15"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                                
                             >
                                 <path
                                     d="M2.5 8H13.5"
@@ -204,7 +204,7 @@ const Deal = (props) => {
                                 height={12}
                                 viewBox="0 0 12 15"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                                
                             >
                                 <path
                                     d="M2.5 8H13.5"
@@ -237,7 +237,7 @@ const Deal = (props) => {
                         height={20}
                         viewBox="0 0 20 20"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        
                     >
                         <path
                             d="M3.125 4.375h13.75v9.375a.624.624 0 01-.625.625h-3.125a.624.624 0 01-.625-.625v-1.875h-5v4.375a.625.625 0 01-.625.625H3.75a.625.625 0 01-.625-.625V4.375zM7.5 9.375H3.125M7.5 4.375v7.5M12.5 9.375h4.375M12.5 4.375v7.5"
@@ -257,7 +257,7 @@ const Deal = (props) => {
                         height={20}
                         viewBox="0 0 20 20"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        
                     >
                         <path
                             d="M7.5 5H16.875"

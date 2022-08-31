@@ -69,7 +69,7 @@ class Bank extends Component {
                                         height={25}
                                         viewBox="0 0 16 16"
                                         fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        
                                     >
                                         <path
                                             d="M12.5 3.5L3.5 12.5"
@@ -86,7 +86,7 @@ class Bank extends Component {
                                     </svg>
                                 </span>
                                 <h2 className="pv-modal-title">{i18n.payment} {i18n.info}</h2>
-                                <p>Add payment info from here</p>
+                                <p>{i18n.add + ' ' +i18n.payment + ' ' +i18n.info + ' ' +i18n.from + ' ' + i18n.here}</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >
                                 <div className="pv-content">

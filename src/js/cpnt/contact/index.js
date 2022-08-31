@@ -30,7 +30,7 @@ const Contact = (props) => {
               height={12}
               viewBox="0 0 12 15"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+              
             >
               <path
                 d="M2.5 8H13.5"
@@ -55,7 +55,7 @@ const Contact = (props) => {
               height={24}
               viewBox="0 0 24 24"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+              
             >
               <path
                 fillRule="evenodd"
@@ -87,7 +87,7 @@ const Contact = (props) => {
             height={20}
             viewBox="0 0 20 20"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            
           >
             <path
               d="M7.5 5H16.875"
@@ -139,7 +139,7 @@ const Contact = (props) => {
             height={20}
             viewBox="0 0 20 20"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            
           >
             <path
               d="M17.5 4.375H2.5C2.15482 4.375 1.875 4.65482 1.875 5V6.875C1.875 7.22018 2.15482 7.5 2.5 7.5H17.5C17.8452 7.5 18.125 7.22018 18.125 6.875V5C18.125 4.65482 17.8452 4.375 17.5 4.375Z"
