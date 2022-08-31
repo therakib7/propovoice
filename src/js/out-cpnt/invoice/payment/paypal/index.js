@@ -146,7 +146,7 @@ class Paypal extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pv-modal-title">Pay With Paypal</h2>
+                                <h2 className="pv-modal-title">{ndpv.i18n.pay} {ndpv.i18n.with} Paypal</h2>
                             </div>
 
                             <div className="pv-content">

@@ -86,7 +86,7 @@ class Bank extends Component {
                                     </svg>
                                 </span>
                                 <h2 className="pv-modal-title">{i18n.payment} {i18n.info}</h2>
-                                <p>Add payment info from here</p>
+                                <p>{i18n.add + ' ' +i18n.payment + ' ' +i18n.info + ' ' +i18n.from + ' ' + i18n.here}</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >
                                 <div className="pv-content">
