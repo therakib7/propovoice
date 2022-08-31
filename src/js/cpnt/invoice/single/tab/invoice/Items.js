@@ -1,9 +1,21 @@
+import React, { useRef, useCallback, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import Item from './Item'
+import ItemLabel from './sidebar/ItemLabel'
 import styles from './scss/Items.module.scss'
 
 export default (props) => {
+    const [label, setLabel] = useState(false);
+
+    const showLabel = () => {
+        if (label) {
+            setLabel(false);
+        } else {
+            setLabel(true);
+        }
+    };
+
     const handleDragEnd = (result) => {
 
         if (!result.destination) return
@@ -27,15 +39,16 @@ export default (props) => {
         props.reorderHandler(Items)
     }
 
-    const { items, item_label, item_tax, addHandler, reorderHandler, ...functions } = props
+    const { items, item_label, labelChange, item_tax, addHandler, reorderHandler, ...functions } = props
     const i18n = ndpv.i18n;
     const { desc, qty, price, tax, amount } = item_label;
     return (
         <>
+            {label && <ItemLabel item_label={item_label} item_tax={item_tax} close={showLabel} labelChange={labelChange} />}
             <div className="pv-info-table-wrap">
                 <div className="pv-info-table-content">
                     <table className="pv-table pv-info-table">
-                        <thead>
+                        <thead className='pv-cursor-pointer' onClick={() => showLabel()}>
                             <tr>
                                 <th style={{ width: 'auto' }}>{desc}</th>
                                 <th style={{ width: '125px' }}>{qty}</th>

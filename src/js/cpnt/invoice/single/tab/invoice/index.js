@@ -553,6 +553,12 @@ class Invoice extends Component {
 		this.setState({ invoice });
 	}
 
+	onItemLabelChange = (data) => {
+		let invoice = { ...this.state.invoice }
+		invoice.item_label = data;
+		this.setState({ invoice });
+	}
+
 	onPaymentChange = (data, type) => {
 		let invoice = { ...this.state.invoice }
 		if (type == 'method') {
@@ -956,6 +962,7 @@ class Invoice extends Component {
 										<Items
 											items={invoice.items}
 											item_label={invoice.item_label}
+											labelChange={this.onItemLabelChange}
 											item_tax={invoice.item_tax}
 											currencyFormatter={this.formatCurrency}
 											addHandler={this.handleAddLineItem}

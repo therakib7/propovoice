@@ -39,7 +39,7 @@ class I18n
             'rec' => esc_html__('Receiver', 'propovoice'),
             'item' => esc_html__('Item', 'propovoice'), 
             'qty' => esc_html__('Quantity', 'propovoice'),
-            'rate' => esc_html__('Quantity', 'propovoice'),
+            'rate' => esc_html__('Rate', 'propovoice'),
             'amt' => esc_html__('Amount', 'propovoice'),
             'Addt' => esc_html__('Additional', 'propovoice'),
             'subT' => esc_html__('Sub Total', 'propovoice'),
