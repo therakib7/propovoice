@@ -58,7 +58,7 @@ export default (props) => {
                 <input
                     name="price"
                     type="number"
-                    style={{ width: '80px' }}
+                    style={{ width: '88px' }}
                     step="0.01"
                     min="0.00"
                     max="9999999.99"
@@ -81,8 +81,12 @@ export default (props) => {
 
                     <select name="tax_type"
                         value={tax_type}
-                        onChange={props.changeHandler(index)}
-                        style={{ width: '37px' }}
+                        onChange={props.changeHandler(index)} 
+                        ref={(n) => {
+                            if (n) {
+                                n.style.setProperty("width", "37px", "important");
+                            }
+                        }}
                     >
                         <option value="percent">%</option>
                         <option value="fixed">$</option>
@@ -102,7 +106,7 @@ export default (props) => {
                         height={15}
                         viewBox="0 0 10 10"
                         fill="none"
-                        
+
                     >
                         <path
                             fillRule="evenodd"
