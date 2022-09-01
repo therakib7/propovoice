@@ -41,11 +41,14 @@ export default (props) => {
                         value={qty}
                         onChange={props.changeHandler(index)}
                         style={{ width: '60px' }}
-                        onFocus={props.focusHandler} />
+                        onFocus={props.focusHandler} 
+                    />
 
-                    <select name="qty_type"
+                    <select 
+                        name="qty_type"
                         value={qty_type}
-                        onChange={props.changeHandler(index)} >
+                        onChange={props.changeHandler(index)} 
+                    >
                         <option value="unit">Unit</option>
                         <option value="page">Page</option>
                         <option value="hour">Hour</option>

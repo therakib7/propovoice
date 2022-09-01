@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
-import WithApi from 'hoc/Api'; 
+import WithApi from 'hoc/Api';
 import Reminder from 'block/field/reminder'; 
-import Template from './sub/Template';
+import AdditionalAmount from '../../estvoice/AdditionalAmount';
+import Recurring from './sub/Recurring';
 
 class General extends Component {
 	constructor(props) {
 		super(props);
-		const i18n = ndpv.i18n;
+
 		this.state = {
 			tabs: [
-				{
-					id: 'reminder',
-					text: i18n.rem
-				}, 
 				/* {
-					id: 'template',
-					text: 'Template'
+					id: 'reminder',
+					text: ndpv.i18n.rem
+				}, */
+				{
+					id: 'extra-amount',
+					text: ndpv.i18n.Addt +' '+ndpv.i18n.amt
+				},
+				/* {
+					id: 'recurring',
+					text: 'Recurring'
 				}  */
 			],
 			currentTab: '',
-		} 
+		}
+
 	} 
 
 	componentDidMount() {
-		this.setState({ currentTab: 'reminder' });
+		this.setState({ currentTab: 'extra-amount' });
 	}
 
 	setActiveTab(id) { 
@@ -46,8 +52,9 @@ class General extends Component {
 					))}
 				</ul>
 		
-				{currentTab == 'reminder' && <Reminder {...this.props} path={'estimate'} />}  
-				{currentTab == 'template' && <Template {...this.props} />}
+				{currentTab == 'reminder' && <Reminder {...this.props} path={'invoice'} />} 
+				{currentTab == 'extra-amount' && <AdditionalAmount {...this.props} />} 
+				{/* {currentTab == 'recurring' && <Recurring {...this.props} />} */}
 			</>
 		);
 	}
