@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import WithApi from 'hoc/Api';
-import Reminder from 'block/field/reminder'; 
-import AdditionalAmount from '../estvoice/AdditionalAmount';
+import Reminder from 'block/field/reminder';  
 import Recurring from './sub/Recurring';
 
 class General extends Component {
@@ -14,10 +13,10 @@ class General extends Component {
 					id: 'reminder',
 					text: ndpv.i18n.rem
 				},
-				{
+				/* {
 					id: 'extra-amount',
 					text: ndpv.i18n.Addt +' '+ndpv.i18n.amt
-				},
+				}, */
 				/* {
 					id: 'recurring',
 					text: 'Recurring'
@@ -52,8 +51,7 @@ class General extends Component {
 					))}
 				</ul>
 		
-				{currentTab == 'reminder' && <Reminder {...this.props} path={'invoice'} />} 
-				{currentTab == 'extra-amount' && <AdditionalAmount {...this.props} />} 
+				{currentTab == 'reminder' && <Reminder {...this.props} path={'invoice'} />}  
 				{currentTab == 'recurring' && <Recurring {...this.props} />}
 			</>
 		);

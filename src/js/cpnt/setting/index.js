@@ -4,7 +4,10 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Spinner from 'block/preloader/spinner';
 import WithApi from 'hoc/Api';
 
-const General = lazy(() => import('./tab/general'));
+//subtab: general 
+const GeneralBiz = lazy(() => import('./tab/general/biz'));
+const GeneralEstinv = lazy(() => import('./tab/general/estinv'));
+
 const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
 const Deal = lazy(() => import('./tab/deal'));
@@ -34,10 +37,22 @@ const Setting = (props) => {
         tabDefault = 'general'
     }
 
+    if (subtab === undefined) {
+        subtabDefault = 'business'
+    }
+
     const i18n = ndpv.i18n;
     const tab_data = {
         general: {
-            label: i18n.general
+            label: i18n.general,
+            subtabs: {
+                business: {
+                    label: i18n.biz,
+                },
+                estinv: {
+                    label: i18n.est + ' ' + i18n.nd + ' ' + i18n.inv
+                } 
+            },
         },
         lead: {
             label: i18n.lead
@@ -109,6 +124,9 @@ const Setting = (props) => {
 
     const addCurrentTab = (e, tab, subtab = null) => {
         e.preventDefault();
+        if ( !subtab ) {
+            subtab = tabs[tab].hasOwnProperty('subtabs') && Object.keys(tabs[tab].subtabs)[0];
+        }  
         setCurrentTab(tab);
         setCurrentSubtab(subtab);
         routeChange(tab, subtab);
@@ -173,10 +191,12 @@ const Setting = (props) => {
 
                     <div className='col-md-9'>
                         <div className="pv-setting-tab-content">
-                            <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label} {i18n.settings}</h4>
+                            <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{ currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label } {i18n.settings}</h4>
 
-                            <Suspense fallback={<Spinner />}>
-                                {currentTab == 'general' && <General />}
+                            <Suspense fallback={<Spinner />}>  
+                                {currentTab == 'general' && (currentSubtab == 'business' || !currentSubtab) && <GeneralBiz {...props} />}
+                                {currentTab == 'general' && currentSubtab == 'estinv' && <GeneralEstinv />} 
+
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
                                 {currentTab == 'deal' && <Deal />}
@@ -184,6 +204,7 @@ const Setting = (props) => {
                                 {currentTab == 'invoice' && <Invoice />}
                                 {currentTab == 'project' && <Project />}
                                 {currentTab == 'payment' && <Payment />}
+
                                 {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
                                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
                                 {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
