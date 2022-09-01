@@ -37,22 +37,10 @@ const Setting = (props) => {
         tabDefault = 'general'
     }
 
-    if (subtab === undefined) {
-        subtabDefault = 'business'
-    }
-
     const i18n = ndpv.i18n;
     const tab_data = {
         general: {
-            label: i18n.general,
-            subtabs: {
-                business: {
-                    label: i18n.biz,
-                },
-                estinv: {
-                    label: i18n.est + ' ' + i18n.nd + ' ' + i18n.inv
-                } 
-            },
+            label: i18n.general
         },
         lead: {
             label: i18n.lead
@@ -124,9 +112,9 @@ const Setting = (props) => {
 
     const addCurrentTab = (e, tab, subtab = null) => {
         e.preventDefault();
-        if ( !subtab ) {
+        if (!subtab) {
             subtab = tabs[tab].hasOwnProperty('subtabs') && Object.keys(tabs[tab].subtabs)[0];
-        }  
+        }
         setCurrentTab(tab);
         setCurrentSubtab(subtab);
         routeChange(tab, subtab);
@@ -143,7 +131,7 @@ const Setting = (props) => {
                             height={10}
                             viewBox="0 0 5 10"
                             fill="none"
-                            
+
                         >
                             <path
                                 d="M.5 1.25L4.25 5 .5 8.75"
@@ -191,11 +179,11 @@ const Setting = (props) => {
 
                     <div className='col-md-9'>
                         <div className="pv-setting-tab-content">
-                            <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{ currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label } {i18n.settings}</h4>
+                            <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label} {i18n.settings}</h4>
 
-                            <Suspense fallback={<Spinner />}>  
+                            <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && (currentSubtab == 'business' || !currentSubtab) && <GeneralBiz {...props} />}
-                                {currentTab == 'general' && currentSubtab == 'estinv' && <GeneralEstinv />} 
+                                {currentTab == 'general' && currentSubtab == 'estinv' && <GeneralEstinv />}
 
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
