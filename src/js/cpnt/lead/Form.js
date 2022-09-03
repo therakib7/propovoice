@@ -4,8 +4,7 @@ import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import WithApi from 'hoc/Api';
 
-import Select from 'react-select';
-
+import Select from 'react-select'; 
 
 class Form extends Component {
     constructor(props) {
