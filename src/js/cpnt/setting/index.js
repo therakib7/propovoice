@@ -5,14 +5,17 @@ import Spinner from 'block/preloader/spinner';
 import WithApi from 'hoc/Api';
 
 //subtab: general 
-const GeneralBiz = lazy(() => import('./tab/general/biz'));
-const GeneralEstinv = lazy(() => import('./tab/general/estinv'));
+const General = lazy(() => import('./tab/general')); 
 
 const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
-const Deal = lazy(() => import('./tab/deal'));
-const Estimate = lazy(() => import('./tab/estimate'));
-const Invoice = lazy(() => import('./tab/invoice'));
+const Deal = lazy(() => import('./tab/deal')); 
+
+//subtab: estinv 
+const EstinvCom = lazy(() => import('./tab/estinv/common'));
+const EstinvEst = lazy(() => import('./tab/estinv/est'));
+const EstinvInv = lazy(() => import('./tab/estinv/inv'));
+
 const Project = lazy(() => import('./tab/project'));
 const Contact = lazy(() => import('./tab/contact'));
 const Tag = lazy(() => import('./tab/tag'));
@@ -48,11 +51,25 @@ const Setting = (props) => {
         deal: {
             label: i18n.deal
         },
-        estimate: {
+        /* estimate: {
             label: i18n.est
         },
         invoice: {
             label: i18n.inv
+        }, */
+        estinv: {
+            label: i18n.est + ' ' + i18n.nd + ' ' + i18n.inv,
+            subtabs: {
+                common: {
+                    label: i18n.cmn,
+                },
+                est: {
+                    label: i18n.est
+                },
+                inv: {
+                    label: i18n.inv
+                },
+            },
         },
         project: {
             label: i18n.project
@@ -182,19 +199,20 @@ const Setting = (props) => {
                             <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label} {i18n.settings}</h4>
 
                             <Suspense fallback={<Spinner />}>
-                                {currentTab == 'general' && (currentSubtab == 'business' || !currentSubtab) && <GeneralBiz {...props} />}
-                                {currentTab == 'general' && currentSubtab == 'estinv' && <GeneralEstinv />}
+                                {currentTab == 'general' && <General />}
 
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
-                                {currentTab == 'deal' && <Deal />}
-                                {currentTab == 'estimate' && <Estimate />}
-                                {currentTab == 'invoice' && <Invoice />}
-                                {currentTab == 'project' && <Project />}
-                                {currentTab == 'payment' && <Payment />}
+                                {currentTab == 'deal' && <Deal />} 
+                                {currentTab == 'estinv' && (currentSubtab == 'common' || !currentSubtab) && <EstinvCom {...props} />}
+                                {currentTab == 'estinv' && currentSubtab == 'est' && <EstinvEst {...props} />}
+                                {currentTab == 'estinv' && currentSubtab == 'inv' && <EstinvInv {...props} />}
 
-                                {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
-                                {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
+                                {currentTab == 'project' && <Project {...props} />}
+                                {currentTab == 'payment' && <Payment {...props} />}
+
+                                {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate {...props} />}
+                                {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice {...props} />}
                                 {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}

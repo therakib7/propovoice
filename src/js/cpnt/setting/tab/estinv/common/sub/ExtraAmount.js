@@ -6,7 +6,7 @@ import Taxonomy from 'block/field/taxonomy/setting';
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
-export default class AdditionalAmount extends Component {
+export default class ExtraAmount extends Component {
     constructor(props) {
         super(props);
 

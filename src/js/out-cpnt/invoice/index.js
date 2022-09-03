@@ -97,7 +97,7 @@ const InvoiceBtn = props => {
                         onClick={() => props.handleChange('feedback', 'accept')}
                         style={{ marginRight: '5px' }}
                     >
-                        {i18n.invAcc}
+                        {i18n.invAcpt}
                     </button>
 
                     <button

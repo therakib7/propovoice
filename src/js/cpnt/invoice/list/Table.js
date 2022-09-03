@@ -96,7 +96,7 @@ const TableBody = props => {
             case 'accept':
                 status = <span className='pv-badge pv-bg-blue pv-cursor-pointer'
                     style={{ color: '#fff' }}
-                    onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.accept}</span>
+                    onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.acptd}</span>
                 break;
 
             case 'decline':
