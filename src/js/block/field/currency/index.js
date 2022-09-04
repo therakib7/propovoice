@@ -1,37 +1,43 @@
-import { useState, useEffect } from "react"; 
-import currencyToSymbolMap from 'currency-symbol-map/map' 
-import Select from 'react-select';
+import { useState, useEffect } from "react";
+import currencyToSymbolMap from 'currency-symbol-map/map'
+// import Select from 'react-select';
+import Select from 'block/field/select';
 
-export default (props) => { 
+export default (props) => {
 
 	const [currencies, setList] = useState([]);
-	const [currency, setListById] = useState('USD'); 
+	const [currency, setListById] = useState(null);
 
 	useEffect(() => {
-		const c = currencyToSymbolMap; 
-        let list = [];
-        Object.keys(c).map((item) => {
-            list.push({ id: item, symbol: c[item] });
-        }); 
-        setList(list);
-		if ( props.val ) {
-			setListById(props.val);
+		const c = currencyToSymbolMap;
+		let list = [];
+		Object.keys(c).map((item) => {
+			list.push({ id: item, label: item + ' (' + c[item] + ')' });
+		});
+		setList(list);
+
+		if ( props.value ) {
+			setListById({
+				id: props.value,
+				label: props.value + ' (' + c[props.value] + ')',
+			});
 		}
+
 	}, []);
 
-	const onChange = ( val ) => {
+	const onChange = (val) => {
 		setListById(val);
+		props.onChange(val.id)
 	}
- 
-	const cur = currencies; 
 	return (
-		<Select
-			className={'pv-field-select'}
-			value={currency}
-			onChange={onChange}
-			getOptionValue={(cur) => cur.id}
-			getOptionLabel={(cur) => cur.id + ' (' + cur.symbol + ')'}
-			options={cur}
-		/>
+		<>
+			{currencies.length > 0 && <Select 
+				search
+				className={'pv-field-select'}
+				value={currency}
+				onChange={onChange}
+				options={currencies}
+			/>}
+		</>
 	);
 } 

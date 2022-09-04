@@ -68,6 +68,17 @@ class Setting {
                 }
             }
 
+            if ( $tab == 'estinv_currency' ) {
+                $option = get_option('ndpv_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {
+                    $data['currency'] = 'USD';
+                    $data['currency_pos'] = 1;  
+                }
+            }
+
             if ( $tab == 'estimate_reminder' ) {
                 $option = get_option('ndpv_' . $tab);
 
@@ -210,6 +221,12 @@ class Setting {
                 //TODO: sanitization  
                 $data['social'] = isset( $params['social'] ) ? ( $params['social'] ) : null; 
 
+                $option = update_option('ndpv_' . $tab , $data);                 
+            }
+
+            if ( $tab == 'estinv_currency' ) { 
+                $data['currency'] = isset( $params['currency'] ) ? sanitize_text_field( $params['currency'] ) : null;
+                $data['currency_pos'] = isset( $params['currency_pos'] ) ? absint( $params['currency_pos'] ) : null; 
                 $option = update_option('ndpv_' . $tab , $data);                 
             }
 

@@ -2,20 +2,34 @@ import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
+import Select from 'block/field/select';
 
 import pro from 'block/pro-alert';
-import CurrencyField from 'block/field/currency';
+import CurrencyField from 'block/field/currency'; 
 
 export default class Currency extends Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             form: {
-                currency: 'USD',
-                currency_pos: 1, //0 = Hide, 1  = before, 2 = after
-            }
-
+                currency: null,
+                currency_pos: null, //0 = Hide, 1  = before, 2 = after
+            },
+            pos: [
+                {
+                    id: 0,
+                    label: ndpv.i18n.hide,
+                },
+                {
+                    id: 1,
+                    label: ndpv.i18n.before,
+                },
+                {
+                    id: 2,
+                    label: ndpv.i18n.after,
+                },
+            ]
         };
     }
 
@@ -24,43 +38,44 @@ export default class Currency extends Component {
     componentDidMount() {
         this.props.getAll('settings', 'tab=estinv_currency').then(resp => {
             if (resp.data.success) {
-                this.setState({ form: resp.data.data });
+                let newForm = resp.data.data;
+                const pos_name = this.state.pos.find(x => x.id === newForm.currency_pos);
+                newForm.currency_pos = pos_name
+                this.setState({ form: newForm });
             }
         });
-    }
+    } 
 
-    curencyChange = val => {
+    currencyChange = val => {
         /* if ( wage.length > 0 ) {
             pro();
             return;
-        } */
-
+        } */ 
         this.setState({ form: { ...this.state.form, ['currency']: val } });
-    }
+    } 
 
-    handleChange = (e) => {
-        let form = { ...this.state.form }
-        const target = e.target;
-        const name = target.name;
-        const value = target.type == 'checkbox' ? target.checked : target.value;
-        form[name] = value; 
-        this.setState({ form });
+    onPosChange = val => {  
+        this.setState({ form: { ...this.state.form, ['currency_pos']: val } });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let form = this.state.form;
+        let form = {...this.state.form};
         form.tab = 'estinv_currency';
+        
+        if ( form.currency_pos ) {
+            form.currency_pos = form.currency_pos.id;
+        } 
 
         this.props.create('settings', form).then(resp => {
-            /* if (resp.data.success) {
+            if (resp.data.success) {
                 toast.success(this.context.CrudMsg.update);
             } else {
                 resp.data.data.forEach(function (value, index, array) {
                     toast.error(value);
                 });
-            } */
+            }
         });
     }
 
@@ -78,7 +93,7 @@ export default class Currency extends Component {
                             {i18n.cur}
                         </label>
 
-                        <CurrencyField onChange={this.curencyChange} val={currency} />
+                        <CurrencyField key={currency} onChange={this.currencyChange} value={currency} /> 
                     </div>
                     <div className="col">
 
@@ -87,12 +102,15 @@ export default class Currency extends Component {
 
                 <div className="row">
                     <div className="col-md">
-                        <label htmlFor="field-cur-pos">{i18n.cur} {i18n.pos}</label>
-                        <select name="item_tax_val_type" value={currency_pos} onChange={this.handleChange}>
-                            <option value={0}>{i18n.hide}</option>
-                            <option value={1}>{i18n.before}</option>
-                            <option value={2}>{i18n.after}</option>
-                        </select>
+                        <label htmlFor="field-cur-pos">{i18n.cur} {i18n.country}</label> 
+                        <Select
+                            key={currency_pos}
+                            search={false}
+                            className={'pv-field-select'}
+                            value={currency_pos}
+                            onChange={this.onPosChange}
+                            options={this.state.pos}
+                        />
                     </div>
                     <div className="col-md"></div>
                 </div>

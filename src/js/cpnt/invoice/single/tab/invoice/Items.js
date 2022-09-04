@@ -39,7 +39,7 @@ export default (props) => {
         props.reorderHandler(Items)
     }
 
-    const { items, item_label, labelChange, item_tax, addHandler, reorderHandler, ...functions } = props
+    const { items, item_label, currency, labelChange, item_tax, addHandler, reorderHandler, ...functions } = props
     const i18n = ndpv.i18n;
     const { desc, qty, price, tax, amount } = item_label;
     return (
@@ -52,7 +52,7 @@ export default (props) => {
                             <tr>
                                 <th style={{ width: 'auto' }}>{desc}</th>
                                 <th style={{ width: '125px' }}>{qty}</th>
-                                <th style={{ width: '105px' }}>{price} (USD)</th>
+                                <th style={{ width: '105px' }}>{price} ({currency})</th>
                                 {item_tax && <th style={{ width: '125px' }}>{tax}</th>}
                                 <th style={{ width: '90px' }}>{amount}</th>
                                 <th>

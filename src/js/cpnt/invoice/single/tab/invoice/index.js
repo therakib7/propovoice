@@ -9,6 +9,7 @@ import pro from 'block/pro-alert';
 import Spinner from 'block/preloader/spinner';
 //self component
 import FromTo from './FromTo';
+import Currency from 'block/field/currency'; 
 import Items from './Items'
 import PaymentInfo from './PaymentInfo';
 import Total from './Total';
@@ -29,10 +30,7 @@ const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
 const Reminder = lazy(() => import('./sidebar/Reminder'));
 const Recurring = lazy(() => import('./sidebar/Recurring'));
 
-class Invoice extends Component {
-
-	locale = 'en-US'
-	currency = 'USD'
+class Invoice extends Component { 
 
 	constructor(props) {
 		super(props);
@@ -214,11 +212,7 @@ class Invoice extends Component {
 
 	componentWillUnmount() {
 		document.body.style.backgroundColor = "#fff";
-	}
-
-	changeCurrency = () => {
-
-	};
+	} 
 
 	bgColor = () => {
 		if (this.state.currentTab == 'info' || this.state.currentTab == 'preview') {
@@ -273,6 +267,14 @@ class Invoice extends Component {
 		}
 		this.setState({ invoice });
 	}
+
+	currencyChange = val => {
+        /* if ( wage.length > 0 ) {
+            pro();
+            return;
+        } */ 
+        this.setState({ invoice: { ...this.state.invoice, ['currency']: val } });
+    } 
 
 	handleSetFrom = (data) => {
 		let invoice = { ...this.state.invoice }
@@ -442,9 +444,10 @@ class Invoice extends Component {
 	}
 
 	formatCurrency = (amount) => {
-		return (new Intl.NumberFormat(this.locale, {
+		// return (new Intl.NumberFormat('bn-BD', {
+		return (new Intl.NumberFormat('en-US', {
 			style: 'currency',
-			currency: this.currency,
+			currency: this.state.invoice.currency,
 			minimumFractionDigits: 2,
 			maximumFractionDigits: 2
 		}).format(amount))
@@ -916,21 +919,14 @@ class Invoice extends Component {
 															</div>
 														</div>
 
-														{false && <div className="pv-info-form-list">
+														<div className="pv-info-form-list">
 															<div className="pv-info-lavel">
 																<label htmlFor="info-currency">{i18n.cur}:</label>
 															</div>
 															<div className="pv-info-input-field">
-																<input
-																	type="text"
-																	name="currency"
-																	// value={invoice.currency}
-																	value='USD'
-																	readOnly
-																// onChange={() => this.changeCurrency}
-																/>
+																<Currency key={invoice.currency} onChange={this.currencyChange} value={invoice.currency} /> 
 															</div>
-														</div>}
+														</div>
 
 													</div>
 													{/* ./ pv-info-form */}
@@ -961,6 +957,7 @@ class Invoice extends Component {
 										<Items
 											items={invoice.items}
 											item_label={invoice.item_label}
+											currency={invoice.currency}
 											labelChange={this.onItemLabelChange}
 											item_tax={invoice.item_tax}
 											currencyFormatter={this.formatCurrency}

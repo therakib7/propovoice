@@ -5,6 +5,7 @@ import Style from './style.scoped.scss'
 import AppContext from 'context/app-context'; 
 import Preloader from 'block/preloader/table'; 
 import Api from 'api/payment';
+import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
 //form
@@ -427,7 +428,7 @@ export default class Payment extends Component {
                                         className="pv-btn pv-bg-blue pv-bg-hover-blue"
                                         onClick={() => this.openForm('new')}
                                     >
-                                        {i18n.add} {currentTabTitle} {i18n.account}
+                                        {i18n.add} {currentTabTitle} {i18n.account} {currentTab != 'bank' && <ProLabel blueBtn />}
                                     </button>
                                 </>
                             )}

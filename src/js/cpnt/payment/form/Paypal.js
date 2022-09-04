@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
+
 class FormPaypal extends Component {
     constructor(props) {
         super(props);
@@ -55,6 +58,10 @@ class FormPaypal extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        if ( wage.length > 0 ) {
+			pro();
+			return;
+		}
         this.props.handleSubmit(this.state.form);
         // this.setState({ form: this.initialState });
     }
@@ -204,7 +211,7 @@ class FormPaypal extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save}
+                                        {i18n.save} <ProLabel blueBtn />
                                     </button>
                                 </div>
                             </div>
