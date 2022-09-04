@@ -66,6 +66,7 @@
 		"editorjs-blocks-react-renderer": "^1.2.4",
 		"editorjs-text-alignment-blocktune": "^1.0.3",
 		"editorjs-text-color-plugin": "^1.1.22",
+		"iso-language-codes": "^1.1.0",
 		"prop-types": "^15.6.2",
 		"react-beautiful-dnd": "latest",
 		"react-colorful": "^5.5.1",

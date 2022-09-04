@@ -75,7 +75,7 @@ class Setting {
                     $data = $option;
                 } else {
                     $data['currency'] = 'USD';
-                    $data['currency_pos'] = 1;  
+                    $data['lang'] = 1;  
                 }
             }
 
@@ -226,7 +226,7 @@ class Setting {
 
             if ( $tab == 'estinv_currency' ) { 
                 $data['currency'] = isset( $params['currency'] ) ? sanitize_text_field( $params['currency'] ) : null;
-                $data['currency_pos'] = isset( $params['currency_pos'] ) ? absint( $params['currency_pos'] ) : null; 
+                $data['lang'] = isset( $params['lang'] ) ? sanitize_text_field( $params['lang'] ) : null; 
                 $option = update_option('ndpv_' . $tab , $data);                 
             }
 

@@ -8,8 +8,7 @@ import pro from 'block/pro-alert';
 
 import Spinner from 'block/preloader/spinner';
 //self component
-import FromTo from './FromTo';
-import Currency from 'block/field/currency'; 
+import FromTo from './FromTo'; 
 import Items from './Items'
 import PaymentInfo from './PaymentInfo';
 import Total from './Total';
@@ -26,6 +25,7 @@ import Upload from 'block/field/upload';
 const InvTemplate = lazy(() => import('inv-tmpl'));
 const Style = lazy(() => import('./sidebar/Style'));
 const Payment = lazy(() => import('./sidebar/Payment'));
+const Currency = lazy(() => import('./sidebar/Currency'));
 const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
 const Reminder = lazy(() => import('./sidebar/Reminder'));
 const Recurring = lazy(() => import('./sidebar/Recurring'));
@@ -78,6 +78,7 @@ class Invoice extends Component {
 				date: new Date(),
 				due_date: new Date(),
 				currency: 'USD',
+				lang: 'en',
 				template: null,
 				from: null,
 				to: null,
@@ -268,12 +269,15 @@ class Invoice extends Component {
 		this.setState({ invoice });
 	}
 
-	currencyChange = val => {
-        /* if ( wage.length > 0 ) {
-            pro();
-            return;
-        } */ 
-        this.setState({ invoice: { ...this.state.invoice, ['currency']: val } });
+	currencyChange = ( val, type ) => {
+        let invoice = { ...this.state.invoice }
+
+		if (type == 'lang') {
+			invoice.lang = val;
+		} else {
+			invoice.currency = val;
+		}
+		this.setState({ invoice });
     } 
 
 	handleSetFrom = (data) => {
@@ -444,10 +448,10 @@ class Invoice extends Component {
 	}
 
 	formatCurrency = (amount) => {
-		// return (new Intl.NumberFormat('bn-BD', {
-		return (new Intl.NumberFormat('en-US', {
+		const {currency, lang } = this.state.invoice; 
+		return (new Intl.NumberFormat(lang, {
 			style: 'currency',
-			currency: this.state.invoice.currency,
+			currency: currency,
 			minimumFractionDigits: 2,
 			maximumFractionDigits: 2
 		}).format(amount))
@@ -917,16 +921,7 @@ class Invoice extends Component {
 															<div className="pv-info-input-field">
 																<DateField date={invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
 															</div>
-														</div>
-
-														<div className="pv-info-form-list">
-															<div className="pv-info-lavel">
-																<label htmlFor="info-currency">{i18n.cur}:</label>
-															</div>
-															<div className="pv-info-input-field">
-																<Currency key={invoice.currency} onChange={this.currencyChange} value={invoice.currency} /> 
-															</div>
-														</div>
+														</div> 
 
 													</div>
 													{/* ./ pv-info-form */}
@@ -1076,6 +1071,18 @@ class Invoice extends Component {
 															data={invoice}
 														// handleSave={this.handleSave}
 														/>
+													</li>}
+													
+													{(!sidebarActive || sidebarActive == 'currency') && <li>
+														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('currency')} />
+														<i />
+														<h3 className='pv-title-small'>{i18n.cur}</h3>
+														<Currency
+															{...this.props}
+															currency={invoice.currency} 
+															lang={invoice.lang}
+															onChange={this.currencyChange}
+														/> 
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'extra-field') && <li>

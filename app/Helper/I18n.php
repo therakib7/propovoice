@@ -58,6 +58,7 @@ class I18n
             'rem' => esc_html__('Reminder', 'propovoice'), 
             'def' => esc_html__('Default', 'propovoice'), 
             'recur' => esc_html__('Recurring', 'propovoice'), 
+            'lang' => esc_html__('Language', 'propovoice'), 
             'hide' => esc_html__('Hide', 'propovoice'), 
             'pos' => esc_html__('Position', 'propovoice'), 
             'before' => esc_html__('Before', 'propovoice'), 

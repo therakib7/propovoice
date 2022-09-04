@@ -4,8 +4,9 @@ import useClickOutside from 'block/outside-click';
 export default (props) => {
 	const dropdownContent = useRef();
 
-	const [list, setList] = useState(null);
-	const [val, setVal] = useState(null);
+	const [list, setList] = useState([]);
+	const [search, setSearch] = useState('');
+	const [searchList, setSearchList] = useState([]);  
 	const [dropdown, setDropdown] = useState(false);
 
 	const close = useCallback(() => setDropdown(false), []);
@@ -14,15 +15,19 @@ export default (props) => {
 	useEffect(() => { 
 		if (props.options) {
 			setList(props.options)
-		}
-
-		if (props.value) {
-			setVal(props.value)
-		}
+		} 
 	}, []);
 
 	const handleSearch = (e) => {
-
+		const value = e.target.value;
+		setSearch( value );
+		
+		let found = list.find(i => i.id === value);
+		if ( found ) {
+			setSearchList([found]);
+		} else {
+			setSearchList([]);
+		}
 	}
 
 	const handleSelect = (item) => {
@@ -35,6 +40,8 @@ export default (props) => {
 	}
 
 	const i18n = ndpv.i18n;
+
+	const mapData = searchList.length ? searchList : list;
 	return (
 		<>
 			<div className="pv-action-content" ref={dropdownContent}>
@@ -67,11 +74,11 @@ export default (props) => {
 
 				{dropdown && <div className="pv-dropdown-content pv-show">
 					{props.search && <div className="pv-search-field">
-						<input type="text" onChange={handleSearch} placeholder={i18n.search} />
+						<input type="text" value={search} onChange={handleSearch} placeholder={i18n.search} />
 					</div>}
 
 					<div style={{maxHeight: 250, overflowY: 'scroll'}}>
-						{list && list.map((item, itemIndex) => {
+						{mapData && mapData.map((item, itemIndex) => {
 							return (
 								<a key={itemIndex} onClick={() => handleSelect(item)}>{item.label}</a>
 							)

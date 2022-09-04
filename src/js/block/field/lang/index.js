@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import currencyToSymbolMap from 'currency-symbol-map/map' 
+import {by639_1} from 'iso-language-codes' 
 import Select from 'block/field/select';
 
 export default (props) => {
@@ -8,17 +8,20 @@ export default (props) => {
 	const [single, setListById] = useState(null);
 
 	useEffect(() => {
-		const c = currencyToSymbolMap;
+		const l = by639_1;
 		let list = [];
-		Object.keys(c).map((item) => {
-			list.push({ id: item, label: item + ' (' + c[item] + ')' });
+		Object.keys(l).map((item) => {
+			list.push({ 
+                id: item, 
+                label: l[item].name + ' (' + l[item].nativeName + ')' 
+            });
 		});
 		setList(list);
 
 		if ( props.value ) {
 			setListById({
 				id: props.value,
-				label: props.value + ' (' + c[props.value] + ')',
+				label: l[props.value].name + ' (' + l[props.value].nativeName + ')',
 			});
 		}
 
