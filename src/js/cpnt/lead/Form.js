@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
 
+import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import WithApi from 'hoc/Api';
@@ -50,6 +51,10 @@ class Form extends Component {
         } else {
             this.setState({ form: { ...this.state.form, [name]: value } });
         }
+    }
+
+    currencyChange = val => {
+        this.setState({ form: { ...this.state.form, ['currency']: val } });
     }
 
     handleLevelChange = val => {
@@ -287,15 +292,7 @@ class Form extends Component {
                                         <label htmlFor="field-currency">
                                             {i18n.cur}
                                         </label>
-
-                                        <input
-                                            id="field-currency"
-                                            type="text"
-                                            readOnly
-                                            name="currency"
-                                            value={form.currency}
-                                            onChange={this.handleChange}
-                                        />
+                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form /> 
                                     </div>
                                 </div>
 
