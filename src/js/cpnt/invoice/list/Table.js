@@ -156,7 +156,7 @@ const TableBody = props => {
                 {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
                 </td>}
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>${row.total}</td>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>{row.currency}{row.total}</td>
                 {/* {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>
@@ -165,7 +165,7 @@ const TableBody = props => {
                 }  */}
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><Moment format={ndpv.date_format}>{row.date}</Moment></td>
                 <td className="pv-action">
                     <Action
                         row={row}

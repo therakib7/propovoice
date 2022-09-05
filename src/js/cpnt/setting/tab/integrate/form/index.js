@@ -25,7 +25,7 @@ export default class License extends Component {
                 source_id: 'Source', //tax
                 level_id: 'Level', //tax 
                 budget: 'Budget',
-                currency: 'USD',
+                currency: 'Currency',
                 desc: 'Description'
             }
         };

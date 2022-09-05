@@ -324,8 +324,8 @@ class ListSingle extends Component {
                                             </h3>
                                             <address>
                                                 {(data.person) ? data.person.email : data.org.email} <br />
-                                                {data.person && data.org && <>Organization/Company: {data.org_name}<br /></>}
-                                                Budget ${data.budget}
+                                                {data.person && data.org && <>{i18n.org}: {data.org_name}<br /></>}
+                                                {i18n.budget} {data.currency}{data.budget}
                                             </address>
                                         </div>
                                     </div>
@@ -513,7 +513,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li className="pv-budget">
                                     <label htmlFor="">{i18n.budget}:</label>
-                                    <span>${data.budget}</span>
+                                    <span>{data.currency}{data.budget}</span>
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
@@ -641,7 +641,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">{i18n.total} {i18n.budget}</p>
-                                        <h4>$ {data.invoice && data.invoice.total}</h4>
+                                        <h4>{data.invoice && data.invoice.total}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -671,7 +671,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">{i18n.paid} {i18n.amt}</p>
-                                        <h4>$ {data.invoice && data.invoice.paid}</h4>
+                                        <h4>{data.invoice && data.invoice.paid}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -705,7 +705,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">{i18n.due} {i18n.amt}</p>
-                                        <h4>$ {data.invoice && data.invoice.due}</h4>
+                                        <h4>{data.invoice && data.invoice.due}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">

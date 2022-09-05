@@ -140,7 +140,7 @@ class Org
             } 
             $query_data['logo'] = $logoData;
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();

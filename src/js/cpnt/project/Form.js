@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import Contact from 'block/field/contact';
 import { Cross } from 'block/icon';
 import Select from 'react-select';
+import Currency from 'block/field/currency';
 
 const DateField = lazy(() => import('block/date-picker'));
 
@@ -48,6 +49,10 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
+    currencyChange = val => {
+        this.setState({ form: { ...this.state.form, ['currency']: val } });
+    }
+    
     handleStageChange = val => {
         this.setState({ form: { ...this.state.form, ['status_id']: val } });
     }
@@ -325,15 +330,7 @@ class Form extends Component {
                                         <label htmlFor="field-currency">
                                         {i18n.cur}
                                         </label>
-
-                                        <input
-                                            id="field-currency"
-                                            type="text"
-                                            readOnly
-                                            name="currency"
-                                            value={form.currency}
-                                            onChange={this.handleChange}
-                                        />
+                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
                                     </div>
 
                                 </div>

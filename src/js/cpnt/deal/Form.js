@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api';
 import WithRouter from 'hoc/Router';
 import { Add } from 'block/icon';
-
+import Currency from 'block/field/currency';
 import Select from 'react-select';
 import Contact from 'block/field/contact';
 
@@ -43,6 +43,10 @@ class Form extends Component {
         const name = target.name;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    currencyChange = val => {
+        this.setState({ form: { ...this.state.form, ['currency']: val } });
     }
 
     handleStageChange = val => {
@@ -327,16 +331,8 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
                                             {i18n.cur}
-                                        </label>
-
-                                        <input
-                                            id="field-currency"
-                                            type="text"
-                                            readOnly
-                                            name="currency"
-                                            value={form.currency}
-                                            onChange={this.handleChange}
-                                        />
+                                        </label> 
+                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
                                     </div>
 
                                 </div>

@@ -54,7 +54,12 @@ export default (props) => {
 						border: '1px solid #E2E8F0',
 						color: '#4A5568',
 						fontWeight: '400',
-						textAlign: 'left'
+						textAlign: 'left' 
+					}}
+					ref={(n) => {
+						if (n && props.form) { 
+							n.style.setProperty("padding", "13px 15px", "important");
+						}
 					}}
 					onClick={(e) => { e.preventDefault(); setDropdown(prev => !prev); }}
 				>

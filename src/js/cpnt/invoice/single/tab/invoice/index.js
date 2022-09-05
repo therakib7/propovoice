@@ -76,7 +76,7 @@ class Invoice extends Component {
 					title_font: '',
 				},
 				date: new Date(),
-				due_date: new Date(),
+				due_date: new Date(), 
 				currency: 'USD',
 				lang: 'en',
 				template: null,

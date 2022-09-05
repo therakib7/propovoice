@@ -36,6 +36,7 @@ export default (props) => {
 				value={single}
 				onChange={onChange}
 				options={lists}
+				form={props.form}
 			/>}
 		</>
 	);

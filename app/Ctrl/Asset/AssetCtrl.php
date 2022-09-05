@@ -86,6 +86,7 @@ class AssetCtrl
                 'apiUrl' => esc_url(rest_url()),
                 'assetUri' => trailingslashit(NDPV_URL),
                 'nonce' => wp_create_nonce('wp_rest'),
+                'date_format' => Fns::phpToMomentFormat( get_option('date_format') ),
                 'assetImgUri' => ndpv()->get_asset_uri('img/')
             ));
         }
@@ -120,6 +121,7 @@ class AssetCtrl
                 //'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
                 'apiServerUrl' => 'https://appux.co/propovoice-server/wp-json/', //TODO: change server URL later
                 'nonce' => wp_create_nonce('wp_rest'),
+                'date_format' => Fns::phpToMomentFormat( get_option('date_format') ),
                 'assetImgUri' => ndpv()->get_asset_uri('img/'),
                 'assetUri' => trailingslashit(NDPV_URL),
                 'profile' => [

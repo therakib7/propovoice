@@ -51,8 +51,8 @@ export default (props) => {
                             <div className="pv-inv-from-date">
 
                                 <p>{title} {i18n.invNo}: <span>{id ? (path == 'invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
-                                <p>{i18n.invDate}: <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
-                                <p>{i18n.invDue} {i18n.invDate}: <span><Moment format="YYYY-MM-DD">{due_date}</Moment></span></p>
+                                <p>{i18n.invDate}: <span><Moment format={ndpv.date_format}>{date}</Moment></span></p>
+                                <p>{i18n.invDue} {i18n.invDate}: <span><Moment format={ndpv.date_format}>{due_date}</Moment></span></p>
                             </div>
                         </div>
                     </div>
