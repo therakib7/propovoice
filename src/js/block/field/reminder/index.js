@@ -47,10 +47,10 @@ export default class Reminder extends Component {
             reminder[name] = value;
         }
 
-        if ( wage.length > 0 && ( name == 'status' ) ) {
-			pro();
-			return;
-		}
+        if (wage.length > 0 && (name == 'status')) {
+            pro();
+            return;
+        }
 
         this.setState({ form: reminder })
     }
@@ -188,7 +188,7 @@ export default class Reminder extends Component {
                                     height={13}
                                     viewBox="0 0 12 13"
                                     fill="none"
-                                    
+
                                 >
                                     <path
                                         d="M1.875 6.5H10.125"
@@ -281,7 +281,7 @@ export default class Reminder extends Component {
                                     height={13}
                                     viewBox="0 0 12 13"
                                     fill="none"
-                                    
+
                                 >
                                     <path
                                         d="M1.875 6.5H10.125"

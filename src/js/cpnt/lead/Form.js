@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Add } from 'block/icon';
 
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import WithApi from 'hoc/Api';
 
-import Select from 'react-select'; 
+import Select from 'react-select';
 
 class Form extends Component {
     constructor(props) {
@@ -222,29 +223,10 @@ class Form extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.lead + ' ' +i18n.from + ' ' + i18n.here}</p>
+                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.lead + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
@@ -289,7 +271,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-budget">
-                                        {i18n.budget}
+                                            {i18n.budget}
                                         </label>
 
                                         <input
@@ -303,7 +285,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
-                                        {i18n.cur}
+                                            {i18n.cur}
                                         </label>
 
                                         <input
@@ -320,7 +302,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-level_id">
-                                        {i18n.level}
+                                            {i18n.level}
                                         </label>
                                         {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color /> */}
                                         <Select
@@ -335,7 +317,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
-                                        {i18n.tag}
+                                            {i18n.tag}
                                         </label>
                                         {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple /> */}
                                         <Select
@@ -353,7 +335,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-desc">
-                                        {i18n.desc}
+                                            {i18n.desc}
                                         </label>
 
                                         <textarea
@@ -369,7 +351,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-note">
-                                        {i18n.note}
+                                            {i18n.note}
                                         </label>
 
                                         <textarea

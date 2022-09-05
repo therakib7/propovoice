@@ -45,8 +45,8 @@ class Send extends Component {
     //try to call it from invoice to avoid duplication code
     calcItemsTotal = () => {
         return this.props.data.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
-    }  
-   
+    }
+
     calcGrandTotal = () => {
         let item_total = this.calcItemsTotal();
         let total = item_total;
@@ -87,7 +87,7 @@ class Send extends Component {
         let currency = data.invoice.currency;
         let date = this.convertDate(data.invoice.date);
         let due_date = this.convertDate(data.invoice.due_date);
-        let amount = this.calcGrandTotal(); 
+        let amount = this.calcGrandTotal();
 
         let org_name = data.fromData.name;
         let client_name = (data.toData.type == 'person') ? data.toData.first_name : data.toData.org_name;
@@ -127,10 +127,10 @@ class Send extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        if (wage.length > 0 ) {
-			pro();
-			return;
-		}
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
         // TODO: send with attachment pdf
         if (false) {
             /* html2canvas(document.querySelector(".pv-inv")).then(canvas => { 
@@ -175,26 +175,7 @@ class Send extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{i18n.email} {path_title}</h2>
                         <p>{i18n.email} {path} {i18n.from} {i18n.here}</p>

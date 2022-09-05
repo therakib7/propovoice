@@ -1,5 +1,6 @@
 import React, { Component, lazy } from 'react';
 import moment from 'moment';
+import { Add } from 'block/icon';
 
 import WithApi from 'hoc/Api';
 import Taxonomy from 'block/field/taxonomy';
@@ -48,7 +49,7 @@ class Form extends Component {
 
     componentWillUnmount() {
         document.removeEventListener("mousedown", this.handleClickOutside);
-    } 
+    }
 
     componentDidUpdate() {
         this.editData();
@@ -58,7 +59,7 @@ class Form extends Component {
         if (!this.myRef.current.contains(e.target)) {
             this.props.close()
         }
-    }; 
+    };
 
     editData = () => {
         //condition added to stop multiple rendering 
@@ -94,13 +95,13 @@ class Form extends Component {
             delete form.status_id;
             delete form.type_id;
 
-            if ( form.start_date ) {
-                let startDate = moment(form.start_date).format('YYYY-MM-DD'); 
+            if (form.start_date) {
+                let startDate = moment(form.start_date).format('YYYY-MM-DD');
                 form.start_date = startDate;
             }
 
-            if ( form.end_date ) {
-                let endDate = moment(form.end_date).format('YYYY-MM-DD'); 
+            if (form.end_date) {
+                let endDate = moment(form.end_date).format('YYYY-MM-DD');
                 form.end_date = endDate;
             }
 
@@ -142,7 +143,7 @@ class Form extends Component {
         }
 
         this.setState({ form }, () => {
-            this.updateRequest( true );
+            this.updateRequest(true);
         })
     }
 
@@ -154,26 +155,7 @@ class Form extends Component {
                 <div className="pv-modal-content pv-modal-sidebar pv-modal-sidebar-two" ref={this.myRef}>
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
 
                         <div className="pv-small-button-group">
@@ -188,7 +170,7 @@ class Form extends Component {
                                     height={10}
                                     viewBox="0 0 13 10"
                                     fill="none"
-                                    
+
                                 >
                                     <path
                                         d="M11.5 1.5L4.5 8.5L1 5"
@@ -208,7 +190,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="title">
-                                         {i18n.title}
+                                        {i18n.title}
                                     </label>
 
                                     <input
@@ -225,7 +207,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col-md">
                                     <label htmlFor="field-start_date">
-                                    {i18n.start} {i18n.date}
+                                        {i18n.start} {i18n.date}
                                     </label>
                                     <div className='pv-field-date'>
                                         <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
@@ -234,7 +216,7 @@ class Form extends Component {
 
                                 <div className="col-md">
                                     <label htmlFor="field-start_date">
-                                    {i18n.due} {i18n.date}
+                                        {i18n.due} {i18n.date}
                                     </label>
                                     <div className='pv-field-date'>
                                         <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
@@ -245,7 +227,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col-md-6">
                                     <label htmlFor="form-desc">
-                                    {i18n.task} {i18n.type}:
+                                        {i18n.task} {i18n.type}:
                                     </label>
                                     <div className='pv-field-action'>
                                         {form.id && <Taxonomy id={form.id} data={form.type_id} taxonomy='task_type' title={i18n.type} /* small */ color />}
@@ -254,7 +236,7 @@ class Form extends Component {
 
                                 <div className="col-md-6">
                                     <label htmlFor="form-desc">
-                                    {i18n.task} {i18n.prior}:
+                                        {i18n.task} {i18n.prior}:
                                     </label>
                                     <div className='pv-field-action'>
                                         {form.id && <Taxonomy id={form.id} data={form.priority_id} taxonomy='task_priority' title={i18n.prior} /* small */ color />}
@@ -278,7 +260,7 @@ class Form extends Component {
                                                 height={14}
                                                 viewBox="0 0 17 14"
                                                 fill="none"
-                                                
+
                                             >
                                                 <path
                                                     d="M4.5 0.399902L0.5 4.3999L2.5 5.63793L4.5 4.3999L5.62941 2.3999L4.5 0.399902Z"
@@ -317,7 +299,7 @@ class Form extends Component {
                                                 height={10}
                                                 viewBox="0 0 17 10"
                                                 fill="none"
-                                                
+
                                             >
                                                 <path
                                                     d="M0.5 1.09594V6.95562C0.505313 8.28062 1.5875 9.34687 2.90719 9.34156H11.4481C11.6909 9.34156 11.8862 9.14625 11.8862 8.90875V3.04937C11.8809 1.72437 10.7991 0.657811 9.47906 0.663124H0.938125C0.695313 0.663124 0.5 0.858437 0.5 1.09594H0.5ZM12.43 3.38187L15.9563 0.805624C16.2625 0.552499 16.5 0.615624 16.5 1.075V8.92969C16.5 9.4525 16.2097 9.38906 15.9563 9.19906L12.43 6.62812V3.38187Z"
@@ -333,7 +315,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col">
                                     <label htmlFor="form-desc">
-                                    {i18n.desc}
+                                        {i18n.desc}
                                     </label>
 
                                     <textarea
@@ -348,7 +330,7 @@ class Form extends Component {
                             <div className="row">
                                 <div className="col">
                                     <label htmlFor="form-note">
-                                    {i18n.note}
+                                        {i18n.note}
                                     </label>
 
                                     <textarea

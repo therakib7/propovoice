@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import WithApi from 'hoc/Api';
 import WithRouter from 'hoc/Router';
+import { Add } from 'block/icon';
 
 import Select from 'react-select';
 import Contact from 'block/field/contact';
@@ -165,7 +166,7 @@ class Form extends Component {
             }
         } else {
             let args = null;
-            if ( !this.props.boardView ) {
+            if (!this.props.boardView) {
                 args = { table_view: true };
             }
             this.props.handleSubmit(form, null, args);
@@ -205,7 +206,7 @@ class Form extends Component {
         this.setState({ form });
     }
 
-    render() { 
+    render() {
         const stageList = this.state.stages;
         const tagList = this.state.tags;
         const form = this.state.form;
@@ -226,29 +227,10 @@ class Form extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.deal + ' ' +i18n.from + ' ' + i18n.here}</p>
+                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.deal + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
@@ -296,7 +278,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-title">
-                                        {i18n.title}
+                                            {i18n.title}
                                         </label>
 
                                         <input
@@ -344,7 +326,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
-                                        {i18n.cur}
+                                            {i18n.cur}
                                         </label>
 
                                         <input
@@ -362,7 +344,7 @@ class Form extends Component {
                                 {!wage.length && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-probability">
-                                        {i18n.proba} <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
+                                            {i18n.proba} <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
                                         </label>
 
                                         <input
@@ -380,7 +362,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
-                                        {i18n.tag}
+                                            {i18n.tag}
                                         </label>
                                         <Select
                                             className={'pv-field-select'}
@@ -397,7 +379,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-desc">
-                                        {i18n.desc}
+                                            {i18n.desc}
                                         </label>
 
                                         <textarea
@@ -413,7 +395,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-note">
-                                        {i18n.note}
+                                            {i18n.note}
                                         </label>
 
                                         <textarea

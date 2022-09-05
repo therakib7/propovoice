@@ -1,6 +1,7 @@
 // This example shows you how to set up React Stripe.js and use Elements.
 // Learn how to accept a payment using the official Stripe docs.
 // https://stripe.com/docs/payments/accept-a-payment#web
+import { Add } from 'block/icon';
 
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -82,7 +83,7 @@ class CheckoutForm extends Component {
                 phone: '',
                 name: '',
             }
-        }; 
+        };
     }
 
     handleChange = e => {
@@ -92,7 +93,7 @@ class CheckoutForm extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         const { stripe, elements } = this.props;
         const { error, cardComplete } = this.state;
         const { email, phone, name } = this.state.form;
@@ -119,7 +120,7 @@ class CheckoutForm extends Component {
         //}
 
         let client_secret = null;
-        const url = apiProUrl + 'payment-process'; 
+        const url = apiProUrl + 'payment-process';
         const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}`);
         if (indent_resp) {
             client_secret = indent_resp.data.data.intent_obj.client_secret
@@ -187,26 +188,7 @@ class CheckoutForm extends Component {
 
                     <div className="pv-modal-header">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{i18n.pay} {i18n.with} {i18n.stripe}</h2>
                     </div>

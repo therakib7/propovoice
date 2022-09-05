@@ -1,4 +1,5 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
+import { Add } from 'block/icon';
 
 class Form extends Component {
     constructor(props) {
@@ -64,29 +65,10 @@ class Form extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.link}</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.link + ' ' +i18n.from + ' ' + i18n.here}</p>
+                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.link + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
@@ -95,7 +77,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="title">
-                                        {i18n.title}
+                                            {i18n.title}
                                         </label>
 
                                         <input

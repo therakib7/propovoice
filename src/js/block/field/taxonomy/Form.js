@@ -3,6 +3,7 @@ import ColorPicker from 'block/color-picker';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
 import WithApi from 'hoc/Api';
+import { Add } from 'block/icon';
 
 class Form extends Component {
     constructor(props) {
@@ -135,26 +136,7 @@ class Form extends Component {
 
                     <div className="pv-modal-header">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {this.props.title}</h2>
                     </div>
@@ -181,7 +163,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-bg_color">
-                                        {i18n.bg} {i18n.color}
+                                            {i18n.bg} {i18n.color}
                                         </label>
                                         <ColorPicker color={form.bg_color} onChange={(val) => this.handleColorChange(val, 'bg_color')} />
                                     </div>
@@ -190,7 +172,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-color">
-                                        {i18n.text} {i18n.color}
+                                            {i18n.text} {i18n.color}
                                         </label>
                                         <ColorPicker color={form.color} onChange={(val) => this.handleColorChange(val, 'color')} />
                                     </div>
@@ -219,7 +201,7 @@ class Form extends Component {
                                                     className='pv-mr-0'
                                                     viewBox="0 0 10 6"
                                                     fill="none"
-                                                    
+
                                                 >
                                                     <path
                                                         d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
@@ -236,7 +218,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-icon">
-                                        {i18n.icon}
+                                            {i18n.icon}
                                         </label>
                                         <Upload data={form.icon} small changeHandler={this.handleLogoChange} />
                                     </div>

@@ -1,4 +1,6 @@
-import React, { Component, Suspense, lazy } from 'react'
+import React, { Component, Suspense, lazy } from 'react';
+import { Add } from 'block/icon';
+
 // const Editor = lazy(() => import('block/editor'));
 
 class FormBank extends Component {
@@ -71,26 +73,7 @@ class FormBank extends Component {
                 <div className="pv-modal-content">
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()} >
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.account}</h2>
                         <p>Please fill up necessary information in the form.</p>
@@ -120,7 +103,7 @@ class FormBank extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-details">
-                                        {i18n.dtl}
+                                            {i18n.dtl}
                                         </label>
                                         <textarea
                                             id="form-details"

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Add } from 'block/icon';
 
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
@@ -56,10 +57,10 @@ class FormStripe extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        if ( wage.length > 0 ) {
-			pro();
-			return;
-		}
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
         this.props.handleSubmit(this.state.form);
         // this.setState({ form: this.initialState });
     }
@@ -71,26 +72,7 @@ class FormStripe extends Component {
                 <div className="pv-modal-content">
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()} >
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.stripe}</h2>
                         <p>Please fill up necessary informaiton in the form.</p>
@@ -172,5 +154,5 @@ class FormStripe extends Component {
             </div>
         );
     }
-} 
+}
 export default FormStripe; 
