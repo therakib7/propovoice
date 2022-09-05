@@ -1,5 +1,6 @@
 import Item from './Item' 
 export default (props) => {
+    
     const {id, desc, qty, price, tax, amount} = props.item_label;
     return (
         <div className="pv-inv-items">
@@ -15,9 +16,9 @@ export default (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.data.map((item, i) => {
+                    {props.items.map((item, i) => {
                         return (
-                            <Item data={item} item_tax={props.item_tax} id={i} key={i} />
+                            <Item {...props} item={item} item_tax={props.item_tax} id={i} key={i} />
                         )
                     })}
                 </tbody>

@@ -254,9 +254,7 @@ class Invoice
         $query_data['due_date'] = get_post_meta($id, 'due_date', true);
         $query_data['module_id'] = get_post_meta($id, 'module_id', true);
         $from_id = get_post_meta($id, 'from', true);
-        $query_data['invoice'] = get_post_meta($id, 'invoice', true);
-
-        $query_data['title'] = ucwords(get_post_meta($id, 'path', true));
+        $query_data['invoice'] = get_post_meta($id, 'invoice', true); 
 
         $from_id = get_post_meta($id, 'from', true);
         $query_data['status'] = get_post_meta($id, 'status', true);

@@ -86,6 +86,8 @@ class I18n
             'total' => esc_html__('Total', 'propovoice'),
             'prv' => esc_html__('Preview', 'propovoice'), 
             //invoice
+            'invEst' => esc_html_x('Estimate', 'Client View', 'propovoice'),
+            'invInv' => esc_html_x('Invoice', 'Client View', 'propovoice'),
             'invFrom' => esc_html_x('From', 'Client View', 'propovoice'),
             'invDate' => esc_html_x('Date', 'Client View', 'propovoice'),
             'invDue' => esc_html_x('Due', 'Client View', 'propovoice'),

@@ -47,7 +47,7 @@ export default class Currency extends Component {
         let form = {...this.state.form};
         form.tab = 'estinv_currency';
         
-        if ( form.lang ) {
+        if ( form.lang.hasOwnProperty('id') ) {
             form.lang = form.lang.id;
         } 
 

@@ -21,10 +21,10 @@ export default (props) => {
         props.isPrvwLoad();
     }, []);
 
-    const { id, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = props.data.invoice;
+    const { id, path, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = props.data.invoice;
     const { fromData, toData, status } = props.data;
-    let title = props.data.title;
     const i18n = ndpv.i18n;
+    let title = ( path == 'invoice' ) ? i18n.invInv :  i18n.invEst;
     return (
         <div className="pv-inv" style={{ height: props.height }}>
             <Seal status={status} />
@@ -40,7 +40,7 @@ export default (props) => {
                             <From data={fromData} />
 
                             <div className="pv-inv-from-date">
-                                <p>{title} No: <span>{id ? (title == 'Invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
+                                <p>{title} {i18n.invNo}: <span>{id ? (path == 'invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
 
                                 <div className="pv-inv-from-time">
                                     <p>{i18n.invDate}: <span><Moment format="YYYY-MM-DD">{date}</Moment></span></p>
@@ -58,7 +58,7 @@ export default (props) => {
                     </div>
 
                     {top_sections && <Section data={top_sections} top />}
-                    {items && <Items data={items} item_tax={item_tax} item_label={item_label} />}
+                    {items && <Items {...props} data={items} item_tax={item_tax} item_label={item_label} />}
 
                     <div className="pv-inv-account">
                         <Payment {...props} />

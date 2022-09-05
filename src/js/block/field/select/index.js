@@ -6,25 +6,25 @@ export default (props) => {
 
 	const [list, setList] = useState([]);
 	const [search, setSearch] = useState('');
-	const [searchList, setSearchList] = useState([]);  
+	const [searchList, setSearchList] = useState([]);
 	const [dropdown, setDropdown] = useState(false);
 
 	const close = useCallback(() => setDropdown(false), []);
 	useClickOutside(dropdownContent, close);
 
-	useEffect(() => { 
+	useEffect(() => {
 		if (props.options) {
 			setList(props.options)
-		} 
+		}
 	}, []);
 
 	const handleSearch = (e) => {
 		const value = e.target.value;
-		setSearch( value );
-		
-		let found = list.find(i => i.id === value);
+		setSearch(value); 
+
+		const found = list.filter(obj => Object.values(obj).some(val => val.includes(value))); 
 		if ( found ) {
-			setSearchList([found]);
+			setSearchList(found);
 		} else {
 			setSearchList([]);
 		}
@@ -33,8 +33,8 @@ export default (props) => {
 	const handleSelect = (item) => {
 
 		setDropdown(false)
-		
-		if ( props.onChange ) {
+
+		if (props.onChange) {
 			props.onChange(item);
 		}
 	}
@@ -53,11 +53,12 @@ export default (props) => {
 						backgroundColor: '#fff',
 						border: '1px solid #E2E8F0',
 						color: '#4A5568',
-						fontWeight: '400'
+						fontWeight: '400',
+						textAlign: 'left'
 					}}
 					onClick={(e) => { e.preventDefault(); setDropdown(prev => !prev); }}
 				>
-					{props.value ? props.value.label : i18n.select }
+					{props.value ? props.value.label : i18n.select}
 					<svg
 						width={12}
 						height={6}
@@ -77,7 +78,7 @@ export default (props) => {
 						<input type="text" value={search} onChange={handleSearch} placeholder={i18n.search} />
 					</div>}
 
-					<div style={{maxHeight: 250, overflowY: 'scroll'}}>
+					<div style={{ maxHeight: 250, overflowY: 'scroll' }}>
 						{mapData && mapData.map((item, itemIndex) => {
 							return (
 								<a key={itemIndex} onClick={() => handleSelect(item)}>{item.label}</a>

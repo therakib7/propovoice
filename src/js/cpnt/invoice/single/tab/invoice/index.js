@@ -190,10 +190,12 @@ class Invoice extends Component {
 			let invoice = { ...this.state.invoice }
 			invoice.due_date = dueDate;
 
+			let path = this.props.path == 'invoice' ? 'invoice' : 'estimate'; 
+			invoice.path = path;
+
 			//deal, project id
 			if (this.props.module_id) {
 				invoice.module_id = parseInt(this.props.module_id);
-				console.log(invoice);
 			}
 
 			this.setState({
@@ -279,6 +281,13 @@ class Invoice extends Component {
 		}
 		this.setState({ invoice });
     } 
+
+	onCurrencyDefault = (data) => {
+		let invoice = { ...this.state.invoice } 
+		invoice.currency = data.currency;
+		invoice.lang = data.lang;
+		this.setState({ invoice });
+	}
 
 	handleSetFrom = (data) => {
 		let invoice = { ...this.state.invoice }
@@ -408,10 +417,8 @@ class Invoice extends Component {
 
 	handleSave = () => {
 		let editId = this.props.id;
-		if (!editId) {
-			let path = this.props.path == 'invoice' ? 'invoice' : 'estimate';
-			let invoice = { ...this.state.invoice }
-			invoice.path = path;
+		if (!editId) { 
+			let invoice = { ...this.state.invoice } 
 
 			Api.create(invoice)
 				.then(resp => {
@@ -452,7 +459,7 @@ class Invoice extends Component {
 		return (new Intl.NumberFormat(lang, {
 			style: 'currency',
 			currency: currency,
-			minimumFractionDigits: 2,
+			minimumFractionDigits: 0,
 			maximumFractionDigits: 2
 		}).format(amount))
 	}
@@ -740,8 +747,7 @@ class Invoice extends Component {
 											width={9}
 											height={11}
 											viewBox="0 0 6 9"
-											fill="none"
-											
+											fill="none" 
 										>
 											<path
 												d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
@@ -1080,6 +1086,7 @@ class Invoice extends Component {
 														<Currency
 															{...this.props}
 															currency={invoice.currency} 
+															handleDefault={this.onCurrencyDefault}
 															lang={invoice.lang}
 															onChange={this.currencyChange}
 														/> 
