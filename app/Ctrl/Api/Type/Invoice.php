@@ -229,7 +229,7 @@ class Invoice
             $query_data['payment_method'] = get_post_meta($id, 'payment_method', true);
             $query_data['payment_info'] = get_post_meta($id, 'payment_info', true);
             $query_data['status'] = get_post_meta($id, 'status', true);
-            // $query_data['date'] = get_the_time('j-M-Y');
+            // $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();

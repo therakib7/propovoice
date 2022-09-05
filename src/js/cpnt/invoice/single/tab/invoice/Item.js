@@ -43,7 +43,6 @@ export default (props) => {
                         style={{ width: '60px' }}
                         onFocus={props.focusHandler} 
                     />
-
                     <select 
                         name="qty_type"
                         value={qty_type}

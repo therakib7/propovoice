@@ -233,7 +233,7 @@ class Task
             $query_data['start_date'] = get_post_meta($id, 'start_date', true);
             $query_data['due_date'] = get_post_meta($id, 'due_date', true);
             $query_data['checklist'] = get_post_meta($id, 'checklist', true);
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
 
             if ($dashboard) {
                 $data['latest'][] = $query_data;
