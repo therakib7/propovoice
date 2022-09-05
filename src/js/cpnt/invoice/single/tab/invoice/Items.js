@@ -1,12 +1,25 @@
-import React, { useRef, useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import Item from './Item'
 import ItemLabel from './sidebar/ItemLabel'
 import styles from './scss/Items.module.scss'
 
-export default (props) => {
+import WithApi from 'hoc/Api';
+
+const Items = (props) => {
     const [label, setLabel] = useState(false);
+    const [qtyType, setQtyType] = useState([]);
+
+    useEffect(() => {
+        if (!props.id) { 
+            props.getAll('taxonomies', 'taxonomy=estinv_qty_type&label_only=true').then(resp => {
+                if (resp.data.success) { 
+                    setQtyType(resp.data.data.estinv_qty_type);
+                }
+            });
+        }
+    }, []);
 
     const showLabel = () => {
         if (label) {
@@ -57,7 +70,7 @@ export default (props) => {
                                 <th style={{ width: '90px' }}>{amount}</th>
                                 <th>
                                     <svg
-                                        style={ { top: 4 } }
+                                        style={{ top: 4 }}
                                         width={24}
                                         height={24}
                                         viewBox="0 0 24 24"
@@ -111,6 +124,7 @@ export default (props) => {
                                                             desc={item.desc}
                                                             qty={item.qty}
                                                             qty_type={item.qty_type}
+                                                            qtyTypeList={qtyType}
                                                             item_tax={item_tax}
                                                             tax={item.tax}
                                                             tax_type={item.tax_type}
@@ -151,4 +165,5 @@ export default (props) => {
             </div>
         </>
     )
-} 
+}
+export default WithApi(Items);

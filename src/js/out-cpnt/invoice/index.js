@@ -160,8 +160,6 @@ export default class Invoice extends Component {
                 to: null,
                 items: [
                 ],
-                tax: 0.00,
-                paid: 0.00,
                 note: null,
                 group: null,
                 attach: [],

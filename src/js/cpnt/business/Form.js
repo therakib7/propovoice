@@ -202,8 +202,7 @@ class Form extends Component {
 
                                         <input
                                             id="field-mobile"
-                                            type="text"
-                                            required
+                                            type="text" 
                                             name="mobile"
                                             value={form.mobile}
                                             onChange={this.handleChange}

@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 
-class Total extends Component {
-
-    locale = 'en-US'
-    currency = 'USD'
+class Total extends Component { 
 
     constructor(props) {
         super(props);
     }
 
-    formatCurrency = (amount) => {
-        return (new Intl.NumberFormat(this.locale, {
+    formatCurrency = (amount, symbol = false) => {
+        const {currency, lang} = this.props.data.invoice; 
+        return (new Intl.NumberFormat(lang, {
             style: 'currency',
-            currency: this.currency,
-            minimumFractionDigits: 2,
+            currency: currency,
+            minimumFractionDigits: 0,
             maximumFractionDigits: 2
         }).format(amount))
     }
@@ -66,7 +64,7 @@ class Total extends Component {
 
                             return (<tr key={i}>
                                 <th>
-                                    {item.name} {item.val}{item.val_type == 'percent' ? '%' : '$'}
+                                    {item.name} {item.val}{item.val_type == 'percent' ? '%' : ''}
                                 </th>
                                 <td>{this.formatCurrency(total)}</td>
                             </tr>)

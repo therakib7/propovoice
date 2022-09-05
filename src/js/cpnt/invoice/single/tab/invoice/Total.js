@@ -29,7 +29,7 @@ const Total = props => {
                                 onChange={(e) => changeHandler(e, item)}
                                 onFocus={focusHandler}
                             />
-                            {item.val_type == 'percent' ? '%' : '$'}
+                            {item.val_type == 'percent' ? '%' : ''}
                         </td>
                         <td>{currencyFormatter(total)}</td>
                     </tr>)

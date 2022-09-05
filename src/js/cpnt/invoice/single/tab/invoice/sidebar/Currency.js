@@ -9,7 +9,7 @@ export default (props) => {
         if (!props.id) {
             props.getAll('settings', 'tab=estinv_currency').then(resp => {
                 if (resp.data.success) {
-                    // props.handleDefault(resp.data.data);
+                    props.handleDefault(resp.data.data);
                 }
             });
         }

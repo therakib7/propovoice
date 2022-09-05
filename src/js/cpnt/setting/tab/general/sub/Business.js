@@ -157,13 +157,12 @@ export default class Business extends Component {
                 <div className="row">
                     <div className="col-md">
                         <label htmlFor="field-mobile">
-                            {i18n.mob} {i18n.num}
+                            {i18n.mob}
                         </label>
 
                         <input
                             id="field-mobile"
-                            type="text"
-                            required
+                            type="text" 
                             name="mobile"
                             value={this.state.form.mobile}
                             onChange={this.handleChange}
