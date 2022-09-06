@@ -22,9 +22,9 @@ export default (props) => {
     }, []);
 
     const { id, path, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = props.data.invoice;
-    const { fromData, toData, status } = props.data; 
+    const { fromData, toData, status } = props.data;
     const i18n = ndpv.i18n;
-    let title = ( path == 'invoice' ) ? i18n.invInv :  i18n.invEst;
+    let title = (path == 'invoice') ? i18n.inv : i18n.est;
     return (
         <div className="pv-inv" style={{ height: props.height }}>
             <Seal status={status} />
@@ -56,10 +56,10 @@ export default (props) => {
                                 </div>}
                             <From data={fromData} />
                             <div className="pv-inv-from-date">
-                                <p>{title} {i18n.invNo}: <span>{id ? (path == 'invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
+                                <p>{title} {i18n.no}: <span>{id ? (path == 'invoice' ? 'Inv' : 'Est') + id : ''}</span></p>
                                 <div className="pv-inv-from-time">
-                                    <p>{i18n.invDate}: <span><Moment format={ndpv.date_format}>{date}</Moment></span></p>
-                                    <p>{i18n.invDue} {i18n.invDate}: <span><Moment format={ndpv.date_format}>{due_date}</Moment></span></p>
+                                    <p>{i18n.date}: <span><Moment format={ndpv.date_format}>{date}</Moment></span></p>
+                                    <p>{i18n.due} {i18n.date}: <span><Moment format={ndpv.date_format}>{due_date}</Moment></span></p>
                                 </div>
                             </div>
                         </div>

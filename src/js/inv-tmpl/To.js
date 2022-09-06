@@ -4,7 +4,7 @@ export default (props) => {
         <>
             {data ?
                 <>
-                    <h5>{ndpv.i18n.invBill}</h5>
+                    <h5>{ndpv.i18n.dill}</h5>
                     <h6>{data.first_name} {data.last_name}</h6>
                     <p>
                         {data.address &&

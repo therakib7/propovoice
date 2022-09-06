@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-class Total extends Component { 
+class Total extends Component {
 
     constructor(props) {
         super(props);
     }
 
     formatCurrency = (amount, symbol = false) => {
-        const {currency, lang} = this.props.data.invoice; 
+        const { currency, lang } = this.props.data.invoice;
         return (new Intl.NumberFormat(lang, {
             style: 'currency',
             currency: currency,
@@ -49,7 +49,7 @@ class Total extends Component {
                 <table>
                     <tbody>
                         <tr className='pv-inv-e-bold'>
-                            <th>{ndpv.i18n.invTotal}</th>
+                            <th>{ndpv.i18n.total}</th>
                             <td>{this.formatCurrency(this.calcItemsTotal())}</td>
                         </tr>
 
@@ -71,7 +71,7 @@ class Total extends Component {
                         })}
 
                         <tr className="pv-inv-table-bg">
-                            <th>{ndpv.i18n.invStotal}</th>
+                            <th>{ndpv.i18n.subT}</th>
                             <td>{this.formatCurrency(this.calcGrandTotal())}</td>
                         </tr>
                     </tbody>

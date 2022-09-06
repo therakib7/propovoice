@@ -5,16 +5,16 @@ import Spinner from 'block/preloader/spinner';
 import WithApi from 'hoc/Api';
 
 //subtab: general 
-const General = lazy(() => import('./tab/general')); 
+const General = lazy(() => import('./tab/general'));
 
 const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
-const Deal = lazy(() => import('./tab/deal')); 
+const Deal = lazy(() => import('./tab/deal'));
 
 //subtab: estinv 
 const EstinvCom = lazy(() => import('./tab/estinv/common'));
-const EstinvEst = lazy(() => import('./tab/estinv/est'));
-const EstinvInv = lazy(() => import('./tab/estinv/inv'));
+const Estest = lazy(() => import('./tab/estinv/est'));
+const Estinv = lazy(() => import('./tab/estinv/inv'));
 
 const Project = lazy(() => import('./tab/project'));
 const Contact = lazy(() => import('./tab/contact'));
@@ -203,10 +203,10 @@ const Setting = (props) => {
 
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
-                                {currentTab == 'deal' && <Deal />} 
+                                {currentTab == 'deal' && <Deal />}
                                 {currentTab == 'estinv' && (currentSubtab == 'common' || !currentSubtab) && <EstinvCom {...props} />}
-                                {currentTab == 'estinv' && currentSubtab == 'est' && <EstinvEst {...props} />}
-                                {currentTab == 'estinv' && currentSubtab == 'inv' && <EstinvInv {...props} />}
+                                {currentTab == 'estinv' && currentSubtab == 'est' && <Estest {...props} />}
+                                {currentTab == 'estinv' && currentSubtab == 'inv' && <Estinv {...props} />}
 
                                 {currentTab == 'project' && <Project {...props} />}
                                 {currentTab == 'payment' && <Payment {...props} />}

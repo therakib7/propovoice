@@ -4,7 +4,7 @@ export default (props) => {
         <>
             {data &&
                 <>
-                    <h5>{ndpv.i18n.invFrom}</h5>
+                    <h5>{ndpv.i18n.from}</h5>
                     {data.name && <h6>{data.name}</h6>}
                     <p>
                         {data.address &&
