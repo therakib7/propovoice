@@ -1157,7 +1157,6 @@ class Invoice extends Component {
 															data={invoice.recurring}
 														/>
 													</li>}
-
 												</Suspense>
 											</ul>
 										</div> 

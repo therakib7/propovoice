@@ -61,7 +61,7 @@ export default (props) => {
                     </div>
                     <div className="pv-inv-item-wrap">
                         {top_sections && <Section data={top_sections} top />}
-                        {items && <Items {...props} data={items} item_tax={item_tax} item_label={item_label} />}
+                        {items && <Items {...props} items={items} item_tax={item_tax} item_label={item_label} />}
 
                         <div className="pv-inv-account">
                             <Payment {...props} />
