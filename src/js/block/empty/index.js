@@ -1,4 +1,5 @@
-const sprintf = require('sprintf-js').sprintf;
+import { sprintf } from 'sprintf-js';
+
 export default (props) => {
     const { title, clickHandler, searchVal, logo = '' } = props;
     return (
