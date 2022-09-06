@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { toast } from 'react-toastify';
 import { Add } from 'block/icon';
+import { sprintf } from 'sprintf-js';
 
 import AppContext from 'context/app-context';
 import WithApi from 'hoc/Api';
@@ -143,7 +144,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.ct}</h2>
-                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.client + ' ' + i18n.from + ' ' + i18n.here}</p>
+                        <p>{sprintf(i18n.formDesc,i18n.client)}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

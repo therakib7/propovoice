@@ -17,7 +17,7 @@ export default (props) => {
 
 
                 {!searchVal.length && <h2 className="pv-empty-title">{sprintf(i18n.notAdd, (title == 'Client' ? i18n.added : i18n.created), title)}</h2>}
-                {searchVal.length > 0 && <h2 className="pv-empty-title">{sprintf(i18n.foundQuery, title}</h2>}
+                {searchVal.length > 0 && <h2 className="pv-empty-title">{sprintf(i18n.foundQuery, title)}</h2>}
 
                 <button className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => clickHandler('new')}>
                     <svg

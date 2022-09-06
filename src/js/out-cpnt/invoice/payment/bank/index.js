@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
 import Api from 'api/payment-process';
+import { sprintf } from 'sprintf-js';
 
 class Bank extends Component {
     constructor(props) {
@@ -86,7 +87,7 @@ class Bank extends Component {
                                     </svg>
                                 </span>
                                 <h2 className="pv-modal-title">{i18n.payment} {i18n.info}</h2>
-                                <p>{i18n.add + ' ' +i18n.payment + ' ' +i18n.info + ' ' +i18n.from + ' ' + i18n.here}</p>
+                                <p>{i18n.payDesc}</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >
                                 <div className="pv-content">

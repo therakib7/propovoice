@@ -2,37 +2,38 @@ export default (props) => {
 	let status = false;
 	let title, desc;
 	let extraClass = '';
+	const i18n = ndpv.i18n;
 	switch (props.status) {
 		case 'accept':
 			status = true;
-			title = 'Accepted';
-			desc = 'Thanks for accepting';
+			title = i18n.acptd;
+			desc = i18n.acceptDes;
 			extraClass = 'pv-green-color';
 			break;
 
 		case 'decline':
 			status = true;
-			title = 'Declined';
-			desc = 'Sorry for the decline';
+			title = i18n.dec;
+			desc = i18n.decDes;
 			break;
 			
 		case 'overdue':
 			status = true;
-			title = 'Overdue';
-			desc = 'You haven’t pay yet';
+			title = i18n.ovd;
+			desc = i18n.ovdDes;
 			break;
 
 		case 'paid_req':
 			status = true;
-			title = 'Approval Pending';
-			desc = 'You have submited your payment information. it will take a while to approve the payment';
+			title = i18n.appp;
+			desc = i18n.paidreqDes;
 			break;
 
 		case 'paid':
 			status = true;
-			title = 'Paid';
+			title = i18n.paid;
 			extraClass = 'pv-green-color';
-			desc = 'Thanks, We have received the payment';
+			desc = i18n.paidDes;
 			break;
 	}
  

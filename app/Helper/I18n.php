@@ -54,7 +54,7 @@ class I18n
             'dec' => esc_html__('Declined', 'propovoice'),
             'paid' => esc_html__('Paid', 'propovoice'),
             'unpaid' => esc_html__('Unpaid', 'propovoice'),
-            'overdue' => esc_html__('Overdue', 'propovoice'), 
+            'ovd' => esc_html__('Overdue', 'propovoice'), 
             'rem' => esc_html__('Reminder', 'propovoice'), 
             'def' => esc_html__('Default', 'propovoice'), 
             'recur' => esc_html__('Recurring', 'propovoice'), 
@@ -117,6 +117,7 @@ class I18n
             'req' => esc_html__('Request', 'propovoice'),
             //form
             'formDesc' => esc_html__('Add new %s from here', 'propovoice'),
+            'payDesc' => esc_html__('Add payment info from here', 'propovoice'),
             'create' => esc_html__('Create', 'propovoice'),
             'icon' => esc_html__('Icon', 'propovoice'),
             'text' => esc_html__('Text', 'propovoice'),
@@ -178,6 +179,14 @@ class I18n
             'meet' => esc_html__('meet', 'propovoice'), 
             'activate' => esc_html__('Activate', 'propovoice'), 
             'dactivate' => esc_html__('Deactivate', 'propovoice'), 
+            // seal 
+            'acceptDes' => esc_html__('Thanks for accepting', 'propovoice'), 
+            'decDes' => esc_html__('Sorry for the decline', 'propovoice'), 
+            'ovdDes' => esc_html__('You haven’t pay yet', 'propovoice'), 
+            'paidDes' => esc_html__('Thanks, We have received the payment', 'propovoice'), 
+            'paidreqDes' => esc_html__('You have submited your payment information. it will take a while to approve the payment', 'propovoice'), 
+            'appp' => esc_html__('Approval Pending', 'propovoice'), 
+
             //ext
             'pipeline' => esc_html__('Pipeline', 'propovoice'), 
             'back_t_db' => esc_html__('Back to WP Dashboard', 'propovoice'),  

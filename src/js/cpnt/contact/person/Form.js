@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Upload from 'block/field/upload';
 import { Add } from 'block/icon';
+import { sprintf } from 'sprintf-js';
 
 import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
@@ -122,7 +123,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.prsn}</h2>
-                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.prsn + ' ' + i18n.from + ' ' + i18n.here}</p>
+                        <p>{sprintf(i18n.formDesc,i18n.prsn)}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

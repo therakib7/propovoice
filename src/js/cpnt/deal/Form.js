@@ -6,6 +6,7 @@ import { Add } from 'block/icon';
 import Currency from 'block/field/currency';
 import Select from 'react-select';
 import Contact from 'block/field/contact';
+import { sprintf } from 'sprintf-js';
 
 class Form extends Component {
     constructor(props) {
@@ -234,7 +235,8 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
-                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.deal + ' ' + i18n.from + ' ' + i18n.here}</p>
+                        <p>{sprintf(i18n.formDesc,i18n.deal)}</p>
+
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

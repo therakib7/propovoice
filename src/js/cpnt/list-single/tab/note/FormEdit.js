@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
+import { sprintf } from 'sprintf-js';
 
 class Form extends Component {
     constructor(props) {
@@ -66,7 +67,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.note} </h2>
-                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.note + ' ' + i18n.from + ' ' + i18n.here}</p>
+                        <p>{sprintf(i18n.formDesc,i18n.note)}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
