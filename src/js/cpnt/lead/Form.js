@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
-
+import { sprintf } from 'sprintf-js';
 import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
@@ -231,7 +231,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
-                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.lead + ' ' + i18n.from + ' ' + i18n.here}</p>
+                        <p>{sprintf(i18n.formDesc, i18n.lead)}</p> 
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
@@ -292,7 +292,7 @@ class Form extends Component {
                                         <label htmlFor="field-currency">
                                             {i18n.cur}
                                         </label>
-                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form /> 
+                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
                                     </div>
                                 </div>
 
