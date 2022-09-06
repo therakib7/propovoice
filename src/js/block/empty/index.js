@@ -1,5 +1,6 @@
 export default (props) => {
     const { title, clickHandler, searchVal, logo = '' } = props;
+    const i18n = ndpv.i18n;
     return (
         <> 
             <div
@@ -13,8 +14,8 @@ export default (props) => {
                 </svg>
 
 
-                {!searchVal.length && <h2 className="pv-empty-title">You haven&apos;t  {title == 'Client' ? 'added' : 'created'} any {title} yet.</h2>}
-                {searchVal.length > 0 && <h2 className="pv-empty-title">No {title} found by your search query.</h2>}
+                {!searchVal.length && <h2 className="pv-empty-title"> {i18n.youHave} {title == 'Client' ? i18n.added : i18n.created} any {title} yet.</h2>}
+                {searchVal.length > 0 && <h2 className="pv-empty-title">{i18n.no} {title} {i18n.foundQuery}.</h2>}
 
                 <button className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => clickHandler('new')}>
                     <svg
@@ -39,7 +40,7 @@ export default (props) => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Let&apos;s Start {title == 'Client' ? 'Adding' : 'Creating'}
+                     {i18n.letStart } {title == 'Client' ? i18n.adding : i18n.creating}
                 </button>
             </div> 
         </>

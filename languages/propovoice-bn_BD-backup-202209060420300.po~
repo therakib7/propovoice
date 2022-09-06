@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-06 04:21+0000\n"
+"PO-Revision-Date: 2022-09-06 04:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: বাংলা\n"
 "Language: bn_BD\n"
@@ -465,7 +465,7 @@ msgstr ""
 
 #: ../app/Helper/I18n.php:234
 msgid "Each Item"
-msgstr "প্রতিটি আইটেমের"
+msgstr ""
 
 #: ../app/Helper/I18n.php:125
 msgid "Edit"
@@ -527,7 +527,7 @@ msgstr ""
 
 #: ../app/Helper/I18n.php:196
 msgid "Field"
-msgstr "মাঠ"
+msgstr ""
 
 #: ../app/Helper/I18n.php:197
 msgid "Fields"
@@ -923,8 +923,6 @@ msgstr "অনুগ্রহ করে শিরোনাম প্রয়ো
 #: ../app/Helper/I18n.php:63
 msgid "Position"
 msgstr ""
-"\n"
-"অবস্থান"
 
 #: ../app/Helper/I18n.php:87
 msgid "Preview"
@@ -1224,7 +1222,7 @@ msgstr "ট্যাগ"
 
 #: ../app/Helper/I18n.php:17
 msgid "Task"
-msgstr "করণীয় কাজ"
+msgstr ""
 
 #: ../app/Helper/I18n.php:18
 msgid "Task & Activity"

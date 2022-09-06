@@ -242,6 +242,14 @@ class I18n
             'othrday' => esc_html__('Others Day', 'propovoice'),  
             'iselec' => esc_html__('Items Selected', 'propovoice'),  
             'on' => esc_html__('On', 'propovoice'),  
+            'foundQuery' => esc_html__('found by your search query', 'propovoice'),  
+            'letStart' => esc_html__("Let s Start", 'propovoice'),  
+            'creating' => esc_html__('Creating', 'propovoice'),  
+            'created' => esc_html__('created', 'propovoice'),  
+            'added' => esc_html__('added', 'propovoice'),  
+            'adding' => esc_html__('Adding', 'propovoice'),  
+            'youHave' => esc_html__("You have not", 'propovoice'),  
+            'any' => esc_html__('any', 'propovoice'),  
         ];
     }
 }
