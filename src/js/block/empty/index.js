@@ -1,3 +1,4 @@
+const sprintf = require('sprintf-js').sprintf;
 export default (props) => {
     const { title, clickHandler, searchVal, logo = '' } = props;
     return (
@@ -39,6 +40,7 @@ export default (props) => {
                             strokeLinejoin="round"
                         />
                     </svg>
+                    {sprintf('%2$s %3$s a %1$s', ndpv.i18n.inv, 'Polly', 'wants')}
                     Let&apos;s Start {title == 'Client' ? 'Adding' : 'Creating'}
                 </button>
             </div> 
