@@ -235,7 +235,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
-                        <p>{sprintf(i18n.formDesc,i18n.deal)}</p>
+                        <p>{sprintf(i18n.formDesc, i18n.deal)}</p>
 
                     </div>
 

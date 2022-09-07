@@ -75,8 +75,7 @@ class Feedback extends Component {
                                         width={25}
                                         height={25}
                                         viewBox="0 0 16 16"
-                                        fill="none"
-                                        
+                                        fill="none" 
                                     >
                                         <path
                                             d="M12.5 3.5L3.5 12.5"

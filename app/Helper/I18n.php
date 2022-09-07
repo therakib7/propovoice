@@ -228,7 +228,7 @@ class I18n
             'receipt' => esc_html__('Receipt', 'propovoice'),  
             'explore' => esc_html__('Explore', 'propovoice'),  
             'subtotal' => esc_html__('Subtotal', 'propovoice'),  
-            'with' => esc_html__('With', 'propovoice'),  
+            'with' => esc_html__('With', 'propovoice'),
             'parent' => esc_html__('Parent', 'propovoice'),  
             'to' => esc_html__('To', 'propovoice'),  
             'copy' => esc_html__('Copy', 'propovoice'),   

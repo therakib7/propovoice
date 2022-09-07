@@ -325,7 +325,7 @@ class ListSingle extends Component {
                                             <address>
                                                 {(data.person) ? data.person.email : data.org.email} <br />
                                                 {data.person && data.org && <>{i18n.org}: {data.org_name}<br /></>}
-                                                {i18n.budget} {data.currency}{data.budget}
+                                                {i18n.budget}: {data.currency}{data.budget}
                                             </address>
                                         </div>
                                     </div>

@@ -113,7 +113,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.client}</h2>
-                        <p>{sprintf(i18n.formDesc,i18n.client)}</p>
+                        <p>{sprintf(i18n.formDesc, i18n.client)}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

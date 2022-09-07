@@ -145,8 +145,7 @@ export default class Preview extends Component {
                                         width={14}
                                         height={12}
                                         viewBox="0 0 14 12"
-                                        fill="none"
-                                        
+                                        fill="none" 
                                     >
                                         <path
                                             d="M6.667 8.333H5.333a6 6 0 00-5.312 3.206 6.667 6.667 0 016.645-7.207V.667l7 5.667-7 5.666V8.333zM5.333 6.999H8v2.206l3.547-2.872L8 3.46v2.205H6.667a5.321 5.321 0 00-4.038 1.849 7.325 7.325 0 012.704-.516z"
@@ -235,8 +234,7 @@ export default class Preview extends Component {
                                         width={14}
                                         height={12}
                                         viewBox="0 0 14 12"
-                                        fill="none"
-                                        
+                                        fill="none" 
                                     >
                                         <path
                                             d="M6.667 8.333H5.333a6 6 0 00-5.312 3.206 6.667 6.667 0 016.645-7.207V.667l7 5.667-7 5.666V8.333zM5.333 6.999H8v2.206l3.547-2.872L8 3.46v2.205H6.667a5.321 5.321 0 00-4.038 1.849 7.325 7.325 0 012.704-.516z"
@@ -255,8 +253,7 @@ export default class Preview extends Component {
                                         width={6}
                                         height={12}
                                         viewBox="0 0 6 9"
-                                        fill="none"
-                                        
+                                        fill="none" 
                                     >
                                         <path
                                             d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
