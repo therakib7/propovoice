@@ -55,11 +55,7 @@ class Invoice extends Component {
 			sidebarActive: '',
 			currentTab: '',
 			currentTabIndex: null,
-			msg: {
-				create: 'Successfully Added',
-				update: 'Successfully Updated',
-				delete: 'Successfully Deleted',
-				confirm: 'Are you sure to delete it?',
+			msg: { 
 				saveTxt: ndpv.i18n.save
 			},
 			shareModal: false,
@@ -104,7 +100,7 @@ class Invoice extends Component {
 						title: '',
 						desc: '',
 						qty: 0,
-						qty_type: 'unit',
+						qty_type: '',
 						price: 0,
 						tax: 0,
 						tax_type: 'fixed',
@@ -427,7 +423,7 @@ class Invoice extends Component {
 						this.updateEdit(resp.data.data);
 						this.props.routeChange(resp.data.data.id);
 
-						toast.success(this.state.msg.create, {
+						toast.success(ndpv.i18n.aAdd, {
 							position: toast.POSITION.BOTTOM_RIGHT
 						});
 						this.continueTab('info');
@@ -441,7 +437,7 @@ class Invoice extends Component {
 			Api.update(editId, this.state.invoice)
 				.then(resp => {
 					if (resp.data.success) {
-						toast.success(this.state.msg.update, {
+						toast.success(ndpv.i18n.aUpd, {
 							position: toast.POSITION.BOTTOM_RIGHT
 						});
 						this.continueTab('info');

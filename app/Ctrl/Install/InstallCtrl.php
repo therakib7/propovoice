@@ -84,5 +84,15 @@ class InstallCtrl
             // $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
             // wp_mkdir_p($uploads_dir);
         }
+
+        if ( version_compare($version, '1.0.1.4', '<') ) {
+            $term_id = wp_insert_term(
+                'Unit', // the term
+                'ndpv_estinv_qty_type', // the taxonomy
+            );
+            if ( !is_wp_error($term_id) ) {
+                update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']); 
+            }
+        }
     }
 }

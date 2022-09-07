@@ -48,6 +48,7 @@ export default (props) => {
                         value={qty_type}
                         onChange={props.changeHandler(index)} 
                     > 
+                        <option value=''>{i18n.select}</option>
                         {qtyTypeList && qtyTypeList.map((item, itemIndex) => {
                             const slug = item.label.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
 							return ( 

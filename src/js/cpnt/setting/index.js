@@ -43,7 +43,7 @@ const Setting = (props) => {
     const i18n = ndpv.i18n;
     const tab_data = {
         general: {
-            label: i18n.general
+            label: i18n.gen
         },
         lead: {
             label: i18n.lead
@@ -113,7 +113,7 @@ const Setting = (props) => {
         if (has_wage.ins) {
             let new_tabs = { ...tabs }
             new_tabs.license = {
-                label: i18n.limang
+                label: i18n.licman
             }
             setTabs(new_tabs);
         }

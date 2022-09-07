@@ -74,7 +74,7 @@ const Task = (props) => {
             />}
 
             {!props.dashboard && <div className="pv-small-button-group">
-                <h3 className="pv-title-small">{i18n.my} {i18n.work}</h3>
+                <h3 className="pv-title-small">{i18n.myw}</h3>
                 {lists.task_status && lists.task_status.map((status, statusIndex) => {
                     return (
                         <button key={statusIndex}
@@ -180,7 +180,7 @@ const Task = (props) => {
                                                     />
                                                 </svg>
                                             </span>
-                                            <b>{i18n.unschedule}</b>
+                                            <b>{i18n.unskd}</b>
                                         </label>
                                         <label className="pv-table-close" htmlFor="pv-acc-close" />
                                         <div className="pv-accordion-content">

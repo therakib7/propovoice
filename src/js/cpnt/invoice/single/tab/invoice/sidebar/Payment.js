@@ -60,7 +60,7 @@ class Payment extends Component {
             .then(resp => {
                 if (resp.data.success) {
                     this.setState({ bankModal: false })
-                    toast.success(this.context.CrudMsg.create);
+                    toast.success(ndpv.i18n.aAdd);
                     this.props.handleChange(resp.data.data, 'bank');
                     this.getLists();
                 } else {

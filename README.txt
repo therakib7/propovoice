@@ -4,7 +4,7 @@ Donate link:
 Tags: proposal, estimate, invoice, payment, crm, project, client, lead, transaction, billing, automation, management
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 1.0.1.3
+Stable tag: 1.0.1.4
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -169,6 +169,12 @@ The super fantastic pro features that accelerate your business growth and improv
 7. Settings
 
 == Changelog == 
+
+= 1.0.1.4 =
+* Added: Currency for pro version
+* Added: Quantity type in pro vesion
+* Added: Dynamic date
+* Update: Translation
 
 = 1.0.1.3 =
 * Added: Invoice ltem Lebel edit option

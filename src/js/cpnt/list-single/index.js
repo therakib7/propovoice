@@ -564,7 +564,7 @@ class ListSingle extends Component {
                                                 className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow"
                                                 onClick={() => this.handleProjectStatusChange('completed')}
                                             >
-                                                {i18n.mark} {i18n.as} {i18n.comp}
+                                                {i18n.mark} {i18n.comp}
                                             </button>}
 
                                             <Action

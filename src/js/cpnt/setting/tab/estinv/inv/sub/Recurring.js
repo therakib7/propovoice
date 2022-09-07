@@ -57,7 +57,7 @@ export default class Recurring extends Component {
         Api.create(form)
             .then(resp => {
                 if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
+                    toast.success(ndpv.i18n.aUpd);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 // import html2canvas from 'html2canvas';
 import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
+import { Add } from 'block/icon';
 
 import WithApi from 'hoc/Api';
 class Send extends Component {

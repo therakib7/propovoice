@@ -106,7 +106,7 @@ class FromTo extends Component {
             this.props.create('businesses', business).then(resp => {
                 if (resp.data.success) {
                     this.setState({ businessModal: false })
-                    toast.success(this.context.CrudMsg.create);
+                    toast.success(ndpv.i18n.aAdd);
                     business.id = resp.data.data;
                     this.props.setFrom(business);
                 } else {
@@ -119,7 +119,7 @@ class FromTo extends Component {
             this.props.update('businesses', business.id, business).then(resp => {
                 if (resp.data.success) {
                     this.setState({ businessModal: false })
-                    toast.success(this.context.CrudMsg.update);
+                    toast.success(ndpv.i18n.aUpd);
                     this.props.setFrom(business);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {

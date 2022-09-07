@@ -117,7 +117,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
                 axios.post(url, list, token).then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.create);
+                        toast.success(ndpv.i18n.aAdd);
                         this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -129,7 +129,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
                 axios.put(`${url}/${list.id}`, list, token).then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.update);
+                        toast.success(ndpv.i18n.aUpd);
                         this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -141,7 +141,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
         }
 
         deleteEntry = (type, index, module = null, args = null) => {
-            if (confirm(this.context.CrudMsg.confirm)) {
+            if (confirm(ndpv.i18n.aConf)) {
                 //TODO: instant delete do it later
                 /* if (type == 'single' && module != 'task' ) {
                     this.setState({
@@ -154,7 +154,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
                 let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
                 axios.delete(`${url}/${ids}`, token).then(resp => {
                     if (resp.data.success) {
-                        toast.success(this.context.CrudMsg.delete);
+                        toast.success(ndpv.i18n.aDel);
                         if (type != 'single') {
                             this.setState({ checkedBoxes: [] });
                         }

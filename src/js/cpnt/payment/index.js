@@ -86,7 +86,7 @@ export default class Payment extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.create);
+                        toast.success(ndpv.i18n.aAdd);
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -99,7 +99,7 @@ export default class Payment extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.update);
+                        toast.success(ndpv.i18n.aUpd);
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -112,7 +112,7 @@ export default class Payment extends Component {
 
     deleteEntry = (type, index) => {
 
-        if (confirm(this.context.CrudMsg.confirm)) {
+        if (confirm(ndpv.i18n.aConf)) {
 
             if (type == 'single') {
                 this.setState({
@@ -125,7 +125,7 @@ export default class Payment extends Component {
             Api.remove(ids)
                 .then(resp => {
                     if (resp.data.success) {
-                        toast.success(this.context.CrudMsg.delete);
+                        toast.success(ndpv.i18n.aDel);
                         if (type != 'single') {
                             this.setState({ checkedBoxes: [] });
                         }

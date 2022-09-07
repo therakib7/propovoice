@@ -123,7 +123,7 @@ class CheckoutForm extends Component {
         const url = apiProUrl + 'payment-process';
         const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}`);
         if (indent_resp) {
-            client_secret = indent_resp.data.data.intent_obj.client_secret
+            client_secret = indent_resp.data.data.intent_obj.client_secret;
         }
 
         const paymentPayload = await stripe.createPaymentMethod({

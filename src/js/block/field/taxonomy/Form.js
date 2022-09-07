@@ -224,6 +224,24 @@ class Form extends Component {
                                     </div>
                                 </div>}
 
+                            {this.props.show &&
+                                <div className="row">
+                                <div className="col">
+                                    <label id="form-show">{i18n.def}</label>
+                                    <div className="pv-field-switch pv-mt-3 pv-ml-10">
+                                        <label className='pv-switch'>
+                                            <input type='checkbox'
+                                                id="form-show"
+                                                name='show'
+                                                checked={form.show ? 'checked' : ''}
+                                                onChange={this.handleChange}
+                                            />
+                                            <span className='pv-switch-slider pv-round'></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>}
+
                             {this.props.extra_amount_type &&
                                 <>
                                     <div className="row">

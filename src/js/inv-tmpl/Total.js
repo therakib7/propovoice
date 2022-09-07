@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Total extends Component {
+export default class Total extends Component {
 
     constructor(props) {
         super(props);
@@ -79,5 +79,4 @@ class Total extends Component {
             </div>
         )
     }
-}
-export default Total
+} 

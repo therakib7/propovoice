@@ -121,7 +121,7 @@ export default (props) => {
                     </div>
 
                     <div className="col-12">
-                        <label>{i18n.select} {i18n.delivery} {i18n.option}</label>
+                        <label>{i18n.select} {i18n.dlvy} {i18n.option}</label>
                         <div className="pv-field-radio">
                             <input
                                 type='radio'

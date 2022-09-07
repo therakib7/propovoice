@@ -39,7 +39,7 @@ export default (props) => {
                 <span dangerouslySetInnerHTML={{ __html: desc.replaceAll('\n', '<br />') }}></span>
             </td>
             <td>
-                {qty} <span>({titleize(qty_type)})</span>
+                {qty} <span>{qty_type && <>({titleize(qty_type)})</>}</span>
             </td>
             <td>
                 {price}
