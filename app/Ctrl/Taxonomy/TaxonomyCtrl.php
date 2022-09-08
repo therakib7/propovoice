@@ -1,33 +1,47 @@
 <?php 
-namespace Ndpv\Ctrl\Taxonomy;
-
-use Ndpv\Ctrl\Taxonomy\Type\ContactStatus;
-use Ndpv\Ctrl\Taxonomy\Type\DealPipeline;
-use Ndpv\Ctrl\Taxonomy\Type\Tag;
-use Ndpv\Ctrl\Taxonomy\Type\DealStage;
-use Ndpv\Ctrl\Taxonomy\Type\EstinvQtyType;
-use Ndpv\Ctrl\Taxonomy\Type\ExtraAmount;
-use Ndpv\Ctrl\Taxonomy\Type\LeadLevel;
-use Ndpv\Ctrl\Taxonomy\Type\LeadSource;
-use Ndpv\Ctrl\Taxonomy\Type\ProjectStatus;
-use Ndpv\Ctrl\Taxonomy\Type\TaskPriority;
-use Ndpv\Ctrl\Taxonomy\Type\TaskStatus;
-use Ndpv\Ctrl\Taxonomy\Type\TaskType;
+namespace Ndpv\Ctrl\Taxonomy; 
 
 class TaxonomyCtrl {
 	
-	public function __construct() {  
-		new LeadSource(); 
-		new LeadLevel(); 
-		new Tag();
-		new EstinvQtyType();
-		new TaskStatus();
-		new TaskType();
-		new TaskPriority(); 
-		new DealPipeline();
-		new DealStage();
-		new ExtraAmount();
-		new ProjectStatus();
-		new ContactStatus();
-	} 
+	public function __construct() {   
+		add_action('init', [$this, 'create_taxonomy'] ); 		
+	}  
+
+    public function create_taxonomy() {
+        
+		$taxonomies = [
+            'lead_level' => 'lead',
+            'lead_source' => 'lead',
+            'deal_pipeline' => 'deal',
+            'deal_stage' => 'deal',
+            'tag' => 'deal',
+            'task_status' => 'task',
+            'task_type' => 'task',
+            'task_priority' => 'task',
+            'project_status' => 'project',
+            'contact_status' => 'person',
+            'extra_amount' => 'estinv',
+            'estinv_qty_type' => 'estinv'
+        ];
+
+		foreach ( $taxonomies as $tax => $post_type ) {
+			if ( !is_blog_installed() || taxonomy_exists( 'ndpv_' . $tax ) ) {
+				return;
+			}
+			 
+			do_action('ndpv_'. $tax .'_taxonomy');  
+	 
+			$args = array(
+				'hierarchical'      => true, 
+				'show_ui'           => true,
+				'show_admin_column' => true,
+				'query_var'         => true,
+				'rewrite'           => array( 'slug' => 'ndpv_' . $tax ),
+			);
+		 
+			register_taxonomy( 'ndpv_' . $tax , array( 'ndpv_' . $post_type ), apply_filters('ndpv_'. $tax .'_taxonomy_args', $args) ); 
+			
+			do_action('ndpv_after_'. $tax .'_taxonomy');    
+		} 
+    }
 }
