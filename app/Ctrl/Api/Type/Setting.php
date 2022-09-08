@@ -75,7 +75,7 @@ class Setting {
                     $data = $option;
                 } else {
                     $data['currency'] = 'USD';
-                    $data['lang'] = 1;  
+                    $data['lang'] = 'en';  
                 }
             }
 
