@@ -503,10 +503,16 @@ class Invoice extends Component {
 			this.handleSave();
 		}
 
-		this.setState({
+		const state = {
 			currentTab: id,
 			currentTabIndex: index
-		});
+		};
+
+		if ( id == 'info' ) {
+			state.sidebarActive = '';
+		}		
+
+		this.setState(state);
 	}
 
 	backTab = () => {

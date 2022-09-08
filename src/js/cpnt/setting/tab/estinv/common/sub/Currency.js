@@ -71,7 +71,7 @@ export default class Currency extends Component {
                     <div className="col">
                         <label htmlFor="field-currency">
                             {i18n.cur}
-                        </label> 
+                        </label>  
                         <CurrencyField key={currency} onChange={this.currencyChange} value={currency} /> 
                     </div>
                     <div className="col"></div>

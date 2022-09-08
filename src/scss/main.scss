@@ -2214,7 +2214,7 @@ html {
   left: -70px !important;
 }
 .wp-admin.ndpv .pv-right-content-data {
-  padding: 45px 70px 80px;
+  padding: 45px 70px 70px;
 }
 .wp-admin.ndpv input[type=checkbox]:focus {
   box-shadow: none;
@@ -2234,7 +2234,7 @@ html {
   padding: 3px 35px 3px 10px !important;
 }
 .wp-admin.ndpv .pv-board-content {
-  height: calc(100vh - 449px) !important;
+  height: calc(100vh - 464px) !important;
 }
 .wp-admin.ndpv #pv-pro-alert {
   z-index: 999999;
@@ -3260,7 +3260,7 @@ ul {
   border: none;
 }
 .ndpv .pv-modal-sidebar-two .pv-checklist-content .pv-action-content {
-  margin-left: 30px;
+  margin-left: 15px;
   padding: 5px 3px 3px;
   opacity: 0;
 }
@@ -3836,7 +3836,6 @@ ul {
 }
 .ndpv .pv-settings-tab .pv-settings-tabs li.pv-active ul {
   display: block !important;
-  padding-bottom: 10px;
 }
 .ndpv .pv-settings-tab .pv-settings-subtabs {
   margin: 0;
@@ -3846,7 +3845,7 @@ ul {
 }
 .ndpv .pv-settings-tab .pv-settings-subtabs .pv-subtab a {
   cursor: pointer;
-  padding: 15px 20px;
+  padding: 12px 20px;
   font-size: 13px;
   font-weight: 500;
   padding-left: 45px;

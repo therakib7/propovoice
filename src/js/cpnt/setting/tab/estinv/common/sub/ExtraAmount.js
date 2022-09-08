@@ -15,7 +15,6 @@ export default class ExtraAmount extends Component {
                 item_tax: false,
                 // item_tax_val_type: '',
             }
-
         };
     }
 
