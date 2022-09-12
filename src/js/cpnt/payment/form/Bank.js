@@ -76,7 +76,7 @@ class FormBank extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.account}</h2>
-                        <p>Please fill up necessary information in the form.</p>
+                        <p>{i18n.necInfo}</p>
                     </div>
                     <form onSubmit={this.handleSubmit}>
                         <div className="pv-content">
@@ -120,7 +120,7 @@ class FormBank extends Component {
                                             />
                                         </Suspense> */}
 
-                                        <p className='pv-field-desc'>You need to mention bank details here, Like: Name, Routing No. etc</p>
+                                        <p className='pv-field-desc'>{i18n.bankDesc}</p>
                                     </div>
                                 </div>
                             </div>

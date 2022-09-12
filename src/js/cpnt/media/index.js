@@ -162,7 +162,7 @@ export default class Template extends Component {
                                                                 <div className={(this.state.selectedItem.id == row.id) ? 'pv-single-image-content pv-active' : 'pv-single-image-content'}>
                                                                     <img src={row.src} className="pv-single-image" />
                                                                     {(this.state.selectedItem.id != row.id) && <div className="pv-overflow-content">
-                                                                        <a className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
+                                                                        <a className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.selectEntry(row)}>{i18n.select}</a>
                                                                     </div>}
                                                                 </div>
                                                             </div>

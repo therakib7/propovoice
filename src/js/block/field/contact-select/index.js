@@ -148,7 +148,7 @@ const Contact = (props) => {
 
 			{dropdown && <div className="pv-dropdown-content pv-show" ref={dropdownContent}>
 				<div className="pv-search-field">
-					<input type="text" onChange={handleFindContact} placeholder="Search" />
+					<input type="text" onChange={handleFindContact} placeholder={i18n.search} />
 				</div>
 				<button onClick={(e) => { openModal(e, 'new') }}>+ {i18n.add} {i18n.new}</button>
 
