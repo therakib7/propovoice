@@ -32,18 +32,14 @@ const makeRequest = ({
 
 const urlBuilder = (baseUrl, urlParts = {}) => {
   const fullUrl = Object.entries(urlParts).reduce((url, [key, part]) => {
-    let newUrl;
-    switch (key) {
-      case "path":
-        newUrl = url + `${part}/`;
-        break;
-      case "params":
-        newUrl = url + `?${part}`;
-        break;
-      case "fragment":
-        newUrl = url + `#${part}`;
-        break;
-    }
+    const newUrl =
+      key == "path"
+        ? url + `${part}/`
+        : key == "params"
+        ? url + `?${part}`
+        : key == "fragment"
+        ? url + `#${part}`
+        : url;
 
     return newUrl;
   }, baseUrl);
