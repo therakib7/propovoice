@@ -13,6 +13,16 @@ const token = {
   },
 };
 
+/*
+ * Make a http request
+ * @param {string} method - 'get'/'post'/'put'/delete
+ * @param {Object} urlParts - {path : "", params: "", fragment: ""}
+ * @param {Object} formData - data object
+ * @param {Object} headers - http requests header
+ * @param {string} requestFrom - 'free'/'pro'/'external'
+ * @return {Object} - http response
+ *
+ */
 const makeRequest = ({
   method = `get`,
   urlParts = {},
