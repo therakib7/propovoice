@@ -44,12 +44,13 @@ export default class Total extends Component {
 
     render = () => {
         const extra_field = this.props.data.invoice.extra_field;
+        const i18n = ndpv.i18n;
         return (
             <div className="pv-inv-total">
                 <table>
                     <tbody>
                         <tr className='pv-inv-e-bold'>
-                            <th>{ndpv.i18n.total}</th>
+                            <th>{i18n.subT}</th>
                             <td>{this.formatCurrency(this.calcItemsTotal())}</td>
                         </tr>
 
@@ -71,7 +72,7 @@ export default class Total extends Component {
                         })}
 
                         <tr className="pv-inv-table-bg">
-                            <th>{ndpv.i18n.subT}</th>
+                            <th>{i18n.total}</th>
                             <td>{this.formatCurrency(this.calcGrandTotal())}</td>
                         </tr>
                     </tbody>
