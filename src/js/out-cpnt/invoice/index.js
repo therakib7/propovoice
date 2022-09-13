@@ -123,13 +123,13 @@ const InvoiceBtn = (props) => {
           >
             {i18n.pay}
           </button>
-          <button
+          {/* <button
             className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
             style={{ marginLeft: "10px" }}
             onClick={() => props.handleChange(`wc-order`)}
           >
             WC Pay
-          </button>
+          </button> */}
         </>
       )}
     </>
