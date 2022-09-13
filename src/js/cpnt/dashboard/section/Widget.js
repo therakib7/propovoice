@@ -31,7 +31,7 @@ export default ({ title, desc, btnTxt, btnUrl, contact, bgColor, children }) => 
                 className="pv-btn pv-bg-stroke pv-border-gray pv-bg-hover-stroke"
                 style={{ color: "#4C6FFF", marginTop: 5 }}
             >
-                Contact With Us
+                {ndpv.i18n.conDesc}
             </a>}
         </div>
     );

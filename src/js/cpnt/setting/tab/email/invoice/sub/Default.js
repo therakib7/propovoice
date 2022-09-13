@@ -95,7 +95,7 @@ export default class DefaultMail extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                            Save
+                            {i18n.save}
                         </button>
                     </div>
                 </div>
