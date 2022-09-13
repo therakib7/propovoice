@@ -1,20 +1,21 @@
 import { useState } from "react";
 
 export default (props) => {
+    const i18n = ndpv.i18n;
 
     const [interval_type, SetIntervalType] = useState({
-        'week': 'Weekly',
-        'month': 'Monthly',
-        'quarter': 'Quarterly',
-        'half-year': 'Half Yearly',
-        'year': 'Yearly',
-        'custom': 'Custom'
+        'week': i18n.wkly,
+        'month': i18n.mth,
+        'quarter': i18n.qtly,
+        'half-year': i18n.hYear,
+        'year': i18n.yrly,
+        'custom': i18n.Custom,
     });
 
     const handleChange = e => {
         props.handleChange(e);
     }
-    const i18n = ndpv.i18n;
+    // const i18n = ndpv.i18n;
     const recurring = props.data;
     return (
         <div className="">
@@ -31,7 +32,7 @@ export default (props) => {
                                 checked={recurring.interval_type == 'day'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="interval_type_day">{i18n.daily}</label>
+                            <label htmlFor="interval_type_day">{i18n.dly}</label>
                         </div>
                         <div className="pv-field-radio">
                             <input
@@ -42,7 +43,7 @@ export default (props) => {
                                 checked={recurring.interval_type == 'week'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="interval_type_week">{i18n.weekly}</label>
+                            <label htmlFor="interval_type_week">{i18n.wkly}</label>
                         </div>
                         <div className="pv-field-radio">
                             <input
@@ -53,7 +54,7 @@ export default (props) => {
                                 checked={recurring.interval_type == 'month'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="interval_type_month">{i18n.monthly}</label>
+                            <label htmlFor="interval_type_month">{i18n.mth}</label>
                         </div>
                         <div className="pv-field-radio pv-field-radio-input">
                             <input
@@ -70,7 +71,7 @@ export default (props) => {
                                 id="recurring-interval"
                                 name="interval"
                                 value={recurring.interval}
-                                style={{width: '55px'}}
+                                style={{ width: '55px' }}
                                 onChange={handleChange}
                             />
                             <select
@@ -115,7 +116,7 @@ export default (props) => {
                                 name="limit"
                                 value={recurring.limit}
                                 onChange={handleChange}
-                                style={{width: '55px'}}
+                                style={{ width: '55px' }}
                             /> <span className="pv-times">{i18n.times}</span>
                         </div>
                     </div>

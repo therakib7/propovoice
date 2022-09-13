@@ -11,7 +11,7 @@ const TableHeader = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
                     />
                 </th>
-                <th>File Name &amp; Description</th>
+                <th>{i18n.file} {i18n.name} {i18n.nd} {i18n.desc}</th>
                 <th>
                     <svg
                         width={16}
@@ -31,7 +31,7 @@ const TableHeader = props => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Uploaded by
+                    {i18n.upBy}
                 </th>
                 <th>
                     <svg
@@ -52,7 +52,7 @@ const TableHeader = props => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Time
+                    {i18n.time}
                 </th>
                 <th>
                     {i18n.action}

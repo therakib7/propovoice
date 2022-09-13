@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-13 04:44+0000\n"
+"POT-Creation-Date: 2022-09-13 04:27+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -904,39 +904,67 @@ msgstr ""
 msgid "Send me a copy"
 msgstr ""
 
-#: ../app/Helper/I18n.php:256
+#: ../app/Helper/I18n.php:257, ../propovoice/app/Helper/I18n.php:256
 msgid "Limit"
 msgstr ""
 
-#: ../app/Helper/I18n.php:257
+#: ../app/Helper/I18n.php:258, ../propovoice/app/Helper/I18n.php:257
 msgid "Times"
 msgstr ""
 
-#: ../app/Helper/I18n.php:258
+#: ../app/Helper/I18n.php:259, ../propovoice/app/Helper/I18n.php:258
 msgid "Daily"
 msgstr ""
 
-#: ../app/Helper/I18n.php:259
+#: ../app/Helper/I18n.php:260, ../propovoice/app/Helper/I18n.php:259
 msgid "Weekly"
 msgstr ""
 
-#: ../app/Helper/I18n.php:260
+#: ../app/Helper/I18n.php:261, ../propovoice/app/Helper/I18n.php:260
 msgid "Monthly"
 msgstr ""
 
-#: ../app/Helper/I18n.php:261
-msgid "Interval In"
-msgstr ""
-
 #: ../app/Helper/I18n.php:262
-msgid "Day"
+msgid "Quarterly"
 msgstr ""
 
 #: ../app/Helper/I18n.php:263
-msgid "Month"
+msgid "Yearly"
 msgstr ""
 
 #: ../app/Helper/I18n.php:264
+msgid "Half Yearly"
+msgstr ""
+
+#: ../app/Helper/I18n.php:265
+msgid "Custom"
+msgstr ""
+
+#: ../app/Helper/I18n.php:266, ../propovoice/app/Helper/I18n.php:261
+msgid "Interval In"
+msgstr ""
+
+#: ../app/Helper/I18n.php:267
+msgid "Hour"
+msgstr ""
+
+#: ../app/Helper/I18n.php:268, ../propovoice/app/Helper/I18n.php:262
+msgid "Day"
+msgstr ""
+
+#: ../app/Helper/I18n.php:269
+msgid "days"
+msgstr ""
+
+#: ../app/Helper/I18n.php:270
+msgid "Week"
+msgstr ""
+
+#: ../app/Helper/I18n.php:271, ../propovoice/app/Helper/I18n.php:263
+msgid "Month"
+msgstr ""
+
+#: ../app/Helper/I18n.php:272, ../propovoice/app/Helper/I18n.php:264
 msgid "Year"
 msgstr ""
 
