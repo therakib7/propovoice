@@ -170,11 +170,12 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog == 
 
-= 1.0.1.4 =
-* Added: Currency for pro version
+= 1.0.1.4 = 
+* Fixed: Functional Issues
 * Added: Quantity type in pro vesion
-* Added: Dynamic date
+* Added: Dynamic date setting
 * Update: Translation
+* Update: CSS Issue
 
 = 1.0.1.3 =
 * Added: Invoice ltem Lebel edit option

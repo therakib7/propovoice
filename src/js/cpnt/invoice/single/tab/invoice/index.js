@@ -383,7 +383,7 @@ class Invoice extends Component {
 					title: '',
 					desc: '',
 					qty: 0,
-					qty_type: 'unit',
+					qty_type: '',
 					price: 0,
 					tax: 0,
 					tax_type: 'fixed'
@@ -1081,10 +1081,10 @@ class Invoice extends Component {
 														/>
 													</li>}
 													
-													{(!sidebarActive || sidebarActive == 'currency') && <li>
+													{/* {(!sidebarActive || sidebarActive == 'currency') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('currency')} />
 														<i />
-														<h3 className='pv-title-small'>{i18n.cur}</h3>
+														<h3 className='pv-title-small'>{i18n.cur} <ProLabel /></h3>
 														<Currency
 															{...this.props}
 															currency={invoice.currency} 
@@ -1092,7 +1092,7 @@ class Invoice extends Component {
 															lang={invoice.lang}
 															onChange={this.currencyChange}
 														/> 
-													</li>}
+													</li>} */}
 
 													{(!sidebarActive || sidebarActive == 'extra-field') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('extra-field')} />

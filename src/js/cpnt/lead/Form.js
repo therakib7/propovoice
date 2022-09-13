@@ -222,6 +222,7 @@ class Form extends Component {
 
         const form = this.state.form;
         const i18n = ndpv.i18n;
+         
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">

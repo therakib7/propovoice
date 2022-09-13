@@ -50,13 +50,7 @@ const Setting = (props) => {
         },
         deal: {
             label: i18n.deal
-        },
-        /* estimate: {
-            label: i18n.est
-        },
-        invoice: {
-            label: i18n.inv
-        }, */
+        }, 
         estinv: {
             label: i18n.est + ' ' + i18n.nd + ' ' + i18n.inv,
             subtabs: {
