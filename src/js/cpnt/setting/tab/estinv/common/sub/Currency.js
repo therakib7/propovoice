@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 
-import pro from 'block/pro-alert';
 import CurrencyField from 'block/field/currency'; 
 import Lang from 'block/field/lang'; 
+import ProLabel from 'block/pro-alert/label';
+import pro from 'block/pro-alert';
 
 export default class Currency extends Component {
     constructor(props) {
@@ -30,19 +31,21 @@ export default class Currency extends Component {
     } 
 
     currencyChange = val => {
-        /* if ( wage.length > 0 ) {
-            pro();
-            return;
-        } */ 
+        
         this.setState({ form: { ...this.state.form, ['currency']: val } });
     } 
 
-    langChange = val => {  
+    langChange = val => {   
         this.setState({ form: { ...this.state.form, ['lang']: val } });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        if ( wage.length > 0 ) {
+            pro();
+            return;
+        }
 
         let form = {...this.state.form};
         form.tab = 'estinv_currency';
@@ -69,9 +72,7 @@ export default class Currency extends Component {
             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
                 <div className="row">
                     <div className="col">
-                        <label htmlFor="field-currency">
-                            {i18n.cur}
-                        </label>  
+                        <label htmlFor="field-currency">{i18n.cur} <ProLabel /></label>  
                         <CurrencyField key={currency} onChange={this.currencyChange} value={currency} /> 
                     </div>
                     <div className="col"></div>
@@ -79,7 +80,7 @@ export default class Currency extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label htmlFor="field-lang">{i18n.cur} {i18n.lang}</label>  
+                        <label htmlFor="field-lang">{i18n.cur} {i18n.lang} <ProLabel /></label>  
                         <Lang key={lang} onChange={this.langChange} value={lang} /> 
                     </div>
                     <div className="col"></div>
@@ -88,7 +89,7 @@ export default class Currency extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                            {i18n.save}
+                            {i18n.save} <ProLabel blueBtn />
                         </button>
                     </div>
                 </div>

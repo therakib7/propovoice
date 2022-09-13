@@ -109,8 +109,7 @@ export default (props) => {
                         width={15}
                         height={15}
                         viewBox="0 0 10 10"
-                        fill="none"
-
+                        fill="none" 
                     >
                         <path
                             fillRule="evenodd"

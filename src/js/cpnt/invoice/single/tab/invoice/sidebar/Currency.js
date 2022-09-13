@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import Currency from 'block/field/currency';
 import Lang from 'block/field/lang';
+import pro from 'block/pro-alert'; 
 
 export default (props) => {
 
@@ -16,10 +17,18 @@ export default (props) => {
     }, []);
 
     const currencyChange = ( val ) => {
+        if ( wage.length > 0 ) {
+            pro();
+            return;
+        }
         props.onChange(val, 'currency');
     }
 
     const langChange = ( val ) => {
+        if ( wage.length > 0 ) {
+            pro();
+            return;
+        }
         props.onChange(val, 'lang');
     }
 

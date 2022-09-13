@@ -9,10 +9,10 @@ export default class Main extends Component {
 		const i18n = ndpv.i18n;
 		this.state = {
 			tabs: [
-				{
+				/* {
 					id: 'currency',
 					text: i18n.cur
-				},
+				}, */
 				{
 					id: 'qty-type',
 					text: i18n.qty + ' ' +i18n.type
@@ -27,7 +27,7 @@ export default class Main extends Component {
 	} 
 
 	componentDidMount() {
-		this.setState({ currentTab: 'currency' });
+		this.setState({ currentTab: 'qty-type' });
 	}
 
 	setActiveTab(id) { 

@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Api from 'api/setting';
-import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
+import pro from 'block/pro-alert';
 
 export default class Reminder extends Component {
     constructor(props) {
