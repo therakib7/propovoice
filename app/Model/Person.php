@@ -16,7 +16,7 @@ class Person
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
         $img = isset($params['img']) ? absint($params['img']) : null;
-        $is_client  = isset($params['is_client']) ? true : null;
+        $is_client  = isset($params['is_client']) ? $params['is_client'] : null;
         /* if ( empty($first_name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
