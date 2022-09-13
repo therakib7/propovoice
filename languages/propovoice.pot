@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-12 10:18+0000\n"
+"POT-Creation-Date: 2022-09-13 04:27+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -848,138 +848,174 @@ msgstr ""
 msgid "My Work"
 msgstr ""
 
-#: ../app/Helper/I18n.php:242, ../propovoice/app/Helper/I18n.php:242
+#: ../app/Helper/I18n.php:242
+msgid "My"
+msgstr ""
+
+#: ../app/Helper/I18n.php:243, ../propovoice/app/Helper/I18n.php:242
 msgid "Today"
 msgstr ""
 
-#: ../app/Helper/I18n.php:243, ../propovoice/app/Helper/I18n.php:243
+#: ../app/Helper/I18n.php:244, ../propovoice/app/Helper/I18n.php:243
 msgid "Others Day"
 msgstr ""
 
-#: ../app/Helper/I18n.php:244, ../propovoice/app/Helper/I18n.php:244
+#: ../app/Helper/I18n.php:245, ../propovoice/app/Helper/I18n.php:244
 msgid "Items Selected"
 msgstr ""
 
-#: ../app/Helper/I18n.php:245, ../propovoice/app/Helper/I18n.php:245
+#: ../app/Helper/I18n.php:246, ../propovoice/app/Helper/I18n.php:245
 msgid "On"
 msgstr ""
 
-#: ../app/Helper/I18n.php:246, ../propovoice/app/Helper/I18n.php:246
+#: ../app/Helper/I18n.php:247, ../propovoice/app/Helper/I18n.php:246
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: ../app/Helper/I18n.php:247, ../propovoice/app/Helper/I18n.php:247
+#: ../app/Helper/I18n.php:248, ../propovoice/app/Helper/I18n.php:247
 msgid "Try Propovoice Pro!"
 msgstr ""
 
-#: ../app/Helper/I18n.php:248, ../propovoice/app/Helper/I18n.php:248
+#: ../app/Helper/I18n.php:249, ../propovoice/app/Helper/I18n.php:248
 msgid "This is pro features, To use this features you need to upgrade with Pro plugin"
 msgstr ""
 
-#: ../app/Helper/I18n.php:249, ../propovoice/app/Helper/I18n.php:249
+#: ../app/Helper/I18n.php:250, ../propovoice/app/Helper/I18n.php:249
 msgid "Contact With Us"
 msgstr ""
 
-#: ../app/Helper/I18n.php:250, ../propovoice/app/Helper/I18n.php:250
+#: ../app/Helper/I18n.php:251, ../propovoice/app/Helper/I18n.php:250
 msgid "How often?"
 msgstr ""
 
-#: ../app/Helper/I18n.php:251, ../propovoice/app/Helper/I18n.php:251
+#: ../app/Helper/I18n.php:252, ../propovoice/app/Helper/I18n.php:251
 msgid "How Many?"
 msgstr ""
 
-#: ../app/Helper/I18n.php:252, ../propovoice/app/Helper/I18n.php:252
+#: ../app/Helper/I18n.php:253, ../propovoice/app/Helper/I18n.php:252
 msgid "On going"
 msgstr ""
 
-#: ../app/Helper/I18n.php:253, ../propovoice/app/Helper/I18n.php:253
+#: ../app/Helper/I18n.php:254, ../propovoice/app/Helper/I18n.php:253
 msgid "automatically"
 msgstr ""
 
-#: ../app/Helper/I18n.php:254, ../propovoice/app/Helper/I18n.php:254
+#: ../app/Helper/I18n.php:255, ../propovoice/app/Helper/I18n.php:254
 msgid "Create Draft and send manually"
 msgstr ""
 
-#: ../app/Helper/I18n.php:255, ../propovoice/app/Helper/I18n.php:255
+#: ../app/Helper/I18n.php:256, ../propovoice/app/Helper/I18n.php:255
 msgid "Send me a copy"
 msgstr ""
 
-#: ../app/Helper/I18n.php:256
+#: ../app/Helper/I18n.php:257, ../propovoice/app/Helper/I18n.php:256
 msgid "Limit"
 msgstr ""
 
-#: ../app/Helper/I18n.php:257
+#: ../app/Helper/I18n.php:258, ../propovoice/app/Helper/I18n.php:257
 msgid "Times"
 msgstr ""
 
-#: ../app/Helper/I18n.php:258
+#: ../app/Helper/I18n.php:259, ../propovoice/app/Helper/I18n.php:258
 msgid "Daily"
 msgstr ""
 
-#: ../app/Helper/I18n.php:259
+#: ../app/Helper/I18n.php:260, ../propovoice/app/Helper/I18n.php:259
 msgid "Weekly"
 msgstr ""
 
-#: ../app/Helper/I18n.php:260
+#: ../app/Helper/I18n.php:261, ../propovoice/app/Helper/I18n.php:260
 msgid "Monthly"
 msgstr ""
 
-#: ../app/Helper/I18n.php:261
-msgid "Interval In"
-msgstr ""
-
 #: ../app/Helper/I18n.php:262
-msgid "Day"
+msgid "Quarterly"
 msgstr ""
 
 #: ../app/Helper/I18n.php:263
-msgid "Month"
+msgid "Yearly"
 msgstr ""
 
 #: ../app/Helper/I18n.php:264
+msgid "Half Yearly"
+msgstr ""
+
+#: ../app/Helper/I18n.php:265
+msgid "Custom"
+msgstr ""
+
+#: ../app/Helper/I18n.php:266, ../propovoice/app/Helper/I18n.php:261
+msgid "Interval In"
+msgstr ""
+
+#: ../app/Helper/I18n.php:267
+msgid "Hour"
+msgstr ""
+
+#: ../app/Helper/I18n.php:268, ../propovoice/app/Helper/I18n.php:262
+msgid "Day"
+msgstr ""
+
+#: ../app/Helper/I18n.php:269
+msgid "days"
+msgstr ""
+
+#: ../app/Helper/I18n.php:270
+msgid "Week"
+msgstr ""
+
+#: ../app/Helper/I18n.php:271, ../propovoice/app/Helper/I18n.php:263
+msgid "Month"
+msgstr ""
+
+#: ../app/Helper/I18n.php:272, ../propovoice/app/Helper/I18n.php:264
 msgid "Year"
 msgstr ""
 
-#: ../app/Helper/I18n.php:265, ../propovoice/app/Helper/I18n.php:256
+#: ../app/Helper/I18n.php:273
+msgid "Uploaded by"
+msgstr ""
+
+#: ../app/Helper/I18n.php:274, ../propovoice/app/Helper/I18n.php:265
 msgid "Please fill up necessary information in the form."
 msgstr ""
 
-#: ../app/Helper/I18n.php:266, ../propovoice/app/Helper/I18n.php:257
+#: ../app/Helper/I18n.php:275, ../propovoice/app/Helper/I18n.php:266
 msgid "You need to mention bank details here, Like: Name, Routing No. etc"
 msgstr ""
 
 #. translators: %s: Module Name
-#: ../app/Helper/I18n.php:268, ../propovoice/app/Helper/I18n.php:259
+#: ../app/Helper/I18n.php:277, ../propovoice/app/Helper/I18n.php:268
 msgid "No %s found by your search query."
 msgstr ""
 
 #. translators: %s: Adding, Creating text
-#: ../app/Helper/I18n.php:270, ../propovoice/app/Helper/I18n.php:261
+#: ../app/Helper/I18n.php:279, ../propovoice/app/Helper/I18n.php:270
 msgid "Let's Start %s"
 msgstr ""
 
-#: ../app/Helper/I18n.php:271, ../propovoice/app/Helper/I18n.php:262
+#: ../app/Helper/I18n.php:280, ../propovoice/app/Helper/I18n.php:271
 msgid "Adding"
 msgstr ""
 
-#: ../app/Helper/I18n.php:272, ../propovoice/app/Helper/I18n.php:263
+#: ../app/Helper/I18n.php:281, ../propovoice/app/Helper/I18n.php:272
 msgid "Creating"
 msgstr ""
 
-#: ../app/Helper/I18n.php:273, ../propovoice/app/Helper/I18n.php:264
+#: ../app/Helper/I18n.php:282, ../propovoice/app/Helper/I18n.php:273
 msgid "added"
 msgstr ""
 
-#: ../app/Helper/I18n.php:274, ../propovoice/app/Helper/I18n.php:265
+#: ../app/Helper/I18n.php:283, ../propovoice/app/Helper/I18n.php:274
 msgid "created"
 msgstr ""
 
 #. translators: %s: Added, Created text, %s: Module Name
-#: ../app/Helper/I18n.php:276, ../propovoice/app/Helper/I18n.php:267
+#: ../app/Helper/I18n.php:285, ../propovoice/app/Helper/I18n.php:276
 msgid "You have not %s any %s yet."
 msgstr ""
 
-#: ../app/Helper/I18n.php:277, ../propovoice/app/Helper/I18n.php:268
+#: ../app/Helper/I18n.php:286, ../propovoice/app/Helper/I18n.php:277
 msgid "any"
 msgstr ""
 

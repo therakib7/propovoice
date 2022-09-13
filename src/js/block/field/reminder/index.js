@@ -127,7 +127,7 @@ export default class Reminder extends Component {
                                 checked={form.before.includes(1) ? 'checked' : ''}
                                 onChange={(e) => this.handleChange(e, 'before')}
                             />
-                            <label htmlFor="reminder-before-1">1 day</label>
+                            <label htmlFor="reminder-before-1">1 {i18n.day}</label>
                         </div>
                         <div className="pv-field-checkbox">
                             <input
@@ -138,7 +138,7 @@ export default class Reminder extends Component {
                                 checked={form.before.includes(7) ? 'checked' : ''}
                                 onChange={(e) => this.handleChange(e, 'before')}
                             />
-                            <label htmlFor="reminder-before-7">7 days</label>
+                            <label htmlFor="reminder-before-7">7 {i18n.days}</label>
                         </div>
                         <div className="pv-field-checkbox">
                             <input
@@ -149,7 +149,7 @@ export default class Reminder extends Component {
                                 checked={form.before.includes(15) ? 'checked' : ''}
                                 onChange={(e) => this.handleChange(e, 'before')}
                             />
-                            <label htmlFor="reminder-before-15">15 days</label>
+                            <label htmlFor="reminder-before-15">15 {i18n.days}</label>
                         </div>
                         {false && <>
                             <div className="pv-field-checkbox pv-field-checkbox-input pv-mb-10">
@@ -161,10 +161,10 @@ export default class Reminder extends Component {
                                     placeholder={1}
                                 />
                                 <select name="number-type">
-                                    <option value="page">Days</option>
-                                    <option value="hour">Hour</option>
-                                    <option value="week">Week</option>
-                                    <option value="month">Month</option>
+                                    <option value="page">{i18n.days}</option>
+                                    <option value="hour">{i18n.hour}</option>
+                                    <option value="week">{i18n.week}</option>
+                                    <option value="month">{i18n.month}</option>
                                 </select>
                             </div>
                             <div className="pv-field-checkbox pv-field-checkbox-input">
@@ -176,10 +176,10 @@ export default class Reminder extends Component {
                                     placeholder={1}
                                 />
                                 <select name="number-type">
-                                    <option value="page">Days</option>
-                                    <option value="hour">Hour</option>
-                                    <option value="week">Week</option>
-                                    <option value="month">Month</option>
+                                    <option value="page">{i18n.days}</option>
+                                    <option value="hour">{i18n.hour}</option>
+                                    <option value="week">{i18n.week}</option>
+                                    <option value="month">{i18n.month}</option>
                                 </select>
                             </div>
                             <button className="pv-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
@@ -220,7 +220,7 @@ export default class Reminder extends Component {
                                 checked={form.after.includes(1) ? 'checked' : ''}
                                 onChange={(e) => this.handleChange(e, 'after')}
                             />
-                            <label htmlFor="reminder-after-1">1 day</label>
+                            <label htmlFor="reminder-after-1">1 {i18n.day}</label>
                         </div>
                         <div className="pv-field-checkbox">
                             <input
@@ -231,7 +231,7 @@ export default class Reminder extends Component {
                                 checked={form.after.includes(7) ? 'checked' : ''}
                                 onChange={(e) => this.handleChange(e, 'after')}
                             />
-                            <label htmlFor="reminder-after-7">7 days</label>
+                            <label htmlFor="reminder-after-7">7 {i18n.days}</label>
                         </div>
                         <div className="pv-field-checkbox">
                             <input
@@ -242,7 +242,7 @@ export default class Reminder extends Component {
                                 checked={form.after.includes(15) ? 'checked' : ''}
                                 onChange={(e) => this.handleChange(e, 'after')}
                             />
-                            <label htmlFor="reminder-after-15">15 days</label>
+                            <label htmlFor="reminder-after-15">15 {i18n.days}</label>
                         </div>
                         {false && <>
                             <div className="pv-field-checkbox pv-field-checkbox-input pv-mb-10">
@@ -254,10 +254,10 @@ export default class Reminder extends Component {
                                     placeholder={1}
                                 />
                                 <select name="number-type">
-                                    <option value="page">Days</option>
-                                    <option value="hour">Hour</option>
-                                    <option value="week">Week</option>
-                                    <option value="month">Month</option>
+                                    <option value="page">{i18n.days}</option>
+                                    <option value="hour">{i18n.hour}</option>
+                                    <option value="week">{i18n.week}</option>
+                                    <option value="month">{i18n.month}</option>
                                 </select>
                             </div>
                             <div className="pv-field-checkbox pv-field-checkbox-input">
@@ -269,10 +269,10 @@ export default class Reminder extends Component {
                                     placeholder={1}
                                 />
                                 <select name="number-type">
-                                    <option value="page">Days</option>
-                                    <option value="hour">Hour</option>
-                                    <option value="week">Week</option>
-                                    <option value="month">Month</option>
+                                    <option value="page">{i18n.days}</option>
+                                    <option value="hour">{i18n.hour}</option>
+                                    <option value="week">{i18n.week}</option>
+                                    <option value="month">{i18n.month}</option>
                                 </select>
                             </div>
                             <button className="pv-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>

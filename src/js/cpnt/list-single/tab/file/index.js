@@ -27,7 +27,7 @@ const File = (props) => {
             <div className="pv-small-button-group pv-small-button-group-two">
                 <div className="row">
                     <div className="col-sm-5">
-                        <h3 className="pv-title-small">My {i18n.file}</h3>
+                        <h3 className="pv-title-small">{i18n.my} {i18n.file}</h3>
                         <button
                             className={'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow ' + (activeTab == 'all' ? 'pv-active' : '')}
                             onClick={() => { setActiveTab('all'); props.getLists(); }}

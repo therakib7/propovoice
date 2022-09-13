@@ -30,7 +30,7 @@ const Note = (props) => {
                 close={props.closeForm}
             />}
 
-            <h3 className='pv-title-small'>My {ndpv.i18n.note}</h3>
+            <h3 className='pv-title-small'>{ndpv.i18n.my} {ndpv.i18n.note}</h3>
 
             {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
