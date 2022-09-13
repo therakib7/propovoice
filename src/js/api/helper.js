@@ -2,9 +2,6 @@ import axios from "axios";
 const apiUrl = `${ndpv.apiUrl}ndpv/v1/`;
 const apiProUrl = `${ndpv.apiUrl}ndpvp/v1/`;
 const apiServerUrl = `${ndpv.apiServerUrl}ncpis/v1/`;
-const url = apiUrl + "invoices";
-const path = "invoices";
-const urlServer = apiServerUrl + path;
 
 const token = {
   headers: {
