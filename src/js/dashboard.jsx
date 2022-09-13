@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from 'components/home';
+import Home from 'cpnt/home';
 import AppContext from 'context/app-context';
-import msgData from 'context/data/msg'; 
+import msgData from 'context/data/msg';
 
 function Dashboard() {
     return (
@@ -18,8 +18,8 @@ function Dashboard() {
     )
 }
 
-document.addEventListener('DOMContentLoaded', function () { 
-    let el = document.getElementById('ncpi-dashboard');
+document.addEventListener('DOMContentLoaded', function () {
+    let el = document.getElementById('ndpv-dashboard');
     if (typeof el !== 'undefined' && el !== null) {
         ReactDOM.render(
             <React.StrictMode>
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //show current menu in dashbaord 
-    let navUl = document.querySelectorAll('#toplevel_page_ncpi ul > li');
+    let navUl = document.querySelectorAll('#toplevel_page_ndpv ul > li');
     for (let y = 0, l = navUl.length; y < l; y++) {
         //TODO: set current class when reload
         //let link = navUl[y].getElementsByTagName('a');

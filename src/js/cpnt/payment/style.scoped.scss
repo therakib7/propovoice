@@ -1,0 +1,113 @@
+.ndpv .pv-payment-tab-content {
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 992px) {
+  .ndpv .pv-payment-tab-content {
+    width: 100%;
+  }
+}
+
+.ndpv .pv-payment-tab-content .pv-title-content h2 {
+  font-size: 20px;
+}
+
+.ndpv .pv-payment-tab-content .pv-title-content h5 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 0;
+  color: #2D3748;
+}
+
+.ndpv .pv-payment-tab-content .pv-btn {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  padding: 12px 15px;
+  font-weight: 500;
+}
+
+.ndpv .pv-payment-tab-content ul {
+  margin: 0;
+}
+
+.ndpv .pv-payment-tab-content ul li {
+  display: flex;
+  padding: 15px;
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.ndpv .pv-payment-tab-content ul li .pv-edit {
+  right: 0px;
+  position: absolute;
+  background: #fff;
+  top: 0;
+  border-radius: 25px;
+  box-shadow: 3px 3px 4px 0px rgba(205, 202, 205, 0.12);
+  height: 22px;
+}
+
+.ndpv .pv-payment-tab-content ul li .pv-edit span {
+  background: #fff;
+  padding: 4px 6px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.ndpv .pv-payment-tab-content ul li .pv-edit span:hover {
+  box-shadow: 3px 3px 4px 3px rgba(205, 202, 205, 0.18);
+}
+
+.ndpv .pv-payment-tab-content ul li .pv-edit span:hover svg path {
+  fill: var(--pv-bg-color-blue);
+}
+
+.ndpv .pv-payment-tab-content ul li .pv-item-content {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.ndpv .pv-payment-tab-content ul li .pv-item-content .pv-text-content {
+  align-self: center;
+}
+
+.ndpv .pv-payment-tab-content ul li .pv-item-content span {
+  margin-right: 20px;
+  display: flex;
+  padding: 15px 13px;
+  background: #EDF2F7;
+  border-radius: 8px;
+  align-self: center;
+}
+
+.ndpv .pv-payment-tab-content ul li .pv-item-content h2 {
+  line-height: 100%;
+}
+
+.ndpv .pv-payment-tab-content ul li .pv-item-content p {
+  margin: 0;
+  color: #718096;
+  margin-top: 10px;
+}
+
+.ndpv .pv-payment-tab-content ul .pv-btn {
+  display: flex;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.ndpv .pv-payment-tab-content ul .pv-btn svg {
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
+.ndpv .pv-payment-tab-content ul .pv-btn svg path {
+  margin-top: 2px;
+  margin-right: 5px;
+  fill: var(--pv-text-color-white);
+}

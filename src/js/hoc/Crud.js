@@ -5,7 +5,7 @@ import AppContext from 'context/app-context';
 import axios from 'axios';
 import { apiUrl, token } from 'api/helper'
 
-const HOC = (Inner, mod, modPlural = '') => {
+const HOC = (Inner, mod, title, modPlural = '') => {
     // console.log("data", module);
     if (!modPlural) {
         modPlural = mod + 's';
@@ -17,7 +17,8 @@ const HOC = (Inner, mod, modPlural = '') => {
             super(props);
 
             this.state = {
-                title: mod.charAt(0).toUpperCase() + mod.slice(1), //capitalize
+                title: title, //capitalize
+                // title: mod.charAt(0).toUpperCase() + mod.slice(1), //capitalize
                 empty: false,
                 preloader: true,
                 formModal: false,
@@ -47,13 +48,13 @@ const HOC = (Inner, mod, modPlural = '') => {
             let args = {
                 page: this.state.currentPage,
                 per_page: this.state.perPage
-            } 
+            }
 
             //this is for task tab
             if (this.props.tab_id) {
                 args.tab_id = this.props.tab_id;
             }
-            
+
             //this is for task tab
             if (this.props.dashboard) {
                 args.dashboard = this.props.dashboard;
@@ -98,14 +99,14 @@ const HOC = (Inner, mod, modPlural = '') => {
             });
         }
 
-        showItem = (e) => {
+        showItem = (e, args = null) => {
             const { value } = e.target;
             this.setState({ perPage: value }, () => {
-                this.getLists();
+                this.getLists(args);
             });
         }
 
-        handleSubmit = (list, newType = null) => { //newType for task, note tab
+        handleSubmit = (list, newType = null, args = null) => { //newType for task, note tab
             let type = this.state.formModalType;
             if (newType) {
                 type = newType;
@@ -116,8 +117,8 @@ const HOC = (Inner, mod, modPlural = '') => {
                 axios.post(url, list, token).then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.create);
-                        this.getLists();
+                        toast.success(ndpv.i18n.aAdd);
+                        this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -128,8 +129,8 @@ const HOC = (Inner, mod, modPlural = '') => {
                 axios.put(`${url}/${list.id}`, list, token).then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.update);
-                        this.getLists();
+                        toast.success(ndpv.i18n.aUpd);
+                        this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -139,8 +140,8 @@ const HOC = (Inner, mod, modPlural = '') => {
             }
         }
 
-        deleteEntry = (type, index, module = null) => {
-            if (confirm(this.context.CrudMsg.confirm)) {
+        deleteEntry = (type, index, module = null, args = null) => {
+            if (confirm(ndpv.i18n.aConf)) {
                 //TODO: instant delete do it later
                 /* if (type == 'single' && module != 'task' ) {
                     this.setState({
@@ -148,16 +149,16 @@ const HOC = (Inner, mod, modPlural = '') => {
                             return list.id !== index;
                         })
                     });
-                } */ 
+                } */
 
                 let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
                 axios.delete(`${url}/${ids}`, token).then(resp => {
                     if (resp.data.success) {
-                        toast.success(this.context.CrudMsg.delete);
+                        toast.success(ndpv.i18n.aDel);
                         if (type != 'single') {
                             this.setState({ checkedBoxes: [] });
                         }
-                        this.getLists();
+                        this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
@@ -172,13 +173,13 @@ const HOC = (Inner, mod, modPlural = '') => {
                 this.setState({ formModal: true, formModalType: 'new' });
             } else {
                 //for project form
-                if ( list.hasOwnProperty('start_date') && list.start_date ) {
+                if (list.hasOwnProperty('start_date') && list.start_date) {
                     list.start_date = new Date(list.start_date);
-                } 
-                if ( list.hasOwnProperty('due_date') && list.due_date ) {
+                }
+                if (list.hasOwnProperty('due_date') && list.due_date) {
                     list.due_date = new Date(list.due_date);
                 }
-                 
+
                 this.setState({ formModal: true, formModalType: 'edit', list: list });
             }
         };
@@ -213,16 +214,15 @@ const HOC = (Inner, mod, modPlural = '') => {
             }
         }
 
-        handlePageClick = (e) => {
+        handlePageClick = (e, args = null) => {
             const selectedPage = e.selected + 1;
             const offset = selectedPage * this.state.perPage;
             this.setState({
                 currentPage: selectedPage,
                 offset: offset
             }, () => {
-                this.getLists()
-            });
-
+                this.getLists(args)
+            })
         };
 
         render() {

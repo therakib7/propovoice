@@ -1,5 +1,5 @@
 {
-	"name": "therakib7/ncpi",
+	"name": "therakib7/ndpv",
 	"description": "Propovoice",
 	"authors": [
 		{
@@ -7,12 +7,11 @@
 			"email": "therakib7@gmail.com"
 		}
 	],
-	"require": {
-		"stripe/stripe-php": "^7.119"
+	"require": { 
 	},
 	"autoload": {
 		"psr-4": {
-			"Ncpi\\": "app"
+			"Ndpv\\": "app"
 		}
 	}
 }
