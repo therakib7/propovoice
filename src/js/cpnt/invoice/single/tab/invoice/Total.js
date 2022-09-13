@@ -2,7 +2,7 @@ const Total = props => {
     const { currencyFormatter, itemsTotal, extra_field, changeHandler, focusHandler, grandTotal } = props
     const i18n = ndpv.i18n;
     return (
-        <table>
+        <table> 
             <tbody>
                 <tr>
                     <td>{i18n.subT}</td>
@@ -43,4 +43,4 @@ const Total = props => {
         </table>
     )
 }
-export default Total 
+export default Total

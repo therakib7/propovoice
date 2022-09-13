@@ -4,14 +4,14 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import Item from './Item'
 import ItemLabel from './sidebar/ItemLabel'
 import styles from './scss/Items.module.scss' 
-import Api from "api/helper";
+import Api from 'api/helper';
 
 const Items = (props) => {
     const [label, setLabel] = useState(false);
     const [qtyType, setQtyType] = useState([]);
 
     useEffect(() => {
-        if (!props.id) {
+        if (!props.id) { 
             Api.req({
                 url: {
                     path: 'taxonomies',

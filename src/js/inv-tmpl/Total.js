@@ -17,7 +17,7 @@ export default class Total extends Component {
     }
 
     calcItemsTotal = () => {
-        return this.props.data.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
+        return 55+this.props.data.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
     }
 
     calcGrandTotal = () => {
