@@ -20,20 +20,14 @@ const token = {
  * @return {Object} - http response
  *
  */
-const req = ({
-  method = `get`,
-  url = {},
-  data = {},
-  header = token,
-  from = `free`,
-}) => {
+const req = ({ method = `get`, url = {}, data = {}, from = `free` }) => {
   const baseUrl = getBaseUrl(from);
   const requestToUrl = urlBuilder(baseUrl, url);
   return axios({
     method: method,
     url: requestToUrl,
     data: data,
-    header,
+    headers: getHeaders(),
   });
 };
 
@@ -60,6 +54,13 @@ const getBaseUrl = (from) => {
     ext: `${ndpv.apiServerUrl}ncpis/v1/`,
   };
   return urls[from];
+};
+
+const getHeaders = () => {
+  return {
+    "content-type": "application/json",
+    "X-WP-NONCE": ndpv.nonce,
+  };
 };
 
 export default { req };
