@@ -16,8 +16,8 @@ export default class Form extends Component {
             bg_color: '',
             icon: null,
             val_type: 'fixed',
-            tax: '',
-            fee: '',
+            tax_cal: '',
+            fee_cal: '',
             show: true,
         };
 
@@ -217,16 +217,57 @@ export default class Form extends Component {
                                 </div>}
                             </>}
 
-                            {this.props.icon && <div className="row">
-                                <div className="col-md">
-                                    <label htmlFor="field-icon">
-                                        {i18n.icon}
-                                    </label>
-                                    <Upload data={form.icon} small changeHandler={this.handleLogoChange} />
+                            {this.props.icon &&
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-icon">
+                                            {i18n.icon}
+                                        </label>
+                                        <Upload data={form.icon} small changeHandler={this.handleLogoChange} />
+                                    </div>
+                                </div>}
+
+                            {this.props.tax_cal &&
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-label">{i18n.tax} {i18n.cal}</label>
+                                        <select name="tax_cal" value={form.tax_cal} onChange={this.handleChange}>
+                                            <option value="">{i18n.with} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
+                                            <option value="1">{i18n.witho} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>}
+                            }
 
+                            {this.props.fee_cal &&
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-label">{i18n.fee} {i18n.cal}</label>
+                                        <select name="fee_cal" value={form.fee_cal} onChange={this.handleChange}>
+                                            <option value="">{i18n.with} {i18n.fee}</option>
+                                            <option value="1">{i18n.witho} {i18n.fee}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            }
 
+                            {this.props.show &&
+                                <div className="row">
+                                    <div className="col">
+                                        <label id="form-show">{i18n.def}</label>
+                                        <div className="pv-field-switch pv-mt-3 pv-ml-10">
+                                            <label className='pv-switch'>
+                                                <input type='checkbox'
+                                                    id="form-show"
+                                                    name='show'
+                                                    checked={form.show ? 'checked' : ''}
+                                                    onChange={this.handleChange}
+                                                />
+                                                <span className='pv-switch-slider pv-round'></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>}
 
                             {eat &&
                                 <>
@@ -234,8 +275,8 @@ export default class Form extends Component {
                                         <div className="col-md">
                                             <label htmlFor="field-label">{i18n.rate} {i18n.type}</label>
                                             <select name="val_type" value={form.val_type} onChange={this.handleChange}>
-                                                <option value="percent">{i18n.pct}</option>
-                                                <option value="fixed">{i18n.fix}</option>
+                                                <option value="percent">Percent</option>
+                                                <option value="fixed">Fixed</option>
                                             </select>
                                         </div>
                                     </div>
@@ -257,47 +298,6 @@ export default class Form extends Component {
                                     </div>
                                 </>
                             }
-
-                            {this.props.tax &&
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-label">{i18n.tax} {i18n.cal}</label>
-                                        <select name="tax" value={form.tax} onChange={this.handleChange}>
-                                            <option value="">{i18n.with} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
-                                            <option value="1">{i18n.witho} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            }
-
-                            {this.props.fee &&
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-label">{i18n.fee} {i18n.cal}</label>
-                                        <select name="fee" value={form.fee} onChange={this.handleChange}>
-                                            <option value="">{i18n.with} {i18n.fee}</option>
-                                            <option value="1">{i18n.witho} {i18n.fee}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            }
-
-                            {this.props.show && <div className="row">
-                                <div className="col">
-                                    <label id="form-show">{i18n.def}</label>
-                                    <div className="pv-field-switch pv-mt-3 pv-ml-10">
-                                        <label className='pv-switch'>
-                                            <input type='checkbox'
-                                                id="form-show"
-                                                name='show'
-                                                checked={form.show ? 'checked' : ''}
-                                                onChange={this.handleChange}
-                                            />
-                                            <span className='pv-switch-slider pv-round'></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>}
                         </div>
                     </div>
 

@@ -37,7 +37,7 @@ export default (props) => {
         });
     }, []);
 
-    const setAdditional = (i, data, type, type_val = null) => {
+    const setAddi = (i, data, type, type_val = null) => {
         props.handleChange(i, data, type, type_val);
     }
 
@@ -101,7 +101,7 @@ export default (props) => {
 
                     return (
                         <div className="pv-tab" key={i}>
-                            <input checked={hasItem ? true : false} onChange={() => setAdditional(i, item, 'field')} type="checkbox" id={'additional-field-' + i} name="additional-field" />
+                            <input checked={hasItem ? true : false} onChange={() => setAddi(i, item, 'field')} type="checkbox" id={'additional-field-' + i} name="additional-field" />
                             <label className={(hasItem ? 'pv-active' : '') + ' pv-tab-label'} htmlFor={'additional-field-' + i}>
                                 {item.label}
                             </label>
@@ -113,13 +113,13 @@ export default (props) => {
                                             <div className='row'>
                                                 <div className='col'>
                                                     <div className='pv-field-radio'>
-                                                        <input onChange={() => setAdditional(i, item, 'type', 'percent')} defaultChecked={percent_val_type} type="radio" name={"val-type-" + i} id={"val-type-percent-" + i} value='percent' />
+                                                        <input onChange={() => setAddi(i, item, 'type', 'percent')} defaultChecked={percent_val_type} type="radio" name={"val-type-" + i} id={"val-type-percent-" + i} value='percent' />
                                                         <label htmlFor={"val-type-percent-" + i}>{i18n.pct}</label>
                                                     </div>
                                                 </div>
                                                 <div className='col pv-p-0'>
                                                     <div className='pv-field-radio'>
-                                                        <input onChange={() => setAdditional(i, item, 'type', 'fixed')} defaultChecked={fixed_val_type} type="radio" name={"val-type-" + i} id={"val-type-fixed-" + i} value='fixed' />
+                                                        <input onChange={() => setAddi(i, item, 'type', 'fixed')} defaultChecked={fixed_val_type} type="radio" name={"val-type-" + i} id={"val-type-fixed-" + i} value='fixed' />
                                                         <label htmlFor={"val-type-fixed-" + i}>{i18n.fix}</label>
                                                     </div>
                                                 </div>

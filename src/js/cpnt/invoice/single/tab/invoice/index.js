@@ -26,7 +26,7 @@ const InvTemplate = lazy(() => import('inv-tmpl'));
 const Style = lazy(() => import('./sidebar/Style'));
 const Payment = lazy(() => import('./sidebar/Payment'));
 const Currency = lazy(() => import('./sidebar/Currency'));
-const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
+const ExtraAmount = lazy(() => import('./sidebar/ExtraAmount'));
 const Reminder = lazy(() => import('./sidebar/Reminder'));
 const Recurring = lazy(() => import('./sidebar/Recurring'));
 
@@ -1099,7 +1099,7 @@ class Invoice extends Component {
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('extra-field')} />
 														<i />
 														<h3 className='pv-title-small'>{i18n.addi} {i18n.amt}</h3>
-														<AdditionalAmount
+														<ExtraAmount
 															{...this.props}
 															item_tax={invoice.item_tax}
 															itemTaxChange={this.itemTaxChange}

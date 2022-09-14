@@ -147,6 +147,8 @@ class Taxonomy
                         $taxonomy == 'extra_amount'
                     ) { // for, tax, fee, discount
                         $term_property['extra_amount_type'] = get_term_meta($single->term_id, 'extra_amount_type', true);
+                        $term_property['tax_cal'] = get_term_meta($single->term_id, 'tax_cal', true);
+                        $term_property['fee_cal'] = get_term_meta($single->term_id, 'fee_cal', true);
                         $term_property['val_type'] = get_term_meta($single->term_id, 'val_type', true);
                         $term_property['show'] = get_term_meta($single->term_id, 'show', true);
                         if ($taxonomy == 'extra_amount' && $extra_amount_type != $term_property['extra_amount_type']) {
@@ -235,6 +237,8 @@ class Taxonomy
         $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
         $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
         $extra_amount_type = isset($params['extra_amount_type']) ? sanitize_text_field($params['extra_amount_type']) : null;
+        $tax_cal = isset($params['tax_cal']) ? sanitize_text_field($params['tax_cal']) : null;
+        $fee_cal = isset($params['fee_cal']) ? sanitize_text_field($params['fee_cal']) : null;
         $val_type = isset($params['val_type']) ? sanitize_text_field($params['val_type']) : null;
         $show = isset($params['show']) ? rest_sanitize_boolean($params['show']) : null;
 
@@ -266,6 +270,8 @@ class Taxonomy
 
                     if ($taxonomy == 'extra_amount' && $extra_amount_type) {
                         update_term_meta($term_id, 'extra_amount_type', $extra_amount_type);
+                        update_term_meta($term_id, 'tax_cal', $tax_cal);
+                        update_term_meta($term_id, 'fee_cal', $fee_cal);
                         update_term_meta($term_id, 'val_type', $val_type);
                         update_term_meta($term_id, 'show', $show);
                     }
@@ -292,6 +298,8 @@ class Taxonomy
         $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
         $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
         $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
+        $tax_cal = isset($params['tax_cal']) ? sanitize_text_field($params['tax_cal']) : null;
+        $fee_cal = isset($params['fee_cal']) ? sanitize_text_field($params['fee_cal']) : null;
         $val_type = isset($params['val_type']) ? sanitize_text_field($params['val_type']) : null;
         $show = isset($params['show']) ? rest_sanitize_boolean($params['show']) : null;
 
@@ -339,6 +347,8 @@ class Taxonomy
                     }
 
                     if ($taxonomy == 'extra_amount') {
+                        update_term_meta($term_id, 'tax_cal', $tax_cal);
+                        update_term_meta($term_id, 'fee_cal', $fee_cal);
                         update_term_meta($term_id, 'val_type', $val_type);
                         update_term_meta($term_id, 'show', $show);
                     }
