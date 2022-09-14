@@ -254,7 +254,6 @@ class Invoice
         $query_data['due_date'] = get_post_meta($id, 'due_date', true);
         $query_data['module_id'] = get_post_meta($id, 'module_id', true);
         $from_id = get_post_meta($id, 'from', true);
-        $query_data['invoice'] = get_post_meta($id, 'invoice', true); 
 
         $from_id = get_post_meta($id, 'from', true);
         $query_data['status'] = get_post_meta($id, 'status', true);
@@ -301,20 +300,43 @@ class Invoice
         }
         $query_data['toData'] = $toData;
 
-        $payment_methods = get_post_meta($id, 'payment_methods', true);
+        $invoice = get_post_meta($id, 'invoice', true);
+ 
+        $reminder = isset($invoice['reminder']) ? $invoice['reminder'] : null;  
+        if (!$reminder) {
+            $reminderData = [];
+            $reminderData['status'] = false;
+            $reminderData['due_date'] = false;
+            $reminderData['before'] = [];
+            $reminderData['after'] = [15];
+            $invoice['reminder'] = $reminderData;
+        }
+
+        $recurring = isset($invoice['recurring']) ? $invoice['recurring'] : null;
+        if (!$recurring) {
+            $recurringData = [];
+            $recurringData['status'] = false;
+            $recurringData['interval_type'] = 'week';
+            $recurringData['interval_in'] = 'month';
+            $recurringData['interval'] = 1;
+            $recurringData['limit_type'] = 0;
+            $recurringData['limit'] = 5;
+            $recurringData['send_me'] = false;
+            $recurringData['delivery'] = 1;
+
+            $invoice['recurring'] = $recurringData;
+        }
+
         $paymentData = null;
-        if (isset($payment_methods['bank'])) {
-            $paymentData['id'] = $payment_methods['bank'];
-            $paymentMeta = get_post_meta($payment_methods['bank']);
+        if ( isset($invoice['payment_methods']['bank']) ) {
+            $paymentData['id'] = $invoice['payment_methods']['bank'];
+            $paymentMeta = get_post_meta($invoice['payment_methods']['bank']);
             $paymentData['name'] = isset($paymentMeta['name']) ? $paymentMeta['name'][0] : '';
             $paymentData['details'] = isset($paymentMeta['details']) ? $paymentMeta['details'][0] : '';
         }
         $query_data['paymentBankData'] = $paymentData;
 
-        $invoice = get_post_meta($id, 'invoice', true);
-        $reminder = isset($invoice['reminder']) ? $invoice['reminder'] : null;
-
-        if (isset($params['client_view'])) {
+        if ( isset($params['client_view']) ) {
             $payment_methods = isset($invoice['payment_methods']) ? $invoice['payment_methods'] : null;
             if ($payment_methods) {
 
@@ -344,31 +366,7 @@ class Invoice
 
             $invoice_model = new ModelInvoice();
             $invoice['total'] = $invoice_model->getTotalAmount($invoice);
-        }
-
-        if (!$reminder) {
-            $reminderData = [];
-            $reminderData['status'] = false;
-            $reminderData['due_date'] = false;
-            $reminderData['before'] = [];
-            $reminderData['after'] = [15];
-            $invoice['reminder'] = $reminderData;
-        }
-
-        $recurring = isset($invoice['recurring']) ? $invoice['recurring'] : null;
-        if (!$recurring) {
-            $recurringData = [];
-            $recurringData['status'] = false;
-            $recurringData['interval_type'] = 'week';
-            $recurringData['interval_in'] = 'month';
-            $recurringData['interval'] = 1;
-            $recurringData['limit_type'] = 0;
-            $recurringData['limit'] = 5;
-            $recurringData['send_me'] = false;
-            $recurringData['delivery'] = 1;
-
-            $invoice['recurring'] = $recurringData;
-        }
+        } 
 
         $query_data['invoice'] = $invoice;
 

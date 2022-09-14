@@ -97,7 +97,7 @@ export default class Form extends Component {
             }
             api.add('taxonomies', newForm).then(resp => {  
                 if (resp.data.success) {
-                    toast.success('Successfully added'); //TODO: translation
+                    toast.success(ndpv.i18n.aAdd);
                     this.props.reload();
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
@@ -108,7 +108,7 @@ export default class Form extends Component {
         } else {
             api.edit('taxonomies', newForm.id, newForm).then(resp => {  
                 if (resp.data.success) {
-                    toast.success('Successfully updated'); //TODO: translation
+                    toast.success(ndpv.i18n.aUpd);
                     this.props.reload();
                 } else {
                     resp.data.data.forEach(function (value, index, array) {

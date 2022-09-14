@@ -62,30 +62,7 @@ const Contact = (props) => {
 			setModalType(type);
 			setForm(tax);
 		}
-	}
-
-
-	const handleDelete = (id) => {
-		if (confirm('Are you sure, to delete it?')) { //TODO: translation
-
-			let newForm = {}
-			newForm.taxonomy = props.taxonomy;
-			newForm.delete = true;
-			newForm.post_id = parseInt(props.id);
-			newForm.id = parseInt(id);
-
-			props.update('taxonomies', newForm.id, newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully deleted'); //TODO: translation
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});
-		}
-	}
+	} 
 
 	const handleSelect = (data) => {
 		props.onChange(data);
