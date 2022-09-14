@@ -109,18 +109,18 @@ export default (props) => {
                                 <div className="pv-form-style-one">
                                     <div className="pv-radio-content">
                                         <div className="pv-radio-group">
-                                            <h4>{item.label} Type:</h4>
+                                            <h4>{item.label} {i18n.type}:</h4>
                                             <div className='row'>
                                                 <div className='col'>
                                                     <div className='pv-field-radio'>
                                                         <input onChange={() => setAdditional(i, item, 'type', 'percent')} defaultChecked={percent_val_type} type="radio" name={"val-type-" + i} id={"val-type-percent-" + i} value='percent' />
-                                                        <label htmlFor={"val-type-percent-" + i}>Percent</label>
+                                                        <label htmlFor={"val-type-percent-" + i}>{i18n.pct}</label>
                                                     </div>
                                                 </div>
                                                 <div className='col pv-p-0'>
                                                     <div className='pv-field-radio'>
                                                         <input onChange={() => setAdditional(i, item, 'type', 'fixed')} defaultChecked={fixed_val_type} type="radio" name={"val-type-" + i} id={"val-type-fixed-" + i} value='fixed' />
-                                                        <label htmlFor={"val-type-fixed-" + i}>Fixed</label>
+                                                        <label htmlFor={"val-type-fixed-" + i}>{i18n.fix}</label>
                                                     </div>
                                                 </div>
                                             </div>

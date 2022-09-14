@@ -43,6 +43,7 @@ class Share extends Component {
         const i18n = ndpv.i18n;
         let path = this.props.path;
         let path_title = path == 'invoice' ? i18n.inv : i18n.est;
+        const client_url = this.state.client_url;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content pv-modal-style-three pv-modal-medium">
@@ -63,8 +64,8 @@ class Share extends Component {
                                             type="text"
                                             id="name"
                                             name="name"
-                                            value={this.state.client_url}
-                                            ref={(client_url) => this.client_url = client_url}
+                                            value={client_url}
+                                            ref={(url) => this.client_url = url}
                                             readOnly
                                         />
                                         <span className="pv-copy" onClick={this.copyToClipboard}>Copy</span>
@@ -72,7 +73,7 @@ class Share extends Component {
                                 </div>
                             </div>
                             <div className="pv-field-share">
-                                <a href="https://web.whatsapp.com" target="_blank" className="pv-social-icon">
+                                <a href={'https://api.whatsapp.com/send?text='+ encodeURIComponent(client_url) } target="_blank" className="pv-social-icon">
                                     <span className="pv-whatsapp" style={{ background: "#E9FBEF" }}>
                                         <svg
                                             width={40}
@@ -113,7 +114,7 @@ class Share extends Component {
                                     </span>
                                     <p>Messenger</p>
                                 </a>
-                                <a href="https://web.telegram.org/z/" target="_blank" className="pv-social-icon">
+                                <a href={'https://telegram.me/share/url?url='+ encodeURIComponent(client_url) } target="_blank" className="pv-social-icon">
                                     <span
                                         className="pv-telegrame"
                                         style={{ background: "rgba(64, 179, 224, 0.08)" }}
@@ -137,7 +138,7 @@ class Share extends Component {
                                     </span>
                                     <p>Telegrame</p>
                                 </a>
-                                <a href="https://web.skype.com/" target="_blank" className="pv-social-icon">
+                                <a href={'https://web.skype.com/share?url='+ encodeURIComponent(client_url) } target="_blank" className="pv-social-icon">
                                     <span
                                         className="pv-skype"
                                         style={{ background: "rgba(0, 175, 240, 0.08)" }}
