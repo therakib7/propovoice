@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ColorPicker from 'block/color-picker';
 import { toast } from 'react-toastify';
-import Upload from 'block/field/upload';
-import WithApi from 'hoc/Api';
+import Upload from 'block/field/upload'; 
+import api from 'api';
 import { Add } from 'block/icon';
 
-class Form extends Component {
+export default class Form extends Component {
     constructor(props) {
         super(props);
 
@@ -95,7 +95,7 @@ class Form extends Component {
             if (this.props.extra_amount_type) {
                 newForm.extra_amount_type = this.props.extra_amount_type;
             }
-            this.props.create('taxonomies', newForm).then(resp => {
+            api.add('taxonomies', newForm).then(resp => {  
                 if (resp.data.success) {
                     toast.success('Successfully added'); //TODO: translation
                     this.props.reload();
@@ -106,7 +106,7 @@ class Form extends Component {
                 }
             });
         } else {
-            this.props.update('taxonomies', newForm.id, newForm).then(resp => {
+            api.edit('taxonomies', newForm.id, newForm).then(resp => {  
                 if (resp.data.success) {
                     toast.success('Successfully updated'); //TODO: translation
                     this.props.reload();
@@ -290,5 +290,4 @@ class Form extends Component {
             </div>
         );
     }
-}
-export default WithApi(Form); 
+} 

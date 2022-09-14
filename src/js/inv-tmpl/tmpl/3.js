@@ -73,7 +73,7 @@ export default (props) => {
 
                     <div className="pv-inv-account">
                         <Payment {...props} />
-                        <Total {...props} />
+                        <Total data={props.data.invoice} />
                     </div>
                     {sections && <Section data={sections} />}
                     {sign && <Sign data={sign} />}

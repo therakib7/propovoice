@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import WithApi from 'hoc/Api';
+import api from 'api';
 import WithRouter from 'hoc/Router';
 import { Add } from 'block/icon';
 import Currency from 'block/field/currency';
 import Select from 'react-select';
 import Contact from 'block/field/contact';
-import { sprintf } from 'sprintf-js';
+import { sprintf } from 'sprintf-js'; 
 
 class Form extends Component {
     constructor(props) {
@@ -59,7 +59,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
+        api.get('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
             if (resp.data.success) {
                 if (this.state.form.stage_id) {
                     this.setState({
@@ -150,7 +150,7 @@ class Form extends Component {
 
             if (this.props.modalType == 'move') {
 
-                this.props.create('deals', form).then(resp => {
+                api.add('deals', form).then(resp => {
                     if (resp.data.success) {
                         toast.success('Successfully moved to deal');
                         let id = resp.data.data;
@@ -165,7 +165,7 @@ class Form extends Component {
                 });
 
             } else {
-                this.props.update('deals', form.id, form);
+                api.edit('deals', form.id, form);
                 this.props.close();
                 this.props.reload();
             }
@@ -238,7 +238,7 @@ class Form extends Component {
                         <p>{sprintf(i18n.formDesc, i18n.deal)}</p>
 
                     </div>
-
+                     
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
                             <div className="pv-form-style-one">
@@ -426,6 +426,5 @@ class Form extends Component {
         );
     }
 }
-
-const FormData = WithApi(Form);
-export default WithRouter(FormData);  
+ 
+export default WithRouter(Form);  

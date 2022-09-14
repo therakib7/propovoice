@@ -3,19 +3,28 @@ namespace Ndpv\Model;
 
 class Invoice {
 
-    public function calcItemsTotal( $items ) {   
+    public function calcItemsTotal( $items, $item_tax ) {   
         $total = 0;
         foreach ( $items as $value ) {
-            $total += ( $value['qty'] * $value['price'] );
+            $tax_total = 0; 
+            if ($item_tax && $value['tax']) {
+				if ($value['tax_type'] == 'percent') {
+					$tax_total += $value['price'] * ($value['tax'] / 100);
+				} else {
+					$tax_total += (float) $value['tax'];
+				} 
+			}
+            $total += ( $value['qty'] * $value['price'] ) + $tax_total;
         }
         return $total;
-    } 
+    }   
     
     public function getTotalAmount( $invoice )
     {
         $items = $invoice['items'];
+        $item_tax = isset( $invoice['item_tax'] ) ? $invoice['item_tax'] : false;
         $extra_field = $invoice['extra_field']; 
-        $item_total = $this->calcItemsTotal( $items );  
+        $item_total = $this->calcItemsTotal( $items, $item_tax );  
         $total = $item_total; 
         
         foreach ( $extra_field as $val ) { 
