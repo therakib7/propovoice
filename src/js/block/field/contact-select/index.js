@@ -1,11 +1,9 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
-import { toast } from 'react-toastify';
+import api from 'api';
 import useClickOutside from 'block/outside-click';
-import WithApi from 'hoc/Api';
-
 import ContactForm from 'cpnt/contact/Form';
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
-const Contact = (props) => {
+export default (props) => {
 	const dropdownContent = useRef();
 
 	const [list, setList] = useState([]);
@@ -36,7 +34,7 @@ const Contact = (props) => {
 			per_page: 10
 		}
 		let params = new URLSearchParams(args).toString();
-		props.getAll('contacts', params).then(resp => {
+		api.get('contacts', params).then(resp => {
 			if (resp.data.success) {
 				let toList = resp.data.data.result;
 				setList(toList);
@@ -62,7 +60,7 @@ const Contact = (props) => {
 			setModalType(type);
 			setForm(tax);
 		}
-	} 
+	}
 
 	const handleSelect = (data) => {
 		props.onChange(data);
@@ -80,7 +78,7 @@ const Contact = (props) => {
 		if (timeout) clearTimeout(timeout);
 
 		timeout = setTimeout(() => {
-			props.getAll('contacts', 's=' + val).then(resp => {
+			api.get('contacts', 's=' + val).then(resp => {
 				if (resp.data.success) {
 					let toList = resp.data.data.result;
 					setList(toList);
@@ -102,7 +100,7 @@ const Contact = (props) => {
 				onClick={() => showDropdown()}
 			>
 
-				{!props.data &&  i18n.select +' ' +i18n.rec}
+				{!props.data && i18n.select + ' ' + i18n.rec}
 
 				{props.data && <>
 					{(props.data.type == 'person') ? props.data.first_name : props.data.org_name}
@@ -114,7 +112,7 @@ const Contact = (props) => {
 					height={10}
 					viewBox="0 0 10 6"
 					fill="none"
-					
+
 				>
 					<path
 						d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
@@ -145,5 +143,3 @@ const Contact = (props) => {
 		</>
 	);
 }
-
-export default WithApi(Contact);  

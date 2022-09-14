@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import WithApi from 'hoc/Api';
 import api from 'api';
 export default class Contact extends Component {
 

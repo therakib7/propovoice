@@ -2,11 +2,12 @@ import React, { useCallback, useRef, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
 import Form from './Form';
-import WithApi from 'hoc/Api';
+import api from 'api';
+
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
-const Taxonomy = (props) => {
+export default (props) => {
 	const dropdownContent = useRef();
 
 	const [list, setList] = useState([]);
@@ -48,7 +49,7 @@ const Taxonomy = (props) => {
 		if (props.hide_bg) {
 			hide_bg = '&hide_bg=true';
 		}
-		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + hide_bg).then(resp => {
+		api.get('taxonomies', 'taxonomy=' + props.taxonomy + hide_bg).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 			}
@@ -56,7 +57,7 @@ const Taxonomy = (props) => {
 	}
 
 	const getDataWithSingle = () => {
-		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id).then(resp => {
+		api.get('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 				setListById(resp.data.data['single_' + props.taxonomy]);
@@ -106,7 +107,7 @@ const Taxonomy = (props) => {
 			});
 			setListById(filtered);
 
-			props.update('taxonomies', newForm.id, newForm).then(resp => {
+			api.edit('taxonomies', newForm.id, newForm).then(resp => {
 				if (resp.data.success) {
 					toast.success(ndpv.i18n.aDel);
 					getData();
@@ -141,7 +142,7 @@ const Taxonomy = (props) => {
 			}
 		}
 
-		props.update('taxonomies', newForm.id, newForm).then(resp => {
+		api.edit('taxonomies', newForm.id, newForm).then(resp => {
 			if (resp.data.success) {
 				getData();
 			} else {
@@ -228,4 +229,4 @@ const Taxonomy = (props) => {
 		</>
 	);
 }
-export default WithApi(Taxonomy);  
+  
