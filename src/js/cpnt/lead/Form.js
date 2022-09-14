@@ -105,14 +105,14 @@ export default class Form extends Component {
         }
         let params = new URLSearchParams(args).toString();
 
-        this.props.getAll('persons', params).then(resp => {
+        api.get('persons', params).then(resp => {
             if (resp.data.success) {
                 let personList = resp.data.data.result;
                 this.setState({ personList });
             }
         });
 
-        this.props.getAll('organizations', params).then(resp => {
+       api.get('organizations', params).then(resp => {
             if (resp.data.success) {
                 let orgList = resp.data.data.result;
                 this.setState({ orgList });
