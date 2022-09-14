@@ -19,7 +19,7 @@ const ChartBar = lazy(() => import('./chart/Bar'));
 
 const Widget = lazy(() => import('./section/Widget'));
 
-import WithApi from 'hoc/Api';
+import WithApi from 'hoc/Api'; 
 
 const TaskCom = () => {
     const i18n = ndpv.i18n;

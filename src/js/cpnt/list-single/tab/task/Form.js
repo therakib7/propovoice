@@ -1,11 +1,10 @@
 import React, { useCallback, useRef, useState, useEffect, lazy } from "react";
 import useClickOutside from 'block/outside-click';
-
-import WithApi from 'hoc/Api';
+import api from 'api';
 import moment from 'moment';
 const DateField = lazy(() => import('block/date-picker'));
 
-const Form = (props) => {
+export default (props) => {
 
     const initialState = {
         id: null,
@@ -36,7 +35,7 @@ const Form = (props) => {
     useClickOutside(dropdownPrioritiesRef, closePriorities);
 
     useEffect(() => {
-        props.getAll('taxonomies', 'taxonomy=task_status,task_type,task_priority').then(resp => {
+        api.get('taxonomies', 'taxonomy=task_status,task_type,task_priority').then(resp => {
             if (resp.data.success) {
                 let mform = { ...form }
                 const status = resp.data.data.task_status;
@@ -227,4 +226,3 @@ const Form = (props) => {
         </form>
     )
 }
-export default WithApi(Form);  

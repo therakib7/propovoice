@@ -6,8 +6,8 @@ import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
 import { Add } from 'block/icon';
 
-import WithApi from 'hoc/Api';
-class Send extends Component {
+import api from 'api';
+export default  class Send extends Component {
     constructor(props) {
         super(props);
 
@@ -153,7 +153,7 @@ class Send extends Component {
         let form = { ...this.state.form }
         form.type = 'sent';
 
-        this.props.create('emails', form).then(resp => {
+        api.add('emails', form).then(resp => {
             if (resp.data.success) {
                 toast.success('Mail sucessfully sent');
                 this.props.close();
@@ -268,4 +268,3 @@ class Send extends Component {
         );
     }
 }
-export default WithApi(Send);  

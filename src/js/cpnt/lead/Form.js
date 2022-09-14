@@ -4,11 +4,10 @@ import { sprintf } from 'sprintf-js';
 import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
-import WithApi from 'hoc/Api';
-
+import api from 'api';
 import Select from 'react-select';
 
-class Form extends Component {
+export default class Form extends Component {
     constructor(props) {
         super(props);
 
@@ -80,7 +79,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=lead_level,lead_source,tag').then(resp => {
+        api.get('taxonomies', 'taxonomy=lead_level,lead_source,tag').then(resp => {
             if (resp.data.success) {
                 if (this.state.form.level_id) {
                     this.setState({
@@ -382,5 +381,3 @@ class Form extends Component {
         );
     }
 }
-
-export default WithApi(Form);  

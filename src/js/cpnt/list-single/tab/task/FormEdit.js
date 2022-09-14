@@ -1,13 +1,13 @@
 import React, { Component, lazy } from 'react';
 import moment from 'moment';
 import { Add } from 'block/icon';
+import api from 'api';
 
-import WithApi from 'hoc/Api';
 import Taxonomy from 'block/field/taxonomy';
 const DateField = lazy(() => import('block/date-picker'));
 import Checklist from './Checklist';
 
-class Form extends Component {
+export default class Form extends Component {
     constructor(props) {
         super(props);
 
@@ -105,7 +105,7 @@ class Form extends Component {
                 form.end_date = endDate;
             }
 
-            this.props.update('tasks', form.id, form).then(resp => {
+            api.edit('tasks', form.id, form).then(resp => {
                 if (resp.data.success && reload) {
                     this.props.reload({ status_id })
                 }
@@ -124,7 +124,7 @@ class Form extends Component {
                 if (data.status_id) {
                     newData.status_id = data.status_id.id;
                 }
-                this.props.update('tasks', data.id, newData);
+                api.edit('tasks', data.id, newData);
             });
 
         } else {
@@ -354,5 +354,3 @@ class Form extends Component {
         );
     }
 }
-
-export default WithApi(Form); 

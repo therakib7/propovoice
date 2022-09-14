@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { toast } from 'react-toastify';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
+import api from 'api';
 
 import AppContext from 'context/app-context';
-import WithApi from 'hoc/Api';
 import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
-class Form extends Component {
+export default class Form extends Component {
     constructor(props) {
         super(props);
 
@@ -104,7 +104,7 @@ class Form extends Component {
         let contact = this.state.form;
 
         if (this.props.modalType == 'new') {
-            this.props.create('contacts', contact).then(resp => {
+            api.add('contacts', contact).then(resp => {
                 if (resp.data.success) {
                     this.props.close();
                     toast.success(ndpv.i18n.aAdd);
@@ -118,7 +118,7 @@ class Form extends Component {
                 }
             })
         } else {
-            this.props.update('contacts', contact.id, contact).then(resp => {
+            api.edit('contacts', contact.id, contact).then(resp => {
                 if (resp.data.success) {
                     this.props.close();
                     toast.success(ndpv.i18n.aUpd);
@@ -269,5 +269,3 @@ class Form extends Component {
         );
     }
 }
-
-export default WithApi(Form);  

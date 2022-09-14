@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import { toast } from 'react-toastify';
 
 import AppContext from 'context/app-context';
-import WithApi from 'hoc/Api';
-
+import api from 'api';
 import Contact from 'block/field/contact-select';
 
 //others component
 import BusinessForm from 'cpnt/business/Form';
 import ContactForm from 'cpnt/contact/Form';
 
-class FromTo extends Component {
+export default class FromTo extends Component {
 
     constructor(props) {
         super(props);
@@ -47,7 +46,7 @@ class FromTo extends Component {
         }
         let params = new URLSearchParams(args).toString();
 
-        this.props.getAll('businesses', params).then(resp => {
+        api.get('businesses', params).then(resp => {
             let fromData = resp.data.data.result;
             if (fromData.length) {
                 let stateValue = {}
@@ -103,7 +102,7 @@ class FromTo extends Component {
 
     handleBusinessSubmit = business => { 
         if (this.state.businessModalType == 'new') {
-            this.props.create('businesses', business).then(resp => {
+            api.add('businesses', business).then(resp => {
                 if (resp.data.success) {
                     this.setState({ businessModal: false })
                     toast.success(ndpv.i18n.aAdd);
@@ -116,7 +115,7 @@ class FromTo extends Component {
                 }
             })
         } else {
-            this.props.update('businesses', business.id, business).then(resp => {
+            api.edit('businesses', business.id, business).then(resp => {
                 if (resp.data.success) {
                     this.setState({ businessModal: false })
                     toast.success(ndpv.i18n.aUpd);
@@ -240,4 +239,3 @@ class FromTo extends Component {
         )
     }
 }
-export default WithApi(FromTo); 

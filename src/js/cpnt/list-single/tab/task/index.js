@@ -6,9 +6,8 @@ import FormEdit from './FormEdit';
 import Table from './Table';
 //import Search from './Search';
 //import Empty from 'block/empty';
-import WithApi from 'hoc/Api';
 import Crud from 'hoc/Crud';
-
+import api from 'api';
 const Task = (props) => {
 
     useEffect(() => {
@@ -42,7 +41,7 @@ const Task = (props) => {
 
     const handleDelete = (type, id) => {
         if (confirm(ndpv.i18n.aConf)) {
-            props.remove('tasks', id).then(resp => {
+            api.del('tasks', id).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aDel);
                     props.getLists({ status_id: activeTab });
@@ -196,5 +195,4 @@ const Task = (props) => {
         </div>
     );
 }
-const TaskHoc = Crud(Task, 'task', ndpv.i18n.taska);
-export default WithApi(TaskHoc);
+export default Crud(Task, 'task', ndpv.i18n.taska);
