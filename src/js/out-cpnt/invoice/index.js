@@ -278,14 +278,16 @@ export default class Invoice extends Component {
   reqWCOrder = () => {
     const urlParams = this.getUrlParams();
     const invoiceId = urlParams.get('id');
-
     ApiHelper.req({
       url: {
         path: `wc-order/${invoiceId}`,
       },
-      from: `pro`,
+      from: "pro",
     })
-      .then((res) => window.location.replace(res))
+      .then((res) => {
+        window.location.href = res.data;
+        return null;
+      })
       .catch((error) => console.log(error.message));
   };
 
