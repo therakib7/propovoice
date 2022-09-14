@@ -23,7 +23,7 @@ class Form extends Component {
 
         this.state = {
             form: this.initialState
-        };
+        }; 
     }
 
     handleChange = e => {
