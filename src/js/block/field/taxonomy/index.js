@@ -94,7 +94,7 @@ export default (props) => {
 	}
 
 	const handleDelete = (id) => {
-		if (confirm('Are you sure, to delete it?')) { //TODO: translation
+		if (confirm(ndpv.i18n.aConf)) {
 
 			let newForm = {}
 			newForm.taxonomy = props.taxonomy;
@@ -109,7 +109,7 @@ export default (props) => {
 
 			api.edit('taxonomies', newForm.id, newForm).then(resp => {
 				if (resp.data.success) {
-					toast.success('Successfully deleted'); //TODO: translation
+					toast.success(ndpv.i18n.aDel);
 					getData();
 				} else {
 					resp.data.data.forEach(function (value, index, array) {

@@ -221,11 +221,11 @@ class ListSingle extends Component {
     }
 
     deleteEntry = (type, id) => {
-        if (confirm('Are you sure want to delete it?')) { //TODO: translation
+        if (confirm(ndpv.i18n.aConf)) {
 
             this.props.remove(type + 's', id).then(resp => {
                 if (resp.data.success) {
-                    toast.success('Successfully deleted'); //TODO: translation
+                    toast.success(ndpv.i18n.aDel);
                     this.props.navigate(`/${type}`);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {

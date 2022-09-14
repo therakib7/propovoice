@@ -1,7 +1,7 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
-import useClickOutside from 'block/outside-click';
 import api from 'api';
+import useClickOutside from 'block/outside-click';
 import ContactForm from 'cpnt/contact/Form';
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export default (props) => {
 	const dropdownContent = useRef();
@@ -100,7 +100,7 @@ export default (props) => {
 				onClick={() => showDropdown()}
 			>
 
-				{!props.data &&  i18n.select +' ' +i18n.rec}
+				{!props.data && i18n.select + ' ' + i18n.rec}
 
 				{props.data && <>
 					{(props.data.type == 'person') ? props.data.first_name : props.data.org_name}
@@ -112,7 +112,7 @@ export default (props) => {
 					height={10}
 					viewBox="0 0 10 6"
 					fill="none"
-					
+
 				>
 					<path
 						d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"

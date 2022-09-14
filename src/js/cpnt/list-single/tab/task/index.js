@@ -41,10 +41,10 @@ const Task = (props) => {
     }
 
     const handleDelete = (type, id) => {
-        if (confirm('Are you sure, to delete it?')) { //TODO: translation 
+        if (confirm(ndpv.i18n.aConf)) {
             props.remove('tasks', id).then(resp => {
                 if (resp.data.success) {
-                    toast.success('Successfully deleted'); //TODO: translation
+                    toast.success(ndpv.i18n.aDel);
                     props.getLists({ status_id: activeTab });
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
