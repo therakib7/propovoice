@@ -20,7 +20,7 @@ const token = {
  * @return {Object} - http response
  *
  */
-const req = ({ method = `get`, url = {}, data = {}, from = `free` }) => {
+const req = ({ method = 'get', url = {}, data = {}, from = 'free' }) => {
   const baseUrl = getBaseUrl(from);
   const requestToUrl = urlBuilder(baseUrl, url);
   return axios({

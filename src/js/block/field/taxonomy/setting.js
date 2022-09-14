@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { toast } from 'react-toastify';
-import WithApi from 'hoc/Api';
+import { toast } from 'react-toastify'; 
+import api from 'api';
 import styles from './Items.module.scss'
 import Form from './Form';
 import Spinner from 'block/preloader/spinner';
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
-const Taxonomy = (props) => {
+export default (props) => {
 	const [loading, setLoading] = useState(false);
 	const [list, setList] = useState([]);
 	const [modal, setModal] = useState(false);
@@ -30,7 +30,8 @@ const Taxonomy = (props) => {
 		if ( props.extra_amount_type ) {
 			type = '&extra_amount_type=' + props.extra_amount_type;
 		}
-		props.getAll('taxonomies', 'taxonomy=' + props.taxonomy + type).then(resp => {
+
+		api.get('taxonomies', 'taxonomy=' + props.taxonomy + type).then(resp => { 
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 				setLoading(false);
@@ -63,8 +64,7 @@ const Taxonomy = (props) => {
 			newForm.taxonomy = props.taxonomy;
 			newForm.delete = true;
 			newForm.id = parseInt(id);
-
-			props.update('taxonomies', newForm.id, newForm).then(resp => {
+			api.edit('taxonomies', newForm.id, newForm).then(resp => {  
 				if (resp.data.success) {
 					toast.success('Successfully deleted'); //TODO: translation
 					getData();
@@ -106,7 +106,7 @@ const Taxonomy = (props) => {
 			reorder: finalArray,
 			taxonomy: props.taxonomy
 		}
-		props.create('taxonomies', newForm);
+		api.add('taxonomies', newForm);  
 		// call parent handler with new state representation
 		// this.props.reorderHandler(Items)
 
@@ -311,6 +311,4 @@ const Taxonomy = (props) => {
 			/>}
 		</>
 	);
-}
-
-export default WithApi(Taxonomy);  
+} 

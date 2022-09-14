@@ -143,7 +143,7 @@ const TableBody = props => {
     return <tbody>{rows}</tbody>;
 }
 
-const Table = (props) => {
+export default (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
@@ -156,5 +156,3 @@ const Table = (props) => {
         </>
     );
 }
-
-export default Table;
