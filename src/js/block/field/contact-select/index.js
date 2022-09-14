@@ -1,11 +1,9 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
-import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
-import WithApi from 'hoc/Api';
-
+import api from 'api';
 import ContactForm from 'cpnt/contact/Form';
 
-const Contact = (props) => {
+export default (props) => {
 	const dropdownContent = useRef();
 
 	const [list, setList] = useState([]);
@@ -36,7 +34,7 @@ const Contact = (props) => {
 			per_page: 10
 		}
 		let params = new URLSearchParams(args).toString();
-		props.getAll('contacts', params).then(resp => {
+		api.get('contacts', params).then(resp => {
 			if (resp.data.success) {
 				let toList = resp.data.data.result;
 				setList(toList);
@@ -64,29 +62,6 @@ const Contact = (props) => {
 		}
 	}
 
-
-	const handleDelete = (id) => {
-		if (confirm('Are you sure, to delete it?')) { //TODO: translation
-
-			let newForm = {}
-			newForm.taxonomy = props.taxonomy;
-			newForm.delete = true;
-			newForm.post_id = parseInt(props.id);
-			newForm.id = parseInt(id);
-
-			props.update('taxonomies', newForm.id, newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully deleted'); //TODO: translation
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});
-		}
-	}
-
 	const handleSelect = (data) => {
 		props.onChange(data);
 		setDropdown(false);
@@ -103,7 +78,7 @@ const Contact = (props) => {
 		if (timeout) clearTimeout(timeout);
 
 		timeout = setTimeout(() => {
-			props.getAll('contacts', 's=' + val).then(resp => {
+			api.get('contacts', 's=' + val).then(resp => {
 				if (resp.data.success) {
 					let toList = resp.data.data.result;
 					setList(toList);
@@ -168,5 +143,3 @@ const Contact = (props) => {
 		</>
 	);
 }
-
-export default WithApi(Contact);  
