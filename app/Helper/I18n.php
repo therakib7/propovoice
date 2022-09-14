@@ -174,6 +174,7 @@ class I18n
             'dactivate' => esc_html__('Deactivate', 'propovoice'), 
             // seal 
             'acceptDes' => esc_html__('Thanks for accepting', 'propovoice'), 
+            'declDes' => esc_html__('Sorry for declining', 'propovoice'), 
             'decDes' => esc_html__('Sorry for the decline', 'propovoice'), 
             'ovdDes' => __("You haven't pay yet", 'propovoice'), 
             'paidDes' => esc_html__('Thanks, We have received the payment', 'propovoice'), 
