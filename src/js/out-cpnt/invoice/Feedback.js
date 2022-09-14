@@ -28,12 +28,12 @@ class Feedback extends Component {
         form.feedback_type = this.props.data.feedback_type;
         this.setState({ form });
     }
-
     handleSubmit = (e) => {
         e.preventDefault();
 
         let form = { ...this.state.form }
         form.type = 'feedback';
+        const i18n = ndpv.i18n;
 
         this.props.create('emails', form).then(resp => {
             if (resp.data.success) {
@@ -41,10 +41,10 @@ class Feedback extends Component {
 
                 if (form.feedback_type == 'accept') {
                     this.props.handleSubmit('accept');
-                    toast.success('Thanks for accepting');
+                    toast.success(i18n.acceptDes);
                 } else {
                     this.props.handleSubmit('decline');
-                    toast.success('Sorry for declining');
+                    toast.success(i18n.declDes);
                 }
 
             } else {
@@ -120,7 +120,7 @@ class Feedback extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>       
 
                                 <div className="pv-modal-footer">
                                     <div className="row">
