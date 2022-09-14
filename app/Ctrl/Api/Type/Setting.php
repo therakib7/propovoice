@@ -105,6 +105,16 @@ class Setting {
                 }
             }
 
+            if ( $tab == 'payment_wc' ) {
+                $option = get_option('ndpv_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {
+                    $data['status'] = false; 
+                }
+            }
+
             if ( $tab == 'email_estimate_default' ) {
                 $option = get_option('ndpv_' . $tab);
 
@@ -237,6 +247,11 @@ class Setting {
                 $data['before'] = isset( $params['before'] ) ? ( $params['before'] ) : null;
                 $data['after'] = isset( $params['after'] ) ? ( $params['after'] ) : null; 
 
+                $option = update_option('ndpv_' . $tab , $data);                 
+            }
+
+            if ( $tab == 'payment_wc' ) { 
+                $data['status'] = isset( $params['status'] ) ? rest_sanitize_boolean( $params['status'] ) : null; 
                 $option = update_option('ndpv_' . $tab , $data);                 
             }
 

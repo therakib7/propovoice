@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-import Api from 'api/setting';
+import api from 'api';
 import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
 
@@ -23,7 +23,7 @@ export default class Reminder extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=' + this.props.path + '_reminder')
+        api.get('settings', 'tab=' + this.props.path + '_reminder')
             .then(resp => {
                 if (resp.data.success) {
                     this.setState({ form: resp.data.data });
@@ -61,16 +61,15 @@ export default class Reminder extends Component {
         let form = this.state.form;
         form.tab = this.props.path + '_reminder';
 
-        Api.create(form)
-            .then(resp => {
-                if (resp.data.success) {
-                    toast.success(ndpv.i18n.aUpd);
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            })
+        api.add('settings', form).then(resp => {
+            if (resp.data.success) {
+                toast.success(ndpv.i18n.aUpd);
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        })
     }
 
     render() {

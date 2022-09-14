@@ -6,7 +6,7 @@ import Share from './Share';
 import Send from './Send';
 import ProLabel from 'block/pro-alert/label';
 
-import ApiSetting from 'api/setting';
+import api from 'api';
 
 const EditDownload = props => {
 
@@ -23,7 +23,7 @@ const EditDownload = props => {
                     height={14}
                     viewBox="0 0 14 14"
                     fill="none"
-                    
+
                 >
                     <path
                         d="M12.5 3.505L11.167 4.84V1.667h-6v3.334H1.833v7.333h9.334v-1.838L12.5 9.163v3.843a.662.662 0 01-.662.661H1.162a.666.666 0 01-.662-.671V4.334l4.002-4h7.33a.67.67 0 01.668.661v2.51zm.519 1.367l.942.943-5.185 5.186-.944-.002.001-.941 5.186-5.185v-.001z"
@@ -54,13 +54,11 @@ export default class Preview extends Component {
     componentDidMount() {
         this.isPrvwLoad();
 
-        ApiSetting.getAll('tab=email_' + this.props.path + '_default')
-            .then(resp => {
-                if (resp.data.success) {
-                    this.setState({ mail: resp.data.data });
-                }
-            });
-
+        api.get('settings', 'tab=email_' + this.props.path + '_default').then(resp => {
+            if (resp.data.success) {
+                this.setState({ mail: resp.data.data });
+            }
+        });
     }
 
     isPrvwLoad = () => {
@@ -102,7 +100,7 @@ export default class Preview extends Component {
                                             height={14}
                                             viewBox="0 0 12 14"
                                             fill="none"
-                                            
+
                                         >
                                             <path
                                                 d="M6.667 7h2L6 9.668 3.333 7.001h2V4.334h1.334v2.667zM8 1.668H1.333v10.667h9.334v-8H8V1.667zM0 .995C0 .63.298.334.666.334h8L12 3.667v9.329a.666.666 0 01-.662.671H.662A.666.666 0 010 13.006V.996z"
@@ -124,7 +122,7 @@ export default class Preview extends Component {
                                             height={14}
                                             viewBox="0 0 15 14"
                                             fill="none"
-                                            
+
                                         >
                                             <path
                                                 d="M3.5 11.667h-2a.667.667 0 01-.667-.666V4.334a.667.667 0 01.667-.667h2V1.001a.667.667 0 01.667-.667h6.666a.667.667 0 01.667.667v2.666h2a.666.666 0 01.667.667v6.667a.667.667 0 01-.667.666h-2v1.334a.667.667 0 01-.667.666H4.167a.667.667 0 01-.667-.666v-1.334zm0-1.333v-.667a.667.667 0 01.667-.666h6.666a.667.667 0 01.667.666v.667h1.333V5.001H2.167v5.333H3.5zm1.333-8.667v2h5.334v-2H4.833zm0 8.667v2h5.334v-2H4.833zm-2-4.667h2v1.334h-2V5.667z"
@@ -145,7 +143,7 @@ export default class Preview extends Component {
                                         width={14}
                                         height={12}
                                         viewBox="0 0 14 12"
-                                        fill="none" 
+                                        fill="none"
                                     >
                                         <path
                                             d="M6.667 8.333H5.333a6 6 0 00-5.312 3.206 6.667 6.667 0 016.645-7.207V.667l7 5.667-7 5.666V8.333zM5.333 6.999H8v2.206l3.547-2.872L8 3.46v2.205H6.667a5.321 5.321 0 00-4.038 1.849 7.325 7.325 0 012.704-.516z"
@@ -189,7 +187,7 @@ export default class Preview extends Component {
                                             height={14}
                                             viewBox="0 0 12 14"
                                             fill="none"
-                                            
+
                                         >
                                             <path
                                                 d="M6.667 7h2L6 9.668 3.333 7.001h2V4.334h1.334v2.667zM8 1.668H1.333v10.667h9.334v-8H8V1.667zM0 .995C0 .63.298.334.666.334h8L12 3.667v9.329a.666.666 0 01-.662.671H.662A.666.666 0 010 13.006V.996z"
@@ -212,7 +210,7 @@ export default class Preview extends Component {
                                             height={14}
                                             viewBox="0 0 15 14"
                                             fill="none"
-                                            
+
                                         >
                                             <path
                                                 d="M3.5 11.667h-2a.667.667 0 01-.667-.666V4.334a.667.667 0 01.667-.667h2V1.001a.667.667 0 01.667-.667h6.666a.667.667 0 01.667.667v2.666h2a.666.666 0 01.667.667v6.667a.667.667 0 01-.667.666h-2v1.334a.667.667 0 01-.667.666H4.167a.667.667 0 01-.667-.666v-1.334zm0-1.333v-.667a.667.667 0 01.667-.666h6.666a.667.667 0 01.667.666v.667h1.333V5.001H2.167v5.333H3.5zm1.333-8.667v2h5.334v-2H4.833zm0 8.667v2h5.334v-2H4.833zm-2-4.667h2v1.334h-2V5.667z"
@@ -234,7 +232,7 @@ export default class Preview extends Component {
                                         width={14}
                                         height={12}
                                         viewBox="0 0 14 12"
-                                        fill="none" 
+                                        fill="none"
                                     >
                                         <path
                                             d="M6.667 8.333H5.333a6 6 0 00-5.312 3.206 6.667 6.667 0 016.645-7.207V.667l7 5.667-7 5.666V8.333zM5.333 6.999H8v2.206l3.547-2.872L8 3.46v2.205H6.667a5.321 5.321 0 00-4.038 1.849 7.325 7.325 0 012.704-.516z"
@@ -247,13 +245,13 @@ export default class Preview extends Component {
                                     className="pv-btn pv-btn-medium pv-bg-hover-blue pv-bg-blue pv-br-4"
                                     onClick={() => this.props.showEmailModal()} >
                                     {i18n.send} {i18n.email}
-                                    <ProLabel blueBtn /> 
+                                    <ProLabel blueBtn />
                                     {!wage.length && <svg
                                         className="pv-ml-10 pv-mr-0"
                                         width={6}
                                         height={12}
                                         viewBox="0 0 6 9"
-                                        fill="none" 
+                                        fill="none"
                                     >
                                         <path
                                             d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
