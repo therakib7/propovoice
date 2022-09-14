@@ -27,8 +27,8 @@ const EditDownload = (props) => {
         trigger={() => (
           <button
             className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-            // style={{ color: '#000', marginRight: '5px' }}
-            // onClick={() => props.handleDownload()}
+          // style={{ color: '#000', marginRight: '5px' }}
+          // onClick={() => props.handleDownload()}
           >
             <svg width={12} height={14} viewBox="0 0 12 14" fill="none">
               <path
@@ -47,8 +47,8 @@ const EditDownload = (props) => {
         trigger={() => (
           <button
             className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-            // style={{ color: '#000', marginRight: '5px' }}
-            // onClick={() => props.handlePrint()}
+          // style={{ color: '#000', marginRight: '5px' }}
+          // onClick={() => props.handlePrint()}
           >
             <svg width={15} height={14} viewBox="0 0 15 14" fill="none">
               <path
@@ -123,13 +123,13 @@ const InvoiceBtn = (props) => {
           >
             {i18n.pay}
           </button>
-          {/* <button
+          <button
             className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
             style={{ marginLeft: "10px" }}
-            onClick={() => props.handleChange(`wc-order`)}
+            onClick={() => props.handleChange('wc-order')}
           >
             WC Pay
-          </button> */}
+          </button>
         </>
       )}
     </>
@@ -270,14 +270,22 @@ export default class Invoice extends Component {
     }
   };
 
-  reqWCOrder = (_params) => {
+  getUrlParams = () => {
+    const queryString = window.location.search;
+    return new URLSearchParams(queryString);
+  };
+
+  reqWCOrder = () => {
+    const urlParams = this.getUrlParams();
+    const invoiceId = urlParams.get('id');
+
     ApiHelper.req({
       url: {
-        path: `wc-order/22`,
+        path: `wc-order/${invoiceId}`,
       },
       from: `pro`,
     })
-      .then((res) => console.log(res))
+      .then((res) => window.location.replace(res))
       .catch((error) => console.log(error.message));
   };
 
