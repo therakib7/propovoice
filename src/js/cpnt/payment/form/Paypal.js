@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Add } from 'block/icon';
+
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 
 class FormPaypal extends Component {
     constructor(props) {
@@ -55,6 +59,10 @@ class FormPaypal extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
         this.props.handleSubmit(this.state.form);
         // this.setState({ form: this.initialState });
     }
@@ -66,26 +74,7 @@ class FormPaypal extends Component {
                 <div className="pv-modal-content">
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()} >
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} Paypal</h2>
                         <p>Please fill up necessary informaiton in the form.</p>
@@ -204,7 +193,7 @@ class FormPaypal extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save}
+                                        {i18n.save} <ProLabel blueBtn />
                                     </button>
                                 </div>
                             </div>

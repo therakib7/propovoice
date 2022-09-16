@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-import Api from 'api/setting';
+import api from 'api';
 
 export default class Recurring extends Component {
     constructor(props) {
@@ -21,12 +21,11 @@ export default class Recurring extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=estimate_recurring')
-            .then(resp => {
-                if (resp.data.success) {
-                    this.setState({ form: resp.data.data });
-                }
-            });
+        api.get('settings', 'tab=estimate_recurring').then(resp => {
+            if (resp.data.success) {
+                this.setState({ form: resp.data.data });
+            }
+        });
     }
 
     handleChange = (e, type) => {
@@ -54,16 +53,15 @@ export default class Recurring extends Component {
         let form = this.state.form;
         form.tab = 'estimate_recurring';
 
-        Api.create(form)
-            .then(resp => {
-                if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            })
+        api.add('settings', form).then(resp => {
+            if (resp.data.success) {
+                toast.success(ndpv.i18n.aUpd);
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        })
     }
 
     render() {
@@ -72,14 +70,14 @@ export default class Recurring extends Component {
 
                 <div className="row">
                     <div className="col">
-                         
+
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col">
                         <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                        {ndpv.i18n.save}
+                            {ndpv.i18n.save}
                         </button>
                     </div>
                 </div>

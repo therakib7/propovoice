@@ -19,19 +19,7 @@ export default class Main extends Component {
             formModal: false,
             currentTab: this.props.tab,
             list: [],
-            singleList: [],
-            leadField: {
-                first_name: 'Name',
-                org_name: 'Org Name',
-                email: 'Email',
-                mobile: 'Mobile',
-                web: 'Web',
-                source_id: 'Source', //tax
-                level_id: 'Level', //tax 
-                budget: 'Budget',
-                currency: 'USD',
-                desc: 'Description'
-            }
+            singleList: [], 
         };
     }
 
@@ -70,7 +58,7 @@ export default class Main extends Component {
             }; 
             this.props.create('settings', form).then(resp => {
                 if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
+                    toast.success(ndpv.i18n.aUpd);
                     this.getList();
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
@@ -91,7 +79,7 @@ export default class Main extends Component {
     }
 
     render() {
-        const { loading, currentTab, list, singleList, leadField } = this.state;
+        const { loading, currentTab, list, singleList } = this.state;
         const i18n = ndpv.i18n;
         return (
             <>

@@ -1,11 +1,9 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
-import { toast } from 'react-toastify';
+import api from 'api';
 import useClickOutside from 'block/outside-click';
-import WithApi from 'hoc/Api';
-
 import ContactForm from 'cpnt/contact/Form';
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
-const Contact = (props) => {
+export default (props) => {
 	const dropdownContent = useRef();
 
 	const [list, setList] = useState([]);
@@ -36,7 +34,7 @@ const Contact = (props) => {
 			per_page: 10
 		}
 		let params = new URLSearchParams(args).toString();
-		props.getAll('contacts', params).then(resp => {
+		api.get('contacts', params).then(resp => {
 			if (resp.data.success) {
 				let toList = resp.data.data.result;
 				setList(toList);
@@ -64,29 +62,6 @@ const Contact = (props) => {
 		}
 	}
 
-
-	const handleDelete = (id) => {
-		if (confirm('Are you sure, to delete it?')) { //TODO: translation
-
-			let newForm = {}
-			newForm.taxonomy = props.taxonomy;
-			newForm.delete = true;
-			newForm.post_id = parseInt(props.id);
-			newForm.id = parseInt(id);
-
-			props.update('taxonomies', newForm.id, newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success('Successfully deleted'); //TODO: translation
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});
-		}
-	}
-
 	const handleSelect = (data) => {
 		props.onChange(data);
 		setDropdown(false);
@@ -103,7 +78,7 @@ const Contact = (props) => {
 		if (timeout) clearTimeout(timeout);
 
 		timeout = setTimeout(() => {
-			props.getAll('contacts', 's=' + val).then(resp => {
+			api.get('contacts', 's=' + val).then(resp => {
 				if (resp.data.success) {
 					let toList = resp.data.data.result;
 					setList(toList);
@@ -125,7 +100,7 @@ const Contact = (props) => {
 				onClick={() => showDropdown()}
 			>
 
-				{!props.data &&  i18n.select +' ' +i18n.rec}
+				{!props.data && i18n.select + ' ' + i18n.rec}
 
 				{props.data && <>
 					{(props.data.type == 'person') ? props.data.first_name : props.data.org_name}
@@ -137,7 +112,7 @@ const Contact = (props) => {
 					height={10}
 					viewBox="0 0 10 6"
 					fill="none"
-					
+
 				>
 					<path
 						d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
@@ -148,7 +123,7 @@ const Contact = (props) => {
 
 			{dropdown && <div className="pv-dropdown-content pv-show" ref={dropdownContent}>
 				<div className="pv-search-field">
-					<input type="text" onChange={handleFindContact} placeholder="Search" />
+					<input type="text" onChange={handleFindContact} placeholder={i18n.search} />
 				</div>
 				<button onClick={(e) => { openModal(e, 'new') }}>+ {i18n.add} {i18n.new}</button>
 
@@ -168,5 +143,3 @@ const Contact = (props) => {
 		</>
 	);
 }
-
-export default WithApi(Contact);  

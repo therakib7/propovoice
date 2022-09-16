@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import ColorPicker from 'block/color-picker';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
-import WithApi from 'hoc/Api';
+import api from 'api';
+import { Add } from 'block/icon';
 
-class Form extends Component {
+export default class Form extends Component {
     constructor(props) {
         super(props);
 
@@ -15,6 +16,8 @@ class Form extends Component {
             bg_color: '',
             icon: null,
             val_type: 'fixed',
+            tax_cal: '',
+            fee_cal: '',
             show: true,
         };
 
@@ -94,9 +97,9 @@ class Form extends Component {
             if (this.props.extra_amount_type) {
                 newForm.extra_amount_type = this.props.extra_amount_type;
             }
-            this.props.create('taxonomies', newForm).then(resp => {
+            api.add('taxonomies', newForm).then(resp => {
                 if (resp.data.success) {
-                    toast.success('Successfully added'); //TODO: translation
+                    toast.success(ndpv.i18n.aAdd);
                     this.props.reload();
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
@@ -105,9 +108,9 @@ class Form extends Component {
                 }
             });
         } else {
-            this.props.update('taxonomies', newForm.id, newForm).then(resp => {
+            api.edit('taxonomies', newForm.id, newForm).then(resp => {
                 if (resp.data.success) {
-                    toast.success('Successfully updated'); //TODO: translation
+                    toast.success(ndpv.i18n.aUpd);
                     this.props.reload();
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
@@ -129,32 +132,14 @@ class Form extends Component {
     render() {
         const form = this.state.form;
         const i18n = ndpv.i18n;
+        const eat = this.props.extra_amount_type;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content pv-modal-style-two pv-modal-small">
 
                     <div className="pv-modal-header">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {this.props.title}</h2>
                     </div>
@@ -181,7 +166,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-bg_color">
-                                        {i18n.bg} {i18n.color}
+                                            {i18n.bg} {i18n.color}
                                         </label>
                                         <ColorPicker color={form.bg_color} onChange={(val) => this.handleColorChange(val, 'bg_color')} />
                                     </div>
@@ -190,7 +175,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-color">
-                                        {i18n.text} {i18n.color}
+                                            {i18n.text} {i18n.color}
                                         </label>
                                         <ColorPicker color={form.color} onChange={(val) => this.handleColorChange(val, 'color')} />
                                     </div>
@@ -219,7 +204,7 @@ class Form extends Component {
                                                     className='pv-mr-0'
                                                     viewBox="0 0 10 6"
                                                     fill="none"
-                                                    
+
                                                 >
                                                     <path
                                                         d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
@@ -236,13 +221,55 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-icon">
-                                        {i18n.icon}
+                                            {i18n.icon}
                                         </label>
                                         <Upload data={form.icon} small changeHandler={this.handleLogoChange} />
                                     </div>
                                 </div>}
 
-                            {this.props.extra_amount_type &&
+                            {this.props.tax_cal &&
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-label">{i18n.tax} {i18n.cal}</label>
+                                        <select name="tax_cal" value={form.tax_cal} onChange={this.handleChange}>
+                                            <option value="">{i18n.with} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
+                                            <option value="1">{i18n.witho} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            }
+
+                            {this.props.fee_cal &&
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-label">{i18n.fee} {i18n.cal}</label>
+                                        <select name="fee_cal" value={form.fee_cal} onChange={this.handleChange}>
+                                            <option value="">{i18n.with} {i18n.fee}</option>
+                                            <option value="1">{i18n.witho} {i18n.fee}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            }
+
+                            {this.props.show &&
+                                <div className="row">
+                                    <div className="col">
+                                        <label id="form-show">{i18n.def}</label>
+                                        <div className="pv-field-switch pv-mt-3 pv-ml-10">
+                                            <label className='pv-switch'>
+                                                <input type='checkbox'
+                                                    id="form-show"
+                                                    name='show'
+                                                    checked={form.show ? 'checked' : ''}
+                                                    onChange={this.handleChange}
+                                                />
+                                                <span className='pv-switch-slider pv-round'></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>}
+
+                            {eat &&
                                 <>
                                     <div className="row">
                                         <div className="col-md">
@@ -290,5 +317,4 @@ class Form extends Component {
             </div>
         );
     }
-}
-export default WithApi(Form); 
+} 

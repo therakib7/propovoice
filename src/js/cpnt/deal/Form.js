@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import WithApi from 'hoc/Api';
+import api from 'api';
 import WithRouter from 'hoc/Router';
-
+import { Add } from 'block/icon';
+import Currency from 'block/field/currency';
 import Select from 'react-select';
 import Contact from 'block/field/contact';
+import { sprintf } from 'sprintf-js'; 
 
 class Form extends Component {
     constructor(props) {
@@ -44,6 +46,10 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
+    currencyChange = val => {
+        this.setState({ form: { ...this.state.form, ['currency']: val } });
+    }
+
     handleStageChange = val => {
         this.setState({ form: { ...this.state.form, ['stage_id']: val } });
     }
@@ -53,7 +59,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
+        api.get('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
             if (resp.data.success) {
                 if (this.state.form.stage_id) {
                     this.setState({
@@ -144,7 +150,7 @@ class Form extends Component {
 
             if (this.props.modalType == 'move') {
 
-                this.props.create('deals', form).then(resp => {
+                api.add('deals', form).then(resp => {
                     if (resp.data.success) {
                         toast.success('Successfully moved to deal');
                         let id = resp.data.data;
@@ -159,13 +165,13 @@ class Form extends Component {
                 });
 
             } else {
-                this.props.update('deals', form.id, form);
+                api.edit('deals', form.id, form);
                 this.props.close();
                 this.props.reload();
             }
         } else {
             let args = null;
-            if ( !this.props.boardView ) {
+            if (!this.props.boardView) {
                 args = { table_view: true };
             }
             this.props.handleSubmit(form, null, args);
@@ -205,7 +211,7 @@ class Form extends Component {
         this.setState({ form });
     }
 
-    render() { 
+    render() {
         const stageList = this.state.stages;
         const tagList = this.state.tags;
         const form = this.state.form;
@@ -226,31 +232,13 @@ class Form extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.deal + ' ' +i18n.from + ' ' + i18n.here}</p>
-                    </div>
+                        <p>{sprintf(i18n.formDesc, i18n.deal)}</p>
 
+                    </div>
+                     
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
                             <div className="pv-form-style-one">
@@ -296,7 +284,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-title">
-                                        {i18n.title}
+                                            {i18n.title}
                                         </label>
 
                                         <input
@@ -344,17 +332,9 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
-                                        {i18n.cur}
-                                        </label>
-
-                                        <input
-                                            id="field-currency"
-                                            type="text"
-                                            readOnly
-                                            name="currency"
-                                            value={form.currency}
-                                            onChange={this.handleChange}
-                                        />
+                                            {i18n.cur}
+                                        </label> 
+                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
                                     </div>
 
                                 </div>
@@ -362,7 +342,7 @@ class Form extends Component {
                                 {!wage.length && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-probability">
-                                        {i18n.proba} <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
+                                            {i18n.proba} <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
                                         </label>
 
                                         <input
@@ -380,7 +360,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
-                                        {i18n.tag}
+                                            {i18n.tag}
                                         </label>
                                         <Select
                                             className={'pv-field-select'}
@@ -397,7 +377,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-desc">
-                                        {i18n.desc}
+                                            {i18n.desc}
                                         </label>
 
                                         <textarea
@@ -413,7 +393,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-note">
-                                        {i18n.note}
+                                            {i18n.note}
                                         </label>
 
                                         <textarea
@@ -446,6 +426,5 @@ class Form extends Component {
         );
     }
 }
-
-const FormData = WithApi(Form);
-export default WithRouter(FormData);  
+ 
+export default WithRouter(Form);  

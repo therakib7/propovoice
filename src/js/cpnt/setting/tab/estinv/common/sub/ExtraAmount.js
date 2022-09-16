@@ -6,7 +6,7 @@ import Taxonomy from 'block/field/taxonomy/setting';
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
-export default class AdditionalAmount extends Component {
+export default class ExtraAmount extends Component {
     constructor(props) {
         super(props);
 
@@ -15,7 +15,6 @@ export default class AdditionalAmount extends Component {
                 item_tax: false,
                 // item_tax_val_type: '',
             }
-
         };
     }
 
@@ -48,7 +47,7 @@ export default class AdditionalAmount extends Component {
 
             this.props.create('settings', form).then(resp => {
                 /* if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
+                    toast.success(ndpv.i18n.aUpd);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -98,7 +97,7 @@ export default class AdditionalAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.tax} {i18n.fields}</label>
-                        <Taxonomy taxonomy='extra_amount' title={i18n.tax+' '+i18n.field} extra_amount_type={'tax'} />
+                        <Taxonomy taxonomy='extra_amount' title={i18n.tax+' '+i18n.field} extra_amount_type='tax' tax_cal />
                     </div>
                     <div className="col">
                     </div>
@@ -107,7 +106,7 @@ export default class AdditionalAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.addi} {i18n.fee} {i18n.fields}</label>
-                        <Taxonomy taxonomy='extra_amount' title={i18n.addi +' ' + i18n.fee + ' ' +i18n.field} extra_amount_type={'fee'} />
+                        <Taxonomy taxonomy='extra_amount' title={i18n.addi +' ' + i18n.fee + ' ' +i18n.field} extra_amount_type='fee' tax_cal />
                     </div>
                     <div className="col">
                     </div>
@@ -116,7 +115,7 @@ export default class AdditionalAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.discount} {i18n.fields}</label>
-                        <Taxonomy taxonomy='extra_amount' title={i18n.discount+' '+i18n.field} extra_amount_type={'discount'} />
+                        <Taxonomy taxonomy='extra_amount' title={i18n.discount+' '+i18n.field} extra_amount_type='discount' tax_cal fee_cal />
                     </div>
                     <div className="col">
                     </div>

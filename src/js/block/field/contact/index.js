@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import WithApi from 'hoc/Api';
-
-class Contact extends Component {
+import api from 'api';
+export default class Contact extends Component {
 
     constructor(props) {
         super(props);
@@ -47,12 +46,12 @@ class Contact extends Component {
         if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             if (name == 'first_name') {
-                this.props.getAll('persons', 'first_name=' + value).then(resp => {
+                api.get('persons', 'first_name=' + value).then(resp => {
                     let persons = resp.data.data.result;
                     this.setState({ personModal: true, personList: persons });
                 });
             } else {
-                this.props.getAll('organizations', 'name=' + value).then(resp => {
+                api.get('organizations', 'name=' + value).then(resp => {
                     let orgs = resp.data.data.result;
                     this.setState({ orgModal: true, orgList: orgs });
                 });
@@ -135,6 +134,4 @@ class Contact extends Component {
             </div>
         );
     }
-}
-
-export default WithApi(Contact);  
+} 

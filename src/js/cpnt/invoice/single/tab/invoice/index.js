@@ -8,7 +8,7 @@ import pro from 'block/pro-alert';
 
 import Spinner from 'block/preloader/spinner';
 //self component
-import FromTo from './FromTo';
+import FromTo from './FromTo'; 
 import Items from './Items'
 import PaymentInfo from './PaymentInfo';
 import Total from './Total';
@@ -25,14 +25,12 @@ import Upload from 'block/field/upload';
 const InvTemplate = lazy(() => import('inv-tmpl'));
 const Style = lazy(() => import('./sidebar/Style'));
 const Payment = lazy(() => import('./sidebar/Payment'));
-const AdditionalAmount = lazy(() => import('./sidebar/AdditionalAmount'));
+const Currency = lazy(() => import('./sidebar/Currency'));
+const ExtraAmount = lazy(() => import('./sidebar/ExtraAmount'));
 const Reminder = lazy(() => import('./sidebar/Reminder'));
 const Recurring = lazy(() => import('./sidebar/Recurring'));
 
-class Invoice extends Component {
-
-	locale = 'en-US'
-	currency = 'USD'
+class Invoice extends Component { 
 
 	constructor(props) {
 		super(props);
@@ -57,11 +55,7 @@ class Invoice extends Component {
 			sidebarActive: '',
 			currentTab: '',
 			currentTabIndex: null,
-			msg: {
-				create: 'Successfully Added',
-				update: 'Successfully Updated',
-				delete: 'Successfully Deleted',
-				confirm: 'Are you sure to delete it?',
+			msg: { 
 				saveTxt: ndpv.i18n.save
 			},
 			shareModal: false,
@@ -78,8 +72,9 @@ class Invoice extends Component {
 					title_font: '',
 				},
 				date: new Date(),
-				due_date: new Date(),
+				due_date: new Date(), 
 				currency: 'USD',
+				lang: 'en',
 				template: null,
 				from: null,
 				to: null,
@@ -105,7 +100,7 @@ class Invoice extends Component {
 						title: '',
 						desc: '',
 						qty: 0,
-						qty_type: 'unit',
+						qty_type: '',
 						price: 0,
 						tax: 0,
 						tax_type: 'fixed',
@@ -191,10 +186,12 @@ class Invoice extends Component {
 			let invoice = { ...this.state.invoice }
 			invoice.due_date = dueDate;
 
+			let path = this.props.path == 'invoice' ? 'invoice' : 'estimate'; 
+			invoice.path = path;
+
 			//deal, project id
 			if (this.props.module_id) {
 				invoice.module_id = parseInt(this.props.module_id);
-				console.log(invoice);
 			}
 
 			this.setState({
@@ -214,11 +211,7 @@ class Invoice extends Component {
 
 	componentWillUnmount() {
 		document.body.style.backgroundColor = "#fff";
-	}
-
-	changeCurrency = () => {
-
-	};
+	} 
 
 	bgColor = () => {
 		if (this.state.currentTab == 'info' || this.state.currentTab == 'preview') {
@@ -271,6 +264,24 @@ class Invoice extends Component {
 		} else {
 			invoice.due_date = date;
 		}
+		this.setState({ invoice });
+	}
+
+	currencyChange = ( val, type ) => {
+        let invoice = { ...this.state.invoice }
+
+		if (type == 'lang') {
+			invoice.lang = val;
+		} else {
+			invoice.currency = val;
+		}
+		this.setState({ invoice });
+    } 
+
+	onCurrencyDefault = (data) => {
+		let invoice = { ...this.state.invoice } 
+		invoice.currency = data.currency;
+		invoice.lang = data.lang;
 		this.setState({ invoice });
 	}
 
@@ -372,7 +383,7 @@ class Invoice extends Component {
 					title: '',
 					desc: '',
 					qty: 0,
-					qty_type: 'unit',
+					qty_type: '',
 					price: 0,
 					tax: 0,
 					tax_type: 'fixed'
@@ -402,10 +413,8 @@ class Invoice extends Component {
 
 	handleSave = () => {
 		let editId = this.props.id;
-		if (!editId) {
-			let path = this.props.path == 'invoice' ? 'invoice' : 'estimate';
-			let invoice = { ...this.state.invoice }
-			invoice.path = path;
+		if (!editId) { 
+			let invoice = { ...this.state.invoice } 
 
 			Api.create(invoice)
 				.then(resp => {
@@ -414,7 +423,7 @@ class Invoice extends Component {
 						this.updateEdit(resp.data.data);
 						this.props.routeChange(resp.data.data.id);
 
-						toast.success(this.state.msg.create, {
+						toast.success(ndpv.i18n.aAdd, {
 							position: toast.POSITION.BOTTOM_RIGHT
 						});
 						this.continueTab('info');
@@ -428,7 +437,7 @@ class Invoice extends Component {
 			Api.update(editId, this.state.invoice)
 				.then(resp => {
 					if (resp.data.success) {
-						toast.success(this.state.msg.update, {
+						toast.success(ndpv.i18n.aUpd, {
 							position: toast.POSITION.BOTTOM_RIGHT
 						});
 						this.continueTab('info');
@@ -442,24 +451,26 @@ class Invoice extends Component {
 	}
 
 	formatCurrency = (amount) => {
-		return (new Intl.NumberFormat(this.locale, {
+		const {currency, lang } = this.state.invoice; 
+		return (new Intl.NumberFormat(lang, {
 			style: 'currency',
-			currency: this.currency,
-			minimumFractionDigits: 2,
+			currency: currency,
+			minimumFractionDigits: 0,
 			maximumFractionDigits: 2
 		}).format(amount))
 	}
 
 	calcItemsTotal = () => {
 		return this.state.invoice.items.reduce((prev, cur) => {
-			let tax_total = 0;
-			if (this.state.item_tax && cur.tax) {
+			let tax_total = 0; 
+			if (this.state.invoice.item_tax && cur.tax) {
 				if (cur.tax_type == 'percent') {
 					tax_total += cur.price * (cur.tax / 100);
 				} else {
 					tax_total += parseFloat(cur.tax);
-				}
+				} 
 			}
+			
 			return prev + (cur.qty * cur.price) + tax_total;
 		}, 0)
 	}
@@ -493,10 +504,16 @@ class Invoice extends Component {
 			this.handleSave();
 		}
 
-		this.setState({
+		const state = {
 			currentTab: id,
 			currentTabIndex: index
-		});
+		};
+
+		if ( id == 'info' ) {
+			state.sidebarActive = '';
+		}		
+
+		this.setState(state);
 	}
 
 	backTab = () => {
@@ -733,8 +750,7 @@ class Invoice extends Component {
 											width={9}
 											height={11}
 											viewBox="0 0 6 9"
-											fill="none"
-											
+											fill="none" 
 										>
 											<path
 												d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
@@ -914,23 +930,7 @@ class Invoice extends Component {
 															<div className="pv-info-input-field">
 																<DateField date={invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
 															</div>
-														</div>
-
-														{false && <div className="pv-info-form-list">
-															<div className="pv-info-lavel">
-																<label htmlFor="info-currency">{i18n.cur}:</label>
-															</div>
-															<div className="pv-info-input-field">
-																<input
-																	type="text"
-																	name="currency"
-																	// value={invoice.currency}
-																	value='USD'
-																	readOnly
-																// onChange={() => this.changeCurrency}
-																/>
-															</div>
-														</div>}
+														</div> 
 
 													</div>
 													{/* ./ pv-info-form */}
@@ -961,6 +961,7 @@ class Invoice extends Component {
 										<Items
 											items={invoice.items}
 											item_label={invoice.item_label}
+											currency={invoice.currency}
 											labelChange={this.onItemLabelChange}
 											item_tax={invoice.item_tax}
 											currencyFormatter={this.formatCurrency}
@@ -1073,19 +1074,32 @@ class Invoice extends Component {
 													{(!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
 														<i />
-														<h3 className='pv-title-small'>{i18n.accept} {i18n.payment}</h3>
+														<h3 className='pv-title-small'>{i18n.acptd} {i18n.payment}</h3>
 														<Payment
 															handleChange={this.onPaymentChange}
 															data={invoice}
 														// handleSave={this.handleSave}
 														/>
 													</li>}
+													
+													{/* {(!sidebarActive || sidebarActive == 'currency') && <li>
+														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('currency')} />
+														<i />
+														<h3 className='pv-title-small'>{i18n.cur} <ProLabel /></h3>
+														<Currency
+															{...this.props}
+															currency={invoice.currency} 
+															handleDefault={this.onCurrencyDefault}
+															lang={invoice.lang}
+															onChange={this.currencyChange}
+														/> 
+													</li>} */}
 
 													{(!sidebarActive || sidebarActive == 'extra-field') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('extra-field')} />
 														<i />
 														<h3 className='pv-title-small'>{i18n.addi} {i18n.amt}</h3>
-														<AdditionalAmount
+														<ExtraAmount
 															{...this.props}
 															item_tax={invoice.item_tax}
 															itemTaxChange={this.itemTaxChange}
@@ -1146,7 +1160,6 @@ class Invoice extends Component {
 															data={invoice.recurring}
 														/>
 													</li>}
-
 												</Suspense>
 											</ul>
 										</div> 

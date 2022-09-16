@@ -124,7 +124,7 @@ const Invoice = class Invoice extends Component {
 
     deleteEntry = (type, index) => {
 
-        if (confirm(this.context.CrudMsg.confirm)) {
+        if (confirm(ndpv.i18n.aConf)) {
 
             if (type == 'single') {
                 /* this.setState({
@@ -137,7 +137,7 @@ const Invoice = class Invoice extends Component {
             Api.remove(ids)
                 .then(resp => {
                     if (resp.data.success) {
-                        toast.success(this.context.CrudMsg.delete);
+                        toast.success(ndpv.i18n.aDel);
                         if (type != 'single') {
                             this.setState({ checkedBoxes: [] });
                         }

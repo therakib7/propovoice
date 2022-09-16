@@ -156,7 +156,7 @@ class Contact
                 }
                 $query_data['img'] = $imgData;
     
-                $query_data['date'] = get_the_time('j-M-Y');
+                $query_data['date'] = get_the_time( get_option('date_format') );
                 $data[] = $query_data;
             }
             wp_reset_postdata();
@@ -240,7 +240,7 @@ class Contact
             $query_data['tags'] = $tagList;
         }
 
-        $query_data['date'] = get_the_time('j-M-Y');
+        $query_data['date'] = get_the_time( get_option('date_format') );
 
         wp_send_json_success($query_data);
     }

@@ -1,11 +1,11 @@
-import WithApi from 'hoc/Api';
 import WithRouter from 'hoc/Router';
 import React, { Component, lazy } from 'react';
 import { toast } from 'react-toastify';
-
+import api from 'api';
 import Contact from 'block/field/contact';
 import { Cross } from 'block/icon';
 import Select from 'react-select';
+import Currency from 'block/field/currency';
 
 const DateField = lazy(() => import('block/date-picker'));
 
@@ -48,6 +48,10 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
+    currencyChange = val => {
+        this.setState({ form: { ...this.state.form, ['currency']: val } });
+    }
+
     handleStageChange = val => {
         this.setState({ form: { ...this.state.form, ['status_id']: val } });
     }
@@ -57,7 +61,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=project_status,tag').then(resp => {
+        api.get('taxonomies', 'taxonomy=project_status,tag').then(resp => {
             if (resp.data.success) {
                 if (this.state.form.status_id) {
                     this.setState({
@@ -153,7 +157,7 @@ class Form extends Component {
 
             if (this.props.modalType == 'move') {
 
-                this.props.create('projects', form).then(resp => {
+                api.add('projects', form).then(resp => {
                     if (resp.data.success) {
                         toast.success('Successfully moved to project');
                         let id = resp.data.data;
@@ -244,7 +248,7 @@ class Form extends Component {
                             <Cross />
                         </span>
                         <h2 className="pv-modal-title">{title} Project</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.project + ' ' +i18n.from + ' ' + i18n.here}</p>
+                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.project + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
@@ -292,7 +296,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-title">
-                                        {i18n.title}
+                                            {i18n.title}
                                         </label>
 
                                         <input
@@ -309,7 +313,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-budget">
-                                        {i18n.budget}
+                                            {i18n.budget}
                                         </label>
 
                                         <input
@@ -323,17 +327,9 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
-                                        {i18n.cur}
+                                            {i18n.cur}
                                         </label>
-
-                                        <input
-                                            id="field-currency"
-                                            type="text"
-                                            readOnly
-                                            name="currency"
-                                            value={form.currency}
-                                            onChange={this.handleChange}
-                                        />
+                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
                                     </div>
 
                                 </div>
@@ -341,7 +337,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-status_id">
-                                        {i18n.status}
+                                            {i18n.status}
                                         </label>
 
                                         <Select
@@ -358,7 +354,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-start_date">
-                                        {i18n.start} {i18n.date}
+                                            {i18n.start} {i18n.date}
                                         </label>
                                         <div className='pv-field-date'>
                                             <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
@@ -367,7 +363,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-start_date">
-                                        {i18n.due} {i18n.date}
+                                            {i18n.due} {i18n.date}
                                         </label>
                                         <div className='pv-field-date'>
                                             <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
@@ -378,7 +374,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
-                                        {i18n.tag}
+                                            {i18n.tag}
                                         </label>
                                         <Select
                                             className={'pv-field-select'}
@@ -395,7 +391,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-desc">
-                                        {i18n.desc}
+                                            {i18n.desc}
                                         </label>
 
                                         <textarea
@@ -411,7 +407,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-note">
-                                        {i18n.note}
+                                            {i18n.note}
                                         </label>
 
                                         <textarea
@@ -444,6 +440,4 @@ class Form extends Component {
         );
     }
 }
-
-const FormData = WithApi(Form);
-export default WithRouter(FormData);  
+export default WithRouter(Form);  

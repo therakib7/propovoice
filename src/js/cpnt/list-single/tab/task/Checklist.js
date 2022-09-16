@@ -161,8 +161,7 @@ class Checklist extends Component {
                                         width={15}
                                         height={15}
                                         viewBox="0 0 10 10"
-                                        fill="none"
-                                        
+                                        fill="none" 
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -253,8 +252,7 @@ class Checklist extends Component {
                         width={12}
                         height={12}
                         viewBox="0 0 12 12"
-                        fill="none"
-                        
+                        fill="none" 
                     >
                         <path
                             d="M1.875 6H10.125"

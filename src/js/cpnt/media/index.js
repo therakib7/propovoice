@@ -111,8 +111,7 @@ export default class Template extends Component {
                                         width={14}
                                         height={14}
                                         viewBox="0 0 14 14"
-                                        fill="none"
-                                        
+                                        fill="none" 
                                     >
                                         <path
                                             d="M3.668 10.09a2.7 2.7 0 01-1.779-.662 2.563 2.563 0 01-.394-3.457 2.67 2.67 0 011.587-1.03 3.199 3.199 0 01.46-2.452 3.334 3.334 0 012.1-1.417 3.395 3.395 0 012.508.45 3.26 3.26 0 011.448 2.053h.067c.826 0 1.623.299 2.236.84a3.205 3.205 0 01.45 4.35 3.34 3.34 0 01-2.02 1.26M9 8.137l-2-1.954m0 0L5.002 8.136M7 6.182V13"
@@ -133,8 +132,7 @@ export default class Template extends Component {
                                         width={12}
                                         height={12}
                                         viewBox="0 0 12 12"
-                                        fill="none"
-                                        
+                                        fill="none" 
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -164,7 +162,7 @@ export default class Template extends Component {
                                                                 <div className={(this.state.selectedItem.id == row.id) ? 'pv-single-image-content pv-active' : 'pv-single-image-content'}>
                                                                     <img src={row.src} className="pv-single-image" />
                                                                     {(this.state.selectedItem.id != row.id) && <div className="pv-overflow-content">
-                                                                        <a className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
+                                                                        <a className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.selectEntry(row)}>{i18n.select}</a>
                                                                     </div>}
                                                                 </div>
                                                             </div>

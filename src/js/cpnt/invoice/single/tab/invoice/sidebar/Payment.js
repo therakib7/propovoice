@@ -60,7 +60,7 @@ class Payment extends Component {
             .then(resp => {
                 if (resp.data.success) {
                     this.setState({ bankModal: false })
-                    toast.success(this.context.CrudMsg.create);
+                    toast.success(ndpv.i18n.aAdd);
                     this.props.handleChange(resp.data.data, 'bank');
                     this.getLists();
                 } else {
@@ -98,7 +98,7 @@ class Payment extends Component {
                                                         height={20}
                                                         viewBox="0 0 28 29"
                                                         fill="none"
-                                                        
+
                                                     >
                                                         <path
                                                             d="M12.3479 0.555556C13.3232 -0.185185 14.6789 -0.185185 15.6542 0.555556L27.2321 9.33565C28.7067 10.4537 27.9157 12.787 26.0631 12.7963H1.93665C0.0863324 12.787 -0.706994 10.4537 0.769993 9.33565L12.3479 0.555556ZM13.9999 8.74537C14.464 8.74537 14.9091 8.56246 15.2373 8.23688C15.5655 7.91129 15.7499 7.4697 15.7499 7.00926C15.7499 6.54881 15.5655 6.10723 15.2373 5.78164C14.9091 5.45606 14.464 5.27315 13.9999 5.27315C13.5357 5.27315 13.0906 5.45606 12.7624 5.78164C12.4343 6.10723 12.2499 6.54881 12.2499 7.00926C12.2499 7.4697 12.4343 7.91129 12.7624 8.23688C13.0906 8.56246 13.5357 8.74537 13.9999 8.74537ZM3.49997 15.1111V22.0556H6.99994V15.1111H3.49997ZM9.33325 15.1111V22.0556H12.8332V15.1111H9.33325ZM15.1665 15.1111V22.0556H18.6665V15.1111H15.1665ZM20.9998 15.1111V22.0556H24.4998V15.1111H20.9998ZM0 27.2639C0 25.6667 1.30665 24.3704 2.91664 24.3704H25.0831C26.6931 24.3704 27.9997 25.6667 27.9997 27.2639V27.8426C27.9997 28.1496 27.8768 28.4439 27.658 28.661C27.4392 28.8781 27.1425 29 26.8331 29H1.16666C0.85724 29 0.560496 28.8781 0.341706 28.661C0.122915 28.4439 0 28.1496 0 27.8426V27.2639Z"
@@ -113,7 +113,7 @@ class Payment extends Component {
                                                     <svg
                                                         width={20}
                                                         height={20}
-                                                        
+
                                                         xmlnsXlink="http://www.w3.org/1999/xlink"
                                                         viewBox="3.4 5.6 17.6 13.4"
                                                         enableBackground="new 3.4 5.6 17.6 13.4"
@@ -124,15 +124,11 @@ class Payment extends Component {
                                                 </span>}
 
                                                 {(row.method_id == 'paypal' || row.method_id == 'stripe') &&
-                                                    <>
-                                                        <h4 className="pv-payment-title">{single.account_name}</h4>
-                                                    </>
+                                                    <h4 className="pv-payment-title">{single.account_name}</h4>
                                                 }
 
                                                 {row.method_id == 'bank' &&
-                                                    <>
-                                                        <h4 className="pv-payment-title">{single.name}</h4>
-                                                    </>
+                                                    <h4 className="pv-payment-title">{single.name}</h4>
                                                 }
                                             </div>
                                         </div>
@@ -144,7 +140,7 @@ class Payment extends Component {
                 })}
 
                 {!this.state.payments.length &&
-                    <div className='pv-payment-buttons'>
+                    <>
                         {this.state.bankModal && <FormBank
                             handleSubmit={this.handleSubmit}
                             show={this.state.bankModal}
@@ -152,14 +148,16 @@ class Payment extends Component {
                             // data={this.state.businessData}
                             close={() => this.setState({ bankModal: false })}
                         />}
-                        <button
-                            className='pv-btn pv-bg-blue pv-bg-hover-blue pv-hover-color-white'
-                            // onClick={this.goToPayment}
-                            onClick={() => this.setState({ bankModal: true })}
-                        >
-                            {i18n.add} {i18n.new} {i18n.payment}
-                        </button>
-                    </div>
+                        <div className='pv-payment-buttons'>  
+                            <button
+                                className='pv-btn pv-bg-blue pv-bg-hover-blue pv-hover-color-white'
+                                // onClick={this.goToPayment}
+                                onClick={() => this.setState({ bankModal: true })}
+                            >
+                                {i18n.add} {i18n.new} {i18n.payment}
+                            </button>
+                        </div>
+                    </>
                 }
             </div>
         );

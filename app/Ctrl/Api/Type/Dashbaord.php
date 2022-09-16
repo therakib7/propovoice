@@ -199,8 +199,8 @@ class Dashbaord
         for ($i = 0; $i < 12; $i++) {
             $data[] = [
                 'name' => $this->months[$i + 1],
-                'Won' => 0,
-                'Lost' => 0,
+                'won' => 0,
+                'lost' => 0,
             ];
         }
 
@@ -220,11 +220,11 @@ class Dashbaord
                 $month_num = ((int) get_the_time('m')) - 1;
                 $type = get_term_meta($stage[0]->term_id, 'type', true);
                 if ($type == 'won') {
-                    $data[$month_num]['Won']++;
+                    $data[$month_num]['won']++;
                 }
 
                 if ($type == 'lost') {
-                    $data[$month_num]['Lost']++;
+                    $data[$month_num]['lost']++;
                 }
             }
         }
@@ -306,18 +306,18 @@ class Dashbaord
             if ($type == 'estimate') {
                 $data[$i] = [
                     'name' => $this->months[$i + 1],
-                    'Sent' => 0,
-                    'Viewed' => 0,
-                    'Accepted' => 0,
-                    'Declined' => 0,
+                    'sent' => 0,
+                    'viewed' => 0,
+                    'accepted' => 0,
+                    'declined' => 0,
                 ];
             } else if ($type == 'invoice') {
                 $data[$i] = [
                     'name' => $this->months[$i + 1],
-                    'Sent' => 0,
-                    'Viewed' => 0,
-                    'Paid' => 0,
-                    'Overdue' => 0,
+                    'sent' => 0,
+                    'viewed' => 0,
+                    'paid' => 0,
+                    'overdue' => 0,
                 ];
             }
         }
@@ -338,15 +338,15 @@ class Dashbaord
             $month_num = ((int) get_the_time('m')) - 1;
             if ($type == 'estimate' && $path == 'estimate') {
                 if ($status == 'accept') {
-                    $data[$month_num]['Accepted']++;
+                    $data[$month_num]['accepted']++;
                 }
 
                 if ($status == 'decline') {
-                    $data[$month_num]['Declined']++;
+                    $data[$month_num]['declined']++;
                 }
             } else if ($type == 'invoice' && $path == 'invoice') {
                 if ($status == 'paid') {
-                    $data[$month_num]['Paid']++;
+                    $data[$month_num]['paid']++;
                 }
             }
         }

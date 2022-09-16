@@ -3,7 +3,7 @@ import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-import Api from 'api/setting';
+import api from 'api';
 
 export default class Reminder extends Component {
     constructor(props) {
@@ -20,12 +20,11 @@ export default class Reminder extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=email_estimate_reminder')
-            .then(resp => {
-                if (resp.data.success) {
-                    this.setState({ form: resp.data.data });
-                }
-            });
+        api.get('settings', 'tab=email_estimate_reminder').then(resp => {
+            if (resp.data.success) {
+                this.setState({ form: resp.data.data });
+            }
+        });
     }
 
     handleChange = (e) => {
@@ -49,16 +48,15 @@ export default class Reminder extends Component {
         let form = this.state.form;
         form.tab = 'email_estimate_reminder';
 
-        Api.create(form)
-            .then(resp => {
-                if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            })
+        api.add('settings', form).then(resp => {
+            if (resp.data.success) {
+                toast.success(ndpv.i18n.aUpd);
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        })
     }
 
     render() {

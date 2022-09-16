@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-import Api from 'api/setting';
+import api from 'api';
 
 export default class Recurring extends Component {
     constructor(props) {
@@ -21,12 +21,11 @@ export default class Recurring extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=invoice_recurring')
-            .then(resp => {
-                if (resp.data.success) {
-                    this.setState({ form: resp.data.data });
-                }
-            });
+        api.get('settings', 'tab=invoice_recurring').then(resp => {
+            if (resp.data.success) {
+                this.setState({ form: resp.data.data });
+            }
+        });
     }
 
     handleChange = (e, type) => {
@@ -54,23 +53,22 @@ export default class Recurring extends Component {
         let form = this.state.form;
         form.tab = 'invoice_recurring';
 
-        Api.create(form)
-            .then(resp => {
-                if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            })
+        api.add('settings', form).then(resp => {
+            if (resp.data.success) {
+                toast.success(ndpv.i18n.aUpd);
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        })
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
 
-                 
+
             </form>
         );
     }

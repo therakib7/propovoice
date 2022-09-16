@@ -25,7 +25,7 @@ export default class License extends Component {
                 source_id: 'Source', //tax
                 level_id: 'Level', //tax 
                 budget: 'Budget',
-                currency: 'USD',
+                currency: 'Currency',
                 desc: 'Description'
             }
         };
@@ -108,7 +108,7 @@ export default class License extends Component {
         
         this.props.update('forms', form[i].id, form[i]).then(resp => {
             if (resp.data.success) {
-                toast.success('Successfully updated'); //TODO: translation
+                toast.success(ndpv.i18n.aUpd);
             } else {
                 resp.data.data.forEach(function (value, index, array) {
                     toast.error(value);

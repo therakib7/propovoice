@@ -11,7 +11,7 @@ export default (props) => {
         return (qty * price) + tax_total;
     }
 
-    const { index, title, desc, qty, qty_type, item_tax, tax, tax_type, price } = props
+    const { index, title, desc, qty, qty_type, qtyTypeList, item_tax, tax, tax_type, price } = props
     const i18n = ndpv.i18n;
     return (
         <>
@@ -43,17 +43,18 @@ export default (props) => {
                         style={{ width: '60px' }}
                         onFocus={props.focusHandler} 
                     />
-
                     <select 
                         name="qty_type"
                         value={qty_type}
                         onChange={props.changeHandler(index)} 
-                    >
-                        <option value="unit">Unit</option>
-                        <option value="page">Page</option>
-                        <option value="hour">Hour</option>
-                        <option value="week">Week</option>
-                        <option value="month">Month</option>
+                    > 
+                        <option value=''>{i18n.select}</option>
+                        {qtyTypeList && qtyTypeList.map((item, itemIndex) => {
+                            const slug = item.label.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+							return ( 
+                                <option key={itemIndex} value={slug}>{item.label}</option>
+							)
+						})}
                     </select>
                 </div>
             </td>
@@ -108,8 +109,7 @@ export default (props) => {
                         width={15}
                         height={15}
                         viewBox="0 0 10 10"
-                        fill="none"
-
+                        fill="none" 
                     >
                         <path
                             fillRule="evenodd"

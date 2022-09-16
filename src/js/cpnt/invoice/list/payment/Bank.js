@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Api from 'api/payment-process';
 import Upload from 'block/field/upload';
+import { Add } from 'block/icon';
 
 class Bank extends Component {
     constructor(props) {
@@ -61,26 +62,7 @@ class Bank extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{i18n.payment} {i18n.info}</h2>
                         <p>Here is the payment information</p>
@@ -114,7 +96,7 @@ class Bank extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-note">
-                                        {i18n.addi} {i18n.note}
+                                            {i18n.addi} {i18n.note}
                                         </label>
                                         <textarea
                                             id="form-note"
@@ -135,7 +117,7 @@ class Bank extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                    {i18n.mark} {i18n.as} {i18n.paid}
+                                        {i18n.mark} {i18n.paid}
                                     </button>
                                 </div>
                             </div>

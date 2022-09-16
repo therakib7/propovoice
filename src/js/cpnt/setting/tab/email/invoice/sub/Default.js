@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-import Api from 'api/setting';
+import api from 'api';
 
 export default class DefaultMail extends Component {
     constructor(props) {
@@ -19,12 +19,11 @@ export default class DefaultMail extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        Api.getAll('tab=email_invoice_default')
-            .then(resp => {
-                if (resp.data.success) {
-                    this.setState({ form: resp.data.data });
-                }
-            });
+        api.get('settings', 'tab=email_invoice_default').then(resp => {
+            if (resp.data.success) {
+                this.setState({ form: resp.data.data });
+            }
+        });
     }
 
     handleChange = (e) => {
@@ -43,16 +42,15 @@ export default class DefaultMail extends Component {
         let form = this.state.form;
         form.tab = 'email_invoice_default';
 
-        Api.create(form)
-            .then(resp => {
-                if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
-                } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                        toast.error(value);
-                    });
-                }
-            })
+        api.add('settings', form).then(resp => {
+            if (resp.data.success) {
+                toast.success(ndpv.i18n.aUpd);
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        })
     }
 
     render() {
@@ -95,7 +93,7 @@ export default class DefaultMail extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                            Save
+                            {i18n.save}
                         </button>
                     </div>
                 </div>

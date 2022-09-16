@@ -153,7 +153,7 @@ class Client
             }
             $query_data['img'] = $imgData;
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -176,19 +176,19 @@ class Client
         $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
         $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
         $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $params['is_client'] = true;
+        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null; 
 
         if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
-
+        
         $person = new Person();
         if ($person_id) {
             $person->update($params);
         }
 
         if (!$person_id && $first_name) {
+            $params['is_client'] = true;
             $person_id = $person->create($params);
         }
 
@@ -197,7 +197,13 @@ class Client
             $org->update($params);
         }
 
-        if (!$org_id && $org_name) {
+        if ( !$org_id && $org_name ) {
+
+            if ( $first_name ) {
+                $params['is_client'] = false; 
+            } else {
+                $params['is_client'] = true; 
+            }
             $org_id = $org->create($params);
         }
 

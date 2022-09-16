@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import WithApi from 'hoc/Api';
-class Send extends Component {
+import api from 'api';
+
+export default class Send extends Component {
     constructor(props) {
         super(props);
 
@@ -30,7 +31,7 @@ class Send extends Component {
         form.type = 'dashboard';
         form.feedback_type = this.props.type;
 
-        this.props.create('emails', form).then(resp => {
+        api.add('emails', form).then(resp => {
             if (resp.data.success) {
                 toast.success('Thanks for your message');
                 this.props.close();
@@ -104,4 +105,4 @@ class Send extends Component {
         );
     }
 }
-export default WithApi(Send);   
+    

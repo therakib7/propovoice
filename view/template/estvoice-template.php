@@ -35,11 +35,9 @@
 
         if ($check_permission) {
             echo '<div id="ndpv-invoice"></div>';
-        } else {
-            //esc_html_e('Sorry!! You don\'t have permission to view this page', 'propovoice'); 
+        } else { 
             ndpv()->render('template/partial/403');
         }
-    } else {
-        //esc_html_e('Sorry!! page not found', 'propovoice');
+    } else { 
         ndpv()->render('template/partial/404');
     }

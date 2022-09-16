@@ -28,12 +28,12 @@ class Feedback extends Component {
         form.feedback_type = this.props.data.feedback_type;
         this.setState({ form });
     }
-
     handleSubmit = (e) => {
         e.preventDefault();
 
         let form = { ...this.state.form }
         form.type = 'feedback';
+        const i18n = ndpv.i18n;
 
         this.props.create('emails', form).then(resp => {
             if (resp.data.success) {
@@ -41,10 +41,10 @@ class Feedback extends Component {
 
                 if (form.feedback_type == 'accept') {
                     this.props.handleSubmit('accept');
-                    toast.success('Thanks for accepting');
+                    toast.success(i18n.acceptDes);
                 } else {
                     this.props.handleSubmit('decline');
-                    toast.success('Sorry for declining');
+                    toast.success(i18n.declDes);
                 }
 
             } else {
@@ -75,8 +75,7 @@ class Feedback extends Component {
                                         width={25}
                                         height={25}
                                         viewBox="0 0 16 16"
-                                        fill="none"
-                                        
+                                        fill="none" 
                                     >
                                         <path
                                             d="M12.5 3.5L3.5 12.5"
@@ -92,8 +91,8 @@ class Feedback extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pv-modal-title">{this.props.data.feedback_type == 'accept' ? i18n.acce : 'Decline'} {i18n.est}</h2>
-                                <p>{this.props.data.feedback_type == 'accept' ? i18n.acce  : 'Decline'} {i18n.est} {i18n.from} {i18n.here}</p>
+                                <h2 className="pv-modal-title">{this.props.data.feedback_type == 'accept' ? i18n.acpt : 'Decline'} {i18n.est}</h2>
+                                <p>{this.props.data.feedback_type == 'accept' ? i18n.acpt  : 'Decline'} {i18n.est} {i18n.from} {i18n.here}</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >
                                 <div className="pv-content">
@@ -121,7 +120,7 @@ class Feedback extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>       
 
                                 <div className="pv-modal-footer">
                                     <div className="row">
@@ -130,7 +129,7 @@ class Feedback extends Component {
                                         </div>
                                         <div className="col">
                                             <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                                {this.props.data.feedback_type == 'accept' ? i18n.acce : 'Decline'}
+                                                {this.props.data.feedback_type == 'accept' ? i18n.acpt : 'Decline'}
                                             </button>
                                         </div>
                                     </div>

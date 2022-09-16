@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-
+import { Add } from 'block/icon';
+import { sprintf } from 'sprintf-js';
+import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
-import WithApi from 'hoc/Api';
-
+import api from 'api';
 import Select from 'react-select';
 
-
-class Form extends Component {
+export default class Form extends Component {
     constructor(props) {
         super(props);
 
@@ -52,6 +52,10 @@ class Form extends Component {
         }
     }
 
+    currencyChange = val => {
+        this.setState({ form: { ...this.state.form, ['currency']: val } });
+    }
+
     handleLevelChange = val => {
         this.setState({ form: { ...this.state.form, ['level_id']: val } });
     }
@@ -75,7 +79,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        this.props.getAll('taxonomies', 'taxonomy=lead_level,lead_source,tag').then(resp => {
+        api.get('taxonomies', 'taxonomy=lead_level,lead_source,tag').then(resp => {
             if (resp.data.success) {
                 if (this.state.form.level_id) {
                     this.setState({
@@ -101,14 +105,14 @@ class Form extends Component {
         }
         let params = new URLSearchParams(args).toString();
 
-        this.props.getAll('persons', params).then(resp => {
+        api.get('persons', params).then(resp => {
             if (resp.data.success) {
                 let personList = resp.data.data.result;
                 this.setState({ personList });
             }
         });
 
-        this.props.getAll('organizations', params).then(resp => {
+       api.get('organizations', params).then(resp => {
             if (resp.data.success) {
                 let orgList = resp.data.data.result;
                 this.setState({ orgList });
@@ -217,35 +221,17 @@ class Form extends Component {
 
         const form = this.state.form;
         const i18n = ndpv.i18n;
+         
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.lead + ' ' +i18n.from + ' ' + i18n.here}</p>
+                        <p>{sprintf(i18n.formDesc, i18n.lead)}</p> 
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
@@ -290,7 +276,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-budget">
-                                        {i18n.budget}
+                                            {i18n.budget}
                                         </label>
 
                                         <input
@@ -304,24 +290,16 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
-                                        {i18n.cur}
+                                            {i18n.cur}
                                         </label>
-
-                                        <input
-                                            id="field-currency"
-                                            type="text"
-                                            readOnly
-                                            name="currency"
-                                            value={form.currency}
-                                            onChange={this.handleChange}
-                                        />
+                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
                                     </div>
                                 </div>
 
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-level_id">
-                                        {i18n.level}
+                                            {i18n.level}
                                         </label>
                                         {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color /> */}
                                         <Select
@@ -336,7 +314,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
-                                        {i18n.tag}
+                                            {i18n.tag}
                                         </label>
                                         {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple /> */}
                                         <Select
@@ -354,7 +332,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-desc">
-                                        {i18n.desc}
+                                            {i18n.desc}
                                         </label>
 
                                         <textarea
@@ -370,7 +348,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-note">
-                                        {i18n.note}
+                                            {i18n.note}
                                         </label>
 
                                         <textarea
@@ -403,5 +381,3 @@ class Form extends Component {
         );
     }
 }
-
-export default WithApi(Form);  

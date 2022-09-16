@@ -11,8 +11,7 @@ import './style.css';
 import Api from 'api/payment-process';
 
 // This values are the props in the UI
-
-const currency = "USD";
+ 
 const style = { "layout": "vertical" };
 
 // Custom component to wrap the PayPalButtons and handle currency changes
@@ -117,7 +116,8 @@ class Paypal extends Component {
     }
 
     render() {
-        let client_id = this.props.invoice.payment_methods.paypal.client_id;
+        const client_id = this.props.invoice.payment_methods.paypal.client_id;
+        const currency = this.props.invoice.currency
         return (
             <>
                 {this.props.show && (
@@ -130,7 +130,7 @@ class Paypal extends Component {
                                         height={25}
                                         viewBox="0 0 16 16"
                                         fill="none"
-                                        
+                                        xmlns="http://www.w3.org/2000/svg"
                                     >
                                         <path
                                             d="M12.5 3.5L3.5 12.5"
@@ -155,9 +155,8 @@ class Paypal extends Component {
                                         <div className="col-lg">
                                             <PayPalScriptProvider
                                                 options={{
-                                                    "client-id": client_id,
-                                                    cpnt: "buttons",
-                                                    currency: "USD"
+                                                    "client-id": client_id, 
+                                                    currency: currency
                                                 }}
                                             >
                                                 <ButtonWrapper

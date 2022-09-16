@@ -4,9 +4,10 @@ import { toast } from 'react-toastify';
 // import html2canvas from 'html2canvas';
 import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
+import { Add } from 'block/icon';
 
-import WithApi from 'hoc/Api';
-class Send extends Component {
+import api from 'api';
+export default  class Send extends Component {
     constructor(props) {
         super(props);
 
@@ -45,8 +46,8 @@ class Send extends Component {
     //try to call it from invoice to avoid duplication code
     calcItemsTotal = () => {
         return this.props.data.invoice.items.reduce((prev, cur) => (prev + (cur.qty * cur.price)), 0)
-    }  
-   
+    }
+
     calcGrandTotal = () => {
         let item_total = this.calcItemsTotal();
         let total = item_total;
@@ -87,7 +88,7 @@ class Send extends Component {
         let currency = data.invoice.currency;
         let date = this.convertDate(data.invoice.date);
         let due_date = this.convertDate(data.invoice.due_date);
-        let amount = this.calcGrandTotal(); 
+        let amount = this.calcGrandTotal();
 
         let org_name = data.fromData.name;
         let client_name = (data.toData.type == 'person') ? data.toData.first_name : data.toData.org_name;
@@ -127,10 +128,10 @@ class Send extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        if (wage.length > 0 ) {
-			pro();
-			return;
-		}
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
         // TODO: send with attachment pdf
         if (false) {
             /* html2canvas(document.querySelector(".pv-inv")).then(canvas => { 
@@ -152,7 +153,7 @@ class Send extends Component {
         let form = { ...this.state.form }
         form.type = 'sent';
 
-        this.props.create('emails', form).then(resp => {
+        api.add('emails', form).then(resp => {
             if (resp.data.success) {
                 toast.success('Mail sucessfully sent');
                 this.props.close();
@@ -175,26 +176,7 @@ class Send extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{i18n.email} {path_title}</h2>
                         <p>{i18n.email} {path} {i18n.from} {i18n.here}</p>
@@ -286,4 +268,3 @@ class Send extends Component {
         );
     }
 }
-export default WithApi(Send);  

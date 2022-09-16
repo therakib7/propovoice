@@ -53,7 +53,7 @@ export default class Form extends Component {
 
         this.props.create('settings', form).then(resp => {
             if (resp.data.success) {
-                toast.success(this.context.CrudMsg.update);
+                toast.success(ndpv.i18n.aUpd);
                 this.props.close();
             } else {
                 resp.data.data.forEach(function (value, index, array) {

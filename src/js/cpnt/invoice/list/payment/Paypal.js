@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import { Add } from 'block/icon';
+
 
 class Paypal extends Component {
     constructor(props) {
@@ -35,26 +37,7 @@ class Paypal extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">Paypal {i18n.payment} {i18n.info}</h2>
                         <p>Here is the payment information</p>

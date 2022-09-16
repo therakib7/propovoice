@@ -62,7 +62,7 @@ export default class Business extends Component {
         if (!form.id) {
             this.props.create('businesses', form).then(resp => {
                 if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.create);
+                    toast.success(ndpv.i18n.aAdd);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -72,7 +72,7 @@ export default class Business extends Component {
         } else {
             this.props.update('businesses', form.id, form).then(resp => {
                 if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
+                    toast.success(ndpv.i18n.aUpd);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -157,13 +157,12 @@ export default class Business extends Component {
                 <div className="row">
                     <div className="col-md">
                         <label htmlFor="field-mobile">
-                            {i18n.mob} {i18n.num}
+                            {i18n.mob}
                         </label>
 
                         <input
                             id="field-mobile"
-                            type="text"
-                            required
+                            type="text" 
                             name="mobile"
                             value={this.state.form.mobile}
                             onChange={this.handleChange}

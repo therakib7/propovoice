@@ -1,14 +1,13 @@
-<?php 
+<?php
+
 namespace Ndpv\Helper;
 
 class Fns
 {
-
     public static function get_terms($tax, $extra_amount_type = null)
     {
-
         $args = array(
-            'taxonomy' => 'ndpv_' . $tax, 
+            'taxonomy' => 'ndpv_' . $tax,
             'meta_query' => array(
                 'relation' => 'OR',
                 array(
@@ -24,8 +23,8 @@ class Fns
             'orderby' => 'tax_pos',
             'hide_empty' => false
         );
-        
-        //TODO: this is not working, that's why temp added in tax js file 
+
+        //TODO: this is not working, that's why temp added in tax js file
         /* if ( $extra_amount_type ) {
             $args['meta_query'][] = array(
                 array(
@@ -35,7 +34,52 @@ class Fns
                 )
             );
         }  */
-        return get_terms( $args );
+        return get_terms($args);
+    }
+
+    public static function phpToMomentFormat($format)
+    {
+        $replacements = [
+            'd' => 'DD',
+            'D' => 'ddd',
+            'j' => 'D',
+            'l' => 'dddd',
+            'N' => 'E',
+            'S' => 'o',
+            'w' => 'e',
+            'z' => 'DDD',
+            'W' => 'W',
+            'F' => 'MMMM',
+            'm' => 'MM',
+            'M' => 'MMM',
+            'n' => 'M',
+            't' => '', // no equivalent
+            'L' => '', // no equivalent
+            'o' => 'YYYY',
+            'Y' => 'YYYY',
+            'y' => 'YY',
+            'a' => 'a',
+            'A' => 'A',
+            'B' => '', // no equivalent
+            'g' => 'h',
+            'G' => 'H',
+            'h' => 'hh',
+            'H' => 'HH',
+            'i' => 'mm',
+            's' => 'ss',
+            'u' => 'SSS',
+            'e' => 'zz', // deprecated since version 1.6.0 of moment.js
+            'I' => '', // no equivalent
+            'O' => '', // no equivalent
+            'P' => '', // no equivalent
+            'T' => '', // no equivalent
+            'Z' => '', // no equivalent
+            'c' => '', // no equivalent
+            'r' => '', // no equivalent
+            'U' => 'X',
+        ];
+        $momentFormat = strtr($format, $replacements);
+        return $momentFormat;
     }
 
     public static function locate_template($name)
@@ -59,7 +103,7 @@ class Fns
             'meta_key' => '_wp_page_template',
             'meta_value' => $slug . '-template.php'
         ));
-        if ( !empty($page) ) {
+        if (!empty($page)) {
             return get_permalink($page[0]->ID);
         } else {
             return '';
@@ -76,7 +120,7 @@ class Fns
         $date = isset($array['date']) ? $array['date'] : '';
         $due_date = isset($array['due_date']) ? $array['due_date'] : '';
         $amount = isset($array['amount']) ? $array['amount'] : '';
-        $msg = isset($array['msg']) ? $array['msg'] :  '';
+        $msg = isset($array['msg']) ? $array['msg'] : '';
         $url = isset($array['url']) ? $array['url'] : '';
 
         $social = '';
@@ -102,7 +146,7 @@ class Fns
             ],
         ];
 
-        if ( function_exists('ndpvp') ) {
+        if (function_exists('ndpvp')) {
             $get_social = get_option('ndpv_email_social');
             if (isset($get_social['social'])) {
                 $social_list = $get_social['social'];
@@ -114,9 +158,9 @@ class Fns
             if (!$icon_url) {
                 if ($val['id'] == 'facebook') {
                     $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/f.png';
-                } else if ($val['id'] == 'twitter') {
+                } elseif ($val['id'] == 'twitter') {
                     $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/t.png';
-                } else if ($val['id'] == 'linkedin') {
+                } elseif ($val['id'] == 'linkedin') {
                     $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/i.png';
                 }
             }
@@ -163,7 +207,7 @@ class Fns
      * @param mixed  $slug Template slug.
      * @param string $name Template name (default: '').
      */
-    static function get_template_part($slug, $args = null, $include = true)
+    public static function get_template_part($slug, $args = null, $include = true)
     {
         // load template from theme if exist
         $template = NDPV_TEMPLATE_DEBUG_MODE ? '' : locate_template(
@@ -202,16 +246,15 @@ class Fns
         }
     }
 
-    static function doing_it_wrong($function, $message, $version)
+    public static function doing_it_wrong($function, $message, $version)
     {
         // @codingStandardsIgnoreStart
         $message .= ' Backtrace: ' . wp_debug_backtrace_summary();
         _doing_it_wrong($function, $message, $version);
     }
 
-    static function get_template($fileName, $args = null)
+    public static function get_template($fileName, $args = null)
     {
-
         if (!empty($args) && is_array($args)) {
             extract($args); // @codingStandardsIgnoreLine
         }
@@ -233,7 +276,7 @@ class Fns
         include $located;
 
         do_action('ndpv_after_template_part', $fileName, $located, $args);
-    } 
+    }
 
     /**
      * @param $id
@@ -266,7 +309,7 @@ class Fns
             return is_scalar($var) ? sanitize_text_field($var) : $var;
         }
     }
- 
+
     public static function gravatar($email, $size = 40)
     {
         $hash = md5(strtolower(trim($email)));
@@ -290,7 +333,7 @@ class Fns
      * @package NDPV Project
      * @since 1.0
      */
-    function sanitizeOutPut($value, $type = 'text')
+    public function sanitizeOutPut($value, $type = 'text')
     {
         $newValue = null;
         if ($value) {
@@ -313,7 +356,7 @@ class Fns
      * @package NDPV Project
      * @since 1.0
      */
-    function imageInfo($attachment_id)
+    public function imageInfo($attachment_id)
     {
         $data = array();
         $imgData = wp_get_attachment_metadata($attachment_id);
@@ -323,10 +366,10 @@ class Fns
         $data['height'] = !empty($imgData['height']) ? absint($imgData['height']) : 0;
 
         return $data;
-    }  
+    }
 
     /**
-     *  Format bye 
+     *  Format bye
      *
      * @package NDPV Project
      * @since 1.0

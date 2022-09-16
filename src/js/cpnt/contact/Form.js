@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { toast } from 'react-toastify';
+import { Add } from 'block/icon';
+import { sprintf } from 'sprintf-js';
+import api from 'api';
 
 import AppContext from 'context/app-context';
-import WithApi from 'hoc/Api';
 import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
-class Form extends Component {
+export default class Form extends Component {
     constructor(props) {
         super(props);
 
@@ -102,10 +104,10 @@ class Form extends Component {
         let contact = this.state.form;
 
         if (this.props.modalType == 'new') {
-            this.props.create('contacts', contact).then(resp => {
+            api.add('contacts', contact).then(resp => {
                 if (resp.data.success) {
                     this.props.close();
-                    toast.success(this.context.CrudMsg.create);
+                    toast.success(ndpv.i18n.aAdd);
                     contact.id = resp.data.data.id;
                     contact.type = resp.data.data.type;
                     this.props.handleSubmit(contact);
@@ -116,10 +118,10 @@ class Form extends Component {
                 }
             })
         } else {
-            this.props.update('contacts', contact.id, contact).then(resp => {
+            api.edit('contacts', contact.id, contact).then(resp => {
                 if (resp.data.success) {
                     this.props.close();
-                    toast.success(this.context.CrudMsg.update);
+                    toast.success(ndpv.i18n.aUpd);
                     this.props.handleSubmit(contact);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
@@ -139,29 +141,10 @@ class Form extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.ct}</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.client + ' ' +i18n.from + ' ' + i18n.here}</p>
+                        <p>{sprintf(i18n.formDesc, i18n.client)}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
@@ -286,5 +269,3 @@ class Form extends Component {
         );
     }
 }
-
-export default WithApi(Form);  

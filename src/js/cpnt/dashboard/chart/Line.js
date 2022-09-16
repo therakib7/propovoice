@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+ 
 export default class Section extends PureComponent {
 
     constructor(props) {
@@ -21,6 +21,7 @@ export default class Section extends PureComponent {
 
     render() {
         const data = this.state.data;
+        const i18n = ndpv.i18n;
         return (
             <div className='pv-widget pv-summery pv-bg-white pv-border-gray'>
                 <h3
@@ -47,8 +48,8 @@ export default class Section extends PureComponent {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Line type="monotone" dataKey="Won" stroke="#16B21D" activeDot={{ r: 8 }} />
-                            <Line type="monotone" dataKey="Lost" stroke="#FF6771" />
+                            <Line type="monotone" dataKey="won" name={i18n.won}stroke="#16B21D" activeDot={{ r: 8 }} />
+                            <Line type="monotone" dataKey="lost" name={i18n.lost} stroke="#FF6771" />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>

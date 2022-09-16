@@ -1,9 +1,12 @@
+import { sprintf } from 'sprintf-js';
+
 export default (props) => {
     const { title, clickHandler, searchVal, logo = '' } = props;
+    const i18n = ndpv.i18n;
     return (
-        <> 
+        <>
             <div
-                className="pv-empty-content pv-text-center" 
+                className="pv-empty-content pv-text-center"
             >
                 <svg width="77" height="76" viewBox="0 0 77 76" fill="none" >
                     <path d="M61.8594 1.30469V14.8447H75.3985L61.8594 1.30469Z" fill="#4C6FFF" fillOpacity="0.5" />
@@ -13,8 +16,8 @@ export default (props) => {
                 </svg>
 
 
-                {!searchVal.length && <h2 className="pv-empty-title">You haven&apos;t  {title == 'Client' ? 'added' : 'created'} any {title} yet.</h2>}
-                {searchVal.length > 0 && <h2 className="pv-empty-title">No {title} found by your search query.</h2>}
+                {!searchVal.length && <h2 className="pv-empty-title">{sprintf(i18n.notAdd, (title == 'Client' ? i18n.added : i18n.created), title)}</h2>}
+                {searchVal.length > 0 && <h2 className="pv-empty-title">{sprintf(i18n.noRes, title)}</h2>}
 
                 <button className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => clickHandler('new')}>
                     <svg
@@ -22,7 +25,7 @@ export default (props) => {
                         height={12}
                         viewBox="0 0 12 15"
                         fill="none"
-                        
+
                     >
                         <path
                             d="M2.5 8H13.5"
@@ -39,9 +42,9 @@ export default (props) => {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Let&apos;s Start {title == 'Client' ? 'Adding' : 'Creating'}
+                    {sprintf(i18n.letStart, (title == 'Client' ? i18n.adding : i18n.creating))}
                 </button>
-            </div> 
+            </div>
         </>
     );
 } 

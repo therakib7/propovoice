@@ -1,27 +1,28 @@
 import { useState } from "react";
 
 export default (props) => {
+    const i18n = ndpv.i18n;
 
     const [interval_type, SetIntervalType] = useState({
-        'week': 'Weekly',
-        'month': 'Monthly',
-        'quarter': 'Quarterly',
-        'half-year': 'Half Yearly',
-        'year': 'Yearly',
-        'custom': 'Custom'
+        'week': i18n.wkly,
+        'month': i18n.mth,
+        'quarter': i18n.qtly,
+        'half-year': i18n.hYear,
+        'year': i18n.yrly,
+        'custom': i18n.Custom,
     });
 
     const handleChange = e => {
         props.handleChange(e);
     }
-    const i18n = ndpv.i18n;
+    // const i18n = ndpv.i18n;
     const recurring = props.data;
     return (
         <div className="">
             <div className="pv-form-style-one">
                 <div className="row">
                     <div className="col-12">
-                        <label>How often?</label>
+                        <label>{i18n.howOf}</label>
                         <div className="pv-field-radio">
                             <input
                                 type='radio'
@@ -31,7 +32,7 @@ export default (props) => {
                                 checked={recurring.interval_type == 'day'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="interval_type_day">Daily</label>
+                            <label htmlFor="interval_type_day">{i18n.dly}</label>
                         </div>
                         <div className="pv-field-radio">
                             <input
@@ -42,7 +43,7 @@ export default (props) => {
                                 checked={recurring.interval_type == 'week'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="interval_type_week">Weekly</label>
+                            <label htmlFor="interval_type_week">{i18n.wkly}</label>
                         </div>
                         <div className="pv-field-radio">
                             <input
@@ -53,7 +54,7 @@ export default (props) => {
                                 checked={recurring.interval_type == 'month'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="interval_type_month">Monthly</label>
+                            <label htmlFor="interval_type_month">{i18n.mth}</label>
                         </div>
                         <div className="pv-field-radio pv-field-radio-input">
                             <input
@@ -64,13 +65,13 @@ export default (props) => {
                                 checked={recurring.interval_type == 'custom'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="interval_type_custom" className="pv-mr-10">Interval In</label>
+                            <label htmlFor="interval_type_custom" className="pv-mr-10">{i18n.intvIn}</label>
                             <input
                                 type="number"
                                 id="recurring-interval"
                                 name="interval"
                                 value={recurring.interval}
-                                style={{width: '55px'}}
+                                style={{ width: '55px' }}
                                 onChange={handleChange}
                             />
                             <select
@@ -79,15 +80,15 @@ export default (props) => {
                                 value={recurring.interval_in}
                                 onChange={handleChange}
                             >
-                                <option value="day">Day</option>
-                                <option value="month">Month</option>
-                                <option value="year">Year</option>
+                                <option value="day">{i18n.day}</option>
+                                <option value="month">{i18n.month}</option>
+                                <option value="year">{i18n.year}</option>
                             </select>
                         </div>
                     </div>
 
                     <div className="col-12">
-                        <label>How Many?</label>
+                        <label>{i18n.howM}</label>
                         <div className="pv-field-radio">
                             <input
                                 type='radio'
@@ -97,7 +98,7 @@ export default (props) => {
                                 checked={recurring.limit_type == '0'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="limit_type_0">On going</label>
+                            <label htmlFor="limit_type_0">{i18n.onGo}</label>
                         </div>
                         <div className="pv-field-radio pv-field-radio-input">
                             <input
@@ -108,20 +109,20 @@ export default (props) => {
                                 checked={recurring.limit_type == '1'}
                                 onChange={(e) => handleChange(e)}
                             />
-                            <label htmlFor="limit_type_1" className="pv-mr-10">Limit</label>
+                            <label htmlFor="limit_type_1" className="pv-mr-10">{i18n.limit}</label>
                             <input
                                 type="number"
                                 id="recurring-limit"
                                 name="limit"
                                 value={recurring.limit}
                                 onChange={handleChange}
-                                style={{width: '55px'}}
-                            /> <span className="pv-times">Times</span>
+                                style={{ width: '55px' }}
+                            /> <span className="pv-times">{i18n.times}</span>
                         </div>
                     </div>
 
                     <div className="col-12">
-                        <label>{i18n.select} {i18n.delivery} {i18n.option}</label>
+                        <label>{i18n.select} {i18n.dlvy} {i18n.option}</label>
                         <div className="pv-field-radio">
                             <input
                                 type='radio'
@@ -131,7 +132,7 @@ export default (props) => {
                                 checked={recurring.delivery == 1 ? 'checked' : ''}
                                 onChange={(e) => handleChange(e, 'delivery')}
                             />
-                            <label htmlFor="recurring-delivery-auto">Send automatically</label>
+                            <label htmlFor="recurring-delivery-auto">{i18n.send} {i18n.auto}</label>
                         </div>
                         <div className="pv-field-radio">
                             <input
@@ -142,13 +143,13 @@ export default (props) => {
                                 checked={recurring.delivery == 0 ? 'checked' : ''}
                                 onChange={(e) => handleChange(e, 'delivery')}
                             />
-                            <label htmlFor="recurring-delivery-manual">Create Draft and send manually</label>
+                            <label htmlFor="recurring-delivery-manual">{i18n.draftM}</label>
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <label id="recurring-send_me">Send me a copy</label>
+                        <label id="recurring-send_me">{i18n.sendCy}</label>
                         <div className="pv-field-switch pv-ml-10">
                             <label className='pv-switch'>
                                 <input type='checkbox'

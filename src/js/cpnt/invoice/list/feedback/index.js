@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
+import { Add } from 'block/icon';
 
 class Feedback extends Component {
     constructor(props) {
@@ -43,26 +44,7 @@ class Feedback extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{i18n.fdbk}</h2>
                         <p>Here is the client feedback</p>
@@ -72,7 +54,7 @@ class Feedback extends Component {
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="form-note">
-                                    {i18n.addi} {i18n.note}
+                                        {i18n.addi} {i18n.note}
                                     </label>
                                     <textarea
                                         id="form-note"

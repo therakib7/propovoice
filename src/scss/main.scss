@@ -899,7 +899,9 @@ html {
 }
 .ndpv .pv-table-action input[type=checkbox] {
   zoom: 1.2;
+  -moz-zoom: 1.2;
   top: 2px;
+  -moz-top: -1px !important;
   position: relative;
 }
 .ndpv .pv-table-action span {
@@ -982,11 +984,12 @@ html {
 .ndpv .pv-table input[type=checkbox] {
   zoom: 1.5;
   border-radius: 5px;
-  transform: scale(0.8);
   border: 1px solid #939393f0;
   box-shadow: none;
   position: relative;
   top: 2px;
+  transform: scale(0.8);
+  -moz-transform: scale(1);
 }
 .ndpv .pv-table tr {
   border-bottom: 1px solid #EDF2F7;
@@ -1837,8 +1840,7 @@ html {
   outline: none;
   padding: 4px 20px 4px 4px;
   background-position-x: 85%;
-  background-position-y: 44%;
-  line-height: 100%;
+  background-position-y: 46%;
   font-size: 12px;
 }
 .ndpv .pv-search-bar .pv-total-list p span {
@@ -1967,7 +1969,6 @@ html {
 }
 .ndpv .pv-pagination-content-two .pv-pagination {
   margin-top: 55px;
-  margin-right: -30px;
 }
 @media screen and (max-width: 992px) {
   .ndpv .pv-pagination-content-two .pv-pagination {
@@ -2213,7 +2214,7 @@ html {
   left: -70px !important;
 }
 .wp-admin.ndpv .pv-right-content-data {
-  padding: 45px 70px 80px;
+  padding: 45px 70px 70px;
 }
 .wp-admin.ndpv input[type=checkbox]:focus {
   box-shadow: none;
@@ -2233,7 +2234,7 @@ html {
   padding: 3px 35px 3px 10px !important;
 }
 .wp-admin.ndpv .pv-board-content {
-  height: calc(100vh - 449px) !important;
+  height: calc(100vh - 464px) !important;
 }
 .wp-admin.ndpv #pv-pro-alert {
   z-index: 999999;
@@ -3009,7 +3010,7 @@ ul {
   padding: 15px 30px 0px;
 }
 .ndpv .pv-modal-style-two .pv-modal-footer {
-  padding: 0 30px 15px;
+  padding: 0 30px 25px;
 }
 .ndpv .pv-modal-style-two .pv-close {
   background: none;
@@ -3259,7 +3260,7 @@ ul {
   border: none;
 }
 .ndpv .pv-modal-sidebar-two .pv-checklist-content .pv-action-content {
-  margin-left: 30px;
+  margin-left: 15px;
   padding: 5px 3px 3px;
   opacity: 0;
 }
@@ -3597,8 +3598,6 @@ ul {
   border-top: 1px solid var(--pv-border-color-gray);
   padding: 15px;
   position: relative;
-  overflow: hidden;
-  max-height: 800px;
   z-index: 2;
 }
 .ndpv .pv-accordion-wrapper > ul > li {
@@ -3837,15 +3836,16 @@ ul {
 }
 .ndpv .pv-settings-tab .pv-settings-tabs li.pv-active ul {
   display: block !important;
-  padding-bottom: 10px;
 }
 .ndpv .pv-settings-tab .pv-settings-subtabs {
   margin: 0;
   display: none;
+  background: #fff;
+  border-bottom: 1px solid #e2ebf0;
 }
 .ndpv .pv-settings-tab .pv-settings-subtabs .pv-subtab a {
   cursor: pointer;
-  padding: 15px 20px;
+  padding: 12px 20px;
   font-size: 13px;
   font-weight: 500;
   padding-left: 45px;
@@ -3871,7 +3871,7 @@ ul {
   position: relative;
   padding: 15px 20px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   border-bottom: 3px solid #f7f8fa;
   color: #718096;
   cursor: pointer;

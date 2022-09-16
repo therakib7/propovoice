@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Upload from 'block/field/upload';
+import { Add } from 'block/icon';
+
 
 class Form extends Component {
     constructor(props) {
@@ -21,7 +23,7 @@ class Form extends Component {
 
         this.state = {
             form: this.initialState
-        };
+        }; 
     }
 
     handleChange = e => {
@@ -99,29 +101,10 @@ class Form extends Component {
 
                     <div className="pv-modal-header pv-gradient">
                         <span className="pv-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {i18n.biz}</h2>
-                        <p>{i18n.add + ' ' +i18n.new + ' ' +i18n.biz + ' ' +i18n.from + ' ' + i18n.here}</p>
+                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.biz + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
@@ -202,8 +185,7 @@ class Form extends Component {
 
                                         <input
                                             id="field-mobile"
-                                            type="text"
-                                            required
+                                            type="text" 
                                             name="mobile"
                                             value={form.mobile}
                                             onChange={this.handleChange}
@@ -260,7 +242,7 @@ class Form extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                    {i18n.save}
+                                        {i18n.save}
                                     </button>
                                 </div>
                             </div>

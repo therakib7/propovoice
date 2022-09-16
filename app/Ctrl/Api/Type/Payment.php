@@ -154,7 +154,7 @@ class Payment
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
             } 
             
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();

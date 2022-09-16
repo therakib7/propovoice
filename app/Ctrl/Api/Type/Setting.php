@@ -68,6 +68,17 @@ class Setting {
                 }
             }
 
+            if ( $tab == 'estinv_currency' ) {
+                $option = get_option('ndpv_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {
+                    $data['currency'] = 'USD';
+                    $data['lang'] = 'en';  
+                }
+            }
+
             if ( $tab == 'estimate_reminder' ) {
                 $option = get_option('ndpv_' . $tab);
 
@@ -91,6 +102,16 @@ class Setting {
                     $data['due_date'] = false; 
                     $data['before'] = [];
                     $data['after'] = [];
+                }
+            }
+
+            if ( $tab == 'payment_wc' ) {
+                $option = get_option('ndpv_' . $tab);
+
+                if ( $option ) {
+                    $data = $option;
+                } else {
+                    $data['status'] = false; 
                 }
             }
 
@@ -213,6 +234,12 @@ class Setting {
                 $option = update_option('ndpv_' . $tab , $data);                 
             }
 
+            if ( $tab == 'estinv_currency' ) { 
+                $data['currency'] = isset( $params['currency'] ) ? sanitize_text_field( $params['currency'] ) : null;
+                $data['lang'] = isset( $params['lang'] ) ? sanitize_text_field( $params['lang'] ) : null; 
+                $option = update_option('ndpv_' . $tab , $data);                 
+            }
+
             if ( $tab == 'estimate_reminder' || $tab == 'invoice_reminder' ) {
                 //TODO: sanitization 
                 $data['status'] = isset( $params['status'] ) ? rest_sanitize_boolean( $params['status'] ) : null;
@@ -220,6 +247,11 @@ class Setting {
                 $data['before'] = isset( $params['before'] ) ? ( $params['before'] ) : null;
                 $data['after'] = isset( $params['after'] ) ? ( $params['after'] ) : null; 
 
+                $option = update_option('ndpv_' . $tab , $data);                 
+            }
+
+            if ( $tab == 'payment_wc' ) { 
+                $data['status'] = isset( $params['status'] ) ? rest_sanitize_boolean( $params['status'] ) : null; 
                 $option = update_option('ndpv_' . $tab , $data);                 
             }
 

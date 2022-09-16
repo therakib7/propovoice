@@ -125,8 +125,7 @@ class Info extends Component {
 
                             <input
                                 id="field-mobile"
-                                type="text"
-                                required
+                                type="text" 
                                 name="mobile"
                                 value={this.state.form.mobile}
                                 onChange={this.handleChange}

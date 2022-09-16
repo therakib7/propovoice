@@ -6,9 +6,8 @@ import FormEdit from './FormEdit';
 import Table from './Table';
 //import Search from './Search';
 //import Empty from 'block/empty';
-import WithApi from 'hoc/Api';
 import Crud from 'hoc/Crud';
-
+import api from 'api';
 const Task = (props) => {
 
     useEffect(() => {
@@ -41,10 +40,10 @@ const Task = (props) => {
     }
 
     const handleDelete = (type, id) => {
-        if (confirm('Are you sure, to delete it?')) { //TODO: translation 
-            props.remove('tasks', id).then(resp => {
+        if (confirm(ndpv.i18n.aConf)) {
+            api.del('tasks', id).then(resp => {
                 if (resp.data.success) {
-                    toast.success('Successfully deleted'); //TODO: translation
+                    toast.success(ndpv.i18n.aDel);
                     props.getLists({ status_id: activeTab });
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
@@ -74,7 +73,7 @@ const Task = (props) => {
             />}
 
             {!props.dashboard && <div className="pv-small-button-group">
-                <h3 className="pv-title-small">{i18n.my} {i18n.work}</h3>
+                <h3 className="pv-title-small">{i18n.myw}</h3>
                 {lists.task_status && lists.task_status.map((status, statusIndex) => {
                     return (
                         <button key={statusIndex}
@@ -180,7 +179,7 @@ const Task = (props) => {
                                                     />
                                                 </svg>
                                             </span>
-                                            <b>{i18n.unschedule}</b>
+                                            <b>{i18n.unskd}</b>
                                         </label>
                                         <label className="pv-table-close" htmlFor="pv-acc-close" />
                                         <div className="pv-accordion-content">
@@ -196,5 +195,4 @@ const Task = (props) => {
         </div>
     );
 }
-const TaskHoc = Crud(Task, 'task', ndpv.i18n.taska);
-export default WithApi(TaskHoc);
+export default Crud(Task, 'task', ndpv.i18n.taska);

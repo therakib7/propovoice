@@ -1,17 +1,16 @@
-import React, { Component, Suspense, lazy } from 'react'
-import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
-import { toast } from 'react-toastify';
-import Moment from 'react-moment';
+import api from 'api';
 import Action from 'block/action/row/single';
-import Spinner from 'block/preloader/spinner';
 import Taxonomy from 'block/field/taxonomy';
-import WithApi from 'hoc/Api';
-
-import LeadForm from 'cpnt/lead/Form';
-import DealForm from 'cpnt/deal/Form';
-import ProjectForm from 'cpnt/project/Form';
+import Spinner from 'block/preloader/spinner';
+import ContactOrg from 'cpnt/contact/org/Form';
 import ContactPerson from 'cpnt/contact/person/Form';
-import ContactOrg from 'cpnt/contact/org/Form'; 
+import DealForm from 'cpnt/deal/Form';
+import LeadForm from 'cpnt/lead/Form';
+import ProjectForm from 'cpnt/project/Form';
+import React, { Component, lazy, Suspense } from 'react';
+import Moment from 'react-moment';
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Task = lazy(() => import('./tab/task'));
 const Note = lazy(() => import('./tab/note'));
@@ -40,7 +39,7 @@ class ListSingle extends Component {
                     text: ndpv.i18n.file
                 },
             ],
-            currentTab: 'task', 
+            currentTab: 'task',
             leadModal: false,
             dealModal: false,
             dealModalType: 'edit',
@@ -110,7 +109,7 @@ class ListSingle extends Component {
     getData = () => {
         const path = this.props.path;
         const url = (path == 'client' ? 'contact' : path) + 's';
-        this.props.get(url, this.props.id).then(resp => {
+        api.getS(url, this.props.id).then(resp => {
             this.setState({ data: resp.data.data });
             if (path == 'lead') {
                 this.getLevelTagData();
@@ -132,7 +131,7 @@ class ListSingle extends Component {
     };
 
     getStageTagData = () => {
-        this.props.getAll('taxonomies', 'taxonomy=deal_stage,tag,project_status').then(resp => {
+        api.get('taxonomies', 'taxonomy=deal_stage,tag,project_status').then(resp => {
             if (resp.data.success) {
                 this.setState({
                     stages: resp.data.data.deal_stage,
@@ -221,11 +220,11 @@ class ListSingle extends Component {
     }
 
     deleteEntry = (type, id) => {
-        if (confirm('Are you sure want to delete it?')) { //TODO: translation
+        if (confirm(ndpv.i18n.aConf)) {
 
-            this.props.remove(type + 's', id).then(resp => {
+            api.del(type + 's', id).then(resp => {
                 if (resp.data.success) {
-                    toast.success('Successfully deleted'); //TODO: translation
+                    toast.success(ndpv.i18n.aDel);
                     this.props.navigate(`/${type}`);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
@@ -263,7 +262,7 @@ class ListSingle extends Component {
                                 height={10}
                                 viewBox="0 0 5 10"
                                 fill="none"
-                                
+
                             >
                                 <path
                                     d="M0.5 1.25L4.25 5L0.5 8.75"
@@ -286,7 +285,7 @@ class ListSingle extends Component {
                                 height={10}
                                 viewBox="0 0 5 10"
                                 fill="none"
-                                
+
                             >
                                 <path
                                     d="M0.5 1.25L4.25 5L0.5 8.75"
@@ -323,9 +322,9 @@ class ListSingle extends Component {
                                                 </button>
                                             </h3>
                                             <address>
-                                                {(data.person) ? data.person.email : data.org.email} <br />
-                                                {data.person && data.org && <>Organization/Company: {data.org_name}<br /></>}
-                                                Budget ${data.budget}
+                                                {(data.person) ? data.person.email : data.org.email}<br />
+                                                {data.person && data.org && <>{i18n.org}: {data.org_name}<br /></>}
+                                                {i18n.budget}: {data.currency}{data.budget}
                                             </address>
                                         </div>
                                     </div>
@@ -347,7 +346,7 @@ class ListSingle extends Component {
                                                     height={12}
                                                     viewBox="0 0 12 15"
                                                     fill="none"
-                                                    
+
                                                 >
                                                     <path
                                                         d="M2.5 8H13.5"
@@ -369,10 +368,10 @@ class ListSingle extends Component {
 
                                             <Action
                                                 id={data.id}
-                                                module='lead'  
-                                                edit={ () => this.setState({ leadModal: true }) }
-                                                del={this.deleteEntry} 
-                                            /> 
+                                                module='lead'
+                                                edit={() => this.setState({ leadModal: true })}
+                                                del={this.deleteEntry}
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -456,7 +455,7 @@ class ListSingle extends Component {
                                                     height={15}
                                                     viewBox="0 0 16 16"
                                                     fill="none"
-                                                    
+
                                                 >
                                                     <path
                                                         d="M2.5 8H13.5"
@@ -495,14 +494,14 @@ class ListSingle extends Component {
                                                     {i18n.lost}
                                                 </button>}
                                             </>}
-                                            
+
                                             <Action
                                                 id={data.id}
-                                                module='deal'  
-                                                edit={ () => this.setState({ dealModal: true }) }
-                                                del={this.deleteEntry} 
+                                                module='deal'
+                                                edit={() => this.setState({ dealModal: true })}
+                                                del={this.deleteEntry}
                                                 padding={1}
-                                            /> 
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -513,11 +512,11 @@ class ListSingle extends Component {
                             <ul>
                                 <li className="pv-budget">
                                     <label htmlFor="">{i18n.budget}:</label>
-                                    <span>${data.budget}</span>
+                                    <span>{data.currency}{data.budget}</span>
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag}small multiple />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag} small multiple />}
                                 </li>
                             </ul>
                         </div>
@@ -564,16 +563,16 @@ class ListSingle extends Component {
                                                 className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow"
                                                 onClick={() => this.handleProjectStatusChange('completed')}
                                             >
-                                                {i18n.mark} {i18n.as} {i18n.comp}
+                                                {i18n.mark} {i18n.comp}
                                             </button>}
 
                                             <Action
                                                 id={data.id}
-                                                module='project'  
-                                                edit={ () => this.setState({ projectModal: true }) }
-                                                del={this.deleteEntry} 
+                                                module='project'
+                                                edit={() => this.setState({ projectModal: true })}
+                                                del={this.deleteEntry}
                                                 padding={1}
-                                            /> 
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -584,7 +583,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag}small multiple />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag} small multiple />}
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.start} {i18n.date}:</label>
@@ -608,7 +607,7 @@ class ListSingle extends Component {
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                
+
                                             >
                                                 <path
                                                     d="M12 6.75V8.25"
@@ -641,7 +640,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">{i18n.total} {i18n.budget}</p>
-                                        <h4>$ {data.invoice && data.invoice.total}</h4>
+                                        <h4>{data.invoice && data.invoice.total}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -652,7 +651,7 @@ class ListSingle extends Component {
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                
+
                                             >
                                                 <path
                                                     d="M3.75 10.7531V5.25C3.75 5.05109 3.82902 4.86032 3.96967 4.71967C4.11032 4.57902 4.30109 4.5 4.5 4.5H19.5C19.6989 4.5 19.8897 4.57902 20.0303 4.71967C20.171 4.86032 20.25 5.05109 20.25 5.25V10.7531C20.25 18.6281 13.5656 21.2344 12.2344 21.675C12.0831 21.731 11.9169 21.731 11.7656 21.675C10.4344 21.2344 3.75 18.6281 3.75 10.7531Z"
@@ -671,7 +670,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">{i18n.paid} {i18n.amt}</p>
-                                        <h4>$ {data.invoice && data.invoice.paid}</h4>
+                                        <h4>{data.invoice && data.invoice.paid}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -682,7 +681,7 @@ class ListSingle extends Component {
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                
+
                                             >
                                                 <path
                                                     d="M3.75 10.7531V5.25C3.75 5.05109 3.82902 4.86032 3.96967 4.71967C4.11032 4.57902 4.30109 4.5 4.5 4.5H19.5C19.6989 4.5 19.8897 4.57902 20.0303 4.71967C20.171 4.86032 20.25 5.05109 20.25 5.25V10.7531C20.25 18.6281 13.5656 21.2344 12.2344 21.675C12.0831 21.731 11.9169 21.731 11.7656 21.675C10.4344 21.2344 3.75 18.6281 3.75 10.7531Z"
@@ -705,7 +704,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">{i18n.due} {i18n.amt}</p>
-                                        <h4>$ {data.invoice && data.invoice.due}</h4>
+                                        <h4>{data.invoice && data.invoice.due}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
@@ -716,7 +715,7 @@ class ListSingle extends Component {
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                
+
                                             >
                                                 <path
                                                     d="M7.125 9.75H16.875"
@@ -783,11 +782,11 @@ class ListSingle extends Component {
 
                                         <Action
                                             id={data.id}
-                                            module='contact'  
-                                            edit={ () => this.setState({ contactModal: true }) }
-                                            del={this.deleteEntry} 
+                                            module='contact'
+                                            edit={() => this.setState({ contactModal: true })}
+                                            del={this.deleteEntry}
                                             class='pv-float-right'
-                                        />  
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -832,7 +831,7 @@ class ListSingle extends Component {
                     modalType={this.state.projectModalType}
                     close={() => this.setState({ projectModal: false })}
                     reload={() => {
-                        let tabs = this.state.tabs  
+                        let tabs = this.state.tabs
                         tabs.push({
                             id: 'invoice',
                             text: i18n.inv
@@ -940,8 +939,6 @@ class ListSingle extends Component {
     }
 }
 
-const ListSingleWithApi = WithApi(ListSingle);
-
 export default function SingleWrap() {
 
     const { id } = useParams();
@@ -966,7 +963,7 @@ export default function SingleWrap() {
 
     return (
         <>
-            <ListSingleWithApi
+            <ListSingle
                 id={id}
                 path={path}
                 navigate={navigate}

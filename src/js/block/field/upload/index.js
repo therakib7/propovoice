@@ -27,13 +27,13 @@ class Upload extends Component {
 	}
 
 	handleDelete = (id) => {
-		if (confirm(this.context.CrudMsg.confirm)) {
+		if (confirm(ndpv.i18n.aConf)) {
 			this.props.changeHandler(null)
 
 			Api.remove(id)
 				.then(resp => {
 					if (resp.data.success) {
-						// toast.success(this.context.CrudMsg.delete);
+						// toast.success(ndpv.i18n.aDel);
 					} else {
 						resp.data.data.forEach(function (value, index, array) {
 							toast.error(value);
