@@ -5,8 +5,7 @@ import Spinner from 'block/preloader/spinner';
 import WithApi from 'hoc/Api';
 
 //subtab: general 
-const GeneralBiz = lazy(() => import('./tab/general/biz'));
-const GeneralEstinv = lazy(() => import('./tab/general/estinv'));
+const General = lazy(() => import('./tab/general'));
 
 const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
@@ -182,8 +181,7 @@ const Setting = (props) => {
                             <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label} {i18n.settings}</h4>
 
                             <Suspense fallback={<Spinner />}>
-                                {currentTab == 'general' && (currentSubtab == 'business' || !currentSubtab) && <GeneralBiz {...props} />}
-                                {currentTab == 'general' && currentSubtab == 'estinv' && <GeneralEstinv />}
+                                {currentTab == 'general' && <General {...props} />}
 
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
