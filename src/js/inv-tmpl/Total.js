@@ -11,23 +11,29 @@ export default (props) => {
     }
 
     const calcItemsTotal = () => {
+        return props.data.items.reduce((prev, cur) => { 
+			return prev + (cur.qty * cur.price);
+		}, 0)
+    }
+
+    const calcItemsTaxTotal = () => {
         return props.data.items.reduce((prev, cur) => {
 			let tax_total = 0; 
 			if (props.data.item_tax && cur.tax) {
 				if (cur.tax_type == 'percent') {
-					tax_total += cur.price * (cur.tax / 100);
+					tax_total += (cur.qty * cur.price) * (cur.tax / 100);
 				} else {
 					tax_total += parseFloat(cur.tax);
 				} 
 			}
-			
-			return prev + (cur.qty * cur.price) + tax_total;
+			return prev + tax_total;
 		}, 0)
     }
 
-    const calcGrandTotal = () => {
+    const calcGrandTotal = () => { 
         let item_total = calcItemsTotal();
-        let total = item_total;
+		let item_tax_total = calcItemsTaxTotal();
+		let total = item_total + item_tax_total;
         let extra_field = props.data.extra_field;
         extra_field.map((item, i) => {
             if (item.val_type == 'percent') {
@@ -58,6 +64,11 @@ export default (props) => {
                         <td>{formatCurrency(calcItemsTotal())}</td>
                     </tr>
 
+                    {props.data.item_tax && <tr className='pv-inv-e-bold'>
+                        <th>{i18n.items} {i18n.tax}</th>
+                        <td>{formatCurrency(calcItemsTaxTotal())}</td>
+                    </tr>}
+
                     {extra_field.map((item, i) => {
                         let item_total = calcItemsTotal();
                         let total = item_total;
@@ -69,7 +80,7 @@ export default (props) => {
 
                         return (<tr key={i}>
                             <th>
-                                {item.name} {item.val}{item.val_type == 'percent' ? '%' : ''}
+                                {item.name}
                             </th>
                             <td>{formatCurrency(total)}</td>
                         </tr>)
