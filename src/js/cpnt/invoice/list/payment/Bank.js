@@ -34,7 +34,7 @@ class Bank extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
+        const i18n = ndpv.i18n;
         let form = { ...this.state.form }
         form.payment_method = 'bank';
         form.invoice_id = this.props.data.id;
@@ -44,7 +44,7 @@ class Bank extends Component {
                 if (resp.data.success) {
                     this.props.close();
                     this.props.reload();
-                    toast.success('Successfully Paid');
+                    toast.success(i18n.scf + ' ' +  i18n.paid);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);

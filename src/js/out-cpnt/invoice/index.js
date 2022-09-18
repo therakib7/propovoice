@@ -105,7 +105,7 @@ const InvoiceBtn = (props) => {
 
       {props.type == "invoice" && payment_methods.length > 0 && (
         <>
-          <span style={{ marginRight: "10px" }}>Pay with:</span>
+          <span style={{ marginRight: "10px" }}>{i18n.pay} {i18n.with}:</span>
           <div style={{ width: "150px", display: "inline-block" }}>
             <Select
               value={selected_method}

@@ -36,7 +36,7 @@ class Share extends Component {
         // This is just personal preference.
         // I prefer to not show the whole text area selected. 
         e.target.focus();
-        toast.success('Copied!');
+        toast.success(ndpv.i18n.cc );
     };
 
     render() {

@@ -159,7 +159,7 @@ class Form extends Component {
 
                 api.add('projects', form).then(resp => {
                     if (resp.data.success) {
-                        toast.success('Successfully moved to project');
+                        toast.success(ndpv.i18n.aProM);
                         let id = resp.data.data;
                         this.props.close();
                         this.props.navigate(`/project/single/${id}`);
@@ -226,19 +226,19 @@ class Form extends Component {
     }
 
     render() {
+        const i18n = ndpv.i18n;
         const stageList = this.state.stages;
         const tagList = this.state.tags;
         const form = this.state.form;
 
         let title = '';
         if (this.props.modalType == 'new') {
-            title = 'New'
+            title = i18n.new
         } else if (this.props.modalType == 'edit') {
-            title = 'Edit'
+            title = i18n.edit
         } else if (this.props.modalType == 'move') {
-            title = 'Move to'
+            title = i18n.moveto
         }
-        const i18n = ndpv.i18n;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">

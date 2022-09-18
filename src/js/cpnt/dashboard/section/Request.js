@@ -33,7 +33,7 @@ export default class Send extends Component {
 
         api.add('emails', form).then(resp => {
             if (resp.data.success) {
-                toast.success('Thanks for your message');
+                toast.success(ndpv.i18n.aThankM);
                 this.props.close();
             } else {
                 resp.data.data.forEach(function (value, index, array) {

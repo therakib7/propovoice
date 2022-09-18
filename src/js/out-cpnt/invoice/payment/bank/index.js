@@ -39,7 +39,7 @@ class Bank extends Component {
                     this.props.close();
                     this.props.handleSubmit('paid_req');
 
-                    toast.success('Thanks for payment request');
+                    toast.success(ndpv.i18n.aThankR);
 
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
