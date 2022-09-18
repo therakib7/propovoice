@@ -1,14 +1,6 @@
 export default (props) => {
-    const calcItemTotal = (qty, price, tax, tax_type) => {
-        let tax_total = 0;
-        if (props.item_tax && tax) {
-            if (tax_type == 'percent') {
-                tax_total += price * (tax / 100);
-            } else {
-                tax_total += parseFloat(tax);
-            }
-        }
-        return (qty * price) + tax_total;
+    const calcItemTotal = (qty, price) => { 
+        return (qty * price);
     }
 
     const { index, title, desc, qty, qty_type, qtyTypeList, item_tax, tax, tax_type, price } = props
@@ -71,6 +63,11 @@ export default (props) => {
                     onFocus={props.focusHandler}
                 />
             </td>
+            
+            <td>
+                {props.currencyFormatter(calcItemTotal(qty, price))}
+            </td>
+
             {item_tax && <td>
                 <div className='pv-field-checkbox pv-field-checkbox-input'>
                     <input
@@ -96,11 +93,7 @@ export default (props) => {
                         <option value="fixed">$</option>
                     </select>
                 </div>
-            </td>}
-
-            <td>
-                {props.currencyFormatter(calcItemTotal(qty, price, tax, tax_type))}
-            </td>
+            </td>}  
             <td>
                 <span
                     onClick={props.deleteHandler(index)}

@@ -15,13 +15,13 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
+            title: '',
             first_name: '',
             org_name: '',
             person_id: null,
             org_id: null,
             email: '',
             mobile: '',
-            title: '',
             deal_id: '',
             status_id: '',
             budget: '',
@@ -247,13 +247,30 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Cross />
                         </span>
-                        <h2 className="pv-modal-title">{title} Project</h2>
+                        <h2 className="pv-modal-title">{title} {i18n.project}</h2>
                         <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.project + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
                             <div className="pv-form-style-one">
+
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-title">
+                                            {i18n.title}
+                                        </label>
+
+                                        <input
+                                            id="field-title"
+                                            type="text"
+                                            name="title"
+                                            required
+                                            value={form.title}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
 
                                 {/* {!this.props.reload && <> */}
                                 <Contact
@@ -292,23 +309,6 @@ class Form extends Component {
                                     </div>
                                 </div>
                                 {/* </>} */}
-
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-title">
-                                            {i18n.title}
-                                        </label>
-
-                                        <input
-                                            id="field-title"
-                                            type="text"
-                                            name="title"
-                                            required
-                                            value={form.title}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
 
                                 <div className="row">
                                     <div className="col-md">

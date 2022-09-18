@@ -10,16 +10,20 @@ export default (props) => {
         }).format(amt))
     }
 
-    const calcItemTotal = (qty, price, tax, tax_type) => {
+    const calcItemTotal = (qty, price) => {
+        return (qty * price);
+    }
+
+    const calcItemTaxTotal = (qty, price, tax, tax_type) => { 
         let tax_total = 0;
         if (props.item_tax && tax) {
             if (tax_type == 'percent') {
-                tax_total += price * (tax / 100);
+                tax_total += (qty * price) * (tax / 100);
             } else {
                 tax_total += parseFloat(tax);
             }
         }
-        return (qty * price) + tax_total;
+        return tax_total;
     }
 
     const titleize = (slug) => {
@@ -42,10 +46,10 @@ export default (props) => {
                 {qty} <span>{qty_type && <>({titleize(qty_type)})</>}</span>
             </td>
             <td>
-                {price}
+                {formatCurrency(price)}
             </td>
-            {props.item_tax && <td>{tax}{tax_type == 'percent' ? '%' : ''}</td>}
-            <td>{formatCurrency(calcItemTotal(qty, price, tax, tax_type))}</td>
+            <td>{formatCurrency(calcItemTotal(qty, price))}</td>
+            {props.item_tax && <td>{formatCurrency(calcItemTaxTotal(qty, price, tax, tax_type))}</td>} 
         </tr>
     )
 }  

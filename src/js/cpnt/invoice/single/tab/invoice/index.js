@@ -458,44 +458,8 @@ class Invoice extends Component {
 			minimumFractionDigits: 0,
 			maximumFractionDigits: 2
 		}).format(amount))
-	}
-
-	calcItemsTotal = () => {
-		return this.state.invoice.items.reduce((prev, cur) => {
-			let tax_total = 0; 
-			if (this.state.invoice.item_tax && cur.tax) {
-				if (cur.tax_type == 'percent') {
-					tax_total += cur.price * (cur.tax / 100);
-				} else {
-					tax_total += parseFloat(cur.tax);
-				} 
-			}
-			
-			return prev + (cur.qty * cur.price) + tax_total;
-		}, 0)
-	}
-
-	calcGrandTotal = () => {
-		let item_total = this.calcItemsTotal();
-		let total = item_total;
-		let extra_field = this.state.invoice.extra_field;
-		extra_field.map((item, i) => {
-			if (item.val_type == 'percent') {
-				if (item.type == 'tax' || item.type == 'fee') {
-					total += item_total * (item.val / 100);
-				} else {
-					total -= item_total * (item.val / 100);
-				}
-			} else {
-				if (item.type == 'tax' || item.type == 'fee') {
-					total += parseFloat(item.val);
-				} else {
-					total -= parseFloat(item.val);
-				}
-			}
-		});
-		return total;
-	}
+	} 
+	
 
 	setActiveTab(e, id, index) {
 		e.preventDefault();
@@ -619,8 +583,13 @@ class Invoice extends Component {
 			}
 			this.setState({ invoice });
 
-		} else { //type		 
+		} else if (type == 'type') { 	 
 			invoice.extra_field[index].val_type = type_val;
+			this.setState({ invoice });
+		}  else if (type == 'cal') { 
+			const name = type_val.target.name;
+			const value = type_val.target.value;
+			invoice.extra_field[index][name] = value;
 			this.setState({ invoice });
 		}
 	}
@@ -980,11 +949,8 @@ class Invoice extends Component {
 
 												<div className="col-sm-8">
 													<Total
-														currencyFormatter={this.formatCurrency}
-														itemsTotal={this.calcItemsTotal}
-														item_tax={invoice.item_tax}
-														extra_field={invoice.extra_field}
-														grandTotal={this.calcGrandTotal}
+														inv={invoice}
+														currencyFormatter={this.formatCurrency} 
 														changeHandler={this.handleTotalChange}
 														focusHandler={this.handleFocusSelect}
 													/>
