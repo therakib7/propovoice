@@ -84,7 +84,6 @@ export default (props) => {
                     let hasItem = extra_field.find(x => x.id == item.id);
                     let percent_val_type = false;
                     let fixed_val_type = false;
-
                     if (hasItem) {
                         if (hasItem.val_type === 'percent') {
                             percent_val_type = true;

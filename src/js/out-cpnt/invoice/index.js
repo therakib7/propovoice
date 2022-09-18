@@ -4,8 +4,8 @@ import Select from "react-select";
 import ReactToPrint from "react-to-print";
 import Spinner from "block/preloader/spinner";
 // import Template from 'inv-tmpl';
-import Api from "api/invoice";
-import ApiHelper from "api/helper";
+import ApiInv from "api/invoice";
+import api from "api";
 import InvTemplate from "inv-tmpl";
 
 import Feedback from "./Feedback";
@@ -192,7 +192,7 @@ export default class Invoice extends Component {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get("id");
-    Api.get(id + "?client_view=1").then((resp) => {
+    ApiInv.get(id + "?client_view=1").then((resp) => {
       let data = resp.data.data;
       let payment_methods = [];
 
@@ -278,13 +278,7 @@ export default class Invoice extends Component {
   reqWCOrder = () => {
     const urlParams = this.getUrlParams();
     const invoiceId = urlParams.get('id');
-    ApiHelper.req({
-      url: {
-        path: `wc-order/${invoiceId}`,
-      },
-      from: "pro",
-    })
-      .then((res) => {
+    api.get(`wc-order/${invoiceId}`, '', 'pro').then(res => { 
         window.location.href = res.data;
         return null;
       })
