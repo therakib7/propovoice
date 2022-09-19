@@ -28,8 +28,7 @@ export default (props) => {
         let item_total = itemsTotal();
         extra_field.map((item, i) => {
 
-            if (item.type == 'tax') {
-
+            if (item.type == 'tax') { 
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
                     if (!tax_cal) {
@@ -97,6 +96,9 @@ export default (props) => {
 
     const grandTotal = () => {
         let total = itemsTotal();
+        if ( inv.item_tax ) {
+            total += itemsTaxTotal();
+        }
         total += calcTax();
         total += calcFee();
         total -= calcDisc();

@@ -108,6 +108,9 @@ export default (props) => {
 
     const grandTotal = () => {
         let total = itemsTotal();
+        if ( inv.item_tax ) {
+            total += itemsTaxTotal();
+        }
         total += calcTax();
         total += calcFee();
         total -= calcDisc();
