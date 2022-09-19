@@ -89,6 +89,7 @@ export default (props) => {
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
                     if (!tax_cal) {
+                        item_total += itemsTaxTotal();
                         item_total += calcTax();
                     }
 
