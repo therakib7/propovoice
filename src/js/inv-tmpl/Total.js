@@ -66,7 +66,7 @@ export default (props) => {
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
                     if (!tax_cal) {
-                        item_total += calcTax('tax');
+                        item_total += calcTax();
                     }
                     total = item_total * (item.val / 100);
                 } else {
@@ -142,16 +142,18 @@ export default (props) => {
                             if (item.type == 'tax' && !tax_cal) {
                                 total += itemsTaxTotal();
                             }
-
+    
                             if (item.type == 'fee' && !tax_cal) {
-                                total += calcTax();
+                                total += itemsTaxTotal();
+                                total += calcTax(); 
                             }
-
+    
                             if (item.type == 'discount' && !tax_cal) {
-                                total += calcTax();
+                                total += itemsTaxTotal();
+                                total += calcTax(); 
                             }
-
-                            if (item.type == 'discount' && !fee_cal) {
+    
+                            if (item.type == 'discount' && !fee_cal) { 
                                 total += calcFee();
                             }
 
