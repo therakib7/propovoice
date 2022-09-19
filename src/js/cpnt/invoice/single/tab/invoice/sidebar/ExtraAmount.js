@@ -19,7 +19,7 @@ export default (props) => {
                 let tax_fields = [];
                 let fee_fields = [];
                 let discount_fields = [];
-                let additional_amount = [];
+                let addi_amount = [];
                 if (extra_amount) {
                     extra_amount.map((item, i) => {
                         if (item.extra_amount_type == 'tax') {
@@ -30,8 +30,8 @@ export default (props) => {
                             discount_fields.push(item);
                         }
                     });
-                    additional_amount = [...tax_fields, ...fee_fields, ...discount_fields]
-                    setList(additional_amount);
+                    addi_amount = [...tax_fields, ...fee_fields, ...discount_fields]
+                    setList(addi_amount);
                 }
             }
         });

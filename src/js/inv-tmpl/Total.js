@@ -66,6 +66,7 @@ export default (props) => {
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
                     if (!tax_cal) {
+                        item_total += itemsTaxTotal();
                         item_total += calcTax();
                     }
                     total = item_total * (item.val / 100);
@@ -118,6 +119,23 @@ export default (props) => {
     }
 
     const i18n = ndpv.i18n;
+
+    let tax_fields = [];
+    let fee_fields = [];
+    let discount_fields = [];
+    let addi_amount = [];
+    if (extra_field) {
+        extra_field.map((item, i) => {
+            if (item.extra_amount_type == 'tax') {
+                tax_fields.push(item);
+            } else if (item.extra_amount_type == 'fee') {
+                fee_fields.push(item);
+            } else {
+                discount_fields.push(item);
+            }
+        });
+        addi_amount = [...tax_fields, ...fee_fields, ...discount_fields] 
+    }
     return (
         <div className="pv-inv-total">
             <table>
@@ -132,7 +150,7 @@ export default (props) => {
                         <td>{formatCurrency(itemsTaxTotal())}</td>
                     </tr>} 
 
-                    {extra_field.map((item, i) => {
+                    {addi_amount.map((item, i) => {
                         let total = itemsTotal();
 
                         if (item.val_type == 'percent') {
