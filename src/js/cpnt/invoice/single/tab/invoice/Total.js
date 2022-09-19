@@ -28,7 +28,7 @@ export default (props) => {
         let item_total = itemsTotal();
         extra_field.map((item, i) => {
 
-            if (item.type == 'tax') { 
+            if (item.type == 'tax') {
 
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
@@ -96,7 +96,7 @@ export default (props) => {
     }
 
     const grandTotal = () => {
-        let total = itemsTotal(); 
+        let total = itemsTotal();
         total += calcTax();
         total += calcFee();
         total -= calcDisc();
@@ -117,53 +117,51 @@ export default (props) => {
                     <td>{currencyFormatter(itemsTaxTotal())}</td>
                 </tr>}
 
-                {
-                    extra_field.map((item, i) => {
-                        let total = itemsTotal();
+                {extra_field.map((item, i) => {
+                    let total = itemsTotal();
 
-                        if (item.val_type == 'percent') {
-                            let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
-                            let fee_cal = item.hasOwnProperty('fee_cal') ? item.fee_cal : '';
+                    if (item.val_type == 'percent') {
+                        let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
+                        let fee_cal = item.hasOwnProperty('fee_cal') ? item.fee_cal : '';
 
-                            if ( item.type == 'tax' && !tax_cal) {
-                                total += itemsTaxTotal();
-                            } 
-
-                            if ( item.type == 'fee' && !tax_cal) {
-                                total += calcTax();
-                            } 
-
-                            if (item.type == 'discount' && !tax_cal) {
-                                total += calcTax();
-                            }
-
-                            if (item.type == 'discount' && !fee_cal) {
-                                total += calcFee();
-                            }
-
-                            total *= (item.val / 100);
-                        } else {
-                            total = parseFloat(item.val);
+                        if (item.type == 'tax' && !tax_cal) {
+                            total += itemsTaxTotal();
                         }
 
-                        return (<tr key={i}>
-                            <td>
-                                {item.name}
-                                <input
-                                    name={"extra-item-" + i}
-                                    type="number"
-                                    step="1"
-                                    min="0.00"
-                                    value={item.val}
-                                    onChange={(e) => changeHandler(e, item)}
-                                    onFocus={focusHandler}
-                                />
-                                {item.val_type == 'percent' ? '%' : ''}
-                            </td>
-                            <td>{currencyFormatter(total)}</td>
-                        </tr>)
-                    })}
+                        if (item.type == 'fee' && !tax_cal) {
+                            total += calcTax();
+                        }
 
+                        if (item.type == 'discount' && !tax_cal) {
+                            total += calcTax();
+                        }
+
+                        if (item.type == 'discount' && !fee_cal) {
+                            total += calcFee();
+                        }
+
+                        total *= (item.val / 100);
+                    } else {
+                        total = parseFloat(item.val);
+                    }
+
+                    return (<tr key={i}>
+                        <td>
+                            {item.name}
+                            <input
+                                name={"extra-item-" + i}
+                                type="number"
+                                step="1"
+                                min="0.00"
+                                value={item.val}
+                                onChange={(e) => changeHandler(e, item)}
+                                onFocus={focusHandler}
+                            />
+                            {item.val_type == 'percent' ? '%' : ''}
+                        </td>
+                        <td>{currencyFormatter(total)}</td>
+                    </tr>)
+                })}
                 <tr>
                     <td>{i18n.total}</td>
                     <td>{currencyFormatter(grandTotal())}</td>
