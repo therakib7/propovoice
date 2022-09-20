@@ -177,7 +177,7 @@ class ListSingle extends Component {
                 if (data.probability) {
                     newData.probability = data.probability;
                 }
-                this.props.update('deals', this.props.id, newData);
+                api.edit('deals', this.props.id, newData);
             }, 300);
         });
     }
@@ -192,7 +192,7 @@ class ListSingle extends Component {
                 if (data.stage_id) {
                     newData.stage_id = data.stage_id.id;
                 }
-                this.props.update('deals', this.props.id, newData);
+                api.edit('deals', this.props.id, newData);
             });
         } else {
             data.stage_id = val;
@@ -211,7 +211,7 @@ class ListSingle extends Component {
                 if (data.status_id) {
                     newData.status_id = data.status_id.id;
                 }
-                this.props.update('projects', this.props.id, newData);
+                api.edit('projects', this.props.id, newData);
             });
         } else {
             data.status_id = val;
