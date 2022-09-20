@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Moment from 'react-moment';
 import Action from 'block/action/row';
 import { Arrow, Email, Tag } from 'block/icon';
+import { currency } from 'helper';
 
 const TableHeader = props => {
     const i18n = ndpv.i18n;
@@ -73,7 +74,7 @@ const TableBody = props => {
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>${row.budget}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{currency(row.budget, row.currency )}</td>
                 <td><span className="pv-badge">{row.status_id && row.status_id.label}</span></td>
                 <td className="pv-action">
                     <Action

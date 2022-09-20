@@ -219,6 +219,34 @@ class ListSingle extends Component {
         }
     }
 
+    personEdit = (data) => {
+        api.edit('persons', data.id, data).then(resp => {
+            if (resp.data.success) {
+                this.setState({ contactModal: false });
+                toast.success(ndpv.i18n.aUpd);
+                this.getData();
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        });
+    };
+
+    orgEdit = (data) => {
+        api.edit('orgs', data.id, data).then(resp => {
+            if (resp.data.success) {
+                this.setState({ contactModal: false });
+                toast.success(ndpv.i18n.aUpd);
+                this.getData();
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        });
+    };
+
     deleteEntry = (type, id) => {
         if (confirm(ndpv.i18n.aConf)) {
 
@@ -843,11 +871,13 @@ class ListSingle extends Component {
                 {this.state.contactModal && (data.person ? <ContactPerson
                     data={data.person}
                     modalType='edit'
+                    handleSubmit={this.personEdit}
                     close={() => this.setState({ contactModal: false })}
                     reload={() => this.getData()}
                 /> : <ContactOrg
                     data={data.org}
                     modalType='edit'
+                    handleSubmit={this.orgEdit}
                     close={() => this.setState({ contactModal: false })}
                     reload={() => this.getData()}
                 />)}

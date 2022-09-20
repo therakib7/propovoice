@@ -1,6 +1,7 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProLabel from 'block/pro-alert/label';
+import { currency } from 'helper';
 import Moment from 'react-moment';
 import Feedback from './feedback';
 import Action from 'block/action/row/invoice';
@@ -156,7 +157,7 @@ const TableBody = props => {
                 {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
                 </td>}
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>{row.currency}{row.total}</td>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>{currency(row.total, row.invoice.currency, row.invoice.lang )}</td>
                 {/* {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>

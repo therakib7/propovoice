@@ -1,16 +1,11 @@
+import { currency } from 'helper';
 export default (props) => {
 
     const { inv } = props;
     const extra_field = inv.extra_field;
 
-    const formatCurrency = (amount) => {
-        const { currency, lang } = inv;
-        return (new Intl.NumberFormat(lang, {
-            style: 'currency',
-            currency: currency,
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 2
-        }).format(amount))
+    const formatCurrency = (amount) => { 
+        return currency(amount, inv.currency, inv.lang);
     }
 
     const itemsTotal = () => {

@@ -132,6 +132,7 @@ class Invoice extends Component {
 				attach: [],
 				sign: null
 			},
+			wc: false,
 			previewHeight: '',
 			previewScale: '',
 
@@ -252,6 +253,7 @@ class Invoice extends Component {
 				fromData: resp.data.data.fromData,
 				toData: resp.data.data.toData,
 				paymentBankData: resp.data.data.paymentBankData,
+				wc: resp.data.data.wc
 			});
 		})
 	};
@@ -1038,7 +1040,7 @@ class Invoice extends Component {
 														/>
 													</li>}
 
-													{(!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
+													{!this.state.wc && (!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
 														<i />
 														<h3 className='pv-title-small'>{i18n.acptd} {i18n.payment}</h3>

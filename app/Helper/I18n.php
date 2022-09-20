@@ -100,7 +100,7 @@ class I18n
             'total' => esc_html__('Total', 'propovoice'),
             'prv' => esc_html__('Preview', 'propovoice'), 
             //invoice
-            'dill' => esc_html__('Bill To', 'propovoice'),
+            'bill' => esc_html__('Bill', 'propovoice'),
             'info' => esc_html__('Info', 'propovoice'),
             'no' => esc_html__('No', 'propovoice'),
             //table
