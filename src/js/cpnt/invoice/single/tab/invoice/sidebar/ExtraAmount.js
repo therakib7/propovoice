@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import pro from 'block/pro-alert'; 
+import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
 export default (props) => {
@@ -19,7 +19,7 @@ export default (props) => {
                 let tax_fields = [];
                 let fee_fields = [];
                 let discount_fields = [];
-                let additional_amount = [];
+                let addi_amount = [];
                 if (extra_amount) {
                     extra_amount.map((item, i) => {
                         if (item.extra_amount_type == 'tax') {
@@ -30,8 +30,8 @@ export default (props) => {
                             discount_fields.push(item);
                         }
                     });
-                    additional_amount = [...tax_fields, ...fee_fields, ...discount_fields]
-                    setList(additional_amount);
+                    addi_amount = [...tax_fields, ...fee_fields, ...discount_fields]
+                    setList(addi_amount);
                 }
             }
         });
@@ -43,7 +43,7 @@ export default (props) => {
 
     const itemTaxChange = (e) => {
 
-        if ( wage.length > 0 ) {
+        if (wage.length > 0) {
             pro();
             return;
         }
@@ -58,7 +58,7 @@ export default (props) => {
             <div className="pv-form-accordion pv-additional">
                 <div className="pv-form-style-one">
                     <div className="row">
-                        <div className="col" style={{ marginBottom: '10px' }}>
+                        <div className="col" style={{ marginBottom: '0' }}>
                             <label id="form-item_tax">
                                 {i18n.eachitem} {i18n.tax} {i18n.field}
                                 {wage.length > 0 && <>
@@ -81,28 +81,43 @@ export default (props) => {
                 </div>
 
                 {list.map((item, i) => {
+                    
                     let hasItem = extra_field.find(x => x.id == item.id);
-                    let percent_val_type = false;
+                    let pct_val_type = false;
                     let fixed_val_type = false;
 
-                    if (hasItem) {
+                    let tax_cal = '';
+                    let fee_cal = '';
+
+                    if ( hasItem ) { 
                         if (hasItem.val_type === 'percent') {
-                            percent_val_type = true;
+                            pct_val_type = true;
                         } else {
                             fixed_val_type = true;
                         }
+
+                        tax_cal = item.hasOwnProperty('tax_cal') ? hasItem.tax_cal : '';
+                        fee_cal = item.hasOwnProperty('fee_cal') ? hasItem.fee_cal : '';
+
                     } else {
                         if (item.val_type === 'percent') {
-                            percent_val_type = true;
+                            pct_val_type = true;
                         } else {
                             fixed_val_type = true;
                         }
+
+                        tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
+                        fee_cal = item.hasOwnProperty('fee_cal') ? item.fee_cal : '';
                     }
 
+                    let tax_field = true; 
+                    if ( ( item.extra_amount_type == 'tax' || item.type == 'tax') && !props.item_tax ) {
+                        tax_field = false
+                    }   
                     return (
                         <div className="pv-tab" key={i}>
-                            <input checked={hasItem ? true : false} onChange={() => setAddi(i, item, 'field')} type="checkbox" id={'additional-field-' + i} name="additional-field" />
-                            <label className={(hasItem ? 'pv-active' : '') + ' pv-tab-label'} htmlFor={'additional-field-' + i}>
+                            <input checked={hasItem ? true : false} onChange={() => setAddi(i, item, 'field')} type="checkbox" id={'addi-field-' + i} name="addi-field" />
+                            <label className={(hasItem ? 'pv-active' : '') + ' pv-tab-label'} htmlFor={'addi-field-' + i}>
                                 {item.label}
                             </label>
                             <div className="pv-tab-content">
@@ -113,17 +128,45 @@ export default (props) => {
                                             <div className='row'>
                                                 <div className='col'>
                                                     <div className='pv-field-radio'>
-                                                        <input onChange={() => setAddi(i, item, 'type', 'percent')} defaultChecked={percent_val_type} type="radio" name={"val-type-" + i} id={"val-type-percent-" + i} value='percent' />
+                                                        <input onChange={() => setAddi(i, item, 'type', 'percent')} 
+                                                         checked={pct_val_type ? 'checked' : ''}
+                                                         type="radio" name={"val-type-" + i} id={"val-type-percent-" + i} value='percent' />
                                                         <label htmlFor={"val-type-percent-" + i}>{i18n.pct}</label>
                                                     </div>
                                                 </div>
                                                 <div className='col pv-p-0'>
                                                     <div className='pv-field-radio'>
-                                                        <input onChange={() => setAddi(i, item, 'type', 'fixed')} defaultChecked={fixed_val_type} type="radio" name={"val-type-" + i} id={"val-type-fixed-" + i} value='fixed' />
+                                                        <input onChange={() => setAddi(i, item, 'type', 'fixed')}  
+                                                        checked={fixed_val_type ? 'checked' : ''}
+                                                        type="radio" name={"val-type-" + i} id={"val-type-fixed-" + i} value='fixed' />
                                                         <label htmlFor={"val-type-fixed-" + i}>{i18n.fix}</label>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            {pct_val_type && tax_field && <>
+                                            <h4>{i18n.tax} {i18n.cal}:</h4>
+                                            <div className='row'>
+                                                <div className="col">
+                                                    <select style={{padding: 10}} name="tax_cal" value={tax_cal} onChange={(e) => setAddi(i, item, 'cal', e)}>
+                                                        <option value="">{i18n.with} {item.extra_amount_type == 'tax' ? i18n.item : ''} {i18n.tax}</option>
+                                                        <option value="1">{i18n.witho} {item.extra_amount_type == 'tax' ? i18n.item : ''} {i18n.tax}</option>
+                                                    </select>
+                                                </div>
+                                            </div></>}
+
+                                            {pct_val_type && ( item.extra_amount_type == 'discount' || item.type == 'discount' ) && <>
+                                                <h4 className="pv-mt-10">{i18n.fee} {i18n.cal}:</h4>
+                                                <div className='row'>
+                                                    <div className="col">
+                                                        <select style={{padding: 10}} name="fee_cal" value={fee_cal} onChange={(e) => setAddi(i, item, 'cal', e)}>
+                                                            <option value="">{i18n.with} {i18n.fee}</option>
+                                                            <option value="1">{i18n.witho} {i18n.fee}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </>}
+
                                         </div>
                                     </div>
                                 </div>

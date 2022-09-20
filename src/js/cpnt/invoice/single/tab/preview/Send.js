@@ -155,7 +155,7 @@ export default  class Send extends Component {
 
         api.add('emails', form).then(resp => {
             if (resp.data.success) {
-                toast.success('Mail sucessfully sent');
+                toast.success(ndpv.i18n.aMail);
                 this.props.close();
             } else {
                 resp.data.data.forEach(function (value, index, array) {

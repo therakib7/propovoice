@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Invoice as ModelInvoice;
@@ -6,15 +7,13 @@ use Ndpv\Model\Contact;
 
 class Invoice
 {
-
     public function __construct()
-    {
+    { 
         add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
     public function rest_routes()
     {
-
         register_rest_route('ndpv/v1', '/invoices', [
             [
                 'methods' => 'GET',
@@ -82,10 +81,10 @@ class Invoice
         if (isset($params['page']) && $params['page'] > 1) {
             $offset = ($per_page * $params['page']) - $per_page;
         }
- 
-        if ( $s ) {
+
+        if ($s) {
             /* $find = ['est', 'Est', 'inv', 'Inv'];
-            $replace = ['', '', '', '']; 
+            $replace = ['', '', '', ''];
             $search_value = str_replace($find, $replace, trim($params['s'])); */
             // $search_value = preg_replace('/[^0-9.]+/', '', $s);
         }
@@ -114,32 +113,32 @@ class Invoice
             );
         } */
 
-        if ( $s ) {
-            $contact_person = new Contact(); 
-            $person_ids = $contact_person->query($s, 'person');  
-            if ( $person_ids ) {
+        if ($s) {
+            $contact_person = new Contact();
+            $person_ids = $contact_person->query($s, 'person');
+            if ($person_ids) {
                 $args['meta_query'][] = array(
                     array(
                         'key'     => 'to',
                         'value'   => $person_ids,
                         'compare' => 'IN'
                     )
-                ); 
+                );
             }
 
-            $org_ids = $contact_person->query($s, 'org');   
-            if ( $org_ids ) {
+            $org_ids = $contact_person->query($s, 'org');
+            if ($org_ids) {
                 $args['meta_query'][] = array(
                     array(
                         'key'     => 'to',
                         'value'   => $org_ids,
                         'compare' => 'IN'
                     )
-                ); 
-            }  
+                );
+            }
         }
 
-        if ( isset($params['path']) ) {
+        if (isset($params['path'])) {
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'path',
@@ -148,7 +147,7 @@ class Invoice
             );
         }
 
-        if ( isset($params['module_id']) ) {
+        if (isset($params['module_id'])) {
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'module_id',
@@ -158,7 +157,7 @@ class Invoice
         }
 
         $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
@@ -279,13 +278,13 @@ class Invoice
             }
             $fromData['logo'] = $logoData;
         }
-        $query_data['fromData'] = $fromData; 
+        $query_data['fromData'] = $fromData;
 
         $to_id = get_post_meta($id, 'to', true);
         $to_type = get_post_meta($id, 'to_type', true);
         $toData = [];
 
-        if ( $to_id ) {
+        if ($to_id) {
             $toData['id'] = absint($to_id);
             $toMeta = get_post_meta($to_id);
             $toData['type'] = $to_type;
@@ -301,8 +300,8 @@ class Invoice
         $query_data['toData'] = $toData;
 
         $invoice = get_post_meta($id, 'invoice', true);
- 
-        $reminder = isset($invoice['reminder']) ? $invoice['reminder'] : null;  
+
+        $reminder = isset($invoice['reminder']) ? $invoice['reminder'] : null;
         if (!$reminder) {
             $reminderData = [];
             $reminderData['status'] = false;
@@ -328,7 +327,7 @@ class Invoice
         }
 
         $paymentData = null;
-        if ( isset($invoice['payment_methods']['bank']) ) {
+        if (isset($invoice['payment_methods']['bank'])) {
             $paymentData['id'] = $invoice['payment_methods']['bank'];
             $paymentMeta = get_post_meta($invoice['payment_methods']['bank']);
             $paymentData['name'] = isset($paymentMeta['name']) ? $paymentMeta['name'][0] : '';
@@ -336,10 +335,9 @@ class Invoice
         }
         $query_data['paymentBankData'] = $paymentData;
 
-        if ( isset($params['client_view']) ) {
+        if (isset($params['client_view'])) {
             $payment_methods = isset($invoice['payment_methods']) ? $invoice['payment_methods'] : null;
             if ($payment_methods) {
-
                 $new_payment_methods = [];
 
                 foreach ($payment_methods as $key => $payment_id) {
@@ -347,11 +345,9 @@ class Invoice
                     $payment_query_data['id'] = $payment_id;
 
                     if ($key == 'bank') {
-
                         $payment_query_data['name'] = get_post_meta($payment_id, 'name', true);
                         $payment_query_data['details'] = get_post_meta($payment_id, 'details', true);
                     } elseif ($key == 'paypal') {
-
                         $payment_query_data['account_type'] = get_post_meta($payment_id, 'account_type', true);
                         $payment_query_data['client_id'] = get_post_meta($payment_id, 'client_id', true);
                     } elseif ($key == 'stripe') {
@@ -366,7 +362,15 @@ class Invoice
 
             $invoice_model = new ModelInvoice();
             $invoice['total'] = $invoice_model->getTotalAmount($invoice);
-        } 
+        }
+
+        $query_data['wc'] = false;
+        if (ndpv()->wage()) {
+            $option = get_option('ndpv_payment_wc');
+            if ($option['status'] && class_exists( 'woocommerce' )) {
+                $query_data['wc'] = true;
+            }
+        }
 
         $query_data['invoice'] = $invoice;
 
@@ -376,7 +380,7 @@ class Invoice
     public function create($req)
     {
         $params = $req->get_params();
-        $reg_errors  = new \WP_Error;
+        $reg_errors  = new \WP_Error();
         //TODO: sanitize later
         $invoice  = isset($params) ? $params : null;
         $module_id = isset($params['module_id']) ? $params['module_id'] : null;
@@ -426,7 +430,7 @@ class Invoice
             );
             $post_id = wp_insert_post($data);
 
-            if ( !is_wp_error($post_id) ) {
+            if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
                 update_post_meta($post_id, 'status', 'draft');
                 update_post_meta($post_id, 'path', $path);
@@ -441,7 +445,7 @@ class Invoice
 
                 if ($due_date) {
                     update_post_meta($post_id, 'due_date', $due_date);
-                } 
+                }
 
                 if ($from) {
                     update_post_meta($post_id, 'from', $from);
@@ -501,9 +505,9 @@ class Invoice
     public function update($req)
     {
         $params = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $reg_errors = new \WP_Error();
         $invoice  = isset($params) ? $params : null;
-        
+
         $module_id = isset($params['module_id']) ? $params['module_id'] : null;
         $date     = isset($params['date']) ? $params['date'] : null;
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
@@ -547,8 +551,7 @@ class Invoice
             );
             $post_id = wp_update_post($data);
 
-            if ( !is_wp_error($post_id) ) {
-
+            if (!is_wp_error($post_id)) {
                 if ($module_id) {
                     update_post_meta($post_id, 'module_id', $module_id);
                 }

@@ -275,8 +275,8 @@ export default class Form extends Component {
                                         <div className="col-md">
                                             <label htmlFor="field-label">{i18n.rate} {i18n.type}</label>
                                             <select name="val_type" value={form.val_type} onChange={this.handleChange}>
-                                                <option value="percent">Percent</option>
-                                                <option value="fixed">Fixed</option>
+                                                <option value="percent">{i18n.pct}</option>
+                                                <option value="fixed">{i18n.fix}</option>
                                             </select>
                                         </div>
                                     </div>

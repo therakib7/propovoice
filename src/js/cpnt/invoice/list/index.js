@@ -197,12 +197,12 @@ const Invoice = class Invoice extends Component {
         this.props.routeChange();
     };
 
-    handleAction = (type, id) => { 
+    handleAction = (type, id) => {
 
-        if ( wage.length > 0 && ( type == 'copy' || type == 'copy-to-inv' ) ) {
-			pro();
-			return;
-		}
+        if (wage.length > 0 && (type == 'copy' || type == 'copy-to-inv')) {
+            pro();
+            return;
+        }
 
         if (
             type == 'sent' ||
@@ -214,13 +214,13 @@ const Invoice = class Invoice extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         if (type == 'sent') {
-                            toast.success(`Successfully mark as Sent`);
+                            toast.success(i18n.scf + ' ' + i18n.mark + ' ' + i18n.as + ' ' + i18n.sent);
                         } else if (type == 'paid') {
-                            toast.success(`Successfully mark as Paid`);
+                            toast.success(i18n.scf + ' ' + i18n.mark + ' ' + i18n.as + ' ' + i18n.paid);
                         } else if (type == 'accept') {
-                            toast.success(`Successfully mark as Accepted`);
+                            toast.success(i18n.scf + ' ' + i18n.mark + ' ' + i18n.as + ' ' + i18n.acptd);
                         } else if (type == 'decline') {
-                            toast.success(`Successfully mark as Declined`);
+                            toast.success(i18n.scf + ' ' + i18n.mark + ' ' + i18n.as + ' ' + i18n.dec);
                         }
                         this.getLists();
                     } else {
@@ -237,10 +237,10 @@ const Invoice = class Invoice extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         if (type == 'copy') {
-                            toast.success(`Successfully copied`);
+                            toast.success(ndpv.i18n.scf + ' ' + ndpv.i18n.cc);
                             this.getLists();
                         } else if (type == 'copy-to-inv') {
-                            toast.success(`Successfully convert to invoice`);
+                            toast.success(i18n.scf + ' ' + i18n.conV + ' ' + i18n.to + ' ' + i18n.inv);
                         }
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -277,7 +277,7 @@ const Invoice = class Invoice extends Component {
                             height={20}
                             viewBox="0 0 20 20"
                             fill="none"
-                            
+
                         >
                             <path
                                 d="M7.5 5H16.875"
@@ -329,7 +329,7 @@ const Invoice = class Invoice extends Component {
                             height={20}
                             viewBox="0 0 20 20"
                             fill="none"
-                            
+
                         >
                             <path
                                 d="M17.5 4.375H2.5C2.15482 4.375 1.875 4.65482 1.875 5V6.875C1.875 7.22018 2.15482 7.5 2.5 7.5H17.5C17.8452 7.5 18.125 7.22018 18.125 6.875V5C18.125 4.65482 17.8452 4.375 17.5 4.375Z"

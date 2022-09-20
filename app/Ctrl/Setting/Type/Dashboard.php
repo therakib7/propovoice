@@ -40,7 +40,7 @@ class Dashboard
             ],
             [
                 'id' => 'deal',
-                'label' => (function_exists('ndpvp') && ndpvp()->wage()) ? esc_html__('Deal Pipeline', 'propovoice') : esc_html__('Deal', 'propovoice'),
+                'label' => (ndpv()->wage()) ? esc_html__('Deal Pipeline', 'propovoice') : esc_html__('Deal', 'propovoice'),
             ],
             [
                 'id' => 'estimate',
@@ -91,7 +91,7 @@ class Dashboard
             array($this, 'render')
         );
 
-        if (function_exists('ndpvp') && ndpvp()->wage()) {
+        if (ndpv()->wage()) {
             global $submenu;
             $permalink = Fns::client_page_url('workspace');
             if ($permalink) {

@@ -6,7 +6,7 @@ import { Add } from 'block/icon';
 import Currency from 'block/field/currency';
 import Select from 'react-select';
 import Contact from 'block/field/contact';
-import { sprintf } from 'sprintf-js'; 
+import { sprintf } from 'sprintf-js';
 
 class Form extends Component {
     constructor(props) {
@@ -14,13 +14,13 @@ class Form extends Component {
 
         this.initialState = {
             id: null,
+            title: '',
             first_name: '',
             org_name: '',
             person_id: null,
             org_id: null,
             email: '',
             mobile: '',
-            title: '',
             lead_id: '',
             stage_id: '',
             budget: '',
@@ -152,7 +152,7 @@ class Form extends Component {
 
                 api.add('deals', form).then(resp => {
                     if (resp.data.success) {
-                        toast.success('Successfully moved to deal');
+                        toast.success(ndpv.i18n.aDelM);
                         let id = resp.data.data;
                         this.props.close();
                         this.props.navigate(`/deal/single/${id}`);
@@ -212,6 +212,7 @@ class Form extends Component {
     }
 
     render() {
+        const i18n = ndpv.i18n;
         const stageList = this.state.stages;
         const tagList = this.state.tags;
         const form = this.state.form;
@@ -219,13 +220,12 @@ class Form extends Component {
 
         let title = '';
         if (this.props.modalType == 'new') {
-            title = 'New'
+            title = i18n.new
         } else if (this.props.modalType == 'edit') {
-            title = 'Edit'
+            title = i18n.edit
         } else if (this.props.modalType == 'move') {
-            title = 'Move to'
+            title = i18n.moveto 
         }
-        const i18n = ndpv.i18n;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -238,10 +238,28 @@ class Form extends Component {
                         <p>{sprintf(i18n.formDesc, i18n.deal)}</p>
 
                     </div>
-                     
+
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
                             <div className="pv-form-style-one">
+
+                                <div className="row">
+                                    <div className="col-md">
+                                        <label htmlFor="field-title">
+                                            {i18n.title}
+                                        </label>
+
+                                        <input
+                                            id="field-title"
+                                            type="text"
+                                            name="title"
+                                            required
+                                            value={form.title}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
                                 {/* {!this.props.reload && <>  */}
                                 <Contact
                                     first_name={form.first_name}
@@ -283,23 +301,6 @@ class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md">
-                                        <label htmlFor="field-title">
-                                            {i18n.title}
-                                        </label>
-
-                                        <input
-                                            id="field-title"
-                                            type="text"
-                                            name="title"
-                                            required
-                                            value={form.title}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-md">
                                         <label htmlFor="field-stage_id">
                                             {i18n.stage}
                                         </label>
@@ -333,7 +334,7 @@ class Form extends Component {
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
                                             {i18n.cur}
-                                        </label> 
+                                        </label>
                                         <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
                                     </div>
 
@@ -426,5 +427,5 @@ class Form extends Component {
         );
     }
 }
- 
+
 export default WithRouter(Form);  

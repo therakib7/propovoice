@@ -177,7 +177,7 @@ class ListSingle extends Component {
                 if (data.probability) {
                     newData.probability = data.probability;
                 }
-                this.props.update('deals', this.props.id, newData);
+                api.edit('deals', this.props.id, newData);
             }, 300);
         });
     }
@@ -192,7 +192,7 @@ class ListSingle extends Component {
                 if (data.stage_id) {
                     newData.stage_id = data.stage_id.id;
                 }
-                this.props.update('deals', this.props.id, newData);
+                api.edit('deals', this.props.id, newData);
             });
         } else {
             data.stage_id = val;
@@ -211,13 +211,41 @@ class ListSingle extends Component {
                 if (data.status_id) {
                     newData.status_id = data.status_id.id;
                 }
-                this.props.update('projects', this.props.id, newData);
+                api.edit('projects', this.props.id, newData);
             });
         } else {
             data.status_id = val;
             this.setState({ data });
         }
     }
+
+    personEdit = (data) => {
+        api.edit('persons', data.id, data).then(resp => {
+            if (resp.data.success) {
+                this.setState({ contactModal: false });
+                toast.success(ndpv.i18n.aUpd);
+                this.getData();
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        });
+    };
+
+    orgEdit = (data) => {
+        api.edit('orgs', data.id, data).then(resp => {
+            if (resp.data.success) {
+                this.setState({ contactModal: false });
+                toast.success(ndpv.i18n.aUpd);
+                this.getData();
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        });
+    };
 
     deleteEntry = (type, id) => {
         if (confirm(ndpv.i18n.aConf)) {
@@ -843,11 +871,13 @@ class ListSingle extends Component {
                 {this.state.contactModal && (data.person ? <ContactPerson
                     data={data.person}
                     modalType='edit'
+                    handleSubmit={this.personEdit}
                     close={() => this.setState({ contactModal: false })}
                     reload={() => this.getData()}
                 /> : <ContactOrg
                     data={data.org}
                     modalType='edit'
+                    handleSubmit={this.orgEdit}
                     close={() => this.setState({ contactModal: false })}
                     reload={() => this.getData()}
                 />)}

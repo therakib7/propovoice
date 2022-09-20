@@ -1,11 +1,11 @@
 export default (props) => {
-    const data = props.data
+    const data = props.data;
     return (
         <>
             {data ?
                 <>
-                    <h5>{ndpv.i18n.dill}</h5>
-                    <h6>{data.first_name} {data.last_name}</h6>
+                    <h5>{ndpv.i18n.bill} {ndpv.i18n.to}</h5>
+                    <h6>{(data.type == 'person') ? data.first_name : data.org_name}</h6>
                     <p>
                         {data.address &&
                             <>{data.address}.<br /></>
