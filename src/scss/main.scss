@@ -1011,11 +1011,12 @@ html {
 .ndpi .pi-table input[type=checkbox] {
   zoom: 1.5;
   border-radius: 5px;
-  transform: scale(0.8);
   border: 1px solid rgba(147, 147, 147, 0.9411764706);
   box-shadow: none;
   position: relative;
   top: 2px;
+  transform: scale(0.8);
+  -moz-transform: scale(1);
 }
 
 .ndpi .pi-table tr {
@@ -2038,8 +2039,7 @@ html {
   outline: none;
   padding: 4px 20px 4px 4px;
   background-position-x: 85%;
-  background-position-y: 44%;
-  line-height: 100%;
+  background-position-y: 46%;
   font-size: 12px;
 }
 
@@ -6116,19 +6116,5 @@ select {
   .pi-collapse-menu:hover ul li a span {
     display: table;
     left: 28%;
-  }
-}
-
-.ndpi .pi-payment-tab .pi-tab .pi-pro-label {
-  background: rgba(235, 205, 168, 0.4705882353) !important;
-  padding: 2px 8px 2px 7px !important;
-  display: block;
-  font-size: 12px !important;
-  border-radius: 12px !important;
-  margin-top: 10px;
-
-  svg {
-    top: 5px;
-    display: initial;
   }
 }
