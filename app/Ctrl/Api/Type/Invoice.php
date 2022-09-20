@@ -8,7 +8,7 @@ use Ndpv\Model\Contact;
 class Invoice
 {
     public function __construct()
-    {
+    { 
         add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
@@ -367,7 +367,7 @@ class Invoice
         $query_data['wc'] = false;
         if (ndpv()->wage()) {
             $option = get_option('ndpv_payment_wc');
-            if ($option['status']) {
+            if ($option['status'] && class_exists( 'woocommerce' )) {
                 $query_data['wc'] = true;
             }
         }
