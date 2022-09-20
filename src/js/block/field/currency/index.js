@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import currencyToSymbolMap from 'currency-symbol-map/map' 
+import currencyToSymbolMap from 'currency-symbol-map/map'
 import Select from 'block/field/select';
 
 export default (props) => {
@@ -15,7 +15,7 @@ export default (props) => {
 		});
 		setList(list);
 
-		if ( props.value ) {
+		if (props.value) {
 			setListById({
 				id: props.value,
 				label: props.value + ' (' + c[props.value] + ')',
@@ -30,7 +30,7 @@ export default (props) => {
 	}
 	return (
 		<>
-			{lists.length > 0 && <Select 
+			{lists.length > 0 && <Select
 				search
 				className={'pv-field-select'}
 				value={single}
