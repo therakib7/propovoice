@@ -132,9 +132,9 @@ export default (props) => {
     let addi_amount = [];
     if (extra_field) {
         extra_field.map((item, i) => {
-            if (item.extra_amount_type == 'tax') {
+            if (item.extra_amount_type == 'tax' || item.type == 'tax') {
                 tax_fields.push(item);
-            } else if (item.extra_amount_type == 'fee') {
+            } else if (item.extra_amount_type == 'fee' || item.type == 'fee') {
                 fee_fields.push(item);
             } else {
                 discount_fields.push(item);
@@ -173,9 +173,9 @@ export default (props) => {
                             }
     
                             if ( item.type == 'discount' ) {
-                                total += itemsTaxTotal(); 
-    
+                                
                                 if (!tax_cal) { 
+                                    total += itemsTaxTotal(); 
                                     total += calcTax();
                                 }
     

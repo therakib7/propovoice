@@ -81,6 +81,7 @@ export default (props) => {
                 </div>
 
                 {list.map((item, i) => {
+                    
                     let hasItem = extra_field.find(x => x.id == item.id);
                     let pct_val_type = false;
                     let fixed_val_type = false;
@@ -88,7 +89,7 @@ export default (props) => {
                     let tax_cal = '';
                     let fee_cal = '';
 
-                    if ( hasItem ) {
+                    if ( hasItem ) { 
                         if (hasItem.val_type === 'percent') {
                             pct_val_type = true;
                         } else {
@@ -108,10 +109,9 @@ export default (props) => {
 
                     let tax_field = true;
 
-                    if (item.extra_amount_type == 'tax' && !props.item_tax ) {
+                    if ( ( item.extra_amount_type == 'tax' || item.type == 'tax') && !props.item_tax ) {
                         tax_field = false
-                    }
-
+                    }  
                     return (
                         <div className="pv-tab" key={i}>
                             <input checked={hasItem ? true : false} onChange={() => setAddi(i, item, 'field')} type="checkbox" id={'addi-field-' + i} name="addi-field" />
@@ -126,13 +126,17 @@ export default (props) => {
                                             <div className='row'>
                                                 <div className='col'>
                                                     <div className='pv-field-radio'>
-                                                        <input onChange={() => setAddi(i, item, 'type', 'percent')} defaultChecked={pct_val_type} type="radio" name={"val-type-" + i} id={"val-type-percent-" + i} value='percent' />
+                                                        <input onChange={() => setAddi(i, item, 'type', 'percent')} 
+                                                         checked={pct_val_type ? 'checked' : ''}
+                                                         type="radio" name={"val-type-" + i} id={"val-type-percent-" + i} value='percent' />
                                                         <label htmlFor={"val-type-percent-" + i}>{i18n.pct}</label>
                                                     </div>
                                                 </div>
                                                 <div className='col pv-p-0'>
                                                     <div className='pv-field-radio'>
-                                                        <input onChange={() => setAddi(i, item, 'type', 'fixed')} defaultChecked={fixed_val_type} type="radio" name={"val-type-" + i} id={"val-type-fixed-" + i} value='fixed' />
+                                                        <input onChange={() => setAddi(i, item, 'type', 'fixed')}  
+                                                        checked={fixed_val_type ? 'checked' : ''}
+                                                        type="radio" name={"val-type-" + i} id={"val-type-fixed-" + i} value='fixed' />
                                                         <label htmlFor={"val-type-fixed-" + i}>{i18n.fix}</label>
                                                     </div>
                                                 </div>
@@ -149,7 +153,7 @@ export default (props) => {
                                                 </div>
                                             </div></>}
 
-                                            {pct_val_type && item.extra_amount_type == 'discount' && <>
+                                            {pct_val_type && ( item.extra_amount_type == 'discount' || item.type == 'discount' ) && <>
                                                 <h4 className="pv-mt-10">{i18n.fee} {i18n.cal}:</h4>
                                                 <div className='row'>
                                                     <div className="col">

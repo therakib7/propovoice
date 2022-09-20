@@ -122,7 +122,6 @@ class Invoice
     public function getTotalAmount($invoice)
     {
         $this->invoice = $invoice;
-
         $total = $this->itemsTotal(); 
         $item_tax = $this->invoice['item_tax'];
         if ($item_tax) {

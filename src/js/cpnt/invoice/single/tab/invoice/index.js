@@ -566,7 +566,7 @@ class Invoice extends Component {
 	}
 
 	onExtraFieldChange = (i, item, type, type_val) => {
-		let invoice = { ...this.state.invoice }
+		let invoice = { ...this.state.invoice } 
 		let index = invoice.extra_field.findIndex(x => x.id == item.id);
 		if (type == 'field') {
 			if (index != -1) { // if payment method exist  
@@ -579,6 +579,7 @@ class Invoice extends Component {
 					val: 0,
 					val_type: item.val_type
 				};
+
 				invoice.extra_field.splice(i, 0, data);
 			}
 			this.setState({ invoice });
