@@ -9,6 +9,9 @@ class Invoice
 
     public function __construct()
     { 
+        /* $invoice_model = new ModelInvoice();
+        $invoice = get_post_meta(1524, 'invoice', true);
+        die($invoice_model->getTotalAmount($invoice)); */
         add_action('rest_api_init', [$this, 'rest_routes']);
     }
 

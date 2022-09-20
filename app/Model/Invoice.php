@@ -44,15 +44,16 @@ class Invoice
         $extra_field = $this->invoice['extra_field']; 
         foreach ($extra_field as $item) {
             if ($item['type'] == 'tax') {
+                $val = $item['val'] ? $item['val'] : 0;
                 if ($item['val_type'] == 'percent') {
                     $tax_cal = $item['tax_cal'] ?? '';
                     $item_tax = 0;
                     if (!$tax_cal) {
                         $item_tax = $item_tax_total; 
                     }
-                    $total += ( $item_total + $item_tax ) * ($item['val'] / 100);  
+                    $total += ( $item_total + $item_tax ) * ($val / 100);  
                 } else {
-                    $total += (float) $item['val'];
+                    $total += (float) $val;
                 }
             }
         }
@@ -68,15 +69,16 @@ class Invoice
         $extra_field = $this->invoice['extra_field']; 
         foreach ($extra_field as $item) {
             if ($item['type'] == 'fee') {
+                $val = $item['val'] ? $item['val'] : 0;
                 if ($item['val_type'] == 'percent') {
                     $tax_cal = $item['tax_cal'] ?? '';
                     $item_tax = 0;
                     if (!$tax_cal) {
                         $item_tax = $item_tax_total; 
                     }
-                    $total += ( $item_total + $item_tax ) * ($item['val'] / 100);  
+                    $total += ( $item_total + $item_tax ) * ($val / 100);  
                 } else {
-                    $total += (float) $item['val'];
+                    $total += (float) $val;
                 }
             }
         }
@@ -93,6 +95,7 @@ class Invoice
         $extra_field = $this->invoice['extra_field']; 
         foreach ($extra_field as $item) {
             if ($item['type'] == 'discount') {
+                $val = $item['val'] ? $item['val'] : 0;
                 if ($item['val_type'] == 'percent') { 
                     $item_tax = 0;
                     $tax_cal = $item['tax_cal'] ?? '';
@@ -106,9 +109,9 @@ class Invoice
                         $item_fee = $item_fee_total; 
                     }
 
-                    $total += ( $item_total + $item_tax + $item_fee ) * ($item['val'] / 100); 
+                    $total += ( $item_total + $item_tax + $item_fee ) * ($val / 100); 
                 } else {
-                    $total += (float) $item['val'];
+                    $total += (float) $val;
                 }
             }
         }

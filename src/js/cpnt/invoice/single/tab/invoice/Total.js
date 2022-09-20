@@ -30,15 +30,16 @@ export default (props) => {
         extra_field.map((item, i) => {
 
             if (item.type == 'tax') { 
+                let val = item.val ? item.val : 0;
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
                     let item_tax = 0;
                     if (!tax_cal) {
                         item_tax = item_tax_total; 
                     } 
-                    total += ( item_total + item_tax ) * (item.val / 100);  
+                    total += ( item_total + item_tax ) * (val / 100);  
                 } else {
-                    total += parseFloat(item.val);
+                    total += parseFloat(val);
                 }
             }
         })
@@ -52,15 +53,16 @@ export default (props) => {
         let item_tax_total = itemsTaxTotal() + calcTax();
         extra_field.map((item, i) => { 
             if (item.type == 'fee') { 
+                let val = item.val ? item.val : 0;
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : ''; 
                     let item_tax = 0;
                     if (!tax_cal) {
                         item_tax = item_tax_total; 
                     } 
-                    total += ( item_total + item_tax ) * (item.val / 100);  
+                    total += ( item_total + item_tax ) * (val / 100);  
                 } else {
-                    total += parseFloat(item.val);
+                    total += parseFloat(val);
                 }
             }
         })
@@ -76,7 +78,7 @@ export default (props) => {
         extra_field.map((item, i) => {
 
             if (item.type == 'discount') {
-
+                let val = item.val ? item.val : 0;
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
                     let item_tax = 0;
@@ -89,9 +91,9 @@ export default (props) => {
                     if (!fee_cal) {
                         item_fee = item_fee_total; 
                     }  
-                    total += ( item_total + item_tax + item_fee ) * (item.val / 100);
+                    total += ( item_total + item_tax + item_fee ) * (val / 100);
                 } else {
-                    total += parseFloat(item.val);
+                    total += parseFloat(val);
                 }
             }
         })
@@ -143,7 +145,7 @@ export default (props) => {
 
                 {addi_amount.map((item, i) => {
                     let total = itemsTotal();
-
+                    let val = item.val ? item.val : 0;
                     if (item.val_type == 'percent') {
                         let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
                         let fee_cal = item.hasOwnProperty('fee_cal') ? item.fee_cal : '';
@@ -167,13 +169,11 @@ export default (props) => {
                             if (!fee_cal) { 
                                 total += calcFee();
                             }
-                        }
+                        } 
 
-                        
-
-                        total *= (item.val / 100);
+                        total *= (val / 100);
                     } else {
-                        total = parseFloat(item.val);
+                        total = parseFloat(val);
                     }
 
                     return (<tr key={i}>
