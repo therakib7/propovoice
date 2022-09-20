@@ -40,17 +40,19 @@ class Invoice
     {
         $total = 0;
         $item_total = $this->itemsTotal();
+        $item_tax_total = $this->itemsTaxTotal();
         $extra_field = $this->invoice['extra_field']; 
         foreach ($extra_field as $item) {
             if ($item['type'] == 'tax') {
                 if ($item['val_type'] == 'percent') {
                     $tax_cal = $item['tax_cal'] ?? '';
+                    $item_tax = 0;
                     if (!$tax_cal) {
-                        $item_total += $this->itemsTaxTotal();
+                        $item_tax = $item_tax_total; 
                     }
-                    $total = $item_total * ($item['val'] / 100);
+                    $total += ( $item_total + $item_tax ) * ($item['val'] / 100);  
                 } else {
-                    $total = (float) $item['val'];
+                    $total += (float) $item['val'];
                 }
             }
         }
@@ -62,17 +64,19 @@ class Invoice
     {
         $total = 0;
         $item_total = $this->itemsTotal();
+        $item_tax_total = $this->itemsTaxTotal() + $this->calcTax();
         $extra_field = $this->invoice['extra_field']; 
         foreach ($extra_field as $item) {
             if ($item['type'] == 'fee') {
                 if ($item['val_type'] == 'percent') {
                     $tax_cal = $item['tax_cal'] ?? '';
+                    $item_tax = 0;
                     if (!$tax_cal) {
-                        $item_total += $this->calcTax();
+                        $item_tax = $item_tax_total; 
                     }
-                    $total = $item_total * ($item['val'] / 100);
+                    $total += ( $item_total + $item_tax ) * ($item['val'] / 100);  
                 } else {
-                    $total = (float) $item['val'];
+                    $total += (float) $item['val'];
                 }
             }
         }
@@ -84,23 +88,27 @@ class Invoice
     {
         $total = 0;
         $item_total = $this->itemsTotal();
+        $item_tax_total = $this->itemsTaxTotal() + $this->calcTax();
+        $item_fee_total = $this->calcFee();
         $extra_field = $this->invoice['extra_field']; 
         foreach ($extra_field as $item) {
             if ($item['type'] == 'discount') {
-                if ($item['val_type'] == 'percent') {
+                if ($item['val_type'] == 'percent') { 
+                    $item_tax = 0;
                     $tax_cal = $item['tax_cal'] ?? '';
                     if (!$tax_cal) {
-                        $item_total += $this->calcTax();
+                        $item_tax = $item_tax_total; 
                     }
 
+                    $item_fee = 0;
                     $fee_cal = $item['fee_cal'] ?? '';
                     if (!$fee_cal) {
-                        $item_total += $this->calcFee();
+                        $item_fee = $item_fee_total; 
                     }
 
-                    $total = $item_total * ($item['val'] / 100);
+                    $total += ( $item_total + $item_tax + $item_fee ) * ($item['val'] / 100); 
                 } else {
-                    $total = (float) $item['val'];
+                    $total += (float) $item['val'];
                 }
             }
         }

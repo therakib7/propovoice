@@ -37,18 +37,19 @@ export default (props) => {
     const calcTax = () => {
         let total = 0;
         let item_total = itemsTotal();
+        let item_tax_total = itemsTaxTotal();
         extra_field.map((item, i) => {
 
-            if (item.type == 'tax') {
-
+            if (item.type == 'tax') { 
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
+                    let item_tax = 0;
                     if (!tax_cal) {
-                        item_total += itemsTaxTotal();
-                    }
-                    total = item_total * (item.val / 100);
+                        item_tax = item_tax_total; 
+                    } 
+                    total += ( item_total + item_tax ) * (item.val / 100);  
                 } else {
-                    total = parseFloat(item.val);
+                    total += parseFloat(item.val);
                 }
             }
         })
@@ -59,19 +60,20 @@ export default (props) => {
     const calcFee = () => {
         let total = 0;
         let item_total = itemsTotal();
+        let item_tax_total = itemsTaxTotal() + calcTax();
         extra_field.map((item, i) => {
 
             if (item.type == 'fee') {
 
                 if (item.val_type == 'percent') {
-                    let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
+                    let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : ''; 
+                    let item_tax = 0;
                     if (!tax_cal) {
-                        item_total += itemsTaxTotal();
-                        item_total += calcTax();
-                    }
-                    total = item_total * (item.val / 100);
+                        item_tax = item_tax_total; 
+                    } 
+                    total += ( item_total + item_tax ) * (item.val / 100);  
                 } else {
-                    total = parseFloat(item.val);
+                    total += parseFloat(item.val);
                 }
             }
         })
@@ -82,25 +84,27 @@ export default (props) => {
     const calcDisc = () => {
         let total = 0;
         let item_total = itemsTotal();
+        let item_tax_total = itemsTaxTotal() + calcTax();
+        let item_fee_total = calcFee();
         extra_field.map((item, i) => {
 
             if (item.type == 'discount') {
 
                 if (item.val_type == 'percent') {
                     let tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
+                    let item_tax = 0;
                     if (!tax_cal) {
-                        item_total += itemsTaxTotal();
-                        item_total += calcTax();
-                    }
+                        item_tax = item_tax_total; 
+                    } 
 
                     let fee_cal = item.hasOwnProperty('fee_cal') ? item.fee_cal : '';
+                    let item_fee = 0;
                     if (!fee_cal) {
-                        item_total += calcFee();
-                    }
-
-                    total = item_total * (item.val / 100);
+                        item_fee = item_fee_total; 
+                    }  
+                    total += ( item_total + item_tax + item_fee ) * (item.val / 100);
                 } else {
-                    total = parseFloat(item.val);
+                    total += parseFloat(item.val);
                 }
             }
         })
@@ -167,13 +171,16 @@ export default (props) => {
                                 total += calcTax(); 
                             }
     
-                            if (item.type == 'discount' && !tax_cal) {
-                                total += itemsTaxTotal();
-                                total += calcTax(); 
-                            }
+                            if ( item.type == 'discount' ) {
+                                total += itemsTaxTotal(); 
     
-                            if (item.type == 'discount' && !fee_cal) { 
-                                total += calcFee();
+                                if (!tax_cal) { 
+                                    total += calcTax();
+                                }
+    
+                                if (!fee_cal) { 
+                                    total += calcFee();
+                                }
                             }
 
                             total *= (item.val / 100);
