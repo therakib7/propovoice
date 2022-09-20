@@ -6,26 +6,26 @@ const TableBody = props => {
 
     let rows = props.tableData.map((row, index) => {
         return (
-            <div className="pi-note" key={index}>
+            <div className="pv-note" key={index}>
                 <Action
                     row={row}
                     editEntry={props.editEntry}
                     deleteEntry={props.deleteEntry}
                 />
 
-                <div className="pi-avater">
-                    <img src={ndpi.assetImgUri + 'avatar.png'} alt="avatar" />
+                <div className="pv-avater">
+                    <img src={ndpv.assetImgUri + 'avatar.png'} alt="avatar" />
                 </div>
 
-                <div className="pi-note-text">
-                    <h4>Nabil Ahmed <span>10 min ago</span></h4>
+                <div className="pv-note-text">
+                    <h4>{row.by} <span>{row.date}</span></h4>
                     <p>{row.text}</p>
                 </div>
             </div>
         );
     });
 
-    return <div className="pi-note-content">{rows}</div>;
+    return <div className="pv-note-content">{rows}</div>;
 }
 
 const Table = (props) => {

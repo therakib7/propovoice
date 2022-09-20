@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Api from 'api/setting';
@@ -40,13 +41,18 @@ export default class Reminder extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
+
         let form = this.state.form;
         form.tab = 'email_invoice_reminder';
 
         Api.create(form)
             .then(resp => {
                 if (resp.data.success) {
-                    toast.success(this.context.CrudMsg.update);
+                    toast.success(ndpv.i18n.aUpd);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -56,9 +62,9 @@ export default class Reminder extends Component {
     }
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pv-form-style-one">
 
                 <div className="row">
                     <div className="col">
@@ -73,7 +79,7 @@ export default class Reminder extends Component {
                             value={this.state.form.subject}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{org_name}'}, {'{client_name}'} </p>
+                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{org_name}'}, {'{client_name}'} </p>
                     </div>
                 </div>
 
@@ -88,14 +94,14 @@ export default class Reminder extends Component {
                             value={this.state.form.msg}
                             onChange={this.handleChange}
                         />
-                        <p className='pi-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{org_name}'}</p>
+                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{org_name}'}</p>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                        {i18n.save}
+                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
+                            {i18n.save} <ProLabel blueBtn />
                         </button>
                     </div>
                 </div>

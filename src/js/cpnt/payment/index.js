@@ -5,17 +5,18 @@ import Style from './style.scoped.scss'
 import AppContext from 'context/app-context'; 
 import Preloader from 'block/preloader/table'; 
 import Api from 'api/payment';
+import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
 //form
-import FormBank from './FormBank';
-import FormPaypal from './FormPaypal';
-import FormStripe from './FormStripe';
+import FormBank from './form/Bank';
+import FormPaypal from './form/Paypal';
+import FormStripe from './form/Stripe';
 
 //table
-import TableBank from './TableBank';
-import TablePaypal from './TablePaypal';
-import TableStripe from './TableStripe';
+import TableBank from './table/Bank';
+import TablePaypal from './table/Paypal';
+import TableStripe from './table/Stripe';
 import Search from './Search';
 import Empty from 'block/empty';
 
@@ -85,7 +86,7 @@ export default class Payment extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.create);
+                        toast.success(ndpv.i18n.aAdd);
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -98,7 +99,7 @@ export default class Payment extends Component {
                 .then(resp => {
                     if (resp.data.success) {
                         this.setState({ formModal: false })
-                        toast.success(this.context.CrudMsg.update);
+                        toast.success(ndpv.i18n.aUpd);
                         this.getLists();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
@@ -111,7 +112,7 @@ export default class Payment extends Component {
 
     deleteEntry = (type, index) => {
 
-        if (confirm(this.context.CrudMsg.confirm)) {
+        if (confirm(ndpv.i18n.aConf)) {
 
             if (type == 'single') {
                 this.setState({
@@ -124,7 +125,7 @@ export default class Payment extends Component {
             Api.remove(ids)
                 .then(resp => {
                     if (resp.data.success) {
-                        toast.success(this.context.CrudMsg.delete);
+                        toast.success(ndpv.i18n.aDel);
                         if (type != 'single') {
                             this.setState({ checkedBoxes: [] });
                         }
@@ -140,7 +141,7 @@ export default class Payment extends Component {
 
     setActiveTab(e, id) {
         e.preventDefault();
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         let title;
         switch (id) {
             case 'bank':
@@ -219,21 +220,21 @@ export default class Payment extends Component {
     };
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         const { payments, title, currentTab, currentTabTitle } = this.state;
         return (
-            <div className="ncpi-cpnt"> 
+            <div className="ndpv-cpnt"> 
 
-                <div className="pi-payment-tab">
-                    <ul className="pi-tabs">
-                        <li data-tab-target="#pi-bank" className={'pi-tab ' + (currentTab == 'bank' ? 'pi-active' : '')} onClick={(e) => this.setActiveTab(e, 'bank')}>
+                <div className="pv-payment-tab">
+                    <ul className="pv-tabs">
+                        <li data-tab-target="#pv-bank" className={'pv-tab ' + (currentTab == 'bank' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'bank')}>
                             <span>
                                 <svg
                                     width={29}
                                     height={24}
                                     viewBox="0 0 29 24"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M2.71533 9H26.2479L14.4816 3L2.71533 9Z"
@@ -289,14 +290,14 @@ export default class Payment extends Component {
                             <span>{i18n.bank} {i18n.nd} {i18n.other}</span>
                         </li> 
 
-                        <li data-tab-target="#pi-paypal" className={'pi-tab ' + (currentTab == 'paypal' ? 'pi-active' : '')} onClick={(e) => this.setActiveTab(e, 'paypal')}>
+                        <li data-tab-target="#pv-paypal" className={'pv-tab ' + (currentTab == 'paypal' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'paypal')}>
                             <span>
                                 <svg
                                     width={23}
                                     height={27}
                                     viewBox="0 0 23 27"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M19.5675 2.57768C18.3585 1.19971 16.1731 0.608938 13.3774 0.608938H5.26339C4.98664 0.608789 4.71892 0.707424 4.50841 0.887085C4.2979 1.06675 4.15843 1.31564 4.11508 1.58898L0.738033 23.0176C0.722374 23.117 0.728452 23.2187 0.755848 23.3155C0.783244 23.4123 0.831307 23.5021 0.896726 23.5785C0.962144 23.655 1.04336 23.7164 1.13479 23.7585C1.22621 23.8005 1.32566 23.8223 1.4263 23.8222H6.43554L7.69363 15.8425L7.65463 16.0924C7.69714 15.8196 7.83569 15.5709 8.0453 15.3913C8.25491 15.2116 8.5218 15.1127 8.79788 15.1123H11.1783C15.8546 15.1123 19.5162 13.2129 20.5858 7.71836C20.6176 7.55587 20.645 7.3977 20.6688 7.24315C20.9866 5.2123 20.6667 3.82999 19.5682 2.5784"
@@ -323,14 +324,14 @@ export default class Payment extends Component {
                             <span>Paypal</span>
                         </li>
 
-                        <li data-tab-target="#pi-stripe" className={'pi-tab ' + (currentTab == 'stripe' ? 'pi-active' : '')} onClick={(e) => this.setActiveTab(e, 'stripe')}>
+                        <li data-tab-target="#pv-stripe" className={'pv-tab ' + (currentTab == 'stripe' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'stripe')}>
                             <span>
                                 <svg
                                     width={29}
                                     height={12}
                                     viewBox="0 0 29 12"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M2.0267 4.70227C2.0267 4.38985 2.28304 4.26969 2.70761 4.26969C3.31642 4.26969 4.08545 4.45394 4.69426 4.78238V2.89987C4.02937 2.63551 3.3725 2.53138 2.70761 2.53138C1.08144 2.53138 0 3.38051 0 4.7984C0 7.00935 3.04406 6.65688 3.04406 7.61015C3.04406 7.97864 2.72363 8.0988 2.27503 8.0988C1.61015 8.0988 0.761015 7.82644 0.0881175 7.45794V9.36449C0.833111 9.68491 1.58611 9.82109 2.27503 9.82109C3.94125 9.82109 5.08678 8.996 5.08678 7.56208C5.07877 5.1749 2.0267 5.59947 2.0267 4.70227ZM7.44192 0.929239L5.48732 1.34579L5.4793 7.76235C5.4793 8.94793 6.36849 9.82109 7.55407 9.82109C8.21095 9.82109 8.69159 9.70094 8.95594 9.55674V7.93057C8.6996 8.03471 7.43391 8.4032 7.43391 7.21762V4.37383H8.95594V2.66756H7.43391L7.44192 0.929239ZM11.4473 3.26035L11.3191 2.66756H9.58878V9.6769H11.5915V4.92657C12.0641 4.30975 12.8652 4.4219 13.1135 4.51001V2.66756C12.8571 2.57143 11.9199 2.39519 11.4473 3.26035ZM13.6021 2.66756H15.6128V9.6769H13.6021V2.66756ZM13.6021 2.05874L15.6128 1.62617V0L13.6021 0.424566V2.05874ZM19.7944 2.53138C19.0093 2.53138 18.5047 2.89987 18.2243 3.15621L18.1202 2.65955H16.3578V12L18.3605 11.5754L18.3685 9.30841C18.6569 9.51669 19.0814 9.81308 19.7864 9.81308C21.2203 9.81308 22.526 8.65955 22.526 6.12016C22.518 3.79706 21.1963 2.53138 19.7944 2.53138ZM19.3137 8.05073C18.8411 8.05073 18.5607 7.88251 18.3685 7.67423L18.3605 4.70227C18.5688 4.46996 18.8571 4.30975 19.3137 4.30975C20.0427 4.30975 20.5474 5.12684 20.5474 6.17624C20.5474 7.24967 20.0507 8.05073 19.3137 8.05073ZM28.8384 6.20027C28.8384 4.14953 27.8451 2.53138 25.9466 2.53138C24.0401 2.53138 22.8865 4.14953 22.8865 6.18425C22.8865 8.59546 24.2483 9.81308 26.2029 9.81308C27.1562 9.81308 27.8772 9.5968 28.4219 9.29239V7.69025C27.8772 7.96262 27.2523 8.13084 26.4593 8.13084C25.6822 8.13084 24.9933 7.85848 24.9052 6.91322H28.8224C28.8224 6.80908 28.8384 6.39252 28.8384 6.20027ZM24.8812 5.43925C24.8812 4.53405 25.4339 4.15754 25.9386 4.15754C26.4272 4.15754 26.9479 4.53405 26.9479 5.43925H24.8812Z"
@@ -341,9 +342,9 @@ export default class Payment extends Component {
                             <span>{i18n.stripe}</span>
                         </li> 
                     </ul>
-                    <div className="pi-payment-tab-content">
+                    <div className="pv-payment-tab-content">
 
-                        <div id="pi-bank" className='pi-active'>
+                        <div id="pv-bank" className='pv-active'>
                             {currentTab == 'bank' && this.state.formModal && <FormBank
                                 handleSubmit={this.handleSubmit}
                                 modalType={this.state.formModalType}
@@ -365,14 +366,13 @@ export default class Payment extends Component {
                                 close={this.closeForm}
                             />}
 
-                            {/* {this.state.empty && <div className="pi-payment-empty-content pi-text-center">
+                            {/* {this.state.empty && <div className="pv-payment-empty-content pv-text-center">
                                 <span>
                                     {currentTab == 'bank' && <svg
                                         width={35}
                                         height={35}
                                         viewBox="0 0 28 29"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" 
                                     >
                                         <path
                                             d="M12.3479 0.555556C13.3232 -0.185185 14.6789 -0.185185 15.6542 0.555556L27.2321 9.33565C28.7067 10.4537 27.9157 12.787 26.0631 12.7963H1.93665C0.0863324 12.787 -0.706994 10.4537 0.769993 9.33565L12.3479 0.555556ZM13.9999 8.74537C14.464 8.74537 14.9091 8.56246 15.2373 8.23688C15.5655 7.91129 15.7499 7.4697 15.7499 7.00926C15.7499 6.54881 15.5655 6.10723 15.2373 5.78164C14.9091 5.45606 14.464 5.27315 13.9999 5.27315C13.5357 5.27315 13.0906 5.45606 12.7624 5.78164C12.4343 6.10723 12.2499 6.54881 12.2499 7.00926C12.2499 7.4697 12.4343 7.91129 12.7624 8.23688C13.0906 8.56246 13.5357 8.74537 13.9999 8.74537ZM3.49997 15.1111V22.0556H6.99994V15.1111H3.49997ZM9.33325 15.1111V22.0556H12.8332V15.1111H9.33325ZM15.1665 15.1111V22.0556H18.6665V15.1111H15.1665ZM20.9998 15.1111V22.0556H24.4998V15.1111H20.9998ZM0 27.2639C0 25.6667 1.30665 24.3704 2.91664 24.3704H25.0831C26.6931 24.3704 27.9997 25.6667 27.9997 27.2639V27.8426C27.9997 28.1496 27.8768 28.4439 27.658 28.661C27.4392 28.8781 27.1425 29 26.8331 29H1.16666C0.85724 29 0.560496 28.8781 0.341706 28.661C0.122915 28.4439 0 28.1496 0 27.8426V27.2639Z"
@@ -384,8 +384,7 @@ export default class Payment extends Component {
                                         width={24}
                                         height={24}
                                         viewBox="0 0 23 27"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" 
                                     >
                                         <path
                                             d="M19.5675 2.57768C18.3585 1.19971 16.1731 0.608938 13.3774 0.608938H5.26339C4.98664 0.608789 4.71892 0.707424 4.50841 0.887085C4.2979 1.06675 4.15843 1.31564 4.11508 1.58898L0.738033 23.0176C0.722374 23.117 0.728452 23.2187 0.755848 23.3155C0.783244 23.4123 0.831307 23.5021 0.896726 23.5785C0.962144 23.655 1.04336 23.7164 1.13479 23.7585C1.22621 23.8005 1.32566 23.8223 1.4263 23.8222H6.43554L7.69363 15.8425L7.65463 16.0924C7.69714 15.8196 7.83569 15.5709 8.0453 15.3913C8.25491 15.2116 8.5218 15.1127 8.79788 15.1123H11.1783C15.8546 15.1123 19.5162 13.2129 20.5858 7.71836C20.6176 7.55587 20.645 7.3977 20.6688 7.24315C20.9866 5.2123 20.6667 3.82999 19.5682 2.5784"
@@ -424,16 +423,16 @@ export default class Payment extends Component {
                                         {currentTab == 'stripe' && <TableStripe tableData={payments} editEntry={this.openForm} deleteEntry={this.deleteEntry} />}
                                     </ul>
                                     <button
-                                        className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                                        className="pv-btn pv-bg-blue pv-bg-hover-blue"
                                         onClick={() => this.openForm('new')}
                                     >
-                                        {i18n.add} {currentTabTitle} {i18n.account}
+                                        {i18n.add} {currentTabTitle} {i18n.account} {currentTab != 'bank' && <ProLabel blueBtn />}
                                     </button>
                                 </>
                             )}
                         </div>
                     </div>
-                    {/* ./ pi-tabs */}
+                    {/* ./ pv-tabs */}
                 </div>
 
             </div>

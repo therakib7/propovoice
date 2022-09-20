@@ -1,6 +1,7 @@
 // This example shows you how to set up React Stripe.js and use Elements.
 // Learn how to accept a payment using the official Stripe docs.
 // https://stripe.com/docs/payments/accept-a-payment#web
+import { Add } from 'block/icon';
 
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -42,7 +43,7 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
     <div className="row">
         <div className="col">
             <button
-                className={`pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow pi-color-white pi-m-auto SubmitButton ${error ? 'SubmitButton--error' : ''}`}
+                className={`pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-m-auto SubmitButton ${error ? 'SubmitButton--error' : ''}`}
                 type="submit"
                 disabled={processing || disabled}
             >
@@ -122,7 +123,7 @@ class CheckoutForm extends Component {
         const url = apiProUrl + 'payment-process';
         const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}`);
         if (indent_resp) {
-            client_secret = indent_resp.data.data.intent_obj.client_secret
+            client_secret = indent_resp.data.data.intent_obj.client_secret;
         }
 
         const paymentPayload = await stripe.createPaymentMethod({
@@ -180,38 +181,19 @@ class CheckoutForm extends Component {
     render() {
         const { error, processing, paymentMethod } = this.state;
         const { stripe } = this.props;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content pi-modal-style-two pi-modal-small">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content pv-modal-style-two pv-modal-small">
 
-                    <div className="pi-modal-header">
-                        <span className="pi-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                    <div className="pv-modal-header">
+                        <span className="pv-close" onClick={() => this.props.close()}>
+                            <Add />
                         </span>
-                        <h2 className="pi-modal-title">{i18n.pay} {i18n.with} {i18n.stripe}</h2>
+                        <h2 className="pv-modal-title">{i18n.pay} {i18n.with} {i18n.stripe}</h2>
                     </div>
 
-                    <div className="pi-content">
+                    <div className="pv-content">
                         {paymentMethod ? (
                             <div className="Result">
                                 <div className="ResultTitle" role="alert">
@@ -225,7 +207,7 @@ class CheckoutForm extends Component {
                                 </div>
                             </div>
                         ) : (
-                            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+                            <form onSubmit={this.handleSubmit} className="pv-form-style-one">
 
                                 <div className="row">
                                     <div className="col-lg">
@@ -279,13 +261,13 @@ class CheckoutForm extends Component {
                         )}
                     </div>
 
-                    {/* <div className="pi-modal-footer pi-mt-10">
+                    {/* <div className="pv-modal-footer pv-mt-10">
                         <div className="row">
                             <div className="col">
-                                <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
+                                <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
                             </div>
                             <div className="col">
-                                <button onClick={this.handleSubmit} className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-medium pi-float-right pi-color-white">
+                                <button onClick={this.handleSubmit} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-medium pv-float-right pv-color-white">
                                     Save
                                 </button>
                             </div>

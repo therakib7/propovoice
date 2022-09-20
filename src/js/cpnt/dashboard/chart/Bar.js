@@ -20,13 +20,14 @@ export default class Section extends PureComponent {
   }
 
   render() {
+    const i18n = ndpv.i18n;
     return (
-      <div className='pi-widget pi-summery pi-bg-white pi-border-gray'>
+      <div className='pv-widget pv-summery pv-bg-white pv-border-gray'>
         <h3
-          className="pi-title-medium pi-mb-20"
+          className="pv-title-medium pv-mb-20"
           style={{ fontWeight: "bold", color: "#718096" }}
         >
-          {this.props.type == 'estimate' ? 'Estimate' : 'Invoice'}
+          {this.props.type == 'estimate' ? i18n.est : i18n.inv}
         </h3>
         <div style={{ width: '100%', height: '300px' }}>
           <ResponsiveContainer width="100%" height="100%">
@@ -47,15 +48,15 @@ export default class Section extends PureComponent {
               <YAxis />
               <Tooltip cursor={{ fill: 'transparent' }} />
               <Legend />
-              <Bar dataKey="Sent" fill="#f7936f" />
-              <Bar dataKey="Viewed" fill="#4c6fff" />
+              <Bar dataKey="sent" name={i18n.sent} fill="#f7936f" />
+              <Bar dataKey="viewed" name={i18n.viewed} fill="#4c6fff" />
               {this.props.type == 'estimate' && <>
-                <Bar dataKey="Accepted" fill="#16B21D" />
-                <Bar dataKey="Declined" fill="#FF6771" />
+                <Bar dataKey="accepted" name={i18n.acptd} fill="#16B21D" />
+                <Bar dataKey="declined" name={i18n.dec} fill="#FF6771" />
               </>}
               {this.props.type == 'invoice' && <>
-                <Bar dataKey="Paid" fill="#16B21D" />
-                <Bar dataKey="OverDue" fill="#FF6771" />
+                <Bar dataKey="paid" name={i18n.paid} fill="#16B21D" />
+                <Bar dataKey="overdue" name={i18n.ovd} fill="#FF6771" />
               </>}
             </BarChart>
           </ResponsiveContainer>

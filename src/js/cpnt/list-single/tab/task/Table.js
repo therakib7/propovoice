@@ -10,8 +10,8 @@ const TableBody = props => {
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
 
         return (
-            <div className={"pi-accordion-table-list " + (props.dashboard ? 'pi-mt-15 pi-mb-15' : '')} key={index}>
-                {!props.dashboard && <div className="pi-checkbox">
+            <div className={"pv-accordion-table-list " + (props.dashboard ? 'pv-mt-15 pv-mb-15' : '')} key={index}>
+                {!props.dashboard && <div className="pv-checkbox">
                     <input type="checkbox"
                         value={row.id}
                         checked={checkedCheckbox}
@@ -19,13 +19,13 @@ const TableBody = props => {
                     />
                 </div>}
                 <ul style={{ padding: (props.dashboard ? '16px 10px 9px 0px' : '') }}>
-                    <li style={{ width: '45%' }} className="pi-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
-                        <div className={"pi-task-type " + (props.dashboard ? 'pi-mt-10' : '')}>
+                    <li style={{ width: '45%' }} className="pv-cursor-pointer" onClick={() => props.editEntry('edit', row)}>
+                        <div className={"pv-task-type " + (props.dashboard ? 'pv-mt-10' : '')}>
                             {row.type_id.icon && <img src={row.type_id.icon.src} />}
-                            {!row.type_id.icon && <img src={ndpi.assetImgUri + 'task-type/task.png'} alt="" />}
+                            {!row.type_id.icon && <img src={ndpv.assetImgUri + 'task-type/task.png'} alt="" />}
 
                         </div>
-                        <div className="pi-task-type-text">
+                        <div className="pv-task-type-text">
                             <h4>{row.title}</h4>
                             <p>
                                 <svg
@@ -33,7 +33,7 @@ const TableBody = props => {
                                     height={12}
                                     viewBox="0 0 12 12"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M6 10.5C8.48528 10.5 10.5 8.48528 10.5 6C10.5 3.51472 8.48528 1.5 6 1.5C3.51472 1.5 1.5 3.51472 1.5 6C1.5 8.48528 3.51472 10.5 6 10.5Z"
@@ -54,10 +54,10 @@ const TableBody = props => {
                         </div>
                     </li>
                     <li style={{ width: '20%' }}>
-                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title='Status' small color />
+                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title={ndpv.i18n.status} small color />
                     </li>
                     <li style={{ width: '20%' }}>
-                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title='Priority' small color />
+                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title={ndpv.i18n.prior}  small color />
                     </li>
                     {/* <li style={{ width: '15%' }}>
                         <Taxonomy id={row.id} data={row.priority_id} taxonomy='task_priority' title='Priority' small color />
@@ -79,8 +79,8 @@ const Table = (props) => {
     return (
         <>
             {props.tableData.length > 0 &&
-                <div className='pi-table-wrap pi-p-m'>
-                    <div className='pi-accordion-table-list-area'>
+                <div className='pv-table-wrap pv-p-m'>
+                    <div className='pv-accordion-table-list-area'>
                         <TableBody {...props} />
                     </div>
                 </div>

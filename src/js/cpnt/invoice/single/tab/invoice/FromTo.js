@@ -106,7 +106,7 @@ class FromTo extends Component {
             this.props.create('businesses', business).then(resp => {
                 if (resp.data.success) {
                     this.setState({ businessModal: false })
-                    toast.success(this.context.CrudMsg.create);
+                    toast.success(ndpv.i18n.aAdd);
                     business.id = resp.data.data;
                     this.props.setFrom(business);
                 } else {
@@ -119,7 +119,7 @@ class FromTo extends Component {
             this.props.update('businesses', business.id, business).then(resp => {
                 if (resp.data.success) {
                     this.setState({ businessModal: false })
-                    toast.success(this.context.CrudMsg.update);
+                    toast.success(ndpv.i18n.aUpd);
                     this.props.setFrom(business);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
@@ -136,9 +136,9 @@ class FromTo extends Component {
 
     render = () => {
         const { fromData, toData } = this.props;
-        const i18n = ndpi.i18n; 
+        const i18n = ndpv.i18n; 
         return (
-            <div className="pi-from-content pi-border-right pi-mt-25">
+            <div className="pv-from-content pv-border-right pv-mt-25">
 
                 {this.state.businessModal && <BusinessForm
                     handleSubmit={this.handleBusinessSubmit}
@@ -156,16 +156,16 @@ class FromTo extends Component {
 
                 <div className="row">
                     <div className="col-md-6">
-                        <div className="pi-from-to">
-                            <label className="pi-title-small">{i18n.sender}</label>
-                            <div className="pi-from">
+                        <div className="pv-from-to">
+                            <label className="pv-title-small">{i18n.sndr}</label>
+                            <div className="pv-from">
                                 {fromData ?
                                     <>
-                                        <h4 className="pi-title-small">
+                                        <h4 className="pv-title-small">
                                             {fromData.name}
                                             <span>
                                                 <button
-                                                    className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
+                                                    className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
                                                     onClick={() => this.setState({ businessData: fromData, businessModal: true, businessModalType: 'edit' })}
                                                 >
                                                     {i18n.edit}
@@ -185,30 +185,30 @@ class FromTo extends Component {
                                         </address>
                                     </> : <>
                                         {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-color-blue pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>{i18n.create} {i18n.new} {i18n.business}</a>
+                                        <a className="pv-color-blue pv-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ businessModal: true, businessModalType: 'new' })}>{i18n.create} {i18n.new} {i18n.biz}</a>
                                     </>
                                 }
                             </div>
                         </div>
-                        {/* ./ pi-from-to */}
+                        {/* ./ pv-from-to */}
                     </div>
                     <div className="col-md-6">
-                        <div className="pi-from-to pi-to">
-                            <div className="pi-from-to-content">
-                                <label className="pi-title-small">{i18n.rec}</label>
-                                <div className="pi-sendlist pi-action-content">
+                        <div className="pv-from-to pv-to">
+                            <div className="pv-from-to-content">
+                                <label className="pv-title-small">{i18n.rec}</label>
+                                <div className="pv-sendlist pv-action-content">
                                     <Contact data={toData} onChange={this.handleContactSelect} />
                                 </div>
                             </div>
 
-                            <div className="pi-from">
+                            <div className="pv-from">
                                 {toData ?
                                     <>
-                                        <h4 className="pi-title-small">
+                                        <h4 className="pv-title-small">
                                             {(toData.type == 'person') ? toData.first_name : toData.org_name}
                                             <span>
                                                 <button
-                                                    className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
+                                                    className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
                                                     onClick={() => this.setState({ contactData: toData, contactModal: true, contactModalType: 'edit' })}
                                                 >
                                                     {i18n.edit}
@@ -228,12 +228,12 @@ class FromTo extends Component {
                                         </address>
                                     </> : <>
                                         {/* Search & select, Or <br /> <br /> */}
-                                        <a className="pi-color-blue pi-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ contactModal: true, contactModalTYpe: 'new' })}>{i18n.add} {i18n.new}</a>
+                                        <a className="pv-color-blue pv-text-hover-blue" style={{ color: 'blue', padding: '20px', display: 'table', margin: 'auto' }} onClick={() => this.setState({ contactModal: true, contactModalTYpe: 'new' })}>{i18n.add} {i18n.new}</a>
                                     </>
                                 }
                             </div>
                         </div>
-                        {/* ./ pi-from-to */}
+                        {/* ./ pv-from-to */}
                     </div>
                 </div>
             </div>

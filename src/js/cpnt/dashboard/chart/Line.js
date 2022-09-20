@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+ 
 export default class Section extends PureComponent {
 
     constructor(props) {
@@ -21,13 +21,14 @@ export default class Section extends PureComponent {
 
     render() {
         const data = this.state.data;
+        const i18n = ndpv.i18n;
         return (
-            <div className='pi-widget pi-summery pi-bg-white pi-border-gray'>
+            <div className='pv-widget pv-summery pv-bg-white pv-border-gray'>
                 <h3
-                    className="pi-title-medium pi-mb-20"
+                    className="pv-title-medium pv-mb-20"
                     style={{ fontWeight: "bold", color: "#718096" }}
                 >
-                    {ndpi.i18n.deal} {ndpi.i18n.tracking}
+                    {ndpv.i18n.deal} {ndpv.i18n.trk}
                 </h3>
                 <div style={{ width: '100%', height: '300px' }}>
                     <ResponsiveContainer width="100%" height="100%">
@@ -47,8 +48,8 @@ export default class Section extends PureComponent {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Line type="monotone" dataKey="Won" stroke="#16B21D" activeDot={{ r: 8 }} />
-                            <Line type="monotone" dataKey="Lost" stroke="#FF6771" />
+                            <Line type="monotone" dataKey="won" name={i18n.won}stroke="#16B21D" activeDot={{ r: 8 }} />
+                            <Line type="monotone" dataKey="lost" name={i18n.lost} stroke="#FF6771" />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>

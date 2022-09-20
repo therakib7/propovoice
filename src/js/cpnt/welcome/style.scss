@@ -1,9 +1,9 @@
 //TODO: do it like main 
 //rakib code
-.ndpi .pi-field-logo-wrap {
+.ndpv .pv-field-logo-wrap {
   margin-top: 10px;
 
-  .pi-field-logo {
+  .pv-field-logo {
     position: relative;
     display: inline-block;
 
@@ -12,7 +12,7 @@
     }
   }
 
-  .pi-field-logo-close {
+  .pv-field-logo-close {
     background: #fff;
     position: absolute;
     top: -8px;
@@ -30,67 +30,56 @@
 }
 
 //from reza start
-.ndpi .pi-main-content {
-  background-color: var(--pi-bg-color-white);
+.ndpv .pv-main-content {
+  background-color: var(--pv-bg-color-white);
   margin: 80px 0;
 }
-
-.ndpi .pi-welcome-tabs-content {
+.ndpv .pv-welcome-tabs-content {
   position: relative;
 }
-
-.ndpi .pi-welcome-title-content {
+.ndpv .pv-welcome-title-content {
   text-align: center;
   margin-bottom: 30px;
 }
-
-.ndpi .pi-welcome-title-content .pi-welcome-title {
+.ndpv .pv-welcome-title-content .pv-welcome-title {
   font-weight: 700;
   font-size: 24px;
 }
-
-.ndpi .pi-welcome-title-content .pi-welcome-disc {
+.ndpv .pv-welcome-title-content .pv-welcome-disc {
   font-size: 14px;
   margin-top: 5px;
 }
-
-.ndpi .pi-container {
+.ndpv .pv-container {
   left: 0;
   right: 0;
   margin: auto;
-  max-width: 750px;
+  max-width: 790px;
   border-radius: 50px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 80px 60px 65px;
+  padding: 80px 85px 35px;
 }
-
-.ndpi .pi-container.pi-p-tb {
+.ndpv .pv-container.pv-p-tb {
   padding: 30px 60px 40px;
 }
-
 @media screen and (max-width: 768px) {
-  .ndpi .pi-container {
+  .ndpv .pv-container {
     padding: 30px !important;
   }
 }
-
 @media screen and (max-width: 500px) {
-  .ndpi .pi-container {
+  .ndpv .pv-container {
     padding: 15px;
   }
-
-  .ndpi .pi-main-content {
+  .ndpv .pv-main-content {
     margin-top: 30px;
     padding: 15px;
   }
 }
-
-.ndpi .pi-logo-content {
+.ndpv .pv-logo-content {
   text-align: center;
   margin-bottom: 40px;
 }
-
-.ndpi .pi-buttons.pi-text-center a {
+.ndpv .pv-buttons.pv-text-center a {
   display: table;
   color: #000;
   left: 0;
@@ -99,49 +88,39 @@
   padding: 10px;
   font-weight: 600;
 }
-
-.ndpi #pi-finished .pi-buttons.pi-text-center a:last-child {
-  color: var(--pi-text-color-white);
+.ndpv #pv-finished .pv-buttons.pv-text-center a:last-child {
+  color: var(--pv-text-color-white);
   margin-right: 0;
 }
-
 @media screen and (max-width: 500px) {
-  .ndpi #pi-finished .pi-buttons.pi-text-center a {
+  .ndpv #pv-finished .pv-buttons.pv-text-center a {
     margin-bottom: 15px;
   }
 }
-
-.ndpi .pi-welcome-tabs-content #pi-welcome p {
+.ndpv .pv-welcome-tabs-content #pv-welcome p {
   margin-bottom: 70px;
 }
-
-.ndpi .pi-welcome-tabs-content #pi-finished .pi-sub-title {
+.ndpv .pv-welcome-tabs-content #pv-finished .pv-sub-title {
   margin-bottom: 45px;
 }
-
-.ndpi .pi-welcome-tabs-content #pi-finished .pi-buttons a {
+.ndpv .pv-welcome-tabs-content #pv-finished .pv-buttons a {
   padding: 2px 10px;
   font-weight: 600;
   border-radius: 8px;
-  color: #fff;
   cursor: pointer;
   border: none;
   font-size: 14px;
   margin-left: 10px;
   display: inline-block;
-  margin-top: 15px;
 }
-
-.ndpi .pi-welcome-tabs-content #pi-finished .pi-buttons a:first-child {
+.ndpv .pv-welcome-tabs-content #pv-finished .pv-buttons a:first-child {
   margin-left: 0px;
 }
-
-.ndpi .pi-tab-content #pi-brand img {
+.ndpv .pv-tab-content #pv-brand img {
   text-align: center;
   margin-bottom: 5px;
 }
-
-.ndpi .pi-tab-content #pi-brand .pi-upload {
+.ndpv .pv-tab-content #pv-brand .pv-upload {
   font-size: 14px;
   margin-bottom: 60px !important;
   margin-top: 12px !important;
@@ -153,8 +132,7 @@
   margin: auto;
   border-radius: 5px;
 }
-
-.ndpi .pi-tab-content #pi-brand input {
+.ndpv .pv-tab-content #pv-brand input {
   width: 120px;
   font-size: 10px;
   padding: 13px;
@@ -165,9 +143,15 @@
   transform: translateX(-50%);
   opacity: 0;
 }
-
-.ndpi #pi-finished h1 {
+.ndpv #pv-finished h1 {
   font-weight: 500;
   line-height: 40px;
   margin-top: 20px;
+  font-size: 24px !important;
+  color: #2D3748;
+}
+.ndpv #pv-finished p {
+  color: #4A5568;
+  margin-top: 0;
+  font-size: 14px;
 }

@@ -1,21 +1,20 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Model\Invoice;
+use Ndpv\Model\Invoice;
 
 class PaymentProcess
 {
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/payment-process', [
+        register_rest_route('ndpv/v1', '/payment-process', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],

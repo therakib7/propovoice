@@ -1,6 +1,6 @@
 const Total = props => {
     const { currencyFormatter, itemsTotal, extra_field, changeHandler, focusHandler, grandTotal } = props
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <table>
             <tbody>
@@ -29,7 +29,7 @@ const Total = props => {
                                 onChange={(e) => changeHandler(e, item)}
                                 onFocus={focusHandler}
                             />
-                            {item.val_type == 'percent' ? '%' : '$'}
+                            {item.val_type == 'percent' ? '%' : ''}
                         </td>
                         <td>{currencyFormatter(total)}</td>
                     </tr>)

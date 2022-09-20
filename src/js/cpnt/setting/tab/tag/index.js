@@ -1,11 +1,11 @@
 import Taxonomy from 'block/field/taxonomy/setting';
 export default () => {  
     return (
-        <div className="pi-form-style-one"> 
+        <div className="pv-form-style-one"> 
             <div className="row">
                 <div className="col">
-                    <label>{ndpi.i18n.tag}</label>
-                    <Taxonomy taxonomy='tag' title='tag' />
+                    <label>{ndpv.i18n.tag}</label>
+                    <Taxonomy taxonomy='tag' title={ndpv.i18n.tag} />
                 </div>
                 <div className="col">
                 </div>

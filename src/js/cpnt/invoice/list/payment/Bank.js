@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Api from 'api/payment-process';
 import Upload from 'block/field/upload';
+import { Add } from 'block/icon';
 
 class Bank extends Component {
     constructor(props) {
@@ -54,40 +55,21 @@ class Bank extends Component {
 
     render() {
         const data = this.props.data;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content">
 
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()}>
+                            <Add />
                         </span>
-                        <h2 className="pi-modal-title">{i18n.payment} {i18n.info}</h2>
+                        <h2 className="pv-modal-title">{i18n.payment} {i18n.info}</h2>
                         <p>Here is the payment information</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
-                        <div className="pi-content">
-                            <div className="pi-form-style-one">
+                        <div className="pv-content">
+                            <div className="pv-form-style-one">
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-payment_details">
@@ -128,14 +110,14 @@ class Bank extends Component {
                             </div>
                         </div>
 
-                        <div className="pi-modal-footer">
+                        <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                        {i18n.mark} {i18n.as} {i18n.paid}
+                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                                        {i18n.mark} {i18n.paid}
                                     </button>
                                 </div>
                             </div>

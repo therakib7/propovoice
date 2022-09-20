@@ -1,8 +1,9 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ProLabel from 'block/pro-alert/label';
 import Moment from 'react-moment';
 import Feedback from './feedback';
-import useClickOutside from 'block/outside-click';
+import Action from 'block/action/row/invoice';
 
 //payment
 import Bank from './payment/Bank';
@@ -10,27 +11,26 @@ import Paypal from './payment/Paypal';
 import Stripe from './payment/Stripe';
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox"
-
+                    <input type="checkbox" 
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
                     />
                 </th>
                 <th>
-                    {props.path == 'invoice' ? ndpi.i18n.inv : ndpi.i18n.est} ID
+                    {props.path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est} ID
                 </th>
                 {/* <th>
                     Project
                 </th> */}
-                {!props.client_id && <th>
-                    {i18n.contact}
-                </th>}
+                <th>
+                    {i18n.ct}
+                </th>
                 <th>
                     {i18n.total}
                 </th>
@@ -61,29 +61,14 @@ const TableHeader = props => {
 }
 
 const TableBody = props => {
-
-    const [dropdown, setDropdown] = useState(null);
-    // const close = useCallback(() => setDropdown(null), []);	
-
-    const showDropdown = (id) => {
-        if (dropdown == id) {
-            setDropdown(null);
-        } else {
-            setDropdown(id);
-        }
-    };
-
     let navigate = useNavigate();
     function handleClick(id, view = '') {
         let path = props.path;
         navigate(`/${path}/single/${id}${view}`);
     }
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
 
-    let rows = props.tableData.map((row, index) => {
-
-        // const popover = useRef();
-        // useClickOutside(popover, close);
+    let rows = props.tableData.map((row, index) => { 
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
@@ -91,72 +76,72 @@ const TableBody = props => {
         switch (row.status) {
             
             case 'draft':
-                status = <span className='pi-badge pi-bg-pink'
+                status = <span className='pv-badge pv-bg-pink'
                 // style={{color: '#fff'}}
-                >{ndpi.i18n.dft}</span>
+                >{ndpv.i18n.dft}</span>
                 break;
 
             case 'sent':
-                status = <span className='pi-badge pi-bg-gray'
+                status = <span className='pv-badge pv-bg-gray'
                 // style={{color: '#fff'}}
-                >{ndpi.i18n.sent}</span>
+                >{ndpv.i18n.sent}</span>
                 break;
 
             case 'viewed':
-                status = <span className='pi-badge pi-bg-orange'
+                status = <span className='pv-badge pv-bg-orange'
                 // style={{color: '#999'}}
-                >{ndpi.i18n.viewed}</span>
+                >{ndpv.i18n.viewed}</span>
                 break;
 
             case 'accept':
-                status = <span className='pi-badge pi-bg-blue pi-cursor-pointer'
+                status = <span className='pv-badge pv-bg-blue pv-cursor-pointer'
                     style={{ color: '#fff' }}
-                    onClick={() => props.infoModal(row, 'feedback')}>{ndpi.i18n.accept}</span>
+                    onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.acptd}</span>
                 break;
 
             case 'decline':
-                status = <span className='pi-badge pi-bg-red pi-cursor-pointer'
-                    style={{ color: '#fff' }}
-                    onClick={() => props.infoModal(row, 'feedback')}>{ndpi.i18n.dec}</span>
+                status = <span className='pv-badge pv-bg-red pv-cursor-pointer'
+                    style={{ color: '#4a5568' }}
+                    onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.dec}</span>
                 break;
 
             case 'paid_req':
-                status = <span className='pi-badge pi-bg-orange'
+                status = <span className='pv-badge pv-bg-orange'
                     style={{ color: '#4a5568' }}
-                >{ndpi.i18n.paid} {ndpi.i18n.req}</span>
+                >{ndpv.i18n.paid} {ndpv.i18n.req}</span>
                 break;
 
             case 'paid':
-                status = <span className='pi-badge pi-bg-blue'
+                status = <span className='pv-badge pv-bg-blue'
                     style={{ color: '#fff' }}
-                >{ndpi.i18n.paid}</span>
+                >{ndpv.i18n.paid}</span>
                 break;
         }
 
         let payment_method;
         switch (row.payment_method) {
             case 'bank':
-                payment_method = <span className='pi-badge pi-cursor-pointer' style={{ color: '#fff', backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank & Others</span>
+                payment_method = <span className='pv-badge pv-cursor-pointer' style={{ color: '#fff', backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank & Others</span>
                 break;
 
             case 'paypal':
-                payment_method = <span className='pi-badge pi-cursor-pointer' style={{ color: '#fff', backgroundColor: '#009cde' }} onClick={() => props.infoModal(row, 'paypal')}>Paypal</span>
+                payment_method = <span className='pv-badge pv-cursor-pointer' style={{ color: '#fff', backgroundColor: '#009cde' }} onClick={() => props.infoModal(row, 'paypal')}>Paypal</span>
                 break;
 
             case 'stripe':
-                payment_method = <span className='pi-badge pi-cursor-pointer' style={{ color: '#fff', backgroundColor: '#5433FF' }} onClick={() => props.infoModal(row, 'stripe')}>Stripe</span>
+                payment_method = <span className='pv-badge pv-cursor-pointer' style={{ color: '#fff', backgroundColor: '#5433FF' }} onClick={() => props.infoModal(row, 'stripe')}>Stripe</span>
                 break;
         }
 
         let invoice_id = row.id;
         let invoice_token = row.token;
-        let url = row.path == 'invoice' ? ndpi.invoice_page_url : ndpi.estimate_page_url;
+        let url = row.path == 'invoice' ? ndpv.invoice_page_url : ndpv.estimate_page_url;
 
         //replace text with id and token
         let result = url.replace('invoice_id', invoice_id);
         let client_url = result.replace('invoice_token', invoice_token);
 
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <tr key={index}>
                 <td>
@@ -166,12 +151,12 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => { handleClick(row.id); }} className='pi-cursor-pointer'>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</td>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><span className='pv-list-title'>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</span></td>
                 {/*<td>{row.project.name}</td>*/}
-                {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pi-cursor-pointer'>
+                {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
                 </td>}
-                <td onClick={() => { handleClick(row.id); }} className='pi-cursor-pointer'>{row.total}</td>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>{row.currency}{row.total}</td>
                 {/* {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>
@@ -180,52 +165,15 @@ const TableBody = props => {
                 }  */}
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
-                <td onClick={() => { handleClick(row.id); }} className='pi-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
-                <td className="pi-action">
-                    <div className="pi-action-content">
-                        <button className={(row.id == dropdown ? 'pi-active' : '')} onClick={() => showDropdown(row.id)}>
-                            <svg
-                                width={24}
-                                height={24}
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                    fill="#718096"
-                                />
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                    fill="#718096"
-                                />
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                    fill="#718096"
-                                />
-                            </svg>
-                        </button>
-                        {row.id == dropdown && <div className="pi-dropdown-content pi-show"
-                        // ref={popover}
-                        >
-                            <a onClick={() => { showDropdown(row.id); handleClick(row.id); }}>{i18n.edit}</a>
-                            <a onClick={() => handleClick(row.id, '/tab/preview')}>{i18n.prv}</a>
-                            <a target='_blank' href={client_url}>{i18n.client} {i18n.prv}</a>
-                            <a onClick={() => { showDropdown(row.id); props.action('sent', row.id); }}>{i18n.mark} {i18n.as} {i18n.sent}</a>
-                            {row.path == 'invoice' && <a onClick={() => { showDropdown(row.id); props.action('paid', row.id); }}>{i18n.mark}{i18n.as}{i18n.paid}</a>}
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('accept', row.id); }}>{i18n.mark} {i18n.as} {i18n.accept}</a>}
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('decline', row.id); }}>{i18n.mark} {i18n.as} {i18n.dec}</a>}
-                            <a onClick={() => { showDropdown(row.id); props.action('copy', row.id); }}>{i18n.dup}</a>
-                            {row.path == 'estimate' && <a onClick={() => { showDropdown(row.id); props.action('copy-to-inv', row.id); }}>Copy To Invoice</a>}
-                            <a onClick={() => { showDropdown(row.id); props.deleteEntry('single', row.id); }}>{i18n.del}</a>
-                        </div>}
-                    </div>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><Moment format={ndpv.date_format}>{row.date}</Moment></td>
+                <td className="pv-action">
+                    <Action
+                        row={row}
+                        client_url={ client_url } 
+                        single={ handleClick } 
+                        action={props.action}
+                        deleteEntry={props.deleteEntry}
+                    /> 
                 </td>
             </tr>
         );
@@ -247,7 +195,7 @@ const Table = (props) => {
 
     return (
         <>
-            {tableData.length > 0 && <div className='pi-table-wrap'>
+            {tableData.length > 0 && <div className='pv-table-wrap'>
 
                 {infoModal &&
                     <>
@@ -281,7 +229,7 @@ const Table = (props) => {
                     </>
                 }
 
-                <table className='pi-table'>
+                <table className='pv-table pv-table-four'>
                     <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} path={path} />
                     <TableBody
                         infoModal={handleInfoModal}

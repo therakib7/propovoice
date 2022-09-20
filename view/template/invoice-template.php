@@ -22,7 +22,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <?php ndpi()->render('template/estvoice-template'); ?>
+    <?php ndpv()->render('template/estvoice-template'); ?>
     <?php wp_footer(); ?>
 </body>
 

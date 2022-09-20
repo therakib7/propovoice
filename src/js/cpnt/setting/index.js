@@ -4,15 +4,22 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Spinner from 'block/preloader/spinner';
 import WithApi from 'hoc/Api';
 
+//subtab: general 
 const General = lazy(() => import('./tab/general'));
+
 const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
 const Deal = lazy(() => import('./tab/deal'));
-const Estimate = lazy(() => import('./tab/estimate'));
-const Invoice = lazy(() => import('./tab/invoice'));
+
+//subtab: estinv 
+const EstinvCom = lazy(() => import('./tab/estinv/common'));
+const Estest = lazy(() => import('./tab/estinv/est'));
+const Estinv = lazy(() => import('./tab/estinv/inv'));
+
 const Project = lazy(() => import('./tab/project'));
 const Contact = lazy(() => import('./tab/contact'));
 const Tag = lazy(() => import('./tab/tag'));
+const Integrate = lazy(() => import('./tab/integrate'));
 const License = lazy(() => import('./tab/license'));
 
 //subtab: email 
@@ -22,8 +29,7 @@ const EmailSocial = lazy(() => import('./tab/email/social'));
 
 const Payment = lazy(() => import('cpnt/payment'));
 
-
-const SettingWrap = (props) => {
+const Setting = (props) => {
 
     const { tab, subtab } = useParams();
     let navigate = useNavigate();
@@ -34,22 +40,30 @@ const SettingWrap = (props) => {
         tabDefault = 'general'
     }
 
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     const tab_data = {
         general: {
-            label: i18n.general
+            label: i18n.gen
         },
         lead: {
             label: i18n.lead
         },
         deal: {
             label: i18n.deal
-        },
-        estimate: {
-            label: i18n.est
-        },
-        invoice: {
-            label: i18n.inv
+        }, 
+        estinv: {
+            label: i18n.est + ' ' + i18n.nd + ' ' + i18n.inv,
+            subtabs: {
+                common: {
+                    label: i18n.cmn,
+                },
+                est: {
+                    label: i18n.est
+                },
+                inv: {
+                    label: i18n.inv
+                },
+            },
         },
         project: {
             label: i18n.project
@@ -72,13 +86,16 @@ const SettingWrap = (props) => {
             },
         },
         task: {
-            label: i18n.task
+            label: i18n.taska
         },
         contact: {
-            label: i18n.contact
+            label: i18n.ct
         },
         tag: {
             label: i18n.tag
+        },
+        integration: {
+            label: i18n.intg
         },
     };
 
@@ -90,7 +107,7 @@ const SettingWrap = (props) => {
         if (has_wage.ins) {
             let new_tabs = { ...tabs }
             new_tabs.license = {
-                label: 'License Manager'
+                label: i18n.licman
             }
             setTabs(new_tabs);
         }
@@ -106,6 +123,9 @@ const SettingWrap = (props) => {
 
     const addCurrentTab = (e, tab, subtab = null) => {
         e.preventDefault();
+        if (!subtab) {
+            subtab = tabs[tab].hasOwnProperty('subtabs') && Object.keys(tabs[tab].subtabs)[0];
+        }
         setCurrentTab(tab);
         setCurrentSubtab(subtab);
         routeChange(tab, subtab);
@@ -113,7 +133,7 @@ const SettingWrap = (props) => {
 
     return (
         <>
-            <nav className='pi-breadcrumb'>
+            <nav className='pv-breadcrumb'>
                 <ul>
                     <li><a href='#'>{i18n.home}</a></li>
                     <li>
@@ -122,7 +142,7 @@ const SettingWrap = (props) => {
                             height={10}
                             viewBox="0 0 5 10"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+
                         >
                             <path
                                 d="M.5 1.25L4.25 5 .5 8.75"
@@ -132,30 +152,30 @@ const SettingWrap = (props) => {
                             />
                         </svg>
                     </li>
-                    <li className='pi-active'>{i18n.settings}</li>
+                    <li className='pv-active'>{i18n.settings}</li>
                 </ul>
             </nav>
 
-            <h2 className='pi-page-title'>{i18n.settings}</h2>
+            <h2 className='pv-page-title'>{i18n.settings}</h2>
 
-            <div className='pi-settings-tab'>
+            <div className='pv-settings-tab'>
                 <div className='row'>
                     <div className='col-md-3'>
-                        <ul className='pi-settings-tabs'>
+                        <ul className='pv-settings-tabs'>
                             {Object.keys(tabs).map(key =>
                                 <li
                                     key={key}
-                                    className={'pi-tab ' + (key == currentTab ? 'pi-active' : '')}
+                                    className={'pv-tab ' + (key == currentTab ? 'pv-active' : '')}
                                 >
                                     <a onClick={(e) => addCurrentTab(e, key)}>
                                         {tabs[key].label}
                                     </a>
 
-                                    {tabs[key].hasOwnProperty('subtabs') && tabs[key].subtabs && <ul className='pi-settings-subtabs'>
+                                    {tabs[key].hasOwnProperty('subtabs') && tabs[key].subtabs && <ul className='pv-settings-subtabs'>
                                         {Object.keys(tabs[key].subtabs).map(subkey =>
                                             <li
                                                 key={subkey}
-                                                className={'pi-subtab ' + ((subkey == currentSubtab) || (!currentSubtab && Object.keys(tabs[key].subtabs)[0] == subkey) ? 'pi-active' : '')}
+                                                className={'pv-subtab ' + ((subkey == currentSubtab) || (!currentSubtab && Object.keys(tabs[key].subtabs)[0] == subkey) ? 'pv-active' : '')}
                                             >
                                                 <a onClick={(e) => addCurrentTab(e, key, subkey)}>
                                                     {tabs[key].subtabs[subkey].label}
@@ -169,23 +189,28 @@ const SettingWrap = (props) => {
                     </div>
 
                     <div className='col-md-9'>
-                        <div className="pi-setting-tab-content">
-                            <h4 className='pi-title-medium pi-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab} {i18n.settings}</h4>
+                        <div className="pv-setting-tab-content">
+                            <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label} {i18n.settings}</h4>
 
                             <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && <General />}
+
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
                                 {currentTab == 'deal' && <Deal />}
-                                {currentTab == 'estimate' && <Estimate />}
-                                {currentTab == 'invoice' && <Invoice />}
-                                {currentTab == 'project' && <Project />}
-                                {currentTab == 'payment' && <Payment />}
-                                {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate />}
-                                {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice />}
+                                {currentTab == 'estinv' && (currentSubtab == 'common' || !currentSubtab) && <EstinvCom {...props} />}
+                                {currentTab == 'estinv' && currentSubtab == 'est' && <Estest {...props} />}
+                                {currentTab == 'estinv' && currentSubtab == 'inv' && <Estinv {...props} />}
+
+                                {currentTab == 'project' && <Project {...props} />}
+                                {currentTab == 'payment' && <Payment {...props} />}
+
+                                {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate {...props} />}
+                                {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice {...props} />}
                                 {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
+                                {currentTab == 'integration' && <Integrate {...props} />}
                                 {currentTab == 'license' && <License {...props} />}
                             </Suspense>
                         </div>
@@ -196,4 +221,4 @@ const SettingWrap = (props) => {
     );
 }
 
-export default WithApi(SettingWrap); 
+export default WithApi(Setting); 

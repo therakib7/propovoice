@@ -37,7 +37,7 @@ export default function Index(props) {
 			// maxSize={3072000}
 		>
 		{({ getRootProps, getInputProps, isDragActive }) => (
-			<div {...getRootProps({ className: "pi-dropzone" })}>
+			<div {...getRootProps({ className: "pv-dropzone" })}>
 			<input {...getInputProps()} />
 			{
 				isDragActive ?

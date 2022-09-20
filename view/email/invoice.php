@@ -9,7 +9,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
    <style type="text/css">
-      .ndpi {
+      .ndpv {
          padding: 40px 0;
          margin: 0;
          -webkit-text-size-adjust: 100%;
@@ -17,45 +17,45 @@
          font-family: 'Inter', sans-serif;
       }
 
-      .ndpi-container {
+      .ndpv-container {
          margin: auto;
          width: 600px;
          background-color: #fff;
          border-radius: 4px;
       }
 
-      .ndpi-shape {
+      .ndpv-shape {
          display: flex;
          height: 154px;
-         background-image: url(https://appux.co/wp-content/plugins/propovoice-server/asset/email/shape1.png);
+         background-image: url(https://appux.co/wp-content/plugins/propovoice-server/assets/email/shape1.png);
          /* filter: invert(38%) sepia(24%) saturate(6729%) hue-rotate(223deg) brightness(98%) contrast(94%); */
       }
 
-      .ndpi-container .ndpi-header {
+      .ndpv-container .ndpv-header {
          padding: 40px 55px;
          position: relative;
          z-index: 111;
       }
 
-      .ndpi-container .ndpi-header span {
+      .ndpv-container .ndpv-header span {
          color: #fff;
          font-size: 24px;
          line-height: 24px;
          font-weight: 600;
       }
 
-      .ndpi-container .ndpi-content {
+      .ndpv-container .ndpv-content {
          /* margin-top: 100px; */
          padding: 0px 55px;
       }
 
-      .ndpi-container .ndpi-content p {
+      .ndpv-container .ndpv-content p {
          line-height: 140%;
          color: #4A5568;
          font-size: 16px;
       }
 
-      .ndpi-container .ndpi-content .ndpi-btn {
+      .ndpv-container .ndpv-content .ndpv-btn {
          padding: 15px 20px;
          font-weight: 600;
          border-radius: 8px;
@@ -68,47 +68,47 @@
          margin: 40px auto;
       }
 
-      .ndpi-container .ndpi-footer {
+      .ndpv-container .ndpv-footer {
          text-align: center;
       }
 
-      .ndpi-container hr {
+      .ndpv-container hr {
          margin-bottom: 40px;
          border-top: 1px solid #E2E8F0;
       }
 
-      .ndpi-container .ndpi-footer span {
+      .ndpv-container .ndpv-footer span {
          color: #5865F2;
          font-size: 24px;
          line-height: 24px;
          font-weight: 600;
       }
 
-      .ndpi-container .ndpi-footer p {
+      .ndpv-container .ndpv-footer p {
          color: #4A5568;
          margin-top: 18px;
          margin-bottom: 12px;
          font-size: 16px;
       }
 
-      .ndpi-container .ndpi-footer .ndpi-social a {
+      .ndpv-container .ndpv-footer .ndpv-social a {
          text-decoration: none;
       }
 
-      .ndpi-container .ndpi-footer .ndpi-social a img {
+      .ndpv-container .ndpv-footer .ndpv-social a img {
          margin: 0 5px;
          margin-bottom: 30px;
       }
 
-      .ndpi-footer .ndpi-footer-shape {
+      .ndpv-footer .ndpv-footer-shape {
          height: 60px;
-         background-image: url(https://appux.co/wp-content/plugins/propovoice-server/asset/email/shape2.png);
+         background-image: url(https://appux.co/wp-content/plugins/propovoice-server/assets/email/shape2.png);
          /* filter: invert(10%) sepia(10%) saturate(212%) hue-rotate(128deg) brightness(100%) contrast(112%);
          */
       }
 
       @media (max-width: 520px) {
-         .ndpi-container {
+         .ndpv-container {
             width: 100%;
             margin: 40px auto;
          }
@@ -117,12 +117,12 @@
       }
 
       @media (max-width: 500px) {
-         .ndpi-container .ndpi-header {
+         .ndpv-container .ndpv-header {
             margin-top: -90px;
             padding-left: 40px;
          }
 
-         .ndpi-container .ndpi-header span {
+         .ndpv-container .ndpv-header span {
             font-size: 18px;
          }
 
@@ -131,29 +131,29 @@
 
 </head>
 
-<body class="ndpi">
-   <div class="ndpi-container">
-      <div class="ndpi-shape">
-         <div class="ndpi-header">
+<body class="ndpv">
+   <div class="ndpv-container">
+      <div class="ndpv-shape">
+         <div class="ndpv-header">
             <span>Propovoice</span>
          </div>
       </div>
-      <div class="ndpi-content">
+      <div class="ndpv-content">
          <p>{msg}</p>
          <div style="text-align: center;">
-            <a href="{url}" target="_blank" class="ndpi-btn">View {path}</a>
+            <a href="{url}" target="_blank" class="ndpv-btn">View {path}</a>
          </div>
          <hr>
       </div>
 
-      <div class="ndpi-footer">
+      <div class="ndpv-footer">
          <span>Propovoice</span>
          <p>Follow on</p>
          <!-- TODO: social link dynamic -->
-         <div class="ndpi-social">
+         <div class="ndpv-social">
             {social}
          </div>
-         <div class="ndpi-footer-shape"></div>
+         <div class="ndpv-footer-shape"></div>
       </div>
    </div>
 </body>

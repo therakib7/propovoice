@@ -4,11 +4,11 @@
  * Singleton 
  * 
  * @since 0.1.0 
- * @package NCPI Project
+ * @package NDPV Project
  * @author NurencyDigital
  */
 
-namespace Ndpi\Traits;
+namespace Ndpv\Traits;
 
 trait Singleton
 {
@@ -27,5 +27,10 @@ trait Singleton
         }
 
         return self::$singleton;
+    }
+
+    public function wage()
+    {
+        return function_exists('ndpvp') && ndpvp()->wage();
     }
 }

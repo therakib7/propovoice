@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Ndpi\\' => array($baseDir . '/app'),
+    'Ndpv\\' => array($baseDir . '/app'),
 );

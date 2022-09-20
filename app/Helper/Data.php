@@ -1,6 +1,5 @@
-<?php
-
-namespace Ndpi\Helper;
+<?php 
+namespace Ndpv\Helper;
 
 class Data
 {

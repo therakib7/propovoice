@@ -1,18 +1,17 @@
-<?php
-
-namespace Ndpi\Ctrl\Api\Type;
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
 class Workspace
 { 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/workspaces', [
+        register_rest_route('ndpv/v1', '/workspaces', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -25,7 +24,7 @@ class Workspace
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/workspaces/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/workspaces/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -38,7 +37,7 @@ class Workspace
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/workspaces/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/workspaces/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -51,7 +50,7 @@ class Workspace
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/workspaces/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/workspaces/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -79,7 +78,7 @@ class Workspace
         }
 
         $args = array(
-            'post_type' => 'ndpi_workspace',
+            'post_type' => 'ndpv_workspace',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -131,7 +130,7 @@ class Workspace
             }
             $query_data['img'] = $imgData;
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -152,7 +151,7 @@ class Workspace
 
         $query_data['level_id'] = '';
 
-        $level = get_the_terms($id, 'ndpi_lead_level');
+        $level = get_the_terms($id, 'ndpv_lead_level');
         if ($level) {
 
             $query_data['level_id'] = [
@@ -163,7 +162,7 @@ class Workspace
 
         $query_data['tags'] = [];
 
-        $tags = get_the_terms($id, 'ndpi_tag');
+        $tags = get_the_terms($id, 'ndpv_tag');
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
@@ -193,7 +192,7 @@ class Workspace
         }
         $query_data['workspace'] = $workspaceData;
 
-        $query_data['date'] = get_the_time('j-M-Y');
+        $query_data['date'] = get_the_time( get_option('date_format') );
 
         wp_send_json_success($query_data);
     }
@@ -227,7 +226,7 @@ class Workspace
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_workspace',
+                'post_type' => 'ndpv_workspace',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',

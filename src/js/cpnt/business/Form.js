@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Upload from 'block/field/upload';
+import { Add } from 'block/icon';
+
 
 class Form extends Component {
     constructor(props) {
@@ -86,7 +88,7 @@ class Form extends Component {
 
     render() {
         const form = this.state.form;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         let title = '';
         if (this.props.modalType == 'new') {
             title = i18n.new
@@ -94,39 +96,20 @@ class Form extends Component {
             title = i18n.edit
         }
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content">
 
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()}>
+                            <Add />
                         </span>
-                        <h2 className="pi-modal-title">{title} {i18n.business}</h2>
-                        <p>Add new business from here</p>
+                        <h2 className="pv-modal-title">{title} {i18n.biz}</h2>
+                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.biz + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
-                        <div className="pi-content">
-                            <div className="pi-form-style-one">
+                        <div className="pv-content">
+                            <div className="pv-form-style-one">
                                 <div className="row">
                                     <div className="col-md">
                                         <label
@@ -202,8 +185,7 @@ class Form extends Component {
 
                                         <input
                                             id="field-mobile"
-                                            type="text"
-                                            required
+                                            type="text" 
                                             name="mobile"
                                             value={form.mobile}
                                             onChange={this.handleChange}
@@ -228,7 +210,7 @@ class Form extends Component {
                                     <div className="col">
                                         <label
                                             htmlFor="field-address">
-                                            {i18n.address}
+                                            {i18n.addr}
                                         </label>
 
                                         <input
@@ -253,14 +235,14 @@ class Form extends Component {
                             </div>
                         </div>
 
-                        <div className="pi-modal-footer">
+                        <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
-                                    {i18n.save}
+                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                                        {i18n.save}
                                     </button>
                                 </div>
                             </div>

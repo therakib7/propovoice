@@ -20,11 +20,11 @@ export default class Section extends PureComponent {
 
     render() {
         const data = this.state.data;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
-            <div className='pi-widget pi-lead pi-bg-white pi-border-gray'>
+            <div className='pv-widget pv-lead pv-bg-white pv-border-gray'>
                 <h3
-                    className="pi-title-medium pi-mb-10"
+                    className="pv-title-medium pv-mb-10"
                     style={{ fontWeight: "bold", color: "#718096" }}
                 >
                     {this.props.type == 'lead_level' ? i18n.lead : i18n.source}
@@ -52,7 +52,7 @@ export default class Section extends PureComponent {
                     </div>
 
                     <div className="col-6" style={{ alignSelf: 'center' }}>
-                        <div className="pi-field-color-ficker">
+                        <div className="pv-field-color-ficker">
                             <ul>
                                 {data.map((item, i) => (
                                     <li key={i} >

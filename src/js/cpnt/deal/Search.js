@@ -40,27 +40,27 @@ export default class Form extends Component {
 
     render() {
         const { title, showing, showItem, total } = this.props;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
-            <div className="pi-search-bar">
-                <div className="pi-search-box pi-medium-search-bar">
+            <div className="pv-search-bar">
+                <div className="pv-search-box pv-medium-search-bar">
                     <Search />
                     <input
                         type="text"
-                        className="pi-search-input"
-                        placeholder={i18n.search+' '+ title}
+                        className="pv-search-input"
+                        placeholder={i18n.search + ' ' + title}
                         name="text"
                         value={this.state.form.text}
                         onChange={this.handleChange}
                     />
                 </div>
-                
-                {false && <div className="pi-search-btn">
-                    <button className={this.state.searchModal ? 'pi-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
+
+                {false && <div className="pv-search-btn">
+                    <button className={this.state.searchModal ? 'pv-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
                         <Filter />
                     </button>
 
-                    {this.state.searchModal && <div className="pi-search-form">
+                    {this.state.searchModal && <div className="pv-search-form">
                         <ul>
                             <li>
                                 <svg
@@ -68,7 +68,7 @@ export default class Form extends Component {
                                     height={10}
                                     viewBox="0 0 15 10"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M11.15 9.27502L14 5.00002L11.15 0.725021C11.1048 0.655309 11.0427 0.59814 10.9695 0.558809C10.8963 0.519478 10.8143 0.499258 10.7312 0.500021H1.5C1.36739 0.500021 1.24021 0.552699 1.14645 0.646468C1.05268 0.740236 1 0.867413 1 1.00002V9.00002C1 9.13263 1.05268 9.25981 1.14645 9.35357C1.24021 9.44734 1.36739 9.50002 1.5 9.50002H10.7312C10.8143 9.50078 10.8963 9.48056 10.9695 9.44123C11.0427 9.4019 11.1048 9.34473 11.15 9.27502V9.27502Z"
@@ -89,7 +89,7 @@ export default class Form extends Component {
                                     height={16}
                                     viewBox="0 0 16 16"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M7.66869 1.61869L2.62494 2.62494L1.61869 7.66869C1.60292 7.74922 1.60722 7.8324 1.6312 7.91088C1.65518 7.98936 1.69811 8.06073 1.75619 8.11869L8.28119 14.6437C8.32718 14.6907 8.38211 14.7281 8.44275 14.7537C8.50339 14.7792 8.56852 14.7923 8.63432 14.7923C8.70011 14.7923 8.76524 14.7792 8.82589 14.7537C8.88653 14.7281 8.94146 14.6907 8.98744 14.6437L14.6437 8.98744C14.6907 8.94146 14.7281 8.88653 14.7537 8.82589C14.7792 8.76524 14.7923 8.70011 14.7923 8.63432C14.7923 8.56852 14.7792 8.50339 14.7537 8.44275C14.7281 8.38211 14.6907 8.32718 14.6437 8.28119L8.11869 1.75619C8.06073 1.69811 7.98936 1.65518 7.91088 1.6312C7.8324 1.60722 7.74922 1.60292 7.66869 1.61869V1.61869Z"
@@ -114,7 +114,7 @@ export default class Form extends Component {
                                     height={17}
                                     viewBox="0 0 17 17"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M7.32788 3.42358H3.32788V7.42358H7.32788V3.42358Z"
@@ -142,9 +142,9 @@ export default class Form extends Component {
                                     />
                                 </svg>
                                 <select name="" id="">
-                                    <option value="">Category</option>
-                                    <option value="">Category</option>
-                                    <option value="">Category</option>
+                                    <option value="">{i18n.cat}</option>
+                                    <option value="">{i18n.cat}</option>
+                                    <option value="">{i18n.cat}</option>
                                 </select>
                             </li>
                             <li>
@@ -153,8 +153,7 @@ export default class Form extends Component {
                                         width={16}
                                         height={16}
                                         viewBox="0 0 16 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" 
                                     >
                                         <path
                                             d="M12.5 3.5L3.5 12.5"
@@ -174,7 +173,7 @@ export default class Form extends Component {
                         </ul>
                     </div>}
                 </div>}
-                <div className="pi-total-list">
+                <div className="pv-total-list">
                     <p>
                         {i18n.show} <select onChange={showItem} >
                             <option value="10">10</option>
@@ -183,7 +182,7 @@ export default class Form extends Component {
                             <option value="50">50</option>
                             <option value="99">99</option>
                         </select>
-                        {title} {this.props.boardView ? 'Per Stage' : <>from <span>{total}</span></>}
+                        {title} {this.props.boardView ? i18n.per + ' ' + i18n.stage : <>from <span>{total}</span></>}
                     </p>
                 </div>
             </div>

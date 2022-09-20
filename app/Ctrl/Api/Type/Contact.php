@@ -1,24 +1,23 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Model\Deal;
-use Ndpi\Model\Org;
-use Ndpi\Model\Person;
-use Ndpi\Model\Project;
+use Ndpv\Model\Deal;
+use Ndpv\Model\Org;
+use Ndpv\Model\Person;
+use Ndpv\Model\Project;
 
 class Contact
 {
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/contacts', [
+        register_rest_route('ndpv/v1', '/contacts', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -31,7 +30,7 @@ class Contact
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/contacts/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/contacts/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -44,7 +43,7 @@ class Contact
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/contacts/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/contacts/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -57,7 +56,7 @@ class Contact
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/contacts/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/contacts/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -95,7 +94,7 @@ class Contact
 
         foreach( $contact_types as $contact_type ) {
             $args = array(
-                'post_type' => 'ndpi_' . $contact_type,
+                'post_type' => 'ndpv_' . $contact_type,
                 'post_status' => 'publish',
                 'posts_per_page' => $per_page,
                 'offset' => $offset,
@@ -157,7 +156,7 @@ class Contact
                 }
                 $query_data['img'] = $imgData;
     
-                $query_data['date'] = get_the_time('j-M-Y');
+                $query_data['date'] = get_the_time( get_option('date_format') );
                 $data[] = $query_data;
             }
             wp_reset_postdata();
@@ -175,7 +174,7 @@ class Contact
         $query_data['id'] = absint($id);
 
         $queryMeta = get_post_meta($id);
-        $type = get_post_type( $id ) == 'ndpi_person' ? 'person' : 'org';
+        $type = get_post_type( $id ) == 'ndpv_person' ? 'person' : 'org';
         $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
         $query_data['tab_id'] = $id; 
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
@@ -199,11 +198,11 @@ class Contact
         } 
 
         $query_data['status_id'] = '';
-        $status = get_the_terms($id, 'ndpi_contact_status');
+        $status = get_the_terms($id, 'ndpv_contact_status');
 
         //if not set any term, show active
         if ( !$status ) {
-            $status[] = get_term_by('slug', 'active', 'ndpi_contact_status');
+            $status[] = get_term_by('slug', 'active', 'ndpv_contact_status');
         }
 
         if ($status) {
@@ -229,7 +228,7 @@ class Contact
         }
 
         $query_data['tags'] = []; 
-        $tags = get_the_terms($id, 'ndpi_tag');
+        $tags = get_the_terms($id, 'ndpv_tag');
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
@@ -241,7 +240,7 @@ class Contact
             $query_data['tags'] = $tagList;
         }
 
-        $query_data['date'] = get_the_time('j-M-Y');
+        $query_data['date'] = get_the_time( get_option('date_format') );
 
         wp_send_json_success($query_data);
     }

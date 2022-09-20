@@ -1,21 +1,20 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Helper\Fns;
+use Ndpv\Helper\Fns;
 
 class Email
 {
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/emails', [
+        register_rest_route('ndpv/v1', '/emails', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -28,7 +27,7 @@ class Email
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/emails/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/emails/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +40,7 @@ class Email
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/emails/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/emails/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -56,87 +55,20 @@ class Email
     public function get($req)
     {
         $request = $req->get_params();
+ 
 
-        $per_page = 10;
-        $offset = 0;
-
-        if (isset($request['per_page'])) {
-            $per_page = $request['per_page'];
-        }
-
-        if (isset($request['page']) && $request['page'] > 1) {
-            $offset = ($per_page * $request['page']) - $per_page;
-        }
-
-        $args = array(
-            'post_type' => 'ncpi_email',
-            'post_status' => 'publish',
-            'posts_per_page' => $per_page,
-            'offset' => $offset,
-        );
-
-        $args['meta_query'] = array(
-            'relation' => 'OR'
-        );
-
-        $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
-        $result = $data = [];
-        while ($query->have_posts()) {
-            $query->the_post();
-            $id = get_the_ID();
-
-            $query_data = [];
-            $query_data['id'] = $id;
-
-            $query_data['project'] = [
-                'name' => ''
-            ];
-
-            $query_data['to'] = [
-                'first_name' => '',
-                'last_name' => '',
-                'email' => '',
-            ];
-            $query_data['email'] = json_decode(get_post_meta($id, 'email', true));
-
-            $query_data['total'] = get_post_meta($id, 'total', true);
-            $query_data['paid'] = get_post_meta($id, 'paid', true);
-            if (!$query_data['paid']) {
-                $query_data['paid'] = 0;
-            }
-            $query_data['due'] = get_post_meta($id, 'due', true);
-            if (!$query_data['due']) {
-                $query_data['due'] = 0;
-            }
-
-            $query_data['date'] = get_the_time('j-M-Y');
-            $data[] = $query_data;
-        }
-        wp_reset_postdata();
-
-        $result['result'] = $data;
-        $result['total'] = $total_data;
-
-        wp_send_json_success($result);
+        wp_send_json_success();
     }
 
     public function get_single($req)
     {
         $url_params = $req->get_url_params();
-        $id    = $url_params['id'];
-
-        $query_data = [];
-        $query_data['id'] = $id;
-
-        $query_data['email'] = json_decode(get_post_meta($id, 'email', true));
-
-        wp_send_json_success($query_data);
+        $id    = $url_params['id']; 
+        wp_send_json_success();
     } 
 
     public function create($req)
     {
-
         $params = $req->get_params();
         $type = isset($params['type']) ? $params['type'] : '';
         if ($type == 'sent') {
@@ -169,7 +101,7 @@ class Email
         );
  
         $subject = Fns::templateVariable($mail_subject, []);
-        $template = ndpi()->render('email/invoice', [], true); 
+        $template = ndpv()->render('email/invoice', [], true); 
              
         $body = Fns::templateVariable($template, [
             'msg' => $msg,

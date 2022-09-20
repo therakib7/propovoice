@@ -25,11 +25,11 @@ export default class Template extends Component {
 
     getLists = (searchArgs = null) => { 
 
-        const old_version = JSON.parse(localStorage.getItem('ndpi_version'));
-        const template = JSON.parse(localStorage.getItem('ndpi_templates'));
+        const old_version = JSON.parse(localStorage.getItem('ndpv_version'));
+        const template = JSON.parse(localStorage.getItem('ndpv_templates'));
 
         //version compire
-        let current_version = ndpi.version;
+        let current_version = ndpv.version;
         let compare_version = current_version.localeCompare(old_version);
 
         if (template && old_version && compare_version !== 1) {
@@ -58,8 +58,8 @@ export default class Template extends Component {
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
-                localStorage.setItem('ndpi_version', JSON.stringify(ndpi.version))
-                localStorage.setItem('ndpi_templates', JSON.stringify(result))
+                localStorage.setItem('ndpv_version', JSON.stringify(ndpv.version))
+                localStorage.setItem('ndpv_templates', JSON.stringify(result))
                 this.setState({ preloader: false, templates: result, totalPage: Math.ceil(total / this.state.perPage) });
 
                 //select default template
@@ -87,11 +87,11 @@ export default class Template extends Component {
     };
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
-            <div id="pi-tab-template" className="pi-invoice-tab-content">
-                <h2 className='pi-page-title'>{i18n.select} {i18n.tmpl}</h2>
-                <div className="row pi-gap pi-margin-l-r">
+            <div id="pv-tab-template" className="pv-invoice-tab-content">
+                <h2 className='pv-page-title'>{i18n.select} {i18n.tmpl}</h2>
+                <div className="row pv-gap pv-margin-l-r">
 
                     {this.state.preloader && <Preloader />}
 
@@ -99,15 +99,15 @@ export default class Template extends Component {
                         this.state.templates.map((row, index) => {
                             return (
                                 <div className="col-12 col-md-6 col-lg-3" key={index}>
-                                    <div className='pi-single-image-content'>
-                                        <img src={row.src} className={'pi-single-image ' + (this.props.currentTemplate == row.id ? 'pi-active' : '')} />
-                                        {(this.props.currentTemplate != row.id) && <div className="pi-overflow-content">
-                                            <a className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
+                                    <div className='pv-single-image-content'>
+                                        <img src={row.src} className={'pv-single-image ' + (this.props.currentTemplate == row.id ? 'pv-active' : '')} />
+                                        {(this.props.currentTemplate != row.id) && <div className="pv-overflow-content">
+                                            <a className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue" onClick={() => this.selectEntry(row)}>{i18n.select}</a>
                                             <a
                                                 href={'https://appux.co/ncpi/preview/inv' + row.id + '.html'}
                                                 target="_blank"
-                                                className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow"
-                                            >{i18n.full}</a>
+                                                className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
+                                            >{i18n.full} {i18n.prv}</a>
                                         </div>}
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@ export default class Template extends Component {
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
-                    containerClassName={"pi-pagination"}
+                    containerClassName={"pv-pagination"}
                     activeClassName={"active"} />
                 }
             </div>

@@ -1,6 +1,5 @@
-<?php
-
-namespace Ndpi\Ctrl\Widget\Elementor\Widgets;
+<?php 
+namespace Ndpv\Ctrl\Widget\Elementor\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
@@ -8,11 +7,11 @@ use Elementor\Widget_Base;
 class Registration extends Widget_Base {
 
 	public function get_name() {
-		return 'ncpi-registration';
+		return 'ndpv-registration';
 	}
 
 	public function get_title() {
-		return esc_html__( 'NCPI: Registration', 'propovoice' );
+		return esc_html__( 'Propovoice: Registration', 'propovoice' );
 	}
 
 	public function get_icon() {
@@ -20,7 +19,7 @@ class Registration extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'ncpi-category' ];
+		return [ 'ndpv-category' ];
 	}
 
 	/**
@@ -57,7 +56,7 @@ class Registration extends Widget_Base {
 	 */
 	protected function render() {  
 		$settings = $this->get_settings_for_display(); ?>   
-		<?php ndpi()->render('public/auth/registration'); ?> 
+		<?php ndpv()->render('public/auth/registration'); ?> 
 		<?php 
 	} 
 } 

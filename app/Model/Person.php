@@ -1,6 +1,5 @@
-<?php
-
-namespace Ndpi\Model;
+<?php 
+namespace Ndpv\Model;
 
 class Person
 {
@@ -17,7 +16,7 @@ class Person
         $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
         $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
         $img = isset($params['img']) ? absint($params['img']) : null;
-        $is_client  = isset($params['is_client']) ? true : null;
+        $is_client  = isset($params['is_client']) ? $params['is_client'] : null;
         /* if ( empty($first_name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
@@ -30,7 +29,7 @@ class Person
             return $reg_errors;
         } else {
             $data = array(
-                'post_type' => 'ndpi_person',
+                'post_type' => 'ndpv_person',
                 'post_title'    => $first_name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -39,7 +38,7 @@ class Person
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
 
                 if ($org_id) {
                     update_post_meta($post_id, 'org_id', $org_id);

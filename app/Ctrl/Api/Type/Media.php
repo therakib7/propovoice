@@ -1,21 +1,20 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Helper\Fns; 
+use Ndpv\Helper\Fns; 
 
 class Media
 {
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/media', [
+        register_rest_route('ndpv/v1', '/media', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -28,7 +27,7 @@ class Media
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/media/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/media/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -41,7 +40,7 @@ class Media
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/media/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/media/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -69,7 +68,7 @@ class Media
         }
 
         $args = array(
-            'post_type' => 'ncpi_estvoice',
+            'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -125,7 +124,7 @@ class Media
                 $query_data['due'] = 0;
             }
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -241,8 +240,7 @@ class Media
                             'post_title'      => sanitize_text_field(preg_replace('/\.[^.]+$/', '', basename($filename))),
                             'post_excerpt'    => '',
                             'post_content'    => '',
-                            'post_mime_type'  => sanitize_text_field($filetype['type']),
-                            'post_status'     => 'ncpi-inherit',
+                            'post_mime_type'  => sanitize_text_field($filetype['type']), 
                             'comments_status' => 'closed',
                         ],
                         $uploaded['file'],
@@ -252,8 +250,8 @@ class Media
                     $file_info = [];
                     if (!is_wp_error($attach_id)) {
                         // wp_update_attachment_metadata($attach_id, wp_generate_attachment_metadata($attach_id, $filename)); 
-                        update_post_meta($attach_id, 'ws_id', ndpi()->get_workspace() );
-                        update_post_meta($attach_id, 'ncpi_attach_type', $attach_type); 
+                        update_post_meta($attach_id, 'ws_id', ndpv()->get_workspace() );
+                        update_post_meta($attach_id, 'ndpv_attach_type', $attach_type); 
 
                         $file_info = [
                             'id'  => $attach_id,

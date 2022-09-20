@@ -28,7 +28,7 @@ class Attach extends Component {
 
 	render = () => {
 		const attach = this.props.data; 
-		const i18n = ndpi.i18n;
+		const i18n = ndpv.i18n;
 		return (
 			<>   
 				<Media
@@ -38,7 +38,7 @@ class Attach extends Component {
                 />
 
 				<button 
-				className="pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white"
+				className="pv-btn pv-bg-air-white pv-bg-hover-blue pv-hover-color-white"
 				onClick={() => this.setState({ media: true })}
 				>
 					<svg
@@ -46,7 +46,7 @@ class Attach extends Component {
 					height={12}
 					viewBox="0 0 12 12"
 					fill="none"
-					xmlns="http://www.w3.org/2000/svg"  
+					  
 					>
 					<path
 						fillRule="evenodd"
@@ -55,7 +55,7 @@ class Attach extends Component {
 						fill="#18181B"
 					/>
 					</svg>
-					{i18n.add} {i18n.attachment}
+					{i18n.add} {i18n.atch}
 				</button>					
 
 				{attach.map((item, index) => (

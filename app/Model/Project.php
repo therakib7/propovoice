@@ -1,7 +1,5 @@
 <?php
-namespace Ndpi\Model;
- 
- 
+namespace Ndpv\Model;
 
 class Project {
 
@@ -9,7 +7,7 @@ class Project {
     { 
 
         $args = array(
-            'post_type' => 'ndpi_project',
+            'post_type' => 'ndpv_project',
             'post_status' => 'publish',
             'posts_per_page' => -1 
         ); 
@@ -40,5 +38,4 @@ class Project {
 
         return $total_data;
     }
- 
 }

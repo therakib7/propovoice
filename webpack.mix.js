@@ -11,7 +11,7 @@ const package_path = path.resolve(__dirname);
 const package_slug = path.basename(path.resolve(package_path));
 
 mix.webpackConfig({
-    output: { 
+    output: {
         publicPath: '/wp-content/plugins/propovoice/', //TODO: this not working in xampp 
         // path: path.join(__dirname, 'root'),
         //publicPath: '/nurency-plugin/wp-content/plugins/propovoice/',
@@ -23,12 +23,12 @@ mix.webpackConfig({
             //'react' : path.resolve('node_modules'),
             //'react-dom' : path.resolve('node_modules-dom'), 
             'api': path.resolve('src/js/api'),
-            'block': path.resolve('src/js/blocks'),
+            'block': path.resolve('src/js/block'),
             'hoc': path.resolve('src/js/hoc'),
             'context': path.resolve('src/js/context'),
             'cpnt': path.resolve('src/js/cpnt'),
             'out-cpnt': path.resolve('src/js/out-cpnt'),
-            'inv-template': path.resolve('src/js/inv-template'),
+            'inv-tmpl': path.resolve('src/js/inv-tmpl'),
         },
     }
 });
@@ -55,7 +55,7 @@ if (process.env.NODE_ENV === 'package') {
         let includes = [
             'app',
             'asset',
-            'languages', 
+            'languages',
             'vendor',
             'view',
             'index.php',

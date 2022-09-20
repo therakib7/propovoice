@@ -1,18 +1,17 @@
-<?php
-
-namespace Ndpi\Ctrl\Api\Type; 
-use Ndpi\Model\Person;
+<?php 
+namespace Ndpv\Ctrl\Api\Type; 
+use Ndpv\Model\Person;
 
 class Org
 {
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/organizations', [
+        register_rest_route('ndpv/v1', '/organizations', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -25,7 +24,7 @@ class Org
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/organizations/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/organizations/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -38,7 +37,7 @@ class Org
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/organizations/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/organizations/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -51,7 +50,7 @@ class Org
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/organizations/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/organizations/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -81,7 +80,7 @@ class Org
         }
 
         $args = array(
-            'post_type' => 'ndpi_org',
+            'post_type' => 'ndpv_org',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -141,7 +140,7 @@ class Org
             } 
             $query_data['logo'] = $logoData;
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -212,7 +211,7 @@ class Org
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $data = array(
-                'post_type' => 'ndpi_org',
+                'post_type' => 'ndpv_org',
                 'post_title'    => $name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -221,7 +220,7 @@ class Org
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
 
                 if ($name) {
                     update_post_meta($post_id, 'name', $name);

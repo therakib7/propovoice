@@ -1,9 +1,8 @@
-<?php
-
-namespace Ndpi\Ctrl\Setting;
+<?php 
+namespace Ndpv\Ctrl\Setting;
  
-use Ndpi\Ctrl\Setting\Type\Dashboard;
-use Ndpi\Ctrl\Setting\Type\Welcome;
+use Ndpv\Ctrl\Setting\Type\Dashboard;
+use Ndpv\Ctrl\Setting\Type\Welcome;
 
 class SettingCtrl {
 	

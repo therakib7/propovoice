@@ -1,23 +1,22 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Helper\Fns;
-use Ndpi\Model\Contact;
-use Ndpi\Model\Org;
-use Ndpi\Model\Person;
+use Ndpv\Helper\Fns;
+use Ndpv\Model\Contact;
+use Ndpv\Model\Org;
+use Ndpv\Model\Person;
 
 class Deal
 {
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/deals', [
+        register_rest_route('ndpv/v1', '/deals', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -30,7 +29,7 @@ class Deal
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/deals/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/deals/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -43,7 +42,7 @@ class Deal
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/deals/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/deals/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -56,7 +55,7 @@ class Deal
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/deals/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/deals/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -120,7 +119,7 @@ class Deal
         $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
 
         $args = array(
-            'post_type' => 'ndpi_deal',
+            'post_type' => 'ndpv_deal',
             'post_status' => 'publish',
             'orderby' => 'menu_order',
             'order' => 'ASC',
@@ -135,7 +134,7 @@ class Deal
         if ($stage_id) {
             $args['tax_query'] = array(
                 array(
-                    'taxonomy' => 'ndpi_deal_stage',
+                    'taxonomy' => 'ndpv_deal_stage',
                     'terms' => $stage_id,
                     'field' => 'term_id',
                 )
@@ -208,7 +207,7 @@ class Deal
 
             if (!$stage_id) {
                 $query_data['stage_id'] = '';
-                $stage = get_the_terms($id, 'ndpi_deal_stage');
+                $stage = get_the_terms($id, 'ndpv_deal_stage');
                 if ($stage) {
                     $term_id = $stage[0]->term_id;
                     $query_data['stage_id'] = [
@@ -221,7 +220,7 @@ class Deal
             }
 
             $query_data['tags'] = [];
-            $tags = get_the_terms($id, 'ndpi_tag');
+            $tags = get_the_terms($id, 'ndpv_tag');
             if ($tags) {
                 $tagList = [];
                 foreach ($tags as $tag) {
@@ -247,7 +246,7 @@ class Deal
                 $query_data['org'] = $org->single($org_id);
             }
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -280,7 +279,7 @@ class Deal
 
         $query_data['stage_id'] = '';
 
-        $stage = get_the_terms($id, 'ndpi_deal_stage');
+        $stage = get_the_terms($id, 'ndpv_deal_stage');
         if ($stage) {
             $term_id = $stage[0]->term_id;
             $query_data['stage_id'] = [
@@ -304,7 +303,7 @@ class Deal
         }
 
         $query_data['tags'] = [];
-        $tags = get_the_terms($id, 'ndpi_tag');
+        $tags = get_the_terms($id, 'ndpv_tag');
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
@@ -330,7 +329,7 @@ class Deal
             $query_data['org'] = $org->single($org_id, true);
         }
 
-        $query_data['date'] = get_the_time('j-M-Y');
+        $query_data['date'] = get_the_time( get_option('date_format') );
 
         wp_send_json_success($query_data);
     }
@@ -393,7 +392,7 @@ class Deal
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_deal',
+                'post_type' => 'ndpv_deal',
                 'post_title'    => $title,
                 'post_content'  => $desc,
                 'post_status'   => 'publish',
@@ -403,7 +402,7 @@ class Deal
 
             if (!is_wp_error($post_id)) {
 
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
                 $tab_id = $post_id;
                 if ($lead_id) {
                     $tab_id = $lead_id;
@@ -415,7 +414,7 @@ class Deal
                 }
 
                 if ($stage_id) {
-                    wp_set_post_terms($post_id, [$stage_id], 'ndpi_deal_stage');
+                    wp_set_post_terms($post_id, [$stage_id], 'ndpv_deal_stage');
                 }
 
                 if ($lead_id) {
@@ -451,7 +450,7 @@ class Deal
                 }
 
                 if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
+                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
                 }
 
                 if ($note) {
@@ -542,7 +541,7 @@ class Deal
             if (!is_wp_error($post_id)) {
 
                 if ($stage_id) {
-                    wp_set_post_terms($post_id, [$stage_id], 'ndpi_deal_stage');
+                    wp_set_post_terms($post_id, [$stage_id], 'ndpv_deal_stage');
                 }
 
                 if ($status) {
@@ -574,7 +573,7 @@ class Deal
                 }
 
                 if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
+                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
                 }
 
                 if ($note) {

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-
+import { Add } from 'block/icon';
+import { sprintf } from 'sprintf-js';
+import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import WithApi from 'hoc/Api';
 
 import Select from 'react-select';
-
 
 class Form extends Component {
     constructor(props) {
@@ -50,6 +51,10 @@ class Form extends Component {
         } else {
             this.setState({ form: { ...this.state.form, [name]: value } });
         }
+    }
+
+    currencyChange = val => {
+        this.setState({ form: { ...this.state.form, ['currency']: val } });
     }
 
     handleLevelChange = val => {
@@ -216,40 +221,22 @@ class Form extends Component {
         const tagList = this.state.tags;
 
         const form = this.state.form;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
+         
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content">
 
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()}>
+                            <Add />
                         </span>
-                        <h2 className="pi-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
-                        <p>Add new lead from here</p>
+                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
+                        <p>{sprintf(i18n.formDesc, i18n.lead)}</p> 
                     </div>
                     <form onSubmit={this.handleSubmit} >
-                        <div className="pi-content">
-                            <div className="pi-form-style-one">
+                        <div className="pv-content">
+                            <div className="pv-form-style-one">
                                 <Contact
                                     first_name={form.first_name}
                                     org_name={form.org_name}
@@ -290,12 +277,12 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-budget">
-                                        {i18n.budget}
+                                            {i18n.budget}
                                         </label>
 
                                         <input
                                             id="field-budget"
-                                            type="text"
+                                            type="number"
                                             name="budget"
                                             value={form.budget}
                                             onChange={this.handleChange}
@@ -304,28 +291,20 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-currency">
-                                        {i18n.currency}
+                                            {i18n.cur}
                                         </label>
-
-                                        <input
-                                            id="field-currency"
-                                            type="text"
-                                            readOnly
-                                            name="currency"
-                                            value={form.currency}
-                                            onChange={this.handleChange}
-                                        />
+                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
                                     </div>
                                 </div>
 
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-level_id">
-                                        {i18n.level}
+                                            {i18n.level}
                                         </label>
                                         {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color /> */}
                                         <Select
-                                            className={'pi-field-select'}
+                                            className={'pv-field-select'}
                                             value={form.level_id}
                                             onChange={this.handleLevelChange}
                                             getOptionValue={(levelList) => levelList.id}
@@ -336,11 +315,11 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
-                                        {i18n.tag}
+                                            {i18n.tag}
                                         </label>
                                         {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple /> */}
                                         <Select
-                                            className={'pi-field-select'}
+                                            className={'pv-field-select'}
                                             value={form.tags}
                                             onChange={this.handleTagChange}
                                             getOptionValue={(tagList) => tagList.id}
@@ -354,7 +333,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-desc">
-                                        {i18n.desc}
+                                            {i18n.desc}
                                         </label>
 
                                         <textarea
@@ -370,7 +349,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-note">
-                                        {i18n.note}
+                                            {i18n.note}
                                         </label>
 
                                         <textarea
@@ -385,13 +364,13 @@ class Form extends Component {
                             </div>
                         </div>
 
-                        <div className="pi-modal-footer">
+                        <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
+                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
                                         {i18n.save}
                                     </button>
                                 </div>

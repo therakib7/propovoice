@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const apiUrl = `${ndpi.apiUrl}ndpi/v1/businesses`;
+const apiUrl = `${ndpv.apiUrl}ndpv/v1/businesses`;
 
 const token = {
 	headers: {
 		'content-type': 'application/json',
-		'X-WP-NONCE': ndpi.nonce
+		'X-WP-NONCE': ndpv.nonce
 	}
 };
 

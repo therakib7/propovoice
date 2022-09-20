@@ -1,18 +1,17 @@
-<?php
-
-namespace Ndpi\Ctrl\Api\Type; 
+<?php 
+namespace Ndpv\Ctrl\Api\Type; 
 
 class Business
 { 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/businesses', [
+        register_rest_route('ndpv/v1', '/businesses', [
             [
                 'methods' => 'GET', 
                 'callback' => [$this, 'get'],
@@ -25,7 +24,7 @@ class Business
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/businesses/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/businesses/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -38,7 +37,7 @@ class Business
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/businesses/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/businesses/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -51,7 +50,7 @@ class Business
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/businesses/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/businesses/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -79,7 +78,7 @@ class Business
         }
 
         $args = array( 
-            'post_type' => 'ncpi_business',
+            'post_type' => 'ndpv_business',
             'post_status' => 'publish',
             'posts_per_page' => $per_page, 
             'offset' => $offset,
@@ -102,7 +101,7 @@ class Business
         $args['meta_query'][] = array( 
             array(
                 'key'     => 'ws_id',
-                'value'   => ndpi()->get_workspace(),
+                'value'   => ndpv()->get_workspace(),
                 'compare' => 'LIKE'
             )
         );
@@ -138,7 +137,7 @@ class Business
             } 
             $query_data['logo'] = $logoData;
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data; 
         } 
         wp_reset_postdata(); 
@@ -182,7 +181,7 @@ class Business
 
     public function set_default() {
         $args = array( 
-            'post_type' => 'ncpi_business',
+            'post_type' => 'ndpv_business',
             'post_status' => 'publish',
             'posts_per_page' => -1,
             'fields' => 'ids'
@@ -231,7 +230,7 @@ class Business
         } else {
          
             $data = array(
-                'post_type' => 'ncpi_business',
+                'post_type' => 'ndpv_business',
                 'post_title'    => $name,
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -241,7 +240,7 @@ class Business
 
             if ( !is_wp_error($post_id) ) {
                 
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace() ); 
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace() ); 
 
                 if ( $name ) {
                     update_post_meta($post_id, 'name', $name); 

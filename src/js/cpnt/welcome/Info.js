@@ -46,11 +46,11 @@ class Info extends Component {
     }
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit}>
 
-                <div className="pi-form-style-one">
+                <div className="pv-form-style-one">
                     <div className="row">
                         <div className="col-md">
                             <label
@@ -125,8 +125,7 @@ class Info extends Component {
 
                             <input
                                 id="field-mobile"
-                                type="text"
-                                required
+                                type="text" 
                                 name="mobile"
                                 value={this.state.form.mobile}
                                 onChange={this.handleChange}
@@ -148,7 +147,7 @@ class Info extends Component {
                         </div>
                     </div>
 
-                    <div className="row pi-mb-30">
+                    <div className="row pv-mb-30">
                         <div className="col">
                             <label
                                 htmlFor="field-address">
@@ -167,9 +166,9 @@ class Info extends Component {
                     </div>
                 </div>
 
-                <div className="pi-buttons pi-text-center">
-                    <button type="submit" className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big">{i18n.save} {i18n.nd} {i18n.contin}</button>
-                    <a className="pi-text-hover-blue" onClick={() => this.props.handleSkip('info')}>{i18n.skip}</a>
+                <div className="pv-buttons pv-text-center">
+                    <button type="submit" className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big"> {i18n.save} {i18n.nd} {i18n.cont}</button>
+                    <a className="pv-text-hover-blue" onClick={() => this.props.handleSkip('info')}>{i18n.skip}</a>
                 </div>
             </form>
         );

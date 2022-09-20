@@ -44,7 +44,7 @@ export default class Social extends Component {
 
         this.props.create('settings', form).then(resp => {
             if (resp.data.success) {
-                toast.success(this.context.CrudMsg.update);
+                toast.success(ndpv.i18n.aUpd);
             } else {
                 resp.data.data.forEach(function (value, index, array) {
                     toast.error(value);
@@ -55,7 +55,7 @@ export default class Social extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} className="pi-form-style-one">
+            <form onSubmit={this.handleSubmit} className="pv-form-style-one">
                 <div className="row">
                     <div className="col">
                         {this.state.form.social.map((row, i) => (
@@ -82,8 +82,8 @@ export default class Social extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <button className="pi-btn pi-bg-blue pi-bg-hover-blue">
-                        {ndpi.i18n.save}
+                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
+                        {ndpv.i18n.save}
                         </button>
                     </div>
                 </div>

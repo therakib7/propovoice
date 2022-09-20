@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import Action from 'block/action/row';
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
@@ -19,12 +19,11 @@ const TableHeader = props => {
                 </th>
                 <th>
                     <svg
-                        className='pi-mt-4'
+                        className='pv-mt-4'
                         width={16}
                         height={16}
                         viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none" 
                     >
                         <path
                             d="M2 3.5h12V12a.5.5 0 01-.5.5h-11A.5.5 0 012 12V3.5z"
@@ -47,8 +46,7 @@ const TableHeader = props => {
                         width={15}
                         height={10}
                         viewBox="0 0 15 10"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none" 
                     >
                         <path
                             d="M11.15 9.275L14 5 11.15.725A.493.493 0 0010.731.5H1.5A.5.5 0 001 1v8a.5.5 0 00.5.5h9.231a.494.494 0 00.419-.225v0z"
@@ -65,8 +63,7 @@ const TableHeader = props => {
                         width={15}
                         height={10}
                         viewBox="0 0 15 10"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none" 
                     >
                         <path
                             d="M11.15 9.275L14 5 11.15.725A.493.493 0 0010.731.5H1.5A.5.5 0 001 1v8a.5.5 0 00.5.5h9.231a.494.494 0 00.419-.225v0z"
@@ -79,12 +76,11 @@ const TableHeader = props => {
                 </th>
                 <th>
                     <svg
-                        className='pi-mt-4'
+                        className='pv-mt-4'
                         width={16}
                         height={16}
                         viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none" 
                     >
                         <path
                             d="M7.669 1.619L2.625 2.625 1.619 7.669a.5.5 0 00.137.45l6.525 6.525a.496.496 0 00.706 0l5.657-5.657a.496.496 0 000-.706L8.119 1.756a.5.5 0 00-.45-.137v0z"
@@ -127,13 +123,13 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.title}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td> 
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>${row.budget}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.probability}%</td>
-                <td><span className="pi-badge">{row.stage_id && row.stage_id.label}</span></td>
-                <td><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
-                <td className="pi-action">
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.title}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td> 
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>${row.budget}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.probability}%</td>
+                <td><span className="pv-badge">{row.stage_id && row.stage_id.label}</span></td>
+                <td>{row.date}</td>
+                <td className="pv-action">
                     <Action
                         row={row}
                         handleOverview={handleOverview}
@@ -151,8 +147,8 @@ const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
-            {tableData.length > 0 && <div className='pi-table-wrap' style={{marginTop: '20px'}}>
-                <table className='pi-table'>
+            {tableData.length > 0 && <div className='pv-table-wrap' style={{marginTop: '20px'}}>
+                <table className='pv-table'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
                 </table>

@@ -13,18 +13,18 @@ if (!defined('ABSPATH')) {
  * Plugin URI: https://wordpress.org/plugins/propovoice
  * Author: Propovoice
  * Author URI: https://propovoice.com
- * Version: 0.5.0
+ * Version: 1.0.1.4
  * Description: A complete estimate and invoice management system for the WordPress.
  * Text Domain: propovoice
  * Domain Path: /languages
  *
  */
 
-if (!class_exists('Ndpi')) {
+if ( !class_exists('Ndpv') ) {
 
-    if (!defined('NCPI_FILE')) {
-        define('NCPI_FILE', __FILE__);
+    if (!defined('NDPV_FILE')) {
+        define('NDPV_FILE', __FILE__);
     }
 
-    require_once plugin_dir_path(__FILE__) . 'app/Ndpi.php';
+    require_once plugin_dir_path(__FILE__) . 'app/Ndpv.php';
 } 

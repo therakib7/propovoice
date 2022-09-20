@@ -5,7 +5,7 @@ import AppContext from 'context/app-context';
 import msgData from 'context/data/msg';
 
 document.addEventListener('DOMContentLoaded', function () {
-    let el = document.getElementById('ndpi-invoice');
+    let el = document.getElementById('ndpv-invoice');
     if (typeof el !== 'undefined' && el !== null) {
         ReactDOM.render(
             <AppContext.Provider value={{

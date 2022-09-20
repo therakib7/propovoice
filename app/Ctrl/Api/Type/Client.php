@@ -1,22 +1,21 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Model\Org;
-use Ndpi\Model\Person;
+use Ndpv\Model\Org;
+use Ndpv\Model\Person;
 
 class Client
 {
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/clients', [
+        register_rest_route('ndpv/v1', '/clients', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -29,7 +28,7 @@ class Client
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/clients/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/clients/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -42,7 +41,7 @@ class Client
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/clients/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/clients/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -55,7 +54,7 @@ class Client
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/clients/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/clients/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -84,7 +83,7 @@ class Client
         }
 
         $args = array(
-            'post_type' => ['ndpi_person', 'ndpi_org'],
+            'post_type' => ['ndpv_person', 'ndpv_org'],
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -130,7 +129,7 @@ class Client
             $query_data['id'] = $id;
 
             $queryMeta = get_post_meta($id);
-            $type = get_post_type($id) == 'ndpi_person' ? 'person' : 'org';
+            $type = get_post_type($id) == 'ndpv_person' ? 'person' : 'org';
             $query_data['type'] = $type;
             $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : '';
             $query_data['org_name'] = isset($queryMeta['name']) ? $queryMeta['name'][0] : '';
@@ -154,7 +153,7 @@ class Client
             }
             $query_data['img'] = $imgData;
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -177,19 +176,19 @@ class Client
         $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
         $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
         $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $params['is_client'] = true;
+        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null; 
 
         if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
-
+        
         $person = new Person();
         if ($person_id) {
             $person->update($params);
         }
 
         if (!$person_id && $first_name) {
+            $params['is_client'] = true;
             $person_id = $person->create($params);
         }
 
@@ -198,7 +197,13 @@ class Client
             $org->update($params);
         }
 
-        if (!$org_id && $org_name) {
+        if ( !$org_id && $org_name ) {
+
+            if ( $first_name ) {
+                $params['is_client'] = false; 
+            } else {
+                $params['is_client'] = true; 
+            }
             $org_id = $org->create($params);
         }
 

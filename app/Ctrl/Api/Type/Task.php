@@ -1,8 +1,7 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Helper\Fns;
+use Ndpv\Helper\Fns;
 
 
 class Task
@@ -10,13 +9,13 @@ class Task
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/tasks', [
+        register_rest_route('ndpv/v1', '/tasks', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -29,7 +28,7 @@ class Task
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/tasks/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/tasks/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -42,7 +41,7 @@ class Task
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/tasks/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/tasks/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -55,7 +54,7 @@ class Task
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/tasks/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/tasks/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -91,7 +90,7 @@ class Task
         }
 
         $args = array(
-            'post_type' => 'ndpi_task',
+            'post_type' => 'ndpv_task',
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
@@ -123,7 +122,7 @@ class Task
 
         $args['tax_query'] = array(
             array(
-                'taxonomy' => 'ndpi_task_status',
+                'taxonomy' => 'ndpv_task_status',
                 'terms' => $status_id,
                 'field' => 'term_id',
             )
@@ -162,7 +161,7 @@ class Task
             $query_data['title'] = get_the_title();
 
             $query_data['status_id'] = '';
-            $status = get_the_terms($id, 'ndpi_task_status');
+            $status = get_the_terms($id, 'ndpv_task_status');
             if ($status) {
                 $term_id = $status[0]->term_id;
                 $query_data['status_id'] = [
@@ -186,7 +185,7 @@ class Task
             }
 
             $query_data['type_id'] = '';
-            $type = get_the_terms($id, 'ndpi_task_type');
+            $type = get_the_terms($id, 'ndpv_task_type');
             if ($type) {
                 $icon_id = get_term_meta($type[0]->term_id, 'icon', true);
                 $iconData = null;
@@ -208,7 +207,7 @@ class Task
             }
 
             $query_data['priority_id'] = '';
-            $priority = get_the_terms($id, 'ndpi_task_priority');
+            $priority = get_the_terms($id, 'ndpv_task_priority');
             if ($priority) {
                 $term_id = $priority[0]->term_id;
                 $query_data['priority_id'] = [
@@ -234,7 +233,7 @@ class Task
             $query_data['start_date'] = get_post_meta($id, 'start_date', true);
             $query_data['due_date'] = get_post_meta($id, 'due_date', true);
             $query_data['checklist'] = get_post_meta($id, 'checklist', true);
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
 
             if ($dashboard) {
                 $data['latest'][] = $query_data;
@@ -299,7 +298,7 @@ class Task
         } else {
 
             $data = array(
-                'post_type' => 'ndpi_task',
+                'post_type' => 'ndpv_task',
                 'post_title' => $title,
                 'post_content' => '',
                 'post_status'  => 'publish',
@@ -308,22 +307,22 @@ class Task
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
 
                 if ($tab_id) {
                     update_post_meta($post_id, 'tab_id', $tab_id);
                 }
 
                 if ($status_id) {
-                    wp_set_post_terms($post_id, [$status_id], 'ndpi_task_status');
+                    wp_set_post_terms($post_id, [$status_id], 'ndpv_task_status');
                 }
 
                 if ($type_id) {
-                    wp_set_post_terms($post_id, [$type_id], 'ndpi_task_type');
+                    wp_set_post_terms($post_id, [$type_id], 'ndpv_task_type');
                 }
 
                 if ($priority_id) {
-                    wp_set_post_terms($post_id, [$priority_id], 'ndpi_task_priority');
+                    wp_set_post_terms($post_id, [$priority_id], 'ndpv_task_priority');
                 }
 
                 if ($start_date) {
@@ -382,15 +381,15 @@ class Task
             if (!is_wp_error($post_id)) {
 
                 if ($status_id) {
-                    wp_set_post_terms($post_id, [$status_id], 'ndpi_task_status');
+                    wp_set_post_terms($post_id, [$status_id], 'ndpv_task_status');
                 }
 
                 if ($type_id) {
-                    wp_set_post_terms($post_id, [$type_id], 'ndpi_task_type');
+                    wp_set_post_terms($post_id, [$type_id], 'ndpv_task_type');
                 }
 
                 if ($priority_id) {
-                    wp_set_post_terms($post_id, [$priority_id], 'ndpi_task_priority');
+                    wp_set_post_terms($post_id, [$priority_id], 'ndpv_task_priority');
                 }
 
                 if ($start_date) {

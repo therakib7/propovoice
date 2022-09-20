@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
 import Api from 'api/payment-process';
+import { sprintf } from 'sprintf-js';
 
 class Bank extends Component {
     constructor(props) {
@@ -55,21 +56,20 @@ class Bank extends Component {
     }
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <>
                 {this.props.show && (
-                    <div className="pi-overlay pi-show">
-                        <div className="pi-modal-content">
+                    <div className="pv-overlay pv-show">
+                        <div className="pv-modal-content">
 
-                            <div className="pi-modal-header pi-gradient">
-                                <span className="pi-close" onClick={() => this.props.close()}>
+                            <div className="pv-modal-header pv-gradient">
+                                <span className="pv-close" onClick={() => this.props.close()}>
                                     <svg
                                         width={25}
                                         height={25}
                                         viewBox="0 0 16 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" 
                                     >
                                         <path
                                             d="M12.5 3.5L3.5 12.5"
@@ -85,12 +85,12 @@ class Bank extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pi-modal-title">{i18n.payment} {i18n.info}</h2>
-                                <p>Add payment info from here</p>
+                                <h2 className="pv-modal-title">{i18n.payment} {i18n.info}</h2>
+                                <p>{i18n.payDesc}</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >
-                                <div className="pi-content">
-                                    <div className="pi-form-style-one">
+                                <div className="pv-content">
+                                    <div className="pv-form-style-one">
                                         <div className="row">
                                             <div className="col-lg">
                                                 <label htmlFor="form-payment_details">
@@ -103,7 +103,7 @@ class Bank extends Component {
                                                     value={this.state.form.payment_details}
                                                     onChange={this.handleChange}
                                                 />
-                                                <p className='pi-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p>
+                                                <p className='pv-field-desc'>Give your payment details here, Like: Name, Transection ID. etc</p>
                                             </div>
                                         </div>
 
@@ -117,13 +117,13 @@ class Bank extends Component {
                                     </div>
                                 </div>
 
-                                <div className="pi-modal-footer">
+                                <div className="pv-modal-footer">
                                     <div className="row">
                                         <div className="col">
-                                            {/* <button type='reset' className="pi-btn pi-text-hover-blue">{i18n.clear}</button> */}
+                                            {/* <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button> */}
                                         </div>
                                         <div className="col">
-                                            <button type='submit' className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big pi-float-right pi-color-white">
+                                            <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
                                                 {i18n.payment}
                                             </button>
                                         </div>

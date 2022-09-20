@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import Moment from 'react-moment';
 import Action from 'block/action/row';
-import { Arrow, Email, Tag } from '../../blocks/icon';
+import { Arrow, Email, Tag } from 'block/icon';
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
@@ -19,23 +19,23 @@ const TableHeader = props => {
                     {i18n.project} {i18n.title}
                 </th>
                 <th>
-                    <Email/>
+                    <Email />
                     {i18n.client}
                 </th>
                 <th>
-                <Arrow/>
-                {i18n.start} {i18n.date}
+                    <Arrow />
+                    {i18n.start} {i18n.date}
                 </th>
                 <th>
-                    <Arrow/>
+                    <Arrow />
                     {i18n.due} {i18n.date}
                 </th>
                 <th>
-                    <Arrow/>
+                    <Arrow />
                     {i18n.budget}
                 </th>
                 <th>
-                <Tag/>
+                    <Tag />
                     {i18n.status}
                 </th>
                 {/* <th>
@@ -69,13 +69,13 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.title}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>${row.budget}</td>
-                <td><span className="pi-badge">{row.status_id && row.status_id.label}</span></td>
-                <td className="pi-action">
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'><span className='pv-list-title'>{row.title}</span></td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>${row.budget}</td>
+                <td><span className="pv-badge">{row.status_id && row.status_id.label}</span></td>
+                <td className="pv-action">
                     <Action
                         row={row}
                         handleOverview={handleOverview}
@@ -94,8 +94,8 @@ const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
-            {tableData.length > 0 && <div className='pi-table-wrap'>
-                <table className='pi-table'>
+            {tableData.length > 0 && <div className='pv-table-wrap'>
+                <table className='pv-table pv-table-four'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
                 </table>

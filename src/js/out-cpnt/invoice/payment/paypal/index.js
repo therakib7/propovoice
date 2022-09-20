@@ -11,8 +11,7 @@ import './style.css';
 import Api from 'api/payment-process';
 
 // This values are the props in the UI
-
-const currency = "USD";
+ 
 const style = { "layout": "vertical" };
 
 // Custom component to wrap the PayPalButtons and handle currency changes
@@ -37,9 +36,9 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
         });
     }, [currency, showSpinner]);
 
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (<>
-        {(showSpinner && isPending) && <div className="pi-preloader" />}
+        {(showSpinner && isPending) && <div className="pv-preloader" />}
 
         {details ? (
             <div className="Result">
@@ -117,14 +116,15 @@ class Paypal extends Component {
     }
 
     render() {
-        let client_id = this.props.invoice.payment_methods.paypal.client_id;
+        const client_id = this.props.invoice.payment_methods.paypal.client_id;
+        const currency = this.props.invoice.currency
         return (
             <>
                 {this.props.show && (
-                    <div className="pi-overlay pi-show">
-                        <div className="pi-modal-content pi-modal-style-two pi-modal-small">
-                            <div className="pi-modal-header">
-                                <span className="pi-close" onClick={() => this.props.close()}>
+                    <div className="pv-overlay pv-show">
+                        <div className="pv-modal-content pv-modal-style-two pv-modal-small">
+                            <div className="pv-modal-header">
+                                <span className="pv-close" onClick={() => this.props.close()}>
                                     <svg
                                         width={25}
                                         height={25}
@@ -146,18 +146,17 @@ class Paypal extends Component {
                                         />
                                     </svg>
                                 </span>
-                                <h2 className="pi-modal-title">Pay With Paypal</h2>
+                                <h2 className="pv-modal-title">{ndpv.i18n.pay} {ndpv.i18n.with} Paypal</h2>
                             </div>
 
-                            <div className="pi-content">
-                                <div className="pi-form-style-one">
+                            <div className="pv-content">
+                                <div className="pv-form-style-one">
                                     <div className="row">
                                         <div className="col-lg">
                                             <PayPalScriptProvider
                                                 options={{
-                                                    "client-id": client_id,
-                                                    cpnt: "buttons",
-                                                    currency: "USD"
+                                                    "client-id": client_id, 
+                                                    currency: currency
                                                 }}
                                             >
                                                 <ButtonWrapper

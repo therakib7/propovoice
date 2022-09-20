@@ -91,28 +91,27 @@ export default class Template extends Component {
     };
 
     render() {
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
             <>
                 {this.props.show &&
-                    <div className="pi-overlay pi-show">
-                        <div className="pi-modal-content">
-                            <div className="pi-modal-header">
-                                <h2 className="pi-modal-title pi-text-center">{i18n.mi} {i18n.gallery}</h2>
-                                <span className="pi-close" onClick={() => this.props.close()}>×</span>
+                    <div className="pv-overlay pv-show">
+                        <div className="pv-modal-content">
+                            <div className="pv-modal-header">
+                                <h2 className="pv-modal-title pv-text-center">{i18n.media} {i18n.gal}</h2>
+                                <span className="pv-close" onClick={() => this.props.close()}>×</span>
                             </div>
 
-                            <div className="pi-content">
+                            <div className="pv-content">
                                 <button
-                                    className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'upload' ? 'pi-bg-blue pi-color-white' : '')}
+                                    className={'pv-btn pv-bg-air-white pv-bg-hover-blue pv-hover-color-white ' + (this.state.currentTab == 'upload' ? 'pv-bg-blue pv-color-white' : '')}
                                     onClick={(e) => { e.preventDefault(); this.setState({ currentTab: 'upload' }) }}
                                 >
                                     <svg
                                         width={14}
                                         height={14}
                                         viewBox="0 0 14 14"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" 
                                     >
                                         <path
                                             d="M3.668 10.09a2.7 2.7 0 01-1.779-.662 2.563 2.563 0 01-.394-3.457 2.67 2.67 0 011.587-1.03 3.199 3.199 0 01.46-2.452 3.334 3.334 0 012.1-1.417 3.395 3.395 0 012.508.45 3.26 3.26 0 011.448 2.053h.067c.826 0 1.623.299 2.236.84a3.205 3.205 0 01.45 4.35 3.34 3.34 0 01-2.02 1.26M9 8.137l-2-1.954m0 0L5.002 8.136M7 6.182V13"
@@ -126,15 +125,14 @@ export default class Template extends Component {
                                 </button>
 
                                 <button
-                                    className={'pi-btn pi-bg-air-white pi-bg-hover-blue pi-hover-color-white ' + (this.state.currentTab == 'gallery' ? 'pi-bg-blue pi-color-white' : '')}
+                                    className={'pv-btn pv-bg-air-white pv-bg-hover-blue pv-hover-color-white ' + (this.state.currentTab == 'gallery' ? 'pv-bg-blue pv-color-white' : '')}
                                     onClick={(e) => { e.preventDefault(); this.setState({ currentTab: 'gallery' }) }}
                                 >
                                     <svg
                                         width={12}
                                         height={12}
                                         viewBox="0 0 12 12"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" 
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -143,17 +141,17 @@ export default class Template extends Component {
                                             fill="#18181B"
                                         />
                                     </svg>
-                                    {i18n.gallery}
+                                    {i18n.gal}
                                 </button>
 
-                                {this.state.currentTab == 'upload' && <div className="pi-media-upload">
+                                {this.state.currentTab == 'upload' && <div className="pv-media-upload">
                                     <Dropzone newMedia={this.newMedia} />
                                 </div>}
 
                                 {this.state.currentTab == 'gallery' &&
                                     <>
-                                        <div className="pi-media-gallery">
-                                            <div className="row pi-gap pi-margin-l-r">
+                                        <div className="pv-media-gallery">
+                                            <div className="row pv-gap pv-margin-l-r">
 
                                                 {this.state.preloader && <Preloader />}
 
@@ -161,10 +159,10 @@ export default class Template extends Component {
                                                     this.state.templates.map((row, index) => {
                                                         return (
                                                             <div className="col-12 col-md-6 col-lg-3" key={index}>
-                                                                <div className={(this.state.selectedItem.id == row.id) ? 'pi-single-image-content pi-active' : 'pi-single-image-content'}>
-                                                                    <img src={row.src} className="pi-single-image" />
-                                                                    {(this.state.selectedItem.id != row.id) && <div className="pi-overflow-content">
-                                                                        <a className="pi-btn pi-bg-blue pi-bg-hover-blue" onClick={() => this.selectEntry(row)}>Select</a>
+                                                                <div className={(this.state.selectedItem.id == row.id) ? 'pv-single-image-content pv-active' : 'pv-single-image-content'}>
+                                                                    <img src={row.src} className="pv-single-image" />
+                                                                    {(this.state.selectedItem.id != row.id) && <div className="pv-overflow-content">
+                                                                        <a className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.selectEntry(row)}>{i18n.select}</a>
                                                                     </div>}
                                                                 </div>
                                                             </div>
@@ -182,15 +180,15 @@ export default class Template extends Component {
                                                 marginPagesDisplayed={2}
                                                 pageRangeDisplayed={5}
                                                 onPageChange={this.handlePageClick}
-                                                containerClassName={"ncpi-pagination text-base mt-5 shadow"}
+                                                containerClassName={"ndpv-pagination text-base mt-5 shadow"}
                                                 activeClassName={"active"} />
                                             }
                                         </div>
-                                        <div className="pi-footer-content pi-text-center">
-                                            <button className="pi-btn pi-bg-blue pi-bg-hover-blue"
+                                        <div className="pv-footer-content pv-text-center">
+                                            <button className="pv-btn pv-bg-blue pv-bg-hover-blue"
                                                 onClick={(e) => { e.preventDefault(); this.insertMedia() }}
                                             >
-                                                {i18n.in}
+                                                {i18n.ins}
                                             </button>
                                         </div>
                                     </>

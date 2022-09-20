@@ -11,8 +11,8 @@ export default (props) => {
         return (qty * price) + tax_total;
     }
 
-    const { index, title, desc, qty, qty_type, item_tax, tax, tax_type, price } = props
-    const i18n = ndpi.i18n;
+    const { index, title, desc, qty, qty_type, qtyTypeList, item_tax, tax, tax_type, price } = props
+    const i18n = ndpv.i18n;
     return (
         <>
             <td>
@@ -31,7 +31,7 @@ export default (props) => {
                     onChange={props.changeHandler(index)} />
             </td>
             <td>
-                <div className='pi-field-checkbox pi-field-checkbox-input'>
+                <div className='pv-field-checkbox pv-field-checkbox-input'>
                     <input
                         name="qty"
                         type="number"
@@ -41,16 +41,20 @@ export default (props) => {
                         value={qty}
                         onChange={props.changeHandler(index)}
                         style={{ width: '60px' }}
-                        onFocus={props.focusHandler} />
-
-                    <select name="qty_type"
+                        onFocus={props.focusHandler} 
+                    />
+                    <select 
+                        name="qty_type"
                         value={qty_type}
-                        onChange={props.changeHandler(index)} >
-                        <option value="unit">Unit</option>
-                        <option value="page">Page</option>
-                        <option value="hour">Hour</option>
-                        <option value="week">Week</option>
-                        <option value="month">Month</option>
+                        onChange={props.changeHandler(index)} 
+                    > 
+                        <option value=''>{i18n.select}</option>
+                        {qtyTypeList && qtyTypeList.map((item, itemIndex) => {
+                            const slug = item.label.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+							return ( 
+                                <option key={itemIndex} value={slug}>{item.label}</option>
+							)
+						})}
                     </select>
                 </div>
             </td>
@@ -58,7 +62,7 @@ export default (props) => {
                 <input
                     name="price"
                     type="number"
-                    style={{ width: '80px' }}
+                    style={{ width: '88px' }}
                     step="0.01"
                     min="0.00"
                     max="9999999.99"
@@ -68,7 +72,7 @@ export default (props) => {
                 />
             </td>
             {item_tax && <td>
-                <div className='pi-field-checkbox pi-field-checkbox-input'>
+                <div className='pv-field-checkbox pv-field-checkbox-input'>
                     <input
                         name="tax"
                         type="number"
@@ -81,8 +85,12 @@ export default (props) => {
 
                     <select name="tax_type"
                         value={tax_type}
-                        onChange={props.changeHandler(index)}
-                        style={{ width: '37px' }}
+                        onChange={props.changeHandler(index)} 
+                        ref={(n) => {
+                            if (n) {
+                                n.style.setProperty("width", "37px", "important");
+                            }
+                        }}
                     >
                         <option value="percent">%</option>
                         <option value="fixed">$</option>
@@ -101,8 +109,7 @@ export default (props) => {
                         width={15}
                         height={15}
                         viewBox="0 0 10 10"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none" 
                     >
                         <path
                             fillRule="evenodd"

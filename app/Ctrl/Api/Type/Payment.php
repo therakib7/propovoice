@@ -1,19 +1,18 @@
-<?php
-
-namespace Ndpi\Ctrl\Api\Type;
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
 class Payment
 {
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/payments', [
+        register_rest_route('ndpv/v1', '/payments', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -26,7 +25,7 @@ class Payment
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/payments/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/payments/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -39,7 +38,7 @@ class Payment
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/payments/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/payments/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -52,7 +51,7 @@ class Payment
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/payments/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/payments/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -80,7 +79,7 @@ class Payment
         }
 
         $args = array(
-            'post_type' => 'ncpi_payment',
+            'post_type' => 'ndpv_payment',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -155,7 +154,7 @@ class Payment
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
             } 
             
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -239,7 +238,7 @@ class Payment
         } else {
 
             $data = array(
-                'post_type' => 'ncpi_payment',
+                'post_type' => 'ndpv_payment',
                 'post_title'    => $type,
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -249,7 +248,7 @@ class Payment
 
             if ( !is_wp_error($post_id) ) {
                 
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace() );
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace() );
 
                 if ($type) {
                     update_post_meta($post_id, 'type', $type);

@@ -1,6 +1,5 @@
-<?php
-
-namespace Ndpi\Ctrl\Install\Type; 
+<?php 
+namespace Ndpv\Ctrl\Install\Type; 
 
 class DB {
 

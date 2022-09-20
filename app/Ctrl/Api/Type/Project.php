@@ -1,22 +1,21 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Model\Contact;
-use Ndpi\Model\Invoice;
-use Ndpi\Model\Org;
-use Ndpi\Model\Person;
+use Ndpv\Model\Contact;
+use Ndpv\Model\Invoice;
+use Ndpv\Model\Org;
+use Ndpv\Model\Person;
 
 class Project
 {
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/projects', [
+        register_rest_route('ndpv/v1', '/projects', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -29,7 +28,7 @@ class Project
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/projects/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/projects/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -42,7 +41,7 @@ class Project
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/projects/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/projects/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -55,7 +54,7 @@ class Project
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/projects/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/projects/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -86,7 +85,7 @@ class Project
         }
 
         $args = array(
-            'post_type' => 'ndpi_project',
+            'post_type' => 'ndpv_project',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -160,7 +159,7 @@ class Project
             $query_data['desc'] = get_the_content();
 
             $query_data['status_id'] = '';
-            $status = get_the_terms($id, 'ndpi_project_status');
+            $status = get_the_terms($id, 'ndpv_project_status');
             if ($status) {
                 $query_data['status_id'] = [
                     'id' => $status[0]->term_id,
@@ -169,7 +168,7 @@ class Project
             }
 
             $query_data['tags'] = [];
-            $tags = get_the_terms($id, 'ndpi_tag');
+            $tags = get_the_terms($id, 'ndpv_tag');
             if ($tags) {
                 $tagList = [];
                 foreach ($tags as $tag) {
@@ -195,7 +194,7 @@ class Project
                 $query_data['org'] = $org->single($org_id);
             }
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -228,7 +227,7 @@ class Project
         $query_data['invoice'] = $invoice->project_invoice($id);
 
         $query_data['status_id'] = '';
-        $status = get_the_terms($id, 'ndpi_project_status');
+        $status = get_the_terms($id, 'ndpv_project_status');
         if ($status) {
             $term_id = $status[0]->term_id;
             $query_data['status_id'] = [
@@ -252,7 +251,7 @@ class Project
         }
 
         $query_data['tags'] = [];
-        $tags = get_the_terms($id, 'ndpi_tag');
+        $tags = get_the_terms($id, 'ndpv_tag');
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
@@ -278,7 +277,7 @@ class Project
             $query_data['org'] = $org->single($org_id, true);
         }
 
-        $query_data['date'] = get_the_time('j-M-Y');
+        $query_data['date'] = get_the_time( get_option('date_format') );
 
         wp_send_json_success($query_data);
     }
@@ -337,7 +336,7 @@ class Project
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $data = array(
-                'post_type' => 'ndpi_project',
+                'post_type' => 'ndpv_project',
                 'post_title'   => $title,
                 'post_content' => $desc,
                 'post_status'  => 'publish',
@@ -346,7 +345,7 @@ class Project
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
                 $tab_id = $post_id;
                 if ($deal_id) {
                     $tab_id = $deal_id;
@@ -360,7 +359,7 @@ class Project
                 }
 
                 if ($status_id) {
-                    wp_set_post_terms($post_id, [$status_id], 'ndpi_project_status');
+                    wp_set_post_terms($post_id, [$status_id], 'ndpv_project_status');
                 }
 
                 if ($deal_id) {
@@ -414,7 +413,7 @@ class Project
                 }
 
                 if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
+                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
                 }
 
                 if ($note) {
@@ -504,7 +503,7 @@ class Project
 
             if (!is_wp_error($post_id)) {
                 if ($status_id) {
-                    wp_set_post_terms($post_id, [$status_id], 'ndpi_project_status');
+                    wp_set_post_terms($post_id, [$status_id], 'ndpv_project_status');
                 }
 
                 if ($reorder) {
@@ -536,7 +535,7 @@ class Project
                 }
 
                 if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
+                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
                 }
 
                 if ($note) {

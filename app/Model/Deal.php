@@ -1,15 +1,12 @@
 <?php
-namespace Ndpi\Model;
- 
- 
-
-class Deal {
-
+namespace Ndpv\Model;
+  
+class Deal { 
     public function total( $id = null )
     { 
 
         $args = array(
-            'post_type' => 'ndpi_deal',
+            'post_type' => 'ndpv_deal',
             'post_status' => 'publish',
             'posts_per_page' => -1 
         ); 
@@ -39,6 +36,5 @@ class Deal {
         wp_reset_postdata(); 
 
         return $total_data;
-    }
- 
+    } 
 }

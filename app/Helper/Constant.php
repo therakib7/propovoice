@@ -1,29 +1,28 @@
-<?php
-
-namespace Ndpi\Helper;
+<?php 
+namespace Ndpv\Helper;
 
 class Constant
 {
     public function __construct()
     {
-        if (!defined('NCPI_VERSION')) {
-            define('NCPI_VERSION', '0.6.0');
+        if (!defined('NDPV_VERSION')) {
+            define('NDPV_VERSION', '1.0.1.4');
         }
 
-        if (!defined('NCPI_PATH')) {
-            define('NCPI_PATH', plugin_dir_path(NCPI_FILE));
+        if (!defined('NDPV_PATH')) {
+            define('NDPV_PATH', plugin_dir_path(NDPV_FILE));
         }
 
-        if (!defined('NCPI_URL')) {
-            define('NCPI_URL', plugins_url('', NCPI_FILE));
+        if (!defined('NDPV_URL')) {
+            define('NDPV_URL', plugins_url('', NDPV_FILE));
         }
 
-        if (!defined('NCPI_SLUG')) {
-            define('NCPI_SLUG', basename(dirname(NCPI_FILE)));
+        if (!defined('NDPV_SLUG')) {
+            define('NDPV_SLUG', basename(dirname(NDPV_FILE)));
         }
 
-        if (!defined('NCPI_TEMPLATE_DEBUG_MODE')) {
-            define('NCPI_TEMPLATE_DEBUG_MODE', false);
+        if (!defined('NDPV_TEMPLATE_DEBUG_MODE')) {
+            define('NDPV_TEMPLATE_DEBUG_MODE', false);
         }
     }
 }

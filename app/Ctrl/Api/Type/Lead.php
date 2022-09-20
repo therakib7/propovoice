@@ -1,23 +1,21 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Model\Contact;
-use Ndpi\Model\Org;
-use Ndpi\Model\Person; 
+use Ndpv\Model\Contact;
+use Ndpv\Model\Org;
+use Ndpv\Model\Person; 
 
 class Lead
-{
-
+{ 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/leads', [
+        register_rest_route('ndpv/v1', '/leads', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -30,7 +28,7 @@ class Lead
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/leads/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/leads/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -43,7 +41,7 @@ class Lead
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/leads/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/leads/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -56,7 +54,7 @@ class Lead
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/leads/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/leads/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -86,7 +84,7 @@ class Lead
         }
 
         $args = array(
-            'post_type' => 'ndpi_lead',
+            'post_type' => 'ndpv_lead',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -137,8 +135,8 @@ class Lead
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
 
-            $query_data['level_id'] = '';
-            $level = get_the_terms($id, 'ndpi_lead_level');
+            $query_data['level_id'] = null;
+            $level = get_the_terms($id, 'ndpv_lead_level');
             if ($level) {
                 $term_id = $level[0]->term_id;
                 $query_data['level_id'] = [
@@ -150,7 +148,7 @@ class Lead
             }
 
             $query_data['tags'] = [];
-            $tags = get_the_terms($id, 'ndpi_tag');
+            $tags = get_the_terms($id, 'ndpv_tag');
             if ($tags) {
                 $tagList = [];
                 foreach ($tags as $tag) {
@@ -176,7 +174,7 @@ class Lead
                 $query_data['org'] = $org->single($org_id);
             }
 
-            $query_data['date'] = get_the_time('j-M-Y');
+            $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -203,7 +201,7 @@ class Lead
         $query_data['desc'] = get_post_field('post_content', $id);
 
         $query_data['level_id'] = '';
-        $level = get_the_terms($id, 'ndpi_lead_level');
+        $level = get_the_terms($id, 'ndpv_lead_level');
         if ($level) {
             $term_id = $level[0]->term_id;
             $color = get_term_meta($term_id, 'color', true);
@@ -225,7 +223,7 @@ class Lead
         }
 
         $query_data['source_id'] = '';
-        $source = get_the_terms($id, 'ndpi_lead_source');
+        $source = get_the_terms($id, 'ndpv_lead_source');
         if ($source) {
             $query_data['source_id'] = [
                 'id' => $source[0]->term_id,
@@ -236,7 +234,7 @@ class Lead
         }
 
         $query_data['tags'] = [];
-        $tags = get_the_terms($id, 'ndpi_tag');
+        $tags = get_the_terms($id, 'ndpv_tag');
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
@@ -262,7 +260,7 @@ class Lead
             $query_data['org'] = $org->single($org_id, true);
         }
 
-        $query_data['date'] = get_the_time('j-M-Y');
+        $query_data['date'] = get_the_time( get_option('date_format') );
 
         wp_send_json_success($query_data);
     }
@@ -315,7 +313,7 @@ class Lead
 
             //insert lead
             $data = array(
-                'post_type' => 'ndpi_lead',
+                'post_type' => 'ndpv_lead',
                 'post_title' => 'Lead',
                 'post_content' => $desc,
                 'post_status'  => 'publish',
@@ -324,11 +322,11 @@ class Lead
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
                 update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
 
                 if ($level_id) {
-                    wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');
+                    wp_set_post_terms($post_id, [$level_id], 'ndpv_lead_level');
                 }
 
                 if ($person_id) {
@@ -348,7 +346,7 @@ class Lead
                 }
 
                 if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
+                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
                 }
 
                 if ($note) {
@@ -424,7 +422,7 @@ class Lead
             if (!is_wp_error($post_id)) {
 
                 if ($level_id) {
-                    wp_set_post_terms($post_id, [$level_id], 'ndpi_lead_level');
+                    wp_set_post_terms($post_id, [$level_id], 'ndpv_lead_level');
                 }
 
                 if ($person_id) {
@@ -444,7 +442,7 @@ class Lead
                 }
 
                 if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpi_tag');
+                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
                 }
 
                 if ($note) {

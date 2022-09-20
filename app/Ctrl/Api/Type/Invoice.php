@@ -1,22 +1,21 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Model\Invoice as ModelInvoice;
-use Ndpi\Model\Contact;
+use Ndpv\Model\Invoice as ModelInvoice;
+use Ndpv\Model\Contact;
 
 class Invoice
 {
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
 
-        register_rest_route('ndpi/v1', '/invoices', [
+        register_rest_route('ndpv/v1', '/invoices', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -29,7 +28,7 @@ class Invoice
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/invoices/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/invoices/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -42,7 +41,7 @@ class Invoice
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/invoices/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/invoices/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -55,7 +54,7 @@ class Invoice
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/invoices/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/invoices/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
@@ -92,7 +91,7 @@ class Invoice
         }
 
         $args = array(
-            'post_type' => 'ncpi_estvoice',
+            'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
             'posts_per_page' => $per_page,
             'offset' => $offset,
@@ -230,7 +229,7 @@ class Invoice
             $query_data['payment_method'] = get_post_meta($id, 'payment_method', true);
             $query_data['payment_info'] = get_post_meta($id, 'payment_info', true);
             $query_data['status'] = get_post_meta($id, 'status', true);
-            // $query_data['date'] = get_the_time('j-M-Y');
+            // $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -255,9 +254,7 @@ class Invoice
         $query_data['due_date'] = get_post_meta($id, 'due_date', true);
         $query_data['module_id'] = get_post_meta($id, 'module_id', true);
         $from_id = get_post_meta($id, 'from', true);
-        $query_data['invoice'] = get_post_meta($id, 'invoice', true);
-
-        $query_data['title'] = ucwords(get_post_meta($id, 'path', true));
+        $query_data['invoice'] = get_post_meta($id, 'invoice', true); 
 
         $from_id = get_post_meta($id, 'from', true);
         $query_data['status'] = get_post_meta($id, 'status', true);
@@ -423,7 +420,7 @@ class Invoice
             //TODO: give proper title
             $title = '';
             $data = array(
-                'post_type' => 'ncpi_estvoice',
+                'post_type' => 'ndpv_estinv',
                 'post_title'   => $title,
                 'post_content'  => '',
                 'post_status'   => 'publish',
@@ -432,7 +429,7 @@ class Invoice
             $post_id = wp_insert_post($data);
 
             if ( !is_wp_error($post_id) ) {
-                update_post_meta($post_id, 'ws_id', ndpi()->get_workspace());
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
                 update_post_meta($post_id, 'status', 'draft');
                 update_post_meta($post_id, 'path', $path);
 

@@ -1,6 +1,5 @@
-<?php
-
-namespace Ndpi\Ctrl\Install\Type; 
+<?php 
+namespace Ndpv\Ctrl\Install\Type; 
 
 class Page {
 
@@ -14,7 +13,7 @@ class Page {
         //Invoice
         //Proposal
 
-        if ( get_page_by_title( 'estimate' ) == null ) {
+        if ( ! get_page_by_path( 'estimate' ) ) {
             $args = array(
                 'post_title'    => 'Propovoice Estimate', 
                 'post_name'     => 'estimate',
@@ -26,7 +25,7 @@ class Page {
             add_post_meta($id, '_wp_page_template', 'estimate-template.php');
         }
 
-        if ( get_page_by_title( 'invoice' ) == null ) {
+        if ( ! get_page_by_path( 'invoice' ) ) {
             $args = array(
                 'post_title'    => 'Propovoice Invoice', 
                 'post_name'     => 'invoice',

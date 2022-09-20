@@ -1,0 +1,19 @@
+  
+.pv-popover {
+    display: inline-block;
+    .react-colorful {
+        width: 210px;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    } 
+    
+    input {
+        border: 1px solid #dfdfdf;
+        margin-top: 13px;
+        border-radius: 5px;
+        padding: 10px;
+        width: 80px; 
+    }
+}
+  

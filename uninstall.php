@@ -5,5 +5,5 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     exit;
 }
 
-$timestamp = wp_next_scheduled( 'ndpi_hourly_event' );
-wp_unschedule_event( $timestamp, 'ndpi_hourly_event' );
+$timestamp = wp_next_scheduled( 'ndpv_hourly_event' );
+wp_unschedule_event( $timestamp, 'ndpv_hourly_event' );

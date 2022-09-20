@@ -18,14 +18,14 @@ export default (props) => {
     }
 
     const reminder = props.data;
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <div>
-            <div className="pi-form-style-one">
+            <div className="pv-form-style-one">
                 <div className="row">
                     <div className="col">
                         <label>{i18n.rem}</label>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-due_date"
@@ -33,7 +33,7 @@ export default (props) => {
                                 checked={reminder.due_date ? 'checked' : ''}
                                 onChange={handleChange}
                             />
-                            <label htmlFor="reminder-due_date">On due date</label>
+                            <label htmlFor="reminder-due_date">{i18n.on} {i18n.due} {i18n.date}</label>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ export default (props) => {
                 <div className="row">
                     <div className="col-12">
                         <label>{i18n.rem} {i18n.before}</label>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-before-1"
@@ -52,7 +52,7 @@ export default (props) => {
                             />
                             <label htmlFor="reminder-before-1">1 day</label>
                         </div>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-before-7"
@@ -63,7 +63,7 @@ export default (props) => {
                             />
                             <label htmlFor="reminder-before-7">7 days</label>
                         </div>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-before-15"
@@ -75,7 +75,7 @@ export default (props) => {
                             <label htmlFor="reminder-before-15">15 days</label>
                         </div>
                         {false && <>
-                            <div className="pi-field-checkbox pi-field-checkbox-input pi-mb-10">
+                            <div className="pv-field-checkbox pv-field-checkbox-input pv-mb-10">
                                 <input type="checkbox" id="date" name="date" />
                                 <input
                                     type="number"
@@ -90,7 +90,7 @@ export default (props) => {
                                     <option value="month">Month</option>
                                 </select>
                             </div>
-                            <div className="pi-field-checkbox pi-field-checkbox-input">
+                            <div className="pv-field-checkbox pv-field-checkbox-input">
                                 <input type="checkbox" id="date" name="date" />
                                 <input
                                     type="number"
@@ -105,13 +105,13 @@ export default (props) => {
                                     <option value="month">Month</option>
                                 </select>
                             </div>
-                            <button className="pi-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
+                            <button className="pv-btn" style={{ marginLeft: "-20px", color: "#718096", background: "none" }}>
                                 <svg
                                     width={12}
                                     height={13}
                                     viewBox="0 0 12 13"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    
                                 >
                                     <path
                                         d="M1.875 6.5H10.125"
@@ -134,7 +134,7 @@ export default (props) => {
                     </div>
                     <div className="col-12">
                         <label>{i18n.rem} {i18n.after}</label>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-after-1"
@@ -145,7 +145,7 @@ export default (props) => {
                             />
                             <label htmlFor="reminder-after-1">1 day</label>
                         </div>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-after-7"
@@ -156,7 +156,7 @@ export default (props) => {
                             />
                             <label htmlFor="reminder-after-7">7 days</label>
                         </div>
-                        <div className="pi-field-checkbox">
+                        <div className="pv-field-checkbox">
                             <input
                                 type='checkbox'
                                 id="reminder-after-15"
@@ -167,7 +167,7 @@ export default (props) => {
                             />
                             <label htmlFor="reminder-after-15">15 days</label>
                         </div>
-                        {/* <div className="pi-field-checkbox pi-field-checkbox-input">
+                        {/* <div className="pv-field-checkbox pv-field-checkbox-input">
                             <input type="checkbox" id="date" name="date" />
                             <input
                                 type="number"

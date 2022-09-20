@@ -1,6 +1,5 @@
-<?php
-
-namespace Ndpi\Ctrl\Install\Type;
+<?php 
+namespace Ndpv\Ctrl\Install\Type;
 
 class Taxonomy
 {
@@ -15,7 +14,7 @@ class Taxonomy
 
         //Workspace pro
         $data = array(
-            'post_type'     => 'ndpi_workspace',
+            'post_type'     => 'ndpv_workspace',
             'post_title'    => 'Workspace',
             'post_content'  => '',
             'post_status'   => 'publish', //TODO: is it public or private for workspace
@@ -24,7 +23,7 @@ class Taxonomy
         $post_id = wp_insert_post($data);
 
         if (!is_wp_error($post_id)) {
-            update_option('ndpi_workspace_default', $post_id);
+            update_option('ndpv_workspace_default', $post_id);
         }
 
         //deal
@@ -34,7 +33,7 @@ class Taxonomy
         foreach ($temp_pipeline as $pipeline) {
             $pipeline_add = wp_insert_term(
                 $pipeline, // the term
-                'ndpi_deal_pipeline', // the taxonomy
+                'ndpv_deal_pipeline', // the taxonomy
             );
 
             if (!is_wp_error($pipeline_add)) {
@@ -50,7 +49,7 @@ class Taxonomy
                         'type' => '',
                     ],
                     [
-                        'label' => 'Contracting',
+                        'label' => 'Contacting',
                         'bg_color' => '#E0F0EC',
                         'color' => '#4BB99E',
                         'type' => '',
@@ -84,7 +83,7 @@ class Taxonomy
                 foreach ($temp_stage as $stage) {
                     $stage_add = wp_insert_term(
                         $stage['label'], //the term
-                        'ndpi_deal_stage', //the taxonomy
+                        'ndpv_deal_stage', //the taxonomy
                     );
 
                     if (!is_wp_error($stage_add)) {
@@ -298,7 +297,7 @@ class Taxonomy
             foreach ($taxonomies as $taxonomy) {
                 $term_id = wp_insert_term(
                     $taxonomy['label'], // the term
-                    'ndpi_' . $key, // the taxonomy
+                    'ndpv_' . $key, // the taxonomy
                 );
                 if (!is_wp_error($term_id)) {
                     update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
@@ -326,7 +325,7 @@ class Taxonomy
 
                     //set icon
                     if ( isset( $taxonomy['icon'] ) && $taxonomy['icon']) {
-                        $url = ndpi()->get_asset_uri('img/task-type/') . $taxonomy['icon'] .'.png';
+                        $url = ndpv()->get_asset_uri('img/task-type/') . $taxonomy['icon'] .'.png';
                         $icon_id = $this->custom_media_sideload_image( $url );
                         update_term_meta($term_id['term_id'], 'icon', $icon_id);
                     }

@@ -1,0 +1,58 @@
+/* ====template four===*/
+.pv-inv .pv-inv-four .pv-inv-body {
+  margin: -90px 35px;
+}
+.pv-inv .pv-inv-four .pv-inv-header {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.pv-inv .pv-inv-four .pv-inv-header .pv-inv-title {
+  margin-top: -45px;
+}
+.pv-inv .pv-inv-four .pv-inv-top-shape svg {
+  width: 100%;
+  fill: var(--pv-inv-primary);
+}
+.pv-inv .pv-inv-four .pv-inv-footer-shape {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.pv-inv .pv-inv-four .pv-inv-footer-shape svg {
+  fill: var(--pv-inv-primary);
+  display: block;
+}
+.pv-inv .pv-inv-from-logo {
+  margin-bottom: 18px;
+}
+.pv-inv .pv-inv-four .pv-inv-items table thead {
+  background-color: var(--pv-inv-primary);
+  color: var(--pv-inv-white);
+}
+.pv-inv .pv-inv-four .pv-inv-items table tbody tr:nth-child(even) {
+  background-color: var(--pv-inv-even);
+}
+.pv-inv .pv-inv-four .pv-inv-items table tbody tr:nth-child(odd) {
+  background-color: var(--pv-inv-odd);
+}
+.pv-inv .pv-inv-four .pv-inv-title h2 {
+  text-align: center;
+}
+.pv-inv .pv-inv-sign {
+  bottom: 90px;
+  right: 50px;
+}
+@media screen and (max-width: 700px) {
+  .pv-inv .pv-inv-four .pv-inv-top-shape svg {
+    padding-bottom: 30px;
+  }
+  .pv-inv .pv-inv-four .pv-inv-footer-shape svg {
+    padding-top: 30px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .pv-inv .pv-inv-four .pv-inv-top-shape svg {
+    padding-bottom: 50px;
+  }
+}

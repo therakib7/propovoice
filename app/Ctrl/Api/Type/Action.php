@@ -1,18 +1,17 @@
-<?php
-
-namespace Ndpi\Ctrl\Api\Type;
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
 class Action
 {
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/actions', [
+        register_rest_route('ndpv/v1', '/actions', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -25,7 +24,7 @@ class Action
             ],
         ]);
 
-        register_rest_route('ndpi/v1', '/actions/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/actions/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
             'permission_callback' => [$this, 'get_permission'],
@@ -38,7 +37,7 @@ class Action
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/actions/(?P<id>\d+)', array(
+        register_rest_route('ndpv/v1', '/actions/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
             'permission_callback' => [$this, 'update_permission'],
@@ -51,7 +50,7 @@ class Action
             ),
         ));
 
-        register_rest_route('ndpi/v1', '/actions/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/actions/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],

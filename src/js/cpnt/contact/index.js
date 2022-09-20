@@ -11,18 +11,18 @@ import Crud from 'hoc/Crud';
 
 const Contact = (props) => {
   const { title, lists, checkedBoxes, searchVal } = props.state;
-  const i18n = ndpi.i18n;
+  const i18n = ndpv.i18n;
   return (
-    <div className="ncpi-cpnt">
-      <Breadcrumb title='Contact Book' />
+    <div className="ndpv-cpnt">
+      <Breadcrumb title={i18n.ct + ' ' + i18n.book} />
 
       <div className="row">
         <div className="col-6">
-          <h2 className="">{i18n.contact} {i18n.book}</h2>
+          <h2 className="">{i18n.ct} {i18n.book}</h2>
         </div>
-        <div className="col-6 pi-text-right">
+        <div className="col-6 pv-text-right">
           <button
-            className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-bg-shadow"
+            className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow"
             onClick={() => props.openForm('new')}
           >
             <svg
@@ -30,7 +30,7 @@ const Contact = (props) => {
               height={12}
               viewBox="0 0 12 15"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+              
             >
               <path
                 d="M2.5 8H13.5"
@@ -49,13 +49,13 @@ const Contact = (props) => {
             </svg>
             {i18n.add} {title}
           </button>
-          <span className="pi-action-btn">
+          <span className="pv-action-btn">
             <svg
               width={24}
               height={24}
               viewBox="0 0 24 24"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+              
             >
               <path
                 fillRule="evenodd"
@@ -80,14 +80,14 @@ const Contact = (props) => {
         </div>
       </div>
 
-      <div className="pi-buttons-group pi-mb-20">
-        <button className="pi-btn pi-btn-icon pi-bg-hover-shadow pi-mr-5">
+      <div className="pv-buttons-group pv-mb-20">
+        <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
           <svg
             width={20}
             height={20}
             viewBox="0 0 20 20"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            
           >
             <path
               d="M7.5 5H16.875"
@@ -133,13 +133,13 @@ const Contact = (props) => {
             />
           </svg>
         </button>
-        <button className="pi-btn pi-btn-icon pi-bg-hover-shadow">
+        <button className="pv-btn pv-btn-icon pv-bg-hover-shadow">
           <svg
             width={20}
             height={20}
             viewBox="0 0 20 20"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            
           >
             <path
               d="M17.5 4.375H2.5C2.15482 4.375 1.875 4.65482 1.875 5V6.875C1.875 7.22018 2.15482 7.5 2.5 7.5H17.5C17.8452 7.5 18.125 7.22018 18.125 6.875V5C18.125 4.65482 17.8452 4.375 17.5 4.375Z"
@@ -173,11 +173,11 @@ const Contact = (props) => {
         handleSubmit={props.getLists}
       />
 
-      <div className="pi-small-button-group pi-mb-30">
-        <button className="pi-btn pi-active pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
-        {i18n.person}
+      <div className="pv-small-button-group pv-mb-30">
+        <button className="pv-btn pv-active pv-btn-small pv-bg-stroke pv-bg-hover-shadow">
+        {i18n.prsn}
         </button>
-        <button className="pi-btn pi-btn-small pi-bg-stroke pi-bg-hover-shadow">
+        <button className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow">
         {i18n.org}
         </button>
       </div>
@@ -197,4 +197,4 @@ const Contact = (props) => {
   );
 }
 
-export default Crud(Contact, 'person', ndpi.i18n.person);
+export default Crud(Contact, 'person', ndpv.i18n.prsn);

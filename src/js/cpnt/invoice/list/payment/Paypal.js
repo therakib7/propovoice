@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import { Add } from 'block/icon';
+
 
 class Paypal extends Component {
     constructor(props) {
@@ -28,39 +30,20 @@ class Paypal extends Component {
 
     render() {
         const data = this.props.data;
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
-            <div className="pi-overlay pi-show">
-                <div className="pi-modal-content">
+            <div className="pv-overlay pv-show">
+                <div className="pv-modal-content">
 
-                    <div className="pi-modal-header pi-gradient">
-                        <span className="pi-close" onClick={() => this.props.close()}>
-                            <svg
-                                width={25}
-                                height={25}
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12.5 3.5L3.5 12.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12.5 12.5L3.5 3.5"
-                                    stroke="#718096"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                    <div className="pv-modal-header pv-gradient">
+                        <span className="pv-close" onClick={() => this.props.close()}>
+                            <Add />
                         </span>
-                        <h2 className="pi-modal-title">Paypal {i18n.payment} {i18n.info}</h2>
+                        <h2 className="pv-modal-title">Paypal {i18n.payment} {i18n.info}</h2>
                         <p>Here is the payment information</p>
                     </div>
-                    <div className="pi-content">
-                        <div className="pi-form-style-one">
+                    <div className="pv-content">
+                        <div className="pv-form-style-one">
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="form-name">{i18n.name}</label>
@@ -110,7 +93,7 @@ class Paypal extends Component {
                         </div>
                     </div>
 
-                    <div className="pi-modal-footer">
+                    <div className="pv-modal-footer">
 
                     </div>
                 </div>

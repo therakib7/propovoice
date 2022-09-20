@@ -67,30 +67,30 @@ class Branding extends Component {
 
 	render = () => {
 		const business = this.props.data;
-		const i18n = ndpi.i18n;
+		const i18n = ndpv.i18n;
 		return (
 			<>
 				{!business.logo &&
 					<>
 						<input type="file" ref={this.inputRef} onChange={this.onFileChange} className='hidden' />
-						<div className="pi-text-center" onClick={() => this.handleUploadFile()}>
-							<img src={ndpi.assetImgUri + 'upload-img.png'} width="120" />
-							<h3 className="pi-upload pi-color-blue">{i18n.upload} {i18n.logo}</h3>
+						<div className="pv-text-center" onClick={() => this.handleUploadFile()}>
+							<img className="pv-cursor-pointer" src={ndpv.assetImgUri + 'upload-img.png'} width="120" />
+							<h3 className="pv-cursor-pointer pv-upload pv-color-blue">{i18n.upload} {i18n.logo}</h3>
 						</div>
 					</>
 				}
 
 				{business.id && business.logo &&
-					<div className="pi-field-logo-wrap pi-text-center pi-mb-30">
-						<div className='pi-field-logo'>
+					<div className="pv-field-logo-wrap pv-text-center pv-mb-30">
+						<div className='pv-field-logo'>
 							<img src={business.logo.src} width="120" />
-							<span className='pi-field-logo-close' onClick={() => this.handleDelete(business.logo.id)}>×</span>
+							<span className='pv-field-logo-close' onClick={() => this.handleDelete(business.logo.id)}>×</span>
 						</div>
 					</div>}
 
-				<div className="pi-buttons pi-text-center">
-					<button className="pi-btn pi-bg-blue pi-bg-hover-blue pi-btn-big" onClick={() => this.props.handleSubmit('', 'branding')}>{i18n.save} &amp; {i18n.contin}</button>
-					<a className="pi-text-hover-blue" onClick={() => this.props.handleSkip('branding')}>{i18n.skip}</a>
+				<div className="pv-buttons pv-text-center">
+					<button className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big" onClick={() => this.props.handleSubmit('', 'branding')}>{i18n.save} {i18n.nd} {i18n.cont}</button>
+					<a className="pv-text-hover-blue" onClick={() => this.props.handleSkip('branding')}>{i18n.skip}</a>
 				</div>
 			</>
 		)

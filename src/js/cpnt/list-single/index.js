@@ -2,6 +2,7 @@ import React, { Component, Suspense, lazy } from 'react'
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
 import Moment from 'react-moment';
+import Action from 'block/action/row/single';
 import Spinner from 'block/preloader/spinner';
 import Taxonomy from 'block/field/taxonomy';
 import WithApi from 'hoc/Api';
@@ -10,10 +11,7 @@ import LeadForm from 'cpnt/lead/Form';
 import DealForm from 'cpnt/deal/Form';
 import ProjectForm from 'cpnt/project/Form';
 import ContactPerson from 'cpnt/contact/person/Form';
-import ContactOrg from 'cpnt/contact/org/Form';
-
-// import DealForm from './dform/Deal';
-// import ProjectForm from './form/Project';
+import ContactOrg from 'cpnt/contact/org/Form'; 
 
 const Task = lazy(() => import('./tab/task'));
 const Note = lazy(() => import('./tab/note'));
@@ -31,19 +29,18 @@ class ListSingle extends Component {
             tabs: [
                 {
                     id: 'task',
-                    text: ndpi.i18n.task
+                    text: ndpv.i18n.taska
                 },
                 {
                     id: 'note',
-                    text: ndpi.i18n.note
+                    text: ndpv.i18n.note
                 },
                 {
                     id: 'file',
-                    text: ndpi.i18n.file
+                    text: ndpv.i18n.file
                 },
             ],
-            currentTab: 'task',
-            action: false,
+            currentTab: 'task', 
             leadModal: false,
             dealModal: false,
             dealModalType: 'edit',
@@ -80,32 +77,32 @@ class ListSingle extends Component {
         if (path == 'deal') {
             tabs.push({
                 id: 'estimate',
-                text: 'Estimate'
+                text: ndpv.i18n.est
             });
         }
 
         if (path == 'project' || path == 'client') {
             tabs.push({
                 id: 'invoice',
-                text: 'Invoice'
+                text: ndpv.i18n.inv
             });
             tabs.push({
                 id: 'estimate',
-                text: 'Estimate'
+                text: ndpv.i18n.est
             });
         }
 
         if (path == 'client' || path == 'contact') {
             tabs.push({
                 id: 'project',
-                text: 'Project'
+                text: ndpv.i18n.project
             });
         }
 
         if (path == 'contact') {
             tabs.push({
                 id: 'deal',
-                text: 'Deal'
+                text: ndpv.i18n.deal
             });
         }
     }
@@ -244,16 +241,16 @@ class ListSingle extends Component {
         const { path } = this.props;
         const data = this.state.data;
 
-        let img = ndpi.assetImgUri + 'avatar.png';
+        let img = ndpv.assetImgUri + 'avatar.png';
         if (data.person && data.person.img) {
             img = data.person.img.src;
         } else if (data.org && data.org.img) {
             img = data.org.img.src;
         }
-        const i18n = ndpi.i18n;
+        const i18n = ndpv.i18n;
         return (
-            <div className="ncpi-cpnt">
-                <nav className="pi-breadcrumb">
+            <div className="ndpv-cpnt">
+                <nav className="pv-breadcrumb">
                     <ul className="">
                         <li>
                             <a href="#" className="">
@@ -266,7 +263,7 @@ class ListSingle extends Component {
                                 height={10}
                                 viewBox="0 0 5 10"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                                
                             >
                                 <path
                                     d="M0.5 1.25L4.25 5L0.5 8.75"
@@ -281,7 +278,7 @@ class ListSingle extends Component {
                             {path == 'deal' && <NavLink to='/deal'>{i18n.deal}</NavLink>}
                             {path == 'client' && <NavLink to='/client'>{i18n.client}</NavLink>}
                             {path == 'project' && <NavLink to='/project'>{i18n.project}</NavLink>}
-                            {path == 'contact' && <NavLink to='/contact'>{i18n.contact}</NavLink>}
+                            {path == 'contact' && <NavLink to='/contact'>{i18n.ct}</NavLink>}
                         </li>
                         <li>
                             <svg
@@ -289,7 +286,7 @@ class ListSingle extends Component {
                                 height={10}
                                 viewBox="0 0 5 10"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                                
                             >
                                 <path
                                     d="M0.5 1.25L4.25 5L0.5 8.75"
@@ -299,7 +296,7 @@ class ListSingle extends Component {
                                 />
                             </svg>
                         </li>
-                        <li className="pi-active">
+                        <li className="pv-active">
                             {path == 'lead' && <>{(data.person) ? data.person.first_name : data.org.name}</>}
                             {(path == 'deal' || path == 'project') && data.title}
                             {path == 'client' && <>{(data.person) ? data.person.first_name : data.org.name}</>}
@@ -310,39 +307,39 @@ class ListSingle extends Component {
 
                 {path == 'lead' &&
                     <>
-                        <div className="pi-list-single-head">
+                        <div className="pv-list-single-head">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="pi-list-content">
+                                    <div className="pv-list-content">
                                         <img src={img} alt="logo" className="logo" />
-                                        <div className="pi-lead-address">
+                                        <div className="pv-lead-address">
                                             <h3 className="">
                                                 {(data.person) ? data.person.first_name : data.org.name}
                                                 <button
-                                                    className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
+                                                    className="pv-btn pv-edit-btn pv-btn-small pv-bg-stroke pv-bg-shadow"
                                                     onClick={() => this.setState({ leadModal: true })}
                                                 >
                                                     {i18n.edit}
                                                 </button>
                                             </h3>
                                             <address>
-                                                {(data.person) ? data.person.email : data.org.email} <br />
-                                                {data.person && data.org && <>Organization/Company: {data.org_name}<br /></>}
-                                                Budget ${data.budget}
+                                                {(data.person) ? data.person.email : data.org.email}<br />
+                                                {data.person && data.org && <>{i18n.org}: {data.org_name}<br /></>}
+                                                {i18n.budget}: {data.currency}{data.budget}
                                             </address>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="col-md-6">
-                                    <div className="pi-list-single-button-content">
-                                        <div className="pi-select">
+                                    <div className="pv-list-single-button-content">
+                                        <div className="pv-select">
                                             <label>{i18n.lead} {i18n.level}:</label>
-                                            {data.id && <Taxonomy id={data.id} data={data.level_id} taxonomy='lead_level' title='Level' color />}
+                                            {data.id && <Taxonomy id={data.id} data={data.level_id} taxonomy='lead_level' title={i18n.level} color />}
                                         </div>
-                                        <div className="pi-buttons pi-text-right">
+                                        <div className="pv-buttons pv-text-right">
                                             <button
-                                                className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
+                                                className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow"
                                                 onClick={() => this.setState({ dealModal: true, dealModalType: 'move' })}
                                             >
                                                 <svg
@@ -350,7 +347,7 @@ class ListSingle extends Component {
                                                     height={12}
                                                     viewBox="0 0 12 15"
                                                     fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    
                                                 >
                                                     <path
                                                         d="M2.5 8H13.5"
@@ -367,63 +364,31 @@ class ListSingle extends Component {
                                                         strokeLinejoin="round"
                                                     />
                                                 </svg>
-                                                {ndpi.i18n.add} to {i18n.deal} Pipeline
+                                                {i18n.add} {i18n.to} {i18n.deal} {i18n.pipeline}
                                             </button>
 
-                                            <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow">
-                                                <button
-                                                    className={(this.state.action ? '' : '')}
-                                                    onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
-                                                >
-                                                    <svg
-                                                        width={24}
-                                                        height={24}
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                    </svg>
-                                                </button>
-
-                                                {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                    <a onClick={() => this.setState({ leadModal: true })}>{i18n.edit}</a>
-                                                    <a onClick={() => this.deleteEntry('lead', data.id)}>{i18n.del}</a>
-                                                </div>}
-                                            </div>
+                                            <Action
+                                                id={data.id}
+                                                module='lead'  
+                                                edit={ () => this.setState({ leadModal: true }) }
+                                                del={this.deleteEntry} 
+                                            /> 
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="pi-tag-content">
+                        <div className="pv-tag-content">
                             <ul>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small multiple />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag} small multiple />}
                                 </li>
 
                                 <li>
                                     <label htmlFor="">{i18n.source}: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.source_id} taxonomy='lead_source' title='Source' small color hide_bg />}
+                                    {data.id && <Taxonomy id={data.id} data={data.source_id} taxonomy='lead_source' title={i18n.source} small color hide_bg />}
                                 </li>
                             </ul>
                         </div>
@@ -432,22 +397,22 @@ class ListSingle extends Component {
 
                 {path == 'deal' &&
                     <>
-                        <div className="pi-list-single-head pi-list-single-head-two">
+                        <div className="pv-list-single-head pv-list-single-head-two">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="pi-list-content">
+                                    <div className="pv-list-content">
                                         <h3 className="">
                                             {data.title}
                                             <button
-                                                className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
+                                                className="pv-btn pv-edit-btn pv-btn-small pv-bg-stroke pv-bg-shadow"
                                                 onClick={() => this.setState({ dealModal: true })}
                                             >
                                                 {i18n.edit}
                                             </button>
                                         </h3>
-                                        <div className="pi-avatar-content">
+                                        <div className="pv-avatar-content">
                                             <img src={img} alt="avatar" />
-                                            <div className="pi-avatar-text">
+                                            <div className="pv-avatar-text">
                                                 <h5 style={{ fontSize: 12 }}>{(data.person) ? data.person.first_name : data.org.name} </h5>
                                                 <p style={{ fontSize: 12 }}>
                                                     {(data.person) ? data.person.region + ' ' : data.org.region + ' '}
@@ -457,7 +422,7 @@ class ListSingle extends Component {
                                             </div>
                                         </div>
 
-                                        {!wage.length && <div className="pi-range">
+                                        {!wage.length && <div className="pv-range">
                                             <span>{data.probability}%</span>
                                             <label htmlFor="field-probability">
                                                 {i18n.proba}
@@ -476,14 +441,14 @@ class ListSingle extends Component {
                                     </div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="pi-list-single-button-content">
-                                        <div className="pi-select">
+                                    <div className="pv-list-single-button-content">
+                                        <div className="pv-select">
                                             <label>{i18n.deal}  {i18n.stage}:</label>
-                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title='Stage' color />}
+                                            {data.id && data.stage_id && <Taxonomy key={data.stage_id.id} id={data.id} data={data.stage_id} onChange={this.handleStageChange} taxonomy='deal_stage' title={i18n.stage} color />}
                                         </div>
-                                        <div className="pi-buttons pi-text-right">
+                                        <div className="pv-buttons pv-text-right">
                                             <button
-                                                className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
+                                                className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow"
                                                 onClick={() => this.setState({ projectModal: true, projectModalType: 'move' })}
                                             >
                                                 <svg
@@ -491,7 +456,7 @@ class ListSingle extends Component {
                                                     height={15}
                                                     viewBox="0 0 16 16"
                                                     fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    
                                                 >
                                                     <path
                                                         d="M2.5 8H13.5"
@@ -508,85 +473,51 @@ class ListSingle extends Component {
                                                         strokeLinejoin="round"
                                                     />
                                                 </svg>
-                                                {i18n.move}  to {i18n.project}
+                                                {i18n.move}  {i18n.to} {i18n.project}
                                             </button>
 
                                             {data.stage_id && <>
                                                 {(data.stage_id.type == 'won' || data.stage_id.type == '') && <button
-                                                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
+                                                    className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow"
                                                     style={{ padding: "9px 15px !important" }}
                                                     onClick={() => this.handleStageChange('won')}
                                                 >
-                                                    <img className='pi-mr-5' src={ndpi.assetImgUri + 'happy.png'} alt="won" />
+                                                    <img className='pv-mr-5' src={ndpv.assetImgUri + 'happy.png'} alt="won" />
                                                     {i18n.won}
                                                 </button>}
 
                                                 {(data.stage_id.type == 'lost' || data.stage_id.type == '') && <button
-                                                    className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-shadow"
+                                                    className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow"
                                                     style={{ padding: "9px 15px !important" }}
                                                     onClick={() => this.handleStageChange('lost')}
                                                 >
-                                                    <img className='pi-mr-5' src={ndpi.assetImgUri + 'sad.png'} alt="sad" />
+                                                    <img className='pv-mr-5' src={ndpv.assetImgUri + 'sad.png'} alt="sad" />
                                                     {i18n.lost}
                                                 </button>}
                                             </>}
-
-                                            <div
-                                                className="pi-action-content pi-action-btn pi-bg-shadow"
-                                                style={{ padding: 1 }}
-                                            >
-                                                <button
-                                                    onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
-                                                >
-                                                    <svg
-                                                        width={24}
-                                                        height={24}
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                    </svg>
-                                                </button>
-
-                                                {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                    <a onClick={() => this.setState({ dealModal: true })}>{i18n.edit}</a>
-                                                    <a onClick={() => this.deleteEntry('deal', data.id)}>{i18n.del}</a>
-                                                </div>}
-
-                                            </div>
+                                            
+                                            <Action
+                                                id={data.id}
+                                                module='deal'  
+                                                edit={ () => this.setState({ dealModal: true }) }
+                                                del={this.deleteEntry} 
+                                                padding={1}
+                                            /> 
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="pi-tag-content">
+                        <div className="pv-tag-content">
                             <ul>
-                                <li className="pi-budget">
+                                <li className="pv-budget">
                                     <label htmlFor="">{i18n.budget}:</label>
-                                    <span>${data.budget}</span>
+                                    <span>{data.currency}{data.budget}</span>
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small multiple />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag}small multiple />}
                                 </li>
                             </ul>
                         </div>
@@ -595,22 +526,22 @@ class ListSingle extends Component {
 
                 {path == 'project' &&
                     <>
-                        <div className="pi-list-single-head pi-list-single-head-two">
+                        <div className="pv-list-single-head pv-list-single-head-two">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="pi-list-content">
+                                    <div className="pv-list-content">
                                         <h3 className="">
                                             {data.title}
                                             <button
-                                                className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
+                                                className="pv-btn pv-edit-btn pv-btn-small pv-bg-stroke pv-bg-shadow"
                                                 onClick={() => this.setState({ projectModal: true })}
                                             >
                                                 {i18n.edit}
                                             </button>
                                         </h3>
-                                        <div className="pi-avatar-content">
+                                        <div className="pv-avatar-content">
                                             <img src={img} alt="avatar" />
-                                            <div className="pi-avatar-text">
+                                            <div className="pv-avatar-text">
                                                 <h5 style={{ fontSize: 12 }}>{(data.person) ? data.person.first_name : data.org.name} </h5>
                                                 <p style={{ fontSize: 12 }}>
                                                     {(data.person) ? data.person.region : data.org.region}
@@ -623,95 +554,61 @@ class ListSingle extends Component {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <div className="pi-list-single-button-content">
-                                        <div className="pi-select">
+                                    <div className="pv-list-single-button-content">
+                                        <div className="pv-select">
                                             <label>{i18n.project} {i18n.status}:</label>
-                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={this.handleProjectStatusChange} title='Status' color />}
+                                            {data.id && data.status_id && <Taxonomy key={data.status_id.id} id={data.id} data={data.status_id} taxonomy='project_status' onChange={this.handleProjectStatusChange} title={i18n.status} color />}
                                         </div>
-                                        <div className="pi-buttons pi-text-right">
+                                        <div className="pv-buttons pv-text-right">
                                             {(data.status_id && data.status_id.type != 'completed') && <button
-                                                className="pi-btn pi-btn-medium pi-bg-blue pi-bg-hover-blue pi-color-white pi-bg-shadow"
+                                                className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow"
                                                 onClick={() => this.handleProjectStatusChange('completed')}
                                             >
-                                                {i18n.mark} {i18n.as} {i18n.comp}
+                                                {i18n.mark} {i18n.comp}
                                             </button>}
 
-                                            <div
-                                                className="pi-action-content pi-action-btn pi-bg-shadow"
-                                                style={{ padding: 1 }}
-                                            >
-                                                <button
-                                                    className={(this.state.action ? '' : '')}
-                                                    onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
-                                                >
-                                                    <svg
-                                                        width={24}
-                                                        height={24}
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            clipRule="evenodd"
-                                                            d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                                            fill="#718096"
-                                                        />
-                                                    </svg>
-                                                </button>
-
-                                                {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                    <a onClick={() => this.setState({ projectModal: true })}>{i18n.edit}</a>
-                                                    <a onClick={() => this.deleteEntry('project', data.id)}>{i18n.del}</a>
-                                                </div>}
-                                            </div>
+                                            <Action
+                                                id={data.id}
+                                                module='project'  
+                                                edit={ () => this.setState({ projectModal: true }) }
+                                                del={this.deleteEntry} 
+                                                padding={1}
+                                            /> 
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="pi-tag-content">
+                        <div className="pv-tag-content">
                             <ul>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title='Tag' small multiple />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag}small multiple />}
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.start} {i18n.date}:</label>
-                                    <span className="pi-date">{data.start_date && <Moment format="YYYY-MM-DD">{data.start_date}</Moment>}</span>
+                                    <span className="pv-date">{data.start_date && <Moment format="YYYY-MM-DD">{data.start_date}</Moment>}</span>
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.preventDefault} {i18n.date}:</label>
-                                    <span className="pi-date">{data.due_date && <Moment format="YYYY-MM-DD">{data.due_date}</Moment>}</span>
+                                    <span className="pv-date">{data.due_date && <Moment format="YYYY-MM-DD">{data.due_date}</Moment>}</span>
                                 </li>
                                 <li />
                             </ul>
                         </div>
 
-                        {!wage.length && <div className="pi-cards pi-mt-25">
+                        {!wage.length && <div className="pv-cards pv-mt-25">
                             <div className="row">
                                 <div className="col-md-6 col-lg">
-                                    <div className="pi-cards-content ">
+                                    <div className="pv-cards-content ">
                                         <span className="" style={{ background: "rgba(76, 111, 255, 0.12)" }}>
                                             <svg
                                                 width={24}
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                
                                             >
                                                 <path
                                                     d="M12 6.75V8.25"
@@ -743,19 +640,19 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">Total Budget</p>
-                                        <h4>$ {data.invoice && data.invoice.total}</h4>
+                                        <p className="">{i18n.total} {i18n.budget}</p>
+                                        <h4>{data.invoice && data.invoice.total}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
-                                    <div className="pi-cards-content">
+                                    <div className="pv-cards-content">
                                         <span className="" style={{ background: "#f1faf1" }}>
                                             <svg
                                                 width={24}
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                
                                             >
                                                 <path
                                                     d="M3.75 10.7531V5.25C3.75 5.05109 3.82902 4.86032 3.96967 4.71967C4.11032 4.57902 4.30109 4.5 4.5 4.5H19.5C19.6989 4.5 19.8897 4.57902 20.0303 4.71967C20.171 4.86032 20.25 5.05109 20.25 5.25V10.7531C20.25 18.6281 13.5656 21.2344 12.2344 21.675C12.0831 21.731 11.9169 21.731 11.7656 21.675C10.4344 21.2344 3.75 18.6281 3.75 10.7531Z"
@@ -773,19 +670,19 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">Paid Amount</p>
-                                        <h4>$ {data.invoice && data.invoice.paid}</h4>
+                                        <p className="">{i18n.paid} {i18n.amt}</p>
+                                        <h4>{data.invoice && data.invoice.paid}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
-                                    <div className="pi-cards-content">
+                                    <div className="pv-cards-content">
                                         <span className="" style={{ background: "#faf0f5" }}>
                                             <svg
                                                 width={24}
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                
                                             >
                                                 <path
                                                     d="M3.75 10.7531V5.25C3.75 5.05109 3.82902 4.86032 3.96967 4.71967C4.11032 4.57902 4.30109 4.5 4.5 4.5H19.5C19.6989 4.5 19.8897 4.57902 20.0303 4.71967C20.171 4.86032 20.25 5.05109 20.25 5.25V10.7531C20.25 18.6281 13.5656 21.2344 12.2344 21.675C12.0831 21.731 11.9169 21.731 11.7656 21.675C10.4344 21.2344 3.75 18.6281 3.75 10.7531Z"
@@ -807,19 +704,19 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">Due Amount</p>
-                                        <h4>$ {data.invoice && data.invoice.due}</h4>
+                                        <p className="">{i18n.due} {i18n.amt}</p>
+                                        <h4>{data.invoice && data.invoice.due}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
-                                    <div className="pi-cards-content">
+                                    <div className="pv-cards-content">
                                         <span className="" style={{ background: "#f0faf9" }}>
                                             <svg
                                                 width={24}
                                                 height={24}
                                                 viewBox="0 0 24 24"
                                                 fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                
                                             >
                                                 <path
                                                     d="M7.125 9.75H16.875"
@@ -844,7 +741,7 @@ class ListSingle extends Component {
                                                 />
                                             </svg>
                                         </span>
-                                        <p className="">Total Invoice</p>
+                                        <p className="">{i18n.total} {i18n.inv}</p>
                                         <h4>{data.invoice && data.invoice.number}</h4>
                                     </div>
                                 </div>
@@ -855,16 +752,16 @@ class ListSingle extends Component {
 
                 {(path == 'contact' || path == 'client') &&
                     <>
-                        <div className="pi-list-single-head">
+                        <div className="pv-list-single-head">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <div className="pi-list-content">
+                                    <div className="pv-list-content">
                                         <img src={img} alt="logo" className="logo" />
-                                        <div className="pi-lead-address">
+                                        <div className="pv-lead-address">
                                             <h3 className="">
                                                 {(data.person) ? data.person.first_name : data.org.name}
                                                 <button
-                                                    className="pi-btn pi-edit-btn pi-btn-small pi-bg-stroke pi-bg-shadow"
+                                                    className="pv-btn pv-edit-btn pv-btn-small pv-bg-stroke pv-bg-shadow"
                                                     onClick={() => this.setState({ contactModal: true })}
                                                 >
                                                     {i18n.edit}
@@ -878,60 +775,29 @@ class ListSingle extends Component {
                                     </div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="pi-list-single-button-content">
-                                        <div className="pi-select">
+                                    <div className="pv-list-single-button-content">
+                                        <div className="pv-select">
                                             <label>{i18n.status}:</label>
                                             {data.id && <Taxonomy id={data.id} data={data.status_id} taxonomy='contact_status' title={i18n.status} color />}
                                         </div>
 
-                                        <div className="pi-action-content pi-action-btn pi-bg-stroke pi-bg-shadow pi-float-right">
-                                            <button
-                                                className={(this.state.action ? '' : '')}
-                                                onClick={() => this.setState(prevState => ({ action: !prevState.action }))}
-                                            >
-                                                <svg
-                                                    width={24}
-                                                    height={24}
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                        d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                                                        fill="#718096"
-                                                    />
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                        d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                                                        fill="#718096"
-                                                    />
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        clipRule="evenodd"
-                                                        d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                                                        fill="#718096"
-                                                    />
-                                                </svg>
-                                            </button>
-
-                                            {this.state.action && <div className="pi-dropdown-content pi-show">
-                                                <a onClick={() => this.setState({ contactModal: true })}>{i18n.edit}</a>
-                                                <a onClick={() => this.deleteEntry('contact', data.id)}>{i18n.del}</a>
-                                            </div>}
-                                        </div>
+                                        <Action
+                                            id={data.id}
+                                            module='contact'  
+                                            edit={ () => this.setState({ contactModal: true }) }
+                                            del={this.deleteEntry} 
+                                            class='pv-float-right'
+                                        />  
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="pi-tag-content">
+                        <div className="pv-tag-content">
                             <ul>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' title='Tag' small multiple />}
+                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' title={i18n.tag} small multiple />}
                                 </li>
                                 <li>{i18n.project} {data.project}</li>
                                 <li>{i18n.deal} {data.deal}</li>
@@ -951,14 +817,28 @@ class ListSingle extends Component {
                     data={data}
                     modalType={this.state.dealModalType}
                     close={() => this.setState({ dealModal: false })}
-                    reload={() => this.getData()}
+                    reload={() => {
+                        let tabs = this.state.tabs
+                        tabs.push({
+                            id: 'estimate',
+                            text: i18n.est
+                        });
+                        this.getData();
+                    }}
                 />}
 
                 {this.state.projectModal && <ProjectForm
                     data={data}
                     modalType={this.state.projectModalType}
                     close={() => this.setState({ projectModal: false })}
-                    reload={() => this.getData()}
+                    reload={() => {
+                        let tabs = this.state.tabs  
+                        tabs.push({
+                            id: 'invoice',
+                            text: i18n.inv
+                        })
+                        this.getData()
+                    }}
                 />}
 
                 {this.state.contactModal && (data.person ? <ContactPerson
@@ -973,18 +853,18 @@ class ListSingle extends Component {
                     reload={() => this.getData()}
                 />)}
 
-                <div className="row pi-mt-25">
+                <div className="row pv-mt-25">
                     <div className="col-lg-9">
-                        <div className="pi-horizontal-tab">
-                            <ul className="pi-tabs">
+                        <div className="pv-horizontal-tab">
+                            <ul className="pv-tabs">
                                 {tabs.map((tab, index) => (
-                                    <li className={"pi-tab " + (currentTab == tab.id ? 'pi-active' : '')} key={index} onClick={(e) => this.setActiveTab(e, tab.id)}>
+                                    <li className={"pv-tab " + (currentTab == tab.id ? 'pv-active' : '')} key={index} onClick={(e) => this.setActiveTab(e, tab.id)}>
                                         {tab.text}
                                     </li>
                                 ))}
                             </ul>
 
-                            <div className="pi-tab-content">
+                            <div className="pv-tab-content">
                                 <Suspense fallback={<Spinner />}>
                                     {currentTab == 'task' && data.tab_id && <Task tab_id={data.tab_id} />}
                                     {currentTab == 'note' && data.tab_id && <Note tab_id={data.tab_id} />}
@@ -998,9 +878,9 @@ class ListSingle extends Component {
                         </div>
                     </div>
 
-                    <div className="col-lg-3 pi-lead-right-content">
-                        <div className="pi-widget pi-info-box">
-                            <h3 className="pi-widget-title">{i18n.addi} {i18n.info}</h3>
+                    <div className="col-lg-3 pv-lead-right-content">
+                        <div className="pv-widget pv-info-box">
+                            <h3 className="pv-widget-title">{i18n.addi} {i18n.info}</h3>
                             <address>
 
                                 {true &&
@@ -1025,7 +905,7 @@ class ListSingle extends Component {
                                 }
                             </address>
 
-                            <div className="pi-desc-content">
+                            <div className="pv-desc-content">
                                 {data.desc &&
                                     <>
                                         <h5>{i18n.desc}:</h5>
@@ -1042,8 +922,8 @@ class ListSingle extends Component {
                             </div>
                         </div>
 
-                        {false && <div className="pi-widget pi-timeline-box">
-                            <h3 className="pi-widget-title pi-mb-15">{i18n.timeline} {i18n.info}</h3>
+                        {false && <div className="pv-widget pv-timeline-box">
+                            <h3 className="pv-widget-title pv-mb-15">{i18n.timeline} {i18n.info}</h3>
                             <ul>
                                 <li>
                                     <h4 className="timeline-title">Rakib Created Project Propovoice</h4>

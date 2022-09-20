@@ -1,9 +1,38 @@
+import { useEffect, useState, memo } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import Item from './Item'
-import styles from './scss/Items.module.scss'
+import ItemLabel from './sidebar/ItemLabel'
+import styles from './scss/Items.module.scss' 
+import Api from "api/helper";
 
-export default (props) => {
+const Items = (props) => {
+    const [label, setLabel] = useState(false);
+    const [qtyType, setQtyType] = useState([]);
+
+    useEffect(() => {
+        if (!props.id) {
+            Api.req({
+                url: {
+                    path: 'taxonomies',
+                    param: 'taxonomy=estinv_qty_type&label_only=true'
+                }
+            }).then(resp => { 
+                if (resp.data.success) {
+                    setQtyType(resp.data.data.estinv_qty_type);
+                }
+            });
+        }
+    }, []);
+
+    const showLabel = () => {
+        if (label) {
+            setLabel(false);
+        } else {
+            setLabel(true);
+        }
+    };
+
     const handleDragEnd = (result) => {
 
         if (!result.destination) return
@@ -27,22 +56,51 @@ export default (props) => {
         props.reorderHandler(Items)
     }
 
-    const { items, item_label, item_tax, addHandler, reorderHandler, ...functions } = props
-    const i18n = ndpi.i18n;
+    const { items, item_label, currency, labelChange, item_tax, addHandler, reorderHandler, ...functions } = props
+    const i18n = ndpv.i18n;
     const { desc, qty, price, tax, amount } = item_label;
     return (
         <>
-            <div className="pi-info-table-wrap">
-                <div className="pi-info-table-content">
-                    <table className="pi-table pi-info-table">
-                        <thead>
+            {label && <ItemLabel item_label={item_label} item_tax={item_tax} close={showLabel} labelChange={labelChange} />}
+            <div className="pv-info-table-wrap">
+                <div className="pv-info-table-content">
+                    <table className="pv-table pv-info-table">
+                        <thead className='pv-cursor-pointer' onClick={() => showLabel()}>
                             <tr>
                                 <th style={{ width: 'auto' }}>{desc}</th>
                                 <th style={{ width: '125px' }}>{qty}</th>
-                                <th style={{ width: '105px' }}>{price} (USD)</th>
+                                <th style={{ width: '105px' }}>{price} ({currency})</th>
                                 {item_tax && <th style={{ width: '125px' }}>{tax}</th>}
                                 <th style={{ width: '90px' }}>{amount}</th>
-                                <th></th>
+                                <th>
+                                    <svg
+                                        style={{ top: 4 }}
+                                        width={24}
+                                        height={24}
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
+                                            fill="#718096"
+                                        />
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
+                                            fill="#718096"
+                                        />
+                                        <path
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
+                                            d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
+                                            fill="#718096"
+                                        />
+                                    </svg>
+                                </th>
                             </tr>
                         </thead>
                         <DragDropContext onDragEnd={handleDragEnd}>
@@ -70,6 +128,7 @@ export default (props) => {
                                                             desc={item.desc}
                                                             qty={item.qty}
                                                             qty_type={item.qty_type}
+                                                            qtyTypeList={qtyType}
                                                             item_tax={item_tax}
                                                             tax={item.tax}
                                                             tax_type={item.tax_type}
@@ -87,7 +146,7 @@ export default (props) => {
                         </DragDropContext>
                     </table>
 
-                    <button className="pi-btn pi-btn-medium pi-bg-stroke pi-bg-hover-stroke pi-bg-shadow" style={{ justifyContent: 'center' }}
+                    <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow" style={{ justifyContent: 'center' }}
                         onClick={addHandler}
                     >
                         <svg
@@ -95,7 +154,7 @@ export default (props) => {
                             height={14}
                             viewBox="0 1 12 10"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+
                         >
                             <path
                                 d="M1.875 6h8.25M6 1.875v8.25"
@@ -110,4 +169,5 @@ export default (props) => {
             </div>
         </>
     )
-} 
+}
+export default memo(Items);

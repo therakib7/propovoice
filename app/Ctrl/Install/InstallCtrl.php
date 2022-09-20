@@ -1,19 +1,18 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Install;
 
-namespace Ndpi\Ctrl\Install;
-
-use Ndpi\Ctrl\Install\Type\DB;
-use Ndpi\Ctrl\Install\Type\Merging;
-use Ndpi\Ctrl\Install\Type\Page;
-use Ndpi\Ctrl\Install\Type\Taxonomy;
+use Ndpv\Ctrl\Install\Type\DB;
+use Ndpv\Ctrl\Install\Type\Merge;
+use Ndpv\Ctrl\Install\Type\Page;
+use Ndpv\Ctrl\Install\Type\Taxonomy;
 
 class InstallCtrl
 {
     public function __construct()
     {
-        register_activation_hook(NCPI_FILE, array($this, 'plugin_activate'));
+        register_activation_hook(NDPV_FILE, array($this, 'plugin_activate'));
         add_filter('cron_schedules', array($this, 'custom_schedule'));
-        register_activation_hook(NCPI_FILE, array($this, 'schedule_my_cron'));
+        register_activation_hook(NDPV_FILE, array($this, 'schedule_my_cron'));
 
         add_action('admin_init', array($this, 'insertData'));
         add_action('admin_init', array($this, 'plugin_redirect'));
@@ -40,50 +39,60 @@ class InstallCtrl
     {
 
         //set cron job
-        if (!wp_next_scheduled('ndpi_hourly_event')) {
-            wp_schedule_event(time(), 'hourly', 'ndpi_hourly_event');
+        if (!wp_next_scheduled('ndpv_hourly_event')) {
+            wp_schedule_event(time(), 'hourly', 'ndpv_hourly_event');
         }
 
-        if (!wp_next_scheduled('ndpi_half_minute_event')) {
-            wp_schedule_event(time(), 'half_minute', 'ndpi_half_minute_event');
+        if (!wp_next_scheduled('ndpv_half_minute_event')) {
+            wp_schedule_event(time(), 'half_minute', 'ndpv_half_minute_event');
         }
 
-        if (!wp_next_scheduled('ndpi_one_minute_event')) {
-            wp_schedule_event(time(), 'one_minute', 'ndpi_one_minute_event');
+        if (!wp_next_scheduled('ndpv_one_minute_event')) {
+            wp_schedule_event(time(), 'one_minute', 'ndpv_one_minute_event');
         }
     }
 
     public function plugin_activate()
     {
-        add_option('ndpi_active', true);
+        add_option('ndpv_active', true);
     }
 
     public function plugin_redirect()
     {
-        if (get_option('ndpi_active', false)) {
-            delete_option('ndpi_active');
+        if ( get_option('ndpv_active', false) ) {
+            delete_option('ndpv_active');
 
             // $this->insertData();
 
-            wp_redirect(admin_url('admin.php?page=ndpi-welcome'));
+            wp_redirect(admin_url('admin.php?page=ndpv-welcome'));
         }
     }
 
     public function insertData()
     {
-        $version = get_option('ndpi_version', '0.1.0');
-        if ( version_compare( $version, NCPI_VERSION, '<') ) {
-            update_option('ndpi_version', NCPI_VERSION);
+        $version = get_option('ndpv_version', '0.1.0');
+        if (version_compare($version, NDPV_VERSION, '<')) {
+            update_option('ndpv_version', NDPV_VERSION);
         }
-        
-        if ( version_compare( $version, '0.5.0', '<') ) { 
+
+        if ( version_compare($version, '1.0.0', '<') ) {
             new Page();
             new DB();
             new Taxonomy();
-            new Merging();
+            new Merge();
 
             // $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
             // wp_mkdir_p($uploads_dir);
-        }  
+        }
+
+        if ( version_compare($version, '1.0.1.4', '<') ) {
+            $term_id = wp_insert_term(
+                'Unit', // the term
+                'ndpv_estinv_qty_type', // the taxonomy
+            );
+            if ( !is_wp_error($term_id) ) {
+                update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']); 
+            }
+        }
     }
 }

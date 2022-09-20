@@ -1,0 +1,1620 @@
+# Copyright (C) 2022 Propovocie
+# This file is distributed under the same license as the Propovocie package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Propovocie\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-08-21 05:43+0000\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:"
+"1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
+"esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-09-12 10:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: বাংলা\n"
+"Language: bn_BD\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.2; wp-6.0.1"
+
+#: ../app/Helper/I18n.php:216, ../propovoice/app/Helper/I18n.php:216
+msgid " Timeline"
+msgstr "টাইমলাইন"
+
+#. translators: %s template
+#: ../app/Helper/Fns.php:266, ../propovoice/app/Helper/Fns.php:266
+msgid "%s does not exist."
+msgstr ""
+"\n"
+"%s বিদ্যমান নেই।"
+
+#: ../app/Helper/I18n.php:39, ../propovoice/app/Helper/I18n.php:39
+msgid "&"
+msgstr ""
+"\n"
+"এবং"
+
+#: ../app/Helper/I18n.php:58, ../propovoice/app/Helper/I18n.php:58
+msgid "Accept"
+msgstr ""
+"\n"
+"গ্রহণ করুন"
+
+#: ../app/Helper/I18n.php:57, ../propovoice/app/Helper/I18n.php:57
+msgid "Accepted"
+msgstr "গৃহীত"
+
+#: ../app/Helper/I18n.php:139, ../propovoice/app/Helper/I18n.php:139
+msgid "Account"
+msgstr "হিসাব"
+
+#: ../app/Helper/I18n.php:194, ../propovoice/app/Helper/I18n.php:194
+msgid "Accounting"
+msgstr "হিসাববিজ্ঞান"
+
+#: ../app/Helper/I18n.php:100, ../propovoice/app/Helper/I18n.php:100
+msgid "Action"
+msgstr ""
+"\n"
+"কর্ম"
+
+#: ../app/Helper/I18n.php:173, ../propovoice/app/Helper/I18n.php:173
+msgid "Activate"
+msgstr ""
+"\n"
+"সক্রিয় করুন"
+
+#: ../app/Helper/I18n.php:217, ../propovoice/app/Helper/I18n.php:217
+msgid "Active"
+msgstr ""
+"\n"
+"সক্রিয়"
+
+#: ../app/Helper/I18n.php:119, ../propovoice/app/Helper/I18n.php:119
+msgid "Add"
+msgstr ""
+"\n"
+"যোগ করুন"
+
+#. translators: %s: Module Name
+#: ../app/Helper/I18n.php:113, ../propovoice/app/Helper/I18n.php:113
+msgid "Add new %s from here"
+msgstr "এখান থেকে নতুন %s যোগ করুন"
+
+#: ../app/Helper/I18n.php:114, ../propovoice/app/Helper/I18n.php:114
+msgid "Add payment info from here"
+msgstr "এখান থেকে পেমেন্টের তথ্য যোগ করুন"
+
+#: ../app/Helper/I18n.php:273, ../propovoice/app/Helper/I18n.php:264
+msgid "added"
+msgstr ""
+"\n"
+"যোগ করা হয়েছে"
+
+#: ../app/Helper/I18n.php:271, ../propovoice/app/Helper/I18n.php:262
+msgid "Adding"
+msgstr "যোগ করা হচ্ছে"
+
+#: ../app/Helper/I18n.php:49, ../app/Helper/I18n.php:74,
+#: ../propovoice/app/Helper/I18n.php:49, ../propovoice/app/Helper/I18n.php:74
+msgid "Additional"
+msgstr ""
+"\n"
+"অতিরিক্ত"
+
+#: ../app/Helper/I18n.php:215, ../propovoice/app/Helper/I18n.php:215
+msgid "Address"
+msgstr ""
+"\n"
+"ঠিকানা"
+
+#: ../app/Helper/I18n.php:70, ../propovoice/app/Helper/I18n.php:70
+msgid "After"
+msgstr ""
+"\n"
+"পরে"
+
+#: ../app/Ctrl/Api/Type/File.php:144, ../app/Ctrl/Api/Type/Note.php:118,
+#: ../propovoice/app/Ctrl/Api/Type/File.php:144,
+#: ../propovoice/app/Ctrl/Api/Type/Note.php:118
+msgid "ago"
+msgstr ""
+"\n"
+"আগে"
+
+#: ../app/Helper/I18n.php:102, ../propovoice/app/Helper/I18n.php:102
+msgid "Always"
+msgstr "সর্বদা"
+
+#: ../app/Helper/I18n.php:48, ../propovoice/app/Helper/I18n.php:48
+msgid "Amount"
+msgstr ""
+"\n"
+"পরিমাণ"
+
+#: ../app/Helper/I18n.php:277, ../propovoice/app/Helper/I18n.php:268
+msgid "any"
+msgstr ""
+"\n"
+"যেকোনো"
+
+#: ../app/Helper/I18n.php:181, ../propovoice/app/Helper/I18n.php:181
+msgid "Approval Pending"
+msgstr ""
+"\n"
+"অনুমতি দোদুল্যমান"
+
+#: ../app/Helper/I18n.php:24, ../propovoice/app/Helper/I18n.php:24
+msgid "Are you sure to delete it?"
+msgstr ""
+"\n"
+"আপনি এটি মুছে ফেলতে নিশ্চিত?"
+
+#: ../app/Helper/I18n.php:190, ../propovoice/app/Helper/I18n.php:190
+msgid "as"
+msgstr "হিসাবে"
+
+#: ../app/Helper/I18n.php:197, ../propovoice/app/Helper/I18n.php:197
+msgid "Attachment"
+msgstr "সংযুক্তি"
+
+#: ../app/Helper/I18n.php:71, ../propovoice/app/Helper/I18n.php:71
+msgid "Authorized Signature"
+msgstr ""
+"\n"
+"অনুমোদিত স্বাক্ষর"
+
+#: ../app/Helper/I18n.php:253, ../propovoice/app/Helper/I18n.php:253
+msgid "automatically"
+msgstr ""
+"\n"
+"স্বয়ংক্রিয়ভাবে"
+
+#: ../app/Helper/I18n.php:185, ../propovoice/app/Helper/I18n.php:185
+msgid "Back to WP Dashboard"
+msgstr "WP ড্যাশবোর্ডে ফিরে যান"
+
+#: ../app/Helper/I18n.php:128, ../propovoice/app/Helper/I18n.php:128
+msgid "Background"
+msgstr ""
+"\n"
+"পটভূমি"
+
+#: ../app/Helper/I18n.php:222, ../propovoice/app/Helper/I18n.php:222
+msgid "Bank"
+msgstr ""
+"\n"
+"ব্যাংক"
+
+#: ../app/Ctrl/Api/Type/Payment.php:182,
+#: ../propovoice/app/Ctrl/Api/Type/Payment.php:182
+msgid "Bank & Others"
+msgstr "ব্যাংক এবং অন্যান্য"
+
+#: ../app/Helper/I18n.php:69, ../propovoice/app/Helper/I18n.php:69
+msgid "Before"
+msgstr ""
+"\n"
+"আগে"
+
+#: ../app/Helper/I18n.php:94, ../propovoice/app/Helper/I18n.php:94
+msgid "Bill To"
+msgstr ""
+"\n"
+"বিল টু"
+
+#: ../app/Helper/I18n.php:225, ../propovoice/app/Helper/I18n.php:225
+msgid "Block"
+msgstr ""
+"\n"
+"ব্লক"
+
+#: ../app/Helper/I18n.php:79, ../propovoice/app/Helper/I18n.php:79
+msgid "Book"
+msgstr ""
+"\n"
+"বই"
+
+#: ../app/Helper/I18n.php:77, ../propovoice/app/Helper/I18n.php:77
+msgid "Budget"
+msgstr ""
+"\n"
+"বাজেট"
+
+#: ../app/Helper/I18n.php:159, ../propovoice/app/Helper/I18n.php:159
+msgid "Business"
+msgstr ""
+"\n"
+"ব্যবসা"
+
+#: ../app/Ctrl/Api/Type/Invoice.php:406, ../app/Ctrl/Api/Type/Invoice.php:532,
+#: ../propovoice/app/Ctrl/Api/Type/Invoice.php:406,
+#: ../propovoice/app/Ctrl/Api/Type/Invoice.php:532
+msgid "Business is missing"
+msgstr "ব্যবসা অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:149, ../propovoice/app/Helper/I18n.php:149
+msgid "Category"
+msgstr ""
+"\n"
+"শ্রেণী"
+
+#: ../app/Helper/I18n.php:138, ../propovoice/app/Helper/I18n.php:138
+msgid "Clear"
+msgstr ""
+"\n"
+"\n"
+"পরিষ্কার"
+
+#: ../app/Helper/I18n.php:15, ../app/Ctrl/Setting/Type/Dashboard.php:55,
+#: ../propovoice/app/Helper/I18n.php:15,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:55
+msgid "Client"
+msgstr "ক্লায়েন্ট"
+
+#: ../app/Helper/I18n.php:154, ../propovoice/app/Helper/I18n.php:154
+msgid "Close"
+msgstr ""
+"\n"
+"বন্ধ"
+
+#: ../app/Helper/I18n.php:130, ../propovoice/app/Helper/I18n.php:130
+msgid "Color"
+msgstr ""
+"\n"
+"রঙ"
+
+#: ../app/Helper/I18n.php:156, ../propovoice/app/Helper/I18n.php:156
+msgid "Common"
+msgstr ""
+"\n"
+"সাধারণ"
+
+#: ../app/Helper/I18n.php:212, ../propovoice/app/Helper/I18n.php:212
+msgid "Company"
+msgstr ""
+"\n"
+"প্রতিষ্ঠান"
+
+#: ../app/Helper/I18n.php:189, ../propovoice/app/Helper/I18n.php:189
+msgid "completed"
+msgstr "পরিপুর্ন"
+
+#: ../app/Helper/I18n.php:213, ../propovoice/app/Helper/I18n.php:213
+msgid "Connect Zoom"
+msgstr ""
+"\n"
+"জুম কানেক্ট করুন"
+
+#: ../app/Helper/I18n.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:63,
+#: ../propovoice/app/Helper/I18n.php:19,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:63
+msgid "Contact"
+msgstr ""
+"\n"
+"যোগাযোগ"
+
+#: ../app/Ctrl/Api/Type/Client.php:183, ../app/Ctrl/Api/Type/Deal.php:361,
+#: ../app/Ctrl/Api/Type/Deal.php:499, ../app/Ctrl/Api/Type/Lead.php:286,
+#: ../app/Ctrl/Api/Type/Lead.php:383, ../app/Ctrl/Api/Type/Project.php:314,
+#: ../app/Ctrl/Api/Type/Project.php:454,
+#: ../propovoice/app/Ctrl/Api/Type/Client.php:183,
+#: ../propovoice/app/Ctrl/Api/Type/Deal.php:361,
+#: ../propovoice/app/Ctrl/Api/Type/Deal.php:499,
+#: ../propovoice/app/Ctrl/Api/Type/Lead.php:286,
+#: ../propovoice/app/Ctrl/Api/Type/Lead.php:383,
+#: ../propovoice/app/Ctrl/Api/Type/Project.php:314,
+#: ../propovoice/app/Ctrl/Api/Type/Project.php:454
+msgid "Contact info is missing"
+msgstr "যোগাযোগের তথ্য অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:249, ../propovoice/app/Helper/I18n.php:249
+msgid "Contact With Us"
+msgstr "আমাদের সাথে যোগাযোগ করুন"
+
+#: ../app/Helper/I18n.php:41,
+#: ../app/Ctrl/Widget/Elementor/Widgets/Registration.php:35,
+#: ../propovoice/app/Helper/I18n.php:41,
+#: ../propovoice/app/Ctrl/Widget/Elementor/Widgets/Registration.php:35
+msgid "Content"
+msgstr "বিষয়বস্তু "
+
+#: ../app/Helper/I18n.php:152, ../propovoice/app/Helper/I18n.php:152
+msgid "Continue"
+msgstr ""
+"\n"
+"চালিয়ে যান"
+
+#: ../app/Helper/I18n.php:234, ../propovoice/app/Helper/I18n.php:234
+msgid "Copy"
+msgstr ""
+"\n"
+"অনুলিপি"
+
+#: ../app/Helper/I18n.php:87, ../propovoice/app/Helper/I18n.php:87
+msgid "Country"
+msgstr "দেশ"
+
+#: ../app/Helper/I18n.php:115, ../propovoice/app/Helper/I18n.php:115
+msgid "Create"
+msgstr ""
+"\n"
+"সৃষ্টি"
+
+#: ../app/Helper/I18n.php:254, ../propovoice/app/Helper/I18n.php:254
+msgid "Create Draft and send manually"
+msgstr "খসড়া তৈরি করুন এবং ম্যানুয়ালি পাঠান"
+
+#: ../app/Helper/I18n.php:274, ../propovoice/app/Helper/I18n.php:265
+msgid "created"
+msgstr ""
+"\n"
+"তৈরি"
+
+#: ../app/Helper/I18n.php:272, ../propovoice/app/Helper/I18n.php:263
+msgid "Creating"
+msgstr ""
+"\n"
+"তৈরি করছে"
+
+#: ../app/Helper/I18n.php:76, ../propovoice/app/Helper/I18n.php:76
+msgid "Currency"
+msgstr ""
+"\n"
+"মুদ্রা"
+
+#: ../app/Helper/I18n.php:258
+msgid "Daily"
+msgstr ""
+"\n"
+"দৈনিক"
+
+#: ../app/Helper/I18n.php:10, ../app/Ctrl/Setting/Type/Dashboard.php:29,
+#: ../app/Ctrl/Setting/Type/Dashboard.php:30,
+#: ../propovoice/app/Helper/I18n.php:10,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:29,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:30
+msgid "Dashboard"
+msgstr "ড্যাশবোর্ড"
+
+#: ../app/Helper/I18n.php:99, ../propovoice/app/Helper/I18n.php:99
+msgid "Date"
+msgstr "তারিখ"
+
+#: ../app/Helper/I18n.php:262
+msgid "Day"
+msgstr ""
+"\n"
+"দিন"
+
+#: ../app/Helper/I18n.php:174, ../propovoice/app/Helper/I18n.php:174
+msgid "Deactivate"
+msgstr ""
+"\n"
+"নিষ্ক্রিয় করুন"
+
+#: ../app/Helper/I18n.php:12, ../app/Ctrl/Setting/Type/Dashboard.php:43,
+#: ../propovoice/app/Helper/I18n.php:12,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:43
+msgid "Deal"
+msgstr ""
+"\n"
+"ডিল"
+
+#: ../app/Ctrl/Setting/Type/Dashboard.php:43,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:43
+msgid "Deal Pipeline"
+msgstr "ডিল পাইপলাইন"
+
+#: ../app/Helper/I18n.php:59, ../propovoice/app/Helper/I18n.php:59
+msgid "Declined"
+msgstr "অস্বীকার করেছে"
+
+#: ../app/Helper/I18n.php:64, ../propovoice/app/Helper/I18n.php:64
+msgid "Default"
+msgstr "ডিফল্ট"
+
+#: ../app/Helper/I18n.php:123, ../propovoice/app/Helper/I18n.php:123
+msgid "Delete"
+msgstr "মুছে ফেলা"
+
+#: ../app/Helper/I18n.php:206, ../propovoice/app/Helper/I18n.php:206
+msgid "delivery"
+msgstr ""
+"\n"
+"বিতরণ"
+
+#: ../app/Helper/I18n.php:131, ../propovoice/app/Helper/I18n.php:131
+msgid "Description"
+msgstr "বর্ণনা"
+
+#: ../app/Helper/I18n.php:148, ../propovoice/app/Helper/I18n.php:148
+msgid "Details"
+msgstr ""
+"\n"
+"বিস্তারিত"
+
+#: ../app/Helper/I18n.php:201, ../propovoice/app/Helper/I18n.php:201
+msgid "Discount"
+msgstr "ছাড়"
+
+#: ../app/Helper/I18n.php:187, ../propovoice/app/Helper/I18n.php:187
+msgid "Done"
+msgstr ""
+"\n"
+"সম্পন্ন"
+
+#: ../app/Helper/I18n.php:51, ../propovoice/app/Helper/I18n.php:51
+msgid "Download"
+msgstr ""
+"\n"
+"ডাউনলোড করুন"
+
+#: ../app/Helper/I18n.php:109, ../propovoice/app/Helper/I18n.php:109
+msgid "Draft"
+msgstr ""
+"\n"
+"খসড়া"
+
+#: ../app/Helper/I18n.php:135, ../propovoice/app/Helper/I18n.php:135
+msgid "Due"
+msgstr ""
+"\n"
+"বাকি"
+
+#: ../app/Helper/I18n.php:108, ../propovoice/app/Helper/I18n.php:108
+msgid "Duplicate"
+msgstr ""
+"\n"
+"নকল"
+
+#: ../app/Helper/I18n.php:236, ../propovoice/app/Helper/I18n.php:236
+msgid "Each Item"
+msgstr ""
+"\n"
+"প্রতিটি আইটেমের"
+
+#: ../app/Helper/I18n.php:121, ../propovoice/app/Helper/I18n.php:121
+msgid "Edit"
+msgstr ""
+"\n"
+"সম্পাদনা করুন"
+
+#: ../app/Helper/I18n.php:83, ../propovoice/app/Helper/I18n.php:83
+msgid "Email"
+msgstr ""
+"\n"
+"ইমেইল"
+
+#: ../app/Ctrl/Api/Type/Client.php:232, ../app/Ctrl/Api/Type/Contact.php:311,
+#: ../app/Ctrl/Api/Type/Org.php:207, ../app/Ctrl/Api/Type/Org.php:294,
+#: ../app/Ctrl/Api/Type/Person.php:243, ../app/Ctrl/Api/Type/Person.php:332,
+#: ../app/Ctrl/Api/Type/Workspace.php:221,
+#: ../app/Ctrl/Api/Type/Workspace.php:307,
+#: ../propovoice/app/Ctrl/Api/Type/Client.php:232,
+#: ../propovoice/app/Ctrl/Api/Type/Contact.php:311,
+#: ../propovoice/app/Ctrl/Api/Type/Org.php:207,
+#: ../propovoice/app/Ctrl/Api/Type/Org.php:294,
+#: ../propovoice/app/Ctrl/Api/Type/Person.php:243,
+#: ../propovoice/app/Ctrl/Api/Type/Person.php:332,
+#: ../propovoice/app/Ctrl/Api/Type/Workspace.php:221,
+#: ../propovoice/app/Ctrl/Api/Type/Workspace.php:307
+msgid "Email id is not valid!"
+msgstr ""
+"\n"
+"ইমেইল আইডি বৈধ নয়!"
+
+#: ../app/Helper/I18n.php:13, ../app/Ctrl/Setting/Type/Dashboard.php:47,
+#: ../propovoice/app/Helper/I18n.php:13,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:47
+msgid "Estimate"
+msgstr ""
+"\n"
+"অনুমান"
+
+#: ../app/Ctrl/Install/InstallCtrl.php:33,
+#: ../propovoice/app/Ctrl/Install/InstallCtrl.php:33
+msgid "Every 1 Minute"
+msgstr "প্রতি ১ মিনিটে"
+
+#: ../app/Ctrl/Install/InstallCtrl.php:28,
+#: ../propovoice/app/Ctrl/Install/InstallCtrl.php:28
+msgid "Every Half Minute"
+msgstr ""
+"\n"
+"প্রতি হাফ মিনিট"
+
+#: ../app/Helper/I18n.php:168, ../propovoice/app/Helper/I18n.php:168
+msgid "Expires"
+msgstr "মেয়াদ শেষ"
+
+#: ../app/Helper/I18n.php:229, ../propovoice/app/Helper/I18n.php:229
+msgid "Explore"
+msgstr "অন্বেষণ"
+
+#: ../app/Helper/I18n.php:198, ../propovoice/app/Helper/I18n.php:198
+msgid "Fee"
+msgstr ""
+"\n"
+"ফি"
+
+#: ../app/Helper/I18n.php:196, ../propovoice/app/Helper/I18n.php:196
+msgid "Feedback"
+msgstr ""
+"\n"
+"প্রতিক্রিয়া"
+
+#: ../app/Helper/I18n.php:199, ../propovoice/app/Helper/I18n.php:199
+msgid "Field"
+msgstr ""
+"\n"
+"মাঠ"
+
+#: ../app/Helper/I18n.php:200, ../propovoice/app/Helper/I18n.php:200
+msgid "Fields"
+msgstr "ক্ষেত্র"
+
+#: ../app/Helper/I18n.php:146, ../propovoice/app/Helper/I18n.php:146
+msgid "File"
+msgstr ""
+"\n"
+"ফাইল"
+
+#: ../app/Ctrl/Api/Type/Media.php:218,
+#: ../propovoice/app/Ctrl/Api/Type/Media.php:218
+msgid "File is too large. Max. upload file size is %s"
+msgstr ""
+"\n"
+"ফাইলটি খুব বড়। সর্বোচ্চ আপলোড ফাইলের আকার হল %s"
+
+#: ../app/Helper/I18n.php:210, ../propovoice/app/Helper/I18n.php:210
+msgid "First"
+msgstr ""
+"\n"
+"প্রথম"
+
+#: ../app/Helper/I18n.php:125, ../propovoice/app/Helper/I18n.php:125
+msgid "From"
+msgstr "থেকে"
+
+#: ../app/Helper/I18n.php:205, ../propovoice/app/Helper/I18n.php:205
+msgid "Full"
+msgstr ""
+"\n"
+"সম্পূর্ণ"
+
+#: ../app/Helper/I18n.php:28, ../propovoice/app/Helper/I18n.php:28
+msgid "Funnel"
+msgstr ""
+"\n"
+"ফানেল"
+
+#: ../app/Helper/I18n.php:219, ../propovoice/app/Helper/I18n.php:219
+msgid "Gallery"
+msgstr ""
+"\n"
+"গ্যালারি"
+
+#: ../app/Helper/I18n.php:158, ../propovoice/app/Helper/I18n.php:158
+msgid "General"
+msgstr ""
+"\n"
+"সাধারণ"
+
+#: ../app/Helper/I18n.php:227, ../propovoice/app/Helper/I18n.php:227
+msgid "Go"
+msgstr "যাওয়া"
+
+#: ../app/Ctrl/Setting/Type/Dashboard.php:98,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:98
+msgid "Go to Frontend"
+msgstr ""
+"\n"
+"ফ্রন্টএন্ডে যান"
+
+#: ../app/Helper/I18n.php:126, ../propovoice/app/Helper/I18n.php:126
+msgid "here"
+msgstr ""
+"\n"
+"এখানে"
+
+#: ../app/Helper/I18n.php:67, ../propovoice/app/Helper/I18n.php:67
+msgid "Hide"
+msgstr ""
+"\n"
+"লুকান"
+
+#: ../app/Helper/I18n.php:90, ../propovoice/app/Helper/I18n.php:90
+msgid "Home"
+msgstr ""
+"\n"
+"বাড়ি"
+
+#: ../app/Helper/I18n.php:251, ../propovoice/app/Helper/I18n.php:251
+msgid "How Many?"
+msgstr ""
+"\n"
+"কতগুলো?"
+
+#: ../app/Helper/I18n.php:250, ../propovoice/app/Helper/I18n.php:250
+msgid "How often?"
+msgstr "কত ঘনঘন?"
+
+#: ../app/Helper/I18n.php:116, ../propovoice/app/Helper/I18n.php:116
+msgid "Icon"
+msgstr "আইকন"
+
+#: ../app/Helper/I18n.php:142, ../propovoice/app/Helper/I18n.php:142
+msgid "ID"
+msgstr ""
+"\n"
+"আইডি"
+
+#: ../app/Helper/I18n.php:118, ../propovoice/app/Helper/I18n.php:118
+msgid "Image"
+msgstr ""
+"\n"
+"ছবি"
+
+#: ../app/Helper/I18n.php:165, ../propovoice/app/Helper/I18n.php:165
+msgid "Import"
+msgstr "আমদানি"
+
+#: ../app/Helper/I18n.php:95, ../propovoice/app/Helper/I18n.php:95
+msgid "Info"
+msgstr ""
+"\n"
+"তথ্য"
+
+#: ../app/Helper/I18n.php:220, ../propovoice/app/Helper/I18n.php:220
+msgid "Insert"
+msgstr ""
+"\n"
+"ঢোকান"
+
+#: ../app/Helper/I18n.php:166, ../app/Helper/I18n.php:239,
+#: ../propovoice/app/Helper/I18n.php:166, ../propovoice/app/Helper/I18n.php:239
+msgid "Integration"
+msgstr "বিভিন্ন উপাদানের মিলন"
+
+#: ../app/Helper/I18n.php:261
+msgid "Interval In"
+msgstr ""
+"\n"
+"মধ্যে ব্যবধান"
+
+#: ../app/Ctrl/Api/Type/Media.php:206,
+#: ../propovoice/app/Ctrl/Api/Type/Media.php:206
+msgid "Invalid file type: %s. Supported file types: %s"
+msgstr "অবৈধ ফাইল প্রকার: %s। সমর্থিত ফাইল প্রকার: %s"
+
+#: ../app/Helper/I18n.php:14, ../app/Ctrl/Setting/Type/Dashboard.php:51,
+#: ../propovoice/app/Helper/I18n.php:14,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:51
+msgid "Invoice"
+msgstr "চালান"
+
+#: ../app/Helper/I18n.php:45, ../propovoice/app/Helper/I18n.php:45
+msgid "Item"
+msgstr "আইটেম"
+
+#: ../app/Helper/I18n.php:244, ../propovoice/app/Helper/I18n.php:244
+msgid "Items Selected"
+msgstr "আইটেম নির্বাচিত"
+
+#: ../app/Helper/I18n.php:143, ../propovoice/app/Helper/I18n.php:143
+msgid "Key"
+msgstr ""
+"\n"
+"চাবি"
+
+#: ../app/Helper/I18n.php:224, ../propovoice/app/Helper/I18n.php:224
+msgid "Label"
+msgstr ""
+"\n"
+"লেবেল"
+
+#: ../app/Helper/I18n.php:66, ../propovoice/app/Helper/I18n.php:66
+msgid "Language"
+msgstr ""
+"\n"
+"ভাষা"
+
+#: ../app/Helper/I18n.php:211, ../propovoice/app/Helper/I18n.php:211
+msgid "Last"
+msgstr ""
+"\n"
+"শেষ"
+
+#: ../app/Helper/I18n.php:27, ../propovoice/app/Helper/I18n.php:27
+msgid "Latest"
+msgstr ""
+"\n"
+"সর্বশেষ"
+
+#: ../app/Helper/I18n.php:11, ../app/Ctrl/Setting/Type/Dashboard.php:39,
+#: ../propovoice/app/Helper/I18n.php:11,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:39
+msgid "Lead"
+msgstr ""
+"\n"
+"নেতৃত্ব"
+
+#. translators: %s: Adding, Creating text
+#: ../app/Helper/I18n.php:270, ../propovoice/app/Helper/I18n.php:261
+msgid "Let's Start %s"
+msgstr ""
+"\n"
+"%s শুরু করা যাক"
+
+#: ../app/Helper/I18n.php:31, ../propovoice/app/Helper/I18n.php:31
+msgid "Level"
+msgstr "স্তর"
+
+#: ../app/Helper/I18n.php:167, ../propovoice/app/Helper/I18n.php:167
+msgid "License"
+msgstr "লাইসেন্স"
+
+#: ../app/Helper/I18n.php:240, ../propovoice/app/Helper/I18n.php:240
+msgid "License Manager"
+msgstr "লাইসেন্স ম্যানেজার"
+
+#: ../app/Helper/I18n.php:256
+msgid "Limit"
+msgstr ""
+"\n"
+"সীমা"
+
+#: ../app/Helper/I18n.php:209, ../propovoice/app/Helper/I18n.php:209
+msgid "link"
+msgstr "লিঙ্ক"
+
+#: ../app/Helper/I18n.php:106, ../propovoice/app/Helper/I18n.php:106
+msgid "Location"
+msgstr "অবস্থান"
+
+#: ../app/Helper/I18n.php:151, ../propovoice/app/Helper/I18n.php:151
+msgid "Logo"
+msgstr ""
+"\n"
+"লোগো"
+
+#: ../app/Helper/I18n.php:238, ../propovoice/app/Helper/I18n.php:238
+msgid "Logout"
+msgstr ""
+"\n"
+"প্রস্থান"
+
+#: ../app/Helper/I18n.php:36, ../propovoice/app/Helper/I18n.php:36
+msgid "Lost"
+msgstr ""
+"\n"
+"নিখোঁজ"
+
+#: ../app/Helper/I18n.php:186, ../propovoice/app/Helper/I18n.php:186
+msgid "Mark as"
+msgstr ""
+"\n"
+"চিহ্ন হিসাবে"
+
+#: ../app/Helper/I18n.php:218, ../propovoice/app/Helper/I18n.php:218
+msgid "Media"
+msgstr "মিডিয়া"
+
+#: ../app/Helper/I18n.php:172, ../propovoice/app/Helper/I18n.php:172
+msgid "meet"
+msgstr ""
+"\n"
+"সম্মেলন"
+
+#: ../app/Helper/I18n.php:171, ../propovoice/app/Helper/I18n.php:171
+msgid "Meeting Place or"
+msgstr ""
+"\n"
+"মিটিং প্লেস বা"
+
+#: ../app/Helper/I18n.php:137, ../propovoice/app/Helper/I18n.php:137
+msgid "Message"
+msgstr "বার্তা"
+
+#: ../app/Helper/I18n.php:162, ../propovoice/app/Helper/I18n.php:162
+msgid "Method"
+msgstr ""
+"\n"
+"পদ্ধতি"
+
+#: ../app/Helper/I18n.php:84, ../propovoice/app/Helper/I18n.php:84
+msgid "Mobile"
+msgstr ""
+"\n"
+"মুঠোফোন"
+
+#: ../app/Ctrl/Api/Type/Invoice.php:410,
+#: ../propovoice/app/Ctrl/Api/Type/Invoice.php:410
+msgid "Module is missing"
+msgstr "মডিউল অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:263
+msgid "Month"
+msgstr ""
+"\n"
+"মাস"
+
+#: ../app/Helper/I18n.php:260
+msgid "Monthly"
+msgstr ""
+"\n"
+"মাসিক"
+
+#: ../app/Helper/I18n.php:226, ../propovoice/app/Helper/I18n.php:226
+msgid "Move"
+msgstr ""
+"\n"
+"সরান"
+
+#: ../app/Helper/I18n.php:241, ../propovoice/app/Helper/I18n.php:241
+msgid "My Work"
+msgstr ""
+"\n"
+"আমার কাজ"
+
+#: ../app/Helper/I18n.php:82, ../propovoice/app/Helper/I18n.php:82
+msgid "Name"
+msgstr "নাম"
+
+#: ../app/Ctrl/Api/Type/Client.php:228, ../app/Ctrl/Api/Type/Contact.php:307,
+#: ../app/Ctrl/Api/Type/Note.php:155, ../app/Ctrl/Api/Type/Note.php:190,
+#: ../app/Ctrl/Api/Type/Org.php:203, ../app/Ctrl/Api/Type/Org.php:290,
+#: ../app/Ctrl/Api/Type/Person.php:239, ../app/Ctrl/Api/Type/Person.php:328,
+#: ../app/Ctrl/Api/Type/Workspace.php:217,
+#: ../app/Ctrl/Api/Type/Workspace.php:303,
+#: ../propovoice/app/Ctrl/Api/Type/Client.php:228,
+#: ../propovoice/app/Ctrl/Api/Type/Contact.php:307,
+#: ../propovoice/app/Ctrl/Api/Type/Note.php:155,
+#: ../propovoice/app/Ctrl/Api/Type/Note.php:190,
+#: ../propovoice/app/Ctrl/Api/Type/Org.php:203,
+#: ../propovoice/app/Ctrl/Api/Type/Org.php:290,
+#: ../propovoice/app/Ctrl/Api/Type/Person.php:239,
+#: ../propovoice/app/Ctrl/Api/Type/Person.php:328,
+#: ../propovoice/app/Ctrl/Api/Type/Workspace.php:217,
+#: ../propovoice/app/Ctrl/Api/Type/Workspace.php:303
+msgid "Name field is missing"
+msgstr ""
+"\n"
+"নাম ক্ষেত্র অনুপস্থিত"
+
+#: ../app/Ctrl/Api/Type/Business.php:225,
+#: ../app/Ctrl/Api/Type/Business.php:307,
+#: ../propovoice/app/Ctrl/Api/Type/Business.php:225,
+#: ../propovoice/app/Ctrl/Api/Type/Business.php:307
+msgid "Name is missing"
+msgstr "নাম অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:195, ../propovoice/app/Helper/I18n.php:195
+msgid "Need Support"
+msgstr ""
+"\n"
+"সমর্থন প্রয়োজন"
+
+#: ../app/Helper/I18n.php:120, ../app/Helper/I18n.php:124,
+#: ../propovoice/app/Helper/I18n.php:120, ../propovoice/app/Helper/I18n.php:124
+msgid "New"
+msgstr ""
+"\n"
+"নতুন"
+
+#: ../app/Helper/I18n.php:96, ../propovoice/app/Helper/I18n.php:96
+msgid "No"
+msgstr ""
+"\n"
+"না"
+
+#. translators: %s: Module Name
+#: ../app/Helper/I18n.php:268, ../propovoice/app/Helper/I18n.php:259
+msgid "No %s found by your search query."
+msgstr ""
+"\n"
+"আপনার অনুসন্ধান ক্যোয়ারী দ্বারা কোন %s পাওয়া যায়নি।"
+
+#: ../app/Helper/I18n.php:132, ../propovoice/app/Helper/I18n.php:132
+msgid "Note"
+msgstr "বিঃদ্রঃ"
+
+#: ../app/Helper/I18n.php:42, ../propovoice/app/Helper/I18n.php:42
+msgid "Number"
+msgstr ""
+"\n"
+"সংখ্যা"
+
+#: ../app/Helper/I18n.php:245, ../propovoice/app/Helper/I18n.php:245
+#, fuzzy
+#| msgid "or"
+msgid "On"
+msgstr ""
+"\n"
+"বা"
+
+#: ../app/Helper/I18n.php:252, ../propovoice/app/Helper/I18n.php:252
+msgid "On going"
+msgstr ""
+"\n"
+"চলছে"
+
+#: ../app/Helper/I18n.php:207, ../propovoice/app/Helper/I18n.php:207
+msgid "option"
+msgstr ""
+"\n"
+"বিকল্প"
+
+#: ../app/Helper/I18n.php:81, ../propovoice/app/Helper/I18n.php:81
+msgid "Organization"
+msgstr ""
+"\n"
+"সংগঠন"
+
+#: ../app/Helper/I18n.php:221, ../propovoice/app/Helper/I18n.php:221
+msgid "Others"
+msgstr "অন্যান্য"
+
+#: ../app/Helper/I18n.php:243, ../propovoice/app/Helper/I18n.php:243
+msgid "Others Day"
+msgstr ""
+"\n"
+"অন্যান্য দিবস"
+
+#: ../app/Helper/I18n.php:62, ../propovoice/app/Helper/I18n.php:62
+msgid "Overdue"
+msgstr "ওভারডিউ"
+
+#: ../app/Helper/I18n.php:26, ../propovoice/app/Helper/I18n.php:26
+msgid "Overview"
+msgstr "ওভারভিউ"
+
+#: ../app/Helper/I18n.php:60, ../app/Helper/I18n.php:188,
+#: ../propovoice/app/Helper/I18n.php:60, ../propovoice/app/Helper/I18n.php:188
+msgid "Paid"
+msgstr ""
+"\n"
+"পেড"
+
+#: ../app/Helper/I18n.php:232, ../propovoice/app/Helper/I18n.php:232
+msgid "Parent"
+msgstr "অভিভাবক"
+
+#: ../app/Helper/I18n.php:160, ../propovoice/app/Helper/I18n.php:160
+msgid "Pay"
+msgstr "বেতন"
+
+#: ../app/Helper/I18n.php:161, ../propovoice/app/Helper/I18n.php:161
+msgid "Payment"
+msgstr ""
+"\n"
+"পেমেন্ট"
+
+#: ../app/Helper/I18n.php:235, ../propovoice/app/Helper/I18n.php:235
+msgid "Per"
+msgstr ""
+"\n"
+"প্রতি"
+
+#: ../app/Helper/I18n.php:80, ../propovoice/app/Helper/I18n.php:80
+msgid "Person"
+msgstr ""
+"\n"
+"ব্যক্তি"
+
+#: ../app/Helper/I18n.php:144, ../propovoice/app/Helper/I18n.php:144
+msgid "Personal"
+msgstr ""
+"\n"
+"ব্যক্তিগত"
+
+#: ../app/Helper/I18n.php:184, ../propovoice/app/Helper/I18n.php:184
+msgid "Pipeline"
+msgstr ""
+"\n"
+"পাইপলাইন"
+
+#: ../app/Helper/I18n.php:265, ../propovoice/app/Helper/I18n.php:256
+msgid "Please fill up necessary information in the form."
+msgstr "ফর্মে প্রয়োজনীয় তথ্য পূরণ করুন."
+
+#: ../app/Ctrl/Api/Type/Deal.php:383,
+#: ../propovoice/app/Ctrl/Api/Type/Deal.php:383
+msgid "Please select a stage"
+msgstr "একটি পর্যায় নির্বাচন করুন"
+
+#: ../app/Ctrl/Api/Type/Project.php:307,
+#: ../propovoice/app/Ctrl/Api/Type/Project.php:307
+msgid "Please title is required"
+msgstr "অনুগ্রহ করে শিরোনাম প্রয়োজন"
+
+#: ../app/Helper/I18n.php:68, ../propovoice/app/Helper/I18n.php:68
+msgid "Position"
+msgstr ""
+"\n"
+"অবস্থান"
+
+#: ../app/Helper/I18n.php:92, ../propovoice/app/Helper/I18n.php:92
+msgid "Preview"
+msgstr "পূর্বরূপ"
+
+#: ../app/Helper/I18n.php:52, ../propovoice/app/Helper/I18n.php:52
+msgid "Print"
+msgstr ""
+"\n"
+"ছাপা"
+
+#: ../app/Helper/I18n.php:170, ../propovoice/app/Helper/I18n.php:170
+msgid "Priority"
+msgstr "অগ্রাধিকার"
+
+#: ../app/Helper/I18n.php:37, ../propovoice/app/Helper/I18n.php:37
+msgid "Probability"
+msgstr ""
+"\n"
+"সম্ভাবনা"
+
+#: ../app/Helper/I18n.php:145, ../propovoice/app/Helper/I18n.php:145
+msgid "Profile"
+msgstr ""
+"\n"
+"প্রোফাইল"
+
+#: ../app/Helper/I18n.php:16, ../app/Ctrl/Setting/Type/Dashboard.php:59,
+#: ../propovoice/app/Helper/I18n.php:16,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:59
+msgid "Project"
+msgstr "প্রকল্প"
+
+#: ../app/Helper/I18n.php:193, ../propovoice/app/Helper/I18n.php:193
+msgid "Proposal"
+msgstr "প্রস্তাব"
+
+#: ../app/Ctrl/Setting/Type/Dashboard.php:18,
+#: ../app/Ctrl/Setting/Type/Dashboard.php:19,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:18,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:19
+msgid "Propovoice"
+msgstr "প্রপোভয়েস"
+
+#: ../app/Ctrl/Template/TemplateCtrl.php:23,
+#: ../propovoice/app/Ctrl/Template/TemplateCtrl.php:23
+msgid "Propovoice Client Estimate"
+msgstr "প্রোপোভয়েস ক্লায়েন্ট অনুমা"
+
+#: ../app/Ctrl/Template/TemplateCtrl.php:22,
+#: ../propovoice/app/Ctrl/Template/TemplateCtrl.php:22
+msgid "Propovoice Client Invoice"
+msgstr ""
+"\n"
+"প্রোপোভয়েস ক্লায়েন্ট চালান"
+
+#: ../propovoice/view/template/workspace-template.php:3,
+#: ../view/template/workspace-template.php:3
+msgid "Propovoice Dashboard"
+msgstr "প্রোপোভয়েস ড্যাশবোর্ড"
+
+#: ../propovoice/view/template/estimate-template.php:3,
+#: ../view/template/estimate-template.php:3
+msgid "Propovoice Estimate"
+msgstr ""
+"\n"
+"প্রপোভয়েস অনুমান"
+
+#: ../propovoice/view/template/invoice-template.php:3,
+#: ../view/template/invoice-template.php:3
+msgid "Propovoice Invoice"
+msgstr ""
+"\n"
+"প্রপোভয়েস চালান"
+
+#: ../app/Ctrl/Setting/Type/Welcome.php:15,
+#: ../app/Ctrl/Setting/Type/Welcome.php:16,
+#: ../propovoice/app/Ctrl/Setting/Type/Welcome.php:15,
+#: ../propovoice/app/Ctrl/Setting/Type/Welcome.php:16
+msgid "Propovoice Welcome"
+msgstr "প্রপোভয়েস স্বাগতম"
+
+#: ../app/Ctrl/Widget/Elementor/ElementorCtrl.php:29,
+#: ../propovoice/app/Ctrl/Widget/Elementor/ElementorCtrl.php:29
+msgid "Propovoice Widgets"
+msgstr "প্রপোভয়েস উইজেট"
+
+#: ../app/Ctrl/Template/TemplateCtrl.php:20,
+#: ../propovoice/app/Ctrl/Template/TemplateCtrl.php:20
+msgid "Propovoice Workspace"
+msgstr "প্রোপোভয়েস ওয়ার্কস্পেস"
+
+#: ../app/Ctrl/Widget/Elementor/Widgets/Registration.php:14,
+#: ../propovoice/app/Ctrl/Widget/Elementor/Widgets/Registration.php:14
+msgid "Propovoice: Registration"
+msgstr ""
+"\n"
+"প্রপোভয়েস: নিবন্ধন"
+
+#: ../app/Helper/I18n.php:140, ../app/Helper/I18n.php:204,
+#: ../propovoice/app/Helper/I18n.php:140, ../propovoice/app/Helper/I18n.php:204
+msgid "Public"
+msgstr ""
+"\n"
+"পাবলিক"
+
+#: ../app/Helper/I18n.php:46, ../propovoice/app/Helper/I18n.php:46
+msgid "Quantity"
+msgstr ""
+"\n"
+"পরিমাণ"
+
+#: ../app/Helper/I18n.php:47, ../app/Helper/I18n.php:107,
+#: ../propovoice/app/Helper/I18n.php:47, ../propovoice/app/Helper/I18n.php:107
+msgid "Rate"
+msgstr ""
+"\n"
+"হার"
+
+#: ../app/Helper/I18n.php:228, ../propovoice/app/Helper/I18n.php:228
+msgid "Receipt"
+msgstr ""
+"\n"
+"প্রাপ্তি"
+
+#: ../app/Helper/I18n.php:44, ../propovoice/app/Helper/I18n.php:44
+msgid "Receiver"
+msgstr "রিসিভার"
+
+#: ../app/Ctrl/Api/Type/Invoice.php:414, ../app/Ctrl/Api/Type/Invoice.php:536,
+#: ../propovoice/app/Ctrl/Api/Type/Invoice.php:414,
+#: ../propovoice/app/Ctrl/Api/Type/Invoice.php:536
+msgid "Receiver is missing"
+msgstr ""
+"\n"
+"রিসিভার অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:65, ../propovoice/app/Helper/I18n.php:65
+msgid "Recurring"
+msgstr ""
+"\n"
+"পুনরাবৃত্ত"
+
+#: ../app/Helper/I18n.php:88, ../propovoice/app/Helper/I18n.php:88
+msgid "Region"
+msgstr "অঞ্চল"
+
+#: ../app/Helper/I18n.php:63, ../propovoice/app/Helper/I18n.php:63
+msgid "Reminder"
+msgstr "অনুস্মারক"
+
+#: ../app/Helper/I18n.php:110, ../propovoice/app/Helper/I18n.php:110
+msgid "Request"
+msgstr ""
+"\n"
+"অনুরোধ"
+
+#: ../app/Ctrl/Api/Type/Action.php:94, ../app/Ctrl/Api/Type/Action.php:157,
+#: ../propovoice/app/Ctrl/Api/Type/Action.php:94,
+#: ../propovoice/app/Ctrl/Api/Type/Action.php:157
+msgid "Required field is missing"
+msgstr ""
+"\n"
+"প্রয়োজনীয় ক্ষেত্র অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:153, ../propovoice/app/Helper/I18n.php:153
+msgid "Save"
+msgstr ""
+"\n"
+"সংরক্ষণ"
+
+#: ../app/Helper/I18n.php:103, ../propovoice/app/Helper/I18n.php:103
+msgid "Search"
+msgstr ""
+"\n"
+"অনুসন্ধান করুন"
+
+#: ../app/Helper/I18n.php:141, ../propovoice/app/Helper/I18n.php:141
+msgid "Secret"
+msgstr ""
+"\n"
+"গোপন"
+
+#: ../app/Helper/I18n.php:147, ../propovoice/app/Helper/I18n.php:147
+msgid "Section"
+msgstr ""
+"\n"
+"অধ্যায়"
+
+#: ../app/Helper/I18n.php:104, ../propovoice/app/Helper/I18n.php:104
+msgid "Select"
+msgstr "নির্বাচন করুন"
+
+#: ../app/Helper/I18n.php:54, ../propovoice/app/Helper/I18n.php:54
+msgid "Send"
+msgstr "পাঠান"
+
+#: ../app/Helper/I18n.php:255, ../propovoice/app/Helper/I18n.php:255
+msgid "Send me a copy"
+msgstr ""
+"\n"
+"আমাকে একটি কপি পাঠান"
+
+#: ../app/Helper/I18n.php:43, ../propovoice/app/Helper/I18n.php:43
+msgid "Sender"
+msgstr "প্রেরক"
+
+#: ../app/Helper/I18n.php:55, ../propovoice/app/Helper/I18n.php:55
+msgid "Sent"
+msgstr ""
+"\n"
+"পাঠানো হয়েছে"
+
+#: ../app/Helper/I18n.php:157, ../app/Ctrl/Setting/Type/Dashboard.php:87,
+#: ../app/Ctrl/Setting/Type/Dashboard.php:88,
+#: ../propovoice/app/Helper/I18n.php:157,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:87,
+#: ../propovoice/app/Ctrl/Setting/Type/Dashboard.php:88
+msgid "Settings"
+msgstr ""
+"\n"
+"সেটিংস"
+
+#: ../app/Helper/I18n.php:53, ../propovoice/app/Helper/I18n.php:53
+msgid "Share"
+msgstr ""
+"\n"
+"শেয়ার করুন"
+
+#: ../app/Helper/I18n.php:101, ../propovoice/app/Helper/I18n.php:101
+msgid "Show"
+msgstr "দেখান"
+
+#: ../app/Helper/I18n.php:72, ../propovoice/app/Helper/I18n.php:72
+msgid "Signature"
+msgstr ""
+"\n"
+"স্বাক্ষর"
+
+#: ../app/Helper/I18n.php:223, ../propovoice/app/Helper/I18n.php:223
+msgid "Skip"
+msgstr "এড়িয়ে যান"
+
+#: ../app/Helper/I18n.php:163, ../propovoice/app/Helper/I18n.php:163
+msgid "Social"
+msgstr ""
+"\n"
+"সামাজিক"
+
+#: ../app/Model/Org.php:88, ../app/Model/Org.php:172,
+#: ../app/Model/Person.php:85, ../app/Model/Person.php:163,
+#: ../propovoice/app/Model/Org.php:88, ../propovoice/app/Model/Org.php:172,
+#: ../propovoice/app/Model/Person.php:85,
+#: ../propovoice/app/Model/Person.php:163
+msgid "Something wrong!"
+msgstr "কিছু ভুল!"
+
+#: ../app/Helper/I18n.php:177, ../propovoice/app/Helper/I18n.php:177
+msgid "Sorry for the decline"
+msgstr ""
+"\n"
+"অধঃপতনের জন্য দুঃখিত"
+
+#: ../propovoice/view/template/partial/403.php:24,
+#: ../view/template/partial/403.php:24
+msgid "Sorry!! You don't have permission to view this page"
+msgstr "দুঃখিত!! আপনার এই পৃষ্ঠাটি দেখার অনুমতি নেই৷"
+
+#: ../app/Helper/I18n.php:32, ../propovoice/app/Helper/I18n.php:32
+msgid "Source"
+msgstr ""
+"\n"
+"সূত্র"
+
+#: ../app/Helper/I18n.php:34, ../propovoice/app/Helper/I18n.php:34
+msgid "Stage"
+msgstr "মঞ্চ"
+
+#: ../app/Helper/I18n.php:134, ../propovoice/app/Helper/I18n.php:134
+msgid "Start"
+msgstr ""
+"\n"
+"শুরু করুন"
+
+#: ../app/Helper/I18n.php:98, ../propovoice/app/Helper/I18n.php:98
+msgid "Status"
+msgstr ""
+"\n"
+"স্ট্যাটাস"
+
+#: ../app/Helper/I18n.php:203, ../propovoice/app/Helper/I18n.php:203
+msgid "Stripe"
+msgstr ""
+"\n"
+"Stripe"
+
+#: ../app/Helper/I18n.php:73, ../propovoice/app/Helper/I18n.php:73
+msgid "Style"
+msgstr ""
+"\n"
+"ধরণ"
+
+#: ../app/Helper/I18n.php:136, ../propovoice/app/Helper/I18n.php:136
+msgid "Subject"
+msgstr ""
+"\n"
+"বিষয়"
+
+#: ../app/Helper/I18n.php:192, ../propovoice/app/Helper/I18n.php:192
+msgid "Submit"
+msgstr ""
+"\n"
+"জমা দিন"
+
+#: ../app/Helper/I18n.php:50, ../app/Helper/I18n.php:230,
+#: ../propovoice/app/Helper/I18n.php:50, ../propovoice/app/Helper/I18n.php:230
+msgid "Subtotal"
+msgstr ""
+"\n"
+"সাবটোটাল"
+
+#: ../app/Helper/I18n.php:191, ../propovoice/app/Helper/I18n.php:191
+msgid "successful"
+msgstr ""
+"\n"
+"সফল"
+
+#: ../app/Helper/I18n.php:21, ../propovoice/app/Helper/I18n.php:21
+msgid "Successfully Added"
+msgstr "সফলভাবে যোগ করা হয়েছে"
+
+#: ../app/Helper/I18n.php:23, ../propovoice/app/Helper/I18n.php:23
+msgid "Successfully Deleted"
+msgstr "সফলভাবে মুছে ফেলা হয়েছে"
+
+#: ../app/Helper/I18n.php:22, ../propovoice/app/Helper/I18n.php:22
+msgid "Successfully Updated"
+msgstr "সফলভাবে আপডেট"
+
+#: ../app/Ctrl/Api/Type/File.php:181, ../app/Ctrl/Api/Type/Note.php:151,
+#: ../propovoice/app/Ctrl/Api/Type/File.php:181,
+#: ../propovoice/app/Ctrl/Api/Type/Note.php:151
+msgid "Tab ID is missing"
+msgstr "ট্যাব আইডি অনুপস্থিত"
+
+#: ../app/Ctrl/Api/Type/Setting.php:31, ../app/Ctrl/Api/Type/Setting.php:212,
+#: ../propovoice/app/Ctrl/Api/Type/Setting.php:31,
+#: ../propovoice/app/Ctrl/Api/Type/Setting.php:212
+msgid "Tab is missing"
+msgstr ""
+"\n"
+"ট্যাব অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:127, ../propovoice/app/Helper/I18n.php:127
+msgid "Tag"
+msgstr "ট্যাগ"
+
+#: ../app/Helper/I18n.php:17, ../propovoice/app/Helper/I18n.php:17
+msgid "Task"
+msgstr ""
+"\n"
+"করণীয় কাজ"
+
+#: ../app/Helper/I18n.php:18, ../propovoice/app/Helper/I18n.php:18
+msgid "Task & Activity"
+msgstr ""
+"\n"
+"টাস্ক এবং কার্যকলাপ"
+
+#: ../app/Helper/I18n.php:237, ../propovoice/app/Helper/I18n.php:237
+msgid "Tax"
+msgstr ""
+"\n"
+"ট্যাক্স"
+
+#: ../app/Ctrl/Api/Type/Taxonomy.php:81, ../app/Ctrl/Api/Type/Taxonomy.php:242,
+#: ../app/Ctrl/Api/Type/Taxonomy.php:299,
+#: ../propovoice/app/Ctrl/Api/Type/Taxonomy.php:81,
+#: ../propovoice/app/Ctrl/Api/Type/Taxonomy.php:242,
+#: ../propovoice/app/Ctrl/Api/Type/Taxonomy.php:299
+msgid "Taxonomy is missing"
+msgstr ""
+"\n"
+"শ্রেণীবিন্যাস অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:40, ../propovoice/app/Helper/I18n.php:40
+msgid "Template"
+msgstr "টেমপ্লেট"
+
+#: ../app/Helper/I18n.php:117, ../app/Helper/I18n.php:129,
+#: ../propovoice/app/Helper/I18n.php:117, ../propovoice/app/Helper/I18n.php:129
+msgid "Text"
+msgstr ""
+"\n"
+"পাঠ্য"
+
+#: ../app/Helper/I18n.php:176, ../propovoice/app/Helper/I18n.php:176
+msgid "Thanks for accepting"
+msgstr ""
+"\n"
+"গ্রহন করার জন্য ধন্যবাদ"
+
+#: ../app/Helper/I18n.php:179, ../propovoice/app/Helper/I18n.php:179
+msgid "Thanks, We have received the payment"
+msgstr "ধন্যবাদ, আমরা পেমেন্ট পেয়েছি"
+
+#: ../app/Helper/I18n.php:248, ../propovoice/app/Helper/I18n.php:248
+msgid ""
+"This is pro features, To use this features you need to upgrade with Pro "
+"plugin"
+msgstr ""
+"এটি প্রো বৈশিষ্ট্য, এই বৈশিষ্ট্যগুলি ব্যবহার করতে আপনাকে প্রো প্লাগইন দিয়ে "
+"আপগ্রেড করতে হবে৷"
+
+#: ../app/Helper/I18n.php:257
+msgid "Times"
+msgstr ""
+"\n"
+"বার"
+
+#: ../app/Helper/I18n.php:133, ../propovoice/app/Helper/I18n.php:133
+msgid "Title"
+msgstr "শিরোনাম"
+
+#: ../app/Ctrl/Api/Type/Task.php:293,
+#: ../propovoice/app/Ctrl/Api/Type/Task.php:293
+msgid "Title field is missing"
+msgstr "শিরোনাম ক্ষেত্র অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:233, ../propovoice/app/Helper/I18n.php:233
+msgid "To"
+msgstr "প্রতি"
+
+#: ../app/Helper/I18n.php:242, ../propovoice/app/Helper/I18n.php:242
+msgid "Today"
+msgstr ""
+"\n"
+"আজ"
+
+#: ../app/Helper/I18n.php:91, ../propovoice/app/Helper/I18n.php:91
+msgid "Total"
+msgstr "মোট"
+
+#: ../app/Helper/I18n.php:29, ../propovoice/app/Helper/I18n.php:29
+msgid "Tracking"
+msgstr ""
+"\n"
+"ট্র্যাকিং"
+
+#: ../app/Helper/I18n.php:202, ../propovoice/app/Helper/I18n.php:202
+msgid "Transaction"
+msgstr ""
+"\n"
+"লেনদেন"
+
+#: ../app/Helper/I18n.php:247, ../propovoice/app/Helper/I18n.php:247
+msgid "Try Propovoice Pro!"
+msgstr ""
+"\n"
+"প্রোপোভয়েস প্রো ব্যবহার করে দেখুন!"
+
+#: ../app/Helper/I18n.php:105, ../propovoice/app/Helper/I18n.php:105
+msgid "Type"
+msgstr ""
+"\n"
+"টাইপ"
+
+#: ../app/Ctrl/Api/Type/File.php:185,
+#: ../propovoice/app/Ctrl/Api/Type/File.php:185
+msgid "Type is missing"
+msgstr "টাইপ অনুপস্থিত"
+
+#: ../app/Helper/I18n.php:61, ../propovoice/app/Helper/I18n.php:61
+msgid "Unpaid"
+msgstr ""
+"\n"
+"অবৈতনিক"
+
+#: ../app/Helper/I18n.php:214, ../propovoice/app/Helper/I18n.php:214
+msgid "Unschedule"
+msgstr "অনির্ধারিত"
+
+#: ../app/Helper/I18n.php:122, ../propovoice/app/Helper/I18n.php:122
+msgid "Update"
+msgstr ""
+"\n"
+"হালনাগাদ"
+
+#: ../app/Helper/I18n.php:246, ../propovoice/app/Helper/I18n.php:246
+msgid "Upgrade to Pro"
+msgstr "প্রো তে উন্নত করা"
+
+#: ../app/Helper/I18n.php:208, ../propovoice/app/Helper/I18n.php:208
+msgid "Upload"
+msgstr ""
+"\n"
+"আপলোড করুন"
+
+#: ../app/Helper/I18n.php:169, ../propovoice/app/Helper/I18n.php:169
+msgid "Valid"
+msgstr ""
+"\n"
+"বৈধ"
+
+#: ../app/Helper/I18n.php:164, ../propovoice/app/Helper/I18n.php:164
+msgid "Variable"
+msgstr ""
+"\n"
+"পরিবর্তনশীল"
+
+#: ../app/Helper/I18n.php:56, ../propovoice/app/Helper/I18n.php:56
+msgid "Viewed"
+msgstr "দেখা হয়েছে"
+
+#: ../propovoice/view/template/partial/404.php:40,
+#: ../view/template/partial/404.php:40
+msgid "We Con't find this page you're looking for"
+msgstr "আপনি যে পৃষ্ঠাটি খুঁজছেন তা আমরা খুঁজে পাচ্ছি না"
+
+#: ../app/Helper/I18n.php:85, ../propovoice/app/Helper/I18n.php:85
+msgid "Website"
+msgstr ""
+"\n"
+"ওয়েবসাইট"
+
+#: ../app/Helper/I18n.php:259
+msgid "Weekly"
+msgstr ""
+"\n"
+"সাপ্তাহিক"
+
+#: ../app/Helper/I18n.php:231, ../propovoice/app/Helper/I18n.php:231
+msgid "With"
+msgstr ""
+"\n"
+"সঙ্গে"
+
+#: ../app/Helper/I18n.php:35, ../propovoice/app/Helper/I18n.php:35
+msgid "Won"
+msgstr "জিতেছে"
+
+#: ../app/Helper/I18n.php:264
+msgid "Year"
+msgstr ""
+"\n"
+"বছর"
+
+#. translators: %s: Added, Created text, %s: Module Name
+#: ../app/Helper/I18n.php:276, ../propovoice/app/Helper/I18n.php:267
+msgid "You have not %s any %s yet."
+msgstr "আপনি এখনও %s কোন %s নেই."
+
+#: ../app/Helper/I18n.php:180, ../propovoice/app/Helper/I18n.php:180
+msgid ""
+"You have submited your payment information. it will take a while to approve "
+"the payment"
+msgstr ""
+"\n"
+"আপনি আপনার পেমেন্ট তথ্য জমা দিয়েছেন. পেমেন্ট অনুমোদন করতে একটু সময় লাগবে"
+
+#: ../app/Helper/I18n.php:178, ../propovoice/app/Helper/I18n.php:178
+msgid "You haven't pay yet"
+msgstr ""
+"\n"
+"আপনি এখনও অর্থ প্রদান করেননি"
+
+#: ../app/Helper/I18n.php:266, ../propovoice/app/Helper/I18n.php:257
+msgid "You need to mention bank details here, Like: Name, Routing No. etc"
+msgstr ""
+"আপনাকে এখানে ব্যাঙ্কের বিবরণ উল্লেখ করতে হবে, যেমন: নাম, রাউটিং নম্বর ইত্যাদি"
+
+#: ../app/Helper/I18n.php:86, ../propovoice/app/Helper/I18n.php:86
+#, fuzzy
+#| msgid "Zip Code"
+msgid "ZIP Code"
+msgstr ""
+"\n"
+"জিপ কোড"

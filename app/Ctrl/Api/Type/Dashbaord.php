@@ -1,12 +1,11 @@
-<?php
+<?php 
+namespace Ndpv\Ctrl\Api\Type;
 
-namespace Ndpi\Ctrl\Api\Type;
-
-use Ndpi\Helper\Fns;
-use Ndpi\Model\Client;
-use Ndpi\Model\Deal;
-use Ndpi\Model\Lead;
-use Ndpi\Model\Project; 
+use Ndpv\Helper\Fns;
+use Ndpv\Model\Client;
+use Ndpv\Model\Deal;
+use Ndpv\Model\Lead;
+use Ndpv\Model\Project; 
 
 class Dashbaord
 {
@@ -15,12 +14,12 @@ class Dashbaord
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'create_rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
-    public function create_rest_routes()
+    public function rest_routes()
     {
-        register_rest_route('ndpi/v1', '/dashboard', [
+        register_rest_route('ndpv/v1', '/dashboard', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
@@ -72,7 +71,7 @@ class Dashbaord
         $summary['total_project'] = $project->total();
 
         $args = array(
-            'post_type' => 'ncpi_estvoice',
+            'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
@@ -135,7 +134,7 @@ class Dashbaord
 
             $items = [];
             $args = array(
-                'post_type' => 'ndpi_deal',
+                'post_type' => 'ndpv_deal',
                 'post_status' => 'publish',
                 'orderby' => 'menu_order',
                 'order' => 'ASC',
@@ -149,7 +148,7 @@ class Dashbaord
 
             $args['tax_query'] = array(
                 array(
-                    'taxonomy' => 'ndpi_deal_stage',
+                    'taxonomy' => 'ndpv_deal_stage',
                     'terms' => $stage_id,
                     'field' => 'term_id',
                 )
@@ -200,13 +199,13 @@ class Dashbaord
         for ($i = 0; $i < 12; $i++) {
             $data[] = [
                 'name' => $this->months[$i + 1],
-                'Won' => 0,
-                'Lost' => 0,
+                'won' => 0,
+                'lost' => 0,
             ];
         }
 
         $args = array(
-            'post_type' => 'ndpi_deal',
+            'post_type' => 'ndpv_deal',
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
@@ -216,16 +215,16 @@ class Dashbaord
             $id = get_the_ID();
 
             $query_data['stage_id'] = '';
-            $stage = get_the_terms($id, 'ndpi_deal_stage');
+            $stage = get_the_terms($id, 'ndpv_deal_stage');
             if ($stage) {
                 $month_num = ((int) get_the_time('m')) - 1;
                 $type = get_term_meta($stage[0]->term_id, 'type', true);
                 if ($type == 'won') {
-                    $data[$month_num]['Won']++;
+                    $data[$month_num]['won']++;
                 }
 
                 if ($type == 'lost') {
-                    $data[$month_num]['Lost']++;
+                    $data[$month_num]['lost']++;
                 }
             }
         }
@@ -257,7 +256,7 @@ class Dashbaord
             $tax_name = $tax->name;
 
             $args = array(
-                'post_type' => 'ndpi_lead',
+                'post_type' => 'ndpv_lead',
                 'post_status' => 'publish',
                 'orderby' => 'menu_order',
                 'order' => 'ASC',
@@ -269,7 +268,7 @@ class Dashbaord
             );
             $args['tax_query'] = array(
                 array(
-                    'taxonomy' => 'ndpi_' . $params['section'],
+                    'taxonomy' => 'ndpv_' . $params['section'],
                     'terms' => $tax_id,
                     'field' => 'term_id',
                 )
@@ -307,24 +306,24 @@ class Dashbaord
             if ($type == 'estimate') {
                 $data[$i] = [
                     'name' => $this->months[$i + 1],
-                    'Sent' => 0,
-                    'Viewed' => 0,
-                    'Accepted' => 0,
-                    'Declined' => 0,
+                    'sent' => 0,
+                    'viewed' => 0,
+                    'accepted' => 0,
+                    'declined' => 0,
                 ];
             } else if ($type == 'invoice') {
                 $data[$i] = [
                     'name' => $this->months[$i + 1],
-                    'Sent' => 0,
-                    'Viewed' => 0,
-                    'Paid' => 0,
-                    'Overdue' => 0,
+                    'sent' => 0,
+                    'viewed' => 0,
+                    'paid' => 0,
+                    'overdue' => 0,
                 ];
             }
         }
 
         $args = array(
-            'post_type' => 'ncpi_estvoice',
+            'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
@@ -339,15 +338,15 @@ class Dashbaord
             $month_num = ((int) get_the_time('m')) - 1;
             if ($type == 'estimate' && $path == 'estimate') {
                 if ($status == 'accept') {
-                    $data[$month_num]['Accepted']++;
+                    $data[$month_num]['accepted']++;
                 }
 
                 if ($status == 'decline') {
-                    $data[$month_num]['Declined']++;
+                    $data[$month_num]['declined']++;
                 }
             } else if ($type == 'invoice' && $path == 'invoice') {
                 if ($status == 'paid') {
-                    $data[$month_num]['Paid']++;
+                    $data[$month_num]['paid']++;
                 }
             }
         }

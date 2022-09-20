@@ -1,10 +1,10 @@
-=== Propovoice CRM - Client, Estimate, Invoice automation ===
+=== Propovoice CRM - Lead, Estimate, Invoice, Billing, Client, Project Automation ===
 Contributors: propovoice, therakib7
 Donate link:
-Tags: proposal, estimate, invoice, payment, crm, project, client, template, transaction, billing, automation, management
+Tags: proposal, estimate, invoice, payment, crm, project, client, lead, transaction, billing, automation, management
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 0.5.0
+Stable tag: 1.0.1.4
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -13,13 +13,51 @@ It's simple to create estimates and invoices and manage clients for WordPress wi
 
 == Description ==
 
-👉 [Documentation](https://propovoice.com/docs) 👈
+🚀 <a href="https://propovoice.com">Official Website</a> | 📚 <a href="https://propovoice.com/docs">Documentation</a> | 🚀 <a href="https://www.facebook.com/groups/837677640524915">Community</a> | 🏆 <a href="https://propovoice.com/pricing/">Get Pro</a>
 
-Propovoice CRM is a client relationship management solution for small, mid-level service agencies and freelancers. It will help you manage your key business process - nurturing clients, creating project quotation/estimation, and invoice on a single self-hosted web platform. Propovoice's vision is to make a complete and easier solution that will facilitate managing service agency leads, selling, billing, accounting, and managing projects.
+Propovoice CRM is a client relationship management solution for small to mid-level service agencies and freelancers in WordPress. It will help you manage your business process – managing leads & clients, creating project estimations and invoices on a single self-hosted web platform. 
+
+== 🏆 Live Demo Access ==
+> URL: [Demo](https://demo.propovoice.com/wp-login.php?redirect_to=https://demo.propovoice.com/wp-admin/admin.php?page=ndpv&reauth=1)
+> Username: demo || Password: demo
+
+All the important features that you need to manage your service business are free in Propovoice. Its intuitive design makes it easy to use. 
+
+To let you get more clients, manage them well, grow their satisfaction, prepare billing documents in a professional way, and get paid more and on time is the ultimate goal of Propovoice. 
+
+== Who is Propovoice for: ==
+* **Freelancers**
+* **Service Agencies**
+* **Service Sellers**
+* **Individual Contractors**
+
+== Benefits: ==
+Your self-hosted CRM automates your service business and other key benefits 
+ 
+* No Random Work, All Organized
+* Less Missed, More Gained
+* Less Chaos, More time
+* Less Worry, More Joy
+* Self-hosted means fully yours
+* Focused on service selling automation
+* Free version
+
+== Core Module: ==
+Propovoice comes with the following powerful core modules-
+ 
+* **Leads Management**
+* **Deals Management**
+* **Estimate Builder**
+* **Invoice Builder**
+* **Clients Management**
+* **Projects Management**
+* **Contacts Management**
+* **Business Setup**
+* **Settings**
 
 == The features: ==
 == 🏆 Business Profile ==
-You can easily create a business profile with the basic information and branding asset of your business. With P[ropovoice, managing service selling and billing of your business are simple and seamless. 
+You can easily create a business profile with the basic information and branding asset of your business. With Propovoice, managing service selling and billing of your business are simple and seamless. 
 
 == 🏆 Add Clients ==
 You can add a client to send him project estimates and invoices. You can input your client's contact information ( name, email, phone number, region, address, etc) while adding a client so that you can communicate with your clients easily whenever needed. It’s the first step of a long journey to build a good relationship with your clients.
@@ -52,6 +90,9 @@ You can easily send invoices and systems to your clients. Emails will be sent to
 == 🏆 Client Response == 
 Your client can open the invoice and estimate from the mail or the shared link and response. It doesn’t need to create an account for your client to do it. It will allow your client to accept and decline the estimate or quote. He can add a note when he accepts or declines the estimate. He can pay and provide payment information and add the necessary attachments and notes. 
 
+== 🏆 Project Management == 
+Project management becomes easier with the following features 
+
 == 🏆 Print and Download == 
 It’s simple to print and download estimates and invoices. They will be printed on A4 size paper. You can generate their PDF files without any hassle or distortion. 
 
@@ -66,11 +107,34 @@ There is an extendable table for managing listed clients, created invoices easil
 You can provide the information of your Bank and multiple Money Transfer Platforms for the billing of your business. You can add multiple acceptable payment information from the setting. And you can add a flexible one while creating an invoice.
 
 == 🏆 Settings == 
-Here you can change and update any information in Setting. It will allow you to make Propovoice more personalized to you. 
-
+Settings make Propovoice your won CRM with personalized preferences 
 
 We have a long vision to make the service selling process easier. If you are looking for a WordPress-based Best CRM, Invoicing Solution, download PropVoice right now and simplify your selling and billing process.
-  
+
+### Propovoice Pro Features
+
+The super fantastic pro features that accelerate your business growth and improve your business’s financial health are  
+
+* **Frontend View (Powerful dashboard)**
+* **Deal Pipeline**  
+* **Direct Send Email Estimate and Invoice**
+* **Estimate Reminder**
+* **Invoice Reminder**
+* **Invoice Recurring**
+* **Duplicate Estimate, Invoice**
+* **Copy To Invoice**
+* **Tax and State Tax**
+* **Payment Getway**
+* **Task & Activity Module**
+* **Task & Activity Checklist**
+* **Paypal**
+* **Stripe**
+* **Custom SMTP**
+* **Contact Form 7**
+* **WP Forms**
+* **Gravity Forms**
+* **Ninja Forms**
+* **Fluent Forms**
 
 == Installation ==
 
@@ -94,15 +158,47 @@ We have a long vision to make the service selling process easier. If you are loo
 
 * Please mail us at `support@propovoice.com` 
 
+== Screenshots ==
+
+1. Dashboard
+2. Lead
+3. Lead Managing
+4. Select Template
+5. Invoice Estimate Builder
+6. Preview
+7. Settings
+
 == Changelog == 
 
-= 0.5.0 =
-* Added: Lead manamentment
-* Added: Deal manamentment
-* Added: Project manamentment
-* Added: Client manamentment
-* Added: Task manamentment 
-* Added: Contact manamentment 
+= 1.0.1.4 = 
+* Fixed: Functional Issues
+* Added: Quantity type in pro vesion
+* Added: Dynamic date setting
+* Update: Translation
+* Update: CSS Issue
+
+= 1.0.1.3 =
+* Added: Invoice ltem Lebel edit option
+* Update: Localization
+* Fixed: Bank Payment Info
+
+= 1.0.1.2 =
+* Fixed: Invoice template layout css
+* Update: Optimize code
+
+= 1.0.1.1 =
+* Fixed: Dynamic color in print and download
+* Fixed: CSS Issue
+
+= 1.0.0 =
+* Added: Lead management
+* Added: Deal management
+* Added: Project management
+* Update: Estimate management
+* Update: Invoice management
+* Added: Client management
+* Added: Task management 
+* Added: Contact management 
 
 = 0.1.6 =
 * Fixed: Email body content issues

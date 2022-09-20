@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import { useNavigate } from 'react-router-dom';
 
 const TableHeader = props => {
-    const i18n = ndpi.i18n;
+    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
@@ -16,7 +16,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    {i18n.contact} {i18n.name}
+                    {i18n.ct} {i18n.name}
                 </th>
                 <th>
                     <Email />
@@ -53,7 +53,7 @@ const TableBody = props => {
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
         const level = row.level_id;
 
-        let img = ndpi.assetImgUri + 'avatar.png';
+        let img = ndpv.assetImgUri + 'avatar.png';
         if (row.person && row.person.img) {
             img = row.person.img.src;
         } else if (row.org && row.org.img) {
@@ -69,46 +69,48 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>
-                    <div className="pi-avater">
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
+                    <div className="pv-avater">
                         <img src={img} alt="avatar" />
                         <span>{(row.person) ? row.person.first_name : row.org.name}</span>
                     </div>
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
                 <td>
-                    {(level.color && level.bg_color) && <span className="pi-badge"
-                        style={{
-                            backgroundColor: level.bg_color,
-                            color: level.color
-                        }}
-                    >
-                        <svg
-                            width={6}
-                            height={6}
-                            viewBox="0 0 6 6"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                    {level && <>
+                        {(level.color && level.bg_color) && <span className="pv-badge"
+                            style={{
+                                backgroundColor: level.bg_color,
+                                color: level.color
+                            }}
                         >
-                            <circle cx={3} cy={3} r={3} fill={level.color} />
-                        </svg>
-                        {level.label}
-                    </span>}
+                            <svg
+                                width={6}
+                                height={6}
+                                viewBox="0 0 6 6"
+                                fill="none"
+                                
+                            >
+                                <circle cx={3} cy={3} r={3} fill={level.color} />
+                            </svg>
+                            {level.label}
+                        </span>}
 
-                    {(!level.color || !level.bg_color) && <span className="pi-badge">
-                        {level.label}
-                    </span>}
+                        {(!level.color || !level.bg_color) && <span className="pv-badge">
+                            {level.label}
+                        </span>}
+                    </>}
 
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
                     {row.tags && row.tags.map((tag, tagIndex) => {
                         return (
-                            <span key={tagIndex} className="pi-badge pi-mr-5">{tag.label}</span>
+                            <span key={tagIndex} className="pv-badge pv-mr-5">{tag.label}</span>
                         )
                     })}
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pi-cursor-pointer'><Moment format="YYYY-MM-DD">{row.date}</Moment></td>
-                <td className="pi-action">
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.date}</td>
+                <td className="pv-action">
                     <Action
                         row={row}
                         handleOverview={handleOverview}
@@ -127,8 +129,8 @@ const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
-            {tableData.length > 0 && <div className='pi-table-wrap'>
-                <table className='pi-table'>
+            {tableData.length > 0 && <div className='pv-table-wrap'>
+                <table className='pv-table'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
                 </table>
