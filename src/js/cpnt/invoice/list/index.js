@@ -21,11 +21,12 @@ import Search from './Search';
 import Empty from 'block/empty';
 import pro from 'block/pro-alert';
 
-const Invoice = class Invoice extends Component {
+class Invoice extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            prefix: '',
             title: '',
             path: '',
             empty: false,
@@ -92,10 +93,11 @@ const Invoice = class Invoice extends Component {
 
         Api.getAll(params)
             .then(resp => {
+                let prefix = resp.data.data.prefix;
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ invoices: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
+                this.setState({ prefix, invoices: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
             })
     };
 
@@ -252,7 +254,7 @@ const Invoice = class Invoice extends Component {
     }
 
     render() {
-        const { title, invoices, checkedBoxes, searchVal } = this.state;
+        const { prefix, title, invoices, checkedBoxes, searchVal } = this.state;
         const { total, paid, unpaid, draft, sent } = this.state.summary;
         return (
             <div className="ndpv-cpnt">
@@ -374,7 +376,7 @@ const Invoice = class Invoice extends Component {
 
                 {this.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => this.newInvoie()} />}
 
-                {this.state.preloader ? <Preloader /> : <Table reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} action={this.handleAction} />}
+                {this.state.preloader ? <Preloader /> : <Table prefix={prefix} reload={this.getLists} tableData={invoices} checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }} deleteEntry={this.deleteEntry} invoice_id={this.props.invoice_id} path={this.state.path} action={this.handleAction} />}
 
                 {this.state.totalPage > 1 && <Pagination forcePage={this.state.currentPage - 1} pageCount={this.state.totalPage} onPageChange={this.handlePageClick} />}
             </div>

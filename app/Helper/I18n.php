@@ -100,7 +100,7 @@ class I18n
             'total' => esc_html__('Total', 'propovoice'),
             'prv' => esc_html__('Preview', 'propovoice'), 
             //invoice
-            'dill' => esc_html__('Bill To', 'propovoice'),
+            'bill' => esc_html__('Bill', 'propovoice'),
             'info' => esc_html__('Info', 'propovoice'),
             'no' => esc_html__('No', 'propovoice'),
             //table
@@ -164,6 +164,7 @@ class I18n
             //settings
             'cmn' => esc_html__('Common', 'propovoice'),
             'settings' => esc_html__('Settings', 'propovoice'),
+            'pre' => esc_html__('Prefix', 'propovoice'),
             'gen' => esc_html__('General', 'propovoice'),
             'biz' => esc_html__('Business', 'propovoice'),
             'pay' => esc_html__('Pay', 'propovoice'),

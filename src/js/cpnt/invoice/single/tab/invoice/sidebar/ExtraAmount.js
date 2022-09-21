@@ -105,13 +105,15 @@ export default (props) => {
                         } else {
                             fixed_val_type = true;
                         }
+
+                        tax_cal = item.hasOwnProperty('tax_cal') ? item.tax_cal : '';
+                        fee_cal = item.hasOwnProperty('fee_cal') ? item.fee_cal : '';
                     }
 
-                    let tax_field = true;
-
+                    let tax_field = true; 
                     if ( ( item.extra_amount_type == 'tax' || item.type == 'tax') && !props.item_tax ) {
                         tax_field = false
-                    }  
+                    }   
                     return (
                         <div className="pv-tab" key={i}>
                             <input checked={hasItem ? true : false} onChange={() => setAddi(i, item, 'field')} type="checkbox" id={'addi-field-' + i} name="addi-field" />

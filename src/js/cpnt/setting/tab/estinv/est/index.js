@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import WithApi from 'hoc/Api'; 
-import Reminder from 'block/field/reminder'; 
+import Reminder from 'block/field/reminder';
+import General from './sub/General'; 
 import Template from './sub/Template';
 
-class General extends Component {
+class Main extends Component {
 	constructor(props) {
 		super(props);
 		const i18n = ndpv.i18n;
 		this.state = {
 			tabs: [
+				{
+					id: 'general',
+					text: ndpv.i18n.gen
+				},
 				{
 					id: 'reminder',
 					text: i18n.rem
@@ -23,7 +28,7 @@ class General extends Component {
 	} 
 
 	componentDidMount() {
-		this.setState({ currentTab: 'reminder' });
+		this.setState({ currentTab: 'general' });
 	}
 
 	setActiveTab(id) { 
@@ -45,7 +50,8 @@ class General extends Component {
 						</li>
 					))}
 				</ul>
-		
+
+				{currentTab == 'general' && <General />} 
 				{currentTab == 'reminder' && <Reminder {...this.props} path={'estimate'} />}  
 				{currentTab == 'template' && <Template {...this.props} />}
 			</>
@@ -53,4 +59,4 @@ class General extends Component {
 	}
 } 
 
-export default WithApi(General); 
+export default WithApi(Main); 

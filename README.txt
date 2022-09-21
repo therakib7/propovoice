@@ -4,7 +4,7 @@ Donate link:
 Tags: proposal, estimate, invoice, payment, crm, project, client, lead, transaction, billing, automation, management
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 1.0.1.4
+Stable tag: 1.0.1.5
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -169,6 +169,16 @@ The super fantastic pro features that accelerate your business growth and improv
 7. Settings
 
 == Changelog == 
+
+= 1.0.1.5 = 
+* Fixed: Contact edit
+* Fixed: Currency Showing
+* Fixed: Organization showing on invioce preview
+* Fixed: Contact suggestion auto hide.
+* Fixed: Action Scrolling 
+* Fixed: Functional Issues
+* Update: Translation
+* Update: CSS Issue
 
 = 1.0.1.4 = 
 * Fixed: Functional Issues

@@ -22,6 +22,7 @@ mix.webpackConfig({
             //adding react and react-dom may not be necessary for you but it did fix some issues in my setup.
             //'react' : path.resolve('node_modules'),
             //'react-dom' : path.resolve('node_modules-dom'), 
+            'helper': path.resolve('src/js/helper'),
             'api': path.resolve('src/js/api'),
             'block': path.resolve('src/js/block'),
             'hoc': path.resolve('src/js/hoc'),

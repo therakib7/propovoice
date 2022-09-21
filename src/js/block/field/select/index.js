@@ -18,12 +18,35 @@ export default (props) => {
 		}
 	}, []);
 
+	const escapeRegExp = (str) => {
+		// or better use 'escape-string-regexp' package
+		return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
+	}
+
+	const filterBy = (term) => {
+		const re = new RegExp(escapeRegExp(term), 'i')
+		return person => {
+			for (let prop in person) {
+				if (!person.hasOwnProperty(prop)) {
+					continue;
+				}
+				if (re.test(person[prop])) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+	const fuzzySearch = (items, query) => {
+		return items.filter(filterBy(query)); 
+	}
+
 	const handleSearch = (e) => {
 		const value = e.target.value;
 		setSearch(value); 
-
-		const found = list.filter(obj => Object.values(obj).some(val => val.includes(value))); 
-		if ( found ) {
+		const found = fuzzySearch(list, value);
+		if (found) {
 			setSearchList(found);
 		} else {
 			setSearchList([]);
@@ -54,10 +77,10 @@ export default (props) => {
 						border: '1px solid #E2E8F0',
 						color: '#4A5568',
 						fontWeight: '400',
-						textAlign: 'left' 
+						textAlign: 'left'
 					}}
 					ref={(n) => {
-						if (n && props.form) { 
+						if (n && props.form) {
 							n.style.setProperty("padding", "13px 15px", "important");
 						}
 					}}

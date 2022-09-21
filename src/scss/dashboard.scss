@@ -43,16 +43,7 @@
     max-width: 200px !important;
     max-height: 80px;
     border-radius: 10px;
-}
-
-.wp-admin .pv-left-sidebar,
-.wp-admin .pv-top-menu-content {
-    display: none;
-}
-
-.wp-admin .Toastify__toast-container.Toastify__toast-container--top-right {
-    top: 3em;
-}
+} 
 
 //temporary form css 
 .ndpv .pv-field-logo-wrap {
@@ -133,6 +124,16 @@
 
 .wp-admin.ndpv {
     background-color: #f7f8fa !important;
+    .pv-left-sidebar,
+    .pv-top-menu-content {
+        display: none;
+    }
+    .Toastify__toast-container.Toastify__toast-container--top-right {
+        top: 3em;
+    }
+    .pv-right-content {
+        height: calc(100vh - 30px);
+    }
 }
 
 .ndpv {

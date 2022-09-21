@@ -291,7 +291,7 @@ export default class Payment extends Component {
                             <span>{i18n.bank} {i18n.nd} {i18n.other}</span>
                         </li>
 
-                        <li data-tab-target="#pv-wc" className={'pv-tab ' + (currentTab == 'wc' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'wc')}>
+                        {false && <li data-tab-target="#pv-wc" className={'pv-tab ' + (currentTab == 'wc' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'wc')}>
                             <span>
                                 <svg
                                     width={27}
@@ -318,7 +318,7 @@ export default class Payment extends Component {
                                 </svg>
                             </span>
                             <span>WC</span>
-                        </li>
+                        </li>}
 
                         <li data-tab-target="#pv-paypal" className={'pv-tab ' + (currentTab == 'paypal' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'paypal')}>
                             <span>
