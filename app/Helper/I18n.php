@@ -164,6 +164,7 @@ class I18n
             //settings
             'cmn' => esc_html__('Common', 'propovoice'),
             'settings' => esc_html__('Settings', 'propovoice'),
+            'pre' => esc_html__('Prefix', 'propovoice'),
             'gen' => esc_html__('General', 'propovoice'),
             'biz' => esc_html__('Business', 'propovoice'),
             'pay' => esc_html__('Pay', 'propovoice'),

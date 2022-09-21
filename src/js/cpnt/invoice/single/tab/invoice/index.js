@@ -37,6 +37,7 @@ class Invoice extends Component {
 		super(props);
 		const i18n = ndpv.i18n;
 		this.state = {
+			preload: true,
 			title: '',
 			tabs: [
 				{
@@ -66,6 +67,7 @@ class Invoice extends Component {
 			paymentBankData: null,
 			invoice: {
 				id: null,
+				num: '',
 				token: '',
 				style: {
 					primary_color: '#4c6fff',
@@ -253,6 +255,7 @@ class Invoice extends Component {
 					invoice.payment_methods = {}
 				}
 				this.setState({
+					preload: false,
 					invoice,
 					status: data.status,
 					fromData: data.fromData,
@@ -262,11 +265,18 @@ class Invoice extends Component {
 				});
 			} else { //new
 				this.setState({
+					preload: false,
 					wc: data.wc
 				});
 			}
 		})
 	};
+
+	onNumChange = (e) => {
+		let invoice = { ...this.state.invoice } 
+		invoice.num = e.target.value; 
+		this.setState({ invoice });
+	}
 
 	onDateChange = (date, type = null) => {
 		let invoice = { ...this.state.invoice }
@@ -661,7 +671,18 @@ class Invoice extends Component {
 	}
 
 	render = () => {
-		const { title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
+		const { preload, title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
+		let invNum = '';
+		if ( this.props.id && !preload ) {
+			if ( invoice.num ) {
+				invNum = invoice.num;
+			} else {
+				invNum = this.props.id ? (this.props.path == 'invoice' ? 'Inv' : 'Est') + this.props.id : ''; 
+			}
+		} else {
+			invNum = invoice.num;
+		}
+		
 		const i18n = ndpv.i18n;
 		return (
 			<>
@@ -890,8 +911,8 @@ class Invoice extends Component {
 																<input
 																	type="text"
 																	name="invoice_id"
-																	value={this.props.id ? (this.props.path == 'invoice' ? 'Inv' : 'Est') + this.props.id : ''}
-																	readOnly
+																	value={invNum} 
+																	onChange={this.onNumChange}
 																/>
 															</div>
 														</div>

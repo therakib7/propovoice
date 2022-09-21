@@ -176,6 +176,7 @@ The super fantastic pro features that accelerate your business growth and improv
 * Fixed: Organization showing on invioce preview
 * Fixed: Contact suggestion auto hide.
 * Fixed: Action Scrolling 
+* Fixed: Functional Issues
 * Update: Translation
 * Update: CSS Issue
 

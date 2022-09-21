@@ -387,6 +387,7 @@ class Invoice
         $reg_errors  = new \WP_Error();
         //TODO: sanitize later
         $invoice  = isset($params) ? $params : null;
+        $num = isset($params['num']) ? $params['num'] : '';
         $module_id = isset($params['module_id']) ? $params['module_id'] : null;
         $date     = isset($params['date']) ? $params['date'] : null;
         $path     = isset($params['path']) ? $params['path'] : '';
@@ -397,9 +398,7 @@ class Invoice
         $total  = 0;
         foreach ($params['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
-        }
-        $paid   = isset($params['paid']) ? $params['paid'] : null;
-        $due    = $paid ? $total - $paid : null;
+        } 
 
         $from   = isset($params['from']) ? $params['from'] : null;
         $to     = isset($params['to']) ? $params['to'] : null;
@@ -439,6 +438,10 @@ class Invoice
                 update_post_meta($post_id, 'status', 'draft');
                 update_post_meta($post_id, 'path', $path);
 
+                if ($num) {
+                    update_post_meta($post_id, 'num', $num);
+                }
+
                 if ($module_id) {
                     update_post_meta($post_id, 'module_id', $module_id);
                 }
@@ -469,15 +472,7 @@ class Invoice
 
                 if ($total) {
                     update_post_meta($post_id, 'total', $total);
-                }
-
-                if ($paid) {
-                    update_post_meta($post_id, 'paid', $paid);
-                }
-
-                if ($due) {
-                    update_post_meta($post_id, 'due', $due);
-                }
+                } 
 
                 if ($payment_methods) {
                     update_post_meta($post_id, 'payment_methods', $payment_methods);
@@ -512,6 +507,7 @@ class Invoice
         $reg_errors = new \WP_Error();
         $invoice  = isset($params) ? $params : null;
 
+        $num = isset($params['num']) ? $params['num'] : '';
         $module_id = isset($params['module_id']) ? $params['module_id'] : null;
         $date     = isset($params['date']) ? $params['date'] : null;
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
@@ -524,9 +520,7 @@ class Invoice
         $total  = 0;
         foreach ($params['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
-        }
-        $paid     = isset($params['paid']) ? $params['paid'] : null;
-        $due      = $paid ? $total - $paid : null;
+        } 
 
         $reminder = isset($params['reminder']) ? $params['reminder'] : null;
         $recurring = isset($params['recurring']) ? $params['recurring'] : null;
@@ -560,13 +554,10 @@ class Invoice
                     update_post_meta($post_id, 'module_id', $module_id);
                 }
 
-                if ($date) {
-                    update_post_meta($post_id, 'date', $date);
-                }
+                update_post_meta($post_id, 'num', $num);
+                update_post_meta($post_id, 'date', $date);
 
-                if ($due_date) {
-                    update_post_meta($post_id, 'due_date', $due_date);
-                }
+                update_post_meta($post_id, 'due_date', $due_date);
 
                 if ($from) {
                     update_post_meta($post_id, 'from', $from);
@@ -587,14 +578,7 @@ class Invoice
                 if ($total) {
                     update_post_meta($post_id, 'total', $total);
                 }
-                if ($paid) {
-                    update_post_meta($post_id, 'paid', $paid);
-                }
-
-                if ($due) {
-                    update_post_meta($post_id, 'due', $due);
-                }
-
+              
                 if ($reminder) {
                     update_post_meta($post_id, 'reminder', $reminder['status']);
                 }
