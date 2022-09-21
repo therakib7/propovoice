@@ -906,7 +906,7 @@ class Invoice extends Component {
 																	type="text"
 																	name="invoice_id"
 																	value={invoice.num} 
-																	placeholder={this.state.prefix ? this.state.prefix + '{id}' : ''} 
+																	placeholder={this.state.prefix ? this.state.prefix + '{id}' : '{id}'} 
 																	onChange={this.onNumChange}
 																/>
 															</div>
