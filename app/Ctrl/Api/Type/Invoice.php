@@ -165,6 +165,7 @@ class Invoice
 
             $query_data = [];
             $query_data['id'] = $id;
+            $query_data['num'] = get_post_meta($id, 'num', true);
             $query_data['token'] = get_post_meta($id, 'token', true);
             $query_data['path'] = get_post_meta($id, 'path', true);
             $query_data['date'] = get_post_meta($id, 'date', true);
@@ -233,6 +234,14 @@ class Invoice
         }
         wp_reset_postdata();
 
+        $path = $params['path'] ;
+        $prefix = get_option('ndpv_' . $path . '_general'); 
+        if ($prefix) {
+            $result['prefix'] = $prefix['prefix'];
+        } else {
+            $result['prefix'] = ( $path == 'invoice' ) ? 'Inv-' : 'Est-';
+        }
+
         $result['result'] = $data;
         $result['total'] = $total_data;
 
@@ -246,7 +255,7 @@ class Invoice
         $url_params = $req->get_url_params();
 
         $id = absint($url_params['id']);
-        $query_data = [];
+        $query_data = []; 
 
         if ($id) { //edit
             $query_data['id'] = $id;
@@ -337,7 +346,7 @@ class Invoice
             }
             $query_data['paymentBankData'] = $paymentData;
 
-            if (isset($params['client_view'])) {
+            if (isset($params['client_view'])) { 
                 $payment_methods = isset($invoice['payment_methods']) ? $invoice['payment_methods'] : null;
                 if ($payment_methods) {
                     $new_payment_methods = [];
@@ -365,13 +374,21 @@ class Invoice
                 $invoice_model = new ModelInvoice();
                 $invoice['total'] = $invoice_model->getTotalAmount($invoice);
             }
-        } else { //new
+        } else { //new 
+        } 
+
+        $path = $id ? get_post_meta($id, 'path', true) : $params['path'] ;
+        $prefix = get_option('ndpv_' . $path . '_general'); 
+        if ($prefix) {
+            $query_data['prefix'] = $prefix['prefix'];
+        } else {
+            $query_data['prefix'] = ( $path == 'invoice' ) ? 'Inv-' : 'Est-';
         }
 
         $query_data['wc'] = false;
         if (ndpv()->wage()) {
-            $option = get_option('ndpv_payment_wc');
-            if ($option['status'] && class_exists('woocommerce')) {
+            $wc = get_option('ndpv_payment_wc');
+            if ($wc['status'] && class_exists('woocommerce')) {
                 $query_data['wc'] = true;
             }
         }
@@ -398,7 +415,7 @@ class Invoice
         $total  = 0;
         foreach ($params['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
-        } 
+        }
 
         $from   = isset($params['from']) ? $params['from'] : null;
         $to     = isset($params['to']) ? $params['to'] : null;
@@ -472,7 +489,7 @@ class Invoice
 
                 if ($total) {
                     update_post_meta($post_id, 'total', $total);
-                } 
+                }
 
                 if ($payment_methods) {
                     update_post_meta($post_id, 'payment_methods', $payment_methods);
@@ -520,7 +537,7 @@ class Invoice
         $total  = 0;
         foreach ($params['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
-        } 
+        }
 
         $reminder = isset($params['reminder']) ? $params['reminder'] : null;
         $recurring = isset($params['recurring']) ? $params['recurring'] : null;
@@ -578,7 +595,7 @@ class Invoice
                 if ($total) {
                     update_post_meta($post_id, 'total', $total);
                 }
-              
+
                 if ($reminder) {
                     update_post_meta($post_id, 'reminder', $reminder['status']);
                 }

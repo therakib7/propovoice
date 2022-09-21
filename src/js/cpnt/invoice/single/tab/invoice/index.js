@@ -38,7 +38,7 @@ class Invoice extends Component {
 		const i18n = ndpv.i18n;
 		this.state = {
 			preload: true,
-			title: '',
+			title: '', 
 			tabs: [
 				{
 					id: 'template',
@@ -65,6 +65,7 @@ class Invoice extends Component {
 			fromData: null,
 			toData: null,
 			paymentBankData: null,
+			prefix: '',
 			invoice: {
 				id: null,
 				num: '',
@@ -164,6 +165,8 @@ class Invoice extends Component {
 
 		let title = this.props.path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est;
 
+		let path = this.props.path == 'invoice' ? 'invoice' : 'estimate';
+
 		if (this.props.id) {
 			if (this.props.tab == 'preview') {
 				this.setState({
@@ -180,18 +183,16 @@ class Invoice extends Component {
 			}
 
 			this.updateEdit();
-			this.getData(this.props.id); //edit
+			this.getData(this.props.id, true); //edit
 		} else {
 			//set future due date
-			this.getData(0); //new
+			this.getData(0 + '?path='+path, false); //new
 			let date = new Date();
 			let dueDate = new Date(date);
 			dueDate.setDate(dueDate.getDate() + 30);
 
 			let invoice = { ...this.state.invoice }
-			invoice.due_date = dueDate;
-
-			let path = this.props.path == 'invoice' ? 'invoice' : 'estimate';
+			invoice.due_date = dueDate; 
 			invoice.path = path;
 
 			//deal, project id
@@ -239,11 +240,11 @@ class Invoice extends Component {
 		}
 	};
 
-	getData = (id) => {
+	getData = (id, edit) => { 
 
 		api.getS('invoices', id).then(resp => {
 			let data = resp.data.data;
-			if (id) { //edit
+			if (edit) { //edit 
 				let invoice = data.invoice;
 				invoice.id = parseInt(data.id);
 				invoice.token = data.token;
@@ -254,8 +255,10 @@ class Invoice extends Component {
 				if (Array.isArray(payment_methods) && !payment_methods.length) {
 					invoice.payment_methods = {}
 				}
+
+				invoice.num = data.invoice.num ? data.invoice.num : data.prefix + data.id;
 				this.setState({
-					preload: false,
+					preload: false, 
 					invoice,
 					status: data.status,
 					fromData: data.fromData,
@@ -266,6 +269,7 @@ class Invoice extends Component {
 			} else { //new
 				this.setState({
 					preload: false,
+					prefix: data.prefix,
 					wc: data.wc
 				});
 			}
@@ -671,17 +675,7 @@ class Invoice extends Component {
 	}
 
 	render = () => {
-		const { preload, title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
-		let invNum = '';
-		if ( this.props.id && !preload ) {
-			if ( invoice.num ) {
-				invNum = invoice.num;
-			} else {
-				invNum = this.props.id ? (this.props.path == 'invoice' ? 'Inv' : 'Est') + this.props.id : ''; 
-			}
-		} else {
-			invNum = invoice.num;
-		}
+		const { preload, title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state; 
 		
 		const i18n = ndpv.i18n;
 		return (
@@ -911,7 +905,8 @@ class Invoice extends Component {
 																<input
 																	type="text"
 																	name="invoice_id"
-																	value={invNum} 
+																	value={invoice.num} 
+																	placeholder={this.state.prefix ? this.state.prefix + '{id}' : ''} 
 																	onChange={this.onNumChange}
 																/>
 															</div>

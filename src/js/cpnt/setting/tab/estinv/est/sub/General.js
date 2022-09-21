@@ -15,7 +15,7 @@ export default class General extends Component {
     } 
 
     componentDidMount() {
-        api.get('settings', 'tab=invoice_general').then(resp => {
+        api.get('settings', 'tab=estimate_general').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -35,7 +35,7 @@ export default class General extends Component {
         e.preventDefault();
 
         let form = this.state.form;
-        form.tab = 'invoice_general';
+        form.tab = 'estimate_general';
 
         api.add('settings', form).then(resp => {
             if (resp.data.success) {

@@ -83,6 +83,16 @@ class Setting
                 }
             }
 
+            if ($tab == 'estimate_general') {
+                $option = get_option('ndpv_' . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $data['prefix'] = 'Est-'; 
+                }
+            }  
+
             if ($tab == 'estimate_reminder') {
                 $option = get_option('ndpv_' . $tab);
 
@@ -93,6 +103,16 @@ class Setting
                     $data['due_date'] = false;
                     $data['before'] = [];
                     $data['after'] = [];
+                }
+            }
+
+            if ($tab == 'invoice_general') {
+                $option = get_option('ndpv_' . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $data['prefix'] = 'Inv-'; 
                 }
             }
 
@@ -241,6 +261,16 @@ class Setting
             if ($tab == 'estinv_currency') {
                 $data['currency'] = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
                 $data['lang'] = isset($params['lang']) ? sanitize_text_field($params['lang']) : null;
+                $option = update_option('ndpv_' . $tab, $data);
+            }
+
+            if ($tab == 'estimate_general') {
+                $data['prefix'] = isset($params['prefix']) ? sanitize_text_field($params['prefix']) : ''; 
+                $option = update_option('ndpv_' . $tab, $data);
+            }
+
+            if ($tab == 'invoice_general') {
+                $data['prefix'] = isset($params['prefix']) ? sanitize_text_field($params['prefix']) : ''; 
                 $option = update_option('ndpv_' . $tab, $data);
             }
 
