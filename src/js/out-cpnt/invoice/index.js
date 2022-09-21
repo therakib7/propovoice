@@ -65,7 +65,7 @@ const EditDownload = (props) => {
 };
 
 const InvoiceBtn = (props) => {
-	if (!props.type) return null; 
+	if (!props.type) return null;
 	const wc = props.wc;
 	const payment_methods = props.payment_methods.list;
 	const selected_method = props.payment_methods.selected;
@@ -103,35 +103,39 @@ const InvoiceBtn = (props) => {
 				</>
 			)}
 
-			{props.type == "invoice" && payment_methods.length > 0 && (
+			{props.type == "invoice" && (
 				<>
-					<span style={{ marginRight: "10px" }}>{i18n.pay} {!wc ? i18n.with : ''}:</span>
 					{wc ? <>
 						<button
 							className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
-							style={{ marginLeft: "10px" }}
+							style={{ marginLeft: 10 }}
 							onClick={() => props.handleChange('wc-order')}
 						>
 							{i18n.pay}
 						</button>
 					</> : <>
-						<div style={{ width: "150px", display: "inline-block" }}>
-							<Select
-								value={selected_method}
-								onChange={changeMethod}
-								getOptionValue={(payment_methods) => payment_methods.id}
-								getOptionLabel={(payment_methods) => payment_methods.label}
-								options={payment_methods}
-							/>
-						</div>
+						{payment_methods.length > 0 &&
+							<>
+								<span>{i18n.pay} {!wc ? i18n.with : ''}:</span>
+								<div style={{ width: "150px", marginLeft: 10, display: "inline-block" }}>
+									<Select
+										value={selected_method}
+										onChange={changeMethod}
+										getOptionValue={(payment_methods) => payment_methods.id}
+										getOptionLabel={(payment_methods) => payment_methods.label}
+										options={payment_methods}
+									/>
+								</div>
 
-						<button
-							className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
-							style={{ marginLeft: "10px" }}
-							onClick={() => props.handleChange("payment", selected_method.id)}
-						>
-							{i18n.pay}
-						</button>
+								<button
+									className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
+									style={{ marginLeft: "10px" }}
+									onClick={() => props.handleChange("payment", selected_method.id)}
+								>
+									{i18n.pay}
+								</button>
+							</>
+						}
 					</>}
 				</>
 			)}
@@ -368,6 +372,7 @@ export default class Invoice extends Component {
 									status={this.state.status}
 									handleChange={this.handleClick}
 									type={this.state.invoice.path}
+									wc={this.state.wc}
 									payment_methods={{
 										list: this.state.payment_methods,
 										selected: this.state.selected_payment_method,
