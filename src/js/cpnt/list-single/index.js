@@ -1,4 +1,5 @@
 import api from 'api';
+import { currency } from 'helper';
 import Action from 'block/action/row/single';
 import Taxonomy from 'block/field/taxonomy';
 import Spinner from 'block/preloader/spinner';
@@ -352,7 +353,7 @@ class ListSingle extends Component {
                                             <address>
                                                 {(data.person) ? data.person.email : data.org.email}<br />
                                                 {data.person && data.org && <>{i18n.org}: {data.org_name}<br /></>}
-                                                {i18n.budget}: {data.currency}{data.budget}
+                                                {i18n.budget}: {data.budget && currency(data.budget, data.currency )}
                                             </address>
                                         </div>
                                     </div>
@@ -540,7 +541,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li className="pv-budget">
                                     <label htmlFor="">{i18n.budget}:</label>
-                                    <span>{data.currency}{data.budget}</span>
+                                    <span>{data.budget && currency(data.budget, data.currency )}</span>
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
@@ -668,7 +669,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">{i18n.total} {i18n.budget}</p>
-                                        <h4>{data.invoice && data.invoice.total}</h4>
+                                        <h4>{data.budget && currency(data.budget, data.currency )}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">
