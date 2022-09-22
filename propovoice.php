@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
  * Author: Propovoice
  * Author URI: https://propovoice.com
  * Version: 1.0.1.5
- * Description: A complete estimate and invoice management system for the WordPress.
+ * Description: Lead, Deal, Estimate, Invoice, Billing, Client, Project Automation
  * Text Domain: propovoice
  * Domain Path: /languages
  *

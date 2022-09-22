@@ -33,8 +33,9 @@ class TaxonomyCtrl {
 	 
 			$args = array(
 				'hierarchical'      => true, 
-				'show_ui'           => true,
-				'show_admin_column' => true,
+				'show_ui'           => false, 
+				'show_in_menu'      => false, 
+				'show_in_nav_menus' => false,
 				'query_var'         => true,
 				'rewrite'           => array( 'slug' => 'ndpv_' . $tax ),
 			);
