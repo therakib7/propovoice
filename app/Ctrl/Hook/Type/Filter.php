@@ -17,6 +17,12 @@ class Filter
             10,
             1
         );
+        add_filter(
+            "woocommerce_get_checkout_order_received_url",
+            [$this, "change_order_received_url_for_ndpv"],
+            10,
+            2
+        );
     }
 
     function body_class($classes)
@@ -82,5 +88,10 @@ class Filter
             unset($totals["cart_subtotal"]);
         }
         return $totals;
+    }
+
+    function change_order_received_url_for_ndpv($order_received_url, $that)
+    {
+        return $order_received_url . "&pay_to=ndpv";
     }
 }
