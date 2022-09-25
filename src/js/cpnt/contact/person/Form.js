@@ -79,11 +79,13 @@ class Form extends Component {
         let form = { ...this.state.form }
 
         if (type == 'person') {
+            form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
         } else {
+            form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
             if (!form.first_name) {
                 form.email = (val) ? val.email : '';
