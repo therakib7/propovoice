@@ -11,12 +11,6 @@ class Filter
             $this,
             "hide_bank_attachment",
         ]);
-        add_filter(
-            "woocommerce_get_order_item_totals",
-            [$this, "remove_subtotal_from_orders_total_lines"],
-            10,
-            1
-        );
     }
 
     function body_class($classes)
@@ -74,13 +68,5 @@ class Filter
         ];
 
         return $args;
-    }
-
-    function remove_subtotal_from_orders_total_lines($totals)
-    {
-        if (isset($_GET["pay_to"]) && $_GET["pay_to"] == "ndpv") {
-            unset($totals["cart_subtotal"]);
-        }
-        return $totals;
     }
 }

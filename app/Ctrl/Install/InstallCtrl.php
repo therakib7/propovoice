@@ -14,11 +14,8 @@ class InstallCtrl
         add_filter('cron_schedules', array($this, 'custom_schedule'));
         register_activation_hook(NDPV_FILE, array($this, 'schedule_my_cron'));
 
-        add_action('admin_init', array($this, 'insertData'));
-        add_action('admin_init', array($this, 'plugin_redirect'));
-
-        $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
-        wp_mkdir_p($uploads_dir);
+        add_action('admin_init', array($this, 'insert_data'));
+        add_action('admin_init', array($this, 'plugin_redirect')); 
     }
 
     public function custom_schedule($schedules)
@@ -60,15 +57,13 @@ class InstallCtrl
     public function plugin_redirect()
     {
         if ( get_option('ndpv_active', false) ) {
-            delete_option('ndpv_active');
-
-            // $this->insertData();
+            delete_option('ndpv_active'); 
 
             wp_redirect(admin_url('admin.php?page=ndpv-welcome'));
         }
     }
 
-    public function insertData()
+    public function insert_data()
     {
         $version = get_option('ndpv_version', '0.1.0');
         if (version_compare($version, NDPV_VERSION, '<')) {

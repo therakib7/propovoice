@@ -80,14 +80,7 @@ class Invoice
 
         if (isset($params['page']) && $params['page'] > 1) {
             $offset = ($per_page * $params['page']) - $per_page;
-        }
-
-        if ($s) {
-            /* $find = ['est', 'Est', 'inv', 'Inv'];
-            $replace = ['', '', '', ''];
-            $search_value = str_replace($find, $replace, trim($params['s'])); */
-            // $search_value = preg_replace('/[^0-9.]+/', '', $s);
-        }
+        } 
 
         $args = array(
             'post_type' => 'ndpv_estinv',
@@ -146,6 +139,15 @@ class Invoice
                 )
             );
         }
+
+        /* if ( $s ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'num',
+                    'value' => $s
+                )
+            );
+        } */
 
         if (isset($params['module_id'])) {
             $args['meta_query'][] = array(

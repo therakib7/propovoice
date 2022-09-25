@@ -235,7 +235,7 @@ class ListSingle extends Component {
     };
 
     orgEdit = (data) => {
-        api.edit('orgs', data.id, data).then(resp => {
+        api.edit('organizations', data.id, data).then(resp => {
             if (resp.data.success) {
                 this.setState({ contactModal: false });
                 toast.success(ndpv.i18n.aUpd);
