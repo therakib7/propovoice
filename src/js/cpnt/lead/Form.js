@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import Currency from 'block/field/currency';
-import Taxonomy from 'block/field/taxonomy';
+// import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import api from 'api';
 import Select from 'react-select';
