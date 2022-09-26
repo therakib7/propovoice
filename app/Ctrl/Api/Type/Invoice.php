@@ -80,7 +80,7 @@ class Invoice
 
         if (isset($params['page']) && $params['page'] > 1) {
             $offset = ($per_page * $params['page']) - $per_page;
-        } 
+        }
 
         $args = array(
             'post_type' => 'ndpv_estinv',
@@ -237,11 +237,11 @@ class Invoice
         wp_reset_postdata();
 
         $path = $params['path'] ;
-        $prefix = get_option('ndpv_' . $path . '_general'); 
+        $prefix = get_option('ndpv_' . $path . '_general');
         if ($prefix) {
             $result['prefix'] = $prefix['prefix'];
         } else {
-            $result['prefix'] = ( $path == 'invoice' ) ? 'Inv-' : 'Est-';
+            $result['prefix'] = ($path == 'invoice') ? 'Inv-' : 'Est-';
         }
 
         $result['result'] = $data;
@@ -257,7 +257,7 @@ class Invoice
         $url_params = $req->get_url_params();
 
         $id = absint($url_params['id']);
-        $query_data = []; 
+        $query_data = [];
 
         if ($id) { //edit
             $query_data['id'] = $id;
@@ -348,7 +348,21 @@ class Invoice
             }
             $query_data['paymentBankData'] = $paymentData;
 
-            if (isset($params['client_view'])) { 
+            if (isset($params['client_view'])) {
+                $token = isset($params['token']) ? sanitize_text_field($params['token']) : ''; 
+                $post_token = get_post_meta($id, 'token', true); 
+
+                $is_admin = ( is_user_logged_in() && apply_filters('ndpv_admin', current_user_can('administrator')) );
+
+                $auth = false;
+                if ($is_admin || ($token == $post_token)) {
+                    $auth = true;
+                }
+                
+                if ( !$auth ) {
+                    wp_send_json_error();
+                }
+
                 $payment_methods = isset($invoice['payment_methods']) ? $invoice['payment_methods'] : null;
                 if ($payment_methods) {
                     $new_payment_methods = [];
@@ -376,15 +390,15 @@ class Invoice
                 $invoice_model = new ModelInvoice();
                 $invoice['total'] = $invoice_model->getTotalAmount($invoice);
             }
-        } else { //new 
-        } 
+        } else { //new
+        }
 
         $path = $id ? get_post_meta($id, 'path', true) : $params['path'] ;
-        $prefix = get_option('ndpv_' . $path . '_general'); 
+        $prefix = get_option('ndpv_' . $path . '_general');
         if ($prefix) {
             $query_data['prefix'] = $prefix['prefix'];
         } else {
-            $query_data['prefix'] = ( $path == 'invoice' ) ? 'Inv-' : 'Est-';
+            $query_data['prefix'] = ($path == 'invoice') ? 'Inv-' : 'Est-';
         }
 
         $query_data['wc'] = false;

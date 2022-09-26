@@ -5,15 +5,15 @@ const url = apiUrl + 'invoices';
 const urlServer = apiServerUrl + 'invoices';
 
 const getAll = (args = '') => {
-	return axios.get(`${url}/?${args}`);
+	return axios.get(`${url}/?${args}`, token);
 };
 
 const getAllTemplate = (args = '') => {
-	return axios.get(`${urlServer}/?${args}`);
+	return axios.get(`${urlServer}/?${args}`, token);
 };
 
 const get = id => {
-	return axios.get(`${url}/${id}`);
+	return axios.get(`${url}/${id}`, token);
 };
 
 const create = data => {
