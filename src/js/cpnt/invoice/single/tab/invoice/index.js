@@ -277,6 +277,12 @@ class Invoice extends Component {
 	};
 
 	onNumChange = (e) => {
+
+		if (wage.length > 0) {
+			pro();
+			return;
+		}
+
 		let invoice = { ...this.state.invoice } 
 		invoice.num = e.target.value; 
 		this.setState({ invoice });

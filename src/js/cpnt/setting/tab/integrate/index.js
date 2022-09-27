@@ -9,8 +9,7 @@ import Smtp from './smtp';
 const Main = (props) => {
 
 	const { tab, subtab, insubtab } = useParams();
-    let navigate = useNavigate();
-
+    let navigate = useNavigate(); 
     let tabDefault = subtab; 
     if (subtab === undefined) {
         tabDefault = 'form'

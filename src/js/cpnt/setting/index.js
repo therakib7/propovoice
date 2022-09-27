@@ -189,8 +189,9 @@ const Setting = (props) => {
                     </div>
 
                     <div className='col-md-9'>
-                        <div className="pv-setting-tab-content">
-                            <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label} {i18n.settings}</h4>
+                        <div className="pv-setting-tab-content"> 
+                            <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{currentTab != 'integration' && currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label} {i18n.settings}</h4>
+                            {/* //TODO: subtab temp fix for integration */}
 
                             <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && <General />}
