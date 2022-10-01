@@ -2,6 +2,7 @@ import React, { Component, lazy } from "react";
 import moment from "moment";
 import { Add } from "block/icon";
 import api from "api";
+import { handleClientLoad } from "api/gapi/goauth2";
 
 import Taxonomy from "block/field/taxonomy";
 const DateField = lazy(() => import("block/date-picker"));
@@ -25,6 +26,8 @@ export default class Form extends Component {
 
     this.state = {
       form: this.initialState,
+      gApiCalendar: {},
+      gMeetLink: "",
       dropdown: null,
     };
     this.timeout = 0;
@@ -146,6 +149,10 @@ export default class Form extends Component {
     this.setState({ form }, () => {
       this.updateRequest(true);
     });
+  };
+
+  generateGoogleMeetLink = () => {
+    handleClientLoad();
   };
 
   render() {
@@ -291,7 +298,9 @@ export default class Form extends Component {
                     <div className="pv-buttons pv-mt-15">
                       <button
                         className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-mr-10"
-                        onClick={() => {}}
+                        onClick={() => {
+                          this.generateGoogleMeetLink();
+                        }}
                       >
                         <svg
                           width={17}
