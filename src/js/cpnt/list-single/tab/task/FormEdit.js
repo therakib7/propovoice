@@ -131,6 +131,7 @@ export default class Form extends Component {
             data.status_id = val;
             this.setState({ form: data });
         }
+        this.props.reload()
     }
 
     onDateChange = (date, type = null) => {
