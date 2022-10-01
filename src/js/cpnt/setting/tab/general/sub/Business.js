@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Upload from 'block/field/upload';
-
+import api from 'api';
 export default class Business extends Component {
     constructor(props) {
         super(props);
@@ -60,7 +60,7 @@ export default class Business extends Component {
         }
 
         if (!form.id) {
-            this.props.create('businesses', form).then(resp => {
+            api.add('businesses', form).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aAdd);
                 } else {
@@ -70,7 +70,7 @@ export default class Business extends Component {
                 }
             })
         } else {
-            this.props.update('businesses', form.id, form).then(resp => {
+            api.edit('businesses', form.id, form).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aUpd);
                 } else {

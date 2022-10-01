@@ -1,14 +1,15 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { toast } from 'react-toastify';
 import { NavLink } from "react-router-dom";
-import Api from 'api/invoice';
+import ApiInv from 'api/invoice';
+import api from 'api';
 
 import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
 
 import Spinner from 'block/preloader/spinner';
 //self component
-import FromTo from './FromTo'; 
+import FromTo from './FromTo';
 import Items from './Items'
 import PaymentInfo from './PaymentInfo';
 import Total from './Total';
@@ -30,13 +31,14 @@ const ExtraAmount = lazy(() => import('./sidebar/ExtraAmount'));
 const Reminder = lazy(() => import('./sidebar/Reminder'));
 const Recurring = lazy(() => import('./sidebar/Recurring'));
 
-class Invoice extends Component { 
+class Invoice extends Component {
 
 	constructor(props) {
 		super(props);
 		const i18n = ndpv.i18n;
 		this.state = {
-			title: '',
+			preload: true,
+			title: '', 
 			tabs: [
 				{
 					id: 'template',
@@ -55,7 +57,7 @@ class Invoice extends Component {
 			sidebarActive: '',
 			currentTab: '',
 			currentTabIndex: null,
-			msg: { 
+			msg: {
 				saveTxt: ndpv.i18n.save
 			},
 			shareModal: false,
@@ -63,8 +65,10 @@ class Invoice extends Component {
 			fromData: null,
 			toData: null,
 			paymentBankData: null,
+			prefix: '',
 			invoice: {
 				id: null,
+				num: '',
 				token: '',
 				style: {
 					primary_color: '#4c6fff',
@@ -72,7 +76,7 @@ class Invoice extends Component {
 					title_font: '',
 				},
 				date: new Date(),
-				due_date: new Date(), 
+				due_date: new Date(),
 				currency: 'USD',
 				lang: 'en',
 				template: null,
@@ -87,7 +91,7 @@ class Invoice extends Component {
 				},
 				top_sections: null,
 				item_label: {
-					id: 'ID', 
+					id: 'ID',
 					desc: 'Description',
 					qty: 'Quantity',
 					price: 'Rate',
@@ -161,6 +165,8 @@ class Invoice extends Component {
 
 		let title = this.props.path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est;
 
+		let path = this.props.path == 'invoice' ? 'invoice' : 'estimate';
+
 		if (this.props.id) {
 			if (this.props.tab == 'preview') {
 				this.setState({
@@ -177,17 +183,16 @@ class Invoice extends Component {
 			}
 
 			this.updateEdit();
-			this.getData();
+			this.getData(this.props.id, true); //edit
 		} else {
 			//set future due date
+			this.getData(0 + '?path='+path, false); //new
 			let date = new Date();
 			let dueDate = new Date(date);
 			dueDate.setDate(dueDate.getDate() + 30);
 
 			let invoice = { ...this.state.invoice }
-			invoice.due_date = dueDate;
-
-			let path = this.props.path == 'invoice' ? 'invoice' : 'estimate'; 
+			invoice.due_date = dueDate; 
 			invoice.path = path;
 
 			//deal, project id
@@ -212,7 +217,7 @@ class Invoice extends Component {
 
 	componentWillUnmount() {
 		document.body.style.backgroundColor = "#fff";
-	} 
+	}
 
 	bgColor = () => {
 		if (this.state.currentTab == 'info' || this.state.currentTab == 'preview') {
@@ -235,28 +240,53 @@ class Invoice extends Component {
 		}
 	};
 
-	getData = () => {
-		Api.get(this.props.id).then(resp => {
-			let invoice = resp.data.data.invoice;
-			invoice.id = parseInt(resp.data.data.id);
-			invoice.token = resp.data.data.token;
-			invoice.date = new Date(resp.data.data.invoice.date);
-			invoice.due_date = new Date(resp.data.data.invoice.due_date);
+	getData = (id, edit) => { 
 
-			let payment_methods = resp.data.data.invoice.payment_methods; //it's because wordpress empty object covnert to array
-			if (Array.isArray(payment_methods) && !payment_methods.length) {
-				invoice.payment_methods = {}
+		api.getS('invoices', id).then(resp => {
+			let data = resp.data.data;
+			if (edit) { //edit 
+				let invoice = data.invoice;
+				invoice.id = parseInt(data.id);
+				invoice.token = data.token;
+				invoice.date = new Date(data.invoice.date);
+				invoice.due_date = new Date(data.invoice.due_date);
+
+				let payment_methods = data.invoice.payment_methods; //it's because wordpress empty object covnert to array
+				if (Array.isArray(payment_methods) && !payment_methods.length) {
+					invoice.payment_methods = {}
+				}
+
+				invoice.num = data.invoice.num ? data.invoice.num : data.prefix + data.id;
+				this.setState({
+					preload: false, 
+					invoice,
+					status: data.status,
+					fromData: data.fromData,
+					toData: data.toData,
+					paymentBankData: data.paymentBankData,
+					wc: data.wc
+				});
+			} else { //new
+				this.setState({
+					preload: false,
+					prefix: data.prefix,
+					wc: data.wc
+				});
 			}
-			this.setState({
-				invoice,
-				status: resp.data.data.status,
-				fromData: resp.data.data.fromData,
-				toData: resp.data.data.toData,
-				paymentBankData: resp.data.data.paymentBankData,
-				wc: resp.data.data.wc
-			});
 		})
 	};
+
+	onNumChange = (e) => {
+
+		if (wage.length > 0) {
+			pro();
+			return;
+		}
+
+		let invoice = { ...this.state.invoice } 
+		invoice.num = e.target.value; 
+		this.setState({ invoice });
+	}
 
 	onDateChange = (date, type = null) => {
 		let invoice = { ...this.state.invoice }
@@ -269,8 +299,8 @@ class Invoice extends Component {
 		this.setState({ invoice });
 	}
 
-	currencyChange = ( val, type ) => {
-        let invoice = { ...this.state.invoice }
+	currencyChange = (val, type) => {
+		let invoice = { ...this.state.invoice }
 
 		if (type == 'lang') {
 			invoice.lang = val;
@@ -278,10 +308,10 @@ class Invoice extends Component {
 			invoice.currency = val;
 		}
 		this.setState({ invoice });
-    } 
+	}
 
 	onCurrencyDefault = (data) => {
-		let invoice = { ...this.state.invoice } 
+		let invoice = { ...this.state.invoice }
 		invoice.currency = data.currency;
 		invoice.lang = data.lang;
 		this.setState({ invoice });
@@ -415,10 +445,10 @@ class Invoice extends Component {
 
 	handleSave = () => {
 		let editId = this.props.id;
-		if (!editId) { 
-			let invoice = { ...this.state.invoice } 
+		if (!editId) {
+			let invoice = { ...this.state.invoice }
 
-			Api.create(invoice)
+			ApiInv.create(invoice)
 				.then(resp => {
 					if (resp.data.success) {
 
@@ -436,7 +466,7 @@ class Invoice extends Component {
 					}
 				})
 		} else {
-			Api.update(editId, this.state.invoice)
+			ApiInv.update(editId, this.state.invoice)
 				.then(resp => {
 					if (resp.data.success) {
 						toast.success(ndpv.i18n.aUpd, {
@@ -453,15 +483,15 @@ class Invoice extends Component {
 	}
 
 	formatCurrency = (amount) => {
-		const {currency, lang } = this.state.invoice; 
+		const { currency, lang } = this.state.invoice;
 		return (new Intl.NumberFormat(lang, {
 			style: 'currency',
 			currency: currency,
 			minimumFractionDigits: 0,
 			maximumFractionDigits: 2
 		}).format(amount))
-	} 
-	
+	}
+
 
 	setActiveTab(e, id, index) {
 		e.preventDefault();
@@ -475,9 +505,9 @@ class Invoice extends Component {
 			currentTabIndex: index
 		};
 
-		if ( id == 'info' ) {
+		if (id == 'info') {
 			state.sidebarActive = '';
-		}		
+		}
 
 		this.setState(state);
 	}
@@ -568,7 +598,7 @@ class Invoice extends Component {
 	}
 
 	onExtraFieldChange = (i, item, type, type_val) => {
-		let invoice = { ...this.state.invoice } 
+		let invoice = { ...this.state.invoice }
 		let index = invoice.extra_field.findIndex(x => x.id == item.id);
 		if (type == 'field') {
 			if (index != -1) { // if payment method exist  
@@ -586,10 +616,10 @@ class Invoice extends Component {
 			}
 			this.setState({ invoice });
 
-		} else if (type == 'type') { 	 
+		} else if (type == 'type') {
 			invoice.extra_field[index].val_type = type_val;
 			this.setState({ invoice });
-		}  else if (type == 'cal') { 
+		} else if (type == 'cal') {
 			const name = type_val.target.name;
 			const value = type_val.target.value;
 			invoice.extra_field[index][name] = value;
@@ -651,7 +681,8 @@ class Invoice extends Component {
 	}
 
 	render = () => {
-		const { title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
+		const { preload, title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state; 
+		
 		const i18n = ndpv.i18n;
 		return (
 			<>
@@ -671,7 +702,7 @@ class Invoice extends Component {
 											height={10}
 											viewBox="0 0 5 10"
 											fill="none"
-											
+
 										>
 											<path
 												d="M0.5 1.25L4.25 5L0.5 8.75"
@@ -690,7 +721,7 @@ class Invoice extends Component {
 											height={10}
 											viewBox="0 0 5 10"
 											fill="none"
-											
+
 										>
 											<path
 												d="M0.5 1.25L4.25 5L0.5 8.75"
@@ -722,7 +753,7 @@ class Invoice extends Component {
 											width={9}
 											height={11}
 											viewBox="0 0 6 9"
-											fill="none" 
+											fill="none"
 										>
 											<path
 												d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
@@ -744,7 +775,7 @@ class Invoice extends Component {
 											height={11}
 											viewBox="0 0 6 9"
 											fill="none"
-											
+
 										>
 											<path
 												d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
@@ -756,7 +787,7 @@ class Invoice extends Component {
 
 								{(currentTab == 'preview') &&
 									<>
-										<button
+										{/* <button
 											className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-10 pv-br-4"
 											onClick={() => this.setState({ shareModal: true })} >
 											<svg
@@ -764,7 +795,7 @@ class Invoice extends Component {
 												height={12}
 												viewBox="0 0 14 12"
 												fill="none"
-												
+
 											>
 												<path
 													d="M6.667 8.333H5.333a6 6 0 00-5.312 3.206 6.667 6.667 0 016.645-7.207V.667l7 5.667-7 5.666V8.333zM5.333 6.999H8v2.206l3.547-2.872L8 3.46v2.205H6.667a5.321 5.321 0 00-4.038 1.849 7.325 7.325 0 012.704-.516z"
@@ -772,25 +803,24 @@ class Invoice extends Component {
 												/>
 											</svg>
 											{i18n.share}
-										</button>
+										</button> */}
 										<button
 											className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-mt-20"
 											onClick={() => this.setState({ emailModal: true })} >
 											{i18n.send} {i18n.email}
-											<ProLabel blueBtn />
-											{!wage.length && <svg
+											<svg
 												className="pv-mr-0 pv-ml-10"
 												width={9}
 												height={11}
 												viewBox="0 0 6 9"
 												fill="none"
-												
+
 											>
 												<path
 													d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
 													fill="white"
 												/>
-											</svg>}
+											</svg>
 										</button>
 									</>
 								}
@@ -809,7 +839,7 @@ class Invoice extends Component {
 									{<span className="pv-single-tab-done"><svg
 										width={12}
 										height={11}
-										
+
 										viewBox="3.4 5.6 17.6 13.4"
 										xmlSpace="preserve"
 									>
@@ -852,7 +882,7 @@ class Invoice extends Component {
 																height={18}
 																viewBox="0 0 18 18"
 																fill="none"
-																
+
 															>
 																<path
 																	d="M4.55765 13.121C3.68257 13.122 2.83789 12.8072 2.18545 12.2369C1.53301 11.6667 1.11868 10.8811 1.02184 10.0307C0.924994 9.18024 1.15245 8.32477 1.66063 7.62816C2.16881 6.93155 2.92198 6.44278 3.77584 6.25548C3.52879 5.12883 3.74957 3.95235 4.3896 2.98487C5.02964 2.01739 6.03651 1.33814 7.1887 1.09657C8.3409 0.854997 9.54405 1.07088 10.5335 1.69672C11.5229 2.32257 12.2175 3.30712 12.4646 4.43377H12.5534C13.655 4.43269 14.7177 4.83189 15.5353 5.55388C16.3528 6.27587 16.8668 7.26913 16.9775 8.34085C17.0882 9.41258 16.7877 10.4863 16.1344 11.3536C15.481 12.2208 14.5214 12.8198 13.4418 13.0341M11.665 10.5148L8.99975 7.90866M8.99975 7.90866L6.33449 10.5148M8.99975 7.90866V17"
@@ -880,8 +910,9 @@ class Invoice extends Component {
 																<input
 																	type="text"
 																	name="invoice_id"
-																	value={this.props.id ? (this.props.path == 'invoice' ? 'Inv' : 'Est') + this.props.id : ''}
-																	readOnly
+																	value={invoice.num} 
+																	placeholder={this.state.prefix ? this.state.prefix + '{id}' : '{id}'} 
+																	onChange={this.onNumChange}
 																/>
 															</div>
 														</div>
@@ -902,7 +933,7 @@ class Invoice extends Component {
 															<div className="pv-info-input-field">
 																<DateField date={invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
 															</div>
-														</div> 
+														</div>
 
 													</div>
 													{/* ./ pv-info-form */}
@@ -953,7 +984,7 @@ class Invoice extends Component {
 												<div className="col-sm-8">
 													<Total
 														inv={invoice}
-														currencyFormatter={this.formatCurrency} 
+														currencyFormatter={this.formatCurrency}
 														changeHandler={this.handleTotalChange}
 														focusHandler={this.handleFocusSelect}
 													/>
@@ -996,7 +1027,7 @@ class Invoice extends Component {
 															height={16}
 															viewBox="0 0 15 16"
 															fill="none"
-															
+
 														>
 															<path
 																d="M10.5001 4.24894L3.99228 10.8661C3.77683 11.1039 3.66107 11.4154 3.66897 11.7362C3.67687 12.057 3.80782 12.3624 4.03471 12.5893C4.2616 12.8162 4.56705 12.9472 4.88783 12.9551C5.2086 12.963 5.52013 12.8472 5.75791 12.6318L13.5157 4.76457C13.9466 4.28901 14.1781 3.66595 14.1623 3.0244C14.1465 2.38286 13.8846 1.77195 13.4309 1.31817C12.9771 0.864391 12.3662 0.602491 11.7246 0.586696C11.0831 0.5709 10.46 0.802418 9.98447 1.23332L2.22666 9.10051C1.52425 9.80292 1.12964 10.7556 1.12964 11.7489C1.12964 12.7423 1.52425 13.695 2.22666 14.3974C2.92907 15.0998 3.88174 15.4944 4.8751 15.4944C5.86845 15.4944 6.82112 15.0998 7.52353 14.3974L13.9376 7.99894"
@@ -1050,18 +1081,18 @@ class Invoice extends Component {
 														// handleSave={this.handleSave}
 														/>
 													</li>}
-													
+
 													{(!sidebarActive || sidebarActive == 'currency') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('currency')} />
 														<i />
 														<h3 className='pv-title-small'>{i18n.cur} <ProLabel /></h3>
 														<Currency
 															{...this.props}
-															currency={invoice.currency} 
+															currency={invoice.currency}
 															handleDefault={this.onCurrencyDefault}
 															lang={invoice.lang}
 															onChange={this.currencyChange}
-														/> 
+														/>
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'extra-field') && <li>
@@ -1074,7 +1105,7 @@ class Invoice extends Component {
 															itemTaxChange={this.itemTaxChange}
 															handleChange={this.onExtraFieldChange}
 															data={invoice.extra_field}
-														/> 
+														/>
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'reminder') && <li>
@@ -1131,7 +1162,7 @@ class Invoice extends Component {
 													</li>}
 												</Suspense>
 											</ul>
-										</div> 
+										</div>
 									</div>
 								</div>
 							</div>

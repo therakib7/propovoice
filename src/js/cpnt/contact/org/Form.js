@@ -77,11 +77,13 @@ class Form extends Component {
         let form = { ...this.state.form }
 
         if (type == 'person') {
+            form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
         } else {
+            form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
             if (!form.name) {
                 form.email = (val) ? val.email : '';
@@ -120,8 +122,8 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.org}</h2>
-                        <p>{i18n.add + ' ' + i18n.org + ' ' + i18n.client + ' ' + i18n.from + ' ' + i18n.here}</p>
+                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.org}</h2> 
+                        <p>{sprintf(i18n.formDesc, i18n.org)}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

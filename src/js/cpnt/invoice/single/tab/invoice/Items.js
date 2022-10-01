@@ -64,7 +64,7 @@ const Items = (props) => {
                             <tr>
                                 <th style={{ width: 'auto' }}>{desc}</th>
                                 <th style={{ width: '125px' }}>{qty}</th>
-                                <th style={{ width: '105px' }}>{price} ({currency})</th>
+                                <th style={{ width: '105px' }}>{price}</th>
                                 <th style={{ width: '90px' }}>{amount}</th>
                                 {item_tax && <th style={{ width: '125px' }}>{tax}</th>}
                                 <th>

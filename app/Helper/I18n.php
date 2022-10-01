@@ -24,7 +24,7 @@ class I18n
             'aDel' => esc_html__('Successfully Deleted', 'propovoice'), 
             'aThankM' => esc_html__('Thanks for your message', 'propovoice'), 
             'aThankR' => esc_html__('Thanks for payment request', 'propovoice'), 
-            'aMail' => esc_html__('Mail sucessfully sent', 'propovoice'), 
+            'aMail' => esc_html__('Mail successfully sent', 'propovoice'), 
             'aDelM' => esc_html__('Successfully moved to deal', 'propovoice'), 
             'aProM' => esc_html__('Successfully moved to project', 'propovoice'), 
             'aConf' => esc_html__('Are you sure to delete it?', 'propovoice'), 
@@ -164,6 +164,7 @@ class I18n
             //settings
             'cmn' => esc_html__('Common', 'propovoice'),
             'settings' => esc_html__('Settings', 'propovoice'),
+            'pre' => esc_html__('Prefix', 'propovoice'),
             'gen' => esc_html__('General', 'propovoice'),
             'biz' => esc_html__('Business', 'propovoice'),
             'pay' => esc_html__('Pay', 'propovoice'),

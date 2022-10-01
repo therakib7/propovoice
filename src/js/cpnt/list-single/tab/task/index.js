@@ -39,6 +39,13 @@ const Task = (props) => {
         }
     }
 
+    const handleSubmit = (data, type) => {
+        props.handleSubmit(data, type);
+        if ( taxonomies.status.length ) {
+            setActiveTab(taxonomies.status[0].id);
+        }
+    }
+
     const handleDelete = (type, id) => {
         if (confirm(ndpv.i18n.aConf)) {
             api.del('tasks', id).then(resp => {
@@ -53,11 +60,12 @@ const Task = (props) => {
             });
         }
     }
+
     const i18n = ndpv.i18n;
     return (
         <div className="">
             <Form
-                handleSubmit={props.handleSubmit}
+                handleSubmit={handleSubmit}
                 setTaxonomies={setTaxonomies}
                 tab_id={props.tab_id}
             />
@@ -74,13 +82,13 @@ const Task = (props) => {
 
             {!props.dashboard && <div className="pv-small-button-group">
                 <h3 className="pv-title-small">{i18n.myw}</h3>
-                {lists.task_status && lists.task_status.map((status, statusIndex) => {
+                {lists.task_status && lists.task_status.map((item, i) => {
                     return (
-                        <button key={statusIndex}
-                            className={'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow ' + ((activeTab == status.id) || (!activeTab && statusIndex == 0) ? 'pv-active' : '')}
-                            onClick={() => { setActiveTab(status.id); props.getLists({ status_id: status.id }); }}
+                        <button key={i}
+                            className={'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow ' + ((activeTab == item.id) || (!activeTab && i == 0) ? 'pv-active' : '')}
+                            onClick={() => { setActiveTab(item.id); props.getLists({ status_id: item.id }); }}
                         >
-                            {status.label}
+                            {item.label}
                         </button>
                     )
                 })}

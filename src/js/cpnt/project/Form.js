@@ -172,7 +172,7 @@ class Form extends Component {
                 });
 
             } else {
-                this.props.update('projects', form.id, form);
+                api.edit('projects', form.id, form);
                 this.props.close();
                 this.props.reload();
             }

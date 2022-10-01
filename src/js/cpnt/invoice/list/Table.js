@@ -142,6 +142,8 @@ const TableBody = props => {
         let result = url.replace('invoice_id', invoice_id);
         let client_url = result.replace('invoice_token', invoice_token);
 
+        const nNum = row.num ? row.num : props.prefix + row.id; 
+
         const i18n = ndpv.i18n;
         return (
             <tr key={index}>
@@ -152,7 +154,7 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><span className='pv-list-title'>{(row.path == 'invoice' ? 'Inv' : 'Est') + row.id}</span></td>
+                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><span className='pv-list-title'>{nNum}</span></td>
                 {/*<td>{row.project.name}</td>*/}
                 {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
@@ -192,7 +194,7 @@ const Table = (props) => {
         setInfoModal(true);
     }
 
-    const { tableData, editEntry, checkedBoxes, deleteEntry, client_id, path, action } = props;
+    const { prefix, tableData, editEntry, checkedBoxes, deleteEntry, client_id, path, action } = props;
 
     return (
         <>
@@ -234,6 +236,7 @@ const Table = (props) => {
                     <TableHeader checkedBoxes={checkedBoxes} client_id={client_id} path={path} />
                     <TableBody
                         infoModal={handleInfoModal}
+                        prefix={prefix}
                         tableData={tableData}
                         editEntry={editEntry}
                         checkedBoxes={checkedBoxes}

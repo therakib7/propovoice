@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import pro from 'block/pro-alert';
+import api from 'api';
 import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
@@ -106,7 +107,7 @@ export default class License extends Component {
         });
         form[i].fields = newFields;
         
-        this.props.update('forms', form[i].id, form[i]).then(resp => {
+        api.edit('forms', form[i].id, form[i]).then(resp => {
             if (resp.data.success) {
                 toast.success(ndpv.i18n.aUpd);
             } else {

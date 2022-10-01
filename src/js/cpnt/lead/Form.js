@@ -173,7 +173,7 @@ export default class Form extends Component {
         }
 
         if (this.props.reload) {
-            this.props.update('leads', form.id, form);
+            api.edit('leads', form.id, form);
             this.props.close();
             this.props.reload();
         } else {

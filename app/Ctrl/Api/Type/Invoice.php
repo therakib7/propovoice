@@ -8,7 +8,7 @@ use Ndpv\Model\Contact;
 class Invoice
 {
     public function __construct()
-    { 
+    {
         add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
@@ -82,13 +82,6 @@ class Invoice
             $offset = ($per_page * $params['page']) - $per_page;
         }
 
-        if ($s) {
-            /* $find = ['est', 'Est', 'inv', 'Inv'];
-            $replace = ['', '', '', ''];
-            $search_value = str_replace($find, $replace, trim($params['s'])); */
-            // $search_value = preg_replace('/[^0-9.]+/', '', $s);
-        }
-
         $args = array(
             'post_type' => 'ndpv_estinv',
             'post_status' => 'publish',
@@ -147,6 +140,15 @@ class Invoice
             );
         }
 
+        /* if ( $s ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'num',
+                    'value' => $s
+                )
+            );
+        } */
+
         if (isset($params['module_id'])) {
             $args['meta_query'][] = array(
                 array(
@@ -165,6 +167,7 @@ class Invoice
 
             $query_data = [];
             $query_data['id'] = $id;
+            $query_data['num'] = get_post_meta($id, 'num', true);
             $query_data['token'] = get_post_meta($id, 'token', true);
             $query_data['path'] = get_post_meta($id, 'path', true);
             $query_data['date'] = get_post_meta($id, 'date', true);
@@ -233,6 +236,14 @@ class Invoice
         }
         wp_reset_postdata();
 
+        $path = $params['path'] ;
+        $prefix = get_option('ndpv_' . $path . '_general');
+        if ($prefix) {
+            $result['prefix'] = $prefix['prefix'];
+        } else {
+            $result['prefix'] = ($path == 'invoice') ? 'Inv-' : 'Est-';
+        }
+
         $result['result'] = $data;
         $result['total'] = $total_data;
 
@@ -247,127 +258,153 @@ class Invoice
 
         $id = absint($url_params['id']);
         $query_data = [];
-        $query_data['id'] = $id;
-        $query_data['token'] = get_post_meta($id, 'token', true);
-        $query_data['date'] = get_post_meta($id, 'date', true);
-        $query_data['due_date'] = get_post_meta($id, 'due_date', true);
-        $query_data['module_id'] = get_post_meta($id, 'module_id', true);
-        $from_id = get_post_meta($id, 'from', true);
 
-        $from_id = get_post_meta($id, 'from', true);
-        $query_data['status'] = get_post_meta($id, 'status', true);
-        $fromData = [];
+        if ($id) { //edit
+            $query_data['id'] = $id;
+            $query_data['token'] = get_post_meta($id, 'token', true);
+            $query_data['date'] = get_post_meta($id, 'date', true);
+            $query_data['due_date'] = get_post_meta($id, 'due_date', true);
+            $query_data['module_id'] = get_post_meta($id, 'module_id', true);
+            $from_id = get_post_meta($id, 'from', true);
 
-        if ($from_id) {
-            $fromData['id'] = $from_id;
-            $fromMeta = get_post_meta($from_id);
-            $fromData['name'] = isset($fromMeta['name']) ? $fromMeta['name'][0] : '';
-            $fromData['org_name'] = isset($fromMeta['org_name']) ? $fromMeta['org_name'][0] : '';
-            $fromData['email'] = isset($fromMeta['email']) ? $fromMeta['email'][0] : '';
-            $fromData['mobile'] = isset($fromMeta['mobile']) ? $fromMeta['mobile'][0] : '';
-            $fromData['web'] = isset($fromMeta['web']) ? $fromMeta['web'][0] : '';
-            $fromData['address'] = isset($fromMeta['address']) ? $fromMeta['address'][0] : '';
+            $from_id = get_post_meta($id, 'from', true);
+            $query_data['status'] = get_post_meta($id, 'status', true);
+            $fromData = [];
 
-            $logo_id = get_post_meta($from_id, 'logo', true);
-            $logoData = null;
-            if ($logo_id) {
-                $logoData = [];
-                $logoData['id'] = $logo_id;
-                $logo_src = wp_get_attachment_image_src($logo_id, 'thumbnail');
-                $logoData['src'] = $logo_src[0];
+            if ($from_id) {
+                $fromData['id'] = $from_id;
+                $fromMeta = get_post_meta($from_id);
+                $fromData['name'] = isset($fromMeta['name']) ? $fromMeta['name'][0] : '';
+                $fromData['org_name'] = isset($fromMeta['org_name']) ? $fromMeta['org_name'][0] : '';
+                $fromData['email'] = isset($fromMeta['email']) ? $fromMeta['email'][0] : '';
+                $fromData['mobile'] = isset($fromMeta['mobile']) ? $fromMeta['mobile'][0] : '';
+                $fromData['web'] = isset($fromMeta['web']) ? $fromMeta['web'][0] : '';
+                $fromData['address'] = isset($fromMeta['address']) ? $fromMeta['address'][0] : '';
+
+                $logo_id = get_post_meta($from_id, 'logo', true);
+                $logoData = null;
+                if ($logo_id) {
+                    $logoData = [];
+                    $logoData['id'] = $logo_id;
+                    $logo_src = wp_get_attachment_image_src($logo_id, 'thumbnail');
+                    $logoData['src'] = $logo_src[0];
+                }
+                $fromData['logo'] = $logoData;
             }
-            $fromData['logo'] = $logoData;
-        }
-        $query_data['fromData'] = $fromData;
+            $query_data['fromData'] = $fromData;
 
-        $to_id = get_post_meta($id, 'to', true);
-        $to_type = get_post_meta($id, 'to_type', true);
-        $toData = [];
+            $to_id = get_post_meta($id, 'to', true);
+            $to_type = get_post_meta($id, 'to_type', true);
+            $toData = [];
 
-        if ($to_id) {
-            $toData['id'] = absint($to_id);
-            $toMeta = get_post_meta($to_id);
-            $toData['type'] = $to_type;
-            $toData['first_name'] = isset($toMeta['first_name']) ? $toMeta['first_name'][0] : '';
-            $toData['org_name'] = isset($toMeta['name']) ? $toMeta['name'][0] : '';
-            $toData['email'] = isset($toMeta['email']) ? $toMeta['email'][0] : '';
-            $toData['mobile'] = isset($toMeta['mobile']) ? $toMeta['mobile'][0] : '';
-            $toData['web'] = isset($toMeta['web']) ? $toMeta['web'][0] : '';
-            $toData['country'] = isset($toMeta['country']) ? $toMeta['country'][0] : '';
-            $toData['region'] = isset($toMeta['region']) ? $toMeta['region'][0] : '';
-            $toData['address'] = isset($toMeta['address']) ? $toMeta['address'][0] : '';
-        }
-        $query_data['toData'] = $toData;
+            if ($to_id) {
+                $toData['id'] = absint($to_id);
+                $toMeta = get_post_meta($to_id);
+                $toData['type'] = $to_type;
+                $toData['first_name'] = isset($toMeta['first_name']) ? $toMeta['first_name'][0] : '';
+                $toData['org_name'] = isset($toMeta['name']) ? $toMeta['name'][0] : '';
+                $toData['email'] = isset($toMeta['email']) ? $toMeta['email'][0] : '';
+                $toData['mobile'] = isset($toMeta['mobile']) ? $toMeta['mobile'][0] : '';
+                $toData['web'] = isset($toMeta['web']) ? $toMeta['web'][0] : '';
+                $toData['country'] = isset($toMeta['country']) ? $toMeta['country'][0] : '';
+                $toData['region'] = isset($toMeta['region']) ? $toMeta['region'][0] : '';
+                $toData['address'] = isset($toMeta['address']) ? $toMeta['address'][0] : '';
+            }
+            $query_data['toData'] = $toData;
 
-        $invoice = get_post_meta($id, 'invoice', true);
+            $invoice = get_post_meta($id, 'invoice', true);
 
-        $reminder = isset($invoice['reminder']) ? $invoice['reminder'] : null;
-        if (!$reminder) {
-            $reminderData = [];
-            $reminderData['status'] = false;
-            $reminderData['due_date'] = false;
-            $reminderData['before'] = [];
-            $reminderData['after'] = [15];
-            $invoice['reminder'] = $reminderData;
-        }
+            $reminder = isset($invoice['reminder']) ? $invoice['reminder'] : null;
+            if (!$reminder) {
+                $reminderData = [];
+                $reminderData['status'] = false;
+                $reminderData['due_date'] = false;
+                $reminderData['before'] = [];
+                $reminderData['after'] = [15];
+                $invoice['reminder'] = $reminderData;
+            }
 
-        $recurring = isset($invoice['recurring']) ? $invoice['recurring'] : null;
-        if (!$recurring) {
-            $recurringData = [];
-            $recurringData['status'] = false;
-            $recurringData['interval_type'] = 'week';
-            $recurringData['interval_in'] = 'month';
-            $recurringData['interval'] = 1;
-            $recurringData['limit_type'] = 0;
-            $recurringData['limit'] = 5;
-            $recurringData['send_me'] = false;
-            $recurringData['delivery'] = 1;
+            $recurring = isset($invoice['recurring']) ? $invoice['recurring'] : null;
+            if (!$recurring) {
+                $recurringData = [];
+                $recurringData['status'] = false;
+                $recurringData['interval_type'] = 'week';
+                $recurringData['interval_in'] = 'month';
+                $recurringData['interval'] = 1;
+                $recurringData['limit_type'] = 0;
+                $recurringData['limit'] = 5;
+                $recurringData['send_me'] = false;
+                $recurringData['delivery'] = 1;
 
-            $invoice['recurring'] = $recurringData;
-        }
+                $invoice['recurring'] = $recurringData;
+            }
 
-        $paymentData = null;
-        if (isset($invoice['payment_methods']['bank'])) {
-            $paymentData['id'] = $invoice['payment_methods']['bank'];
-            $paymentMeta = get_post_meta($invoice['payment_methods']['bank']);
-            $paymentData['name'] = isset($paymentMeta['name']) ? $paymentMeta['name'][0] : '';
-            $paymentData['details'] = isset($paymentMeta['details']) ? $paymentMeta['details'][0] : '';
-        }
-        $query_data['paymentBankData'] = $paymentData;
+            $paymentData = null;
+            if (isset($invoice['payment_methods']['bank'])) {
+                $paymentData['id'] = $invoice['payment_methods']['bank'];
+                $paymentMeta = get_post_meta($invoice['payment_methods']['bank']);
+                $paymentData['name'] = isset($paymentMeta['name']) ? $paymentMeta['name'][0] : '';
+                $paymentData['details'] = isset($paymentMeta['details']) ? $paymentMeta['details'][0] : '';
+            }
+            $query_data['paymentBankData'] = $paymentData;
 
-        if (isset($params['client_view'])) {
-            $payment_methods = isset($invoice['payment_methods']) ? $invoice['payment_methods'] : null;
-            if ($payment_methods) {
-                $new_payment_methods = [];
+            if (isset($params['client_view'])) {
+                $token = isset($params['token']) ? sanitize_text_field($params['token']) : ''; 
+                $post_token = get_post_meta($id, 'token', true); 
 
-                foreach ($payment_methods as $key => $payment_id) {
-                    $payment_query_data = [];
-                    $payment_query_data['id'] = $payment_id;
+                $is_admin = ( is_user_logged_in() && apply_filters('ndpv_admin', current_user_can('administrator')) );
 
-                    if ($key == 'bank') {
-                        $payment_query_data['name'] = get_post_meta($payment_id, 'name', true);
-                        $payment_query_data['details'] = get_post_meta($payment_id, 'details', true);
-                    } elseif ($key == 'paypal') {
-                        $payment_query_data['account_type'] = get_post_meta($payment_id, 'account_type', true);
-                        $payment_query_data['client_id'] = get_post_meta($payment_id, 'client_id', true);
-                    } elseif ($key == 'stripe') {
-                        $payment_query_data['public_key'] = get_post_meta($payment_id, 'public_key', true);
-                    }
-
-                    $new_payment_methods[$key] = $payment_query_data;
+                $auth = false;
+                if ($is_admin || ($token == $post_token)) {
+                    $auth = true;
+                }
+                
+                if ( !$auth ) {
+                    wp_send_json_error();
                 }
 
-                $invoice['payment_methods'] = $new_payment_methods;
-            }
+                $payment_methods = isset($invoice['payment_methods']) ? $invoice['payment_methods'] : null;
+                if ($payment_methods) {
+                    $new_payment_methods = [];
 
-            $invoice_model = new ModelInvoice();
-            $invoice['total'] = $invoice_model->getTotalAmount($invoice);
+                    foreach ($payment_methods as $key => $payment_id) {
+                        $payment_query_data = [];
+                        $payment_query_data['id'] = $payment_id;
+
+                        if ($key == 'bank') {
+                            $payment_query_data['name'] = get_post_meta($payment_id, 'name', true);
+                            $payment_query_data['details'] = get_post_meta($payment_id, 'details', true);
+                        } elseif ($key == 'paypal') {
+                            $payment_query_data['account_type'] = get_post_meta($payment_id, 'account_type', true);
+                            $payment_query_data['client_id'] = get_post_meta($payment_id, 'client_id', true);
+                        } elseif ($key == 'stripe') {
+                            $payment_query_data['public_key'] = get_post_meta($payment_id, 'public_key', true);
+                        }
+
+                        $new_payment_methods[$key] = $payment_query_data;
+                    }
+
+                    $invoice['payment_methods'] = $new_payment_methods;
+                }
+
+                $invoice_model = new ModelInvoice();
+                $invoice['total'] = $invoice_model->getTotalAmount($invoice);
+            }
+        } else { //new
+        }
+
+        $path = $id ? get_post_meta($id, 'path', true) : $params['path'] ;
+        $prefix = get_option('ndpv_' . $path . '_general');
+        if ($prefix) {
+            $query_data['prefix'] = $prefix['prefix'];
+        } else {
+            $query_data['prefix'] = ($path == 'invoice') ? 'Inv-' : 'Est-';
         }
 
         $query_data['wc'] = false;
         if (ndpv()->wage()) {
-            $option = get_option('ndpv_payment_wc');
-            if ($option['status'] && class_exists( 'woocommerce' )) {
+            $wc = get_option('ndpv_payment_wc');
+            if ($wc['status'] && class_exists('woocommerce')) {
                 $query_data['wc'] = true;
             }
         }
@@ -383,6 +420,7 @@ class Invoice
         $reg_errors  = new \WP_Error();
         //TODO: sanitize later
         $invoice  = isset($params) ? $params : null;
+        $num = isset($params['num']) ? $params['num'] : '';
         $module_id = isset($params['module_id']) ? $params['module_id'] : null;
         $date     = isset($params['date']) ? $params['date'] : null;
         $path     = isset($params['path']) ? $params['path'] : '';
@@ -394,8 +432,6 @@ class Invoice
         foreach ($params['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
         }
-        $paid   = isset($params['paid']) ? $params['paid'] : null;
-        $due    = $paid ? $total - $paid : null;
 
         $from   = isset($params['from']) ? $params['from'] : null;
         $to     = isset($params['to']) ? $params['to'] : null;
@@ -435,6 +471,10 @@ class Invoice
                 update_post_meta($post_id, 'status', 'draft');
                 update_post_meta($post_id, 'path', $path);
 
+                if ($num) {
+                    update_post_meta($post_id, 'num', $num);
+                }
+
                 if ($module_id) {
                     update_post_meta($post_id, 'module_id', $module_id);
                 }
@@ -465,14 +505,6 @@ class Invoice
 
                 if ($total) {
                     update_post_meta($post_id, 'total', $total);
-                }
-
-                if ($paid) {
-                    update_post_meta($post_id, 'paid', $paid);
-                }
-
-                if ($due) {
-                    update_post_meta($post_id, 'due', $due);
                 }
 
                 if ($payment_methods) {
@@ -508,6 +540,7 @@ class Invoice
         $reg_errors = new \WP_Error();
         $invoice  = isset($params) ? $params : null;
 
+        $num = isset($params['num']) ? $params['num'] : '';
         $module_id = isset($params['module_id']) ? $params['module_id'] : null;
         $date     = isset($params['date']) ? $params['date'] : null;
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
@@ -521,8 +554,6 @@ class Invoice
         foreach ($params['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
         }
-        $paid     = isset($params['paid']) ? $params['paid'] : null;
-        $due      = $paid ? $total - $paid : null;
 
         $reminder = isset($params['reminder']) ? $params['reminder'] : null;
         $recurring = isset($params['recurring']) ? $params['recurring'] : null;
@@ -556,13 +587,10 @@ class Invoice
                     update_post_meta($post_id, 'module_id', $module_id);
                 }
 
-                if ($date) {
-                    update_post_meta($post_id, 'date', $date);
-                }
+                update_post_meta($post_id, 'num', $num);
+                update_post_meta($post_id, 'date', $date);
 
-                if ($due_date) {
-                    update_post_meta($post_id, 'due_date', $due_date);
-                }
+                update_post_meta($post_id, 'due_date', $due_date);
 
                 if ($from) {
                     update_post_meta($post_id, 'from', $from);
@@ -582,13 +610,6 @@ class Invoice
 
                 if ($total) {
                     update_post_meta($post_id, 'total', $total);
-                }
-                if ($paid) {
-                    update_post_meta($post_id, 'paid', $paid);
-                }
-
-                if ($due) {
-                    update_post_meta($post_id, 'due', $due);
                 }
 
                 if ($reminder) {

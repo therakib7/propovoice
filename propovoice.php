@@ -13,8 +13,8 @@ if (!defined('ABSPATH')) {
  * Plugin URI: https://wordpress.org/plugins/propovoice
  * Author: Propovoice
  * Author URI: https://propovoice.com
- * Version: 1.0.1.4
- * Description: A complete estimate and invoice management system for the WordPress.
+ * Version: 1.0.1.5
+ * Description: Lead, Deal, Estimate, Invoice, Billing, Client, Project Automation
  * Text Domain: propovoice
  * Domain Path: /languages
  *

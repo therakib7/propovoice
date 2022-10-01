@@ -216,7 +216,7 @@ class Project
         $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
         $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
         $query_data['title'] = get_the_title($id);
-        $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
+        $query_data['budget'] = isset($queryMeta['budget']) && $queryMeta['budget'][0] ? $queryMeta['budget'][0] : 0;
         $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
         $query_data['start_date'] = isset($queryMeta['start_date']) ? $queryMeta['start_date'][0] : '';
         $query_data['due_date'] = isset($queryMeta['due_date']) ? $queryMeta['due_date'][0] : '';
@@ -518,29 +518,19 @@ class Project
                     update_post_meta($post_id, 'org_id', $org_id);
                 }
 
-                if ($budget) {
-                    update_post_meta($post_id, 'budget', $budget);
-                }
+                update_post_meta($post_id, 'budget', $budget);
 
-                if ($currency) {
-                    update_post_meta($post_id, 'currency', $currency);
-                }
+                update_post_meta($post_id, 'currency', $currency);
 
-                if ($start_date) {
-                    update_post_meta($post_id, 'start_date', $start_date);
-                }
+                update_post_meta($post_id, 'start_date', $start_date);
 
-                if ($due_date) {
-                    update_post_meta($post_id, 'due_date', $due_date);
-                }
+                update_post_meta($post_id, 'due_date', $due_date);
 
                 if ($tags) {
                     wp_set_post_terms($post_id, $tags, 'ndpv_tag');
                 }
 
-                if ($note) {
-                    update_post_meta($post_id, 'note', $note);
-                }
+                update_post_meta($post_id, 'note', $note);
 
                 wp_send_json_success($post_id);
             } else {

@@ -80,13 +80,15 @@ export default class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-
+         
         if (type == 'person') {
+            form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
         } else {
+            form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
             if (!form.first_name) {
                 form.email = (val) ? val.email : '';
@@ -143,8 +145,8 @@ export default class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.ct}</h2>
-                        <p>{sprintf(i18n.formDesc, i18n.client)}</p>
+                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.ct}</h2> 
+                        <p>{sprintf(i18n.formDesc, i18n.ct)}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

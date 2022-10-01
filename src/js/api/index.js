@@ -19,11 +19,11 @@ const url = (api, from) => {
 };
 
 const get = (api, args = '', from = 'free' ) => {
-	return axios.get(`${url(api, from)}/?${args}`);
+	return axios.get(`${url(api, from)}/?${args}`, token);
 };
 
 const getS = ( api, id, from = 'free') => {
-	return axios.get(`${url(api, from)}/${id}`);
+	return axios.get(`${url(api, from)}/${id}`, token);
 };
 
 const add = ( api, data, from = 'free') => {
