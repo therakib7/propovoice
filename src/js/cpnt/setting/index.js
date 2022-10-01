@@ -50,7 +50,7 @@ const Setting = (props) => {
         },
         deal: {
             label: i18n.deal
-        }, 
+        },
         estinv: {
             label: i18n.est + ' ' + i18n.nd + ' ' + i18n.inv,
             subtabs: {
