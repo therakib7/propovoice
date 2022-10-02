@@ -374,8 +374,7 @@ class ListSingle extends Component {
                                                     width={14}
                                                     height={12}
                                                     viewBox="0 0 12 15"
-                                                    fill="none"
-
+                                                    fill="none" 
                                                 >
                                                     <path
                                                         d="M2.5 8H13.5"

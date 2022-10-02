@@ -129,8 +129,8 @@ export default (props) => {
 		newForm.id = parseInt(item.id);
 
 		setDropdown(false);
-
-		if (props.onChange) {
+ 
+		if (props.onChange) { 
 			props.onChange(item);
 		}
 
@@ -144,6 +144,9 @@ export default (props) => {
 
 		api.edit('taxonomies', newForm.id, newForm).then(resp => {
 			if (resp.data.success) {
+				if (props.onDone) { 
+					props.onDone()
+				}
 				getData();
 			} else {
 				resp.data.data.forEach(function (value, index, array) {

@@ -254,7 +254,7 @@ export default class Form extends Component {
                                         name="name"
                                         defaultValue="Add Location"
                                     />
-                                    {false && !wage.length && <div className="pv-buttons pv-mt-15">
+                                    {!wage.length && <div className="pv-buttons pv-mt-15">
                                         <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-mr-10">
                                             <svg
                                                 width={17}
