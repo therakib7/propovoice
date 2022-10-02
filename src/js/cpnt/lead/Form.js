@@ -301,23 +301,23 @@ export default class Form extends Component {
                                         <label htmlFor="field-level_id">
                                             {i18n.level}
                                         </label>
-                                        {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color /> */}
-                                        <Select
+                                        <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color />
+                                        {/* <Select
                                             className={'pv-field-select'}
                                             value={form.level_id}
                                             onChange={this.handleLevelChange}
                                             getOptionValue={(levelList) => levelList.id}
                                             getOptionLabel={(levelList) => levelList.label}
                                             options={levelList}
-                                        />
+                                        /> */}
                                     </div>
 
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
                                             {i18n.tag}
                                         </label>
-                                        {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple /> */}
-                                        <Select
+                                        <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple />
+                                        {/* <Select
                                             className={'pv-field-select'}
                                             value={form.tags}
                                             onChange={this.handleTagChange}
@@ -325,7 +325,7 @@ export default class Form extends Component {
                                             getOptionLabel={(tagList) => tagList.label}
                                             options={tagList}
                                             isMulti
-                                        />
+                                        /> */}
                                     </div>
                                 </div>
 

@@ -91,34 +91,7 @@ export default (props) => {
 			setModalType(type);
 			setForm(tax);
 		}
-	}
-
-	const handleDelete = (id) => {
-		if (confirm(ndpv.i18n.aConf)) {
-
-			let newForm = {}
-			newForm.taxonomy = props.taxonomy;
-			newForm.delete = true;
-			newForm.post_id = parseInt(props.id);
-			newForm.id = parseInt(id);
-
-			const filtered = listById.filter(obj => {
-				return obj.id !== id;
-			});
-			setListById(filtered);
-
-			api.edit('taxonomies', newForm.id, newForm).then(resp => {
-				if (resp.data.success) {
-					toast.success(ndpv.i18n.aDel);
-					getData();
-				} else {
-					resp.data.data.forEach(function (value, index, array) {
-						toast.error(value);
-					});
-				}
-			});
-		}
-	}
+	} 
 
 	const handleSelect = (item) => {
 		let newForm = {}
@@ -142,6 +115,10 @@ export default (props) => {
 			}
 		}
 
+		if ( !props.id ) {
+			return;
+		}
+
 		api.edit('taxonomies', newForm.id, newForm).then(resp => {
 			if (resp.data.success) {
 				if (props.onDone) { 
@@ -154,6 +131,37 @@ export default (props) => {
 				});
 			}
 		});
+	}
+
+	const handleDelete = (id) => {
+		if (confirm(ndpv.i18n.aConf)) {
+
+			let newForm = {}
+			newForm.taxonomy = props.taxonomy;
+			newForm.delete = true;
+			newForm.post_id = parseInt(props.id);
+			newForm.id = parseInt(id);
+
+			const filtered = listById.filter(obj => {
+				return obj.id !== id;
+			});
+			setListById(filtered);
+
+			if ( !props.id ) {
+				return;
+			}
+			
+			api.edit('taxonomies', newForm.id, newForm).then(resp => {
+				if (resp.data.success) {
+					toast.success(ndpv.i18n.aDel);
+					getData();
+				} else {
+					resp.data.data.forEach(function (value, index, array) {
+						toast.error(value);
+					});
+				}
+			});
+		}
 	}
 
 	const i18n = ndpv.i18n;

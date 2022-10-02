@@ -57,14 +57,10 @@ export default (props) => {
 		}
 	}
 
-	const handleDelete = (id) => {
+	const handleDelete = (id, tax) => {
 
-		if (confirm(ndpv.i18n.aConf)) {
-			let newForm = {}
-			newForm.taxonomy = props.taxonomy;
-			newForm.delete = true;
-			newForm.id = parseInt(id);
-			api.edit('taxonomies', newForm.id, newForm).then(resp => {  
+		if (confirm(ndpv.i18n.aConf)) { 
+			api.del('taxonomies', id + '/' + tax ).then(resp => {   
 				if (resp.data.success) {
 					toast.success(ndpv.i18n.aDel);
 					getData();
@@ -226,7 +222,7 @@ export default (props) => {
 														</svg>
 													</span>
 
-													{ true && (!item.hasOwnProperty('type') || !item.type) && <span style={{ padding: '5px', cursor: 'pointer' }} onClick={() => { handleDelete(item.id) }}>
+													{ true && (!item.hasOwnProperty('type') || !item.type) && <span style={{ padding: '5px', cursor: 'pointer' }} onClick={() => { handleDelete(item.id, props.taxonomy) }}>
 														<svg
 															width={16}
 															height={16}
