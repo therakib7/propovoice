@@ -161,9 +161,12 @@ class Project
             $query_data['status_id'] = '';
             $status = get_the_terms($id, 'ndpv_project_status');
             if ($status) {
+                $term_id = $status[0]->term_id;
                 $query_data['status_id'] = [
-                    'id' => $status[0]->term_id,
-                    'label' => $status[0]->name
+                    'id' => $term_id,
+                    'label' => $status[0]->name,
+                    'color' => get_term_meta($term_id, 'color', true),
+                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
                 ];
             }
 

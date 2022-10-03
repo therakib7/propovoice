@@ -121,11 +121,14 @@ class Deal
         $args = array(
             'post_type' => 'ndpv_deal',
             'post_status' => 'publish',
-            'orderby' => 'menu_order',
-            'order' => 'ASC',
             'posts_per_page' => $per_page,
             'offset' => $offset,
         );
+
+        if ( $stage_id ) {
+            $args['orderby'] = 'menu_order';
+            $args['order'] = 'ASC';
+        }
 
         $args['meta_query'] = array(
             'relation' => 'OR'

@@ -23,21 +23,23 @@ export default (props) => {
 	const [form, setForm] = useState(newForm);
 
 	const close = useCallback(() => setDropdown(false), []);
-	useClickOutside(dropdownContent, close);
+	useClickOutside(dropdownContent, close); 
 
 	useEffect(() => {
-		if (props.data) {
-			if (props.multiple) {
+		
+		if (props.data) { 
+			
+			if (props.multi) {
 				setListById(props.data);
 			} else {
 				setListById([props.data]);
 			}
 
 			getData();
-		} else {
+		} else { 
 			getDataWithSingle();
 		}
-	}, []);
+	}, [props.data]);
 
 	const getData = () => {
 		if (props.list) {
@@ -60,7 +62,9 @@ export default (props) => {
 		api.get('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
-				setListById(resp.data.data['single_' + props.taxonomy]);
+				if ( props.id ) {
+					setListById(resp.data.data['single_' + props.taxonomy]);
+				}
 			}
 		});
 	}
@@ -97,23 +101,26 @@ export default (props) => {
 		let newForm = {}
 		newForm.taxonomy = props.taxonomy;
 		newForm.add = true;
-		newForm.append = props.multiple ? true : false;
+		newForm.append = props.multi ? true : false;
 		newForm.post_id = parseInt(props.id);
 		newForm.id = parseInt(item.id);
 
-		setDropdown(false);
- 
-		if (props.onChange) { 
-			props.onChange(item);
-		}
+		setDropdown(false); 
 
-		if (!props.multiple) {
+		if (!props.multi) {
 			setListById([item]);
+			if (props.onChange) { 
+				props.onChange(item);
+			}
 		} else {
 			if (!listById.some(e => e.id == item.id)) {
 				setListById([...listById, item]);
+
+				if (props.onChange) { 
+					props.onChange([...listById, item]);
+				}
 			}
-		}
+		} 
 
 		if ( !props.id ) {
 			return;
@@ -146,6 +153,9 @@ export default (props) => {
 				return obj.id !== id;
 			});
 			setListById(filtered);
+			if (props.onChange) { 
+				props.onChange(filtered);
+			}
 
 			if ( !props.id ) {
 				return;
@@ -167,20 +177,20 @@ export default (props) => {
 	const i18n = ndpv.i18n;
 	return (
 		<>
-			{props.multiple && listById && listById.map((item, itemIndex) => {
+			{props.multi && listById && listById.map((item, itemIndex) => {
 				return (
 					<span key={itemIndex} className="pv-badge">{item.label} <b onClick={() => handleDelete(item.id)}>X</b></span>
 				)
 			})}
 
 			<div className="pv-action-content" ref={dropdownContent}>
-				{props.multiple && <button
+				{props.multi && <button
 					className={(!props.small) ? 'pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow' : 'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}>
 					+ {i18n.add} {props.title}
 				</button>}
 
-				{!props.multiple && listById.length > 0 && <button
+				{!props.multi && listById.length > 0 && <button
 					className={(!props.small) ? 'pv-btn pv-btn-medium' : 'pv-btn pv-btn-small'}
 					style={{
 						backgroundColor: listById[0].bg_color,
@@ -205,7 +215,7 @@ export default (props) => {
 					</svg>
 				</button>}
 
-				{!props.multiple && !listById.length && <button
+				{!props.multi && !listById.length && <button
 					style={{ backgroundColor: '#E2E8F0', color: '#4a5568' }}
 					className={(!props.small) ? 'pv-btn pv-btn-medium pv-bg-hover-shadow' : 'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}

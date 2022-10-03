@@ -75,7 +75,7 @@ export default (props) => {
 
 	const handleDragEnd = (result) => {
 
-		if (!result.destination) return
+		if ( !result.destination ) return
 
 		//helper function to reorder result (src: react-beautiful-dnd docs)
 		const reorder = (list, startIndex, endIndex) => {

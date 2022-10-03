@@ -118,6 +118,7 @@ class I18n
             'dft' => esc_html__('Draft', 'propovoice'),
             'req' => esc_html__('Request', 'propovoice'),
             //form
+            'isReq' => esc_html__('is required', 'propovoice'), 
             /* translators: %s: Module Name */
             'formDesc' => esc_html__('Add new %s from here', 'propovoice'), 
             'payDesc' => esc_html__('Add payment info from here', 'propovoice'),
