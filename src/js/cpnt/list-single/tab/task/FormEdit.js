@@ -1,11 +1,12 @@
-import React, { Component, lazy } from 'react';
-import moment from 'moment';
-import { Add } from 'block/icon';
-import api from 'api';
+import React, { Component, lazy } from "react";
+import moment from "moment";
+import { Add } from "block/icon";
+import api from "api";
+import { handleAuthClick } from "api/gapi/goauth2";
 
-import Taxonomy from 'block/field/taxonomy';
-const DateField = lazy(() => import('block/date-picker'));
-import Checklist from './Checklist';
+import Taxonomy from "block/field/taxonomy";
+const DateField = lazy(() => import("block/date-picker"));
+import Checklist from "./Checklist";
 
 export default class Form extends Component {
     constructor(props) {
@@ -14,17 +15,19 @@ export default class Form extends Component {
         this.initialState = {
             id: null,
             tab_id: this.props.tab_id,
-            title: '',
+            title: "",
             status_id: null,
             type_id: null,
             priority_id: null,
-            desc: '',
-            note: '',
+            desc: "",
+            note: "",
             checklist: null,
         };
 
         this.state = {
             form: this.initialState,
+            gApiCalendar: {},
+            gMeetLink: "",
             dropdown: null,
         };
         this.timeout = 0;
@@ -35,15 +38,15 @@ export default class Form extends Component {
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } }, () => {
-            let reload = name == 'title' ? true : false;
+            let reload = name == "title" ? true : false;
             this.updateRequest(reload);
         });
-    }
+    };
 
     componentDidMount() {
         document.addEventListener("mousedown", this.handleClickOutside);
 
-        //added this multi place, because not working in invoice single
+        //added this multiple place, because not working in invoice single
         this.editData();
     }
 
@@ -55,36 +58,36 @@ export default class Form extends Component {
         this.editData();
     }
 
-    handleClickOutside = e => {
+    handleClickOutside = (e) => {
         if (!this.myRef.current.contains(e.target)) {
-            this.props.close()
+            this.props.close();
         }
     };
 
     editData = () => {
-        //condition added to stop multi rendering 
-        if (this.props.modalType == 'edit') {
+        //condition added to stop multiple rendering
+        if (this.props.modalType == "edit") {
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
             }
 
             /* if ( JSON.stringify(this.state.form) != JSON.stringify(this.props.data) ) {
-                this.setState({ form: this.props.data }); 
-            } */
+                      this.setState({ form: this.props.data });
+                  } */
         } else {
             if (this.state.form.id != null) {
                 this.setState({ form: this.initialState });
             }
         }
-    }
+    };
 
     handleChecklistChange = (data) => {
-        let form = { ...this.state.form }
+        let form = { ...this.state.form };
         form.checklist = data;
         this.setState({ form }, () => {
             this.updateRequest();
-        })
-    }
+        });
+    };
 
     updateRequest = (reload = false) => {
         if (this.timeout) clearTimeout(this.timeout);
@@ -96,27 +99,27 @@ export default class Form extends Component {
             delete form.type_id;
 
             if (form.start_date) {
-                let startDate = moment(form.start_date).format('YYYY-MM-DD');
+                let startDate = moment(form.start_date).format("YYYY-MM-DD");
                 form.start_date = startDate;
             }
 
             if (form.end_date) {
-                let endDate = moment(form.end_date).format('YYYY-MM-DD');
+                let endDate = moment(form.end_date).format("YYYY-MM-DD");
                 form.end_date = endDate;
             }
 
-            api.edit('tasks', form.id, form).then(resp => {
+            api.edit("tasks", form.id, form).then((resp) => {
                 if (resp.data.success && reload) {
-                    this.props.reload({ status_id })
+                    this.props.reload({ status_id });
                 }
             });
         }, 300);
-    }
+    };
 
     handleTaskStatusChange = (val) => {
-        let data = { ...this.state.form }
-        if (val == 'done') {
-            let obj = this.props.taxonomies.status.find(o => o.type === val);
+        let data = { ...this.state.form };
+        if (val == "done") {
+            let obj = this.props.taxonomies.status.find((o) => o.type === val);
             data.status_id = obj;
 
             this.setState({ form: data }, () => {
@@ -124,20 +127,20 @@ export default class Form extends Component {
                 if (data.status_id) {
                     newData.status_id = data.status_id.id;
                 }
-                api.edit('tasks', data.id, newData);
+                api.edit("tasks", data.id, newData);
             });
-
         } else {
             data.status_id = val;
             this.setState({ form: data });
         }
-        this.props.reload()
-    }
+
+        this.props.reload();
+    };
 
     onDateChange = (date, type = null) => {
-        let form = { ...this.state.form }
+        let form = { ...this.state.form };
 
-        if (type == 'date') {
+        if (type == "date") {
             form.start_date = date;
         } else {
             form.due_date = date;
@@ -145,8 +148,13 @@ export default class Form extends Component {
 
         this.setState({ form }, () => {
             this.updateRequest(true);
-        })
-    }
+        });
+    };
+
+    generateGoogleMeetLink = () => {
+        handleAuthClick();
+        // handleClientLoad();
+    };
 
     render() {
         const form = this.state.form;
@@ -255,12 +263,17 @@ export default class Form extends Component {
                                         defaultValue="Add Location"
                                     />
                                     {!wage.length && <div className="pv-buttons pv-mt-15">
-                                        <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-mr-10">
+                                        <button
+                                            className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-mr-10"
+                                            onClick={() => {
+                                                this.generateGoogleMeetLink();
+                                            }}
+                                        >
                                             <svg
                                                 width={17}
                                                 height={14}
                                                 viewBox="0 0 17 14"
-                                                fill="none" 
+                                                fill="none"
                                             >
                                                 <path
                                                     d="M4.5 0.399902L0.5 4.3999L2.5 5.63793L4.5 4.3999L5.62941 2.3999L4.5 0.399902Z"
@@ -298,7 +311,7 @@ export default class Form extends Component {
                                                 width={17}
                                                 height={10}
                                                 viewBox="0 0 17 10"
-                                                fill="none" 
+                                                fill="none"
                                             >
                                                 <path
                                                     d="M0.5 1.09594V6.95562C0.505313 8.28062 1.5875 9.34687 2.90719 9.34156H11.4481C11.6909 9.34156 11.8862 9.14625 11.8862 8.90875V3.04937C11.8809 1.72437 10.7991 0.657811 9.47906 0.663124H0.938125C0.695313 0.663124 0.5 0.858437 0.5 1.09594H0.5ZM12.43 3.38187L15.9563 0.805624C16.2625 0.552499 16.5 0.615624 16.5 1.075V8.92969C16.5 9.4525 16.2097 9.38906 15.9563 9.19906L12.43 6.62812V3.38187Z"
