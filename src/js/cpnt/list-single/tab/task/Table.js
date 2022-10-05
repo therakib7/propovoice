@@ -1,10 +1,9 @@
-import React, { useRef, useCallback, useState } from 'react';
 import Moment from 'react-moment';
 import Action from 'block/action/row';
 import Taxonomy from 'block/field/taxonomy';
 
 const TableBody = props => {
-
+    console.log(props);
     return props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
@@ -54,10 +53,10 @@ const TableBody = props => {
                         </div>
                     </li>
                     <li style={{ width: '20%' }}>
-                        <Taxonomy key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title={ndpv.i18n.status} small color />
+                        <Taxonomy onDone={props.reload} key={row.id} id={row.id} data={row.status_id} list={props.taxonomies.status} taxonomy='task_status' title={ndpv.i18n.status} small color />
                     </li>
                     <li style={{ width: '20%' }}>
-                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title={ndpv.i18n.prior}  small color />
+                        <Taxonomy key={row.id} id={row.id} data={row.priority_id} list={props.taxonomies.priorities} taxonomy='task_priority' title={ndpv.i18n.prior} small color />
                     </li>
                     {/* <li style={{ width: '15%' }}>
                         <Taxonomy id={row.id} data={row.priority_id} taxonomy='task_priority' title='Priority' small color />
@@ -75,7 +74,7 @@ const TableBody = props => {
     });
 }
 
-const Table = (props) => {
+export default (props) => {
     return (
         <>
             {props.tableData.length > 0 &&
@@ -87,6 +86,4 @@ const Table = (props) => {
             }
         </>
     );
-}
-
-export default Table;
+} 

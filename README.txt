@@ -79,7 +79,7 @@ You can add a client to send him project estimates and invoices. You can input y
 
 
 == 🏆 Create Estimate and Invoice ==
--Template library: There are multiple fully customizable estimate templates in the Propovoice CRM template library. The aesthetic designs of the templates will create the first impression on your clients. You can customize the templates with your brand color and style.
+-Template library: There are multi fully customizable estimate templates in the Propovoice CRM template library. The aesthetic designs of the templates will create the first impression on your clients. You can customize the templates with your brand color and style.
 
 -Select Client: You can simply add the receiver client from the dropdown or by searching in the search field. 
 - Add items and price: You can add items with their title and description as much as you need. 
@@ -114,7 +114,7 @@ There is an extendable table for managing listed clients, created invoices easil
 
 
 == 🏆 Acceptable Payment Gateways == 
-You can provide the information of your Bank and multiple Money Transfer Platforms for the billing of your business. You can add multiple acceptable payment information from the setting. And you can add a flexible one while creating an invoice.
+You can provide the information of your Bank and multi Money Transfer Platforms for the billing of your business. You can add multi acceptable payment information from the setting. And you can add a flexible one while creating an invoice.
 
 == 🏆 Settings == 
 Settings make Propovoice CRM your won CRM with personalized preferences 

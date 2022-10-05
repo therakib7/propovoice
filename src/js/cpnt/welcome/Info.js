@@ -34,7 +34,7 @@ class Info extends Component {
     }
 
     componentDidMount() {
-        //condition added to stop multiple rendering
+        //condition added to stop multi rendering
         if (this.state.form.id != this.props.data.id) {
             this.setState({ form: this.props.data });
         }
