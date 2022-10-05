@@ -9,6 +9,7 @@ import Spinner from "block/preloader/spinner";
 //form
 import GoogleCalendar from "./services/GoogleCalendar";
 import GoogleDrive from "./services/GoogleDrive";
+import GOAuth2 from "./services/goauth2";
 
 export default class Main extends Component {
   constructor(props) {
@@ -24,6 +25,13 @@ export default class Main extends Component {
   }
 
   services = [
+    {
+      name: "Google OAuth2",
+      slug: "oauth2",
+      img: "https://cdn.cdnlogo.com/logos/o/50/oauth.svg",
+      active: false,
+      pro: true,
+    },
     {
       name: "Google Calendar",
       slug: "calendar",
@@ -87,6 +95,7 @@ export default class Main extends Component {
           </>
         )}
 
+        {currentTab == "oauth2" && <GOAuth2 {...this.props} />}
         {currentTab == "calendar" && <GoogleCalendar {...this.props} />}
         {currentTab == "drive" && <GoogleDrive {...this.props} />}
       </>
