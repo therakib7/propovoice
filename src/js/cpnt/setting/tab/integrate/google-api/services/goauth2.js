@@ -10,6 +10,7 @@ export default class GOAuth2 extends Component {
       client_id: "",
       client_secret: "",
       redirect_uri: "",
+      api_key: "",
     };
 
     this.state = {
@@ -62,7 +63,7 @@ export default class GOAuth2 extends Component {
 
   render() {
     const i18n = ndpv.i18n;
-    const { client_id, client_secret, redirect_uri } = this.state.form;
+    const { client_id, client_secret, redirect_uri, api_key } = this.state.form;
     return (
       <form onSubmit={this.handleSubmit} className="pv-form-style-one">
         <h4
@@ -113,6 +114,20 @@ export default class GOAuth2 extends Component {
           </div>
         </div>
 
+        <div className="row">
+          <div className="col-md">
+            <label htmlFor="api_key">API Key</label>
+
+            <input
+              id="api_key"
+              type="text"
+              required
+              name="api_key"
+              value={api_key}
+              onChange={this.handleChange}
+            />
+          </div>
+        </div>
         <div className="row">
           <div className="col">
             <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
