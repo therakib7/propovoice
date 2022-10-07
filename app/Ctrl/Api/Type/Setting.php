@@ -295,6 +295,7 @@ class Setting
                     $data["client_id"] = "";
                     $data["client_secret"] = "";
                     $data["redirect_uri"] = "";
+                    $data["api_key"] = "";
                 }
             }
 
@@ -526,6 +527,9 @@ class Setting
                     : null;
                 $data["redirect_uri"] = isset($params["redirect_uri"])
                     ? sanitize_text_field($params["redirect_uri"])
+                    : null;
+                $data["api_key"] = isset($params["api_key"])
+                    ? sanitize_text_field($params["api_key"])
                     : null;
                 update_option("ndpv_" . $tab, $data);
             }
