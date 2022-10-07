@@ -1,11 +1,8 @@
 <?php 
-namespace Ndpv\Ctrl\Ajax;
-
-use Ndpv\Ctrl\Ajax\Type\Feedback; 
+namespace Ndpv\Ctrl\Ajax; 
 
 class AjaxCtrl {
 
-    public function __construct() {  
-        new Feedback(); 
+    public function __construct() {   
     }
 }
