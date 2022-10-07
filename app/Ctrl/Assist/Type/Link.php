@@ -1,5 +1,5 @@
 <?php 
-namespace Ndpv\Ctrl\Marketing\Type; 
+namespace Ndpv\Ctrl\Assist\Type; 
 
 class Link {
 
@@ -8,7 +8,7 @@ class Link {
     }  
 
     /**
-	 * Marketing links.
+	 * Assist links.
 	 *
 	 * @param array $links
 	 *

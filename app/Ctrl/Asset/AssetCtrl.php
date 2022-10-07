@@ -49,11 +49,11 @@ class AssetCtrl
         return $show;
     }
 
-    public function admin_public_script()
+    private function admin_public_script()
     {
     }
 
-    public function dashboard_script()
+    private function dashboard_script()
     {
         //font family
         if (
