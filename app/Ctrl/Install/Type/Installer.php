@@ -8,8 +8,8 @@ class Installer
     private $api = 'http://nurencyplugin.local/wp-json/ndpva/v1/';
 
     public function __construct()
-    { 
-        // $this->info(); 
+    {  
+        $this->info(); 
     }
 
     public function info()
