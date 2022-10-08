@@ -18,22 +18,27 @@ class Feedback {
      */
     public function deactivate()
     {
-        /* if ( !isset($_POST['_wpnonce']) || ! wp_verify_nonce($_POST['_wpnonce'], '_ndpv_deactivate_nonce') ) {
+        if ( !isset($_POST['nonce']) || ! wp_verify_nonce($_POST['nonce'], '_ndpv_deactivate_nonce') ) {
             wp_send_json_error();
-        }  */
+        } 
 
         $reason_key = isset($_POST['reason_key']) ? sanitize_text_field($_POST['reason_key']) : '';
-        $reason_text = isset($_POST["reason_{$reason_key}"]) ? sanitize_text_field($_POST["reason_{$reason_key}"]) : '';
+        $reason = isset($_POST["reason"]) ? sanitize_text_field($_POST["reason"]) : '';
         
-        $data = Info::wp();
+        $info = new Info;
+        $data = $info->wp();
         $data['reason_key'] = $reason_key;
-        $data['reason_text'] = $reason_text;
+        $data['reason'] = $reason;
+        $data['version'] = NDPV_VERSION;
+        $data['package'] = 'free';
 
-        /* wp_remote_post( $this->api, [
+        wp_remote_post( $this->api . 'uninstaller', [
 			'timeout' => 30,
 			'body' => $data,
-		] ); */
+            'blocking'  => false,
+            'sslverify'   => false,
+		] );
 
-        wp_send_json_success($data);
+        wp_send_json_success();
     } 
 }

@@ -2,6 +2,7 @@
 namespace Ndpv\Ctrl\Install;
 
 use Ndpv\Ctrl\Install\Type\DB;
+use Ndpv\Ctrl\Install\Type\Installer;
 use Ndpv\Ctrl\Install\Type\Merge;
 use Ndpv\Ctrl\Install\Type\Page;
 use Ndpv\Ctrl\Install\Type\Taxonomy;
@@ -89,5 +90,7 @@ class InstallCtrl
                 update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']); 
             }
         }
+
+        new Installer();
     }
 }
