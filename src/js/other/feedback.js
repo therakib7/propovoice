@@ -37,11 +37,13 @@
                 return;
             }
 
-            var $radio = $( 'input[type="radio"]:checked', modal );
+            var radio = $( 'input[type="radio"]:checked', modal );
 
-            var reason_key = ( 0 === $radio.length ) ? 'none' : $radio.val();
+            var reason_key = ( 0 === radio.length ) ? 'none' : radio.val();
  
-            var $input = $('.ndpv-feedback-text input[name="reason_'+reason_key+'"]', modal); 
+            var input = $('.ndpv-feedback-text input[name="reason_'+reason_key+'"]', modal); 
+
+            var nonce = $('.pv-form-style-one input[name="_wpnonce"]', modal).val();  
  
             $.ajax({
                 url: ndpv.ajaxurl,
@@ -49,8 +51,9 @@
                 data: {
                     action: 'ndpv_deactivate_feedback',
                     submit,
+                    nonce,
                     reason_key: reason_key,
-                    reason: ( 0 !== $input.length ) ? $input.val().trim() : ''
+                    reason: ( 0 !== input.length ) ? input.val().trim() : ''
                 },
                 beforeSend: function() {
                     button.addClass('disabled');

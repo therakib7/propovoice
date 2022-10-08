@@ -7,7 +7,7 @@ class Info
     /**
      * Get site name
      */
-    private function get_site_name() {
+    public function get_site_name() {
         $site_name = get_bloginfo( 'name' );
 
         if ( empty( $site_name ) ) {
@@ -22,7 +22,7 @@ class Info
         return $site_name;
     }
 
-    public static function wp() {
+    public function wp() {
 
         $users = get_users( array(
             'role'    => 'administrator',
@@ -42,12 +42,12 @@ class Info
 
         return [
             'url'              => esc_url( home_url() ),
-            'site'             => self::get_site_name(),
+            'site'             => $this->get_site_name(),
             'admin_email'      => get_option( 'admin_email' ),
             'first_name'       => $first_name,
             'last_name'        => $last_name,     
-            'wp'               => self::get_wp_info(),
-            'ip_address'       => self::get_user_ip_address(), 
+            'wp'               => $this->get_wp_info(),
+            'ip'       => $this->get_user_ip_address(), 
         ];
     }
 
@@ -56,7 +56,7 @@ class Info
      *
      * @return array
      */
-    private function get_wp_info() {
+    public function get_wp_info() {
         $wp_data = array();
 
         $wp_data['memory_limit'] = WP_MEMORY_LIMIT;
@@ -79,7 +79,7 @@ class Info
     /**
      * Get user IP Address
      */
-    private function get_user_ip_address() {
+    public function get_user_ip_address() {
         $response = wp_remote_get( 'https://icanhazip.com/' );
 
         if ( is_wp_error( $response ) ) {

@@ -60,7 +60,7 @@ $deactivate_reasons = [
          <form>
             <div class="pv-content">
                <div class="pv-form-style-one"> 
-               <?php wp_nonce_field('_ndpv_deactivate_feedback_nonce'); ?>
+                  <?php wp_nonce_field('_ndpv_deactivate_nonce'); ?>
                   <div class="row"> 
                         <?php foreach ($deactivate_reasons as $reason_key => $reason) : ?>
                            <div class="col-12">
