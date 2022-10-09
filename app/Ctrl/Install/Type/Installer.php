@@ -5,7 +5,7 @@ use Ndpv\Helper\Info;
 
 class Installer
 {
-    private $api = 'http://nurencyplugin.local/wp-json/ndpva/v1/';
+    private $api = 'https://propovoice.com//wp-json/ndpva/v1/';
 
     public function __construct()
     {  
@@ -15,6 +15,7 @@ class Installer
     public function info()
     { 
         $version = get_option('ndpv_version_install');
+
         if ( version_compare($version, NDPV_VERSION, '<') ) { 
             $info = new Info; 
             $data = $info->wp();
@@ -22,10 +23,10 @@ class Installer
             $data['package'] = 'free';
 
             wp_remote_post( $this->api . 'installer', [
-                'timeout' => 30,
+                'timeout' => 0.01,
                 'body' => $data,
-                'blocking'  => false,
-                'sslverify'   => false,
+                'blocking' => false,
+                'sslverify' => false
             ] );
 
             update_option('ndpv_version_install', NDPV_VERSION);
