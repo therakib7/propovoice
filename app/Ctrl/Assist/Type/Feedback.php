@@ -5,7 +5,7 @@ use Ndpv\Helper\Info;
 
 class Feedback { 
 
-    private $api = 'http://nurencyplugin.local/wp-json/ndpva/v1/';
+    private $api = 'https://propovoice.com/wp-json/ndpva/v1/';
 
 	public function __construct() {  
 		add_action('wp_ajax_ndpv_deactivate_feedback', [ $this, 'deactivate' ]);
@@ -33,7 +33,7 @@ class Feedback {
         $data['package'] = 'free';
 
         wp_remote_post( $this->api . 'uninstaller', [
-			'timeout' => 30,
+			'timeout' => 0.01,
 			'body' => $data,
             'blocking'  => false,
             'sslverify'   => false,
