@@ -60,10 +60,10 @@
                     button.text('Processing...');
                 },
                 complete: function() {
-                    // window.location.href = deactivateLink;
+                    window.location.href = deactivateLink;
                 },
                 error: function() { // if error occured
-                    // window.location.href = deactivateLink;
+                    window.location.href = deactivateLink;
                 },
             });
         });

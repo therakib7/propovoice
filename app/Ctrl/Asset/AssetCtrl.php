@@ -188,6 +188,14 @@ class AssetCtrl
      */
     private function is_plugins_screen()
     {
-        return in_array(get_current_screen()->id, [ 'plugins', 'plugins-network' ]);
+        if ( !function_exists( 'get_current_screen' ) ) { 
+            require_once ABSPATH . '/wp-admin/includes/screen.php'; 
+        }  
+
+        if ( is_admin() ) {
+            return in_array(get_current_screen()->id, [ 'plugins', 'plugins-network' ]);
+        } else {
+            return false;
+        } 
     }
 }
