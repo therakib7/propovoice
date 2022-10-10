@@ -29,11 +29,11 @@
         modal.on('click', 'button', function(e) {
             e.preventDefault();
 
-            var button = $(this); 
+            var btn = $(this); 
 
-            var submit = button.hasClass('pv-feedback-submit'); 
+            var submit = btn.hasClass('pv-feedback-submit'); 
             
-            if ( button.hasClass('disabled') ) {
+            if ( btn.hasClass('disabled') ) {
                 return;
             }
 
@@ -56,8 +56,8 @@
                     reason: ( 0 !== input.length ) ? input.val().trim() : ''
                 },
                 beforeSend: function() {
-                    button.addClass('disabled');
-                    button.text('Processing...');
+                    btn.addClass('disabled');
+                    btn.text('Processing...');
                 },
                 complete: function() {
                     window.location.href = deactivateLink;

@@ -1,5 +1,5 @@
 import React, { useRef, useCallback, useState } from 'react';
-import Moment from 'react-moment';
+import ModalImage from "react-modal-image";
 
 const TableHeader = props => {
     const i18n = ndpv.i18n;
@@ -87,7 +87,14 @@ const TableBody = props => {
                     />
                 </td>
                 <td>
-                    {row.file && <img src={row.file.src} alt="file" width="40" />}
+                    {row.file && <div style={{width: 40, display: 'inline-block'}}>
+                        <ModalImage
+                            small={row.file.src}
+                            large={row.file.src}
+                            alt=""
+                        />
+                    </div>}
+                    
                     {!row.file && <img src={ndpv.assetImgUri + 'file.png'} alt="file" />}
                     <span><a target='_blank' href={row.url}>{row.title}</a></span>
                 </td>

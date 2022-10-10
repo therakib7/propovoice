@@ -5,7 +5,7 @@ use Ndpv\Helper\Info;
 
 class Installer
 {
-    private $api = 'https://propovoice.com//wp-json/ndpva/v1/';
+    private $api = 'https://propovoice.com/wp-json/ndpva/v1/';
 
     public function __construct()
     {  

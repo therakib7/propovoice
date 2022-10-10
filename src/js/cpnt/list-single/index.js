@@ -192,6 +192,7 @@ class ListSingle extends Component {
                 let newData = {};
                 if (data.stage_id) {
                     newData.stage_id = data.stage_id.id;
+                    newData.change_tax = true;
                 }
                 api.edit('deals', this.props.id, newData);
             });

@@ -218,7 +218,7 @@ class I18n
             'dlvy' => esc_html__('delivery', 'propovoice'),  
             'option' => esc_html__('option', 'propovoice'),   
             'upload' => esc_html__('Upload', 'propovoice'),  
-            'link' => esc_html__('link', 'propovoice'),  
+            'link' => esc_html__('Link', 'propovoice'),  
             'first' => esc_html__('First', 'propovoice'),  
             'last' => esc_html__('Last', 'propovoice'),  
             'company' => esc_html__('Company', 'propovoice'),  

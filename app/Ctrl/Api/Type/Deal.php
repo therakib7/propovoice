@@ -489,6 +489,7 @@ class Deal
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
+        $change_tax   = isset($params['change_tax']) ? true : false;
 
         /* if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
@@ -498,7 +499,7 @@ class Deal
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
 
-        if (!$reorder && (empty($first_name) && empty($org_name))) {
+        if ( ( !$reorder && !$change_tax ) && (empty($first_name) && empty($org_name))) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 
