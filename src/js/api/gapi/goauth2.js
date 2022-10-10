@@ -34,7 +34,7 @@ const SCOPES =
   "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar";
 
 function gapiLoaded() {
-  gapi.load("client", initializeGapiClient);
+  gapi.load("client:auth2", initializeGapiClient);
 }
 
 async function initializeGapiClient() {
@@ -52,7 +52,7 @@ async function gisLoaded() {
   });
 }
 
-function handleSignIn(myRequest) {
+async function handleSignIn(myRequest) {
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
       throw resp;
