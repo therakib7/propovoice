@@ -46,6 +46,25 @@ const myEvent = async () => {
     calendarId: "primary",
     resource: event,
   });
+  const eventPatch = {
+    conferenceData: {
+      createRequest: { requestId: meetingRequestId },
+    },
+  };
+
+  gapi.client.calendar.events
+    .patch({
+      calendarId: "primary",
+      eventId: request.result.id,
+      resource: eventPatch,
+      sendNotifications: true,
+      conferenceDataVersion: 1,
+    })
+    .execute(function (event) {
+      console.log("Conference created for event: %s", event.hangoutLink);
+    });
+
+  console.log(request.result.id);
   // request.execute(function (event) {
   //   console.log(event);
   //   appendPre("Event created: " + event.htmlLink);
