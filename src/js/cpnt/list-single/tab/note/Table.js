@@ -1,5 +1,4 @@
-import React, { useRef, useCallback, useState } from 'react';
-import Moment from 'react-moment';
+import React, { useRef, useCallback, useState } from 'react'; 
 import Action from 'block/action/row';
 
 const TableBody = props => {
