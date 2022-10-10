@@ -16,6 +16,7 @@ export default class Form extends Component {
       id: null,
       tab_id: this.props.tab_id,
       title: "",
+      meeting: localStorage.getItem("hangoutLink"),
       status_id: null,
       type_id: null,
       priority_id: null,
@@ -26,8 +27,6 @@ export default class Form extends Component {
 
     this.state = {
       form: this.initialState,
-      gApiCalendar: {},
-      gMeetLink: "",
       dropdown: null,
     };
     this.timeout = 0;
@@ -151,8 +150,26 @@ export default class Form extends Component {
     });
   };
 
-  generateGoogleMeetLink = () => {
-    createEvent();
+  generateGoogleMeetLink = async () => {
+    const form = this.state.form;
+    const eventData = {
+      summary: form.title,
+      start: {
+        dateTime: form.start_date,
+      },
+      end: {
+        dateTime: form.due_date,
+      },
+    };
+    createEvent(eventData).then(() => {
+      const hangoutLink = localStorage.getItem("hangoutLink");
+      console.log(hangoutLink);
+      form.meeting = hangoutLink;
+
+      this.setState({ form }, () => {
+        this.updateRequest(true);
+      });
+    });
   };
 
   render() {
@@ -294,6 +311,11 @@ export default class Form extends Component {
                     name="name"
                     defaultValue="Add Location"
                   />
+                  {form.meeting && (
+                    <a href={form.meeting} id="meeting">
+                      Join with Google Meet
+                    </a>
+                  )}
                   {!wage.length && (
                     <div className="pv-buttons pv-mt-15">
                       <button

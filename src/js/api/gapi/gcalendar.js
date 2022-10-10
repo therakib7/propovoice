@@ -1,26 +1,26 @@
 import { handleSignIn } from "api/gapi/goauth2";
-
-export const createEvent = () => {
-  handleSignIn(() => {
+let eventData;
+export const createEvent = async (data) => {
+  eventData = data;
+  await handleSignIn(() => {
     myEvent();
   });
 };
 
 const myEvent = async () => {
   const meetingRequestId = crypto.randomUUID();
+
   event = {
-    summary: "Google I/O 2015",
-    // location: "800 Howard St., San Francisco, CA 94103",
-    description: "A chance to hear more about Google's developer products.",
+    summary: eventData.summary,
+    description: "",
     start: {
-      dateTime: "2022-10-07T09:00:00-07:00",
+      dateTime: eventData.start.dateTime.toISOString(),
       timeZone: "America/Los_Angeles",
     },
     end: {
-      dateTime: "2022-10-07T17:00:00-07:00",
+      dateTime: eventData.end.dateTime.toISOString(),
       timeZone: "America/Los_Angeles",
     },
-    // recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
     attendees: [
       { email: "theazharul@gmail.com" },
       { email: "sbrin@example.com" },
@@ -33,40 +33,15 @@ const myEvent = async () => {
         },
       },
     },
-    // reminders: {
-    //   useDefault: false,
-    //   overrides: [
-    //     { method: "email", minutes: 24 * 60 },
-    //     { method: "popup", minutes: 10 },
-    //   ],
-    // },
   };
 
-  const request = await gapi.client.calendar.events.insert({
+  const request = gapi.client.calendar.events.insert({
     calendarId: "primary",
     resource: event,
+    conferenceDataVersion: 1,
   });
-  const eventPatch = {
-    conferenceData: {
-      createRequest: { requestId: meetingRequestId },
-    },
-  };
 
-  gapi.client.calendar.events
-    .patch({
-      calendarId: "primary",
-      eventId: request.result.id,
-      resource: eventPatch,
-      sendNotifications: true,
-      conferenceDataVersion: 1,
-    })
-    .execute(function (event) {
-      console.log("Conference created for event: %s", event.hangoutLink);
-    });
-
-  console.log(request.result.id);
-  // request.execute(function (event) {
-  //   console.log(event);
-  //   appendPre("Event created: " + event.htmlLink);
-  // });
+  request.execute((event) => {
+    localStorage.setItem("hangoutLink", event.hangoutLink);
+  });
 };
