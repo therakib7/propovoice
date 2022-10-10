@@ -38,7 +38,6 @@ function gapiLoaded() {
 }
 
 async function initializeGapiClient() {
-  console.log(API_KEY);
   await gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
@@ -46,7 +45,6 @@ async function initializeGapiClient() {
 }
 
 async function gisLoaded() {
-  console.log(CLIENT_ID);
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
@@ -54,11 +52,12 @@ async function gisLoaded() {
   });
 }
 
-function handleAuthClick() {
+function handleSignIn(myRequest) {
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
       throw resp;
     }
+    await myRequest();
   };
 
   if (gapi.client.getToken() === null) {
@@ -71,4 +70,4 @@ function handleAuthClick() {
   }
 }
 
-export { handleAuthClick };
+export { handleSignIn };
