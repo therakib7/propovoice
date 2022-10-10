@@ -46,7 +46,6 @@ const myEvent = async () => {
     calendarId: "primary",
     resource: event,
   });
-  console.log(request);
   // request.execute(function (event) {
   //   console.log(event);
   //   appendPre("Event created: " + event.htmlLink);
