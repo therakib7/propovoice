@@ -2,7 +2,7 @@ import React, { Component, lazy } from "react";
 import moment from "moment";
 import { Add } from "block/icon";
 import api from "api";
-import { handleAuthClick } from "api/gapi/goauth2";
+import { createEvent } from "api/gapi/gcalendar";
 
 import Taxonomy from "block/field/taxonomy";
 const DateField = lazy(() => import("block/date-picker"));
@@ -152,8 +152,7 @@ export default class Form extends Component {
   };
 
   generateGoogleMeetLink = () => {
-    handleAuthClick();
-    // handleClientLoad();
+    createEvent();
   };
 
   render() {
