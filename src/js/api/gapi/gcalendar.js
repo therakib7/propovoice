@@ -1,10 +1,12 @@
+import api from "api";
 import { handleSignIn } from "api/gapi/goauth2";
 let eventData;
-export const createEvent = async (data) => {
+let hangoutLink;
+
+export const createEvent = (data) => {
   eventData = data;
-  await handleSignIn(() => {
-    myEvent();
-  });
+  handleSignIn(myEvent);
+  return hangoutLink;
 };
 
 const myEvent = async () => {
@@ -21,10 +23,7 @@ const myEvent = async () => {
       dateTime: eventData.end.dateTime.toISOString(),
       timeZone: "America/Los_Angeles",
     },
-    attendees: [
-      { email: "theazharul@gmail.com" },
-      { email: "sbrin@example.com" },
-    ],
+    attendees: eventData.attendees,
     conferenceData: {
       createRequest: {
         requestId: meetingRequestId,
@@ -42,6 +41,11 @@ const myEvent = async () => {
   });
 
   request.execute((event) => {
-    localStorage.setItem("hangoutLink", event.hangoutLink);
+    eventData.form.google_meet = event.hangoutLink;
+    api
+      .edit(eventData.type, eventData.form.id, eventData.form)
+      .then((resp) => {});
+    // localStorage.setItem("hangoutLink", event.hangoutLink);
+    // hangoutLink = event.hangoutLink;
   });
 };

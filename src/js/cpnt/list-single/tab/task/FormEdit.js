@@ -11,12 +11,11 @@ import Checklist from "./Checklist";
 export default class Form extends Component {
   constructor(props) {
     super(props);
-
     this.initialState = {
       id: null,
       tab_id: this.props.tab_id,
       title: "",
-      meeting: localStorage.getItem("hangoutLink"),
+      google_meet: null,
       status_id: null,
       type_id: null,
       priority_id: null,
@@ -30,6 +29,8 @@ export default class Form extends Component {
       dropdown: null,
     };
     this.timeout = 0;
+
+    this.getContactEmail();
   }
 
   myRef = React.createRef();
@@ -150,9 +151,30 @@ export default class Form extends Component {
     });
   };
 
+  getContactEmail = async () => {
+    return api.getS("contacts", this.props.tab_id).then((resp) => {
+      return resp.data.data.person.email;
+    });
+  };
+
+  generateFakeDate = (start_date = new Date(), after = 0) => {
+    const result = new Date(start_date);
+    result.setDate(result.getDate() + after);
+    return result;
+  };
+
   generateGoogleMeetLink = async () => {
     const form = this.state.form;
+    if (!form.start_date) {
+      form.start_date = this.generateFakeDate();
+    }
+    if (!form.due_date) {
+      form.due_date = this.generateFakeDate(form.start_date, 1);
+    }
+
     const eventData = {
+      form: form,
+      type: "tasks",
       summary: form.title,
       start: {
         dateTime: form.start_date,
@@ -160,16 +182,14 @@ export default class Form extends Component {
       end: {
         dateTime: form.due_date,
       },
+      attendees: [{ email: await this.getContactEmail() }],
     };
-    createEvent(eventData).then(() => {
-      const hangoutLink = localStorage.getItem("hangoutLink");
-      console.log(hangoutLink);
-      form.meeting = hangoutLink;
 
-      this.setState({ form }, () => {
-        this.updateRequest(true);
-      });
-    });
+    createEvent(eventData);
+
+    // this.setState({ form }, () => {
+    //   this.updateRequest(true);
+    // });
   };
 
   render() {
