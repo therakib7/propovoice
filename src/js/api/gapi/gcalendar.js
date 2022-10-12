@@ -3,13 +3,14 @@ import { handleSignIn } from "api/gapi/goauth2";
 let eventData;
 let hangoutLink;
 
-export const createEvent = (data) => {
+export const createEvent = (data, updateGoogleMeet) => {
   eventData = data;
-  handleSignIn(myEvent);
-  return hangoutLink;
+  handleSignIn(() => {
+    myEvent(updateGoogleMeet);
+  });
 };
 
-const myEvent = async () => {
+const myEvent = async (updateGoogleMeet) => {
   const meetingRequestId = crypto.randomUUID();
 
   event = {
@@ -43,11 +44,6 @@ const myEvent = async () => {
 
   request.execute((event) => {
     eventData.form.google_meet = event.hangoutLink;
-
-    api
-      .edit(eventData.type, eventData.form.id, eventData.form)
-      .then((resp) => {});
-    // localStorage.setItem("hangoutLink", event.hangoutLink);
-    // hangoutLink = event.hangoutLink;
+    updateGoogleMeet(event.hangoutLink);
   });
 };
