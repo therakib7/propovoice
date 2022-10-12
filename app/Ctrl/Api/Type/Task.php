@@ -402,6 +402,7 @@ class Task
                 if ($google_meet) {
                     update_post_meta($post_id, 'google_meet', $google_meet);
                 }
+
                 if ($start_date) {
                     update_post_meta($post_id, 'start_date', $start_date);
                 }
