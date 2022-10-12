@@ -165,6 +165,10 @@ export default class Form extends Component {
 
   generateGoogleMeetLink = async () => {
     const form = this.state.form;
+
+    delete form.status_id;
+    delete form.type_id;
+
     if (!form.start_date) {
       form.start_date = this.generateFakeDate();
     }
