@@ -15,7 +15,7 @@ export default class Form extends Component {
       id: null,
       tab_id: this.props.tab_id,
       title: "",
-      google_meet: null,
+      google_meet: "",
       status_id: null,
       type_id: null,
       priority_id: null,
@@ -30,7 +30,6 @@ export default class Form extends Component {
     };
     this.timeout = 0;
 
-    this.getContactEmail();
   }
 
   myRef = React.createRef();
@@ -163,14 +162,26 @@ export default class Form extends Component {
     return result;
   };
 
-  generateGoogleMeetLink = async () => {
-    const form = this.state.form;
+  updateGoogleMeet = (link) => {
+    let form = { ...this.state.form };
 
+    this.setState({ form: { ...form, google_meet: link } })
+
+    delete form.priority_id;
     delete form.status_id;
     delete form.type_id;
 
-    const start_date = form.start_date;
-    const due_date = form.due_date;
+    api.edit("tasks", form.id, form)
+  }
+
+  generateGoogleMeetLink = async () => {
+    const form = this.state.form;
+
+    // delete form.status_id;
+    // delete form.type_id;
+
+    let start_date = form.start_date;
+    let due_date = form.due_date;
 
     if (!start_date) {
       start_date = this.generateFakeDate();
@@ -192,11 +203,8 @@ export default class Form extends Component {
       attendees: [{ email: await this.getContactEmail() }],
     };
 
-    createEvent(eventData);
+    createEvent(eventData, this.updateGoogleMeet);
 
-    // this.setState({ form }, () => {
-    //   this.updateRequest(true);
-    // });
   };
 
   render() {
@@ -329,14 +337,15 @@ export default class Form extends Component {
 
               <div className="row">
                 <div className="col-lg">
-                  <label htmlFor="name">
+                  <label htmlFor="google_meet">
                     {i18n.meeting} {i18n.link}
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    defaultValue="Add Location"
+                    id="google_meet"
+                    name="google_meet"
+                    value={form.google_meet}
+                    onChange={this.handleChange}
                   />
                   {form.google_meet && (
                     <a href={form.google_meet} id="google_meet">
