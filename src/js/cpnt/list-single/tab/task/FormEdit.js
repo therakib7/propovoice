@@ -169,11 +169,14 @@ export default class Form extends Component {
     delete form.status_id;
     delete form.type_id;
 
-    if (!form.start_date) {
-      form.start_date = this.generateFakeDate();
+    const start_date = form.start_date;
+    const due_date = form.due_date;
+
+    if (!start_date) {
+      start_date = this.generateFakeDate();
     }
-    if (!form.due_date) {
-      form.due_date = this.generateFakeDate(form.start_date, 1);
+    if (!due_date) {
+      due_date = this.generateFakeDate(start_date, 1);
     }
 
     const eventData = {
@@ -181,10 +184,10 @@ export default class Form extends Component {
       type: "tasks",
       summary: form.title,
       start: {
-        dateTime: form.start_date,
+        dateTime: start_date,
       },
       end: {
-        dateTime: form.due_date,
+        dateTime: due_date,
       },
       attendees: [{ email: await this.getContactEmail() }],
     };
@@ -335,9 +338,9 @@ export default class Form extends Component {
                     name="name"
                     defaultValue="Add Location"
                   />
-                  {form.meeting && (
-                    <a href={form.meeting} id="meeting">
-                      Join with Google Meet
+                  {form.google_meet && (
+                    <a href={form.google_meet} id="google_meet">
+                      {form.google_meet}
                     </a>
                   )}
                   {!wage.length && (

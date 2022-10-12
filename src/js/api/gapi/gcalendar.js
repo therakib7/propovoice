@@ -19,6 +19,7 @@ const myEvent = async () => {
       dateTime: eventData.start.dateTime.toISOString(),
       timeZone: "America/Los_Angeles",
     },
+
     end: {
       dateTime: eventData.end.dateTime.toISOString(),
       timeZone: "America/Los_Angeles",
@@ -42,6 +43,7 @@ const myEvent = async () => {
 
   request.execute((event) => {
     eventData.form.google_meet = event.hangoutLink;
+
     api
       .edit(eventData.type, eventData.form.id, eventData.form)
       .then((resp) => {});
