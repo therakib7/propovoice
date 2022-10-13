@@ -1668,10 +1668,10 @@ html {
 
 .ndpv .pv-right-content {
   width: 100%;
-  //overflow-y: auto;
+  overflow-y: auto;
   //overflow-x: hidden;
   scroll-behavior: smooth;
-  //height: 100vh;
+  height: 100vh;
 }
 
 @media screen and (max-width: 992px) {
@@ -2486,6 +2486,10 @@ html {
 
 .wp-admin.ndpv .pv-ml-m-70 {
   left: -70px !important;
+}
+
+.wp-admin.ndpv .pv-right-content {
+  overflow-y: inherit;
 }
 
 .wp-admin.ndpv .pv-right-content-data {
