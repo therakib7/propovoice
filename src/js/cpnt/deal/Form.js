@@ -211,6 +211,7 @@ class Form extends Component {
         } else if (this.props.modalType == 'move') {
             title = i18n.moveto
         }
+ 
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -220,7 +221,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
-                        <p>{sprintf(i18n.formDesc, i18n.deal)}</p>
+                        <p>{sprintf(i18n.formDesc, title, i18n.deal)}</p>
 
                     </div>
 

@@ -322,6 +322,28 @@ class Setting
                     $data["redirect_uri"] = "";
                 }
             }
+
+            if ($tab == "automation_zapier") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $data["status"] = false;
+                    $data["name"] = '';
+                    $data["url"] = '';
+                    $data["actions"] = [
+                        /* [
+                            "id" => "new_lead",
+                            "method" => "post",
+                            "custom" => false,
+                            "name" => '',
+                            "url" => ''
+                        ], */ 
+                    ];
+                }
+            }
+
             wp_send_json_success($data);
         }
     }
@@ -561,6 +583,23 @@ class Setting
                     : null;
                 update_option("ndpv_" . $tab, $data);
             }
+
+            if ($tab == "automation_zapier") { 
+                $data["status"] = isset($params["status"])
+                    ? rest_sanitize_boolean($params["status"])
+                    : null;
+                $data["name"] = isset($params["name"])
+                    ? sanitize_text_field($params["name"])
+                    : null;
+                $data["url"] = isset($params["url"])
+                    ? esc_url_raw($params["url"])
+                    : null;
+                $data["actions"] = isset($params["actions"])
+                    ? $params["actions"]
+                    : null;
+                update_option("ndpv_" . $tab, $data);
+            }  
+
             wp_send_json_success();
         }
     }

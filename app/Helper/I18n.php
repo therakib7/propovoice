@@ -92,6 +92,7 @@ class I18n
             'email' => esc_html__('Email', 'propovoice'),
             'mob' => esc_html__('Mobile', 'propovoice'),
             'web' => esc_html__('Website', 'propovoice'),
+            'url' => esc_html__('URL', 'propovoice'),
             'zip' => esc_html__('ZIP Code', 'propovoice'),
             'country' => esc_html__('Country', 'propovoice'),
             'region' => esc_html__('Region', 'propovoice'), 
@@ -119,8 +120,8 @@ class I18n
             'req' => esc_html__('Request', 'propovoice'),
             //form
             'isReq' => esc_html__('is required', 'propovoice'), 
-            /* translators: %s: Module Name */
-            'formDesc' => esc_html__('Add new %s from here', 'propovoice'), 
+            /* translators: %s: Add,Edit %s: Module Name */
+            'formDesc' => esc_html__('%s %s from here', 'propovoice'), 
             'payDesc' => esc_html__('Add payment info from here', 'propovoice'),
             'create' => esc_html__('Create', 'propovoice'),
             'icon' => esc_html__('Icon', 'propovoice'),
@@ -130,8 +131,7 @@ class I18n
             'new' => esc_html__('New', 'propovoice'), 
             'edit' => esc_html__('Edit', 'propovoice'),
             'upd' => esc_html__('Update', 'propovoice'), 
-            'del' => esc_html__('Delete', 'propovoice'), 
-            'new' => esc_html__('New', 'propovoice'),
+            'del' => esc_html__('Delete', 'propovoice'),  
             'from' => esc_html__('From', 'propovoice'),
             'here' => esc_html__('here', 'propovoice'),
             'tag' => esc_html__('Tag', 'propovoice'),
