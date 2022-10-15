@@ -14,58 +14,57 @@ export default class Main extends Component {
             loading: false,
             form: null,
             currentTab: this.props.tab,
-            list: [],
+            list: [
+                {
+                    name: "Zapier",
+                    slug: "zapier",
+                    img: "https://cdn.cdnlogo.com/logos/z/75/zapier.svg", 
+                    pro: true,
+                },
+                {
+                    name: "Web Hook",
+                    slug: "web-hook",
+                    img: "https://cdn.cdnlogo.com/logos/w/82/webhooks.svg", 
+                    pro: true,
+                },
+            ],
             singleForm: [],
             leadField: {
-                '': 'Not Asign',
-                first_name: 'Name',
-                org_name: 'Org Name',
-                email: 'Email',
-                mobile: 'Mobile',
-                web: 'Web',
-                source_id: 'Source', //tax
-                level_id: 'Level', //tax 
-                budget: 'Budget',
-                currency: 'Currency',
-                desc: 'Description'
+                lead_new: 'Lead New',
+                lead_edit: 'Lead Update',
+                lead_del: 'Lead Delete',
+                deal_new: 'Deal New',
+                deal_edit: 'Deal Update',
+                deal_del: 'Deal Delete',
+                est_new: 'Estimate New',
+                est_edit: 'Estimate Update',
+                est_del: 'Estimate Delete',
+                inv_new: 'Invoice New',
+                inv_edit: 'Invoice Update',
+                inv_del: 'Invoice Delete',
             }
         };
     }
 
     static contextType = AppContext;
 
-    componentDidMount() {
-        this.getList()
-    }
-
-    getList = () => {
-        this.setState({ loading: true });
-        this.props.getAll('intg-form').then(resp => {
-            if (resp.data.success) {
-                this.setState({ list: resp.data.data, loading: false });
-            }
-        })
-    };
+    componentDidMount() { 
+    } 
 
     getSingleList = (slug) => {
         this.setState({ loading: true });
-        this.props.getAll('forms', 'form=' + slug).then(resp => {
+        this.props.getAll('webhooks', 'webhook=' + slug).then(resp => {
             if (resp.data.success) {
                 this.setState({ singleForm: resp.data.data, loading: false });
             }
         })
     };
 
-    addCurrentTab = (item) => {
-
-        if (!item.active) {
-            toast.error('This plugin is not Install or Activated yet');
-            return;
-        }
+    addCurrentTab = (item) => { 
 
         const slug = item.slug;
         this.setState({ currentTab: item })
-        this.props.onChange('form', slug, false)
+        this.props.onChange('webhook', slug, false)
         this.getSingleList(slug)
     };
 
@@ -73,15 +72,15 @@ export default class Main extends Component {
         let singleForm = [...this.state.singleForm]
         const target = e.target;
         const name = target.name;
-        const value = target.type === 'checkbox' ? target.checked : target.value; 
+        const value = target.type === 'checkbox' ? target.checked : target.value;
         if (name == 'active') {
             if (wage.length > 0) {
                 pro();
                 return;
             }
-            singleForm[i].active = value; 
+            singleForm[i].active = value;
             this.setState({ singleForm }, () => {
-                this.submitFormData(i); 
+                this.submitFormData(i);
             })
         } else {
             singleForm[i].fields[si].value = value;
@@ -99,15 +98,15 @@ export default class Main extends Component {
         this.submitFormData(i);
     }
 
-    submitFormData = (i) => { 
+    submitFormData = (i) => {
         let form = JSON.parse(JSON.stringify(this.state.singleForm));
-        form[i].form = this.state.currentTab.slug; 
+        form[i].form = this.state.currentTab.slug;
         const newFields = form[i].fields.map(({ label, ...rest }) => {
             return rest;
         });
         form[i].fields = newFields;
-        
-        api.edit('forms', form[i].id, form[i]).then(resp => {
+
+        api.edit('webhooks', form[i].id, form[i]).then(resp => {
             if (resp.data.success) {
                 toast.success(ndpv.i18n.aUpd);
             } else {
@@ -144,7 +143,7 @@ export default class Main extends Component {
                                         <input type="checkbox" defaultChecked="checked" />
                                         <i />
                                         <h3 className='pv-title-small'>
-                                            {item.title}
+                                            {item.name}
                                             <ProLabel />
                                             <span className="pv-field-switch-content">
                                                 <label className="pv-field-switch pv-field-switch-big">
@@ -160,6 +159,35 @@ export default class Main extends Component {
 
                                         <div>
                                             <form onSubmit={(e) => this.handleSubmit(e, i)} className="pv-form-style-one">
+                                                <div className="row">
+                                                    <div className="col-md">
+                                                        <label htmlFor="name">{i18n.name}</label>
+
+                                                        <input
+                                                            id="name"
+                                                            type="text"
+                                                            required
+                                                            name="name"
+                                                            value={item.name}
+                                                            onChange={this.handleChange}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="row">
+                                                    <div className="col-md">
+                                                        <label htmlFor="webhook_url">Webhook URL</label> 
+                                                        <input
+                                                            id="webhook_url"
+                                                            type="text"
+                                                            required
+                                                            name="name"
+                                                            value={item.name}
+                                                            onChange={this.handleChange}
+                                                        />
+                                                    </div>
+                                                </div>
+
                                                 <div className='pv-table-wrap'>
                                                     <table className='pv-table'>
                                                         <thead>
@@ -167,32 +195,33 @@ export default class Main extends Component {
                                                                 <th>
                                                                 </th>
                                                                 <th>
-                                                                    Form Field
+                                                                    Action
                                                                 </th>
                                                                 <th>
-                                                                    {i18n.lead + ' ' + i18n.fields}
+                                                                    <input type='checkbox' /> Active
                                                                 </th>
                                                                 <th>
                                                                 </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            {item.fields.map((sitem, si) => (
-                                                                <tr key={si}>
+                                                            {Object.entries(leadField).map((t, k) => (
+                                                                <tr key={k}>
                                                                     <td>
                                                                     </td>
                                                                     <td>
-                                                                        {sitem.label}
+                                                                        {t[1]}
                                                                     </td>
                                                                     <td>
-                                                                        <select
+                                                                        <input type='checkbox' />
+                                                                        {/* <select
                                                                             style={{ lineHeight: '106%' }}
                                                                             name="lead_field"
                                                                             value={sitem.value}
                                                                             onChange={(e) => this.handleChange(e, i, si)}
                                                                         >
                                                                             {Object.entries(leadField).map((t, k) => <option key={k} value={t[0]}>{t[1]}</option>)}
-                                                                        </select>
+                                                                        </select> */}
                                                                     </td>
                                                                     <td>
                                                                     </td>

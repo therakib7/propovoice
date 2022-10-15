@@ -6,7 +6,7 @@ import ProLabel from "block/pro-alert/label";
 import Form from "./form";
 import Smtp from "./smtp";
 import GoogleAPI from "./google-api";
-import Automation from "./automation";
+import Webhook from "./webhook";
 
 const Main = (props) => {
   const { tab, subtab, insubtab } = useParams();
@@ -31,8 +31,8 @@ const Main = (props) => {
       text: "Google API",
     },
     {
-      id: "automation",
-      text: "Automation",
+      id: "webhook",
+      text: "Web Hook",
     },
   ]);
   const [reload, setReload] = useState(false);
@@ -99,8 +99,8 @@ const Main = (props) => {
         />
       )}
 
-      {currentTab == "automation" && (
-        <Automation
+      {currentTab == "webhook" && (
+        <Webhook
           key={reload}
           {...props}
           onChange={addCurrentTab}
