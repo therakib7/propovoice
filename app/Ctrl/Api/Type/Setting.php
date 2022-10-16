@@ -14,13 +14,13 @@ class Setting
         register_rest_route("ndpv/v1", "/settings", [
             "methods" => "GET",
             "callback" => [$this, "get"],
-            "permission_callback" => [$this, "get_permission"],
+            "permission_callback" => [$this, "get_per"],
         ]);
 
         register_rest_route("ndpv/v1", "/settings", [
             "methods" => "POST",
             "callback" => [$this, "create"],
-            "permission_callback" => [$this, "create_permission"],
+            "permission_callback" => [$this, "create_per"],
         ]);
     }
 
@@ -604,12 +604,12 @@ class Setting
         }
     }
 
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can("publish_posts");
     }

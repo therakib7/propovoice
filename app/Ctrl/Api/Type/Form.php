@@ -16,7 +16,7 @@ class Form
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ] 
         ]); 
     }
@@ -45,7 +45,7 @@ class Form
     } 
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     } 
