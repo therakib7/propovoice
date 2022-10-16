@@ -44,6 +44,7 @@ const Webhook = (props) => {
 			{props.state.formModal && <Form
 				handleSubmit={props.handleSubmit}
 				modalType={props.state.formModalType}
+				type={props.item.slug}
 				data={props.state.list}
 				close={props.closeForm}
 			/>}

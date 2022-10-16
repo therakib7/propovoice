@@ -54,6 +54,7 @@ export default class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let form = { ...this.state.form } 
+        form.type = this.props.type;
 
         this.props.handleSubmit(form);
     }  

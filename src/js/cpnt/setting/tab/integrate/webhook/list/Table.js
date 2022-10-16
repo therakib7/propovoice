@@ -16,23 +16,8 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    {i18n.ct} {i18n.name}
-                </th>
-                <th>
-                    <Email />
-                    {i18n.email}
-                </th>
-                <th>
-                    <Arrow />
-                    {i18n.lead} {i18n.level}
-                </th>
-                <th>
-                    <Tag />
-                    {i18n.tag}
-                </th>
-                <th>
-                    {i18n.date}
-                </th>
+                    {i18n.title}
+                </th> 
                 <th>
                     {i18n.action}
                 </th>
@@ -51,14 +36,7 @@ const TableBody = props => {
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
-        const level = row.level_id;
-
-        let img = ndpv.assetImgUri + 'avatar.png';
-        if (row.person && row.person.img) {
-            img = row.person.img.src;
-        } else if (row.org && row.org.img) {
-            img = row.org.img.src;
-        }
+         
 
         return (
             <tr key={index}>
@@ -68,51 +46,11 @@ const TableBody = props => {
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
-                </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
-                    <div className="pv-avater">
-                        <img src={img} alt="avatar" />
-                        <span>{(row.person) ? row.person.first_name : row.org.name}</span>
-                    </div>
-                </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
-                <td>
-                    {level && <>
-                        {(level.color && level.bg_color) && <span className="pv-badge"
-                            style={{
-                                backgroundColor: level.bg_color,
-                                color: level.color
-                            }}
-                        >
-                            <svg
-                                width={6}
-                                height={6}
-                                viewBox="0 0 6 6"
-                                fill="none"
-                                
-                            >
-                                <circle cx={3} cy={3} r={3} fill={level.color} />
-                            </svg>
-                            {level.label}
-                        </span>}
-
-                        {(!level.color || !level.bg_color) && <span className="pv-badge">
-                            {level.label}
-                        </span>}
-                    </>} 
-                </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
-                    {row.tags && row.tags.map((tag, tagIndex) => {
-                        return (
-                            <span key={tagIndex} className="pv-badge pv-mr-5">{tag.label}</span>
-                        )
-                    })}
-                </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.date}</td>
+                </td> 
+                <td className='pv-cursor-pointer'><span className='pv-list-title'>{row.name}</span></td> 
                 <td className="pv-action">
                     <Action
-                        row={row}
-                        handleOverview={handleOverview}
+                        row={row} 
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
                     />

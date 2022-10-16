@@ -111,7 +111,10 @@ class Webhook
             $query_data['id'] = $id;
 
             $queryMeta = get_post_meta($id);
-            $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : ''; 
+            $query_data['name'] = get_the_title(); 
+            $query_data['url'] = isset($queryMeta['url']) ? $queryMeta['url'][0] : ''; 
+            $query_data['method'] = isset($queryMeta['method']) ? $queryMeta['method'][0] : ''; 
+            $query_data['actions'] = isset($queryMeta['actions']) ? $queryMeta['actions'][0] : ''; 
 
              
             $data[] = $query_data;
@@ -133,11 +136,7 @@ class Webhook
 
         $queryMeta = get_post_meta($id);
         $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
-        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
-        $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-        $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
-        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
-        $query_data['desc'] = get_post_field('post_content', $id);
+        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : ''; 
 
         
 
@@ -153,15 +152,10 @@ class Webhook
 
         //webhook
         $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
-        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $level_id  = isset($params['level_id']) ? absint($params['level_id']) : null;
-        $budget    = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency  = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $tags      = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc      = isset($params['desc']) ? nl2br($params['desc']) : '';
-        $note      = isset($params['note']) ? nl2br($params['note']) : null;
+        $name   = isset($params['name']) ? sanitize_text_field($params['name']) : null;
+        $url   = isset($params['url']) ? esc_url_raw($params['url']) : null;
+        $method   = isset($params['method']) ? sanitize_text_field($params['method']) : null; 
+        $actions         = isset($params['actions']) ? array_map('sanitize_text_field', $params['actions']) : null;
 
         if ( empty($type) ) {
             $reg_errors->add('field', esc_html__('Type is missing', 'propovoice'));
@@ -173,8 +167,7 @@ class Webhook
             //insert webhook
             $data = array(
                 'post_type' => 'ndpv_webhook',
-                'post_title' => 'Webhook',
-                'post_content' => $desc,
+                'post_title' => $name, 
                 'post_status'  => 'publish',
                 'post_author'  => get_current_user_id()
             );
@@ -183,22 +176,22 @@ class Webhook
             if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());  
 
-                if ($budget) {
-                    update_post_meta($post_id, 'budget', $budget);
+                if ($type) {
+                    update_post_meta($post_id, 'type', $type);
+                } 
+
+                if ($url) {
+                    update_post_meta($post_id, 'url', $url);
                 }
 
-                if ($currency) {
-                    update_post_meta($post_id, 'currency', $currency);
-                }
+                if ($method) {
+                    update_post_meta($post_id, 'method', $method);
+                } 
 
-                if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
-                }
+                if ($actions) {
+                    update_post_meta($post_id, 'actions', $actions);
+                } 
 
-                if ($note) {
-                    update_post_meta($post_id, 'note', $note);
-                }
-                
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -213,17 +206,10 @@ class Webhook
 
         //webhook
         $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
-        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
-        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
-        $note         = isset($params['note']) ? nl2br($params['note']) : null;
-
-        $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
+        $name   = isset($params['name']) ? sanitize_text_field($params['name']) : null;
+        $url   = isset($params['url']) ? esc_url_raw($params['url']) : null;
+        $method   = isset($params['method']) ? sanitize_text_field($params['method']) : null; 
+        $actions         = isset($params['actions']) ? array_map('sanitize_text_field', $params['actions']) : null;
 
         if (empty($type)) {
             $reg_errors->add('field', esc_html__('Type is missing', 'propovoice'));
@@ -236,28 +222,24 @@ class Webhook
 
             $data = array(
                 'ID'            => $post_id,
-                'post_title'    => 'Webhook', 
+                'post_title'    => $name, 
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
                  
-                if ($budget) {
-                    update_post_meta($post_id, 'budget', $budget);
+                if ($url) {
+                    update_post_meta($post_id, 'url', $url);
                 }
 
-                if ($currency) {
-                    update_post_meta($post_id, 'currency', $currency);
-                }
+                if ($method) {
+                    update_post_meta($post_id, 'method', $method);
+                } 
 
-                if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
-                }
-
-                if ($note) {
-                    update_post_meta($post_id, 'note', $note);
-                }
+                if ($actions) {
+                    update_post_meta($post_id, 'actions', $actions);
+                } 
 
                 wp_send_json_success($post_id);
             } else {
@@ -267,8 +249,7 @@ class Webhook
     }
 
     public function delete($req)
-    {
-        //TODO: when delete webhook delete task note file, if not exist in deal project
+    { 
         $url_params = $req->get_url_params();
         $ids = explode(',', $url_params['id']);
         foreach ($ids as $id) {
