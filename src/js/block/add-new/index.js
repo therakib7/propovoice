@@ -1,6 +1,8 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import useClickOutside from 'block/outside-click';
 import { Edit } from 'block/icon';
+import Form from "../Import/Form";
+
 
 
 export default (props) => {
@@ -25,7 +27,13 @@ export default (props) => {
     const ImportExport = (e, type) => {
         e.preventDefault();
         setDropdown(false);
-        alert('Features, In progressing...');
+        {props.state.formModal && <Form
+            handleSubmit={props.handleSubmit}
+            modalType={props.state.formModalType}
+            data={props.state.list}
+            close={props.closeForm}
+        />}
+        // alert('Features, In progressing...now prosecing');
     };
 
     const i18n = ndpv.i18n;
@@ -70,9 +78,10 @@ export default (props) => {
 
                 {dropdown && <div className="pv-dropdown-content pv-show">
                     <a onClick={(e) => ImportExport(e, 'import')}>{i18n.imp}</a>
-                    <a onClick={(e) => ImportExport(e, 'exoprt')}>{i18n.imp}</a>
+                    <a onClick={(e) => ImportExport(e, 'export')}>{i18n.exp}</a>
                 </div>}
             </div>}
         </div>
     );
-} 
+}
+
