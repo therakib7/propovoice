@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
-import { sprintf } from 'sprintf-js'; 
-import api from 'api'; 
+import { sprintf } from 'sprintf-js';  
 import actionList from './actions';  
 
 export default class Form extends Component {
@@ -54,9 +53,10 @@ export default class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let form = { ...this.state.form } 
-        form.type = this.props.type;
-
-        this.props.handleSubmit(form);
+        const type = this.props.type;
+        form.type = type;
+ 
+        this.props.handleSubmit(form, this.props.formModalType, { type });
     }  
 
     render() {  
@@ -159,13 +159,13 @@ export default class Form extends Component {
                                             <div key={k} className="pv-field-checkbox">
                                                 <input
                                                     type='checkbox'
-                                                    id="reminder-after-1"
+                                                    id={k}
                                                     name='after'
                                                     value={1}
                                                     // checked={reminder.after.includes(1) ? 'checked' : ''}
                                                     // onChange={(e) => handleChange(e, 'after')}
                                                 />
-                                                <label htmlFor="reminder-after-1">{t[1]}</label>
+                                                <label htmlFor={k}>{t[1]}</label>
                                             </div>
                                             ))}
                                             {/* <h4>{item.label}</h4>
