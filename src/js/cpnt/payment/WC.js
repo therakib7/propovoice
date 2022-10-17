@@ -92,7 +92,7 @@ export default class WC extends Component {
                                 <span className='pv-switch-slider pv-round'></span>
                             </label>
                         </div>
-                        <p className='pv-field-desc'><b>{i18n.note}:</b> When you active WooCommerce, other Provoice payment method will be disabled.</p>
+                        <p className='pv-field-desc'><b>{i18n.note}:</b> When you active WooCommerce, other Propovoice payment method will be disabled.</p>
                     </div>
                 </div> 
 

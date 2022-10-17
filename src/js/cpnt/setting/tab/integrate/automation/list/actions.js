@@ -1,6 +1,7 @@
 export default [
     {
         label: 'Lead',
+        slug: 'lead',
         list: {
             lead_new: 'Create',
             lead_edit: 'Update',
@@ -9,6 +10,7 @@ export default [
     },
     {
         label: 'Deal',
+        slug: 'deal',
         list: {
             deal_new: 'Create',
             deal_edit: 'Update',
@@ -17,6 +19,7 @@ export default [
     },
     {
         label: 'Estimate',
+        slug: 'est',
         list: {
             est_new: 'Create',
             est_edit: 'Update',
@@ -25,6 +28,7 @@ export default [
     },
     {
         label: 'Invoice',
+        slug: 'inv',
         list: {
             inv_new: 'Create',
             inv_edit: 'Update',
@@ -33,6 +37,7 @@ export default [
     },
     {
         label: 'Project',
+        slug: 'project',
         list: {
             project_new: 'Create',
             project_edit: 'Update',
@@ -41,6 +46,7 @@ export default [
     },
     {
         label: 'Task',
+        slug: 'task',
         list: {
             task_new: 'Create',
             task_edit: 'Update',
@@ -49,6 +55,7 @@ export default [
     },
     {
         label: 'Contact',
+        slug: 'contact',
         list: {
             task_new: 'Create',
             task_edit: 'Update',

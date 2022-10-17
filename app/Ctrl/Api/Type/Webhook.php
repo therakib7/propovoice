@@ -152,10 +152,10 @@ class Webhook
 
         //webhook
         $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
-        $name   = isset($params['name']) ? sanitize_text_field($params['name']) : null;
+        $name  = isset($params['name']) ? sanitize_text_field($params['name']) : null;
         $url   = isset($params['url']) ? esc_url_raw($params['url']) : null;
-        $method   = isset($params['method']) ? sanitize_text_field($params['method']) : null; 
-        $actions         = isset($params['actions']) ? array_map('sanitize_text_field', $params['actions']) : null;
+        $method  = isset($params['method']) ? sanitize_text_field($params['method']) : null; 
+        $actions = isset($params['actions']) ? array_map('sanitize_text_field', $params['actions']) : null;
 
         if ( empty($type) ) {
             $reg_errors->add('field', esc_html__('Type is missing', 'propovoice'));

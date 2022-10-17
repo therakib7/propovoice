@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
-import { sprintf } from 'sprintf-js';  
-import actionList from './actions';  
+import { sprintf } from 'sprintf-js';
+import actionList from './actions';
 
 export default class Form extends Component {
     constructor(props) {
@@ -12,7 +12,7 @@ export default class Form extends Component {
             name: '',
             url: '',
             method: 'post',
-            actions: [], 
+            actions: [],
         };
 
         this.state = {
@@ -22,11 +22,47 @@ export default class Form extends Component {
 
     handleChange = (e) => {
         const { name, value } = e.target;
-
         this.setState({ form: { ...this.state.form, [name]: value } });
-    }   
+    }
 
-    componentDidMount() {  
+    handleCheckbox = (e, type, slug = '') => { 
+        const target = e.target; 
+        
+        let actions = this.state.form.actions;
+
+        if ( type == 'action' ) { 
+            const { value } = e.target; 
+			if (target.checked) {
+				actions.push(value);
+			} else {
+				actions.splice(actions.indexOf(value), 1);
+			} 
+		} else if ( type == 'group' ) {    
+            const { value } = e.target; 
+            const mod = actionList.find(x => x.slug === value); 
+            const mod_list = Object.keys(mod.list);  
+
+			if (target.checked) { 
+                actions = actions.concat(mod_list);
+			} else { 
+                actions = actions.filter(x => !mod_list.includes(x));
+			} 
+		} else if ( type == 'all' ) { 
+
+            actionList.map((item, i) => {
+                const mod_list = Object.keys(item.list);
+                actions = actions.concat(mod_list);
+            })  
+             
+		} else if ( type == 'none' ) { 
+            actions = []
+		}
+
+        actions = Array.from(new Set(actions));  
+        this.setState({ form: { ...this.state.form, ['actions']: actions } });
+    }
+
+    componentDidMount() {
 
         //added this multi place, because not working in invoice single
         this.editData();
@@ -40,7 +76,7 @@ export default class Form extends Component {
         //condition added to stop multi rendering 
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
-                let form = this.props.data; 
+                let form = this.props.data;
                 this.setState({ form });
             }
         } else {
@@ -52,16 +88,16 @@ export default class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let form = { ...this.state.form } 
+        let form = { ...this.state.form }
         const type = this.props.type;
         form.type = type;
- 
+
         this.props.handleSubmit(form, this.props.formModalType, { type });
-    }  
+    }
 
-    render() {  
+    render() {
 
-        const form = this.state.form; 
+        const form = this.state.form;
         const i18n = ndpv.i18n;
 
         const modalType = this.props.modalType == 'new' ? i18n.new : i18n.edit;
@@ -110,7 +146,7 @@ export default class Form extends Component {
 
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <label htmlFor="method">Method</label> 
+                                        <label htmlFor="method">Method</label>
                                         <select
                                             name="method"
                                             value={form.method}
@@ -127,7 +163,7 @@ export default class Form extends Component {
                                         <h4 className='pv-title-medium' style={{ textTransform: 'capitalize' }}>Actions List</h4>
                                     </div>
                                     <div className='col' style={{ marginBottom: 10, textAlign: 'right' }}>
-                                        <a>Select All</a> | <a>Deselect All</a>
+                                        <a onClick={(e) => this.handleCheckbox(e, 'all')} >Select All</a> | <a onClick={(e) => this.handleCheckbox(e, 'none')}>Deselect All</a>
                                     </div>
                                 </div>
 
@@ -137,36 +173,44 @@ export default class Form extends Component {
                                             className="pv-intg-item"
                                             style={{
                                                 alignItems: 'initial',
-                                                padding: '0 15px 10px',
+                                                padding: '14px 15px 5px',
                                                 cursor: 'auto'
                                             }}
-                                        // onClick={() => this.addCurrentTab(item)}
-                                        >   
-                                        
-                                            <h4 style={{marginBottom: 7}}>
+                                            // onClick={() => this.addCurrentTab(item)}
+                                        >
+
+                                            <div className="pv-field-checkbox">
                                                 <input
                                                     type='checkbox'
-                                                    id="dreminder-after-1"
-                                                    name='after'
-                                                    value={1}
-                                                    style={{marginRight: 8}}
-                                                    // checked={reminder.after.includes(1) ? 'checked' : ''}
-                                                    // onChange={(e) => handleChange(e, 'after')}
+                                                    id={item.slug+'-mod'}
+                                                    name='mod'
+                                                    value={item.slug}
+                                                    style={{ marginRight: 8 }}
+                                                    // checked={reminder.after.includes(1) ? 'checked' : ''} 
+                                                    onChange={(e) => this.handleCheckbox(e, 'group')}
                                                 />
-                                                {item.label}
-                                            </h4>
-                                            {Object.entries(item.list).map((t, k) => (
-                                            <div key={k} className="pv-field-checkbox">
-                                                <input
-                                                    type='checkbox'
-                                                    id={k}
-                                                    name='after'
-                                                    value={1}
-                                                    // checked={reminder.after.includes(1) ? 'checked' : ''}
-                                                    // onChange={(e) => handleChange(e, 'after')}
-                                                />
-                                                <label htmlFor={k}>{t[1]}</label>
+                                                <label
+                                                    htmlFor={item.slug+'-mod'}
+                                                    style={{
+                                                        fontSize: 16,
+                                                        fontWeight: 500,
+                                                        color: '#2D3748'
+                                                    }}
+                                                >{item.label}</label>
                                             </div>
+
+                                            {Object.entries(item.list).map((t, k) => (
+                                                <div key={k} className="pv-field-checkbox">
+                                                    <input
+                                                        type='checkbox'
+                                                        id={item.slug+'-'+k}
+                                                        name='action'
+                                                        value={t[0]}
+                                                        checked={form.actions.includes(t[0]) ? 'checked' : ''}
+                                                        onChange={(e) => this.handleCheckbox(e, 'action')}
+                                                    />
+                                                    <label htmlFor={item.slug+'-'+k}>{t[1]}</label>
+                                                </div>
                                             ))}
                                             {/* <h4>{item.label}</h4>
                                             <ul>
@@ -178,7 +222,7 @@ export default class Form extends Component {
                                             </ul> */}
                                         </div>
                                     ))}
-                                </div> 
+                                </div>
                             </div>
                         </div>
 
