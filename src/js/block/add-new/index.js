@@ -61,7 +61,8 @@ export default (props) => {
                 </svg>
                 {i18n.add} {props.title}
             </button>
-            {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
+
+            {false && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button
                     className="pv-bg-stroke pv-bg-shadow"
                     onClick={() => showDropdown()}
