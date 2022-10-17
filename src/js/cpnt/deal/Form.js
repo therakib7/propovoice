@@ -4,7 +4,7 @@ import api from 'api';
 import WithRouter from 'hoc/Router';
 import { Add } from 'block/icon';
 import Currency from 'block/field/currency';
-import Taxonomy from 'block/field/taxonomy';
+import Select from 'react-select';
 import Contact from 'block/field/contact';
 import { sprintf } from 'sprintf-js';
 
@@ -58,9 +58,27 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['tags']: val } });
     }
 
-    componentDidMount() { 
+    componentDidMount() {
+        api.get('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
+            if (resp.data.success) {
+                if (this.state.form.stage_id) {
+                    this.setState({
+                        stages: resp.data.data.deal_stage,
+                        tags: resp.data.data.tag,
+                    });
+                } else {
+                    let form = { ...this.state.form }
+                    form.stage_id = resp.data.data.deal_stage[0];
+                    this.setState({
+                        form,
+                        stages: resp.data.data.deal_stage,
+                        tags: resp.data.data.tag,
+                    });
+                }
+            }
+        });
 
-        //added this multi place, because not working in invoice single
+        //added this multiple place, because not working in invoice single
         this.editData();
     }
 
@@ -69,7 +87,7 @@ class Form extends Component {
     }
 
     editData = () => {
-        //condition added to stop multi rendering 
+        //condition added to stop multiple rendering 
         if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
 
@@ -121,11 +139,6 @@ class Form extends Component {
             form.stage_id = form.stage_id.id;
         }
 
-        if ( !form.stage_id ) {
-            toast.error(ndpv.i18n.stage + ' ' + ndpv.i18n.isReq);
-            return;
-        }
-
         if (form.tags.length) {
             let finalArray = form.tags.map(function (obj) {
                 return obj.id;
@@ -163,7 +176,7 @@ class Form extends Component {
             }
             this.props.handleSubmit(form, null, args);
         }
-        // this.setState({ form: this.initialState });
+        this.setState({ form: this.initialState });
     }
 
     handleContactChange = (val, type) => {
@@ -199,7 +212,9 @@ class Form extends Component {
     }
 
     render() {
-        const i18n = ndpv.i18n; 
+        const i18n = ndpv.i18n;
+        const stageList = this.state.stages;
+        const tagList = this.state.tags;
         const form = this.state.form;
         const probabilityPercent = (form.probability / 100) * 100;
 
@@ -209,9 +224,8 @@ class Form extends Component {
         } else if (this.props.modalType == 'edit') {
             title = i18n.edit
         } else if (this.props.modalType == 'move') {
-            title = i18n.moveto
+            title = i18n.moveto 
         }
- 
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -221,7 +235,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
-                        <p>{sprintf(i18n.formDesc, title, i18n.deal)}</p>
+                        <p>{sprintf(i18n.formDesc, i18n.deal)}</p>
 
                     </div>
 
@@ -290,12 +304,14 @@ class Form extends Component {
                                         <label htmlFor="field-stage_id">
                                             {i18n.stage}
                                         </label>
-                                        <Taxonomy
-                                            data={form.stage_id}
-                                            taxonomy='deal_stage'
-                                            title={i18n.stage}
+
+                                        <Select
+                                            className={'pv-field-select'}
+                                            value={form.stage_id}
                                             onChange={this.handleStageChange}
-                                            color
+                                            getOptionValue={(stageList) => stageList.id}
+                                            getOptionLabel={(stageList) => stageList.label}
+                                            options={stageList}
                                         />
                                     </div>
                                 </div>
@@ -347,16 +363,15 @@ class Form extends Component {
                                         <label htmlFor="field-tags">
                                             {i18n.tag}
                                         </label>
-
-                                        <div className="pi-field-multi">
-                                            <Taxonomy
-                                                onChange={this.handleTagChange}
-                                                data={form.tags}
-                                                taxonomy='tag'
-                                                title={i18n.tag}
-                                                multi
-                                            />
-                                        </div>
+                                        <Select
+                                            className={'pv-field-select'}
+                                            value={form.tags}
+                                            onChange={this.handleTagChange}
+                                            getOptionValue={(tagList) => tagList.id}
+                                            getOptionLabel={(tagList) => tagList.label}
+                                            options={tagList}
+                                            isMulti
+                                        />
                                     </div>
                                 </div>
 

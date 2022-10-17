@@ -46,16 +46,12 @@ const Task = (props) => {
         }
     }
 
-    const reload = () => { 
-        props.getLists({ status_id: activeTab });
-    }
-
     const handleDelete = (type, id) => {
         if (confirm(ndpv.i18n.aConf)) {
             api.del('tasks', id).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aDel);
-                    reload()
+                    props.getLists({ status_id: activeTab });
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -101,7 +97,7 @@ const Task = (props) => {
             {props.state.preloader ? <Preloader /> :
                 <>
                     {props.dashboard && <div style={{ marginTop: '15px' }}></div>}
-                    {props.dashboard && <Table dashboard reload={reload} tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />}
+                    {props.dashboard && <Table dashboard tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />}
 
                     {!props.dashboard &&
                         <div className="pv-accordion">
@@ -115,7 +111,8 @@ const Task = (props) => {
                                                     width={11}
                                                     height={7}
                                                     viewBox="0 0 11 7"
-                                                    fill="none" 
+                                                    fill="none"
+                                                    
                                                 >
                                                     <path
                                                         d="M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915"
@@ -130,7 +127,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pv-table-close" htmlFor="pv-acc-close" />
                                         <div className="pv-accordion-content">
-                                            <Table reload={reload} tableData={lists.today} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />
+                                            <Table tableData={lists.today} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>
@@ -146,7 +143,8 @@ const Task = (props) => {
                                                     width={11}
                                                     height={7}
                                                     viewBox="0 0 11 7"
-                                                    fill="none" 
+                                                    fill="none"
+                                                    
                                                 >
                                                     <path
                                                         d="M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915"
@@ -161,7 +159,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pv-table-close" htmlFor="pv-acc-close" />
                                         <div className="pv-accordion-content">
-                                            <Table reload={reload} tableData={lists.other} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
+                                            <Table tableData={lists.other} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>
@@ -177,7 +175,8 @@ const Task = (props) => {
                                                     width={11}
                                                     height={7}
                                                     viewBox="0 0 11 7"
-                                                    fill="none" 
+                                                    fill="none"
+                                                    
                                                 >
                                                     <path
                                                         d="M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915"
@@ -192,7 +191,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pv-table-close" htmlFor="pv-acc-close" />
                                         <div className="pv-accordion-content">
-                                            <Table reload={reload} tableData={lists.unschedule} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
+                                            <Table tableData={lists.unschedule} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>

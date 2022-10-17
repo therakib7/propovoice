@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import api from 'api';
 import Contact from 'block/field/contact';
 import { Cross } from 'block/icon';
-import Taxonomy from 'block/field/taxonomy';
+import Select from 'react-select';
 import Currency from 'block/field/currency';
 
 const DateField = lazy(() => import('block/date-picker'));
@@ -52,7 +52,7 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['currency']: val } });
     }
 
-    handleStatusChange = val => {
+    handleStageChange = val => {
         this.setState({ form: { ...this.state.form, ['status_id']: val } });
     }
 
@@ -60,9 +60,27 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['tags']: val } });
     }
 
-    componentDidMount() { 
+    componentDidMount() {
+        api.get('taxonomies', 'taxonomy=project_status,tag').then(resp => {
+            if (resp.data.success) {
+                if (this.state.form.status_id) {
+                    this.setState({
+                        stages: resp.data.data.project_status,
+                        tags: resp.data.data.tag,
+                    });
+                } else {
+                    let form = { ...this.state.form }
+                    form.status_id = resp.data.data.project_status[0];
+                    this.setState({
+                        form,
+                        stages: resp.data.data.project_status,
+                        tags: resp.data.data.tag,
+                    });
+                }
+            }
+        });
 
-        //added this multi place, because not working in invoice single
+        //added this multiple place, because not working in invoice single
         this.editData();
     }
 
@@ -71,7 +89,7 @@ class Form extends Component {
     }
 
     editData = () => {
-        //condition added to stop multi rendering 
+        //condition added to stop multiple rendering 
         if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
                 let form = { ...this.props.data }
@@ -161,7 +179,7 @@ class Form extends Component {
         } else {
             this.props.handleSubmit(form);
         }
-        // this.setState({ form: this.initialState });
+        this.setState({ form: this.initialState });
     }
 
     handleContactChange = (val, type) => {
@@ -209,8 +227,8 @@ class Form extends Component {
 
     render() {
         const i18n = ndpv.i18n;
-        // const stageList = this.state.stages;
-        // const tagList = this.state.tags;
+        const stageList = this.state.stages;
+        const tagList = this.state.tags;
         const form = this.state.form;
 
         let title = '';
@@ -322,13 +340,14 @@ class Form extends Component {
                                             {i18n.status}
                                         </label>
 
-                                        <Taxonomy
-                                            data={form.status_id}
-                                            taxonomy='project_status'
-                                            title={i18n.status}
-                                            onChange={this.handleStatusChange}
-                                            color
-                                        /> 
+                                        <Select
+                                            className={'pv-field-select'}
+                                            value={form.status_id}
+                                            onChange={this.handleStageChange}
+                                            getOptionValue={(stageList) => stageList.id}
+                                            getOptionLabel={(stageList) => stageList.label}
+                                            options={stageList}
+                                        />
                                     </div>
                                 </div>
 
@@ -357,15 +376,15 @@ class Form extends Component {
                                         <label htmlFor="field-tags">
                                             {i18n.tag}
                                         </label>
-                                        <div className="pi-field-multi">
-                                            <Taxonomy
-                                                onChange={this.handleTagChange}
-                                                data={form.tags}
-                                                taxonomy='tag'
-                                                title={i18n.tag}
-                                                multi
-                                            />
-                                        </div>
+                                        <Select
+                                            className={'pv-field-select'}
+                                            value={form.tags}
+                                            onChange={this.handleTagChange}
+                                            getOptionValue={(tagList) => tagList.id}
+                                            getOptionLabel={(tagList) => tagList.label}
+                                            options={tagList}
+                                            isMulti
+                                        />
                                     </div>
                                 </div>
 

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import Currency from 'block/field/currency';
-// import Taxonomy from 'block/field/taxonomy';
+import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
-import api from 'api'; 
+import api from 'api';
+import Select from 'react-select';
 
 export default class Form extends Component {
     constructor(props) {
@@ -77,7 +78,25 @@ export default class Form extends Component {
         this.setState({ form });
     }
 
-    componentDidMount() { 
+    componentDidMount() {
+        api.get('taxonomies', 'taxonomy=lead_level,lead_source,tag').then(resp => {
+            if (resp.data.success) {
+                if (this.state.form.level_id) {
+                    this.setState({
+                        levels: resp.data.data.lead_level,
+                        tags: resp.data.data.tag,
+                    });
+                } else {
+                    let form = { ...this.state.form }
+                    form.level_id = resp.data.data.lead_level[0];
+                    this.setState({
+                        form,
+                        levels: resp.data.data.lead_level,
+                        tags: resp.data.data.tag,
+                    });
+                }
+            }
+        });
 
         //find person
         let args = {
@@ -93,14 +112,14 @@ export default class Form extends Component {
             }
         });
 
-        api.get('organizations', params).then(resp => {
+       api.get('organizations', params).then(resp => {
             if (resp.data.success) {
                 let orgList = resp.data.data.result;
                 this.setState({ orgList });
             }
         });
 
-        //added this multi place, because not working in invoice single
+        //added this multiple place, because not working in invoice single
         this.editData();
     }
 
@@ -109,7 +128,7 @@ export default class Form extends Component {
     }
 
     editData = () => {
-        //condition added to stop multi rendering 
+        //condition added to stop multiple rendering 
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
                 let form = this.props.data;
@@ -159,7 +178,9 @@ export default class Form extends Component {
             this.props.reload();
         } else {
             this.props.handleSubmit(form);
-        } 
+        }
+
+        this.setState({ form: this.initialState });
     }
 
     handleContactChange = (val, type) => {
@@ -194,12 +215,13 @@ export default class Form extends Component {
         this.setState({ form });
     }
 
-    render() {  
+    render() {
+        const levelList = this.state.levels;
+        const tagList = this.state.tags;
 
-        const form = this.state.form; 
+        const form = this.state.form;
         const i18n = ndpv.i18n;
-
-        const modalType = this.props.modalType == 'new' ? i18n.new : i18n.edit;
+         
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -208,8 +230,8 @@ export default class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{modalType} {i18n.lead}</h2>
-                        <p>{sprintf(i18n.formDesc, modalType, i18n.lead)}</p>
+                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
+                        <p>{sprintf(i18n.formDesc, i18n.lead)}</p> 
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
@@ -279,30 +301,31 @@ export default class Form extends Component {
                                         <label htmlFor="field-level_id">
                                             {i18n.level}
                                         </label>
-                                        <Taxonomy
-                                            data={form.level_id}
-                                            // list={levelList}
-                                            taxonomy='lead_level'
-                                            title={i18n.level}
+                                        {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color /> */}
+                                        <Select
+                                            className={'pv-field-select'}
+                                            value={form.level_id}
                                             onChange={this.handleLevelChange}
-                                            color
-                                        /> 
+                                            getOptionValue={(levelList) => levelList.id}
+                                            getOptionLabel={(levelList) => levelList.label}
+                                            options={levelList}
+                                        />
                                     </div>
 
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
                                             {i18n.tag}
                                         </label>
-
-                                        <div className="pi-field-multi">
-                                            <Taxonomy
-                                                onChange={this.handleTagChange}
-                                                data={form.tags} 
-                                                taxonomy='tag'
-                                                title={i18n.tag}
-                                                multi
-                                            />
-                                        </div> 
+                                        {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple /> */}
+                                        <Select
+                                            className={'pv-field-select'}
+                                            value={form.tags}
+                                            onChange={this.handleTagChange}
+                                            getOptionValue={(tagList) => tagList.id}
+                                            getOptionLabel={(tagList) => tagList.label}
+                                            options={tagList}
+                                            isMulti
+                                        />
                                     </div>
                                 </div>
 

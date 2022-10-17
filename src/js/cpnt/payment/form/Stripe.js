@@ -33,7 +33,7 @@ class FormStripe extends Component {
     }
 
     componentDidMount() {
-        //added this multi place, because not working in invoice single
+        //added this multiple place, because not working in invoice single
         this.editData();
     }
 
@@ -42,7 +42,7 @@ class FormStripe extends Component {
     }
 
     editData = () => {
-        //condition added to stop multi rendering  
+        //condition added to stop multiple rendering  
         if (this.props.modalType == 'edit') {
 
             if (this.state.form.id != this.props.data.id) {

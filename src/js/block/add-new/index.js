@@ -1,14 +1,18 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import useClickOutside from 'block/outside-click';
 import { Edit } from 'block/icon';
-import Form from "../Import/Form";
+import Form from "./Form";
+// import Empty from 'block/empty';
+// import AddNew from 'block/add-new';
+import Crud from 'hoc/Crud';
 
 
 
-export default (props) => {
+export default Crud((props) => {
 
     const dropdownRef = useRef();
     const [dropdown, setDropdown] = useState(false);
+    const [add, setAdd]=useState(false)
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
@@ -27,13 +31,11 @@ export default (props) => {
     const ImportExport = (e, type) => {
         e.preventDefault();
         setDropdown(false);
-        {props.state.formModal && <Form
-            handleSubmit={props.handleSubmit}
-            modalType={props.state.formModalType}
-            data={props.state.list}
-            close={props.closeForm}
-        />}
-        // alert('Features, In progressing...now prosecing');
+        const num = 1;
+        setAdd(num)
+
+
+                // alert('Features, In progressing...');
     };
 
     const i18n = ndpv.i18n;
@@ -67,21 +69,27 @@ export default (props) => {
                 </svg>
                 {i18n.add} {props.title}
             </button>
-
+            
             {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button
                     className="pv-bg-stroke pv-bg-shadow"
                     onClick={() => showDropdown()}
                 >
                     <Edit />
+
                 </button>
+                {add===1 && <Form
+				modalType={props.state.formModalType}
+				data={props.state.list}
+				close={props.closeForm}
+                />}
+                
 
                 {dropdown && <div className="pv-dropdown-content pv-show">
                     <a onClick={(e) => ImportExport(e, 'import')}>{i18n.imp}</a>
-                    <a onClick={(e) => ImportExport(e, 'export')}>{i18n.exp}</a>
+                    <a onClick={(e) => ImportExport(e, 'exoprt')}>{i18n.imp}</a>
                 </div>}
             </div>}
         </div>
     );
-}
-
+} )

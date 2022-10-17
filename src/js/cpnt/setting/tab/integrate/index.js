@@ -6,7 +6,6 @@ import ProLabel from "block/pro-alert/label";
 import Form from "./form";
 import Smtp from "./smtp";
 import GoogleAPI from "./google-api";
-import Automation from "./automation";
 
 const Main = (props) => {
   const { tab, subtab, insubtab } = useParams();
@@ -29,10 +28,6 @@ const Main = (props) => {
     {
       id: "google-api",
       text: "Google API",
-    },
-    {
-      id: "automation",
-      text: "Automation",
     },
   ]);
   const [reload, setReload] = useState(false);
@@ -80,7 +75,6 @@ const Main = (props) => {
           tab={currentSubtab}
         />
       )}
-
       {currentTab == "smtp" && (
         <Smtp
           key={reload}
@@ -92,15 +86,6 @@ const Main = (props) => {
 
       {currentTab == "google-api" && (
         <GoogleAPI
-          key={reload}
-          {...props}
-          onChange={addCurrentTab}
-          tab={currentSubtab}
-        />
-      )}
-
-      {currentTab == "automation" && (
-        <Automation
           key={reload}
           {...props}
           onChange={addCurrentTab}

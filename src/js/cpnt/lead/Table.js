@@ -99,7 +99,8 @@ const TableBody = props => {
                         {(!level.color || !level.bg_color) && <span className="pv-badge">
                             {level.label}
                         </span>}
-                    </>} 
+                    </>}
+
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
                     {row.tags && row.tags.map((tag, tagIndex) => {

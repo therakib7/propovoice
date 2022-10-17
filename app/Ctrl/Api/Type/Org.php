@@ -15,19 +15,19 @@ class Org
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_per'],
+                'permission_callback' => [$this, 'get_permission'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_per']
+                'permission_callback' => [$this, 'create_permission']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/organizations/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_per'],
+            'permission_callback' => [$this, 'get_permission'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -40,7 +40,7 @@ class Org
         register_rest_route('ndpv/v1', '/organizations/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_per'],
+            'permission_callback' => [$this, 'update_permission'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -53,7 +53,7 @@ class Org
         register_rest_route('ndpv/v1', '/organizations/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'del_per'],
+            'permission_callback' => [$this, 'delete_permission'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -369,22 +369,22 @@ class Org
     }
 
     // check permission
-    public function get_per()
+    public function get_permission()
     {
         return true;
     }
 
-    public function create_per()
+    public function create_permission()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_per()
+    public function update_permission()
     {
         return current_user_can('edit_posts');
     }
 
-    public function del_per()
+    public function delete_permission()
     {
         return current_user_can('delete_posts');
     }

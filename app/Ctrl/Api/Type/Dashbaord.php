@@ -23,7 +23,7 @@ class Dashbaord
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_per'],
+                'permission_callback' => [$this, 'get_permission'],
             ]
         ]);
     }
@@ -356,7 +356,7 @@ class Dashbaord
     }
 
     // check permission
-    public function get_per()
+    public function get_permission()
     {
         return true;
     }

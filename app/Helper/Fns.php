@@ -37,28 +37,6 @@ class Fns
         return get_terms($args);
     }
 
-    public static function contact_exist($post_type, $value = '', $key = 'email' )
-    {
-        if ( $value ) {
-            $args = array(
-                'post_type' => 'ndpv_' . $post_type,
-                'meta_query' => array(
-                    array(
-                        'key' => $key,
-                        'value' => $value
-                    )
-                ),
-                'fields' => 'ids'
-            ); 
-            $number_query = new \WP_Query($args);
-            $ids = $number_query->posts; 
-            if ( !empty($ids) ) { 
-                return $ids[0];
-            }
-        }
-        return null;
-    }
-
     public static function phpToMomentFormat($format)
     {
         $replacements = [

@@ -161,10 +161,10 @@ const Deal = (props) => {
             />}
 
             <div className="row">
-                <div className="col">
+                <div className="col-sm-6">
                     <h2 className="pv-page-title">{title + (!props.module_id ? ' ' + pipeline : '')}</h2>
                 </div>
-                <div className="col">
+                <div className="col-sm-6">
                     <div className="pv-list-single-button-content">
                         <button
                             className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow"
@@ -175,7 +175,7 @@ const Deal = (props) => {
                                 height={12}
                                 viewBox="0 0 12 15"
                                 fill="none"
-                                
+
                             >
                                 <path
                                     d="M2.5 8H13.5"
@@ -204,7 +204,7 @@ const Deal = (props) => {
                                 height={12}
                                 viewBox="0 0 12 15"
                                 fill="none"
-                                
+
                             >
                                 <path
                                     d="M2.5 8H13.5"
@@ -227,16 +227,16 @@ const Deal = (props) => {
                 </div>
             </div>
 
-            <div className="pv-buttons-group pv-mb-20">
+            {/* <div className="pv-buttons-group pv-mb-20">
 
                 <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5"
                     onClick={() => viewChange('board')}
-                > 
+                >
                     <svg
                         width={20}
                         height={20}
                         viewBox="0 0 20 20"
-                        fill="none" 
+                        fill="none"
                     >
                         <path
                             d="M3.125 4.375h13.75v9.375a.624.624 0 01-.625.625h-3.125a.624.624 0 01-.625-.625v-1.875h-5v4.375a.625.625 0 01-.625.625H3.75a.625.625 0 01-.625-.625V4.375zM7.5 9.375H3.125M7.5 4.375v7.5M12.5 9.375h4.375M12.5 4.375v7.5"
@@ -255,7 +255,7 @@ const Deal = (props) => {
                         width={20}
                         height={20}
                         viewBox="0 0 20 20"
-                        fill="none" 
+                        fill="none"
                     >
                         <path
                             d="M7.5 5H16.875"
@@ -301,7 +301,7 @@ const Deal = (props) => {
                         />
                     </svg>
                 </button>
-            </div>
+            </div> */}
 
             <Search
                 title={title}

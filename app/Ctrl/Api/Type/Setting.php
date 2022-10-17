@@ -14,13 +14,13 @@ class Setting
         register_rest_route("ndpv/v1", "/settings", [
             "methods" => "GET",
             "callback" => [$this, "get"],
-            "permission_callback" => [$this, "get_per"],
+            "permission_callback" => [$this, "get_permission"],
         ]);
 
         register_rest_route("ndpv/v1", "/settings", [
             "methods" => "POST",
             "callback" => [$this, "create"],
-            "permission_callback" => [$this, "create_per"],
+            "permission_callback" => [$this, "create_permission"],
         ]);
     }
 
@@ -286,19 +286,6 @@ class Setting
                 }
             }
 
-            if ($tab == "google_api_oauth2") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["client_id"] = "";
-                    $data["client_secret"] = "";
-                    $data["redirect_uri"] = "";
-                    $data["api_key"] = "";
-                }
-            }
-
             if ($tab == "google_api_calendar") {
                 $option = get_option("ndpv_" . $tab);
 
@@ -322,28 +309,6 @@ class Setting
                     $data["redirect_uri"] = "";
                 }
             }
-
-            if ($tab == "automation_zapier") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["status"] = false;
-                    $data["name"] = '';
-                    $data["url"] = '';
-                    $data["actions"] = [
-                        /* [
-                            "id" => "new_lead",
-                            "method" => "post",
-                            "custom" => false,
-                            "name" => '',
-                            "url" => ''
-                        ], */ 
-                    ];
-                }
-            }
-
             wp_send_json_success($data);
         }
     }
@@ -539,23 +504,6 @@ class Setting
                 update_option("ndpv_smtp", "sendinblue");
             }
 
-            if ($tab == "google_api_oauth2") {
-                //Check valid key here
-                $data["client_id"] = isset($params["client_id"])
-                    ? sanitize_text_field($params["client_id"])
-                    : null;
-                $data["client_secret"] = isset($params["client_secret"])
-                    ? sanitize_text_field($params["client_secret"])
-                    : null;
-                $data["redirect_uri"] = isset($params["redirect_uri"])
-                    ? sanitize_text_field($params["redirect_uri"])
-                    : null;
-                $data["api_key"] = isset($params["api_key"])
-                    ? sanitize_text_field($params["api_key"])
-                    : null;
-                update_option("ndpv_" . $tab, $data);
-            }
-
             if ($tab == "google_api_calendar") {
                 //Check valid key here
                 $data["client_id"] = isset($params["client_id"])
@@ -583,33 +531,16 @@ class Setting
                     : null;
                 update_option("ndpv_" . $tab, $data);
             }
-
-            if ($tab == "automation_zapier") { 
-                $data["status"] = isset($params["status"])
-                    ? rest_sanitize_boolean($params["status"])
-                    : null;
-                $data["name"] = isset($params["name"])
-                    ? sanitize_text_field($params["name"])
-                    : null;
-                $data["url"] = isset($params["url"])
-                    ? esc_url_raw($params["url"])
-                    : null;
-                $data["actions"] = isset($params["actions"])
-                    ? $params["actions"]
-                    : null;
-                update_option("ndpv_" . $tab, $data);
-            }  
-
             wp_send_json_success();
         }
     }
 
-    public function get_per()
+    public function get_permission()
     {
         return true;
     }
 
-    public function create_per()
+    public function create_permission()
     {
         return current_user_can("publish_posts");
     }

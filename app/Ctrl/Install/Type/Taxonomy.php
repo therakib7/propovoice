@@ -160,7 +160,7 @@ class Taxonomy
                     'label' => 'Development'
                 ],
                 [
-                    'label' => 'Assist'
+                    'label' => 'Marketing'
                 ]
             ],
             'task_status' => [
