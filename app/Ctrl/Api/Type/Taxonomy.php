@@ -19,19 +19,19 @@ class Taxonomy
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/taxonomies/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -44,7 +44,7 @@ class Taxonomy
         register_rest_route('ndpv/v1', '/taxonomies/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -54,12 +54,15 @@ class Taxonomy
             ),
         ));
 
-        register_rest_route('ndpv/v1', '/taxonomies/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/taxonomies/(?P<id>[0-9,]+)/(?P<tax>[a-z,_]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
+                    'sanitize_callback'  => 'sanitize_text_field',
+                ),
+                'tax' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
                 ),
             ),
@@ -324,7 +327,7 @@ class Taxonomy
                 if ($post_id) { //delete term from post
                     wp_remove_object_terms($post_id, $term_id, 'ndpv_' . $taxonomy);
                 } else { // delte term
-                    wp_delete_term($term_id, 'ndpv_' . $taxonomy);
+                    // wp_delete_term($term_id, 'ndpv_' . $taxonomy);
                 }
                 wp_send_json_success();
             } else {
@@ -373,31 +376,31 @@ class Taxonomy
     public function delete($req)
     {
         $url_params = $req->get_url_params();
-
+        $tax = $url_params['tax'];
         $ids = explode(',', $url_params['id']);
-        foreach ($ids as $id) {
-            wp_delete_term($id);
+        foreach ($ids as $id) { 
+            wp_delete_term($id, 'ndpv_' . $tax);
         }
         wp_send_json_success($ids);
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

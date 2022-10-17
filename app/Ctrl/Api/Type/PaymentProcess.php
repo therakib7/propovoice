@@ -18,12 +18,12 @@ class PaymentProcess
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
     } 
@@ -83,12 +83,12 @@ class PaymentProcess
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return true;
         // return current_user_can('publish_posts');

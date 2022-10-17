@@ -18,19 +18,19 @@ class Media
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/media/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -43,7 +43,7 @@ class Media
         register_rest_route('ndpv/v1', '/media/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -186,13 +186,13 @@ class Media
         
         $reg_errors  = new \WP_Error;
 
-        $img_max_size = 1024; //1024KB
+        $img_max_size = 2048; //2048KB
 
         // $file               = $_FILES['file'];
         $file               = $file_data;
         $allowed_file_types = ['image/jpg', 'image/jpeg', 'image/png'];
         // Allowed file size -> 1MB
-        $allowed_file_size = $img_max_size * 1024;
+        $allowed_file_size = $img_max_size * 2048;
 
         if (!empty($file['name'])) {
             // Check file type
@@ -283,18 +283,18 @@ class Media
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission($req)
+    public function create_per($req)
     {
         $params = $req->get_params();
         return isset($params['permission']) ? true : current_user_can('publish_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

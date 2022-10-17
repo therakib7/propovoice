@@ -1,6 +1,8 @@
 <?php 
 namespace Ndpv\Model;
 
+use Ndpv\Helper\Fns;
+
 class Person
 {
     public function create($params)
@@ -24,6 +26,11 @@ class Person
         if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         }  */
+
+        $exist_id = Fns::contact_exist('person', $email);
+        if ( $exist_id ) {
+            return $exist_id;
+        }
 
         if ($reg_errors->get_error_messages()) {
             return $reg_errors;

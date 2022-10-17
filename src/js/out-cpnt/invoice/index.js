@@ -199,7 +199,8 @@ export default class Invoice extends Component {
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		const id = urlParams.get("id");
-		ApiInv.get(id + "?client_view=1").then((resp) => {
+		const token = urlParams.get("token"); 
+		ApiInv.get(id + '?client_view=1&token=' + token).then((resp) => {
 			let data = resp.data.data;
 			let payment_methods = [];
 

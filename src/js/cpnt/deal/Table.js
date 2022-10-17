@@ -57,7 +57,7 @@ const TableHeader = props => {
                     </svg>
                     {i18n.budget}
                 </th>
-                <th>
+                {!wage.length && <th>
                     <svg
                         style={{ top: 2 }}
                         width={15}
@@ -73,7 +73,7 @@ const TableHeader = props => {
                         />
                     </svg>
                     {i18n.proba}
-                </th>
+                </th>}
                 <th>
                     <svg
                         className='pv-mt-4'
@@ -126,8 +126,32 @@ const TableBody = props => {
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.title}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td> 
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>${row.budget}</td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.probability}%</td>
-                <td><span className="pv-badge">{row.stage_id && row.stage_id.label}</span></td>
+                {!wage.length && <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.probability}%</td>} 
+                <td>
+                    {row.stage_id && <>
+                        {(row.stage_id.color && row.stage_id.bg_color) && <span className="pv-badge"
+                            style={{
+                                backgroundColor: row.stage_id.bg_color,
+                                color: row.stage_id.color
+                            }}
+                        >
+                            <svg
+                                width={6}
+                                height={6}
+                                viewBox="0 0 6 6"
+                                fill="none"
+                                
+                            >
+                                <circle cx={3} cy={3} r={3} fill={row.stage_id.color} />
+                            </svg>
+                            {row.stage_id.label}
+                        </span>}
+
+                        {(!row.stage_id.color || !row.stage_id.bg_color) && <span className="pv-badge">
+                            {row.stage_id.label}
+                        </span>}
+                    </>} 
+                </td>
                 <td>{row.date}</td>
                 <td className="pv-action">
                     <Action

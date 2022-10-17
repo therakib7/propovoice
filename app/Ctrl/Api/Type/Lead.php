@@ -1,37 +1,37 @@
-<?php 
+<?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Contact;
 use Ndpv\Model\Org;
-use Ndpv\Model\Person; 
+use Ndpv\Model\Person;
 
 class Lead
-{ 
+{
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']); 
     }
 
     public function rest_routes()
     {
-
         register_rest_route('ndpv/v1', '/leads', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/leads/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -44,7 +44,7 @@ class Lead
         register_rest_route('ndpv/v1', '/leads/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -57,7 +57,7 @@ class Lead
         register_rest_route('ndpv/v1', '/leads/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -120,7 +120,7 @@ class Lead
         }
 
         $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
@@ -174,7 +174,7 @@ class Lead
                 $query_data['org'] = $org->single($org_id);
             }
 
-            $query_data['date'] = get_the_time( get_option('date_format') );
+            $query_data['date'] = get_the_time(get_option('date_format'));
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -260,7 +260,7 @@ class Lead
             $query_data['org'] = $org->single($org_id, true);
         }
 
-        $query_data['date'] = get_the_time( get_option('date_format') );
+        $query_data['date'] = get_the_time(get_option('date_format'));
 
         wp_send_json_success($query_data);
     }
@@ -268,7 +268,7 @@ class Lead
     public function create($req)
     {
         $params = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $reg_errors = new \WP_Error();
 
         //lead
         $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
@@ -310,7 +310,6 @@ class Lead
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-
             //insert lead
             $data = array(
                 'post_type' => 'ndpv_lead',
@@ -352,7 +351,7 @@ class Lead
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);
                 }
-
+                
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -363,7 +362,7 @@ class Lead
     public function update($req)
     {
         $params = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $reg_errors = new \WP_Error();
 
         //lead
         $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
@@ -420,7 +419,6 @@ class Lead
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
-
                 if ($level_id) {
                     wp_set_post_terms($post_id, [$level_id], 'ndpv_lead_level');
                 }
@@ -468,22 +466,22 @@ class Lead
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

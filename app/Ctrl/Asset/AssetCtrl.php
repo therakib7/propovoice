@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Ndpv\Ctrl\Asset;
 
 use Ndpv\Helper\Fns;
@@ -12,8 +13,7 @@ class AssetCtrl
     public function __construct()
     {
         $this->suffix  = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
-        $this->version = (defined('WP_DEBUG') && WP_DEBUG) ? time() : ndpv()->version();
-        $this->ajaxurl = admin_url('admin-ajax.php');
+        $this->version = (defined('WP_DEBUG') && WP_DEBUG) ? time() : ndpv()->version(); 
 
         add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 999);
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
@@ -25,6 +25,14 @@ class AssetCtrl
         }
 
         add_filter('show_admin_bar', [$this, 'hide_admin_bar']);
+
+        add_action('current_screen', function () {
+            if (! $this->is_plugins_screen()) {
+                return;
+            }
+
+            add_action('admin_enqueue_scripts', [ $this, 'enqueue_feedback_dialog' ]);
+        });
     }
 
     public function hide_admin_bar($show)
@@ -41,11 +49,11 @@ class AssetCtrl
         return $show;
     }
 
-    public function admin_public_script()
+    private function admin_public_script()
     {
     }
 
-    public function dashboard_script()
+    private function dashboard_script()
     {
         //font family
         if (
@@ -55,7 +63,8 @@ class AssetCtrl
                 'workspace-template.php',
                 'invoice-template.php',
                 'estimate-template.php'
-            ])
+            ]) || 
+            $this->is_plugins_screen()
         ) {
             wp_enqueue_style('ndpv-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), $this->version);
             wp_enqueue_style('ndpv-main', ndpv()->get_asset_uri("css/main{$this->suffix}.css"), array(), $this->version);
@@ -86,7 +95,7 @@ class AssetCtrl
                 'apiUrl' => esc_url(rest_url()),
                 'assetUri' => trailingslashit(NDPV_URL),
                 'nonce' => wp_create_nonce('wp_rest'),
-                'date_format' => Fns::phpToMomentFormat( get_option('date_format') ),
+                'date_format' => Fns::phpToMomentFormat(get_option('date_format')),
                 'assetImgUri' => ndpv()->get_asset_uri('img/')
             ));
         }
@@ -121,7 +130,7 @@ class AssetCtrl
                 //'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
                 'apiServerUrl' => 'https://appux.co/propovoice-server/wp-json/', //TODO: change server URL later
                 'nonce' => wp_create_nonce('wp_rest'),
-                'date_format' => Fns::phpToMomentFormat( get_option('date_format') ),
+                'date_format' => Fns::phpToMomentFormat(get_option('date_format')),
                 'assetImgUri' => ndpv()->get_asset_uri('img/'),
                 'assetUri' => trailingslashit(NDPV_URL),
                 'profile' => [
@@ -147,5 +156,46 @@ class AssetCtrl
     {
         $this->admin_public_script();
         $this->dashboard_script();
+    }  
+     
+    /**
+     * Enqueue feedback dialog scripts.
+     *
+     * Registers the feedback dialog scripts and enqueues them.
+     *
+     * @since 1.0.0
+     * @access public
+     */
+    public function enqueue_feedback_dialog()
+    {
+        add_action('admin_footer', [ $this, 'deactivate_feedback_dialog' ]); 
+        wp_enqueue_script('ndpv-feedback', ndpv()->get_asset_uri("/js/feedback{$this->suffix}.js"), array(), $this->version, true);
+        wp_localize_script('ndpv-feedback', 'ndpv', array(
+            'ajaxurl' => esc_url( admin_url('admin-ajax.php') ), 
+        )); 
+    }     
+
+    /**
+     * @since 1.0.1.5 
+     */
+    public function deactivate_feedback_dialog()
+    {
+        ndpv()->render('feedback/form');
+    }
+
+    /**
+     * @since 1.0.1.5 
+     */
+    private function is_plugins_screen()
+    {
+        if ( !function_exists( 'get_current_screen' ) ) { 
+            require_once ABSPATH . '/wp-admin/includes/screen.php'; 
+        }  
+
+        if ( is_admin() ) {
+            return in_array(get_current_screen()->id, [ 'plugins', 'plugins-network' ]);
+        } else {
+            return false;
+        } 
     }
 }

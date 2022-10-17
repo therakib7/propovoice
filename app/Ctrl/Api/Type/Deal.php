@@ -20,19 +20,19 @@ class Deal
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/deals/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -45,7 +45,7 @@ class Deal
         register_rest_route('ndpv/v1', '/deals/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -58,7 +58,7 @@ class Deal
         register_rest_route('ndpv/v1', '/deals/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -121,11 +121,14 @@ class Deal
         $args = array(
             'post_type' => 'ndpv_deal',
             'post_status' => 'publish',
-            'orderby' => 'menu_order',
-            'order' => 'ASC',
             'posts_per_page' => $per_page,
             'offset' => $offset,
         );
+
+        if ( $stage_id ) {
+            $args['orderby'] = 'menu_order';
+            $args['order'] = 'ASC';
+        }
 
         $args['meta_query'] = array(
             'relation' => 'OR'
@@ -486,6 +489,7 @@ class Deal
         $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
         $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
         $note         = isset($params['note']) ? nl2br($params['note']) : null;
+        $change_tax   = isset($params['change_tax']) ? true : false;
 
         /* if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
@@ -495,7 +499,7 @@ class Deal
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
 
-        if (!$reorder && (empty($first_name) && empty($org_name))) {
+        if ( ( !$reorder && !$change_tax ) && (empty($first_name) && empty($org_name))) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 
@@ -611,22 +615,22 @@ class Deal
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

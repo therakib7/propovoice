@@ -19,19 +19,19 @@ class Project
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/projects/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -44,7 +44,7 @@ class Project
         register_rest_route('ndpv/v1', '/projects/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -57,7 +57,7 @@ class Project
         register_rest_route('ndpv/v1', '/projects/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -161,9 +161,12 @@ class Project
             $query_data['status_id'] = '';
             $status = get_the_terms($id, 'ndpv_project_status');
             if ($status) {
+                $term_id = $status[0]->term_id;
                 $query_data['status_id'] = [
-                    'id' => $status[0]->term_id,
-                    'label' => $status[0]->name
+                    'id' => $term_id,
+                    'label' => $status[0]->name,
+                    'color' => get_term_meta($term_id, 'color', true),
+                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
                 ];
             }
 
@@ -563,22 +566,22 @@ class Project
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

@@ -277,6 +277,12 @@ class Invoice extends Component {
 	};
 
 	onNumChange = (e) => {
+
+		if (wage.length > 0) {
+			pro();
+			return;
+		}
+
 		let invoice = { ...this.state.invoice } 
 		invoice.num = e.target.value; 
 		this.setState({ invoice });
@@ -781,7 +787,7 @@ class Invoice extends Component {
 
 								{(currentTab == 'preview') &&
 									<>
-										<button
+										{/* <button
 											className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-10 pv-br-4"
 											onClick={() => this.setState({ shareModal: true })} >
 											<svg
@@ -797,13 +803,12 @@ class Invoice extends Component {
 												/>
 											</svg>
 											{i18n.share}
-										</button>
+										</button> */}
 										<button
 											className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-mt-20"
 											onClick={() => this.setState({ emailModal: true })} >
 											{i18n.send} {i18n.email}
-											<ProLabel blueBtn />
-											{!wage.length && <svg
+											<svg
 												className="pv-mr-0 pv-ml-10"
 												width={9}
 												height={11}
@@ -815,7 +820,7 @@ class Invoice extends Component {
 													d="M3.8 4.24267L0.5 0.942667L1.44267 0L5.68533 4.24267L1.44267 8.48533L0.5 7.54267L3.8 4.24267Z"
 													fill="white"
 												/>
-											</svg>}
+											</svg>
 										</button>
 									</>
 								}

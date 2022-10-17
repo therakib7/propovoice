@@ -4,11 +4,11 @@ import {apiUrl, token} from './helper'
 const url = apiUrl + 'payments';
 
 const getAll = (args = '') => {
-	return axios.get(`${url}/?${args}`);
+	return axios.get(`${url}/?${args}`, token);
 };
 
 const get = id => {
-	return axios.get(`${url}/${id}`);
+	return axios.get(`${url}/${id}`, token);
 };
 
 const create = data => {

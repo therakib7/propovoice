@@ -39,12 +39,23 @@ const Task = (props) => {
         }
     }
 
+    const handleSubmit = (data, type) => {
+        props.handleSubmit(data, type);
+        if ( taxonomies.status.length ) {
+            setActiveTab(taxonomies.status[0].id);
+        }
+    }
+
+    const reload = () => { 
+        props.getLists({ status_id: activeTab });
+    }
+
     const handleDelete = (type, id) => {
         if (confirm(ndpv.i18n.aConf)) {
             api.del('tasks', id).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aDel);
-                    props.getLists({ status_id: activeTab });
+                    reload()
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -53,11 +64,12 @@ const Task = (props) => {
             });
         }
     }
+
     const i18n = ndpv.i18n;
     return (
         <div className="">
             <Form
-                handleSubmit={props.handleSubmit}
+                handleSubmit={handleSubmit}
                 setTaxonomies={setTaxonomies}
                 tab_id={props.tab_id}
             />
@@ -74,13 +86,13 @@ const Task = (props) => {
 
             {!props.dashboard && <div className="pv-small-button-group">
                 <h3 className="pv-title-small">{i18n.myw}</h3>
-                {lists.task_status && lists.task_status.map((status, statusIndex) => {
+                {lists.task_status && lists.task_status.map((item, i) => {
                     return (
-                        <button key={statusIndex}
-                            className={'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow ' + ((activeTab == status.id) || (!activeTab && statusIndex == 0) ? 'pv-active' : '')}
-                            onClick={() => { setActiveTab(status.id); props.getLists({ status_id: status.id }); }}
+                        <button key={i}
+                            className={'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow ' + ((activeTab == item.id) || (!activeTab && i == 0) ? 'pv-active' : '')}
+                            onClick={() => { setActiveTab(item.id); props.getLists({ status_id: item.id }); }}
                         >
-                            {status.label}
+                            {item.label}
                         </button>
                     )
                 })}
@@ -89,7 +101,7 @@ const Task = (props) => {
             {props.state.preloader ? <Preloader /> :
                 <>
                     {props.dashboard && <div style={{ marginTop: '15px' }}></div>}
-                    {props.dashboard && <Table dashboard tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />}
+                    {props.dashboard && <Table dashboard reload={reload} tableData={lists.latest} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />}
 
                     {!props.dashboard &&
                         <div className="pv-accordion">
@@ -103,8 +115,7 @@ const Task = (props) => {
                                                     width={11}
                                                     height={7}
                                                     viewBox="0 0 11 7"
-                                                    fill="none"
-                                                    
+                                                    fill="none" 
                                                 >
                                                     <path
                                                         d="M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915"
@@ -119,7 +130,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pv-table-close" htmlFor="pv-acc-close" />
                                         <div className="pv-accordion-content">
-                                            <Table tableData={lists.today} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />
+                                            <Table reload={reload} tableData={lists.today} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} handleSubmit={props.handleSubmit} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>
@@ -135,8 +146,7 @@ const Task = (props) => {
                                                     width={11}
                                                     height={7}
                                                     viewBox="0 0 11 7"
-                                                    fill="none"
-                                                    
+                                                    fill="none" 
                                                 >
                                                     <path
                                                         d="M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915"
@@ -151,7 +161,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pv-table-close" htmlFor="pv-acc-close" />
                                         <div className="pv-accordion-content">
-                                            <Table tableData={lists.other} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
+                                            <Table reload={reload} tableData={lists.other} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>
@@ -167,8 +177,7 @@ const Task = (props) => {
                                                     width={11}
                                                     height={7}
                                                     viewBox="0 0 11 7"
-                                                    fill="none"
-                                                    
+                                                    fill="none" 
                                                 >
                                                     <path
                                                         d="M9.72339 1.53915L5.72339 5.53915L1.72339 1.53915"
@@ -183,7 +192,7 @@ const Task = (props) => {
                                         </label>
                                         <label className="pv-table-close" htmlFor="pv-acc-close" />
                                         <div className="pv-accordion-content">
-                                            <Table tableData={lists.unschedule} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
+                                            <Table reload={reload} tableData={lists.unschedule} taxonomies={taxonomies} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={handleDelete} />
                                         </div>
                                     </section>
                                 </>

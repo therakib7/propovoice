@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import Currency from './sub/Currency';
 import QtyType from './sub/QtyType';
 import ExtraAmount from './sub/ExtraAmount';
@@ -15,22 +15,22 @@ export default class Main extends Component {
 				},
 				{
 					id: 'qty-type',
-					text: i18n.qty + ' ' +i18n.type
+					text: i18n.qty + ' ' + i18n.type
 				},
 				{
 					id: 'extra-amount',
-					text: i18n.adtl + ' ' +i18n.amt
+					text: i18n.adtl + ' ' + i18n.amt
 				},
 			],
 			currentTab: '',
-		} 
-	} 
+		}
+	}
 
 	componentDidMount() {
 		this.setState({ currentTab: 'currency' });
 	}
 
-	setActiveTab(id) { 
+	setActiveTab(id) {
 		this.setState({ currentTab: id });
 	}
 
@@ -49,10 +49,10 @@ export default class Main extends Component {
 						</li>
 					))}
 				</ul>
-		  
-				{currentTab == 'currency' && <Currency {...this.props} />} 
-				{currentTab == 'qty-type' && <QtyType {...this.props} />} 
-				{currentTab == 'extra-amount' && <ExtraAmount {...this.props} />} 
+
+				{currentTab == 'currency' && <Currency {...this.props} />}
+				{currentTab == 'qty-type' && <QtyType {...this.props} />}
+				{currentTab == 'extra-amount' && <ExtraAmount {...this.props} />}
 			</>
 		);
 	}

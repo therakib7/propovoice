@@ -126,12 +126,8 @@ export default  class Send extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (wage.length > 0) {
-            pro();
-            return;
-        }
+        e.preventDefault(); 
+         
         // TODO: send with attachment pdf
         if (false) {
             /* html2canvas(document.querySelector(".pv-inv")).then(canvas => { 
@@ -257,7 +253,7 @@ export default  class Send extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.send} {i18n.email} <ProLabel blueBtn />
+                                        {i18n.send} {i18n.email}
                                     </button>
                                 </div>
                             </div>

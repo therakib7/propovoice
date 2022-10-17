@@ -1,4 +1,4 @@
- <?php
+<?php
 
     $id = isset($_GET['id']) ? absint($_GET['id']) : null;
     if ($id && get_post($id)) {
@@ -29,7 +29,7 @@
             }
         }
 
-        if (is_user_logged_in()) {
+        if (is_user_logged_in() && apply_filters('ndpv_admin', current_user_can('administrator'))) { 
             $check_permission = true;
         }
 

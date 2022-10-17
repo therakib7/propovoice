@@ -9,4 +9,4 @@ const token = {
   },
 };
 
-export { apiUrl, apiProUrl, apiServerUrl, token };
+export { apiUrl, apiProUrl, apiServerUrl, token }
