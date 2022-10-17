@@ -28,6 +28,12 @@ export default class Main extends Component {
                     pro: true,
                 },
                 {
+                    name: "Slack",
+                    slug: "slack",
+                    img: "https://cdn.cdnlogo.com/logos/s/55/slack.svg",
+                    pro: true,
+                },
+                {
                     name: "Web Hook",
                     slug: "web-hook",
                     img: "https://cdn.cdnlogo.com/logos/w/82/webhooks.svg",
@@ -55,7 +61,7 @@ export default class Main extends Component {
 
         const slug = item.slug;
         this.setState({ currentTab: item })
-        this.props.onChange('webhook', slug, false);
+        this.props.onChange('automation', slug, false);
     };  
 
     render() {
