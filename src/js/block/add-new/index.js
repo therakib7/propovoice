@@ -2,17 +2,13 @@ import React, { useCallback, useRef, useState, useEffect } from "react";
 import useClickOutside from 'block/outside-click';
 import { Edit } from 'block/icon';
 import Form from "./Form";
-// import Empty from 'block/empty';
-// import AddNew from 'block/add-new';
-import Crud from 'hoc/Crud';
 
 
-
-export default Crud((props) => {
+export default (props) => {
 
     const dropdownRef = useRef();
     const [dropdown, setDropdown] = useState(false);
-    const [add, setAdd]=useState(false)
+    const[expot, setExport] = useState(false)
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
@@ -31,11 +27,7 @@ export default Crud((props) => {
     const ImportExport = (e, type) => {
         e.preventDefault();
         setDropdown(false);
-        const num = 1;
-        setAdd(num)
-
-
-                // alert('Features, In progressing...');
+        setExport(true)
     };
 
     const i18n = ndpv.i18n;
@@ -69,21 +61,14 @@ export default Crud((props) => {
                 </svg>
                 {i18n.add} {props.title}
             </button>
-            
             {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button
                     className="pv-bg-stroke pv-bg-shadow"
                     onClick={() => showDropdown()}
                 >
                     <Edit />
-
                 </button>
-                {add===1 && <Form
-				modalType={props.state.formModalType}
-				data={props.state.list}
-				close={props.closeForm}
-                />}
-                
+                {expot===true && <Form close={() => setExport(false)} />}
 
                 {dropdown && <div className="pv-dropdown-content pv-show">
                     <a onClick={(e) => ImportExport(e, 'import')}>{i18n.imp}</a>
@@ -92,4 +77,4 @@ export default Crud((props) => {
             </div>}
         </div>
     );
-} )
+} 

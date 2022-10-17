@@ -1,121 +1,80 @@
 import React, { Component } from 'react';
-import { Add } from 'block/icon';
-import { sprintf } from 'sprintf-js';
-import Currency from 'block/field/currency';
-import Taxonomy from 'block/field/taxonomy';
-import Contact from 'block/field/contact';
+import { toast } from 'react-toastify';
 import api from 'api';
+import WithRouter from 'hoc/Router';
+import { Add } from 'block/icon';
+import Currency from 'block/field/currency';
 import Select from 'react-select';
+import Contact from 'block/field/contact';
+import { sprintf } from 'sprintf-js';
 
-export default class Form extends Component {
+class Form extends Component {
     constructor(props) {
         super(props);
 
         this.initialState = {
             id: null,
+            title: '',
             first_name: '',
             org_name: '',
             person_id: null,
             org_id: null,
             email: '',
             mobile: '',
-            web: '',
-            source_id: '', //tax
-            level_id: '', //tax
-            tags: [], //tax
+            lead_id: '',
+            stage_id: '',
             budget: '',
             currency: 'USD',
+            probability: 50,
+            tags: [],
             desc: '',
             note: '',
-            date: false,
+            date: false
         };
 
         this.state = {
             form: this.initialState,
-            levels: [],
+            stages: [],
             tags: [],
-            personList: [],
-            orgList: [],
         };
     }
 
-    handleChange = (e, type) => {
-        const { name, value } = e.target;
-
-        if (type == 'contact') {
-            let contact = { ...this.state.form.contact, [name]: value };
-            let form = { ...this.state.form }
-            form.contact = contact;
-            this.setState({ form });
-        } else {
-            this.setState({ form: { ...this.state.form, [name]: value } });
-        }
+    handleChange = e => {
+        const target = e.target;
+        const name = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
     currencyChange = val => {
         this.setState({ form: { ...this.state.form, ['currency']: val } });
     }
 
-    handleLevelChange = val => {
-        this.setState({ form: { ...this.state.form, ['level_id']: val } });
+    handleStageChange = val => {
+        this.setState({ form: { ...this.state.form, ['stage_id']: val } });
     }
 
     handleTagChange = val => {
         this.setState({ form: { ...this.state.form, ['tags']: val } });
     }
 
-    selectCountry(val) {
-        let contact = { ...this.state.form.contact, ['country']: val };
-        let form = { ...this.state.form }
-        form.contact = contact;
-        this.setState({ form });
-    }
-
-    selectRegion(val) {
-        let contact = { ...this.state.form.contact, ['region']: val };
-        let form = { ...this.state.form }
-        form.contact = contact;
-        this.setState({ form });
-    }
-
     componentDidMount() {
-        api.get('taxonomies', 'taxonomy=lead_level,lead_source,tag').then(resp => {
+        api.get('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
             if (resp.data.success) {
-                if (this.state.form.level_id) {
+                if (this.state.form.stage_id) {
                     this.setState({
-                        levels: resp.data.data.lead_level,
+                        stages: resp.data.data.deal_stage,
                         tags: resp.data.data.tag,
                     });
                 } else {
                     let form = { ...this.state.form }
-                    form.level_id = resp.data.data.lead_level[0];
+                    form.stage_id = resp.data.data.deal_stage[0];
                     this.setState({
                         form,
-                        levels: resp.data.data.lead_level,
+                        stages: resp.data.data.deal_stage,
                         tags: resp.data.data.tag,
                     });
                 }
-            }
-        });
-
-        //find person
-        let args = {
-            page: 1,
-            per_page: 10
-        }
-        let params = new URLSearchParams(args).toString();
-
-        api.get('persons', params).then(resp => {
-            if (resp.data.success) {
-                let personList = resp.data.data.result;
-                this.setState({ personList });
-            }
-        });
-
-       api.get('organizations', params).then(resp => {
-            if (resp.data.success) {
-                let orgList = resp.data.data.result;
-                this.setState({ orgList });
             }
         });
 
@@ -129,9 +88,15 @@ export default class Form extends Component {
 
     editData = () => {
         //condition added to stop multiple rendering 
-        if (this.props.modalType == 'edit') {
+        if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
-                let form = this.props.data;
+
+                let form = { ...this.props.data }
+                if (this.props.modalType == 'move') {
+                    form.lead_id = form.id;
+                    form.probability = 50;
+                }
+
                 form.first_name = (form.person) ? form.person.first_name : '';
                 if (form.person) {
                     form.person_id = (form.person) ? form.person.id : null;
@@ -148,12 +113,21 @@ export default class Form extends Component {
                 if (form.org) {
                     form.org_id = (form.org) ? form.org.id : null;
                 }
+
                 this.setState({ form });
             }
         } else {
             if (this.state.form.id != null) {
                 this.setState({ form: this.initialState });
             }
+
+            /* else {
+                if ( this.props.data && ! this.state.form.stage_id && this.props.data.hasOwnProperty('label') ) { // new deal from stage
+                    let form = {...this.initialState}
+                    form.stage_id = this.props.data;
+                    this.setState({ form });
+                }
+            }  */
         }
     }
 
@@ -161,8 +135,8 @@ export default class Form extends Component {
         e.preventDefault();
         let form = { ...this.state.form }
 
-        if (form.level_id) {
-            form.level_id = form.level_id.id;
+        if (form.stage_id) {
+            form.stage_id = form.stage_id.id;
         }
 
         if (form.tags.length) {
@@ -173,13 +147,35 @@ export default class Form extends Component {
         }
 
         if (this.props.reload) {
-            api.edit('leads', form.id, form);
-            this.props.close();
-            this.props.reload();
-        } else {
-            this.props.handleSubmit(form);
-        }
 
+            if (this.props.modalType == 'move') {
+
+                api.add('deals', form).then(resp => {
+                    if (resp.data.success) {
+                        toast.success(ndpv.i18n.aDelM);
+                        let id = resp.data.data;
+                        this.props.close();
+                        this.props.navigate(`/deal/single/${id}`);
+                        this.props.reload();
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                });
+
+            } else {
+                api.edit('deals', form.id, form);
+                this.props.close();
+                this.props.reload();
+            }
+        } else {
+            let args = null;
+            if (!this.props.boardView) {
+                args = { table_view: true };
+            }
+            this.props.handleSubmit(form, null, args);
+        }
         this.setState({ form: this.initialState });
     }
 
@@ -216,146 +212,153 @@ export default class Form extends Component {
     }
 
     render() {
-        const levelList = this.state.levels;
-        const tagList = this.state.tags;
-
-        const form = this.state.form;
         const i18n = ndpv.i18n;
-         
+        const stageList = this.state.stages;
+        const tagList = this.state.tags;
+        const form = this.state.form;
+        const probabilityPercent = (form.probability / 100) * 100;
+
+        let title = '';
+        if (this.props.modalType == 'new') {
+            title = i18n.new
+        } else if (this.props.modalType == 'edit') {
+            title = i18n.edit
+        } else if (this.props.modalType == 'move') {
+            title = i18n.moveto
+        }
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
 
                     <div className="pv-modal-header pv-gradient">
-                        <span className="pv-close" onClick={() => this.props.close()}>
+                        <span className="pv-close" onClick={()=> this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.lead}</h2>
-                        <p>{sprintf(i18n.formDesc, i18n.lead)}</p> 
+                        <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
+                        <p>{sprintf(i18n.formDesc, i18n.deal)}</p>
+
                     </div>
+
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
                             <div className="pv-form-style-one">
                                 <div className="row">
                                     <div className="col-lg">
-                                        <label htmlFor="form-email">
-                                            {i18n.email}
-                                        </label>
-                                        <input
-                                            id="form-email"
-                                            type="email"
-                                            required
-                                            name="email"
-                                            value={form.email}
-                                            onChange={this.handleChange}
-                                        />
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">{i18n.email}</label>
+                                        </div>
                                     </div>
-
                                     <div className="col-lg">
-                                        <label htmlFor="form-mobile">
-                                            {i18n.mob}
-                                        </label>
-
-                                        <input
-                                            id="form-mobile"
-                                            type="text"
-                                            name="mobile"
-                                            value={form.mobile}
-                                            onChange={this.handleChange}
-                                        />
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Company" id="" />
+                                            <label htmlFor="reminder-due_date">Company</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Phone</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Mobile</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Other</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Website</label>
+                                        </div>
                                     </div>
                                 </div>
-
                                 <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-budget">
-                                            {i18n.budget}
-                                        </label>
-
-                                        <input
-                                            id="field-budget"
-                                            type="number"
-                                            name="budget"
-                                            value={form.budget}
-                                            onChange={this.handleChange}
-                                        />
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">{i18n.email}</label>
+                                        </div>
                                     </div>
-
-                                    <div className="col-md">
-                                        <label htmlFor="field-currency">
-                                            {i18n.cur}
-                                        </label>
-                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Company" id="" />
+                                            <label htmlFor="reminder-due_date">Company</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Phone</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Mobile</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Other</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Website</label>
+                                        </div>
                                     </div>
                                 </div>
-
                                 <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-level_id">
-                                            {i18n.level}
-                                        </label>
-                                        {/* <Taxonomy data={form.level_id} taxonomy='lead_level' title='Level' color /> */}
-                                        <Select
-                                            className={'pv-field-select'}
-                                            value={form.level_id}
-                                            onChange={this.handleLevelChange}
-                                            getOptionValue={(levelList) => levelList.id}
-                                            getOptionLabel={(levelList) => levelList.label}
-                                            options={levelList}
-                                        />
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">{i18n.email}</label>
+                                        </div>
                                     </div>
-
-                                    <div className="col-md">
-                                        <label htmlFor="field-tags">
-                                            {i18n.tag}
-                                        </label>
-                                        {/* <Taxonomy data={form.tags} taxonomy='tag' title='Tag' multiple /> */}
-                                        <Select
-                                            className={'pv-field-select'}
-                                            value={form.tags}
-                                            onChange={this.handleTagChange}
-                                            getOptionValue={(tagList) => tagList.id}
-                                            getOptionLabel={(tagList) => tagList.label}
-                                            options={tagList}
-                                            isMulti
-                                        />
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Company" id="" />
+                                            <label htmlFor="reminder-due_date">Company</label>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="form-desc">
-                                            {i18n.desc}
-                                        </label>
-
-                                        <textarea
-                                            id="form-desc"
-                                            type="text"
-                                            name="desc"
-                                            value={form.desc}
-                                            onChange={(e) => this.handleChange(e, 'lead')}
-                                        />
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Phone</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Mobile</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Other</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="Email" id="" />
+                                            <label htmlFor="reminder-due_date">Website</label>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="form-note">
-                                            {i18n.note}
-                                        </label>
-
-                                        <textarea
-                                            id="form-note"
-                                            type="text"
-                                            name="note"
-                                            value={form.note}
-                                            onChange={(e) => this.handleChange(e, 'lead')}
-                                        />
-                                    </div>
-                                </div>
                             </div>
                         </div>
-
                         <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
@@ -374,3 +377,5 @@ export default class Form extends Component {
         );
     }
 }
+
+export default WithRouter(Form);  
