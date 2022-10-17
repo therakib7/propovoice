@@ -173,6 +173,7 @@ class I18n
             'social' => esc_html__('Social', 'propovoice'), 
             'var' => esc_html__('Variable', 'propovoice'), 
             'imp' => esc_html__('Import', 'propovoice'), 
+            'exp' => esc_html__('Export', 'propovoice'), 
             'intg' => esc_html__('Integration', 'propovoice'), 
             'license' => esc_html__('License', 'propovoice'), 
             'exp' => esc_html__('Expires', 'propovoice'), 

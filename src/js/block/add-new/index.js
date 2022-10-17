@@ -8,7 +8,7 @@ export default (props) => {
 
     const dropdownRef = useRef();
     const [dropdown, setDropdown] = useState(false);
-    const[expot, setExport] = useState(false)
+    const[imp, setImp] = useState(false)
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
@@ -27,7 +27,7 @@ export default (props) => {
     const ImportExport = (e, type) => {
         e.preventDefault();
         setDropdown(false);
-        setExport(true)
+        setImp(true)
     };
 
     const i18n = ndpv.i18n;
@@ -62,18 +62,18 @@ export default (props) => {
                 {i18n.add} {props.title}
             </button>
 
-            {false && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
+            {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button
                     className="pv-bg-stroke pv-bg-shadow"
                     onClick={() => showDropdown()}
                 >
                     <Edit />
                 </button>
-                {expot===true && <Form close={() => setExport(false)} />}
+                {imp===true && <Form close={() => setImp(false)} />}
 
                 {dropdown && <div className="pv-dropdown-content pv-show">
                     <a onClick={(e) => ImportExport(e, 'import')}>{i18n.imp}</a>
-                    <a onClick={(e) => ImportExport(e, 'exoprt')}>{i18n.imp}</a>
+                    <a onClick={(e) => ImportExport(e, 'export')}>{i18n.exp}</a>
                 </div>}
             </div>}
         </div>

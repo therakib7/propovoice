@@ -243,6 +243,14 @@ class Form extends Component {
                         <div className="pv-content">
                             <div className="pv-form-style-one">
                                 <div className="row">
+                                <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input type="checkbox" name="selectAll" id="" />
+                                            <label htmlFor="reminder-due_date">Select All</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
                                             <input type="checkbox" name="Email" id="" />
