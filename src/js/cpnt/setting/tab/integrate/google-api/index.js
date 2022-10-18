@@ -32,20 +32,20 @@ export default class Main extends Component {
       active: false,
       pro: true,
     },
-    {
-      name: "Google Calendar",
-      slug: "calendar",
-      img: "https://cdn.cdnlogo.com/logos/g/96/google-calendar.svg",
-      active: false,
-      pro: true,
-    },
-    {
-      name: "Google Drive",
-      slug: "drive",
-      img: "https://cdn.cdnlogo.com/logos/g/44/google-drive.svg",
-      active: true,
-      pro: true,
-    },
+    // {
+    //   name: "Google Calendar",
+    //   slug: "calendar",
+    //   img: "https://cdn.cdnlogo.com/logos/g/96/google-calendar.svg",
+    //   active: false,
+    //   pro: true,
+    // },
+    // {
+    //   name: "Google Drive",
+    //   slug: "drive",
+    //   img: "https://cdn.cdnlogo.com/logos/g/44/google-drive.svg",
+    //   active: true,
+    //   pro: true,
+    // },
   ];
 
   getSingleList = (slug) => {
