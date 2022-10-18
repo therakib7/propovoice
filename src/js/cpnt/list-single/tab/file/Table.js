@@ -1,5 +1,5 @@
-import ModalImage from "react-modal-image";
-import Action from 'block/action/row';
+import React, { useRef, useCallback, useState } from 'react';
+import Moment from 'react-moment';
 
 const TableHeader = props => {
     const i18n = ndpv.i18n;
@@ -62,7 +62,17 @@ const TableHeader = props => {
     );
 }
 
-const TableBody = props => { 
+const TableBody = props => {
+
+    const [dropdown, setDropdown] = useState(null);
+
+    const showDropdown = (id) => {
+        if (dropdown == id) {
+            setDropdown(null);
+        } else {
+            setDropdown(id);
+        }
+    };
     const i18n = ndpv.i18n;
     let rows = props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
@@ -77,16 +87,9 @@ const TableBody = props => {
                     />
                 </td>
                 <td>
-                    {row.file && <div style={{width: 40, display: 'inline-block'}}>
-                        <ModalImage
-                            small={row.file.src}
-                            large={row.file.src}
-                            alt=""
-                        />
-                    </div>}
-
+                    {row.file && <img src={row.file.src} alt="file" width="40" />}
                     {!row.file && <img src={ndpv.assetImgUri + 'file.png'} alt="file" />}
-                    <span>{row.type == 'link' ?<a target='_blank' href={row.url}>{row.title}</a> : row.title }</span>
+                    <span><a target='_blank' href={row.url}>{row.title}</a></span>
                 </td>
                 <td>
                     <div className="pv-avater">
@@ -94,12 +97,43 @@ const TableBody = props => {
                     </div>
                 </td>
                 <td>{row.date}</td>
-                <td className="pv-action"> 
-                    <Action
-                        row={row}
-                        editEntry={row.type == 'link' ? props.editEntry : false}
-                        deleteEntry={props.deleteEntry}
-                    />
+                <td className="pv-action">
+                    <div className="pv-action-content">
+                        <button className={(row.id == dropdown ? 'pv-active' : '')} onClick={() => showDropdown(row.id)}>
+                            <svg
+                                width={24}
+                                height={24}
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
+                                    fill="#718096"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
+                                    fill="#718096"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
+                                    fill="#718096"
+                                />
+                            </svg>
+                        </button>
+                        {row.id == dropdown && <div className="pv-dropdown-content pv-show"
+                        // ref={popover}
+                        >
+                            {row.type == 'link' && <a onClick={() => props.editEntry('edit', row)}>{i18n.edit}</a>}
+                            <a onClick={() => props.deleteEntry('single', row.id)}>{i18n.del}</a>
+                        </div>}
+                    </div>
                 </td>
             </tr>
         );
@@ -108,7 +142,7 @@ const TableBody = props => {
     return <tbody>{rows}</tbody>;
 }
 
-export default (props) => {
+const Table = (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
@@ -120,4 +154,6 @@ export default (props) => {
             </div>}
         </>
     );
-} 
+}
+
+export default Table;

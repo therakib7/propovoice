@@ -8,7 +8,7 @@ use Ndpv\Ctrl\Cron\CronCtrl;
 use Ndpv\Ctrl\Template\TemplateCtrl;
 use Ndpv\Ctrl\Hook\HookCtrl;
 use Ndpv\Ctrl\Integrate\IntegrateCtrl;
-use Ndpv\Ctrl\Assist\AssistCtrl;
+use Ndpv\Ctrl\Marketing\MarketingCtrl;
 use Ndpv\Ctrl\Meta\MetaCtrl;
 use Ndpv\Ctrl\Setting\SettingCtrl; 
 use Ndpv\Ctrl\Taxonomy\TaxonomyCtrl; 
@@ -21,7 +21,7 @@ class MainCtrl {
         //if ( is_admin() ) { 
             new TaxonomyCtrl(); 
             new SettingCtrl(); 
-            new AssistCtrl();
+            new MarketingCtrl();
         //}
         new AssetCtrl();
         new TemplateCtrl();

@@ -1669,7 +1669,7 @@ html {
 .ndpv .pv-right-content {
   width: 100%;
   overflow-y: auto;
-  overflow-x: hidden;
+  //overflow-x: hidden;
   scroll-behavior: smooth;
   height: 100vh;
 }
@@ -1681,7 +1681,7 @@ html {
 }
 
 .ndpv .pv-right-content .pv-page-title {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   margin-top: 0;
   font-size: 24px;
   font-weight: 700;
@@ -1757,7 +1757,7 @@ html {
 }
 
 .ndpv .pv-breadcrumb {
-  margin-bottom: 18px;
+  margin-bottom: 6px;
   margin-left: -5px;
   display: inline-block;
 }
@@ -2477,7 +2477,7 @@ html {
 }
 
 .wp-admin.ndpv {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .wp-admin.ndpv a:focus {
@@ -2486,6 +2486,10 @@ html {
 
 .wp-admin.ndpv .pv-ml-m-70 {
   left: -70px !important;
+}
+
+.wp-admin.ndpv .pv-right-content {
+  overflow-y: inherit;
 }
 
 .wp-admin.ndpv .pv-right-content-data {
@@ -2670,7 +2674,9 @@ html {
   align-items: center;
   border-radius: 0 5px 5px 0;
   height: 96%;
+
 }
+
 
 .wp-admin.ndpv .react-datepicker__day--keyboard-selected {
   background-color: #4c6fff !important;
@@ -2800,6 +2806,10 @@ html {
   align-items: center;
   border-radius: 0 5px 5px 0;
   height: 96%;
+
+  @media screen and (max-width: 540px) {
+    height: 95%;
+  }
 }
 
 .pv-field-date .pv-info-input-field .pv-calendar svg {
@@ -3083,9 +3093,7 @@ ul {
   }
 }
 
-.astra-theme .pv-field-checkbox input[type=checkbox] {
-  zoom: 0.7 !important;
-}
+
 
 @media screen and (max-width: 992px) {
   .astra-theme .pv-field-radio input[type=radio]::before {
@@ -3221,6 +3229,10 @@ ul {
 @media screen and (max-width: 420px) {
   .ndpv .pv-modal-content .pv-content {
     padding: 15px !important;
+  }
+
+  .ndpv .pv-modal-content.pv-modal-sidebar .pv-content {
+    padding: 15px 25px 20px 15px !important;
   }
 }
 
@@ -4840,6 +4852,7 @@ ul {
 @media screen and (max-width: 420px) {
   .ndpv .pv-horizontal-tab .pv-tabs {
     display: block;
+    text-align: center;
   }
 }
 
@@ -5671,7 +5684,7 @@ body {
 # button
 --------------------------------------------------------------*/
 .ndpv .pv-btn {
-  padding: 15px 20px;
+  padding: 15px 20px !important;
   font-weight: 600;
   border-radius: 8px;
   color: #fff;
@@ -5978,7 +5991,7 @@ select {
 --------------------------------------------------------------*/
 .ndpv .pv-left-sidebar {
   width: 280px;
-  background-color: #f7f8fa;
+  //background-color: #f7f8fa;
 }
 
 .ndpv .pv-left-sidebar .pv-logo-content {
@@ -6003,7 +6016,6 @@ select {
   overflow-x: hidden;
   scroll-behavior: smooth;
   height: 100vh;
-  padding-bottom: 50px;
   padding-top: 95px;
 }
 

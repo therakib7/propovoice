@@ -286,19 +286,6 @@ class Setting
                 }
             }
 
-            if ($tab == "google_api_oauth2") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["client_id"] = "";
-                    $data["client_secret"] = "";
-                    $data["redirect_uri"] = "";
-                    $data["api_key"] = "";
-                }
-            }
-
             if ($tab == "google_api_calendar") {
                 $option = get_option("ndpv_" . $tab);
 
@@ -515,23 +502,6 @@ class Setting
                     : null;
                 update_option("ndpv_" . $tab, $data);
                 update_option("ndpv_smtp", "sendinblue");
-            }
-
-            if ($tab == "google_api_oauth2") {
-                //Check valid key here
-                $data["client_id"] = isset($params["client_id"])
-                    ? sanitize_text_field($params["client_id"])
-                    : null;
-                $data["client_secret"] = isset($params["client_secret"])
-                    ? sanitize_text_field($params["client_secret"])
-                    : null;
-                $data["redirect_uri"] = isset($params["redirect_uri"])
-                    ? sanitize_text_field($params["redirect_uri"])
-                    : null;
-                $data["api_key"] = isset($params["api_key"])
-                    ? sanitize_text_field($params["api_key"])
-                    : null;
-                update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "google_api_calendar") {

@@ -1074,7 +1074,7 @@ class Invoice extends Component {
 													{!this.state.wc && (!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
 														<i />
-														<h3 className='pv-title-small'>{i18n.acptd} {i18n.payment}</h3>
+														<h3 className='pv-title-small'>{i18n.payment} {i18n.method}</h3>
 														<Payment
 															handleChange={this.onPaymentChange}
 															data={invoice}

@@ -54,15 +54,12 @@ class Taxonomy
             ),
         ));
 
-        register_rest_route('ndpv/v1', '/taxonomies/(?P<id>[0-9,]+)/(?P<tax>[a-z,_]+)', array(
+        register_rest_route('ndpv/v1', '/taxonomies/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
             'permission_callback' => [$this, 'delete_permission'],
             'args' => array(
                 'id' => array(
-                    'sanitize_callback'  => 'sanitize_text_field',
-                ),
-                'tax' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
                 ),
             ),
@@ -327,7 +324,7 @@ class Taxonomy
                 if ($post_id) { //delete term from post
                     wp_remove_object_terms($post_id, $term_id, 'ndpv_' . $taxonomy);
                 } else { // delte term
-                    // wp_delete_term($term_id, 'ndpv_' . $taxonomy);
+                    wp_delete_term($term_id, 'ndpv_' . $taxonomy);
                 }
                 wp_send_json_success();
             } else {
@@ -376,10 +373,10 @@ class Taxonomy
     public function delete($req)
     {
         $url_params = $req->get_url_params();
-        $tax = $url_params['tax'];
+
         $ids = explode(',', $url_params['id']);
-        foreach ($ids as $id) { 
-            wp_delete_term($id, 'ndpv_' . $tax);
+        foreach ($ids as $id) {
+            wp_delete_term($id);
         }
         wp_send_json_success($ids);
     }

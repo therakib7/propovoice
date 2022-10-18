@@ -133,7 +133,7 @@ class File
                     $fileData = []; 
                     $fileData['id'] = $file_id;  
                     $fileData['src'] = $file_src[0]; 
-                    $fileData['src_small'] = $file_src; 
+                    $fileData['srcdd'] = $file_src; 
                 }
             } 
             $query_data['file'] = $fileData;

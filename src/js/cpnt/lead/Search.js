@@ -4,13 +4,13 @@ import { Arrow, Cross, Search, Filter } from 'block/icon';
 export default class Form extends Component {
 
     constructor(props) {
-        super(props); 
+        super(props);
 
         this.state = {
-            form: { 
+            form: {
                 text: '',
                 level: '',
-                tag: '', 
+                tag: '',
             },
             searchModal: false,
         };
@@ -22,9 +22,9 @@ export default class Form extends Component {
         const { name, value } = e.target;
         this.setState({ form: { ...this.state.form, [name]: value } }, () => {
 
-            if ( name == 'text' ) { 
+            if (name == 'text') {
                 //search when typing stop
-                if ( this.timeout ) clearTimeout(this.timeout);
+                if (this.timeout) clearTimeout(this.timeout);
                 this.timeout = setTimeout(() => {
                     this.props.handleSubmit(this.state.form);
                 }, 300);
@@ -32,7 +32,7 @@ export default class Form extends Component {
                 this.props.handleSubmit(this.state.form);
             }
         });
-    } 
+    }
 
     render() {
         const { title, showing, showItem, total } = this.props;
@@ -44,15 +44,15 @@ export default class Form extends Component {
                     <input
                         type="text"
                         className="pv-search-input"
-                        placeholder={i18n.search+' '+ title}
+                        placeholder={i18n.search + ' ' + title}
                         name="text"
                         value={this.state.form.text}
                         onChange={this.handleChange}
-                    /> 
+                    />
                 </div>
                 {false && <div className="pv-search-btn">
                     <button className={this.state.searchModal ? 'pv-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
-                       <Filter />
+                        <Filter />
                     </button>
 
                     {this.state.searchModal && <div className="pv-search-form">
@@ -71,7 +71,7 @@ export default class Form extends Component {
                         </ul>
                     </div>}
                 </div>}
-                <div className="pv-total-list">  
+                <div className="pv-total-list">
                     <p>
                         {i18n.show} <select onChange={showItem} >
                             <option value="10">10</option>
@@ -79,9 +79,9 @@ export default class Form extends Component {
                             <option value="30">30</option>
                             <option value="50">50</option>
                             <option value="99">99</option>
-                        </select> 
+                        </select>
                         {/* {showing}  */}
-                         {title} {i18n.from} <span>{total}</span>
+                        {title} {i18n.from} <span>{total}</span>
                     </p>
                 </div>
             </div>

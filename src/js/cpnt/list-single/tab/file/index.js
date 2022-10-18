@@ -133,10 +133,10 @@ const File = (props) => {
                                         fill="#718096"
                                     />
                                 </svg>
-                                {ndpv.i18n.add} {i18n.link}
+                                {ndpv.i18n.add} {i18n.upload} {i18n.file}
                             </button>
                             <br />
-                            {false && <div className="pv-buttons-group pv-mb-20">
+                            <div className="pv-buttons-group pv-mb-20">
                                 <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
                                     <svg
                                         width={16}
@@ -197,7 +197,7 @@ const File = (props) => {
                                         />
                                     </svg>
                                 </button>
-                            </div>}
+                            </div>
                         </div>
                     </div>
                 </div>

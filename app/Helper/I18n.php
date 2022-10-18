@@ -118,7 +118,6 @@ class I18n
             'dft' => esc_html__('Draft', 'propovoice'),
             'req' => esc_html__('Request', 'propovoice'),
             //form
-            'isReq' => esc_html__('is required', 'propovoice'), 
             /* translators: %s: Module Name */
             'formDesc' => esc_html__('Add new %s from here', 'propovoice'), 
             'payDesc' => esc_html__('Add payment info from here', 'propovoice'),
@@ -174,6 +173,7 @@ class I18n
             'social' => esc_html__('Social', 'propovoice'), 
             'var' => esc_html__('Variable', 'propovoice'), 
             'imp' => esc_html__('Import', 'propovoice'), 
+            'exp' => esc_html__('Export', 'propovoice'), 
             'intg' => esc_html__('Integration', 'propovoice'), 
             'license' => esc_html__('License', 'propovoice'), 
             'exp' => esc_html__('Expires', 'propovoice'), 
@@ -218,7 +218,7 @@ class I18n
             'dlvy' => esc_html__('delivery', 'propovoice'),  
             'option' => esc_html__('option', 'propovoice'),   
             'upload' => esc_html__('Upload', 'propovoice'),  
-            'link' => esc_html__('Link', 'propovoice'),  
+            'link' => esc_html__('link', 'propovoice'),  
             'first' => esc_html__('First', 'propovoice'),  
             'last' => esc_html__('Last', 'propovoice'),  
             'company' => esc_html__('Company', 'propovoice'),  

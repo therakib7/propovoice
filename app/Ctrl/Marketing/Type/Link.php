@@ -1,5 +1,5 @@
 <?php 
-namespace Ndpv\Ctrl\Assist\Type; 
+namespace Ndpv\Ctrl\Marketing\Type; 
 
 class Link {
 
@@ -8,7 +8,7 @@ class Link {
     }  
 
     /**
-	 * Assist links.
+	 * Marketing links.
 	 *
 	 * @param array $links
 	 *
@@ -19,10 +19,6 @@ class Link {
 		if ( ! function_exists( 'ndpvp' ) ) {
 			$links[] = '<a target="_blank" style="color: #39b54a;font-weight: 700;" href="' . esc_url( 'https://propovoice.com/pricing//?utm_source=WordPress&utm_medium=propovoice&utm_campaign=pro_click' ) . '">Get Pro</a>';
 		}
-
-		if ( array_key_exists( 'deactivate', $links ) ) {
-            $links['deactivate'] = str_replace( '<a', '<a class="ndpv-deactivate-link"', $links['deactivate'] );
-        }
 		return $links;
 	}
 }

@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -231,11 +230,10 @@ class Task
             }
 
             $query_data['desc'] = get_the_content();
-            $query_data['google_meet'] = get_post_meta($id, 'google_meet', true);
             $query_data['start_date'] = get_post_meta($id, 'start_date', true);
             $query_data['due_date'] = get_post_meta($id, 'due_date', true);
             $query_data['checklist'] = get_post_meta($id, 'checklist', true);
-            $query_data['date'] = get_the_time(get_option('date_format'));
+            $query_data['date'] = get_the_time( get_option('date_format') );
 
             if ($dashboard) {
                 $data['latest'][] = $query_data;
@@ -288,7 +286,6 @@ class Task
         $type_id = isset($params['type_id']) ? absint($params['type_id']) : null;
         $priority_id = isset($params['priority_id']) ? absint($params['priority_id']) : null;
 
-        $google_meet = isset($params['google_meet']) ? $params['google_meet'] : null;
         $start_date = isset($params['start_date']) ? $params['start_date'] : null;
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
 
@@ -328,9 +325,6 @@ class Task
                     wp_set_post_terms($post_id, [$priority_id], 'ndpv_task_priority');
                 }
 
-                if ($google_meet) {
-                    wp_set_post_terms($post_id, 'google_meet', $google_meet);
-                }
                 if ($start_date) {
                     update_post_meta($post_id, 'start_date', $start_date);
                 }
@@ -355,7 +349,6 @@ class Task
         $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
         $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
 
-        $google_meet = isset($params['google_meet']) ? $params['google_meet'] : null;
         $start_date = isset($params['start_date']) ? $params['start_date'] : null;
         $due_date = isset($params['due_date']) ? $params['due_date'] : null;
         $checklist = isset($params['checklist']) ? $params['checklist'] : null;
@@ -397,10 +390,6 @@ class Task
 
                 if ($priority_id) {
                     wp_set_post_terms($post_id, [$priority_id], 'ndpv_task_priority');
-                }
-
-                if ($google_meet) {
-                    update_post_meta($post_id, 'google_meet', $google_meet);
                 }
 
                 if ($start_date) {
