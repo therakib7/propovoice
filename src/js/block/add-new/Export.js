@@ -3,9 +3,6 @@ import { toast } from 'react-toastify';
 import api from 'api';
 import WithRouter from 'hoc/Router';
 import { Add } from 'block/icon';
-import Currency from 'block/field/currency';
-import Select from 'react-select';
-import Contact from 'block/field/contact';
 import { sprintf } from 'sprintf-js';
 
 class Form extends Component {
@@ -44,6 +41,7 @@ class Form extends Component {
         const name = target.name;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
+        console.log(value)
     }
 
     currencyChange = val => {
@@ -179,38 +177,6 @@ class Form extends Component {
         this.setState({ form: this.initialState });
     }
 
-    handleContactChange = (val, type) => {
-        let form = { ...this.state.form }
-        if (type == 'person') {
-            form.first_name = val;
-        } else {
-            form.org_name = val;
-        }
-        this.setState({ form });
-    }
-
-    handleContactSelect = (val, type) => {
-        let form = { ...this.state.form }
-        if (!val) return;
-        if (type == 'person') {
-            form.first_name = val.first_name;
-            form.person_id = (val) ? val.id : null;
-            form.email = (val) ? val.email : '';
-            form.mobile = (val) ? val.mobile : '';
-            form.web = (val) ? val.web : '';
-        } else {
-            form.org_name = val.name;
-            form.org_id = (val) ? val.id : null;
-            if (!form.first_name) {
-                form.email = (val) ? val.email : '';
-                form.mobile = (val) ? val.mobile : '';
-                form.web = (val) ? val.web : '';
-            }
-        }
-
-        this.setState({ form });
-    }
-
     render() {
         const i18n = ndpv.i18n;
         const stageList = this.state.stages;
@@ -231,7 +197,7 @@ class Form extends Component {
                 <div className="pv-modal-content">
 
                     <div className="pv-modal-header pv-gradient">
-                        <span className="pv-close" onClick={()=> this.props.close()}>
+                        <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
@@ -242,10 +208,21 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
                             <div className="pv-form-style-one">
-                                <div className="row">
-                                <div className="col-lg">
+                                <div className="row pv-align">
+                                    <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="selectAll" id="" />
+                                            <p>Select company fields to export</p>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg">
+                                        <div className="pv-field-checkbox">
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Select All</label>
                                         </div>
                                     </div>
@@ -253,37 +230,74 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">{i18n.email}</label>
                                         </div>
                                     </div>
+                                    
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Company" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Company</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Phone</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Mobile</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Other</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Website</label>
                                         </div>
                                     </div>
@@ -291,37 +305,73 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">{i18n.email}</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Company" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Company</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Phone</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Mobile</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Other</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Website</label>
                                         </div>
                                     </div>
@@ -329,37 +379,73 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">{i18n.email}</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Company" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Company</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Phone</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Mobile</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Other</label>
                                         </div>
                                     </div>
                                     <div className="col-lg">
                                         <div className="pv-field-checkbox">
-                                            <input type="checkbox" name="Email" id="" />
+                                            <input
+                                                type="checkbox"
+                                                name="selectAll"
+                                                id=""
+                                                value={10}
+                                                onChange={this.handleChange}
+                                            />
                                             <label htmlFor="reminder-due_date">Website</label>
                                         </div>
                                     </div>

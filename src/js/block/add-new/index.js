@@ -1,14 +1,17 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import useClickOutside from 'block/outside-click';
 import { Edit } from 'block/icon';
-import Form from "./Form";
+// import Form from "./Export";
+import Export from "./Export";
+import Import from "./Import ";
 
 
 export default (props) => {
 
     const dropdownRef = useRef();
     const [dropdown, setDropdown] = useState(false);
-    const[imp, setImp] = useState(false)
+    const [imp, setImp] = useState(false);
+    const [exp, setExp] = useState(false);
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
@@ -25,6 +28,11 @@ export default (props) => {
     };
 
     const ImportExport = (e, type) => {
+        e.preventDefault();
+        setDropdown(false);
+        setExp(true)
+    };
+    const ImportImport = (e, type) => {
         e.preventDefault();
         setDropdown(false);
         setImp(true)
@@ -61,7 +69,8 @@ export default (props) => {
                 </svg>
                 {i18n.add} {props.title}
             </button>
-
+            {imp === true && <Import close={() => setImp(false)} />}
+            {exp === true && <Export close={() => setExp(false)} />}
             {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button
                     className="pv-bg-stroke pv-bg-shadow"
@@ -69,10 +78,9 @@ export default (props) => {
                 >
                     <Edit />
                 </button>
-                {imp===true && <Form close={() => setImp(false)} />}
 
                 {dropdown && <div className="pv-dropdown-content pv-show">
-                    <a onClick={(e) => ImportExport(e, 'import')}>{i18n.imp}</a>
+                    <a onClick={(e) => ImportImport(e, 'import')}>{i18n.imp}</a>
                     <a onClick={(e) => ImportExport(e, 'export')}>{i18n.exp}</a>
                 </div>}
             </div>}
