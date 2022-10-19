@@ -1340,7 +1340,11 @@ html {
 .ndpv .pv-info-table-content .pv-info-table tbody tr td .pv-field-checkbox {
   margin-bottom: 0;
 }
-
+.pv-grid-tmp {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 125px);
+    justify-content: space-between;
+}
 .ndpv .pv-info-table-content .pv-info-table tbody tr td input[type=number] {
   font-size: 14px;
 }
