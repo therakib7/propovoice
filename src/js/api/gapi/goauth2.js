@@ -1,5 +1,7 @@
 import api from "api";
 
+import { toast } from "react-toastify";
+
 let tokenClient;
 
 const loadScript = (id, file, callAfterLoad) => {
@@ -17,9 +19,16 @@ loadScript("gsi", "https://accounts.google.com/gsi/client", gisLoaded);
 
 (() => {
   return api.get("settings", "tab=google_api_oauth2").then((resp) => {
-    if (resp.data.success) {
+    if (
+      resp.data.success &&
+      resp.data.data.client_id !== "" &&
+      resp.data.data.api_key !== ""
+    ) {
       localStorage.setItem("g_client_id", resp.data.data.client_id);
       localStorage.setItem("g_api_key", resp.data.data.api_key);
+    } else {
+      toast.error("Please setup Google Client ID and Api key in Settings!");
+      throw new Error("Please setup Google Client ID and Api key in Settings!");
     }
   });
 })();
