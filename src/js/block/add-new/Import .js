@@ -64,29 +64,29 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['actions']: actions } });
     }
 
-    // componentDidMount() {
-    //     api.get('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
-    //         if (resp.data.success) {
-    //             if (this.state.form.stage_id) {
-    //                 this.setState({
-    //                     stages: resp.data.data.deal_stage,
-    //                     tags: resp.data.data.tag,
-    //                 });
-    //             } else {
-    //                 let form = { ...this.state.form }
-    //                 form.stage_id = resp.data.data.deal_stage[0];
-    //                 this.setState({
-    //                     form,
-    //                     stages: resp.data.data.deal_stage,
-    //                     tags: resp.data.data.tag,
-    //                 });
-    //             }
-    //         }
-    //     });
+    componentDidMount() {
+        api.get('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
+            if (resp.data.success) {
+                if (this.state.form.stage_id) {
+                    this.setState({
+                        stages: resp.data.data.deal_stage,
+                        tags: resp.data.data.tag,
+                    });
+                } else {
+                    let form = { ...this.state.form }
+                    form.stage_id = resp.data.data.deal_stage[0];
+                    this.setState({
+                        form,
+                        stages: resp.data.data.deal_stage,
+                        tags: resp.data.data.tag,
+                    });
+                }
+            }
+        });
 
-    //     //added this multiple place, because not working in invoice single
-    //     this.editData();
-    // }
+        //added this multiple place, because not working in invoice single
+        this.editData();
+    }
 
     componentDidUpdate() {
         this.editData();
