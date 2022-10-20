@@ -4,11 +4,7 @@ Donate link:
 Tags: CRM, Invoice Builder, Lead Management, WP CRM, Deal Pipeline, Wordpress CRM, Free Wordpress CRM, ERP, Business Management, Business Automation, Estimate, Quotation, Lead Generation, Billing, Client Management, Project Management, Customer, Client, Free Wordpress CRM 
 Requires at least: 5.0
 Tested up to: 6.0
-<<<<<<< HEAD
 Stable tag: 1.0.1.6
-=======
-Stable tag: 1.0.1.5
->>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -83,11 +79,7 @@ You can add a client to send him project estimates and invoices. You can input y
 
 
 == 🏆 Create Estimate and Invoice ==
-<<<<<<< HEAD
 -Template library: There are multi fully customizable estimate templates in the Propovoice CRM template library. The aesthetic designs of the templates will create the first impression on your clients. You can customize the templates with your brand color and style.
-=======
--Template library: There are multiple fully customizable estimate templates in the Propovoice CRM template library. The aesthetic designs of the templates will create the first impression on your clients. You can customize the templates with your brand color and style.
->>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
 
 -Select Client: You can simply add the receiver client from the dropdown or by searching in the search field. 
 - Add items and price: You can add items with their title and description as much as you need. 
@@ -122,11 +114,7 @@ There is an extendable table for managing listed clients, created invoices easil
 
 
 == 🏆 Acceptable Payment Gateways == 
-<<<<<<< HEAD
 You can provide the information of your Bank and multi Money Transfer Platforms for the billing of your business. You can add multi acceptable payment information from the setting. And you can add a flexible one while creating an invoice.
-=======
-You can provide the information of your Bank and multiple Money Transfer Platforms for the billing of your business. You can add multiple acceptable payment information from the setting. And you can add a flexible one while creating an invoice.
->>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
 
 == 🏆 Settings == 
 Settings make Propovoice CRM your won CRM with personalized preferences 
@@ -192,7 +180,6 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog == 
 
-<<<<<<< HEAD
 = 1.0.1.6 = 
 * Added: File image viewer
 * Fixed: Template loading issues
@@ -200,8 +187,6 @@ The super fantastic pro features that accelerate your business growth and improv
 * Fixed: Translation issue
 * Update: CSS Issue
 
-=======
->>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
 = 1.0.1.5 = 
 * Fixed: Contact edit
 * Fixed: Currency Showing
