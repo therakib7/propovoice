@@ -2,7 +2,7 @@ import React, { Component, lazy } from "react";
 import moment from "moment";
 import { Add } from "block/icon";
 import api from "api";
-// import { createEvent } from "api/gapi/gcalendar";
+import { createEvent } from "api/gapi/gcalendar";
 
 import Taxonomy from "block/field/taxonomy";
 const DateField = lazy(() => import("block/date-picker"));
@@ -29,7 +29,6 @@ export default class Form extends Component {
       dropdown: null,
     };
     this.timeout = 0;
-
   }
 
   myRef = React.createRef();
@@ -165,14 +164,14 @@ export default class Form extends Component {
   updateGoogleMeet = (link) => {
     let form = { ...this.state.form };
 
-    this.setState({ form: { ...form, google_meet: link } })
+    this.setState({ form: { ...form, google_meet: link } });
 
     delete form.priority_id;
     delete form.status_id;
     delete form.type_id;
 
-    api.edit("tasks", form.id, form)
-  }
+    api.edit("tasks", form.id, form);
+  };
 
   generateGoogleMeetLink = async () => {
     const form = this.state.form;
@@ -204,7 +203,6 @@ export default class Form extends Component {
     };
 
     createEvent(eventData, this.updateGoogleMeet);
-
   };
 
   render() {
