@@ -8,6 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Ndpv\\Ctrl\\Ajax\\AjaxCtrl' => $baseDir . '/app/Ctrl/Ajax/AjaxCtrl.php',
+<<<<<<< HEAD
+=======
+    'Ndpv\\Ctrl\\Ajax\\Type\\Auth' => $baseDir . '/app/Ctrl/Ajax/Type/Auth.php',
+>>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
     'Ndpv\\Ctrl\\Api\\ApiCtrl' => $baseDir . '/app/Ctrl/Api/ApiCtrl.php',
     'Ndpv\\Ctrl\\Api\\Type\\Action' => $baseDir . '/app/Ctrl/Api/Type/Action.php',
     'Ndpv\\Ctrl\\Api\\Type\\Business' => $baseDir . '/app/Ctrl/Api/Type/Business.php',
@@ -32,9 +36,12 @@ return array(
     'Ndpv\\Ctrl\\Api\\Type\\Taxonomy' => $baseDir . '/app/Ctrl/Api/Type/Taxonomy.php',
     'Ndpv\\Ctrl\\Api\\Type\\Workspace' => $baseDir . '/app/Ctrl/Api/Type/Workspace.php',
     'Ndpv\\Ctrl\\Asset\\AssetCtrl' => $baseDir . '/app/Ctrl/Asset/AssetCtrl.php',
+<<<<<<< HEAD
     'Ndpv\\Ctrl\\Assist\\AssistCtrl' => $baseDir . '/app/Ctrl/Assist/AssistCtrl.php',
     'Ndpv\\Ctrl\\Assist\\Type\\Feedback' => $baseDir . '/app/Ctrl/Assist/Type/Feedback.php',
     'Ndpv\\Ctrl\\Assist\\Type\\Link' => $baseDir . '/app/Ctrl/Assist/Type/Link.php',
+=======
+>>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
     'Ndpv\\Ctrl\\Cron\\CronCtrl' => $baseDir . '/app/Ctrl/Cron/CronCtrl.php',
     'Ndpv\\Ctrl\\Hook\\HookCtrl' => $baseDir . '/app/Ctrl/Hook/HookCtrl.php',
     'Ndpv\\Ctrl\\Hook\\Type\\Action' => $baseDir . '/app/Ctrl/Hook/Type/Action.php',
@@ -50,12 +57,31 @@ return array(
     'Ndpv\\Ctrl\\Integrate\\Smtp\\SmtpCtrl' => $baseDir . '/app/Ctrl/Integrate/Smtp/SmtpCtrl.php',
     'Ndpv\\Ctrl\\Integrate\\Smtp\\SmtpList' => $baseDir . '/app/Ctrl/Integrate/Smtp/SmtpList.php',
     'Ndpv\\Ctrl\\MainCtrl' => $baseDir . '/app/Ctrl/MainCtrl.php',
+<<<<<<< HEAD
+=======
+    'Ndpv\\Ctrl\\Marketing\\MarketingCtrl' => $baseDir . '/app/Ctrl/Marketing/MarketingCtrl.php',
+    'Ndpv\\Ctrl\\Marketing\\Type\\Link' => $baseDir . '/app/Ctrl/Marketing/Type/Link.php',
+>>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
     'Ndpv\\Ctrl\\Meta\\MetaCtrl' => $baseDir . '/app/Ctrl/Meta/MetaCtrl.php',
     'Ndpv\\Ctrl\\Meta\\User\\User' => $baseDir . '/app/Ctrl/Meta/User/User.php',
     'Ndpv\\Ctrl\\Setting\\SettingCtrl' => $baseDir . '/app/Ctrl/Setting/SettingCtrl.php',
     'Ndpv\\Ctrl\\Setting\\Type\\Dashboard' => $baseDir . '/app/Ctrl/Setting/Type/Dashboard.php',
     'Ndpv\\Ctrl\\Setting\\Type\\Welcome' => $baseDir . '/app/Ctrl/Setting/Type/Welcome.php',
     'Ndpv\\Ctrl\\Taxonomy\\TaxonomyCtrl' => $baseDir . '/app/Ctrl/Taxonomy/TaxonomyCtrl.php',
+<<<<<<< HEAD
+=======
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\ContactStatus' => $baseDir . '/app/Ctrl/Taxonomy/Type/ContactStatus.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\DealPipeline' => $baseDir . '/app/Ctrl/Taxonomy/Type/DealPipeline.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\DealStage' => $baseDir . '/app/Ctrl/Taxonomy/Type/DealStage.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\ExtraAmount' => $baseDir . '/app/Ctrl/Taxonomy/Type/ExtraAmount.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\LeadLevel' => $baseDir . '/app/Ctrl/Taxonomy/Type/LeadLevel.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\LeadSource' => $baseDir . '/app/Ctrl/Taxonomy/Type/LeadSource.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\ProjectStatus' => $baseDir . '/app/Ctrl/Taxonomy/Type/ProjectStatus.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\Tag' => $baseDir . '/app/Ctrl/Taxonomy/Type/Tag.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\TaskPriority' => $baseDir . '/app/Ctrl/Taxonomy/Type/TaskPriority.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\TaskStatus' => $baseDir . '/app/Ctrl/Taxonomy/Type/TaskStatus.php',
+    'Ndpv\\Ctrl\\Taxonomy\\Type\\TaskType' => $baseDir . '/app/Ctrl/Taxonomy/Type/TaskType.php',
+>>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
     'Ndpv\\Ctrl\\Template\\TemplateCtrl' => $baseDir . '/app/Ctrl/Template/TemplateCtrl.php',
     'Ndpv\\Ctrl\\Widget\\Elementor\\ElementorCtrl' => $baseDir . '/app/Ctrl/Widget/Elementor/ElementorCtrl.php',
     'Ndpv\\Ctrl\\Widget\\Elementor\\Widgets\\Registration' => $baseDir . '/app/Ctrl/Widget/Elementor/Widgets/Registration.php',
@@ -65,7 +91,10 @@ return array(
     'Ndpv\\Helper\\Data' => $baseDir . '/app/Helper/Data.php',
     'Ndpv\\Helper\\Fns' => $baseDir . '/app/Helper/Fns.php',
     'Ndpv\\Helper\\I18n' => $baseDir . '/app/Helper/I18n.php',
+<<<<<<< HEAD
     'Ndpv\\Helper\\Info' => $baseDir . '/app/Helper/Info.php',
+=======
+>>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
     'Ndpv\\Model\\Client' => $baseDir . '/app/Model/Client.php',
     'Ndpv\\Model\\Contact' => $baseDir . '/app/Model/Contact.php',
     'Ndpv\\Model\\Deal' => $baseDir . '/app/Model/Deal.php',

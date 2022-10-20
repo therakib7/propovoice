@@ -113,7 +113,10 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
     mix.js(`src/js/welcome.jsx`, `asset/js/welcome${min}.js`).react()
     mix.js(`src/js/dashboard.jsx`, `asset/js/dashboard${min}.js`).react()
     mix.js(`src/js/invoice.jsx`, `asset/js/invoice${min}.js`).react()
+<<<<<<< HEAD
     mix.js(`src/js/other/feedback.js`, `asset/js/feedback${min}.js`)
+=======
+>>>>>>> 0d49210e2a1f4deba6c1891e6aeed92aa2ebf922
 }
 
 if (process.env.NODE_ENV === 'zip') {
