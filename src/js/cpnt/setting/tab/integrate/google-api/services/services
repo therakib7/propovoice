@@ -1,0 +1,5 @@
+  /home/azhar/Local Sites/nurency-plugins/app/public/wp-content/plugins/propovoice/src/js/cpnt/setting/tab/integrate/google-api/services:
+  total used in directory 20K available 63.9 GiB
+  -rw-r--r-- 1 azhar azhar 3.2K Sep 26 16:33 GoogleCalendar.js
+  -rw-r--r-- 1 azhar azhar 3.1K Sep 26 16:33 GoogleDrive.js
+C -rw-r--r-- 1 azhar azhar 3.2K Sep 26 16:33 goauth2.js
