@@ -1,0 +1,10 @@
+.pv-dropzone {
+    background: #edf2f7;
+    padding: 20px 40px;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 20px; 
+}
+.pv-dropzone p {
+    font-size: 14px !important;
+}

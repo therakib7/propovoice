@@ -1,0 +1,88 @@
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: scale3D(0.95, 0.95, 0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale3D(1, 1, 1);
+  }
+}
+
+@keyframes void-animation-out {
+  0%,
+  to {
+    opacity: 1;
+  }
+}
+
+.StripeElement--webkit-autofill {
+  background: #f7fafc !important;
+}
+
+.StripeElement {
+  width: 100%;
+  margin-top: 18px;
+  padding: 8px;
+  
+  border-radius: 5px;
+  background-color: #f7fafc !important;
+  border: 1px solid #dddddda8;
+
+}
+ 
+.SubmitButton.SubmitButton--error {
+  transform: translateY(15px);
+}
+.SubmitButton.SubmitButton--error:active {
+  transform: scale(0.99) translateY(15px);
+}
+
+.SubmitButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+  background-color: #7795f8;
+  box-shadow: none;
+}
+
+.ErrorMessage {
+  color: #000;
+  position: absolute;
+  display: flex;
+  justify-content: center; 
+  font-size: 13px;
+  margin-top: 10px;
+  width: 100%;
+  transform: translateY(-15px);
+  opacity: 0;
+  animation: fade 150ms ease-out;
+  animation-delay: 50ms;
+  animation-fill-mode: forwards;
+  will-change: opacity, transform;
+}
+
+.ErrorMessage svg {
+  margin-right: 6px;
+  margin-top: 2px; 
+}
+
+.Result { 
+  text-align: center;
+  animation: fade 200ms ease-out;
+}
+
+.ResultTitle {
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 17px;
+  text-align: center;
+}
+
+.ResultMessage {
+  color: var(--bg-color-blue);
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 25px;
+  line-height: 1.6em;
+  text-align: center;
+}  

@@ -1,0 +1,208 @@
+<?php 
+namespace Ndpv\Model;
+
+use Ndpv\Helper\Fns;
+
+class Person
+{
+    public function create($param)
+    {
+        $reg_errors = new \WP_Error;
+
+        $org_id     = isset($param['org_id']) ? sanitize_text_field($param['org_id']) : null;
+        $first_name   = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
+        $email        = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : null;
+        $web          = isset($param['web']) ? esc_url_raw($param['web']) : null;
+        $mobile       = isset($param['mobile']) ? sanitize_text_field($param['mobile']) : null;
+        $country      = isset($param['country']) ? sanitize_text_field($param['country']) : null;
+        $region       = isset($param['region']) ? sanitize_text_field($param['region']) : null;
+        $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
+        $img = isset($param['img']) ? absint($param['img']) : null;
+        $is_client  = isset($param['is_client']) ? $param['is_client'] : null;
+        /* if ( empty($first_name) ) {
+            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
+        }
+
+        if (!is_email($email)) {
+            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
+        }  */
+
+        $exist_id = Fns::contact_exist('person', $email);
+        if ( $exist_id ) {
+            return $exist_id;
+        }
+
+        if ($reg_errors->get_error_messages()) {
+            return $reg_errors;
+        } else {
+            $data = array(
+                'post_type' => 'ndpv_person',
+                'post_title'    => $first_name,
+                'post_content'  => '',
+                'post_status'   => 'publish',
+                'post_author'   => get_current_user_id()
+            );
+            $post_id = wp_insert_post($data);
+
+            if (!is_wp_error($post_id)) {
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
+
+                if ($org_id) {
+                    update_post_meta($post_id, 'org_id', $org_id);
+                }
+
+                if ($first_name) {
+                    update_post_meta($post_id, 'first_name', $first_name);
+                }
+
+                if ($email) {
+                    update_post_meta($post_id, 'email', $email);
+                }
+
+                if ($web) {
+                    update_post_meta($post_id, 'web', $web);
+                }
+
+                if ($mobile) {
+                    update_post_meta($post_id, 'mobile', $mobile);
+                }
+
+                if ($country) {
+                    update_post_meta($post_id, 'country', $country);
+                }
+
+                if ($region) {
+                    update_post_meta($post_id, 'region', $region);
+                }
+
+                if ($address) {
+                    update_post_meta($post_id, 'address', $address);
+                }
+
+                if ($img) {
+                    update_post_meta($post_id, 'img', $img);
+                }
+
+                if ($is_client) {
+                    update_post_meta($post_id, 'is_client', $is_client);
+                }
+
+                return $post_id;
+            } else {
+                return $reg_errors->add('insert_post', esc_html__('Something wrong!', 'propovoice'));
+            }
+        }
+    }
+
+    public function update($param)
+    {
+        $reg_errors = new \WP_Error;
+
+        $first_name   = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
+        $email        = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : null;
+        $org_id     = isset($param['org_id']) ? sanitize_text_field($param['org_id']) : null;
+        $web          = isset($param['web']) ? esc_url_raw($param['web']) : null;
+        $mobile       = isset($param['mobile']) ? sanitize_text_field($param['mobile']) : null;
+        $country      = isset($param['country']) ? sanitize_text_field($param['country']) : null;
+        $region       = isset($param['region']) ? sanitize_text_field($param['region']) : null;
+        $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
+        $img = isset($param['img']) ? absint($param['img']) : null;
+
+        /* if (empty($first_name)) {
+            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
+        }
+
+        if (!is_email($email)) {
+            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
+        } */
+
+        if ($reg_errors->get_error_messages()) {
+            return $reg_errors;
+        } else {
+            $post_id = $param['person_id'];
+
+            $data = array(
+                'ID'            => $post_id,
+                'post_title'    => $first_name,
+                'post_author'   => get_current_user_id()
+            );
+            $post_id = wp_update_post($data);
+
+            if (!is_wp_error($post_id)) {
+                if ($first_name) {
+                    update_post_meta($post_id, 'first_name', $first_name);
+                }
+
+                if ($email) {
+                    update_post_meta($post_id, 'email', $email);
+                }
+
+                if ($org_id) {
+                    update_post_meta($post_id, 'org_id', $org_id);
+                }
+
+                if ($web) {
+                    update_post_meta($post_id, 'web', $web);
+                }
+
+                if ($mobile) {
+                    update_post_meta($post_id, 'mobile', $mobile);
+                }
+
+                if ($country) {
+                    update_post_meta($post_id, 'country', $country);
+                }
+
+                if ($region) {
+                    update_post_meta($post_id, 'region', $region);
+                }
+
+                if ($address) {
+                    update_post_meta($post_id, 'address', $address);
+                }
+
+                if ($img) {
+                    update_post_meta($post_id, 'img', $img);
+                }
+
+                return $post_id;
+            } else {
+                return $reg_errors->add('update_post', esc_html__('Something wrong!', 'propovoice'));
+            }
+        }
+    }
+
+    public function single($id, $details = false)
+    {
+        if (!$id) {
+            return null;
+        }
+        $data = [];
+
+        $data['id'] = absint($id);
+        $meta = get_post_meta($id);
+        $data['first_name'] = isset($meta['first_name']) ? $meta['first_name'][0] : '';
+        $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
+        $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
+        $img_id = isset($meta['img']) ? $meta['img'][0] : '';
+        $imgData = null;
+        if ($img_id) {
+            $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
+            if ($img_src) {
+                $imgData = [];
+                $imgData['id'] = $img_id;
+                $imgData['src'] = $img_src[0];
+            }
+        }
+        $data['img'] = $imgData;
+
+        if ($details) {
+            $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
+            $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
+            $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
+            $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
+        }
+
+        return $data;
+    }
+}

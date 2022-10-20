@@ -1,0 +1,249 @@
+@import "partial/_list-single.scss";
+
+#wpbody-content {
+    padding-bottom: 0;
+}
+
+//editor js
+//TODO: do it only for editor
+/* .ndpv-page-content {
+    max-height: 600px; //TODO: add a4 size later
+    overflow: hidden;
+} */
+
+/* .ce-block__content,
+.ce-toolbar__content {
+    max-width: calc(100% - 80px) !important;
+}
+
+.cdx-block {
+    max-width: 100% !important;
+} */
+//tiny mce editor
+.tox .tox-tbtn svg { 
+    fill: #4A5568 !important;
+}
+
+//invoice item radius without edit column
+
+
+//for backend only 
+/* .ndpv .pv-right-content {
+    padding: 20px 30px 15px;
+    height: auto !important;
+}
+ */
+/* .pv-field-desc {
+    line-height: 1.4;
+    margin-top: 2px;
+} */
+
+.ndpv .pv-info-logo img,
+.pv-inv .pv-from-logo img {
+    max-width: 200px !important;
+    max-height: 80px;
+    border-radius: 10px;
+} 
+
+//temporary form css 
+.ndpv .pv-field-logo-wrap {
+
+    .pv-field-logo {
+        position: relative;
+        display: inline-block;
+
+        img {
+            border-radius: 4px;
+        }
+    }
+
+    .pv-field-logo-close {
+        background: #fff;
+        position: absolute;
+        top: -8px;
+        right: -5px;
+        font-size: 15px;
+        padding: 5px;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        line-height: 8px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: rgb(23 10 18 / 18%) 0px 0px 4px;
+    }
+}
+
+.pv-inv-sidebar-preview {
+    .pv-inv-feedback {
+        display: none;
+    }
+}
+
+.pv-inv-preview-wrap {
+    border: 1px solid #dfdfdf;
+    margin: auto;
+    display: table;
+}
+
+.pv-inv-hidden-preview {
+    .pv-inv {
+        height: auto !important;
+    }
+}
+
+//tiny mce editor 
+/* .mce-content-body {
+    font-family: Inter, sans-serif !important;
+} */
+
+// bootstrap class
+.d-none {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .justify-content-md-center {
+        -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+    }
+}
+
+//TODO: this class already exist just add important
+.ndpv .pv-modal-sidebar {
+    margin: 0 !important;
+}
+
+.pv-field-action {
+    display: inline-block;
+    margin-left: 15px;
+    top: -2px;
+    position: relative;
+}
+
+.wp-admin.ndpv {
+    background-color: #f7f8fa !important;
+    .pv-left-sidebar,
+    .pv-top-menu-content {
+        display: none;
+    }
+    .Toastify__toast-container.Toastify__toast-container--top-right {
+        top: 3em;
+    }
+    .pv-right-content {
+        height: calc(100vh - 30px);
+    }
+}
+
+.ndpv {
+    .pv-deal-content {
+        max-width: none !important;
+    }
+
+    .pi-field-multi {
+        .pv-badge {
+            margin-right: 5px;
+        }
+        .pv-btn {
+            margin-top: 5px;
+            border: 1px solid rgba(221, 221, 221, 0.6588235294);
+        }
+    }
+    
+}
+
+//TODO: chrome auto fill bg color, move it to css file
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+// preloader
+.pv-preloader {
+    padding: 50px;
+    position: relative;
+    text-align: center;
+}
+
+.pv-preloader:before {
+    content: "";
+    height: 40px;
+    width: 40px;
+    margin: -15px auto auto -15px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #2180c0 #ccc #ccc;
+    border-radius: 100%;
+    animation: pv-rotation .7s infinite linear;
+}
+
+@keyframes pv-rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+// toastify not showing in modal submit error
+.Toastify__toast-container {
+    z-index: 999999 !important;
+}
+
+.pv-intg-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-gap: 25px;
+    .pv-intg-item {
+        position: relative;
+        cursor: pointer;
+        border: 1px solid #E2E8F0;
+        padding: 30px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;  
+        overflow: hidden;
+        h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #2D3748;
+            margin-top: 10px;
+        }
+        .pv-checked {
+            z-index: 99;
+            background: var(--pv-bg-color-blue);
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 22px;
+            height: 22px; 
+            border-radius: 50%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg {
+                fill: #fff;
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .pv-intg-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (max-width: 420px) {
+    .pv-intg-list {
+        grid-template-columns: 1fr;
+    }
+} 
