@@ -335,7 +335,7 @@ export default class Form extends Component {
                 </div>
               </div>
 
-              {false && <div className="row">
+              <div className="row">
                 <div className="col-lg">
                   <label htmlFor="google_meet">
                     {i18n.meeting} {i18n.link}
@@ -414,7 +414,7 @@ export default class Form extends Component {
                     </div>
                   )}
                 </div>
-              </div>}
+              </div>
 
               <div className="row">
                 <div className="col">

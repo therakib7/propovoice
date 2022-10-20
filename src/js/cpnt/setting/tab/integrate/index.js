@@ -26,14 +26,14 @@ const Main = (props) => {
       id: "smtp",
       text: "SMTP",
     },
-    /* {
+    {
       id: "google-api",
       text: "Google API",
     },
     {
       id: "automation",
       text: "Automation",
-    }, */
+    },
   ]);
   const [reload, setReload] = useState(false);
   const [currentTab, setCurrentTab] = useState(tabDefault);

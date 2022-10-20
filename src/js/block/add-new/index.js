@@ -71,7 +71,7 @@ export default (props) => {
             </button>
             {imp === true && <Import close={() => setImp(false)} />}
             {exp === true && <Export close={() => setExp(false)} />}
-            {false && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
+            {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button
                     className="pv-bg-stroke pv-bg-shadow"
                     onClick={() => showDropdown()}
