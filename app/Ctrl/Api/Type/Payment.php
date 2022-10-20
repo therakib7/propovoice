@@ -16,19 +16,19 @@ class Payment
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/payments/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -41,7 +41,7 @@ class Payment
         register_rest_route('ndpv/v1', '/payments/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -54,7 +54,7 @@ class Payment
         register_rest_route('ndpv/v1', '/payments/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -206,26 +206,26 @@ class Payment
     public function create($req)
     {
 
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
+        $type = isset($param['type']) ? sanitize_text_field($param['type']) : null;
         //bank form 
-        $name = isset($params['name']) ? sanitize_text_field($params['name']) : null; 
-        $details = isset($params['details']) ? sanitize_textarea_field($params['details']) : null;
-        $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
+        $name = isset($param['name']) ? sanitize_text_field($param['name']) : null; 
+        $details = isset($param['details']) ? sanitize_textarea_field($param['details']) : null;
+        $default = isset($param['default']) ? rest_sanitize_boolean($param['default']) : null;
 
         //paypal form
-        $account_type = isset($params['account_type']) ? sanitize_text_field($params['account_type']) : null;
-        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
-        $account_email = isset($params['account_email']) ? sanitize_email($params['account_email']) : null;
-        $client_id = isset($params['client_id']) ? sanitize_text_field($params['client_id']) : null;
-        $secret_id = isset($params['secret_id']) ? sanitize_text_field($params['secret_id']) : null;
+        $account_type = isset($param['account_type']) ? sanitize_text_field($param['account_type']) : null;
+        $account_name = isset($param['account_name']) ? sanitize_text_field($param['account_name']) : null;
+        $account_email = isset($param['account_email']) ? sanitize_email($param['account_email']) : null;
+        $client_id = isset($param['client_id']) ? sanitize_text_field($param['client_id']) : null;
+        $secret_id = isset($param['secret_id']) ? sanitize_text_field($param['secret_id']) : null;
 
         //stripe form
-        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
-        $public_key = isset($params['public_key']) ? sanitize_text_field($params['public_key']) : null;
-        $secret_key = isset($params['secret_key']) ? sanitize_text_field($params['secret_key']) : null;
+        $account_name = isset($param['account_name']) ? sanitize_text_field($param['account_name']) : null;
+        $public_key = isset($param['public_key']) ? sanitize_text_field($param['public_key']) : null;
+        $secret_key = isset($param['secret_key']) ? sanitize_text_field($param['secret_key']) : null;
 
         /* if (
             empty($name)
@@ -320,26 +320,26 @@ class Payment
 
     public function update($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $type = isset($params['type']) ? sanitize_text_field($params['type']) : null;
+        $type = isset($param['type']) ? sanitize_text_field($param['type']) : null;
         //bank form 
-        $name = isset($params['name']) ? sanitize_text_field($params['name']) : null; 
-        $details = isset($params['details']) ? sanitize_textarea_field($params['details']) : null;
-        $default = isset($params['default']) ? rest_sanitize_boolean($params['default']) : null;
+        $name = isset($param['name']) ? sanitize_text_field($param['name']) : null; 
+        $details = isset($param['details']) ? sanitize_textarea_field($param['details']) : null;
+        $default = isset($param['default']) ? rest_sanitize_boolean($param['default']) : null;
 
         //paypal form
-        $account_type = isset($params['account_type']) ? sanitize_text_field($params['account_type']) : null;
-        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
-        $account_email = isset($params['account_email']) ? sanitize_email($params['account_email']) : null;
-        $client_id = isset($params['client_id']) ? sanitize_text_field($params['client_id']) : null;
-        $secret_id = isset($params['secret_id']) ? sanitize_text_field($params['secret_id']) : null;
+        $account_type = isset($param['account_type']) ? sanitize_text_field($param['account_type']) : null;
+        $account_name = isset($param['account_name']) ? sanitize_text_field($param['account_name']) : null;
+        $account_email = isset($param['account_email']) ? sanitize_email($param['account_email']) : null;
+        $client_id = isset($param['client_id']) ? sanitize_text_field($param['client_id']) : null;
+        $secret_id = isset($param['secret_id']) ? sanitize_text_field($param['secret_id']) : null;
 
         //stripe form
-        $account_name = isset($params['account_name']) ? sanitize_text_field($params['account_name']) : null;
-        $public_key = isset($params['public_key']) ? sanitize_text_field($params['public_key']) : null;
-        $secret_key = isset($params['secret_key']) ? sanitize_text_field($params['secret_key']) : null;
+        $account_name = isset($param['account_name']) ? sanitize_text_field($param['account_name']) : null;
+        $public_key = isset($param['public_key']) ? sanitize_text_field($param['public_key']) : null;
+        $secret_key = isset($param['secret_key']) ? sanitize_text_field($param['secret_key']) : null;
 
         /* if (empty($name)) {
             $reg_errors->add('field', esc_html__('Bank name is missing', 'propovoice'));
@@ -434,22 +434,22 @@ class Payment
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

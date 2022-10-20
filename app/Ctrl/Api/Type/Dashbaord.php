@@ -23,37 +23,37 @@ class Dashbaord
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ]
         ]);
     }
 
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
 
-        if ($params['section'] == 'summary') {
-            $this->summary($params);
+        if ($param['section'] == 'summary') {
+            $this->summary($param);
         }
 
-        if ($params['section'] == 'deal_tracking') {
-            $this->deal_tracking($params);
+        if ($param['section'] == 'deal_tracking') {
+            $this->deal_tracking($param);
         }
 
-        if ($params['section'] == 'deal_funnel') {
-            $this->deal_funnel($params);
+        if ($param['section'] == 'deal_funnel') {
+            $this->deal_funnel($param);
         }
 
-        if ($params['section'] == 'lead_level' || $params['section'] == 'lead_source') {
-            $this->lead_level_source($params);
+        if ($param['section'] == 'lead_level' || $param['section'] == 'lead_source') {
+            $this->lead_level_source($param);
         }
 
-        if ($params['section'] == 'estimate' || $params['section'] == 'invoice') {
-            $this->estvoice($params['section']);
+        if ($param['section'] == 'estimate' || $param['section'] == 'invoice') {
+            $this->estvoice($param['section']);
         }
     }
 
-    public function summary($params)
+    public function summary($param)
     {
         $total_estimate = 0;
         $accepted_estimate = 0;
@@ -106,18 +106,18 @@ class Dashbaord
         wp_send_json_success($summary);
     }
 
-    public function deal_funnel($params)
+    public function deal_funnel($param)
     {
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($params['per_page'])) {
-            $per_page = $params['per_page'];
+        if (isset($param['per_page'])) {
+            $per_page = $param['per_page'];
         }
 
-        if (isset($params['page']) && $params['page'] > 1) {
-            $offset = ($per_page * $params['page']) - $per_page;
+        if (isset($param['page']) && $param['page'] > 1) {
+            $offset = ($per_page * $param['page']) - $per_page;
         }
 
         $get_stage = Fns::get_terms('deal_stage');
@@ -233,21 +233,21 @@ class Dashbaord
         wp_send_json_success($data);
     }
 
-    public function lead_level_source($params)
+    public function lead_level_source($param)
     {
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($params['per_page'])) {
-            $per_page = $params['per_page'];
+        if (isset($param['per_page'])) {
+            $per_page = $param['per_page'];
         }
 
-        if (isset($params['page']) && $params['page'] > 1) {
-            $offset = ($per_page * $params['page']) - $per_page;
+        if (isset($param['page']) && $param['page'] > 1) {
+            $offset = ($per_page * $param['page']) - $per_page;
         }
 
-        $get_tax = Fns::get_terms($params['section']);
+        $get_tax = Fns::get_terms($param['section']);
 
         $column = [];
         $total_posts = 0;
@@ -268,7 +268,7 @@ class Dashbaord
             );
             $args['tax_query'] = array(
                 array(
-                    'taxonomy' => 'ndpv_' . $params['section'],
+                    'taxonomy' => 'ndpv_' . $param['section'],
                     'terms' => $tax_id,
                     'field' => 'term_id',
                 )
@@ -356,7 +356,7 @@ class Dashbaord
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }

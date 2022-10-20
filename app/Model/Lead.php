@@ -9,37 +9,37 @@ class Lead
 {
     public function create($data)
     {
-        $params = $data;
+        $param = $data;
 
         //lead
-        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
-        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $level_id  = isset($params['level_id']) ? absint($params['level_id']) : null;
-        $budget    = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency  = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $tags      = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc      = isset($params['desc']) ? nl2br($params['desc']) : '';
-        $note      = isset($params['note']) ? nl2br($params['note']) : null;
+        $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
+        $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
+        $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
+        $org_id    = isset($param['org_id']) ? absint($param['org_id']) : null;
+        $level_id  = isset($param['level_id']) ? absint($param['level_id']) : null;
+        $budget    = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
+        $currency  = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
+        $tags      = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
+        $desc      = isset($param['desc']) ? nl2br($param['desc']) : '';
+        $note      = isset($param['note']) ? nl2br($param['note']) : null;
 
 
         $person = new Person();
         if ($person_id) {
-            $person->update($params);
+            $person->update($param);
         }
 
         if (!$person_id && $first_name) {
-            $person_id = $person->create($params);
+            $person_id = $person->create($param);
         }
 
         $org = new Org();
         if (!$person_id && $org_id) {
-            $org->update($params);
+            $org->update($param);
         }
 
         if (!$org_id && $org_name) {
-            $org_id = $org->create($params);
+            $org_id = $org->create($param);
         }
 
         //insert lead

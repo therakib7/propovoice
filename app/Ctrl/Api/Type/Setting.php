@@ -14,23 +14,23 @@ class Setting
         register_rest_route("ndpv/v1", "/settings", [
             "methods" => "GET",
             "callback" => [$this, "get"],
-            "permission_callback" => [$this, "get_permission"],
+            "permission_callback" => [$this, "get_per"],
         ]);
 
         register_rest_route("ndpv/v1", "/settings", [
             "methods" => "POST",
             "callback" => [$this, "create"],
-            "permission_callback" => [$this, "create_permission"],
+            "permission_callback" => [$this, "create_per"],
         ]);
     }
 
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
-        $tab = isset($params["tab"])
-            ? sanitize_text_field($params["tab"])
+        $tab = isset($param["tab"])
+            ? sanitize_text_field($param["tab"])
             : null;
 
         if (empty($tab)) {
@@ -286,6 +286,19 @@ class Setting
                 }
             }
 
+            if ($tab == "google_api_oauth2") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $data["client_id"] = "";
+                    $data["client_secret"] = "";
+                    $data["redirect_uri"] = "";
+                    $data["api_key"] = "";
+                }
+            }
+
             if ($tab == "google_api_calendar") {
                 $option = get_option("ndpv_" . $tab);
 
@@ -309,17 +322,39 @@ class Setting
                     $data["redirect_uri"] = "";
                 }
             }
+
+            if ($tab == "automation_zapier") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $data["status"] = false;
+                    $data["name"] = '';
+                    $data["url"] = '';
+                    $data["actions"] = [
+                        /* [
+                            "id" => "new_lead",
+                            "method" => "post",
+                            "custom" => false,
+                            "name" => '',
+                            "url" => ''
+                        ], */ 
+                    ];
+                }
+            }
+
             wp_send_json_success($data);
         }
     }
 
     public function create($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
-        $tab = isset($params["tab"])
-            ? sanitize_text_field($params["tab"])
+        $tab = isset($param["tab"])
+            ? sanitize_text_field($param["tab"])
             : null;
 
         if (empty($tab)) {
@@ -336,58 +371,58 @@ class Setting
 
             if ($tab == "email_social") {
                 //TODO: sanitization
-                $data["social"] = isset($params["social"])
-                    ? $params["social"]
+                $data["social"] = isset($param["social"])
+                    ? $param["social"]
                     : null;
 
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "estinv_currency") {
-                $data["currency"] = isset($params["currency"])
-                    ? sanitize_text_field($params["currency"])
+                $data["currency"] = isset($param["currency"])
+                    ? sanitize_text_field($param["currency"])
                     : null;
-                $data["lang"] = isset($params["lang"])
-                    ? sanitize_text_field($params["lang"])
+                $data["lang"] = isset($param["lang"])
+                    ? sanitize_text_field($param["lang"])
                     : null;
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "estimate_general") {
-                $data["prefix"] = isset($params["prefix"])
-                    ? sanitize_text_field($params["prefix"])
+                $data["prefix"] = isset($param["prefix"])
+                    ? sanitize_text_field($param["prefix"])
                     : "";
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "invoice_general") {
-                $data["prefix"] = isset($params["prefix"])
-                    ? sanitize_text_field($params["prefix"])
+                $data["prefix"] = isset($param["prefix"])
+                    ? sanitize_text_field($param["prefix"])
                     : "";
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "estimate_reminder" || $tab == "invoice_reminder") {
                 //TODO: sanitization
-                $data["status"] = isset($params["status"])
-                    ? rest_sanitize_boolean($params["status"])
+                $data["status"] = isset($param["status"])
+                    ? rest_sanitize_boolean($param["status"])
                     : null;
-                $data["due_date"] = isset($params["due_date"])
-                    ? $params["due_date"]
+                $data["due_date"] = isset($param["due_date"])
+                    ? $param["due_date"]
                     : null;
-                $data["before"] = isset($params["before"])
-                    ? $params["before"]
+                $data["before"] = isset($param["before"])
+                    ? $param["before"]
                     : null;
-                $data["after"] = isset($params["after"])
-                    ? $params["after"]
+                $data["after"] = isset($param["after"])
+                    ? $param["after"]
                     : null;
 
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "payment_wc") {
-                $data["status"] = isset($params["status"])
-                    ? rest_sanitize_boolean($params["status"])
+                $data["status"] = isset($param["status"])
+                    ? rest_sanitize_boolean($param["status"])
                     : null;
 
                 $reg_errors = new \WP_Error();
@@ -408,60 +443,60 @@ class Setting
             }
 
             if ($tab == "email_estimate_default") {
-                $data["subject"] = isset($params["subject"])
-                    ? sanitize_text_field($params["subject"])
+                $data["subject"] = isset($param["subject"])
+                    ? sanitize_text_field($param["subject"])
                     : null;
-                $data["msg"] = isset($params["msg"])
-                    ? sanitize_textarea_field($params["msg"])
+                $data["msg"] = isset($param["msg"])
+                    ? sanitize_textarea_field($param["msg"])
                     : null;
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "email_estimate_reminder") {
-                $data["subject"] = isset($params["subject"])
-                    ? sanitize_text_field($params["subject"])
+                $data["subject"] = isset($param["subject"])
+                    ? sanitize_text_field($param["subject"])
                     : null;
-                $data["msg"] = isset($params["msg"])
-                    ? sanitize_textarea_field($params["msg"])
+                $data["msg"] = isset($param["msg"])
+                    ? sanitize_textarea_field($param["msg"])
                     : null;
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "email_invoice_default") {
-                $data["subject"] = isset($params["subject"])
-                    ? sanitize_text_field($params["subject"])
+                $data["subject"] = isset($param["subject"])
+                    ? sanitize_text_field($param["subject"])
                     : null;
-                $data["msg"] = isset($params["msg"])
-                    ? sanitize_textarea_field($params["msg"])
+                $data["msg"] = isset($param["msg"])
+                    ? sanitize_textarea_field($param["msg"])
                     : null;
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "email_invoice_reminder") {
-                $data["subject"] = isset($params["subject"])
-                    ? sanitize_text_field($params["subject"])
+                $data["subject"] = isset($param["subject"])
+                    ? sanitize_text_field($param["subject"])
                     : null;
-                $data["msg"] = isset($params["msg"])
-                    ? sanitize_textarea_field($params["msg"])
+                $data["msg"] = isset($param["msg"])
+                    ? sanitize_textarea_field($param["msg"])
                     : null;
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "email_invoice_recurring") {
-                $data["subject"] = isset($params["subject"])
-                    ? sanitize_text_field($params["subject"])
+                $data["subject"] = isset($param["subject"])
+                    ? sanitize_text_field($param["subject"])
                     : null;
-                $data["msg"] = isset($params["msg"])
-                    ? sanitize_textarea_field($params["msg"])
+                $data["msg"] = isset($param["msg"])
+                    ? sanitize_textarea_field($param["msg"])
                     : null;
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "estvoice_tax") {
-                $data["item_tax"] = isset($params["item_tax"])
-                    ? rest_sanitize_boolean($params["item_tax"])
+                $data["item_tax"] = isset($param["item_tax"])
+                    ? rest_sanitize_boolean($param["item_tax"])
                     : null;
-                // $data['item_tax_val_type'] = isset( $params['item_tax_val_type'] ) ? sanitize_textarea_field( $params['item_tax_val_type'] ) : null;
+                // $data['item_tax_val_type'] = isset( $param['item_tax_val_type'] ) ? sanitize_textarea_field( $param['item_tax_val_type'] ) : null;
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
@@ -470,23 +505,23 @@ class Setting
             }
 
             if ($tab == "smtp_other") {
-                $data["host"] = isset($params["host"])
-                    ? sanitize_text_field($params["host"])
+                $data["host"] = isset($param["host"])
+                    ? sanitize_text_field($param["host"])
                     : null;
-                $data["port"] = isset($params["port"])
-                    ? absint($params["port"])
+                $data["port"] = isset($param["port"])
+                    ? absint($param["port"])
                     : null;
-                $data["secure"] = isset($params["secure"])
-                    ? sanitize_text_field($params["secure"])
+                $data["secure"] = isset($param["secure"])
+                    ? sanitize_text_field($param["secure"])
                     : null;
-                $data["auth"] = isset($params["auth"])
-                    ? rest_sanitize_boolean($params["auth"])
+                $data["auth"] = isset($param["auth"])
+                    ? rest_sanitize_boolean($param["auth"])
                     : null;
-                $data["user"] = isset($params["user"])
-                    ? sanitize_text_field($params["user"])
+                $data["user"] = isset($param["user"])
+                    ? sanitize_text_field($param["user"])
                     : null;
-                $data["pass"] = isset($params["pass"])
-                    ? sanitize_text_field($params["pass"])
+                $data["pass"] = isset($param["pass"])
+                    ? sanitize_text_field($param["pass"])
                     : null;
                 update_option("ndpv_" . $tab, $data);
                 update_option("ndpv_smtp", "other");
@@ -494,53 +529,87 @@ class Setting
 
             if ($tab == "smtp_sendinblue") {
                 //Check valid key here
-                $data["key"] = isset($params["key"])
-                    ? sanitize_text_field($params["key"])
+                $data["key"] = isset($param["key"])
+                    ? sanitize_text_field($param["key"])
                     : null;
-                $data["web"] = isset($params["web"])
-                    ? esc_url_raw($params["web"])
+                $data["web"] = isset($param["web"])
+                    ? esc_url_raw($param["web"])
                     : null;
                 update_option("ndpv_" . $tab, $data);
                 update_option("ndpv_smtp", "sendinblue");
             }
 
+            if ($tab == "google_api_oauth2") {
+                //Check valid key here
+                $data["client_id"] = isset($param["client_id"])
+                    ? sanitize_text_field($param["client_id"])
+                    : null;
+                $data["client_secret"] = isset($param["client_secret"])
+                    ? sanitize_text_field($param["client_secret"])
+                    : null;
+                $data["redirect_uri"] = isset($param["redirect_uri"])
+                    ? sanitize_text_field($param["redirect_uri"])
+                    : null;
+                $data["api_key"] = isset($param["api_key"])
+                    ? sanitize_text_field($param["api_key"])
+                    : null;
+                update_option("ndpv_" . $tab, $data);
+            }
+
             if ($tab == "google_api_calendar") {
                 //Check valid key here
-                $data["client_id"] = isset($params["client_id"])
-                    ? sanitize_text_field($params["client_id"])
+                $data["client_id"] = isset($param["client_id"])
+                    ? sanitize_text_field($param["client_id"])
                     : null;
-                $data["client_secret"] = isset($params["client_secret"])
-                    ? sanitize_text_field($params["client_secret"])
+                $data["client_secret"] = isset($param["client_secret"])
+                    ? sanitize_text_field($param["client_secret"])
                     : null;
-                $data["redirect_uri"] = isset($params["redirect_uri"])
-                    ? sanitize_text_field($params["redirect_uri"])
+                $data["redirect_uri"] = isset($param["redirect_uri"])
+                    ? sanitize_text_field($param["redirect_uri"])
                     : null;
                 update_option("ndpv_" . $tab, $data);
             }
 
             if ($tab == "google_api_drive") {
                 //Check valid key here
-                $data["client_id"] = isset($params["client_id"])
-                    ? sanitize_text_field($params["client_id"])
+                $data["client_id"] = isset($param["client_id"])
+                    ? sanitize_text_field($param["client_id"])
                     : null;
-                $data["client_secret"] = isset($params["client_secret"])
-                    ? sanitize_text_field($params["client_secret"])
+                $data["client_secret"] = isset($param["client_secret"])
+                    ? sanitize_text_field($param["client_secret"])
                     : null;
-                $data["redirect_uri"] = isset($params["redirect_uri"])
-                    ? sanitize_text_field($params["redirect_uri"])
+                $data["redirect_uri"] = isset($param["redirect_uri"])
+                    ? sanitize_text_field($param["redirect_uri"])
                     : null;
                 update_option("ndpv_" . $tab, $data);
             }
+
+            if ($tab == "automation_zapier") { 
+                $data["status"] = isset($param["status"])
+                    ? rest_sanitize_boolean($param["status"])
+                    : null;
+                $data["name"] = isset($param["name"])
+                    ? sanitize_text_field($param["name"])
+                    : null;
+                $data["url"] = isset($param["url"])
+                    ? esc_url_raw($param["url"])
+                    : null;
+                $data["actions"] = isset($param["actions"])
+                    ? $param["actions"]
+                    : null;
+                update_option("ndpv_" . $tab, $data);
+            }  
+
             wp_send_json_success();
         }
     }
 
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can("publish_posts");
     }

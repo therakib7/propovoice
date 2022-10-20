@@ -18,12 +18,12 @@ class PaymentProcess
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
     } 
@@ -35,27 +35,27 @@ class PaymentProcess
 
     public function create($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
 
-        $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
-        $payment_method = isset($params['payment_method']) ? $params['payment_method'] : '';
+        $invoice_id = isset($param['invoice_id']) ? $param['invoice_id'] : '';
+        $payment_method = isset($param['payment_method']) ? $param['payment_method'] : '';
 
         if ($invoice_id) {
             update_post_meta($invoice_id, 'payment_method', $payment_method);
 
             if ($payment_method == 'bank') {
-                $mark_as_paid = isset($params['mark_as_paid']) ? $params['mark_as_paid'] : false;
+                $mark_as_paid = isset($param['mark_as_paid']) ? $param['mark_as_paid'] : false;
                 if ($mark_as_paid) {
                     update_post_meta($invoice_id, 'status', 'paid');
                 } else {
                     update_post_meta($invoice_id, 'status', 'paid_req');
                 }
 
-                $payment_details = isset($params['payment_details']) ? $params['payment_details'] : '';
-                $receipt = isset($params['receipt']) ? $params['receipt'] : '';
-                $amount = isset($params['amount']) ? $params['amount'] : '';
-                $date = isset($params['date']) ? $params['date'] : '';
-                $note = isset($params['note']) ? nl2br($params['note']) : '';
+                $payment_details = isset($param['payment_details']) ? $param['payment_details'] : '';
+                $receipt = isset($param['receipt']) ? $param['receipt'] : '';
+                $amount = isset($param['amount']) ? $param['amount'] : '';
+                $date = isset($param['date']) ? $param['date'] : '';
+                $note = isset($param['note']) ? nl2br($param['note']) : '';
 
                 $bank_info = [];
                 $bank_info['payment_details'] = $payment_details;
@@ -69,12 +69,12 @@ class PaymentProcess
             } else if ($payment_method == 'paypal') {
 
                 update_post_meta($invoice_id, 'status', 'paid');
-                $payment_info = isset($params['payment_info']) ? $params['payment_info'] : '';
+                $payment_info = isset($param['payment_info']) ? $param['payment_info'] : '';
                 update_post_meta($invoice_id, 'payment_info', $payment_info);
             } else if ($payment_method == 'stripe') {
 
                 update_post_meta($invoice_id, 'status', 'paid');
-                $payment_info = isset($params['payment_info']) ? $params['payment_info'] : '';
+                $payment_info = isset($param['payment_info']) ? $param['payment_info'] : '';
                 update_post_meta($invoice_id, 'payment_info', $payment_info);
             }
         }
@@ -83,12 +83,12 @@ class PaymentProcess
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return true;
         // return current_user_can('publish_posts');

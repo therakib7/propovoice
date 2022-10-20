@@ -18,19 +18,19 @@ class Invoice
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/invoices/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -43,7 +43,7 @@ class Invoice
         register_rest_route('ndpv/v1', '/invoices/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -56,7 +56,7 @@ class Invoice
         register_rest_route('ndpv/v1', '/invoices/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -67,19 +67,19 @@ class Invoice
 
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
+        $s = isset($param['text']) ? sanitize_text_field($param['text']) : null;
 
-        if (isset($params['per_page'])) {
-            $per_page = $params['per_page'];
+        if (isset($param['per_page'])) {
+            $per_page = $param['per_page'];
         }
 
-        if (isset($params['page']) && $params['page'] > 1) {
-            $offset = ($per_page * $params['page']) - $per_page;
+        if (isset($param['page']) && $param['page'] > 1) {
+            $offset = ($per_page * $param['page']) - $per_page;
         }
 
         $args = array(
@@ -131,11 +131,11 @@ class Invoice
             }
         }
 
-        if (isset($params['path'])) {
+        if (isset($param['path'])) {
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'path',
-                    'value' => $params['path']
+                    'value' => $param['path']
                 )
             );
         }
@@ -149,11 +149,11 @@ class Invoice
             );
         } */
 
-        if (isset($params['module_id'])) {
+        if (isset($param['module_id'])) {
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'module_id',
-                    'value' => $params['module_id']
+                    'value' => $param['module_id']
                 )
             );
         }
@@ -236,7 +236,7 @@ class Invoice
         }
         wp_reset_postdata();
 
-        $path = $params['path'] ;
+        $path = $param['path'] ;
         $prefix = get_option('ndpv_' . $path . '_general');
         if ($prefix) {
             $result['prefix'] = $prefix['prefix'];
@@ -252,7 +252,7 @@ class Invoice
 
     public function get_single($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
 
         $url_params = $req->get_url_params();
 
@@ -348,8 +348,8 @@ class Invoice
             }
             $query_data['paymentBankData'] = $paymentData;
 
-            if (isset($params['client_view'])) {
-                $token = isset($params['token']) ? sanitize_text_field($params['token']) : ''; 
+            if (isset($param['client_view'])) {
+                $token = isset($param['token']) ? sanitize_text_field($param['token']) : ''; 
                 $post_token = get_post_meta($id, 'token', true); 
 
                 $is_admin = ( is_user_logged_in() && apply_filters('ndpv_admin', current_user_can('administrator')) );
@@ -393,7 +393,7 @@ class Invoice
         } else { //new
         }
 
-        $path = $id ? get_post_meta($id, 'path', true) : $params['path'] ;
+        $path = $id ? get_post_meta($id, 'path', true) : $param['path'] ;
         $prefix = get_option('ndpv_' . $path . '_general');
         if ($prefix) {
             $query_data['prefix'] = $prefix['prefix'];
@@ -416,29 +416,29 @@ class Invoice
 
     public function create($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors  = new \WP_Error();
         //TODO: sanitize later
-        $invoice  = isset($params) ? $params : null;
-        $num = isset($params['num']) ? $params['num'] : '';
-        $module_id = isset($params['module_id']) ? $params['module_id'] : null;
-        $date     = isset($params['date']) ? $params['date'] : null;
-        $path     = isset($params['path']) ? $params['path'] : '';
-        $due_date = isset($params['due_date']) ? $params['due_date'] : null;
-        $payment_methods = isset($params['payment_methods']) ? $params['payment_methods'] : null;
+        $invoice  = isset($param) ? $param : null;
+        $num = isset($param['num']) ? $param['num'] : '';
+        $module_id = isset($param['module_id']) ? $param['module_id'] : null;
+        $date     = isset($param['date']) ? $param['date'] : null;
+        $path     = isset($param['path']) ? $param['path'] : '';
+        $due_date = isset($param['due_date']) ? $param['due_date'] : null;
+        $payment_methods = isset($param['payment_methods']) ? $param['payment_methods'] : null;
         // wp_send_json_success($invoice);
 
         $total  = 0;
-        foreach ($params['items'] as $item) {
+        foreach ($param['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
         }
 
-        $from   = isset($params['from']) ? $params['from'] : null;
-        $to     = isset($params['to']) ? $params['to'] : null;
-        $to_type = isset($params['to_type']) ? $params['to_type'] : null;
+        $from   = isset($param['from']) ? $param['from'] : null;
+        $to     = isset($param['to']) ? $param['to'] : null;
+        $to_type = isset($param['to_type']) ? $param['to_type'] : null;
 
-        $reminder = isset($params['reminder']) ? $params['reminder'] : null;
-        $recurring = isset($params['recurring']) ? $params['recurring'] : null;
+        $reminder = isset($param['reminder']) ? $param['reminder'] : null;
+        $recurring = isset($param['recurring']) ? $param['recurring'] : null;
 
         if (!$from) {
             $reg_errors->add('field', esc_html__('Business is missing', 'propovoice'));
@@ -523,6 +523,9 @@ class Invoice
                 $bytes = random_bytes(20);
                 $token = bin2hex($bytes);
                 update_post_meta($post_id, 'token', $token);
+                 
+                $hook = ( $path == 'invoice') ? 'inv' : 'est';
+                do_action('ndpvp/webhook', $hook . '_add', $param);
 
                 wp_send_json_success([
                     'id' => $post_id,
@@ -536,30 +539,31 @@ class Invoice
 
     public function update($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error();
-        $invoice  = isset($params) ? $params : null;
+        $invoice  = isset($param) ? $param : null;
 
-        $num = isset($params['num']) ? $params['num'] : '';
-        $module_id = isset($params['module_id']) ? $params['module_id'] : null;
-        $date     = isset($params['date']) ? $params['date'] : null;
-        $due_date = isset($params['due_date']) ? $params['due_date'] : null;
-        $payment_methods = isset($params['payment_methods']) ? $params['payment_methods'] : null;
+        $num = isset($param['num']) ? $param['num'] : '';
+        $module_id = isset($param['module_id']) ? $param['module_id'] : null;
+        $path     = isset($param['path']) ? $param['path'] : '';
+        $date     = isset($param['date']) ? $param['date'] : null;
+        $due_date = isset($param['due_date']) ? $param['due_date'] : null;
+        $payment_methods = isset($param['payment_methods']) ? $param['payment_methods'] : null;
 
-        $from     = isset($params['from']) ? $params['from'] : null;
-        $to       = isset($params['to']) ? $params['to'] : null;
-        $to_type  = isset($params['to_type']) ? $params['to_type'] : null;
+        $from     = isset($param['from']) ? $param['from'] : null;
+        $to       = isset($param['to']) ? $param['to'] : null;
+        $to_type  = isset($param['to_type']) ? $param['to_type'] : null;
 
         $total  = 0;
-        foreach ($params['items'] as $item) {
+        foreach ($param['items'] as $item) {
             $total += ($item['qty'] * $item['price']);
         }
 
-        $reminder = isset($params['reminder']) ? $params['reminder'] : null;
-        $recurring = isset($params['recurring']) ? $params['recurring'] : null;
+        $reminder = isset($param['reminder']) ? $param['reminder'] : null;
+        $recurring = isset($param['recurring']) ? $param['recurring'] : null;
 
-        $attach = isset($params['attach']) ? $params['attach'] : null;
-        $sign   = isset($params['sign']) ? $params['sign'] : null;
+        $attach = isset($param['attach']) ? $param['attach'] : null;
+        $sign   = isset($param['sign']) ? $param['sign'] : null;
 
         if (!$from) {
             $reg_errors->add('field', esc_html__('Business is missing', 'propovoice'));
@@ -622,6 +626,9 @@ class Invoice
 
                 update_post_meta($post_id, 'payment_methods', $payment_methods);
 
+                $hook = ( $path == 'invoice') ? 'inv' : 'est';
+                do_action('ndpvp/webhook', $hook . '_edit', $param);
+
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -637,26 +644,29 @@ class Invoice
         foreach ($ids as $id) {
             wp_delete_post($id);
         }
+
+        do_action('ndpvp/webhook', 'inv_del', $ids);
+
         wp_send_json_success($ids);
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

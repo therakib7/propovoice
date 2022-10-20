@@ -19,19 +19,19 @@ class Taxonomy
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/taxonomies/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -44,7 +44,7 @@ class Taxonomy
         register_rest_route('ndpv/v1', '/taxonomies/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -54,12 +54,15 @@ class Taxonomy
             ),
         ));
 
-        register_rest_route('ndpv/v1', '/taxonomies/(?P<id>[0-9,]+)', array(
+        register_rest_route('ndpv/v1', '/taxonomies/(?P<id>[0-9,]+)/(?P<tax>[a-z,_]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
+                    'sanitize_callback'  => 'sanitize_text_field',
+                ),
+                'tax' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
                 ),
             ),
@@ -68,14 +71,14 @@ class Taxonomy
 
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $taxonomies = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
-        $label_only = isset($params['label_only']) ? true : false;
-        $hide_bg = isset($params['hide_bg']) ? true : false;
-        $extra_amount_type = isset($params['extra_amount_type']) ? sanitize_text_field($params['extra_amount_type']) : null;
-        $id = isset($params['id']) ? sanitize_text_field($params['id']) : null; //post id
+        $taxonomies = isset($param['taxonomy']) ? sanitize_text_field($param['taxonomy']) : null;
+        $label_only = isset($param['label_only']) ? true : false;
+        $hide_bg = isset($param['hide_bg']) ? true : false;
+        $extra_amount_type = isset($param['extra_amount_type']) ? sanitize_text_field($param['extra_amount_type']) : null;
+        $id = isset($param['id']) ? sanitize_text_field($param['id']) : null; //post id
 
         if (empty($taxonomies)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -227,20 +230,20 @@ class Taxonomy
 
     public function create($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
-        $reorder  = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
-        $label = isset($params['label']) ? sanitize_text_field($params['label']) : null;
-        $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
-        $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
-        $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
-        $extra_amount_type = isset($params['extra_amount_type']) ? sanitize_text_field($params['extra_amount_type']) : null;
-        $tax_cal = isset($params['tax_cal']) ? sanitize_text_field($params['tax_cal']) : null;
-        $fee_cal = isset($params['fee_cal']) ? sanitize_text_field($params['fee_cal']) : null;
-        $val_type = isset($params['val_type']) ? sanitize_text_field($params['val_type']) : null;
-        $show = isset($params['show']) ? rest_sanitize_boolean($params['show']) : null;
+        $taxonomy = isset($param['taxonomy']) ? sanitize_text_field($param['taxonomy']) : null;
+        $reorder  = isset($param['reorder']) ? array_map('absint', $param['reorder']) : false;
+        $label = isset($param['label']) ? sanitize_text_field($param['label']) : null;
+        $color = isset($param['color']) ? sanitize_text_field($param['color']) : null;
+        $bg_color = isset($param['bg_color']) ? sanitize_text_field($param['bg_color']) : null;
+        $icon = isset($param['icon']) && isset($param['icon']['id']) ? absint($param['icon']['id']) : null;
+        $extra_amount_type = isset($param['extra_amount_type']) ? sanitize_text_field($param['extra_amount_type']) : null;
+        $tax_cal = isset($param['tax_cal']) ? sanitize_text_field($param['tax_cal']) : null;
+        $fee_cal = isset($param['fee_cal']) ? sanitize_text_field($param['fee_cal']) : null;
+        $val_type = isset($param['val_type']) ? sanitize_text_field($param['val_type']) : null;
+        $show = isset($param['show']) ? rest_sanitize_boolean($param['show']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -286,22 +289,22 @@ class Taxonomy
 
     public function update($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $taxonomy = isset($params['taxonomy']) ? sanitize_text_field($params['taxonomy']) : null;
-        $post_id = isset($params['post_id']) ? absint($params['post_id']) : null;
-        $add = isset($params['add']) ? true : false;
-        $append = isset($params['append']) && $params['append'] ? true : false;
-        $delete = isset($params['delete']) ? true : false;
-        $label = isset($params['label']) ? sanitize_text_field($params['label']) : null;
-        $color = isset($params['color']) ? sanitize_text_field($params['color']) : null;
-        $bg_color = isset($params['bg_color']) ? sanitize_text_field($params['bg_color']) : null;
-        $icon = isset($params['icon']) && isset($params['icon']['id']) ? absint($params['icon']['id']) : null;
-        $tax_cal = isset($params['tax_cal']) ? sanitize_text_field($params['tax_cal']) : null;
-        $fee_cal = isset($params['fee_cal']) ? sanitize_text_field($params['fee_cal']) : null;
-        $val_type = isset($params['val_type']) ? sanitize_text_field($params['val_type']) : null;
-        $show = isset($params['show']) ? rest_sanitize_boolean($params['show']) : null;
+        $taxonomy = isset($param['taxonomy']) ? sanitize_text_field($param['taxonomy']) : null;
+        $post_id = isset($param['post_id']) ? absint($param['post_id']) : null;
+        $add = isset($param['add']) ? true : false;
+        $append = isset($param['append']) && $param['append'] ? true : false;
+        $delete = isset($param['delete']) ? true : false;
+        $label = isset($param['label']) ? sanitize_text_field($param['label']) : null;
+        $color = isset($param['color']) ? sanitize_text_field($param['color']) : null;
+        $bg_color = isset($param['bg_color']) ? sanitize_text_field($param['bg_color']) : null;
+        $icon = isset($param['icon']) && isset($param['icon']['id']) ? absint($param['icon']['id']) : null;
+        $tax_cal = isset($param['tax_cal']) ? sanitize_text_field($param['tax_cal']) : null;
+        $fee_cal = isset($param['fee_cal']) ? sanitize_text_field($param['fee_cal']) : null;
+        $val_type = isset($param['val_type']) ? sanitize_text_field($param['val_type']) : null;
+        $show = isset($param['show']) ? rest_sanitize_boolean($param['show']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -324,7 +327,7 @@ class Taxonomy
                 if ($post_id) { //delete term from post
                     wp_remove_object_terms($post_id, $term_id, 'ndpv_' . $taxonomy);
                 } else { // delte term
-                    wp_delete_term($term_id, 'ndpv_' . $taxonomy);
+                    // wp_delete_term($term_id, 'ndpv_' . $taxonomy);
                 }
                 wp_send_json_success();
             } else {
@@ -373,31 +376,31 @@ class Taxonomy
     public function delete($req)
     {
         $url_params = $req->get_url_params();
-
+        $tax = $url_params['tax'];
         $ids = explode(',', $url_params['id']);
-        foreach ($ids as $id) {
-            wp_delete_term($id);
+        foreach ($ids as $id) { 
+            wp_delete_term($id, 'ndpv_' . $tax);
         }
         wp_send_json_success($ids);
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

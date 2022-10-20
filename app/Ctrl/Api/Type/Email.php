@@ -18,19 +18,19 @@ class Email
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/emails/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -43,7 +43,7 @@ class Email
         register_rest_route('ndpv/v1', '/emails/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -69,28 +69,28 @@ class Email
 
     public function create($req)
     {
-        $params = $req->get_params();
-        $type = isset($params['type']) ? $params['type'] : '';
+        $param = $req->get_params();
+        $type = isset($param['type']) ? $param['type'] : '';
         if ($type == 'sent') {
-            $this->sent($params);
+            $this->sent($param);
         } else if ($type == 'feedback') {
-            $this->feedback($params);
+            $this->feedback($param);
         } else if ($type == 'dashboard') {
-            $this->dashboard($params);
+            $this->dashboard($param);
         }
     }
 
-    public function sent($params)
+    public function sent($param)
     {
-        $mail_from = isset($params['fromData']) ? $params['fromData']['email'] : '';
-        $mail_to = isset($params['toData']) ? $params['toData']['email'] : '';
-        $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
-        $path = isset($params['path']) ? $params['path'] : '';
-        $mail_subject = isset($params['subject']) ? $params['subject'] : '';
-        $msg = isset($params['msg']) ? nl2br($params['msg']) : '';
-        $mail_invoice_img = isset($params['invoice_img']) ? $params['invoice_img'] : '';
+        $mail_from = isset($param['fromData']) ? $param['fromData']['email'] : '';
+        $mail_to = isset($param['toData']) ? $param['toData']['email'] : '';
+        $invoice_id = isset($param['invoice_id']) ? $param['invoice_id'] : '';
+        $path = isset($param['path']) ? $param['path'] : '';
+        $mail_subject = isset($param['subject']) ? $param['subject'] : '';
+        $msg = isset($param['msg']) ? nl2br($param['msg']) : '';
+        $mail_invoice_img = isset($param['invoice_img']) ? $param['invoice_img'] : '';
 
-        $compnay_name = isset($params['fromData']) ? $params['fromData']['name'] : '';
+        $compnay_name = isset($param['fromData']) ? $param['fromData']['name'] : '';
 
         $token = get_post_meta($invoice_id, 'token', true);
         $url = sprintf(
@@ -131,13 +131,13 @@ class Email
         }
     }
 
-    public function feedback($params)
+    public function feedback($param)
     {
 
-        $invoice_id = isset($params['invoice_id']) ? $params['invoice_id'] : '';
-        $feedback_type = isset($params['feedback_type']) ? $params['feedback_type'] : '';
-        $note = isset($params['note']) ? nl2br($params['note']) : '';
-        $attachment = isset($params['attachment']) ? $params['attachment'] : '';
+        $invoice_id = isset($param['invoice_id']) ? $param['invoice_id'] : '';
+        $feedback_type = isset($param['feedback_type']) ? $param['feedback_type'] : '';
+        $note = isset($param['note']) ? nl2br($param['note']) : '';
+        $attachment = isset($param['attachment']) ? $param['attachment'] : '';
 
         if ($invoice_id) {
             update_post_meta($invoice_id, 'status', $feedback_type);
@@ -152,9 +152,9 @@ class Email
         wp_send_json_success();
     }
 
-    public function dashboard($params)
+    public function dashboard($param)
     {
-        $feedback_type = isset($params['feedback_type']) ? $params['feedback_type'] : '';
+        $feedback_type = isset($param['feedback_type']) ? $param['feedback_type'] : '';
         $feedback_title = '';
         if ($feedback_type == 'features') {
             $feedback_title = 'Features Request: ';
@@ -164,10 +164,10 @@ class Email
 
         
         $current_user = wp_get_current_user(); 
-        $name = isset($params['name']) ? $params['name'] : $current_user->display_name;
-        $from = isset($params['from']) ? $params['from'] : $current_user->user_email;
-        $subject = isset($params['subject']) ? $params['subject'] : '';
-        $details = isset($params['details']) ? nl2br($params['details']) : '';
+        $name = isset($param['name']) ? $param['name'] : $current_user->display_name;
+        $from = isset($param['from']) ? $param['from'] : $current_user->user_email;
+        $subject = isset($param['subject']) ? $param['subject'] : '';
+        $details = isset($param['details']) ? nl2br($param['details']) : '';
         //TODO: change name email
         $propovoice_mail = 'support@propovoice.com';
 
@@ -198,24 +198,24 @@ class Email
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         // TODO: check it later
         return true;
         // return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

@@ -9,6 +9,7 @@ export default class Form extends Component {
 
         this.initialState = {
             id: null,
+            active: false,
             name: '',
             url: '',
             method: 'post',
@@ -20,8 +21,10 @@ export default class Form extends Component {
         };
     }
 
-    handleChange = (e) => {
-        const { name, value } = e.target;
+    handleChange = (e) => { 
+        const target = e.target;
+        const name = target.name;
+        const value = target.type == 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
@@ -42,7 +45,7 @@ export default class Form extends Component {
             const mod = actionList.find(x => x.slug === value); 
             const mod_list = Object.keys(mod.list);  
 
-			if (target.checked) { 
+			if ( target.checked ) { 
                 actions = actions.concat(mod_list);
 			} else { 
                 actions = actions.filter(x => !mod_list.includes(x));
@@ -109,12 +112,32 @@ export default class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{modalType} Webhook</h2>
-                        <p>{sprintf(i18n.formDesc, modalType, 'Webhook')}</p>
+                        <h2 className="pv-modal-title">{modalType} {this.props.title}</h2>
+                        <p>{sprintf(i18n.formDesc, modalType, this.props.title)}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
                             <div className="pv-form-style-one">
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label>
+                                            {i18n.active} 
+                                        </label>
+                                        <div className="pv-field-switch pv-ml-10">
+                                            <label className='pv-switch'>
+                                                <input type='checkbox'
+                                                    id="reminder-active"
+                                                    name='active'
+                                                    checked={form.active ? 'checked' : ''}
+                                                    onChange={this.handleChange}
+                                                />
+                                                <span className='pv-switch-slider pv-round'></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="name">{i18n.name}</label>
@@ -144,7 +167,7 @@ export default class Form extends Component {
                                     </div>
                                 </div>
 
-                                <div className="row">
+                                {false && <div className="row">
                                     <div className="col-md-6">
                                         <label htmlFor="method">Method</label>
                                         <select
@@ -156,7 +179,7 @@ export default class Form extends Component {
                                             <option value='get'>GET</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>}
 
                                 <div className='row'>
                                     <div className='col' style={{ marginBottom: 10 }}>

@@ -2678,9 +2678,7 @@ html {
   align-items: center;
   border-radius: 0 5px 5px 0;
   height: 96%;
-
 }
-
 
 .wp-admin.ndpv .react-datepicker__day--keyboard-selected {
   background-color: #4c6fff !important;
@@ -2810,10 +2808,6 @@ html {
   align-items: center;
   border-radius: 0 5px 5px 0;
   height: 96%;
-
-  @media screen and (max-width: 540px) {
-    height: 95%;
-  }
 }
 
 .pv-field-date .pv-info-input-field .pv-calendar svg {
@@ -3097,7 +3091,9 @@ ul {
   }
 }
 
-
+.astra-theme .pv-field-checkbox input[type=checkbox] {
+  zoom: 0.7 !important;
+}
 
 @media screen and (max-width: 992px) {
   .astra-theme .pv-field-radio input[type=radio]::before {
@@ -3233,10 +3229,6 @@ ul {
 @media screen and (max-width: 420px) {
   .ndpv .pv-modal-content .pv-content {
     padding: 15px !important;
-  }
-
-  .ndpv .pv-modal-content.pv-modal-sidebar .pv-content {
-    padding: 15px 25px 20px 15px !important;
   }
 }
 
@@ -4856,7 +4848,6 @@ ul {
 @media screen and (max-width: 420px) {
   .ndpv .pv-horizontal-tab .pv-tabs {
     display: block;
-    text-align: center;
   }
 }
 
@@ -5688,7 +5679,7 @@ body {
 # button
 --------------------------------------------------------------*/
 .ndpv .pv-btn {
-  padding: 15px 20px !important;
+  padding: 15px 20px;
   font-weight: 600;
   border-radius: 8px;
   color: #fff;
@@ -5752,6 +5743,11 @@ select {
 
 .ndpv .pv-form-style-one .row>div {
   margin-bottom: 20px;
+}
+.pv-grid-tmp {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 125px);
+    justify-content: space-between;
 }
 
 .ndpv .pv-form-style-one .row>div:nth-child(odd) {

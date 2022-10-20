@@ -23,7 +23,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        //added this multiple place, because not working in invoice single
+        //added this multi place, because not working in invoice single
         this.editData();
     }
 
@@ -32,7 +32,7 @@ class Form extends Component {
     }
 
     editData = () => {
-        //condition added to stop multiple rendering 
+        //condition added to stop multi rendering 
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
@@ -58,6 +58,7 @@ class Form extends Component {
     render() {
         const form = this.state.form;
         const i18n = ndpv.i18n;
+        const modalType = this.props.modalType == 'new' ? i18n.new : i18n.edit;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -66,8 +67,8 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.note} </h2>
-                        <p>{sprintf(i18n.formDesc, i18n.note)}</p>
+                        <h2 className="pv-modal-title">{modalType} {i18n.note} </h2>
+                        <p>{sprintf(i18n.formDesc, modalType, i18n.note)}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >

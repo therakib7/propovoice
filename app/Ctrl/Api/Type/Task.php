@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -19,19 +20,19 @@ class Task
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/tasks/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -44,7 +45,7 @@ class Task
         register_rest_route('ndpv/v1', '/tasks/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -57,7 +58,7 @@ class Task
         register_rest_route('ndpv/v1', '/tasks/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -68,21 +69,21 @@ class Task
 
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        if (isset($params['per_page'])) {
-            $per_page = $params['per_page'];
+        if (isset($param['per_page'])) {
+            $per_page = $param['per_page'];
         }
 
-        $tab_id = isset($params['tab_id']) ? absint($req['tab_id']) : false;
-        $dashboard = isset($params['dashboard']) ? sanitize_text_field($req['dashboard']) : false;
-        $status_id = isset($params['status_id']) ? absint($req['status_id']) : false;
+        $tab_id = isset($param['tab_id']) ? absint($req['tab_id']) : false;
+        $dashboard = isset($param['dashboard']) ? sanitize_text_field($req['dashboard']) : false;
+        $status_id = isset($param['status_id']) ? absint($req['status_id']) : false;
 
-        if (isset($params['page']) && $params['page'] > 1) {
-            $offset = ($per_page * $params['page']) - $per_page;
+        if (isset($param['page']) && $param['page'] > 1) {
+            $offset = ($per_page * $param['page']) - $per_page;
         }
 
         if ($dashboard) {
@@ -230,10 +231,11 @@ class Task
             }
 
             $query_data['desc'] = get_the_content();
+            $query_data['google_meet'] = get_post_meta($id, 'google_meet', true);
             $query_data['start_date'] = get_post_meta($id, 'start_date', true);
             $query_data['due_date'] = get_post_meta($id, 'due_date', true);
             $query_data['checklist'] = get_post_meta($id, 'checklist', true);
-            $query_data['date'] = get_the_time( get_option('date_format') );
+            $query_data['date'] = get_the_time(get_option('date_format'));
 
             if ($dashboard) {
                 $data['latest'][] = $query_data;
@@ -277,17 +279,18 @@ class Task
 
     public function create($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $tab_id    = isset($params['tab_id']) ? absint($req['tab_id']) : null;
-        $title     = isset($params['title']) ? sanitize_text_field($req['title']) : null;
-        $status_id = isset($params['status_id']) ? absint($params['status_id']) : null;
-        $type_id = isset($params['type_id']) ? absint($params['type_id']) : null;
-        $priority_id = isset($params['priority_id']) ? absint($params['priority_id']) : null;
+        $tab_id    = isset($param['tab_id']) ? absint($req['tab_id']) : null;
+        $title     = isset($param['title']) ? sanitize_text_field($req['title']) : null;
+        $status_id = isset($param['status_id']) ? absint($param['status_id']) : null;
+        $type_id = isset($param['type_id']) ? absint($param['type_id']) : null;
+        $priority_id = isset($param['priority_id']) ? absint($param['priority_id']) : null;
 
-        $start_date = isset($params['start_date']) ? $params['start_date'] : null;
-        $due_date = isset($params['due_date']) ? $params['due_date'] : null;
+        $google_meet = isset($param['google_meet']) ? $param['google_meet'] : null;
+        $start_date = isset($param['start_date']) ? $param['start_date'] : null;
+        $due_date = isset($param['due_date']) ? $param['due_date'] : null;
 
         if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
@@ -325,6 +328,9 @@ class Task
                     wp_set_post_terms($post_id, [$priority_id], 'ndpv_task_priority');
                 }
 
+                if ($google_meet) {
+                    wp_set_post_terms($post_id, 'google_meet', $google_meet);
+                }
                 if ($start_date) {
                     update_post_meta($post_id, 'start_date', $start_date);
                 }
@@ -332,6 +338,8 @@ class Task
                 if ($due_date) {
                     update_post_meta($post_id, 'due_date', $due_date);
                 }
+
+                do_action('ndpvp/webhook', 'task_add', $param);
 
                 wp_send_json_success($post_id);
             } else {
@@ -342,16 +350,17 @@ class Task
 
     public function update($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $status_id  = isset($params['status_id']) ? absint($params['status_id']) : null;
-        $type_id  = isset($params['type_id']) ? absint($params['type_id']) : null;
-        $priority_id  = isset($params['priority_id']) ? absint($params['priority_id']) : null;
+        $status_id  = isset($param['status_id']) ? absint($param['status_id']) : null;
+        $type_id  = isset($param['type_id']) ? absint($param['type_id']) : null;
+        $priority_id  = isset($param['priority_id']) ? absint($param['priority_id']) : null;
 
-        $start_date = isset($params['start_date']) ? $params['start_date'] : null;
-        $due_date = isset($params['due_date']) ? $params['due_date'] : null;
-        $checklist = isset($params['checklist']) ? $params['checklist'] : null;
+        $google_meet = isset($param['google_meet']) ? $param['google_meet'] : null;
+        $start_date = isset($param['start_date']) ? $param['start_date'] : null;
+        $due_date = isset($param['due_date']) ? $param['due_date'] : null;
+        $checklist = isset($param['checklist']) ? $param['checklist'] : null;
 
         /* if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
@@ -368,11 +377,11 @@ class Task
                 'post_author'   => get_current_user_id()
             );
 
-            if (isset($params['title'])) {
+            if (isset($param['title'])) {
                 $data['post_title'] = sanitize_text_field($req['title']);
             }
 
-            if (isset($params['desc'])) {
+            if (isset($param['desc'])) {
                 $data['post_content'] = sanitize_text_field($req['desc']);
             }
 
@@ -392,6 +401,10 @@ class Task
                     wp_set_post_terms($post_id, [$priority_id], 'ndpv_task_priority');
                 }
 
+                if ($google_meet) {
+                    update_post_meta($post_id, 'google_meet', $google_meet);
+                }
+
                 if ($start_date) {
                     update_post_meta($post_id, 'start_date', $start_date);
                 }
@@ -403,6 +416,8 @@ class Task
                 if ($checklist) {
                     update_post_meta($post_id, 'checklist', $checklist);
                 }
+
+                do_action('ndpvp/webhook', 'task_edit', $param);
 
                 wp_send_json_success($post_id);
             } else {
@@ -419,26 +434,29 @@ class Task
         foreach ($ids as $id) {
             wp_delete_post($id);
         }
+
+        do_action('ndpvp/webhook', 'task_del', $ids);
+
         wp_send_json_success($ids);
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

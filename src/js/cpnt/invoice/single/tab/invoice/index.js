@@ -142,6 +142,8 @@ class Invoice extends Component {
 
 		};
 
+		this.setSidebarActive = this.setSidebarActive.bind(this);
+
 		this.sidebarRef = React.createRef();
 		this.reminderRef = React.createRef();
 		this.recurringRef = React.createRef();
@@ -550,7 +552,7 @@ class Invoice extends Component {
 		});
 	}
 
-	setSidebarActive(id) {
+	setSidebarActive( id ) { 
 		if (this.state.sidebarActive == id) {
 			this.setState({ sidebarActive: '' });
 		} else {
@@ -1093,20 +1095,17 @@ class Invoice extends Component {
 															lang={invoice.lang}
 															onChange={this.currencyChange}
 														/>
-													</li>}
+													</li>} 
 
-													{(!sidebarActive || sidebarActive == 'extra-field') && <li>
-														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('extra-field')} />
-														<i />
-														<h3 className='pv-title-small'>{i18n.addi} {i18n.amt}</h3>
-														<ExtraAmount
-															{...this.props}
-															item_tax={invoice.item_tax}
-															itemTaxChange={this.itemTaxChange}
-															handleChange={this.onExtraFieldChange}
-															data={invoice.extra_field}
-														/>
-													</li>}
+													<ExtraAmount
+														{...this.props} 
+														sidebar={sidebarActive}
+														setSidebar={this.setSidebarActive} 
+														item_tax={invoice.item_tax}
+														itemTaxChange={this.itemTaxChange}
+														handleChange={this.onExtraFieldChange}
+														data={invoice.extra_field}
+													/>
 
 													{(!sidebarActive || sidebarActive == 'reminder') && <li>
 														<input type="checkbox" ref={this.reminderRef} defaultChecked onClick={() => this.setSidebarActive('reminder')} />

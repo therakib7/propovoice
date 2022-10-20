@@ -141,8 +141,7 @@ const Setting = (props) => {
                             width={5}
                             height={10}
                             viewBox="0 0 5 10"
-                            fill="none"
-
+                            fill="none" 
                         >
                             <path
                                 d="M.5 1.25L4.25 5 .5 8.75"

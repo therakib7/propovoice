@@ -1,11 +1,8 @@
 <?php 
-namespace Ndpv\Ctrl\Ajax;
-
-use Ndpv\Ctrl\Ajax\Type\Auth; 
+namespace Ndpv\Ctrl\Ajax; 
 
 class AjaxCtrl {
 
-    public function __construct() {  
-        new Auth(); 
+    public function __construct() {   
     }
 }

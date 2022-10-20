@@ -19,19 +19,19 @@ class Client
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/clients/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -44,7 +44,7 @@ class Client
         register_rest_route('ndpv/v1', '/clients/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -57,7 +57,7 @@ class Client
         register_rest_route('ndpv/v1', '/clients/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -68,18 +68,18 @@ class Client
 
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
-        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
+        $s = isset($param['text']) ? sanitize_text_field($param['text']) : null;
 
-        if (isset($params['per_page'])) {
-            $per_page = $params['per_page'];
+        if (isset($param['per_page'])) {
+            $per_page = $param['per_page'];
         }
 
-        if (isset($params['page']) && $params['page'] > 1) {
-            $offset = ($per_page * $params['page']) - $per_page;
+        if (isset($param['page']) && $param['page'] > 1) {
+            $offset = ($per_page * $param['page']) - $per_page;
         }
 
         $args = array(
@@ -170,13 +170,13 @@ class Client
 
     public function create($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
-        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null; 
+        $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
+        $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
+        $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
+        $org_id    = isset($param['org_id']) ? absint($param['org_id']) : null; 
 
         if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
@@ -184,27 +184,27 @@ class Client
         
         $person = new Person();
         if ($person_id) {
-            $person->update($params);
+            $person->update($param);
         }
 
         if (!$person_id && $first_name) {
-            $params['is_client'] = true;
-            $person_id = $person->create($params);
+            $param['is_client'] = true;
+            $person_id = $person->create($param);
         }
 
         $org = new Org();
         if (!$person_id && $org_id) {
-            $org->update($params);
+            $org->update($param);
         }
 
         if ( !$org_id && $org_name ) {
 
             if ( $first_name ) {
-                $params['is_client'] = false; 
+                $param['is_client'] = false; 
             } else {
-                $params['is_client'] = true; 
+                $param['is_client'] = true; 
             }
-            $org_id = $org->create($params);
+            $org_id = $org->create($param);
         }
 
         if ($reg_errors->get_error_messages()) {
@@ -216,19 +216,19 @@ class Client
 
     public function update($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name   = isset($params['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($req['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $org_name = isset($params['org_name']) ? sanitize_text_field($req['org_name']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($req['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($req['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($req['address']) : null;
-        $img = isset($params['img']) && isset($params['img']['id']) ? absint($params['img']['id']) : null;
+        $first_name   = isset($param['first_name']) ? sanitize_text_field($req['first_name']) : null;
+        $last_name    = isset($param['last_name']) ? sanitize_text_field($req['last_name']) : null;
+        $email        = isset($param['email']) ? strtolower(sanitize_email($req['email'])) : null;
+        $org_name = isset($param['org_name']) ? sanitize_text_field($req['org_name']) : null;
+        $web          = isset($param['web']) ? esc_url_raw($req['web']) : null;
+        $mobile       = isset($param['mobile']) ? sanitize_text_field($req['mobile']) : null;
+        $country      = isset($param['country']) ? sanitize_text_field($req['country']) : null;
+        $region       = isset($param['region']) ? sanitize_text_field($req['region']) : null;
+        $address      = isset($param['address']) ? sanitize_text_field($req['address']) : null;
+        $img = isset($param['img']) && isset($param['img']['id']) ? absint($param['img']['id']) : null;
 
         if (empty($first_name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -312,22 +312,22 @@ class Client
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

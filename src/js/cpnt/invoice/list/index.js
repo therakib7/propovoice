@@ -200,7 +200,7 @@ class Invoice extends Component {
     };
 
     handleAction = (type, id) => {
-
+        const i18n = ndpv.i18n;
         if (wage.length > 0 && (type == 'copy' || type == 'copy-to-inv')) {
             pro();
             return;

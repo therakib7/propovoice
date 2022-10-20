@@ -14,14 +14,14 @@ class FormList
         register_rest_route('ndpv/v1', '/intg-form', [
             'methods' => 'GET',
             'callback' => [$this, 'get'],
-            'permission_callback' => [$this, 'get_permission']
+            'permission_callback' => [$this, 'get_per']
         ]); 
     }
 
     
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
         $ninja_from = false;
@@ -102,7 +102,7 @@ class FormList
         wp_send_json_success($form_list);
     } 
 
-    public function get_permission()
+    public function get_per()
     {
         return true;
     } 

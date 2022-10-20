@@ -192,6 +192,7 @@ class ListSingle extends Component {
                 let newData = {};
                 if (data.stage_id) {
                     newData.stage_id = data.stage_id.id;
+                    newData.change_tax = true;
                 }
                 api.edit('deals', this.props.id, newData);
             });
@@ -374,8 +375,7 @@ class ListSingle extends Component {
                                                     width={14}
                                                     height={12}
                                                     viewBox="0 0 12 15"
-                                                    fill="none"
-
+                                                    fill="none" 
                                                 >
                                                     <path
                                                         d="M2.5 8H13.5"
@@ -411,7 +411,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag} small multiple />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag} small multi />}
                                 </li>
 
                                 <li>
@@ -545,7 +545,7 @@ class ListSingle extends Component {
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag} small multiple />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag} small multi />}
                                 </li>
                             </ul>
                         </div>
@@ -612,7 +612,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag} small multiple />}
+                                    {data.id && <Taxonomy id={data.id} data={data.tags} taxonomy='tag' title={i18n.tag} small multi />}
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.start} {i18n.date}:</label>
@@ -825,7 +825,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
-                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' title={i18n.tag} small multiple />}
+                                    {data.id && <Taxonomy id={data.id} taxonomy='tag' title={i18n.tag} small multi />}
                                 </li>
                                 <li>{i18n.project} {data.project}</li>
                                 <li>{i18n.deal} {data.deal}</li>

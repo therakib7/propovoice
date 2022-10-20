@@ -1,30 +1,36 @@
 <?php 
 namespace Ndpv\Model;
 
+use Ndpv\Helper\Fns;
+
 class Org
 {
 
-    public function create($params)
+    public function create($param)
     {
         $reg_errors = new \WP_Error;
 
-        $name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $person_id     = isset($params['person_id']) ? sanitize_text_field($params['person_id']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
-        $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($params['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $logo = isset($params['logo']) ? absint($params['logo']) : null;
-        $is_client  = isset($params['is_client']) ? $params['is_client'] : false;
+        $name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
+        $person_id     = isset($param['person_id']) ? sanitize_text_field($param['person_id']) : null;
+        $email        = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : null;
+        $web          = isset($param['web']) ? esc_url_raw($param['web']) : null;
+        $mobile       = isset($param['mobile']) ? sanitize_text_field($param['mobile']) : null;
+        $country      = isset($param['country']) ? sanitize_text_field($param['country']) : null;
+        $region       = isset($param['region']) ? sanitize_text_field($param['region']) : null;
+        $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
+        $logo = isset($param['logo']) ? absint($param['logo']) : null;
+        $is_client  = isset($param['is_client']) ? $param['is_client'] : false;
         /* if ( empty($name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
 
         if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        }  */
+        }  */ 
+        $exist_id = Fns::contact_exist('org', $email);
+        if ( $exist_id ) {
+            return $exist_id;
+        }
 
         if ($reg_errors->get_error_messages()) {
             return $reg_errors;
@@ -90,20 +96,20 @@ class Org
         }
     }
 
-    public function update($params)
+    public function update($param)
     {
         $reg_errors = new \WP_Error;
 
-        $name   = isset($params['name']) ? sanitize_text_field($params['name']) : null;
-        $last_name    = isset($params['last_name']) ? sanitize_text_field($params['last_name']) : null;
-        $email        = isset($params['email']) ? strtolower(sanitize_email($params['email'])) : null;
-        $person_id = isset($params['person_id']) ? sanitize_text_field($params['person_id']) : null;
-        $web          = isset($params['web']) ? esc_url_raw($params['web']) : null;
-        $mobile       = isset($params['mobile']) ? sanitize_text_field($params['mobile']) : null;
-        $country      = isset($params['country']) ? sanitize_text_field($params['country']) : null;
-        $region       = isset($params['region']) ? sanitize_text_field($params['region']) : null;
-        $address      = isset($params['address']) ? sanitize_text_field($params['address']) : null;
-        $logo = isset($params['logo']) ? absint($params['logo']) : null;
+        $name   = isset($param['name']) ? sanitize_text_field($param['name']) : null;
+        $last_name    = isset($param['last_name']) ? sanitize_text_field($param['last_name']) : null;
+        $email        = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : null;
+        $person_id = isset($param['person_id']) ? sanitize_text_field($param['person_id']) : null;
+        $web          = isset($param['web']) ? esc_url_raw($param['web']) : null;
+        $mobile       = isset($param['mobile']) ? sanitize_text_field($param['mobile']) : null;
+        $country      = isset($param['country']) ? sanitize_text_field($param['country']) : null;
+        $region       = isset($param['region']) ? sanitize_text_field($param['region']) : null;
+        $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
+        $logo = isset($param['logo']) ? absint($param['logo']) : null;
 
         /* if (empty($name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -116,7 +122,7 @@ class Org
         if ($reg_errors->get_error_messages()) {
             return $reg_errors;
         } else {
-            $post_id = $params['org_id'];
+            $post_id = $param['org_id'];
 
             $data = array(
                 'ID'            => $post_id,

@@ -20,19 +20,19 @@ class Deal
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/deals/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -45,7 +45,7 @@ class Deal
         register_rest_route('ndpv/v1', '/deals/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -58,7 +58,7 @@ class Deal
         register_rest_route('ndpv/v1', '/deals/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -69,11 +69,11 @@ class Deal
 
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
 
         $board_view = true;
-        $module_id = isset($params['module_id']) ? absint($params['module_id']) : null;
-        $table_view = isset($params['table_view']) ? true : false;
+        $module_id = isset($param['module_id']) ? absint($param['module_id']) : null;
+        $table_view = isset($param['table_view']) ? true : false;
         if ($module_id || $table_view ) {
             $board_view = false;
         }
@@ -84,7 +84,7 @@ class Deal
             foreach ($get_stage as $stage) :
                 $stage_id = $stage->term_id;
                 $stage_name = $stage->name;
-                $items = $this->deal_query($params, $stage_id);
+                $items = $this->deal_query($param, $stage_id);
                 $column[] = [
                     'name' => $stage_name,
                     'id' => $stage_id,
@@ -96,36 +96,39 @@ class Deal
                 $result['result'] = $column;
             endforeach;
         } else {
-            $result = $this->deal_query($params);
+            $result = $this->deal_query($param);
         }
 
         wp_send_json_success($result);
     }
 
-    public function deal_query($params, $stage_id = null)
+    public function deal_query($param, $stage_id = null)
     {
         $per_page = 10;
         $offset = 0;
 
-        if (isset($params['per_page'])) {
-            $per_page = $params['per_page'];
+        if (isset($param['per_page'])) {
+            $per_page = $param['per_page'];
         }
 
-        if (isset($params['page']) && $params['page'] > 1) {
-            $offset = ($per_page * $params['page']) - $per_page;
+        if (isset($param['page']) && $param['page'] > 1) {
+            $offset = ($per_page * $param['page']) - $per_page;
         }
 
-        $module_id = isset($params['module_id']) ? absint($params['module_id']) : null;
-        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
+        $module_id = isset($param['module_id']) ? absint($param['module_id']) : null;
+        $s = isset($param['text']) ? sanitize_text_field($param['text']) : null;
 
         $args = array(
             'post_type' => 'ndpv_deal',
             'post_status' => 'publish',
-            'orderby' => 'menu_order',
-            'order' => 'ASC',
             'posts_per_page' => $per_page,
             'offset' => $offset,
         );
+
+        if ( $stage_id ) {
+            $args['orderby'] = 'menu_order';
+            $args['order'] = 'ASC';
+        }
 
         $args['meta_query'] = array(
             'relation' => 'OR'
@@ -336,22 +339,22 @@ class Deal
 
     public function create($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $lead_id      = isset($params['lead_id']) ? absint($params['lead_id']) : null;
-        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
-        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
-        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
-        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $probability  = isset($params['probability']) ? absint($params['probability']) : null;
-        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
-        $note         = isset($params['note']) ? nl2br($params['note']) : null;
+        $lead_id      = isset($param['lead_id']) ? absint($param['lead_id']) : null;
+        $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
+        $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
+        $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
+        $org_id    = isset($param['org_id']) ? absint($param['org_id']) : null;
+        $title        = isset($param['title']) ? sanitize_text_field($param['title']) : null;
+        $stage_id     = isset($param['stage_id']) ? absint($param['stage_id']) : null;
+        $budget       = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
+        $currency     = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
+        $probability  = isset($param['probability']) ? absint($param['probability']) : null;
+        $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
+        $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
+        $note         = isset($param['note']) ? nl2br($param['note']) : null;
 
         /* if ( $lead_id ) {
             wp_send_json_success($lead_id);
@@ -363,20 +366,20 @@ class Deal
 
         $person = new Person();
         if ($person_id) {
-            $person->update($params);
+            $person->update($param);
         }
 
         if (!$person_id && $first_name) {
-            $person_id = $person->create($params);
+            $person_id = $person->create($param);
         }
 
         $org = new Org();
         if (!$person_id && $org_id) {
-            $org->update($params);
+            $org->update($param);
         }
 
         if (!$org_id && $org_name) {
-            $org_id = $org->create($params);
+            $org_id = $org->create($param);
         }
 
         if (empty($stage_id)) {
@@ -460,6 +463,9 @@ class Deal
                 if ($lead_id) { //when move to deal
                     wp_delete_post($lead_id);
                 }
+
+                do_action('ndpvp/webhook', 'deal_add', $param);
+
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -469,23 +475,24 @@ class Deal
 
     public function update($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
-        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $status       = isset($params['status']) ? sanitize_text_field($params['status']) : null;
-        $title        = isset($params['title']) ? sanitize_text_field($params['title']) : null;
-        $reorder      = isset($params['reorder']) ? array_map('absint', $params['reorder']) : false;
-        $stage_id     = isset($params['stage_id']) ? absint($params['stage_id']) : null;
-        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $probability  = isset($params['probability']) ? absint($params['probability']) : null;
-        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
-        $note         = isset($params['note']) ? nl2br($params['note']) : null;
+        $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
+        $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
+        $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
+        $org_id    = isset($param['org_id']) ? absint($param['org_id']) : null;
+        $status       = isset($param['status']) ? sanitize_text_field($param['status']) : null;
+        $title        = isset($param['title']) ? sanitize_text_field($param['title']) : null;
+        $reorder      = isset($param['reorder']) ? array_map('absint', $param['reorder']) : false;
+        $stage_id     = isset($param['stage_id']) ? absint($param['stage_id']) : null;
+        $budget       = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
+        $currency     = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
+        $probability  = isset($param['probability']) ? absint($param['probability']) : null;
+        $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
+        $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
+        $note         = isset($param['note']) ? nl2br($param['note']) : null;
+        $change_tax   = isset($param['change_tax']) ? true : false;
 
         /* if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
@@ -495,26 +502,26 @@ class Deal
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
 
-        if (!$reorder && (empty($first_name) && empty($org_name))) {
+        if ( ( !$reorder && !$change_tax ) && (empty($first_name) && empty($org_name))) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
         }
 
         $person = new Person();
         if ($person_id) {
-            $person->update($params);
+            $person->update($param);
         }
 
         if (!$person_id && $first_name) {
-            $person_id = $person->create($params);
+            $person_id = $person->create($param);
         }
 
         $org = new Org();
         if (!$person_id && $org_id) {
-            $org->update($params);
+            $org->update($param);
         }
 
         if (!$org_id && $org_name) {
-            $org_id = $org->create($params);
+            $org_id = $org->create($param);
         }
 
         if ($reg_errors->get_error_messages()) {
@@ -580,6 +587,8 @@ class Deal
                     update_post_meta($post_id, 'note', $note);
                 }
 
+                do_action('ndpvp/webhook', 'deal_edit', $param);
+
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -607,26 +616,29 @@ class Deal
         foreach ($ids as $id) {
             wp_delete_post($id);
         }
+
+        do_action('ndpvp/webhook', 'deal_del', $ids);
+
         wp_send_json_success($ids);
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

@@ -15,19 +15,19 @@ class Business
             [
                 'methods' => 'GET', 
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'], 
+                'permission_callback' => [$this, 'get_per'], 
             ],
             [
                 'methods' => 'POST', 
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/businesses/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -40,7 +40,7 @@ class Business
         register_rest_route('ndpv/v1', '/businesses/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -53,7 +53,7 @@ class Business
         register_rest_route('ndpv/v1', '/businesses/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -208,18 +208,18 @@ class Business
     public function create($req)
     { 
 
-        $params = $req->get_params(); 
+        $param = $req->get_params(); 
         $reg_errors = new \WP_Error;  
 
-        $name = isset( $params['name'] ) ? sanitize_text_field( $params['name'] ) : null; 
-        $org_name = isset( $params['org_name'] ) ? sanitize_text_field( $params['org_name'] ) : null; 
-        $web = isset( $params['web'] ) ? esc_url_raw( $params['web'] ) : null; 
-        $email = isset( $params['email'] ) ? strtolower( sanitize_email( $params['email'] ) ) : null; 
-        $mobile = isset( $params['mobile'] ) ? sanitize_text_field( $params['mobile'] ) : null; 
-        $address = isset( $params['address'] ) ? sanitize_text_field( $params['address'] ) : null; 
-        $zip = isset( $params['zip'] ) ? sanitize_text_field( $params['zip'] ) : null; 
-        $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null;  
-        $logo = isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
+        $name = isset( $param['name'] ) ? sanitize_text_field( $param['name'] ) : null; 
+        $org_name = isset( $param['org_name'] ) ? sanitize_text_field( $param['org_name'] ) : null; 
+        $web = isset( $param['web'] ) ? esc_url_raw( $param['web'] ) : null; 
+        $email = isset( $param['email'] ) ? strtolower( sanitize_email( $param['email'] ) ) : null; 
+        $mobile = isset( $param['mobile'] ) ? sanitize_text_field( $param['mobile'] ) : null; 
+        $address = isset( $param['address'] ) ? sanitize_text_field( $param['address'] ) : null; 
+        $zip = isset( $param['zip'] ) ? sanitize_text_field( $param['zip'] ) : null; 
+        $default = isset( $param['default'] ) ? rest_sanitize_boolean( $param['default'] ) : null;  
+        $logo = isset( $param['logo']['id'] ) ? absint( $param['logo']['id'] ) : null;
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));
@@ -290,18 +290,18 @@ class Business
 
     public function update($req)
     {  
-        $params = $req->get_params(); 
+        $param = $req->get_params(); 
         $reg_errors = new \WP_Error;  
 
-        $name = isset( $params['name'] ) ? sanitize_text_field( $params['name'] ) : null; 
-        $org_name = isset( $params['org_name'] ) ? sanitize_text_field( $params['org_name'] ) : null; 
-        $web = isset( $params['web'] ) ? esc_url_raw( $params['web'] ) : null; 
-        $email = isset( $params['email'] ) ? strtolower( sanitize_email( $params['email'] ) ) : null; 
-        $mobile = isset( $params['mobile'] ) ? sanitize_text_field( $params['mobile'] ) : null; 
-        $address = isset( $params['address'] ) ? sanitize_text_field( $params['address'] ) : null; 
-        $zip = isset( $params['zip'] ) ? sanitize_text_field( $params['zip'] ) : null; 
-        $default = isset( $params['default'] ) ? rest_sanitize_boolean( $params['default'] ) : null; 
-        $logo = isset( $params['logo']['id'] ) ? absint( $params['logo']['id'] ) : null;
+        $name = isset( $param['name'] ) ? sanitize_text_field( $param['name'] ) : null; 
+        $org_name = isset( $param['org_name'] ) ? sanitize_text_field( $param['org_name'] ) : null; 
+        $web = isset( $param['web'] ) ? esc_url_raw( $param['web'] ) : null; 
+        $email = isset( $param['email'] ) ? strtolower( sanitize_email( $param['email'] ) ) : null; 
+        $mobile = isset( $param['mobile'] ) ? sanitize_text_field( $param['mobile'] ) : null; 
+        $address = isset( $param['address'] ) ? sanitize_text_field( $param['address'] ) : null; 
+        $zip = isset( $param['zip'] ) ? sanitize_text_field( $param['zip'] ) : null; 
+        $default = isset( $param['default'] ) ? rest_sanitize_boolean( $param['default'] ) : null; 
+        $logo = isset( $param['logo']['id'] ) ? absint( $param['logo']['id'] ) : null;
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));
@@ -370,22 +370,22 @@ class Business
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

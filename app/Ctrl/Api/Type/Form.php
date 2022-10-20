@@ -16,15 +16,15 @@ class Form
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ] 
         ]); 
     }
 
     public function get($req)
     {
-        $params = $req->get_params();
-        $form = isset($params['form']) ? sanitize_text_field($params['form']) : null;
+        $param = $req->get_params();
+        $form = isset($param['form']) ? sanitize_text_field($param['form']) : null;
 
         $data = [];
         $model = new ModelForm();
@@ -45,7 +45,7 @@ class Form
     } 
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     } 

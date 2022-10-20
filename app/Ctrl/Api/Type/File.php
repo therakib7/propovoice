@@ -16,19 +16,19 @@ class File
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/files/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -41,7 +41,7 @@ class File
         register_rest_route('ndpv/v1', '/files/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -54,7 +54,7 @@ class File
         register_rest_route('ndpv/v1', '/files/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -65,20 +65,20 @@ class File
 
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        $tab_id = $params['tab_id'];
-        $type   = isset($params['type']) ? sanitize_text_field($params['type']) : null; 
+        $tab_id = $param['tab_id'];
+        $type   = isset($param['type']) ? sanitize_text_field($param['type']) : null; 
 
-        if (isset($params['per_page'])) {
-            $per_page = $params['per_page'];
+        if (isset($param['per_page'])) {
+            $per_page = $param['per_page'];
         }
 
-        if (isset($params['page']) && $params['page'] > 1) {
-            $offset = ($per_page * $params['page']) - $per_page;
+        if (isset($param['page']) && $param['page'] > 1) {
+            $offset = ($per_page * $param['page']) - $per_page;
         }
 
         $args = array(
@@ -133,7 +133,7 @@ class File
                     $fileData = []; 
                     $fileData['id'] = $file_id;  
                     $fileData['src'] = $file_src[0]; 
-                    $fileData['srcdd'] = $file_src; 
+                    $fileData['src_small'] = $file_src; 
                 }
             } 
             $query_data['file'] = $fileData;
@@ -168,14 +168,14 @@ class File
 
     public function create($req)
     { 
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
-        $tab_id = isset($params['tab_id']) ? absint($req['tab_id']) : null;          
-        $type   = isset($params['type']) ? sanitize_text_field($params['type']) : null; 
-        $file   = isset( $params['file'] ) && isset( $params['file']['id'] ) ? absint( $params['file']['id'] ) : null;
+        $tab_id = isset($param['tab_id']) ? absint($req['tab_id']) : null;          
+        $type   = isset($param['type']) ? sanitize_text_field($param['type']) : null; 
+        $file   = isset( $param['file'] ) && isset( $param['file']['id'] ) ? absint( $param['file']['id'] ) : null;
 
-        $title  = isset($params['title']) ? sanitize_text_field($params['title']) : null;  
-        $url    = isset($params['url']) ? sanitize_text_field($params['url']) : null;  
+        $title  = isset($param['title']) ? sanitize_text_field($param['title']) : null;  
+        $url    = isset($param['url']) ? sanitize_text_field($param['url']) : null;  
 
         if ( empty($tab_id) ) {
             $reg_errors->add('field', esc_html__('Tab ID is missing', 'propovoice'));
@@ -224,11 +224,11 @@ class File
 
     public function update($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
         $reg_errors = new \WP_Error;
  
-        $title  = isset($params['title']) ? sanitize_text_field($params['title']) : null;  
-        $url    = isset($params['url']) ? sanitize_text_field($params['url']) : null;  
+        $title  = isset($param['title']) ? sanitize_text_field($param['title']) : null;  
+        $url    = isset($param['url']) ? sanitize_text_field($param['url']) : null;  
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -272,22 +272,22 @@ class File
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

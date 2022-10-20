@@ -1,37 +1,37 @@
-<?php 
+<?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Contact;
 use Ndpv\Model\Org;
-use Ndpv\Model\Person; 
+use Ndpv\Model\Person;
 
 class Lead
-{ 
+{
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'rest_routes']);
+        add_action('rest_api_init', [$this, 'rest_routes']); 
     }
 
     public function rest_routes()
     {
-
         register_rest_route('ndpv/v1', '/leads', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_permission'],
+                'permission_callback' => [$this, 'get_per'],
             ],
             [
                 'methods' => 'POST',
                 'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_permission']
+                'permission_callback' => [$this, 'create_per']
             ],
         ]);
 
         register_rest_route('ndpv/v1', '/leads/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_permission'],
+            'permission_callback' => [$this, 'get_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -44,7 +44,7 @@ class Lead
         register_rest_route('ndpv/v1', '/leads/(?P<id>\d+)', array(
             'methods' => 'PUT',
             'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_permission'],
+            'permission_callback' => [$this, 'update_per'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -57,7 +57,7 @@ class Lead
         register_rest_route('ndpv/v1', '/leads/(?P<id>[0-9,]+)', array(
             'methods' => 'DELETE',
             'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'delete_permission'],
+            'permission_callback' => [$this, 'del_per'],
             'args' => array(
                 'id' => array(
                     'sanitize_callback'  => 'sanitize_text_field',
@@ -68,19 +68,19 @@ class Lead
 
     public function get($req)
     {
-        $params = $req->get_params();
+        $param = $req->get_params();
 
         $per_page = 10;
         $offset = 0;
 
-        $s = isset($params['text']) ? sanitize_text_field($params['text']) : null;
+        $s = isset($param['text']) ? sanitize_text_field($param['text']) : null;
 
-        if (isset($params['per_page'])) {
-            $per_page = $params['per_page'];
+        if (isset($param['per_page'])) {
+            $per_page = $param['per_page'];
         }
 
-        if (isset($params['page']) && $params['page'] > 1) {
-            $offset = ($per_page * $params['page']) - $per_page;
+        if (isset($param['page']) && $param['page'] > 1) {
+            $offset = ($per_page * $param['page']) - $per_page;
         }
 
         $args = array(
@@ -120,7 +120,7 @@ class Lead
         }
 
         $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
@@ -174,7 +174,7 @@ class Lead
                 $query_data['org'] = $org->single($org_id);
             }
 
-            $query_data['date'] = get_the_time( get_option('date_format') );
+            $query_data['date'] = get_the_time(get_option('date_format'));
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -260,27 +260,27 @@ class Lead
             $query_data['org'] = $org->single($org_id, true);
         }
 
-        $query_data['date'] = get_the_time( get_option('date_format') );
+        $query_data['date'] = get_the_time(get_option('date_format'));
 
         wp_send_json_success($query_data);
     }
 
     public function create($req)
     {
-        $params = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $param = $req->get_params();
+        $reg_errors = new \WP_Error();
 
         //lead
-        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
-        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $level_id  = isset($params['level_id']) ? absint($params['level_id']) : null;
-        $budget    = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency  = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $tags      = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc      = isset($params['desc']) ? nl2br($params['desc']) : '';
-        $note      = isset($params['note']) ? nl2br($params['note']) : null;
+        $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
+        $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
+        $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
+        $org_id    = isset($param['org_id']) ? absint($param['org_id']) : null;
+        $level_id  = isset($param['level_id']) ? absint($param['level_id']) : null;
+        $budget    = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
+        $currency  = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
+        $tags      = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
+        $desc      = isset($param['desc']) ? nl2br($param['desc']) : '';
+        $note      = isset($param['note']) ? nl2br($param['note']) : null;
 
         if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
@@ -291,26 +291,25 @@ class Lead
         }  */
         $person = new Person();
         if ($person_id) {
-            $person->update($params);
+            $person->update($param);
         }
 
         if (!$person_id && $first_name) {
-            $person_id = $person->create($params);
+            $person_id = $person->create($param);
         }
 
         $org = new Org();
         if (!$person_id && $org_id) {
-            $org->update($params);
+            $org->update($param);
         }
 
         if (!$org_id && $org_name) {
-            $org_id = $org->create($params);
+            $org_id = $org->create($param);
         }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-
             //insert lead
             $data = array(
                 'post_type' => 'ndpv_lead',
@@ -352,6 +351,8 @@ class Lead
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);
                 }
+                
+                do_action('ndpvp/webhook', 'lead_add', $param);
 
                 wp_send_json_success($post_id);
             } else {
@@ -362,20 +363,20 @@ class Lead
 
     public function update($req)
     {
-        $params = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $param = $req->get_params();
+        $reg_errors = new \WP_Error();
 
         //lead
-        $first_name = isset($params['first_name']) ? sanitize_text_field($params['first_name']) : null;
-        $org_name   = isset($params['org_name']) ? sanitize_text_field($params['org_name']) : null;
-        $person_id = isset($params['person_id']) ? absint($params['person_id']) : null;
-        $org_id    = isset($params['org_id']) ? absint($params['org_id']) : null;
-        $level_id     = isset($params['level_id']) ? absint($params['level_id']) : null;
-        $budget       = isset($params['budget']) ? sanitize_text_field($params['budget']) : null;
-        $currency     = isset($params['currency']) ? sanitize_text_field($params['currency']) : null;
-        $tags         = isset($params['tags']) ? array_map('absint', $params['tags']) : null;
-        $desc         = isset($params['desc']) ? nl2br($params['desc']) : '';
-        $note         = isset($params['note']) ? nl2br($params['note']) : null;
+        $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
+        $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
+        $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
+        $org_id    = isset($param['org_id']) ? absint($param['org_id']) : null;
+        $level_id     = isset($param['level_id']) ? absint($param['level_id']) : null;
+        $budget       = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
+        $currency     = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
+        $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
+        $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
+        $note         = isset($param['note']) ? nl2br($param['note']) : null;
 
         $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
@@ -389,20 +390,20 @@ class Lead
 
         $person = new Person();
         if ($person_id) {
-            $person->update($params);
+            $person->update($param);
         }
 
         if (!$person_id && $first_name) {
-            $person_id = $person->create($params);
+            $person_id = $person->create($param);
         }
 
         $org = new Org();
         if (!$person_id && $org_id) {
-            $org->update($params);
+            $org->update($param);
         }
 
         if (!$org_id && $org_name) {
-            $org_id = $org->create($params);
+            $org_id = $org->create($param);
         }
 
         if ($reg_errors->get_error_messages()) {
@@ -420,7 +421,6 @@ class Lead
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
-
                 if ($level_id) {
                     wp_set_post_terms($post_id, [$level_id], 'ndpv_lead_level');
                 }
@@ -449,6 +449,8 @@ class Lead
                     update_post_meta($post_id, 'note', $note);
                 }
 
+                do_action('ndpvp/webhook', 'lead_edit', $param);
+
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
@@ -464,26 +466,29 @@ class Lead
         foreach ($ids as $id) {
             wp_delete_post($id);
         }
+
+        do_action('ndpvp/webhook', 'lead_del', $ids);
+
         wp_send_json_success($ids);
     }
 
     // check permission
-    public function get_permission()
+    public function get_per()
     {
         return true;
     }
 
-    public function create_permission()
+    public function create_per()
     {
         return current_user_can('publish_posts');
     }
 
-    public function update_permission()
+    public function update_per()
     {
         return current_user_can('edit_posts');
     }
 
-    public function delete_permission()
+    public function del_per()
     {
         return current_user_can('delete_posts');
     }

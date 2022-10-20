@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Spinner from 'block/preloader/spinner';
 
-export default class License extends Component {
+export default class Main extends Component {
     constructor(props) {
         super(props);
 

@@ -1,59 +1,56 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import Currency from './sub/Currency';
 import QtyType from './sub/QtyType';
-import ExtraAmount from './sub/ExtraAmount';
+import Tax from './sub/Tax';
+import Fee from './sub/Fee';
+import Discount from './sub/Discount';
 
-export default class Main extends Component {
-	constructor(props) {
-		super(props);
-		const i18n = ndpv.i18n;
-		this.state = {
-			tabs: [
-				{
-					id: 'currency',
-					text: i18n.cur
-				},
-				{
-					id: 'qty-type',
-					text: i18n.qty + ' ' + i18n.type
-				},
-				{
-					id: 'extra-amount',
-					text: i18n.adtl + ' ' + i18n.amt
-				},
-			],
-			currentTab: '',
-		}
-	}
+export default (props) => {
 
-	componentDidMount() {
-		this.setState({ currentTab: 'currency' });
-	}
+	const i18n = ndpv.i18n;
+	const [tabs, setTabs] = useState([
+		{
+			id: 'currency',
+			text: i18n.cur
+		},
+		{
+			id: 'qty-type',
+			text: i18n.qty + ' ' + i18n.type
+		},
+		{
+			id: 'tax',
+			text: i18n.tax
+		},
+		{
+			id: 'fee',
+			text: i18n.fee
+		},
+		{
+			id: 'discount',
+			text: i18n.discount
+		},
+	]);
+	const [currentTab, setCurrentTab] = useState('currency'); 
+ 
+	return (
+		<>
+			<ul className='pv-settings-horizontal-tab'>
+				{tabs.map((tab, index) => (
+					<li
+						key={index}
+						className={'pv-tab ' + (tab.id == currentTab ? 'pv-active' : '')}
+						onClick={(e) => setCurrentTab(tab.id)}
+					>
+						{tab.text}
+					</li>
+				))}
+			</ul>
 
-	setActiveTab(id) {
-		this.setState({ currentTab: id });
-	}
-
-	render() {
-		const { tabs = [], currentTab } = this.state;
-		return (
-			<>
-				<ul className='pv-settings-horizontal-tab'>
-					{tabs.map((tab, index) => (
-						<li
-							key={index}
-							className={'pv-tab ' + (tab.id == currentTab ? 'pv-active' : '')}
-							onClick={(e) => this.setActiveTab(tab.id)}
-						>
-							{tab.text}
-						</li>
-					))}
-				</ul>
-
-				{currentTab == 'currency' && <Currency {...this.props} />}
-				{currentTab == 'qty-type' && <QtyType {...this.props} />}
-				{currentTab == 'extra-amount' && <ExtraAmount {...this.props} />}
-			</>
-		);
-	}
+			{currentTab == 'currency' && <Currency {...props} />}
+			{currentTab == 'qty-type' && <QtyType />}
+			{currentTab == 'tax' && <Tax {...props} />}
+			{currentTab == 'fee' && <Fee />}
+			{currentTab == 'discount' && <Discount />}
+		</>
+	);
 }  
