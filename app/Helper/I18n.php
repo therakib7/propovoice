@@ -59,6 +59,7 @@ class I18n
             "rate" => esc_html__("Rate", "propovoice"),
             "amt" => esc_html__("Amount", "propovoice"),
             "adtl" => esc_html__("Additional", "propovoice"),
+            "ext" => esc_html__("Extra", "propovoice"),
             "subT" => esc_html__("Subtotal", "propovoice"),
             "down" => esc_html__("Download", "propovoice"),
             "print" => esc_html__("Print", "propovoice"),
@@ -121,8 +122,8 @@ class I18n
             "dft" => esc_html__("Draft", "propovoice"),
             "req" => esc_html__("Request", "propovoice"),
             //form
-            /* translators: %s: Module Name */
-            "formDesc" => esc_html__("Add new %s from here", "propovoice"),
+            /* translators: %s: Add, Edit %s: Module Name */
+            "formDesc" => esc_html__("%s %s from here", "propovoice"),
             "payDesc" => esc_html__("Add payment info from here", "propovoice"),
             "create" => esc_html__("Create", "propovoice"),
             "icon" => esc_html__("Icon", "propovoice"),
