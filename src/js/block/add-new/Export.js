@@ -200,8 +200,8 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
-                        <p>{sprintf(i18n.formDesc, i18n.deal)}</p>
+                        <h2 className="pv-modal-title">{title} {i18n.exp}</h2>
+                        <p>{sprintf(i18n.formDesc, i18n.exp)}</p>
 
                     </div>
 
