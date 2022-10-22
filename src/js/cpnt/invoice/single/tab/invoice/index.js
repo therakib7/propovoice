@@ -38,7 +38,7 @@ class Invoice extends Component {
 		const i18n = ndpv.i18n;
 		this.state = {
 			preload: true,
-			title: '', 
+			title: '',
 			tabs: [
 				{
 					id: 'template',
@@ -47,7 +47,7 @@ class Invoice extends Component {
 				},
 				{
 					id: 'info',
-					text: i18n.addi + ' ' + i18n.amt,
+					text: i18n.add + ' ' + i18n.con,
 				},
 				{
 					id: 'preview',
@@ -188,13 +188,13 @@ class Invoice extends Component {
 			this.getData(this.props.id, true); //edit
 		} else {
 			//set future due date
-			this.getData(0 + '?path='+path, false); //new
+			this.getData(0 + '?path=' + path, false); //new
 			let date = new Date();
 			let dueDate = new Date(date);
 			dueDate.setDate(dueDate.getDate() + 30);
 
 			let invoice = { ...this.state.invoice }
-			invoice.due_date = dueDate; 
+			invoice.due_date = dueDate;
 			invoice.path = path;
 
 			//deal, project id
@@ -242,7 +242,7 @@ class Invoice extends Component {
 		}
 	};
 
-	getData = (id, edit) => { 
+	getData = (id, edit) => {
 
 		api.getS('invoices', id).then(resp => {
 			let data = resp.data.data;
@@ -260,7 +260,7 @@ class Invoice extends Component {
 
 				invoice.num = data.invoice.num ? data.invoice.num : data.prefix + data.id;
 				this.setState({
-					preload: false, 
+					preload: false,
 					invoice,
 					status: data.status,
 					fromData: data.fromData,
@@ -285,8 +285,8 @@ class Invoice extends Component {
 			return;
 		}
 
-		let invoice = { ...this.state.invoice } 
-		invoice.num = e.target.value; 
+		let invoice = { ...this.state.invoice }
+		invoice.num = e.target.value;
 		this.setState({ invoice });
 	}
 
@@ -552,7 +552,7 @@ class Invoice extends Component {
 		});
 	}
 
-	setSidebarActive( id ) { 
+	setSidebarActive(id) {
 		if (this.state.sidebarActive == id) {
 			this.setState({ sidebarActive: '' });
 		} else {
@@ -683,8 +683,8 @@ class Invoice extends Component {
 	}
 
 	render = () => {
-		const { preload, title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state; 
-		
+		const { preload, title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
+
 		const i18n = ndpv.i18n;
 		return (
 			<>
@@ -912,8 +912,8 @@ class Invoice extends Component {
 																<input
 																	type="text"
 																	name="invoice_id"
-																	value={invoice.num} 
-																	placeholder={this.state.prefix ? this.state.prefix + '{id}' : '{id}'} 
+																	value={invoice.num}
+																	placeholder={this.state.prefix ? this.state.prefix + '{id}' : '{id}'}
 																	onChange={this.onNumChange}
 																/>
 															</div>
@@ -1095,12 +1095,12 @@ class Invoice extends Component {
 															lang={invoice.lang}
 															onChange={this.currencyChange}
 														/>
-													</li>} 
+													</li>}
 
 													<ExtraAmount
-														{...this.props} 
+														{...this.props}
 														sidebar={sidebarActive}
-														setSidebar={this.setSidebarActive} 
+														setSidebar={this.setSidebarActive}
 														item_tax={invoice.item_tax}
 														itemTaxChange={this.itemTaxChange}
 														handleChange={this.onExtraFieldChange}
