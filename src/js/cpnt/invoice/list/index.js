@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-
+import ImportAction from '../../../block/add-new/ImportAction';
 import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from 'context/app-context';
 
@@ -268,6 +268,8 @@ class Invoice extends Component {
                         <AddNew
                             title={title}
                             openForm={() => this.newInvoie()}
+                            importData={ImportAction[1].invoice}
+
                         />
                     </div>
                 </div>

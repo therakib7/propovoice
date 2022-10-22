@@ -27,7 +27,6 @@ const Deal = (props) => {
         icon: null
     };
     const [form, setForm] = useState(newForm);
-
     const taxForm = (type = 'new', data = null) => {
 
         if (type == 'new' && wage.length > 0) {

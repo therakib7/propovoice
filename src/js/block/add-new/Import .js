@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import api from 'api';
 import WithRouter from 'hoc/Router';
 import { Add } from 'block/icon';
-import action from './action';
+import action from './ImportAction';
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -38,6 +38,9 @@ class Form extends Component {
     handleCheckbox = (e, type, slug = '') => {
         const target = e.target;
         let actions = this.state.form.actions;
+        // const action = action[0]
+        const importModal = Object.keys(this.props.importModal);
+
 
         if (type == 'action') {
             const { value } = e.target;
@@ -48,13 +51,15 @@ class Form extends Component {
             }
         } else if (type == 'group') {
             const { value } = e.target;
-            const mod = action.find(x => x.slug === value);
-            const mod_list = Object.keys(mod.list);
+            // // const mod = action.deal.find(x => x === value);
+            // const mod = importModal.find(x => x === value);
+            // console.log(mod)
+            // const mod_list = Object.keys(mod);
 
             if (target.checked) {
-                actions = actions.concat(mod_list);
+                actions = actions.concat(importModal);
             } else {
-                actions = actions.filter(x => !mod_list.includes(x));
+                actions = actions.filter(x => !importModal.includes(x));
             }
         } else if (type == 'none') {
             actions = []
@@ -88,48 +93,48 @@ class Form extends Component {
     //     this.editData();
     // }
 
-    componentDidUpdate() {
-        this.editData();
-    }
+    // componentDidUpdate() {
+    //     this.editData();
+    // }
 
-    editData = () => {
-        //condition added to stop multiple rendering 
-        if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
-            if (this.state.form.id != this.props.data.id) {
+    // editData = () => {
+    //     //condition added to stop multiple rendering 
+    //     if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
+    //         if (this.state.form.id != this.props.data.id) {
 
-                let form = { ...this.props.data }
-                if (this.props.modalType == 'move') {
-                    form.lead_id = form.id;
-                    form.probability = 50;
-                }
+    //             let form = { ...this.props.data }
+    //             if (this.props.modalType == 'move') {
+    //                 form.lead_id = form.id;
+    //                 form.probability = 50;
+    //             }
 
-                form.first_name = (form.person) ? form.person.first_name : '';
-                if (form.person) {
-                    form.person_id = (form.person) ? form.person.id : null;
-                    form.email = (form.person) ? form.person.email : '';
-                    form.mobile = (form.person) ? form.person.mobile : '';
-                    form.web = (form.person) ? form.person.web : '';
-                } else {
-                    form.email = (form.org) ? form.org.email : '';
-                    form.mobile = (form.org) ? form.org.mobile : '';
-                    form.web = (form.org) ? form.org.web : '';
-                }
-                form.org_name = (form.org) ? form.org.name : '';
+    //             form.first_name = (form.person) ? form.person.first_name : '';
+    //             if (form.person) {
+    //                 form.person_id = (form.person) ? form.person.id : null;
+    //                 form.email = (form.person) ? form.person.email : '';
+    //                 form.mobile = (form.person) ? form.person.mobile : '';
+    //                 form.web = (form.person) ? form.person.web : '';
+    //             } else {
+    //                 form.email = (form.org) ? form.org.email : '';
+    //                 form.mobile = (form.org) ? form.org.mobile : '';
+    //                 form.web = (form.org) ? form.org.web : '';
+    //             }
+    //             form.org_name = (form.org) ? form.org.name : '';
 
-                if (form.org) {
-                    form.org_id = (form.org) ? form.org.id : null;
-                }
+    //             if (form.org) {
+    //                 form.org_id = (form.org) ? form.org.id : null;
+    //             }
 
-                this.setState({ form });
-            }
-        } else {
-            if (this.state.form.id != null) {
-                this.setState({ form: this.initialState });
-            }
-        }
-    }
-
+    //             this.setState({ form });
+    //         }
+    //     } else {
+    //         if (this.state.form.id != null) {
+    //             this.setState({ form: this.initialState });
+    //         }
+    //     }
+    // }
     render() {
+        const importModal = Object.keys(this.props.importModal);
         const i18n = ndpv.i18n;
         const form = this.state.form;
         let title = '';
@@ -153,13 +158,39 @@ class Form extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
                             <div className="pv-form-style-one">
-                                {action.map((item, i) => (
+                                <div className="pv-field-checkbox">
+                                    <input
+                                        type='checkbox'
+                                        id={'-mod'}
+                                        name='mod'
+                                        value={"Select all"}
+                                        // checked={reminder.after.includes(1) ? 'checked' : ''} 
+                                        onChange={(e) => this.handleCheckbox(e, 'group')}
+                                    />
+                                    <label
+                                        htmlFor={'-mod'}
+                                    >{'Select all'}</label>
+                                </div>
+                                <div className="pv-grid-tmp">
+
+                                    {importModal.map((data, i) => (
+                                        <div key={i} className="pv-field-checkbox">
+                                            <input
+                                                type='checkbox'
+                                                id={1}
+                                                name='action'
+                                                value={data}
+                                                checked={form.actions.includes(data) ? 'checked' : ''}
+                                                onChange={(e) => this.handleCheckbox(e, 'action')}
+                                            />
+                                            <label htmlFor={1}>{data}</label>
+                                        </div>
+                                    ))
+                                    }
+                                </div>
+
+                                {/* {action.map((item, i) => (
                                     <div key={i}
-                                        style={{
-                                            alignItems: 'initial',
-                                            padding: '14px 15px 5px',
-                                            cursor: 'auto'
-                                        }}
                                     // onClick={() => this.addCurrentTab(item)}
                                     >
                                         <div className="row">
@@ -170,18 +201,12 @@ class Form extends Component {
                                                         type='checkbox'
                                                         id={item.slug + '-mod'}
                                                         name='mod'
-                                                        value={item.slug}
-                                                        style={{ marginRight: 8 }}
+                                                        value={item.deal}
                                                         // checked={reminder.after.includes(1) ? 'checked' : ''} 
                                                         onChange={(e) => this.handleCheckbox(e, 'group')}
                                                     />
                                                     <label
                                                         htmlFor={item.slug + '-mod'}
-                                                        style={{
-                                                            fontSize: 16,
-                                                            fontWeight: 500,
-                                                            color: '#2D3748'
-                                                        }}
                                                     >{item.label}</label>
                                                 </div>
                                             </div>
@@ -190,7 +215,7 @@ class Form extends Component {
                                             <div className="col">
                                                 <div className="pv-grid-tmp">
 
-                                                    {Object.entries(item.list).map((t, k) => (
+                                                    {Object.keys(deal).map((t, k) => (
                                                         <div key={k} className="pv-field-checkbox">
                                                             <input
                                                                 type='checkbox'
@@ -210,7 +235,7 @@ class Form extends Component {
                                         </div>
 
                                     </div>
-                                ))}
+                                ))} */}
                             </div>
                         </div>
                         <div className="pv-modal-footer">
