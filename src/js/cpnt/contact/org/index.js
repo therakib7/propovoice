@@ -5,6 +5,8 @@ import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
+import ImportAction from "../../../block/add-new/ImportAction"
+
 
 import Form from './Form';
 import Table from './Table';
@@ -26,12 +28,13 @@ const Org = (props) => {
 
       <div className="row">
         <div className="col-6">
-          <h2 className="pv-page-title">{i18n.ct} {i18n.book} </h2>
+          <h2 className="pv-page-title">{title}</h2>
         </div>
         <div className="col-6">
           <AddNew
             title={title}
             openForm={props.openForm}
+            importModal={ImportAction.organization}
           />
         </div>
       </div>

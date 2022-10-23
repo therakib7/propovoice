@@ -268,7 +268,7 @@ class Invoice extends Component {
                         <AddNew
                             title={title}
                             openForm={() => this.newInvoie()}
-                            importData={ImportAction[1].invoice}
+                            importModal={ImportAction.invoice}
 
                         />
                     </div>
