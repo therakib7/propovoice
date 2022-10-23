@@ -5,6 +5,7 @@ import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
+import ImportAction from "../../../block/add-new/ImportAction"
 
 import Form from './Form';
 import Table from './Table';
@@ -32,6 +33,7 @@ const Contact = (props) => {
           <AddNew
             title={title}
             openForm={props.openForm}
+            importModal={ImportAction.person}
           />
         </div>
       </div>

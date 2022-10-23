@@ -1,4 +1,4 @@
- 
+
 import { useEffect, Suspense, lazy } from "react";
 import Spinner from 'block/preloader/spinner';
 const Template1 = lazy(() => import('./tmpl/1'));
@@ -16,8 +16,8 @@ export default (props) => {
 
     useEffect(() => {
         document.documentElement.style.setProperty('--pv-inv-primary', props.data.invoice.style.primary_color);
-        
-        window.addEventListener('resize', updateDimensions);   
+
+        window.addEventListener('resize', updateDimensions);
         return () => {
             window.removeEventListener('resize', updateDimensions);
         }
@@ -35,14 +35,18 @@ export default (props) => {
         }
     }
 
-    const id = props.data.invoice.template; 
+    const id = props.data.invoice.template;
     return (
-        <Suspense fallback={<Spinner />}> 
+        <Suspense fallback={<Spinner />}>
             <style>{"@media print { body {--pv-inv-primary: " + props.data.invoice.style.primary_color + "} } "}</style>
             {id == 1 && <Template1 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
             {id == 2 && <Template2 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
             {id == 3 && <Template3 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
             {id == 4 && <Template4 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
+            {id == 5 && <Template5 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
+            {id == 6 && <Template6 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
+            {id == 7 && <Template7 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
+            {id == 8 && <Template8 {...props} height={props.height} isPrvwLoad={isPrvwLoad} />}
         </Suspense>
     )
 } 

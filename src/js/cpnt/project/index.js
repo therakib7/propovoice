@@ -3,6 +3,7 @@ import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Pagination from 'block/pagination';
+import ImportAction from "../../block/add-new/ImportAction"
 import Preloader from 'block/preloader/table';
 
 import Form from './Form';
@@ -29,6 +30,8 @@ const Project = (props) => {
           <AddNew
             title={title}
             openForm={props.openForm}
+            importModal={ImportAction.project}
+
           />
         </div>
       </div>

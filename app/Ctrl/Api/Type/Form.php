@@ -6,19 +6,19 @@ use Ndpv\Model\Form as ModelForm;
 class Form
 { 
     public function __construct()
-    {         
+    {
         add_action('rest_api_init', [$this, 'rest_routes']);
     }
 
     public function rest_routes()
-    { 
+    {
         register_rest_route('ndpv/v1', '/forms', [
             [
                 'methods' => 'GET',
                 'callback' => [$this, 'get'],
                 'permission_callback' => [$this, 'get_per'],
-            ] 
-        ]); 
+            ]
+        ]);
     }
 
     public function get($req)
@@ -40,13 +40,13 @@ class Form
         } else if ( $form == 'fluent_forms' ) {
             $data = $model->fluent_forms();
         }
-        
+
         wp_send_json_success( $data );
-    } 
+    }
 
     // check permission
     public function get_per()
     {
         return true;
-    } 
+    }
 }
