@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  * Plugin URI: https://wordpress.org/plugins/propovoice
  * Author: Propovoice
  * Author URI: https://propovoice.com
- * Version: 1.0.1.7
+ * Version: 1.0.1.8
  * Description: Lead, Deal, Estimate, Invoice, Billing, Client, Project Automation
  * Text Domain: propovoice
  * Domain Path: /languages
@@ -27,4 +27,4 @@ if ( !class_exists('Ndpv') ) {
     }
 
     require_once plugin_dir_path(__FILE__) . 'app/Ndpv.php';
-} 
+}
