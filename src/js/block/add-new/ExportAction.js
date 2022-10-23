@@ -21,7 +21,6 @@ export default {
         other: 'Other',
         Notes: 'Notes',
         Street: 'Street',
-        Street2: 'Street2',
         Country: 'Country',
         Currency: 'Currency',
         City: 'City',
