@@ -1,20 +1,5 @@
-import React, { useRef, useCallback, useState } from 'react';
-import useClickOutside from 'block/outside-click';
 
 export default (props) => {
-
-    const dropdownRef = useRef();
-    const [dropdown, setDropdown] = useState(false);
-    const close = useCallback(() => setDropdown(false), []);
-    useClickOutside(dropdownRef, close);
-
-    /* const showDropdown = () => {
-        if (dropdown) {
-            setDropdown(false);
-        } else {
-            setDropdown(true);
-        }
-    }; */
 
     return (
         <div className="pv-table-action pv-mb-10">

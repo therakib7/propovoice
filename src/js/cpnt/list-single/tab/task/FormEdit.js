@@ -29,7 +29,6 @@ export default class Form extends Component {
       dropdown: null,
     };
     this.timeout = 0;
-
   }
 
   myRef = React.createRef();
@@ -165,14 +164,14 @@ export default class Form extends Component {
   updateGoogleMeet = (link) => {
     let form = { ...this.state.form };
 
-    this.setState({ form: { ...form, google_meet: link } })
+    this.setState({ form: { ...form, google_meet: link } });
 
     delete form.priority_id;
     delete form.status_id;
     delete form.type_id;
 
-    api.edit("tasks", form.id, form)
-  }
+    api.edit("tasks", form.id, form);
+  };
 
   generateGoogleMeetLink = async () => {
     const form = this.state.form;
@@ -204,7 +203,6 @@ export default class Form extends Component {
     };
 
     createEvent(eventData, this.updateGoogleMeet);
-
   };
 
   render() {
@@ -347,11 +345,11 @@ export default class Form extends Component {
                     value={form.google_meet}
                     onChange={this.handleChange}
                   />
-                  {form.google_meet && (
-                    <a href={form.google_meet} id="google_meet">
-                      {form.google_meet}
-                    </a>
-                  )}
+                  {/* {form.google_meet && ( */}
+                  {/*   <a href={form.google_meet} id="google_meet"> */}
+                  {/*     {form.google_meet} */}
+                  {/*   </a> */}
+                  {/* )} */}
                   {!wage.length && (
                     <div className="pv-buttons pv-mt-15">
                       <button

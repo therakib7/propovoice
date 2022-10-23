@@ -64,29 +64,29 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['actions']: actions } });
     }
 
-    componentDidMount() {
-        api.get('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
-            if (resp.data.success) {
-                if (this.state.form.stage_id) {
-                    this.setState({
-                        stages: resp.data.data.deal_stage,
-                        tags: resp.data.data.tag,
-                    });
-                } else {
-                    let form = { ...this.state.form }
-                    form.stage_id = resp.data.data.deal_stage[0];
-                    this.setState({
-                        form,
-                        stages: resp.data.data.deal_stage,
-                        tags: resp.data.data.tag,
-                    });
-                }
-            }
-        });
+    // componentDidMount() {
+    //     api.get('taxonomies', 'taxonomy=deal_stage,tag').then(resp => {
+    //         if (resp.data.success) {
+    //             if (this.state.form.stage_id) {
+    //                 this.setState({
+    //                     stages: resp.data.data.deal_stage,
+    //                     tags: resp.data.data.tag,
+    //                 });
+    //             } else {
+    //                 let form = { ...this.state.form }
+    //                 form.stage_id = resp.data.data.deal_stage[0];
+    //                 this.setState({
+    //                     form,
+    //                     stages: resp.data.data.deal_stage,
+    //                     tags: resp.data.data.tag,
+    //                 });
+    //             }
+    //         }
+    //     });
 
-        //added this multiple place, because not working in invoice single
-        this.editData();
-    }
+    //     //added this multiple place, because not working in invoice single
+    //     this.editData();
+    // }
 
     componentDidUpdate() {
         this.editData();
@@ -147,8 +147,8 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{title} {i18n.deal}</h2>
-                        <p>{sprintf(i18n.formDesc, i18n.deal)}</p>
+                        <h2 className="pv-modal-title">{title} {i18n.imp}</h2>
+                        <p>{sprintf(i18n.formDesc, i18n.exp)}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">

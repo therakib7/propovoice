@@ -8,25 +8,17 @@ const Action = (props) => {
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
-    const showDropdown = () => {
-        if (dropdown) {
-            setDropdown(false);
-        } else {
-            setDropdown(true);
-        }
-    };
-
     const row = props.row;
     const i18n = ndpv.i18n;
     return (
         <div className="pv-action-content pv-action-btn pv-bg-shadow">
-            <button className={(dropdown ? 'dpv-active' : '')} onClick={() => showDropdown()}>
+            <button className={(dropdown ? 'dpv-active' : '')} onClick={() => setDropdown(val => !val)}>
                 <svg
                     width={20}
                     height={20}
                     viewBox="0 0 22 13"
                     fill="none"
-                    
+
                 >
                     <path
                         fillRule="evenodd"

@@ -122,7 +122,7 @@ export default class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label>
-                                            {i18n.active} 
+                                            {i18n.act} 
                                         </label>
                                         <div className="pv-field-switch pv-ml-10">
                                             <label className='pv-switch'>

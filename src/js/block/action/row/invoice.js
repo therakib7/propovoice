@@ -11,19 +11,11 @@ export default (props) => {
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
-    const showDropdown = () => {
-        if (dropdown) {
-            setDropdown(false);
-        } else {
-            setDropdown(true);
-        }
-    };
-
     const row = props.row;
     const i18n = ndpv.i18n;
     return (
         <div className="pv-action-content">
-            <button className={(dropdown ? 'pv-active' : '')} onClick={() => showDropdown()} style={{ padding: '0 5px' }} >
+            <button className={(dropdown ? 'pv-active' : '')} onClick={() => setDropdown(val => !val)} style={{ padding: '0 5px' }} >
                 <Edit />
             </button>
 
