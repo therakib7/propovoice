@@ -42,14 +42,6 @@ export default (props) => {
 		});
 	}
 
-	const showDropdown = () => {
-		if (dropdown) {
-			setDropdown(false);
-		} else {
-			setDropdown(true);
-		}
-	};
-
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
 		setModal(true);
@@ -97,7 +89,7 @@ export default (props) => {
 		<>
 			<span
 				className="pv-list"
-				onClick={() => showDropdown()}
+				onClick={() => setDropdown(val => !val)}
 			>
 
 				{!props.data && i18n.select + ' ' + i18n.rec}

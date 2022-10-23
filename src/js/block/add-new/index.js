@@ -19,14 +19,6 @@ export default (props) => {
 
     }, []);
 
-    const showDropdown = () => {
-        if (dropdown) {
-            setDropdown(false);
-        } else {
-            setDropdown(true);
-        }
-    };
-
     const ImportExport = (e, type) => {
         e.preventDefault();
         setDropdown(false);
@@ -74,7 +66,7 @@ export default (props) => {
             {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button
                     className="pv-bg-stroke pv-bg-shadow"
-                    onClick={() => showDropdown()}
+                    onClick={() => setDropdown(val => !val)}
                 >
                     <Edit />
                 </button>

@@ -4,7 +4,7 @@ import { sprintf } from 'sprintf-js';
 import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
-import api from 'api'; 
+import api from 'api';
 
 export default class Form extends Component {
     constructor(props) {
@@ -77,7 +77,7 @@ export default class Form extends Component {
         this.setState({ form });
     }
 
-    componentDidMount() { 
+    componentDidMount() {
 
         //find person
         let args = {
@@ -159,7 +159,7 @@ export default class Form extends Component {
             this.props.reload();
         } else {
             this.props.handleSubmit(form);
-        } 
+        }
     }
 
     handleContactChange = (val, type) => {
@@ -194,9 +194,9 @@ export default class Form extends Component {
         this.setState({ form });
     }
 
-    render() {  
+    render() {
 
-        const form = this.state.form; 
+        const form = this.state.form;
         const i18n = ndpv.i18n;
 
         const modalType = this.props.modalType == 'new' ? i18n.new : i18n.edit;
@@ -286,7 +286,7 @@ export default class Form extends Component {
                                             title={i18n.level}
                                             onChange={this.handleLevelChange}
                                             color
-                                        /> 
+                                        />
                                     </div>
 
                                     <div className="col-md">
@@ -297,12 +297,12 @@ export default class Form extends Component {
                                         <div className="pi-field-multi">
                                             <Taxonomy
                                                 onChange={this.handleTagChange}
-                                                data={form.tags} 
+                                                data={form.tags}
                                                 taxonomy='tag'
                                                 title={i18n.tag}
                                                 multi
                                             />
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
 
