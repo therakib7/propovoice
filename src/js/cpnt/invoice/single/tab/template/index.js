@@ -34,7 +34,7 @@ export default (props) => {
         {
             id: 6,
             pro: true,
-            est_src: "https://i.imgur.com/HDr45Bh.png",
+            est_src: "https://i.imgur.com/mfesVzN.png",
             inv_src: "https://i.imgur.com/OFq1zs8.png",
         },
         {
