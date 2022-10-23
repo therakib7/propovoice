@@ -1340,10 +1340,11 @@ html {
 .ndpv .pv-info-table-content .pv-info-table tbody tr td .pv-field-checkbox {
   margin-bottom: 0;
 }
-.pv-grid-tmp {
+.pv-import-from-gird {
     display: grid;
     grid-template-columns: repeat(auto-fit, 125px);
     justify-content: space-between;
+    margin-bottom: 50px;
 }
 .ndpv .pv-info-table-content .pv-info-table tbody tr td input[type=number] {
   font-size: 14px;
@@ -5744,7 +5745,7 @@ select {
 .ndpv .pv-form-style-one .row>div {
   margin-bottom: 20px;
 }
-.pv-grid-tmp {
+.pv-import-from-gird {
     display: grid;
     grid-template-columns: repeat(auto-fit, 125px);
     justify-content: space-between;
