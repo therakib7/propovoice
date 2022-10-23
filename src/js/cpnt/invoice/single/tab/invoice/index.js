@@ -494,7 +494,6 @@ class Invoice extends Component {
 		}).format(amount))
 	}
 
-
 	setActiveTab(e, id, index) {
 		e.preventDefault();
 
@@ -863,6 +862,7 @@ class Invoice extends Component {
 						</div>
 
 						{(currentTab == 'template') && <Template
+							path={this.props.path}
 							currentTemplate={invoice.template}
 							changeHandler={this.handleTemplateChange}
 						/>}
