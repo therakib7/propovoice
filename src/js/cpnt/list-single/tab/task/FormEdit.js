@@ -150,8 +150,14 @@ export default class Form extends Component {
   };
 
   getContactEmail = async () => {
-    return api.getS("contacts", this.props.tab_id).then((resp) => {
-      return resp.data.data.person.email;
+    const url = location.href;
+    const endpoint = url.includes("lead") ? "leads" : "contacts";
+    return api.getS(endpoint, this.props.tab_id).then((resp) => {
+      return resp.data.data.person
+        ? resp.data.data.person.email
+        : resp.data.data.org
+        ? resp.data.data.org.email
+        : "";
     });
   };
 

@@ -70,7 +70,7 @@ async function handleSignIn(myRequest) {
   await getOAuth2Data();
   loadScript("gapi", "https://apis.google.com/js/api.js", gapiLoaded);
   loadScript("gsi", "https://accounts.google.com/gsi/client", gisLoaded);
-  await wait(1000);
+  await wait(300);
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
       throw resp;
