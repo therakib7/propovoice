@@ -123,8 +123,8 @@ class I18n
             "req" => esc_html__("Request", "propovoice"),
             //form
             /* translators: %s: Add, Edit %s: Module Name */
-            "formDesc" => esc_html__("%s %s from here", "propovoice"),
-            "payDesc" => esc_html__("Add payment info from here", "propovoice"),
+            "formDesc" => esc_html__("%s %s here", "propovoice"),
+            "payDesc" => esc_html__("Add payment info here", "propovoice"),
             "create" => esc_html__("Create", "propovoice"),
             "icon" => esc_html__("Icon", "propovoice"),
             "text" => esc_html__("Text", "propovoice"),
