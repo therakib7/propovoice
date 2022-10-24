@@ -29,9 +29,7 @@ class Setting
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
-        $tab = isset($param["tab"])
-            ? sanitize_text_field($param["tab"])
-            : null;
+        $tab = isset($param["tab"]) ? sanitize_text_field($param["tab"]) : null;
 
         if (empty($tab)) {
             $reg_errors->add(
@@ -299,30 +297,6 @@ class Setting
                 }
             }
 
-            if ($tab == "google_api_calendar") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["client_id"] = "";
-                    $data["client_secret"] = "";
-                    $data["redirect_uri"] = "";
-                }
-            }
-
-            if ($tab == "google_api_drive") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["client_id"] = "";
-                    $data["client_secret"] = "";
-                    $data["redirect_uri"] = "";
-                }
-            }
-
             if ($tab == "automation_zapier") {
                 $option = get_option("ndpv_" . $tab);
 
@@ -330,8 +304,8 @@ class Setting
                     $data = $option;
                 } else {
                     $data["status"] = false;
-                    $data["name"] = '';
-                    $data["url"] = '';
+                    $data["name"] = "";
+                    $data["url"] = "";
                     $data["actions"] = [
                         /* [
                             "id" => "new_lead",
@@ -339,7 +313,7 @@ class Setting
                             "custom" => false,
                             "name" => '',
                             "url" => ''
-                        ], */ 
+                        ], */
                     ];
                 }
             }
@@ -353,9 +327,7 @@ class Setting
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
-        $tab = isset($param["tab"])
-            ? sanitize_text_field($param["tab"])
-            : null;
+        $tab = isset($param["tab"]) ? sanitize_text_field($param["tab"]) : null;
 
         if (empty($tab)) {
             $reg_errors->add(
@@ -556,35 +528,7 @@ class Setting
                 update_option("ndpv_" . $tab, $data);
             }
 
-            if ($tab == "google_api_calendar") {
-                //Check valid key here
-                $data["client_id"] = isset($param["client_id"])
-                    ? sanitize_text_field($param["client_id"])
-                    : null;
-                $data["client_secret"] = isset($param["client_secret"])
-                    ? sanitize_text_field($param["client_secret"])
-                    : null;
-                $data["redirect_uri"] = isset($param["redirect_uri"])
-                    ? sanitize_text_field($param["redirect_uri"])
-                    : null;
-                update_option("ndpv_" . $tab, $data);
-            }
-
-            if ($tab == "google_api_drive") {
-                //Check valid key here
-                $data["client_id"] = isset($param["client_id"])
-                    ? sanitize_text_field($param["client_id"])
-                    : null;
-                $data["client_secret"] = isset($param["client_secret"])
-                    ? sanitize_text_field($param["client_secret"])
-                    : null;
-                $data["redirect_uri"] = isset($param["redirect_uri"])
-                    ? sanitize_text_field($param["redirect_uri"])
-                    : null;
-                update_option("ndpv_" . $tab, $data);
-            }
-
-            if ($tab == "automation_zapier") { 
+            if ($tab == "automation_zapier") {
                 $data["status"] = isset($param["status"])
                     ? rest_sanitize_boolean($param["status"])
                     : null;
@@ -598,7 +542,7 @@ class Setting
                     ? $param["actions"]
                     : null;
                 update_option("ndpv_" . $tab, $data);
-            }  
+            }
 
             wp_send_json_success();
         }
