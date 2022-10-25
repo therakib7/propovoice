@@ -3188,7 +3188,7 @@ ul {
 }
 
 .ndpi .pi-modal-content .pi-content {
-  overflow: auto;
+  //overflow: auto;
   padding: 30px 50px 0px;
 }
 
@@ -3567,6 +3567,7 @@ ul {
 .ndpi .pi-modal-sidebar .pi-content {
   padding: 20px 35px 15px;
   height: calc(100vh - 219px);
+
 }
 
 @media screen and (max-width: 992px) {

@@ -1340,12 +1340,14 @@ html {
 .ndpv .pv-info-table-content .pv-info-table tbody tr td .pv-field-checkbox {
   margin-bottom: 0;
 }
+
 .pv-import-from-gird {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 125px);
-    justify-content: space-between;
-    margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 125px);
+  justify-content: space-between;
+  margin-bottom: 50px;
 }
+
 .ndpv .pv-info-table-content .pv-info-table tbody tr td input[type=number] {
   font-size: 14px;
 }
@@ -3217,7 +3219,6 @@ ul {
 }
 
 .ndpv .pv-modal-content .pv-content {
-  overflow: auto;
   padding: 30px 50px 0px;
 }
 
@@ -3596,6 +3597,7 @@ ul {
 .ndpv .pv-modal-sidebar .pv-content {
   padding: 20px 35px 15px;
   height: calc(100vh - 219px);
+  overflow: hidden;
 }
 
 @media screen and (max-width: 992px) {
@@ -5745,10 +5747,11 @@ select {
 .ndpv .pv-form-style-one .row>div {
   margin-bottom: 20px;
 }
+
 .pv-import-from-gird {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 125px);
-    justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 125px);
+  justify-content: space-between;
 }
 
 .ndpv .pv-form-style-one .row>div:nth-child(odd) {
