@@ -6,11 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2022-10-24 04:25+0000\n"
-=======
-"POT-Creation-Date: 2022-10-25 06:54+0000\n"
->>>>>>> 11aab5edc6a9cc0629d9b4994326f54dc655cd19
+"POT-Creation-Date: 2022-10-25 10:57+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -1123,7 +1119,7 @@ msgstr ""
 msgid "Name is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:182, ../app/Ctrl/Api/Type/Deal.php:364, ../app/Ctrl/Api/Type/Deal.php:506, ../app/Ctrl/Api/Type/Lead.php:286, ../app/Ctrl/Api/Type/Lead.php:384, ../app/Ctrl/Api/Type/Project.php:317, ../app/Ctrl/Api/Type/Project.php:460
+#: ../app/Ctrl/Api/Type/Client.php:182, ../app/Ctrl/Api/Type/Deal.php:364, ../app/Ctrl/Api/Type/Deal.php:506, ../app/Ctrl/Api/Type/Lead.php:287, ../app/Ctrl/Api/Type/Lead.php:386, ../app/Ctrl/Api/Type/Project.php:317, ../app/Ctrl/Api/Type/Project.php:460
 msgid "Contact info is missing"
 msgstr ""
 

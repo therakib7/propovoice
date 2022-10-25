@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
+import Upload from 'block/field/upload';
 import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
@@ -26,6 +27,7 @@ export default class Form extends Component {
             currency: 'USD',
             desc: '',
             note: '',
+            img: '',
             date: false,
         };
 
@@ -119,10 +121,12 @@ export default class Form extends Component {
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
+                    form.img = (form.person) ? form.person.img : '';
                 } else {
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
+                    form.img = (form.org) ? form.org.img : '';
                 }
                 form.org_name = (form.org) ? form.org.name : '';
 
@@ -144,6 +148,10 @@ export default class Form extends Component {
 
         if (form.level_id) {
             form.level_id = form.level_id.id;
+        }
+
+        if (form.img) {
+            form.img = form.img.id;
         }
 
         if (form.tags.length) {
@@ -192,6 +200,12 @@ export default class Form extends Component {
         }
 
         this.setState({ form });
+    }
+
+    handleImgChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.img = data;
+        this.setState({ form })
     }
 
     render() {
@@ -335,6 +349,16 @@ export default class Form extends Component {
                                             value={form.note}
                                             onChange={(e) => this.handleChange(e, 'lead')}
                                         />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label
+                                            htmlFor="field-img">
+                                            {i18n.img}
+                                        </label>
+                                        <Upload data={form.img} changeHandler={this.handleImgChange} />
                                     </div>
                                 </div>
                             </div>

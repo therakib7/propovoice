@@ -7,48 +7,44 @@ export default (props) => {
     const [templates, setTemplates] = useState([
         {
             id: 1,
-            est_src: "https://i.imgur.com/3F9QVs5.png",
-            inv_src: "https://i.imgur.com/qcNMVlu.png",
+            est_src: "estimate-1.png",
+            inv_src: "invoice-1.png",
         },
         {
             id: 2,
-            est_src: "https://i.imgur.com/W7QDHol.png",
-            inv_src: "https://i.imgur.com/9HjqPbG.png",
+            est_src: "estimate-2.png",
+            inv_src: "invoice-2.png",
         },
         {
             id: 3,
-            est_src: "https://i.imgur.com/x4XkIol.png",
-            inv_src: "https://i.imgur.com/BtYY1Rm.png",
+            est_src: "estimate-3.png",
+            inv_src: "invoice-3.png",
         },
         {
             id: 4,
-            est_src: "https://i.imgur.com/qNU51PK.png",
-            inv_src: "https://i.imgur.com/vQFsDNR.png",
+            est_src: "estimate-4.png",
+            inv_src: "invoice-4.png",
         },
         {
             id: 5,
-            pro: true,
-            est_src: "https://i.imgur.com/ra60QyF.png",
-            inv_src: "https://i.imgur.com/8I6gNrg.png",
+            est_src: "estimate-5.png",
+            inv_src: "invoice-5.png",
         },
         {
             id: 6,
-            pro: true,
-            est_src: "https://i.imgur.com/mfesVzN.png",
-            inv_src: "https://i.imgur.com/OFq1zs8.png",
+            est_src: "estimate-6.png",
+            inv_src: "invoice-6.png",
         },
         {
             id: 7,
-            pro: true,
-            est_src: "https://i.imgur.com/YpIokrt.png",
-            inv_src: "https://i.imgur.com/rdJ59VG.png",
+            est_src: "estimate-7.png",
+            inv_src: "invoice-7.png",
         },
         {
             id: 8,
-            pro: true,
-            est_src: "https://i.imgur.com/AreTVLr.png",
-            inv_src: "https://i.imgur.com/fN2h2jD.png",
-        },
+            est_src: "estimate-8.png",
+            inv_src: "invoice-8.png",
+        }
     ]);
 
     useEffect(() => {
@@ -66,6 +62,8 @@ export default (props) => {
     }
 
     const i18n = ndpv.i18n;
+
+    const assetPath = ndpv.assetImgUri + 'tmpl/';
     return (
         <div id="pv-tab-template" className="pv-invoice-tab-content">
             <h2 className='pv-page-title'>{i18n.select} {i18n.tmpl}</h2>
@@ -74,7 +72,7 @@ export default (props) => {
                     return (
                         <div className="col-12 col-md-6 col-lg-3" key={index}>
                             <div className='pv-single-image-content'>
-                                <img src={props.path == 'invoice' ? row.inv_src : row.est_src} className={'pv-single-image ' + (props.currentTemplate == row.id ? 'pv-active' : '')} />
+                                <img src={props.path == 'invoice' ? assetPath + row.inv_src : assetPath + row.est_src} className={'pv-single-image ' + (props.currentTemplate == row.id ? 'pv-active' : '')} />
                                 {(props.currentTemplate != row.id) && <div className="pv-overflow-content">
                                     <a className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue" onClick={() => selectEntry(row)}>{i18n.select} {row.pro && <ProLabel blueBtn />}</a>
                                     <a

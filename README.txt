@@ -1,5 +1,5 @@
 === Propovoice CRM - Best CRM & Invoicing Plugin to Manage  Leads, Clients and Billings automation ===
-Contributors: Propovoice, therakib7
+Contributors: Propovoice, therakib7, nasirbinburhan
 Donate link:
 Tags: CRM, Invoice Builder, Lead Management, WP CRM, Deal Pipeline, Wordpress CRM, Free Wordpress CRM, ERP, Business Management, Business Automation, Estimate, Quotation, Lead Generation, Billing, Client Management, Project Management, Customer, Client, Free Wordpress CRM
 Requires at least: 5.0
@@ -179,6 +179,11 @@ The super fantastic pro features that accelerate your business growth and improv
 7. Settings
 
 == Changelog ==
+
+= 1.0.1.10 =
+* Added: Lead image
+* Fixed: Template loading issue 
+* Update: CSS Issue
 
 = 1.0.1.9 =
 * Added: Zapier, Publy Automation in Pro

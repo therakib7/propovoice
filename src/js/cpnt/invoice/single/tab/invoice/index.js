@@ -1087,7 +1087,7 @@ class Invoice extends Component {
 													{(!sidebarActive || sidebarActive == 'currency') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('currency')} />
 														<i />
-														<h3 className='pv-title-small'>{i18n.cur} <ProLabel /></h3>
+														<h3 className='pv-title-small'>{i18n.cur}</h3>
 														<Currency
 															{...this.props}
 															currency={invoice.currency}
