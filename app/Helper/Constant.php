@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Ndpv\Helper;
 
 class Constant
@@ -6,7 +7,7 @@ class Constant
     public function __construct()
     {
         if (!defined('NDPV_VERSION')) {
-            define('NDPV_VERSION', '1.0.1.8');
+            define('NDPV_VERSION', '1.0.1.9');
         }
 
         if (!defined('NDPV_PATH')) {
