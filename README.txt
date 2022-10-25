@@ -4,7 +4,7 @@ Donate link:
 Tags: CRM, Invoice Builder, Lead Management, WP CRM, Deal Pipeline, Wordpress CRM, Free Wordpress CRM, ERP, Business Management, Business Automation, Estimate, Quotation, Lead Generation, Billing, Client Management, Project Management, Customer, Client, Free Wordpress CRM
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 1.0.1.9
+Stable tag: 1.0.1.10
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -182,11 +182,12 @@ The super fantastic pro features that accelerate your business growth and improv
 
 = 1.0.1.10 =
 * Added: Lead image
-* Fixed: Template loading issue 
+* Update: Deal View
+* Fixed: Template loading issue
 * Update: CSS Issue
 
 = 1.0.1.9 =
-* Added: Zapier, Publy Automation in Pro
+* Added: Zapier, Pubbly Automation Webhook in Pro Version
 * Fixed: Functional issue
 * Fixed: Translation issue
 * Update: CSS Issue
