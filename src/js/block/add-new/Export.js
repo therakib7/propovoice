@@ -37,7 +37,7 @@ class Form extends Component {
     handleCheckbox = (e, type, slug = '') => {
         const target = e.target;
         let actions = this.state.form.actions;
-        const importModal = Object.keys(this.props.importModal);
+        const ExportModal = Object.keys(this.props.ExportModal);
 
         if (type == 'action') {
             const { value } = e.target;
@@ -49,9 +49,9 @@ class Form extends Component {
         } else if (type == 'group') {
             // const { value } = e.target;
             if (target.checked) {
-                actions = actions.concat(importModal);
+                actions = actions.concat(ExportModal);
             } else {
-                actions = actions.filter(x => !importModal.includes(x));
+                actions = actions.filter(x => !ExportModal.includes(x));
             }
         } else if (type == 'none') {
             actions = []
@@ -61,7 +61,7 @@ class Form extends Component {
     }
 
     render() {
-        const importModal = Object.keys(this.props.importModal);
+        const ExportModal = Object.keys(this.props.ExportModal);
         const i18n = ndpv.i18n;
         const form = this.state.form;
         let title = '';
@@ -80,7 +80,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {this.props.title} {i18n.exp}</h2>
-                        <p>{sprintf(i18n.formDesc,  this.props.title,  i18n.exp)}</p>
+                        <p>{sprintf(i18n.formDesc, this.props.title, i18n.exp)}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
@@ -99,7 +99,7 @@ class Form extends Component {
                                     >{'Select all'}</label>
                                 </div>
                                 <div className="pv-import-from-gird">
-                                    {importModal.map((data, i) => (
+                                    {ExportModal.map((data, i) => (
                                         <div key={i} className="pv-field-checkbox">
                                             <input
                                                 type='checkbox'

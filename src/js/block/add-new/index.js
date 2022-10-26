@@ -1,9 +1,9 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import useClickOutside from 'block/outside-click';
 import { Edit } from 'block/icon';
-// import Form from "./Export";
 import Export from "./Export";
-import Import from "./Import ";
+import ImportModal from "./ImportModal";
+// import Import from "./ImportModal";
 
 
 export default (props) => {
@@ -61,8 +61,8 @@ export default (props) => {
                 </svg>
                 {i18n.add} {props.title}
             </button>
-            {imp === true && <Import close={() => setImp(false)} importModal={props.importModal} title={props.title} />}
-            {exp === true && <Export close={() => setExp(false)} importModal={props.importModal} title={props.title} />}
+            {imp === true && <ImportModal close={() => setImp(false)} title={props.title} />}
+            {exp === true && <Export close={() => setExp(false)} ExportModal={props.ExportModal} title={props.title} />}
             {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button
                     className="pv-bg-stroke pv-bg-shadow"

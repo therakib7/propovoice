@@ -5,7 +5,7 @@ import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
-import ImportAction from "../../../block/add-new/ImportAction"
+import ExportAction from "../../../block/add-new/ExportAction"
 
 import Form from './Form';
 import Table from './Table';
@@ -33,7 +33,7 @@ const Contact = (props) => {
           <AddNew
             title={title}
             openForm={props.openForm}
-            importModal={ImportAction.person}
+            ExportModal={ExportAction.person}
           />
         </div>
       </div>
@@ -45,7 +45,7 @@ const Contact = (props) => {
             height={20}
             viewBox="0 0 20 20"
             fill="none"
-            
+
           >
             <path
               d="M7.5 5H16.875"
@@ -97,7 +97,7 @@ const Contact = (props) => {
             height={20}
             viewBox="0 0 20 20"
             fill="none"
-            
+
           >
             <path
               d="M17.5 4.375H2.5C2.15482 4.375 1.875 4.65482 1.875 5V6.875C1.875 7.22018 2.15482 7.5 2.5 7.5H17.5C17.8452 7.5 18.125 7.22018 18.125 6.875V5C18.125 4.65482 17.8452 4.375 17.5 4.375Z"

@@ -59,6 +59,22 @@ export default {
         Postal: 'Postal Code',
 
     },
+    client: {
+        Email: 'Email',
+        Company: 'Company',
+        Mobile: 'Mobile',
+        Website: 'Website',
+        Other: 'Other',
+        Notes: 'Notes',
+        Street: 'Street',
+        // Street2: 'Street2',
+        // Country: 'Country',
+        // Currency: 'Currency',
+        // City: 'City',
+        State: 'State',
+        Postal: 'Postal Code',
+
+    },
     project: {
         Title: 'Title',
         Person: ' Person',
