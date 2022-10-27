@@ -254,7 +254,7 @@ export default (props) => {
 				modalType={modalType}
 				reload={getData}
 				data={form}
-				color
+				color={props.color}
 				close={() => setModal(false)}
 			/>}
 		</>

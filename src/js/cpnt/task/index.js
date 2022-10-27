@@ -8,11 +8,11 @@ export default (props) => {
   return (
     <div className="ndpv-cpnt">
       <Breadcrumb title={ndpv.i18n.taska} />
-      {/* <div className="row">
-					<div className="col-lg">
-						<h2 className="pv-page-title">{i18n.taska}</h2>
-					</div>
-				</div> */}
+      <div className="row">
+        <div className="col-lg">
+          <h2 className="pv-page-title">{i18n.taska}</h2>
+        </div>
+      </div>
 
       <div className="row">
         <div className="col-lg-12">
