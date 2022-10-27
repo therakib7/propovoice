@@ -15,8 +15,8 @@ class AssetCtrl
         $this->suffix  = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
         $this->version = (defined('WP_DEBUG') && WP_DEBUG) ? time() : ndpv()->version(); 
 
-        add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 999);
-        add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
+        add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 9999);
+        add_action('admin_enqueue_scripts', array($this, 'admin_scripts'), 9999);
 
         //remove thank you text from propovoice dashboard
         if (isset($_GET['page']) && $_GET['page'] == 'ndpv') {
@@ -156,8 +156,8 @@ class AssetCtrl
     {
         $this->admin_public_script();
         $this->dashboard_script();
-    }  
-     
+    }
+
     /**
      * Enqueue feedback dialog scripts.
      *
