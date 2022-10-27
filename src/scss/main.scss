@@ -5687,7 +5687,7 @@ body {
   cursor: pointer;
   border: none;
   font-size: 14px;
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
 }
 
@@ -5750,7 +5750,21 @@ select {
     grid-template-columns: repeat(auto-fit, 125px);
     justify-content: space-between;
 }
-
+.pv-upload-file {
+    border: dashed 1px #4c6fff;
+    padding: 60px 200px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+a {
+    color: #4064f8;
+    font-weight: 500;
+}
+.pv-import-map {
+    text-align: right;
+    margin-top: 25px;
+}
 .ndpv .pv-form-style-one .row>div:nth-child(odd) {
   margin-right: 30px;
 }

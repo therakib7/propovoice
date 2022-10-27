@@ -61,7 +61,7 @@ export default (props) => {
                 </svg>
                 {i18n.add} {props.title}
             </button>
-            {imp === true && <ImportModal close={() => setImp(false)} title={props.title} />}
+            {imp === true && <ImportModal close={() => setImp(false)} ExportModal={props.ExportModal} title={props.title} />}
             {exp === true && <Export close={() => setExp(false)} ExportModal={props.ExportModal} title={props.title} />}
             {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
                 <button

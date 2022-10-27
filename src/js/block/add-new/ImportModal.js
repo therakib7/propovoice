@@ -16,7 +16,7 @@ const ImportModal = (props) => {
         e.preventDefault();
         const value = e.target.value;
         setArray1(value)
-        
+
     }
     const csvFileToArray = string => {
         const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
@@ -68,7 +68,7 @@ const ImportModal = (props) => {
     const data = Object.values(Object.assign({}, ...array));
     const headerKeys = Object.keys(Object.assign({}, ...array));
     console.log(data)
-
+    const ExportModal = Object.keys(props.ExportModal);
     const i18n = ndpv.i18n;
     return (
         <div className="pv-overlay pv-show">
@@ -83,16 +83,16 @@ const ImportModal = (props) => {
                 <form  >
                     <div className="pv-content">
                         <div className="pv-form-style-one">
-                            <div style={{ textAlign: "center" }}>
-                                <form>
-                                    <input
-                                        type={"file"}
-                                        id={"csvFileInput"}
-                                        accept={".csv"}
-                                        onChange={handleOnChange}
-                                        className="d-none"
-                                    />
-                                    <label htmlFor="csvFileInput" className= ' pv-btn pv-bg-stroke pv-bg-hover-stroke  '>
+
+                            <div className="pv-upload-file">
+                                <input
+                                    type={"file"}
+                                    id={"csvFileInput"}
+                                    accept={".csv"}
+                                    onChange={handleOnChange}
+                                    className="d-none"
+                                />
+                                <label htmlFor="csvFileInput" className=' pv-btn pv-bg-stroke pv-bg-hover-stroke  '>
                                     <svg
                                         width={25}
                                         height={25}
@@ -108,66 +108,70 @@ const ImportModal = (props) => {
                                             strokeLinejoin="round"
                                         />
                                     </svg>
-                                        Choose File
-                                    </label>
+                                    Click to upload File
+                                </label>
+                            </div>
+                            <div className="pv-import">
+                                <div className="pv-sample-file">
+                                    <a style={{ color: 'rgb(54 91 243)', fontWeight: '500' }} href="#">Download sample file</a>
+                                    {!file && <p>Please make sure your csv file has unique headers.Otherwise, it may fail to import</p>}
+                                </div>
+                                <div className="pv-import-map">
                                     <button
                                         className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
                                         onClick={(e) => {
                                             handleOnSubmit(e);
                                         }}
                                     >
-                                        {props.title} {i18n.imp}
+                                        {/* {props.title} {i18n.imp} */}
+                                        Next [Map Columns]
                                     </button>
-                                </form>
-                                <br />
-                                <div className='pv-table-wrap'>
-                                    <table className='pv-table'>
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                </th>
-                                                <th >
-                                                    Form Field
-                                                </th>
-                                                <th>
-                                                    {props.title + ' ' + i18n.fields}
-                                                </th>
-                                                <th>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {headerKeys.map((sitem, si) => (
-                                                <tr key={si}>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                        {sitem}
-                                                    </td>
-                                                    <td>
-
-                                                        <select
-                                                            style={{ lineHeight: '106%' }}
-                                                            // name="lead_field"
-                                                            // value={array1}
-                                                            onChange={(e) => {valueSate(e)}}
-                                                        >
-                                                            {data.map((val, i) => <option key={i} value={val}>{val}</option>)}
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
-
-
+                            <br />
+                            {file && <div className='pv-table-wrap pv-mb-20'>
+                                <table className='pv-table'>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                            </th>
+                                            <th >
+                                                Form Field
+                                            </th>
+                                            <th>
+                                                {props.title + ' ' + i18n.fields}
+                                            </th>
+                                            <th>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {headerKeys.map((sitem, si) => (
+                                            <tr key={si}>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                    {sitem}
+                                                </td>
+                                                <td>
+                                                    <select
+                                                        style={{ lineHeight: '106%' }}
+                                                        // name="lead_field"
+                                                        onChange={(e) => { valueSate(e) }}
+                                                    >
+                                                        {ExportModal.map((val, i) => <option key={i} value={val}>{val}</option>)}
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>}
                         </div>
                     </div>
-                    <div className="pv-modal-footer">
+                    {file && <div className="pv-modal-footer">
                         <div className="row">
                             <div className="col">
                                 <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
@@ -178,7 +182,7 @@ const ImportModal = (props) => {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div>}
                 </form>
             </div>
         </div>

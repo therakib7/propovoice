@@ -44,7 +44,7 @@ class Form extends Component {
             if (target.checked) {
                 actions.push(value);
             } else {
-                actions.splice(actions.indexOf(value), 1);
+                actions.splice(actions.indexOf(value));
             }
         } else if (type == 'group') {
             // const { value } = e.target;
@@ -65,13 +65,6 @@ class Form extends Component {
         const i18n = ndpv.i18n;
         const form = this.state.form;
         let title = '';
-        if (this.props.modalType == 'new') {
-            title = i18n.new
-        } else if (this.props.modalType == 'edit') {
-            title = i18n.edit
-        } else if (this.props.modalType == 'move') {
-            title = i18n.moveto
-        }
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -103,13 +96,13 @@ class Form extends Component {
                                         <div key={i} className="pv-field-checkbox">
                                             <input
                                                 type='checkbox'
-                                                id={1}
+                                                id={data}
                                                 name='action'
                                                 value={data}
                                                 checked={form.actions.includes(data) ? 'checked' : ''}
                                                 onChange={(e) => this.handleCheckbox(e, 'action')}
                                             />
-                                            <label htmlFor={1}>{data}</label>
+                                            <label htmlFor={data}>{data}</label>
                                         </div>
                                     ))
                                     }
