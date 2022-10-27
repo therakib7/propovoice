@@ -2889,7 +2889,7 @@ ul {
 }
 
 .twentytwenty-theme .pv-table input[type=checkbox] {
-  zoom: 0.8 !important;
+  zoom: 1.2 !important;
 }
 
 .twentytwenty-theme .pv-table tr th:first-child input[type=checkbox] {
@@ -2941,11 +2941,6 @@ ul {
   height: 33px !important;
 }
 
-.twentytwenty-theme input[type=checkbox] {
-  zoom: 0.6 !important;
-  position: relative;
-  top: 0px;
-}
 
 .twentytwenty-theme .pv-field-checkbox-input input[type=checkbox] {
   margin-right: 15px;
@@ -5995,7 +5990,6 @@ select {
 --------------------------------------------------------------*/
 .ndpv .pv-left-sidebar {
   width: 280px;
-  //background-color: #f7f8fa;
 }
 
 .ndpv .pv-left-sidebar .pv-logo-content {
