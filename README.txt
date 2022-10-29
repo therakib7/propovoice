@@ -181,7 +181,8 @@ The super fantastic pro features that accelerate your business growth and improv
 == Changelog ==
 
 = 1.0.3 =
-* Added: Integrated Fluent Form, Ninja Form, Make, Albato, Meet in Pro Version 
+* Added: Integrated Fluent Form, Ninja Form, Make, Albato, Meet in Pro Version
+* Fixed: Functional issue
 * Update: Translation issue
 * Update: CSS Issue
 

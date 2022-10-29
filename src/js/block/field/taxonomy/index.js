@@ -227,7 +227,12 @@ export default (props) => {
 				</button>}
 
 				{!props.multi && !listById.length && <button
-					style={{ backgroundColor: '#E2E8F0', color: '#4a5568' }}
+					ref={(n) => {
+						if (n) {
+							n.style.setProperty("background-color", '#E2E8F0', "important");
+							n.style.setProperty("color", '#4a5568', "important");
+						}
+					}}
 					className={(!props.small) ? 'pv-btn pv-btn-medium pv-bg-hover-shadow' : 'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}
 				>

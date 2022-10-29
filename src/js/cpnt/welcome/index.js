@@ -359,14 +359,11 @@ export default class Welcome extends Component {
                                         <a href={ndpv.dashboard} className="pv-text-hover-blue pv-color-black">{i18n.skip} {i18n.nd} {i18n.explore}</a>
                                     </div>
                                 </div>
-
                             }
-
                         </div>{/* ./piTabsContent */}
                     </div>{/* ./tabs-content */}
                 </div>{/* ./piContainer */}
-            </div >
-
+            </div>
         );
     }
 } 
