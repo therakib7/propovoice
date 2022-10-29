@@ -26,10 +26,10 @@ const Main = (props) => {
       id: "smtp",
       text: "SMTP",
     },
-    // {
-    //   id: "google-api",
-    //   text: "Google API",
-    // },
+    {
+      id: "google-api",
+      text: "Google API",
+    },
     {
       id: "automation",
       text: "Automation",
