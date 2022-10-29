@@ -5752,7 +5752,7 @@ select {
 }
 .pv-upload-file {
     border: dashed 1px #4c6fff;
-    padding: 60px 200px;
+    padding: 60px 0px;
     margin-bottom: 16px;
     border-radius: 8px;
     text-align: center;
@@ -5787,6 +5787,9 @@ a {
   .ndpv .pv-form-style-one .row>div:nth-child(odd) {
     margin-right: 0px;
   }
+  .pv-upload-file {
+    padding: 30px 0px;
+}
 }
 
 .ndpv select {
