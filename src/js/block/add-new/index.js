@@ -3,9 +3,6 @@ import useClickOutside from 'block/outside-click';
 import { Edit } from 'block/icon';
 import Export from "./Export";
 import ImportModal from "./ImportModal";
-// import Import from "./ImportModal";
-
-
 export default (props) => {
 
     const dropdownRef = useRef();
