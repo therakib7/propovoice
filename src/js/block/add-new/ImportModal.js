@@ -21,7 +21,6 @@ const ImportModal = (props) => {
         setArray1(value)
 
     }
-
     const csvFileToArray = string => {
         const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
         const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
@@ -37,26 +36,6 @@ const ImportModal = (props) => {
 
         setArray(array);
     };
-    // const handleChange = (e, i, si = null) => {
-    //     let singleForm = [...this.state.singleForm]
-    //     const target = e.target;
-    //     const name = target.name;
-    //     const value = target.type === 'checkbox' ? target.checked : target.value;
-    //     if (name == 'active') {
-    //         if (wage.length > 0) {
-    //             pro();
-    //             return;
-    //         }
-    //         singleForm[i].active = value;
-    //         setArray1({ singleForm }, () => {
-    //             this.submitFormData(i);
-    //         })
-    //     } else {
-    //         singleForm[i].fields[si].value = value;
-    //         setArray1({ singleForm })
-    //     }
-    // }
-
     const handleOnSubmit = (e) => {
         e.preventDefault();
 
@@ -135,7 +114,6 @@ const ImportModal = (props) => {
                                     </button>
                                 </div>
                             </div>
-
                             <br />
                             {file && <div className='pv-table-wrap pv-mb-20'>
                                 <table className='pv-table'>
