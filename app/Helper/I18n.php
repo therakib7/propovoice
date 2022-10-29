@@ -314,6 +314,10 @@ class I18n
                 "Please fill up necessary information in the form.",
                 "propovoice"
             ),
+            "fileInfo" => esc_html__(
+                "Please fill up Business info first",
+                "propovoice"
+            ),
             "bankDesc" => esc_html__(
                 "You need to mention bank details here, Like: Name, Routing No. etc",
                 "propovoice"

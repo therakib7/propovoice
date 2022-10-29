@@ -61,7 +61,7 @@ class Branding extends Component {
 			this.inputRef.current.click();
 		} else {
 			//TODO: translation
-			toast.error('Please fill up Business info first');
+			toast.error(ndpv.i18n.fileInfo);
 		}
 	};
 

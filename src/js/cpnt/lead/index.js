@@ -4,7 +4,7 @@ import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Preloader from 'block/preloader/table';
 import Pagination from 'block/pagination';
-import ImportAction from "../../block/add-new/ImportAction";
+import ExportAction from "../../block/add-new/ExportAction";
 
 import Form from './Form';
 import Table from './Table';
@@ -30,7 +30,7 @@ const Lead = (props) => {
 					<AddNew
 						title={title}
 						openForm={props.openForm}
-						importModal={ImportAction.lead}
+						ExportModal={ExportAction.lead}
 					/>
 				</div>
 			</div>
