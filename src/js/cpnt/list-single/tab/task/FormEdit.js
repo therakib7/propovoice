@@ -351,7 +351,7 @@ export default class Form extends Component {
                     value={form.google_meet}
                     onChange={this.handleChange}
                   />
-                  {this.props.tab_id && !wage.length && (
+                  {false && this.props.tab_id && !wage.length && (
                     <div className="pv-buttons pv-mt-15">
                       <button
                         className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-mr-10"

@@ -1073,14 +1073,15 @@ class Invoice extends Component {
 														/>
 													</li>}
 
-													{!this.state.wc && (!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
+													{(!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
 														<i />
 														<h3 className='pv-title-small'>{i18n.payment} {i18n.method}</h3>
 														<Payment
 															handleChange={this.onPaymentChange}
+															wc={this.state.wc}
 															data={invoice}
-														// handleSave={this.handleSave}
+														//handleSave={this.handleSave}
 														/>
 													</li>}
 
