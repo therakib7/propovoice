@@ -3005,8 +3005,14 @@ ul {
   zoom: 0.7 !important;
 }
 
+.wp-admin.twentytwentyone-theme .pv-table-action input[type=checkbox] {
+  zoom: 1 !important;
+  border-radius: 4px;
+}
+
 .twentytwentyone-theme input[type=checkbox]::after {
   border-color: blue;
+  left: 7px;
 }
 
 .twentytwentyone-theme .pv-form-accordion input[type=checkbox]::after {
