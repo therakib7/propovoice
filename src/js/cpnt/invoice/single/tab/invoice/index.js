@@ -930,7 +930,7 @@ class Invoice extends Component {
 
 														<div className="pv-info-form-list">
 															<div className="pv-info-lavel">
-																<label htmlFor="due">{i18n.due} {i18n.date}:</label>
+																<label htmlFor="due">{i18n.dueDate}:</label>
 															</div>
 															<div className="pv-info-input-field">
 																<DateField date={invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
@@ -1073,21 +1073,22 @@ class Invoice extends Component {
 														/>
 													</li>}
 
-													{!this.state.wc && (!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
+													{(!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
 														<i />
 														<h3 className='pv-title-small'>{i18n.payment} {i18n.method}</h3>
 														<Payment
 															handleChange={this.onPaymentChange}
+															wc={this.state.wc}
 															data={invoice}
-														// handleSave={this.handleSave}
+														//handleSave={this.handleSave}
 														/>
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'currency') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('currency')} />
 														<i />
-														<h3 className='pv-title-small'>{i18n.cur} <ProLabel /></h3>
+														<h3 className='pv-title-small'>{i18n.cur}</h3>
 														<Currency
 															{...this.props}
 															currency={invoice.currency}

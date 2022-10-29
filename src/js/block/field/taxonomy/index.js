@@ -66,6 +66,10 @@ export default (props) => {
 		api.get('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
+				// console.log(props.data);
+				/* if (!props.data && props.selectedFirst) {
+					handleSelect(resp.data.data[props.taxonomy][0]);
+				} */
 				if (props.id) {
 					setListById(resp.data.data['single_' + props.taxonomy]);
 				}
@@ -198,9 +202,11 @@ export default (props) => {
 
 				{!props.multi && listById.length > 0 && <button
 					className={(!props.small) ? 'pv-btn pv-btn-medium' : 'pv-btn pv-btn-small'}
-					style={{
-						backgroundColor: listById[0].bg_color,
-						color: listById[0].color
+					ref={(n) => {
+						if (n) {
+							n.style.setProperty("background-color", listById[0].bg_color, "important");
+							n.style.setProperty("color", listById[0].color, "important");
+						}
 					}}
 					onClick={(e) => showDropdown(e)}
 				>
@@ -212,7 +218,6 @@ export default (props) => {
 						className='pv-mr-0'
 						viewBox="0 0 10 6"
 						fill="none"
-
 					>
 						<path
 							d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
@@ -250,7 +255,7 @@ export default (props) => {
 				modalType={modalType}
 				reload={getData}
 				data={form}
-				color
+				color={props.color}
 				close={() => setModal(false)}
 			/>}
 		</>

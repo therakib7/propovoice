@@ -7,8 +7,8 @@ class TemplateCtrl
 	{
 		add_filter('theme_page_templates', [$this, 'template_list'], 10, 4);
 		add_filter('template_include', [$this, 'template_path']); 
-		add_action('wp_enqueue_scripts', array($this, 'wage_scripts'), 999);
-		add_action('admin_enqueue_scripts', array($this, 'wage_scripts'));
+		add_action('wp_enqueue_scripts', array($this, 'wage_scripts'), 9999);
+		add_action('admin_enqueue_scripts', array($this, 'wage_scripts'), 9999);
 	}
 
 	/**

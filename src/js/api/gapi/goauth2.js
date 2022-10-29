@@ -3,6 +3,8 @@ import api from "api";
 import { toast } from "react-toastify";
 
 let tokenClient;
+let gapiInited = false;
+let gisInited = false;
 
 const loadScript = (id, file, callAfterLoad) => {
   const script = document.createElement("script");
@@ -45,33 +47,36 @@ async function initializeGapiClient() {
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
   });
+  gapiInited = true;
 }
 
-async function gisLoaded() {
+function gisLoaded() {
   const CLIENT_ID = localStorage.getItem("g_client_id");
 
   const SCOPES =
     "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar";
 
-  tokenClient = await google.accounts.oauth2.initTokenClient({
+  tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
     callback: "", // defined later
   });
+  gisInited = true;
 }
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function handleSignIn(myRequest) {
   await getOAuth2Data();
   loadScript("gapi", "https://apis.google.com/js/api.js", gapiLoaded);
   loadScript("gsi", "https://accounts.google.com/gsi/client", gisLoaded);
-
+  await wait(500);
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
       throw resp;
     }
     await myRequest();
   };
-
   if (gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
     // when establishing a new session.

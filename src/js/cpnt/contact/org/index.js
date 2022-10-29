@@ -163,7 +163,7 @@ const Org = (props) => {
         close={props.closeForm}
       />}
 
-      {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
+      {props.state.empty && <Empty mod='org' title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
 
       {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 

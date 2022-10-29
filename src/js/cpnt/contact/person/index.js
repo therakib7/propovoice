@@ -45,7 +45,6 @@ const Contact = (props) => {
             height={20}
             viewBox="0 0 20 20"
             fill="none"
-
           >
             <path
               d="M7.5 5H16.875"
@@ -162,7 +161,7 @@ const Contact = (props) => {
         close={props.closeForm}
       />}
 
-      {props.state.empty && <Empty title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
+      {props.state.empty && <Empty mod='person' title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
 
       {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 

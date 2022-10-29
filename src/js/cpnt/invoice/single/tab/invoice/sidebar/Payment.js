@@ -74,6 +74,10 @@ class Payment extends Component {
     render() {
         const { payment_methods } = this.props.data
         const i18n = ndpv.i18n;
+        if (this.props.wc) {
+            return (<div className="pv-form-accordion pv-additional"><p style={{ margin: 0 }}>WooCommerce Payment Activated. If you want to accept direct payment please add Paypal/Stripe on "Payment setting" of Propovoice.</p></div>);
+        }
+
         return (
             <div className="pv-form-accordion pv-additional">
                 {this.state.payments.map((row, i) => {
@@ -148,7 +152,7 @@ class Payment extends Component {
                             // data={this.state.businessData}
                             close={() => this.setState({ bankModal: false })}
                         />}
-                        <div className='pv-payment-buttons'>  
+                        <div className='pv-payment-buttons'>
                             <button
                                 className='pv-btn pv-bg-blue pv-bg-hover-blue pv-hover-color-white'
                                 // onClick={this.goToPayment}
