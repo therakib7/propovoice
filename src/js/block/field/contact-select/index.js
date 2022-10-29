@@ -91,7 +91,6 @@ export default (props) => {
 				className="pv-list"
 				onClick={() => setDropdown(val => !val)}
 			>
-
 				{!props.data && i18n.select + ' ' + i18n.rec}
 
 				{props.data && <>

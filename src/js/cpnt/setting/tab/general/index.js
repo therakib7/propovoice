@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import WithApi from 'hoc/Api';
 
-import Business from './sub/Business';   
+import Business from './sub/Business';
 
 const Main = (props) => {
 	const [tabs, setTabs] = useState(
@@ -9,13 +9,13 @@ const Main = (props) => {
 			{
 				id: 'business',
 				text: ndpv.i18n.biz
-			} 
+			}
 		]
 	);
-	const [currentTab, setCurrentTab] = useState('business');  
+	const [currentTab, setCurrentTab] = useState('business');
 	return (
 		<>
-			<ul className='pv-settings-horizontal-tab'>
+			<ul className='pv-horizontal-tab'>
 				{tabs.map((tab, index) => (
 					<li
 						key={index}
@@ -26,9 +26,9 @@ const Main = (props) => {
 					</li>
 				))}
 			</ul>
-	
-			{currentTab == 'business' && <Business {...props} />}   
+
+			{currentTab == 'business' && <Business {...props} />}
 		</>
-	) 
-}  
+	)
+}
 export default WithApi(Main) 

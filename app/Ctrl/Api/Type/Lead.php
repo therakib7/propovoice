@@ -281,6 +281,7 @@ class Lead
         $tags      = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc      = isset($param['desc']) ? nl2br($param['desc']) : '';
         $note      = isset($param['note']) ? nl2br($param['note']) : null;
+        $img       = isset( $param['img'] ) ? absint( $param['img'] ) : null;
 
         if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
@@ -351,7 +352,7 @@ class Lead
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);
                 }
-                
+
                 do_action('ndpvp/webhook', 'lead_add', $param);
 
                 wp_send_json_success($post_id);
@@ -377,6 +378,7 @@ class Lead
         $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
         $note         = isset($param['note']) ? nl2br($param['note']) : null;
+        $img          = isset( $param['img'] ) ? absint( $param['img'] ) : null;
 
         $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 

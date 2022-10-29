@@ -125,12 +125,13 @@ class Info extends Component {
 
                             <input
                                 id="field-mobile"
-                                type="text" 
+                                type="text"
                                 name="mobile"
                                 value={this.state.form.mobile}
                                 onChange={this.handleChange}
                             />
                         </div>
+
                         <div className="col-md">
                             <label
                                 htmlFor="field-zip">
@@ -139,7 +140,7 @@ class Info extends Component {
 
                             <input
                                 id="field-zip"
-                                type="number"
+                                type="text"
                                 name="zip"
                                 value={this.state.form.zip}
                                 onChange={this.handleChange}

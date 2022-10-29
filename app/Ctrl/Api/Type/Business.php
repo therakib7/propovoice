@@ -223,7 +223,7 @@ class Business
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));
-        } 
+        }
 
         if ( $reg_errors->get_error_messages() ) {
             wp_send_json_error($reg_errors->get_error_messages());

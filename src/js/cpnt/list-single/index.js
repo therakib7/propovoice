@@ -354,7 +354,7 @@ class ListSingle extends Component {
                                             <address>
                                                 {(data.person) ? data.person.email : data.org.email}<br />
                                                 {data.person && data.org && <>{i18n.org}: {data.org_name}<br /></>}
-                                                {i18n.budget}: {data.budget && currency(data.budget, data.currency )}
+                                                {i18n.budget}: {data.budget && currency(data.budget, data.currency)}
                                             </address>
                                         </div>
                                     </div>
@@ -375,7 +375,7 @@ class ListSingle extends Component {
                                                     width={14}
                                                     height={12}
                                                     viewBox="0 0 12 15"
-                                                    fill="none" 
+                                                    fill="none"
                                                 >
                                                     <path
                                                         d="M2.5 8H13.5"
@@ -541,7 +541,7 @@ class ListSingle extends Component {
                             <ul>
                                 <li className="pv-budget">
                                     <label htmlFor="">{i18n.budget}:</label>
-                                    <span>{data.budget && currency(data.budget, data.currency )}</span>
+                                    <span>{data.budget && currency(data.budget, data.currency)}</span>
                                 </li>
                                 <li>
                                     <label htmlFor="">{i18n.tag}: </label>
@@ -669,7 +669,7 @@ class ListSingle extends Component {
                                             </svg>
                                         </span>
                                         <p className="">{i18n.total} {i18n.budget}</p>
-                                        <h4>{data.budget && currency(data.budget, data.currency )}</h4>
+                                        <h4>{data.budget && currency(data.budget, data.currency)}</h4>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg">

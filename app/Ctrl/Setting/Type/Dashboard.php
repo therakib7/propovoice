@@ -101,7 +101,7 @@ class Dashboard
 
         if (!function_exists('ndpvp')) {
             global $submenu;
-            $submenu['ndpv'][] = array('Upgrade to Pro', 'manage_options', 'https://propovoice.com/pricing');
+            $submenu['ndpv'][] = array('Upgrade to Pro', 'manage_options', 'https://propovoice.com');
         }
 
         remove_submenu_page('ndpv', 'ndpv');

@@ -24,6 +24,7 @@ export default (props) => {
     const { fromData, toData, status } = props.data;
     const i18n = ndpv.i18n;
     let title = (path == 'invoice') ? i18n.inv : i18n.est;
+    let titleNo = (path == 'invoice') ? i18n.invNo : i18n.estNo;
     const nNum = num ? num : props.data.prefix + id;
     return (
         <div className="pv-inv" style={{ height: props.height }}>
@@ -42,9 +43,9 @@ export default (props) => {
                                     <h2>{title}</h2>
                                 </div>
 
-                                <p>{title} {i18n.no}: <span>{id ? nNum : ''}</span></p>
+                                <p>{titleNo}: <span>{id ? nNum : ''}</span></p>
                                 <p>{i18n.date}: <span><Moment format={ndpv.date_format}>{date}</Moment></span></p>
-                                <p>{i18n.due} {i18n.date}: <span><Moment format={ndpv.date_format}>{due_date}</Moment></span></p>
+                                <p>{i18n.dueDate}: <span><Moment format={ndpv.date_format}>{due_date}</Moment></span></p>
                             </div>
                         </div>
                         <div className="pv-inv-shapes">

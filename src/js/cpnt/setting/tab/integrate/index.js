@@ -26,10 +26,10 @@ const Main = (props) => {
       id: "smtp",
       text: "SMTP",
     },
-    {
+    /* {
       id: "google-api",
       text: "Google API",
-    },
+    }, */
     {
       id: "automation",
       text: "Automation",
@@ -39,7 +39,7 @@ const Main = (props) => {
   const [currentTab, setCurrentTab] = useState(tabDefault);
   const [currentSubtab, setCurrentSubtab] = useState("");
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const routeChange = (tab, subtab = null) => {
     if (subtab) {
@@ -60,7 +60,7 @@ const Main = (props) => {
 
   return (
     <>
-      <ul className="pv-settings-horizontal-tab">
+      <ul className="pv-horizontal-tab">
         {tabs.map((tab, index) => (
           <li
             key={index}

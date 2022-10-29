@@ -23,7 +23,7 @@ class Form extends Component {
 
         this.state = {
             form: this.initialState
-        }; 
+        };
     }
 
     handleChange = e => {
@@ -70,12 +70,12 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let form = { ...this.state.form }
-        if (form.logo) {
+        /* if (form.logo) {
             form.logo = {
                 id: form.logo.id,
                 src: form.logo.src
             }
-        }
+        } */
         this.props.handleSubmit(form);
         //this.setState({ form: this.initialState });
     }
@@ -185,7 +185,7 @@ class Form extends Component {
 
                                         <input
                                             id="field-mobile"
-                                            type="text" 
+                                            type="text"
                                             name="mobile"
                                             value={form.mobile}
                                             onChange={this.handleChange}
@@ -199,7 +199,7 @@ class Form extends Component {
 
                                         <input
                                             id="field-zip"
-                                            type="number"
+                                            type="text"
                                             name="zip"
                                             value={form.zip}
                                             onChange={this.handleChange}

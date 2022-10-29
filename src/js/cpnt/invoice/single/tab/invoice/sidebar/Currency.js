@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import Currency from 'block/field/currency';
 import Lang from 'block/field/lang';
-import pro from 'block/pro-alert'; 
 
 export default (props) => {
 
@@ -16,24 +15,16 @@ export default (props) => {
         }
     }, []);
 
-    const currencyChange = ( val ) => {
-        if ( wage.length > 0 ) {
-            pro();
-            return;
-        }
+    const currencyChange = (val) => {
         props.onChange(val, 'currency');
     }
 
-    const langChange = ( val ) => {
-        if ( wage.length > 0 ) {
-            pro();
-            return;
-        }
+    const langChange = (val) => {
         props.onChange(val, 'lang');
     }
 
     // const reminder = props.data;
-    const i18n = ndpv.i18n; 
+    const i18n = ndpv.i18n;
     return (
         <div>
             <div className="pv-form-style-one">
@@ -43,14 +34,14 @@ export default (props) => {
                             {i18n.cur}
                         </label>
                         <Currency key={props.currency} onChange={currencyChange} value={props.currency} />
-                    </div> 
+                    </div>
                 </div>
 
                 <div className="row">
                     <div className="col">
                         <label htmlFor="field-lang">{i18n.cur} {i18n.lang}</label>
                         <Lang key={props.lang} onChange={langChange} value={props.lang} />
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
