@@ -11,7 +11,9 @@ class I18n
             "lead" => esc_html__("Lead", "propovoice"),
             "deal" => esc_html__("Deal", "propovoice"),
             "est" => esc_html__("Estimate", "propovoice"),
+            "estNo" => esc_html__("Estimate No", "propovoice"),
             "inv" => esc_html__("Invoice", "propovoice"),
+            "invNo" => esc_html__("Invoice No", "propovoice"),
             "client" => esc_html__("Client", "propovoice"),
             "project" => esc_html__("Project", "propovoice"),
             "task" => esc_html__("Task", "propovoice"),
@@ -105,6 +107,7 @@ class I18n
             "prv" => esc_html__("Preview", "propovoice"),
             //invoice
             "bill" => esc_html__("Bill", "propovoice"),
+            "billTo" => esc_html__("Bill To", "propovoice"),
             "info" => esc_html__("Info", "propovoice"),
             "no" => esc_html__("No", "propovoice"),
             //table
@@ -146,6 +149,7 @@ class I18n
             "title" => esc_html__("Title", "propovoice"),
             "start" => esc_html__("Start", "propovoice"),
             "due" => esc_html__("Due", "propovoice"),
+            "dueDate" => esc_html__("Due Date", "propovoice"),
             "sub" => esc_html__("Subject", "propovoice"),
             "msg" => esc_html__("Message", "propovoice"),
             "clear" => esc_html__("Clear", "propovoice"),
@@ -173,6 +177,7 @@ class I18n
             "biz" => esc_html__("Business", "propovoice"),
             "pay" => esc_html__("Pay", "propovoice"),
             "payment" => esc_html__("Payment", "propovoice"),
+            "paymentInfo" => esc_html__("Payment Info", "propovoice"),
             "method" => esc_html__("Method", "propovoice"),
             "social" => esc_html__("Social", "propovoice"),
             "var" => esc_html__("Variable", "propovoice"),

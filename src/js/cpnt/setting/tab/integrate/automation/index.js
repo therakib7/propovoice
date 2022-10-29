@@ -31,7 +31,7 @@ export default class Main extends Component {
                     slug: "slack",
                     img: "https://cdn.cdnlogo.com/logos/s/55/slack.svg",
                     pro: true,
-                },
+                }, */
                 {
                     name: "Make",
                     slug: "make",
@@ -43,7 +43,7 @@ export default class Main extends Component {
                     slug: "albato",
                     img: "https://albato.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FLogo.e59ec163.svg&w=256&q=75",
                     pro: true,
-                }, */
+                },
                 {
                     name: "Integrately",
                     slug: "integrately",

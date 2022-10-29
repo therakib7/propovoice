@@ -156,8 +156,8 @@ export default class Form extends Component {
       return resp.data.data.person
         ? resp.data.data.person.email
         : resp.data.data.org
-        ? resp.data.data.org.email
-        : "";
+          ? resp.data.data.org.email
+          : "";
     });
   };
 
@@ -291,7 +291,7 @@ export default class Form extends Component {
 
                 <div className="col-md">
                   <label htmlFor="field-start_date">
-                    {i18n.due} {i18n.date}
+                    {i18n.dueDate}
                   </label>
                   <div className="pv-field-date">
                     <DateField

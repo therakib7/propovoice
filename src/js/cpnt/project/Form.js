@@ -60,7 +60,7 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['tags']: val } });
     }
 
-    componentDidMount() { 
+    componentDidMount() {
 
         //added this multi place, because not working in invoice single
         this.editData();
@@ -328,7 +328,7 @@ class Form extends Component {
                                             title={i18n.status}
                                             onChange={this.handleStatusChange}
                                             color
-                                        /> 
+                                        />
                                     </div>
                                 </div>
 
@@ -344,7 +344,7 @@ class Form extends Component {
 
                                     <div className="col-md">
                                         <label htmlFor="field-start_date">
-                                            {i18n.due} {i18n.date}
+                                            {i18n.dueDate}
                                         </label>
                                         <div className='pv-field-date'>
                                             <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
