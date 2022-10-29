@@ -206,6 +206,12 @@ export default (props) => {
 						backgroundColor: listById[0].bg_color,
 						color: listById[0].color
 					}}
+					/* ref={(n) => {
+						if (n && props.form) {
+							n.style.setProperty("backgroundColor", listById[0].bg_color, "important");
+							n.style.setProperty("color", listById[0].color, "important");
+						}
+					}} */
 					onClick={(e) => showDropdown(e)}
 				>
 					{listById[0].label}

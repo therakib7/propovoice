@@ -23,11 +23,11 @@ const Main = (props) => {
 			}
 		]
 	);
-	const [currentTab, setCurrentTab] = useState('default');  
- 
+	const [currentTab, setCurrentTab] = useState('default');
+
 	return (
 		<>
-			<ul className='pv-settings-horizontal-tab'>
+			<ul className='pv-horizontal-tab'>
 				{tabs.map((tab, index) => (
 					<li
 						key={index}
@@ -38,11 +38,11 @@ const Main = (props) => {
 					</li>
 				))}
 			</ul>
-	
+
 			{currentTab == 'default' && <Default {...props} />}
 			{currentTab == 'reminder' && <Reminder {...props} />}
 			{currentTab == 'recurring' && <Recurring {...props} />}
 		</>
-	) 
-}  
+	)
+}
 export default WithApi(Main) 
