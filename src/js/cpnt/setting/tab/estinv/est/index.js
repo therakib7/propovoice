@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import WithApi from 'hoc/Api'; 
+import WithApi from 'hoc/Api';
 import Reminder from 'block/field/reminder';
-import General from './sub/General'; 
+import General from './sub/General';
 import Template from './sub/Template';
 
 class Main extends Component {
@@ -17,21 +17,21 @@ class Main extends Component {
 				{
 					id: 'reminder',
 					text: i18n.rem
-				}, 
+				},
 				/* {
 					id: 'template',
 					text: 'Template'
 				}  */
 			],
 			currentTab: '',
-		} 
-	} 
+		}
+	}
 
 	componentDidMount() {
 		this.setState({ currentTab: 'general' });
 	}
 
-	setActiveTab(id) { 
+	setActiveTab(id) {
 		this.setState({ currentTab: id });
 	}
 
@@ -39,7 +39,7 @@ class Main extends Component {
 		const { tabs = [], currentTab } = this.state;
 		return (
 			<>
-				<ul className='pv-settings-horizontal-tab'>
+				<ul className='pv-horizontal-tab'>
 					{tabs.map((tab, index) => (
 						<li
 							key={index}
@@ -51,12 +51,12 @@ class Main extends Component {
 					))}
 				</ul>
 
-				{currentTab == 'general' && <General />} 
-				{currentTab == 'reminder' && <Reminder {...this.props} path={'estimate'} />}  
+				{currentTab == 'general' && <General />}
+				{currentTab == 'reminder' && <Reminder {...this.props} path={'estimate'} />}
 				{currentTab == 'template' && <Template {...this.props} />}
 			</>
 		);
 	}
-} 
+}
 
 export default WithApi(Main); 

@@ -4001,7 +4001,7 @@ ul {
   font-weight: 500;
   position: relative;
   cursor: pointer;
-  color: #2D3748;
+  color: #2D3748 !important;
 }
 
 .ndpv .pv-single-tabs .pv-tab-item .pv-single-tab-done {
@@ -4330,8 +4330,6 @@ ul {
   border-radius: 8px;
   font-size: 18px !important;
   font-weight: 700 !important;
-  padding: 8px !important;
-  background: #EDF2F7;
   margin-right: 10px;
   align-self: center !important;
 }
@@ -6160,4 +6158,9 @@ select {
     display: table;
     left: 28%;
   }
+}
+
+.pv-settings-tab .pv-horizontal-tab {
+  background-color: #f7f8fa;
+  display: flex;
 }
