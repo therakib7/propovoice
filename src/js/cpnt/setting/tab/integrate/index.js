@@ -60,7 +60,7 @@ const Main = (props) => {
 
   return (
     <>
-      <ul className="pv-settings-horizontal-tab">
+      <ul className="pv-horizontal-tab">
         {tabs.map((tab, index) => (
           <li
             key={index}

@@ -30,11 +30,11 @@ export default (props) => {
 			text: i18n.discount
 		},
 	]);
-	const [currentTab, setCurrentTab] = useState('currency'); 
- 
+	const [currentTab, setCurrentTab] = useState('currency');
+
 	return (
 		<>
-			<ul className='pv-settings-horizontal-tab'>
+			<ul className='pv-horizontal-tab'>
 				{tabs.map((tab, index) => (
 					<li
 						key={index}

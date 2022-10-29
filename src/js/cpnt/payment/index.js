@@ -226,8 +226,8 @@ export default class Payment extends Component {
         return (
             <div className="ndpv-cpnt">
 
-                <div className="pv-payment-tab">
-                    <ul className="pv-tabs">
+                <div className="">
+                    <ul className="pv-horizontal-tab">
                         <li data-tab-target="#pv-bank" className={'pv-tab ' + (currentTab == 'bank' ? 'pv-active' : '')} onClick={(e) => this.setActiveTab(e, 'bank')}>
                             <span>
                                 <svg
@@ -395,7 +395,7 @@ export default class Payment extends Component {
                                 data={this.state.payment}
                                 close={this.closeForm}
                             />}
-                            
+
                             {currentTab != 'wc' ? <>
                                 {this.state.preloader ? (
                                     <Preloader />
