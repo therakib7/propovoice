@@ -1674,7 +1674,7 @@ html {
 
 .ndpv .pv-right-content {
   width: 100%;
-  overflow-y: auto;
+  overflow-y: auto !important;
   scroll-behavior: smooth;
   height: 100vh;
 }
@@ -2982,27 +2982,56 @@ ul {
   margin-bottom: 0;
 }
 
-.twentytwentyone-theme .pv-table-action input[type=checkbox] {
-  zoom: 0.6 !important;
-  border: 1px solid rgba(147, 147, 147, 0.9411764706);
-  top: 2px;
-}
-
+.twentytwentyone-theme input[type=radio],
 .twentytwentyone-theme input[type=checkbox] {
   zoom: 0.8 !important;
   border: 1px solid rgba(147, 147, 147, 0.9411764706);
+}
+
+.twentytwentyone-theme .pv-form-style-one input[type=radio],
+.twentytwentyone-theme .pv-form-style-one input[type=checkbox] {
+  zoom: 0.6 !important;
+}
+
+.wp-admin.twentytwentyone-theme input[type=radio] {
+  zoom: 1 !important;
+}
+
+.twentytwentyone-theme input[type=checkbox] {
   border-radius: 7px;
+}
+
+.twentytwentyone-theme .pv-table-action input[type=checkbox] {
+  zoom: 0.7 !important;
 }
 
 .twentytwentyone-theme input[type=checkbox]::after {
   border-color: blue;
-  width: 10px;
 }
 
-.twentytwentyone-theme .pv-field-radio input[type=radio],
-.twentytwentyone-theme .pv-field-checkbox input[type=checkbox] {
-  zoom: 0.6 !important;
-  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+.twentytwentyone-theme .pv-form-accordion input[type=checkbox]::after {
+  height: 10px;
+  left: 3px;
+  top: 0px;
+}
+
+.twentytwentyone-theme .pv-field-checkbox input[type=checkbox]::after {
+  width: 8px;
+  left: 6px;
+}
+
+.twentytwentyone-theme .pv-form-accordion input[type=checkbox] {
+  top: 35px !important;
+  zoom: 1 !important;
+}
+
+.twentytwentyone-theme .pv-field-checkbox input[type="checkbox"]:checked::before {
+  width: 1.2rem;
+}
+
+.wp-admin.twentytwentyone-theme .pv-field-checkbox input[type=checkbox] {
+  zoom: 1 !important;
+  border-radius: 4px;
 }
 
 .twentytwentyone-theme input[type=radio]:after {
@@ -3011,10 +3040,6 @@ ul {
   background: #3582c4;
 }
 
-.twentytwentyone-theme input[type=checkbox]+label,
-.twentytwentyone-theme input[type=radio]+label {
-  padding-left: 0px;
-}
 
 .twentytwentyone-theme .pv-field-radio-input input[type=number] {
   height: 33px;
@@ -3035,6 +3060,10 @@ ul {
 
 .twentytwentyone-theme .pv-table tr th:first-child input[type=checkbox] {
   top: 6px;
+}
+
+.wp-admin.twentytwentyone-theme .pv-form-accordion.pv-additional .pv-tab input[type=checkbox] {
+  top: 32px !important;
 }
 
 .twentytwentyone-theme input[type=checkbox]:focus {
@@ -4179,7 +4208,7 @@ ul {
   width: 100%;
   z-index: 10;
   opacity: 0;
-  height: 50px;
+  height: 85px;
 }
 
 .ndpv .pv-accordion-wrapper>ul>li>input[type=checkbox]:checked~div {
