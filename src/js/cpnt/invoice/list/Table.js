@@ -83,13 +83,13 @@ const TableBody = props => {
                 break;
 
             case 'sent':
-                status = <span className='pv-badge pv-bg-gray'
+                status = <span className='pv-badge'
                     style={{ backgroundColor: '#F4F2FE', color: '#8775EC' }}
                 >{ndpv.i18n.sent}</span>
                 break;
 
             case 'viewed':
-                status = <span className='pv-badge pv-bg-orange'
+                status = <span className='pv-badge'
                     style={{ backgroundColor: '#E0F0EC', color: '#4BB99E' }}
                 >{ndpv.i18n.viewed}</span>
                 break;

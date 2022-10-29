@@ -66,6 +66,10 @@ export default (props) => {
 		api.get('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
+				// console.log(props.data);
+				/* if (!props.data && props.selectedFirst) {
+					handleSelect(resp.data.data[props.taxonomy][0]);
+				} */
 				if (props.id) {
 					setListById(resp.data.data['single_' + props.taxonomy]);
 				}
@@ -250,7 +254,7 @@ export default (props) => {
 				modalType={modalType}
 				reload={getData}
 				data={form}
-				color
+				color={props.color}
 				close={() => setModal(false)}
 			/>}
 		</>

@@ -39,7 +39,7 @@ const Main = (props) => {
   const [currentTab, setCurrentTab] = useState(tabDefault);
   const [currentSubtab, setCurrentSubtab] = useState("");
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const routeChange = (tab, subtab = null) => {
     if (subtab) {

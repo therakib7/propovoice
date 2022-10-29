@@ -133,8 +133,6 @@ const Deal = (props) => {
 
     const { title, lists, checkedBoxes, searchVal } = props.state;
 
-    const activeColor = '#4A5568';
-    const inactiveColor = '#A0AEC0';
     const i18n = ndpv.i18n;
     const pipeline = !wage.length ? i18n.pipeline : '';
     return (
@@ -227,81 +225,8 @@ const Deal = (props) => {
                 </div>
             </div>
 
-            <div className="pv-buttons-group pv-mb-20">
-
-                <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5"
-                    onClick={() => viewChange('board')}
-                >
-                    <svg
-                        width={20}
-                        height={20}
-                        viewBox="0 0 20 20"
-                        fill="none"
-                    >
-                        <path
-                            d="M3.125 4.375h13.75v9.375a.624.624 0 01-.625.625h-3.125a.624.624 0 01-.625-.625v-1.875h-5v4.375a.625.625 0 01-.625.625H3.75a.625.625 0 01-.625-.625V4.375zM7.5 9.375H3.125M7.5 4.375v7.5M12.5 9.375h4.375M12.5 4.375v7.5"
-                            stroke={boardView ? activeColor : inactiveColor}
-                            strokeWidth={1.2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
-                </button>
-
-                <button className="pv-btn pv-btn-icon pv-bg-hover-shadow"
-                    onClick={() => viewChange('table')}
-                >
-                    <svg
-                        width={20}
-                        height={20}
-                        viewBox="0 0 20 20"
-                        fill="none"
-                    >
-                        <path
-                            d="M7.5 5H16.875"
-                            stroke={!boardView ? activeColor : inactiveColor}
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path
-                            d="M7.5 10H16.875"
-                            stroke={!boardView ? activeColor : inactiveColor}
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path
-                            d="M7.5 15H16.875"
-                            stroke={!boardView ? activeColor : inactiveColor}
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path
-                            d="M3.125 5H4.375"
-                            stroke={!boardView ? activeColor : inactiveColor}
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path
-                            d="M3.125 10H4.375"
-                            stroke={!boardView ? activeColor : inactiveColor}
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path
-                            d="M3.125 15H4.375"
-                            stroke={!boardView ? activeColor : inactiveColor}
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
-                </button>
-            </div>
+            {/* <div className="pv-buttons-group pv-mb-20"> 
+            </div> */}
 
             <Search
                 title={title}
@@ -310,6 +235,7 @@ const Deal = (props) => {
                 total={props.state.total}
                 handleSubmit={props.getLists}
                 boardView={boardView}
+                viewChange={viewChange}
             />
 
             {checkedBoxes.length > 0 &&
