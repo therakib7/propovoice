@@ -26,10 +26,10 @@ const Main = (props) => {
       id: "smtp",
       text: "SMTP",
     },
-    /* {
+     {
       id: "google-api",
-      text: "Google API",
-    }, */
+      text: "Google Apps",
+    }, 
     {
       id: "automation",
       text: "Automation",
@@ -107,6 +107,7 @@ const Main = (props) => {
           tab={currentSubtab}
         />
       )}
+      
     </>
   );
 };

@@ -5668,6 +5668,56 @@ body {
   font-weight: 500;
 }
 
+.ndpv .pv-google-p {
+  color: #718096;
+  margin-top: 7px;
+  font-weight: 400;
+  font-size: 11px;
+}
+
+.ndpv .pv-google-p a {
+  color: #4C6FFF;
+  font-weight: 700;
+}
+
+.ndpv .pv-google-app {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F7F8FA;
+  margin: 7px 0;
+  border-radius: 8px;
+  padding: 0 18px;
+  height: 56px;
+}
+
+.ndpv .pv-google-icon {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.ndpv .pv-google-icon h6 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: #4A5568;
+}
+
+.ndpv .pv-google-icon .pv-svg {
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+}
+
+.ndpv .pv-google-p a:hover {
+  color: #395ef3;
+}
+
 .ndpv .pv-title-small {
   font-size: 16px !important;
   font-weight: 500;
