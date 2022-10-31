@@ -26,7 +26,7 @@ export default class Main extends Component {
 
   services = [
     {
-      name: "Google OAuth2",
+      name: "Google Apps",
       slug: "oauth2",
       img: "https://cdn.cdnlogo.com/logos/o/50/oauth.svg",
       active: false,
