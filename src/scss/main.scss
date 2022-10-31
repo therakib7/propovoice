@@ -2507,7 +2507,7 @@ html {
 }
 
 .wp-admin.ndpv .pv-board-content {
-  height: calc(100vh - 400px) !important;
+  height: calc(100vh - 395px) !important;
 }
 
 .wp-admin.ndpv #pv-pro-alert {
@@ -2805,9 +2805,6 @@ html {
   overflow-y: inherit;
 }
 
-.ndpv .pv-board-content {
-  height: calc(100vh - 476px) !important;
-}
 
 @media screen and (max-width: 550px) {
   .ndpv .pv-board-content {
@@ -2887,7 +2884,7 @@ ul {
 }
 
 .twentytwenty-theme .pv-table-action input[type=checkbox] {
-  zoom: 0.8 !important;
+  zoom: 0.7 !important;
 }
 
 .wp-admin.twentytwenty-theme .pv-table-action input[type=checkbox] {
@@ -3092,7 +3089,7 @@ ul {
 }
 
 .twentytwentyone-theme .pv-accordion-table input[type=checkbox] {
-  zoom: 0.6;
+  zoom: 0.6 !important;
   top: 6px;
   border: 1px solid rgba(147, 147, 147, 0.9411764706);
 }
@@ -4035,7 +4032,7 @@ ul {
   font-weight: 500;
   position: relative;
   cursor: pointer;
-  color: #2D3748;
+  color: #2D3748 !important;
 }
 
 .ndpv .pv-single-tabs .pv-tab-item .pv-single-tab-done {
@@ -4949,7 +4946,7 @@ ul {
 }
 
 .ndpv .pv-field-repeater .pv-btn {
-  color: #A0AEC0;
+  color: #A0AEC0 !important;
   font-weight: 500;
   font-size: 13px;
   background: none;
@@ -5777,25 +5774,29 @@ select {
 .ndpv .pv-form-style-one .row>div {
   margin-bottom: 20px;
 }
+
 .pv-import-from-gird {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 125px);
-    justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 125px);
+  justify-content: space-between;
 }
+
 .pv-upload-file {
-    border: dashed 1px #4c6fff;
-    padding: 60px 0px;
-    margin-bottom: 16px;
-    border-radius: 8px;
-    text-align: center;
+  border: dashed 1px #4c6fff;
+  padding: 60px 0px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  text-align: center;
 }
+
 a {
-    color: #4064f8;
-    font-weight: 500;
+  color: #4064f8;
+  font-weight: 500;
 }
+
 .pv-import-map {
-    text-align: right;
-    margin-top: 25px;
+  text-align: right;
+  margin-top: 25px;
 }
 
 .ndpv .pv-form-style-one .row>div:nth-child(odd) {
@@ -5820,9 +5821,10 @@ a {
   .ndpv .pv-form-style-one .row>div:nth-child(odd) {
     margin-right: 0px;
   }
+
   .pv-upload-file {
     padding: 30px 0px;
-}
+  }
 }
 
 .ndpv select {
@@ -6225,4 +6227,14 @@ a {
     display: table;
     left: 28%;
   }
+}
+
+.page-template .pv-field-switch {
+  position: relative;
+  top: 3px;
+}
+
+.wp-admin .pv-field-switch {
+  position: relative;
+  top: 3px;
 }
