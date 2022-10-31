@@ -47,7 +47,7 @@ const ImportModal = (props) => {
 
             fileReader.readAsText(file);
         } else {
-            toast('Please upload file')
+            toast.error('Please upload file')
         }
 
     };
