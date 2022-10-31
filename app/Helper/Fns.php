@@ -189,14 +189,18 @@ class Fns
 
             if ($val['url']) {
                 $social .= '<a href="' . esc_url($val['url']) . '"><img src="' . esc_url($icon_url) . '" alt="' . esc_attr($val['label']) . '"></a>';
+                // $social .= '<li><a href="' . esc_url($val['url']) . '"><img src="' . esc_url($icon_url) . '" alt="' . esc_attr($val['label']) . '"></a></li>';
             }
         }
+
+        $org_img = '';
 
         return str_replace(
             array(
                 '{id}',
                 '{path}',
                 '{org_name}',
+                '{org_img}',
                 '{client_name}',
                 '{date}',
                 '{due_date}',
@@ -209,6 +213,7 @@ class Fns
                 $id,
                 $path,
                 $org_name,
+                $org_img,
                 $client_name,
                 $date,
                 $due_date,

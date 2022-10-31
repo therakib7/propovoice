@@ -99,10 +99,10 @@ class Email
             $invoice_id,
             $token
         );
- 
+
         $subject = Fns::templateVariable($mail_subject, []);
-        $template = ndpv()->render('email/invoice', [], true); 
-             
+        $template = ndpv()->render('email/invoice', [], true);
+
         $body = Fns::templateVariable($template, [
             'msg' => $msg,
             'url' => $url,

@@ -69,7 +69,7 @@ export default (props) => {
       </button>
       {imp === true && <ImportModal close={() => setImp(false)} ExportModal={props.ExportModal} title={props.title} />}
       {exp === true && <Export close={() => setExp(false)} ExportModal={props.ExportModal} title={props.title} />}
-      {true && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
+      {false && <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
         <button
           className="pv-bg-stroke pv-bg-shadow"
           onClick={() => showDropdown()}

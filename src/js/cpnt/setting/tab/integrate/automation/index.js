@@ -26,12 +26,12 @@ export default class Main extends Component {
                     img: "https://www.pabbly.com/wp-content/uploads/2021/02/p-logo.png",
                     pro: true,
                 },
-                /* {
+                {
                     name: "Slack",
                     slug: "slack",
                     img: "https://cdn.cdnlogo.com/logos/s/55/slack.svg",
                     pro: true,
-                }, */
+                },
                 {
                     name: "Make",
                     slug: "make",
