@@ -263,14 +263,88 @@ input:-webkit-autofill:active {
     }
 }
 
+.ndpv .pv-google-p {
+    color: #718096;
+    margin-top: 7px;
+    font-weight: 400;
+    font-size: 11px;
+}
+
+.ndpv .pv-google-p a {
+    color: #4C6FFF;
+    font-weight: 700;
+}
+
+.ndpv .pv-google-app {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F7F8FA;
+    margin: 7px 0;
+    border-radius: 8px;
+    padding: 0 18px;
+    height: 56px;
+}
+
+.ndpv .pv-google-icon {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.ndpv .pv-google-icon h6 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    color: #4A5568;
+}
+
+.ndpv .pv-google-icon .pv-svg {
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.ndpv .pv-google-p a:hover {
+    color: #395ef3;
+}
+
+.pv-import-from-gird {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 125px);
+    justify-content: space-between;
+}
+
+.pv-upload-file {
+    border: dashed 1px #4c6fff;
+    padding: 60px 0px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.pv-import-map {
+    text-align: right;
+    margin-top: 25px;
+}
+
 @media screen and (max-width: 768px) {
     .pv-intg-list {
         grid-template-columns: 1fr 1fr;
     }
+        .pv-upload-file {
+            padding: 30px 0px;
+        }
 }
 
 @media screen and (max-width: 420px) {
     .pv-intg-list {
         grid-template-columns: 1fr;
     }
+
+    
 }

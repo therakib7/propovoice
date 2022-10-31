@@ -169,10 +169,16 @@ export default class GOAuth2 extends Component {
                 </div>
                 <h6>Google Meet</h6>
               </div>
-              <label className="pv-field-switch pv-field-switch-big">
-                <input type="checkbox" name="active" defaultChecked="" />
-                <span className="pv-switch-slider pv-round" />
-              </label>
+              <span className="pv-field-switch-content">
+                <label className="pv-field-switch pv-field-switch-big">
+                  <input type='checkbox'
+                    name='active'
+                    // checked={item.active ? 'checked' : ''}
+                    onChange={(e) => this.handleChange(e, i)}
+                  />
+                  <span className="pv-switch-slider pv-round" />
+                </label>
+              </span>
             </div>
             <div className="pv-google-app">
               <div className="pv-google-icon">
@@ -219,10 +225,16 @@ export default class GOAuth2 extends Component {
                 </div>
                 <h6>Google Drive</h6>
               </div>
-              <label className="pv-field-switch pv-field-switch-big">
-                <input type="checkbox" name="active" defaultChecked="" />
-                <span className="pv-switch-slider pv-round" />
-              </label>
+              <span className="pv-field-switch-content">
+                <label className="pv-field-switch pv-field-switch-big">
+                  <input type='checkbox'
+                    name='active'
+                    // checked={item.active ? 'checked' : ''}
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                  <span className="pv-switch-slider pv-round" />
+                </label>
+              </span>
             </div>
           </div>
         </div>
