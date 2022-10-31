@@ -14,6 +14,7 @@ export default class Form extends Component {
             label: '',
             color: '',
             bg_color: '',
+            url: '',
             icon: null,
             val_type: 'fixed',
             tax_cal: '',
@@ -216,6 +217,22 @@ export default class Form extends Component {
                                     </div>
                                 </div>}
                             </>}
+
+                            {this.props.url && <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-url">
+                                        {i18n.url}
+                                    </label>
+
+                                    <input
+                                        id="field-url"
+                                        type="url"
+                                        name="url"
+                                        value={form.url}
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                </div>
+                            </div>}
 
                             {this.props.icon &&
                                 <div className="row">

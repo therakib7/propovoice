@@ -161,6 +161,12 @@ class Taxonomy
                         }
                     }
 
+                    if (
+                        $taxonomy == 'email_social'
+                    ) {
+                        $term_property['url'] = get_term_meta($single->term_id, 'url', true);
+                    }
+
                     $format_taxonomy[] = $term_property;
                 }
                 $data[$taxonomy] = $format_taxonomy;
@@ -244,6 +250,8 @@ class Taxonomy
         $fee_cal = isset($param['fee_cal']) ? sanitize_text_field($param['fee_cal']) : null;
         $val_type = isset($param['val_type']) ? sanitize_text_field($param['val_type']) : null;
         $show = isset($param['show']) ? rest_sanitize_boolean($param['show']) : null;
+        //email social
+        $url = isset($param['url']) ? esc_url_raw($param['url']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -269,6 +277,10 @@ class Taxonomy
 
                     if ($icon) {
                         update_term_meta($term_id, 'icon', $icon);
+                    }
+
+                    if ($url) {
+                        update_term_meta($term_id, 'url', $url);
                     }
 
                     if ($taxonomy == 'extra_amount' && $extra_amount_type) {
@@ -305,6 +317,8 @@ class Taxonomy
         $fee_cal = isset($param['fee_cal']) ? sanitize_text_field($param['fee_cal']) : null;
         $val_type = isset($param['val_type']) ? sanitize_text_field($param['val_type']) : null;
         $show = isset($param['show']) ? rest_sanitize_boolean($param['show']) : null;
+        //email social
+        $url = isset($param['url']) ? esc_url_raw($param['url']) : null;
 
         if (empty($taxonomy)) {
             $reg_errors->add('field', esc_html__('Taxonomy is missing', 'propovoice'));
@@ -354,6 +368,14 @@ class Taxonomy
                         update_term_meta($term_id, 'fee_cal', $fee_cal);
                         update_term_meta($term_id, 'val_type', $val_type);
                         update_term_meta($term_id, 'show', $show);
+                    }
+
+                    if ($taxonomy == 'email_social') {
+                        if ($url) {
+                            update_term_meta($term_id, 'url', $url);
+                        } else {
+                            delete_term_meta($term_id, 'url');
+                        }
                     }
 
                     wp_send_json_success($term_id);

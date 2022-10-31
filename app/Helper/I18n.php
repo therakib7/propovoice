@@ -98,6 +98,7 @@ class I18n
             "email" => esc_html__("Email", "propovoice"),
             "mob" => esc_html__("Mobile", "propovoice"),
             "web" => esc_html__("Website", "propovoice"),
+            "url" => esc_html__("URL", "propovoice"),
             "zip" => esc_html__("ZIP Code", "propovoice"),
             "country" => esc_html__("Country", "propovoice"),
             "region" => esc_html__("Region", "propovoice"),
