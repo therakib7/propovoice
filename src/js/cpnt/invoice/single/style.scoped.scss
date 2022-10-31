@@ -65,7 +65,7 @@
 
 .ndpv .pv-single-image-content a {
   transform: translateY(-113%);
-  display: table;
+  display: table !important;
   margin: auto;
   top: 50%;
   position: relative;
