@@ -69,7 +69,7 @@ const ImportModal = (props) => {
                 <form  >
                     <div className="pv-content">
                         <div className="pv-form-style-one">
-                            {!file && <div className="up">
+                            {!file && <div>
                                 <div className="pv-upload-file">
                                     <input
                                         type={"file"}
@@ -98,14 +98,13 @@ const ImportModal = (props) => {
                                     </label>
                                 </div>
                             </div>}
-                            <div className="pv-import">
-                                {!file && <div className="pv-sample-file">
+                                {!file && <div>
                                     <CSVLink style={{ color: 'rgb(54 91 243)', fontWeight: '500' }} data={csv}>Download sample file</CSVLink>
                                     {!file && <p>Please make sure your csv file has unique headers.Otherwise, it may fail to import</p>}
                                 </div>}
                                 <div className="pv-import-map">
                                     <button
-                                        className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
+                                        className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white pv-mb-30"
                                         onClick={(e) => {
                                             handleOnSubmit(e);
                                         }}
@@ -113,7 +112,6 @@ const ImportModal = (props) => {
                                         Next [Map Columns]
                                     </button>
                                 </div>
-                            </div>
                             <br />
                             {file && <div className='pv-table-wrap pv-mb-20'>
                                 <table className='pv-table'>
