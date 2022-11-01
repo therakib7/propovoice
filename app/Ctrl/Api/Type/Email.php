@@ -55,7 +55,6 @@ class Email
     public function get($req)
     {
         $request = $req->get_params();
- 
 
         wp_send_json_success();
     }
@@ -63,9 +62,9 @@ class Email
     public function get_single($req)
     {
         $url_params = $req->get_url_params();
-        $id    = $url_params['id']; 
+        $id    = $url_params['id'];
         wp_send_json_success();
-    } 
+    }
 
     public function create($req)
     {
@@ -82,6 +81,9 @@ class Email
 
     public function sent($param)
     {
+        $org_name = isset($param['fromData']) ? $param['fromData']['name'] : '';
+        $org_img = '';
+        $org_address = '';
         $mail_from = isset($param['fromData']) ? $param['fromData']['email'] : '';
         $mail_to = isset($param['toData']) ? $param['toData']['email'] : '';
         $invoice_id = isset($param['invoice_id']) ? $param['invoice_id'] : '';
@@ -106,7 +108,10 @@ class Email
         $body = Fns::templateVariable($template, [
             'msg' => $msg,
             'url' => $url,
-            'path' => $path
+            'path' => $path,
+            'org_name' => $org_name,
+            'org_img' => $org_img,
+            'org_address' => $org_address
         ]);
 
         $headers = array('Content-Type: text/html; charset=UTF-8');
@@ -116,7 +121,7 @@ class Email
         //$headers[] = 'Cc: therakib7@gmail.com'; // note you can just use a simple email address
 
         //attachment
-        $attachments = []; 
+        $attachments = [];
 
         $send_mail = wp_mail($mail_to, $subject, $body, $headers, $attachments);
 
@@ -162,8 +167,7 @@ class Email
             $feedback_title = 'Bug Information: ';
         }
 
-        
-        $current_user = wp_get_current_user(); 
+        $current_user = wp_get_current_user();
         $name = isset($param['name']) ? $param['name'] : $current_user->display_name;
         $from = isset($param['from']) ? $param['from'] : $current_user->user_email;
         $subject = isset($param['subject']) ? $param['subject'] : '';
@@ -205,9 +209,7 @@ class Email
 
     public function create_per()
     {
-        // TODO: check it later
-        return true;
-        // return current_user_can('publish_posts');
+        return current_user_can('publish_posts');
     }
 
     public function update_per()

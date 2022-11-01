@@ -13,7 +13,7 @@ class AssetCtrl
     public function __construct()
     {
         $this->suffix  = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
-        $this->version = (defined('WP_DEBUG') && WP_DEBUG) ? time() : ndpv()->version(); 
+        $this->version = (defined('WP_DEBUG') && WP_DEBUG) ? time() : ndpv()->version();
 
         add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 9999);
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'), 9999);
@@ -63,7 +63,7 @@ class AssetCtrl
                 'workspace-template.php',
                 'invoice-template.php',
                 'estimate-template.php'
-            ]) || 
+            ]) ||
             $this->is_plugins_screen()
         ) {
             wp_enqueue_style('ndpv-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), $this->version);
@@ -168,15 +168,15 @@ class AssetCtrl
      */
     public function enqueue_feedback_dialog()
     {
-        add_action('admin_footer', [ $this, 'deactivate_feedback_dialog' ]); 
+        add_action('admin_footer', [ $this, 'deactivate_feedback_dialog' ]);
         wp_enqueue_script('ndpv-feedback', ndpv()->get_asset_uri("/js/feedback{$this->suffix}.js"), array(), $this->version, true);
         wp_localize_script('ndpv-feedback', 'ndpv', array(
-            'ajaxurl' => esc_url( admin_url('admin-ajax.php') ), 
-        )); 
-    }     
+            'ajaxurl' => esc_url( admin_url('admin-ajax.php') )
+        ));
+    }
 
     /**
-     * @since 1.0.1.5 
+     * @since 1.0.1.5
      */
     public function deactivate_feedback_dialog()
     {
@@ -184,18 +184,18 @@ class AssetCtrl
     }
 
     /**
-     * @since 1.0.1.5 
+     * @since 1.0.1.5
      */
     private function is_plugins_screen()
     {
-        if ( !function_exists( 'get_current_screen' ) ) { 
-            require_once ABSPATH . '/wp-admin/includes/screen.php'; 
-        }  
+        if ( !function_exists( 'get_current_screen' ) ) {
+            require_once ABSPATH . '/wp-admin/includes/screen.php';
+        }
 
         if ( is_admin() ) {
             return in_array(get_current_screen()->id, [ 'plugins', 'plugins-network' ]);
         } else {
             return false;
-        } 
+        }
     }
 }

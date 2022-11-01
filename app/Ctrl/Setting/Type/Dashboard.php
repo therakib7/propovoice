@@ -11,7 +11,6 @@ class Dashboard
         add_action('admin_menu', [$this, 'add_settings_menu'], 30);
     }
 
-
     public function add_settings_menu()
     {
         add_menu_page(
@@ -21,7 +20,7 @@ class Dashboard
             'ndpv',
             array($this, 'main_settings'),
             'dashicons-groups',
-            5
+            2
         );
 
         add_submenu_page(

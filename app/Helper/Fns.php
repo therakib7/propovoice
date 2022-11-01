@@ -49,10 +49,10 @@ class Fns
                     )
                 ),
                 'fields' => 'ids'
-            ); 
+            );
             $number_query = new \WP_Query($args);
-            $ids = $number_query->posts; 
-            if ( !empty($ids) ) { 
+            $ids = $number_query->posts;
+            if ( !empty($ids) ) {
                 return $ids[0];
             }
         }
@@ -138,6 +138,8 @@ class Fns
         $id = isset($array['id']) ? $array['id'] : '';
         $path = isset($array['path']) ? $array['path'] : '';
         $org_name = isset($array['org_name']) ? $array['org_name'] : '';
+        $org_img = isset($array['org_img']) ? $array['org_img'] : '';
+        $org_address = isset($array['org_address']) ? $array['org_address'] : '';
         $client_name = isset($array['client_name']) ? $array['client_name'] : '';
         $date = isset($array['date']) ? $array['date'] : '';
         $due_date = isset($array['due_date']) ? $array['due_date'] : '';
@@ -149,51 +151,54 @@ class Fns
         //TODO: set free version social link
         $social_list = [
             [
-                'id' => 'facebook',
-                'label' => 'Facebook',
-                'icon_url' => '',
-                'url' => 'https://www.facebook.com/propovoice/',
+                'icon' => ndpv()->get_asset_uri('img/email/') . 'wp.png',
+                'url' => 'https://wordpress.org/plugins/propovoice',
             ],
             [
-                'id' => 'twitter',
-                'label' => 'Twitter',
-                'icon_url' => '',
+                'icon' => ndpv()->get_asset_uri('img/email/') . 'facebook.png',
+                'url' => 'https://www.facebook.com/propovoice',
+            ],
+            [
+                'icon' => ndpv()->get_asset_uri('img/email/') . 'twitter.png',
                 'url' => 'https://twitter.com/nasirbinburhan',
-            ],
-            [
-                'id' => 'linkedin',
-                'label' => 'Linkedin',
-                'icon_url' => '',
-                'url' => 'https://www.linkedin.com/in/nasirbinburhan/',
             ],
         ];
 
-        if (function_exists('ndpvp')) {
-            $get_social = get_option('ndpv_email_social');
+        if ( function_exists('ndpvp') ) {
+            /* $get_social = get_option('ndpv_email_social');
             if (isset($get_social['social'])) {
                 $social_list = $get_social['social'];
-            }
-        }
-
-        foreach ($social_list as $val) {
-            $icon_url = $val['icon_url'];
-            if (!$icon_url) {
-                if ($val['id'] == 'facebook') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/f.png';
-                } elseif ($val['id'] == 'twitter') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/t.png';
-                } elseif ($val['id'] == 'linkedin') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/i.png';
+            } */
+            $get_taxonomy = self::get_terms('email_social');
+            $format_taxonomy = [];
+            foreach ($get_taxonomy as $single) {
+                $icon_id = get_term_meta($single->term_id, 'icon', true);
+                $iconData = null;
+                if ($icon_id) {
+                    $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
+                    if ($icon_src) {
+                        $url = get_term_meta($single->term_id, 'url', true);
+                        if ( $url ) {
+                            $format_taxonomy[] = [
+                                'url' => $url,
+                                'icon' => $icon_src[0]
+                            ];
+                        }
+                    }
                 }
             }
-
-            if ($val['url']) {
-                $social .= '<a href="' . esc_url($val['url']) . '"><img src="' . esc_url($icon_url) . '" alt="' . esc_attr($val['label']) . '"></a>';
-                // $social .= '<li><a href="' . esc_url($val['url']) . '"><img src="' . esc_url($icon_url) . '" alt="' . esc_attr($val['label']) . '"></a></li>';
+            if ( $format_taxonomy ) {
+                $social_list = $format_taxonomy;
             }
         }
 
-        $org_img = '';
+        foreach ($social_list as $val) { 
+
+            if ($val['url']) {
+                // $social .= '<a href="' . esc_url($val['url']) . '"><img src="' . esc_url($icon_url) . '" alt="' . esc_attr($val['label']) . '"></a>';
+                $social .= '<li><a href="' . esc_url($val['url']) . '"><img src="' . esc_url($val['icon']) . '" alt=""></a></li>';
+            }
+        }
 
         return str_replace(
             array(
@@ -201,6 +206,7 @@ class Fns
                 '{path}',
                 '{org_name}',
                 '{org_img}',
+                '{org_address}',
                 '{client_name}',
                 '{date}',
                 '{due_date}',
@@ -214,6 +220,7 @@ class Fns
                 $path,
                 $org_name,
                 $org_img,
+                $org_address,
                 $client_name,
                 $date,
                 $due_date,

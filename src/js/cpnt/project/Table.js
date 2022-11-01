@@ -75,7 +75,7 @@ const TableBody = props => {
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{currency(row.budget, row.currency)}</td>
-                <td><span className="pv-badge">{row.status_id && row.status_id.label}</span></td>
+                <td>{row.status_id && <span className="pv-badge">{row.status_id.label}</span>}</td>
                 <td className="pv-action">
                     <Action
                         row={row}
