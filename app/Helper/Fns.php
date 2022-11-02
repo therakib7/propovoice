@@ -147,6 +147,15 @@ class Fns
         $msg = isset($array['msg']) ? $array['msg'] : '';
         $url = isset($array['url']) ? $array['url'] : '';
 
+        $footer_text = "<p>Powered by</p>
+<h3>Propovoice</h3>";
+        $email_footer = get_option('ndpv_email_footer');
+        if ( ndpv()->wage() ) {
+            if (isset($email_footer['text'])) {
+                $footer_text = $email_footer['text'];
+            }
+        }
+
         $social = '';
         //TODO: set free version social link
         $social_list = [
@@ -164,11 +173,7 @@ class Fns
             ],
         ];
 
-        if ( function_exists('ndpvp') ) {
-            /* $get_social = get_option('ndpv_email_social');
-            if (isset($get_social['social'])) {
-                $social_list = $get_social['social'];
-            } */
+        if ( ndpv()->wage() ) {
             $get_taxonomy = self::get_terms('email_social');
             $format_taxonomy = [];
             foreach ($get_taxonomy as $single) {
@@ -192,12 +197,15 @@ class Fns
             }
         }
 
-        foreach ($social_list as $val) { 
-
+        foreach ($social_list as $val) {
             if ($val['url']) {
-                // $social .= '<a href="' . esc_url($val['url']) . '"><img src="' . esc_url($icon_url) . '" alt="' . esc_attr($val['label']) . '"></a>';
                 $social .= '<li><a href="' . esc_url($val['url']) . '"><img src="' . esc_url($val['icon']) . '" alt=""></a></li>';
             }
+        }
+
+        if ( isset($email_footer['active']) && !$email_footer['active'] ) {
+            $footer_text = '';
+            $social = '';
         }
 
         return str_replace(
@@ -213,6 +221,7 @@ class Fns
                 '{amount}',
                 '{msg}',
                 '{url}',
+                '{footer_text}',
                 '{social}'
             ),
             array(
@@ -227,6 +236,7 @@ class Fns
                 $amount,
                 $msg,
                 $url,
+                $footer_text,
                 $social
             ),
             $string

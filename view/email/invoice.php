@@ -58,13 +58,14 @@
     .ndpv-logo {
       width: 200px;
     }
-    .ndpv-logo img{
+    .ndpv-logo img {
       max-width: 200px;
+      max-height: 90px;
     }
 
     .ndpv-address {
       width: 202px;
-      padding: 13px 13px 13px 40px;
+      padding: 13px 13px 13px 20px;
       background-color: #EDF2F7;
       border-radius: 9px;
     }
@@ -252,7 +253,7 @@
                 <td>
                   <table class="ndpv-head">
                     <tr>
-                      <td class="ndpv-logo"> 
+                      <td class="ndpv-logo">
                         {org_img}
                       </td>
                       <td class="ndpv-address">
@@ -287,10 +288,9 @@
               <tbody>
                 <tr>
                   <td class="ndpv-footer-text">
-                    <p>Powered by</p>
-                    <h3>Propovoice</h3>
+                    {footer_text}
                     <ul class="ndpv-social">
-                        {social}
+                      {social}
                     </ul>
                   </td>
                 </tr>

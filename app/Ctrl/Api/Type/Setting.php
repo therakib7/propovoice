@@ -43,35 +43,15 @@ class Setting
         } else {
             $data = [];
 
-            if ($tab == "email_social") {
+            if ($tab == "email_footer") {
                 $option = get_option("ndpv_" . $tab);
 
                 if ($option) {
                     $data = $option;
                 } else {
-                    $data["social"] = [
-                        [
-                            "id" => "facebook",
-                            "label" => "Facebook",
-                            "desc" => "",
-                            "icon_url" => "",
-                            "url" => "",
-                        ],
-                        [
-                            "id" => "twitter",
-                            "label" => "Twitter",
-                            "desc" => "",
-                            "icon_url" => "",
-                            "url" => "",
-                        ],
-                        [
-                            "id" => "linkedin",
-                            "label" => "Linkedin",
-                            "desc" => "",
-                            "icon_url" => "",
-                            "url" => "",
-                        ],
-                    ];
+                    $data["active"] = true;
+                    $data["text"] = "<p>Powered by</p>
+<h3>Propovoice</h3>";
                 }
             }
 
@@ -341,10 +321,12 @@ class Setting
         } else {
             $data = [];
 
-            if ($tab == "email_social") {
-                //TODO: sanitization
-                $data["social"] = isset($param["social"])
-                    ? $param["social"]
+            if ($tab == "email_footer") { 
+                $data["active"] = isset($param["active"])
+                    ? rest_sanitize_boolean( $param["active"] )
+                    : null;
+                $data["text"] = isset($param["text"])
+                    ? ( $param["text"] )
                     : null;
 
                 $option = update_option("ndpv_" . $tab, $data);

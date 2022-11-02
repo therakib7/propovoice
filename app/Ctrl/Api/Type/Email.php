@@ -81,8 +81,19 @@ class Email
 
     public function sent($param)
     {
+        $org_id = isset($param['fromData']) ? $param['fromData']['id'] : '';
         $org_name = isset($param['fromData']) ? $param['fromData']['name'] : '';
         $org_img = '';
+        if ( $org_id ) {
+            $logo_id = get_post_meta($org_id, 'logo', true); 
+            if ( $logo_id ) {
+                $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+                if ( $logo_src ) {
+                    $org_img = "<img src='". $logo_src[0] ."' alt='' />";
+                }
+            }
+        }
+
         $org_address = '';
         $mail_from = isset($param['fromData']) ? $param['fromData']['email'] : '';
         $mail_to = isset($param['toData']) ? $param['toData']['email'] : '';

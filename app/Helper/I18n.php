@@ -180,7 +180,7 @@ class I18n
             "payment" => esc_html__("Payment", "propovoice"),
             "paymentInfo" => esc_html__("Payment Info", "propovoice"),
             "method" => esc_html__("Method", "propovoice"),
-            "social" => esc_html__("Social", "propovoice"),
+            "footer" => esc_html__("Footer", "propovoice"),
             "var" => esc_html__("Variable", "propovoice"),
             "imp" => esc_html__("Import", "propovoice"),
             "exp" => esc_html__("Export", "propovoice"),
