@@ -84,17 +84,30 @@ class Email
         $org_id = isset($param['fromData']) ? $param['fromData']['id'] : '';
         $org_name = isset($param['fromData']) ? $param['fromData']['name'] : '';
         $org_img = '';
+        $org_address = '';
         if ( $org_id ) {
-            $logo_id = get_post_meta($org_id, 'logo', true); 
+            $queryMeta = get_post_meta($org_id); 
+            $logo_id = isset($queryMeta['logo']) ? $queryMeta['logo'][0] : '';
+            $address = isset($queryMeta['address']) ? $queryMeta['address'][0] : '';
+            $email = isset($queryMeta['email']) ? $queryMeta['email'][0] : '';
+            $mobile = isset($queryMeta['mobile']) ? $queryMeta['mobile'][0] : ''; 
+
             if ( $logo_id ) {
                 $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
                 if ( $logo_src ) {
                     $org_img = "<img src='". $logo_src[0] ."' alt='' />";
                 }
             }
+
+            if ( $address ) {
+                $org_address .= $address . '<br />';
+            }
+            $org_address .= $email;
+            if ( $mobile ) {
+                $org_address .= ',<br />' . $mobile;
+            }
         }
 
-        $org_address = '';
         $mail_from = isset($param['fromData']) ? $param['fromData']['email'] : '';
         $mail_to = isset($param['toData']) ? $param['toData']['email'] : '';
         $invoice_id = isset($param['invoice_id']) ? $param['invoice_id'] : '';

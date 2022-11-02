@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Taxonomy from 'block/field/taxonomy/setting';
 import { toast } from 'react-toastify';
 import api from 'api';
+import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
 export default (props) => {
     const [form, setForm] = useState({
@@ -27,6 +28,11 @@ export default (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
 
         form.tab = 'email_footer';
 
@@ -88,10 +94,10 @@ export default (props) => {
             <div className="row">
                 <div className="col">
                     <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                        {ndpv.i18n.save}
+                        {ndpv.i18n.save} <ProLabel blueBtn />
                     </button>
                 </div>
             </div>
         </form>
     );
-} 
+}

@@ -58,7 +58,7 @@
     .ndpv-logo {
       width: 200px;
     }
-    .ndpv-logo img {
+    .ndpv-logo img{
       max-width: 200px;
       max-height: 90px;
     }
