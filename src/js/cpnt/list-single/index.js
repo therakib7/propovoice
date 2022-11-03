@@ -54,10 +54,10 @@ class ListSingle extends Component {
             data: {
                 id: null,
                 person: {
-                    first_name: 'Name'
+                    first_name: ''
                 },
                 org: {
-                    name: 'Name'
+                    name: ''
                 },
                 level_id: null,
                 stage_id: null,

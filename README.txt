@@ -182,6 +182,7 @@ The super fantastic pro features that accelerate your business growth and improv
 
 = 1.0.5 =
 * Update: Email Template
+* Fixed: Email Template subject variable issue
 * Update: Functional issue
 * Update: CSS Issue
 

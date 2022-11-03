@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-31 17:59+0000\n"
+"POT-Creation-Date: 2022-11-02 10:03+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %s template
-#: ../app/Helper/Fns.php:293
+#: ../app/Helper/Fns.php:310
 msgid "%s does not exist."
 msgstr ""
 
-#: ../app/Helper/I18n.php:10, ../app/Ctrl/Setting/Type/Dashboard.php:29, ../app/Ctrl/Setting/Type/Dashboard.php:30
+#: ../app/Helper/I18n.php:10, ../app/Ctrl/Setting/Type/Dashboard.php:28, ../app/Ctrl/Setting/Type/Dashboard.php:29
 msgid "Dashboard"
 msgstr ""
 
-#: ../app/Helper/I18n.php:11, ../app/Ctrl/Setting/Type/Dashboard.php:39
+#: ../app/Helper/I18n.php:11, ../app/Ctrl/Setting/Type/Dashboard.php:38
 msgid "Lead"
 msgstr ""
 
-#: ../app/Helper/I18n.php:12, ../app/Ctrl/Setting/Type/Dashboard.php:43
+#: ../app/Helper/I18n.php:12, ../app/Ctrl/Setting/Type/Dashboard.php:42
 msgid "Deal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:13, ../app/Ctrl/Setting/Type/Dashboard.php:47
+#: ../app/Helper/I18n.php:13, ../app/Ctrl/Setting/Type/Dashboard.php:46
 msgid "Estimate"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Estimate No"
 msgstr ""
 
-#: ../app/Helper/I18n.php:15, ../app/Ctrl/Setting/Type/Dashboard.php:51
+#: ../app/Helper/I18n.php:15, ../app/Ctrl/Setting/Type/Dashboard.php:50
 msgid "Invoice"
 msgstr ""
 
@@ -47,11 +47,11 @@ msgstr ""
 msgid "Invoice No"
 msgstr ""
 
-#: ../app/Helper/I18n.php:17, ../app/Ctrl/Setting/Type/Dashboard.php:55
+#: ../app/Helper/I18n.php:17, ../app/Ctrl/Setting/Type/Dashboard.php:54
 msgid "Client"
 msgstr ""
 
-#: ../app/Helper/I18n.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:59
+#: ../app/Helper/I18n.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:58
 msgid "Project"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Task & Activity"
 msgstr ""
 
-#: ../app/Helper/I18n.php:21, ../app/Ctrl/Setting/Type/Dashboard.php:63
+#: ../app/Helper/I18n.php:21, ../app/Ctrl/Setting/Type/Dashboard.php:62
 msgid "Contact"
 msgstr ""
 
@@ -596,7 +596,7 @@ msgstr ""
 msgid "Common"
 msgstr ""
 
-#: ../app/Helper/I18n.php:175, ../app/Ctrl/Setting/Type/Dashboard.php:87, ../app/Ctrl/Setting/Type/Dashboard.php:88
+#: ../app/Helper/I18n.php:175, ../app/Ctrl/Setting/Type/Dashboard.php:86, ../app/Ctrl/Setting/Type/Dashboard.php:87
 msgid "Settings"
 msgstr ""
 
@@ -629,7 +629,7 @@ msgid "Method"
 msgstr ""
 
 #: ../app/Helper/I18n.php:183
-msgid "Social"
+msgid "Footer"
 msgstr ""
 
 #: ../app/Helper/I18n.php:184
@@ -1132,11 +1132,11 @@ msgid "Propovoice Workspace"
 msgstr ""
 
 #: ../app/Ctrl/Template/TemplateCtrl.php:22
-msgid "Propovoice Client Invoice"
+msgid "Propovoice Client Estimate"
 msgstr ""
 
 #: ../app/Ctrl/Template/TemplateCtrl.php:23
-msgid "Propovoice Client Estimate"
+msgid "Propovoice Client Invoice"
 msgstr ""
 
 #: ../app/Ctrl/Api/Type/Action.php:94, ../app/Ctrl/Api/Type/Action.php:157
@@ -1203,11 +1203,11 @@ msgstr ""
 msgid "Please title is required"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Setting.php:37, ../app/Ctrl/Api/Type/Setting.php:335
+#: ../app/Ctrl/Api/Type/Setting.php:37, ../app/Ctrl/Api/Type/Setting.php:315
 msgid "Tab is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Setting.php:404
+#: ../app/Ctrl/Api/Type/Setting.php:386
 msgid "Please install and activate WooCommerce plugin."
 msgstr ""
 
@@ -1219,15 +1219,15 @@ msgstr ""
 msgid "Taxonomy is missing"
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Dashboard.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:19
+#: ../app/Ctrl/Setting/Type/Dashboard.php:17, ../app/Ctrl/Setting/Type/Dashboard.php:18
 msgid "Propovoice"
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Dashboard.php:43
+#: ../app/Ctrl/Setting/Type/Dashboard.php:42
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Dashboard.php:98
+#: ../app/Ctrl/Setting/Type/Dashboard.php:97
 msgid "Go to Frontend"
 msgstr ""
 
