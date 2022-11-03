@@ -5,7 +5,9 @@ import ProLabel from "block/pro-alert/label";
 
 import Form from "./form";
 import Smtp from "./smtp";
-import GoogleAPI from "./google-api";
+import GOAuth2 from "./google-api/services/goauth2"
+// import Test from "./google-api/services/Test"
+import Test from "./google-api/services/Test"
 import Automation from "./automation";
 
 const Main = (props) => {
@@ -26,8 +28,12 @@ const Main = (props) => {
       id: "smtp",
       text: "SMTP",
     },
-     {
-      id: "google-api",
+    {
+      id: "test",
+      text: "Test",
+    },
+    {
+      id: "google-apps",
       text: "Google Apps",
     }, 
     {
@@ -89,15 +95,31 @@ const Main = (props) => {
           tab={currentSubtab}
         />
       )}
+      {currentTab == "test" && (
+        <Test
+          // key={reload}
+          // {...props}
+          // onChange={addCurrentTab}
+          // tab={currentSubtab}
+        />
+      )}
 
-      {currentTab == "google-api" && (
-        <GoogleAPI
+      {currentTab == "google-apps" && (
+        <GOAuth2
           key={reload}
           {...props}
           onChange={addCurrentTab}
           tab={currentSubtab}
         />
       )}
+      {/* {currentTab == "google-api" && (
+        <GoogleAPI
+          key={reload}
+          {...props}
+          onChange={addCurrentTab}
+          tab={currentSubtab}
+        />
+      )} */}
 
       {currentTab == "automation" && (
         <Automation
