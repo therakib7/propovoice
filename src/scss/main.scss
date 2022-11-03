@@ -26,7 +26,7 @@ body {
   margin: 0;
 }
 
-.ndpv {
+
   /**
    * Render the `main` element consistently in IE.
    */
@@ -90,15 +90,7 @@ body {
     -webkit-text-decoration: underline dotted;
     text-decoration: underline dotted;
     /* 2 */
-  }
-
-  /**
-  * Add the correct font weight in Chrome, Edge, and Safari.
-  */
-  b,
-  strong {
-    font-weight: bolder;
-  }
+  } 
 
   /**
   * 1. Correct the inheritance and scaling of font size in all browsers.
@@ -866,7 +858,7 @@ body {
       max-width: 100%;
     }
   }
-}
+
 
 /*-------------------------------------------------------------- 
 # Partials
@@ -5598,7 +5590,7 @@ html {
   font-size: 100%;
 }
 
-body {
+body.ndpv {
   font-family: "Inter", sans-serif;
   font-size: 14px;
   line-height: 1.45em;
