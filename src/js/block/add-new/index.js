@@ -61,7 +61,7 @@ export default (props) => {
       {imp === true && (
         <ImportModal
           close={() => setImp(false)}
-          ExportModal={props.ExportModal}
+          modal={props.ExportModal}
           title={props.title}
         />
       )}
@@ -84,7 +84,7 @@ export default (props) => {
           {dropdown && (
             <div className="pv-dropdown-content pv-show">
               <a onClick={(e) => ImportImport(e, "import")}>{i18n.imp}</a>
-              <a onClick={(e) => ImportExport(e, "export")}>{i18n.exp}</a>
+              {/* <a onClick={(e) => ImportExport(e, "export")}>{i18n.exp}</a> */}
             </div>
           )}
         </div>
