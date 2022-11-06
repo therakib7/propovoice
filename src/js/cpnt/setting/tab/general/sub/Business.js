@@ -206,7 +206,7 @@ export default class Business extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
+                        <button className="pv-btn pv-btn-big pv-bg-blue pv-bg-hover-blue">
                             {i18n.save}
                         </button>
                     </div>

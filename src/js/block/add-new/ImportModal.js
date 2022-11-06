@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import WithRouter from 'hoc/Router';
-import { toast } from 'react-toastify';
-import { Add } from 'block/icon';
+import React, { useState } from "react";
+import WithRouter from "hoc/Router";
+import { toast } from "react-toastify";
+import { Add } from "block/icon";
 import { CSVLink } from "react-csv";
-import csv from './csv';
+import csv from "./csv";
 
 const ImportModal = (props) => {
     const [file, setFile] = useState();
     const [csvData, setArray] = useState([]);
-    const [values, setValues] = useState(Array(props.ExportModal.length).fill(""));
-    
+    const [values, setValues] = useState(Array(props.modal.length).fill(""));
+
     const fileReader = new FileReader();
     const handleOnChange = (e) => {
         setFile(e.target.files[0]);
@@ -18,8 +18,8 @@ const ImportModal = (props) => {
         e.preventDefault();
         const headerKeys = Object.keys(Object.assign({}, ...csvData));
         const nn = headerKeys.length;
-       values[si] = e.target.value
-            setValues(values)
+        values[si] = e.target.value
+        setValues(values)
     }
     const csvFileToArray = string => {
         const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
@@ -57,8 +57,8 @@ const ImportModal = (props) => {
         console.log(file, values)
     }
     const headerKeys = Object.keys(Object.assign({}, ...csvData));
-    const exportModal = ['Not Assign', ...props.ExportModal];
-     const i18n = ndpv.i18n;
+    const modal = ['Not Assign', ...props.modal];
+    const i18n = ndpv.i18n;
     return (
         <div className="pv-overlay pv-show">
             <div className="pv-modal-content">
@@ -101,20 +101,20 @@ const ImportModal = (props) => {
                                     </label>
                                 </div>
                             </div>}
-                                {!file && <div>
-                                    <CSVLink style={{ color: 'rgb(54 91 243)', fontWeight: '500' }} data={csv}>Download sample file</CSVLink>
-                                    {!file && <p>Please make sure your csv file has unique headers.Otherwise, it may fail to import</p>}
-                                </div>}
-                                <div className="pv-import-map">
-                                    <button
-                                        className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white pv-mb-30"
-                                        onClick={(e) => {
-                                            handleMaping(e);
-                                        }}
-                                    >
-                                        Next [Map Columns]
-                                    </button>
-                                </div>
+                            {!file && <div>
+                                <CSVLink style={{ color: 'rgb(54 91 243)', fontWeight: '500' }} data={csv}>Download sample file</CSVLink>
+                                {!file && <p>Please make sure your csv file has unique headers.Otherwise, it may fail to import</p>}
+                            </div>}
+                            <div className="pv-import-map">
+                                <button
+                                    className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white pv-mb-30"
+                                    onClick={(e) => {
+                                        handleMaping(e);
+                                    }}
+                                >
+                                    Next [Map Columns]
+                                </button>
+                            </div>
                             <br />
                             {file && <div className='pv-table-wrap pv-mb-20'>
                                 <table className='pv-table'>
@@ -145,7 +145,7 @@ const ImportModal = (props) => {
                                                         style={{ lineHeight: '106%' }}
                                                         onChange={(e) => { valueSate(e, si) }}
                                                     >
-                                                        {exportModal.map((val, i) => <option key={i} >{val}</option>)}
+                                                        {modal.map((val, i) => <option key={i} >{val}</option>)}
                                                     </select>
                                                 </td>
                                                 <td>
@@ -171,6 +171,8 @@ const ImportModal = (props) => {
                     </div>}
                 </form>
             </div>
+
+          
         </div>
     );
 };

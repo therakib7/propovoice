@@ -461,7 +461,6 @@
   margin-top: 15px;
   display: flex;
   overflow-x: scroll;
-  overflow: visible;
 }
 
 .ndpv .pv-board-column {
@@ -610,7 +609,7 @@
 
 .ndpv .pv-board-content {
   margin-top: 10px;
-  height: calc(100vh - 380px);
+  height: calc(100vh - 420px);
   overflow-y: scroll;
 }
 

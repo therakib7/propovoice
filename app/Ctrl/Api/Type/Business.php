@@ -239,7 +239,7 @@ class Business
             $post_id = wp_insert_post( $data );
 
             if ( !is_wp_error($post_id) ) {
-                
+
                 update_post_meta($post_id, 'ws_id', ndpv()->get_workspace() ); 
 
                 if ( $name ) {
@@ -249,63 +249,63 @@ class Business
                 if ( $org_name ) {
                     update_post_meta($post_id, 'org_name', $org_name); 
                 }
-                 
+
                 if ( $web ) {
-                    update_post_meta($post_id, 'web', $web); 
-                } 
+                    update_post_meta($post_id, 'web', $web);
+                }
 
                 if ( $email ) {
-                    update_post_meta($post_id, 'email', $email); 
-                } 
+                    update_post_meta($post_id, 'email', $email);
+                }
 
                 if ( $mobile ) {
-                    update_post_meta($post_id, 'mobile', $mobile); 
-                } 
+                    update_post_meta($post_id, 'mobile', $mobile);
+                }
 
                 if ( $address ) {
-                    update_post_meta($post_id, 'address', $address); 
+                    update_post_meta($post_id, 'address', $address);
                 }
 
                 if ( $zip ) {
-                    update_post_meta($post_id, 'zip', $zip); 
-                } 
+                    update_post_meta($post_id, 'zip', $zip);
+                }
 
                 if ( $default ) {
-                    $this->set_default(); 
+                    $this->set_default();
                     update_post_meta($post_id, 'default', true);
                 } else {
-                    update_post_meta($post_id, 'default', false); 
+                    update_post_meta($post_id, 'default', false);
                 }
 
                 if ( $logo ) {
-                    update_post_meta($post_id, 'logo', $logo); 
-                }  
+                    update_post_meta($post_id, 'logo', $logo);
+                }
 
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
             }
         }
-    } 
+    }
 
     public function update($req)
-    {  
-        $param = $req->get_params(); 
-        $reg_errors = new \WP_Error;  
+    {
+        $param = $req->get_params();
+        $reg_errors = new \WP_Error;
 
-        $name = isset( $param['name'] ) ? sanitize_text_field( $param['name'] ) : null; 
-        $org_name = isset( $param['org_name'] ) ? sanitize_text_field( $param['org_name'] ) : null; 
-        $web = isset( $param['web'] ) ? esc_url_raw( $param['web'] ) : null; 
-        $email = isset( $param['email'] ) ? strtolower( sanitize_email( $param['email'] ) ) : null; 
-        $mobile = isset( $param['mobile'] ) ? sanitize_text_field( $param['mobile'] ) : null; 
-        $address = isset( $param['address'] ) ? sanitize_text_field( $param['address'] ) : null; 
-        $zip = isset( $param['zip'] ) ? sanitize_text_field( $param['zip'] ) : null; 
-        $default = isset( $param['default'] ) ? rest_sanitize_boolean( $param['default'] ) : null; 
+        $name = isset( $param['name'] ) ? sanitize_text_field( $param['name'] ) : null;
+        $org_name = isset( $param['org_name'] ) ? sanitize_text_field( $param['org_name'] ) : null;
+        $web = isset( $param['web'] ) ? esc_url_raw( $param['web'] ) : null;
+        $email = isset( $param['email'] ) ? strtolower( sanitize_email( $param['email'] ) ) : null;
+        $mobile = isset( $param['mobile'] ) ? sanitize_text_field( $param['mobile'] ) : null;
+        $address = isset( $param['address'] ) ? sanitize_text_field( $param['address'] ) : null;
+        $zip = isset( $param['zip'] ) ? sanitize_text_field( $param['zip'] ) : null;
+        $default = isset( $param['default'] ) ? rest_sanitize_boolean( $param['default'] ) : null;
         $logo = isset( $param['logo']['id'] ) ? absint( $param['logo']['id'] ) : null;
 
         if ( empty( $name ) ) {
             $reg_errors->add('field', esc_html__('Name is missing', 'propovoice'));
-        } 
+        }
 
         if ( $reg_errors->get_error_messages() ) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -321,34 +321,34 @@ class Business
             $post_id = wp_update_post( $data );
 
             if ( !is_wp_error($post_id) ) {
-                
-                update_post_meta($post_id, 'name', $name); 
+
+                update_post_meta($post_id, 'name', $name);
 
                 if ( $org_name ) {
-                    update_post_meta($post_id, 'org_name', $org_name); 
+                    update_post_meta($post_id, 'org_name', $org_name);
                 }
-                 
-                update_post_meta($post_id, 'web', $web);  
+
+                update_post_meta($post_id, 'web', $web);
 
                 update_post_meta($post_id, 'email', $email);
 
-                update_post_meta($post_id, 'mobile', $mobile);  
+                update_post_meta($post_id, 'mobile', $mobile);
 
                 update_post_meta($post_id, 'address', $address);
 
-                update_post_meta($post_id, 'zip', $zip); 
+                update_post_meta($post_id, 'zip', $zip);
 
                 if ( $default ) {
-                    $this->set_default(); 
-                    update_post_meta($post_id, 'default', true);  
+                    $this->set_default();
+                    update_post_meta($post_id, 'default', true);
                 } else {
-                    update_post_meta($post_id, 'default', false); 
+                    update_post_meta($post_id, 'default', false);
                 }
 
                 if ( $logo ) {
-                    update_post_meta($post_id, 'logo', $logo); 
+                    update_post_meta($post_id, 'logo', $logo);
                 } else {
-                    delete_post_meta($post_id, 'logo'); 
+                    delete_post_meta($post_id, 'logo');
                 }
 
                 wp_send_json_success($post_id);
@@ -356,14 +356,14 @@ class Business
                 wp_send_json_error();
             }
         }
-    } 
+    }
 
     public function delete($req)
     {
         $url_params = $req->get_url_params();
 
         $ids = explode(',', $url_params['id']);
-        foreach ($ids as $id) { 
+        foreach ($ids as $id) {
             wp_delete_post($id);
         }
         wp_send_json_success($ids);

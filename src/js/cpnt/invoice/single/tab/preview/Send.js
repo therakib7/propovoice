@@ -7,7 +7,7 @@ import pro from 'block/pro-alert';
 import { Add } from 'block/icon';
 
 import api from 'api';
-export default  class Send extends Component {
+export default class Send extends Component {
     constructor(props) {
         super(props);
 
@@ -110,6 +110,7 @@ export default  class Send extends Component {
         let mail = this.props.mail;
 
         let subject = mail.subject.replaceAll('{id}', id)
+            .replaceAll('{client_name}', client_name)
             .replaceAll('{org_name}', org_name);
 
         let msg = mail.msg.replaceAll('{id}', id)
@@ -126,8 +127,8 @@ export default  class Send extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault(); 
-         
+        e.preventDefault();
+
         // TODO: send with attachment pdf
         if (false) {
             /* html2canvas(document.querySelector(".pv-inv")).then(canvas => { 
