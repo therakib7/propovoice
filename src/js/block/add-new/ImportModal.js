@@ -56,7 +56,6 @@ const ImportModal = (props) => {
     e.preventDefault();
     const title = props.title.toLowerCase();
     const data = { file, fields, title };
-    console.log(data);
     api
       .add(`import/csv`, data, "pro")
       .then((res) => {

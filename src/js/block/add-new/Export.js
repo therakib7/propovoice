@@ -62,12 +62,11 @@ class Form extends Component {
     e.preventDefault();
     const title = this.props.title.toLowerCase();
     const data = { fields: this.state.form.actions, title };
-    console.log(data, title);
 
     api
       .add(`export/csv`, data, "pro")
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
       })
       .catch((error) => console.log(error.message));
   };
