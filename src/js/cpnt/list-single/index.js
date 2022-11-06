@@ -200,7 +200,6 @@ class ListSingle extends Component {
             data.stage_id = val;
             this.setState({ data });
         }
-
     }
 
     handleProjectStatusChange = (val) => {

@@ -58,6 +58,7 @@ export default (props) => {
         </svg>
         {i18n.add} {props.title}
       </button>
+ 
       {imp === true && (
         <ImportModal
           close={() => setImp(false)}
@@ -80,6 +81,7 @@ export default (props) => {
           >
             <Edit />
           </button>
+ 
 
           {dropdown && (
             <div className="pv-dropdown-content pv-show">

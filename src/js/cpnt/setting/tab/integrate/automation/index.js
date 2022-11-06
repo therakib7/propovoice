@@ -50,6 +50,18 @@ export default class Main extends Component {
                     img: "https://integrately.com/images/integrately-logo.svg",
                     pro: true,
                 },
+                /* {
+                    name: "Uncanny Automator",
+                    slug: "automator",
+                    img: "https://automator.wpenginepowered.com/wp-content/uploads/2022/09/uncanny-automator-vertical-logo.svg",
+                    pro: true,
+                },
+                {
+                    name: "Flowmattic",
+                    slug: "flowmattic",
+                    img: "https://du7m7sbzce8rk.cloudfront.net/wp-content/uploads/2022/01/flowmattic-logo.svg",
+                    pro: true,
+                }, */
                 {
                     name: "Webhook",
                     slug: "webhook",
@@ -85,7 +97,7 @@ export default class Main extends Component {
                     {!currentTab && <div className="pv-intg-list">
                         {list.map((item, i) => (
                             <div key={i} className="pv-intg-item" onClick={() => this.addCurrentTab(item)}>
-                                <img src={item.img} style={{ width: (item.slug == 'gravity_forms' ? '150px' : '80px') }} />
+                                <img src={item.img} style={{ width: (item.slug == 'gravity_forms' || item.slug == 'flowmattic' ? '150px' : '80px') }} />
                                 <h4>
                                     {item.name} {item.pro && wage.length > 0 && <ProLabel />}
                                 </h4>

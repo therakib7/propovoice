@@ -13,7 +13,6 @@ import Empty from 'block/empty';
 
 import Crud from 'hoc/Crud';
 const Lead = (props) => {
-console.log(props);
 
 	useEffect(() => {
 		props.getLists();

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Taxonomy from 'block/field/taxonomy/setting';
 import { toast } from 'react-toastify';
+import Upload from 'block/field/upload';
 import api from 'api';
 import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
@@ -8,7 +9,8 @@ export default (props) => {
     const [form, setForm] = useState({
         id: null,
         active: true,
-        text: ""
+        text: "",
+        logo: null,
     });
 
     useEffect(() => {
@@ -47,14 +49,25 @@ export default (props) => {
         });
     }
 
-
+    const handleLogoChange = (data) => {
+        setForm({ ...form, ['logo']: data });
+    }
     const i18n = ndpv.i18n;
     return (
         <form onSubmit={handleSubmit} className="pv-form-style-one">
+            <h4 className="pv-title-medium pv-mb-15">Brand Logo</h4>
+            <div className="row">
+                <div className="col-md">
+                    <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
+                    <Upload label={'Logo'} library={false} data={form.logo} changeHandler={handleLogoChange} />
+                    <p className='pv-field-desc'>Max-width: 215px, Max-height: 60px </p>
+                </div>
+            </div>
 
+            <h4 className="pv-title-medium pv-mt-25 pv-mb-15">Email Template</h4>
             <div className="row">
                 <div className="col">
-                    <label id="form-active">Show Template Footer</label>
+                    <label id="form-active">Show Email Template Footer</label>
                     <div className="pv-field-switch pv-ml-10">
                         <label className='pv-switch'>
                             <input type='checkbox'
