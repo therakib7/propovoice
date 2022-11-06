@@ -59,6 +59,27 @@ class Fns
         return null;
     }
 
+    public static function brand_logo()
+    {
+        $white_label = get_option("ndpv_white_label");
+        $logo = null;
+        if ( $white_label && isset( $white_label['logo'] ) ) {
+            $data['logo'] = $white_label['logo'];
+            $logo_id = $white_label['logo'];
+            $logoData = null;
+            if ( $logo_id ) {
+                $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+                if ( $logo_src ) {
+                    $logoData = [];
+                    $logoData['id'] = $logo_id;
+                    $logoData['src'] = $logo_src[0];
+                }
+            }
+            $logo = $logoData;
+        }
+        return $logo;
+    }
+
     public static function phpToMomentFormat($format)
     {
         $replacements = [
