@@ -1555,8 +1555,8 @@ html {
 }
 
 .ndpv .pv-logo-content img {
-  width: 36px;
-  height: 36px;
+  max-width: 215px;
+  max-height: 60px;
 }
 
 .ndpv .pv-logo-content {
@@ -1668,7 +1668,7 @@ html {
 
 .ndpv .pv-right-content {
   width: 100%;
-  overflow-y: auto !important;
+  overflow-y: auto;
   scroll-behavior: smooth;
   height: 100vh;
 }
@@ -2386,7 +2386,7 @@ html {
   padding: 12px 16px;
   width: 100%;
   border-bottom: 1px solid rgba(221, 221, 221, 0.6588235294);
-  color: #A0AEC0;
+  color: #A0AEC0 !important;
   text-align: left;
   margin-left: 0px !important;
 }
@@ -2421,6 +2421,10 @@ html {
   background-position-y: 48% !important;
   outline: none;
   line-height: 100%;
+}
+
+.pv-overview-select:focus {
+  outline: none;
 }
 
 @media screen and (max-width: 550px) {
@@ -4344,17 +4348,6 @@ ul {
   display: block;
 }
 
-.ndpv .pv-horizontal-tab .pv-tab {
-  cursor: pointer;
-  padding: 5px 10px;
-  margin-right: 25px;
-  border-bottom: 3px solid #fff;
-  font-size: 16px;
-  font-weight: 500;
-  display: flex;
-  color: #4A5568;
-  align-items: center;
-}
 
 @media screen and (max-width: 768px) {
   .ndpv .pv-horizontal-tab .pv-tab {
@@ -4366,7 +4359,6 @@ ul {
 .ndpv .pv-horizontal-tab .pv-tab span:first-child {
   border-radius: 8px;
   font-size: 18px !important;
-  font-weight: 700 !important;
   margin-right: 10px;
   align-self: center !important;
 }
@@ -4886,11 +4878,12 @@ ul {
   position: relative;
   padding: 15px 30px;
   font-size: 14px;
-  font-weight: 600;
-  border-bottom: 3px solid #fff;
+  border-bottom: 3px solid #f7f8fa;
   color: #718096;
   cursor: pointer;
-  margin: 0;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 550px) {
@@ -4900,15 +4893,6 @@ ul {
   }
 }
 
-.ndpv .pv-horizontal-tab .pv-tab.pv-active {
-  border-bottom: 3px solid var(--pv-bg-color-blue);
-  color: var(--pv-bg-color-blue);
-}
-
-.ndpv .pv-horizontal-tab .pv-tab:hover {
-  border-bottom: 3px solid var(--pv-bg-color-blue);
-  color: var(--pv-bg-color-blue);
-}
 
 .ndpv .pv-repeter-content label {
   color: #718096;
