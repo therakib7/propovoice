@@ -1,12 +1,19 @@
 import React, { Component } from "react";
+import { CSVLink } from "react-csv";
 import { toast } from "react-toastify";
 import api from "api";
+import csv from "./csv";
+
 import WithRouter from "hoc/Router";
 import { Add } from "block/icon";
 class Form extends Component {
+  csvLink = React.createRef();
+   today = new Date();
+ date = this.today.getFullYear() + '-' + (this.today.getMonth() + 1) + '-' + this.today.getDate();
+ time = this.today.getHours() + "-" + this.today.getMinutes() + "-" + this.today.getSeconds();
+ dateTime = this.date + '-' + this.time;
   constructor(props) {
     super(props);
-
     this.initialState = {
       id: null,
       title: "",
@@ -24,15 +31,17 @@ class Form extends Component {
       tags: [],
       desc: "",
       note: "",
-      date: false,
+      date: '',
       active: false,
       actions: [],
     };
 
     this.state = {
       form: this.initialState,
+      csvFile: false
     };
   }
+
   handleCheckbox = (e, type, slug = "") => {
     const target = e.target;
     let actions = this.state.form.actions;
@@ -56,7 +65,6 @@ class Form extends Component {
     }
     actions = Array.from(new Set(actions));
     this.setState({ form: { ...this.state.form, ["actions"]: actions } });
-    console.log(actions);
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -66,16 +74,21 @@ class Form extends Component {
     api
       .add(`export/csv`, data, "pro")
       .then((res) => {
-        console.log(res.data);
+        this.setState({ csvFile: res.data }, () => {
+          this.csvLink.current.link.click()
+        });
+
       })
       .catch((error) => console.log(error.message));
   };
+
 
   render() {
     const ExportModal = this.props.ExportModal;
     const i18n = ndpv.i18n;
     const form = this.state.form;
     let title = "";
+
     return (
       <div className="pv-overlay pv-show">
         <div className="pv-modal-content">
@@ -97,7 +110,6 @@ class Form extends Component {
                     id={"Select all"}
                     name="mod"
                     value={"Select all"}
-                    // checked={reminder.after.includes(1) ? 'checked' : ''}
                     onChange={(e) => this.handleCheckbox(e, "group")}
                   />
                   <label htmlFor={"Select all"}>{"Select all"}</label>
@@ -128,11 +140,20 @@ class Form extends Component {
                 </div>
                 <div className="col">
                   <button
+
                     type="submit"
                     className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white"
+
                   >
                     {i18n.save}
                   </button>
+                </div>
+                <div className="col">
+                  {this.state.csvFile && <CSVLink
+                    data={this.state.csvFile}
+                    className="d-none"
+                    filename = {`${this.props.title}-${this.dateTime}.csv`}
+                    ref={this.csvLink}>Download CSV</CSVLink>}
                 </div>
               </div>
             </div>
