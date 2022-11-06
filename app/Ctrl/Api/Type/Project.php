@@ -1,6 +1,7 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Helper\Fns;
 use Ndpv\Model\Contact;
 use Ndpv\Model\Invoice;
 use Ndpv\Model\Org;
@@ -70,11 +71,41 @@ class Project
     {
         $param = $req->get_params();
 
+        $board_view = true;
+        $module_id = isset($param['module_id']) ? absint($param['module_id']) : null;
+        $table_view = isset($param['table_view']) ? true : false;
+        if ($module_id || $table_view ) {
+            $board_view = false;
+        }
+        $result = [];
+        if ($board_view) {
+            $get_status = Fns::get_terms('project_status');
+            $column = [];
+            foreach ($get_status as $status) :
+                $status_id = $status->term_id;
+                $status_name = $status->name;
+                $items = $this->project_query($param, $status_id);
+                $column[] = [
+                    'name' => $status_name,
+                    'id' => $status_id,
+                    'color' => get_term_meta($status_id, 'color', true),
+                    'bg_color' => get_term_meta($status_id, 'bg_color', true),
+                    'type' => get_term_meta($status_id, 'type', true),
+                    'items' => $items
+                ];
+                $result['result'] = $column;
+            endforeach;
+        } else {
+            $result = $this->project_query($param);
+        }
+
+        wp_send_json_success($result);
+    }
+
+    public function project_query($param, $status_id = null)
+    {
         $per_page = 10;
         $offset = 0;
-
-        $module_id = isset($param['module_id']) ? absint($param['module_id']) : null;
-        $s = isset($param['text']) ? sanitize_text_field($param['text']) : null;
 
         if (isset($param['per_page'])) {
             $per_page = $param['per_page'];
@@ -84,6 +115,9 @@ class Project
             $offset = ($per_page * $param['page']) - $per_page;
         }
 
+        $module_id = isset($param['module_id']) ? absint($param['module_id']) : null;
+        $s = isset($param['text']) ? sanitize_text_field($param['text']) : null;
+
         $args = array(
             'post_type' => 'ndpv_project',
             'post_status' => 'publish',
@@ -91,11 +125,43 @@ class Project
             'offset' => $offset,
         );
 
+        if ( $status_id ) {
+            $args['orderby'] = 'menu_order';
+            $args['order'] = 'ASC';
+        }
+
         $args['meta_query'] = array(
             'relation' => 'OR'
         );
 
+        if ($status_id) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'ndpv_project_status',
+                    'terms' => $status_id,
+                    'field' => 'term_id',
+                )
+            );
+        }
+
+        if ( $module_id ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'person_id',
+                    'value' => $module_id
+                )
+            );
+
+            $args['meta_query'][] = array(
+                array(
+                    'key'   => 'org_id',
+                    'value' => $module_id
+                )
+            );
+        }
+
         if ($s) {
+
             $args['_meta_or_title'] = $s;
 
             $contact_person = new Contact();
@@ -122,32 +188,18 @@ class Project
             }
         }
 
-
-        if ($module_id) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'   => 'person_id',
-                    'value' => $module_id
-                )
-            );
-
-            $args['meta_query'][] = array(
-                array(
-                    'key'   => 'org_id',
-                    'value' => $module_id
-                )
-            );
-        }
-
         $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination
+        $total_data = null;
+        if (!$status_id) {
+            $total_data = $query->found_posts; //use this for pagination
+        }
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
 
             $query_data = [];
-            $query_data['id'] = $id;
+            $query_data['id'] = (string) $id; //Invariant failed: Draggable requires a [string] draggableId. 
 
             $queryMeta = get_post_meta($id);
             $query_data['title'] = get_the_title($id);
@@ -158,16 +210,18 @@ class Project
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
 
-            $query_data['status_id'] = '';
-            $status = get_the_terms($id, 'ndpv_project_status');
-            if ($status) {
-                $term_id = $status[0]->term_id;
-                $query_data['status_id'] = [
-                    'id' => $term_id,
-                    'label' => $status[0]->name,
-                    'color' => get_term_meta($term_id, 'color', true),
-                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
-                ];
+            if (!$status_id) {
+                $query_data['status_id'] = '';
+                $status = get_the_terms($id, 'ndpv_project_status');
+                if ($status) {
+                    $term_id = $status[0]->term_id;
+                    $query_data['status_id'] = [
+                        'id' => $term_id,
+                        'label' => $status[0]->name,
+                        'color' => get_term_meta($term_id, 'color', true),
+                        'bg_color' => get_term_meta($term_id, 'bg_color', true)
+                    ];
+                }
             }
 
             $query_data['tags'] = [];
@@ -202,10 +256,13 @@ class Project
         }
         wp_reset_postdata();
 
-        $result['result'] = $data;
-        $result['total'] = $total_data;
-
-        wp_send_json_success($result);
+        if ($status_id) {
+            return $data;
+        } else {
+            $result['result'] = $data;
+            $result['total'] = $total_data;
+            return $result;
+        }
     }
 
     public function get_single($req)
@@ -290,7 +347,7 @@ class Project
         $param = $req->get_params();
         $reg_errors = new \WP_Error;
 
-        $deal_id    = isset($param['deal_id']) ? absint($param['deal_id']) : null;
+        $project_id    = isset($param['project_id']) ? absint($param['project_id']) : null;
         $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
         $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
         $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
@@ -310,7 +367,7 @@ class Project
             $reg_errors->add('field', esc_html__('Please title is required', 'propovoice'));
         }
 
-        /* if ( !$deal_id && empty($contact_id)) {
+        /* if ( !$project_id && empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
         if (empty($first_name) &&  empty($org_name)) {
@@ -350,10 +407,10 @@ class Project
             if (!is_wp_error($post_id)) {
                 update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
                 $tab_id = $post_id;
-                if ($deal_id) {
-                    $tab_id = $deal_id;
-                    update_post_meta($post_id, 'deal_id', $deal_id);
-                    update_post_meta($deal_id, 'project_id', $post_id);
+                if ($project_id) {
+                    $tab_id = $project_id;
+                    update_post_meta($post_id, 'project_id', $project_id);
+                    update_post_meta($project_id, 'project_id', $post_id);
                 }
                 update_post_meta($post_id, 'tab_id', $tab_id); //for task, note, file
 
@@ -365,7 +422,7 @@ class Project
                     wp_set_post_terms($post_id, [$status_id], 'ndpv_project_status');
                 }
 
-                if ($deal_id) {
+                if ($project_id) {
                     $get_lead_person = get_post_meta($id, 'person_id', true);
                     if ($get_lead_person) {
                         $person_id = $get_lead_person;
@@ -423,8 +480,8 @@ class Project
                     update_post_meta($post_id, 'note', $note);
                 }
 
-                /* if ( $deal_id ) { //when move to deal //TODO: think it
-                    wp_delete_post( $deal_id );
+                /* if ( $project_id ) { //when move to project //TODO: think it
+                    wp_delete_post( $project_id );
                 } */
 
                 do_action('ndpvp/webhook', 'project_add', $param);
@@ -451,14 +508,15 @@ class Project
         $budget       = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
         $currency     = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
         $start_date = isset($param['start_date']) ? $param['start_date'] : null;
-        $due_date = isset($param['due_date']) ? $param['due_date'] : null;
+        $due_date   = isset($param['due_date']) ? $param['due_date'] : null;
         $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
         $note         = isset($param['note']) ? nl2br($param['note']) : null;
+        $change_tax   = isset($param['change_tax']) ? true : false;
 
-        if (empty($first_name) &&  empty($org_name)) {
+        /* if (empty($first_name) &&  empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
-        }
+        } */
 
         /* if (empty($status_id)) {
             $reg_errors->add('field', esc_html__('Please select a status', 'propovoice'));
@@ -467,6 +525,10 @@ class Project
         if (empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */
+
+        if ( ( !$reorder && !$change_tax ) && (empty($first_name) && empty($org_name))) {
+            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        }
 
         $person = new Person();
         if ($person_id) {
