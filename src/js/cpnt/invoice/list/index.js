@@ -268,7 +268,7 @@ class Invoice extends Component {
                         <AddNew
                             title={title}
                             openForm={() => this.newInvoie()}
-                            ExportModal={ExportAction.invoice}
+                            // ExportModal={ExportAction.invoice}
 
                         />
                     </div>
