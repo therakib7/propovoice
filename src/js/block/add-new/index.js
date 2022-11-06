@@ -61,7 +61,7 @@ export default (props) => {
       {imp === true && (
         <ImportModal
           close={() => setImp(false)}
-          ExportModal={props.ExportModal}
+          modal={props.ExportModal}
           title={props.title}
         />
       )}
