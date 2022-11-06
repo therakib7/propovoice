@@ -265,12 +265,12 @@ class Invoice extends Component {
                         <h2 className="pv-page-title">{title}</h2>
                     </div>
                     <div className="col">
-                        {/* <AddNew
+                        <AddNew
                             title={title}
                             openForm={() => this.newInvoie()}
-                            ExportModal={ExportAction.invoice}
+                            // ExportModal={ExportAction.invoice}
 
-                        /> */}
+                        />
                     </div>
                 </div>
 
