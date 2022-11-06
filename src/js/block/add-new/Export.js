@@ -45,7 +45,7 @@ class Form extends Component {
   handleCheckbox = (e, type, slug = "") => {
     const target = e.target;
     let actions = this.state.form.actions;
-    const ExportModal = this.props.ExportModal;
+    const ExportModal = Object.values(this.props.ExportModal);
 
     if (type == "action") {
       const { value } = e.target;
@@ -65,6 +65,7 @@ class Form extends Component {
     }
     actions = Array.from(new Set(actions));
     this.setState({ form: { ...this.state.form, ["actions"]: actions } });
+    console.log(actions)
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -84,7 +85,9 @@ class Form extends Component {
 
 
   render() {
-    const ExportModal = this.props.ExportModal;
+    const ExportModal =this.props.ExportModal;
+  
+
     const i18n = ndpv.i18n;
     const form = this.state.form;
     let title = "";
@@ -115,17 +118,17 @@ class Form extends Component {
                   <label htmlFor={"Select all"}>{"Select all"}</label>
                 </div>
                 <div className="pv-import-from-gird">
-                  {ExportModal.map((data, i) => (
+                  {Object.entries(ExportModal).map((data, i) => (
                     <div key={i} className="pv-field-checkbox">
                       <input
                         type="checkbox"
-                        id={data}
+                        id={i}
                         name="action"
-                        value={data}
-                        checked={form.actions.includes(data) ? "checked" : ""}
+                        value={data[1]}
+                        checked={form.actions.includes(data[1]) ? "checked" : ""}
                         onChange={(e) => this.handleCheckbox(e, "action")}
                       />
-                      <label htmlFor={data}>{data}</label>
+                      <label htmlFor={i}>{data[0]}{i} </label>
                     </div>
                   ))}
                 </div>
