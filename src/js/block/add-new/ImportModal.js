@@ -8,7 +8,7 @@ import api from "api";
 
 const ImportModal = (props) => {
     const [file, setFile] = useState();
-    const [csvData, setArray] = useState([]);
+    const [csvData, setCsvData] = useState([]);
     const [fields, setValues] = useState(Array(props.modal.length).fill(""));
 
     const fileReader = new FileReader();
@@ -35,7 +35,7 @@ const ImportModal = (props) => {
             return obj;
         });
 
-        setArray(csvData);
+        setCsvData(csvData);
     };
     const handleMaping = (e) => {
         e.preventDefault();
@@ -57,7 +57,7 @@ const ImportModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const title = props.title.toLowerCase()
-        const data = { file, fields, title }
+        const data = { csvData, fields, title }
         console.log(data)
         api.add(`import/csv`, data, 'pro').then(res => {
             window.location.href = res.data;
