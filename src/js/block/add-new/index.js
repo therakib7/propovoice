@@ -1,11 +1,10 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
-import useClickOutside from 'block/outside-click';
-import { Edit } from 'block/icon';
+import useClickOutside from "block/outside-click";
+import { Edit } from "block/icon";
 import Export from "./Export";
 import ImportModal from "./ImportModal";
 
 export default (props) => {
-
   const dropdownRef = useRef();
   const [dropdown, setDropdown] = useState(false);
   const [imp, setImp] = useState(false);
@@ -13,9 +12,7 @@ export default (props) => {
   const close = useCallback(() => setDropdown(false), []);
   useClickOutside(dropdownRef, close);
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   const showDropdown = () => {
     if (dropdown) {
@@ -28,28 +25,22 @@ export default (props) => {
   const ImportExport = (e, type) => {
     e.preventDefault();
     setDropdown(false);
-    setExp(true)
+    setExp(true);
   };
   const ImportImport = (e, type) => {
     e.preventDefault();
     setDropdown(false);
-    setImp(true)
+    setImp(true);
   };
 
   const i18n = ndpv.i18n;
   return (
-    <div className='pv-list-single-button-content'>
+    <div className="pv-list-single-button-content">
       <button
         className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
-        onClick={() => props.openForm('new')}
+        onClick={() => props.openForm("new")}
       >
-        <svg
-          width={14}
-          height={12}
-          viewBox="0 0 12 15"
-          fill="none"
-
-        >
+        <svg width={14} height={12} viewBox="0 0 12 15" fill="none">
           <path
             d="M2.5 8H13.5"
             stroke="white"
@@ -77,11 +68,15 @@ export default (props) => {
           <Edit />
         </button>
 
-        {dropdown && <div className="pv-dropdown-content pv-show">
-          <a onClick={(e) => ImportImport(e, 'import')}>{i18n.imp}</a>
-          <a onClick={(e) => ImportExport(e, 'export')}>{i18n.exp}</a>
-        </div>}
-      </div>}
+
+          {dropdown && (
+            <div className="pv-dropdown-content pv-show">
+              <a onClick={(e) => ImportImport(e, "import")}>{i18n.imp}</a>
+              <a onClick={(e) => ImportExport(e, "export")}>{i18n.exp}</a>
+            </div>
+          )}
+        </div>
+      }
     </div>
   );
-} 
+};
