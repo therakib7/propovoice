@@ -7,9 +7,10 @@ import csv from "./csv";
 import api from "api";
 
 const ImportModal = (props) => {
+    const modals = Object.values(props.modal)
     const [file, setFile] = useState();
     const [csvData, setCsvData] = useState([]);
-    const [fields, setValues] = useState(Array(props.modal.length).fill(""));
+    const [fields, setValues] = useState(Array(modals.length).fill(""));
 
     const fileReader = new FileReader();
     const handleOnChange = (e) => {
@@ -17,9 +18,6 @@ const ImportModal = (props) => {
     };
     const valueSate = (e, si) => {
         e.preventDefault();
-
-        const headerKeys = Object.keys(Object.assign({}, ...csvData));
-        const nn = headerKeys.length;
         fields[si] = e.target.value;
         setValues(fields);
     };
@@ -36,7 +34,7 @@ const ImportModal = (props) => {
             return obj;
         });
 
-        setArray(csvData);
+        setCsvData(csvData);
     };
     const handleMaping = (e) => {
         e.preventDefault();
@@ -57,6 +55,8 @@ const ImportModal = (props) => {
         e.preventDefault();
         const title = props.title.toLowerCase();
         const data = { file, fields, title };
+        console.log(data);
+        
         api
             .add(`import/csv`, data, "pro")
             .then((res) => {
@@ -65,7 +65,7 @@ const ImportModal = (props) => {
             .catch((error) => console.log(error.message));
     };
     const headerKeys = Object.keys(Object.assign({}, ...csvData));
-    const modal = ["Not Assign", ...props.modal];
+    const modal = ["Not Assign", ...modals];
     const i18n = ndpv.i18n;
     return (
         <div className="pv-overlay pv-show">
