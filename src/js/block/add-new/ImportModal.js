@@ -4,38 +4,40 @@ import { toast } from "react-toastify";
 import { Add } from "block/icon";
 import { CSVLink } from "react-csv";
 import csv from "./csv";
+import api from "api";
 
 const ImportModal = (props) => {
   const [file, setFile] = useState();
-  const [array, setArray] = useState([]);
-  const [array1, setArray1] = useState("");
+  const [csvData, setArray] = useState([]);
+  const [fields, setValues] = useState(Array(props.modal.length).fill(""));
 
   const fileReader = new FileReader();
-
   const handleOnChange = (e) => {
     setFile(e.target.files[0]);
   };
-  const valueSate = (e) => {
+  const valueSate = (e, si) => {
     e.preventDefault();
-    const value = e.target.value;
-    setArray1(value);
+    const headerKeys = Object.keys(Object.assign({}, ...csvData));
+    const nn = headerKeys.length;
+    fields[si] = e.target.value;
+    setValues(fields);
   };
   const csvFileToArray = (string) => {
     const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
     const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
 
-    const array = csvRows.map((i) => {
-      const values = i.split(",");
+    const csvData = csvRows.map((i) => {
+      const fields = i.split(",");
       const obj = csvHeader?.reduce((object, header, index) => {
-        object[header] = values[index];
+        object[header] = fields[index];
         return object;
       }, {});
       return obj;
     });
 
-    setArray(array);
+    setArray(csvData);
   };
-  const handleOnSubmit = (e) => {
+  const handleMaping = (e) => {
     e.preventDefault();
 
     if (file) {
@@ -46,13 +48,23 @@ const ImportModal = (props) => {
 
       fileReader.readAsText(file);
     } else {
-      toast.error("Please upload file");
+      toast("Please upload file");
     }
   };
-  const data = Object.values(Object.assign({}, ...array));
-  const headerKeys = Object.keys(Object.assign({}, ...array));
-  console.log(data);
-  const modal = Object.keys(props.modal);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const title = props.title.toLowerCase();
+    const data = { file, fields, title };
+    api
+      .add(`import/csv`, data, "pro")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error.message));
+  };
+  const headerKeys = Object.keys(Object.assign({}, ...csvData));
+  const modal = ["Not Assign", ...props.modal];
   const i18n = ndpv.i18n;
   return (
     <div className="pv-overlay pv-show">
@@ -67,7 +79,7 @@ const ImportModal = (props) => {
           </h2>
           <p>{sprintf(i18n.formDesc, props.title, i18n.imp)}</p>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="pv-content">
             <div className="pv-form-style-one">
               {!file && (
@@ -123,7 +135,7 @@ const ImportModal = (props) => {
                 <button
                   className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white pv-mb-30"
                   onClick={(e) => {
-                    handleOnSubmit(e);
+                    handleMaping(e);
                   }}
                 >
                   Next [Map Columns]
@@ -136,7 +148,7 @@ const ImportModal = (props) => {
                     <thead>
                       <tr>
                         <th></th>
-                        <th>Form Field</th>
+                        <th>CSV Field</th>
                         <th>{props.title + " " + i18n.fields}</th>
                         <th></th>
                       </tr>
@@ -149,15 +161,12 @@ const ImportModal = (props) => {
                           <td>
                             <select
                               style={{ lineHeight: "106%" }}
-                              // name="lead_field"
                               onChange={(e) => {
-                                valueSate(e);
+                                valueSate(e, si);
                               }}
                             >
                               {modal.map((val, i) => (
-                                <option key={i} value={val}>
-                                  {val}
-                                </option>
+                                <option key={i}>{val}</option>
                               ))}
                             </select>
                           </td>
@@ -170,7 +179,6 @@ const ImportModal = (props) => {
               )}
             </div>
           </div>
-
           {file && (
             <div className="pv-modal-footer">
               <div className="row">

@@ -72,7 +72,7 @@ export default (props) => {
           title={props.title}
         />
       )}
-      {
+      {(props.title === "Lead" || props.title === "Client") &&
         <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
           <button
             className="pv-bg-stroke pv-bg-shadow"
@@ -84,7 +84,7 @@ export default (props) => {
           {dropdown && (
             <div className="pv-dropdown-content pv-show">
               <a onClick={(e) => ImportImport(e, "import")}>{i18n.imp}</a>
-              {/* <a onClick={(e) => ImportExport(e, "export")}>{i18n.exp}</a> */}
+              <a onClick={(e) => ImportExport(e, "export")}>{i18n.exp}</a>
             </div>
           )}
         </div>
