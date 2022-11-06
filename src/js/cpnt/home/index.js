@@ -46,7 +46,7 @@ const Home = () => {
     const sidebarClose = useCallback(() => setSidebar(false), []);
     useClickOutside(sidebarRef, sidebarClose);
 
-    const dealLoad = (load = true) => {
+    const boardView = (load = true) => {
         const span = contentRef.current; // corresponding DOM node
         if (load) {
             span.className = 'pv-right-content-data pv-deal-content';
@@ -560,13 +560,13 @@ const Home = () => {
                                 <Route path="/lead" exact element={<Lead />} />
                                 <Route path="/lead/single/:id" exact element={<ListSingle />} />
 
-                                <Route path="/deal" exact element={<Deal onLoad={dealLoad} />} />
+                                <Route path="/deal" exact element={<Deal onLoad={boardView} />} />
                                 <Route path="/deal/single/:id" exact element={<ListSingle />} />
 
                                 <Route path="/task" exact element={<Task />} />
                                 <Route path="/task/single/:id" exact element={<ListSingle />} />
 
-                                <Route path="/project" exact element={<Project />} />
+                                <Route path="/project" exact element={<Project onLoad={boardView} />} />
                                 <Route path="/project/single/:id" exact element={<ListSingle />} />
 
                                 <Route path="/estimate" element={<Invoice />} />
