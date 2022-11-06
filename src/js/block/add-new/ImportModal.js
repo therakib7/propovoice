@@ -9,7 +9,7 @@ import api from "api";
 const ImportModal = (props) => {
     const [file, setFile] = useState();
     const [csvData, setArray] = useState([]);
-    const [values, setValues] = useState(Array(props.modal.length).fill(""));
+    const [fields, setValues] = useState(Array(props.modal.length).fill(""));
 
     const fileReader = new FileReader();
     const handleOnChange = (e) => {
@@ -19,17 +19,17 @@ const ImportModal = (props) => {
         e.preventDefault();
         const headerKeys = Object.keys(Object.assign({}, ...csvData));
         const nn = headerKeys.length;
-        values[si] = e.target.value
-        setValues(values)
+        fields[si] = e.target.value
+        setValues(fields)
     }
     const csvFileToArray = string => {
         const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
         const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
 
         const csvData = csvRows.map(i => {
-            const values = i.split(",");
+            const fields = i.split(",");
             const obj = csvHeader?.reduce((object, header, index) => {
-                object[header] = values[index];
+                object[header] = fields[index];
                 return object;
             }, {});
             return obj;
@@ -57,7 +57,7 @@ const ImportModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const title = props.title.toLowerCase()
-        const data = { file, values, title }
+        const data = { file, fields, title }
         console.log(data)
         api.add(`import/csv`, data, 'pro').then(res => {
             window.location.href = res.data;
@@ -132,7 +132,7 @@ const ImportModal = (props) => {
                                             <th>
                                             </th>
                                             <th >
-                                                Form Field
+                                                CSV Field
                                             </th>
                                             <th>
                                                 {props.title + ' ' + i18n.fields}
@@ -147,7 +147,7 @@ const ImportModal = (props) => {
                                                 <td>
                                                 </td>
                                                 <td>
-                                                    {si} {sitem}
+                                                    {sitem}
                                                 </td>
                                                 <td>
                                                     <select
@@ -181,7 +181,7 @@ const ImportModal = (props) => {
                 </form>
             </div>
 
-          
+
         </div>
     );
 };
