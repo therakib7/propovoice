@@ -11,6 +11,7 @@ export default class GOAuth2 extends Component {
       client_secret: "",
       redirect_uri: "",
       api_key: "",
+      is_google_meet :false,
     };
 
     this.state = {
@@ -239,6 +240,17 @@ export default class GOAuth2 extends Component {
                   </span>
                 </div>}
               </div>
+              <span className="pv-field-switch-content">
+                <label className="pv-field-switch pv-field-switch-big">
+                  <input type='checkbox'
+                    name='active'
+                    // checked={item.active ? 'checked' : ''}
+                    onChange={(e) => this.handleChange(e)}
+                  />
+                  <span className="pv-switch-slider pv-round" />
+                </label>
+              </span>
+
             </div>
           </>
         }

@@ -134,7 +134,7 @@ export default class License extends Component {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="form-status">
-                                    {i18n.license} {i18n.exp}: <span style={{ color: '#2D3748' }}>
+                                    {i18n.license} {i18n.exps}: <span style={{ color: '#2D3748' }}>
                                         {form.expires == 'lifetime' ? 'Lifetime' : <Moment format="YYYY-MM-DD">{form.expires}</Moment>}
                                     </span>
                                 </label>

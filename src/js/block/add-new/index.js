@@ -58,16 +58,30 @@ export default (props) => {
         </svg>
         {i18n.add} {props.title}
       </button>
-      {imp === true && <ImportModal close={() => setImp(false)} ExportModal={props.ExportModal} title={props.title} />}
-      {exp === true && <Export close={() => setExp(false)} ExportModal={props.ExportModal} title={props.title} />}
-      { <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
-        <button
-          className="pv-bg-stroke pv-bg-shadow"
-          onClick={() => showDropdown()}
-        >
-          <Edit />
-        </button>
-
+ 
+      {imp === true && (
+        <ImportModal
+          close={() => setImp(false)}
+          modal={props.ExportModal}
+          title={props.title}
+        />
+      )}
+      {exp === true && (
+        <Export
+          close={() => setExp(false)}
+          ExportModal={props.ExportModal}
+          title={props.title}
+        />
+      )}
+      {(props.title === "Lead" || props.title === "Client") &&
+        <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
+          <button
+            className="pv-bg-stroke pv-bg-shadow"
+            onClick={() => showDropdown()}
+          >
+            <Edit />
+          </button>
+ 
 
           {dropdown && (
             <div className="pv-dropdown-content pv-show">

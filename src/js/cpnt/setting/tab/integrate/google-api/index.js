@@ -7,8 +7,6 @@ import AppContext from "context/app-context";
 import Spinner from "block/preloader/spinner";
 
 //form
-import GoogleCalendar from "./services/GoogleCalendar";
-import GoogleDrive from "./services/GoogleDrive";
 import GOAuth2 from "./services/goauth2";
 
 export default class Main extends Component {
@@ -82,8 +80,7 @@ export default class Main extends Component {
         )}
 
         {currentTab == "oauth2" && <GOAuth2 {...this.props} />}
-        {currentTab == "calendar" && <GoogleCalendar {...this.props} />}
-        {currentTab == "drive" && <GoogleDrive {...this.props} />}
+        
       </>
     );
   }

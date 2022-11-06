@@ -68,8 +68,10 @@ const Home = () => {
 
                     <div className="">
                         <div className="pv-logo-content pv-site-logo">
-                            <img src={ndpv.assetImgUri + 'site-logo.png'} alt="favicon" />
-                            <strong>Propovoice</strong>
+                            {ndpv.logo ? <img src={ndpv.logo.src} alt="logo" /> : <>
+                                <img src={ndpv.assetImgUri + 'site-logo.png'} alt="logo" />
+                                <strong>Propovoice</strong>
+                            </>}
                         </div>
                         <div className='pv-sidebar-menu dpv-collapse-menu'>
                             <ul>
