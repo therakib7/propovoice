@@ -63,7 +63,7 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const title = this.props.title.toLowerCase()
-        const data = { data: this.state.form.actions, title }
+        const data = { fields: this.state.form.actions, title }
         console.log(data, title)
 
         api.add(`export/csv`, data, 'pro').then(res => {

@@ -72,7 +72,7 @@ export default (props) => {
           title={props.title}
         />
       )}
-      {
+      {(props.title === "Lead" || props.title === "Client") &&
         <div className="pv-action-content pv-action-btn" ref={dropdownRef}>
           <button
             className="pv-bg-stroke pv-bg-shadow"
