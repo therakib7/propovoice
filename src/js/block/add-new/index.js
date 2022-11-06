@@ -12,7 +12,7 @@ export default (props) => {
   const close = useCallback(() => setDropdown(false), []);
   useClickOutside(dropdownRef, close);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const showDropdown = () => {
     if (dropdown) {
@@ -58,7 +58,7 @@ export default (props) => {
         </svg>
         {i18n.add} {props.title}
       </button>
- 
+
       {imp === true && (
         <ImportModal
           close={() => setImp(false)}
@@ -81,7 +81,6 @@ export default (props) => {
           >
             <Edit />
           </button>
- 
 
           {dropdown && (
             <div className="pv-dropdown-content pv-show">

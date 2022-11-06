@@ -181,8 +181,6 @@ The super fantastic pro features that accelerate your business growth and improv
 == Changelog ==
 
 = 1.0.6 =
-* Added: White Label in pro version
-* Added: Export Import
 * Fixed: Accept & Decline button issue
 * Fixed: WordPress sidebar menu scrolling issues
 * Update: Functional issue

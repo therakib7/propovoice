@@ -5,6 +5,8 @@ import { Add } from "block/icon";
 import { CSVLink } from "react-csv";
 import csv from "./csv";
 import api from "api";
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 
 const ImportModal = (props) => {
   const modals = Object.values(props.modal)
@@ -16,11 +18,13 @@ const ImportModal = (props) => {
   const handleOnChange = (e) => {
     setFile(e.target.files[0]);
   };
+
   const valueSate = (e, si) => {
     e.preventDefault();
     fields[si] = e.target.value;
     setValues(fields);
   };
+
   const csvFileToArray = (string) => {
     const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
     const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
@@ -47,7 +51,7 @@ const ImportModal = (props) => {
 
       fileReader.readAsText(file);
     } else {
-      toast("Please upload file");
+      toast.error("Please upload file");
     }
   };
 
@@ -57,8 +61,7 @@ const ImportModal = (props) => {
     const data = { file, fields, title };
     console.log(data);
 
-    api
-      .add(`import/csv`, data, "pro")
+    api.add('import/csv', data, "pro")
       .then((res) => {
         console.log(res);
       })
@@ -193,7 +196,7 @@ const ImportModal = (props) => {
                     type="submit"
                     className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white"
                   >
-                    {i18n.save}
+                    {i18n.save} <ProLabel blueBtn />
                   </button>
                 </div>
 
