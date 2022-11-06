@@ -37,8 +37,8 @@ class Form extends Component {
     handleCheckbox = (e, type, slug = '') => {
         const target = e.target;
         let actions = this.state.form.actions;
-        const ExportModal =this.props.ExportModal;
-
+        const ExportModal = this.props.ExportModal;
+        
         if (type == 'action') {
             const { value } = e.target;
             if (target.checked) {
@@ -57,6 +57,21 @@ class Form extends Component {
         }
         actions = Array.from(new Set(actions));
         this.setState({ form: { ...this.state.form, ['actions']: actions } });
+        console.log(actions);
+
+    }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const title = this.props.title.toLowerCase()
+        const data = { data: this.state.form.actions, title }
+        console.log(data, title)
+
+        api.add(`export/csv`, data, 'pro').then(res => {
+            window.location.href = res.data;
+            return null;
+        })
+            .catch((error) => console.log(error.message));
+       
     }
 
     render() {

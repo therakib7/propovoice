@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { Add } from "block/icon";
 import { CSVLink } from "react-csv";
 import csv from "./csv";
+import api from "api";
 
 const ImportModal = (props) => {
     const [file, setFile] = useState();
@@ -52,9 +53,17 @@ const ImportModal = (props) => {
 
 
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(file, values)
+        const title = props.title.toLowerCase()
+        const data = { file, values, title }
+        console.log(data)
+        api.add(`import/csv`, data, 'pro').then(res => {
+            window.location.href = res.data;
+            return null;
+        })
+            .catch((error) => console.log(error.message));
     }
     const headerKeys = Object.keys(Object.assign({}, ...csvData));
     const modal = ['Not Assign', ...props.modal];
