@@ -52,9 +52,20 @@ const Project = (props) => {
   };
 
   useEffect(() => {
+    if (props.onLoad) {
+      if (wage.length > 0) {
+        props.onLoad(false);
+      } else {
+        props.onLoad(true);
+      }
+    }
 
-    setBoardView(false)
-    props.getLists({ table_view: true });
+    if (wage.length > 0) {
+      setBoardView(false)
+      props.getLists({ table_view: true });
+    } else {
+      props.getLists()
+    }
 
     return () => {
       if (props.onLoad) {
@@ -152,7 +163,7 @@ const Project = (props) => {
         </div>
         <div className="col">
           <div className="pv-list-single-button-content">
-            {false && <button
+            <button
               className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow"
               onClick={() => taxForm('new')}
             >
@@ -179,7 +190,7 @@ const Project = (props) => {
                 />
               </svg>
               {i18n.add} {i18n.status}
-            </button>}
+            </button>
 
             <button
               className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
