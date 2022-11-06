@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import WithApi from 'hoc/Api';
 
 import Business from './sub/Business';
+import WhiteLabel from './sub/WhiteLabel';
 
 const Main = (props) => {
 	const [tabs, setTabs] = useState(
@@ -9,6 +10,10 @@ const Main = (props) => {
 			{
 				id: 'business',
 				text: ndpv.i18n.biz
+			},
+			{
+				id: 'white-label',
+				text: 'White Label'
 			}
 		]
 	);
@@ -28,6 +33,7 @@ const Main = (props) => {
 			</ul>
 
 			{currentTab == 'business' && <Business {...props} />}
+			{currentTab == 'white-label' && <WhiteLabel />}
 		</>
 	)
 }

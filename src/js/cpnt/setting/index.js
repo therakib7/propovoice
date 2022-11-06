@@ -22,10 +22,9 @@ const Tag = lazy(() => import('./tab/tag'));
 const Integrate = lazy(() => import('./tab/integrate'));
 const License = lazy(() => import('./tab/license'));
 
-//subtab: email 
+//subtab: email
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
-const EmailFooter = lazy(() => import('./tab/email/footer'));
 
 const Payment = lazy(() => import('cpnt/payment'));
 
@@ -79,9 +78,6 @@ const Setting = (props) => {
                 },
                 invoice: {
                     label: i18n.inv
-                },
-                footer: {
-                    label: i18n.footer
                 },
             },
         },
@@ -207,7 +203,6 @@ const Setting = (props) => {
 
                                 {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate {...props} />}
                                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice {...props} />}
-                                {currentTab == 'email' && currentSubtab == 'footer' && <EmailFooter {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
                                 {currentTab == 'integration' && <Integrate {...props} />}
