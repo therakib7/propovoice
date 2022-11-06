@@ -48,10 +48,27 @@ class Setting
 
                 if ($option) {
                     $data = $option;
+                    $white_label = get_option("ndpv_white_label");
+                    $data['logo'] = null;
+                    if ( $white_label && isset( $white_label['logo'] ) ) {
+                        $data['logo'] = $white_label['logo'];
+                        $logo_id = $white_label['logo'];
+                        $logoData = null;
+                        if ( $logo_id ) {
+                            $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+                            if ( $logo_src ) {
+                                $logoData = [];
+                                $logoData['id'] = $logo_id;
+                                $logoData['src'] = $logo_src[0];
+                            }
+                        }
+                        $data['logo'] = $logoData;
+                    }
                 } else {
                     $data["active"] = true;
                     $data["text"] = "<p>Powered by</p>
 <h3>Propovoice</h3>";
+                    $data["logo"] = null;
                 }
             }
 
@@ -330,6 +347,12 @@ class Setting
                     : null;
 
                 $option = update_option("ndpv_" . $tab, $data);
+
+                $white_label["logo"] = isset($param["logo"])
+                    ? ( $param["logo"]['id'] )
+                    : null;
+
+                update_option("ndpv_white_label", $white_label);
             }
 
             if ($tab == "estinv_currency") {

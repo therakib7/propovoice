@@ -77,6 +77,7 @@ class AssetCtrl
                 'nonce' => wp_create_nonce('wp_rest'),
                 'dashboard' => menu_page_url('ndpv', false),
                 'assetImgUri' => ndpv()->get_asset_uri('img/'),
+                'logo' => Fns::brand_logo(),
                 'i18n' => I18n::dashboard()
             ));
         }
@@ -132,6 +133,7 @@ class AssetCtrl
                 'nonce' => wp_create_nonce('wp_rest'),
                 'date_format' => Fns::phpToMomentFormat(get_option('date_format')),
                 'assetImgUri' => ndpv()->get_asset_uri('img/'),
+                'logo' => Fns::brand_logo(),
                 'assetUri' => trailingslashit(NDPV_URL),
                 'profile' => [
                     'name' => $current_user->display_name,
