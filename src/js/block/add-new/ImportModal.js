@@ -55,8 +55,13 @@ const ImportModal = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    var formData = new FormData();
     const title = props.title.toLowerCase();
-    const data = { file, fields, title };
+    formData.append("file", file);
+    formData.append("fields", fields);
+    formData.append("title", title);
+    const data = formData;
+    // const data = { file, fields, title };
     api
       .add(`import/csv`, data, "pro")
       .then((res) => {
