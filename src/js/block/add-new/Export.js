@@ -37,7 +37,7 @@ class Form extends Component {
     handleCheckbox = (e, type, slug = '') => {
         const target = e.target;
         let actions = this.state.form.actions;
-        const ExportModal = Object.keys(this.props.ExportModal);
+        const ExportModal =this.props.ExportModal;
 
         if (type == 'action') {
             const { value } = e.target;
@@ -47,7 +47,6 @@ class Form extends Component {
                 actions.splice(actions.indexOf(value));
             }
         } else if (type == 'group') {
-            // const { value } = e.target;
             if (target.checked) {
                 actions = actions.concat(ExportModal);
             } else {
@@ -61,7 +60,7 @@ class Form extends Component {
     }
 
     render() {
-        const ExportModal = Object.keys(this.props.ExportModal);
+        const ExportModal = this.props.ExportModal;
         const i18n = ndpv.i18n;
         const form = this.state.form;
         let title = '';

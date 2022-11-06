@@ -7,25 +7,25 @@ import csv from './csv';
 
 const ImportModal = (props) => {
     const [file, setFile] = useState();
-    const [array, setArray] = useState([]);
-    const [array1, setArray1] = useState('');
-
+    const [csvData, setArray] = useState([]);
+    const [values, setValues] = useState(Array(props.ExportModal.length).fill(""));
+    
     const fileReader = new FileReader();
-
     const handleOnChange = (e) => {
         setFile(e.target.files[0]);
     };
-    const valueSate = (e) => {
+    const valueSate = (e, si) => {
         e.preventDefault();
-        const value = e.target.value;
-        setArray1(value)
-
+        const headerKeys = Object.keys(Object.assign({}, ...csvData));
+        const nn = headerKeys.length;
+       values[si] = e.target.value
+            setValues(values)
     }
     const csvFileToArray = string => {
         const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
         const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
 
-        const array = csvRows.map(i => {
+        const csvData = csvRows.map(i => {
             const values = i.split(",");
             const obj = csvHeader?.reduce((object, header, index) => {
                 object[header] = values[index];
@@ -34,9 +34,9 @@ const ImportModal = (props) => {
             return obj;
         });
 
-        setArray(array);
+        setArray(csvData);
     };
-    const handleOnSubmit = (e) => {
+    const handleMaping = (e) => {
         e.preventDefault();
 
         if (file) {
@@ -50,12 +50,15 @@ const ImportModal = (props) => {
             toast('Please upload file')
         }
 
+
     };
-    const data = Object.values(Object.assign({}, ...array));
-    const headerKeys = Object.keys(Object.assign({}, ...array));
-    console.log(data)
-    const ExportModal = Object.keys(props.ExportModal);
-    const i18n = ndpv.i18n;
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(file, values)
+    }
+    const headerKeys = Object.keys(Object.assign({}, ...csvData));
+    const exportModal = ['Not Assign', ...props.ExportModal];
+     const i18n = ndpv.i18n;
     return (
         <div className="pv-overlay pv-show">
             <div className="pv-modal-content">
@@ -66,7 +69,7 @@ const ImportModal = (props) => {
                     <h2 className="pv-modal-title"> {props.title} {i18n.imp}</h2>
                     <p>{sprintf(i18n.formDesc, props.title, i18n.imp)}</p>
                 </div>
-                <form  >
+                <form onSubmit={handleSubmit} >
                     <div className="pv-content">
                         <div className="pv-form-style-one">
                             {!file && <div>
@@ -106,7 +109,7 @@ const ImportModal = (props) => {
                                     <button
                                         className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white pv-mb-30"
                                         onClick={(e) => {
-                                            handleOnSubmit(e);
+                                            handleMaping(e);
                                         }}
                                     >
                                         Next [Map Columns]
@@ -135,15 +138,14 @@ const ImportModal = (props) => {
                                                 <td>
                                                 </td>
                                                 <td>
-                                                    {sitem}
+                                                    {si} {sitem}
                                                 </td>
                                                 <td>
                                                     <select
                                                         style={{ lineHeight: '106%' }}
-                                                        // name="lead_field"
-                                                        onChange={(e) => { valueSate(e) }}
+                                                        onChange={(e) => { valueSate(e, si) }}
                                                     >
-                                                        {ExportModal.map((val, i) => <option key={i} value={val}>{val}</option>)}
+                                                        {exportModal.map((val, i) => <option key={i} >{val}</option>)}
                                                     </select>
                                                 </td>
                                                 <td>
