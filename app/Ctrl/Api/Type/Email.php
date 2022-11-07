@@ -233,7 +233,9 @@ class Email
 
     public function create_per()
     {
-        return current_user_can('publish_posts');
+        // return current_user_can('publish_posts');
+        //TODO: check permission
+        return true;
     }
 
     public function update_per()
