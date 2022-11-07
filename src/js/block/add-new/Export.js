@@ -128,7 +128,7 @@ class Form extends Component {
                         checked={form.actions.includes(data[1]) ? "checked" : ""}
                         onChange={(e) => this.handleCheckbox(e, "action")}
                       />
-                      <label htmlFor={i}>{data[0]}{i} </label>
+                      <label htmlFor={i}>{data[0]} </label>
                     </div>
                   ))}
                 </div>
