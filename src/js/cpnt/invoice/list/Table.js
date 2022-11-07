@@ -63,9 +63,18 @@ const TableHeader = props => {
 
 const TableBody = props => {
     let navigate = useNavigate();
-    function handleClick(id, view = '') {
+    function handleClick(row, view = '') {
         let path = props.path;
-        navigate(`/${path}/single/${id}${view}`);
+
+        switch (row.status) {
+            case 'accept':
+            case 'decline':
+            case 'paid':
+                view = '/tab/preview';
+                break;
+        }
+
+        navigate(`/${path}/single/${row.id}${view}`);
     }
     const i18n = ndpv.i18n;
 
@@ -154,12 +163,12 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><span className='pv-list-title'>{nNum}</span></td>
+                <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'><span className='pv-list-title'>{nNum}</span></td>
                 {/*<td>{row.project.name}</td>*/}
-                {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>
+                {!props.client_id && <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
                 </td>}
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>{currency(row.total, row.invoice.currency, row.invoice.lang)}</td>
+                <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'>{currency(row.total, row.invoice.currency, row.invoice.lang)}</td>
                 {/* {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>
@@ -168,7 +177,7 @@ const TableBody = props => {
                 }  */}
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><Moment format={ndpv.date_format}>{row.date}</Moment></td>
+                <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'><Moment format={ndpv.date_format}>{row.date}</Moment></td>
                 <td className="pv-action">
                     <Action
                         row={row}

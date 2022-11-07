@@ -30,8 +30,8 @@ export default (props) => {
             </button>
 
             {dropdown && <div className="pv-dropdown-content pv-show" ref={dropdownRef}>
-                {canEdit && <a onClick={() => { setDropdown(false); props.single(row.id); }}>{i18n.edit}</a>}
-                <a onClick={() => props.single(row.id, '/tab/preview')}>{i18n.prv}</a>
+                {canEdit && <a onClick={() => { setDropdown(false); props.single(row); }}>{i18n.edit}</a>}
+                <a onClick={() => props.single(row, '/tab/preview')}>{i18n.prv}</a>
                 <a target='_blank' href={props.client_url}>{i18n.client} {i18n.prv}</a>
                 <a onClick={() => { setDropdown(false); props.action('sent', row.id); }}>{i18n.mark} {i18n.sent}</a>
                 {row.path == 'invoice' && <a onClick={() => { setDropdown(false); props.action('paid', row.id); }}>{i18n.mark} {i18n.paid}</a>}
