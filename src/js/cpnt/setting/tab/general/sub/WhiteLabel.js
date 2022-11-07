@@ -64,7 +64,7 @@ export default (props) => {
                 </div>
             </div>
 
-            <h4 className="pv-title-medium pv-mt-25 pv-mb-15">Email Template</h4>
+            <h4 className="pv-title-medium pv-mt-15 pv-mb-15">Email Template</h4>
             <div className="row">
                 <div className="col">
                     <label id="form-active">Show Email Template Footer</label>
