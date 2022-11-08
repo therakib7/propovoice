@@ -1,4 +1,4 @@
 export default [
     ['Person', 'Organization', 'Email', 'Mobile', 'Website', 'Country', 'Region', 'Address',],
-    ['first_name', 'org_name', 'email', 'mobile', 'web', 'country', 'region', 'address',],
+    ['Mahmud', 'Nurency digital', 'simple@gmail.com', '0177777777', 'https://propovoice.com/', 'Bangladesh', 'Dhaka', 'Dhaka Airport',],
 ]
