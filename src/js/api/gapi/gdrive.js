@@ -1,8 +1,17 @@
+import api from "api";
+import { handleSignIn } from "api/gapi/goauth2";
+
+export function uploadToDrive() {
+  handleSignIn(() => {
+    uploadFile();
+  });
+}
+
 /**
  * Upload file to Google Drive.
  */
 async function uploadFile() {
-  var fileContent = "Hello World"; // As a sample, upload a text file.
+  var fileContent = "Hello Popovoice"; // As a sample, upload a text file.
   var file = new Blob([fileContent], { type: "text/plain" });
   var metadata = {
     name: "sample-file-via-js", // Filename at Google Drive
@@ -28,11 +37,7 @@ async function uploadFile() {
   xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
   xhr.responseType = "json";
   xhr.onload = () => {
-    document.getElementById("content").innerHTML =
-      "File uploaded successfully. The Google Drive file id is <b>" +
-      xhr.response.id +
-      "</b>";
-    document.getElementById("content").style.display = "block";
+    console.log("File uploaded successfully");
   };
   xhr.send(form);
 }
