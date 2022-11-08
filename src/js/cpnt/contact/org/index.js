@@ -5,7 +5,7 @@ import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Pagination from 'block/pagination';
 import Preloader from 'block/preloader/table';
-import ExportAction from "../../../block/add-new/ExportAction"
+import EntityFields from "../../../block/add-new/EntityFields"
 
 
 import Form from './Form';
@@ -34,7 +34,7 @@ const Org = (props) => {
           <AddNew
             title={title}
             openForm={props.openForm}
-            ExportModal={ExportAction.organization}
+            fields={EntityFields.organization}
           />
         </div>
       </div>

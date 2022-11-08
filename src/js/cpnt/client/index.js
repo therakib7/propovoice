@@ -3,7 +3,7 @@ import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Pagination from 'block/pagination';
-import ExportAction from "../../block/add-new/ExportAction";
+import EntityFields from "../../block/add-new/EntityFields";
 import Preloader from 'block/preloader/table';
 
 import Form from './Form';
@@ -31,8 +31,8 @@ const Client = (props) => {
                 <div className="col-6">
                     <AddNew
                         title={title}
-                        ExportModal={ExportAction.client}
-                        openForm={props.openForm}
+                        fields={EntityFields.client}
+                    openForm={props.openForm}
                     />
                 </div>
             </div>

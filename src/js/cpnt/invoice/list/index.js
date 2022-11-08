@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import ExportAction from '../../../block/add-new/ExportAction';
+import EntityFields from '../../../block/add-new/EntityFields';
 import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from 'context/app-context';
 
@@ -268,7 +268,7 @@ class Invoice extends Component {
                         <AddNew
                             title={title}
                             openForm={() => this.newInvoie()}
-                            // ExportModal={ExportAction.invoice}
+                            // fields={EntityFields.invoice}
 
                         />
                     </div>
