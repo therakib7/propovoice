@@ -73,6 +73,22 @@ export default class GOAuth2 extends Component {
         >
           Add Google Auth
         </h4>
+
+        <div className="row">
+          <div className="col-md">
+            <label htmlFor="api-key">API Key</label>
+
+            <input
+              id="api_key"
+              type="text"
+              required
+              name="api_key"
+              placeholder="Enter API Key"
+              value={api_key}
+              onChange={this.handleChange}
+            />
+          </div>
+        </div>
         <div className="row">
           <div className="col-md">
             <label htmlFor="client-id">Client ID</label>
@@ -130,7 +146,6 @@ export default class GOAuth2 extends Component {
         </div>
 
         {true && (
-
           <>
             <h4
               className="pv-title-medium pv-mt-15 pv-mb-15"
@@ -198,7 +213,6 @@ export default class GOAuth2 extends Component {
                   </span>
                 </div>
 
-
                 {true && (
                   <div className="pv-google-app">
                     <div className="pv-google-icon">
@@ -244,7 +258,6 @@ export default class GOAuth2 extends Component {
                         </svg>
                       </div>
                       <h6>Google Drive</h6>
-
                     </div>
                     <span className="pv-field-switch-content">
                       <label className="pv-field-switch pv-field-switch-big">
@@ -260,8 +273,6 @@ export default class GOAuth2 extends Component {
                   </div>
                 )}
               </div>
-
-
             </div>
           </>
         )}
