@@ -145,6 +145,7 @@ const ImportModal = (props) => {
                     filename={`Sample file -${dateTime}.csv`}
                     style={{ color: "rgb(54 91 243)", fontWeight: "500" }}
                     data={csv}
+                    enclosingCharacter={``}
                   >
                     Download sample file
                   </CSVLink>
