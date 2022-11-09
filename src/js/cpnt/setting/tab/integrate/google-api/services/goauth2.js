@@ -11,7 +11,7 @@ export default class GOAuth2 extends Component {
       client_secret: "",
       redirect_uri: "",
       api_key: "",
-      is_google_meet :false,
+      is_google_meet: false,
     };
 
     this.state = {
@@ -87,7 +87,16 @@ export default class GOAuth2 extends Component {
               onChange={this.handleChange}
             />
 
-            <p className="pv-google-p">Note: <a href="https://developers.google.com/adwords/api/docs/guides/authentication" target="_blank">Click Here</a> to see how to obtain a google client ID and secrete</p>
+            <p className="pv-google-p">
+              Note:{" "}
+              <a
+                href="https://developers.google.com/adwords/api/docs/guides/authentication"
+                target="_blank"
+              >
+                Click Here
+              </a>{" "}
+              to see how to obtain a google client ID and secrete
+            </p>
           </div>
         </div>
         <div className="row">
@@ -119,7 +128,9 @@ export default class GOAuth2 extends Component {
             />
           </div>
         </div>
-        {true &&
+
+        {true && (
+
           <>
             <h4
               className="pv-title-medium pv-mt-15 pv-mb-15"
@@ -152,7 +163,10 @@ export default class GOAuth2 extends Component {
                             d="M4.68518 0L0 4.68518L2.41115 5.37081L4.68518 4.68518L5.35939 2.53457L4.68518 0Z"
                             fill="#E94235"
                           />
-                          <path d="M4.68518 4.68555H0V11.7705H4.68518V4.68555Z" fill="#2684FC" />
+                          <path
+                            d="M4.68518 4.68555H0V11.7705H4.68518V4.68555Z"
+                            fill="#2684FC"
+                          />
                           <path
                             d="M18.8778 1.98491L15.8839 4.43948V12.1323L18.8916 14.5983C19.3418 14.9503 20 14.6292 20 14.0567V2.51513C20 1.93577 19.3269 1.61809 18.8778 1.98491ZM11.313 8.22876V11.7712H4.68518V16.4564H14.5126C15.2703 16.4564 15.8839 15.8428 15.8839 15.0851V12.1323L11.313 8.22876Z"
                             fill="#00AC47"
@@ -173,8 +187,9 @@ export default class GOAuth2 extends Component {
                   </div>
                   <span className="pv-field-switch-content">
                     <label className="pv-field-switch pv-field-switch-big">
-                      <input type='checkbox'
-                        name='active'
+                      <input
+                        type="checkbox"
+                        name="active"
                         // checked={item.active ? 'checked' : ''}
                         onChange={(e) => this.handleChange(e, i)}
                       />
@@ -183,71 +198,76 @@ export default class GOAuth2 extends Component {
                   </span>
                 </div>
 
-                {true && <div className="pv-google-app">
-                  <div className="pv-google-icon">
-                    <div className="pv-svg">
-                      <svg
-                        width={20}
-                        height={18}
-                        viewBox="0 0 20 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g clipPath="url(#clip0_7220_103656)">
-                          <path
-                            d="M1.51273 15.3154L2.39472 16.8388C2.57798 17.1596 2.84143 17.4116 3.1507 17.5948L6.30064 12.1426H0.000762939C0.000762939 12.4977 0.0923975 12.8527 0.275667 13.1735L1.51273 15.3154Z"
-                            fill="#0066DA"
-                          />
-                          <path
-                            d="M10.0004 5.7296L6.85045 0.277344C6.54118 0.460613 6.27773 0.712608 6.09446 1.03333L0.275667 11.1131C0.095768 11.4269 0.00100246 11.7823 0.000762939 12.144H6.30064L10.0004 5.7296Z"
-                            fill="#00AC47"
-                          />
-                          <path
-                            d="M16.8501 17.5948C17.1593 17.4116 17.4228 17.1596 17.606 16.8388L17.9726 16.2089L19.7251 13.1735C19.9084 12.8527 20 12.4977 20 12.1426H13.6997L15.0403 14.7771L16.8501 17.5948Z"
-                            fill="#EA4335"
-                          />
-                          <path
-                            d="M10.0004 5.72911L13.1503 0.276857C12.8411 0.0935877 12.486 0.00195312 12.1194 0.00195312H7.88133C7.51479 0.00195312 7.15971 0.105042 6.85044 0.276857L10.0004 5.72911Z"
-                            fill="#00832D"
-                          />
-                          <path
-                            d="M13.7001 12.1426H6.30063L3.1507 17.5948C3.45996 17.7781 3.81505 17.8697 4.18158 17.8697H15.8192C16.1857 17.8697 16.5408 17.7666 16.8501 17.5948L13.7001 12.1426Z"
-                            fill="#2684FC"
-                          />
-                          <path
-                            d="M16.8157 6.07323L13.9063 1.03333C13.723 0.712608 13.4596 0.460613 13.1503 0.277344L10.0004 5.7296L13.7001 12.144H19.9885C19.9885 11.7889 19.8969 11.4338 19.7136 11.1131L16.8157 6.07323Z"
-                            fill="#FFBA00"
-                          />
-                        </g>
-                        <defs>
-                          <clipPath id="clip0_7220_103656">
-                            <rect width={20} height="17.872" fill="white" />
-                          </clipPath>
-                        </defs>
-                      </svg>
+
+                {true && (
+                  <div className="pv-google-app">
+                    <div className="pv-google-icon">
+                      <div className="pv-svg">
+                        <svg
+                          width={20}
+                          height={18}
+                          viewBox="0 0 20 18"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clipPath="url(#clip0_7220_103656)">
+                            <path
+                              d="M1.51273 15.3154L2.39472 16.8388C2.57798 17.1596 2.84143 17.4116 3.1507 17.5948L6.30064 12.1426H0.000762939C0.000762939 12.4977 0.0923975 12.8527 0.275667 13.1735L1.51273 15.3154Z"
+                              fill="#0066DA"
+                            />
+                            <path
+                              d="M10.0004 5.7296L6.85045 0.277344C6.54118 0.460613 6.27773 0.712608 6.09446 1.03333L0.275667 11.1131C0.095768 11.4269 0.00100246 11.7823 0.000762939 12.144H6.30064L10.0004 5.7296Z"
+                              fill="#00AC47"
+                            />
+                            <path
+                              d="M16.8501 17.5948C17.1593 17.4116 17.4228 17.1596 17.606 16.8388L17.9726 16.2089L19.7251 13.1735C19.9084 12.8527 20 12.4977 20 12.1426H13.6997L15.0403 14.7771L16.8501 17.5948Z"
+                              fill="#EA4335"
+                            />
+                            <path
+                              d="M10.0004 5.72911L13.1503 0.276857C12.8411 0.0935877 12.486 0.00195312 12.1194 0.00195312H7.88133C7.51479 0.00195312 7.15971 0.105042 6.85044 0.276857L10.0004 5.72911Z"
+                              fill="#00832D"
+                            />
+                            <path
+                              d="M13.7001 12.1426H6.30063L3.1507 17.5948C3.45996 17.7781 3.81505 17.8697 4.18158 17.8697H15.8192C16.1857 17.8697 16.5408 17.7666 16.8501 17.5948L13.7001 12.1426Z"
+                              fill="#2684FC"
+                            />
+                            <path
+                              d="M16.8157 6.07323L13.9063 1.03333C13.723 0.712608 13.4596 0.460613 13.1503 0.277344L10.0004 5.7296L13.7001 12.144H19.9885C19.9885 11.7889 19.8969 11.4338 19.7136 11.1131L16.8157 6.07323Z"
+                              fill="#FFBA00"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_7220_103656">
+                              <rect width={20} height="17.872" fill="white" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+                      <h6>Google Drive</h6>
+
                     </div>
-                    <h6>Google Drive</h6>
+                    <span className="pv-field-switch-content">
+                      <label className="pv-field-switch pv-field-switch-big">
+                        <input
+                          type="checkbox"
+                          name="active"
+                          // checked={item.active ? 'checked' : ''}
+                          onChange={(e) => this.handleChange(e)}
+                        />
+                        <span className="pv-switch-slider pv-round" />
+                      </label>
+                    </span>
                   </div>
-                  <span className="pv-field-switch-content">
-                    <label className="pv-field-switch pv-field-switch-big">
-                      <input type='checkbox'
-                        name='active'
-                        // checked={item.active ? 'checked' : ''}
-                        onChange={(e) => this.handleChange(e)}
-                      />
-                      <span className="pv-switch-slider pv-round" />
-                    </label>
-                  </span>
-                </div>}
+                )}
               </div>
-             
+
 
             </div>
           </>
-        }
+        )}
 
         <div className="row">
-          <div className="col" style={{ marginTop: 10 }} >
+          <div className="col" style={{ marginTop: 10 }}>
             <button className="pv-btn pv-btn-big pv-bg-blue pv-bg-hover-blue">
               {i18n.save}
             </button>
