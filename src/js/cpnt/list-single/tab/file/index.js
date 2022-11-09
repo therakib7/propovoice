@@ -50,7 +50,7 @@ const File = (props) => {
 
                     <div className="col-sm-7">
                         <div className="pv-buttons-right pv-text-right">
-                            {false && <button
+                            {true && <button
                                 className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
                                 onClick={() => setDriveModal(true)}
                             >

@@ -119,7 +119,7 @@ export default class GOAuth2 extends Component {
             />
           </div>
         </div>
-        {false &&
+        {true &&
           <>
             <h4
               className="pv-title-medium pv-mt-15 pv-mb-15"
@@ -183,7 +183,7 @@ export default class GOAuth2 extends Component {
                   </span>
                 </div>
 
-                {false && <div className="pv-google-app">
+                {true && <div className="pv-google-app">
                   <div className="pv-google-icon">
                     <div className="pv-svg">
                       <svg
@@ -240,16 +240,7 @@ export default class GOAuth2 extends Component {
                   </span>
                 </div>}
               </div>
-              <span className="pv-field-switch-content">
-                <label className="pv-field-switch pv-field-switch-big">
-                  <input type='checkbox'
-                    name='active'
-                    // checked={item.active ? 'checked' : ''}
-                    onChange={(e) => this.handleChange(e)}
-                  />
-                  <span className="pv-switch-slider pv-round" />
-                </label>
-              </span>
+             
 
             </div>
           </>
