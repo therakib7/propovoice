@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-06 17:14+0000\n"
+"POT-Creation-Date: 2022-11-09 16:08+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Estimate No"
 msgstr ""
 
-#: ../app/Helper/I18n.php:15, ../app/Ctrl/Setting/Type/Dashboard.php:50
+#: ../app/Helper/I18n.php:15, ../app/Ctrl/Setting/Type/Dashboard.php:54
 msgid "Invoice"
 msgstr ""
 
@@ -47,11 +47,11 @@ msgstr ""
 msgid "Invoice No"
 msgstr ""
 
-#: ../app/Helper/I18n.php:17, ../app/Ctrl/Setting/Type/Dashboard.php:54
+#: ../app/Helper/I18n.php:17, ../app/Ctrl/Setting/Type/Dashboard.php:58
 msgid "Client"
 msgstr ""
 
-#: ../app/Helper/I18n.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:58
+#: ../app/Helper/I18n.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:62
 msgid "Project"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Task & Activity"
 msgstr ""
 
-#: ../app/Helper/I18n.php:21, ../app/Ctrl/Setting/Type/Dashboard.php:62
+#: ../app/Helper/I18n.php:21, ../app/Ctrl/Setting/Type/Dashboard.php:66
 msgid "Contact"
 msgstr ""
 
@@ -596,7 +596,7 @@ msgstr ""
 msgid "Common"
 msgstr ""
 
-#: ../app/Helper/I18n.php:175, ../app/Ctrl/Setting/Type/Dashboard.php:86, ../app/Ctrl/Setting/Type/Dashboard.php:87
+#: ../app/Helper/I18n.php:175, ../app/Ctrl/Setting/Type/Dashboard.php:90, ../app/Ctrl/Setting/Type/Dashboard.php:91
 msgid "Settings"
 msgstr ""
 
@@ -1151,11 +1151,11 @@ msgstr ""
 msgid "Contact info is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:234, ../app/Ctrl/Api/Type/Contact.php:307, ../app/Ctrl/Api/Type/Note.php:155, ../app/Ctrl/Api/Type/Note.php:190, ../app/Ctrl/Api/Type/Org.php:203, ../app/Ctrl/Api/Type/Org.php:292, ../app/Ctrl/Api/Type/Person.php:239, ../app/Ctrl/Api/Type/Person.php:330, ../app/Ctrl/Api/Type/Workspace.php:217, ../app/Ctrl/Api/Type/Workspace.php:303
+#: ../app/Ctrl/Api/Type/Client.php:234, ../app/Ctrl/Api/Type/Contact.php:313, ../app/Ctrl/Api/Type/Note.php:155, ../app/Ctrl/Api/Type/Note.php:190, ../app/Ctrl/Api/Type/Org.php:203, ../app/Ctrl/Api/Type/Org.php:292, ../app/Ctrl/Api/Type/Person.php:239, ../app/Ctrl/Api/Type/Person.php:331, ../app/Ctrl/Api/Type/Workspace.php:217, ../app/Ctrl/Api/Type/Workspace.php:303
 msgid "Name field is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:238, ../app/Ctrl/Api/Type/Contact.php:311, ../app/Ctrl/Api/Type/Org.php:207, ../app/Ctrl/Api/Type/Org.php:296, ../app/Ctrl/Api/Type/Person.php:243, ../app/Ctrl/Api/Type/Person.php:334, ../app/Ctrl/Api/Type/Workspace.php:221, ../app/Ctrl/Api/Type/Workspace.php:307
+#: ../app/Ctrl/Api/Type/Client.php:238, ../app/Ctrl/Api/Type/Contact.php:317, ../app/Ctrl/Api/Type/Org.php:207, ../app/Ctrl/Api/Type/Org.php:296, ../app/Ctrl/Api/Type/Person.php:243, ../app/Ctrl/Api/Type/Person.php:335, ../app/Ctrl/Api/Type/Workspace.php:221, ../app/Ctrl/Api/Type/Workspace.php:307
 msgid "Email id is not valid!"
 msgstr ""
 
@@ -1227,7 +1227,7 @@ msgstr ""
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Dashboard.php:97
+#: ../app/Ctrl/Setting/Type/Dashboard.php:101
 msgid "Go to Frontend"
 msgstr ""
 
@@ -1308,5 +1308,5 @@ msgid "Sorry!! You don't have permission to view this page"
 msgstr ""
 
 #: ../view/template/partial/404.php:40
-msgid "We Con't find this page you're looking for"
+msgid "We Can't find this page you're looking for"
 msgstr ""

@@ -45,10 +45,10 @@ class Dashboard
                 'id' => 'estimate',
                 'label' => esc_html__('Estimate', 'propovoice'),
             ],
-            [
+            /* [
                 'id' => 'quotation',
                 'label' => esc_html__('Quotation', 'propovoice'),
-            ],
+            ], */
             [
                 'id' => 'invoice',
                 'label' => esc_html__('Invoice', 'propovoice'),
