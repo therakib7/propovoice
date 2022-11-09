@@ -497,6 +497,26 @@ class Invoice extends Component {
 	setActiveTab(e, id, index) {
 		e.preventDefault();
 
+		if (id != 'preview') {
+			let edit = true;
+			switch (this.state.status) {
+				case 'accept':
+				case 'decline':
+				case 'paid':
+					if (this.props.path == 'invoice') {
+						toast.error('Paid Invoice is not editable');
+					} else if (this.props.path == 'estimate') {
+						toast.error('Accept or Decline Estimate is not editable');
+					}
+					edit = false;
+					break;
+			}
+
+			if (!edit) {
+				return;
+			}
+		}
+
 		if (id == 'preview') {
 			this.handleSave();
 		}

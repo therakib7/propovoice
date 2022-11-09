@@ -60,11 +60,11 @@ export default (props) => {
                 <div className="col-md">
                     <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
                     <Upload label={'Logo'} library={false} data={form.logo} changeHandler={handleLogoChange} />
-                    <p className='pv-field-desc'>Max-width: 215px, Max-height: 60px </p>
+                    <p className='pv-field-desc'>Max-width: 215px, Max-height: 55px </p>
                 </div>
             </div>
 
-            <h4 className="pv-title-medium pv-mt-25 pv-mb-15">Email Template</h4>
+            <h4 className="pv-title-medium pv-mt-15 pv-mb-15">Email Template</h4>
             <div className="row">
                 <div className="col">
                     <label id="form-active">Show Email Template Footer</label>

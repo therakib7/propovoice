@@ -1,4 +1,3 @@
-
 export default (props) => {
 
     return (
@@ -26,4 +25,4 @@ export default (props) => {
             </div>
         </div>
     );
-} 
+}

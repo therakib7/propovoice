@@ -4,7 +4,7 @@ import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Preloader from 'block/preloader/table';
 import Pagination from 'block/pagination';
-import ExportAction from "../../block/add-new/ExportAction";
+import EntityFields from "../../block/add-new/EntityFields";
 
 import Form from './Form';
 import Table from './Table';
@@ -30,7 +30,9 @@ const Lead = (props) => {
 					<AddNew
 						title={title}
 						openForm={props.openForm}
-						ExportModal={ExportAction.lead}
+						fields={EntityFields.lead}
+						reload={() => props.getLists()}
+
 					/>
 				</div>
 			</div>

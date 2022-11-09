@@ -31,7 +31,7 @@ class Dashboard
             'ndpv#',
             array($this, 'render')
         );
-         
+
         $settings_menu = [
             [
                 'id' => 'lead',
@@ -44,6 +44,10 @@ class Dashboard
             [
                 'id' => 'estimate',
                 'label' => esc_html__('Estimate', 'propovoice'),
+            ],
+            [
+                'id' => 'quotation',
+                'label' => esc_html__('Quotation', 'propovoice'),
             ],
             [
                 'id' => 'invoice',
