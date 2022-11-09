@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Add } from "block/icon";
 import { sprintf } from "sprintf-js";
 import { uploadToDrive } from "api/gapi/gdrive";
 
 const FormDrive = (props) => {
-  const [files, setFile] = useState([]);
+  const [file, setFile] = useState();
+  const [is_submit, setIsSubmit] = useState(false);
+
+  useEffect(() => {
+    if (file && is_submit) {
+      uploadToDrive(file);
+    }
+  }, [file, is_submit]);
+
+  function handleChange(event) {
+    setFile(event.target.files[0]);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const title = e.target.title.value;
-    const file = e.target.file.value;
-    setFile([title, file]);
+    setIsSubmit(true);
   };
-  console.log(files);
-  if (files) {
-    uploadToDrive();
-  }
 
   const i18n = ndpv.i18n;
   const modalType =
@@ -47,10 +52,10 @@ const FormDrive = (props) => {
                   <div>
                     <div>
                       <input
-                        type={"file"}
-                        id={"files"}
-                        name="file"
+                        type="file"
+                        id="files"
                         className="d-none"
+                        onChange={handleChange}
                       />
                       <label
                         htmlFor="files"
