@@ -47,7 +47,8 @@ class Form extends Component {
   handleCheckbox = (e, type, slug = "") => {
     const target = e.target;
     let actions = this.state.form.actions;
-    const ExportModal = Object.values(this.props.ExportModal);
+    const fields = Object.keys(this.props.fields);
+    // const fields = field.shift()
 
     if (type == "action") {
       const { value } = e.target;
@@ -58,15 +59,16 @@ class Form extends Component {
       }
     } else if (type == "group") {
       if (target.checked) {
-        actions = actions.concat(ExportModal);
+        actions = actions.concat(fields);
       } else {
-        actions = actions.filter((x) => !ExportModal.includes(x));
+        actions = actions.filter((x) => !fields.includes(x));
       }
     } else if (type == "none") {
       actions = [];
     }
     actions = Array.from(new Set(actions));
     this.setState({ form: { ...this.state.form, ["actions"]: actions } });
+    console.log(actions)
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -83,8 +85,8 @@ class Form extends Component {
 
 
   render() {
-    const ExportModal = this.props.ExportModal;
-
+    const fields = this.props.fields;
+    delete fields.not_asign;
     const i18n = ndpv.i18n;
     const form = this.state.form;
     let title = "";
@@ -115,17 +117,17 @@ class Form extends Component {
                   <label htmlFor="select-all">Select all</label>
                 </div>
                 <div className="pv-import-from-gird">
-                  {Object.entries(ExportModal).map((data, i) => (
+                  {Object.entries(fields).map((data, i) => (
                     <div key={i} className="pv-field-checkbox">
                       <input
                         type="checkbox"
                         id={i}
                         name="action"
-                        value={data[1]}
-                        checked={form.actions.includes(data[1]) ? "checked" : ""}
+                        value={data[0]}
+                        checked={form.actions.includes(data[0]) ? "checked" : ""}
                         onChange={(e) => this.handleCheckbox(e, "action")}
                       />
-                      <label htmlFor={i}>{data[0]}</label>
+                      <label htmlFor={i}>{data[1]} </label>
                     </div>
                   ))}
                 </div>

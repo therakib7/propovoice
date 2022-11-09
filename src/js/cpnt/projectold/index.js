@@ -3,7 +3,7 @@ import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Pagination from 'block/pagination';
-import ExportAction from "../../block/add-new/ExportAction"
+import EntityFields from "../../block/add-new/EntityFields"
 import Preloader from 'block/preloader/table';
 
 import Form from './Form';
@@ -30,7 +30,7 @@ const Project = (props) => {
           <AddNew
             title={title}
             openForm={props.openForm}
-            ExportModal={ExportAction.project}
+            fields={EntityFields.project}
 
           />
         </div>

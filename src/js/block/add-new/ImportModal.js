@@ -7,12 +7,18 @@ import csv from "./csv";
 import api from "api";
 import pro from "block/pro-alert";
 import ProLabel from "block/pro-alert/label";
+import { Link } from "react-router-dom";
 
 const ImportModal = (props) => {
-  const modals = Object.values(props.modal);
+  const modals = Object.keys(props.modal);
   const [file, setFile] = useState();
   const [csvData, setCsvData] = useState([]);
   const [fields, setValues] = useState(Array(modals.length).fill(""));
+
+  const today = new Date();
+  const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  const time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+  const dateTime = date + '-' + time;
 
   const fileReader = new FileReader();
   const handleOnChange = (e) => {
@@ -33,6 +39,7 @@ const ImportModal = (props) => {
       const fields = i.split(",");
       const obj = csvHeader?.reduce((object, header, index) => {
         object[header] = fields[index];
+        console.log(fields[index])
         return object;
       }, {});
       return obj;
@@ -56,6 +63,7 @@ const ImportModal = (props) => {
   };
 
   const handleSubmit = (e) => {
+    // window.location.reload('http://nurency-plugin.local/wp-admin/admin.php?page=ndpv#/lead');
     e.preventDefault();
     const title = props.title.toLowerCase();
 
@@ -68,13 +76,20 @@ const ImportModal = (props) => {
     api
       .add("import/csv", data, "pro")
       .then((res) => {
+
         console.log(res);
+        if (res) {
+          props.close();
+          props.reload();
+        }
+
       })
       .catch((error) => console.log(error.message));
   };
   const headerKeys = Object.keys(Object.assign({}, ...csvData));
-  const modal = ["Not Assign", ...modals];
+  const modal = props.modal;
   const i18n = ndpv.i18n;
+
   return (
     <div className="pv-overlay pv-show">
       <div className="pv-modal-content">
@@ -127,8 +142,10 @@ const ImportModal = (props) => {
               {!file && (
                 <div>
                   <CSVLink
+                    filename={`Sample file -${dateTime}.csv`}
                     style={{ color: "rgb(54 91 243)", fontWeight: "500" }}
                     data={csv}
+                    enclosingCharacter={``}
                   >
                     Download sample file
                   </CSVLink>
@@ -174,8 +191,8 @@ const ImportModal = (props) => {
                                 valueSate(e, si);
                               }}
                             >
-                              {modal.map((val, i) => (
-                                <option key={i}>{val}</option>
+                              {Object.entries(modal).map((val, i) => (
+                                <option key={i} value={val[0]}>{val[1]}</option>
                               ))}
                             </select>
                           </td>
