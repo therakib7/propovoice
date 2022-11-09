@@ -16,6 +16,7 @@ export default class Form extends Component {
             id: null,
             first_name: '',
             last_name: '',
+            org_id: '',
             org_name: '',
             email: '',
             web: '',
@@ -80,7 +81,7 @@ export default class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-
+        if (!val) return;
         if (type == 'person') {
             form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;

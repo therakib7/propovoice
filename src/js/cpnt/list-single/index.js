@@ -353,7 +353,7 @@ class ListSingle extends Component {
                         <br />
                         {data.person && data.org && (
                           <>
-                            {i18n.org}: {data.org_name}
+                            {i18n.org}: {data.org.name}
                             <br />
                           </>
                         )}
@@ -505,9 +505,8 @@ class ListSingle extends Component {
                           name="probability"
                           value={data.probability}
                           style={{
-                            background: `linear-gradient(to right, #3264fe ${
-                              (data.probability / 100) * 100
-                            }%, #ccd6ff ${(data.probability / 100) * 100}%)`,
+                            background: `linear-gradient(to right, #3264fe ${(data.probability / 100) * 100
+                              }%, #ccd6ff ${(data.probability / 100) * 100}%)`,
                           }}
                           onChange={this.handleprobabilityChange}
                         />
@@ -571,35 +570,35 @@ class ListSingle extends Component {
                         <>
                           {(data.stage_id.type == "won" ||
                             data.stage_id.type == "") && (
-                            <button
-                              className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow"
-                              style={{ padding: "9px 15px !important" }}
-                              onClick={() => this.handleStageChange("won")}
-                            >
-                              <img
-                                className="pv-mr-5"
-                                src={ndpv.assetImgUri + "happy.png"}
-                                alt="won"
-                              />
-                              {i18n.won}
-                            </button>
-                          )}
+                              <button
+                                className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow"
+                                style={{ padding: "9px 15px !important" }}
+                                onClick={() => this.handleStageChange("won")}
+                              >
+                                <img
+                                  className="pv-mr-5"
+                                  src={ndpv.assetImgUri + "happy.png"}
+                                  alt="won"
+                                />
+                                {i18n.won}
+                              </button>
+                            )}
 
                           {(data.stage_id.type == "lost" ||
                             data.stage_id.type == "") && (
-                            <button
-                              className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow"
-                              style={{ padding: "9px 15px !important" }}
-                              onClick={() => this.handleStageChange("lost")}
-                            >
-                              <img
-                                className="pv-mr-5"
-                                src={ndpv.assetImgUri + "sad.png"}
-                                alt="sad"
-                              />
-                              {i18n.lost}
-                            </button>
-                          )}
+                              <button
+                                className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow"
+                                style={{ padding: "9px 15px !important" }}
+                                onClick={() => this.handleStageChange("lost")}
+                              >
+                                <img
+                                  className="pv-mr-5"
+                                  src={ndpv.assetImgUri + "sad.png"}
+                                  alt="sad"
+                                />
+                                {i18n.lost}
+                              </button>
+                            )}
                         </>
                       )}
 
@@ -936,11 +935,14 @@ class ListSingle extends Component {
                         </button>
                       </h3>
                       <address>
-                        {data.person ? data.person.email : data.org.email}{" "}
+                        {data.person ? data.person.email : data.org.email}
                         <br />
-                        Organization:{" "}
-                        {data.person ? data.person.first_name : data.org.name}
-                        <br />
+                        {data.person && data.org && (
+                          <>
+                            {i18n.org}: {data.org.name}
+                            <br />
+                          </>
+                        )}
                       </address>
                     </div>
                   </div>
