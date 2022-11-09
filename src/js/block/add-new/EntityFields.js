@@ -1,7 +1,7 @@
 export default {
 
     lead: {
-        not_asign: 'Not Asign',
+        not_assign: 'Not Assign',
         first_name: 'Person',
         org_name: 'Organization',
         email: 'Email',
@@ -12,7 +12,7 @@ export default {
         note: 'Note',
     },
     client: {
-        not_asign: 'Not Asign',
+        not_assign: 'Not Assign',
         first_name: 'Person',
         org_name: 'Organization',
         email: 'Email',

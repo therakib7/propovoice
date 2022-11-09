@@ -82,7 +82,7 @@ class Form extends Component {
 
   render() {
     const fields = this.props.fields;
-    delete fields.not_asign;
+    delete fields.not_assign;
     const i18n = ndpv.i18n;
     const form = this.state.form;
     let title = "";
