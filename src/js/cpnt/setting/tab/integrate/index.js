@@ -5,9 +5,7 @@ import ProLabel from "block/pro-alert/label";
 
 import Form from "./form";
 import Smtp from "./smtp";
-import GOAuth2 from "./google-api/services/goauth2"
-// import Test from "./google-api/services/Test"
-import Test from "./google-api/services/Test"
+import GOAuth2 from "./google-api/services/goauth2";
 import Automation from "./automation";
 
 const Main = (props) => {
@@ -29,13 +27,9 @@ const Main = (props) => {
       text: "SMTP",
     },
     {
-      id: "test",
-      text: "Test",
-    },
-    {
       id: "google-apps",
       text: "Google Apps",
-    }, 
+    },
     {
       id: "automation",
       text: "Automation",
@@ -45,7 +39,7 @@ const Main = (props) => {
   const [currentTab, setCurrentTab] = useState(tabDefault);
   const [currentSubtab, setCurrentSubtab] = useState("");
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const routeChange = (tab, subtab = null) => {
     if (subtab) {
@@ -95,14 +89,6 @@ const Main = (props) => {
           tab={currentSubtab}
         />
       )}
-      {currentTab == "test" && (
-        <Test
-          // key={reload}
-          // {...props}
-          // onChange={addCurrentTab}
-          // tab={currentSubtab}
-        />
-      )}
 
       {currentTab == "google-apps" && (
         <GOAuth2
@@ -129,7 +115,6 @@ const Main = (props) => {
           tab={currentSubtab}
         />
       )}
-      
     </>
   );
 };

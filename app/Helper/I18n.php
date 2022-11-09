@@ -336,6 +336,14 @@ class I18n
             /* translators: %s: Added, Created text, %s: Module Name */
             "notAdd" => esc_html__("You have not %s any %s yet.", "propovoice"),
             "any" => esc_html__("any", "propovoice"),
+
+            // import
+            "uploadFile" => esc_html__("Click to upload File", "propovoice"),
+            "sample" => esc_html__("sample", "propovoice"),
+            "nextBtn" => esc_html__("Next [Map Columns]", "propovoice"),
+            "csvDco" => esc_html__("Please make sure your csv file has unique
+                      headers.Otherwise, it may fail to import", "propovoice"),
+            
         ];
     }
 }

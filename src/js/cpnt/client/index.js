@@ -32,7 +32,8 @@ const Client = (props) => {
                     <AddNew
                         title={title}
                         fields={EntityFields.client}
-                    openForm={props.openForm}
+                        openForm={props.openForm}
+                        reload={() => props.getLists()}
                     />
                 </div>
             </div>
