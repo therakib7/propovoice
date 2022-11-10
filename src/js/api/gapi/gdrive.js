@@ -11,16 +11,9 @@ export function uploadToDrive(file, setGdriveFileId) {
  * Upload file to Google Drive.
  */
 async function uploadFile(file, setGdriveFileId) {
-  // var fileContent = "Hello Popovoice"; // As a sample, upload a text file.
-  // var file = new Blob([fileContent], { type: "text/plain" });
   var metadata = {
     name: file.name, //Filename at Google Drive
     mimeType: "image/*", // mimeType at Google Drive
-    // name: "sample-file-via-js", // Filename at Google Drive
-    // mimeType: "text/plain", // mimeType at Google Drive
-    // TODO [Optional]: Set the below credentials
-    // Note: remove this parameter, if no target is needed
-    // parents: ["SET-GOOGLE-DRIVE-FOLDER-ID"], // Folder ID at Google Drive which is optional
   };
 
   var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
