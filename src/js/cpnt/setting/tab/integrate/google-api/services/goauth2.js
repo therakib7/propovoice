@@ -54,6 +54,7 @@ export default class GOAuth2 extends Component {
       if (resp.data.success) {
         toast.success(ndpv.i18n.aUpd);
         this.props.close();
+        e.target.reset()
       } else {
         resp.data.data.forEach(function (value, index, array) {
           toast.error(value);
@@ -87,6 +88,16 @@ export default class GOAuth2 extends Component {
               value={api_key}
               onChange={this.handleChange}
             />
+            <p className="pv-google-p">
+              Note:{" "}
+              <a
+                href="https://console.cloud.google.com/apis"
+                target="_blank"
+              >
+                Click Here
+              </a>{" "}
+              to see how to obtain a google client ID and secrete
+            </p>
           </div>
         </div>
         <div className="row">
@@ -106,7 +117,7 @@ export default class GOAuth2 extends Component {
             <p className="pv-google-p">
               Note:{" "}
               <a
-                href="https://developers.google.com/adwords/api/docs/guides/authentication"
+                href="https://console.cloud.google.com/apis"
                 target="_blank"
               >
                 Click Here
@@ -278,7 +289,7 @@ export default class GOAuth2 extends Component {
         )}
 
         <div className="row">
-          <div className="col" style={{ marginTop: 10 }}>
+          <div className="col" style={{ marginTop: 10, textAlign: 'right' }}>
             <button className="pv-btn pv-btn-big pv-bg-blue pv-bg-hover-blue">
               {i18n.save}
             </button>
