@@ -13,7 +13,9 @@ const FormDrive = (props) => {
       uploadToDrive(file, setGdriveFileId);
       setIsSubmit(false);
     }
-    if (gdriveFileId) console.log("FileId in Form: ", gdriveFileId);
+    if (gdriveFileId) {
+      console.log("FileId in Form: ", gdriveFileId);
+    }
   }, [file, is_submit, gdriveFileId]);
 
   function handleChange(event) {
