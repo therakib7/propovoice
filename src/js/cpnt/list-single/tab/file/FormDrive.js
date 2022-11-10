@@ -1,47 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { Add } from "block/icon";
 import { sprintf } from "sprintf-js";
-import Upload from 'block/field/upload';
+import Upload from "block/field/upload";
 import { uploadToDrive } from "api/gapi/gdrive";
 
 const FormDrive = (props) => {
-
   const [form, setForm] = useState({
     id: null,
     tab_id: props.tab_id,
-    type: 'file',
-    title: '',
-    file: '',
+    type: "file",
+    title: "",
+    file: "",
   });
 
   const [driveFileId, setdriveFileId] = useState();
+  const [selectedFile, setSelectedFile] = useState();
   const [is_submit, setIsSubmit] = useState(false);
 
   useEffect(() => {
     if (form.file && is_submit) {
-      uploadToDrive(form.file, setdriveFileId);
+      uploadToDrive(selectedFile, setdriveFileId);
       setIsSubmit(false);
     }
     if (driveFileId) {
       console.log("FileId in Form: ", driveFileId);
       form.id = driveFileId;
-      setForm(form)
+      setForm(form);
     }
   }, [form.file, is_submit, driveFileId]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    form.title = e.target.title.value
-    setForm(form)
+    form.title = e.target.title.value;
+    setForm(form);
     props.handleSubmit(form);
     setIsSubmit(true);
-  };
+  }
 
   const handleUploadChange = (data, type = null) => {
-    let form = { ...form }
+    let form = { ...form };
     form.file = data;
-    setForm(form)
-  }
+    setForm(form);
+  };
 
   const i18n = ndpv.i18n;
   const modalType =
@@ -64,25 +64,26 @@ const FormDrive = (props) => {
             <div className="pv-form-style-one">
               <div className="row">
                 <div className="col-lg">
-                  <label htmlFor="title">
-                    {i18n.title}
-                  </label>
+                  <label htmlFor="title">{i18n.title}</label>
 
                   <input
                     id="title"
                     type="text"
                     name="title"
-                  // onChange={handleChange}
+                    // onChange={handleChange}
                   />
                 </div>
               </div>
 
               <div className="row">
                 <div className="col-lg">
-                  <label htmlFor="file_id">
-                    {i18n.file}
-                  </label>
-                  <Upload data={form.file} changeHandler={handleUploadChange} />
+                  <label htmlFor="file_id">{i18n.file}</label>
+                  <Upload
+                    data={form.file}
+                    isSelectedFile={true}
+                    selectedFile={setSelectedFile}
+                    changeHandler={handleUploadChange}
+                  />
                 </div>
               </div>
             </div>
