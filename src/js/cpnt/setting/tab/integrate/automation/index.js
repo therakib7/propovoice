@@ -50,7 +50,7 @@ export default class Main extends Component {
                     img: "https://integrately.com/images/integrately-logo.svg",
                     pro: true,
                 },
-                /* {
+                {
                     name: "Uncanny Automator",
                     slug: "automator",
                     img: "https://automator.wpenginepowered.com/wp-content/uploads/2022/09/uncanny-automator-vertical-logo.svg",
@@ -61,7 +61,7 @@ export default class Main extends Component {
                     slug: "flowmattic",
                     img: "https://du7m7sbzce8rk.cloudfront.net/wp-content/uploads/2022/01/flowmattic-logo.svg",
                     pro: true,
-                }, */
+                },
                 {
                     name: "Webhook",
                     slug: "webhook",
