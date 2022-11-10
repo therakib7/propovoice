@@ -224,7 +224,7 @@ export default class GOAuth2 extends Component {
                   </span>
                 </div>
 
-                {true && (
+                {false && (
                   <div className="pv-google-app">
                     <div className="pv-google-icon">
                       <div className="pv-svg">

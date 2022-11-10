@@ -124,7 +124,7 @@
 
 .wp-admin.ndpv {
     background-color: #f7f8fa !important;
-    overflow: auto;
+    overflow-y: auto;
 
     .pv-left-sidebar,
     .pv-top-menu-content {
@@ -337,9 +337,10 @@ input:-webkit-autofill:active {
     .pv-intg-list {
         grid-template-columns: 1fr 1fr;
     }
-        .pv-upload-file {
-            padding: 30px 0px;
-        }
+
+    .pv-upload-file {
+        padding: 30px 0px;
+    }
 }
 
 @media screen and (max-width: 420px) {

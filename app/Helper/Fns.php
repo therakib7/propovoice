@@ -203,10 +203,10 @@ class Fns
                 if ($icon_id) {
                     $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
                     if ($icon_src) {
-                        $url = get_term_meta($single->term_id, 'url', true);
-                        if ( $url ) {
+                        $term_url = get_term_meta($single->term_id, 'url', true);
+                        if ( $term_url ) {
                             $format_taxonomy[] = [
-                                'url' => $url,
+                                'url' => $term_url,
                                 'icon' => $icon_src[0]
                             ];
                         }

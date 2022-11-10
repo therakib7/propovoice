@@ -75,6 +75,15 @@ class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
+        if (!val) {
+            if (type == 'person') {
+                form.person_id = null;
+            } else {
+                form.org_id = null;
+            }
+            this.setState({ form });
+            return;
+        };
 
         if (type == 'person') {
             form.first_name = val.first_name;

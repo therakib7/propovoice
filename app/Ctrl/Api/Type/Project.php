@@ -360,7 +360,7 @@ class Project
         $due_date = isset($param['due_date']) ? $param['due_date'] : null;
         $tags       = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc       = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note       = isset($param['note']) ? nl2br($param['note']) : null;
+        $note       = isset($param['note']) ? nl2br($param['note']) : '';
 
 
         if (empty($title)) {
@@ -511,7 +511,7 @@ class Project
         $due_date   = isset($param['due_date']) ? $param['due_date'] : null;
         $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note         = isset($param['note']) ? nl2br($param['note']) : null;
+        $note         = isset($param['note']) ? nl2br($param['note']) : '';
         $change_tax   = isset($param['change_tax']) ? true : false;
 
         /* if (empty($first_name) &&  empty($org_name)) {

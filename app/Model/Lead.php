@@ -21,7 +21,7 @@ class Lead
         $currency  = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
         $tags      = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc      = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note      = isset($param['note']) ? nl2br($param['note']) : null;
+        $note      = isset($param['note']) ? nl2br($param['note']) : '';
 
 
         $person = new Person();
