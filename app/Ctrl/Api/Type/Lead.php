@@ -280,7 +280,7 @@ class Lead
         $currency  = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
         $tags      = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc      = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note      = isset($param['note']) ? nl2br($param['note']) : null;
+        $note      = isset($param['note']) ? nl2br($param['note']) : '';
         $img       = isset( $param['img'] ) ? absint( $param['img'] ) : null;
 
         if (empty($first_name) &&  empty($org_name)) {
@@ -368,19 +368,19 @@ class Lead
         $reg_errors = new \WP_Error();
 
         //lead
-        $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
-        $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
-        $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
-        $org_id    = isset($param['org_id']) ? absint($param['org_id']) : null;
+        $first_name   = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
+        $org_name     = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
+        $person_id    = isset($param['person_id']) ? absint($param['person_id']) : null;
+        $org_id       = isset($param['org_id']) ? absint($param['org_id']) : null;
         $level_id     = isset($param['level_id']) ? absint($param['level_id']) : null;
         $budget       = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
         $currency     = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
         $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note         = isset($param['note']) ? nl2br($param['note']) : null;
+        $note         = isset($param['note']) ? nl2br($param['note']) : '';
         $img          = isset( $param['img'] ) ? absint( $param['img'] ) : null;
 
-        $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
+        // $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
@@ -401,6 +401,10 @@ class Lead
 
         $org = new Org();
         if (!$person_id && $org_id) {
+            $org->update($param);
+        }
+
+        if ( $org_id && $org_name ) {
             $org->update($param);
         }
 
