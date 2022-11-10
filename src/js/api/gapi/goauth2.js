@@ -54,7 +54,7 @@ function gisLoaded() {
   const CLIENT_ID = localStorage.getItem("g_client_id");
 
   const SCOPES =
-    "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/drive.file";
+    "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file";
 
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
