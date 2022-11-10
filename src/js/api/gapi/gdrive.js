@@ -1,19 +1,18 @@
 import api from "api";
 import { handleSignIn } from "api/gapi/goauth2";
 
-export function uploadToDrive(file) {
+export function uploadToDrive(file, setGdriveFileId) {
   handleSignIn(() => {
-    uploadFile(file);
+    uploadFile(file, setGdriveFileId);
   });
 }
 
 /**
  * Upload file to Google Drive.
  */
-async function uploadFile(file) {
+async function uploadFile(file, setGdriveFileId) {
   // var fileContent = "Hello Popovoice"; // As a sample, upload a text file.
   // var file = new Blob([fileContent], { type: "text/plain" });
-  console.log("File name: ", file.name);
   var metadata = {
     name: file.name, //Filename at Google Drive
     mimeType: "image/*", // mimeType at Google Drive
@@ -40,7 +39,7 @@ async function uploadFile(file) {
   xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
   xhr.responseType = "json";
   xhr.onload = (load) => {
-    console.log(load.target.response.id);
+    setGdriveFileId(load.target.response.id);
     console.log("File uploaded successfully");
   };
   xhr.send(form);
