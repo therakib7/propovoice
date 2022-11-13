@@ -2011,13 +2011,6 @@ html {
   }
 }
 
-.ndpv .pv-search-bar button {
-  background: transparent;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294);
-  padding: 5px 8px;
-  border-radius: 8px;
-  cursor: pointer;
-}
 
 @media screen and (max-width: 768px) {
   .ndpv .pv-search-bar button {
@@ -2030,6 +2023,7 @@ html {
   padding-top: 8px;
   color: #718096;
   font-size: 12px;
+  display: -webkit-inline-box;
 }
 
 .ndpv .pv-search-bar .pv-total-list p select {
@@ -2041,6 +2035,7 @@ html {
   background-position-x: 85%;
   background-position-y: 46%;
   font-size: 12px;
+  width: auto;
 }
 
 .ndpv .pv-search-bar .pv-total-list p span {
@@ -2403,7 +2398,7 @@ html {
 }
 
 .pv-overview-select {
-  padding: 10px 35px 10px 10px;
+  padding: 10px 35px 10px 10px !important;
   border: 1px solid #CBD5E0 !important;
   border-radius: 4px;
   margin-left: 15px;
@@ -2415,6 +2410,8 @@ html {
   background-position-y: 48% !important;
   outline: none;
   line-height: 100%;
+  width: auto;
+  display: inline-block;
 }
 
 .pv-overview-select:focus {
@@ -6186,4 +6183,32 @@ select {
 .wp-admin .pv-field-switch {
   position: relative;
   top: 3px;
+}
+
+
+table thead:first-child tr:first-child th {
+  border-top: none;
+}
+
+.hello-elementor-theme {
+
+  table th,
+  table td {
+    border: none;
+    vertical-align: middle;
+  }
+
+  .pv-right-content {
+    overflow-x: inherit !important;
+  }
+
+  .pv-field-switch {
+    top: 0;
+  }
+}
+
+
+button:focus,
+.pv-btn:focus {
+  outline: none !important;
 }
