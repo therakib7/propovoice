@@ -8,8 +8,10 @@
   <title>Propovoice Email</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap" rel="stylesheet" />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap" rel="stylesheet" /> -->
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap');
+
     * {
       margin: 0;
       padding: 0;
@@ -240,7 +242,7 @@
       height: 16px;
       line-height: 16px;
     }
-    
+
   </style>
 </head>
 
