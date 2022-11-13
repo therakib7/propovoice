@@ -183,7 +183,7 @@
       line-height: 14px;
       padding: 16px 38px;
       text-decoration: none;
-      color: #fff;
+      color: #fff !important;
       background: #4C6FFF;
       border: 1px solid #4C6FFF;
       border-radius: 8px;
@@ -218,27 +218,29 @@
     }
 
     .ndpv-social {
-      display: flex;
-      justify-content: center;
-      gap: 9px;
       margin-top: 16px;
     }
 
     .ndpv-social li {
+      display: inline-block;
+      margin: 0 2px;
       list-style: none;
-    }
-
-    .ndpv-social li a {
+      padding: 7px;
       width: 30px;
       height: 30px;
       background-color: #fff;
       border-radius: 100%;
-      line-height: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
+      line-height: 16px;
+      text-align: center;
+      vertical-align: middle;
     }
+
+    .ndpv-social li a {
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+    }
+    
   </style>
 </head>
 
