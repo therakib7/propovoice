@@ -1,27 +1,21 @@
 import api from "api";
 import { handleSignIn } from "api/gapi/goauth2";
 
-export function uploadToDrive() {
+export function uploadToDrive(file, setGdriveFileId) {
   handleSignIn(() => {
-    uploadFile();
+    uploadFile(file, setGdriveFileId);
   });
 }
 
 /**
  * Upload file to Google Drive.
  */
-async function uploadFile() {
-  var fileContent = "Hello Popovoice"; // As a sample, upload a text file.
-  var file = new Blob([fileContent], { type: "text/plain" });
+async function uploadFile(file, setGdriveFileId) {
   var metadata = {
-    name: "sample-file-via-js", // Filename at Google Drive
-    mimeType: "text/plain", // mimeType at Google Drive
-    // TODO [Optional]: Set the below credentials
-    // Note: remove this parameter, if no target is needed
-    parents: ["SET-GOOGLE-DRIVE-FOLDER-ID"], // Folder ID at Google Drive which is optional
+    name: file.name, //Filename at Google Drive
+    mimeType: "image/*", // mimeType at Google Drive
   };
 
-  var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
   var form = new FormData();
   form.append(
     "metadata",
@@ -29,15 +23,45 @@ async function uploadFile() {
   );
   form.append("file", file);
 
-  var xhr = new XMLHttpRequest();
-  xhr.open(
+  sendRequest(
     "post",
-    "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id"
+    "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
+    form,
+    uploadCallback,
+    [setGdriveFileId]
   );
+}
+
+function sendRequest(method, url, body, callback, params) {
+  var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
+  var xhr = new XMLHttpRequest();
+  xhr.open(method, url);
   xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
   xhr.responseType = "json";
-  xhr.onload = () => {
-    console.log("File uploaded successfully");
+  xhr.onload = (load) => {
+    params.push(load);
+    callback.apply(this, params);
   };
-  xhr.send(form);
+  xhr.send(body);
+}
+
+function uploadCallback(setGdriveFileId, load) {
+  const fileId = load.target.response.id;
+  setGdriveFileId(fileId);
+  console.log("File uploaded successfully");
+
+  const permissionBody = {
+    role: "reader",
+    type: "anyone",
+  };
+  sendRequest(
+    "post",
+    `https://www.googleapis.com/drive/v3/files/${fileId}/permissions`,
+    new Blob([JSON.stringify(permissionBody)], { type: "application/json" }),
+    permissionCallback,
+    [fileId]
+  );
+}
+function permissionCallback(fileId, load) {
+  console.log(`The file id ${fileId} is public now!!!`);
 }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { CSVLink } from "react-csv";
 import { toast } from "react-toastify";
 import api from "api";
-import csv from "./csv";
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
@@ -48,8 +47,6 @@ class Form extends Component {
     const target = e.target;
     let actions = this.state.form.actions;
     const fields = Object.keys(this.props.fields);
-    // const fields = field.shift()
-
     if (type == "action") {
       const { value } = e.target;
       if (target.checked) {
@@ -68,8 +65,8 @@ class Form extends Component {
     }
     actions = Array.from(new Set(actions));
     this.setState({ form: { ...this.state.form, ["actions"]: actions } });
-    console.log(actions)
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
     const title = this.props.title.toLowerCase();
@@ -83,10 +80,9 @@ class Form extends Component {
       .catch((error) => console.log(error.message));
   };
 
-
   render() {
     const fields = this.props.fields;
-    delete fields.not_asign;
+    delete fields.not_assign;
     const i18n = ndpv.i18n;
     const form = this.state.form;
     let title = "";
@@ -133,7 +129,6 @@ class Form extends Component {
                 </div>
               </div>
             </div>
-
             <div className="pv-modal-footer">
               <div className="row">
                 <div className="col">
@@ -149,12 +144,13 @@ class Form extends Component {
                     {i18n.save} <ProLabel blueBtn />
                   </button>
                 </div>
-
-                {this.state.csvFile && <div className="col"><CSVLink
-                  data={this.state.csvFile}
-                  className="d-none"
-                  filename={`${this.props.title}-${this.dateTime}.csv`}
-                  ref={this.csvLink}>Download CSV</CSVLink></div>}
+                {this.state.csvFile && <div className="col">
+                  <CSVLink
+                    data={this.state.csvFile}
+                    className="d-none"
+                    filename={`${this.props.title}-${this.dateTime}.csv`}
+                    ref={this.csvLink}>
+                  </CSVLink></div>}
               </div>
             </div>
           </form>

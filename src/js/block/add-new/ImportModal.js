@@ -7,7 +7,6 @@ import csv from "./csv";
 import api from "api";
 import pro from "block/pro-alert";
 import ProLabel from "block/pro-alert/label";
-import { Link } from "react-router-dom";
 
 const ImportModal = (props) => {
   const modals = Object.keys(props.modal);
@@ -39,7 +38,6 @@ const ImportModal = (props) => {
       const fields = i.split(",");
       const obj = csvHeader?.reduce((object, header, index) => {
         object[header] = fields[index];
-        console.log(fields[index])
         return object;
       }, {});
       return obj;
@@ -47,6 +45,7 @@ const ImportModal = (props) => {
 
     setCsvData(csvData);
   };
+
   const handleMaping = (e) => {
     e.preventDefault();
 
@@ -55,7 +54,6 @@ const ImportModal = (props) => {
         const text = event.target.result;
         csvFileToArray(text);
       };
-
       fileReader.readAsText(file);
     } else {
       toast.error("Please upload file");
@@ -63,10 +61,8 @@ const ImportModal = (props) => {
   };
 
   const handleSubmit = (e) => {
-    // window.location.reload('http://nurency-plugin.local/wp-admin/admin.php?page=ndpv#/lead');
     e.preventDefault();
     const title = props.title.toLowerCase();
-
     var formData = new FormData();
     formData.append("file", file);
     formData.append("fields", fields);
@@ -76,16 +72,14 @@ const ImportModal = (props) => {
     api
       .add("import/csv", data, "pro")
       .then((res) => {
-
-        console.log(res);
         if (res) {
           props.close();
           props.reload();
         }
-
       })
       .catch((error) => console.log(error.message));
   };
+
   const headerKeys = Object.keys(Object.assign({}, ...csvData));
   const modal = props.modal;
   const i18n = ndpv.i18n;
@@ -134,7 +128,7 @@ const ImportModal = (props) => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      Click to upload File
+                      {i18n.uploadFile}
                     </label>
                   </div>
                 </div>
@@ -147,12 +141,11 @@ const ImportModal = (props) => {
                     data={csv}
                     enclosingCharacter={``}
                   >
-                    Download sample file
+                    {i18n.down}{i18n.sample}{i18n.file}
                   </CSVLink>
                   {!file && (
                     <p>
-                      Please make sure your csv file has unique
-                      headers.Otherwise, it may fail to import
+                      {i18n.csvDco}
                     </p>
                   )}
                 </div>
@@ -164,7 +157,7 @@ const ImportModal = (props) => {
                     handleMaping(e);
                   }}
                 >
-                  Next [Map Columns]
+                  {i18n.nextBtn}
                 </button>
               </div>
               <br />
@@ -174,7 +167,7 @@ const ImportModal = (props) => {
                     <thead>
                       <tr>
                         <th></th>
-                        <th>CSV Field</th>
+                        <th>CSV {i18n.field}</th>
                         <th>{props.title + " " + i18n.fields}</th>
                         <th></th>
                       </tr>
