@@ -238,7 +238,10 @@
       text-align: center;
       vertical-align: middle;
     }
-
+ 
+    .ndpv-social li a img {
+      max-width: 16px;
+    }
   </style>
 </head>
 

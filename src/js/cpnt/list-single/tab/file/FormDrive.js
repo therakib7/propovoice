@@ -36,6 +36,7 @@ const FormDrive = (props) => {
       form.title = e.target.title.value;
       setForm(form);
       props.handleSubmit(form);
+      props.reload()
     }
   }
 
