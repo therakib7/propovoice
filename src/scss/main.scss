@@ -1917,6 +1917,7 @@ html {
   border-radius: 50%;
   height: 80px;
   padding: 19px 5px;
+  font-size: 13px !important;
 }
 
 .ndpv .pv-punnel ul li:last-child span {
@@ -1928,7 +1929,7 @@ html {
 .ndpv .pv-punnel ul li {
   padding: 17px 25px;
   border-radius: 50px;
-  color: #fff;
+  color: #fff !important;
   font-size: 14px;
   margin: auto;
   display: block;
