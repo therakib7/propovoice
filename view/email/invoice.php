@@ -276,7 +276,7 @@
               </tr>
               <tr>
                 <td class="ndpv-view">
-                  <a href="{url}" target="_blank" class="ndpv-btn">View {path}</a>
+                  <a href="{url}" target="_blank" class="ndpv-btn">View {title}</a>
                 </td>
               </tr>
             </tbody>

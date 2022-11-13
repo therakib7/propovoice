@@ -190,6 +190,7 @@ class I18n
             "prior" => esc_html__("Priority", "propovoice"),
             "meeting" => esc_html__("Meeting Place or", "propovoice"),
             "meet" => esc_html__("meet", "propovoice"),
+            "active" => esc_html__("Active", "propovoice"),
             "activate" => esc_html__("Activate", "propovoice"),
             "dactivate" => esc_html__("Deactivate", "propovoice"),
             // seal

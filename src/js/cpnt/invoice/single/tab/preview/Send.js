@@ -94,7 +94,8 @@ export default class Send extends Component {
         let client_name = (data.toData.type == 'person') ? data.toData.first_name : data.toData.org_name;
 
         formState.invoice_id = id;
-        formState.path = path_title;
+        formState.title = path_title;
+        formState.path = path == 'invoice' ? 'invoice' : 'estimate';
         formState.fromData = {
             id: data.fromData.id,
             name: org_name,
@@ -176,7 +177,7 @@ export default class Send extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{i18n.email} {path_title}</h2>
-                        <p>{i18n.email} {path} {i18n.from} {i18n.here}</p>
+                        <p>{i18n.email} {path} {i18n.here}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">

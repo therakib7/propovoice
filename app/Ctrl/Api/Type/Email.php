@@ -112,6 +112,7 @@ class Email
         $mail_to = isset($param['toData']) ? $param['toData']['email'] : '';
         $invoice_id = isset($param['invoice_id']) ? $param['invoice_id'] : '';
         $path = isset($param['path']) ? $param['path'] : '';
+        $title = isset($param['title']) ? $param['title'] : '';
         $mail_subject = isset($param['subject']) ? $param['subject'] : '';
         $msg = isset($param['msg']) ? nl2br($param['msg']) : '';
         $mail_invoice_img = isset($param['invoice_img']) ? $param['invoice_img'] : '';
@@ -133,6 +134,7 @@ class Email
             'msg' => $msg,
             'url' => $url,
             'path' => $path,
+            'title' => $title,
             'org_name' => $org_name,
             'org_img' => $org_img,
             'org_address' => $org_address
@@ -151,7 +153,7 @@ class Email
 
         if ($send_mail) {
             $status = get_post_meta($invoice_id, 'status', true);
-            if ( $status == 'draft') {
+            if ( $status == 'draft' ) {
                 update_post_meta($invoice_id, 'status', 'sent');
             }
             wp_send_json_success($send_mail);
