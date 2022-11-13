@@ -22,7 +22,7 @@
 
     .ndpv {
       margin: 0;
-      padding-bottom: 60px;
+      padding: 40px 0 60px;
       background-color: aliceblue;
       -webkit-font-smoothing: antialiased;
       -webkit-text-size-adjust: none;
