@@ -742,7 +742,7 @@ class ListSingle extends Component {
                 </li>
                 <li>
                   <label htmlFor="">
-                    {i18n.preventDefault} {i18n.date}:
+                    {i18n.dueDate}:
                   </label>
                   <span className="pv-date">
                     {data.due_date && (
