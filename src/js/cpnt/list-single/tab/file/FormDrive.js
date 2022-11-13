@@ -1,38 +1,115 @@
-import { useEffect } from 'react';
-import useDrivePicker from 'react-google-drive-picker'
+import React, { useState, useEffect } from "react";
+import { Add } from "block/icon";
+import { sprintf } from "sprintf-js";
+import Upload from "block/field/upload";
+import { uploadToDrive } from "api/gapi/gdrive";
 
+const FormDrive = (props) => {
+  const [form, setForm] = useState({
+    id: null,
+    tab_id: props.tab_id,
+    type: "file",
+    title: "",
+    file: "",
+  });
 
-function App() {
-    const [openPicker, authResponse] = useDrivePicker();
-    // const customViewsArray = [new google.picker.DocsView()]; // custom view
-    const handleOpenPicker = () => {
-        openPicker({
-            clientId: "360087475802-7mg8et7lg5rfm4njqea5t8243ksmlh69.apps.googleusercontent.com", 
-            developerKey: "AIzaSyD5mPs_ifRKqVXdpEu4xu0FFDuSNEmt6Ws",
-            viewId: "DOCS",
-            // token: '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',
-            // token: token, // pass oauth token in case you already have one
-            showUploadView: true,
-            showUploadFolders: true,
-            supportDrives: true,
-            multiselect: true,
-            // customViews: customViewsArray, // custom view
-            callbackFunction: (data) => {
-                if (data.action === 'cancel') {
-                    console.log('User clicked cancel/close button')
-                }
-                console.log(data)
-            },
-        })
+  const [driveFileId, setdriveFileId] = useState();
+  const [selectedFile, setSelectedFile] = useState();
+  const [is_submit, setIsSubmit] = useState(false);
+
+  useEffect(() => {
+    if (form.file && is_submit) {
+      uploadToDrive(selectedFile, setdriveFileId);
+      setIsSubmit(false);
     }
+    if (driveFileId) {
+      console.log("FileId in Form: ", driveFileId);
+      form.id = driveFileId;
+      setForm(form);
+    }
+  }, [form.file, is_submit, driveFileId]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    form.title = e.target.title.value;
+    setForm(form);
+    props.handleSubmit(form);
+    setIsSubmit(true);
+  }
 
-    const i18n = ndpv.i18n;
-    return (
-        <div>
-            <button onClick={() => handleOpenPicker()}>Open Picker</button>
+  const handleUploadChange = (data, type = null) => {
+    let form = { ...form };
+    form.file = data;
+    setForm(form);
+  };
+
+  const i18n = ndpv.i18n;
+  const modalType =
+    props.modalType == "new" ? i18n.add + " " + i18n.new : i18n.edit;
+
+  return (
+    <div className="pv-overlay pv-show">
+      <div className="pv-modal-content">
+        <div className="pv-modal-header pv-gradient">
+          <span className="pv-close" onClick={() => props.close()}>
+            <Add />
+          </span>
+          <h2 className="pv-modal-title">
+            {modalType} {i18n.file}
+          </h2>
+          <p>{sprintf(i18n.formDesc, modalType, i18n.file)}</p>
         </div>
-    );
-}
+        <form onSubmit={handleSubmit}>
+          <div className="pv-content">
+            <div className="pv-form-style-one">
+              <div className="row">
+                <div className="col-lg">
+                  <label htmlFor="title">{i18n.title}</label>
 
-export default App;
+                  <input
+                    id="title"
+                    type="text"
+                    name="title"
+                    // onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-lg">
+                  <label htmlFor="file_id">{i18n.file}</label>
+                  <Upload
+                    data={form.file}
+                    isSelectedFile={true}
+                    selectedFile={setSelectedFile}
+                    changeHandler={handleUploadChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="pv-modal-footer">
+            <div className="row">
+              <div className="col">
+                <button type="reset" className="pv-btn pv-text-hover-blue">
+                  {i18n.clear}
+                </button>
+              </div>
+              <div className="col">
+                <button
+                  type="submit"
+                  className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white"
+                >
+                  {i18n.save}
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default FormDrive;

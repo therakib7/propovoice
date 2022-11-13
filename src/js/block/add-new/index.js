@@ -1,8 +1,8 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import useClickOutside from "block/outside-click";
 import { Edit } from "block/icon";
-import Export from "./Export";
 import ImportModal from "./ImportModal";
+import ExportModal from "./ExportModal";
 
 export default (props) => {
   const dropdownRef = useRef();
@@ -68,7 +68,7 @@ export default (props) => {
         />
       )}
       {exp === true && (
-        <Export
+        <ExportModal
           close={() => setExp(false)}
           fields={props.fields}
           title={props.title}
