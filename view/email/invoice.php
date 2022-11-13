@@ -222,10 +222,14 @@
     .ndpv-social {
       margin-top: 16px;
     }
-
+    
     .ndpv-social li {
       display: inline-block;
-      margin: 0 2px;
+    }
+
+    .ndpv-social li a {
+      display: inline-block;
+      margin: 0 3px;
       list-style: none;
       padding: 7px;
       width: 30px;
@@ -237,12 +241,10 @@
       vertical-align: middle;
     }
 
-    .ndpv-social li a {
-      width: 16px;
-      height: 16px;
-      line-height: 16px;
+    .ndpv-social li a img {
+      max-height: 16px;
+      max-width: 16px;
     }
-
   </style>
 </head>
 

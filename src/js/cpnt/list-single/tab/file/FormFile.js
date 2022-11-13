@@ -31,7 +31,6 @@ class Form extends Component {
         this.props.handleSubmit(form);
         this.setState({ form: this.initialState });
         this.props.close();
-        console.log(from)
     }
 
     handleUploadChange = (data, type = null) => {

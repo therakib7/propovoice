@@ -13,13 +13,13 @@ const FormDrive = (props) => {
     file: "",
   });
 
-  const [driveFileId, setdriveFileId] = useState();
+  const [driveFileId, setDriveFileId] = useState();
   const [selectedFile, setSelectedFile] = useState();
   const [is_submit, setIsSubmit] = useState(false);
 
   useEffect(() => {
     if (form.file && is_submit) {
-      uploadToDrive(selectedFile, setdriveFileId);
+      uploadToDrive(selectedFile, setDriveFileId);
       setIsSubmit(false);
     }
     if (driveFileId) {
@@ -31,10 +31,13 @@ const FormDrive = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    form.title = e.target.title.value;
-    setForm(form);
-    props.handleSubmit(form);
     setIsSubmit(true);
+    if (driveFileId) {
+      form.title = e.target.title.value;
+      setForm(form);
+      props.handleSubmit(form);
+      props.reload()
+    }
   }
 
   const handleUploadChange = (data, type = null) => {
