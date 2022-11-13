@@ -158,6 +158,7 @@ class Fns
     {
         $id = isset($array['id']) ? $array['id'] : '';
         $path = isset($array['path']) ? $array['path'] : '';
+        $title = isset($array['title']) ? $array['title'] : '';
         $org_name = isset($array['org_name']) ? $array['org_name'] : '';
         $org_img = isset($array['org_img']) ? $array['org_img'] : '';
         $org_address = isset($array['org_address']) ? $array['org_address'] : '';
@@ -233,6 +234,7 @@ class Fns
             array(
                 '{id}',
                 '{path}',
+                '{title}',
                 '{org_name}',
                 '{org_img}',
                 '{org_address}',
@@ -248,6 +250,7 @@ class Fns
             array(
                 $id,
                 $path,
+                $title,
                 $org_name,
                 $org_img,
                 $org_address,
