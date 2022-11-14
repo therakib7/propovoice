@@ -13,7 +13,7 @@ Propovoice CRM is a self-hosted WordPress plugin for freelancers, entrepreneurs,
 
 == Description ==
 
-🚀 <a href="https://propovoice.com">Official Website</a> | 📚 <a href="https://propovoice.com/docs">Documentation</a> | 🚀 <a href="https://www.facebook.com/groups/837677640524915">Community</a> | 🏆 <a href="https://propovoice.com/pricing/">Get Pro</a>
+🚀 <a href="https://propovoice.com">Official Website</a> | 📚 <a href="https://propovoice.com/docs">Documentation</a> | 🚀 <a href="https://www.facebook.com/groups/837677640524915">Community</a> | 🏆 <a href="https://propovoice.com/pricing/">Get Pro | 🚀 <a href="https://app.loopedin.io/propovoice#/roadmap">Roadmap</a>
 
 Wanna scale up your freelancing and service business? Then you must give up random manual work and walk in an organized way. Clients are kings. You have to build a strong relationship with your clients that will bring you not only instant business growth but also sustainable business success.
 
