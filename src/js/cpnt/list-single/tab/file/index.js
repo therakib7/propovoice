@@ -65,6 +65,19 @@ const File = (props) => {
             >
               {i18n.link}
             </button>
+
+            <button
+              className={
+                "pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow " +
+                (activeTab == "drive" ? "pv-active" : "")
+              }
+              onClick={() => {
+                setActiveTab("drive");
+                props.getLists({ type: "drive" });
+              }}
+            >
+              {i18n.drive}
+            </button>
           </div>
 
           <div className="col-sm-7">

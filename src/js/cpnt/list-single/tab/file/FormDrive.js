@@ -8,9 +8,10 @@ const FormDrive = (props) => {
   const [form, setForm] = useState({
     id: null,
     tab_id: props.tab_id,
-    type: "file",
+    type: "drive",
     title: "",
     file: "",
+    url:"",
   });
 
   const [driveFileId, setDriveFileId] = useState();
@@ -24,20 +25,22 @@ const FormDrive = (props) => {
     }
     if (driveFileId) {
       console.log("FileId in Form: ", driveFileId);
-      form.id = driveFileId;
+      let url = `https://drive.google.com/uc?export=view&id=${driveFileId}`;
+      form.url = url;
+      console.log(url);
+      
+      // form.title = e.target.title.value;
       setForm(form);
+      if (form.url) {
+        props.handleSubmit(form);
+        props.close()
+    }
     }
   }, [form.file, is_submit, driveFileId]);
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsSubmit(true);
-    if (driveFileId) {
-      form.title = e.target.title.value;
-      setForm(form);
-      props.handleSubmit(form);
-      props.reload()
-    }
   }
 
   const handleUploadChange = (data, type = null) => {
