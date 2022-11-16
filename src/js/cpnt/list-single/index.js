@@ -758,7 +758,7 @@ class ListSingle extends Component {
               <div className="pv-cards pv-mt-25">
                 <div className="row">
                   <div className="col-md-6 col-lg">
-                    <div className="pv-cards-content ">
+                    <div className="pv-cards-content">
                       <span
                         className=""
                         style={{ background: "rgba(76, 111, 255, 0.12)" }}
@@ -1061,7 +1061,7 @@ class ListSingle extends Component {
 
         <div className="row pv-mt-25">
           <div className="col-lg-9">
-            <div className="pv-horizontal-tab">
+            <div className="pv-horizontal-tab" style={{ border: "1px solid rgba(221, 221, 221, 0.6588235294)" }}>
               <ul className="pv-tabs">
                 {tabs.map((tab, index) => (
                   <li
