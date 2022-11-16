@@ -61,8 +61,8 @@
       width: 200px;
     }
     .ndpv-logo img{
-      max-width: 200px;
-      max-height: 90px;
+      max-width: 200px !important;
+      max-height: 90px !important;
     }
 
     .ndpv-address {
@@ -186,7 +186,7 @@
       padding: 16px 38px;
       text-decoration: none;
       color: #fff !important;
-      background: #4C6FFF;
+      background-color: #4C6FFF;
       border: 1px solid #4C6FFF;
       border-radius: 8px;
       margin-bottom: 160px;
@@ -242,8 +242,8 @@
     }
 
     .ndpv-social li a img {
-      max-height: 16px;
-      max-width: 16px;
+      max-height: 16px !important;
+      max-width: 16px !important;
     }
   </style>
 </head>

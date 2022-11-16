@@ -212,6 +212,7 @@ class I18n
             "pipeline" => esc_html__("Pipeline", "propovoice"),
             "back_t_db" => esc_html__("Back to WP Dashboard", "propovoice"),
             "mark" => esc_html__("Mark as", "propovoice"),
+            "drive" => esc_html__("Drive", "propovoice"),
             "done" => esc_html__("Done", "propovoice"),
             "paid" => esc_html__("Paid", "propovoice"),
             "comp" => esc_html__("completed", "propovoice"),
