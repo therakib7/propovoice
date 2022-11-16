@@ -34,7 +34,7 @@ const Setting = lazy(() => import('cpnt/setting'));
 
 const ProModal = lazy(() => import('block/pro-alert/modal'));
 
-const Home = () => {
+export default () => {
 
     const contentRef = useRef();
     const dropdownRef = useRef();
@@ -195,5 +195,4 @@ const Home = () => {
             </div>
         </HashRouter>
     )
-}
-export default Home;
+} 

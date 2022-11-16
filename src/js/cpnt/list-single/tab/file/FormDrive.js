@@ -8,7 +8,7 @@ const FormDrive = (props) => {
   const [form, setForm] = useState({
     id: null,
     tab_id: props.tab_id,
-    type: "file",
+    type: "drive",
     title: "",
     file: "",
   });
@@ -73,7 +73,7 @@ const FormDrive = (props) => {
                     id="title"
                     type="text"
                     name="title"
-                    // onChange={handleChange}
+                  // onChange={handleChange}
                   />
                 </div>
               </div>

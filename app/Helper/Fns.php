@@ -245,7 +245,8 @@ class Fns
                 '{msg}',
                 '{url}',
                 '{footer_text}',
-                '{social}'
+                '{social}',
+                '{view_txt}',
             ),
             array(
                 $id,
@@ -261,7 +262,8 @@ class Fns
                 $msg,
                 $url,
                 $footer_text,
-                $social
+                $social,
+                esc_html('View', 'propovoice')
             ),
             $string
         );

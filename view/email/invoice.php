@@ -280,7 +280,7 @@
               </tr>
               <tr>
                 <td class="ndpv-view">
-                  <a href="{url}" target="_blank" class="ndpv-btn">View {title}</a>
+                  <a href="{url}" target="_blank" class="ndpv-btn">{view_txt} {title}</a>
                 </td>
               </tr>
             </tbody>
