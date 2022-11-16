@@ -3,12 +3,13 @@ import { Add } from "block/icon";
 import { sprintf } from "sprintf-js";
 import Upload from "block/field/upload";
 import { uploadToDrive } from "api/gapi/gdrive";
+import { title } from "process";
 
 const FormDrive = (props) => {
   const [form, setForm] = useState({
     id: null,
     tab_id: props.tab_id,
-    type: "drive",
+    type: "file",
     title: "",
     file: "",
     url:"",
@@ -17,6 +18,7 @@ const FormDrive = (props) => {
   const [driveFileId, setDriveFileId] = useState();
   const [selectedFile, setSelectedFile] = useState();
   const [is_submit, setIsSubmit] = useState(false);
+  
 
   useEffect(() => {
     if (form.file && is_submit) {
@@ -26,6 +28,7 @@ const FormDrive = (props) => {
     if (driveFileId) {
       console.log("FileId in Form: ", driveFileId);
       let url = `https://drive.google.com/uc?export=view&id=${driveFileId}`;
+      // let form = { ...form }
       form.url = url;
       console.log(url);
       
@@ -36,7 +39,18 @@ const FormDrive = (props) => {
         props.close()
     }
     }
+
   }, [form.file, is_submit, driveFileId]);
+
+  function handleChange(e) {
+    let title = e.target.value;
+    // let form = { ...form }
+    form.title = title;
+    setForm(form)
+    
+  }
+  // console.log(title)
+  console.log(form.title);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -76,7 +90,7 @@ const FormDrive = (props) => {
                     id="title"
                     type="text"
                     name="title"
-                    // onChange={handleChange}
+                    onChange={handleChange}
                   />
                 </div>
               </div>

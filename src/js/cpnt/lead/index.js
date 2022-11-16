@@ -4,7 +4,7 @@ import AddNew from 'block/add-new';
 import Action from 'block/action/table';
 import Preloader from 'block/preloader/table';
 import Pagination from 'block/pagination';
-import EntityFields from "../../block/add-new/EntityFields";
+import EntityFields from "block/add-new/EntityFields";
 
 import Form from './Form';
 import Table from './Table';
