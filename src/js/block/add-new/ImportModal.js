@@ -141,7 +141,7 @@ const ImportModal = (props) => {
                     data={csv}
                     enclosingCharacter={``}
                   >
-                    {i18n.down}{i18n.sample}{i18n.file}
+                    {i18n.down} {i18n.sample} {i18n.file}
                   </CSVLink>
                   {!file && (
                     <p>

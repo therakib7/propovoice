@@ -87,6 +87,10 @@ export default class License extends Component {
                 return 'Agency LTD';
             case '8':
                 return 'Unlimited LTD';
+
+            case '9':
+            case '10':
+                return 'Business';
         }
     }
 
