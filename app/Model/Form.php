@@ -8,7 +8,7 @@ class Form
         if (  $fields ) {
             foreach ( $fields as $svalue) {
                 if ($svalue['id'] == $tag) {
-                    $value = $svalue['value'];
+                    $value = $svalue['value'] == null ? '' : $svalue['value'];
                     break;
                 }
             }
@@ -46,7 +46,7 @@ class Form
                 ];
 
                 foreach ($cf7->collect_mail_tags() as $tag) {
-                    $value = $this->get_value( $get_data['fields'], $tag); 
+                    $value = $this->get_value( $get_data['fields'], $tag);
 
                     $form['fields'][] = [
                         'id'    => $tag,
@@ -79,7 +79,7 @@ class Form
             $wpform_fields = wpforms_get_form_fields($wpform);
 
             foreach ($wpform_fields as $wpform_field) {
-                $value = $this->get_value( $get_data['fields'], $wpform_field['id']);  
+                $value = $this->get_value( $get_data['fields'], $wpform_field['id']);
 
                 $form['fields'][] = [
                     'id'    => $wpform_field['id'],
@@ -116,8 +116,8 @@ class Form
             foreach ($fields as $field) {
                 $field_id = $field->get_id();
                 $field_settings = $field->get_settings();
- 
-                $value = $this->get_value( $get_data['fields'], $field_id);  
+
+                $value = $this->get_value( $get_data['fields'], $field_id);
 
                 $form['fields'][] = [
                     'id'    => $field_id,
@@ -152,10 +152,10 @@ class Form
             foreach ($form_meta['fields'] as $field) {
                 $field = \GF_Fields::create($field);
 
-                if (empty($field['inputs'])) { 
+                if (empty($field['inputs'])) {
 
-                    $value = $this->get_value( $get_data['fields'], $field->id);  
-                    
+                    $value = $this->get_value( $get_data['fields'], $field->id);
+
                     $form['fields'][] = [
                         'id'    => $field->id,
                         'label' => $field->label,
@@ -187,22 +187,22 @@ class Form
         }
 
         return $forms;
-    } 
-        
+    }
+
     public function fluent_forms()
     {
         $forms = [];
-        
+
         $forms = wpFluent()->table( 'fluentform_forms' )->get();
-        
+
         return array_map(
             function ( $form ) {
                 $get_data = get_option("ndpv_fluent_forms_{$form->id}");
                 return [
                     'id'     => absint( $form->id ),
-                    'active'  => isset($get_data['active']) ? $get_data['active'] : false,
+                    'active' => isset($get_data['active']) ? $get_data['active'] : false,
                     'title'  => $form->title,
-                    'fields' => $this->transform_form_fields( json_decode( $form->form_fields, true ) ),
+                    'fields' => $this->transform_form_fields( json_decode( $form->form_fields, true ), $get_data['fields'] ),
                 ];
             },
             $forms
@@ -211,7 +211,7 @@ class Form
         return $forms;
     }
 
-    protected function transform_form_fields( $fields ) {
+    protected function transform_form_fields( $fields, $setting ) {
         $data = [];
 
         foreach ( $fields['fields'] as $field ) {
@@ -220,13 +220,16 @@ class Form
             }
 
             if ( $this->has_sub_fields( $field ) ) {
-                $data = array_merge( $data, $this->get_sub_fields( $field ) );
+                $data = array_merge( $data, $this->get_sub_fields( $field, $setting ) );
                 continue;
             }
+
+            $value = $this->get_value( $setting, $field['attributes']['name']);
 
             $data[] = [
                 'id'    => $field['attributes']['name'],
                 'label' => $this->get_label( $field['attributes']['name'] ),
+                'value' => $value
             ];
         }
 
@@ -251,7 +254,7 @@ class Form
      *
      * @return array
      */
-    protected function get_sub_fields( $field ) {
+    protected function get_sub_fields( $field, $setting) {
         $data = [];
 
         foreach ( $field['fields'] as $sub_field ) {
@@ -259,9 +262,12 @@ class Form
                 continue;
             }
 
+            $value = $this->get_value( $setting, $sub_field['attributes']['name']);
+
             $data[] = [
                 'id' => $sub_field['attributes']['name'],
                 'label' => $this->get_label( $sub_field['attributes']['name'] ),
+                'value' => $value
             ];
         }
 
