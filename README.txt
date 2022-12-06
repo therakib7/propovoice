@@ -182,6 +182,8 @@ The super fantastic pro features that accelerate your business growth and improv
 
 = 1.0.6.5 =
 * Fixed: Fluent form integration issue
+* Update: Functional issue
+* Update: CSS Issue
 
 = 1.0.6.4 =
 * Update: Functional issue
