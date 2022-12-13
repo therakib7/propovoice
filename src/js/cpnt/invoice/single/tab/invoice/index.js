@@ -129,6 +129,7 @@ class Invoice extends Component {
 					interval: 1,
 					limit_type: 0,
 					limit: 5,
+					subscription: false,
 					send_me: false,
 					delivery: 1, //1=auto, 0=manual
 				},

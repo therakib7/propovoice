@@ -333,6 +333,7 @@ class Invoice
                 $recurringData['interval'] = 1;
                 $recurringData['limit_type'] = 0;
                 $recurringData['limit'] = 5;
+                $recurringData['subscription'] = false;
                 $recurringData['send_me'] = false;
                 $recurringData['delivery'] = 1;
 
@@ -523,7 +524,7 @@ class Invoice
                 $bytes = random_bytes(20);
                 $token = bin2hex($bytes);
                 update_post_meta($post_id, 'token', $token);
-                 
+
                 $hook = ( $path == 'invoice') ? 'inv' : 'est';
                 do_action('ndpvp/webhook', $hook . '_add', $param);
 

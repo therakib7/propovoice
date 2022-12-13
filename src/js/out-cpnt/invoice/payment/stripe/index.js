@@ -121,7 +121,7 @@ class CheckoutForm extends Component {
 
         let client_secret = null;
         const url = apiProUrl + 'payment-process';
-        const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}`);
+        const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}&email=${email}`);
         if (indent_resp) {
             client_secret = indent_resp.data.data.intent_obj.client_secret;
         }
@@ -165,7 +165,7 @@ class CheckoutForm extends Component {
 
                 Api.create(form).then(resp => {
                     if (resp.data.success) {
-                        // close(); 
+                        // close();
                         // toast.success('Thanks for payment');
 
                     } else {
