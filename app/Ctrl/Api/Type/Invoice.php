@@ -325,7 +325,7 @@ class Invoice
             }
 
             $recurring = isset($invoice['recurring']) ? $invoice['recurring'] : null;
-            if (!$recurring) {
+            if (!$recurring || !isset($param['client_view']) ) {
                 $recurringData = [];
                 $recurringData['status'] = false;
                 $recurringData['interval_type'] = 'week';
@@ -340,6 +340,8 @@ class Invoice
                 $invoice['recurring'] = $recurringData;
             }
 
+
+
             $paymentData = null;
             if (isset($invoice['payment_methods']['bank'])) {
                 $paymentData['id'] = $invoice['payment_methods']['bank'];
@@ -351,7 +353,11 @@ class Invoice
 
             if (isset($param['client_view'])) {
                 $token = isset($param['token']) ? sanitize_text_field($param['token']) : ''; 
-                $post_token = get_post_meta($id, 'token', true); 
+                $post_token = get_post_meta($id, 'token', true);
+
+                if ( $recurring && ( !$recurring['status'] || !$recurring['subscription'] ) ) {
+                    unset($invoice['recurring']);
+                }
 
                 $is_admin = ( is_user_logged_in() && apply_filters('ndpv_admin', current_user_can('administrator')) );
 
@@ -359,7 +365,7 @@ class Invoice
                 if ($is_admin || ($token == $post_token)) {
                     $auth = true;
                 }
-                
+
                 if ( !$auth ) {
                     wp_send_json_error();
                 }

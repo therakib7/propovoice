@@ -177,6 +177,7 @@ class I18n
             "gen" => esc_html__("General", "propovoice"),
             "biz" => esc_html__("Business", "propovoice"),
             "pay" => esc_html__("Pay", "propovoice"),
+            "subs" => esc_html__("Subscribe", "propovoice"),
             "payment" => esc_html__("Payment", "propovoice"),
             "paymentInfo" => esc_html__("Payment Info", "propovoice"),
             "method" => esc_html__("Method", "propovoice"),

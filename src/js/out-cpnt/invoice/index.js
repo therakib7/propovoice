@@ -132,7 +132,7 @@ const InvoiceBtn = (props) => {
 									style={{ marginLeft: "10px" }}
 									onClick={() => props.handleChange("payment", selected_method.id)}
 								>
-									{i18n.pay}
+									{props.invoice.hasOwnProperty('recurring') ? i18n.subs : i18n.pay}
 								</button>
 							</>
 						}
@@ -199,7 +199,7 @@ export default class Invoice extends Component {
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		const id = urlParams.get("id");
-		const token = urlParams.get("token"); 
+		const token = urlParams.get("token");
 		ApiInv.get(id + '?client_view=1&token=' + token).then((resp) => {
 			let data = resp.data.data;
 			let payment_methods = [];
@@ -326,6 +326,7 @@ export default class Invoice extends Component {
 									status={this.state.status}
 									handleChange={this.handleClick}
 									type={this.state.invoice.path}
+									invoice={this.state.invoice}
 									wc={this.state.wc}
 									payment_methods={{
 										list: this.state.payment_methods,
@@ -373,6 +374,7 @@ export default class Invoice extends Component {
 									status={this.state.status}
 									handleChange={this.handleClick}
 									type={this.state.invoice.path}
+									invoice={this.state.invoice}
 									wc={this.state.wc}
 									payment_methods={{
 										list: this.state.payment_methods,
