@@ -1102,6 +1102,7 @@ class Invoice extends Component {
 															handleChange={this.onPaymentChange}
 															wc={this.state.wc}
 															data={invoice}
+															subs={invoice.recurring.subscription}
 														//handleSave={this.handleSave}
 														/>
 													</li>}

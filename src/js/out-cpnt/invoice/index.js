@@ -105,7 +105,7 @@ const InvoiceBtn = (props) => {
 
 			{props.type == "invoice" && (
 				<>
-					{wc ? <>
+					{wc && !props.invoice.hasOwnProperty('recurring') ? <>
 						<button
 							className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
 							style={{ marginLeft: 10 }}

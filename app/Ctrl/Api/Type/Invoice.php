@@ -325,7 +325,7 @@ class Invoice
             }
 
             $recurring = isset($invoice['recurring']) ? $invoice['recurring'] : null;
-            if (!$recurring || !isset($param['client_view']) ) {
+            if (!$recurring && !isset($param['client_view']) ) {
                 $recurringData = [];
                 $recurringData['status'] = false;
                 $recurringData['interval_type'] = 'week';
