@@ -237,7 +237,8 @@ export default class Invoice extends Component {
 
 			if (
 				data.invoice.payment_methods.hasOwnProperty("bank") &&
-				data.invoice.payment_methods.bank
+				data.invoice.payment_methods.bank &&
+				!data.invoice.hasOwnProperty('recurring')
 			) {
 				payment_methods.push(bank);
 			}
