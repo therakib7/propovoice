@@ -73,6 +73,7 @@ class Invoice
         $offset = 0;
 
         $s = isset($param['text']) ? sanitize_text_field($param['text']) : null;
+        $recurring = isset($param['recurring']) ? true : false;
 
         if (isset($param['per_page'])) {
             $per_page = $param['per_page'];
@@ -105,6 +106,15 @@ class Invoice
                 )
             );
         } */
+
+        if ( $recurring ) {
+            $args['meta_query'][] = array(
+                array(
+                    'key'     => 'recurring',
+                    'value'   => 1
+                )
+            );
+        }
 
         if ($s) {
             $contact_person = new Contact();
