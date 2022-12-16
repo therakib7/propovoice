@@ -524,6 +524,7 @@ class Invoice
 
                 if ($recurring) { //save true or false
                     update_post_meta($post_id, 'recurring', $recurring['status']);
+                    update_post_meta($post_id, 'subscription', $recurring['subscription']);
                 }
 
                 //generate secret token
@@ -629,6 +630,7 @@ class Invoice
 
                 if ($recurring) {
                     update_post_meta($post_id, 'recurring', $recurring['status']);
+                    update_post_meta($post_id, 'subscription', $recurring['subscription']);
                 }
 
                 update_post_meta($post_id, 'payment_methods', $payment_methods);
