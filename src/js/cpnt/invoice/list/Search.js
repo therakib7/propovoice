@@ -35,13 +35,14 @@ export default class Form extends Component {
         });
     }
 
-    showRecurring = e => {
-        if (wage.length > 0) {
+    showRecurring = (view) => {
+        if (wage.length > 0 && (!view)) {
             pro();
             return;
         }
+        if (this.state.recurring == view) return;
 
-        this.setState({ recurring: !this.state.recurring }, () => {
+        this.setState({ recurring: view }, () => {
             let form = { ...this.state.form }
             if (this.state.recurring) {
                 form.recurring = true;
@@ -65,6 +66,85 @@ export default class Form extends Component {
         return (
             <div className="pv-search-bar">
                 <button
+                    className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5"
+                    onClick={() => this.showRecurring(false)}
+                    style={{ marginLeft: 0 }}
+                    title={i18n.all + ' ' + i18n.inv}
+                >
+                    <svg
+                        width={20}
+                        height={20}
+                        viewBox="0 0 20 20"
+                        fill="none"
+                    >
+                        <path
+                            d="M3.125 4.375h13.75v9.375a.624.624 0 01-.625.625h-3.125a.624.624 0 01-.625-.625v-1.875h-5v4.375a.625.625 0 01-.625.625H3.75a.625.625 0 01-.625-.625V4.375zM7.5 9.375H3.125M7.5 4.375v7.5M12.5 9.375h4.375M12.5 4.375v7.5"
+                            stroke={!recurring ? activeColor : inactiveColor}
+                            strokeWidth={1.2}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </button>
+
+                <button
+                    className="pv-btn pv-btn-icon pv-bg-hover-shadow"
+                    onClick={() => this.showRecurring(true)}
+                    style={{ marginLeft: 0, marginRight: 10 }}
+                    title={i18n.recur + ' ' + i18n.inv}
+                >
+                    <svg
+                        width={20}
+                        height={20}
+                        viewBox="0 0 20 20"
+                        fill="none"
+                    >
+                        <path
+                            d="M7.5 5H16.875"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M7.5 10H16.875"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M7.5 15H16.875"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 5H4.375"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 10H4.375"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 15H4.375"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </button>
+
+                {/* <button
                     className="pv-btn pv-btn-icon pv-bg-hover-shadow"
                     onClick={() => this.showRecurring()}
                     style={{ marginLeft: 0, marginRight: 10 }}
@@ -98,7 +178,7 @@ export default class Form extends Component {
                             strokeLinejoin="round"
                         />
                     </svg>
-                </button>
+                </button> */}
 
                 <div className="pv-search-box pv-medium-search-bar">
                     <Search />

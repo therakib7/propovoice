@@ -119,61 +119,63 @@ class CheckoutForm extends Component {
         this.setState({ processing: true });
         //}
 
-        let client_secret = null;
         const url = apiProUrl + 'payment-process';
-        const indent_resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}&email=${email}`);
-        if (indent_resp) {
-            client_secret = indent_resp.data.data.intent_obj.client_secret;
-        }
+        const resp = await axios.get(`${url}/?type=payment_indent&id=${this.props.invoice.id}&email=${email}`);
+        if (resp) {
+            const data = resp.data.data;
+            const client_secret = data.intent_obj.client_secret;
+            const subscription_id = data.subscription_id;
 
-        const paymentPayload = await stripe.createPaymentMethod({
-            type: 'card',
-            card,
-            billing_details: {
-                address: {
-                    city: ''
+            const paymentPayload = await stripe.createPaymentMethod({
+                type: 'card',
+                card,
+                billing_details: {
+                    address: {
+                        city: ''
+                    },
+                    email,
+                    phone,
+                    name,
                 },
-                email,
-                phone,
-                name,
-            },
-        });
-
-        if (paymentPayload.error) {
-            this.setState({ error: paymentPayload.error });
-        } else {
-            const confirmPayment = await stripe.confirmCardPayment(client_secret, {
-                payment_method: paymentPayload.paymentMethod.id
             });
 
-            if (confirmPayment.error) {
-                this.setState({ processing: false, error: confirmPayment.error });
+            if (paymentPayload.error) {
+                this.setState({ error: paymentPayload.error });
             } else {
-                this.setState({ processing: false, paymentMethod: confirmPayment });
-                let paymentIntent = confirmPayment.paymentIntent;
-                let form = {
-                    invoice_id: this.props.invoice.id,
-                    payment_method: 'stripe',
-                    payment_info: {
-                        id: paymentIntent.id,
-                        amount: paymentIntent.amount,
-                        currency: paymentIntent.currency,
-                        billing_address: this.state.form,
-                        created: paymentIntent.created,
-                    },
-                }
+                const confirmPayment = await stripe.confirmCardPayment(client_secret, {
+                    payment_method: paymentPayload.paymentMethod.id
+                });
 
-                Api.create(form).then(resp => {
-                    if (resp.data.success) {
-                        // close();
-                        // toast.success('Thanks for payment');
-
-                    } else {
-                        resp.data.data.forEach(function (value, index, array) {
-                            toast.error(value);
-                        });
+                if (confirmPayment.error) {
+                    this.setState({ processing: false, error: confirmPayment.error });
+                } else {
+                    this.setState({ processing: false, paymentMethod: confirmPayment });
+                    let paymentIntent = confirmPayment.paymentIntent;
+                    let form = {
+                        invoice_id: this.props.invoice.id,
+                        payment_method: 'stripe',
+                        payment_info: {
+                            id: paymentIntent.id,
+                            subscription_id,
+                            amount: paymentIntent.amount,
+                            currency: paymentIntent.currency,
+                            billing_address: this.state.form,
+                            created: paymentIntent.created,
+                        },
                     }
-                })
+
+                    Api.create(form).then(resp => {
+                        if (resp.data.success) {
+                            // close();
+                            // toast.success('Thanks for payment');
+
+                        } else {
+                            resp.data.data.forEach(function (value, index, array) {
+                                toast.error(value);
+                            });
+                        }
+                    })
+                }
             }
         }
     };
@@ -208,7 +210,6 @@ class CheckoutForm extends Component {
                             </div>
                         ) : (
                             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
-
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-name">{i18n.name}</label>

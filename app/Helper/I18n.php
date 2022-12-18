@@ -116,6 +116,7 @@ class I18n
             "date" => esc_html__("Date", "propovoice"),
             "action" => esc_html__("Action", "propovoice"),
             "show" => esc_html__("Show", "propovoice"),
+            "all" => esc_html__("All", "propovoice"),
             "alw" => esc_html__("Always", "propovoice"),
             "search" => esc_html__("Search", "propovoice"),
             "select" => esc_html__("Select", "propovoice"),
