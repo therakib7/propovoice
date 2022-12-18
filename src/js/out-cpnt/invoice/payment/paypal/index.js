@@ -21,6 +21,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
 
   const amount = invoice.total;
   const invoice_id = invoice.id;
+  const isSubscribe = true;
 
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
@@ -108,21 +109,23 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
               });
             }}
           />
-          <PayPalButtons
-            createSubscription={(data, actions) => {
-              return actions.subscription
-                .create({
-                  plan_id: "P-3RX065706M3469222L5IFM4I",
-                })
-                .then((orderId) => {
-                  // Your code here after create the order
-                  return orderId;
-                });
-            }}
-            style={{
-              label: "subscribe",
-            }}
-          />
+          {isSubscribe && (
+            <PayPalButtons
+              createSubscription={(data, actions) => {
+                return actions.subscription
+                  .create({
+                    plan_id: "P-3RX065706M3469222L5IFM4I",
+                  })
+                  .then((orderId) => {
+                    // Your code here after create the order
+                    return orderId;
+                  });
+              }}
+              style={{
+                label: "subscribe",
+              }}
+            />
+          )}
         </>
       )}
     </>
@@ -135,8 +138,19 @@ class Paypal extends Component {
   }
 
   render() {
+    const isSubscribe = true;
     const client_id = this.props.invoice.payment_methods.paypal.client_id;
     const currency = this.props.invoice.currency;
+
+    const paypalOptions = {
+      "client-id": client_id,
+      currency: currency,
+      ...(isSubscribe && {
+        intent: "subscription",
+        vault: true,
+      }),
+    };
+
     return (
       <>
         {this.props.show && (
@@ -174,14 +188,7 @@ class Paypal extends Component {
                 <div className="pv-form-style-one">
                   <div className="row">
                     <div className="col-lg">
-                      <PayPalScriptProvider
-                        options={{
-                          "client-id": client_id,
-                          currency: currency,
-                          intent: "subscription",
-                          vault: true,
-                        }}
-                      >
+                      <PayPalScriptProvider options={paypalOptions}>
                         <ButtonWrapper
                           invoice={this.props.invoice}
                           currency={currency}
