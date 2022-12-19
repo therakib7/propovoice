@@ -1,5 +1,4 @@
 import api from "api";
-import { token } from "./auth";
 
 const apiBase = "https://api-m.sandbox.paypal.com/";
 const accessToken =
