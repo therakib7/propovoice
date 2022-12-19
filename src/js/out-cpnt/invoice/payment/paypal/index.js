@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import "./style.css";
 
 import Api from "api/payment-process";
-import { createSubs } from "api/payment-methods/paypal/subscriptions";
+import { createSubs } from "./subscriptions";
 
 // This values are the props in the UI
 
@@ -129,6 +129,11 @@ function viewPayPalSubsBtns() {
   return (
     <PayPalButtons
       createSubscription={(data, actions) => createSubs(data, actions)}
+      onApprove={(data, actions) => {
+        alert(
+          "You have successfully created subscription " + data.subscriptionID
+        );
+      }}
       style={{
         label: "subscribe",
       }}
