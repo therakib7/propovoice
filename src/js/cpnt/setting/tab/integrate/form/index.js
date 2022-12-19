@@ -24,7 +24,7 @@ export default class Main extends Component {
                 mobile: 'Mobile',
                 web: 'Web',
                 source_id: 'Source', //tax
-                level_id: 'Level', //tax 
+                level_id: 'Level', //tax
                 budget: 'Budget',
                 currency: 'Currency',
                 desc: 'Description'
@@ -148,7 +148,7 @@ export default class Main extends Component {
                                             <ProLabel />
                                             <span className="pv-field-switch-content">
                                                 <label className="pv-field-switch pv-field-switch-big">
-                                                    <input type='checkbox'  
+                                                    <input type='checkbox'
                                                         name='active'
                                                         checked={item.active ? 'checked' : ''}
                                                         onChange={(e) => this.handleChange(e, i)}

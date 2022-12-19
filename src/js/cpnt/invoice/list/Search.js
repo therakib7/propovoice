@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Search, Filter, Arrow, Cross } from 'block/icon';
+import pro from 'block/pro-alert';
 export default class Form extends Component {
 
     constructor(props) {
-        super(props); 
-        
+        super(props);
+
         this.state = {
             form: {
                 text: '',
                 level: '',
                 tag: '',
             },
+            recurring: false,
             searchModal: false,
         };
 
@@ -33,17 +35,157 @@ export default class Form extends Component {
         });
     }
 
+    showRecurring = (view) => {
+        if (wage.length > 0 && (!view)) {
+            pro();
+            return;
+        }
+        if (this.state.recurring == view) return;
+
+        this.setState({ recurring: view }, () => {
+            let form = { ...this.state.form }
+            if (this.state.recurring) {
+                form.recurring = true;
+            }
+            this.props.handleSubmit(form);
+        });
+
+        /* this.setState({ form: { ...this.state.form, 'recurring': true } }, () => {
+            this.props.handleSubmit(this.state.form);
+        }); */
+    }
+
     render() {
         const { title, showing, showItem, total } = this.props;
+
+        const activeColor = '#4A5568';
+        const inactiveColor = '#A0AEC0';
+        const recurring = this.state.recurring;
+
         const i18n = ndpv.i18n;
         return (
             <div className="pv-search-bar">
+                <button
+                    className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5"
+                    onClick={() => this.showRecurring(false)}
+                    style={{ marginLeft: 0 }}
+                    title={i18n.all + ' ' + i18n.inv}
+                >
+                    <svg
+                        width={20}
+                        height={20}
+                        viewBox="0 0 20 20"
+                        fill="none"
+                    >
+                        <path
+                            d="M3.125 4.375h13.75v9.375a.624.624 0 01-.625.625h-3.125a.624.624 0 01-.625-.625v-1.875h-5v4.375a.625.625 0 01-.625.625H3.75a.625.625 0 01-.625-.625V4.375zM7.5 9.375H3.125M7.5 4.375v7.5M12.5 9.375h4.375M12.5 4.375v7.5"
+                            stroke={!recurring ? activeColor : inactiveColor}
+                            strokeWidth={1.2}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </button>
+
+                <button
+                    className="pv-btn pv-btn-icon pv-bg-hover-shadow"
+                    onClick={() => this.showRecurring(true)}
+                    style={{ marginLeft: 0, marginRight: 10 }}
+                    title={i18n.recur + ' ' + i18n.inv}
+                >
+                    <svg
+                        width={20}
+                        height={20}
+                        viewBox="0 0 20 20"
+                        fill="none"
+                    >
+                        <path
+                            d="M7.5 5H16.875"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M7.5 10H16.875"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M7.5 15H16.875"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 5H4.375"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 10H4.375"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 15H4.375"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </button>
+
+                {/* <button
+                    className="pv-btn pv-btn-icon pv-bg-hover-shadow"
+                    onClick={() => this.showRecurring()}
+                    style={{ marginLeft: 0, marginRight: 10 }}
+                    title={i18n.recur + ' ' + i18n.inv}
+                >
+                    <svg
+                        width={20}
+                        height={20}
+                        viewBox="0 0 25 25"
+                        fill="none"
+                    >
+                        <path
+                            d="M22.822 12.385l-2.316 1.153-3-5.737 2.344-1.172a.74.74 0 01.993.318l2.307 4.416a.75.75 0 01-.328 1.022v0zM4.006 13.444L1.69 12.28a.741.741 0 01-.328-1.012l2.306-4.416a.75.75 0 01.994-.328l2.344 1.172-3 5.747zM20.506 13.538l-1.5 1.763-3.45 3.45a.798.798 0 01-.713.197l-5.437-1.36a.751.751 0 01-.272-.14l-5.128-4.004"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth={1.5}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M19.006 15.3l-4.125-3-1.2.9a3.01 3.01 0 01-3.6 0l-.506-.385a.758.758 0 01-.085-1.134l3.675-3.666a.742.742 0 01.525-.215h3.816"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth={1.5}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M7.063 7.697l4.809-1.406a.75.75 0 01.515.037L15.631 7.8M10.756 20.925l-2.822-.712a.694.694 0 01-.31-.16l-2.118-1.837"
+                            stroke={recurring ? activeColor : inactiveColor}
+                            strokeWidth={1.5}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </button> */}
+
                 <div className="pv-search-box pv-medium-search-bar">
                     <Search />
                     <input
                         type="text"
                         className="pv-search-input"
-                        placeholder={i18n.search+' '+ title}
+                        placeholder={i18n.search + ' ' + title}
                         name="text"
                         value={this.state.form.text}
                         onChange={this.handleChange}

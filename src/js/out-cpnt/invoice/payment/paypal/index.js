@@ -34,7 +34,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
       value: {
         ...options,
         currency: currency,
-        ...(isSubscribe && { intent: "subscription" }),
+        // ...(isSubscribe && { intent: "subscription" }),
       },
     });
   }, [currency, showSpinner]);
@@ -60,13 +60,17 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
           </div>
         </div>
       ) : (
-        <>{!isSubscribe ? viewPayPalBtns() : viewPayPalSubsBtns()}</>
+        <>
+          {!isSubscribe
+            ? viewPayPalBtns(amount, currency, style)
+            : viewPayPalSubsBtns()}
+        </>
       )}
     </>
   );
 };
 
-function viewPayPalBtns() {
+function viewPayPalBtns(amount, currency, style) {
   return (
     <PayPalButtons
       style={style}
@@ -145,10 +149,10 @@ class Paypal extends Component {
     const paypalOptions = {
       "client-id": client_id,
       currency: currency,
-      ...(isSubscribe && {
-        intent: "subscription",
-        vault: true,
-      }),
+      // ...(isSubscribe && {
+      //   intent: "subscription",
+      //   vault: true,
+      // }),
     };
 
     return (

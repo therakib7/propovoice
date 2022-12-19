@@ -1,22 +1,14 @@
 import { useState } from "react";
 
 export default (props) => {
-    const i18n = ndpv.i18n;
-
-    const [interval_type, SetIntervalType] = useState({
-        'week': i18n.wkly,
-        'month': i18n.mth,
-        'quarter': i18n.qtly,
-        'half-year': i18n.hYear,
-        'year': i18n.yrly,
-        'custom': i18n.Custom,
-    });
 
     const handleChange = e => {
         props.handleChange(e);
     }
-    // const i18n = ndpv.i18n;
+
+    const i18n = ndpv.i18n;
     const recurring = props.data;
+
     return (
         <div className="">
             <div className="pv-form-style-one">
@@ -56,6 +48,17 @@ export default (props) => {
                             />
                             <label htmlFor="interval_type_month">{i18n.mth}</label>
                         </div>
+                        <div className="pv-field-radio">
+                            <input
+                                type='radio'
+                                id="interval_type_year"
+                                name='interval_type'
+                                value='year'
+                                checked={recurring.interval_type == 'year'}
+                                onChange={(e) => handleChange(e)}
+                            />
+                            <label htmlFor="interval_type_year">{i18n.yrly}</label>
+                        </div>
                         <div className="pv-field-radio pv-field-radio-input">
                             <input
                                 type='radio'
@@ -81,6 +84,7 @@ export default (props) => {
                                 onChange={handleChange}
                             >
                                 <option value="day">{i18n.day}</option>
+                                <option value="week">{i18n.week}</option>
                                 <option value="month">{i18n.month}</option>
                                 <option value="year">{i18n.year}</option>
                             </select>
@@ -122,6 +126,23 @@ export default (props) => {
                     </div>
 
                     <div className="col-12">
+                        <label id="auto-subscription">Auto Subscription</label>
+                        <div className="pv-field-switch pv-ml-10">
+                            <label className='pv-switch'>
+                                <input type='checkbox'
+                                    id="auto-subscription"
+                                    name='subscription'
+                                    checked={recurring.subscription ? 'checked' : ''}
+                                    onChange={handleChange}
+                                />
+                                <span className='pv-switch-slider pv-round'></span>
+                            </label>
+                        </div>
+
+                        {recurring.subscription && <label style={{ marginBottom: 0 }}>Now only available Paypal/Stripe subscription. You must select this from Payment Method.</label>}
+                    </div>
+
+                    {!recurring.subscription && <div className="col-12">
                         <label>{i18n.select} {i18n.dlvy} {i18n.option}</label>
                         <div className="pv-field-radio">
                             <input
@@ -145,9 +166,10 @@ export default (props) => {
                             />
                             <label htmlFor="recurring-delivery-manual">{i18n.draftM}</label>
                         </div>
-                    </div>
+                    </div>}
                 </div>
-                <div className="row">
+
+                {!recurring.subscription && <div className="row">
                     <div className="col-12">
                         <label id="recurring-send_me">{i18n.sendCy}</label>
                         <div className="pv-field-switch pv-ml-10">
@@ -162,8 +184,8 @@ export default (props) => {
                             </label>
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
         </div>
     );
-} 
+}
