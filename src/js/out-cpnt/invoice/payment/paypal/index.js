@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import "./style.css";
 
 import Api from "api/payment-process";
+import { createSubs } from "api/payment-methods/paypal/subscriptions";
 
 // This values are the props in the UI
 
@@ -21,7 +22,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
 
   const amount = invoice.total;
   const invoice_id = invoice.id;
-  const isSubscribe = true;
+  const isSubscribe = false;
 
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
@@ -33,6 +34,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
       value: {
         ...options,
         currency: currency,
+        ...(isSubscribe && { intent: "subscription" }),
       },
     });
   }, [currency, showSpinner]);
@@ -58,79 +60,77 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
           </div>
         </div>
       ) : (
-        <>
-          <PayPalButtons
-            style={style}
-            disabled={false}
-            forceReRender={[amount, currency, style]}
-            fundingSource={undefined}
-            createOrder={(data, actions) => {
-              return actions.order
-                .create({
-                  purchase_units: [
-                    {
-                      amount: {
-                        currency_code: currency,
-                        value: amount,
-                      },
-                    },
-                  ],
-                })
-                .then((orderId) => {
-                  // Your code here after create the order
-                  // console.log(orderId)
-                  return orderId;
-                });
-            }}
-            onApprove={function (data, actions) {
-              return actions.order.capture().then((details) => {
-                let form = {
-                  invoice_id,
-                  payment_method: "paypal",
-                  payment_info: {
-                    id: details.id,
-                    // amount: details.amount,
-                    // currency: details.currency,
-                    billing_address: details.payer,
-                    created: details.create_time,
-                  },
-                };
-                Api.create(form).then((resp) => {
-                  if (resp.data.success) {
-                    setDetails(details);
-                    // close();
-                    // toast.success('Thanks for payment');
-                  } else {
-                    resp.data.data.forEach(function (value, index, array) {
-                      toast.error(value);
-                    });
-                  }
-                });
-              });
-            }}
-          />
-          {isSubscribe && (
-            <PayPalButtons
-              createSubscription={(data, actions) => {
-                return actions.subscription
-                  .create({
-                    plan_id: "P-3RX065706M3469222L5IFM4I",
-                  })
-                  .then((orderId) => {
-                    // Your code here after create the order
-                    return orderId;
-                  });
-              }}
-              style={{
-                label: "subscribe",
-              }}
-            />
-          )}
-        </>
+        <>{!isSubscribe ? viewPayPalBtns() : viewPayPalSubsBtns()}</>
       )}
     </>
   );
 };
+
+function viewPayPalBtns() {
+  return (
+    <PayPalButtons
+      style={style}
+      disabled={false}
+      forceReRender={[amount, currency, style]}
+      fundingSource={undefined}
+      createOrder={(data, actions) => {
+        return actions.order
+          .create({
+            purchase_units: [
+              {
+                amount: {
+                  currency_code: currency,
+                  value: amount,
+                },
+              },
+            ],
+          })
+          .then((orderId) => {
+            // Your code here after create the order
+            // console.log(orderId)
+            return orderId;
+          });
+      }}
+      onApprove={function (data, actions) {
+        return actions.order.capture().then((details) => {
+          let form = {
+            invoice_id,
+            payment_method: "paypal",
+            payment_info: {
+              id: details.id,
+              // amount: details.amount,
+              // currency: details.currency,
+              billing_address: details.payer,
+              created: details.create_time,
+            },
+          };
+          Api.create(form).then((resp) => {
+            if (resp.data.success) {
+              setDetails(details);
+              // close();
+              // toast.success('Thanks for payment');
+            } else {
+              resp.data.data.forEach(function (value, index, array) {
+                toast.error(value);
+              });
+            }
+          });
+        });
+      }}
+    />
+  );
+}
+
+function viewPayPalSubsBtns() {
+  return (
+    <PayPalButtons
+      createSubscription={(data, actions) => createSubs(data, actions)}
+      style={{
+        label: "subscribe",
+      }}
+    />
+  );
+}
 
 class Paypal extends Component {
   constructor(props) {
@@ -138,7 +138,7 @@ class Paypal extends Component {
   }
 
   render() {
-    const isSubscribe = true;
+    const isSubscribe = false;
     const client_id = this.props.invoice.payment_methods.paypal.client_id;
     const currency = this.props.invoice.currency;
 

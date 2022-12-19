@@ -2,10 +2,12 @@ import api from "api";
 import { token } from "./auth";
 
 const apiBase = "https://api-m.sandbox.paypal.com/";
+const accessToken =
+  "access_token$sandbox$yyxkrwgb4jx4vtr5$0048b70216864d1419e2d675d8e5ffc9";
 
 // Create New plan
 function createPlan() {
-  const palnData = {
+  const planData = {
     product_id: "PROD-XXCD1234QWER65782",
 
     name: "Video Streaming Service Plan",
@@ -95,22 +97,38 @@ function createPlan() {
 
       payment_failure_threshold: 3,
     },
-
-    taxes: {
-      percentage: "10",
-
-      inclusive: false,
-    },
   };
 
-  api.post();
+  fetch(apiBase + "/v1/billing/plans", {
+    method: "POST",
+    mode: "no-cors",
+    // credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Authentication: "Bearer " + accessToken,
+    },
+    body: JSON.stringify(planData),
+  }).then((resp) => console.log("Create Plan Response", resp));
 }
 
 // Activate plan
-function activatePlan() {}
+function activatePlan() {
+  return "Hello";
+}
 
 // Create subscription
-function createSubscription() {}
+export function createSubs(data, actions) {
+  createPlan();
+  console.log("from Subscriptions");
+  return actions.subscription
+    .create({
+      plan_id: "P-3RX065706M3469222L5IFM4I",
+    })
+    .then((orderId) => {
+      // Your code here after create the order
+      return orderId;
+    });
+}
 
 // Activate subscription
-function activateSubscription() {}
+function activateSubs() {}
