@@ -22,7 +22,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
 
   const amount = invoice.total;
   const invoice_id = invoice.id;
-  const isSubscribe = false;
+  const isSubscribe = true;
 
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
@@ -34,7 +34,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
       value: {
         ...options,
         currency: currency,
-        // ...(isSubscribe && { intent: "subscription" }),
+        ...(isSubscribe && { intent: "subscription" }),
       },
     });
   }, [currency, showSpinner]);
@@ -142,17 +142,17 @@ class Paypal extends Component {
   }
 
   render() {
-    const isSubscribe = false;
+    const isSubscribe = true;
     const client_id = this.props.invoice.payment_methods.paypal.client_id;
     const currency = this.props.invoice.currency;
 
     const paypalOptions = {
       "client-id": client_id,
       currency: currency,
-      // ...(isSubscribe && {
-      //   intent: "subscription",
-      //   vault: true,
-      // }),
+      ...(isSubscribe && {
+        intent: "subscription",
+        vault: true,
+      }),
     };
 
     return (
