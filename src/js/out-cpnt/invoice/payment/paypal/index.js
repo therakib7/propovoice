@@ -21,7 +21,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
   console.log("Invoice: ", invoice);
   const amount = invoice.total;
   const invoice_id = invoice.id;
-  const isSubscribe = true;
+  const isSubscribe = invoice.recurring;
 
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
@@ -158,7 +158,7 @@ class Paypal extends Component {
   }
 
   render() {
-    const isSubscribe = true;
+    const isSubscribe = this.props.invoice.recurring;
     const client_id = this.props.invoice.payment_methods.paypal.client_id;
     const currency = this.props.invoice.currency;
 
