@@ -21,7 +21,9 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
   console.log("Invoice: ", invoice);
   const amount = invoice.total;
   const invoice_id = invoice.id;
-  const isSubscribe = invoice.recurring;
+  const isSubscribe = invoice.recurring
+    ? invoice.recurring.subscription
+    : false;
 
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
@@ -43,83 +45,47 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
     <>
       {showSpinner && isPending && <div className="pv-preloader" />}
 
-      {details ? (
-        <div className="Result">
-          <div className="ResultTitle" role="alert">
-            {i18n.payment} successful
-          </div>
-          <div className="ResultMessage">
-            Thanks for trying paypal payment.
-            <div style={{ marginTop: "7px", color: "#000" }}>
-              <b>
-                {i18n.txn} {i18n.id}:
-              </b>{" "}
-              {details.id}
-            </div>
-          </div>
-        </div>
-      ) : (
-        <>
-          {!isSubscribe
-            ? viewPayPalBtns(amount, currency, style)
-            : viewPayPalSubsBtns()}
-        </>
-      )}
+      {details
+        ? viewDetails(details, i18n)
+        : !isSubscribe
+        ? viewPayPalBtns(invoice_id, amount, currency, style, setDetails)
+        : viewPayPalSubsBtns()}
     </>
   );
 };
 
-function viewPayPalBtns(amount, currency, style) {
+function viewDetails(details, i18n) {
+  return (
+    <div className="Result">
+      <div className="ResultTitle" role="alert">
+        {i18n.payment} successful
+      </div>
+      <div className="ResultMessage">
+        Thanks for trying paypal payment.
+        <div style={{ marginTop: "7px", color: "#000" }}>
+          <b>
+            {i18n.txn} {i18n.id}:
+          </b>{" "}
+          {details.id}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function viewPayPalBtns(invoice_id, amount, currency, style, setDetails) {
   return (
     <PayPalButtons
       style={style}
       disabled={false}
       forceReRender={[amount, currency, style]}
       fundingSource={undefined}
-      createOrder={(data, actions) => {
-        return actions.order
-          .create({
-            purchase_units: [
-              {
-                amount: {
-                  currency_code: currency,
-                  value: amount,
-                },
-              },
-            ],
-          })
-          .then((orderId) => {
-            // Your code here after create the order
-            // console.log(orderId)
-            return orderId;
-          });
-      }}
-      onApprove={function (data, actions) {
-        return actions.order.capture().then((details) => {
-          let form = {
-            invoice_id,
-            payment_method: "paypal",
-            payment_info: {
-              id: details.id,
-              // amount: details.amount,
-              // currency: details.currency,
-              billing_address: details.payer,
-              created: details.create_time,
-            },
-          };
-          Api.create(form).then((resp) => {
-            if (resp.data.success) {
-              setDetails(details);
-              // close();
-              // toast.success('Thanks for payment');
-            } else {
-              resp.data.data.forEach(function (value, index, array) {
-                toast.error(value);
-              });
-            }
-          });
-        });
-      }}
+      createOrder={(data, actions) =>
+        createOrder(data, actions, currency, amount)
+      }
+      onApprove={(data, actions) =>
+        onOrderApprove(data, actions, invoice_id, setDetails)
+      }
     />
   );
 }
@@ -134,6 +100,52 @@ function viewPayPalSubsBtns() {
       }}
     />
   );
+}
+
+function createOrder(data, actions, currency, amount) {
+  return actions.order
+    .create({
+      purchase_units: [
+        {
+          amount: {
+            currency_code: currency,
+            value: amount,
+          },
+        },
+      ],
+    })
+    .then((orderId) => {
+      // Your code here after create the order
+      // console.log(orderId)
+      return orderId;
+    });
+}
+
+function onOrderApprove(data, actions, invoice_id, setDetails) {
+  return actions.order.capture().then((details) => {
+    let form = {
+      invoice_id,
+      payment_method: "paypal",
+      payment_info: {
+        id: details.id,
+        // amount: details.amount,
+        // currency: details.currency,
+        billing_address: details.payer,
+        created: details.create_time,
+      },
+    };
+    Api.create(form).then((resp) => {
+      if (resp.data.success) {
+        setDetails(details);
+        // close();
+        // toast.success('Thanks for payment');
+      } else {
+        resp.data.data.forEach(function (value, index, array) {
+          toast.error(value);
+        });
+      }
+    });
+  });
 }
 
 function createSubs(data, actions) {
@@ -158,7 +170,9 @@ class Paypal extends Component {
   }
 
   render() {
-    const isSubscribe = this.props.invoice.recurring;
+    const isSubscribe = this.props.invoice.recurring
+      ? this.props.invoice.recurring.subscription
+      : false;
     const client_id = this.props.invoice.payment_methods.paypal.client_id;
     const currency = this.props.invoice.currency;
 
