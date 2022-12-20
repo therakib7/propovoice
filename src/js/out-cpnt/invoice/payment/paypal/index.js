@@ -18,7 +18,7 @@ const style = { layout: "vertical" };
 const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
   // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
   // This is the main reason to wrap the PayPalButtons in a new component
-
+  console.log("Invoice: ", invoice);
   const amount = invoice.total;
   const invoice_id = invoice.id;
   const isSubscribe = true;
