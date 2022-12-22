@@ -31,7 +31,7 @@ export default (props) => {
 
 		case 'paid':
 			status = true;
-			title = (props.invoice.hasOwnProperty('recurring')) ? i18n.subsed : i18n.paid;
+			title = props.invoice.hasOwnProperty('recurring') ? i18n.subsed : i18n.paid;
 			extraClass = 'pv-green-color';
 			desc = i18n.paidDes;
 			break;

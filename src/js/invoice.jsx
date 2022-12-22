@@ -13,6 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }}>
                 <Invoice />
             </AppContext.Provider>,
-            el);
+        el);
     }
 });

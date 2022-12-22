@@ -253,6 +253,7 @@ class Invoice extends Component {
 				invoice.token = data.token;
 				invoice.date = new Date(data.invoice.date);
 				invoice.due_date = new Date(data.invoice.due_date);
+				invoice.status = data.status;
 
 				let payment_methods = data.invoice.payment_methods; //it's because wordpress empty object covnert to array
 				if (Array.isArray(payment_methods) && !payment_methods.length) {
