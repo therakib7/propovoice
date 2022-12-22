@@ -29,7 +29,7 @@ export default (props) => {
     const nNum = num ? num : props.data.prefix + id;
     return (
         <div className="pv-inv" style={{ height: props.height }}>
-            <Seal status={status} />
+            <Seal status={status} invoice={props.data.invoice} />
             <div className="pv-inv-three">
                 <div className="pv-inv-body">
                     <div className="pv-inv-top-shape">
