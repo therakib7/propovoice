@@ -332,7 +332,6 @@ class Taxonomy
                 }
             }
         }
-        
     }
 
     public function custom_media_sideload_image($image_url = '', $post_id = false)
@@ -360,11 +359,11 @@ class Taxonomy
         $title = preg_replace('/\.[^.]+$/', '', basename($file));
         $parent = (int) absint($post_id) > 0 ? absint($post_id) : 0;
         $attachment = array(
-          'post_mime_type' => $type,
-          'guid' => $url,
-          'post_parent' => $parent,
-          'post_title' => $title,
-          'post_content' => '',
+            'post_mime_type' => $type,
+            'guid' => $url,
+            'post_parent' => $parent,
+            'post_title' => $title,
+            'post_content' => ''
         );
         $id = wp_insert_attachment($attachment, $file, $parent);
         if (!is_wp_error($id)) {
