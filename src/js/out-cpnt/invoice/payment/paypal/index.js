@@ -1,4 +1,7 @@
 import React, { useEffect, useState, Component } from "react";
+
+import api from "api";
+
 import {
   PayPalScriptProvider,
   PayPalButtons,
@@ -9,16 +12,23 @@ import { toast } from "react-toastify";
 import "./style.css";
 
 import Api from "api/payment-process";
+import axios from "axios";
 
 // This values are the props in the UI
 
 const style = { layout: "vertical" };
+const paypalBaseUrl = "https://api-m.sandbox.paypal.com/";
+const clientId =
+  "Aairsx2ntDKvcjA9XyMOaZkBdFGSkrywPkUGLbxzqpMTR-HJs8m4u-dUWftfx7fOdOte7_jCDHx2QvEt";
+const secretId =
+  "EOHVMaDD1ubBvR0Uf9I5Bw1QR6IKva9oCWz2a1gTHpafKu_VeDCgVg0d7WwgOYRYEg7nvefseC2joFG4";
 
 // Custom component to wrap the PayPalButtons and handle currency changes
 const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
   // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
   // This is the main reason to wrap the PayPalButtons in a new component
-  console.log("Invoice: ", invoice);
+
+  // console.log("Invoice: ", invoice);
   const amount = invoice.total;
   const invoice_id = invoice.id;
   const isSubscribe = invoice.recurring
@@ -49,7 +59,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
         ? viewDetails(details, i18n)
         : !isSubscribe
         ? viewPayPalBtns(invoice_id, amount, currency, style, setDetails)
-        : viewPayPalSubsBtns()}
+        : viewPayPalSubsBtns(invoice)}
     </>
   );
 };
@@ -90,10 +100,10 @@ function viewPayPalBtns(invoice_id, amount, currency, style, setDetails) {
   );
 }
 
-function viewPayPalSubsBtns() {
+function viewPayPalSubsBtns(invoice) {
   return (
     <PayPalButtons
-      createSubscription={(data, actions) => createSubs(data, actions)}
+      createSubscription={(data, actions) => createSubs(data, actions, invoice)}
       onApprove={(data, actions) => onSubsSuccess(data, actions)}
       style={{
         label: "subscribe",
@@ -148,17 +158,45 @@ function onOrderApprove(data, actions, invoice_id, setDetails) {
   });
 }
 
-function createSubs(data, actions) {
-  console.log(actions);
-  return actions.subscription
-    .create({
-      plan_id: "P-17L85200KS669793XMOQCDIA",
+function createSubs(data, actions, invoice) {
+  return api.get("paypal-subscription").then((res) => {
+    // Plan Id in res.data
+    console.log(res.data);
+
+    return actions.subscription
+      .create({
+        plan_id: res.data,
+      })
+      .then((orderId) => {
+        return orderId;
+      });
+  });
+}
+
+function getToken() {
+  return axios
+    .request({
+      url: "/v1/oauth2/token",
+      method: "post",
+      baseURL: paypalBaseUrl,
+      auth: {
+        username: clientId,
+        password: secretId,
+      },
+      data: new URLSearchParams({
+        grant_type: "client_credentials",
+      }),
     })
-    .then((orderId) => {
-      // Your code here after create the order
-      return orderId;
+    .then((res) => {
+      return res.data.access_token;
     });
 }
+
+// Create Product
+function createProduct() {}
+
+// Create Plan
+function createPlan() {}
 
 function onSubsSuccess(data, actions) {
   alert("You have successfully created subscription " + data.subscriptionID);
