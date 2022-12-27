@@ -49,7 +49,7 @@ class Dashbaord
         }
 
         if ($param['section'] == 'estimate' || $param['section'] == 'invoice') {
-            $this->estvoice($param['section']);
+            $this->estvoice($param);
         }
     }
 
@@ -192,8 +192,10 @@ class Dashbaord
         wp_send_json_success($column);
     }
 
-    public function deal_tracking()
+    public function deal_tracking( $param )
     {
+        $year = $param['year'];
+
         $data = [];
 
         for ($i = 0; $i < 12; $i++) {
@@ -209,6 +211,11 @@ class Dashbaord
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
+
+        $args['date_query'] = array(
+            array('year' => $year)
+        );
+
         $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();
@@ -235,7 +242,6 @@ class Dashbaord
 
     public function lead_level_source($param)
     {
-
         $per_page = 10;
         $offset = 0;
 
@@ -298,8 +304,11 @@ class Dashbaord
         wp_send_json_success($column_with_percent);
     }
 
-    public function estvoice($type)
+    public function estvoice($param)
     {
+        $type = $param['section'];
+        $year = $param['year'];
+
         $data = [];
 
         for ($i = 0; $i < 12; $i++) {
@@ -327,6 +336,11 @@ class Dashbaord
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
+
+        $args['date_query'] = array(
+            array('year' => $year)
+        );
+
         $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();

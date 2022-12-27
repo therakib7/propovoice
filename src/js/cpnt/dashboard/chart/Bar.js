@@ -12,7 +12,7 @@ export default class Section extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.getAll('dashboard', 'section=' + this.props.type).then(resp => {
+    this.props.getAll('dashboard', `section=${this.props.type}&year=${this.props.year}`).then(resp => {
       if (resp.data.success) {
         this.setState({ data: resp.data.data });
       }

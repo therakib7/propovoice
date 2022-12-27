@@ -122,9 +122,11 @@ const TableBody = props => {
                 break;
 
             case 'paid':
+                let recurring = row.invoice.recurring;
                 status = <span className='pv-badge pv-cursor-pointer'
                     style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}
-                >{ndpv.i18n.paid}</span>
+                >{(recurring.status && recurring.hasOwnProperty('subscription') && recurring.subscription) ? ndpv.i18n.subsed : ndpv.i18n.paid}</span>
+                break;
                 break;
         }
 
@@ -260,4 +262,4 @@ const Table = (props) => {
     );
 }
 
-export default Table; 
+export default Table;
