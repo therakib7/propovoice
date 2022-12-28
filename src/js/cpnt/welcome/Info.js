@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Upload from 'block/field/upload';
 
 class Info extends Component {
     constructor(props) {
@@ -43,6 +44,12 @@ class Info extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
+    }
+
+    handleLogoChange = (data) => {
+        let form = { ...this.state.form }
+        form.logo = data;
+        this.setState({ form })
     }
 
     render() {
@@ -148,7 +155,7 @@ class Info extends Component {
                         </div>
                     </div>
 
-                    <div className="row pv-mb-30">
+                    <div className="row">
                         <div className="col">
                             <label
                                 htmlFor="field-address">
@@ -163,6 +170,13 @@ class Info extends Component {
                                 value={this.state.form.address}
                                 onChange={this.handleChange}
                             />
+                        </div>
+                    </div>
+
+                    <div className="row pv-mb-30">
+                        <div className="col-md">
+                            <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
+                            <Upload label={'Logo'} library={false} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
                         </div>
                     </div>
                 </div>

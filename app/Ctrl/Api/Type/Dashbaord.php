@@ -281,8 +281,8 @@ class Dashbaord
             );
 
             $query = new \WP_Query($args);
-            $total_data = $query->found_posts; //use this for pagination    
-            $total_posts += $total_data; //use this for pagination    
+            $total_data = $query->found_posts; //use this for pagination
+            $total_posts += $total_data; //use this for pagination
 
             $bg_color = get_term_meta($tax_id, 'bg_color', true);
             $tax_single = [
@@ -297,7 +297,7 @@ class Dashbaord
 
         $column_with_percent = [];
         foreach ($column as $col) {
-            $col['percent'] = round(($col['item'] / $total_posts) * 100);
+            $col['percent'] = ( $col['item'] && $total_posts ) ? round(($col['item'] / $total_posts) * 100) : 0;
             $column_with_percent[] = $col;
         }
 

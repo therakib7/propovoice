@@ -5,7 +5,7 @@ import Style from './style.scss'
 
 import Api from 'api/business';
 import Info from './Info';
-import Branding from './Branding';
+import Module from './Module';
 
 export default class Welcome extends Component {
     constructor(props) {
@@ -22,8 +22,8 @@ export default class Welcome extends Component {
                     text: 'Business Info'
                 },
                 {
-                    id: 'branding',
-                    text: 'Branding Resource'
+                    id: 'module',
+                    text: 'Module'
                 },
                 {
                     id: 'finish',
@@ -50,14 +50,8 @@ export default class Welcome extends Component {
         });
     };
 
-    handleBrandingChange = (data) => {
-        let business = { ...this.state.business }
-        business.logo = data;
-        this.setState({ business })
-    }
-
     handleSubmit = (business, tab = null) => {
-        if (tab == 'branding') {
+        if (tab == 'module') {
             business = this.state.business;
         }
 
@@ -83,16 +77,16 @@ export default class Welcome extends Component {
             })
         }
 
-        if (tab == 'branding') {
+        if (tab == 'module') {
             this.setState({ currentTab: 'finish', currentTabIndex: 3 });
         } else {
-            this.setState({ currentTab: 'branding', currentTabIndex: 2 });
+            this.setState({ currentTab: 'module', currentTabIndex: 2 });
         }
     }
 
     handleSkip = (name = null) => {
         if (name == 'info') {
-            this.setState({ currentTab: 'branding', currentTabIndex: 2 });
+            this.setState({ currentTab: 'module', currentTabIndex: 2 });
         } else {
             this.setState({ currentTab: 'finish', currentTabIndex: 3 });
         }
@@ -165,11 +159,10 @@ export default class Welcome extends Component {
                                     />
                                 </div>}
 
-                            {currentTab == 'branding' &&
+                            {currentTab == 'module' &&
                                 <div id="pv-brand">
-                                    <Branding
+                                    <Module
                                         data={this.state.business}
-                                        changeHandler={this.handleBrandingChange}
                                         handleSubmit={this.handleSubmit}
                                         handleSkip={this.handleSkip}
                                     />

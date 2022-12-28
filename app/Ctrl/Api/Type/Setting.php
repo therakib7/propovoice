@@ -43,6 +43,16 @@ class Setting
         } else {
             $data = [];
 
+            if ($tab == "general_module") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $data["deactivate"] = [];
+                }
+            }
+
             if ($tab == "email_footer") {
                 $option = get_option("ndpv_" . $tab);
 
@@ -338,7 +348,14 @@ class Setting
         } else {
             $data = [];
 
-            if ($tab == "email_footer") { 
+            if ($tab == "general_module") {
+                $data["deactivate"] = isset($param["deactivate"])
+                    ? array_map( 'sanitize_text_field', $param["deactivate"] )
+                    : [];
+                $option = update_option("ndpv_" . $tab, $data);
+            }
+
+            if ($tab == "email_footer") {
                 $data["active"] = isset($param["active"])
                     ? rest_sanitize_boolean( $param["active"] )
                     : null;
