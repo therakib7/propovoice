@@ -55,7 +55,7 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
         ? viewDetails(details, i18n)
         : !isSubscribe
         ? viewPayPalBtns(invoice_id, amount, currency, style, setDetails)
-        : viewPayPalSubsBtns(invoice)}
+        : viewPayPalSubsBtns(invoice_id)}
     </>
   );
 };
@@ -96,10 +96,12 @@ function viewPayPalBtns(invoice_id, amount, currency, style, setDetails) {
   );
 }
 
-function viewPayPalSubsBtns(invoice) {
+function viewPayPalSubsBtns(invoice_id) {
   return (
     <PayPalButtons
-      createSubscription={(data, actions) => createSubs(data, actions, invoice)}
+      createSubscription={(data, actions) =>
+        createSubs(data, actions, invoice_id)
+      }
       onApprove={(data, actions) => onSubsSuccess(data, actions)}
       style={{
         label: "subscribe",
@@ -154,8 +156,8 @@ function onOrderApprove(data, actions, invoice_id, setDetails) {
   });
 }
 
-function createSubs(data, actions, invoice) {
-  return api.get("paypal-subscription", "", "pro").then((res) => {
+function createSubs(data, actions, invoice_id) {
+  return api.get("paypal-subscription/" + invoice_id, "", "pro").then((res) => {
     // Plan Id in res.data
 
     return actions.subscription
