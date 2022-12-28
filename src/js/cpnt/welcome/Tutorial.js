@@ -8,7 +8,7 @@ export default (props) => {
 	});
 
 	useEffect(() => {
-		api.get('settings', 'tab=general_module').then(resp => {
+		api.get('settings', 'tab=subscription').then(resp => {
 			if (resp.data.success) {
 				setForm(resp.data.data);
 			}
@@ -32,7 +32,7 @@ export default (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		form.tab = 'general_module';
+		form.tab = 'subscription';
 
 		api.add('settings', form).then(resp => {
 			if (resp.data.success) {
@@ -43,7 +43,7 @@ export default (props) => {
 				});
 			}
 		});
-		props.handleSkip('tutorial')
+		props.handleSkip('finish')
 	}
 
 	const handleLogoChange = (data) => {
@@ -52,17 +52,17 @@ export default (props) => {
 	const i18n = ndpv.i18n;
 	return (
 		<form onSubmit={handleSubmit} className="pv-form-style-one">
-			<h4 className="pv-title-medium pv-mb-15">Module Select</h4>
+			<h4 className="pv-title-medium pv-mb-15">Tutorial</h4>
 			<div className="row">
 				<div className="col">
-					<label id="module-lead">Lead</label>
+					<label id="module-get_update">Get Updates</label>
 					<div className="pv-field-switch pv-ml-10">
 						<label className='pv-switch'>
 							<input type='checkbox'
-								id="module-lead"
-								name='deactivate'
-								value='lead'
-								checked={form.deactivate.includes('lead') ? '' : 'checked'}
+								id="module-get_update"
+								name='activate'
+								value='get_update'
+								checked={form.deactivate.includes('get_update') ? '' : 'checked'}
 								onChange={handleChange}
 							/>
 							<span className='pv-switch-slider pv-round'></span>
@@ -71,14 +71,14 @@ export default (props) => {
 				</div>
 
 				<div className="col">
-					<label id="module-deal">Deal</label>
+					<label id="module-share_info">Share Essentials</label>
 					<div className="pv-field-switch pv-ml-10">
 						<label className='pv-switch'>
 							<input type='checkbox'
-								id="module-deal"
-								name='deactivate'
-								value='deal'
-								checked={form.deactivate.includes('deal') ? '' : 'checked'}
+								id="module-share_info"
+								name='activate'
+								value='share_info'
+								checked={form.deactivate.includes('share_info') ? '' : 'checked'}
 								onChange={handleChange}
 							/>
 							<span className='pv-switch-slider pv-round'></span>
@@ -89,7 +89,7 @@ export default (props) => {
 
 			<div className="pv-buttons pv-text-center">
 				<button className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big">{i18n.save} {i18n.nd} {i18n.cont}</button>
-				<a className="pv-text-hover-blue" onClick={() => props.handleSkip('module')}>{i18n.skip}</a>
+				<a className="pv-text-hover-blue" onClick={() => props.handleSkip('tutorial')}>{i18n.skip}</a>
 			</div>
 		</form>
 	);

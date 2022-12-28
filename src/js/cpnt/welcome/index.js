@@ -4,8 +4,9 @@ import { toast } from 'react-toastify';
 import Style from './style.scss'
 
 import Api from 'api/business';
-import Info from './Info';
+import Business from './Business';
 import Module from './Module';
+import Tutorial from './Tutorial';
 
 export default class Welcome extends Component {
     constructor(props) {
@@ -18,12 +19,16 @@ export default class Welcome extends Component {
                     text: 'Welcome'
                 },
                 {
-                    id: 'info',
+                    id: 'business',
                     text: 'Business Info'
                 },
                 {
                     id: 'module',
                     text: 'Module'
+                },
+                {
+                    id: 'tutorial',
+                    text: 'Tutorial'
                 },
                 {
                     id: 'finish',
@@ -50,10 +55,10 @@ export default class Welcome extends Component {
         });
     };
 
-    handleSubmit = (business, tab = null) => {
-        if (tab == 'module') {
+    handleSubmit = (business) => {
+        /* if (tab == 'module') {
             business = this.state.business;
-        }
+        } */
 
         if (!business.id) {
             Api.create(business).then(resp => {
@@ -77,18 +82,16 @@ export default class Welcome extends Component {
             })
         }
 
-        if (tab == 'module') {
-            this.setState({ currentTab: 'finish', currentTabIndex: 3 });
-        } else {
-            this.setState({ currentTab: 'module', currentTabIndex: 2 });
-        }
+        this.setState({ currentTab: 'module', currentTabIndex: 2 });
     }
 
     handleSkip = (name = null) => {
-        if (name == 'info') {
+        if (name == 'business') {
             this.setState({ currentTab: 'module', currentTabIndex: 2 });
-        } else {
-            this.setState({ currentTab: 'finish', currentTabIndex: 3 });
+        } else if (name == 'module') {
+            this.setState({ currentTab: 'tutorial', currentTabIndex: 3 });
+        } else if (name == 'tutorial') {
+            this.setState({ currentTab: 'finish', currentTabIndex: 4 });
         }
     }
 
@@ -143,16 +146,16 @@ export default class Welcome extends Component {
                                         Welcome to Propovice. Propovice help you to create professional invoice and estimate for your client. You can send and track easily.
                                     </p>
                                     <div className="pv-buttons pv-text-center">
-                                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
+                                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.setState({ currentTab: 'business', currentTabIndex: 1 })}>
                                             {i18n.create} {i18n.biz} {i18n.profile}
                                         </button>
                                         <a href={ndpv.dashboard} className="pv-text-hover-blue">{i18n.skip} {i18n.nd} {i18n.go} {i18n.db}</a>
                                     </div>
                                 </div>}
 
-                            {currentTab == 'info' &&
+                            {currentTab == 'business' &&
                                 <div id="pv-business">
-                                    <Info
+                                    <Business
                                         data={this.state.business}
                                         handleSubmit={this.handleSubmit}
                                         handleSkip={this.handleSkip}
@@ -163,7 +166,16 @@ export default class Welcome extends Component {
                                 <div id="pv-brand">
                                     <Module
                                         data={this.state.business}
-                                        handleSubmit={this.handleSubmit}
+                                        // handleSubmit={this.handleSubmit}
+                                        handleSkip={this.handleSkip}
+                                    />
+                                </div>}
+
+                            {currentTab == 'tutorial' &&
+                                <div id="pv-tutorial">
+                                    <Tutorial
+                                        data={this.state.business}
+                                        // handleSubmit={this.handleSubmit}
                                         handleSkip={this.handleSkip}
                                     />
                                 </div>}
@@ -359,4 +371,4 @@ export default class Welcome extends Component {
             </div>
         );
     }
-} 
+}

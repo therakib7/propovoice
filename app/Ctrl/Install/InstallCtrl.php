@@ -2,7 +2,7 @@
 namespace Ndpv\Ctrl\Install;
 
 use Ndpv\Ctrl\Install\Type\DB;
-use Ndpv\Ctrl\Install\Type\Installer;
+use Ndpv\Ctrl\Install\Type\Update;
 use Ndpv\Ctrl\Install\Type\Page;
 use Ndpv\Ctrl\Install\Type\Taxonomy;
 
@@ -89,6 +89,6 @@ class InstallCtrl
             }
         }
 
-        new Installer();
+        new Update();
     }
 }

@@ -53,6 +53,16 @@ class Setting
                 }
             }
 
+            if ($tab == "subscription") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $data["deactivate"] = [];
+                }
+            }
+
             if ($tab == "email_footer") {
                 $option = get_option("ndpv_" . $tab);
 
@@ -349,6 +359,13 @@ class Setting
             $data = [];
 
             if ($tab == "general_module") {
+                $data["deactivate"] = isset($param["deactivate"])
+                    ? array_map( 'sanitize_text_field', $param["deactivate"] )
+                    : [];
+                $option = update_option("ndpv_" . $tab, $data);
+            }
+
+            if ($tab == "subscription") {
                 $data["deactivate"] = isset($param["deactivate"])
                     ? array_map( 'sanitize_text_field', $param["deactivate"] )
                     : [];
