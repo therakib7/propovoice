@@ -7,6 +7,7 @@ import {
   PayPalButtons,
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
+
 import { toast } from "react-toastify";
 
 import "./style.css";
@@ -17,11 +18,6 @@ import axios from "axios";
 // This values are the props in the UI
 
 const style = { layout: "vertical" };
-const paypalBaseUrl = "https://api-m.sandbox.paypal.com/";
-const clientId =
-  "Aairsx2ntDKvcjA9XyMOaZkBdFGSkrywPkUGLbxzqpMTR-HJs8m4u-dUWftfx7fOdOte7_jCDHx2QvEt";
-const secretId =
-  "EOHVMaDD1ubBvR0Uf9I5Bw1QR6IKva9oCWz2a1gTHpafKu_VeDCgVg0d7WwgOYRYEg7nvefseC2joFG4";
 
 // Custom component to wrap the PayPalButtons and handle currency changes
 const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
@@ -159,9 +155,8 @@ function onOrderApprove(data, actions, invoice_id, setDetails) {
 }
 
 function createSubs(data, actions, invoice) {
-  return api.get("paypal-subscription").then((res) => {
+  return api.get("paypal-subscription", "", "pro").then((res) => {
     // Plan Id in res.data
-    console.log(res.data);
 
     return actions.subscription
       .create({
@@ -172,31 +167,6 @@ function createSubs(data, actions, invoice) {
       });
   });
 }
-
-function getToken() {
-  return axios
-    .request({
-      url: "/v1/oauth2/token",
-      method: "post",
-      baseURL: paypalBaseUrl,
-      auth: {
-        username: clientId,
-        password: secretId,
-      },
-      data: new URLSearchParams({
-        grant_type: "client_credentials",
-      }),
-    })
-    .then((res) => {
-      return res.data.access_token;
-    });
-}
-
-// Create Product
-function createProduct() {}
-
-// Create Plan
-function createPlan() {}
 
 function onSubsSuccess(data, actions) {
   alert("You have successfully created subscription " + data.subscriptionID);
