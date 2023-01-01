@@ -57,6 +57,9 @@ class Setting
                 $option = get_option("ndpv_" . $tab);
 
                 if ($option) {
+                    if ( !isset( $option['deactivate'] ) ) {
+                        $option["deactivate"] = [];
+                    }
                     $data = $option;
                 } else {
                     $data["deactivate"] = [];
@@ -366,9 +369,8 @@ class Setting
             }
 
             if ($tab == "subscription") {
-                $data["deactivate"] = isset($param["deactivate"])
-                    ? array_map( 'sanitize_text_field', $param["deactivate"] )
-                    : [];
+                $data = $param;
+                $data["deactivate"] = isset($param["deactivate"]) ? array_map( 'sanitize_text_field', $param["deactivate"] ) : [];
                 $option = update_option("ndpv_" . $tab, $data);
             }
 
