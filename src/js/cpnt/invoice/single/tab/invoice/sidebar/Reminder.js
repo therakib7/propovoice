@@ -33,7 +33,7 @@ export default (props) => {
                                 checked={reminder.due_date ? 'checked' : ''}
                                 onChange={handleChange}
                             />
-                            <label htmlFor="reminder-due_date">{i18n.on} {i18n.due} {i18n.date}</label>
+                            <label htmlFor="reminder-due_date">{i18n.on} {i18n.dueDate}</label>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@ export default (props) => {
                                     height={13}
                                     viewBox="0 0 12 13"
                                     fill="none"
-                                    
+
                                 >
                                     <path
                                         d="M1.875 6.5H10.125"

@@ -7,7 +7,7 @@ import pro from 'block/pro-alert';
 import { Add } from 'block/icon';
 
 import api from 'api';
-export default  class Send extends Component {
+export default class Send extends Component {
     constructor(props) {
         super(props);
 
@@ -94,7 +94,8 @@ export default  class Send extends Component {
         let client_name = (data.toData.type == 'person') ? data.toData.first_name : data.toData.org_name;
 
         formState.invoice_id = id;
-        formState.path = path_title;
+        formState.title = path_title;
+        formState.path = path == 'invoice' ? 'invoice' : 'estimate';
         formState.fromData = {
             id: data.fromData.id,
             name: org_name,
@@ -110,6 +111,7 @@ export default  class Send extends Component {
         let mail = this.props.mail;
 
         let subject = mail.subject.replaceAll('{id}', id)
+            .replaceAll('{client_name}', client_name)
             .replaceAll('{org_name}', org_name);
 
         let msg = mail.msg.replaceAll('{id}', id)
@@ -126,8 +128,8 @@ export default  class Send extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault(); 
-         
+        e.preventDefault();
+
         // TODO: send with attachment pdf
         if (false) {
             /* html2canvas(document.querySelector(".pv-inv")).then(canvas => { 
@@ -175,7 +177,7 @@ export default  class Send extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{i18n.email} {path_title}</h2>
-                        <p>{i18n.email} {path} {i18n.from} {i18n.here}</p>
+                        <p>{i18n.email} {path} {i18n.here}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">

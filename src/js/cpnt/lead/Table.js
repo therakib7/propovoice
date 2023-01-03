@@ -89,7 +89,6 @@ const TableBody = props => {
                                 height={6}
                                 viewBox="0 0 6 6"
                                 fill="none"
-                                
                             >
                                 <circle cx={3} cy={3} r={3} fill={level.color} />
                             </svg>
@@ -99,7 +98,7 @@ const TableBody = props => {
                         {(!level.color || !level.bg_color) && <span className="pv-badge">
                             {level.label}
                         </span>}
-                    </>} 
+                    </>}
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
                     {row.tags && row.tags.map((tag, tagIndex) => {

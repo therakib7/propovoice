@@ -182,6 +182,11 @@ class Person
         $data['id'] = absint($id);
         $meta = get_post_meta($id);
         $data['first_name'] = isset($meta['first_name']) ? $meta['first_name'][0] : '';
+        $data['org_id'] = isset($meta['org_id']) ? $meta['org_id'][0] : '';
+        $data['org_name'] = '';
+        if ( $data['org_id'] ) {
+            $data['org_name'] = get_post_meta($data['org_id'], 'name', true);
+        }
         $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
         $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
         $img_id = isset($meta['img']) ? $meta['img'][0] : '';

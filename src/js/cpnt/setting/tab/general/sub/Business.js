@@ -55,9 +55,6 @@ export default class Business extends Component {
         e.preventDefault();
 
         let form = { ...this.state.form }
-        if (form.logo) {
-            form.logo = form.logo.id;
-        }
 
         if (!form.id) {
             api.add('businesses', form).then(resp => {
@@ -162,7 +159,7 @@ export default class Business extends Component {
 
                         <input
                             id="field-mobile"
-                            type="text" 
+                            type="text"
                             name="mobile"
                             value={this.state.form.mobile}
                             onChange={this.handleChange}
@@ -175,7 +172,7 @@ export default class Business extends Component {
 
                         <input
                             id="field-zip"
-                            type="number"
+                            type="text"
                             name="zip"
                             value={this.state.form.zip}
                             onChange={this.handleChange}
@@ -209,7 +206,7 @@ export default class Business extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
+                        <button className="pv-btn pv-btn-big pv-bg-blue pv-bg-hover-blue">
                             {i18n.save}
                         </button>
                     </div>

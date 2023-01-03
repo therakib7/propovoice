@@ -17,10 +17,10 @@ const TableHeader = props => {
                 </th>
                 <th>
                     {i18n.title}
-                </th> 
+                </th>
                 <th>
                     {i18n.active}?
-                </th> 
+                </th>
                 <th>
                     {i18n.action}
                 </th>
@@ -38,7 +38,7 @@ const TableBody = props => {
     let rows = props.tableData.map((row, index) => {
 
         let data = props.checkedBoxes.data;
-        const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false; 
+        const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
 
         return (
             <tr key={index}>
@@ -48,12 +48,12 @@ const TableBody = props => {
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
-                </td> 
-                <td><span className='pv-list-title'>{row.name}</span></td> 
-                <td>{row.active ? ndpv.i18n.active : ''}</td> 
+                </td>
+                <td><span className='pv-list-title'>{row.name}</span></td>
+                <td>{row.active ? ndpv.i18n.active : ''}</td>
                 <td className="pv-action">
                     <Action
-                        row={row} 
+                        row={row}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
                     />

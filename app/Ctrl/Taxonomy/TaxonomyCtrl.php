@@ -21,16 +21,17 @@ class TaxonomyCtrl {
             'project_status' => 'project',
             'contact_status' => 'person',
             'extra_amount' => 'estinv',
-            'estinv_qty_type' => 'estinv'
+            'estinv_qty_type' => 'estinv',
+			'email_social' => 'setting',
         ];
 
 		foreach ( $taxonomies as $tax => $post_type ) {
 			if ( !is_blog_installed() || taxonomy_exists( 'ndpv_' . $tax ) ) {
 				return;
 			}
-			 
+
 			do_action('ndpv_'. $tax .'_taxonomy');  
-	 
+
 			$args = array(
 				'hierarchical'      => true, 
 				'show_ui'           => false, 

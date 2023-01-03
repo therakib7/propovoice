@@ -11,7 +11,6 @@ class Dashboard
         add_action('admin_menu', [$this, 'add_settings_menu'], 30);
     }
 
-
     public function add_settings_menu()
     {
         add_menu_page(
@@ -21,7 +20,7 @@ class Dashboard
             'ndpv',
             array($this, 'main_settings'),
             'dashicons-groups',
-            5
+            2
         );
 
         add_submenu_page(
@@ -32,7 +31,7 @@ class Dashboard
             'ndpv#',
             array($this, 'render')
         );
-         
+
         $settings_menu = [
             [
                 'id' => 'lead',
@@ -46,6 +45,10 @@ class Dashboard
                 'id' => 'estimate',
                 'label' => esc_html__('Estimate', 'propovoice'),
             ],
+            /* [
+                'id' => 'quotation',
+                'label' => esc_html__('Quotation', 'propovoice'),
+            ], */
             [
                 'id' => 'invoice',
                 'label' => esc_html__('Invoice', 'propovoice'),
@@ -101,7 +104,7 @@ class Dashboard
 
         if (!function_exists('ndpvp')) {
             global $submenu;
-            $submenu['ndpv'][] = array('Upgrade to Pro', 'manage_options', 'https://propovoice.com/pricing');
+            $submenu['ndpv'][] = array('Upgrade to Pro', 'manage_options', 'https://propovoice.com');
         }
 
         remove_submenu_page('ndpv', 'ndpv');

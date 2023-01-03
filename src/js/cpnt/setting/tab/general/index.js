@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import WithApi from 'hoc/Api';
 
-import Business from './sub/Business';   
+import Business from './sub/Business';
+import WhiteLabel from './sub/WhiteLabel';
 
 const Main = (props) => {
 	const [tabs, setTabs] = useState(
@@ -9,13 +10,17 @@ const Main = (props) => {
 			{
 				id: 'business',
 				text: ndpv.i18n.biz
-			} 
+			},
+			{
+				id: 'white-label',
+				text: 'White Label'
+			}
 		]
 	);
-	const [currentTab, setCurrentTab] = useState('business');  
+	const [currentTab, setCurrentTab] = useState('business');
 	return (
 		<>
-			<ul className='pv-settings-horizontal-tab'>
+			<ul className='pv-horizontal-tab'>
 				{tabs.map((tab, index) => (
 					<li
 						key={index}
@@ -26,9 +31,10 @@ const Main = (props) => {
 					</li>
 				))}
 			</ul>
-	
-			{currentTab == 'business' && <Business {...props} />}   
+
+			{currentTab == 'business' && <Business {...props} />}
+			{currentTab == 'white-label' && <WhiteLabel />}
 		</>
-	) 
-}  
-export default WithApi(Main) 
+	)
+}
+export default WithApi(Main)

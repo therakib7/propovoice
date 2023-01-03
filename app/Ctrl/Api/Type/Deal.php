@@ -354,7 +354,7 @@ class Deal
         $probability  = isset($param['probability']) ? absint($param['probability']) : null;
         $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note         = isset($param['note']) ? nl2br($param['note']) : null;
+        $note         = isset($param['note']) ? nl2br($param['note']) : '';
 
         /* if ( $lead_id ) {
             wp_send_json_success($lead_id);
@@ -491,7 +491,7 @@ class Deal
         $probability  = isset($param['probability']) ? absint($param['probability']) : null;
         $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
         $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note         = isset($param['note']) ? nl2br($param['note']) : null;
+        $note         = isset($param['note']) ? nl2br($param['note']) : '';
         $change_tax   = isset($param['change_tax']) ? true : false;
 
         /* if (empty($stage_id)) {
@@ -517,6 +517,10 @@ class Deal
 
         $org = new Org();
         if (!$person_id && $org_id) {
+            $org->update($param);
+        }
+
+        if ( $org_id && $org_name ) {
             $org->update($param);
         }
 

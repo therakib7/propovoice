@@ -29,9 +29,7 @@ class Setting
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
-        $tab = isset($param["tab"])
-            ? sanitize_text_field($param["tab"])
-            : null;
+        $tab = isset($param["tab"]) ? sanitize_text_field($param["tab"]) : null;
 
         if (empty($tab)) {
             $reg_errors->add(
@@ -45,35 +43,55 @@ class Setting
         } else {
             $data = [];
 
-            if ($tab == "email_social") {
+            if ($tab == "general_module") {
                 $option = get_option("ndpv_" . $tab);
 
                 if ($option) {
                     $data = $option;
                 } else {
-                    $data["social"] = [
-                        [
-                            "id" => "facebook",
-                            "label" => "Facebook",
-                            "desc" => "",
-                            "icon_url" => "",
-                            "url" => "",
-                        ],
-                        [
-                            "id" => "twitter",
-                            "label" => "Twitter",
-                            "desc" => "",
-                            "icon_url" => "",
-                            "url" => "",
-                        ],
-                        [
-                            "id" => "linkedin",
-                            "label" => "Linkedin",
-                            "desc" => "",
-                            "icon_url" => "",
-                            "url" => "",
-                        ],
-                    ];
+                    $data["deactivate"] = [];
+                }
+            }
+
+            if ($tab == "subscription") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    if ( !isset( $option['deactivate'] ) ) {
+                        $option["deactivate"] = [];
+                    }
+                    $data = $option;
+                } else {
+                    $data["deactivate"] = [];
+                }
+            }
+
+            if ($tab == "email_footer") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    $data = $option;
+                    $white_label = get_option("ndpv_white_label");
+                    $data['logo'] = null;
+                    if ( $white_label && isset( $white_label['logo'] ) ) {
+                        $data['logo'] = $white_label['logo'];
+                        $logo_id = $white_label['logo'];
+                        $logoData = null;
+                        if ( $logo_id ) {
+                            $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+                            if ( $logo_src ) {
+                                $logoData = [];
+                                $logoData['id'] = $logo_id;
+                                $logoData['src'] = $logo_src[0];
+                            }
+                        }
+                        $data['logo'] = $logoData;
+                    }
+                } else {
+                    $data["active"] = true;
+                    $data["text"] = "<p>Powered by</p>
+<h3>Propovoice</h3>";
+                    $data["logo"] = null;
                 }
             }
 
@@ -299,30 +317,6 @@ class Setting
                 }
             }
 
-            if ($tab == "google_api_calendar") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["client_id"] = "";
-                    $data["client_secret"] = "";
-                    $data["redirect_uri"] = "";
-                }
-            }
-
-            if ($tab == "google_api_drive") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["client_id"] = "";
-                    $data["client_secret"] = "";
-                    $data["redirect_uri"] = "";
-                }
-            }
-
             if ($tab == "automation_zapier") {
                 $option = get_option("ndpv_" . $tab);
 
@@ -330,8 +324,8 @@ class Setting
                     $data = $option;
                 } else {
                     $data["status"] = false;
-                    $data["name"] = '';
-                    $data["url"] = '';
+                    $data["name"] = "";
+                    $data["url"] = "";
                     $data["actions"] = [
                         /* [
                             "id" => "new_lead",
@@ -339,7 +333,7 @@ class Setting
                             "custom" => false,
                             "name" => '',
                             "url" => ''
-                        ], */ 
+                        ], */
                     ];
                 }
             }
@@ -353,9 +347,7 @@ class Setting
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
-        $tab = isset($param["tab"])
-            ? sanitize_text_field($param["tab"])
-            : null;
+        $tab = isset($param["tab"]) ? sanitize_text_field($param["tab"]) : null;
 
         if (empty($tab)) {
             $reg_errors->add(
@@ -369,13 +361,34 @@ class Setting
         } else {
             $data = [];
 
-            if ($tab == "email_social") {
-                //TODO: sanitization
-                $data["social"] = isset($param["social"])
-                    ? $param["social"]
+            if ($tab == "general_module") {
+                $data["deactivate"] = isset($param["deactivate"])
+                    ? array_map( 'sanitize_text_field', $param["deactivate"] )
+                    : [];
+                $option = update_option("ndpv_" . $tab, $data);
+            }
+
+            if ($tab == "subscription") {
+                $data = $param;
+                $data["deactivate"] = isset($param["deactivate"]) ? array_map( 'sanitize_text_field', $param["deactivate"] ) : [];
+                $option = update_option("ndpv_" . $tab, $data);
+            }
+
+            if ($tab == "email_footer") {
+                $data["active"] = isset($param["active"])
+                    ? rest_sanitize_boolean( $param["active"] )
+                    : null;
+                $data["text"] = isset($param["text"])
+                    ? ( $param["text"] )
                     : null;
 
                 $option = update_option("ndpv_" . $tab, $data);
+
+                $white_label["logo"] = isset($param["logo"])
+                    ? ( $param["logo"]['id'] )
+                    : null;
+
+                update_option("ndpv_white_label", $white_label);
             }
 
             if ($tab == "estinv_currency") {
@@ -556,35 +569,7 @@ class Setting
                 update_option("ndpv_" . $tab, $data);
             }
 
-            if ($tab == "google_api_calendar") {
-                //Check valid key here
-                $data["client_id"] = isset($param["client_id"])
-                    ? sanitize_text_field($param["client_id"])
-                    : null;
-                $data["client_secret"] = isset($param["client_secret"])
-                    ? sanitize_text_field($param["client_secret"])
-                    : null;
-                $data["redirect_uri"] = isset($param["redirect_uri"])
-                    ? sanitize_text_field($param["redirect_uri"])
-                    : null;
-                update_option("ndpv_" . $tab, $data);
-            }
-
-            if ($tab == "google_api_drive") {
-                //Check valid key here
-                $data["client_id"] = isset($param["client_id"])
-                    ? sanitize_text_field($param["client_id"])
-                    : null;
-                $data["client_secret"] = isset($param["client_secret"])
-                    ? sanitize_text_field($param["client_secret"])
-                    : null;
-                $data["redirect_uri"] = isset($param["redirect_uri"])
-                    ? sanitize_text_field($param["redirect_uri"])
-                    : null;
-                update_option("ndpv_" . $tab, $data);
-            }
-
-            if ($tab == "automation_zapier") { 
+            if ($tab == "automation_zapier") {
                 $data["status"] = isset($param["status"])
                     ? rest_sanitize_boolean($param["status"])
                     : null;
@@ -598,7 +583,7 @@ class Setting
                     ? $param["actions"]
                     : null;
                 update_option("ndpv_" . $tab, $data);
-            }  
+            }
 
             wp_send_json_success();
         }

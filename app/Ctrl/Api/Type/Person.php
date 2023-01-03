@@ -1,6 +1,6 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Api\Type;
-use Ndpv\Model\Org; 
+use Ndpv\Model\Org;
 
 class Person
 {
@@ -78,7 +78,7 @@ class Person
 
         if (isset($param['page']) && $param['page'] > 1) {
             $offset = ($per_page * $param['page']) - $per_page;
-        } 
+        }
 
         $args = array(
             'post_type' => 'ndpv_person',
@@ -98,18 +98,18 @@ class Person
                     'value'   => $s,
                     'compare' => 'Like',
                 )
-            ); 
+            );
             $args['meta_query'][] = array(
                 array(
                     'key'     => 'email',
                     'value'   => $s,
                     'compare' => 'Like',
                 )
-            ); 
-        } 
+            );
+        }
 
         $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
@@ -119,7 +119,7 @@ class Person
             $query_data['id'] = $id;
 
             $queryMeta = get_post_meta($id);
-            $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : ''; 
+            $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : '';
             $query_data['org_id'] = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
             $query_data['org_name'] = $queryMeta['org_id'] ? get_post_meta($query_data['org_id'], 'name', true) : '';
             $query_data['email'] = isset($queryMeta['email']) ? $queryMeta['email'][0] : '';
@@ -128,9 +128,9 @@ class Person
             $query_data['country'] = isset($queryMeta['country']) ? $queryMeta['country'][0] : '';
             $query_data['region'] = isset($queryMeta['region']) ? $queryMeta['region'][0] : '';
             $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : ''; 
-            
-            $img_id = isset($queryMeta['img']) ? $queryMeta['img'][0] : null; 
-            $imgData = null;  
+
+            $img_id = isset($queryMeta['img']) ? $queryMeta['img'][0] : null;
+            $imgData = null;
             if ( $img_id ) {
                 $img_src = wp_get_attachment_image_src( $img_id, 'thumbnail' );
                 if ( $img_src ) {
@@ -262,7 +262,7 @@ class Person
 
                 if ($first_name) {
                     update_post_meta($post_id, 'first_name', $first_name);
-                } 
+                }
 
                 if ( ! $org_id && $org_name ) {
                     $org = new Org();
@@ -317,8 +317,9 @@ class Person
 
         $first_name   = isset($param['first_name']) ? sanitize_text_field($req['first_name']) : null;
         $last_name    = isset($param['last_name']) ? sanitize_text_field($req['last_name']) : null;
+        $org_id     = isset($param['org_id']) ? absint($param['org_id']) : null;
+        $org_name     = isset($param['org_name']) ? sanitize_text_field($req['org_name']) : null;
         $email        = isset($param['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $org_name = isset($param['org_name']) ? sanitize_text_field($req['org_name']) : null;
         $web          = isset($param['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($param['mobile']) ? sanitize_text_field($req['mobile']) : null;
         $country      = isset($param['country']) ? sanitize_text_field($req['country']) : null;
@@ -353,8 +354,13 @@ class Person
                     update_post_meta($post_id, 'first_name', $first_name);
                 }
 
-                if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
+                if ( ! $org_id && $org_name ) {
+                    $org = new Org();
+                    $org_id = $org->create( [ 'org_name' => $org_name, 'person_id' => $post_id] );
+                }
+
+                if ($org_id) {
+                    update_post_meta($post_id, 'org_id', $org_id);
                 }
 
                 if ($email) {

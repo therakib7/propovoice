@@ -22,7 +22,7 @@ class Info
         return $site_name;
     }
 
-    public function wp() {
+    public function wp( $get_update = null, $share_info = null) {
 
         $users = get_users( array(
             'role'    => 'administrator',
@@ -40,18 +40,31 @@ class Info
             $last_name  = $admin_user->last_name;
         }
 
-        return [
+        $data = [
             'url'         => esc_url( home_url() ),
             'site'        => $this->get_site_name(),
             'admin_email' => get_option( 'admin_email' ),
             'first_name'  => $first_name,
-            'last_name'   => $last_name,     
+            'last_name'   => $last_name,
             'wp'          => $this->get_wp_info(),
-            'ip'          => $this->get_user_ip_address(), 
+            'ip'          => $this->get_user_ip_address(),
         ];
+
+        if ( $get_update !== null ) {
+            $data['get_update'] = $get_update;
+        }
+
+        if ( $share_info !== null ) {
+            $data['share_info'] = $share_info;
+        }
+
+        $data['version'] = NDPV_VERSION;
+        $data['package'] = 'free';
+
+        return $data;
     }
 
-     /**
+    /**
      * Get WordPress related data.
      *
      * @return array

@@ -4,8 +4,9 @@ import { toast } from 'react-toastify';
 import Style from './style.scss'
 
 import Api from 'api/business';
-import Info from './Info';
-import Branding from './Branding';
+import Business from './Business';
+import Module from './Module';
+import Tutorial from './Tutorial';
 
 export default class Welcome extends Component {
     constructor(props) {
@@ -18,12 +19,16 @@ export default class Welcome extends Component {
                     text: 'Welcome'
                 },
                 {
-                    id: 'info',
+                    id: 'business',
                     text: 'Business Info'
                 },
                 {
-                    id: 'branding',
-                    text: 'Branding Resource'
+                    id: 'module',
+                    text: 'Module'
+                },
+                {
+                    id: 'tutorial',
+                    text: 'Tutorial'
                 },
                 {
                     id: 'finish',
@@ -50,16 +55,10 @@ export default class Welcome extends Component {
         });
     };
 
-    handleBrandingChange = (data) => {
-        let business = { ...this.state.business }
-        business.logo = data;
-        this.setState({ business })
-    }
-
-    handleSubmit = (business, tab = null) => {
-        if (tab == 'branding') {
+    handleSubmit = (business) => {
+        /* if (tab == 'module') {
             business = this.state.business;
-        }
+        } */
 
         if (!business.id) {
             Api.create(business).then(resp => {
@@ -83,18 +82,16 @@ export default class Welcome extends Component {
             })
         }
 
-        if (tab == 'branding') {
-            this.setState({ currentTab: 'finish', currentTabIndex: 3 });
-        } else {
-            this.setState({ currentTab: 'branding', currentTabIndex: 2 });
-        }
+        this.setState({ currentTab: 'module', currentTabIndex: 2 });
     }
 
     handleSkip = (name = null) => {
-        if (name == 'info') {
-            this.setState({ currentTab: 'branding', currentTabIndex: 2 });
-        } else {
-            this.setState({ currentTab: 'finish', currentTabIndex: 3 });
+        if (name == 'business') {
+            this.setState({ currentTab: 'module', currentTabIndex: 2 });
+        } else if (name == 'module') {
+            this.setState({ currentTab: 'tutorial', currentTabIndex: 3 });
+        } else if (name == 'tutorial') {
+            this.setState({ currentTab: 'finish', currentTabIndex: 4 });
         }
     }
 
@@ -126,7 +123,7 @@ export default class Welcome extends Component {
                                             <svg
                                                 width={10}
                                                 height={10}
-                                                
+
                                                 xmlnsXlink="http://www.w3.org/1999/xlink"
                                                 viewBox="3.4 5.6 17.6 13.4"
                                                 enableBackground="new 3.4 5.6 17.6 13.4"
@@ -149,28 +146,36 @@ export default class Welcome extends Component {
                                         Welcome to Propovice. Propovice help you to create professional invoice and estimate for your client. You can send and track easily.
                                     </p>
                                     <div className="pv-buttons pv-text-center">
-                                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.setState({ currentTab: 'info', currentTabIndex: 1 })}>
-                                        {i18n.create} {i18n.biz} {i18n.profile}
+                                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue" onClick={() => this.setState({ currentTab: 'business', currentTabIndex: 1 })}>
+                                            {i18n.create} {i18n.biz} {i18n.profile}
                                         </button>
                                         <a href={ndpv.dashboard} className="pv-text-hover-blue">{i18n.skip} {i18n.nd} {i18n.go} {i18n.db}</a>
                                     </div>
                                 </div>}
 
-                            {currentTab == 'info' &&
+                            {currentTab == 'business' &&
                                 <div id="pv-business">
-                                    <Info
+                                    <Business
                                         data={this.state.business}
                                         handleSubmit={this.handleSubmit}
                                         handleSkip={this.handleSkip}
                                     />
                                 </div>}
 
-                            {currentTab == 'branding' &&
+                            {currentTab == 'module' &&
                                 <div id="pv-brand">
-                                    <Branding
+                                    <Module
                                         data={this.state.business}
-                                        changeHandler={this.handleBrandingChange}
-                                        handleSubmit={this.handleSubmit}
+                                        // handleSubmit={this.handleSubmit}
+                                        handleSkip={this.handleSkip}
+                                    />
+                                </div>}
+
+                            {currentTab == 'tutorial' &&
+                                <div id="pv-tutorial">
+                                    <Tutorial
+                                        data={this.state.business}
+                                        // handleSubmit={this.handleSubmit}
                                         handleSkip={this.handleSkip}
                                     />
                                 </div>}
@@ -195,7 +200,6 @@ export default class Welcome extends Component {
                                                             height={32}
                                                             viewBox="0 0 36 32"
                                                             fill="none"
-                                                            
                                                         >
                                                             <path
                                                                 d="M18 12.2344C21.3784 12.2344 24.1172 9.49562 24.1172 6.11719C24.1172 2.73876 21.3784 0 18 0C14.6216 0 11.8828 2.73876 11.8828 6.11719C11.8828 9.49562 14.6216 12.2344 18 12.2344Z"
@@ -239,7 +243,6 @@ export default class Welcome extends Component {
                                                             height={32}
                                                             viewBox="0 0 36 32"
                                                             fill="none"
-                                                            
                                                         >
                                                             <path
                                                                 d="M18 12.2344C21.3784 12.2344 24.1172 9.49562 24.1172 6.11719C24.1172 2.73876 21.3784 0 18 0C14.6216 0 11.8828 2.73876 11.8828 6.11719C11.8828 9.49562 14.6216 12.2344 18 12.2344Z"
@@ -283,7 +286,6 @@ export default class Welcome extends Component {
                                                             height={36}
                                                             viewBox="0 0 36 36"
                                                             fill="none"
-                                                            
                                                         >
                                                             <path
                                                                 d="M26.8039 7.03125L20.3906 0.617554V7.03125H26.8039Z"
@@ -325,7 +327,6 @@ export default class Welcome extends Component {
                                                             height={36}
                                                             viewBox="0 0 36 36"
                                                             fill="none"
-                                                            
                                                         >
                                                             <path
                                                                 d="M26.8039 7.03125L20.3906 0.617554V7.03125H26.8039Z"
@@ -350,7 +351,7 @@ export default class Welcome extends Component {
                                                         </svg>
                                                     </div>
                                                     <div className="pv-add-item-text">
-                                                        <h3>{i18n.create} {i18n.est}</h3>
+                                                        <h3>{i18n.create} {i18n.inv}</h3>
                                                         <p>
                                                             The easiest way to create a project estimate to send your client
                                                         </p>
@@ -363,14 +364,11 @@ export default class Welcome extends Component {
                                         <a href={ndpv.dashboard} className="pv-text-hover-blue pv-color-black">{i18n.skip} {i18n.nd} {i18n.explore}</a>
                                     </div>
                                 </div>
-
                             }
-
                         </div>{/* ./piTabsContent */}
                     </div>{/* ./tabs-content */}
                 </div>{/* ./piContainer */}
-            </div >
-
+            </div>
         );
     }
-} 
+}

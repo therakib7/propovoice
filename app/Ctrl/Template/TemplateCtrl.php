@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Template;
 
 class TemplateCtrl
@@ -6,31 +6,31 @@ class TemplateCtrl
 	public function __construct()
 	{
 		add_filter('theme_page_templates', [$this, 'template_list'], 10, 4);
-		add_filter('template_include', [$this, 'template_path']); 
-		add_action('wp_enqueue_scripts', array($this, 'wage_scripts'), 999);
-		add_action('admin_enqueue_scripts', array($this, 'wage_scripts'));
+		add_filter('template_include', [$this, 'template_path']);
+		add_action('wp_enqueue_scripts', array($this, 'wage_scripts'), 9999);
+		add_action('admin_enqueue_scripts', array($this, 'wage_scripts'), 9999);
 	}
 
 	/**
 	 * Add "Custom" template to page attirbute template section.
 	 */
 	function template_list($post_templates, $wp_theme, $post, $post_type)
-	{ 
-		if (function_exists('ndpvp')) {
+	{
+		if ( function_exists('ndpvp') ) {
 			$post_templates['workspace-template.php'] = esc_html__('Propovoice Workspace', 'propovoice');
 		}
-		$post_templates['invoice-template.php'] = esc_html__('Propovoice Client Invoice', 'propovoice');
 		$post_templates['estimate-template.php'] = esc_html__('Propovoice Client Estimate', 'propovoice');
+		$post_templates['invoice-template.php'] = esc_html__('Propovoice Client Invoice', 'propovoice');
 		return $post_templates;
 	}
 
 	/**
 	 * Check if current page has our custom template. Try to load
-	 * template from theme directory and if not exist load it 
+	 * template from theme directory and if not exist load it
 	 * from root plugin directory.
 	 */
 	function template_path($default)
-	{ 
+	{
 		$templates = [
 			'workspace',
 			'invoice',
@@ -44,7 +44,7 @@ class TemplateCtrl
 					return $custom_template;
 					break;
 				}
-			} 
+			}
 		}
 
 		return $default;

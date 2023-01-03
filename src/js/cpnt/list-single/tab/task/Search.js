@@ -169,7 +169,7 @@ export default class Form extends Component {
                                                 <input
                                                     className="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                     id="grid-zip"
-                                                    type="number"
+                                                    type="text"
                                                     name="zip"
                                                     value={this.state.form.zip}
                                                     onChange={this.handleChange}

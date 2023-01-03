@@ -22,10 +22,9 @@ const Tag = lazy(() => import('./tab/tag'));
 const Integrate = lazy(() => import('./tab/integrate'));
 const License = lazy(() => import('./tab/license'));
 
-//subtab: email 
+//subtab: email
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
-const EmailSocial = lazy(() => import('./tab/email/social'));
 
 const Payment = lazy(() => import('cpnt/payment'));
 
@@ -79,9 +78,6 @@ const Setting = (props) => {
                 },
                 invoice: {
                     label: i18n.inv
-                },
-                social: {
-                    label: i18n.social
                 },
             },
         },
@@ -141,7 +137,7 @@ const Setting = (props) => {
                             width={5}
                             height={10}
                             viewBox="0 0 5 10"
-                            fill="none" 
+                            fill="none"
                         >
                             <path
                                 d="M.5 1.25L4.25 5 .5 8.75"
@@ -188,7 +184,7 @@ const Setting = (props) => {
                     </div>
 
                     <div className='col-md-9'>
-                        <div className="pv-setting-tab-content"> 
+                        <div className="pv-setting-tab-content">
                             <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{currentTab != 'integration' && currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label} {i18n.settings}</h4>
                             {/* //TODO: subtab temp fix for integration */}
 
@@ -207,7 +203,6 @@ const Setting = (props) => {
 
                                 {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate {...props} />}
                                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice {...props} />}
-                                {currentTab == 'email' && currentSubtab == 'social' && <EmailSocial {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
                                 {currentTab == 'integration' && <Integrate {...props} />}

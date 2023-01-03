@@ -35,28 +35,28 @@ final class Ndpv {
         do_action('ndpv_before_init');
 
         $this->load_plugin_textdomain();
-        
-        new MainCtrl();  
+
+        new MainCtrl();
 
         do_action('ndpv_init');
     }
 
-    public function on_plugins_loaded() { 
-        do_action('ndpv_loaded');        
-    }   
+    public function on_plugins_loaded() {
+        do_action('ndpv_loaded');
+    }
 
     /**
-     * Load Localization files. 
+     * Load Localization files.
      */
     public function load_plugin_textdomain() {
-         
+
         $locale = determine_locale();
         $locale = apply_filters('ndpv_plugin_locale', $locale );
         unload_textdomain('propovoice');
         load_textdomain('propovoice', WP_LANG_DIR . '/ndpv/ndpv-' . $locale . '.mo');
         load_plugin_textdomain('propovoice', false, plugin_basename(dirname(NDPV_FILE)) . '/languages');
     }
- 
+
     /**
      * What type of request is this?
      *
@@ -75,7 +75,7 @@ final class Ndpv {
             case 'cron':
                 return defined('DOING_CRON');
         }
-    }  
+    }
 
     /**
      * Get the plugin path.
@@ -84,14 +84,14 @@ final class Ndpv {
      */
     public function plugin_path() {
         return untrailingslashit(plugin_dir_path(NDPV_FILE));
-    } 
+    }
 
     /**
      * @return mixed
      */
     public function version() {
         return NDPV_VERSION;
-    }  
+    }
 
     /**
      * Get the template path.
@@ -100,7 +100,7 @@ final class Ndpv {
      */
     public function get_template_path() {
         return apply_filters('ndpv_template_path', 'ndpv/templates/');
-    } 
+    }
 
     /**
      * Get the template partial path.
@@ -108,8 +108,8 @@ final class Ndpv {
      * @return string
      */
     public function get_partial_path( $path = null, $args = []) {
-        Fns::get_template_part( 'partial/' . $path, $args ); 
-    } 
+        Fns::get_template_part( 'partial/' . $path, $args );
+    }
 
     /**
      * @param $file
@@ -127,10 +127,10 @@ final class Ndpv {
      *
      * @return string
      */
-    public function render($viewName, $args = array(), $return = false) { 
+    public function render($viewName, $args = array(), $return = false) {
         $path = str_replace(".", "/", $viewName);
         $viewPath = NDPV_PATH . '/view/' . $path . '.php';
-        if ( !file_exists($viewPath) ) { 
+        if ( !file_exists($viewPath) ) {
             return;
         }
 
@@ -155,7 +155,7 @@ final class Ndpv {
     public function get_options() {
 
         $option_field = func_get_args()[0];
-        $result = get_option( $option_field ); 
+        $result = get_option( $option_field );
         $func_args = func_get_args();
         array_shift( $func_args );
 
@@ -163,19 +163,19 @@ final class Ndpv {
             if ( is_array($arg) ) {
                 if ( !empty( $result[$arg[0]] ) ) {
                     $result = $result[$arg[0]];
-                } else {  
-                  $result = $arg[1];
+                } else {
+                    $result = $arg[1];
                 }
             } else {
                 if ( !empty($result[$arg] ) ) {
                     $result = $result[$arg];
-                } else { 
+                } else {
                     $result = null;
                 }
             }
         }
         return $result;
-    }  
+    }
 
     /**
      * @param $file
@@ -183,11 +183,11 @@ final class Ndpv {
      * @return mixed
      */
     public function get_default()
-    { 
+    {
         $data = new Data;
         $result = $data->default();
-        $func_args = func_get_args();  
-        
+        $func_args = func_get_args();
+
         foreach ($func_args as $arg) {
             if (is_array($arg)) {
                 if (!empty($result[$arg[0]])) {
@@ -217,5 +217,5 @@ final class Ndpv {
  */
 function ndpv() {
     return Ndpv::getInstance();
-} 
-ndpv(); // Run Ndpv Plugin  
+}
+ndpv(); // Run Ndpv Plugin

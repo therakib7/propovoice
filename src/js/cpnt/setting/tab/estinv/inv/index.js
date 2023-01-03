@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import WithApi from 'hoc/Api';
-import Reminder from 'block/field/reminder';  
+import Reminder from 'block/field/reminder';
 import General from './sub/General';
 import Recurring from './sub/Recurring';
 
@@ -17,7 +17,7 @@ class Main extends Component {
 				{
 					id: 'reminder',
 					text: ndpv.i18n.rem
-				}, 
+				},
 				/* {
 					id: 'recurring',
 					text: 'Recurring'
@@ -26,13 +26,13 @@ class Main extends Component {
 			currentTab: '',
 		}
 
-	} 
+	}
 
 	componentDidMount() {
 		this.setState({ currentTab: 'general' });
 	}
 
-	setActiveTab(id) { 
+	setActiveTab(id) {
 		this.setState({ currentTab: id });
 	}
 
@@ -40,7 +40,7 @@ class Main extends Component {
 		const { tabs = [], currentTab } = this.state;
 		return (
 			<>
-				<ul className='pv-settings-horizontal-tab'>
+				<ul className='pv-horizontal-tab'>
 					{tabs.map((tab, index) => (
 						<li
 							key={index}
@@ -51,13 +51,13 @@ class Main extends Component {
 						</li>
 					))}
 				</ul>
-		
-				{currentTab == 'general' && <General />}  
-				{currentTab == 'reminder' && <Reminder {...this.props} path={'invoice'} />}  
+
+				{currentTab == 'general' && <General />}
+				{currentTab == 'reminder' && <Reminder {...this.props} path={'invoice'} />}
 				{currentTab == 'recurring' && <Recurring {...this.props} />}
 			</>
 		);
 	}
-} 
+}
 
 export default WithApi(Main); 

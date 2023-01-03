@@ -89,7 +89,7 @@ class Webhook
 
         $args['meta_query'] = array(
             'relation' => 'AND'
-        ); 
+        );
 
         if ( $type ) {
             $args['meta_query'][] = array(
@@ -111,13 +111,16 @@ class Webhook
             $query_data['id'] = $id;
 
             $queryMeta = get_post_meta($id);
-            $query_data['name'] = get_the_title(); 
-            $query_data['active'] = isset($queryMeta['active']) ? $queryMeta['active'][0] : false; 
-            $query_data['url'] = isset($queryMeta['url']) ? $queryMeta['url'][0] : ''; 
-            $query_data['method'] = isset($queryMeta['method']) ? $queryMeta['method'][0] : ''; 
-            $query_data['actions'] = isset($queryMeta['actions']) ? $queryMeta['actions'][0] : []; 
+            $query_data['name'] = get_the_title();
+            $query_data['active'] = false;
+            if ( isset($queryMeta['active']) && $queryMeta['active'][0] ) {
+                $query_data['active'] = true;
+            }
 
-             
+            $query_data['url'] = isset($queryMeta['url']) ? $queryMeta['url'][0] : '';
+            $query_data['method'] = isset($queryMeta['method']) ? $queryMeta['method'][0] : '';
+            $query_data['actions'] = isset($queryMeta['actions']) ? maybe_unserialize( $queryMeta['actions'][0] ) : [];
+
             $data[] = $query_data;
         }
         wp_reset_postdata();
@@ -137,9 +140,7 @@ class Webhook
 
         $queryMeta = get_post_meta($id);
         $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
-        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : ''; 
-
-        
+        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
 
         $query_data['date'] = get_the_time(get_option('date_format'));
 
@@ -152,16 +153,16 @@ class Webhook
         $reg_errors = new \WP_Error();
 
         //webhook
-        $type = isset($param['type']) ? sanitize_text_field($param['type']) : null;
+        $type = isset($param['type']) ? sanitize_text_field($param['type']) : '';
         $active = isset($param['active']) ? rest_sanitize_boolean($param['active']) : false;
-        $name  = isset($param['name']) ? sanitize_text_field($param['name']) : null;
-        $url   = isset($param['url']) ? esc_url_raw($param['url']) : null;
-        $method  = isset($param['method']) ? sanitize_text_field($param['method']) : null; 
+        $name  = isset($param['name']) ? sanitize_text_field($param['name']) : '';
+        $url   = isset($param['url']) ? esc_url_raw($param['url']) : '';
+        $method  = isset($param['method']) ? sanitize_text_field($param['method']) : '';
         $actions = isset($param['actions']) ? array_map('sanitize_text_field', $param['actions']) : [];
 
         if ( empty($type) ) {
             $reg_errors->add('field', esc_html__('Type is missing', 'propovoice'));
-        } 
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -169,18 +170,18 @@ class Webhook
             //insert webhook
             $data = array(
                 'post_type' => 'ndpv_webhook',
-                'post_title' => $name, 
+                'post_title' => $name,
                 'post_status'  => 'publish',
                 'post_author'  => get_current_user_id()
             );
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());  
+                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
 
                 if ($type) {
                     update_post_meta($post_id, 'type', $type);
-                } 
+                }
 
                 if ($active) {
                     update_post_meta($post_id, 'active', $active);
@@ -192,11 +193,11 @@ class Webhook
 
                 if ($method) {
                     update_post_meta($post_id, 'method', $method);
-                } 
+                }
 
                 if ($actions) {
                     update_post_meta($post_id, 'actions', $actions);
-                } 
+                }
 
                 wp_send_json_success($post_id);
             } else {
@@ -211,16 +212,17 @@ class Webhook
         $reg_errors = new \WP_Error();
 
         //webhook
-        $type = isset($param['type']) ? sanitize_text_field($param['type']) : null;
+        $type = isset($param['type']) ? sanitize_text_field($param['type']) : '';
         $active = isset($param['active']) ? rest_sanitize_boolean($param['active']) : false;
-        $name   = isset($param['name']) ? sanitize_text_field($param['name']) : null;
-        $url   = isset($param['url']) ? esc_url_raw($param['url']) : null;
-        $method   = isset($param['method']) ? sanitize_text_field($param['method']) : null; 
-        $actions         = isset($param['actions']) ? array_map('sanitize_text_field', $param['actions']) : [];
+        $name   = isset($param['name']) ? sanitize_text_field($param['name']) : '';
+        $url   = isset($param['url']) ? esc_url_raw($param['url']) : '';
+        $method   = isset($param['method']) ? sanitize_text_field($param['method']) : '';
+        $actions  = isset($param['actions']) ? array_map('sanitize_text_field', $param['actions']) : [];
 
         if (empty($type)) {
             $reg_errors->add('field', esc_html__('Type is missing', 'propovoice'));
-        } 
+        }
+
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
@@ -229,20 +231,20 @@ class Webhook
 
             $data = array(
                 'ID'            => $post_id,
-                'post_title'    => $name, 
+                'post_title'    => $name,
                 'post_author'   => get_current_user_id()
             );
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
-                 
+
                 update_post_meta($post_id, 'active', $active);
 
                 update_post_meta($post_id, 'url', $url);
 
-                update_post_meta($post_id, 'method', $method); 
+                update_post_meta($post_id, 'method', $method);
 
-                update_post_meta($post_id, 'actions', $actions); 
+                update_post_meta($post_id, 'actions', $actions);
 
                 wp_send_json_success($post_id);
             } else {
@@ -252,7 +254,7 @@ class Webhook
     }
 
     public function delete($req)
-    { 
+    {
         $url_params = $req->get_url_params();
         $ids = explode(',', $url_params['id']);
         foreach ($ids as $id) {

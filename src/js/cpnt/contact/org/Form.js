@@ -75,6 +75,15 @@ class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
+        if (!val) {
+            if (type == 'person') {
+                form.person_id = null;
+            } else {
+                form.org_id = null;
+            }
+            this.setState({ form });
+            return;
+        };
 
         if (type == 'person') {
             form.first_name = val.first_name;
@@ -114,7 +123,7 @@ class Form extends Component {
     render() {
         const form = this.state.form;
         const i18n = ndpv.i18n;
-        const modalType = this.props.modalType == 'new' ? i18n.new : i18n.edit;
+        const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -123,7 +132,7 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{modalType} {i18n.org}</h2> 
+                        <h2 className="pv-modal-title">{modalType} {i18n.org}</h2>
                         <p>{sprintf(i18n.formDesc, modalType, i18n.org)}</p>
                     </div>
 

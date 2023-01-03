@@ -17,7 +17,7 @@ const TableHeader = props => {
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox" 
+                    <input type="checkbox"
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
@@ -63,19 +63,28 @@ const TableHeader = props => {
 
 const TableBody = props => {
     let navigate = useNavigate();
-    function handleClick(id, view = '') {
+    function handleClick(row, view = '') {
         let path = props.path;
-        navigate(`/${path}/single/${id}${view}`);
+
+        switch (row.status) {
+            case 'accept':
+            case 'decline':
+            case 'paid':
+                view = '/tab/preview';
+                break;
+        }
+
+        navigate(`/${path}/single/${row.id}${view}`);
     }
     const i18n = ndpv.i18n;
 
-    let rows = props.tableData.map((row, index) => { 
+    let rows = props.tableData.map((row, index) => {
 
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
         let status;
         switch (row.status) {
-            
+
             case 'draft':
                 status = <span className='pv-badge pv-bg-pink'
                 // style={{color: '#fff'}}
@@ -83,39 +92,41 @@ const TableBody = props => {
                 break;
 
             case 'sent':
-                status = <span className='pv-badge pv-bg-gray'
-                // style={{color: '#fff'}}
+                status = <span className='pv-badge'
+                    style={{ backgroundColor: '#F4F2FE', color: '#8775EC' }}
                 >{ndpv.i18n.sent}</span>
                 break;
 
             case 'viewed':
-                status = <span className='pv-badge pv-bg-orange'
-                // style={{color: '#999'}}
+                status = <span className='pv-badge'
+                    style={{ backgroundColor: '#E0F0EC', color: '#4BB99E' }}
                 >{ndpv.i18n.viewed}</span>
                 break;
 
             case 'accept':
-                status = <span className='pv-badge pv-bg-blue pv-cursor-pointer'
-                    style={{ color: '#fff' }}
+                status = <span className='pv-badge pv-cursor-pointer'
+                    style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}
                     onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.acptd}</span>
                 break;
 
             case 'decline':
-                status = <span className='pv-badge pv-bg-orange pv-cursor-pointer'
-                    style={{ color: '#4a5568' }}
+                status = <span className='pv-badge pv-cursor-pointer'
+                    style={{ backgroundColor: '#FFF0F1', color: '#FF6771' }}
                     onClick={() => props.infoModal(row, 'feedback')}>{ndpv.i18n.dec}</span>
                 break;
 
             case 'paid_req':
-                status = <span className='pv-badge pv-bg-orange'
-                    style={{ color: '#4a5568' }}
+                status = <span className='pv-badge pv-cursor-pointer'
+                    style={{ backgroundColor: '#ECF9FC', color: '#33C3E2' }}
                 >{ndpv.i18n.paid} {ndpv.i18n.req}</span>
                 break;
 
             case 'paid':
-                status = <span className='pv-badge pv-bg-blue'
-                    style={{ color: '#fff' }}
-                >{ndpv.i18n.paid}</span>
+                let recurring = row.invoice.recurring;
+                status = <span className='pv-badge pv-cursor-pointer'
+                    style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}
+                >{(recurring.status && recurring.hasOwnProperty('subscription') && recurring.subscription) ? ndpv.i18n.subsed : ndpv.i18n.paid}</span>
+                break;
                 break;
         }
 
@@ -142,24 +153,24 @@ const TableBody = props => {
         let result = url.replace('invoice_id', invoice_id);
         let client_url = result.replace('invoice_token', invoice_token);
 
-        const nNum = row.num ? row.num : props.prefix + row.id; 
+        const nNum = row.num ? row.num : props.prefix + row.id;
 
         const i18n = ndpv.i18n;
         return (
             <tr key={index}>
                 <td>
-                    <input type="checkbox" 
+                    <input type="checkbox"
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><span className='pv-list-title'>{nNum}</span></td>
+                <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'><span className='pv-list-title'>{nNum}</span></td>
                 {/*<td>{row.project.name}</td>*/}
-                {!props.client_id && <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>
+                {!props.client_id && <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
                 </td>}
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'>{currency(row.total, row.invoice.currency, row.invoice.lang )}</td>
+                <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'>{currency(row.total, row.invoice.currency, row.invoice.lang)}</td>
                 {/* {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>
@@ -168,15 +179,15 @@ const TableBody = props => {
                 }  */}
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
-                <td onClick={() => { handleClick(row.id); }} className='pv-cursor-pointer'><Moment format={ndpv.date_format}>{row.date}</Moment></td>
+                <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'><Moment format={ndpv.date_format}>{row.date}</Moment></td>
                 <td className="pv-action">
                     <Action
                         row={row}
-                        client_url={ client_url } 
-                        single={ handleClick } 
+                        client_url={client_url}
+                        single={handleClick}
                         action={props.action}
                         deleteEntry={props.deleteEntry}
-                    /> 
+                    />
                 </td>
             </tr>
         );
@@ -251,4 +262,4 @@ const Table = (props) => {
     );
 }
 
-export default Table; 
+export default Table;

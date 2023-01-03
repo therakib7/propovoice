@@ -11,7 +11,7 @@ import './style.css';
 import Api from 'api/payment-process';
 
 // This values are the props in the UI
- 
+
 const style = { "layout": "vertical" };
 
 // Custom component to wrap the PayPalButtons and handle currency changes
@@ -155,7 +155,7 @@ class Paypal extends Component {
                                         <div className="col-lg">
                                             <PayPalScriptProvider
                                                 options={{
-                                                    "client-id": client_id, 
+                                                    "client-id": client_id,
                                                     currency: currency
                                                 }}
                                             >

@@ -5,7 +5,7 @@ import ProLabel from "block/pro-alert/label";
 
 import Form from "./form";
 import Smtp from "./smtp";
-import GoogleAPI from "./google-api";
+import GOAuth2 from "./google-api/services/goauth2";
 import Automation from "./automation";
 
 const Main = (props) => {
@@ -27,8 +27,8 @@ const Main = (props) => {
       text: "SMTP",
     },
     {
-      id: "google-api",
-      text: "Google API",
+      id: "google-apps",
+      text: "Google Apps",
     },
     {
       id: "automation",
@@ -60,7 +60,7 @@ const Main = (props) => {
 
   return (
     <>
-      <ul className="pv-settings-horizontal-tab">
+      <ul className="pv-horizontal-tab">
         {tabs.map((tab, index) => (
           <li
             key={index}
@@ -90,14 +90,22 @@ const Main = (props) => {
         />
       )}
 
-      {currentTab == "google-api" && (
-        <GoogleAPI
+      {currentTab == "google-apps" && (
+        <GOAuth2
           key={reload}
           {...props}
           onChange={addCurrentTab}
           tab={currentSubtab}
         />
       )}
+      {/* {currentTab == "google-api" && (
+        <GoogleAPI
+          key={reload}
+          {...props}
+          onChange={addCurrentTab}
+          tab={currentSubtab}
+        />
+      )} */}
 
       {currentTab == "automation" && (
         <Automation

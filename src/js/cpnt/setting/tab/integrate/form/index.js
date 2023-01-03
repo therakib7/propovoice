@@ -24,7 +24,7 @@ export default class Main extends Component {
                 mobile: 'Mobile',
                 web: 'Web',
                 source_id: 'Source', //tax
-                level_id: 'Level', //tax 
+                level_id: 'Level', //tax
                 budget: 'Budget',
                 currency: 'Currency',
                 desc: 'Description'
@@ -73,15 +73,15 @@ export default class Main extends Component {
         let singleForm = [...this.state.singleForm]
         const target = e.target;
         const name = target.name;
-        const value = target.type === 'checkbox' ? target.checked : target.value; 
+        const value = target.type === 'checkbox' ? target.checked : target.value;
         if (name == 'active') {
             if (wage.length > 0) {
                 pro();
                 return;
             }
-            singleForm[i].active = value; 
+            singleForm[i].active = value;
             this.setState({ singleForm }, () => {
-                this.submitFormData(i); 
+                this.submitFormData(i);
             })
         } else {
             singleForm[i].fields[si].value = value;
@@ -99,14 +99,14 @@ export default class Main extends Component {
         this.submitFormData(i);
     }
 
-    submitFormData = (i) => { 
+    submitFormData = (i) => {
         let form = JSON.parse(JSON.stringify(this.state.singleForm));
-        form[i].form = this.state.currentTab.slug; 
+        form[i].form = this.state.currentTab.slug;
         const newFields = form[i].fields.map(({ label, ...rest }) => {
             return rest;
         });
         form[i].fields = newFields;
-        
+
         api.edit('forms', form[i].id, form[i]).then(resp => {
             if (resp.data.success) {
                 toast.success(ndpv.i18n.aUpd);

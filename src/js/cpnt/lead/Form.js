@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
+import { toast } from "react-toastify";
+import Upload from 'block/field/upload';
 import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
-import api from 'api'; 
+import api from 'api';
 
 export default class Form extends Component {
     constructor(props) {
@@ -26,6 +28,7 @@ export default class Form extends Component {
             currency: 'USD',
             desc: '',
             note: '',
+            img: '',
             date: false,
         };
 
@@ -77,7 +80,7 @@ export default class Form extends Component {
         this.setState({ form });
     }
 
-    componentDidMount() { 
+    componentDidMount() {
 
         //find person
         let args = {
@@ -119,10 +122,12 @@ export default class Form extends Component {
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
+                    form.img = (form.person) ? form.person.img : '';
                 } else {
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
+                    form.img = (form.org) ? form.org.img : '';
                 }
                 form.org_name = (form.org) ? form.org.name : '';
 
@@ -146,6 +151,10 @@ export default class Form extends Component {
             form.level_id = form.level_id.id;
         }
 
+        if (form.img) {
+            form.img = form.img.id;
+        }
+
         if (form.tags.length) {
             let finalArray = form.tags.map(function (obj) {
                 return obj.id;
@@ -153,13 +162,17 @@ export default class Form extends Component {
             form.tags = finalArray;
         }
 
+        delete form.person;
+        delete form.org;
+
         if (this.props.reload) {
             api.edit('leads', form.id, form);
             this.props.close();
+            toast.success(ndpv.i18n.aUpd);
             this.props.reload();
         } else {
             this.props.handleSubmit(form);
-        } 
+        }
     }
 
     handleContactChange = (val, type) => {
@@ -174,7 +187,16 @@ export default class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-        if (!val) return;
+        if (!val) {
+            if (type == 'person') {
+                form.person_id = null;
+            } else {
+                form.org_id = null;
+            }
+            this.setState({ form });
+            return;
+        };
+
         if (type == 'person') {
             form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
@@ -194,12 +216,18 @@ export default class Form extends Component {
         this.setState({ form });
     }
 
-    render() {  
+    handleImgChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.img = data;
+        this.setState({ form })
+    }
 
-        const form = this.state.form; 
+    render() {
+
+        const form = this.state.form;
         const i18n = ndpv.i18n;
 
-        const modalType = this.props.modalType == 'new' ? i18n.new : i18n.edit;
+        const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -286,7 +314,7 @@ export default class Form extends Component {
                                             title={i18n.level}
                                             onChange={this.handleLevelChange}
                                             color
-                                        /> 
+                                        />
                                     </div>
 
                                     <div className="col-md">
@@ -297,12 +325,12 @@ export default class Form extends Component {
                                         <div className="pi-field-multi">
                                             <Taxonomy
                                                 onChange={this.handleTagChange}
-                                                data={form.tags} 
+                                                data={form.tags}
                                                 taxonomy='tag'
                                                 title={i18n.tag}
                                                 multi
                                             />
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
 
@@ -335,6 +363,16 @@ export default class Form extends Component {
                                             value={form.note}
                                             onChange={(e) => this.handleChange(e, 'lead')}
                                         />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label
+                                            htmlFor="field-img">
+                                            {i18n.img}
+                                        </label>
+                                        <Upload data={form.img} changeHandler={this.handleImgChange} />
                                     </div>
                                 </div>
                             </div>

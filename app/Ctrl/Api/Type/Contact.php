@@ -176,26 +176,32 @@ class Contact
         $queryMeta = get_post_meta($id);
         $type = get_post_type( $id ) == 'ndpv_person' ? 'person' : 'org';
         $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
-        $query_data['tab_id'] = $id; 
-        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : ''; 
+        $query_data['tab_id'] = $id;
+        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
 
-        $project = new Project(); 
+        $project = new Project();
         $query_data['project'] = $project->total($id);
-        
-        $deal = new Deal(); 
+
+        $deal = new Deal();
         $query_data['deal'] = $deal->total($id);
 
-        $query_data['person'] = null; 
+        $query_data['person'] = null;
         if ( $type == 'person' ) {
-            $person = new Person();   
+            $person = new Person();
             $query_data['person'] = $person->single( $id, true );
         }
 
-        $query_data['org'] = null; 
+        $query_data['org'] = null;
         if ( $type == 'org' ) {
-            $org = new Org();   
+            $org = new Org();
             $query_data['org'] = $org->single( $id, true );
-        } 
+        } else {
+            $org_id = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
+            if ($org_id) {
+                $org = new Org();
+                $query_data['org'] = $org->single($org_id, true);
+            }
+        }
 
         $query_data['status_id'] = '';
         $status = get_the_terms($id, 'ndpv_contact_status');

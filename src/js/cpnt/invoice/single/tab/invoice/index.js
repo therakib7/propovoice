@@ -38,7 +38,7 @@ class Invoice extends Component {
 		const i18n = ndpv.i18n;
 		this.state = {
 			preload: true,
-			title: '', 
+			title: '',
 			tabs: [
 				{
 					id: 'template',
@@ -47,7 +47,7 @@ class Invoice extends Component {
 				},
 				{
 					id: 'info',
-					text: i18n.addi + ' ' + i18n.amt,
+					text: i18n.add + ' ' + i18n.con,
 				},
 				{
 					id: 'preview',
@@ -129,6 +129,7 @@ class Invoice extends Component {
 					interval: 1,
 					limit_type: 0,
 					limit: 5,
+					subscription: false,
 					send_me: false,
 					delivery: 1, //1=auto, 0=manual
 				},
@@ -188,13 +189,13 @@ class Invoice extends Component {
 			this.getData(this.props.id, true); //edit
 		} else {
 			//set future due date
-			this.getData(0 + '?path='+path, false); //new
+			this.getData(0 + '?path=' + path, false); //new
 			let date = new Date();
 			let dueDate = new Date(date);
 			dueDate.setDate(dueDate.getDate() + 30);
 
 			let invoice = { ...this.state.invoice }
-			invoice.due_date = dueDate; 
+			invoice.due_date = dueDate;
 			invoice.path = path;
 
 			//deal, project id
@@ -242,7 +243,7 @@ class Invoice extends Component {
 		}
 	};
 
-	getData = (id, edit) => { 
+	getData = (id, edit) => {
 
 		api.getS('invoices', id).then(resp => {
 			let data = resp.data.data;
@@ -252,6 +253,7 @@ class Invoice extends Component {
 				invoice.token = data.token;
 				invoice.date = new Date(data.invoice.date);
 				invoice.due_date = new Date(data.invoice.due_date);
+				invoice.status = data.status;
 
 				let payment_methods = data.invoice.payment_methods; //it's because wordpress empty object covnert to array
 				if (Array.isArray(payment_methods) && !payment_methods.length) {
@@ -260,7 +262,7 @@ class Invoice extends Component {
 
 				invoice.num = data.invoice.num ? data.invoice.num : data.prefix + data.id;
 				this.setState({
-					preload: false, 
+					preload: false,
 					invoice,
 					status: data.status,
 					fromData: data.fromData,
@@ -285,8 +287,8 @@ class Invoice extends Component {
 			return;
 		}
 
-		let invoice = { ...this.state.invoice } 
-		invoice.num = e.target.value; 
+		let invoice = { ...this.state.invoice }
+		invoice.num = e.target.value;
 		this.setState({ invoice });
 	}
 
@@ -494,9 +496,28 @@ class Invoice extends Component {
 		}).format(amount))
 	}
 
-
 	setActiveTab(e, id, index) {
 		e.preventDefault();
+
+		if (id != 'preview') {
+			let edit = true;
+			switch (this.state.status) {
+				case 'accept':
+				case 'decline':
+				case 'paid':
+					if (this.props.path == 'invoice') {
+						toast.error('Paid Invoice is not editable');
+					} else if (this.props.path == 'estimate') {
+						toast.error('Accept or Decline Estimate is not editable');
+					}
+					edit = false;
+					break;
+			}
+
+			if (!edit) {
+				return;
+			}
+		}
 
 		if (id == 'preview') {
 			this.handleSave();
@@ -552,7 +573,7 @@ class Invoice extends Component {
 		});
 	}
 
-	setSidebarActive( id ) { 
+	setSidebarActive(id) {
 		if (this.state.sidebarActive == id) {
 			this.setState({ sidebarActive: '' });
 		} else {
@@ -683,8 +704,8 @@ class Invoice extends Component {
 	}
 
 	render = () => {
-		const { preload, title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state; 
-		
+		const { preload, title, tabs = [], currentTab, currentTabIndex, sidebarActive, invoice } = this.state;
+
 		const i18n = ndpv.i18n;
 		return (
 			<>
@@ -863,6 +884,7 @@ class Invoice extends Component {
 						</div>
 
 						{(currentTab == 'template') && <Template
+							path={this.props.path}
 							currentTemplate={invoice.template}
 							changeHandler={this.handleTemplateChange}
 						/>}
@@ -912,8 +934,8 @@ class Invoice extends Component {
 																<input
 																	type="text"
 																	name="invoice_id"
-																	value={invoice.num} 
-																	placeholder={this.state.prefix ? this.state.prefix + '{id}' : '{id}'} 
+																	value={invoice.num}
+																	placeholder={this.state.prefix ? this.state.prefix + '{id}' : '{id}'}
 																	onChange={this.onNumChange}
 																/>
 															</div>
@@ -930,7 +952,7 @@ class Invoice extends Component {
 
 														<div className="pv-info-form-list">
 															<div className="pv-info-lavel">
-																<label htmlFor="due">{i18n.due} {i18n.date}:</label>
+																<label htmlFor="due">{i18n.dueDate}:</label>
 															</div>
 															<div className="pv-info-input-field">
 																<DateField date={invoice.due_date} type='due_date' onDateChange={this.onDateChange} />
@@ -1073,21 +1095,23 @@ class Invoice extends Component {
 														/>
 													</li>}
 
-													{!this.state.wc && (!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
+													{(!sidebarActive || sidebarActive == 'payment') && this.props.path == 'invoice' && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('payment')} />
 														<i />
 														<h3 className='pv-title-small'>{i18n.payment} {i18n.method}</h3>
 														<Payment
 															handleChange={this.onPaymentChange}
+															wc={this.state.wc}
 															data={invoice}
-														// handleSave={this.handleSave}
+															subs={invoice.recurring.subscription}
+														//handleSave={this.handleSave}
 														/>
 													</li>}
 
 													{(!sidebarActive || sidebarActive == 'currency') && <li>
 														<input type="checkbox" defaultChecked="checked" onClick={() => this.setSidebarActive('currency')} />
 														<i />
-														<h3 className='pv-title-small'>{i18n.cur} <ProLabel /></h3>
+														<h3 className='pv-title-small'>{i18n.cur}</h3>
 														<Currency
 															{...this.props}
 															currency={invoice.currency}
@@ -1095,12 +1119,12 @@ class Invoice extends Component {
 															lang={invoice.lang}
 															onChange={this.currencyChange}
 														/>
-													</li>} 
+													</li>}
 
 													<ExtraAmount
-														{...this.props} 
+														{...this.props}
 														sidebar={sidebarActive}
-														setSidebar={this.setSidebarActive} 
+														setSidebar={this.setSidebarActive}
 														item_tax={invoice.item_tax}
 														itemTaxChange={this.itemTaxChange}
 														handleChange={this.onExtraFieldChange}

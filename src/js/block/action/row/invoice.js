@@ -11,25 +11,27 @@ export default (props) => {
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
-    const showDropdown = () => {
-        if (dropdown) {
-            setDropdown(false);
-        } else {
-            setDropdown(true);
-        }
-    };
-
     const row = props.row;
+
+    let canEdit = true;
+    switch (row.status) {
+        case 'accept':
+        case 'decline':
+        case 'paid':
+            canEdit = false;
+            break;
+    }
+
     const i18n = ndpv.i18n;
     return (
         <div className="pv-action-content">
-            <button className={(dropdown ? 'pv-active' : '')} onClick={() => showDropdown()} style={{ padding: '0 5px' }} >
+            <button className={(dropdown ? 'pv-active' : '')} onClick={() => setDropdown(val => !val)} style={{ padding: '0 5px' }} >
                 <Edit />
             </button>
 
             {dropdown && <div className="pv-dropdown-content pv-show" ref={dropdownRef}>
-                <a onClick={() => { setDropdown(false); props.single(row.id); }}>{i18n.edit}</a>
-                <a onClick={() => props.single(row.id, '/tab/preview')}>{i18n.prv}</a>
+                {canEdit && <a onClick={() => { setDropdown(false); props.single(row); }}>{i18n.edit}</a>}
+                <a onClick={() => props.single(row, '/tab/preview')}>{i18n.prv}</a>
                 <a target='_blank' href={props.client_url}>{i18n.client} {i18n.prv}</a>
                 <a onClick={() => { setDropdown(false); props.action('sent', row.id); }}>{i18n.mark} {i18n.sent}</a>
                 {row.path == 'invoice' && <a onClick={() => { setDropdown(false); props.action('paid', row.id); }}>{i18n.mark} {i18n.paid}</a>}

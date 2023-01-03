@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Upload from 'block/field/upload';
 
 class Info extends Component {
     constructor(props) {
@@ -43,6 +44,12 @@ class Info extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.handleSubmit(this.state.form);
+    }
+
+    handleLogoChange = (data) => {
+        let form = { ...this.state.form }
+        form.logo = data;
+        this.setState({ form })
     }
 
     render() {
@@ -125,12 +132,13 @@ class Info extends Component {
 
                             <input
                                 id="field-mobile"
-                                type="text" 
+                                type="text"
                                 name="mobile"
                                 value={this.state.form.mobile}
                                 onChange={this.handleChange}
                             />
                         </div>
+
                         <div className="col-md">
                             <label
                                 htmlFor="field-zip">
@@ -139,7 +147,7 @@ class Info extends Component {
 
                             <input
                                 id="field-zip"
-                                type="number"
+                                type="text"
                                 name="zip"
                                 value={this.state.form.zip}
                                 onChange={this.handleChange}
@@ -147,7 +155,7 @@ class Info extends Component {
                         </div>
                     </div>
 
-                    <div className="row pv-mb-30">
+                    <div className="row">
                         <div className="col">
                             <label
                                 htmlFor="field-address">
@@ -164,11 +172,18 @@ class Info extends Component {
                             />
                         </div>
                     </div>
+
+                    <div className="row pv-mb-30">
+                        <div className="col-md">
+                            <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
+                            <Upload label={'Logo'} library={false} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="pv-buttons pv-text-center">
                     <button type="submit" className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big"> {i18n.save} {i18n.nd} {i18n.cont}</button>
-                    <a className="pv-text-hover-blue" onClick={() => this.props.handleSkip('info')}>{i18n.skip}</a>
+                    <a className="pv-text-hover-blue" onClick={() => this.props.handleSkip('business')}>{i18n.skip}</a>
                 </div>
             </form>
         );

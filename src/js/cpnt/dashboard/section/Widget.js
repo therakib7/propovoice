@@ -27,7 +27,7 @@ export default ({ title, desc, btnTxt, btnUrl, contact, bgColor, children }) => 
             <a className="pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white" target='_blank' href={btnUrl}>{btnTxt}</a>
             {contact && <a
                 target='_blank'
-                href="https://nurency.com/contact"
+                href="https://propovoice.com/submit-a-ticket"
                 className="pv-btn pv-bg-stroke pv-border-gray pv-bg-hover-stroke"
                 style={{ color: "#4C6FFF", marginTop: 5 }}
             >

@@ -21,47 +21,47 @@ export default class Form extends Component {
         };
     }
 
-    handleChange = (e) => { 
+    handleChange = (e) => {
         const target = e.target;
         const name = target.name;
         const value = target.type == 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
-    handleCheckbox = (e, type, slug = '') => { 
-        const target = e.target; 
-        
+    handleCheckbox = (e, type, slug = '') => {
+        const target = e.target;
+
         let actions = this.state.form.actions;
 
-        if ( type == 'action' ) { 
-            const { value } = e.target; 
-			if (target.checked) {
-				actions.push(value);
-			} else {
-				actions.splice(actions.indexOf(value), 1);
-			} 
-		} else if ( type == 'group' ) {    
-            const { value } = e.target; 
-            const mod = actionList.find(x => x.slug === value); 
-            const mod_list = Object.keys(mod.list);  
+        if (type == 'action') {
+            const { value } = e.target;
+            if (target.checked) {
+                actions.push(value);
+            } else {
+                actions.splice(actions.indexOf(value), 1);
+            }
+        } else if (type == 'group') {
+            const { value } = e.target;
+            const mod = actionList.find(x => x.slug === value);
+            const mod_list = Object.keys(mod.list);
 
-			if ( target.checked ) { 
+            if (target.checked) {
                 actions = actions.concat(mod_list);
-			} else { 
+            } else {
                 actions = actions.filter(x => !mod_list.includes(x));
-			} 
-		} else if ( type == 'all' ) { 
+            }
+        } else if (type == 'all') {
 
             actionList.map((item, i) => {
                 const mod_list = Object.keys(item.list);
                 actions = actions.concat(mod_list);
-            })  
-             
-		} else if ( type == 'none' ) { 
-            actions = []
-		}
+            })
 
-        actions = Array.from(new Set(actions));  
+        } else if (type == 'none') {
+            actions = []
+        }
+
+        actions = Array.from(new Set(actions));
         this.setState({ form: { ...this.state.form, ['actions']: actions } });
     }
 
@@ -103,7 +103,7 @@ export default class Form extends Component {
         const form = this.state.form;
         const i18n = ndpv.i18n;
 
-        const modalType = this.props.modalType == 'new' ? i18n.new : i18n.edit;
+        const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -122,7 +122,7 @@ export default class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label>
-                                            {i18n.active} 
+                                            {i18n.act}
                                         </label>
                                         <div className="pv-field-switch pv-ml-10">
                                             <label className='pv-switch'>
@@ -199,13 +199,13 @@ export default class Form extends Component {
                                                 padding: '14px 15px 5px',
                                                 cursor: 'auto'
                                             }}
-                                            // onClick={() => this.addCurrentTab(item)}
+                                        // onClick={() => this.addCurrentTab(item)}
                                         >
 
                                             <div className="pv-field-checkbox">
                                                 <input
                                                     type='checkbox'
-                                                    id={item.slug+'-mod'}
+                                                    id={item.slug + '-mod'}
                                                     name='mod'
                                                     value={item.slug}
                                                     style={{ marginRight: 8 }}
@@ -213,7 +213,7 @@ export default class Form extends Component {
                                                     onChange={(e) => this.handleCheckbox(e, 'group')}
                                                 />
                                                 <label
-                                                    htmlFor={item.slug+'-mod'}
+                                                    htmlFor={item.slug + '-mod'}
                                                     style={{
                                                         fontSize: 16,
                                                         fontWeight: 500,
@@ -226,13 +226,13 @@ export default class Form extends Component {
                                                 <div key={k} className="pv-field-checkbox">
                                                     <input
                                                         type='checkbox'
-                                                        id={item.slug+'-'+k}
+                                                        id={item.slug + '-' + k}
                                                         name='action'
                                                         value={t[0]}
                                                         checked={form.actions.includes(t[0]) ? 'checked' : ''}
                                                         onChange={(e) => this.handleCheckbox(e, 'action')}
                                                     />
-                                                    <label htmlFor={item.slug+'-'+k}>{t[1]}</label>
+                                                    <label htmlFor={item.slug + '-' + k}>{t[1]}</label>
                                                 </div>
                                             ))}
                                             {/* <h4>{item.label}</h4>

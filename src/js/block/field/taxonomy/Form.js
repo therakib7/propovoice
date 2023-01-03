@@ -14,6 +14,7 @@ export default class Form extends Component {
             label: '',
             color: '',
             bg_color: '',
+            url: '',
             icon: null,
             val_type: 'fixed',
             tax_cal: '',
@@ -100,7 +101,8 @@ export default class Form extends Component {
             api.add('taxonomies', newForm).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aAdd);
-                    this.props.reload();
+                    newForm.id = resp.data.data;
+                    this.props.reload(newForm);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -203,7 +205,7 @@ export default class Form extends Component {
                                                     style={{ marginLeft: '10px' }}
                                                     className='pv-mr-0'
                                                     viewBox="0 0 10 6"
-                                                    fill="none" 
+                                                    fill="none"
                                                 >
                                                     <path
                                                         d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
@@ -215,6 +217,22 @@ export default class Form extends Component {
                                     </div>
                                 </div>}
                             </>}
+
+                            {this.props.url && <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-url">
+                                        {i18n.url}
+                                    </label>
+
+                                    <input
+                                        id="field-url"
+                                        type="url"
+                                        name="url"
+                                        value={form.url}
+                                        onChange={(e) => this.handleChange(e)}
+                                    />
+                                </div>
+                            </div>}
 
                             {this.props.icon &&
                                 <div className="row">

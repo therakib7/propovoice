@@ -49,14 +49,35 @@ class Fns
                     )
                 ),
                 'fields' => 'ids'
-            ); 
+            );
             $number_query = new \WP_Query($args);
-            $ids = $number_query->posts; 
-            if ( !empty($ids) ) { 
+            $ids = $number_query->posts;
+            if ( !empty($ids) ) {
                 return $ids[0];
             }
         }
         return null;
+    }
+
+    public static function brand_logo()
+    {
+        $white_label = get_option("ndpv_white_label");
+        $logo = null;
+        if ( $white_label && isset( $white_label['logo'] ) ) {
+            $data['logo'] = $white_label['logo'];
+            $logo_id = $white_label['logo'];
+            $logoData = null;
+            if ( $logo_id ) {
+                $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
+                if ( $logo_src ) {
+                    $logoData = [];
+                    $logoData['id'] = $logo_id;
+                    $logoData['src'] = $logo_src[0];
+                }
+            }
+            $logo = $logoData;
+        }
+        return $logo;
     }
 
     public static function phpToMomentFormat($format)
@@ -137,7 +158,10 @@ class Fns
     {
         $id = isset($array['id']) ? $array['id'] : '';
         $path = isset($array['path']) ? $array['path'] : '';
+        $title = isset($array['title']) ? $array['title'] : '';
         $org_name = isset($array['org_name']) ? $array['org_name'] : '';
+        $org_img = isset($array['org_img']) ? $array['org_img'] : '';
+        $org_address = isset($array['org_address']) ? $array['org_address'] : '';
         $client_name = isset($array['client_name']) ? $array['client_name'] : '';
         $date = isset($array['date']) ? $array['date'] : '';
         $due_date = isset($array['due_date']) ? $array['due_date'] : '';
@@ -145,77 +169,101 @@ class Fns
         $msg = isset($array['msg']) ? $array['msg'] : '';
         $url = isset($array['url']) ? $array['url'] : '';
 
+        $footer_text = "<p>Powered by</p>
+<h3>Propovoice</h3>";
+        $email_footer = get_option('ndpv_email_footer');
+        if ( ndpv()->wage() ) {
+            if (isset($email_footer['text'])) {
+                $footer_text = $email_footer['text'];
+            }
+        }
+
         $social = '';
         //TODO: set free version social link
         $social_list = [
             [
-                'id' => 'facebook',
-                'label' => 'Facebook',
-                'icon_url' => '',
-                'url' => 'https://www.facebook.com/propovoice/',
+                'icon' => ndpv()->get_asset_uri('img/email/') . 'wp.png',
+                'url' => 'https://wordpress.org/plugins/propovoice',
             ],
             [
-                'id' => 'twitter',
-                'label' => 'Twitter',
-                'icon_url' => '',
+                'icon' => ndpv()->get_asset_uri('img/email/') . 'facebook.png',
+                'url' => 'https://www.facebook.com/propovoice',
+            ],
+            [
+                'icon' => ndpv()->get_asset_uri('img/email/') . 'twitter.png',
                 'url' => 'https://twitter.com/nasirbinburhan',
-            ],
-            [
-                'id' => 'linkedin',
-                'label' => 'Linkedin',
-                'icon_url' => '',
-                'url' => 'https://www.linkedin.com/in/nasirbinburhan/',
             ],
         ];
 
-        if (function_exists('ndpvp')) {
-            $get_social = get_option('ndpv_email_social');
-            if (isset($get_social['social'])) {
-                $social_list = $get_social['social'];
+        if ( ndpv()->wage() ) {
+            $get_taxonomy = self::get_terms('email_social');
+            $format_taxonomy = [];
+            foreach ($get_taxonomy as $single) {
+                $icon_id = get_term_meta($single->term_id, 'icon', true);
+                $iconData = null;
+                if ($icon_id) {
+                    $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
+                    if ($icon_src) {
+                        $term_url = get_term_meta($single->term_id, 'url', true);
+                        if ( $term_url ) {
+                            $format_taxonomy[] = [
+                                'url' => $term_url,
+                                'icon' => $icon_src[0]
+                            ];
+                        }
+                    }
+                }
+            }
+            if ( $format_taxonomy ) {
+                $social_list = $format_taxonomy;
             }
         }
 
         foreach ($social_list as $val) {
-            $icon_url = $val['icon_url'];
-            if (!$icon_url) {
-                if ($val['id'] == 'facebook') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/f.png';
-                } elseif ($val['id'] == 'twitter') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/t.png';
-                } elseif ($val['id'] == 'linkedin') {
-                    $icon_url = 'https://appux.co/wp-content/plugins/propovoice-server/assets/email/i.png';
-                }
-            }
-
             if ($val['url']) {
-                $social .= '<a href="' . esc_url($val['url']) . '"><img src="' . esc_url($icon_url) . '" alt="' . esc_attr($val['label']) . '"></a>';
+                $social .= '<li><a href="' . esc_url($val['url']) . '"><img src="' . esc_url($val['icon']) . '" alt=""></a></li>';
             }
+        }
+
+        if ( isset($email_footer['active']) && !$email_footer['active'] ) {
+            $footer_text = '';
+            $social = '';
         }
 
         return str_replace(
             array(
                 '{id}',
                 '{path}',
+                '{title}',
                 '{org_name}',
+                '{org_img}',
+                '{org_address}',
                 '{client_name}',
                 '{date}',
                 '{due_date}',
                 '{amount}',
                 '{msg}',
                 '{url}',
-                '{social}'
+                '{footer_text}',
+                '{social}',
+                '{view_txt}',
             ),
             array(
                 $id,
                 $path,
+                $title,
                 $org_name,
+                $org_img,
+                $org_address,
                 $client_name,
                 $date,
                 $due_date,
                 $amount,
                 $msg,
                 $url,
-                $social
+                $footer_text,
+                $social,
+                esc_html('View', 'propovoice')
             ),
             $string
         );

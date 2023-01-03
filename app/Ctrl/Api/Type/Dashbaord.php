@@ -49,7 +49,7 @@ class Dashbaord
         }
 
         if ($param['section'] == 'estimate' || $param['section'] == 'invoice') {
-            $this->estvoice($param['section']);
+            $this->estvoice($param);
         }
     }
 
@@ -192,8 +192,10 @@ class Dashbaord
         wp_send_json_success($column);
     }
 
-    public function deal_tracking()
+    public function deal_tracking( $param )
     {
+        $year = $param['year'];
+
         $data = [];
 
         for ($i = 0; $i < 12; $i++) {
@@ -209,6 +211,11 @@ class Dashbaord
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
+
+        $args['date_query'] = array(
+            array('year' => $year)
+        );
+
         $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();
@@ -235,7 +242,6 @@ class Dashbaord
 
     public function lead_level_source($param)
     {
-
         $per_page = 10;
         $offset = 0;
 
@@ -275,8 +281,8 @@ class Dashbaord
             );
 
             $query = new \WP_Query($args);
-            $total_data = $query->found_posts; //use this for pagination    
-            $total_posts += $total_data; //use this for pagination    
+            $total_data = $query->found_posts; //use this for pagination
+            $total_posts += $total_data; //use this for pagination
 
             $bg_color = get_term_meta($tax_id, 'bg_color', true);
             $tax_single = [
@@ -291,15 +297,18 @@ class Dashbaord
 
         $column_with_percent = [];
         foreach ($column as $col) {
-            $col['percent'] = round(($col['item'] / $total_posts) * 100);
+            $col['percent'] = ( $col['item'] && $total_posts ) ? round(($col['item'] / $total_posts) * 100) : 0;
             $column_with_percent[] = $col;
         }
 
         wp_send_json_success($column_with_percent);
     }
 
-    public function estvoice($type)
+    public function estvoice($param)
     {
+        $type = $param['section'];
+        $year = $param['year'];
+
         $data = [];
 
         for ($i = 0; $i < 12; $i++) {
@@ -327,6 +336,11 @@ class Dashbaord
             'post_status' => 'publish',
             'posts_per_page' => -1,
         );
+
+        $args['date_query'] = array(
+            array('year' => $year)
+        );
+
         $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();

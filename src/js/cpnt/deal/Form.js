@@ -58,7 +58,7 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['tags']: val } });
     }
 
-    componentDidMount() { 
+    componentDidMount() {
 
         //added this multi place, because not working in invoice single
         this.editData();
@@ -121,7 +121,7 @@ class Form extends Component {
             form.stage_id = form.stage_id.id;
         }
 
-        if ( !form.stage_id ) {
+        if (!form.stage_id) {
             toast.error(ndpv.i18n.stage + ' ' + ndpv.i18n.isReq);
             return;
         }
@@ -178,7 +178,16 @@ class Form extends Component {
 
     handleContactSelect = (val, type) => {
         let form = { ...this.state.form }
-        if (!val) return;
+        if (!val) {
+            if (type == 'person') {
+                form.person_id = null;
+            } else {
+                form.org_id = null;
+            }
+            this.setState({ form });
+            return;
+        };
+
         if (type == 'person') {
             form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
@@ -199,7 +208,7 @@ class Form extends Component {
     }
 
     render() {
-        const i18n = ndpv.i18n; 
+        const i18n = ndpv.i18n;
         const form = this.state.form;
         const probabilityPercent = (form.probability / 100) * 100;
 
@@ -211,7 +220,7 @@ class Form extends Component {
         } else if (this.props.modalType == 'move') {
             title = i18n.moveto
         }
- 
+
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -291,6 +300,7 @@ class Form extends Component {
                                             {i18n.stage}
                                         </label>
                                         <Taxonomy
+                                            selectedFirst
                                             data={form.stage_id}
                                             taxonomy='deal_stage'
                                             title={i18n.stage}

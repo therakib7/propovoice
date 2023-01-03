@@ -69,6 +69,31 @@ export default class License extends Component {
         });
     }
 
+    licenseFor(id) {
+        switch (id) {
+            case '1':
+            case '3':
+                return 'Freelancer';
+
+            case '2':
+            case '4':
+                return 'Agency';
+
+            case '5':
+                return 'Freelancer LTD';
+            case '6':
+                return 'Professional LTD';
+            case '7':
+                return 'Agency LTD';
+            case '8':
+                return 'Unlimited LTD';
+
+            case '9':
+            case '10':
+                return 'Business';
+        }
+    }
+
     render() {
         const form = this.state.form;
         const i18n = ndpv.i18n;
@@ -104,7 +129,7 @@ export default class License extends Component {
                             <div className="col">
                                 <label htmlFor="form-status">
                                     {i18n.license} For: <span style={{ color: '#2D3748' }}>
-                                        {form.for == '1' || form.for == '3' ? 'Freelancer' : 'Agency'}
+                                        {this.licenseFor(form.for)}
                                     </span>
                                 </label>
                             </div>
@@ -113,7 +138,7 @@ export default class License extends Component {
                         <div className="row">
                             <div className="col">
                                 <label htmlFor="form-status">
-                                    {i18n.license} {i18n.exp}: <span style={{ color: '#2D3748' }}>
+                                    {i18n.license} {i18n.exps}: <span style={{ color: '#2D3748' }}>
                                         {form.expires == 'lifetime' ? 'Lifetime' : <Moment format="YYYY-MM-DD">{form.expires}</Moment>}
                                     </span>
                                 </label>

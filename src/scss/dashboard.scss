@@ -20,7 +20,7 @@
     max-width: 100% !important;
 } */
 //tiny mce editor
-.tox .tox-tbtn svg { 
+.tox .tox-tbtn svg {
     fill: #4A5568 !important;
 }
 
@@ -43,7 +43,7 @@
     max-width: 200px !important;
     max-height: 80px;
     border-radius: 10px;
-} 
+}
 
 //temporary form css 
 .ndpv .pv-field-logo-wrap {
@@ -124,13 +124,17 @@
 
 .wp-admin.ndpv {
     background-color: #f7f8fa !important;
+    overflow-y: auto;
+
     .pv-left-sidebar,
     .pv-top-menu-content {
         display: none;
     }
+
     .Toastify__toast-container.Toastify__toast-container--top-right {
         top: 3em;
     }
+
     .pv-right-content {
         height: calc(100vh - 30px);
     }
@@ -144,13 +148,31 @@
     .pi-field-multi {
         .pv-badge {
             margin-right: 5px;
+            position: relative;
+
+            b {
+                color: #fff;
+                position: absolute;
+                right: 0;
+                background: #f16063;
+                padding: 1px 5px;
+                border-radius: 0 5px 5px 0;
+                display: none;
+                top: 0;
+                z-index: 9;
+            }
         }
+
+        .pv-badge:hover b {
+            display: block;
+        }
+
         .pv-btn {
             margin-top: 5px;
             border: 1px solid rgba(221, 221, 221, 0.6588235294);
         }
     }
-    
+
 }
 
 //TODO: chrome auto fill bg color, move it to css file
@@ -200,8 +222,9 @@ input:-webkit-autofill:active {
 
 .pv-intg-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 25px;
+
     .pv-intg-item {
         position: relative;
         cursor: pointer;
@@ -210,14 +233,16 @@ input:-webkit-autofill:active {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;  
+        justify-content: center;
         overflow: hidden;
+
         h4 {
             font-size: 16px;
             font-weight: 500;
             color: #2D3748;
             margin-top: 10px;
         }
+
         .pv-checked {
             z-index: 99;
             background: var(--pv-bg-color-blue);
@@ -226,24 +251,104 @@ input:-webkit-autofill:active {
             top: 10px;
             right: 10px;
             width: 22px;
-            height: 22px; 
-            border-radius: 50%; 
+            height: 22px;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+
             svg {
                 fill: #fff;
             }
         }
     }
 }
+
+.ndpv .pv-google-p {
+    color: #718096;
+    margin-top: 7px;
+    font-weight: 400;
+    font-size: 11px;
+}
+
+.ndpv .pv-google-p a {
+    color: #4C6FFF;
+    font-weight: 700;
+}
+
+.ndpv .pv-google-app {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F7F8FA;
+    margin: 7px 0;
+    border-radius: 8px;
+    padding: 0 18px;
+    height: 56px;
+}
+
+.ndpv .pv-google-icon {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.ndpv .pv-google-icon h6 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    color: #4A5568;
+}
+
+.ndpv .pv-google-icon .pv-svg {
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.ndpv .pv-google-p a:hover {
+    color: #395ef3;
+}
+
+.pv-import-from-gird {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 125px);
+    justify-content: space-between;
+}
+
+.pv-upload-file {
+    border: dashed 1px #4c6fff;
+    padding: 60px 0px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.pv-import-map {
+    text-align: right;
+    margin-top: 25px;
+}
+
 @media screen and (max-width: 768px) {
     .pv-intg-list {
         grid-template-columns: 1fr 1fr;
     }
+
+    .pv-upload-file {
+        padding: 30px 0px;
+    }
 }
+
 @media screen and (max-width: 420px) {
     .pv-intg-list {
         grid-template-columns: 1fr;
     }
-} 
+}
+
+.ndpv .pv-horizontal-tab li {
+    margin: 0;
+}

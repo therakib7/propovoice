@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Api;
 
 use Ndpv\Ctrl\Api\Type\Action;
@@ -18,7 +18,7 @@ use Ndpv\Ctrl\Api\Type\Note;
 use Ndpv\Ctrl\Api\Type\Org;
 use Ndpv\Ctrl\Api\Type\Payment;
 use Ndpv\Ctrl\Api\Type\PaymentProcess;
-use Ndpv\Ctrl\Api\Type\Project; 
+use Ndpv\Ctrl\Api\Type\Project;
 use Ndpv\Ctrl\Api\Type\Setting;
 use Ndpv\Ctrl\Api\Type\Task;
 use Ndpv\Ctrl\Api\Type\Taxonomy;
@@ -34,11 +34,11 @@ class ApiCtrl
 		new Note();
 		new File();
 		new Client();
-		new Deal(); 
+		new Deal();
 		new Person();
 		new Org();
 		new Contact();
-		new Project(); 
+		new Project();
 		new Invoice();
 		new Business();
 		new Email();

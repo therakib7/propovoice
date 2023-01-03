@@ -24,10 +24,11 @@ export default (props) => {
     const { fromData, toData, status } = props.data;
     const i18n = ndpv.i18n;
     let title = (path == 'invoice') ? i18n.inv : i18n.est;
+    let titleNo = (path == 'invoice') ? i18n.invNo : i18n.estNo;
     const nNum = num ? num : props.data.prefix + id;
     return (
         <div className="pv-inv" style={{ height: props.height }}>
-            <Seal status={status} />
+            <Seal status={status} invoice={props.data.invoice} />
             <div className="pv-inv-two">
                 <div className="pv-inv-top-shape">
                     <svg viewBox="0 0 595 69" fill="none" >
@@ -44,10 +45,10 @@ export default (props) => {
                             <From data={fromData} />
 
                             <div className="pv-inv-from-date">
-                                <p>{title} {i18n.no}: <span>{id ? nNum : ''}</span></p>
+                                <p>{titleNo}: <span>{id ? nNum : ''}</span></p>
                                 <div className="pv-inv-from-time">
                                     <p>{i18n.date}: <span><Moment format={ndpv.date_format}>{date}</Moment></span></p>
-                                    <p>{i18n.due} {i18n.date}: <span><Moment format={ndpv.date_format}>{due_date}</Moment></span></p>
+                                    <p>{i18n.dueDate}: <span><Moment format={ndpv.date_format}>{due_date}</Moment></span></p>
                                 </div>
                             </div>
                         </div>

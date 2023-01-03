@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 import api from 'api';
 import styles from './Items.module.scss'
 import Form from './Form';
@@ -27,11 +27,11 @@ export default (props) => {
 
 	const getData = () => {
 		let type = '';
-		if ( props.extra_amount_type ) {
+		if (props.extra_amount_type) {
 			type = '&extra_amount_type=' + props.extra_amount_type;
 		}
 
-		api.get('taxonomies', 'taxonomy=' + props.taxonomy + type).then(resp => { 
+		api.get('taxonomies', 'taxonomy=' + props.taxonomy + type).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 				setLoading(false);
@@ -42,7 +42,7 @@ export default (props) => {
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
 
-		if ( type == 'new' && wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) ) {
+		if (type == 'new' && wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source')) {
 			pro();
 			return;
 		}
@@ -59,8 +59,8 @@ export default (props) => {
 
 	const handleDelete = (id, tax) => {
 
-		if (confirm(ndpv.i18n.aConf)) { 
-			api.del('taxonomies', id + '/' + tax ).then(resp => {   
+		if (confirm(ndpv.i18n.aConf)) {
+			api.del('taxonomies', id + '/' + tax).then(resp => {
 				if (resp.data.success) {
 					toast.success(ndpv.i18n.aDel);
 					getData();
@@ -75,7 +75,7 @@ export default (props) => {
 
 	const handleDragEnd = (result) => {
 
-		if ( !result.destination ) return
+		if (!result.destination) return
 
 		//helper function to reorder result (src: react-beautiful-dnd docs)
 		const reorder = (list, startIndex, endIndex) => {
@@ -102,13 +102,13 @@ export default (props) => {
 			reorder: finalArray,
 			taxonomy: props.taxonomy
 		}
-		api.add('taxonomies', newForm);  
+		api.add('taxonomies', newForm);
 		// call parent handler with new state representation
 		// this.props.reorderHandler(Items)
 
 	}
 
-	const i18n = ndpv.i18n; 
+	const i18n = ndpv.i18n;
 
 	return (
 		<>
@@ -139,7 +139,6 @@ export default (props) => {
 															height={24}
 															viewBox="0 0 24 24"
 															fill="none"
-															
 														>
 															<path
 																d="M5.625 9.75C6.24632 9.75 6.75 9.24632 6.75 8.625C6.75 8.00368 6.24632 7.5 5.625 7.5C5.00368 7.5 4.5 8.00368 4.5 8.625C4.5 9.24632 5.00368 9.75 5.625 9.75Z"
@@ -179,7 +178,6 @@ export default (props) => {
 																height={6}
 																viewBox="0 0 6 6"
 																fill="none"
-																
 															>
 																<circle cx={3} cy={3} r={3} fill={item.color} />
 															</svg>
@@ -203,7 +201,6 @@ export default (props) => {
 															height={16}
 															viewBox="0 0 16 16"
 															fill="none"
-															
 														>
 															<path
 																d="M5.79375 13.4999H3C2.86739 13.4999 2.74022 13.4473 2.64645 13.3535C2.55268 13.2597 2.5 13.1326 2.5 12.9999V10.2062C2.49978 10.1413 2.51236 10.0769 2.53702 10.0169C2.56169 9.95682 2.59796 9.90222 2.64375 9.85619L10.1438 2.3562C10.1903 2.30895 10.2457 2.27144 10.3069 2.24583C10.3681 2.22022 10.4337 2.20703 10.5 2.20703C10.5663 2.20703 10.632 2.22022 10.6931 2.24583C10.7543 2.27144 10.8097 2.30895 10.8563 2.3562L13.6438 5.1437C13.691 5.19022 13.7285 5.24568 13.7541 5.30684C13.7797 5.368 13.7929 5.43364 13.7929 5.49995C13.7929 5.56625 13.7797 5.63189 13.7541 5.69305C13.7285 5.75421 13.691 5.80967 13.6438 5.85619L6.14375 13.3562C6.09773 13.402 6.04313 13.4383 5.98307 13.4629C5.92301 13.4876 5.85868 13.5002 5.79375 13.4999V13.4999Z"
@@ -222,13 +219,12 @@ export default (props) => {
 														</svg>
 													</span>
 
-													{ true && (!item.hasOwnProperty('type') || !item.type) && <span style={{ padding: '5px', cursor: 'pointer' }} onClick={() => { handleDelete(item.id, props.taxonomy) }}>
+													{true && (!item.hasOwnProperty('type') || !item.type) && <span style={{ padding: '5px', cursor: 'pointer' }} onClick={() => { handleDelete(item.id, props.taxonomy) }}>
 														<svg
 															width={16}
 															height={16}
 															viewBox="0 0 16 16"
 															fill="none"
-															
 														>
 															<path
 																d="M13.5 3.5H2.5"
@@ -271,7 +267,6 @@ export default (props) => {
 						height={13}
 						viewBox="0 0 12 13"
 						fill="none"
-						
 					>
 						<path
 							d="M1.875 6.5H10.125"
@@ -288,8 +283,8 @@ export default (props) => {
 							strokeLinejoin="round"
 						/>
 					</svg>
-					{i18n.add} {i18n.new} {props.title} 
-					{wage.length > 0 && ( props.taxonomy != 'tag' && props.taxonomy != 'lead_source' ) && <>
+					{i18n.add} {i18n.new} {props.title}
+					{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <>
 						<ProLabel />
 					</>}
 				</button>
@@ -307,4 +302,4 @@ export default (props) => {
 			/>}
 		</>
 	);
-} 
+}

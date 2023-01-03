@@ -182,8 +182,8 @@ class Media
         $file_params = $req->get_file_params();
         $param = $req->get_params(); 
         $file_data     = isset($file_params['file']) ? $file_params['file'] : '';
-        $attach_type   = isset($param['attach_type']) ? $param['attach_type'] : ''; 
-        
+        $attach_type   = isset($param['attach_type']) ? $param['attach_type'] : '';
+
         $reg_errors  = new \WP_Error;
 
         $img_max_size = 2048; //2048KB
@@ -224,7 +224,7 @@ class Media
             if ($reg_errors->get_error_messages()) {
                 wp_send_json_error($reg_errors->get_error_messages());
             } else {
-                if (!function_exists('wp_handle_upload')) {
+                if ( !function_exists('wp_handle_upload') ) {
                     require_once ABSPATH . 'wp-admin/includes/file.php';
                 }
                 $upload_overrides = ['test_form' => false];
