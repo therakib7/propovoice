@@ -62,34 +62,50 @@ $deactivate_reasons = [
                <div class="pv-form-style-one"> 
                   <?php wp_nonce_field('_ndpv_deactivate_nonce'); ?>
                   <div class="row"> 
-                        <?php foreach ($deactivate_reasons as $reason_key => $reason) : ?>
-                           <div class="col-12">
-                              <div class="pv-field-radio">
+                     <?php foreach ($deactivate_reasons as $reason_key => $reason) : ?>
+                        <div class="col-12">
+                           <div class="pv-field-radio">
+                              <input 
+                                 type="radio" 
+                                 id="ndpv-deactivate-<?php echo esc_attr($reason_key); ?>" 
+                                 class="ndpv-deactivate-reason" 
+                                 name="reason_key" 
+                                 value="<?php echo esc_attr($reason_key); ?>" 
+                              />
+                              <label for="ndpv-deactivate-<?php echo esc_attr($reason_key); ?>"><?php echo esc_html($reason['title']); ?></label> 
+                           </div>
+
+                           <?php if (! empty($reason['input'])) : ?>
+                              <div class="ndpv-feedback-text" style="display: none" >
                                  <input 
-                                    type="radio" 
-                                    id="ndpv-deactivate-<?php echo esc_attr($reason_key); ?>" 
-                                    class="ndpv-deactivate-reason" 
-                                    name="reason_key" 
-                                    value="<?php echo esc_attr($reason_key); ?>" 
+                                    type="text"  
+                                    name="reason_<?php echo esc_attr($reason_key); ?>" 
+                                    placeholder="<?php echo esc_attr($reason['input']); ?>" 
                                  />
-                                 <label for="ndpv-deactivate-<?php echo esc_attr($reason_key); ?>"><?php echo esc_html($reason['title']); ?></label> 
                               </div>
+                           <?php endif; ?>
 
-                              <?php if (! empty($reason['input'])) : ?>
-                                 <div class="ndpv-feedback-text" style="display: none" >
-                                    <input 
-                                       type="text"  
-                                       name="reason_<?php echo esc_attr($reason_key); ?>" 
-                                       placeholder="<?php echo esc_attr($reason['input']); ?>" 
-                                    />
-                                 </div>
-                              <?php endif; ?>
+                           <?php if (! empty($reason['alert'])) : ?>
+                              <div class="ndpv-feedback-alert" style="display: none; color: #ff0000"><?php echo esc_html($reason['alert']); ?></div>
+                           <?php endif; ?>
+                        </div> 
+                     <?php endforeach; ?> 
 
-                              <?php if (! empty($reason['alert'])) : ?>
-                                 <div class="ndpv-feedback-alert" style="display: none; color: #ff0000"><?php echo esc_html($reason['alert']); ?></div>
-                              <?php endif; ?>
-                           </div> 
-                        <?php endforeach; ?> 
+                     <div class="ndpv-data-alert" style="display: none; margin-top: 10px">
+                        <div class="col-12">
+                           <div class="pv-field-radio">
+                              <input 
+                                 type="checkbox" 
+                                 id="ndpv-data-collect"
+                                 name="data_collect"
+                                 value='1'
+                                 style="zoom: 1"
+                                 checked
+                              />
+                              <label for="ndpv-data-collect" style="font-size: 11px">Share your Name and Email for communication purposes</label> 
+                           </div>
+                        </div>
+                     </div>
                   </div> 
                </div>
             </div>

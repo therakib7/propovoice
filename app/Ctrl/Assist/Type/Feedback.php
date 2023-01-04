@@ -23,23 +23,24 @@ class Feedback {
         } 
 
         $reason_key = isset($_POST['reason_key']) ? sanitize_text_field($_POST['reason_key']) : '';
-        $reason = isset($_POST["reason"]) ? sanitize_text_field($_POST["reason"]) : '';
-        
-        if ( $reason_key != 'none') {
-            $info = new Info;
-            $data = $info->wp();
-            $data['reason_key'] = $reason_key;
-            $data['reason'] = $reason;
-            $data['version'] = NDPV_VERSION;
-            $data['package'] = 'free';
+        $data_collect = isset($_POST["data_collect"]) ? sanitize_text_field($_POST["data_collect"]) : '';
 
-            wp_remote_post( $this->api . 'uninstaller', [
-                'timeout' => 0.01,
-                'body' => $data,
-                'blocking'  => false,
-                'sslverify'   => false,
-            ] );
+        $data = [];
+        if ( $data_collect ) {
+            $info = new Info;
+            $data = $info->name_email();
         }
+        $data['reason_key'] = $reason_key;
+        $data['reason'] = $reason;
+        $data['version'] = NDPV_VERSION;
+        $data['package'] = 'free';
+
+        wp_remote_post( $this->api . 'uninstaller', [
+            'timeout' => 0.01,
+            'body' => $data,
+            'blocking'  => false,
+            'sslverify'   => false,
+        ] );
 
         wp_send_json_success();
     } 
