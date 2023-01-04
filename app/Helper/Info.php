@@ -51,6 +51,31 @@ class Info
         ];
     }
 
+    public function name_email() {
+
+        $users = get_users( array(
+            'role'    => 'administrator',
+            'orderby' => 'ID',
+            'order'   => 'ASC',
+            'number'  => 1,
+            'paged'   => 1,
+        ) );
+
+        $admin_user =  ( is_array( $users ) && ! empty( $users ) ) ? $users[0] : false;
+        $first_name = $last_name = '';
+
+        if ( $admin_user ) {
+            $first_name = $admin_user->first_name ? $admin_user->first_name : $admin_user->display_name;
+            $last_name  = $admin_user->last_name;
+        }
+
+        return [ 
+            'admin_email' => get_option( 'admin_email' ),
+            'first_name'  => $first_name,
+            'last_name'   => $last_name,
+        ];
+    }
+
      /**
      * Get WordPress related data.
      *

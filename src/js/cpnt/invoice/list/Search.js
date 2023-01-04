@@ -65,7 +65,8 @@ export default class Form extends Component {
         const i18n = ndpv.i18n;
         return (
             <div className="pv-search-bar">
-                <button
+                {false && <>
+                    <button
                     className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5"
                     onClick={() => this.showRecurring(false)}
                     style={{ marginLeft: 0 }}
@@ -127,6 +128,7 @@ export default class Form extends Component {
                         />
                     </svg>
                 </button>
+                </>}
 
                 <div className="pv-search-box pv-medium-search-bar">
                     <Search />
