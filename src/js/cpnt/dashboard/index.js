@@ -58,10 +58,10 @@ const Dashboard = (props) => {
                     >
                         {i18n.ov}
                     </h2>
-                    <select value={year} onChange={(e) => setYear(e.target.value)} className="pv-overview-select">
+                    {false &&<select value={year} onChange={(e) => setYear(e.target.value)} className="pv-overview-select">
                         <option value="2023">2023</option>
                         <option value="2022">2022</option>
-                    </select>
+                    </select>}
                 </div>
 
                 <div className="col">

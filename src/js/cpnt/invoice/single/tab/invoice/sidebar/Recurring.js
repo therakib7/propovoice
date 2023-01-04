@@ -125,7 +125,7 @@ export default (props) => {
                         </div>
                     </div>
 
-                    <div className="col-12">
+                    {false && <div className="col-12">
                         <label id="auto-subscription">Auto Subscription</label>
                         <div className="pv-field-switch pv-ml-10">
                             <label className='pv-switch'>
@@ -140,7 +140,7 @@ export default (props) => {
                         </div>
 
                         {recurring.subscription && <label style={{ marginBottom: 0 }}>Now only available Paypal/Stripe subscription. You must select this from Payment Method.</label>}
-                    </div>
+                    </div>}
 
                     {!recurring.subscription && <div className="col-12">
                         <label>{i18n.select} {i18n.dlvy} {i18n.option}</label>
