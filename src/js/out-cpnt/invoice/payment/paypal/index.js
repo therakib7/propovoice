@@ -102,7 +102,7 @@ function viewPayPalSubsBtns(invoice_id) {
       createSubscription={(data, actions) =>
         createSubs(data, actions, invoice_id)
       }
-      onApprove={(data, actions) => onSubsSuccess(data, actions)}
+      onApprove={(data, actions) => onSubsSuccess(data, actions, invoice_id)}
       style={{
         label: "subscribe",
       }}
@@ -157,20 +157,29 @@ function onOrderApprove(data, actions, invoice_id, setDetails) {
 }
 
 function createSubs(data, actions, invoice_id) {
-  return api.get("paypal-subscription/" + invoice_id, "", "pro").then((res) => {
-    // Plan Id in res.data
+  return api
+    .get("invoices/" + invoice_id + "/paypal-subscriptions", "", "pro")
+    .then((res) => {
+      // Plan Id in res.data
 
-    return actions.subscription
-      .create({
-        plan_id: res.data,
-      })
-      .then((orderId) => {
-        return orderId;
-      });
-  });
+      return actions.subscription
+        .create({
+          plan_id: res.data,
+        })
+        .then((orderId) => {
+          return orderId;
+        });
+    });
 }
 
-function onSubsSuccess(data, actions) {
+function onSubsSuccess(data, actions, invoice_id) {
+  api
+    .get(
+      "invoices/" + invoice_id + "/paypal-subscriptions/" + data.subscriptionID,
+      "",
+      "pro"
+    )
+    .then((res) => {});
   alert("You have successfully created subscription " + data.subscriptionID);
 }
 
