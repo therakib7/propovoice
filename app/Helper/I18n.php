@@ -180,6 +180,7 @@ class I18n
             "pay" => esc_html__("Pay", "propovoice"),
             "subs" => esc_html__("Subscribe", "propovoice"),
             "subsed" => esc_html__("Subscribed", "propovoice"),
+            "substion" => esc_html__("Subscription", "propovoice"),
             "payment" => esc_html__("Payment", "propovoice"),
             "paymentInfo" => esc_html__("Payment Info", "propovoice"),
             "method" => esc_html__("Method", "propovoice"),
