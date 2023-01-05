@@ -36,10 +36,11 @@ export default class Form extends Component {
     }
 
     showRecurring = (view) => {
-        if (wage.length > 0 && (!view)) {
+        if (wage.length > 0 && view) {
             pro();
             return;
         }
+        
         if (this.state.recurring == view) return;
 
         this.setState({ recurring: view }, () => {
@@ -65,8 +66,7 @@ export default class Form extends Component {
         const i18n = ndpv.i18n;
         return (
             <div className="pv-search-bar">
-                {false && <>
-                    <button
+                <button
                     className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5"
                     onClick={() => this.showRecurring(false)}
                     style={{ marginLeft: 0 }}
@@ -128,7 +128,6 @@ export default class Form extends Component {
                         />
                     </svg>
                 </button>
-                </>}
 
                 <div className="pv-search-box pv-medium-search-bar">
                     <Search />
