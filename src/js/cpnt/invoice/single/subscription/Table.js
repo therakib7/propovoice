@@ -23,15 +23,13 @@ const TableHeader = props => {
                     {i18n.email}
                 </th>
                 <th>
-                    <Arrow />
-                    {i18n.lead} {i18n.level}
+                    Start Date
                 </th>
                 <th>
-                    <Tag />
-                    {i18n.tag}
+                    End Date
                 </th>
                 <th>
-                    {i18n.date}
+                    Status
                 </th>
                 <th>
                     {i18n.action}
@@ -77,37 +75,12 @@ const TableBody = props => {
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
                 <td>
-                    {level && <>
-                        {(level.color && level.bg_color) && <span className="pv-badge"
-                            style={{
-                                backgroundColor: level.bg_color,
-                                color: level.color
-                            }}
-                        >
-                            <svg
-                                width={6}
-                                height={6}
-                                viewBox="0 0 6 6"
-                                fill="none"
-                            >
-                                <circle cx={3} cy={3} r={3} fill={level.color} />
-                            </svg>
-                            {level.label}
-                        </span>}
-
-                        {(!level.color || !level.bg_color) && <span className="pv-badge">
-                            {level.label}
-                        </span>}
-                    </>}
+                    10-11-2022
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
-                    {row.tags && row.tags.map((tag, tagIndex) => {
-                        return (
-                            <span key={tagIndex} className="pv-badge pv-mr-5">{tag.label}</span>
-                        )
-                    })}
+                    10-12-2022
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.date}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>Paid</td>
                 <td className="pv-action">
                     <Action
                         row={row}

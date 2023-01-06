@@ -138,8 +138,6 @@ export default (props) => {
                                 <span className='pv-switch-slider pv-round'></span>
                             </label>
                         </div>
-
-                        {recurring.subscription && <label style={{ marginBottom: 0 }}>Now only available Paypal/Stripe subscription. You must select this from Payment Method.</label>}
                     </div>
 
                     {!recurring.subscription && <div className="col-12">

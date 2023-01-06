@@ -63,14 +63,14 @@ const TableHeader = props => {
 
 const TableBody = props => {
     let navigate = useNavigate();
-    function handleClick(row, view = '') {
+    function handleClick(row, viewPath = '') {
         let path = props.path;
-
+        let view = '';
         switch (row.status) {
             case 'accept':
             case 'decline':
             case 'paid':
-                view = '/tab/preview';
+                view = viewPath;
                 break;
         }
 
