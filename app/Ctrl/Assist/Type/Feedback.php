@@ -23,6 +23,7 @@ class Feedback {
         }
 
         $reason_key = isset($_POST['reason_key']) ? sanitize_text_field($_POST['reason_key']) : '';
+        $reason = isset($_POST["reason"]) ? sanitize_text_field($_POST["reason"]) : '';
         $data_collect = isset($_POST["data_collect"]) ? sanitize_text_field($_POST["data_collect"]) : '';
 
         $data = [];
