@@ -705,7 +705,7 @@ class Invoice extends Component {
 			}
 
 			if (!payment) {
-				alert('Now only available Paypal/Stripe subscription. You must select this from Payment Method.');
+				toast.error('Now only available Paypal/Stripe subscription. You must select this from Payment Method.');
 				return;
 			}
 		}
