@@ -36,10 +36,11 @@ export default class Form extends Component {
     }
 
     showRecurring = (view) => {
-        if (wage.length > 0 && (!view)) {
+        if (wage.length > 0 && view) {
             pro();
             return;
         }
+        
         if (this.state.recurring == view) return;
 
         this.setState({ recurring: view }, () => {

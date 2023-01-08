@@ -19,18 +19,6 @@ class Update
         $version = get_option('ndpv_version_install');
 
         if ( version_compare($version, NDPV_VERSION, '<') ) {
-            $info = new Info;
-            $data = $info->wp();
-            $data['version'] = NDPV_VERSION;
-            $data['package'] = 'free';
-
-            wp_remote_post( $this->api . 'installer', [
-                'timeout' => 0.01,
-                'body' => $data,
-                'blocking' => false,
-                'sslverify' => false
-            ] );
-
             update_option('ndpv_version_install', NDPV_VERSION);
         }
 
@@ -67,7 +55,7 @@ class Update
                 $data = $info->wp( $get_update, $share_info );
 
                 // print_r($data); return;
-                
+
                 wp_remote_post( $this->api . 'installer', [
                     'timeout' => 0.01,
                     'body' => $data,

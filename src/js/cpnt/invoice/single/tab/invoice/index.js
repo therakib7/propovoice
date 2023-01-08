@@ -609,7 +609,7 @@ class Invoice extends Component {
 				invoice.payment_methods[data] = null;
 				this.setState({ invoice });
 			}
-		} else { //type id		
+		} else { //type id
 
 			invoice.payment_methods[data.type] = data.id;
 			if (data.type == 'bank') {
@@ -693,6 +693,21 @@ class Invoice extends Component {
 		if (wage.length > 0 && name == 'status') {
 			pro();
 			return;
+		}
+
+		if (name == 'subscription') {
+			let payment = false;
+
+			if (invoice.payment_methods.hasOwnProperty('paypal') && invoice.payment_methods.paypal != null) {
+				payment = true;
+			} else if (invoice.payment_methods.hasOwnProperty('stripe') && invoice.payment_methods.stripe != null) {
+				payment = true;
+			}
+
+			if (!payment) {
+				toast.error('Now only available Paypal/Stripe subscription. You must select this from Payment Method.');
+				return;
+			}
 		}
 
 		invoice.recurring[name] = value;

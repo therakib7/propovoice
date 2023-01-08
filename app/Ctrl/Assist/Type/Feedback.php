@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Assist\Type;
 
 use Ndpv\Helper\Info;
@@ -24,18 +24,22 @@ class Feedback {
 
         $reason_key = isset($_POST['reason_key']) ? sanitize_text_field($_POST['reason_key']) : '';
         $reason = isset($_POST["reason"]) ? sanitize_text_field($_POST["reason"]) : '';
+        $data_collect = isset($_POST["data_collect"]) ? sanitize_text_field($_POST["data_collect"]) : '';
 
-        $info = new Info;
-        $data = $info->wp();
+        $data = [];
+        if ( $data_collect ) {
+            $info = new Info;
+            $data = $info->name_email();
+        }
         $data['reason_key'] = $reason_key;
         $data['reason'] = $reason;
 
         wp_remote_post( $this->api . 'uninstaller', [
-			'timeout' => 0.01,
-			'body' => $data,
+            'timeout' => 0.01,
+            'body' => $data,
             'blocking'  => false,
             'sslverify'   => false,
-		] );
+        ] );
 
         wp_send_json_success();
     }

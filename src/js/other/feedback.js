@@ -21,6 +21,8 @@
             var parent = $(this).parents('.pv-field-radio');
             $('.ndpv-feedback-text, .ndpv-feedback-alert').hide();
 
+            $('.ndpv-data-alert').show();
+
             var val = $(this).val(); 
             parent.next().show(); 
         });
@@ -43,29 +45,36 @@
  
             var input = $('.ndpv-feedback-text input[name="reason_'+reason_key+'"]', modal); 
 
+            var data_collect = $("#ndpv-data-collect").is(':checked') ? '1' : '';
+
             var nonce = $('.pv-form-style-one input[name="_wpnonce"]', modal).val();  
- 
-            $.ajax({
-                url: ndpv.ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'ndpv_deactivate_feedback',
-                    submit,
-                    nonce,
-                    reason_key: reason_key,
-                    reason: ( 0 !== input.length ) ? input.val().trim() : ''
-                },
-                beforeSend: function() {
-                    btn.addClass('disabled');
-                    btn.text('Processing...');
-                },
-                complete: function() {
-                    window.location.href = deactivateLink;
-                },
-                error: function() { // if error occured
-                    window.location.href = deactivateLink;
-                },
-            });
+            
+            if ( reason_key == 'none') {
+                window.location.href = deactivateLink;
+            } else {
+                $.ajax({
+                    url: ndpv.ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'ndpv_deactivate_feedback',
+                        submit,
+                        data_collect,
+                        nonce,
+                        reason_key: reason_key,
+                        reason: ( 0 !== input.length ) ? input.val().trim() : ''
+                    },
+                    beforeSend: function() {
+                        btn.addClass('disabled');
+                        btn.text('Processing...');
+                    },
+                    complete: function() {
+                        window.location.href = deactivateLink;
+                    },
+                    error: function() { // if error occured
+                        window.location.href = deactivateLink;
+                    },
+                });
+            }
         });
     });
 } (jQuery));

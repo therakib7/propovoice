@@ -25,6 +25,7 @@ const Project = lazy(() => import('cpnt/project'));
 
 const Invoice = lazy(() => import('cpnt/invoice/list'));
 const InvoiceSingle = lazy(() => import('cpnt/invoice/single'));
+const InvoiceSubscription = lazy(() => import('cpnt/invoice/single/subscription'));
 
 const ContactPerson = lazy(() => import('cpnt/contact/person'));
 const ContactOrg = lazy(() => import('cpnt/contact/org'));
@@ -178,6 +179,7 @@ export default () => {
                                         <Route path={`/${mod}/single/:id/tab/:tab`} element={<InvoiceSingle />} />
                                     </React.Fragment>
                                 )}
+                                <Route path={'/invoice/single/:id/subscription'} element={<InvoiceSubscription />} />
 
                                 <Route path="/contact/person" exact element={<ContactPerson />} />
                                 <Route path="/contact/organization" exact element={<ContactOrg />} />
