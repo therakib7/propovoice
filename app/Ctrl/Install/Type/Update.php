@@ -5,8 +5,7 @@ use Ndpv\Helper\Info;
 
 class Update
 {
-    // private $api = 'https://propovoice.com/wp-json/ndpva/v1/';
-    private $api = 'http://nurencyplugin.local//wp-json/ndpva/v1/';
+    private $api = 'https://propovoice.com/wp-json/ndpva/v1/';
 
     public function __construct()
     {
@@ -41,20 +40,17 @@ class Update
             $get_update = $share_info = true;
             $get_update_at = $share_info_at = false;
             if ( $option ) {
-                $get_update = isset( $option['get_update'] ) ? false : true;
-                $share_info = isset( $option['share_info'] ) ? false : true;
+                $get_update = isset( $option['deactivate'] ) && is_array( $option['deactivate'] ) && in_array( 'get_update', $option['deactivate'] ) ? false : true;
+                $share_info = isset( $option['deactivate'] ) && is_array( $option['deactivate'] ) && in_array( 'share_info', $option['deactivate'] ) ? false : true;
 
                 $get_update_at = isset( $option['get_update_at'] ) ? true : false;
                 $share_info_at = isset( $option['share_info_at'] ) ? true : false;
             }
 
-            // if ( ( $get_update || $share_info ) && ( !$get_update_at || !$share_info_at ) ) {
             if ( ( !$get_update_at || !$share_info_at ) ) {
 
                 $info = new Info;
                 $data = $info->wp( $get_update, $share_info );
-
-                // print_r($data); return;
 
                 wp_remote_post( $this->api . 'installer', [
                     'timeout' => 0.01,

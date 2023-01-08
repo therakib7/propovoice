@@ -24,38 +24,27 @@ class Info
 
     public function wp( $get_update = null, $share_info = null) {
 
-        $users = get_users( array(
-            'role'    => 'administrator',
-            'orderby' => 'ID',
-            'order'   => 'ASC',
-            'number'  => 1,
-            'paged'   => 1,
-        ) );
-
-        $admin_user =  ( is_array( $users ) && ! empty( $users ) ) ? $users[0] : false;
-        $first_name = $last_name = '';
-
-        if ( $admin_user ) {
-            $first_name = $admin_user->first_name ? $admin_user->first_name : $admin_user->display_name;
-            $last_name  = $admin_user->last_name;
-        }
-
-        $data = [
-            'url'         => esc_url( home_url() ),
-            'site'        => $this->get_site_name(),
-            'admin_email' => get_option( 'admin_email' ),
-            'first_name'  => $first_name,
-            'last_name'   => $last_name,
-            'wp'          => $this->get_wp_info(),
-            'ip'          => $this->get_user_ip_address(),
-        ];
+        $data = [];
 
         if ( $get_update !== null ) {
             $data['get_update'] = $get_update;
+            if ( $get_update ) {
+                $data = array_merge($data, $this->name_email());
+            }
         }
 
         if ( $share_info !== null ) {
             $data['share_info'] = $share_info;
+            if ( $share_info ) {
+                $wp_info = [
+                    'url'         => esc_url( home_url() ),
+                    'site'        => $this->get_site_name(),
+                    'wp'          => $this->get_wp_info(),
+                    // 'ip'          => $this->get_user_ip_address(),
+                ];
+
+                $data = array_merge($data, $wp_info);
+            }
         }
 
         $data['version'] = NDPV_VERSION;
