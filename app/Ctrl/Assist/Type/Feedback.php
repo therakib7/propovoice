@@ -33,6 +33,8 @@ class Feedback {
         }
         $data['reason_key'] = $reason_key;
         $data['reason'] = $reason;
+        $data['version'] = NDPV_VERSION;
+        $data['package'] = 'free';
 
         wp_remote_post( $this->api . 'uninstaller', [
             'timeout' => 0.01,
