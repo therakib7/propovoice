@@ -32,7 +32,7 @@
 //from reza start
 .ndpv .pv-main-content {
   background-color: #F7F8FA;
-  padding: 80px 0;
+  padding: 80px 0 120px;
 }
 
 @media screen and (max-width: 820px) {
@@ -49,6 +49,20 @@
 
 .ndpv .pv-welcome-tabs-content {
   position: relative;
+}
+
+.ndpv .pv-welcome-tabs-content .pv-button {
+  position: absolute;
+  bottom: -130px;
+  right: -75px;
+}
+
+.ndpv .pv-welcome-tabs-content .pv-button a {
+  text-align: center;
+}
+
+.ndpv .pv-welcome-tabs-content .pv-button a:hover {
+  color: #fff;
 }
 
 .ndpv .pv-welcome-title-content h3 {
@@ -170,11 +184,6 @@
 .ndpv .pv-tab-content #pv-tutorial img {
   text-align: center;
   margin-bottom: 5px;
-}
-
-.ndpv .pv-tab-content .pv-button {
-  position: absolute;
-  bottom: -130px;
 }
 
 .ndpv #pv-tutorial .pv-tutorial-image img {
@@ -377,15 +386,8 @@
   max-width: 950px;
 }
 
-.ndpv .pv-button.pv-text-right {
-  left: 0;
-  right: 0;
-  margin: auto;
-  max-width: 950px;
-}
-
 .ndpv .pv-button.pv-text-right a {
-  padding: 15px 30px;
+  padding: 13px 30px;
 }
 
 .ndpv .pv-button.pv-text-right .pv-btn {
@@ -496,7 +498,7 @@
   display: grid;
   grid-template-columns: auto 100px;
   margin-bottom: 15px;
-  padding: 15px 30px;
+  padding: 15px 30px 20px;
   background-color: #FDFDFD;
   border-radius: 15px;
   box-shadow: 0px 2.95074px 4.60099px rgba(0, 0, 0, 0.07);

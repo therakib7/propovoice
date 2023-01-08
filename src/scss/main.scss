@@ -4003,7 +4003,7 @@ table thead:first-child tr:first-child th {
 
 @media screen and (max-width: 440px) {
   .ndpv .pv-welcome-tabs-content .pv-tabs:before {
-    background-color: none;
+    width: 0;
   }
 }
 
