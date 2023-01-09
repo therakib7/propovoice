@@ -181,7 +181,7 @@ The super fantastic pro features that accelerate your business growth and improv
 == Changelog ==
 
 = 1.0.6.7 =
-* Added: Paypal and Stripe auto subscription added
+* Added: Helper classes/actions/hooks for the Paypal/Stripe automated subscription feature
 
 = 1.0.6.6 =
 * Update: Code Structure

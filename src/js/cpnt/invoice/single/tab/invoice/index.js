@@ -594,10 +594,10 @@ class Invoice extends Component {
 		this.setState({ invoice });
 	}
 
-	onPaymentChange = (data, type) => {
+	onPaymentChange = (data, type, method_id = null) => {
 		let invoice = { ...this.state.invoice }
 		if (type == 'method') {
-			if (invoice.payment_methods.hasOwnProperty(data)) { // if payment method exist 
+			if (invoice.payment_methods.hasOwnProperty(data)) { // if payment method exist
 				delete invoice.payment_methods[data];
 
 				if (data == 'bank') {
@@ -606,11 +606,14 @@ class Invoice extends Component {
 					this.setState({ invoice });
 				}
 			} else {
-				invoice.payment_methods[data] = null;
+				if (method_id) {
+					invoice.payment_methods[data] = method_id;
+				} else {
+					invoice.payment_methods[data] = null;
+				}
 				this.setState({ invoice });
 			}
 		} else { //type id
-
 			invoice.payment_methods[data.type] = data.id;
 			if (data.type == 'bank') {
 				this.setState({ invoice, paymentBankData: data });
@@ -705,7 +708,7 @@ class Invoice extends Component {
 			}
 
 			if (!payment) {
-				toast.error('Now only available Paypal/Stripe subscription. You must select this from Payment Method.');
+				toast.error('Please select Paypal or Stripe from "Payment Method" to active auto subscription');
 				return;
 			}
 		}

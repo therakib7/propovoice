@@ -51,8 +51,8 @@ class Payment extends Component {
         })
     };
 
-    setPayment = (data, type) => {
-        this.props.handleChange(data, type);
+    setPayment = (data, type, method_id = null) => {
+        this.props.handleChange(data, type, method_id);
     }
 
     handleSubmit = payment => {
@@ -69,6 +69,15 @@ class Payment extends Component {
                     });
                 }
             })
+    }
+
+    getByPaymentMethod = (method_id) => {
+        let list = this.state.payments.filter(x => x.method_id === method_id)[0].list;
+        if (list.length == 1) {
+            return list[0].id;
+        } else {
+            return null;
+        }
     }
 
     render() {
@@ -88,7 +97,7 @@ class Payment extends Component {
 
                     return (
                         <div className="pv-tab" key={i}>
-                            <input type="checkbox" defaultChecked={payment_methods.hasOwnProperty(row.method_id)} id={"pv-payment-" + row.method_id} onChange={() => this.setPayment(row.method_id, 'method')} name="pv-payment-type" />
+                            <input type="checkbox" defaultChecked={payment_methods.hasOwnProperty(row.method_id)} id={"pv-payment-" + row.method_id} onChange={() => this.setPayment(row.method_id, 'method', this.getByPaymentMethod(row.method_id))} name="pv-payment-type" />
                             <label className={(payment_methods.hasOwnProperty(row.method_id) ? 'pv-active' : '') + ' pv-tab-label'} htmlFor={"pv-payment-" + row.method_id}>
                                 {row.method_name}
                             </label>
@@ -117,7 +126,6 @@ class Payment extends Component {
                                                     <svg
                                                         width={20}
                                                         height={20}
-
                                                         xmlnsXlink="http://www.w3.org/1999/xlink"
                                                         viewBox="3.4 5.6 17.6 13.4"
                                                         enableBackground="new 3.4 5.6 17.6 13.4"
@@ -149,13 +157,13 @@ class Payment extends Component {
                             handleSubmit={this.handleSubmit}
                             show={this.state.bankModal}
                             modalType={'new'}
-                            // data={this.state.businessData}
+                            //data={this.state.businessData}
                             close={() => this.setState({ bankModal: false })}
                         />}
                         <div className='pv-payment-buttons'>
                             <button
                                 className='pv-btn pv-bg-blue pv-bg-hover-blue pv-hover-color-white'
-                                // onClick={this.goToPayment}
+                                //onClick={this.goToPayment}
                                 onClick={() => this.setState({ bankModal: true })}
                             >
                                 {i18n.add} {i18n.new} {i18n.payment}
