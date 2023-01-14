@@ -196,6 +196,7 @@ export default class Invoice extends Component {
 	};
 
 	getData = () => {
+		const i18n = ndpv.i18n;
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		const id = urlParams.get("id");
@@ -206,17 +207,17 @@ export default class Invoice extends Component {
 
 			let paypal = {
 				id: "paypal",
-				label: "Paypal",
+				label: i18n.paypal,
 			};
 
 			let stripe = {
 				id: "stripe",
-				label: "Stripe",
+				label: i18n.stripe,
 			};
 
 			let bank = {
 				id: "bank",
-				label: "Bank",
+				label: i18n.bank,
 			};
 
 			if (!wage.length) {
