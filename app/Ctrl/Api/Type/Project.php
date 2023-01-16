@@ -367,6 +367,10 @@ class Project
             $reg_errors->add('field', esc_html__('Please title is required', 'propovoice'));
         }
 
+        if (empty($status_id)) {
+            $reg_errors->add('field', esc_html__('Please select a status', 'propovoice'));
+        }
+
         /* if ( !$project_id && empty($contact_id)) {
             $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
         } */

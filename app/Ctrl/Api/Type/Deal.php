@@ -132,7 +132,7 @@ class Deal
 
         $args['meta_query'] = array(
             'relation' => 'OR'
-        );  
+        );
 
         if ($stage_id) {
             $args['tax_query'] = array(

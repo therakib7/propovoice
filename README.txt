@@ -182,9 +182,9 @@ The super fantastic pro features that accelerate your business growth and improv
 
 = 1.0.6.8 =
 * Update: Translation issue
-* Optimize: Invoice Estimate Loading Speed
+* Optimize: Invoice and estimate loading speed
 * Update: Remove single text from slug
-* Fixed: JS and Functional issue
+* Fixed: JS and functional issue
 
 = 1.0.6.7 =
 * Added: Helper JS files for the Paypal and Stripe automated subscription feature
