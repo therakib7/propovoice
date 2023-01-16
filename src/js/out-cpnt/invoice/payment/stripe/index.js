@@ -202,7 +202,7 @@ class CheckoutForm extends Component {
                                     {i18n.payment} {i18n.succ}
                                 </div>
                                 <div className="ResultMessage">
-                                    Thanks for trying Stripe payment.
+                                    Thanks for trying {i18n.stripe} payment.
                                     <div style={{ marginTop: '7px', color: '#000' }}>
                                         <b>{i18n.txn} {i18n.id}:</b> {paymentMethod.paymentIntent.id}
                                     </div>

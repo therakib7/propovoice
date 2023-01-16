@@ -133,8 +133,8 @@ class Payment
             $query_data['type'] = $type;
 
             if ($type == 'bank') {
- 
-                $query_data['name'] = get_post_meta($id, 'name', true); 
+
+                $query_data['name'] = get_post_meta($id, 'name', true);
                 $query_data['details'] = get_post_meta($id, 'details', true);
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
 
@@ -146,14 +146,14 @@ class Payment
                 $query_data['client_id'] = get_post_meta($id, 'client_id', true);
                 $query_data['secret_id'] = get_post_meta($id, 'secret_id', true);
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
-                
+
             } elseif ($type == 'stripe') {
                 $query_data['account_name'] = get_post_meta($id, 'account_name', true);
                 $query_data['public_key'] = get_post_meta($id, 'public_key', true);
                 $query_data['secret_key'] = get_post_meta($id, 'secret_key', true);
                 $query_data['default'] = (bool) get_post_meta($id, 'default', true);
-            } 
-            
+            }
+
             $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
@@ -162,14 +162,14 @@ class Payment
         $data_from = isset( $request['data_from'] ) ? sanitize_text_field( $request['data_from'] ) : null;
 
         if ( $data_from == 'single_invoice' ) {
-            $data = $this->formatArray($data, 'type'); 
+            $data = $this->formatArray($data, 'type');
         }
 
         $result['result'] = $data;
         $result['total'] = $total_data;
 
         wp_send_json_success($result);
-    } 
+    }
 
     function formatArray($array, $key) {
         $custom_array = $new_array = [];
@@ -179,7 +179,26 @@ class Payment
 
         foreach ( $custom_array as $key => $value ) {
             $temp_array = [];
-            $temp_array['method_name'] = ($key == 'bank') ? __( 'Bank & Others', 'propovoice' ) : ucfirst( $key );
+            $method_name = '';
+            switch ($key) {
+                case 'paypal':
+                    $method_name = esc_html__( 'Paypal', 'propovoice' );
+                    break;
+
+                case 'stripe':
+                $method_name = esc_html__( 'Stripe', 'propovoice' );
+                break;
+
+                case 'bank':
+                    $method_name = __( 'Bank & Others', 'propovoice' );
+                    break;
+
+                default:
+                    $method_name = ucfirst( $key );
+                    break;
+            }
+
+            $temp_array['method_name'] = $method_name;
             $temp_array['method_id'] = $key;
             $temp_array['list'] = $value;
 
@@ -195,8 +214,8 @@ class Payment
         $query_data = [];
         $query_data['id'] = $id;
 
-        $query_data['type'] = get_post_meta($id, 'type', true); 
-        $query_data['name'] = get_post_meta($id, 'name', true); 
+        $query_data['type'] = get_post_meta($id, 'type', true);
+        $query_data['name'] = get_post_meta($id, 'name', true);
         $query_data['details'] = get_post_meta($id, 'details', true);
         $query_data['default'] = (bool) get_post_meta($id, 'default', true);
 
@@ -210,8 +229,8 @@ class Payment
         $reg_errors = new \WP_Error;
 
         $type = isset($param['type']) ? sanitize_text_field($param['type']) : null;
-        //bank form 
-        $name = isset($param['name']) ? sanitize_text_field($param['name']) : null; 
+        //bank form
+        $name = isset($param['name']) ? sanitize_text_field($param['name']) : null;
         $details = isset($param['details']) ? sanitize_textarea_field($param['details']) : null;
         $default = isset($param['default']) ? rest_sanitize_boolean($param['default']) : null;
 
@@ -247,18 +266,18 @@ class Payment
             $post_id = wp_insert_post($data);
 
             if ( !is_wp_error($post_id) ) {
-                
+
                 update_post_meta($post_id, 'ws_id', ndpv()->get_workspace() );
 
                 if ($type) {
                     update_post_meta($post_id, 'type', $type);
                 }
 
-                if ($type == 'bank') { 
+                if ($type == 'bank') {
 
                     if ($name) {
                         update_post_meta($post_id, 'name', $name);
-                    } 
+                    }
 
                     if ($details) {
                         update_post_meta($post_id, 'details', $details);
@@ -272,7 +291,7 @@ class Payment
                     if ($account_name) {
                         update_post_meta($post_id, 'account_name', $account_name);
                     }
-                    
+
                     if ($account_email) {
                         update_post_meta($post_id, 'account_email', $account_email);
                     }
@@ -302,14 +321,14 @@ class Payment
                 } else {
                     update_post_meta($post_id, 'default', false);
                 }
-                
+
                 //TODO: when add new bank, but not for all payment
                 $paymentData = [];
                 $paymentData['id'] = $post_id;
                 $paymentData['type'] = 'bank';
                 $paymentMeta = get_post_meta($post_id);
                 $paymentData['name'] = isset($paymentMeta['name']) ? $paymentMeta['name'][0] : '';
-                $paymentData['details'] = isset($paymentMeta['details']) ? $paymentMeta['details'][0] : '';  
+                $paymentData['details'] = isset($paymentMeta['details']) ? $paymentMeta['details'][0] : '';
 
                 wp_send_json_success($paymentData);
             } else {
@@ -324,8 +343,8 @@ class Payment
         $reg_errors = new \WP_Error;
 
         $type = isset($param['type']) ? sanitize_text_field($param['type']) : null;
-        //bank form 
-        $name = isset($param['name']) ? sanitize_text_field($param['name']) : null; 
+        //bank form
+        $name = isset($param['name']) ? sanitize_text_field($param['name']) : null;
         $details = isset($param['details']) ? sanitize_textarea_field($param['details']) : null;
         $default = isset($param['default']) ? rest_sanitize_boolean($param['default']) : null;
 
@@ -364,11 +383,11 @@ class Payment
                     update_post_meta($post_id, 'type', $type);
                 }
 
-                if ($type == 'bank') { 
+                if ($type == 'bank') {
 
                     if ($name) {
                         update_post_meta($post_id, 'name', $name);
-                    } 
+                    }
 
                     if ($details) {
                         update_post_meta($post_id, 'details', $details);
@@ -382,7 +401,7 @@ class Payment
                     if ($account_name) {
                         update_post_meta($post_id, 'account_name', $account_name);
                     }
-                    
+
                     if ($account_email) {
                         update_post_meta($post_id, 'account_email', $account_email);
                     }

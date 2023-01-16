@@ -133,15 +133,15 @@ const TableBody = props => {
         let payment_method;
         switch (row.payment_method) {
             case 'bank':
-                payment_method = <span className='pv-badge pv-cursor-pointer' style={{ color: '#fff', backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>Bank & Others</span>
+                payment_method = <span className='pv-badge pv-cursor-pointer' style={{ color: '#fff', backgroundColor: '#4A5568' }} onClick={() => props.infoModal(row, 'bank')}>{ndpv.i18n.bank}</span>
                 break;
 
             case 'paypal':
-                payment_method = <span className='pv-badge pv-cursor-pointer' style={{ color: '#fff', backgroundColor: '#009cde' }} onClick={() => props.infoModal(row, 'paypal')}>Paypal</span>
+                payment_method = <span className='pv-badge pv-cursor-pointer' style={{ color: '#fff', backgroundColor: '#009cde' }} onClick={() => props.infoModal(row, 'paypal')}>{ndpv.i18n.paypal}</span>
                 break;
 
             case 'stripe':
-                payment_method = <span className='pv-badge pv-cursor-pointer' style={{ color: '#fff', backgroundColor: '#5433FF' }} onClick={() => props.infoModal(row, 'stripe')}>Stripe</span>
+                payment_method = <span className='pv-badge pv-cursor-pointer' style={{ color: '#fff', backgroundColor: '#5433FF' }} onClick={() => props.infoModal(row, 'stripe')}>{ndpv.i18n.stripe}</span>
                 break;
         }
 

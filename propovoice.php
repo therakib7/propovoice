@@ -7,13 +7,13 @@ if (!defined('ABSPATH')) {
  * @package   NurencyDigital - Propovoice
  * @author    NurencyDigital <support@propovoice.com>
  * @link      https://propovoice.com
- * @copyright 2022 NurencyDigital 
+ * @copyright 2022 NurencyDigital
  *
  * Plugin Name: Propovoice
  * Plugin URI: https://wordpress.org/plugins/propovoice
  * Author: Propovoice
  * Author URI: https://propovoice.com
- * Version: 1.0.6.7
+ * Version: 1.0.6.8
  * Description: Lead, Deal, Estimate, Invoice, Billing, Client, Project Automation
  * Text Domain: propovoice
  * Domain Path: /languages

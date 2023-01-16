@@ -176,4 +176,4 @@ class Payment extends Component {
     }
 }
 
-export default Payment; 
+export default Payment;

@@ -235,6 +235,7 @@ class I18n
             "discount" => esc_html__("Discount", "propovoice"),
             "txn" => esc_html__("Transaction", "propovoice"),
             "stripe" => esc_html__("Stripe", "propovoice"),
+            "paypal" => esc_html__("Paypal", "propovoice"),
             "Pub" => esc_html__("Public", "propovoice"),
             "full" => esc_html__("Full", "propovoice"),
             "dlvy" => esc_html__("delivery", "propovoice"),
