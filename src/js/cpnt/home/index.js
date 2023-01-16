@@ -21,7 +21,7 @@ const ListSingle = lazy(() => import('cpnt/list-single'));
 
 const Project = lazy(() => import('cpnt/project'));
 //const Proposal = lazy(() => import('cpnt/proposal'));
-//const Editor = lazy(() => import('cpnt/editor')); 
+//const Editor = lazy(() => import('cpnt/editor'));
 
 const Invoice = lazy(() => import('cpnt/invoice/list'));
 const InvoiceSingle = lazy(() => import('cpnt/invoice/single'));
@@ -157,33 +157,33 @@ export default () => {
                                 {/* <Route path="/proposal" element={<Editor />} /> */}
 
                                 <Route path="/client" exact element={<Client />} />
-                                <Route path="/client/single/:id" exact element={<ListSingle />} />
+                                <Route path="/client/:id" exact element={<ListSingle />} />
 
                                 <Route path="/lead" exact element={<Lead />} />
-                                <Route path="/lead/single/:id" exact element={<ListSingle />} />
+                                <Route path="/lead/:id" exact element={<ListSingle />} />
 
                                 <Route path="/deal" exact element={<Deal onLoad={boardView} />} />
-                                <Route path="/deal/single/:id" exact element={<ListSingle />} />
+                                <Route path="/deal/:id" exact element={<ListSingle />} />
 
                                 <Route path="/task" exact element={<Task />} />
-                                <Route path="/task/single/:id" exact element={<ListSingle />} />
+                                <Route path="/task/:id" exact element={<ListSingle />} />
 
                                 <Route path="/project" exact element={<Project onLoad={boardView} />} />
-                                <Route path="/project/single/:id" exact element={<ListSingle />} />
+                                <Route path="/project/:id" exact element={<ListSingle />} />
 
                                 {modules.map((mod) =>
                                     <React.Fragment key={mod.toString()}>
                                         <Route path={`/${mod}`} element={<Invoice />} />
-                                        <Route path={`/${mod}/single`} element={<InvoiceSingle />} />
-                                        <Route path={`/${mod}/single/:id`} element={<InvoiceSingle />} />
-                                        <Route path={`/${mod}/single/:id/tab/:tab`} element={<InvoiceSingle />} />
+                                        <Route path={`/${mod}/new`} element={<InvoiceSingle />} />
+                                        <Route path={`/${mod}/:id`} element={<InvoiceSingle />} />
+                                        <Route path={`/${mod}/:id/tab/:tab`} element={<InvoiceSingle />} />
                                     </React.Fragment>
                                 )}
-                                <Route path={'/invoice/single/:id/subscription'} element={<InvoiceSubscription />} />
+                                <Route path={'/invoice/:id/subscription'} element={<InvoiceSubscription />} />
 
                                 <Route path="/contact/person" exact element={<ContactPerson />} />
                                 <Route path="/contact/organization" exact element={<ContactOrg />} />
-                                <Route path="/contact/single/:id" exact element={<ListSingle />} />
+                                <Route path="/contact/:id" exact element={<ListSingle />} />
 
                                 <Route path="/setting" element={<Setting />} />
                                 <Route path="/setting/:tab" element={<Setting />} />

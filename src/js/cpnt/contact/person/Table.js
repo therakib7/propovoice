@@ -41,7 +41,7 @@ const TableBody = props => {
 
     const navigate = useNavigate();
     const handleOverview = (id) => {
-        navigate(`/contact/single/${id}`);
+        navigate(`/contact/${id}`);
     };
 
     let rows = props.tableData.map((row, index) => {

@@ -180,6 +180,12 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
+= 1.0.6.8 =
+* Update: Translation issue
+* Optimize: Invoice Estimate Loading Speed
+* Update: Remove single text from slug
+* Fixed: JS and Functional issue
+
 = 1.0.6.7 =
 * Added: Helper JS files for the Paypal and Stripe automated subscription feature
 

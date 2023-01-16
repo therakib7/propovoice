@@ -42,7 +42,7 @@ const TableHeader = props => {
 const TableBody = props => {
     const navigate = useNavigate();
     const handleOverview = (id) => {
-        navigate(`/invoice/single/${id}`);
+        navigate(`/invoice/${id}`);
     };
 
     let rows = props.tableData.map((row, index) => {

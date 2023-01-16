@@ -7,8 +7,8 @@ const TableHeader = props => {
     const i18n = ndpv.i18n;
     return (
         <thead>
-            <tr> 
-                <th style={{width: 'auto'}}>
+            <tr>
+                <th style={{ width: 'auto' }}>
                     {i18n.inv} {i18n.id}
                 </th>
                 <th>
@@ -19,7 +19,7 @@ const TableHeader = props => {
                 </th>
                 <th>
                     Status
-                </th> 
+                </th>
                 <th>
                     {i18n.action}
                 </th>
@@ -31,14 +31,14 @@ const TableHeader = props => {
 const TableBody = props => {
     const navigate = useNavigate();
     const handleOverview = (id) => {
-        // navigate(`/lead/single/${id}`);
+        // navigate(`/lead/${id}`);
     };
 
     let rows = props.tableData.map((row, index) => {
 
         return (
-            <tr key={index}> 
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer' style={{width: 'auto'}}>ID</td>
+            <tr key={index}>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer' style={{ width: 'auto' }}>ID</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>10-11-20</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>10-12-20</td>
                 <td>Unpaid</td>

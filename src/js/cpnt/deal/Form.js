@@ -142,7 +142,7 @@ class Form extends Component {
                         toast.success(ndpv.i18n.aDelM);
                         let id = resp.data.data;
                         this.props.close();
-                        this.props.navigate(`/deal/single/${id}`);
+                        this.props.navigate(`/deal/${id}`);
                         this.props.reload();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {

@@ -144,7 +144,7 @@ class Form extends Component {
                         toast.success(ndpv.i18n.aProM);
                         let id = resp.data.data;
                         this.props.close();
-                        this.props.navigate(`/project/single/${id}`);
+                        this.props.navigate(`/project/${id}`);
                         this.props.reload();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {

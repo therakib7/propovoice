@@ -20,14 +20,14 @@ const InvoiceWrap = (props) => {
 	}
 
 	if (id === undefined) {
-		path = location.pathname == '/invoice/single' ? 'invoice' : 'estimate';
+		path = location.pathname == '/invoice/new' ? 'invoice' : 'estimate';
 	} else {
 		let url_path = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
 		path = url_path.includes('invoice') ? 'invoice' : 'estimate';
 	}
 
 	const routeChange = id => {
-		navigate(`/${path}/single/${id}`);
+		navigate(`/${path}/${id}`);
 	};
 
 	const routeInvoice = () => {

@@ -23,7 +23,7 @@ const TableHeader = props => {
                         width={16}
                         height={16}
                         viewBox="0 0 16 16"
-                        fill="none" 
+                        fill="none"
                     >
                         <path
                             d="M2 3.5h12V12a.5.5 0 01-.5.5h-11A.5.5 0 012 12V3.5z"
@@ -39,14 +39,14 @@ const TableHeader = props => {
                         />
                     </svg>
                     {i18n.client}
-                </th> 
+                </th>
                 <th>
                     <svg
                         style={{ top: 2 }}
                         width={15}
                         height={10}
                         viewBox="0 0 15 10"
-                        fill="none" 
+                        fill="none"
                     >
                         <path
                             d="M11.15 9.275L14 5 11.15.725A.493.493 0 0010.731.5H1.5A.5.5 0 001 1v8a.5.5 0 00.5.5h9.231a.494.494 0 00.419-.225v0z"
@@ -63,7 +63,7 @@ const TableHeader = props => {
                         width={15}
                         height={10}
                         viewBox="0 0 15 10"
-                        fill="none" 
+                        fill="none"
                     >
                         <path
                             d="M11.15 9.275L14 5 11.15.725A.493.493 0 0010.731.5H1.5A.5.5 0 001 1v8a.5.5 0 00.5.5h9.231a.494.494 0 00.419-.225v0z"
@@ -80,7 +80,7 @@ const TableHeader = props => {
                         width={16}
                         height={16}
                         viewBox="0 0 16 16"
-                        fill="none" 
+                        fill="none"
                     >
                         <path
                             d="M7.669 1.619L2.625 2.625 1.619 7.669a.5.5 0 00.137.45l6.525 6.525a.496.496 0 00.706 0l5.657-5.657a.496.496 0 000-.706L8.119 1.756a.5.5 0 00-.45-.137v0z"
@@ -107,7 +107,7 @@ const TableBody = props => {
 
     const navigate = useNavigate();
     const handleOverview = (id) => {
-        navigate(`/deal/single/${id}`);
+        navigate(`/deal/${id}`);
     };
 
     let rows = props.tableData.map((row, index) => {
@@ -124,9 +124,9 @@ const TableBody = props => {
                     />
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.title}</td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td> 
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>${row.budget}</td>
-                {!wage.length && <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.probability}%</td>} 
+                {!wage.length && <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.probability}%</td>}
                 <td>
                     {row.stage_id && <>
                         {(row.stage_id.color && row.stage_id.bg_color) && <span className="pv-badge"
@@ -140,7 +140,7 @@ const TableBody = props => {
                                 height={6}
                                 viewBox="0 0 6 6"
                                 fill="none"
-                                
+
                             >
                                 <circle cx={3} cy={3} r={3} fill={row.stage_id.color} />
                             </svg>
@@ -150,7 +150,7 @@ const TableBody = props => {
                         {(!row.stage_id.color || !row.stage_id.bg_color) && <span className="pv-badge">
                             {row.stage_id.label}
                         </span>}
-                    </>} 
+                    </>}
                 </td>
                 <td>{row.date}</td>
                 <td className="pv-action">
@@ -171,7 +171,7 @@ export default (props) => {
     const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
     return (
         <>
-            {tableData.length > 0 && <div className='pv-table-wrap' style={{marginTop: '20px'}}>
+            {tableData.length > 0 && <div className='pv-table-wrap' style={{ marginTop: '20px' }}>
                 <table className='pv-table'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />

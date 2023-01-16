@@ -74,7 +74,7 @@ const TableBody = props => {
                 break;
         }
 
-        navigate(`/${path}/single/${row.id}${view}`);
+        navigate(`/${path}/${row.id}${view}`);
     }
     const i18n = ndpv.i18n;
 

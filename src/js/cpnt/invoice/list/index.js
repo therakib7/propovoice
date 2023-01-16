@@ -268,7 +268,7 @@ class Invoice extends Component {
                         <AddNew
                             title={title}
                             openForm={() => this.newInvoie()}
-                            // fields={EntityFields.invoice}
+                        // fields={EntityFields.invoice}
 
                         />
                     </div>
@@ -402,9 +402,9 @@ function InvoiceWrap(props) {
     let navigate = useNavigate();
     const routeChange = () => {
         if (module_id) {
-            navigate(`${path}/single?module_id=${module_id}`);
+            navigate(`${path}/new?module_id=${module_id}`);
         } else {
-            navigate(`${path}/single`);
+            navigate(`${path}/new`);
         }
     };
 
