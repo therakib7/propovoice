@@ -11,16 +11,9 @@ const TableHeader = props => {
                 <th>
                     <input type="checkbox"
                         // value={row.id}
-                        // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
+                        // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)}
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
                     />
-                </th>
-                <th>
-                    {i18n.ct} {i18n.name}
-                </th>
-                <th>
-                    <Email />
-                    {i18n.email}
                 </th>
                 <th>
                     Start Date
@@ -67,10 +60,6 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
-                    Name
-                </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>mail@mail.com</td>
                 <td>
                     <Moment format={ndpv.date_format}>{row.start_date}</Moment>
                 </td>
