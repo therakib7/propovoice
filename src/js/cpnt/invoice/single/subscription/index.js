@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Breadcrumb from 'block/breadcrumb';
 import AddNew from 'block/add-new';
 import Action from 'block/action/table';
@@ -13,9 +14,10 @@ import Empty from 'block/empty';
 
 import Crud from 'hoc/Crud';
 const Subscription = (props) => {
+	const { id } = useParams();
 
 	useEffect(() => {
-		props.getLists();
+		props.getLists({ ref_id: id });
 	}, []);
 
 	const { title, lists, checkedBoxes, searchVal } = props.state;

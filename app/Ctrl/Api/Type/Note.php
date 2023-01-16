@@ -90,17 +90,17 @@ class Note
         $args['meta_query'] = array(
             'relation' => 'OR'
         );
- 
+
         $args['meta_query'][] = array(
             array(
                 'key'     => 'tab_id',
                 'value'   => $tab_id,
                 'compare' => '='
             )
-        ); 
+        );
 
         $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();

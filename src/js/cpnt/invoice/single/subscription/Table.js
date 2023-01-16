@@ -42,7 +42,7 @@ const TableHeader = props => {
 const TableBody = props => {
     const navigate = useNavigate();
     const handleOverview = (id) => {
-        navigate(`/lead/single/${id}`);
+        navigate(`/invoice/single/${id}`);
     };
 
     let rows = props.tableData.map((row, index) => {
@@ -68,17 +68,14 @@ const TableBody = props => {
                     />
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
-                    <div className="pv-avater">
-                        <img src={img} alt="avatar" />
-                        <span>{(row.person) ? row.person.first_name : row.org.name}</span>
-                    </div>
+                    Name
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>mail@mail.com</td>
                 <td>
-                    10-11-2022
+                    <Moment format={ndpv.date_format}>{row.start_date}</Moment>
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
-                    10-12-2022
+                    <Moment format={ndpv.date_format}>{row.end_date}</Moment>
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>Paid</td>
                 <td className="pv-action">

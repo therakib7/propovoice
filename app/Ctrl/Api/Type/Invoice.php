@@ -177,11 +177,13 @@ class Invoice
 
             $query_data = [];
             $query_data['id'] = $id;
-            $query_data['num'] = get_post_meta($id, 'num', true);
-            $query_data['token'] = get_post_meta($id, 'token', true);
-            $query_data['path'] = get_post_meta($id, 'path', true);
-            $query_data['date'] = get_post_meta($id, 'date', true);
-            $query_data['due_date'] = get_post_meta($id, 'due_date', true);
+
+            $invMeta = get_post_meta($id);
+            $query_data['num'] = isset($invMeta['num']) ? $invMeta['num'][0] : '';
+            $query_data['token'] = isset($invMeta['token']) ? $invMeta['token'][0] : '';
+            $query_data['path'] = isset($invMeta['path']) ? $invMeta['path'][0] : '';
+            $query_data['date'] = isset($invMeta['date']) ? $invMeta['date'][0] : '';
+            $query_data['due_date'] = isset($invMeta['due_date']) ? $invMeta['due_date'][0] : '';
 
             $query_data['project'] = [
                 'name' => ''
@@ -221,26 +223,29 @@ class Invoice
             }
             $query_data['to'] = $contactData;
 
-            $query_data['invoice'] = get_post_meta($id, 'invoice', true);
+            $query_data['invoice'] = isset($invMeta['invoice']) ? maybe_unserialize($invMeta['invoice'][0]) : '';
+            $query_data['total'] = isset($invMeta['total']) ? $invMeta['total'][0] : '';
 
-            $query_data['total'] = get_post_meta($id, 'total', true);
             if (!$query_data['total']) {
                 $query_data['total'] = 0;
             }
-            $query_data['paid'] = get_post_meta($id, 'paid', true);
+
+            $query_data['paid'] = isset($invMeta['paid']) ? $invMeta['paid'][0] : '';
             if (!$query_data['paid']) {
                 $query_data['paid'] = 0;
             }
 
-            $query_data['due'] = get_post_meta($id, 'due', true);
+            $query_data['due'] = isset($invMeta['due']) ? $invMeta['due'][0] : '';
             if (!$query_data['due']) {
                 $query_data['due'] = 0;
             }
 
-            $query_data['feedback'] = get_post_meta($id, 'feedback', true);
-            $query_data['payment_method'] = get_post_meta($id, 'payment_method', true);
-            $query_data['payment_info'] = get_post_meta($id, 'payment_info', true);
-            $query_data['status'] = get_post_meta($id, 'status', true);
+            $query_data['feedback'] = isset($invMeta['feedback']) ? $invMeta['feedback'][0] : '';
+            $query_data['payment_method'] = isset($invMeta['payment_method']) ? $invMeta['payment_method'][0] : '';
+            $query_data['payment_info'] = isset($invMeta['payment_info']) ? maybe_unserialize($invMeta['payment_info'][0]) : '';
+            $query_data['status'] = isset($invMeta['status']) ? $invMeta['status'][0] : '';
+
+
             // $query_data['date'] = get_the_time( get_option('date_format') );
             $data[] = $query_data;
         }
@@ -269,16 +274,23 @@ class Invoice
         $id = absint($url_params['id']);
         $query_data = [];
 
+        $subs_ref_id = get_post_meta($id, 'subs_ref_id', true);
+        if ( $subs_ref_id ) {
+            $id = $subs_ref_id;
+        }
+
         if ($id) { //edit
             $query_data['id'] = $id;
-            $query_data['token'] = get_post_meta($id, 'token', true);
-            $query_data['date'] = get_post_meta($id, 'date', true);
-            $query_data['due_date'] = get_post_meta($id, 'due_date', true);
-            $query_data['module_id'] = get_post_meta($id, 'module_id', true);
-            $from_id = get_post_meta($id, 'from', true);
 
-            $from_id = get_post_meta($id, 'from', true);
-            $query_data['status'] = get_post_meta($id, 'status', true);
+            $invMeta = get_post_meta($id);
+            $query_data['token'] = isset($invMeta['token']) ? $invMeta['token'][0] : '';
+            $query_data['date'] = isset($invMeta['date']) ? $invMeta['date'][0] : '';
+            $query_data['due_date'] = isset($invMeta['due_date']) ? $invMeta['due_date'][0] : '';
+            $query_data['module_id'] = isset($invMeta['module_id']) ? $invMeta['module_id'][0] : '';
+
+            $from_id = isset($invMeta['from']) ? $invMeta['from'][0] : '';
+
+            $query_data['status'] = isset($invMeta['status']) ? $invMeta['status'][0] : '';
             $fromData = [];
 
             if ($from_id) {
@@ -303,8 +315,9 @@ class Invoice
             }
             $query_data['fromData'] = $fromData;
 
-            $to_id = get_post_meta($id, 'to', true);
-            $to_type = get_post_meta($id, 'to_type', true);
+            $to_id = isset($invMeta['to']) ? $invMeta['to'][0] : '';
+            $to_type = isset($invMeta['to_type']) ? $invMeta['to_type'][0] : '';
+
             $toData = [];
 
             if ($to_id) {
@@ -322,7 +335,7 @@ class Invoice
             }
             $query_data['toData'] = $toData;
 
-            $invoice = get_post_meta($id, 'invoice', true);
+            $invoice = isset($invMeta['invoice']) ? maybe_unserialize($invMeta['invoice'][0]) : '';
 
             $reminder = isset($invoice['reminder']) ? $invoice['reminder'] : null;
             if (!$reminder) {
@@ -346,11 +359,8 @@ class Invoice
                 $recurringData['subscription'] = false;
                 $recurringData['send_me'] = false;
                 $recurringData['delivery'] = 1;
-
                 $invoice['recurring'] = $recurringData;
             }
-
-
 
             $paymentData = null;
             if (isset($invoice['payment_methods']['bank'])) {
@@ -362,7 +372,7 @@ class Invoice
             $query_data['paymentBankData'] = $paymentData;
 
             if (isset($param['client_view'])) {
-                $token = isset($param['token']) ? sanitize_text_field($param['token']) : ''; 
+                $token = isset($param['token']) ? sanitize_text_field($param['token']) : '';
                 $post_token = get_post_meta($id, 'token', true);
 
                 if ( $recurring && ( !$recurring['status'] || !$recurring['subscription'] ) ) {
@@ -443,7 +453,6 @@ class Invoice
         $path     = isset($param['path']) ? $param['path'] : '';
         $due_date = isset($param['due_date']) ? $param['due_date'] : null;
         $payment_methods = isset($param['payment_methods']) ? $param['payment_methods'] : null;
-        // wp_send_json_success($invoice);
 
         $total  = 0;
         foreach ($param['items'] as $item) {

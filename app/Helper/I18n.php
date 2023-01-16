@@ -182,6 +182,7 @@ class I18n
             "subsed" => esc_html__("Subscribed", "propovoice"),
             "substion" => esc_html__("Subscription", "propovoice"),
             "payment" => esc_html__("Payment", "propovoice"),
+            "hst" => esc_html__("History", "propovoice"),
             "paymentInfo" => esc_html__("Payment Info", "propovoice"),
             "method" => esc_html__("Method", "propovoice"),
             "var" => esc_html__("Variable", "propovoice"),
