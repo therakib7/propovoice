@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { toast } from 'react-toastify';
-
+import { CountryRegionData } from 'react-country-region-selector';
 import AppContext from 'context/app-context';
 import api from 'api';
 import Contact from 'block/field/contact-select';
@@ -100,7 +100,7 @@ export default class FromTo extends Component {
         }
     }
 
-    handleBusinessSubmit = business => { 
+    handleBusinessSubmit = business => {
         if (this.state.businessModalType == 'new') {
             api.add('businesses', business).then(resp => {
                 if (resp.data.success) {
@@ -133,9 +133,23 @@ export default class FromTo extends Component {
         this.props.setTo(contact);
     }
 
+    countryByCode = (country = '') => {
+        if (country) {
+            let obj = CountryRegionData.find((o, i) => {
+                if (o[1] === 'BD') {
+                    return true; // stop searching
+                }
+            });
+
+            if (obj) {
+                return obj[0];
+            }
+        }
+    }
+
     render = () => {
         const { fromData, toData } = this.props;
-        const i18n = ndpv.i18n; 
+        const i18n = ndpv.i18n;
         return (
             <div className="pv-from-content pv-border-right pv-mt-25">
 
@@ -219,10 +233,15 @@ export default class FromTo extends Component {
                                                 <>{toData.address}.<br /></>
                                             }
 
-                                            {toData.email},
-
+                                            {toData.email}
                                             {toData.mobile &&
-                                                <><br />{toData.mobile}</>
+                                                <>,<br />{toData.mobile}</>
+                                            }
+
+                                            {(toData.region || toData.country) &&
+                                                <>
+                                                    <br />{(toData.region && toData.country) ? toData.region + ', ' : ''} {this.countryByCode(toData.country)}
+                                                </>
                                             }
                                         </address>
                                     </> : <>
