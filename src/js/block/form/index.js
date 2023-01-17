@@ -4,9 +4,9 @@ const Text = (props) => {
     const data = props.data;
     return (
         <>
-            <label htmlFor={'form'+data.id}>{data.label}</label>
+            <label htmlFor={'form' + data.id}>{data.label}</label>
             <input
-                id={'form'+data.id}
+                id={'form' + data.id}
                 type='text'
                 name={data.id}
             />
@@ -35,18 +35,18 @@ export default (props) => {
     ];
     return (
         <form className="pv-form-style-one">
-            
+
             {data && data.map((item, i) => {
-                let field = ''; 
+                let field = '';
                 switch (item.type) {
                     case 'text':
-                            field = <Text data={item} />
+                        field = <Text data={item} />
                         break;
 
                     case 'number':
-                    
+
                         break;
-                
+
                     default:
                         break;
                 }
@@ -54,4 +54,4 @@ export default (props) => {
             })}
         </form>
     );
-} 
+}
