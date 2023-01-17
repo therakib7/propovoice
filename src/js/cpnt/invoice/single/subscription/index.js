@@ -22,6 +22,7 @@ const Subscription = (props) => {
 	}, []);
 
 	const { title, lists, checkedBoxes, searchVal } = props.state;
+	console.log(props.state);
 	const i18n = ndpv.i18n;
 
 	return (
@@ -33,12 +34,13 @@ const Subscription = (props) => {
 							{/* <img src={img} alt="logo" className="logo" /> */}
 							<div className="pv-lead-address">
 								<h3 className="">
-									{/* {data.person ? data.person.first_name : data.org.name} */} Customer Name
+									{i18n.inv + ' ' + i18n.id + ': ' + id}
 								</h3>
 
 								<address>
-									{/* {data.person ? data.person.email : data.org.email} */} Email: email@gmail.com
-									<br />
+									{/* {data.person ? data.person.email : data.org.email} */}
+									Name: <br />
+									Email: <br />
 									Subscription ID:
 									{/* {data.person && data.org && (
 										<>
@@ -84,18 +86,6 @@ const Subscription = (props) => {
 					</div>
 				</div>
 			</div>
-
-			{false && <div className="pv-tag-content">
-				<ul>
-					<li>
-						<label htmlFor="">{i18n.tag}: </label>
-					</li>
-
-					<li>
-						<label htmlFor="">{i18n.source}: </label>
-					</li>
-				</ul>
-			</div>}
 
 			<div className="row pv-mt-25">
 				<div className="col-lg-9">
