@@ -33,14 +33,12 @@ const Subscription = (props) => {
 						<div className="pv-list-content">
 							{/* <img src={img} alt="logo" className="logo" /> */}
 							<div className="pv-lead-address">
-								<h3 className="">
-									{i18n.inv + ' ' + i18n.id + ': ' + id}
-								</h3>
+								<h3 className="">{i18n.inv + ' ' + i18n.id + ': ' + id}</h3>
 
 								<address>
-									Name: {extra.hasOwnProperty('to_info') ? (extra.to_info.type == 'person' ? extra.to_info.first_name : extra.to_info.org_name_name) : ''}<br />
-									Email: {extra.hasOwnProperty('to_info') ? extra.to_info.email : ''}<br />
-									Subscription ID: {extra.hasOwnProperty('summary') ? extra.summary.subscription_id : ''}
+									{i18n.name}: {extra.hasOwnProperty('to_info') ? (extra.to_info.type == 'person' ? extra.to_info.first_name : extra.to_info.org_name_name) : ''}<br />
+									{i18n.email}: {extra.hasOwnProperty('to_info') ? extra.to_info.email : ''}<br />
+									{i18n.substion + ' ' + i18n.id}: {extra.hasOwnProperty('summary') ? extra.summary.subscription_id : ''}
 								</address>
 							</div>
 						</div>
