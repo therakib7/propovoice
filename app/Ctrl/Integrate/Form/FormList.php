@@ -98,12 +98,12 @@ class FormList
                 'pro' => true,
             ] */
         ];
-         
+
         wp_send_json_success($form_list);
-    } 
+    }
 
     public function get_per()
     {
         return true;
-    } 
-} 
+    }
+}

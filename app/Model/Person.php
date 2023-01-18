@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Ndpv\Model;
 
 use Ndpv\Helper\Fns;

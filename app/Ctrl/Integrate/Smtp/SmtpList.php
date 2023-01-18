@@ -76,12 +76,12 @@ class SmtpList
             }
             $form_list[] = $value;
         }
-         
+
         wp_send_json_success($form_list);
-    } 
+    }
 
     public function get_per()
     {
         return true;
-    } 
-} 
+    }
+}
