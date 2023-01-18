@@ -21,8 +21,8 @@ const Subscription = (props) => {
 		props.getLists({ ref_id: id });
 	}, []);
 
-	const { title, lists, checkedBoxes, searchVal } = props.state;
-	console.log(props.state);
+	const { title, lists, extra, checkedBoxes, searchVal } = props.state;
+
 	const i18n = ndpv.i18n;
 
 	return (
@@ -38,18 +38,9 @@ const Subscription = (props) => {
 								</h3>
 
 								<address>
-									{/* {data.person ? data.person.email : data.org.email} */}
-									Name: <br />
-									Email: <br />
-									Subscription ID:
-									{/* {data.person && data.org && (
-										<>
-											{i18n.org}: {data.org.name}
-											<br />
-										</>
-									)}
-									{i18n.budget}:{" "}
-									{data.budget && currency(data.budget, data.currency)} */}
+									Name: {extra.hasOwnProperty('to_info') ? (extra.to_info.type == 'person' ? extra.to_info.first_name : extra.to_info.org_name_name) : ''}<br />
+									Email: {extra.hasOwnProperty('to_info') ? extra.to_info.email : ''}<br />
+									Subscription ID: {extra.hasOwnProperty('summary') ? extra.summary.subscription_id : ''}
 								</address>
 							</div>
 						</div>

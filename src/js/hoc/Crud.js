@@ -25,6 +25,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
                 searchModal: false,
                 formModalType: 'new',
                 list: { id: null },
+                extra: {},
                 lists: [],
                 checkedBoxes: [],
                 offset: 0,
@@ -78,7 +79,12 @@ const HOC = (Inner, mod, title, modPlural = '') => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
                 let empty = result.length ? false : true;
-                this.setState({ lists: result, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
+
+                let extra = {};
+                if (resp.data.data.hasOwnProperty('extra')) {
+                    extra = resp.data.data.extra;
+                }
+                this.setState({ lists: result, extra, preloader: false, empty, total, totalPage: Math.ceil(total / this.state.perPage) });
             })
             return promise;
         };
