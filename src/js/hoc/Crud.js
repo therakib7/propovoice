@@ -74,7 +74,7 @@ const HOC = (Inner, mod, title, modPlural = '') => {
 
             let params = new URLSearchParams(args).toString();
 
-            const promise = axios.get(`${url}/?${params}`);
+            const promise = axios.get(`${url}/?${params}`, token);
             const dataPromise = promise.then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;

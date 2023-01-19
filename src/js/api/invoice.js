@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {apiUrl, apiServerUrl, token} from './helper' 
- 
+import { apiUrl, apiServerUrl, token } from './helper'
+
 const url = apiUrl + 'invoices';
 const urlServer = apiServerUrl + 'invoices';
 
@@ -29,7 +29,7 @@ const remove = id => {
 };
 
 const findByArg = title => {
-	return axios.get(`${url}?title=${title}`);
+	return axios.get(`${url}?title=${title}`, token);
 };
 
 export default {

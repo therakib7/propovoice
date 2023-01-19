@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {apiUrl, token} from './helper' 
+import { apiUrl, token } from './helper'
 
 const url = apiUrl + 'actions';
 
@@ -24,7 +24,7 @@ const remove = id => {
 };
 
 const findByArg = title => {
-	return axios.get(`${url}?title=${title}`);
+	return axios.get(`${url}?title=${title}`, token);
 };
 
 export default {

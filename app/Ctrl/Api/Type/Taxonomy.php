@@ -409,7 +409,7 @@ class Taxonomy
     // check permission
     public function get_per()
     {
-        return true;
+        return current_user_can('publish_posts');
     }
 
     public function create_per()

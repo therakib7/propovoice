@@ -30,7 +30,7 @@ class Invoice
         register_rest_route('ndpv/v1', '/invoices/(?P<id>\d+)', array(
             'methods' => 'GET',
             'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_per'],
+            'permission_callback' => [$this, 'get_per_single'],
             'args' => array(
                 'id' => array(
                     'validate_callback' => function ($param, $request, $key) {
@@ -680,6 +680,11 @@ class Invoice
 
     // check permission
     public function get_per()
+    {
+        return current_user_can('publish_posts');
+    }
+
+    public function get_per_single()
     {
         return true;
     }
