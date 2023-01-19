@@ -185,7 +185,6 @@ The super fantastic pro features that accelerate your business growth and improv
 * Optimize: Invoice and estimate loading speed
 * Update: Remove single text from slug
 * Update: Security Issue
-* Update: Code Structure
 * Update: CSS Issue
 * Fixed: JS and functional issue
 
