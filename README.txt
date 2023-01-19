@@ -184,6 +184,9 @@ The super fantastic pro features that accelerate your business growth and improv
 * Update: Translation issue
 * Optimize: Invoice and estimate loading speed
 * Update: Remove single text from slug
+* Update: Security Issue
+* Update: Code Structure
+* Update: CSS Issue
 * Fixed: JS and functional issue
 
 = 1.0.6.7 =

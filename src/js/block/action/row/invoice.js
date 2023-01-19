@@ -35,7 +35,7 @@ export default (props) => {
                 {canEdit && <a onClick={() => { setDropdown(false); props.single(row); }}>{i18n.edit}</a>}
                 <a onClick={() => props.single(row, '/tab/preview')}>{i18n.prv}</a>
                 <a target='_blank' href={props.client_url}>{i18n.client} {i18n.prv}</a>
-                {row.path == 'invoice' && (recurring.status && recurring.hasOwnProperty('subscription') && recurring.subscription) && <a onClick={() => props.single(row, '/subscription')}>{i18n.substion + ' ' + i18n.hst}</a>}
+                {false && row.path == 'invoice' && (recurring.status && recurring.hasOwnProperty('subscription') && recurring.subscription) && <a onClick={() => props.single(row, '/subscription')}>{i18n.substion + ' ' + i18n.hst}</a>}
                 {(row.status != 'paid' && row.status != 'accept') && <a onClick={() => { setDropdown(false); props.action('sent', row.id); }}>{i18n.mark} {i18n.sent}</a>}
                 {row.path == 'invoice' && row.status != 'paid' && <a onClick={() => { setDropdown(false); props.action('paid', row.id); }}>{i18n.mark} {i18n.paid}</a>}
                 {row.path == 'estimate' && <a onClick={() => { setDropdown(false); props.action('accept', row.id); }}>{i18n.mark} {i18n.acptd}</a>}
