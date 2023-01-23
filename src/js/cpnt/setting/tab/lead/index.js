@@ -1,7 +1,7 @@
-import General from './sub/General';   
+import General from './sub/General';
 
-export default (props) => {  
+export default (props) => {
 	return (
 		<General {...props} />
-	) 
-}   
+	)
+}

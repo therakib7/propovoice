@@ -19,6 +19,7 @@ const Estinv = lazy(() => import('./tab/estinv/inv'));
 const Project = lazy(() => import('./tab/project'));
 const Contact = lazy(() => import('./tab/contact'));
 const Tag = lazy(() => import('./tab/tag'));
+const CustomField = lazy(() => import('./tab/custom-field'));
 const Integrate = lazy(() => import('./tab/integrate'));
 const License = lazy(() => import('./tab/license'));
 
@@ -89,6 +90,9 @@ const Setting = (props) => {
         },
         tag: {
             label: i18n.tag
+        },
+        'custom-fields': {
+            label: i18n.cus + ' ' + i18n.fields
         },
         integration: {
             label: i18n.intg
@@ -205,6 +209,7 @@ const Setting = (props) => {
                                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
+                                {currentTab == 'custom-fields' && <CustomField {...props} />}
                                 {currentTab == 'integration' && <Integrate {...props} />}
                                 {currentTab == 'license' && <License {...props} />}
                             </Suspense>
@@ -216,4 +221,4 @@ const Setting = (props) => {
     );
 }
 
-export default WithApi(Setting); 
+export default WithApi(Setting);
