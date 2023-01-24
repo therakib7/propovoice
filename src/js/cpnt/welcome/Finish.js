@@ -14,9 +14,10 @@ export default (props) => {
 					Almost Done! <span className="pv-color-blue">Configurations</span>
 				</h1>
 				<p className="pv-sub-title">
-					Thanks for configuring propovoice to manage your business
+					Thanks for configuring Propovoice to manage your business
 				</p>
 			</div>
+
 			{false && <>
 				<div
 					className="pv-background"

@@ -56,14 +56,21 @@ class Info extends Component {
         const i18n = ndpv.i18n;
         return (
             <div id="pv-business">
+                <div className="pv-welcome-title-content pv-text-center">
+                    <h2 className="pv-welcome-title pv-color-blue">Welcome to Propovoice</h2>
+                    <p className="pv-welcome-disc">
+                        The best CRM and billing plugins to manage your service business
+                    </p>
+                </div>
+                <div className="pv-welcome-title-content" style={{ marginBottom: 15 }}>
+                    <h3 className="pv-tab-title">Create business profile</h3>
+                </div>
+
                 <form onSubmit={this.handleSubmit}>
                     <div className="pv-form-style-one">
                         <div className="row">
                             <div className="col-md">
-                                <label
-                                    htmlFor="field-name">
-                                    {i18n.name}
-                                </label>
+                                <label htmlFor="field-name">{i18n.name}</label>
 
                                 <input
                                     id="field-name"
@@ -182,13 +189,12 @@ class Info extends Component {
                     </div>
 
                     <div className="pv-button pv-text-right">
-                        <a className="pv-text-hover-blue" onClick={() => this.props.handleSkip('business')}>{i18n.skip}</a>
-                        <button type="submit" className="pv-btn pv-bg-blue pv-bg-hover-blue"> {i18n.save} {i18n.nd} {i18n.cont}</button>
+                        <a href={ndpv.dashboard} className="pv-text-hover-blue">{i18n.skip} {i18n.nd} {i18n.go} {i18n.db}</a>
+                        <button type="submit" className="pv-btn pv-bg-blue pv-bg-hover-blue">{i18n.cont}</button>
                     </div>
                 </form>
-            </div>
+            </div >
         );
     }
 }
-
 export default Info;

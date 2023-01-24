@@ -31,7 +31,6 @@ export default (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 		form.tab = 'subscription';
 
 		api.add('settings', form).then(resp => {
@@ -43,12 +42,9 @@ export default (props) => {
 				});
 			}
 		});
-		props.handleSkip('finish')
+		props.handleSkip('tutorial')
 	}
 
-	const handleLogoChange = (data) => {
-		setForm({ ...form, ['logo']: data });
-	}
 	const i18n = ndpv.i18n;
 	return (
 		<div id="pv-tutorial">
@@ -94,7 +90,7 @@ export default (props) => {
 				</div> */}
 				<div className="pv-welcome-title-content">
 					<h3 className="pv-tab-title">Tutorial</h3>
-					<p className="pv-tab-disc">the best crm and billing plugins to manage your service business</p>
+					<p className="pv-tab-disc">The best crm and billing plugins to manage your service business</p>
 				</div>
 				<div className="row no-gutters pv-mb-30 pv-bg-pearl">
 					<div className="col-lg-6">
@@ -209,6 +205,7 @@ export default (props) => {
 						</a>
 					</div>
 				</div>
+
 				<div className="pv-module">
 					<div className="pv-module-text">
 						<h3>Get Updates</h3>
@@ -227,6 +224,7 @@ export default (props) => {
 						</label>
 					</span>
 				</div>
+
 				<div className="pv-module">
 					<div className="pv-module-text">
 						<h3>Share Essentials</h3>
@@ -245,9 +243,10 @@ export default (props) => {
 						</label>
 					</span>
 				</div>
+
 				<div className="pv-button pv-text-right">
 					<a className="pv-text-hover-blue" onClick={() => props.handleSkip('tutorial')}>{i18n.skip}</a>
-					<button className="pv-btn pv-bg-blue pv-bg-hover-blue">{i18n.save} {i18n.nd} {i18n.cont}</button>
+					<button type="submit" className="pv-btn pv-bg-blue pv-bg-hover-blue">{i18n.cont}</button>
 				</div>
 			</form>
 		</div>
