@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import WithApi from "hoc/Api";
 import ProLabel from "block/pro-alert/label";
 
-const Main = (props) => {
+import List from './List';
+
+export default (props) => {
   const { tab, subtab, insubtab } = useParams();
   let navigate = useNavigate();
 
@@ -49,6 +50,7 @@ const Main = (props) => {
     routeChange(tab, subtab);
   };
 
+  const i18n = ndpv.i18n;
   return (
     <>
       <ul className="pv-horizontal-tab">
@@ -63,8 +65,17 @@ const Main = (props) => {
         ))}
       </ul>
 
+      <div className="pv-form-style-one">
+        <div className="row">
+          <div className="col">
+            <label htmlFor="custom-field-label">{i18n.lead + ' ' + i18n.cus + ' ' + i18n.fields}</label>
+            <List taxonomy='lead_level' title={i18n.field} />
+          </div>
+          <div className="col">
+          </div>
+        </div>
 
+      </div>
     </>
   );
 };
-export default WithApi(Main);
