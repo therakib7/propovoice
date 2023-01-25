@@ -15,13 +15,13 @@ export default class Welcome extends Component {
 
         this.state = {
             tabs: [
-                {
+                /* {
                     id: 'welcome',
                     text: 'Welcome'
-                },
+                }, */
                 {
                     id: 'business',
-                    text: 'Business Info'
+                    text: 'Business Configuration'
                 },
                 /* {
                     id: 'module',
@@ -36,7 +36,8 @@ export default class Welcome extends Component {
                     text: 'Finished'
                 }
             ],
-            currentTab: 'welcome',
+            loaded: false,
+            currentTab: 'business',
             currentTabIndex: null,
             preloader: true,
             business: { id: null }
@@ -51,7 +52,7 @@ export default class Welcome extends Component {
         Api.getAll('default=1').then(resp => {
             let businessData = resp.data.data.result;
             if (businessData.length) {
-                this.setState({ business: businessData[0] });
+                this.setState({ business: businessData[0], loaded: true });
             }
         });
     };
@@ -83,7 +84,7 @@ export default class Welcome extends Component {
             })
         }
 
-        this.setState({ currentTab: 'module', currentTabIndex: 2 });
+        this.setState({ currentTab: 'tutorial', currentTabIndex: 1 });
     }
 
     handleSkip = (name = null) => {
@@ -95,9 +96,9 @@ export default class Welcome extends Component {
             this.setState({ currentTab: 'finish', currentTabIndex: 4 });
         } */
         if (name == 'business') {
-            this.setState({ currentTab: 'tutorial', currentTabIndex: 2 });
+            this.setState({ currentTab: 'tutorial', currentTabIndex: 1 });
         } else if (name == 'tutorial') {
-            this.setState({ currentTab: 'finish', currentTabIndex: 3 });
+            this.setState({ currentTab: 'finish', currentTabIndex: 2 });
         }
     }
 
@@ -169,6 +170,7 @@ export default class Welcome extends Component {
 
                             {currentTab == 'business' &&
                                 <Business
+                                    key={this.state.loaded}
                                     data={this.state.business}
                                     handleSubmit={this.handleSubmit}
                                     handleSkip={this.handleSkip}
