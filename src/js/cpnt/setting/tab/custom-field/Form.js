@@ -12,7 +12,7 @@ export default class Form extends Component {
             label: '',
             desc: '',
             type: 'text',
-            mod: ''
+            mod: 'lead'
         };
 
         this.state = {
@@ -58,7 +58,7 @@ export default class Form extends Component {
             if (this.props.extra_amount_type) {
                 newForm.extra_amount_type = this.props.extra_amount_type;
             }
-            api.add('taxonomies', newForm).then(resp => {
+            api.add('custom-fields', newForm).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aAdd);
                     newForm.id = resp.data.data;
@@ -70,7 +70,7 @@ export default class Form extends Component {
                 }
             });
         } else {
-            api.edit('taxonomies', newForm.id, newForm).then(resp => {
+            api.edit('custom-fields', newForm.id, newForm).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aUpd);
                     this.props.reload();

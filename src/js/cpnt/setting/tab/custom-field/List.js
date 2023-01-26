@@ -15,8 +15,9 @@ export default (props) => {
 	const [modalType, setModalType] = useState('new');
 	const newForm = {
 		label: '',
-		color: '',
-		bg_color: ''
+		desc: '',
+		type: '',
+		order: '1'
 	};
 	const [form, setForm] = useState(newForm);
 
@@ -26,14 +27,11 @@ export default (props) => {
 	}, []);
 
 	const getData = () => {
-		let type = '';
-		if (props.extra_amount_type) {
-			type = '&extra_amount_type=' + props.extra_amount_type;
-		}
+		let mod = 'lead';
 
-		api.get('custom-fields', 'taxonomy=' + props.taxonomy + type).then(resp => {
+		api.get('custom-fields', 'mod=' + mod).then(resp => {
 			if (resp.data.success) {
-				setList(resp.data.data[props.taxonomy]);
+				setList(resp.data.data);
 				setLoading(false);
 			}
 		});
@@ -42,7 +40,7 @@ export default (props) => {
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
 
-		if (type == 'new' && wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source')) {
+		if (type == 'new' && wage.length > 0) {
 			pro();
 			return;
 		}
