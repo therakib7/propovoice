@@ -27,9 +27,7 @@ export default (props) => {
 	}, []);
 
 	const getData = () => {
-		let mod = 'lead';
-
-		api.get('custom-fields', 'mod=' + mod).then(resp => {
+		api.get('custom-fields', 'mod=' + props.mod).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data);
 				setLoading(false);
@@ -55,10 +53,10 @@ export default (props) => {
 		}
 	}
 
-	const handleDelete = (id, tax) => {
+	const handleDelete = (id) => {
 
 		if (confirm(ndpv.i18n.aConf)) {
-			api.del('custom-fields', id + '/' + tax).then(resp => {
+			api.del('custom-fields', id).then(resp => {
 				if (resp.data.success) {
 					toast.success(ndpv.i18n.aDel);
 					getData();
@@ -98,7 +96,7 @@ export default (props) => {
 		// console.log(finalArray)
 		let newForm = {
 			reorder: finalArray,
-			taxonomy: props.taxonomy
+			mod: props.mod
 		}
 		api.add('custom-fields', newForm);
 		// call parent handler with new state representation
@@ -164,34 +162,12 @@ export default (props) => {
 															/>
 														</svg>
 													</span>
-													{props.color && <>
-														{(item.color && item.bg_color) && <span className="pv-badge"
-															style={{
-																backgroundColor: item.bg_color,
-																color: item.color
-															}}
-														>
-															<svg
-																width={6}
-																height={6}
-																viewBox="0 0 6 6"
-																fill="none"
-															>
-																<circle cx={3} cy={3} r={3} fill={item.color} />
-															</svg>
-															{item.label}
-														</span>}
 
-														{(!item.color || !item.bg_color) && <span className="pv-badge">
-															{item.label}
-														</span>}
-													</>}
-
-													{!props.color && <span className="pv-badge">
+													<span className="pv-badge">
 														{item.label}
-													</span>}
-
+													</span>
 												</div>
+
 												<div className="pv-mt-3">
 													<span style={{ padding: '5px', cursor: 'pointer' }} onClick={(e) => { openModal(e, 'edit', item) }}>
 														<svg
@@ -217,7 +193,7 @@ export default (props) => {
 														</svg>
 													</span>
 
-													{true && (!item.hasOwnProperty('type') || !item.type) && <span style={{ padding: '5px', cursor: 'pointer' }} onClick={() => { handleDelete(item.id, props.taxonomy) }}>
+													<span style={{ padding: '5px', cursor: 'pointer' }} onClick={() => { handleDelete(item.id) }}>
 														<svg
 															width={16}
 															height={16}
@@ -246,9 +222,8 @@ export default (props) => {
 																strokeLinejoin="round"
 															/>
 														</svg>
-													</span>}
+													</span>
 												</div>
-
 											</li>
 										)}
 									</Draggable>

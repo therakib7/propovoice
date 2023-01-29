@@ -8,6 +8,8 @@ export default (props) => {
   const { tab, subtab, insubtab } = useParams();
   let navigate = useNavigate();
 
+  const i18n = ndpv.i18n;
+
   let tabDefault = subtab;
   if (subtab === undefined) {
     tabDefault = "lead";
@@ -16,15 +18,15 @@ export default (props) => {
   const [tabs, setTabs] = useState([
     {
       id: "lead",
-      text: "Lead",
+      text: i18n.lead,
     },
     {
       id: "deal",
-      text: "Deal",
+      text: i18n.deal,
     },
     {
       id: "project",
-      text: "Project",
+      text: i18n.project,
     },
   ]);
   const [reload, setReload] = useState(false);
@@ -50,7 +52,24 @@ export default (props) => {
     routeChange(tab, subtab);
   };
 
-  const i18n = ndpv.i18n;
+  const title = (mod = null) => {
+    let title = '';
+    switch (mod) {
+      case 'lead':
+        title = i18n.lead;
+        break;
+
+      case 'deal':
+        title = i18n.deal;
+        break;
+
+      case 'project':
+        title = i18n.project;
+        break;
+    }
+    return title;
+  };
+
   return (
     <>
       <ul className="pv-horizontal-tab">
@@ -68,8 +87,8 @@ export default (props) => {
       <div className="pv-form-style-one">
         <div className="row">
           <div className="col">
-            <label htmlFor="custom-field-label">{i18n.lead + ' ' + i18n.cus + ' ' + i18n.fields}</label>
-            <List taxonomy='lead_level' title={i18n.field} />
+            <label htmlFor="custom-field-label">{title(currentTab) + ' ' + i18n.cus + ' ' + i18n.fields}</label>
+            <List key={currentTab} mod={currentTab} title={i18n.field} />
           </div>
           <div className="col">
           </div>
