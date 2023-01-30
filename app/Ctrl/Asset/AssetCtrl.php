@@ -9,29 +9,35 @@ class AssetCtrl
 {
     private $suffix;
     private $version;
+    public $current_user_caps;
 
     public function __construct()
     {
-        $this->suffix  = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
-        $this->version = (defined('WP_DEBUG') && WP_DEBUG) ? time() : ndpv()->version();
+        $this->suffix = defined("SCRIPT_DEBUG") && SCRIPT_DEBUG ? "" : ".min";
+        $this->version =
+            defined("WP_DEBUG") && WP_DEBUG ? time() : ndpv()->version();
+        $this->current_user_caps = array_keys(wp_get_current_user()->allcaps);
 
-        add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 9999);
-        add_action('admin_enqueue_scripts', array($this, 'admin_scripts'), 9999);
+        add_action("wp_enqueue_scripts", [$this, "public_scripts"], 9999);
+        add_action("admin_enqueue_scripts", [$this, "admin_scripts"], 9999);
 
         //remove thank you text from propovoice dashboard
-        if (isset($_GET['page']) && $_GET['page'] == 'ndpv') {
-            add_filter('admin_footer_text', '__return_empty_string', 11);
-            add_filter('update_footer', '__return_empty_string', 11);
+        if (isset($_GET["page"]) && $_GET["page"] == "ndpv") {
+            add_filter("admin_footer_text", "__return_empty_string", 11);
+            add_filter("update_footer", "__return_empty_string", 11);
         }
 
-        add_filter('show_admin_bar', [$this, 'hide_admin_bar']);
+        add_filter("show_admin_bar", [$this, "hide_admin_bar"]);
 
-        add_action('current_screen', function () {
-            if (! $this->is_plugins_screen()) {
+        add_action("current_screen", function () {
+            if (!$this->is_plugins_screen()) {
                 return;
             }
 
-            add_action('admin_enqueue_scripts', [ $this, 'enqueue_feedback_dialog' ]);
+            add_action("admin_enqueue_scripts", [
+                $this,
+                "enqueue_feedback_dialog",
+            ]);
         });
     }
 
@@ -39,9 +45,9 @@ class AssetCtrl
     {
         if (
             is_page_template([
-                'workspace-template.php',
-                'invoice-template.php',
-                'estimate-template.php'
+                "workspace-template.php",
+                "invoice-template.php",
+                "estimate-template.php",
             ])
         ) {
             return false;
@@ -57,91 +63,138 @@ class AssetCtrl
     {
         //font family
         if (
-            (isset($_GET['page']) && $_GET['page'] == 'ndpv-welcome') ||
-            (isset($_GET['page']) && $_GET['page'] == 'ndpv') ||
+            (isset($_GET["page"]) && $_GET["page"] == "ndpv-welcome") ||
+            (isset($_GET["page"]) && $_GET["page"] == "ndpv") ||
             is_page_template([
-                'workspace-template.php',
-                'invoice-template.php',
-                'estimate-template.php'
+                "workspace-template.php",
+                "invoice-template.php",
+                "estimate-template.php",
             ]) ||
             $this->is_plugins_screen()
         ) {
-            wp_enqueue_style('ndpv-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), $this->version);
-            wp_enqueue_style('ndpv-main', ndpv()->get_asset_uri("css/main{$this->suffix}.css"), array(), $this->version);
+            wp_enqueue_style(
+                "ndpv-google-font",
+                "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+                [],
+                $this->version
+            );
+            wp_enqueue_style(
+                "ndpv-main",
+                ndpv()->get_asset_uri("css/main{$this->suffix}.css"),
+                [],
+                $this->version
+            );
         }
-        if (isset($_GET['page']) && $_GET['page'] == 'ndpv-welcome') {
-            wp_enqueue_style('ndpv-welcome', ndpv()->get_asset_uri("css/welcome{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ndpv-welcome', ndpv()->get_asset_uri("/js/welcome{$this->suffix}.js"), array(), $this->version, true);
-            wp_localize_script('ndpv-welcome', 'ndpv', array(
-                'apiUrl' => esc_url(rest_url()),
-                'nonce' => wp_create_nonce('wp_rest'),
-                'dashboard' => menu_page_url('ndpv', false),
-                'assetImgUri' => ndpv()->get_asset_uri('img/'),
-                'logo' => Fns::brand_logo(),
-                'i18n' => I18n::dashboard()
-            ));
+        if (isset($_GET["page"]) && $_GET["page"] == "ndpv-welcome") {
+            wp_enqueue_style(
+                "ndpv-welcome",
+                ndpv()->get_asset_uri("css/welcome{$this->suffix}.css"),
+                [],
+                $this->version
+            );
+            wp_enqueue_script(
+                "ndpv-welcome",
+                ndpv()->get_asset_uri("/js/welcome{$this->suffix}.js"),
+                [],
+                $this->version,
+                true
+            );
+            wp_localize_script("ndpv-welcome", "ndpv", [
+                "apiUrl" => esc_url(rest_url()),
+                "nonce" => wp_create_nonce("wp_rest"),
+                "dashboard" => menu_page_url("ndpv", false),
+                "assetImgUri" => ndpv()->get_asset_uri("img/"),
+                "logo" => Fns::brand_logo(),
+                "i18n" => I18n::dashboard(),
+            ]);
         }
 
         if (
-            is_page_template([
-                'invoice-template.php',
-                'estimate-template.php'
-            ])
+            is_page_template(["invoice-template.php", "estimate-template.php"])
         ) {
             //TODO: Remove all wordpress unused file from frontend
 
-            wp_enqueue_style('ndpv-invoice', ndpv()->get_asset_uri("css/invoice{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ndpv-invoice', ndpv()->get_asset_uri("/js/invoice{$this->suffix}.js"), array(), $this->version, true);
-            wp_localize_script('ndpv-invoice', 'ndpv', array(
-                'apiUrl' => esc_url(rest_url()),
-                'assetUri' => trailingslashit(NDPV_URL),
-                'nonce' => wp_create_nonce('wp_rest'),
-                'date_format' => Fns::phpToMomentFormat(get_option('date_format')),
-                'assetImgUri' => ndpv()->get_asset_uri('img/')
-            ));
+            wp_enqueue_style(
+                "ndpv-invoice",
+                ndpv()->get_asset_uri("css/invoice{$this->suffix}.css"),
+                [],
+                $this->version
+            );
+            wp_enqueue_script(
+                "ndpv-invoice",
+                ndpv()->get_asset_uri("/js/invoice{$this->suffix}.js"),
+                [],
+                $this->version,
+                true
+            );
+            wp_localize_script("ndpv-invoice", "ndpv", [
+                "apiUrl" => esc_url(rest_url()),
+                "assetUri" => trailingslashit(NDPV_URL),
+                "nonce" => wp_create_nonce("wp_rest"),
+                "date_format" => Fns::phpToMomentFormat(
+                    get_option("date_format")
+                ),
+                "assetImgUri" => ndpv()->get_asset_uri("img/"),
+            ]);
         }
 
         if (
-            (isset($_GET['page']) && $_GET['page'] == 'ndpv') ||
+            (isset($_GET["page"]) && $_GET["page"] == "ndpv") ||
             is_page_template([
-                'workspace-template.php',
-                'invoice-template.php',
-                'estimate-template.php'
+                "workspace-template.php",
+                "invoice-template.php",
+                "estimate-template.php",
             ])
         ) {
-            wp_enqueue_style('ndpv-dashboard', ndpv()->get_asset_uri("css/dashboard{$this->suffix}.css"), array(), $this->version);
-            wp_enqueue_script('ndpv-dashboard', ndpv()->get_asset_uri("/js/dashboard{$this->suffix}.js"), array(), $this->version, true);
+            wp_enqueue_style(
+                "ndpv-dashboard",
+                ndpv()->get_asset_uri("css/dashboard{$this->suffix}.css"),
+                [],
+                $this->version
+            );
+            wp_enqueue_script(
+                "ndpv-dashboard",
+                ndpv()->get_asset_uri("/js/dashboard{$this->suffix}.js"),
+                [],
+                $this->version,
+                true
+            );
             $current_user = wp_get_current_user();
-            wp_localize_script('ndpv-dashboard', 'ndpv', array(
-                'apiUrl' => esc_url(rest_url()),
-                'version' => ndpv()->version(),
-                'dashboard' => admin_url('admin.php?page=ndpv'),
-                'invoice_page_url' => sprintf(
-                    '%s?id=%s&token=%s',
-                    Fns::client_page_url('invoice'),
-                    'invoice_id',
-                    'invoice_token'
+            wp_localize_script("ndpv-dashboard", "ndpv", [
+                "apiUrl" => esc_url(rest_url()),
+                "version" => ndpv()->version(),
+                "dashboard" => admin_url("admin.php?page=ndpv"),
+                "invoice_page_url" => sprintf(
+                    "%s?id=%s&token=%s",
+                    Fns::client_page_url("invoice"),
+                    "invoice_id",
+                    "invoice_token"
                 ),
-                'estimate_page_url' => sprintf(
-                    '%s?id=%s&token=%s',
-                    Fns::client_page_url('estimate'),
-                    'invoice_id',
-                    'invoice_token'
+                "estimate_page_url" => sprintf(
+                    "%s?id=%s&token=%s",
+                    Fns::client_page_url("estimate"),
+                    "invoice_id",
+                    "invoice_token"
                 ),
                 //'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
-                'apiServerUrl' => 'https://appux.co/propovoice-server/wp-json/', //TODO: change server URL later
-                'nonce' => wp_create_nonce('wp_rest'),
-                'date_format' => Fns::phpToMomentFormat(get_option('date_format')),
-                'assetImgUri' => ndpv()->get_asset_uri('img/'),
-                'logo' => Fns::brand_logo(),
-                'assetUri' => trailingslashit(NDPV_URL),
-                'profile' => [
-                    'name' => $current_user->display_name,
-                    'img' => get_avatar_url($current_user->ID, ['size' => '36']),
-                    'logout' => wp_logout_url(get_permalink()),
+                "apiServerUrl" => "https://appux.co/propovoice-server/wp-json/", //TODO: change server URL later
+                "nonce" => wp_create_nonce("wp_rest"),
+                "date_format" => Fns::phpToMomentFormat(
+                    get_option("date_format")
+                ),
+                "assetImgUri" => ndpv()->get_asset_uri("img/"),
+                "logo" => Fns::brand_logo(),
+                "assetUri" => trailingslashit(NDPV_URL),
+                "profile" => [
+                    "name" => $current_user->display_name,
+                    "img" => get_avatar_url($current_user->ID, [
+                        "size" => "36",
+                    ]),
+                    "logout" => wp_logout_url(get_permalink()),
                 ],
-                'i18n' => I18n::dashboard()
-            ));
+                "i18n" => I18n::dashboard(),
+                "caps" => $this->current_user_caps,
+            ]);
         }
     }
 
@@ -170,11 +223,17 @@ class AssetCtrl
      */
     public function enqueue_feedback_dialog()
     {
-        add_action('admin_footer', [ $this, 'deactivate_feedback_dialog' ]);
-        wp_enqueue_script('ndpv-feedback', ndpv()->get_asset_uri("/js/feedback{$this->suffix}.js"), array(), $this->version, true);
-        wp_localize_script('ndpv-feedback', 'ndpv', array(
-            'ajaxurl' => esc_url( admin_url('admin-ajax.php') )
-        ));
+        add_action("admin_footer", [$this, "deactivate_feedback_dialog"]);
+        wp_enqueue_script(
+            "ndpv-feedback",
+            ndpv()->get_asset_uri("/js/feedback{$this->suffix}.js"),
+            [],
+            $this->version,
+            true
+        );
+        wp_localize_script("ndpv-feedback", "ndpv", [
+            "ajaxurl" => esc_url(admin_url("admin-ajax.php")),
+        ]);
     }
 
     /**
@@ -182,7 +241,7 @@ class AssetCtrl
      */
     public function deactivate_feedback_dialog()
     {
-        ndpv()->render('feedback/form');
+        ndpv()->render("feedback/form");
     }
 
     /**
@@ -190,12 +249,15 @@ class AssetCtrl
      */
     private function is_plugins_screen()
     {
-        if ( !function_exists( 'get_current_screen' ) ) {
-            require_once ABSPATH . '/wp-admin/includes/screen.php';
+        if (!function_exists("get_current_screen")) {
+            require_once ABSPATH . "/wp-admin/includes/screen.php";
         }
 
-        if ( is_admin() ) {
-            return in_array(get_current_screen()->id, [ 'plugins', 'plugins-network' ]);
+        if (is_admin()) {
+            return in_array(get_current_screen()->id, [
+                "plugins",
+                "plugins-network",
+            ]);
         } else {
             return false;
         }

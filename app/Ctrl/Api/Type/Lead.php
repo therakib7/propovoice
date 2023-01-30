@@ -10,60 +10,60 @@ class Lead
 {
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'rest_routes']);
+        add_action("rest_api_init", [$this, "rest_routes"]);
     }
 
     public function rest_routes()
     {
-        register_rest_route('ndpv/v1', '/leads', [
+        register_rest_route("ndpv/v1", "/leads", [
             [
-                'methods' => 'GET',
-                'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_per'],
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
             ],
             [
-                'methods' => 'POST',
-                'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_per']
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
 
-        register_rest_route('ndpv/v1', '/leads/(?P<id>\d+)', array(
-            'methods' => 'GET',
-            'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_per'],
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function ($param, $request, $key) {
+        register_rest_route("ndpv/v1", "/leads/(?P<id>\d+)", [
+            "methods" => "GET",
+            "callback" => [$this, "get_single"],
+            "permission_callback" => [$this, "get_per"],
+            "args" => [
+                "id" => [
+                    "validate_callback" => function ($param, $request, $key) {
                         return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
+                    },
+                ],
+            ],
+        ]);
 
-        register_rest_route('ndpv/v1', '/leads/(?P<id>\d+)', array(
-            'methods' => 'PUT',
-            'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_per'],
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function ($param, $request, $key) {
+        register_rest_route("ndpv/v1", "/leads/(?P<id>\d+)", [
+            "methods" => "PUT",
+            "callback" => [$this, "update"],
+            "permission_callback" => [$this, "update_per"],
+            "args" => [
+                "id" => [
+                    "validate_callback" => function ($param, $request, $key) {
                         return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
+                    },
+                ],
+            ],
+        ]);
 
-        register_rest_route('ndpv/v1', '/leads/(?P<id>[0-9,]+)', array(
-            'methods' => 'DELETE',
-            'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'del_per'],
-            'args' => array(
-                'id' => array(
-                    'sanitize_callback'  => 'sanitize_text_field',
-                ),
-            ),
-        ));
+        register_rest_route("ndpv/v1", "/leads/(?P<id>[0-9,]+)", [
+            "methods" => "DELETE",
+            "callback" => [$this, "delete"],
+            "permission_callback" => [$this, "del_per"],
+            "args" => [
+                "id" => [
+                    "sanitize_callback" => "sanitize_text_field",
+                ],
+            ],
+        ]);
     }
 
     public function get($req)
@@ -73,49 +73,49 @@ class Lead
         $per_page = 10;
         $offset = 0;
 
-        $s = isset($param['text']) ? sanitize_text_field($param['text']) : null;
+        $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
 
-        if (isset($param['per_page'])) {
-            $per_page = $param['per_page'];
+        if (isset($param["per_page"])) {
+            $per_page = $param["per_page"];
         }
 
-        if (isset($param['page']) && $param['page'] > 1) {
-            $offset = ($per_page * $param['page']) - $per_page;
+        if (isset($param["page"]) && $param["page"] > 1) {
+            $offset = $per_page * $param["page"] - $per_page;
         }
 
-        $args = array(
-            'post_type' => 'ndpv_lead',
-            'post_status' => 'publish',
-            'posts_per_page' => $per_page,
-            'offset' => $offset,
-        );
+        $args = [
+            "post_type" => "ndpv_lead",
+            "post_status" => "publish",
+            "posts_per_page" => $per_page,
+            "offset" => $offset,
+        ];
 
-        $args['meta_query'] = array(
-            'relation' => 'OR'
-        );
+        $args["meta_query"] = [
+            "relation" => "OR",
+        ];
 
         if ($s) {
             $contact_person = new Contact();
-            $person_ids = $contact_person->query($s, 'person');
+            $person_ids = $contact_person->query($s, "person");
             if ($person_ids) {
-                $args['meta_query'][] = array(
-                    array(
-                        'key'     => 'person_id',
-                        'value'   => $person_ids,
-                        'compare' => 'IN'
-                    )
-                );
+                $args["meta_query"][] = [
+                    [
+                        "key" => "person_id",
+                        "value" => $person_ids,
+                        "compare" => "IN",
+                    ],
+                ];
             }
 
-            $org_ids = $contact_person->query($s, 'org');
+            $org_ids = $contact_person->query($s, "org");
             if ($org_ids) {
-                $args['meta_query'][] = array(
-                    array(
-                        'key'     => 'org_id',
-                        'value'   => $org_ids,
-                        'compare' => 'IN'
-                    )
-                );
+                $args["meta_query"][] = [
+                    [
+                        "key" => "org_id",
+                        "value" => $org_ids,
+                        "compare" => "IN",
+                    ],
+                ];
             }
         }
 
@@ -127,60 +127,66 @@ class Lead
             $id = get_the_ID();
 
             $query_data = [];
-            $query_data['id'] = $id;
+            $query_data["id"] = $id;
 
             $queryMeta = get_post_meta($id);
-            $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-            $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
-            $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
-            $query_data['desc'] = get_the_content();
+            $query_data["budget"] = isset($queryMeta["budget"])
+                ? $queryMeta["budget"][0]
+                : "";
+            $query_data["currency"] = isset($queryMeta["currency"])
+                ? $queryMeta["currency"][0]
+                : "";
+            $query_data["note"] = isset($queryMeta["note"])
+                ? $queryMeta["note"][0]
+                : "";
+            $query_data["desc"] = get_the_content();
 
-            $query_data['level_id'] = null;
-            $level = get_the_terms($id, 'ndpv_lead_level');
+            $query_data["level_id"] = null;
+            $level = get_the_terms($id, "ndpv_lead_level");
             if ($level) {
                 $term_id = $level[0]->term_id;
-                $query_data['level_id'] = [
-                    'id' => $term_id,
-                    'label' => $level[0]->name,
-                    'color' => get_term_meta($term_id, 'color', true),
-                    'bg_color' => get_term_meta($term_id, 'bg_color', true)
+                $query_data["level_id"] = [
+                    "id" => $term_id,
+                    "label" => $level[0]->name,
+                    "color" => get_term_meta($term_id, "color", true),
+                    "bg_color" => get_term_meta($term_id, "bg_color", true),
                 ];
             }
 
-            $query_data['tags'] = [];
-            $tags = get_the_terms($id, 'ndpv_tag');
+            $query_data["tags"] = [];
+            $tags = get_the_terms($id, "ndpv_tag");
             if ($tags) {
                 $tagList = [];
                 foreach ($tags as $tag) {
                     $tagList[] = [
-                        'id' => $tag->term_id,
-                        'label' => $tag->name
+                        "id" => $tag->term_id,
+                        "label" => $tag->name,
                     ];
                 }
-                $query_data['tags'] = $tagList;
+                $query_data["tags"] = $tagList;
             }
 
-            $query_data['person'] = null;
-            $person_id = get_post_meta($id, 'person_id', true);
+            $query_data["person"] = null;
+            $person_id = get_post_meta($id, "person_id", true);
             if ($person_id) {
                 $person = new Person();
-                $query_data['person'] = $person->single($person_id);
+                $query_data["person"] = $person->single($person_id);
             }
 
-            $query_data['org'] = null;
-            $org_id = get_post_meta($id, 'org_id', true);
+            $query_data["org"] = null;
+            $org_id = get_post_meta($id, "org_id", true);
             if ($org_id) {
                 $org = new Org();
-                $query_data['org'] = $org->single($org_id);
+                $query_data["org"] = $org->single($org_id);
             }
 
-            $query_data['date'] = get_the_time(get_option('date_format'));
+            $query_data["date"] = get_the_time(get_option("date_format"));
             $data[] = $query_data;
         }
         wp_reset_postdata();
 
-        $result['result'] = $data;
-        $result['total'] = $total_data;
+        $result["result"] = $data;
+        $result["total"] = $total_data;
 
         wp_send_json_success($result);
     }
@@ -188,79 +194,91 @@ class Lead
     public function get_single($req)
     {
         $url_params = $req->get_url_params();
-        $id = $url_params['id'];
+        $id = $url_params["id"];
         $query_data = [];
-        $query_data['id'] = absint($id);
+        $query_data["id"] = absint($id);
 
         $queryMeta = get_post_meta($id);
-        $query_data['ws_id'] = isset($queryMeta['ws_id']) ? $queryMeta['ws_id'][0] : '';
-        $query_data['tab_id'] = isset($queryMeta['tab_id']) ? absint($queryMeta['tab_id'][0]) : '';
-        $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
-        $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
-        $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
-        $query_data['desc'] = get_post_field('post_content', $id);
+        $query_data["ws_id"] = isset($queryMeta["ws_id"])
+            ? $queryMeta["ws_id"][0]
+            : "";
+        $query_data["tab_id"] = isset($queryMeta["tab_id"])
+            ? absint($queryMeta["tab_id"][0])
+            : "";
+        $query_data["budget"] = isset($queryMeta["budget"])
+            ? $queryMeta["budget"][0]
+            : "";
+        $query_data["currency"] = isset($queryMeta["currency"])
+            ? $queryMeta["currency"][0]
+            : "";
+        $query_data["note"] = isset($queryMeta["note"])
+            ? $queryMeta["note"][0]
+            : "";
+        $query_data["desc"] = get_post_field("post_content", $id);
 
-        $query_data['level_id'] = '';
-        $level = get_the_terms($id, 'ndpv_lead_level');
+        $query_data["level_id"] = "";
+        $level = get_the_terms($id, "ndpv_lead_level");
         if ($level) {
             $term_id = $level[0]->term_id;
-            $color = get_term_meta($term_id, 'color', true);
-            $bg_color = get_term_meta($term_id, 'bg_color', true);
-            $query_data['level_id'] = [
-                'id' => $term_id,
-                'label' => $level[0]->name,
-                'color' => '#4a5568',
-                'bg_color' => '#E2E8F0',
+            $color = get_term_meta($term_id, "color", true);
+            $bg_color = get_term_meta($term_id, "bg_color", true);
+            $query_data["level_id"] = [
+                "id" => $term_id,
+                "label" => $level[0]->name,
+                "color" => "#4a5568",
+                "bg_color" => "#E2E8F0",
             ];
 
             if ($color) {
-                $query_data['level_id']['color'] = $color;
+                $query_data["level_id"]["color"] = $color;
             }
 
             if ($bg_color) {
-                $query_data['level_id']['bg_color'] = $bg_color;
+                $query_data["level_id"]["bg_color"] = $bg_color;
             }
         }
 
-        $query_data['source_id'] = '';
-        $source = get_the_terms($id, 'ndpv_lead_source');
+        $query_data["source_id"] = "";
+        $source = get_the_terms($id, "ndpv_lead_source");
         if ($source) {
-            $query_data['source_id'] = [
-                'id' => $source[0]->term_id,
-                'label' => $source[0]->name,
-                'bg_color' => '',
-                'color' => '#718096'
+            $query_data["source_id"] = [
+                "id" => $source[0]->term_id,
+                "label" => $source[0]->name,
+                "bg_color" => "",
+                "color" => "#718096",
             ];
         }
 
-        $query_data['tags'] = [];
-        $tags = get_the_terms($id, 'ndpv_tag');
+        $query_data["tags"] = [];
+        $tags = get_the_terms($id, "ndpv_tag");
         if ($tags) {
             $tagList = [];
             foreach ($tags as $tag) {
                 $tagList[] = [
-                    'id' => $tag->term_id,
-                    'label' => $tag->name
+                    "id" => $tag->term_id,
+                    "label" => $tag->name,
                 ];
             }
-            $query_data['tags'] = $tagList;
+            $query_data["tags"] = $tagList;
         }
 
-        $query_data['person'] = null;
-        $person_id = isset($queryMeta['person_id']) ? $queryMeta['person_id'][0] : '';
+        $query_data["person"] = null;
+        $person_id = isset($queryMeta["person_id"])
+            ? $queryMeta["person_id"][0]
+            : "";
         if ($person_id) {
             $person = new Person();
-            $query_data['person'] = $person->single($person_id, true);
+            $query_data["person"] = $person->single($person_id, true);
         }
 
-        $query_data['org'] = null;
-        $org_id = isset($queryMeta['org_id']) ? $queryMeta['org_id'][0] : '';
+        $query_data["org"] = null;
+        $org_id = isset($queryMeta["org_id"]) ? $queryMeta["org_id"][0] : "";
         if ($org_id) {
             $org = new Org();
-            $query_data['org'] = $org->single($org_id, true);
+            $query_data["org"] = $org->single($org_id, true);
         }
 
-        $query_data['date'] = get_the_time(get_option('date_format'));
+        $query_data["date"] = get_the_time(get_option("date_format"));
 
         wp_send_json_success($query_data);
     }
@@ -271,20 +289,37 @@ class Lead
         $reg_errors = new \WP_Error();
 
         //lead
-        $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
-        $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
-        $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
-        $org_id    = isset($param['org_id']) ? absint($param['org_id']) : null;
-        $level_id  = isset($param['level_id']) ? absint($param['level_id']) : null;
-        $budget    = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
-        $currency  = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
-        $tags      = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
-        $desc      = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note      = isset($param['note']) ? nl2br($param['note']) : '';
-        $img       = isset( $param['img'] ) ? absint( $param['img'] ) : null;
+        $first_name = isset($param["first_name"])
+            ? sanitize_text_field($param["first_name"])
+            : null;
+        $org_name = isset($param["org_name"])
+            ? sanitize_text_field($param["org_name"])
+            : null;
+        $person_id = isset($param["person_id"])
+            ? absint($param["person_id"])
+            : null;
+        $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
+        $level_id = isset($param["level_id"])
+            ? absint($param["level_id"])
+            : null;
+        $budget = isset($param["budget"])
+            ? sanitize_text_field($param["budget"])
+            : null;
+        $currency = isset($param["currency"])
+            ? sanitize_text_field($param["currency"])
+            : null;
+        $tags = isset($param["tags"])
+            ? array_map("absint", $param["tags"])
+            : null;
+        $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
+        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
+        $img = isset($param["img"]) ? absint($param["img"]) : null;
 
-        if (empty($first_name) &&  empty($org_name)) {
-            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        if (empty($first_name) && empty($org_name)) {
+            $reg_errors->add(
+                "field",
+                esc_html__("Contact info is missing", "propovoice")
+            );
         }
 
         /* if (!is_email($email)) {
@@ -312,48 +347,48 @@ class Lead
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             //insert lead
-            $data = array(
-                'post_type' => 'ndpv_lead',
-                'post_title' => 'Lead',
-                'post_content' => $desc,
-                'post_status'  => 'publish',
-                'post_author'  => get_current_user_id()
-            );
+            $data = [
+                "post_type" => "ndpv_lead",
+                "post_title" => "Lead",
+                "post_content" => $desc,
+                "post_status" => "publish",
+                "post_author" => get_current_user_id(),
+            ];
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
-                update_post_meta($post_id, 'tab_id', $post_id); //for task, note, file
+                update_post_meta($post_id, "ws_id", ndpv()->get_workspace());
+                update_post_meta($post_id, "tab_id", $post_id); //for task, note, file
 
                 if ($level_id) {
-                    wp_set_post_terms($post_id, [$level_id], 'ndpv_lead_level');
+                    wp_set_post_terms($post_id, [$level_id], "ndpv_lead_level");
                 }
 
                 if ($person_id) {
-                    update_post_meta($post_id, 'person_id', $person_id);
+                    update_post_meta($post_id, "person_id", $person_id);
                 }
 
                 if ($org_id) {
-                    update_post_meta($post_id, 'org_id', $org_id);
+                    update_post_meta($post_id, "org_id", $org_id);
                 }
 
                 if ($budget) {
-                    update_post_meta($post_id, 'budget', $budget);
+                    update_post_meta($post_id, "budget", $budget);
                 }
 
                 if ($currency) {
-                    update_post_meta($post_id, 'currency', $currency);
+                    update_post_meta($post_id, "currency", $currency);
                 }
 
                 if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
+                    wp_set_post_terms($post_id, $tags, "ndpv_tag");
                 }
 
                 if ($note) {
-                    update_post_meta($post_id, 'note', $note);
+                    update_post_meta($post_id, "note", $note);
                 }
 
-                do_action('ndpvp/webhook', 'lead_add', $param);
+                do_action("ndpvp/webhook", "lead_add", $param);
 
                 wp_send_json_success($post_id);
             } else {
@@ -368,22 +403,39 @@ class Lead
         $reg_errors = new \WP_Error();
 
         //lead
-        $first_name   = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
-        $org_name     = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
-        $person_id    = isset($param['person_id']) ? absint($param['person_id']) : null;
-        $org_id       = isset($param['org_id']) ? absint($param['org_id']) : null;
-        $level_id     = isset($param['level_id']) ? absint($param['level_id']) : null;
-        $budget       = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
-        $currency     = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
-        $tags         = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
-        $desc         = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note         = isset($param['note']) ? nl2br($param['note']) : '';
-        $img          = isset( $param['img'] ) ? absint( $param['img'] ) : null;
+        $first_name = isset($param["first_name"])
+            ? sanitize_text_field($param["first_name"])
+            : null;
+        $org_name = isset($param["org_name"])
+            ? sanitize_text_field($param["org_name"])
+            : null;
+        $person_id = isset($param["person_id"])
+            ? absint($param["person_id"])
+            : null;
+        $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
+        $level_id = isset($param["level_id"])
+            ? absint($param["level_id"])
+            : null;
+        $budget = isset($param["budget"])
+            ? sanitize_text_field($param["budget"])
+            : null;
+        $currency = isset($param["currency"])
+            ? sanitize_text_field($param["currency"])
+            : null;
+        $tags = isset($param["tags"])
+            ? array_map("absint", $param["tags"])
+            : null;
+        $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
+        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
+        $img = isset($param["img"]) ? absint($param["img"]) : null;
 
         // $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
 
         if (empty($first_name) && empty($org_name)) {
-            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+            $reg_errors->add(
+                "field",
+                esc_html__("Contact info is missing", "propovoice")
+            );
         }
 
         /* if (!is_email($email)) {
@@ -404,7 +456,7 @@ class Lead
             $org->update($param);
         }
 
-        if ( $org_id && $org_name ) {
+        if ($org_id && $org_name) {
             $org->update($param);
         }
 
@@ -416,46 +468,46 @@ class Lead
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $url_params = $req->get_url_params();
-            $post_id    = $url_params['id'];
+            $post_id = $url_params["id"];
 
-            $data = array(
-                'ID'            => $post_id,
-                'post_title'    => 'Lead',
-                'post_content'  => $desc,
-                'post_author'   => get_current_user_id()
-            );
+            $data = [
+                "ID" => $post_id,
+                "post_title" => "Lead",
+                "post_content" => $desc,
+                "post_author" => get_current_user_id(),
+            ];
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
                 if ($level_id) {
-                    wp_set_post_terms($post_id, [$level_id], 'ndpv_lead_level');
+                    wp_set_post_terms($post_id, [$level_id], "ndpv_lead_level");
                 }
 
                 if ($person_id) {
-                    update_post_meta($post_id, 'person_id', $person_id);
+                    update_post_meta($post_id, "person_id", $person_id);
                 }
 
                 if ($org_id) {
-                    update_post_meta($post_id, 'org_id', $org_id);
+                    update_post_meta($post_id, "org_id", $org_id);
                 }
 
                 if ($budget) {
-                    update_post_meta($post_id, 'budget', $budget);
+                    update_post_meta($post_id, "budget", $budget);
                 }
 
                 if ($currency) {
-                    update_post_meta($post_id, 'currency', $currency);
+                    update_post_meta($post_id, "currency", $currency);
                 }
 
                 if ($tags) {
-                    wp_set_post_terms($post_id, $tags, 'ndpv_tag');
+                    wp_set_post_terms($post_id, $tags, "ndpv_tag");
                 }
 
                 if ($note) {
-                    update_post_meta($post_id, 'note', $note);
+                    update_post_meta($post_id, "note", $note);
                 }
 
-                do_action('ndpvp/webhook', 'lead_edit', $param);
+                do_action("ndpvp/webhook", "lead_edit", $param);
 
                 wp_send_json_success($post_id);
             } else {
@@ -468,12 +520,12 @@ class Lead
     {
         //TODO: when delete lead delete task note file, if not exist in deal project
         $url_params = $req->get_url_params();
-        $ids = explode(',', $url_params['id']);
+        $ids = explode(",", $url_params["id"]);
         foreach ($ids as $id) {
             wp_delete_post($id);
         }
 
-        do_action('ndpvp/webhook', 'lead_del', $ids);
+        do_action("ndpvp/webhook", "lead_del", $ids);
 
         wp_send_json_success($ids);
     }
@@ -481,21 +533,21 @@ class Lead
     // check permission
     public function get_per()
     {
-        return current_user_can('publish_posts');
+        return current_user_can("ndpv_lead");
     }
 
     public function create_per()
     {
-        return current_user_can('publish_posts');
+        return current_user_can("ndpv_lead");
     }
 
     public function update_per()
     {
-        return current_user_can('edit_posts');
+        return current_user_can("ndpv_lead");
     }
 
     public function del_per()
     {
-        return current_user_can('delete_posts');
+        return current_user_can("ndpv_lead");
     }
 }

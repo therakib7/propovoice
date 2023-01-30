@@ -15,7 +15,7 @@ class Dashboard
         add_menu_page(
             esc_html__("Propovoice", "propovoice"),
             esc_html__("Propovoice", "propovoice"),
-            "manage_options",
+            "ndpv_core",
             "ndpv",
             [$this, "main_settings"],
             "dashicons-groups",
@@ -97,7 +97,7 @@ class Dashboard
             "ndpv",
             esc_html__("Settings", "propovoice"),
             esc_html__("Settings", "propovoice"),
-            "manage_options",
+            "ndpv_setting",
             "ndpv#/setting/general",
             [$this, "render"]
         );
@@ -108,7 +108,7 @@ class Dashboard
             if ($permalink) {
                 $submenu["ndpv"][] = [
                     esc_html__("Go to Frontend", "propovoice"),
-                    "manage_options",
+                    "ndpv_workspace",
                     $permalink,
                 ];
             }
@@ -118,7 +118,7 @@ class Dashboard
             global $submenu;
             $submenu["ndpv"][] = [
                 "Upgrade to Pro",
-                "manage_options",
+                "ndpv_core",
                 "https://propovoice.com",
             ];
         }
