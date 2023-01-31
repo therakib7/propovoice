@@ -97,6 +97,10 @@ class Task
             "posts_per_page" => -1,
         ];
 
+        if (!in_array("ndpv_manager", wp_get_current_user()->roles)) {
+            $args["author"] = get_current_user_id();
+        }
+
         if (!$tab_id) {
             $args["posts_per_page"] = $per_page;
             $args["offset"] = $offset;
