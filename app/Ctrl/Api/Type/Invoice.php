@@ -838,7 +838,8 @@ class Invoice
     // check permission
     public function get_per()
     {
-        return current_user_can("ndpv_invoice");
+        return current_user_can("ndpv_invoice") ||
+            current_user_can("ndpv_estimate");
     }
 
     public function get_per_single()
@@ -848,16 +849,19 @@ class Invoice
 
     public function create_per()
     {
-        return current_user_can("ndpv_invoice");
+        return current_user_can("ndpv_invoice") ||
+            current_user_can("ndpv_estimate");
     }
 
     public function update_per()
     {
-        return current_user_can("ndpv_invoice");
+        return current_user_can("ndpv_invoice") ||
+            current_user_can("ndpv_estimate");
     }
 
     public function del_per()
     {
-        return current_user_can("ndpv_invoice");
+        return current_user_can("ndpv_invoice") ||
+            current_user_can("ndpv_estimate");
     }
 }
