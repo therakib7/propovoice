@@ -2,6 +2,7 @@
 
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Helper\Fns;
 use Ndpv\Model\Contact;
 use Ndpv\Model\Org;
 use Ndpv\Model\Person;
@@ -135,6 +136,11 @@ class Lead
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
 
+            //custom field
+            foreach( Fns::custom_field('lead') as $value ) {
+                $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
+            }
+
             $query_data['level_id'] = null;
             $level = get_the_terms($id, 'ndpv_lead_level');
             if ($level) {
@@ -180,6 +186,9 @@ class Lead
         wp_reset_postdata();
 
         $result['result'] = $data;
+        $result['extra'] = [
+            'custom_field' => Fns::custom_field('lead'),
+        ];
         $result['total'] = $total_data;
 
         wp_send_json_success($result);
@@ -351,6 +360,14 @@ class Lead
 
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);
+                }
+
+                //custom field
+                foreach(Fns::custom_field('lead') as $value) {
+                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
+                    if ( $field ) {
+                        update_post_meta($post_id, $value->id, $field);
+                    }
                 }
 
                 do_action('ndpvp/webhook', 'lead_add', $param);

@@ -34,6 +34,7 @@ export default class Form extends Component {
 
         this.state = {
             form: this.initialState,
+            custom_field: false,
             levels: [],
             tags: [],
             personList: [],
@@ -54,33 +55,14 @@ export default class Form extends Component {
         }
     }
 
-    currencyChange = val => {
-        this.setState({ form: { ...this.state.form, ['currency']: val } });
-    }
-
-    handleLevelChange = val => {
-        this.setState({ form: { ...this.state.form, ['level_id']: val } });
-    }
-
-    handleTagChange = val => {
-        this.setState({ form: { ...this.state.form, ['tags']: val } });
-    }
-
-    selectCountry(val) {
-        let contact = { ...this.state.form.contact, ['country']: val };
-        let form = { ...this.state.form }
-        form.contact = contact;
-        this.setState({ form });
-    }
-
-    selectRegion(val) {
-        let contact = { ...this.state.form.contact, ['region']: val };
-        let form = { ...this.state.form }
-        form.contact = contact;
-        this.setState({ form });
-    }
-
     componentDidMount() {
+        //custom fields
+        let obj = {};
+        this.props.custom_field.map((item, i) => {
+            obj[item.id] = '';
+        });
+        const merge_obj = { ...this.state.form, ...obj };
+        this.setState({ form: merge_obj, custom_field: true });
 
         //find person
         let args = {
@@ -112,7 +94,7 @@ export default class Form extends Component {
     }
 
     editData = () => {
-        //condition added to stop multi rendering 
+        //condition added to stop multi rendering
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
                 let form = this.props.data;
@@ -141,6 +123,32 @@ export default class Form extends Component {
                 this.setState({ form: this.initialState });
             }
         }
+    }
+
+    currencyChange = val => {
+        this.setState({ form: { ...this.state.form, ['currency']: val } });
+    }
+
+    handleLevelChange = val => {
+        this.setState({ form: { ...this.state.form, ['level_id']: val } });
+    }
+
+    handleTagChange = val => {
+        this.setState({ form: { ...this.state.form, ['tags']: val } });
+    }
+
+    selectCountry(val) {
+        let contact = { ...this.state.form.contact, ['country']: val };
+        let form = { ...this.state.form }
+        form.contact = contact;
+        this.setState({ form });
+    }
+
+    selectRegion(val) {
+        let contact = { ...this.state.form.contact, ['region']: val };
+        let form = { ...this.state.form }
+        form.contact = contact;
+        this.setState({ form });
     }
 
     handleSubmit = (e) => {
@@ -345,7 +353,7 @@ export default class Form extends Component {
                                             type="text"
                                             name="desc"
                                             value={form.desc}
-                                            onChange={(e) => this.handleChange(e, 'lead')}
+                                            onChange={this.handleChange}
                                         />
                                     </div>
                                 </div>
@@ -361,7 +369,7 @@ export default class Form extends Component {
                                             type="text"
                                             name="note"
                                             value={form.note}
-                                            onChange={(e) => this.handleChange(e, 'lead')}
+                                            onChange={this.handleChange}
                                         />
                                     </div>
                                 </div>
@@ -375,6 +383,23 @@ export default class Form extends Component {
                                         <Upload data={form.img} changeHandler={this.handleImgChange} />
                                     </div>
                                 </div>
+
+                                {this.state.custom_field && this.props.custom_field.map((item, i) => (
+                                    <div key={i} className="row">
+                                        <div className="col">
+                                            <label htmlFor={'custom-field-' + i}>
+                                                {item.label}
+                                            </label>
+                                            <input
+                                                id={'custom-field-' + i}
+                                                type='text'
+                                                name={item.id}
+                                                value={form[item.id]}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
