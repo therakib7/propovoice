@@ -306,7 +306,7 @@ export default (props) => {
           </NavLink>
         </li>
       )}
-      {caps.includes("ndpv_person") && (
+      {caps.includes("ndpv_contact") && (
         <li>
           <NavLink
             to="contact/person"
