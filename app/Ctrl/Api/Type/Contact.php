@@ -304,8 +304,8 @@ class Contact
         $org_name = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
         $web          = isset($param['web']) ? esc_url_raw($param['web']) : null;
         $mobile       = isset($param['mobile']) ? sanitize_text_field($param['mobile']) : null;
-        $country      = isset($param['country']) ? sanitize_text_field($param['country']) : null;
-        $region       = isset($param['region']) ? sanitize_text_field($param['region']) : null;
+        $country      = isset($param['country']) ? sanitize_text_field($param['country']) : '';
+        $region       = isset($param['region']) ? sanitize_text_field($param['region']) : '';
         $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
         $img = isset( $param['img'] ) && isset( $param['img']['id'] ) ? absint( $param['img']['id'] ) : null;
 
@@ -356,21 +356,16 @@ class Contact
                     update_post_meta($post_id, 'mobile', $mobile);
                 }
 
-                if ($country) {
-                    update_post_meta($post_id, 'country', $country);
-                }
-
-                if ($region) {
-                    update_post_meta($post_id, 'region', $region);
-                }
+                update_post_meta($post_id, 'country', $country);
+                update_post_meta($post_id, 'region', $region);
 
                 if ($address) {
                     update_post_meta($post_id, 'address', $address);
                 }
 
                 if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
-                } 
+                    update_post_meta($post_id, 'img', $img);
+                }
 
                 wp_send_json_success($post_id);
             } else {

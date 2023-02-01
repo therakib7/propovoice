@@ -322,8 +322,8 @@ class Person
         $email        = isset($param['email']) ? strtolower(sanitize_email($req['email'])) : null;
         $web          = isset($param['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($param['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($param['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($param['region']) ? sanitize_text_field($req['region']) : null;
+        $country      = isset($param['country']) ? sanitize_text_field($req['country']) : '';
+        $region       = isset($param['region']) ? sanitize_text_field($req['region']) : '';
         $address      = isset($param['address']) ? sanitize_text_field($req['address']) : null;
         $img = isset( $param['img'] ) ? absint( $param['img'] ) : null;
 
@@ -379,22 +379,17 @@ class Person
                     update_post_meta($post_id, 'mobile', $mobile);
                 }
 
-                if ($country) {
-                    update_post_meta($post_id, 'country', $country);
-                }
-
-                if ($region) {
-                    update_post_meta($post_id, 'region', $region);
-                }
+                update_post_meta($post_id, 'country', $country);
+                update_post_meta($post_id, 'region', $region);
 
                 if ($address) {
                     update_post_meta($post_id, 'address', $address);
                 }
-                
+
                 if ( $img ) {
-                    update_post_meta($post_id, 'img', $img); 
+                    update_post_meta($post_id, 'img', $img);
                 } else {
-                    delete_post_meta($post_id, 'img'); 
+                    delete_post_meta($post_id, 'img');
                 }
 
                 do_action('ndpvp/webhook', 'contact_edit', $param);
