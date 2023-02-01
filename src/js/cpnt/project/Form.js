@@ -36,31 +36,22 @@ class Form extends Component {
 
         this.state = {
             form: this.initialState,
+            custom_field: false,
             stages: [],
             tags: [],
         };
     }
 
-    handleChange = e => {
-        const target = e.target;
-        const name = target.name;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        this.setState({ form: { ...this.state.form, [name]: value } });
-    }
-
-    currencyChange = val => {
-        this.setState({ form: { ...this.state.form, ['currency']: val } });
-    }
-
-    handleStatusChange = val => {
-        this.setState({ form: { ...this.state.form, ['status_id']: val } });
-    }
-
-    handleTagChange = val => {
-        this.setState({ form: { ...this.state.form, ['tags']: val } });
-    }
-
     componentDidMount() {
+        //custom fields
+        if (this.props.custom_field) {
+            let obj = {};
+            this.props.custom_field.map((item, i) => {
+                obj[item.id] = '';
+            });
+            const merge_obj = { ...this.state.form, ...obj };
+            this.setState({ form: merge_obj, custom_field: true });
+        }
 
         //added this multi place, because not working in invoice single
         this.editData();
@@ -118,6 +109,25 @@ class Form extends Component {
                 }
             }  */
         }
+    }
+
+    handleChange = e => {
+        const target = e.target;
+        const name = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    currencyChange = val => {
+        this.setState({ form: { ...this.state.form, ['currency']: val } });
+    }
+
+    handleStatusChange = val => {
+        this.setState({ form: { ...this.state.form, ['status_id']: val } });
+    }
+
+    handleTagChange = val => {
+        this.setState({ form: { ...this.state.form, ['tags']: val } });
     }
 
     handleSubmit = (e) => {
@@ -409,6 +419,24 @@ class Form extends Component {
                                         />
                                     </div>
                                 </div>
+
+                                {this.state.custom_field && this.props.custom_field.map((item, i) => (
+                                    <div key={i} className="row">
+                                        <div className="col">
+                                            <label htmlFor={'custom-field-' + i}>
+                                                {item.label}
+                                            </label>
+                                            <input
+                                                id={'custom-field-' + i}
+                                                type='text'
+                                                name={item.id}
+                                                value={form[item.id]}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+
                             </div>
                         </div>
 

@@ -57,12 +57,14 @@ export default class Form extends Component {
 
     componentDidMount() {
         //custom fields
-        let obj = {};
-        this.props.custom_field.map((item, i) => {
-            obj[item.id] = '';
-        });
-        const merge_obj = { ...this.state.form, ...obj };
-        this.setState({ form: merge_obj, custom_field: true });
+        if (this.props.custom_field) {
+            let obj = {};
+            this.props.custom_field.map((item, i) => {
+                obj[item.id] = '';
+            });
+            const merge_obj = { ...this.state.form, ...obj };
+            this.setState({ form: merge_obj, custom_field: true });
+        }
 
         //find person
         let args = {

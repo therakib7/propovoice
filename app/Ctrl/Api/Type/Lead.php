@@ -209,6 +209,12 @@ class Lead
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
         $query_data['desc'] = get_post_field('post_content', $id);
 
+        //custom field
+        foreach( Fns::custom_field('lead') as $value ) {
+            $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
+        }
+        $query_data['custom_field'] = Fns::custom_field('lead');
+
         $query_data['level_id'] = '';
         $level = get_the_terms($id, 'ndpv_lead_level');
         if ($level) {
@@ -470,6 +476,14 @@ class Lead
 
                 if ($note) {
                     update_post_meta($post_id, 'note', $note);
+                }
+
+                //custom field
+                foreach( Fns::custom_field('lead') as $value ) {
+                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
+                    if ( $field ) {
+                        update_post_meta($post_id, $value->id, $field);
+                    }
                 }
 
                 do_action('ndpvp/webhook', 'lead_edit', $param);

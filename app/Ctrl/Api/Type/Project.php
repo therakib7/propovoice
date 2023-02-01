@@ -99,6 +99,10 @@ class Project
             $result = $this->project_query($param);
         }
 
+        $result['extra'] = [
+            'custom_field' => Fns::custom_field('project'),
+        ];
+
         wp_send_json_success($result);
     }
 
@@ -209,6 +213,10 @@ class Project
             $query_data['due_date'] = isset($queryMeta['due_date']) ? $queryMeta['due_date'][0] : '';
             $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
+            //custom field
+            foreach( Fns::custom_field('project') as $value ) {
+                $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
+            }
 
             if (!$status_id) {
                 $query_data['status_id'] = '';
@@ -282,6 +290,12 @@ class Project
         $query_data['due_date'] = isset($queryMeta['due_date']) ? $queryMeta['due_date'][0] : '';
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
         $query_data['desc'] = get_post_field('post_content', $id);
+
+        //custom field
+        foreach( Fns::custom_field('project') as $value ) {
+            $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
+        }
+        $query_data['custom_field'] = Fns::custom_field('project');
 
         $invoice = new Invoice();
         $query_data['invoice'] = $invoice->project_invoice($id);
@@ -484,6 +498,14 @@ class Project
                     update_post_meta($post_id, 'note', $note);
                 }
 
+                //custom field
+                foreach(Fns::custom_field('project') as $value) {
+                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
+                    if ( $field ) {
+                        update_post_meta($post_id, $value->id, $field);
+                    }
+                }
+
                 /* if ( $project_id ) { //when move to project //TODO: think it
                     wp_delete_post( $project_id );
                 } */
@@ -603,6 +625,14 @@ class Project
                 }
 
                 update_post_meta($post_id, 'note', $note);
+
+                //custom field
+                foreach( Fns::custom_field('project') as $value ) {
+                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
+                    if ( $field ) {
+                        update_post_meta($post_id, $value->id, $field);
+                    }
+                }
 
                 do_action('ndpvp/webhook', 'project_edit', $param);
 

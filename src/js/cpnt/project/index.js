@@ -131,7 +131,7 @@ const Project = (props) => {
     }
   }
 
-  const { title, lists, checkedBoxes, searchVal } = props.state;
+  const { title, lists, extra, checkedBoxes, searchVal } = props.state;
 
   const i18n = ndpv.i18n;
   return (
@@ -139,6 +139,7 @@ const Project = (props) => {
       {!props.module_id && <Breadcrumb title={title} />}
 
       {props.state.formModal && <Form
+        custom_field={extra.custom_field}
         handleSubmit={handleSubmit}
         modalType={props.state.formModalType}
         data={props.state.list}

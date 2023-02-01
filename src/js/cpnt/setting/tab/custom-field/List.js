@@ -22,8 +22,10 @@ export default (props) => {
 	const [form, setForm] = useState(newForm);
 
 	useEffect(() => {
-		setLoading(true);
-		getData();
+		if (!wage.length) {
+			setLoading(true);
+			getData();
+		}
 	}, []);
 
 	const getData = () => {
