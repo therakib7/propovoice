@@ -609,16 +609,12 @@ class Deal
                     wp_set_post_terms($post_id, $tags, 'ndpv_tag');
                 }
 
-                if ($note) {
-                    update_post_meta($post_id, 'note', $note);
-                }
+                update_post_meta($post_id, 'note', $note);
 
                 //custom field
                 foreach( Fns::custom_field('deal') as $value ) {
                     $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
-                    if ( $field ) {
-                        update_post_meta($post_id, $value->id, $field);
-                    }
+                    update_post_meta($post_id, $value->id, $field);
                 }
 
                 do_action('ndpvp/webhook', 'deal_edit', $param);

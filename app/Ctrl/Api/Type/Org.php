@@ -283,8 +283,8 @@ class Org
         $name = isset($param['name']) ? sanitize_text_field($req['name']) : null;
         $web          = isset($param['web']) ? esc_url_raw($req['web']) : null;
         $mobile       = isset($param['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($param['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($param['region']) ? sanitize_text_field($req['region']) : null;
+        $country      = isset($param['country']) ? sanitize_text_field($req['country']) : '';
+        $region       = isset($param['region']) ? sanitize_text_field($req['region']) : '';
         $address      = isset($param['address']) ? sanitize_text_field($req['address']) : null;
         $logo = isset( $param['logo'] ) ? absint( $param['logo'] ) : null;
 
@@ -334,13 +334,9 @@ class Org
                     update_post_meta($post_id, 'mobile', $mobile);
                 }
 
-                if ($country) {
-                    update_post_meta($post_id, 'country', $country);
-                }
+                update_post_meta($post_id, 'country', $country);
 
-                if ($region) {
-                    update_post_meta($post_id, 'region', $region);
-                }
+                update_post_meta($post_id, 'region', $region);
 
                 if ($address) {
                     update_post_meta($post_id, 'address', $address);

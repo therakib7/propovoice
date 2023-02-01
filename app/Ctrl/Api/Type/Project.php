@@ -629,9 +629,7 @@ class Project
                 //custom field
                 foreach( Fns::custom_field('project') as $value ) {
                     $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
-                    if ( $field ) {
-                        update_post_meta($post_id, $value->id, $field);
-                    }
+                    update_post_meta($post_id, $value->id, $field);
                 }
 
                 do_action('ndpvp/webhook', 'project_edit', $param);
