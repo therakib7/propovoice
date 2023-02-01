@@ -338,10 +338,10 @@ class Org
             : null;
         $country = isset($param["country"])
             ? sanitize_text_field($req["country"])
-            : null;
+            : "";
         $region = isset($param["region"])
             ? sanitize_text_field($req["region"])
-            : null;
+            : "";
         $address = isset($param["address"])
             ? sanitize_text_field($req["address"])
             : null;
@@ -399,13 +399,9 @@ class Org
                     update_post_meta($post_id, "mobile", $mobile);
                 }
 
-                if ($country) {
-                    update_post_meta($post_id, "country", $country);
-                }
+                update_post_meta($post_id, "country", $country);
 
-                if ($region) {
-                    update_post_meta($post_id, "region", $region);
-                }
+                update_post_meta($post_id, "region", $region);
 
                 if ($address) {
                     update_post_meta($post_id, "address", $address);

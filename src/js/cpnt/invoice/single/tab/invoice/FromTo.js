@@ -136,7 +136,7 @@ export default class FromTo extends Component {
     countryByCode = (country = '') => {
         if (country) {
             let obj = CountryRegionData.find((o, i) => {
-                if (o[1] === 'BD') {
+                if (o[1] === country) {
                     return true; // stop searching
                 }
             });
