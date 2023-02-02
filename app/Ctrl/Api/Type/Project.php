@@ -613,11 +613,8 @@ class Project
                 }
 
                 update_post_meta($post_id, 'budget', $budget);
-
                 update_post_meta($post_id, 'currency', $currency);
-
                 update_post_meta($post_id, 'start_date', $start_date);
-
                 update_post_meta($post_id, 'due_date', $due_date);
 
                 if ($tags) {
