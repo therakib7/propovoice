@@ -181,7 +181,7 @@ The super fantastic pro features that accelerate your business growth and improv
 == Changelog ==
 
 = 1.0.7 =
-* Fixed: Receive Country Issue
+* Fixed: Location Country Showing Issue
 
 = 1.0.6.9 =
 * Update: Welcome Wizard issue
