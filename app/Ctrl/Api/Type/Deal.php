@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -99,6 +99,10 @@ class Deal
             $result = $this->deal_query($param);
         }
 
+        $result['extra'] = [
+            'custom_field' => Fns::custom_field('deal'),
+        ];
+
         wp_send_json_success($result);
     }
 
@@ -162,7 +166,7 @@ class Deal
 
         if ($s) {
 
-            $args['_meta_or_title'] = $s; 
+            $args['_meta_or_title'] = $s;
 
             $contact_person = new Contact();
             $person_ids = $contact_person->query($s, 'person');
@@ -207,6 +211,10 @@ class Deal
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['probability'] = isset($queryMeta['probability']) ? $queryMeta['probability'][0] : '';
+            //custom field
+            foreach( Fns::custom_field('deal') as $value ) {
+                $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
+            }
 
             if (!$stage_id) {
                 $query_data['stage_id'] = '';
@@ -279,6 +287,12 @@ class Deal
         $query_data['probability'] = isset($queryMeta['probability']) ? absint($queryMeta['probability'][0]) : '';
         $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
         $query_data['desc'] = get_post_field('post_content', $id);
+
+        //custom field
+        foreach( Fns::custom_field('deal') as $value ) {
+            $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
+        }
+        $query_data['custom_field'] = Fns::custom_field('deal');
 
         $query_data['stage_id'] = '';
 
@@ -464,6 +478,14 @@ class Deal
                     wp_delete_post($lead_id);
                 }
 
+                //custom field
+                foreach(Fns::custom_field('deal') as $value) {
+                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
+                    if ( $field ) {
+                        update_post_meta($post_id, $value->id, $field);
+                    }
+                }
+
                 do_action('ndpvp/webhook', 'deal_add', $param);
 
                 wp_send_json_success($post_id);
@@ -587,8 +609,12 @@ class Deal
                     wp_set_post_terms($post_id, $tags, 'ndpv_tag');
                 }
 
-                if ($note) {
-                    update_post_meta($post_id, 'note', $note);
+                update_post_meta($post_id, 'note', $note);
+
+                //custom field
+                foreach( Fns::custom_field('deal') as $value ) {
+                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
+                    update_post_meta($post_id, $value->id, $field);
                 }
 
                 do_action('ndpvp/webhook', 'deal_edit', $param);

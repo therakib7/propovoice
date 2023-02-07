@@ -340,14 +340,14 @@ class Taxonomy
             } else if ($delete) {
                 if ($post_id) { //delete term from post
                     wp_remove_object_terms($post_id, $term_id, 'ndpv_' . $taxonomy);
-                } else { // delte term
+                } else { // delete term
                     // wp_delete_term($term_id, 'ndpv_' . $taxonomy);
                 }
                 wp_send_json_success();
             } else {
                 $add_taxonomy = wp_update_term(
-                    $term_id,   // the term 
-                    'ndpv_' . $taxonomy, // the taxonomy 
+                    $term_id,   // the term
+                    'ndpv_' . $taxonomy, // the taxonomy
                     array(
                         'name' => $label,
                     )

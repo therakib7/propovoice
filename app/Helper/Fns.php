@@ -2,8 +2,20 @@
 
 namespace Ndpv\Helper;
 
+use Ndpvp\Model\CustomField;
+
 class Fns
 {
+    public static function custom_field($mod = '')
+    {
+        if ( ndpv()->wage() ) {
+            $custom_field = new CustomField();
+            return $custom_field->get($mod);
+        } else {
+            return [];
+        }
+    }
+
     public static function get_terms($tax, $extra_amount_type = null)
     {
         $args = array(

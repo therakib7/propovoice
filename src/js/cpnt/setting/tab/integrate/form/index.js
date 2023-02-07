@@ -28,7 +28,8 @@ export default class Main extends Component {
                 budget: 'Budget',
                 currency: 'Currency',
                 desc: 'Description'
-            }
+            },
+            customLeadField: []
         };
     }
 
@@ -42,7 +43,7 @@ export default class Main extends Component {
         this.setState({ loading: true });
         this.props.getAll('intg-form').then(resp => {
             if (resp.data.success) {
-                this.setState({ list: resp.data.data, loading: false });
+                this.setState({ list: resp.data.data.form, customLeadField: resp.data.data.lead_field, loading: false });
             }
         })
     };
@@ -191,7 +192,9 @@ export default class Main extends Component {
                                                                             value={sitem.value}
                                                                             onChange={(e) => this.handleChange(e, i, si)}
                                                                         >
-                                                                            {Object.entries(leadField).map((t, k) => <option key={k} value={t[0]}>{t[1]}</option>)}
+                                                                            {Object.entries(leadField).map((t, i) => <option key={i} value={t[0]}>{t[1]}</option>)}
+
+                                                                            {this.state.customLeadField.map((item, i) => <option key={i} value={item.id}>{item.label}</option>)}
                                                                         </select>
                                                                     </td>
                                                                     <td>

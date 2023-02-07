@@ -1,6 +1,8 @@
-<?php 
-namespace Ndpv\Ctrl\Integrate\Form; 
- 
+<?php
+namespace Ndpv\Ctrl\Integrate\Form;
+
+use Ndpv\Helper\Fns;
+
 class FormList
 {
 
@@ -15,10 +17,9 @@ class FormList
             'methods' => 'GET',
             'callback' => [$this, 'get'],
             'permission_callback' => [$this, 'get_per']
-        ]); 
+        ]);
     }
 
-    
     public function get($req)
     {
         $param = $req->get_params();
@@ -98,8 +99,10 @@ class FormList
                 'pro' => true,
             ] */
         ];
-
-        wp_send_json_success($form_list);
+        $data = [];
+        $data['form'] = $form_list;
+        $data['lead_field'] = Fns::custom_field('lead');
+        wp_send_json_success($data);
     }
 
     public function get_per()

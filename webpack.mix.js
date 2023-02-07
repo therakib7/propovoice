@@ -12,7 +12,7 @@ const package_slug = path.basename(path.resolve(package_path));
 
 mix.webpackConfig({
     output: {
-        publicPath: '/wp-content/plugins/propovoice/', //TODO: this not working in xampp 
+        publicPath: '/wp-content/plugins/propovoice/', //TODO: this not working in xampp
         // path: path.join(__dirname, 'root'),
         //publicPath: '/nurency-plugin/wp-content/plugins/propovoice/',
         chunkFilename: 'asset/js/cpnt/chnk/[chunkhash].js', //[name][chunkhash]
@@ -85,7 +85,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
         fs.ensureDir(languages, function (err) {
             if (err) return console.error(err); // if file or folder does not exist
             wpPot({
-                package: 'Propovocie',
+                package: 'Propovoice',
                 bugReport: '',
                 src: '**/*.php',
                 domain: 'propovoice',

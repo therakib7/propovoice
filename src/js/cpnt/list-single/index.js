@@ -131,8 +131,7 @@ class ListSingle extends Component {
 	};
 
 	getStageTagData = () => {
-		api
-			.get("taxonomies", "taxonomy=deal_stage,tag,project_status")
+		api.get("taxonomies", "taxonomy=deal_stage,tag,project_status")
 			.then((resp) => {
 				if (resp.data.success) {
 					this.setState({
@@ -1002,6 +1001,7 @@ class ListSingle extends Component {
 				{this.state.leadModal && (
 					<LeadForm
 						data={data}
+						custom_field={data.custom_field}
 						modalType="edit"
 						close={() => this.setState({ leadModal: false })}
 						reload={() => this.getData()}
@@ -1011,6 +1011,7 @@ class ListSingle extends Component {
 				{this.state.dealModal && (
 					<DealForm
 						data={data}
+						custom_field={data.custom_field}
 						modalType={this.state.dealModalType}
 						close={() => this.setState({ dealModal: false })}
 						reload={() => {
@@ -1027,6 +1028,7 @@ class ListSingle extends Component {
 				{this.state.projectModal && (
 					<ProjectForm
 						data={data}
+						custom_field={data.custom_field}
 						modalType={this.state.projectModalType}
 						close={() => this.setState({ projectModal: false })}
 						reload={() => {
@@ -1153,6 +1155,27 @@ class ListSingle extends Component {
 										></p>
 									</>
 								)}
+
+								{/* <div key={i} className="row">
+										<div className="col">
+											<label htmlFor={'custom-field-' + i}>
+												{item.label}
+											</label>
+											<input
+												id={'custom-field-' + i}
+												type='text'
+												name={item.id}
+												value={data[item.id]} 
+											/>
+										</div>
+									</div> */}
+
+								{data.custom_field && data.custom_field.map((item, i) => (
+									<React.Fragment key={i}>
+										<h5>{item.label}:</h5>
+										<p dangerouslySetInnerHTML={{ __html: data[item.id] }}></p>
+									</React.Fragment>
+								))}
 							</div>
 						</div>
 
