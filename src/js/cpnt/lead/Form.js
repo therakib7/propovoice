@@ -378,8 +378,7 @@ export default class Form extends Component {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label
-                                            htmlFor="field-img">
+                                        <label htmlFor="field-img">
                                             {i18n.img}
                                         </label>
                                         <Upload data={form.img} changeHandler={this.handleImgChange} />
@@ -399,6 +398,7 @@ export default class Form extends Component {
                                                 value={form[item.id]}
                                                 onChange={this.handleChange}
                                             />
+                                            {item.desc && <p className='pv-field-desc'>{item.desc}</p>}
                                         </div>
                                     </div>
                                 ))}
