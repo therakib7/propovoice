@@ -4,67 +4,64 @@ namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
 
-
 class Task
 {
-
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'rest_routes']);
+        add_action("rest_api_init", [$this, "rest_routes"]);
     }
 
     public function rest_routes()
     {
-
-        register_rest_route('ndpv/v1', '/tasks', [
+        register_rest_route("ndpv/v1", "/tasks", [
             [
-                'methods' => 'GET',
-                'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_per'],
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
             ],
             [
-                'methods' => 'POST',
-                'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_per']
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
 
-        register_rest_route('ndpv/v1', '/tasks/(?P<id>\d+)', array(
-            'methods' => 'GET',
-            'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_per'],
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function ($param, $request, $key) {
+        register_rest_route("ndpv/v1", "/tasks/(?P<id>\d+)", [
+            "methods" => "GET",
+            "callback" => [$this, "get_single"],
+            "permission_callback" => [$this, "get_per"],
+            "args" => [
+                "id" => [
+                    "validate_callback" => function ($param, $request, $key) {
                         return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
+                    },
+                ],
+            ],
+        ]);
 
-        register_rest_route('ndpv/v1', '/tasks/(?P<id>\d+)', array(
-            'methods' => 'PUT',
-            'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_per'],
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function ($param, $request, $key) {
+        register_rest_route("ndpv/v1", "/tasks/(?P<id>\d+)", [
+            "methods" => "PUT",
+            "callback" => [$this, "update"],
+            "permission_callback" => [$this, "update_per"],
+            "args" => [
+                "id" => [
+                    "validate_callback" => function ($param, $request, $key) {
                         return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
+                    },
+                ],
+            ],
+        ]);
 
-        register_rest_route('ndpv/v1', '/tasks/(?P<id>[0-9,]+)', array(
-            'methods' => 'DELETE',
-            'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'del_per'],
-            'args' => array(
-                'id' => array(
-                    'sanitize_callback'  => 'sanitize_text_field',
-                ),
-            ),
-        ));
+        register_rest_route("ndpv/v1", "/tasks/(?P<id>[0-9,]+)", [
+            "methods" => "DELETE",
+            "callback" => [$this, "delete"],
+            "permission_callback" => [$this, "del_per"],
+            "args" => [
+                "id" => [
+                    "sanitize_callback" => "sanitize_text_field",
+                ],
+            ],
+        ]);
     }
 
     public function get($req)
@@ -74,81 +71,89 @@ class Task
         $per_page = 10;
         $offset = 0;
 
-        if (isset($param['per_page'])) {
-            $per_page = $param['per_page'];
+        if (isset($param["per_page"])) {
+            $per_page = $param["per_page"];
         }
 
-        $tab_id = isset($param['tab_id']) ? absint($req['tab_id']) : false;
-        $dashboard = isset($param['dashboard']) ? sanitize_text_field($req['dashboard']) : false;
-        $status_id = isset($param['status_id']) ? absint($req['status_id']) : false;
+        $tab_id = isset($param["tab_id"]) ? absint($req["tab_id"]) : false;
+        $dashboard = isset($param["dashboard"])
+            ? sanitize_text_field($req["dashboard"])
+            : false;
+        $status_id = isset($param["status_id"])
+            ? absint($req["status_id"])
+            : false;
 
-        if (isset($param['page']) && $param['page'] > 1) {
-            $offset = ($per_page * $param['page']) - $per_page;
+        if (isset($param["page"]) && $param["page"] > 1) {
+            $offset = $per_page * $param["page"] - $per_page;
         }
 
         if ($dashboard) {
             $per_page = 3;
         }
 
-        $args = array(
-            'post_type' => 'ndpv_task',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-        );
+        $args = [
+            "post_type" => "ndpv_task",
+            "post_status" => "publish",
+            "posts_per_page" => -1,
+        ];
 
-        if (!$tab_id) {
-            $args['posts_per_page'] = $per_page;
-            $args['offset'] = $offset;
+        if (!in_array("ndpv_manager", wp_get_current_user()->roles)) {
+            $args["author"] = get_current_user_id();
         }
 
-        $args['meta_query'] = array(
-            'relation' => 'OR'
-        );
+        if (!$tab_id) {
+            $args["posts_per_page"] = $per_page;
+            $args["offset"] = $offset;
+        }
+
+        $args["meta_query"] = [
+            "relation" => "OR",
+        ];
 
         if ($tab_id) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'tab_id',
-                    'value'   => $tab_id,
-                    'compare' => '='
-                )
-            );
+            $args["meta_query"][] = [
+                [
+                    "key" => "tab_id",
+                    "value" => $tab_id,
+                    "compare" => "=",
+                ],
+            ];
         }
 
         if (!$status_id) {
-            $taxonomy = 'task_status';
+            $taxonomy = "task_status";
             $get_taxonomy = Fns::get_terms($taxonomy);
             $status_id = $get_taxonomy[0]->term_id;
         }
 
-        $args['tax_query'] = array(
-            array(
-                'taxonomy' => 'ndpv_task_status',
-                'terms' => $status_id,
-                'field' => 'term_id',
-            )
-        );
+        $args["tax_query"] = [
+            [
+                "taxonomy" => "ndpv_task_status",
+                "terms" => $status_id,
+                "field" => "term_id",
+            ],
+        ];
 
         $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination
         $result = [];
 
         $data = [
-            'task_status' => [],
-            'latest' => [],
-            'today' => [],
-            'other' => [],
-            'unschedule' => [],
+            "task_status" => [],
+            "latest" => [],
+            "today" => [],
+            "other" => [],
+            "unschedule" => [],
         ];
 
-        $taxonomy = 'task_status';
+        $taxonomy = "task_status";
         $get_taxonomy = Fns::get_terms($taxonomy);
 
         $format_taxonomy = [];
         foreach ($get_taxonomy as $single) {
             $format_taxonomy[] = [
-                'id' => $single->term_id,
-                'label' => $single->name
+                "id" => $single->term_id,
+                "label" => $single->name,
             ];
         }
         $data[$taxonomy] = $format_taxonomy;
@@ -158,107 +163,114 @@ class Task
             $id = get_the_ID();
 
             $query_data = [];
-            $query_data['id'] = $id;
-            $query_data['title'] = get_the_title();
+            $query_data["id"] = $id;
+            $query_data["title"] = get_the_title();
 
-            $query_data['status_id'] = '';
-            $status = get_the_terms($id, 'ndpv_task_status');
+            $query_data["status_id"] = "";
+            $status = get_the_terms($id, "ndpv_task_status");
             if ($status) {
                 $term_id = $status[0]->term_id;
-                $query_data['status_id'] = [
-                    'id' => $term_id,
-                    'label' => $status[0]->name,
-                    'color' => '#4a5568',
-                    'bg_color' => '#E2E8F0',
-                    'type' => get_term_meta($term_id, 'type', true),
+                $query_data["status_id"] = [
+                    "id" => $term_id,
+                    "label" => $status[0]->name,
+                    "color" => "#4a5568",
+                    "bg_color" => "#E2E8F0",
+                    "type" => get_term_meta($term_id, "type", true),
                 ];
 
-                $color = get_term_meta($term_id, 'color', true);
-                $bg_color = get_term_meta($term_id, 'bg_color', true);
+                $color = get_term_meta($term_id, "color", true);
+                $bg_color = get_term_meta($term_id, "bg_color", true);
 
                 if ($color) {
-                    $query_data['status_id']['color'] = $color;
+                    $query_data["status_id"]["color"] = $color;
                 }
 
                 if ($bg_color) {
-                    $query_data['status_id']['bg_color'] = $bg_color;
+                    $query_data["status_id"]["bg_color"] = $bg_color;
                 }
             }
 
-            $query_data['type_id'] = '';
-            $type = get_the_terms($id, 'ndpv_task_type');
+            $query_data["type_id"] = "";
+            $type = get_the_terms($id, "ndpv_task_type");
             if ($type) {
-                $icon_id = get_term_meta($type[0]->term_id, 'icon', true);
+                $icon_id = get_term_meta($type[0]->term_id, "icon", true);
                 $iconData = null;
                 if ($icon_id) {
-                    $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
+                    $icon_src = wp_get_attachment_image_src(
+                        $icon_id,
+                        "thumbnail"
+                    );
                     if ($icon_src) {
                         $iconData = [];
-                        $iconData['id'] = $icon_id;
-                        $iconData['src'] = $icon_src[0];
+                        $iconData["id"] = $icon_id;
+                        $iconData["src"] = $icon_src[0];
                     }
                 }
-                $query_data['type_id'] = [
-                    'id' => $type[0]->term_id,
-                    'label' => $type[0]->name,
-                    'icon' => $iconData ? $iconData : '',
-                    'color' => '#4a5568',
-                    'bg_color' => '#E2E8F0',
+                $query_data["type_id"] = [
+                    "id" => $type[0]->term_id,
+                    "label" => $type[0]->name,
+                    "icon" => $iconData ? $iconData : "",
+                    "color" => "#4a5568",
+                    "bg_color" => "#E2E8F0",
                 ];
             }
 
-            $query_data['priority_id'] = '';
-            $priority = get_the_terms($id, 'ndpv_task_priority');
+            $query_data["priority_id"] = "";
+            $priority = get_the_terms($id, "ndpv_task_priority");
             if ($priority) {
                 $term_id = $priority[0]->term_id;
-                $query_data['priority_id'] = [
-                    'id' => $term_id,
-                    'label' => $priority[0]->name,
-                    'color' => '#4a5568',
-                    'bg_color' => '#E2E8F0',
+                $query_data["priority_id"] = [
+                    "id" => $term_id,
+                    "label" => $priority[0]->name,
+                    "color" => "#4a5568",
+                    "bg_color" => "#E2E8F0",
                 ];
 
-                $color = get_term_meta($term_id, 'color', true);
-                $bg_color = get_term_meta($term_id, 'bg_color', true);
+                $color = get_term_meta($term_id, "color", true);
+                $bg_color = get_term_meta($term_id, "bg_color", true);
 
                 if ($color) {
-                    $query_data['priority_id']['color'] = $color;
+                    $query_data["priority_id"]["color"] = $color;
                 }
 
                 if ($bg_color) {
-                    $query_data['priority_id']['bg_color'] = $bg_color;
+                    $query_data["priority_id"]["bg_color"] = $bg_color;
                 }
             }
 
-            $query_data['desc'] = get_the_content();
-            $query_data['google_meet'] = get_post_meta($id, 'google_meet', true);
-            $query_data['start_date'] = get_post_meta($id, 'start_date', true);
-            $query_data['due_date'] = get_post_meta($id, 'due_date', true);
-            $query_data['checklist'] = get_post_meta($id, 'checklist', true);
-            $query_data['date'] = get_the_time(get_option('date_format'));
+            $query_data["desc"] = get_the_content();
+            $query_data["google_meet"] = get_post_meta(
+                $id,
+                "google_meet",
+                true
+            );
+            $query_data["start_date"] = get_post_meta($id, "start_date", true);
+            $query_data["due_date"] = get_post_meta($id, "due_date", true);
+            $query_data["checklist"] = get_post_meta($id, "checklist", true);
+            $query_data["date"] = get_the_time(get_option("date_format"));
 
             if ($dashboard) {
-                $data['latest'][] = $query_data;
+                $data["latest"][] = $query_data;
             } else {
-                $start_date = get_post_meta($id, 'start_date', true);
+                $start_date = get_post_meta($id, "start_date", true);
                 if ($start_date) {
-                    $current_date = date('Y-m-d', current_time('timestamp'));
-                    $format_start_date = date('Y-m-d', strtotime($start_date));
+                    $current_date = date("Y-m-d", current_time("timestamp"));
+                    $format_start_date = date("Y-m-d", strtotime($start_date));
 
                     if ($current_date == $format_start_date) {
-                        $data['today'][] = $query_data;
+                        $data["today"][] = $query_data;
                     } else {
-                        $data['other'][] = $query_data;
+                        $data["other"][] = $query_data;
                     }
                 } else {
-                    $data['unschedule'][] = $query_data;
+                    $data["unschedule"][] = $query_data;
                 }
             }
         }
         wp_reset_postdata();
 
-        $result['result'] = $data;
-        $result['total'] = $total_data;
+        $result["result"] = $data;
+        $result["total"] = $total_data;
 
         wp_send_json_success($result);
     }
@@ -266,13 +278,13 @@ class Task
     public function get_single($req)
     {
         $url_params = $req->get_url_params();
-        $id = $url_params['id'];
+        $id = $url_params["id"];
         $query_data = [];
-        $query_data['id'] = $id;
+        $query_data["id"] = $id;
 
-        $query_data['title'] = get_the_title();
-        $query_data['desc'] = get_the_content();
-        // $query_data['desc'] = get_post_meta($id, 'title', true); 
+        $query_data["title"] = get_the_title();
+        $query_data["desc"] = get_the_content();
+        // $query_data['desc'] = get_post_meta($id, 'title', true);
 
         wp_send_json_success($query_data);
     }
@@ -280,66 +292,84 @@ class Task
     public function create($req)
     {
         $param = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $reg_errors = new \WP_Error();
 
-        $tab_id    = isset($param['tab_id']) ? absint($req['tab_id']) : null;
-        $title     = isset($param['title']) ? sanitize_text_field($req['title']) : null;
-        $status_id = isset($param['status_id']) ? absint($param['status_id']) : null;
-        $type_id = isset($param['type_id']) ? absint($param['type_id']) : null;
-        $priority_id = isset($param['priority_id']) ? absint($param['priority_id']) : null;
+        $tab_id = isset($param["tab_id"]) ? absint($req["tab_id"]) : null;
+        $title = isset($param["title"])
+            ? sanitize_text_field($req["title"])
+            : null;
+        $status_id = isset($param["status_id"])
+            ? absint($param["status_id"])
+            : null;
+        $type_id = isset($param["type_id"]) ? absint($param["type_id"]) : null;
+        $priority_id = isset($param["priority_id"])
+            ? absint($param["priority_id"])
+            : null;
 
-        $google_meet = isset($param['google_meet']) ? $param['google_meet'] : null;
-        $start_date = isset($param['start_date']) ? $param['start_date'] : null;
-        $due_date = isset($param['due_date']) ? $param['due_date'] : null;
+        $google_meet = isset($param["google_meet"])
+            ? $param["google_meet"]
+            : null;
+        $start_date = isset($param["start_date"]) ? $param["start_date"] : null;
+        $due_date = isset($param["due_date"]) ? $param["due_date"] : null;
 
         if (empty($title)) {
-            $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
+            $reg_errors->add(
+                "field",
+                esc_html__("Title field is missing", "propovoice")
+            );
         }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-
-            $data = array(
-                'post_type' => 'ndpv_task',
-                'post_title' => $title,
-                'post_content' => '',
-                'post_status'  => 'publish',
-                'post_author'  => get_current_user_id()
-            );
+            $data = [
+                "post_type" => "ndpv_task",
+                "post_title" => $title,
+                "post_content" => "",
+                "post_status" => "publish",
+                "post_author" => get_current_user_id(),
+            ];
             $post_id = wp_insert_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, 'ws_id', ndpv()->get_workspace());
+                update_post_meta($post_id, "ws_id", ndpv()->get_workspace());
 
                 if ($tab_id) {
-                    update_post_meta($post_id, 'tab_id', $tab_id);
+                    update_post_meta($post_id, "tab_id", $tab_id);
                 }
 
                 if ($status_id) {
-                    wp_set_post_terms($post_id, [$status_id], 'ndpv_task_status');
+                    wp_set_post_terms(
+                        $post_id,
+                        [$status_id],
+                        "ndpv_task_status"
+                    );
                 }
 
                 if ($type_id) {
-                    wp_set_post_terms($post_id, [$type_id], 'ndpv_task_type');
+                    wp_set_post_terms($post_id, [$type_id], "ndpv_task_type");
                 }
 
                 if ($priority_id) {
-                    wp_set_post_terms($post_id, [$priority_id], 'ndpv_task_priority');
+                    wp_set_post_terms(
+                        $post_id,
+                        [$priority_id],
+                        "ndpv_task_priority"
+                    );
                 }
 
                 if ($google_meet) {
-                    wp_set_post_terms($post_id, 'google_meet', $google_meet);
+                    wp_set_post_terms($post_id, "google_meet", $google_meet);
                 }
                 if ($start_date) {
-                    update_post_meta($post_id, 'start_date', $start_date);
+                    update_post_meta($post_id, "start_date", $start_date);
                 }
 
                 if ($due_date) {
-                    update_post_meta($post_id, 'due_date', $due_date);
+                    update_post_meta($post_id, "due_date", $due_date);
                 }
 
-                do_action('ndpvp/webhook', 'task_add', $param);
+                do_action("ndpvp/webhook", "task_add", $param);
 
                 wp_send_json_success($post_id);
             } else {
@@ -351,16 +381,22 @@ class Task
     public function update($req)
     {
         $param = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $reg_errors = new \WP_Error();
 
-        $status_id  = isset($param['status_id']) ? absint($param['status_id']) : null;
-        $type_id  = isset($param['type_id']) ? absint($param['type_id']) : null;
-        $priority_id  = isset($param['priority_id']) ? absint($param['priority_id']) : null;
+        $status_id = isset($param["status_id"])
+            ? absint($param["status_id"])
+            : null;
+        $type_id = isset($param["type_id"]) ? absint($param["type_id"]) : null;
+        $priority_id = isset($param["priority_id"])
+            ? absint($param["priority_id"])
+            : null;
 
-        $google_meet = isset($param['google_meet']) ? $param['google_meet'] : null;
-        $start_date = isset($param['start_date']) ? $param['start_date'] : null;
-        $due_date = isset($param['due_date']) ? $param['due_date'] : null;
-        $checklist = isset($param['checklist']) ? $param['checklist'] : null;
+        $google_meet = isset($param["google_meet"])
+            ? $param["google_meet"]
+            : null;
+        $start_date = isset($param["start_date"]) ? $param["start_date"] : null;
+        $due_date = isset($param["due_date"]) ? $param["due_date"] : null;
+        $checklist = isset($param["checklist"]) ? $param["checklist"] : null;
 
         /* if (empty($title)) {
             $reg_errors->add('field', esc_html__('Title field is missing', 'propovoice'));
@@ -370,54 +406,61 @@ class Task
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $url_params = $req->get_url_params();
-            $post_id    = $url_params['id'];
+            $post_id = $url_params["id"];
 
-            $data = array(
-                'ID'            => $post_id,
-                'post_author'   => get_current_user_id()
-            );
+            $data = [
+                "ID" => $post_id,
+                "post_author" => get_current_user_id(),
+            ];
 
-            if (isset($param['title'])) {
-                $data['post_title'] = sanitize_text_field($req['title']);
+            if (isset($param["title"])) {
+                $data["post_title"] = sanitize_text_field($req["title"]);
             }
 
-            if (isset($param['desc'])) {
-                $data['post_content'] = sanitize_text_field($req['desc']);
+            if (isset($param["desc"])) {
+                $data["post_content"] = sanitize_text_field($req["desc"]);
             }
 
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
-
                 if ($status_id) {
-                    wp_set_post_terms($post_id, [$status_id], 'ndpv_task_status');
+                    wp_set_post_terms(
+                        $post_id,
+                        [$status_id],
+                        "ndpv_task_status"
+                    );
                 }
 
                 if ($type_id) {
-                    wp_set_post_terms($post_id, [$type_id], 'ndpv_task_type');
+                    wp_set_post_terms($post_id, [$type_id], "ndpv_task_type");
                 }
 
                 if ($priority_id) {
-                    wp_set_post_terms($post_id, [$priority_id], 'ndpv_task_priority');
+                    wp_set_post_terms(
+                        $post_id,
+                        [$priority_id],
+                        "ndpv_task_priority"
+                    );
                 }
 
                 if ($google_meet) {
-                    update_post_meta($post_id, 'google_meet', $google_meet);
+                    update_post_meta($post_id, "google_meet", $google_meet);
                 }
 
                 if ($start_date) {
-                    update_post_meta($post_id, 'start_date', $start_date);
+                    update_post_meta($post_id, "start_date", $start_date);
                 }
 
                 if ($due_date) {
-                    update_post_meta($post_id, 'due_date', $due_date);
+                    update_post_meta($post_id, "due_date", $due_date);
                 }
 
                 if ($checklist) {
-                    update_post_meta($post_id, 'checklist', $checklist);
+                    update_post_meta($post_id, "checklist", $checklist);
                 }
 
-                do_action('ndpvp/webhook', 'task_edit', $param);
+                do_action("ndpvp/webhook", "task_edit", $param);
 
                 wp_send_json_success($post_id);
             } else {
@@ -430,12 +473,12 @@ class Task
     {
         $url_params = $req->get_url_params();
 
-        $ids = explode(',', $url_params['id']);
+        $ids = explode(",", $url_params["id"]);
         foreach ($ids as $id) {
             wp_delete_post($id);
         }
 
-        do_action('ndpvp/webhook', 'task_del', $ids);
+        do_action("ndpvp/webhook", "task_del", $ids);
 
         wp_send_json_success($ids);
     }
@@ -443,21 +486,21 @@ class Task
     // check permission
     public function get_per()
     {
-        return current_user_can('publish_posts');
+        return current_user_can("ndpv_task");
     }
 
     public function create_per()
     {
-        return current_user_can('publish_posts');
+        return current_user_can("ndpv_task");
     }
 
     public function update_per()
     {
-        return current_user_can('edit_posts');
+        return current_user_can("ndpv_task");
     }
 
     public function del_per()
     {
-        return current_user_can('delete_posts');
+        return current_user_can("ndpv_task");
     }
 }
