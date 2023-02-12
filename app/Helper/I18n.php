@@ -19,6 +19,7 @@ class I18n
             "task" => esc_html__("Task", "propovoice"),
             "taska" => __("Task & Activity", "propovoice"),
             "ct" => esc_html__("Contact", "propovoice"),
+            "ct_book" => esc_html__("Contact Book", "propovoice"),
             //alert
             "scf" => esc_html__("Successfully", "propovoice"),
             "aAdd" => esc_html__("Successfully Added", "propovoice"),
@@ -54,6 +55,7 @@ class I18n
             "trk" => esc_html__("Tracking", "propovoice"),
             //lead
             "level" => esc_html__("Level", "propovoice"),
+            "add_Lead" => esc_html__("Add Lead", "propovoice"),
             "source" => esc_html__("Source", "propovoice"),
             //deal
             "deal_pipeline" => esc_html__("Deal Pipeline", "propovoice"),
@@ -65,6 +67,12 @@ class I18n
             "proba" => esc_html__("Probability", "propovoice"),
             //estinv
             "nd" => __("&", "propovoice"),
+            "add_Estimate" => esc_html__("Add Estimate", "propovoice"),
+            "add_Invoice" => esc_html__("Add Invoice", "propovoice"),
+            "estimate_number" => esc_html__("Estimate Number", "propovoice"),
+            "estimate_date" => esc_html__("Estimate Date", "propovoice"),
+            "invoice_number" => esc_html__("Invoice Number", "propovoice"),
+            "invoice_date" => esc_html__("Invoice Date", "propovoice"),
             "tmpl" => esc_html__("Template", "propovoice"),
             "con" => esc_html__("Content", "propovoice"),
             "num" => esc_html__("Number", "propovoice"),
@@ -102,10 +110,15 @@ class I18n
             "Sign" => esc_html__("Signature", "propovoice"),
             "style" => esc_html__("Style", "propovoice"),
             "addi" => esc_html__("Additional", "propovoice"),
+            //Client
+            "add_Client" => esc_html__("Add Client", "propovoice"),
             //project
+            "add_Project" => esc_html__("Add Project", "propovoice"),
             "cur" => esc_html__("Currency", "propovoice"),
             "budget" => esc_html__("Budget", "propovoice"),
             //contact
+            "add_Person" => esc_html__("Add Person", "propovoice"),
+            "add_Organization" => esc_html__("Add Organization", "propovoice"),
             "book" => esc_html__("Book", "propovoice"),
             "prsn" => esc_html__("Person", "propovoice"),
             "org" => esc_html__("Organization", "propovoice"),
@@ -352,6 +365,8 @@ class I18n
             ),
             /* translators: %s: Adding, Creating text */
             "letStart" => __("Let's Start %s", "propovoice"),
+            "let_start_adding" => __("Let's Start Adding", "propovoice"),
+            "let_start_creating" => __("Let's Start Creating", "propovoice"),
             "adding" => esc_html__("Adding", "propovoice"),
             "creating" => esc_html__("Creating", "propovoice"),
             "added" => esc_html__("added", "propovoice"),
