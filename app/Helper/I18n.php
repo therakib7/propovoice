@@ -56,6 +56,9 @@ class I18n
             "level" => esc_html__("Level", "propovoice"),
             "source" => esc_html__("Source", "propovoice"),
             //deal
+            "deal_pipeline" => esc_html__("Deal Pipeline", "propovoice"),
+            "add_stage" => esc_html__("Add Stage", "propovoice"),
+            "add_deal" => esc_html__("Add Deal", "propovoice"),
             "stage" => esc_html__("Stage", "propovoice"),
             "won" => esc_html__("Won", "propovoice"),
             "lost" => esc_html__("Lost", "propovoice"),
