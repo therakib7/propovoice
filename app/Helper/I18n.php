@@ -37,6 +37,18 @@ class I18n
             "conV" => esc_html__("convert", "propovoice"),
             //dashboard
             "ov" => esc_html__("Overview", "propovoice"),
+            "total_client" => esc_html__("Total Client", "propovoice"),
+            "total_clients" => esc_html__("Total Clients", "propovoice"),
+            "total_lead" => esc_html__("Total Lead", "propovoice"),
+            "total_leads" => esc_html__("Total Leads", "propovoice"),
+            "total_deal" => esc_html__("Total Deal", "propovoice"),
+            "total_deals" => esc_html__("Total Deals", "propovoice"),
+            "total_invoice" => esc_html__("Total Invoice", "propovoice"),
+            "total_invoices" => esc_html__("Total Invoices", "propovoice"),
+            "total_estimate" => esc_html__("Total Estimate", "propovoice"),
+            "total_estimates" => esc_html__("Total Estimates", "propovoice"),
+            "total_project" => esc_html__("Total Project", "propovoice"),
+            "total_projects" => esc_html__("Total Projects", "propovoice"),
             "latest" => esc_html__("Latest", "propovoice"),
             "funnel" => esc_html__("Funnel", "propovoice"),
             "trk" => esc_html__("Tracking", "propovoice"),
@@ -190,7 +202,7 @@ class I18n
             "exp" => esc_html__("Export", "propovoice"),
             "intg" => esc_html__("Integration", "propovoice"),
             "license" => esc_html__("License", "propovoice"),
-            'exps' => esc_html__('Expires', 'propovoice'),
+            "exps" => esc_html__("Expires", "propovoice"),
             "valid" => esc_html__("Valid", "propovoice"),
             "prior" => esc_html__("Priority", "propovoice"),
             "meeting" => esc_html__("Meeting Place or", "propovoice"),
@@ -349,9 +361,11 @@ class I18n
             "uploadFile" => esc_html__("Click to upload File", "propovoice"),
             "sample" => esc_html__("sample", "propovoice"),
             "nextBtn" => esc_html__("Next [Map Columns]", "propovoice"),
-            "csvDco" => esc_html__("Please make sure your csv file has unique
-                      headers.Otherwise, it may fail to import", "propovoice"),
-            
+            "csvDco" => esc_html__(
+                "Please make sure your csv file has unique
+                      headers.Otherwise, it may fail to import",
+                "propovoice"
+            ),
         ];
     }
 }
