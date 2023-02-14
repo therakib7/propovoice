@@ -928,7 +928,7 @@ class Invoice extends Component {
                     <div className="pv-info-content pv-bg-white">
                       <div className="pv-add-info-content">
                         <h3 className="pv-color-blue pv-text-center">
-                          {title == "Invoice" ? i18n.inv : i18n.est}
+                          {this.props.path == "invoice" ? i18n.inv : i18n.est}
                         </h3>
                         <div className="row">
                           <div className="col-12 col-md-6">
@@ -969,9 +969,9 @@ class Invoice extends Component {
                               <div className="pv-info-form-list">
                                 <div className="pv-info-lavel">
                                   <label htmlFor="info-number">
-                                    {title == "Estimate"
-                                      ? i18n.estimate_number
-                                      : i18n.invoice_number}
+                                    {this.props.path == "invoice"
+                                      ? i18n.invoice_number
+                                      : i18n.estimate_number}
                                     :
                                   </label>
                                 </div>
@@ -993,9 +993,9 @@ class Invoice extends Component {
                               <div className="pv-info-form-list">
                                 <div className="pv-info-lavel">
                                   <label htmlFor="date">
-                                    {title == "Estimate"
-                                      ? i18n.estimate_date
-                                      : i18n.invoice_date}
+                                    {this.props.path == "invoice"
+                                      ? i18n.invoice_date
+                                      : i18n.estimate_date}
                                     :
                                   </label>
                                 </div>
@@ -1215,32 +1215,32 @@ class Invoice extends Component {
                                     wc={this.state.wc}
                                     data={invoice}
                                     subs={invoice.recurring.subscription}
-                                    //handleSave={this.handleSave}
+                                  //handleSave={this.handleSave}
                                   />
                                 </li>
                               )}
 
                             {(!sidebarActive ||
                               sidebarActive == "currency") && (
-                              <li>
-                                <input
-                                  type="checkbox"
-                                  defaultChecked="checked"
-                                  onClick={() =>
-                                    this.setSidebarActive("currency")
-                                  }
-                                />
-                                <i />
-                                <h3 className="pv-title-small">{i18n.cur}</h3>
-                                <Currency
-                                  {...this.props}
-                                  currency={invoice.currency}
-                                  handleDefault={this.onCurrencyDefault}
-                                  lang={invoice.lang}
-                                  onChange={this.currencyChange}
-                                />
-                              </li>
-                            )}
+                                <li>
+                                  <input
+                                    type="checkbox"
+                                    defaultChecked="checked"
+                                    onClick={() =>
+                                      this.setSidebarActive("currency")
+                                    }
+                                  />
+                                  <i />
+                                  <h3 className="pv-title-small">{i18n.cur}</h3>
+                                  <Currency
+                                    {...this.props}
+                                    currency={invoice.currency}
+                                    handleDefault={this.onCurrencyDefault}
+                                    lang={invoice.lang}
+                                    onChange={this.currencyChange}
+                                  />
+                                </li>
+                              )}
 
                             <ExtraAmount
                               {...this.props}
@@ -1254,46 +1254,46 @@ class Invoice extends Component {
 
                             {(!sidebarActive ||
                               sidebarActive == "reminder") && (
-                              <li>
-                                <input
-                                  type="checkbox"
-                                  ref={this.reminderRef}
-                                  defaultChecked
-                                  onClick={() =>
-                                    this.setSidebarActive("reminder")
-                                  }
-                                />
-                                <i />
-                                <h3 className="pv-title-small">
-                                  {i18n.rem}
-                                  <ProLabel />
-                                  <span className="pv-field-switch-content">
-                                    <label className="pv-field-switch pv-field-switch-big">
-                                      <input
-                                        type="checkbox"
-                                        id="reminder-status"
-                                        name="status"
-                                        checked={
-                                          invoice.reminder.status
-                                            ? "checked"
-                                            : ""
-                                        }
-                                        onChange={this.onReminderChange}
-                                      />
-                                      <span className="pv-switch-slider pv-round" />
-                                    </label>
-                                  </span>
-                                </h3>
-                                <Reminder
-                                  {...this.props}
-                                  handleChange={this.onReminderChange}
-                                  handleDefault={this.onReminderDefault}
-                                  id={this.props.id}
-                                  path={this.props.path}
-                                  data={invoice.reminder}
-                                />
-                              </li>
-                            )}
+                                <li>
+                                  <input
+                                    type="checkbox"
+                                    ref={this.reminderRef}
+                                    defaultChecked
+                                    onClick={() =>
+                                      this.setSidebarActive("reminder")
+                                    }
+                                  />
+                                  <i />
+                                  <h3 className="pv-title-small">
+                                    {i18n.rem}
+                                    <ProLabel />
+                                    <span className="pv-field-switch-content">
+                                      <label className="pv-field-switch pv-field-switch-big">
+                                        <input
+                                          type="checkbox"
+                                          id="reminder-status"
+                                          name="status"
+                                          checked={
+                                            invoice.reminder.status
+                                              ? "checked"
+                                              : ""
+                                          }
+                                          onChange={this.onReminderChange}
+                                        />
+                                        <span className="pv-switch-slider pv-round" />
+                                      </label>
+                                    </span>
+                                  </h3>
+                                  <Reminder
+                                    {...this.props}
+                                    handleChange={this.onReminderChange}
+                                    handleDefault={this.onReminderDefault}
+                                    id={this.props.id}
+                                    path={this.props.path}
+                                    data={invoice.reminder}
+                                  />
+                                </li>
+                              )}
 
                             {(!sidebarActive || sidebarActive == "recurring") &&
                               this.props.path == "invoice" && (
