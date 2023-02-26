@@ -255,17 +255,23 @@
   .pv-inv-section {
     margin-bottom: 10px;
   }
-
-  .pv-inv-section-content ul {
-    list-style-type: dot;
-    li {
-      font-family: Inter;
-      font-style: normal;
-      font-weight: normal;
-      font-size: var(--pv-inv-micro);
-      line-height: 150%;
-      color: var(--pv-inv-text-5th);
-      margin-left: 15px;
+  .pv-inv-section-content { 
+    ul {
+      list-style-type: unset;
+    }
+    ol {
+      list-style-type: decimal;
+    }
+    ul, ol {
+      li {
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: var(--pv-inv-micro);
+        line-height: 150%;
+        color: var(--pv-inv-text-5th);
+        margin-left: 15px;
+      }
     }
   }
   .pv-inv-mt-35 {

@@ -185,6 +185,7 @@ The super fantastic pro features that accelerate your business growth and improv
 * Update: Webhook
 * Update: Translation issue
 * Update: Import Export
+* Update: Invoice template CSS
 
 = 1.0.7 =
 * Fixed: Location Country Showing Issue
