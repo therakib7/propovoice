@@ -182,6 +182,9 @@ The super fantastic pro features that accelerate your business growth and improv
 
 = 1.0.7.1 =
 * Added: Helper JS and functional files for Custom Fields and User Role
+* Update: Webhook
+* Update: Translation issue
+* Update: Import Export
 
 = 1.0.7 =
 * Fixed: Location Country Showing Issue
