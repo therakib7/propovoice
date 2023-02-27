@@ -54,9 +54,13 @@ class ListSingle extends Component {
         id: null,
         person: {
           first_name: "",
+          region: "",
+          country: ""
         },
         org: {
           name: "",
+          region: "",
+          country: ""
         },
         level_id: null,
         stage_id: null,
