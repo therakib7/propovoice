@@ -381,7 +381,7 @@ export default (props) => {
           </a>
         </li>
       )}
-      <li className="pv-mt-35">
+      {!caps.includes("ndpv_client_role") && <li className="pv-mt-35">
         <a href="https://propovoice.com/docs" target="_blank">
           <svg width={20} height={18} viewBox="0 0 20 18" fill="none">
             <path
@@ -411,7 +411,7 @@ export default (props) => {
           </svg>
           <span>Doc &amp; Tutorial</span>
         </a>
-      </li>
+      </li>}
     </ul>
   );
 };

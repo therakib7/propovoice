@@ -60,6 +60,7 @@ export default () => {
     const [modules, setModules] = useState(['estimate', 'quotation', 'invoice']);
 
     const i18n = ndpv.i18n;
+    const caps = ndpv.caps;
     return (
         <HashRouter>
             <ToastContainer hideProgressBar />
@@ -80,14 +81,14 @@ export default () => {
                         <div className='pv-sidebar-menu dpv-collapse-menu'>
                             <Nav />
 
-                            <div className="pv-menu-buttons">
+                            {!caps.includes("ndpv_client_role") && <div className="pv-menu-buttons">
                                 {false && <a href='https://propovoice.com/affilite' target='_blank' className="pv-btn pv-btn-big pv-bg-blue pv-bg-hover-blue pv-bg-shadow">
                                     Refer &amp; Earn
                                 </a>}
                                 <a href={ndpv.dashboard} className="pv-btn pv-btn-big pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow">
                                     {i18n.back_t_db}
                                 </a>
-                            </div>
+                            </div>}
                         </div>
                     </div>
                 </div>
