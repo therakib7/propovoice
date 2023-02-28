@@ -48,6 +48,8 @@ const Dashboard = (props) => {
 
     const create = ndpv.i18n.create;
     const i18n = ndpv.i18n;
+
+    const caps = ndpv.caps;
     return (
         <div className="ndpv-dashboard">
             <div className="row">
@@ -123,15 +125,15 @@ const Dashboard = (props) => {
 
             {!wage.length && <div className="pv-block">
                 <div className="row">
-                    <div className="col-lg-7">
+                    {caps.includes("ndpv_task") && <div className="col-lg-7">
                         <TaskCom />
-                    </div>
+                    </div>}
 
-                    <div className="col-lg-5">
+                    {caps.includes("ndpv_deal") && <div className="col-lg-5">
                         <Suspense fallback={<Spinner />}>
                             <DealFunnel {...props} />
                         </Suspense>
-                    </div>
+                    </div>}
                 </div>
             </div>}
 
@@ -139,7 +141,7 @@ const Dashboard = (props) => {
                 <div className="col-lg-8">
                     <Suspense fallback={<Spinner />}>
                         {wage.length > 0 && <div style={{ marginBottom: 25 }}><TaskCom /></div>}
-                        {!wage.length && <ChartLine key={'1' + year} {...props} type='deal_tracking' year={year} />}
+                        {!wage.length && caps.includes("ndpv_deal") && <ChartLine key={'1' + year} {...props} type='deal_tracking' year={year} />}
                         <ChartBar key={'2' + year} {...props} type='estimate' year={year} />
                         <ChartBar key={'3' + year} {...props} type='invoice' year={year} />
 
@@ -198,8 +200,8 @@ const Dashboard = (props) => {
                 </div>
                 <div className="col-lg-4">
                     <Suspense fallback={<Spinner />}>
-                        <ChartPie {...props} type='lead_level' />
-                        <ChartPie {...props} type='lead_source' />
+                        {caps.includes("ndpv_lead") && <ChartPie {...props} type='lead_level' />}
+                        {caps.includes("ndpv_deal") && <ChartPie {...props} type='lead_source' />}
 
                         {wage.length > 0 && <Widget
                             title='Upgrade Pro to Get Access All Insight'
