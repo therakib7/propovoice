@@ -271,6 +271,7 @@ class Invoice extends Component {
   render() {
     const { prefix, title, invoices, checkedBoxes, searchVal } = this.state;
     const { total, paid, unpaid, draft, sent } = this.state.summary;
+    const caps = ndpv.caps;
     return (
       <div className="ndpv-cpnt">
         {!this.props.module_id && <Breadcrumb title={title} />}
@@ -286,11 +287,11 @@ class Invoice extends Component {
             </h2>
           </div>
           <div className="col">
-            <AddNew
+            {!caps.includes("ndpv_client_role") && <AddNew
               title={title}
               openForm={() => this.newInvoie()}
               // fields={EntityFields.invoice}
-            />
+            />}
           </div>
         </div>
 

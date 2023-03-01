@@ -35,18 +35,16 @@ const InvoiceWrap = (props) => {
 	};
 
 	return (
-		<>
-			<Invoice
-				{...props}
-				id={id}
-				tab={tab}
-				module_id={module_id}
-				routeChange={routeChange}
-				routeInvoice={routeInvoice}
-				path={path}
-				key={path}
-			/>
-		</>
+		<Invoice
+			{...props}
+			id={id}
+			tab={tab}
+			module_id={module_id}
+			routeChange={routeChange}
+			routeInvoice={routeInvoice}
+			path={path}
+			key={path}
+		/>
 	);
 }
 
