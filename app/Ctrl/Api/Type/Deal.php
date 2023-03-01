@@ -577,6 +577,7 @@ class Deal
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
         $note = isset($param["note"]) ? nl2br($param["note"]) : "";
         $change_tax = isset($param["change_tax"]) ? true : false;
+        $change_prob = isset($param["change_prob"]) ? true : false;
 
         /* if (empty($stage_id)) {
             $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
@@ -589,6 +590,7 @@ class Deal
         if (
             !$reorder &&
             !$change_tax &&
+            !$change_prob &&
             (empty($first_name) && empty($org_name))
         ) {
             $reg_errors->add(

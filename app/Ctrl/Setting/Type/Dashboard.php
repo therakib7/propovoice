@@ -7,7 +7,9 @@ class Dashboard
 {
     public function __construct()
     {
-        add_action("admin_menu", [$this, "add_settings_menu"], 30);
+        if (current_user_can("ndpv_core")) {
+            add_action("admin_menu", [$this, "add_settings_menu"], 30);
+        }
     }
 
     public function add_settings_menu()

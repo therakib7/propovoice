@@ -54,13 +54,13 @@ class ListSingle extends Component {
         id: null,
         person: {
           first_name: "",
-          region: "",
-          country: ""
+          country: "",
+          region: ""
         },
         org: {
           name: "",
-          region: "",
-          country: ""
+          country: "",
+          region: ""
         },
         level_id: null,
         stage_id: null,
@@ -181,6 +181,7 @@ class ListSingle extends Component {
         let newData = {};
         if (data.probability) {
           newData.probability = data.probability;
+		  newData.change_prob = true;
         }
         api.edit("deals", this.props.id, newData);
       }, 300);
