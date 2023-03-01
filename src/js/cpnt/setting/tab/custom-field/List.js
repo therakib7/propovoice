@@ -267,7 +267,7 @@ export default (props) => {
 
 			{modal && <Form
 				{...props}
-				taxonomy={props.taxonomy}
+				mod={props.mod}
 				title={props.title}
 				modalType={modalType}
 				reload={getData}

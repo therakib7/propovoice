@@ -52,7 +52,7 @@ export default class Form extends Component {
     handleSubmit = () => {
 
         let newForm = { ...this.state.form }
-        newForm.taxonomy = this.props.taxonomy;
+        newForm.mod = this.props.mod;
 
         if (this.props.modalType == 'new') {
             if (this.props.extra_amount_type) {
