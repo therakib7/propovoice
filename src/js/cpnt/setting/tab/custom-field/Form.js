@@ -55,9 +55,6 @@ export default class Form extends Component {
         newForm.mod = this.props.mod;
 
         if (this.props.modalType == 'new') {
-            if (this.props.extra_amount_type) {
-                newForm.extra_amount_type = this.props.extra_amount_type;
-            }
             api.add('custom-fields', newForm).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aAdd);
