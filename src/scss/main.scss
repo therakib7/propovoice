@@ -1014,7 +1014,7 @@ html {
   position: relative;
   top: 2px;
   transform: scale(0.8);
-  -moz-transform: scale(1);
+  -moz-transform: scale(0.8);
 }
 
 .ndpv .pv-table tr {
@@ -5428,7 +5428,6 @@ ul {
 .ndpv .pv-m-auto {
   margin: auto;
   display: block !important;
-  margin-top: 30px;
 }
 
 .ndpv .pv-mt-5 {
@@ -6001,6 +6000,7 @@ select {
   width: 100%;
   border-bottom: 1px solid rgba(221, 221, 221, 0.2117647059);
   position: fixed;
+
 }
 
 @media screen and (max-width: 420px) {
@@ -6140,6 +6140,7 @@ select {
   display: block;
 }
 
+
 @media screen and (min-width: 768px) {
   .pv-collapse-menu {
     transition: all 0.2s ease-out;
@@ -6212,4 +6213,8 @@ table thead:first-child tr:first-child th {
 button:focus,
 .pv-btn:focus {
   outline: none !important;
+}
+
+.pv-modal-content .pv-dropdown-content {
+  height: 351px;
 }
