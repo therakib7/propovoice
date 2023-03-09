@@ -137,11 +137,19 @@
     .pv-right-content {
         height: calc(100vh - 30px);
     }
+
+    .pv-board-content {
+        height: calc(100vh - 350px);
+    }
 }
 
 .ndpv {
     .pv-deal-content {
         max-width: none !important;
+    }
+
+    .pv-right-content-data.pv-deal-content {
+        padding-bottom: 10px;
     }
 
     .pi-field-multi {

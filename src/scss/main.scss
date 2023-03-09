@@ -2816,10 +2816,6 @@ html {
   overflow-y: inherit;
 }
 
-.ndpv .pv-board-content {
-  height: calc(100vh - 476px) !important;
-}
-
 @media screen and (max-width: 550px) {
   .ndpv .pv-board-content {
     height: calc(100vh - 510px) !important;
