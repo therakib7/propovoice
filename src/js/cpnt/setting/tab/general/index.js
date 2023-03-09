@@ -37,4 +37,4 @@ const Main = (props) => {
 		</>
 	)
 }
-export default WithApi(Main) 
+export default WithApi(Main)

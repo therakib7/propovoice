@@ -1,37 +1,31 @@
-import Breadcrumb from 'block/breadcrumb';
-import Pagination from 'block/pagination';
-import Preloader from 'block/preloader/table';
+import Breadcrumb from "block/breadcrumb";
+import Pagination from "block/pagination";
+import Preloader from "block/preloader/table";
 
-import Form from './Form';
-import Table from './Table';
-import Search from './Search';
-import Empty from 'block/empty';
+import Form from "./Form";
+import Table from "./Table";
+import Search from "./Search";
+import Empty from "block/empty";
 
-import Crud from 'hoc/Crud';
+import Crud from "hoc/Crud";
 
 const Contact = (props) => {
   const { title, lists, checkedBoxes, searchVal } = props.state;
   const i18n = ndpv.i18n;
   return (
     <div className="ndpv-cpnt">
-      <Breadcrumb title={i18n.ct + ' ' + i18n.book} />
+      <Breadcrumb title={i18n.ct + " " + i18n.book} />
 
       <div className="row">
         <div className="col-6">
-          <h2 className="">{i18n.ct} {i18n.book}</h2>
+          <h2 className="">{i18n.ct_book}</h2>
         </div>
         <div className="col-6 pv-text-right">
           <button
             className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow"
-            onClick={() => props.openForm('new')}
+            onClick={() => props.openForm("new")}
           >
-            <svg
-              width={14}
-              height={12}
-              viewBox="0 0 12 15"
-              fill="none"
-              
-            >
+            <svg width={14} height={12} viewBox="0 0 12 15" fill="none">
               <path
                 d="M2.5 8H13.5"
                 stroke="white"
@@ -50,13 +44,7 @@ const Contact = (props) => {
             {i18n.add} {title}
           </button>
           <span className="pv-action-btn">
-            <svg
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              
-            >
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -82,13 +70,7 @@ const Contact = (props) => {
 
       <div className="pv-buttons-group pv-mb-20">
         <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
-          <svg
-            width={20}
-            height={20}
-            viewBox="0 0 20 20"
-            fill="none"
-            
-          >
+          <svg width={20} height={20} viewBox="0 0 20 20" fill="none">
             <path
               d="M7.5 5H16.875"
               stroke="#4A5568"
@@ -134,13 +116,7 @@ const Contact = (props) => {
           </svg>
         </button>
         <button className="pv-btn pv-btn-icon pv-bg-hover-shadow">
-          <svg
-            width={20}
-            height={20}
-            viewBox="0 0 20 20"
-            fill="none"
-            
-          >
+          <svg width={20} height={20} viewBox="0 0 20 20" fill="none">
             <path
               d="M17.5 4.375H2.5C2.15482 4.375 1.875 4.65482 1.875 5V6.875C1.875 7.22018 2.15482 7.5 2.5 7.5H17.5C17.8452 7.5 18.125 7.22018 18.125 6.875V5C18.125 4.65482 17.8452 4.375 17.5 4.375Z"
               stroke="#A0AEC0"
@@ -175,26 +151,43 @@ const Contact = (props) => {
 
       <div className="pv-small-button-group pv-mb-30">
         <button className="pv-btn pv-active pv-btn-small pv-bg-stroke pv-bg-hover-shadow">
-        {i18n.prsn}
+          {i18n.prsn}
         </button>
         <button className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow">
-        {i18n.org}
+          {i18n.org}
         </button>
       </div>
 
-      {props.state.formModal && <Form
-        handleSubmit={props.handleSubmit}
-        modalType={props.state.formModalType}
-        data={props.state.list}
-        close={props.closeForm}
-      />}
+      {props.state.formModal && (
+        <Form
+          handleSubmit={props.handleSubmit}
+          modalType={props.state.formModalType}
+          data={props.state.list}
+          close={props.closeForm}
+        />
+      )}
 
-      {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
+      {props.state.preloader ? (
+        <Preloader />
+      ) : (
+        <Table
+          tableData={lists}
+          searchVal={searchVal}
+          editEntry={props.openForm}
+          checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }}
+          deleteEntry={props.deleteEntry}
+        />
+      )}
 
-      {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
-
+      {props.state.totalPage > 1 && (
+        <Pagination
+          forcePage={props.state.currentPage - 1}
+          pageCount={props.state.totalPage}
+          onPageChange={props.handlePageClick}
+        />
+      )}
     </div>
   );
-}
+};
 
-export default Crud(Contact, 'person', ndpv.i18n.prsn);
+export default Crud(Contact, "person", ndpv.i18n.prsn);

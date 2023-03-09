@@ -1,5 +1,5 @@
 
-const currency = (amount, currency = 'USD', lang = 'en') => { 
+const currency = (amount, currency = 'USD', lang = 'en') => {
 	return (new Intl.NumberFormat(lang, {
 		style: 'currency',
 		currency: currency,

@@ -43,26 +43,52 @@ class Setting
         } else {
             $data = [];
 
+            if ($tab == "general_module") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $data["deactivate"] = [];
+                }
+            }
+
+            if ($tab == "subscription") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    if (!isset($option["deactivate"])) {
+                        $option["deactivate"] = [];
+                    }
+                    $data = $option;
+                } else {
+                    $data["deactivate"] = [];
+                }
+            }
+
             if ($tab == "email_footer") {
                 $option = get_option("ndpv_" . $tab);
 
                 if ($option) {
                     $data = $option;
                     $white_label = get_option("ndpv_white_label");
-                    $data['logo'] = null;
-                    if ( $white_label && isset( $white_label['logo'] ) ) {
-                        $data['logo'] = $white_label['logo'];
-                        $logo_id = $white_label['logo'];
+                    $data["logo"] = null;
+                    if ($white_label && isset($white_label["logo"])) {
+                        $data["logo"] = $white_label["logo"];
+                        $logo_id = $white_label["logo"];
                         $logoData = null;
-                        if ( $logo_id ) {
-                            $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
-                            if ( $logo_src ) {
+                        if ($logo_id) {
+                            $logo_src = wp_get_attachment_image_src(
+                                $logo_id,
+                                "thumbnail"
+                            );
+                            if ($logo_src) {
                                 $logoData = [];
-                                $logoData['id'] = $logo_id;
-                                $logoData['src'] = $logo_src[0];
+                                $logoData["id"] = $logo_id;
+                                $logoData["src"] = $logo_src[0];
                             }
                         }
-                        $data['logo'] = $logoData;
+                        $data["logo"] = $logoData;
                     }
                 } else {
                     $data["active"] = true;
@@ -338,18 +364,31 @@ class Setting
         } else {
             $data = [];
 
-            if ($tab == "email_footer") { 
+            if ($tab == "general_module") {
+                $data["deactivate"] = isset($param["deactivate"])
+                    ? array_map("sanitize_text_field", $param["deactivate"])
+                    : [];
+                $option = update_option("ndpv_" . $tab, $data);
+            }
+
+            if ($tab == "subscription") {
+                $data = $param;
+                $data["deactivate"] = isset($param["deactivate"])
+                    ? array_map("sanitize_text_field", $param["deactivate"])
+                    : [];
+                $option = update_option("ndpv_" . $tab, $data);
+            }
+
+            if ($tab == "email_footer") {
                 $data["active"] = isset($param["active"])
-                    ? rest_sanitize_boolean( $param["active"] )
+                    ? rest_sanitize_boolean($param["active"])
                     : null;
-                $data["text"] = isset($param["text"])
-                    ? ( $param["text"] )
-                    : null;
+                $data["text"] = isset($param["text"]) ? $param["text"] : null;
 
                 $option = update_option("ndpv_" . $tab, $data);
 
                 $white_label["logo"] = isset($param["logo"])
-                    ? ( $param["logo"]['id'] )
+                    ? $param["logo"]["id"]
                     : null;
 
                 update_option("ndpv_white_label", $white_label);
@@ -555,11 +594,11 @@ class Setting
 
     public function get_per()
     {
-        return true;
+        return current_user_can("ndpv_setting");
     }
 
     public function create_per()
     {
-        return current_user_can("publish_posts");
+        return current_user_can("ndpv_setting");
     }
 }

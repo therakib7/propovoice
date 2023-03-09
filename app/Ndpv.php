@@ -1,34 +1,34 @@
 <?php
 
 require_once __DIR__ . './../vendor/autoload.php';
- 
+
 use Ndpv\Ctrl\Install\InstallCtrl;
 use Ndpv\Traits\Singleton;
-use Ndpv\Helper\Constant; 
-use Ndpv\Helper\Fns; 
+use Ndpv\Helper\Constant;
+use Ndpv\Helper\Fns;
 use Ndpv\Helper\Data;
-use Ndpv\Ctrl\MainCtrl;   
+use Ndpv\Ctrl\MainCtrl;
 
 /**
  * Class Ndpv
  */
 final class Ndpv {
 
-    use Singleton; 
- 
+    use Singleton;
+
     /**
      * NDPV Project Constructor.
      */
-    public function __construct() { 
-        new Constant();  
+    public function __construct() {
+        new Constant();
         new InstallCtrl();
-        $this->init_hooks(); 
-    } 
+        $this->init_hooks();
+    }
 
     private function init_hooks() {
- 
-        add_action('plugins_loaded', [$this, 'on_plugins_loaded'], -1); 
-        add_action('init', [$this, 'init'], 1); 
+
+        add_action('plugins_loaded', [$this, 'on_plugins_loaded'], -1);
+        add_action('init', [$this, 'init'], 1);
     }
 
     public function init() {

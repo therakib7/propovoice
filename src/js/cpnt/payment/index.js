@@ -146,11 +146,11 @@ export default class Payment extends Component {
         let title;
         switch (id) {
             case 'bank':
-                title = 'Bank'
+                title = i18n.bank
                 break;
 
             case 'paypal':
-                title = 'Paypal'
+                title = i18n.paypal
                 break;
 
             case 'stripe':

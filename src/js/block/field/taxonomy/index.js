@@ -26,7 +26,6 @@ export default (props) => {
 	useClickOutside(dropdownContent, close);
 
 	useEffect(() => {
-
 		if (props.data) {
 
 			if (props.multi) {

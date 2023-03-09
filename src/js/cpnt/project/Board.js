@@ -78,7 +78,7 @@ function Board(props) {
 
 	const navigate = useNavigate();
 	const goToSingle = (id) => {
-		navigate(`/project/single/${id}`);
+		navigate(`/project/${id}`);
 	};
 
 	const CharLimit = (string) => {

@@ -73,6 +73,7 @@
         "gapi-script": "^1.2.0",
         "iso-language-codes": "^1.1.0",
         "prop-types": "^15.6.2",
+        "querystring": "^0.2.1",
         "react-beautiful-dnd": "latest",
         "react-colorful": "^5.5.1",
         "react-content-loader": "^6.1.0",

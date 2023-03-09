@@ -26,29 +26,28 @@ body {
   margin: 0;
 }
 
-
 /**
-   * Render the `main` element consistently in IE.
-   */
+ * Render the `main` element consistently in IE.
+ */
 main {
   display: block;
 }
 
 /**
-  * Correct the font size and margin on `h1` elements within `section` and
-  * `article` contexts in Chrome, Firefox, and Safari.
-  */
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
 
 /* Grouping content
-    ========================================================================== */
+   ========================================================================== */
 /**
-  * 1. Add the correct box sizing in Firefox.
-  * 2. Show the overflow in Edge and IE.
-  */
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
 hr {
   box-sizing: content-box;
   /* 1 */
@@ -59,9 +58,9 @@ hr {
 }
 
 /**
-  * 1. Correct the inheritance and scaling of font size in all browsers.
-  * 2. Correct the odd `em` font sizing in all browsers.
-  */
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
 pre {
   font-family: monospace, monospace;
   /* 1 */
@@ -70,18 +69,18 @@ pre {
 }
 
 /* Text-level semantics
-    ========================================================================== */
+   ========================================================================== */
 /**
-  * Remove the gray background on active links in IE 10.
-  */
+ * Remove the gray background on active links in IE 10.
+ */
 a {
   background-color: transparent;
 }
 
 /**
-  * 1. Remove the bottom border in Chrome 57-
-  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
-  */
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
 abbr[title] {
   border-bottom: none;
   /* 1 */
@@ -93,9 +92,12 @@ abbr[title] {
 }
 
 /**
-  * 1. Correct the inheritance and scaling of font size in all browsers.
-  * 2. Correct the odd `em` font sizing in all browsers.
-  */
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
 code,
 kbd,
 samp {
@@ -106,16 +108,16 @@ samp {
 }
 
 /**
-  * Add the correct font size in all browsers.
-  */
+ * Add the correct font size in all browsers.
+ */
 small {
   font-size: 80%;
 }
 
 /**
-  * Prevent `sub` and `sup` elements from affecting the line height in
-  * all browsers.
-  */
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
 sub,
 sup {
   font-size: 75%;
@@ -133,20 +135,20 @@ sup {
 }
 
 /* Embedded content
-    ========================================================================== */
+   ========================================================================== */
 /**
-  * Remove the border on pv-single-images inside links in IE 10.
-  */
+ * Remove the border on pv-single-images inside links in IE 10.
+ */
 img {
   border-style: none;
 }
 
 /* Forms
-    ========================================================================== */
+   ========================================================================== */
 /**
-  * 1. Change the font styles in all browsers.
-  * 2. Remove the margin in Firefox and Safari.
-  */
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
 button,
 input,
 optgroup,
@@ -163,9 +165,9 @@ textarea {
 }
 
 /**
-  * Show the overflow in IE.
-  * 1. Show the overflow in Edge.
-  */
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
 button,
 input {
   /* 1 */
@@ -173,9 +175,9 @@ input {
 }
 
 /**
-  * Remove the inheritance of text transform in Edge, Firefox, and IE.
-  * 1. Remove the inheritance of text transform in Firefox.
-  */
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
 button,
 select {
   /* 1 */
@@ -183,8 +185,8 @@ select {
 }
 
 /**
-  * Correct the inability to style clickable types in iOS and Safari.
-  */
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
 button,
 [type=button],
 [type=reset],
@@ -193,8 +195,8 @@ button,
 }
 
 /**
-  * Remove the inner border and padding in Firefox.
-  */
+ * Remove the inner border and padding in Firefox.
+ */
 button::-moz-focus-inner,
 [type=button]::-moz-focus-inner,
 [type=reset]::-moz-focus-inner,
@@ -204,8 +206,8 @@ button::-moz-focus-inner,
 }
 
 /**
-  * Restore the focus styles unset by the previous rule.
-  */
+ * Restore the focus styles unset by the previous rule.
+ */
 button:-moz-focusring,
 [type=button]:-moz-focusring,
 [type=reset]:-moz-focusring,
@@ -214,18 +216,18 @@ button:-moz-focusring,
 }
 
 /**
-  * Correct the padding in Firefox.
-  */
+ * Correct the padding in Firefox.
+ */
 fieldset {
   padding: 0.35em 0.75em 0.625em;
 }
 
 /**
-  * 1. Correct the text wrapping in Edge and IE.
-  * 2. Correct the color inheritance from `fieldset` elements in IE.
-  * 3. Remove the padding so developers are not caught out when they zero out
-  *    `fieldset` elements in all browsers.
-  */
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
 legend {
   box-sizing: border-box;
   /* 1 */
@@ -242,23 +244,23 @@ legend {
 }
 
 /**
-  * Add the correct vertical alignment in Chrome, Firefox, and Opera.
-  */
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
 progress {
   vertical-align: baseline;
 }
 
 /**
-  * Remove the default vertical scrollbar in IE 10+.
-  */
+ * Remove the default vertical scrollbar in IE 10+.
+ */
 textarea {
   overflow: auto;
 }
 
 /**
-  * 1. Add the correct box sizing in IE 10.
-  * 2. Remove the padding in IE 10.
-  */
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
 [type=checkbox],
 [type=radio] {
   box-sizing: border-box;
@@ -268,17 +270,17 @@ textarea {
 }
 
 /**
-  * Correct the cursor style of increment and decrement buttons in Chrome.
-  */
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
 [type=number]::-webkit-inner-spin-button,
 [type=number]::-webkit-outer-spin-button {
   height: auto;
 }
 
 /**
-  * 1. Correct the odd appearance in Chrome and Safari.
-  * 2. Correct the outline style in Safari.
-  */
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
 [type=search] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -287,16 +289,16 @@ textarea {
 }
 
 /**
-  * Remove the inner padding in Chrome and Safari on macOS.
-  */
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
 [type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
 /**
-  * 1. Correct the inability to style clickable types in iOS and Safari.
-  * 2. Change font properties to `inherit` in Safari.
-  */
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
   /* 1 */
@@ -305,33 +307,33 @@ textarea {
 }
 
 /* Interactive
-    ========================================================================== */
+   ========================================================================== */
 /*
-  * Add the correct display in Edge, IE 10+, and Firefox.
-  */
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
 details {
   display: block;
 }
 
 /*
-  * Add the correct display in all browsers.
-  */
+ * Add the correct display in all browsers.
+ */
 summary {
   display: list-item;
 }
 
 /* Misc
-    ========================================================================== */
+   ========================================================================== */
 /**
-  * Add the correct display in IE 10+.
-  */
+ * Add the correct display in IE 10+.
+ */
 template {
   display: none;
 }
 
 /**
-  * Add the correct display in IE 10.
-  */
+ * Add the correct display in IE 10.
+ */
 [hidden] {
   display: none;
 }
@@ -340,11 +342,11 @@ template {
 #  Bootstrap Grid
 --------------------------------------------------------------*/
 /*!
-  * Bootstrap Grid v4.1.3 (https://getbootstrap.com/)
-  * Copyright 2011-2018 The Bootstrap Authors
-  * Copyright 2011-2018 Twitter, Inc.
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-  */
+ * Bootstrap Grid v4.1.3 (https://getbootstrap.com/)
+ * Copyright 2011-2018 The Bootstrap Authors
+ * Copyright 2011-2018 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
 html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;
@@ -858,7 +860,6 @@ html {
     max-width: 100%;
   }
 }
-
 
 /*-------------------------------------------------------------- 
 # Partials
@@ -1550,7 +1551,7 @@ html {
 
 .ndpv .pv-logo-content img {
   max-width: 215px;
-  max-height: 52px;
+  max-height: 45px;
 }
 
 .ndpv .pv-logo-content {
@@ -1662,9 +1663,9 @@ html {
 
 .ndpv .pv-right-content {
   width: 100%;
-  overflow-y: auto;
   scroll-behavior: smooth;
   height: 100vh;
+  overflow-y: auto;
 }
 
 @media screen and (max-width: 992px) {
@@ -1917,7 +1918,6 @@ html {
   border-radius: 50%;
   height: 80px;
   padding: 19px 5px;
-  font-size: 13px !important;
 }
 
 .ndpv .pv-punnel ul li:last-child span {
@@ -1929,7 +1929,7 @@ html {
 .ndpv .pv-punnel ul li {
   padding: 17px 25px;
   border-radius: 50px;
-  color: #fff !important;
+  color: #fff;
   font-size: 14px;
   margin: auto;
   display: block;
@@ -1972,11 +1972,11 @@ html {
   color: #1a202c;
   font-size: 14px;
   padding: 12px;
-  border: 1px solid rgba(221, 221, 221, 0.6588235294) !important;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   outline: none;
   line-height: 1;
-  padding-left: 40px !important;
-  border-radius: 8px !important;
+  padding-left: 40px;
+  border-radius: 8px;
   background: transparent;
   width: 330px;
 }
@@ -2012,6 +2012,13 @@ html {
   }
 }
 
+.ndpv .pv-search-bar button {
+  background: transparent;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
+  padding: 5px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 768px) {
   .ndpv .pv-search-bar button {
@@ -2091,8 +2098,8 @@ html {
 }
 
 .ndpv .pv-item-main-content>div {
-  padding-right: 7px;
-  padding-left: 7px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .ndpv .pv-item-main-content .pv-add-image-content svg {
@@ -2100,8 +2107,8 @@ html {
 }
 
 .ndpv .pv-item-main-content .pv-item-content {
-  display: -webkit-box;
-  padding: 20px 30px;
+  text-align: center;
+  padding: 15px;
   border: 1px solid #edf2f7;
   border-radius: 10px;
   margin-bottom: 15px;
@@ -2114,8 +2121,8 @@ html {
 }
 
 .ndpv .pv-item-main-content .pv-item-content .pv-add-item-text h3 {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .ndpv .pv-item-main-content .pv-item-content .pv-add-item-text p {
@@ -2399,7 +2406,7 @@ html {
 }
 
 .pv-overview-select {
-  padding: 10px 35px 10px 10px !important;
+  padding: 10px 35px 10px 10px;
   border: 1px solid #CBD5E0 !important;
   border-radius: 4px;
   margin-left: 15px;
@@ -2411,11 +2418,9 @@ html {
   background-position-y: 48% !important;
   outline: none;
   line-height: 100%;
-  width: auto;
-  display: inline-block;
 }
 
-.pv-overview-select:focus {
+.pv-overview-select .pv-overview-select:focus {
   outline: none;
 }
 
@@ -2465,6 +2470,10 @@ html {
   display: initial;
 }
 
+.wp-admin.ndpv {
+  overflow: auto;
+}
+
 .wp-admin.ndpv a:focus {
   box-shadow: none;
 }
@@ -2474,7 +2483,7 @@ html {
 }
 
 .wp-admin.ndpv .pv-right-content-data {
-  padding: 45px 70px 70px;
+  padding: 45px 70px 0;
 }
 
 .wp-admin.ndpv input[type=checkbox]:focus {
@@ -2496,10 +2505,6 @@ html {
 
 .wp-admin.ndpv .pv-overview-select {
   padding: 3px 35px 3px 10px !important;
-}
-
-.wp-admin.ndpv .pv-board-content {
-  height: calc(100vh - 395px) !important;
 }
 
 .wp-admin.ndpv #pv-pro-alert {
@@ -2793,9 +2798,20 @@ html {
   color: #fff !important;
 }
 
+.page-template .pv-field-switch {
+  position: relative;
+  top: 3px;
+}
+
+.wp-admin .pv-field-switch {
+  position: relative;
+  top: 3px;
+}
+
 .wp-admin.ndpv .pv-right-content {
   overflow-y: inherit;
 }
+
 
 
 @media screen and (max-width: 550px) {
@@ -2816,10 +2832,6 @@ button {
 
 .toplevel_page_ndpv-welcome {
   overflow: auto !important;
-}
-
-input[type=checkbox]::before {
-  border-color: blue;
 }
 
 input[type=checkbox]::after {
@@ -2848,6 +2860,18 @@ ul {
   margin: 0;
 }
 
+.wp-admin.twentytwenty-theme .pv-table input[type=checkbox] {
+  zoom: 1.2 !important;
+}
+
+.wp-admin.twentytwenty-theme .pv-table-action input[type=checkbox] {
+  zoom: 1 !important;
+}
+
+.wp-admin.twentytwenty-theme .pv-info-table-content .pv-info-table tbody tr td textarea {
+  margin-top: 10px !important;
+}
+
 .twentytwenty-theme svg,
 .twentytwenty-theme img,
 .twentytwenty-theme embed,
@@ -2863,10 +2887,6 @@ ul {
   padding: 0;
 }
 
-.wp-admin.twentytwenty-theme .pv-info-table-content .pv-info-table tbody tr td textarea {
-  margin-top: 10px !important;
-}
-
 .twentytwenty-theme .pv-field-checkbox-input input[type=checkbox] {
   margin-right: 15px;
 }
@@ -2879,23 +2899,8 @@ ul {
   zoom: 0.7 !important;
 }
 
-.wp-admin.twentytwenty-theme .pv-table-action input[type=checkbox] {
-  zoom: 1 !important;
-}
-
-.wp-admin.twentytwenty-theme .pv-table input[type=checkbox] {
-  zoom: 1.2 !important;
-}
-
 .twentytwenty-theme .pv-table tr th:first-child input[type=checkbox] {
   top: 6px;
-}
-
-.twentytwenty-theme .pv-field-radio input[type=checkbox],
-.twentytwenty-theme .pv-field-checkbox input[type=checkbox] {
-  zoom: 0.6;
-  top: 0px;
-  border: 1px solid rgba(147, 147, 147, 0.9411764706);
 }
 
 @media (min-width: 700px) {
@@ -2973,6 +2978,13 @@ ul {
   width: 1rem;
 }
 
+.twentytwenty-theme .pv-field-radio input[type=checkbox],
+.twentytwenty-theme .pv-field-checkbox input[type=checkbox] {
+  zoom: 0.6;
+  top: 0px;
+  border: 1px solid rgba(147, 147, 147, 0.9411764706);
+}
+
 .wp-admin.twentytwentyone-theme input[type=checkbox] {
   zoom: 1.2 !important;
 }
@@ -3017,7 +3029,6 @@ ul {
   top: 2px;
 }
 
-
 .twentytwentyone-theme input[type=checkbox] {
   zoom: 0.7 !important;
   border: 1px solid rgba(147, 147, 147, 0.9411764706);
@@ -3025,13 +3036,16 @@ ul {
 
 .twentytwentyone-theme .pv-field-radio input[type=radio],
 .twentytwentyone-theme .pv-field-checkbox input[type=checkbox] {
-  zoom: 0.6;
+  zoom: 0.6 !important;
 }
 
 .twentytwentyone-theme input[type=checkbox] {
   border-radius: 7px;
 }
 
+.twentytwentyone-theme .pv-table-action input[type=checkbox] {
+  zoom: 0.7 !important;
+}
 
 .twentytwentyone-theme input[type=checkbox]::after {
   left: 7px;
@@ -3067,7 +3081,6 @@ ul {
   height: 33px;
   margin-left: -2px;
 }
-
 
 .twentytwentyone-theme .pv-field-radio-input input[type=number] {
   height: 33px;
@@ -3134,13 +3147,8 @@ ul {
   }
 }
 
-.astra-theme .pv-form-accordion.pv-additional .pv-tab input[type=checkbox] {
-  zoom: 1;
-}
-
-.astra-theme input[type="checkbox"]:checked::before {
-  height: 1rem;
-  width: 1.2rem;
+.astra-theme .pv-field-checkbox input[type=checkbox] {
+  zoom: 0.7 !important;
 }
 
 @media screen and (max-width: 992px) {
@@ -3156,6 +3164,28 @@ ul {
   .astra-theme .pv-field-checkbox input[type=checkbox] {
     zoom: 0.8 !important;
   }
+}
+
+table thead:first-child tr:first-child th {
+  border-top: none;
+}
+
+.hello-elementor-theme table th,
+.hello-elementor-theme table td {
+  border: none;
+  vertical-align: middle;
+}
+
+.hello-elementor-theme .pv-right-content {
+  overflow-x: inherit !important;
+}
+
+.hello-elementor-theme .pv-field-switch {
+  top: 0;
+}
+
+.pv-modal-content .pv-dropdown-content {
+  height: 351px;
 }
 
 /*-------------------------------------------------------------- 
@@ -3177,7 +3207,7 @@ ul {
 .ndpv .pv-show {
   visibility: visible;
   opacity: 1;
-  z-index: 9;
+  z-index: 99;
 }
 
 .ndpv .pv-overlay {
@@ -3933,17 +3963,42 @@ ul {
   margin: 0;
   padding: 0;
   position: relative;
-  margin-bottom: 45px;
+  margin-bottom: 45px !important;
+  margin: auto;
+  width: 650px;
+}
+
+@media screen and (max-width: 550px) {
+  .ndpv .pv-welcome-tabs-content .pv-tabs {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .ndpv .pv-welcome-tabs-content .pv-tabs {
+    display: table-cell;
+    text-align: center;
+  }
+
+  .ndpv .pv-welcome-tabs-content .pv-tabs li {
+    text-align: center;
+  }
 }
 
 .ndpv .pv-welcome-tabs-content .pv-tabs:before {
   content: "";
   position: absolute;
   height: 2px;
-  width: 90%;
+  width: 82%;
   background-color: #f4f4f4;
   top: 19%;
-  left: 5%;
+  left: 10%;
+}
+
+@media screen and (max-width: 440px) {
+  .ndpv .pv-welcome-tabs-content .pv-tabs:before {
+    width: 0;
+  }
 }
 
 .ndpv .pv-welcome-tabs-content .pv-tab {
@@ -3979,6 +4034,7 @@ ul {
 @media screen and (max-width: 550px) {
   .ndpv .pv-welcome-tabs-content .pv-tab {
     font-size: 12px;
+    margin-bottom: 20px;
   }
 }
 
@@ -4003,7 +4059,7 @@ ul {
 .ndpv .pv-welcome-tabs-content .pv-tabs li span {
   width: 20px;
   height: 20px;
-  background-color: #f4f4f4;
+  background-color: #EDF2F7;
   display: block;
   border-radius: 50%;
   margin-bottom: 12px !important;
@@ -4025,7 +4081,6 @@ ul {
   position: relative;
   cursor: pointer;
   color: #2D3748 !important;
-  text-decoration: none;
 }
 
 .ndpv .pv-single-tabs .pv-tab-item .pv-single-tab-done {
@@ -4336,6 +4391,17 @@ ul {
   display: block;
 }
 
+.ndpv .pv-horizontal-tab .pv-tab {
+  position: relative;
+  padding: 15px 30px;
+  font-size: 14px;
+  border-bottom: 3px solid #fff;
+  color: #718096;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
 
 @media screen and (max-width: 768px) {
   .ndpv .pv-horizontal-tab .pv-tab {
@@ -4766,7 +4832,6 @@ ul {
 
   .pv-field-radio-input .pv-times,
   .pv-field-checkbox-input .pv-times {
-    height: auto !important;
     padding: 9px 15px !important;
   }
 }
@@ -4862,18 +4927,6 @@ ul {
   }
 }
 
-.ndpv .pv-horizontal-tab .pv-tab {
-  position: relative;
-  padding: 15px 30px;
-  font-size: 14px;
-  border-bottom: 3px solid #f7f8fa;
-  color: #718096;
-  cursor: pointer;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-}
-
 @media screen and (max-width: 550px) {
   .ndpv .pv-horizontal-tab .pv-tab {
     padding: 10px 15px;
@@ -4881,6 +4934,10 @@ ul {
   }
 }
 
+.ndpv .pv-horizontal-tab .pv-tab:hover {
+  border-bottom: 3px solid var(--pv-bg-color-blue);
+  color: var(--pv-bg-color-blue);
+}
 
 .ndpv .pv-repeter-content label {
   color: #718096;
@@ -5688,7 +5745,7 @@ body.ndpv {
   cursor: pointer;
   border: none;
   font-size: 14px;
-  display: inline-flex !important;
+  display: inline-flex;
   align-items: center;
 }
 
@@ -5769,7 +5826,6 @@ select {
   .ndpv .pv-form-style-one .row>div:nth-child(odd) {
     margin-right: 0px;
   }
-
 }
 
 .ndpv select {
@@ -5993,14 +6049,13 @@ select {
 }
 
 .ndpv .pv-left-sidebar .pv-logo-content {
-  padding: 15px 30px;
-  height: 74px;
+  padding: 18px 30px;
   z-index: 9;
   background: #fff;
   width: 100%;
   border-bottom: 1px solid rgba(221, 221, 221, 0.2117647059);
   position: fixed;
-
+  height: 74px;
 }
 
 @media screen and (max-width: 420px) {
@@ -6140,7 +6195,6 @@ select {
   display: block;
 }
 
-
 @media screen and (min-width: 768px) {
   .pv-collapse-menu {
     transition: all 0.2s ease-out;
@@ -6175,46 +6229,4 @@ select {
     display: table;
     left: 28%;
   }
-}
-
-.page-template .pv-field-switch {
-  position: relative;
-  top: 3px;
-}
-
-.wp-admin .pv-field-switch {
-  position: relative;
-  top: 3px;
-}
-
-
-table thead:first-child tr:first-child th {
-  border-top: none;
-}
-
-.hello-elementor-theme {
-
-  table th,
-  table td {
-    border: none;
-    vertical-align: middle;
-  }
-
-  .pv-right-content {
-    overflow-x: inherit !important;
-  }
-
-  .pv-field-switch {
-    top: 0;
-  }
-}
-
-
-button:focus,
-.pv-btn:focus {
-  outline: none !important;
-}
-
-.pv-modal-content .pv-dropdown-content {
-  height: 351px;
 }

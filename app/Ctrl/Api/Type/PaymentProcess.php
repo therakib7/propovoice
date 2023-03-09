@@ -1,81 +1,87 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Invoice;
 
 class PaymentProcess
 {
-
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'rest_routes']);
+        add_action("rest_api_init", [$this, "rest_routes"]);
     }
 
     public function rest_routes()
     {
-
-        register_rest_route('ndpv/v1', '/payment-process', [
+        register_rest_route("ndpv/v1", "/payment-process", [
             [
-                'methods' => 'GET',
-                'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_per'],
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
             ],
             [
-                'methods' => 'POST',
-                'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_per']
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
-    } 
+    }
 
     public function get($req)
     {
-        $request = $req->get_params(); 
+        $request = $req->get_params();
     }
 
     public function create($req)
     {
         $param = $req->get_params();
 
-        $invoice_id = isset($param['invoice_id']) ? $param['invoice_id'] : '';
-        $payment_method = isset($param['payment_method']) ? $param['payment_method'] : '';
+        $invoice_id = isset($param["invoice_id"]) ? $param["invoice_id"] : "";
+        $payment_method = isset($param["payment_method"])
+            ? $param["payment_method"]
+            : "";
 
         if ($invoice_id) {
-            update_post_meta($invoice_id, 'payment_method', $payment_method);
+            update_post_meta($invoice_id, "payment_method", $payment_method);
 
-            if ($payment_method == 'bank') {
-                $mark_as_paid = isset($param['mark_as_paid']) ? $param['mark_as_paid'] : false;
+            if ($payment_method == "bank") {
+                $mark_as_paid = isset($param["mark_as_paid"])
+                    ? $param["mark_as_paid"]
+                    : false;
                 if ($mark_as_paid) {
-                    update_post_meta($invoice_id, 'status', 'paid');
+                    update_post_meta($invoice_id, "status", "paid");
                 } else {
-                    update_post_meta($invoice_id, 'status', 'paid_req');
+                    update_post_meta($invoice_id, "status", "paid_req");
                 }
 
-                $payment_details = isset($param['payment_details']) ? $param['payment_details'] : '';
-                $receipt = isset($param['receipt']) ? $param['receipt'] : '';
-                $amount = isset($param['amount']) ? $param['amount'] : '';
-                $date = isset($param['date']) ? $param['date'] : '';
-                $note = isset($param['note']) ? nl2br($param['note']) : '';
+                $payment_details = isset($param["payment_details"])
+                    ? $param["payment_details"]
+                    : "";
+                $receipt = isset($param["receipt"]) ? $param["receipt"] : "";
+                $amount = isset($param["amount"]) ? $param["amount"] : "";
+                $date = isset($param["date"]) ? $param["date"] : "";
+                $note = isset($param["note"]) ? nl2br($param["note"]) : "";
 
                 $bank_info = [];
-                $bank_info['payment_details'] = $payment_details;
-                $bank_info['receipt'] = $receipt;
+                $bank_info["payment_details"] = $payment_details;
+                $bank_info["receipt"] = $receipt;
                 // $bank_info['amount'] = $amount;
                 // $bank_info['date'] = $date;
-                $bank_info['note'] = $note;
-                $bank_info['date'] = current_time('timestamp');
+                $bank_info["note"] = $note;
+                $bank_info["date"] = current_time("timestamp");
 
-                update_post_meta($invoice_id, 'payment_info', $bank_info);
-            } else if ($payment_method == 'paypal') {
-
-                update_post_meta($invoice_id, 'status', 'paid');
-                $payment_info = isset($param['payment_info']) ? $param['payment_info'] : '';
-                update_post_meta($invoice_id, 'payment_info', $payment_info);
-            } else if ($payment_method == 'stripe') {
-
-                update_post_meta($invoice_id, 'status', 'paid');
-                $payment_info = isset($param['payment_info']) ? $param['payment_info'] : '';
-                update_post_meta($invoice_id, 'payment_info', $payment_info);
+                update_post_meta($invoice_id, "payment_info", $bank_info);
+            } elseif ($payment_method == "paypal") {
+                update_post_meta($invoice_id, "status", "paid");
+                $payment_info = isset($param["payment_info"])
+                    ? $param["payment_info"]
+                    : "";
+                update_post_meta($invoice_id, "payment_info", $payment_info);
+            } elseif ($payment_method == "stripe") {
+                update_post_meta($invoice_id, "status", "paid");
+                $payment_info = isset($param["payment_info"])
+                    ? $param["payment_info"]
+                    : "";
+                update_post_meta($invoice_id, "payment_info", $payment_info);
             }
         }
 
@@ -85,7 +91,7 @@ class PaymentProcess
     // check permission
     public function get_per()
     {
-        return true;
+        return current_user_can("ndpv_payment");
     }
 
     public function create_per()

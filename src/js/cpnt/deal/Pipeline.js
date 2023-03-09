@@ -78,7 +78,7 @@ function Pipeline(props) {
 
 	const navigate = useNavigate();
 	const goToSingle = (id) => {
-		navigate(`/deal/single/${id}`);
+		navigate(`/deal/${id}`);
 	};
 
 	const CharLimit = (string) => {
@@ -106,7 +106,7 @@ function Pipeline(props) {
 											height={24}
 											viewBox="0 0 24 24"
 											fill="none"
-											
+
 										>
 											<path
 												fillRule="evenodd"
@@ -224,7 +224,7 @@ function Pipeline(props) {
 														height={12}
 														viewBox="0 0 12 15"
 														fill="none"
-														
+
 													>
 														<path
 															d="M2.5 8H13.5"

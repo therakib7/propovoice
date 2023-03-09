@@ -22,7 +22,38 @@ class Info
         return $site_name;
     }
 
-    public function wp() {
+    public function wp( $get_update = null, $share_info = null) {
+
+        $data = [];
+
+        if ( $get_update !== null ) {
+            $data['get_update'] = $get_update;
+            if ( $get_update ) {
+                $data = array_merge($data, $this->name_email());
+            }
+        }
+
+        if ( $share_info !== null ) {
+            $data['share_info'] = $share_info;
+            if ( $share_info ) {
+                $wp_info = [
+                    'url'         => esc_url( home_url() ),
+                    'site'        => $this->get_site_name(),
+                    'wp'          => $this->get_wp_info(),
+                    // 'ip'          => $this->get_user_ip_address(),
+                ];
+
+                $data = array_merge($data, $wp_info);
+            }
+        }
+
+        $data['version'] = NDPV_VERSION;
+        $data['package'] = 'free';
+
+        return $data;
+    }
+
+    public function name_email() {
 
         $users = get_users( array(
             'role'    => 'administrator',
@@ -41,17 +72,13 @@ class Info
         }
 
         return [
-            'url'         => esc_url( home_url() ),
-            'site'        => $this->get_site_name(),
             'admin_email' => get_option( 'admin_email' ),
             'first_name'  => $first_name,
-            'last_name'   => $last_name,     
-            'wp'          => $this->get_wp_info(),
-            'ip'          => $this->get_user_ip_address(), 
+            'last_name'   => $last_name,
         ];
     }
 
-     /**
+    /**
      * Get WordPress related data.
      *
      * @return array

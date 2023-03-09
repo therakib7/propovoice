@@ -11,6 +11,7 @@ import api from 'api';
 const EditDownload = props => {
 
     let title = props.path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est;
+    if (props.inv && props.inv.hasOwnProperty('status') && (props.inv.status == 'paid' || props.inv.status == 'accept')) return (<></>);
     return (
         <>
             <button
@@ -87,7 +88,7 @@ export default class Preview extends Component {
                     <div className='col-md-8' style={{ margin: '50px 0 30px 0' }}>
                         <div className='' style={{ width: '788px', margin: '0 auto' }}>
                             <div className='pv-float-left'>
-                                <EditDownload componentRef={this.componentRef} path={this.props.path} handleEdit={this.props.editTab} />
+                                <EditDownload componentRef={this.componentRef} inv={this.props.data.invoice} path={this.props.path} handleEdit={this.props.editTab} />
                                 <ReactToPrint
                                     content={() => this.componentRef}
                                     trigger={() => <button
@@ -174,7 +175,7 @@ export default class Preview extends Component {
                     <div className='col-md-8' style={{ margin: '30px 0' }}>
                         <div className='' style={{ width: '788px', margin: '0 auto' }}>
                             <div className='pv-float-left'>
-                                <EditDownload componentRef={this.componentRef} path={this.props.path} handleEdit={this.props.editTab} />
+                                <EditDownload componentRef={this.componentRef} inv={this.props.data.invoice} path={this.props.path} handleEdit={this.props.editTab} />
                                 <ReactToPrint
                                     content={() => this.componentRef}
                                     trigger={() => <button

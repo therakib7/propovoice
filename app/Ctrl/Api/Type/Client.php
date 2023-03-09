@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Org;
@@ -6,64 +6,62 @@ use Ndpv\Model\Person;
 
 class Client
 {
-
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'rest_routes']);
+        add_action("rest_api_init", [$this, "rest_routes"]);
     }
 
     public function rest_routes()
     {
-
-        register_rest_route('ndpv/v1', '/clients', [
+        register_rest_route("ndpv/v1", "/clients", [
             [
-                'methods' => 'GET',
-                'callback' => [$this, 'get'],
-                'permission_callback' => [$this, 'get_per'],
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
             ],
             [
-                'methods' => 'POST',
-                'callback' => [$this, 'create'],
-                'permission_callback' => [$this, 'create_per']
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
 
-        register_rest_route('ndpv/v1', '/clients/(?P<id>\d+)', array(
-            'methods' => 'GET',
-            'callback' => [$this, 'get_single'],
-            'permission_callback' => [$this, 'get_per'],
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function ($param, $request, $key) {
+        register_rest_route("ndpv/v1", "/clients/(?P<id>\d+)", [
+            "methods" => "GET",
+            "callback" => [$this, "get_single"],
+            "permission_callback" => [$this, "get_per"],
+            "args" => [
+                "id" => [
+                    "validate_callback" => function ($param, $request, $key) {
                         return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
+                    },
+                ],
+            ],
+        ]);
 
-        register_rest_route('ndpv/v1', '/clients/(?P<id>\d+)', array(
-            'methods' => 'PUT',
-            'callback' => [$this, 'update'],
-            'permission_callback' => [$this, 'update_per'],
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function ($param, $request, $key) {
+        register_rest_route("ndpv/v1", "/clients/(?P<id>\d+)", [
+            "methods" => "PUT",
+            "callback" => [$this, "update"],
+            "permission_callback" => [$this, "update_per"],
+            "args" => [
+                "id" => [
+                    "validate_callback" => function ($param, $request, $key) {
                         return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
+                    },
+                ],
+            ],
+        ]);
 
-        register_rest_route('ndpv/v1', '/clients/(?P<id>[0-9,]+)', array(
-            'methods' => 'DELETE',
-            'callback' => [$this, 'delete'],
-            'permission_callback' => [$this, 'del_per'],
-            'args' => array(
-                'id' => array(
-                    'sanitize_callback'  => 'sanitize_text_field',
-                ),
-            ),
-        ));
+        register_rest_route("ndpv/v1", "/clients/(?P<id>[0-9,]+)", [
+            "methods" => "DELETE",
+            "callback" => [$this, "delete"],
+            "permission_callback" => [$this, "del_per"],
+            "args" => [
+                "id" => [
+                    "sanitize_callback" => "sanitize_text_field",
+                ],
+            ],
+        ]);
     }
 
     public function get($req)
@@ -72,94 +70,112 @@ class Client
 
         $per_page = 10;
         $offset = 0;
-        $s = isset($param['text']) ? sanitize_text_field($param['text']) : null;
+        $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
 
-        if (isset($param['per_page'])) {
-            $per_page = $param['per_page'];
+        if (isset($param["per_page"])) {
+            $per_page = $param["per_page"];
         }
 
-        if (isset($param['page']) && $param['page'] > 1) {
-            $offset = ($per_page * $param['page']) - $per_page;
+        if (isset($param["page"]) && $param["page"] > 1) {
+            $offset = $per_page * $param["page"] - $per_page;
         }
 
-        $args = array(
-            'post_type' => ['ndpv_person', 'ndpv_org'],
-            'post_status' => 'publish',
-            'posts_per_page' => $per_page,
-            'offset' => $offset,
-        );
+        $args = [
+            "post_type" => ["ndpv_person", "ndpv_org"],
+            "post_status" => "publish",
+            "posts_per_page" => $per_page,
+            "offset" => $offset,
+        ];
 
-        $args['meta_query'] = array(
-            'relation' => 'OR'
-        );
+        $args["meta_query"] = [
+            "relation" => "OR",
+        ];
 
         if ($s) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'first_name',
-                    'value'   => $s,
-                    'compare' => 'Like',
-                )
-            );
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'email',
-                    'value'   => $s,
-                    'compare' => 'Like',
-                )
-            );
+            $args["meta_query"][] = [
+                [
+                    "key" => "first_name",
+                    "value" => $s,
+                    "compare" => "Like",
+                ],
+            ];
+            $args["meta_query"][] = [
+                [
+                    "key" => "email",
+                    "value" => $s,
+                    "compare" => "Like",
+                ],
+            ];
         }
 
-        $args['meta_query'][] = array(
-            array(
-                'key'     => 'is_client',
-                'value'   => 1,
-                'compare' => '=',
-            )
-        );
+        $args["meta_query"][] = [
+            [
+                "key" => "is_client",
+                "value" => 1,
+                "compare" => "=",
+            ],
+        ];
 
         $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination 
+        $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
         while ($query->have_posts()) {
             $query->the_post();
             $id = get_the_ID();
 
             $query_data = [];
-            $query_data['id'] = $id;
+            $query_data["id"] = $id;
 
             $queryMeta = get_post_meta($id);
-            $type = get_post_type($id) == 'ndpv_person' ? 'person' : 'org';
-            $query_data['type'] = $type;
-            $query_data['first_name'] = isset($queryMeta['first_name']) ? $queryMeta['first_name'][0] : '';
-            $query_data['org_name'] = isset($queryMeta['name']) ? $queryMeta['name'][0] : '';
-            $query_data['email'] = isset($queryMeta['email']) ? $queryMeta['email'][0] : '';
-            $query_data['web'] = isset($queryMeta['web']) ? $queryMeta['web'][0] : '';
-            $query_data['mobile'] = isset($queryMeta['mobile']) ? $queryMeta['mobile'][0] : '';
-            $query_data['country'] = isset($queryMeta['country']) ? $queryMeta['country'][0] : '';
-            $query_data['region'] = isset($queryMeta['region']) ? $queryMeta['region'][0] : '';
-            $query_data['address'] = isset($queryMeta['address']) ? $queryMeta['address'][0] : '';
-            $query_data['img'] = isset($queryMeta['img']) ? $queryMeta['img'][0] : '';
+            $type = get_post_type($id) == "ndpv_person" ? "person" : "org";
+            $query_data["type"] = $type;
+            $query_data["first_name"] = isset($queryMeta["first_name"])
+                ? $queryMeta["first_name"][0]
+                : "";
+            $query_data["org_name"] = isset($queryMeta["name"])
+                ? $queryMeta["name"][0]
+                : "";
+            $query_data["email"] = isset($queryMeta["email"])
+                ? $queryMeta["email"][0]
+                : "";
+            $query_data["web"] = isset($queryMeta["web"])
+                ? $queryMeta["web"][0]
+                : "";
+            $query_data["mobile"] = isset($queryMeta["mobile"])
+                ? $queryMeta["mobile"][0]
+                : "";
+            $query_data["country"] = isset($queryMeta["country"])
+                ? $queryMeta["country"][0]
+                : "";
+            $query_data["region"] = isset($queryMeta["region"])
+                ? $queryMeta["region"][0]
+                : "";
+            $query_data["address"] = isset($queryMeta["address"])
+                ? $queryMeta["address"][0]
+                : "";
+            $query_data["img"] = isset($queryMeta["img"])
+                ? $queryMeta["img"][0]
+                : "";
 
-            $img_id = $query_data['img'];
+            $img_id = $query_data["img"];
             $imgData = null;
             if ($img_id) {
-                $img_src = wp_get_attachment_image_src($img_id, 'thumbnail');
+                $img_src = wp_get_attachment_image_src($img_id, "thumbnail");
                 if ($img_src) {
                     $imgData = [];
-                    $imgData['id'] = $img_id;
-                    $imgData['src'] = $img_src[0];
+                    $imgData["id"] = $img_id;
+                    $imgData["src"] = $img_src[0];
                 }
             }
-            $query_data['img'] = $imgData;
+            $query_data["img"] = $imgData;
 
-            $query_data['date'] = get_the_time( get_option('date_format') );
+            $query_data["date"] = get_the_time(get_option("date_format"));
             $data[] = $query_data;
         }
         wp_reset_postdata();
 
-        $result['result'] = $data;
-        $result['total'] = $total_data;
+        $result["result"] = $data;
+        $result["total"] = $total_data;
 
         wp_send_json_success($result);
     }
@@ -171,24 +187,33 @@ class Client
     public function create($req)
     {
         $param = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $reg_errors = new \WP_Error();
 
-        $first_name = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
-        $org_name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
-        $person_id = isset($param['person_id']) ? absint($param['person_id']) : null;
-        $org_id    = isset($param['org_id']) ? absint($param['org_id']) : null; 
+        $first_name = isset($param["first_name"])
+            ? sanitize_text_field($param["first_name"])
+            : null;
+        $org_name = isset($param["org_name"])
+            ? sanitize_text_field($param["org_name"])
+            : null;
+        $person_id = isset($param["person_id"])
+            ? absint($param["person_id"])
+            : null;
+        $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
 
-        if (empty($first_name) &&  empty($org_name)) {
-            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
+        if (empty($first_name) && empty($org_name)) {
+            $reg_errors->add(
+                "field",
+                esc_html__("Contact info is missing", "propovoice")
+            );
         }
-        
+
         $person = new Person();
         if ($person_id) {
             $person->update($param);
         }
 
         if (!$person_id && $first_name) {
-            $param['is_client'] = true;
+            $param["is_client"] = true;
             $person_id = $person->create($param);
         }
 
@@ -197,12 +222,11 @@ class Client
             $org->update($param);
         }
 
-        if ( !$org_id && $org_name ) {
-
-            if ( $first_name ) {
-                $param['is_client'] = false; 
+        if (!$org_id && $org_name) {
+            if ($first_name) {
+                $param["is_client"] = false;
             } else {
-                $param['is_client'] = true; 
+                $param["is_client"] = true;
             }
             $org_id = $org->create($param);
         }
@@ -217,80 +241,104 @@ class Client
     public function update($req)
     {
         $param = $req->get_params();
-        $reg_errors = new \WP_Error;
+        $reg_errors = new \WP_Error();
 
-        $first_name   = isset($param['first_name']) ? sanitize_text_field($req['first_name']) : null;
-        $last_name    = isset($param['last_name']) ? sanitize_text_field($req['last_name']) : null;
-        $email        = isset($param['email']) ? strtolower(sanitize_email($req['email'])) : null;
-        $org_name = isset($param['org_name']) ? sanitize_text_field($req['org_name']) : null;
-        $web          = isset($param['web']) ? esc_url_raw($req['web']) : null;
-        $mobile       = isset($param['mobile']) ? sanitize_text_field($req['mobile']) : null;
-        $country      = isset($param['country']) ? sanitize_text_field($req['country']) : null;
-        $region       = isset($param['region']) ? sanitize_text_field($req['region']) : null;
-        $address      = isset($param['address']) ? sanitize_text_field($req['address']) : null;
-        $img = isset($param['img']) && isset($param['img']['id']) ? absint($param['img']['id']) : null;
+        $first_name = isset($param["first_name"])
+            ? sanitize_text_field($req["first_name"])
+            : null;
+        $last_name = isset($param["last_name"])
+            ? sanitize_text_field($req["last_name"])
+            : null;
+        $email = isset($param["email"])
+            ? strtolower(sanitize_email($req["email"]))
+            : null;
+        $org_name = isset($param["org_name"])
+            ? sanitize_text_field($req["org_name"])
+            : null;
+        $web = isset($param["web"]) ? esc_url_raw($req["web"]) : null;
+        $mobile = isset($param["mobile"])
+            ? sanitize_text_field($req["mobile"])
+            : null;
+        $country = isset($param["country"])
+            ? sanitize_text_field($req["country"])
+            : null;
+        $region = isset($param["region"])
+            ? sanitize_text_field($req["region"])
+            : null;
+        $address = isset($param["address"])
+            ? sanitize_text_field($req["address"])
+            : null;
+        $img =
+            isset($param["img"]) && isset($param["img"]["id"])
+                ? absint($param["img"]["id"])
+                : null;
 
         if (empty($first_name)) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
+            $reg_errors->add(
+                "field",
+                esc_html__("Name field is missing", "propovoice")
+            );
         }
 
         if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
+            $reg_errors->add(
+                "email_invalid",
+                esc_html__("Email id is not valid!", "propovoice")
+            );
         }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
             $url_params = $req->get_url_params();
-            $post_id    = $url_params['id'];
+            $post_id = $url_params["id"];
 
-            $data = array(
-                'ID'          => $post_id,
-                'post_title'  => $first_name,
-                'post_author' => get_current_user_id()
-            );
+            $data = [
+                "ID" => $post_id,
+                "post_title" => $first_name,
+                "post_author" => get_current_user_id(),
+            ];
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
-
                 if ($first_name) {
-                    update_post_meta($post_id, 'first_name', $first_name);
+                    update_post_meta($post_id, "first_name", $first_name);
                 }
 
                 if ($last_name) {
-                    update_post_meta($post_id, 'last_name', $last_name);
+                    update_post_meta($post_id, "last_name", $last_name);
                 }
 
                 if ($email) {
-                    update_post_meta($post_id, 'email', $email);
+                    update_post_meta($post_id, "email", $email);
                 }
 
                 if ($org_name) {
-                    update_post_meta($post_id, 'org_name', $org_name);
+                    update_post_meta($post_id, "org_name", $org_name);
                 }
 
                 if ($web) {
-                    update_post_meta($post_id, 'web', $web);
+                    update_post_meta($post_id, "web", $web);
                 }
 
                 if ($mobile) {
-                    update_post_meta($post_id, 'mobile', $mobile);
+                    update_post_meta($post_id, "mobile", $mobile);
                 }
 
                 if ($country) {
-                    update_post_meta($post_id, 'country', $country);
+                    update_post_meta($post_id, "country", $country);
                 }
 
                 if ($region) {
-                    update_post_meta($post_id, 'region', $region);
+                    update_post_meta($post_id, "region", $region);
                 }
 
                 if ($address) {
-                    update_post_meta($post_id, 'address', $address);
+                    update_post_meta($post_id, "address", $address);
                 }
 
                 if ($img) {
-                    update_post_meta($post_id, 'img', $img);
+                    update_post_meta($post_id, "img", $img);
                 }
 
                 wp_send_json_success($post_id);
@@ -304,7 +352,7 @@ class Client
     {
         $url_params = $req->get_url_params();
 
-        $ids = explode(',', $url_params['id']);
+        $ids = explode(",", $url_params["id"]);
         foreach ($ids as $id) {
             wp_delete_post($id);
         }
@@ -314,21 +362,21 @@ class Client
     // check permission
     public function get_per()
     {
-        return true;
+        return current_user_can("ndpv_client");
     }
 
     public function create_per()
     {
-        return current_user_can('publish_posts');
+        return current_user_can("ndpv_client");
     }
 
     public function update_per()
     {
-        return current_user_can('edit_posts');
+        return current_user_can("ndpv_client");
     }
 
     public function del_per()
     {
-        return current_user_can('delete_posts');
+        return current_user_can("ndpv_client");
     }
 }

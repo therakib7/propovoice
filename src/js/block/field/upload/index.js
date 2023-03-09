@@ -21,8 +21,8 @@ class Upload extends Component {
 
   componentDidUpdate() {
     /* if ( ! this.state.edit && this.props.data ) {
-			this.setState({ edit: true });
-		} */
+      this.setState({ edit: true });
+    } */
   }
 
   handleDelete = (id) => {
@@ -118,7 +118,9 @@ class Upload extends Component {
               type="file"
               ref={this.inputRef}
               onChange={this.onFileChange}
-              className="d-none"
+              style={{
+                display: 'none'
+              }}
             />
 
             <button

@@ -16,7 +16,7 @@ export default (props) => {
 			title = i18n.dec;
 			desc = i18n.decDes;
 			break;
-			
+
 		case 'overdue':
 			status = true;
 			title = i18n.ovd;
@@ -31,12 +31,12 @@ export default (props) => {
 
 		case 'paid':
 			status = true;
-			title = i18n.paid;
+			title = props.invoice.hasOwnProperty('recurring') ? i18n.subsed : i18n.paid;
 			extraClass = 'pv-green-color';
 			desc = i18n.paidDes;
 			break;
 	}
- 
+
 	return (
 		<>
 			{status && <div className="pv-inv-seal">
@@ -59,4 +59,4 @@ export default (props) => {
 			</div>}
 		</>
 	)
-} 
+}

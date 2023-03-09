@@ -40,6 +40,7 @@ const TaskCom = () => {
 
 const Dashboard = (props) => {
     const [dropdown, setDropdown] = useState(false);
+    const [year, setYear] = useState(2023);
 
     const dropdownRef = useRef();
     const close = useCallback(() => setDropdown(false), []);
@@ -57,9 +58,10 @@ const Dashboard = (props) => {
                     >
                         {i18n.ov}
                     </h2>
-                    <select name="summary_by" id="summary_by" className="pv-overview-select">
+                    {false &&<select value={year} onChange={(e) => setYear(e.target.value)} className="pv-overview-select">
+                        <option value="2023">2023</option>
                         <option value="2022">2022</option>
-                    </select>
+                    </select>}
                 </div>
 
                 <div className="col">
@@ -137,9 +139,9 @@ const Dashboard = (props) => {
                 <div className="col-lg-8">
                     <Suspense fallback={<Spinner />}>
                         {wage.length > 0 && <div style={{ marginBottom: 25 }}><TaskCom /></div>}
-                        {!wage.length && <ChartLine {...props} type='deal_tracking' />}
-                        <ChartBar {...props} type='estimate' />
-                        <ChartBar {...props} type='invoice' />
+                        {!wage.length && <ChartLine key={'1' + year} {...props} type='deal_tracking' year={year} />}
+                        <ChartBar key={'2' + year} {...props} type='estimate' year={year} />
+                        <ChartBar key={'3' + year} {...props} type='invoice' year={year} />
 
                         {false && <div className="row">
                             <div className="col-md-6">

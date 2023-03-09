@@ -19,6 +19,7 @@ class I18n
             "task" => esc_html__("Task", "propovoice"),
             "taska" => __("Task & Activity", "propovoice"),
             "ct" => esc_html__("Contact", "propovoice"),
+            "ct_book" => esc_html__("Contact Book", "propovoice"),
             //alert
             "scf" => esc_html__("Successfully", "propovoice"),
             "aAdd" => esc_html__("Successfully Added", "propovoice"),
@@ -37,19 +38,41 @@ class I18n
             "conV" => esc_html__("convert", "propovoice"),
             //dashboard
             "ov" => esc_html__("Overview", "propovoice"),
+            "total_client" => esc_html__("Total Client", "propovoice"),
+            "total_clients" => esc_html__("Total Clients", "propovoice"),
+            "total_lead" => esc_html__("Total Lead", "propovoice"),
+            "total_leads" => esc_html__("Total Leads", "propovoice"),
+            "total_deal" => esc_html__("Total Deal", "propovoice"),
+            "total_deals" => esc_html__("Total Deals", "propovoice"),
+            "total_invoice" => esc_html__("Total Invoice", "propovoice"),
+            "total_invoices" => esc_html__("Total Invoices", "propovoice"),
+            "total_estimate" => esc_html__("Total Estimate", "propovoice"),
+            "total_estimates" => esc_html__("Total Estimates", "propovoice"),
+            "total_project" => esc_html__("Total Project", "propovoice"),
+            "total_projects" => esc_html__("Total Projects", "propovoice"),
             "latest" => esc_html__("Latest", "propovoice"),
             "funnel" => esc_html__("Funnel", "propovoice"),
             "trk" => esc_html__("Tracking", "propovoice"),
             //lead
             "level" => esc_html__("Level", "propovoice"),
+            "add_Lead" => esc_html__("Add Lead", "propovoice"),
             "source" => esc_html__("Source", "propovoice"),
             //deal
+            "deal_pipeline" => esc_html__("Deal Pipeline", "propovoice"),
+            "add_stage" => esc_html__("Add Stage", "propovoice"),
+            "add_deal" => esc_html__("Add Deal", "propovoice"),
             "stage" => esc_html__("Stage", "propovoice"),
             "won" => esc_html__("Won", "propovoice"),
             "lost" => esc_html__("Lost", "propovoice"),
             "proba" => esc_html__("Probability", "propovoice"),
             //estinv
             "nd" => __("&", "propovoice"),
+            "add_Estimate" => esc_html__("Add Estimate", "propovoice"),
+            "add_Invoice" => esc_html__("Add Invoice", "propovoice"),
+            "estimate_number" => esc_html__("Estimate Number", "propovoice"),
+            "estimate_date" => esc_html__("Estimate Date", "propovoice"),
+            "invoice_number" => esc_html__("Invoice Number", "propovoice"),
+            "invoice_date" => esc_html__("Invoice Date", "propovoice"),
             "tmpl" => esc_html__("Template", "propovoice"),
             "con" => esc_html__("Content", "propovoice"),
             "num" => esc_html__("Number", "propovoice"),
@@ -87,10 +110,15 @@ class I18n
             "Sign" => esc_html__("Signature", "propovoice"),
             "style" => esc_html__("Style", "propovoice"),
             "addi" => esc_html__("Additional", "propovoice"),
+            //Client
+            "add_Client" => esc_html__("Add Client", "propovoice"),
             //project
+            "add_Project" => esc_html__("Add Project", "propovoice"),
             "cur" => esc_html__("Currency", "propovoice"),
             "budget" => esc_html__("Budget", "propovoice"),
             //contact
+            "add_Person" => esc_html__("Add Person", "propovoice"),
+            "add_Organization" => esc_html__("Add Organization", "propovoice"),
             "book" => esc_html__("Book", "propovoice"),
             "prsn" => esc_html__("Person", "propovoice"),
             "org" => esc_html__("Organization", "propovoice"),
@@ -116,6 +144,7 @@ class I18n
             "date" => esc_html__("Date", "propovoice"),
             "action" => esc_html__("Action", "propovoice"),
             "show" => esc_html__("Show", "propovoice"),
+            "all" => esc_html__("All", "propovoice"),
             "alw" => esc_html__("Always", "propovoice"),
             "search" => esc_html__("Search", "propovoice"),
             "select" => esc_html__("Select", "propovoice"),
@@ -177,7 +206,11 @@ class I18n
             "gen" => esc_html__("General", "propovoice"),
             "biz" => esc_html__("Business", "propovoice"),
             "pay" => esc_html__("Pay", "propovoice"),
+            "subs" => esc_html__("Subscribe", "propovoice"),
+            "subsed" => esc_html__("Subscribed", "propovoice"),
+            "substion" => esc_html__("Subscription", "propovoice"),
             "payment" => esc_html__("Payment", "propovoice"),
+            "hst" => esc_html__("History", "propovoice"),
             "paymentInfo" => esc_html__("Payment Info", "propovoice"),
             "method" => esc_html__("Method", "propovoice"),
             "var" => esc_html__("Variable", "propovoice"),
@@ -185,7 +218,7 @@ class I18n
             "exp" => esc_html__("Export", "propovoice"),
             "intg" => esc_html__("Integration", "propovoice"),
             "license" => esc_html__("License", "propovoice"),
-            'exps' => esc_html__('Expires', 'propovoice'),
+            "exps" => esc_html__("Expires", "propovoice"),
             "valid" => esc_html__("Valid", "propovoice"),
             "prior" => esc_html__("Priority", "propovoice"),
             "meeting" => esc_html__("Meeting Place or", "propovoice"),
@@ -230,6 +263,7 @@ class I18n
             "discount" => esc_html__("Discount", "propovoice"),
             "txn" => esc_html__("Transaction", "propovoice"),
             "stripe" => esc_html__("Stripe", "propovoice"),
+            "paypal" => esc_html__("Paypal", "propovoice"),
             "Pub" => esc_html__("Public", "propovoice"),
             "full" => esc_html__("Full", "propovoice"),
             "dlvy" => esc_html__("delivery", "propovoice"),
@@ -331,6 +365,8 @@ class I18n
             ),
             /* translators: %s: Adding, Creating text */
             "letStart" => __("Let's Start %s", "propovoice"),
+            "let_start_adding" => __("Let's Start Adding", "propovoice"),
+            "let_start_creating" => __("Let's Start Creating", "propovoice"),
             "adding" => esc_html__("Adding", "propovoice"),
             "creating" => esc_html__("Creating", "propovoice"),
             "added" => esc_html__("added", "propovoice"),
@@ -343,9 +379,11 @@ class I18n
             "uploadFile" => esc_html__("Click to upload File", "propovoice"),
             "sample" => esc_html__("sample", "propovoice"),
             "nextBtn" => esc_html__("Next [Map Columns]", "propovoice"),
-            "csvDco" => esc_html__("Please make sure your csv file has unique
-                      headers.Otherwise, it may fail to import", "propovoice"),
-            
+            "csvDco" => esc_html__(
+                "Please make sure your csv file has unique
+                      headers.Otherwise, it may fail to import",
+                "propovoice"
+            ),
         ];
     }
 }

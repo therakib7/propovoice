@@ -1,9 +1,8 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Install;
 
 use Ndpv\Ctrl\Install\Type\DB;
-use Ndpv\Ctrl\Install\Type\Installer;
-use Ndpv\Ctrl\Install\Type\Merge;
+use Ndpv\Ctrl\Install\Type\Update;
 use Ndpv\Ctrl\Install\Type\Page;
 use Ndpv\Ctrl\Install\Type\Taxonomy;
 
@@ -16,7 +15,7 @@ class InstallCtrl
         register_activation_hook(NDPV_FILE, array($this, 'schedule_my_cron'));
 
         add_action('admin_init', array($this, 'insert_data'));
-        add_action('admin_init', array($this, 'plugin_redirect')); 
+        add_action('admin_init', array($this, 'plugin_redirect'));
     }
 
     public function custom_schedule($schedules)
@@ -58,7 +57,7 @@ class InstallCtrl
     public function plugin_redirect()
     {
         if ( get_option('ndpv_active', false) ) {
-            delete_option('ndpv_active'); 
+            delete_option('ndpv_active');
 
             wp_redirect(admin_url('admin.php?page=ndpv-welcome'));
         }
@@ -75,7 +74,6 @@ class InstallCtrl
             new Page();
             new DB();
             new Taxonomy();
-            new Merge();
 
             // $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
             // wp_mkdir_p($uploads_dir);
@@ -87,10 +85,10 @@ class InstallCtrl
                 'ndpv_estinv_qty_type', // the taxonomy
             );
             if ( !is_wp_error($term_id) ) {
-                update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']); 
+                update_term_meta($term_id['term_id'], 'tax_pos', $term_id['term_id']);
             }
         }
 
-        new Installer();
+        new Update();
     }
 }

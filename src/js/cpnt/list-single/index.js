@@ -54,9 +54,13 @@ class ListSingle extends Component {
         id: null,
         person: {
           first_name: "",
+          country: "",
+          region: ""
         },
         org: {
           name: "",
+          country: "",
+          region: ""
         },
         level_id: null,
         stage_id: null,
@@ -121,18 +125,17 @@ class ListSingle extends Component {
 
   getLevelTagData = () => {
     /* this.props.getAll('taxonomies', 'taxonomy=lead_level,tag').then(resp => {
-            if (resp.data.success) {
-                this.setState({
-                    levels: resp.data.data.lead_level,
-                    tags: resp.data.data.tag,
-                });
-            }
-        }); */
+        if (resp.data.success) {
+          this.setState({
+            levels: resp.data.data.lead_level,
+            tags: resp.data.data.tag,
+          });
+        }
+      }); */
   };
 
   getStageTagData = () => {
-    api
-      .get("taxonomies", "taxonomy=deal_stage,tag,project_status")
+    api.get("taxonomies", "taxonomy=deal_stage,tag,project_status")
       .then((resp) => {
         if (resp.data.success) {
           this.setState({
@@ -178,6 +181,7 @@ class ListSingle extends Component {
         let newData = {};
         if (data.probability) {
           newData.probability = data.probability;
+		  newData.change_prob = true;
         }
         api.edit("deals", this.props.id, newData);
       }, 300);
@@ -276,6 +280,7 @@ class ListSingle extends Component {
       img = data.org.img.src;
     }
     const i18n = ndpv.i18n;
+    const caps = ndpv.caps;
     return (
       <div className="ndpv-cpnt">
         <nav className="pv-breadcrumb">
@@ -741,9 +746,7 @@ class ListSingle extends Component {
                   </span>
                 </li>
                 <li>
-                  <label htmlFor="">
-                    {i18n.dueDate}:
-                  </label>
+                  <label htmlFor="">{i18n.dueDate}:</label>
                   <span className="pv-date">
                     {data.due_date && (
                       <Moment format="YYYY-MM-DD">{data.due_date}</Moment>
@@ -999,48 +1002,58 @@ class ListSingle extends Component {
           </>
         )}
 
-        {this.state.leadModal && (
-          <LeadForm
-            data={data}
-            modalType="edit"
-            close={() => this.setState({ leadModal: false })}
-            reload={() => this.getData()}
-          />
-        )}
+        {
+          this.state.leadModal && (
+            <LeadForm
+              data={data}
+              custom_field={data.custom_field}
+              modalType="edit"
+              close={() => this.setState({ leadModal: false })}
+              reload={() => this.getData()}
+            />
+          )
+        }
 
-        {this.state.dealModal && (
-          <DealForm
-            data={data}
-            modalType={this.state.dealModalType}
-            close={() => this.setState({ dealModal: false })}
-            reload={() => {
-              let tabs = this.state.tabs;
-              tabs.push({
-                id: "estimate",
-                text: i18n.est,
-              });
-              this.getData();
-            }}
-          />
-        )}
+        {
+          this.state.dealModal && (
+            <DealForm
+              data={data}
+              custom_field={data.custom_field}
+              modalType={this.state.dealModalType}
+              close={() => this.setState({ dealModal: false })}
+              reload={() => {
+                let tabs = this.state.tabs;
+                tabs.push({
+                  id: "estimate",
+                  text: i18n.est,
+                });
+                this.getData();
+              }}
+            />
+          )
+        }
 
-        {this.state.projectModal && (
-          <ProjectForm
-            data={data}
-            modalType={this.state.projectModalType}
-            close={() => this.setState({ projectModal: false })}
-            reload={() => {
-              let tabs = this.state.tabs;
-              tabs.push({
-                id: "invoice",
-                text: i18n.inv,
-              });
-              this.getData();
-            }}
-          />
-        )}
+        {
+          this.state.projectModal && (
+            <ProjectForm
+              data={data}
+              custom_field={data.custom_field}
+              modalType={this.state.projectModalType}
+              close={() => this.setState({ projectModal: false })}
+              reload={() => {
+                let tabs = this.state.tabs;
+                tabs.push({
+                  id: "invoice",
+                  text: i18n.inv,
+                });
+                this.getData();
+              }}
+            />
+          )
+        }
 
-        {this.state.contactModal &&
+        {
+          this.state.contactModal &&
           (data.person ? (
             <ContactPerson
               data={data.person}
@@ -1057,11 +1070,15 @@ class ListSingle extends Component {
               close={() => this.setState({ contactModal: false })}
               reload={() => this.getData()}
             />
-          ))}
+          ))
+        }
 
         <div className="row pv-mt-25">
           <div className="col-lg-9">
-            <div className="pv-horizontal-tab" style={{ border: "1px solid rgba(221, 221, 221, 0.6588235294)" }}>
+            <div
+              className="pv-horizontal-tab"
+              style={{ border: "1px solid rgba(221, 221, 221, 0.6588235294)" }}
+            >
               <ul className="pv-tabs">
                 {tabs.map((tab, index) => (
                   <li
@@ -1111,7 +1128,7 @@ class ListSingle extends Component {
                 {i18n.addi} {i18n.info}
               </h3>
               <address>
-                {true && (
+                {caps.includes("ndpv_contact") && (
                   <>
                     <span>{i18n.mob}:</span>
                     {data.person ? data.person.mobile : data.org.mobile}
@@ -1144,38 +1161,65 @@ class ListSingle extends Component {
                   </>
                 )}
 
-                {data.desc && (
-                  <>
-                    <h5>{i18n.note}:</h5>
-                    <p
-                      className=""
-                      dangerouslySetInnerHTML={{ __html: data.note }}
-                    ></p>
-                  </>
-                )}
-              </div>
-            </div>
+                {
+                  data.desc && (
+                    <>
+                      <h5>{i18n.note}:</h5>
+                      <p
+                        className=""
+                        dangerouslySetInnerHTML={{ __html: data.note }}
+                      ></p>
+                    </>
+                  )
+                }
 
-            {false && (
-              <div className="pv-widget pv-timeline-box">
-                <h3 className="pv-widget-title pv-mb-15">
-                  {i18n.timeline} {i18n.info}
-                </h3>
-                <ul>
-                  <li>
-                    <h4 className="timeline-title">
-                      Rakib Created Project Propovoice
-                    </h4>
-                    <span>Aprill 12, 2022</span>
-                    <span>4.10 PM</span>
-                  </li>
-                </ul>
-                {/* ./ widget */}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+                {/* <div key={i} className="row">
+										<div className="col">
+											<label htmlFor={'custom-field-' + i}>
+												{item.label}
+											</label>
+											<input
+												id={'custom-field-' + i}
+												type='text'
+												name={item.id}
+												value={data[item.id]} 
+											/>
+										</div>
+									</div> */}
+
+                {
+                  data.custom_field && data.custom_field.map((item, i) => (
+                    <React.Fragment key={i}>
+                      <h5>{item.label}:</h5>
+                      <p dangerouslySetInnerHTML={{ __html: data[item.id] }}></p>
+                    </React.Fragment>
+                  ))
+                }
+              </div >
+            </div >
+
+            {
+              false && (
+                <div className="pv-widget pv-timeline-box">
+                  <h3 className="pv-widget-title pv-mb-15">
+                    {i18n.timeline} {i18n.info}
+                  </h3>
+                  <ul>
+                    <li>
+                      <h4 className="timeline-title">
+                        Rakib Created Project Propovoice
+                      </h4>
+                      <span>Aprill 12, 2022</span>
+                      <span>4.10 PM</span>
+                    </li>
+                  </ul>
+                  {/* ./ widget */}
+                </div>
+              )
+            }
+          </div >
+        </div >
+      </div >
     );
   }
 }
@@ -1201,9 +1245,5 @@ export default function SingleWrap() {
 
   const navigate = useNavigate();
 
-  return (
-    <>
-      <ListSingle id={id} path={path} navigate={navigate} />
-    </>
-  );
+  return <ListSingle id={id} path={path} navigate={navigate} />;
 }
