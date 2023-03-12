@@ -20,9 +20,8 @@ export default (props) => {
     });
   }, []);
 
-  const i18n = ndpv.i18n;
-  const caps = ndpv.caps;
-  
+  const { i18n, caps } = ndpv;
+
   return (
     <div className="pv-cards pv-mt-10 pv-cards-two">
       <div className="row">

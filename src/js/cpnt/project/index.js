@@ -49,16 +49,19 @@ const Project = (props) => {
     }
   };
 
+  const { i18n, caps } = ndpv;
+  const isClient = caps.includes("ndpv_client_role");
+
   useEffect(() => {
     if (props.onLoad) {
-      if (wage.length > 0) {
+      if (wage.length > 0 || isClient) {
         props.onLoad(false);
       } else {
         props.onLoad(true);
       }
     }
 
-    if (wage.length > 0) {
+    if (wage.length > 0 || isClient) {
       setBoardView(false);
       props.getLists({ table_view: true });
     } else {
@@ -130,7 +133,6 @@ const Project = (props) => {
 
   const { title, lists, extra, checkedBoxes, searchVal } = props.state;
 
-  const i18n = ndpv.i18n;
   return (
     <div className="ndpv-cpnt">
       {!props.module_id && <Breadcrumb title={title} />}
@@ -165,7 +167,7 @@ const Project = (props) => {
         </div>
         <div className="col">
           <div className="pv-list-single-button-content">
-            <button
+            {!isClient && <button
               className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow"
               onClick={() => taxForm("new")}
             >
@@ -186,7 +188,7 @@ const Project = (props) => {
                 />
               </svg>
               {i18n.add} {i18n.status}
-            </button>
+            </button>}
 
             <button
               className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
@@ -218,6 +220,7 @@ const Project = (props) => {
             </div> */}
 
       <Search
+        isClient={isClient}
         title={title}
         showing={lists.length}
         showItem={showItem}

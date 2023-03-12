@@ -282,15 +282,15 @@ class Invoice extends Component {
               {title == "Invoice"
                 ? ndpv.i18n.inv
                 : title == "Estimate"
-                ? ndpv.i18n.est
-                : title}
+                  ? ndpv.i18n.est
+                  : title}
             </h2>
           </div>
           <div className="col">
             {!caps.includes("ndpv_client_role") && <AddNew
               title={title}
               openForm={() => this.newInvoie()}
-              // fields={EntityFields.invoice}
+            // fields={EntityFields.invoice}
             />}
           </div>
         </div>
@@ -373,6 +373,7 @@ class Invoice extends Component {
 
         {!this.props.module_id && (
           <Search
+            path={this.state.path}
             title={title}
             showing={invoices.length}
             showItem={this.showItem}

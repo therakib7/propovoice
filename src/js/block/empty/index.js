@@ -2,9 +2,8 @@ import { sprintf } from "sprintf-js";
 
 export default (props) => {
   const { title, clickHandler, searchVal, logo = "" } = props;
-  const i18n = ndpv.i18n;
+  const { i18n, caps } = ndpv;
   const mod = props.mod ? props.mod : "";
-  const caps = ndpv.caps;
   return (
     <div className="pv-empty-content pv-text-center">
       <svg width="77" height="76" viewBox="0 0 77 76" fill="none">

@@ -2,8 +2,7 @@ import { NavLink } from "react-router-dom";
 // import { useState } from 'react';
 
 export default (props) => {
-  const i18n = ndpv.i18n;
-  const caps = ndpv.caps;
+  const { i18n, caps } = ndpv;
   return (
     <ul>
       {caps.includes("ndpv_dashboard") && (

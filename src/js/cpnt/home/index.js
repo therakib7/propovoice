@@ -59,8 +59,7 @@ export default () => {
 
     const [modules, setModules] = useState(['estimate', 'quotation', 'invoice']);
 
-    const i18n = ndpv.i18n;
-    const caps = ndpv.caps;
+    const { i18n, caps } = ndpv;
     return (
         <HashRouter>
             <ToastContainer hideProgressBar />

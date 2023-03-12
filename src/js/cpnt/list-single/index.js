@@ -181,7 +181,7 @@ class ListSingle extends Component {
         let newData = {};
         if (data.probability) {
           newData.probability = data.probability;
-		  newData.change_prob = true;
+          newData.change_prob = true;
         }
         api.edit("deals", this.props.id, newData);
       }, 300);
@@ -279,8 +279,8 @@ class ListSingle extends Component {
     } else if (data.org && data.org.img) {
       img = data.org.img.src;
     }
-    const i18n = ndpv.i18n;
-    const caps = ndpv.caps;
+
+    const { i18n, caps } = ndpv;
     return (
       <div className="ndpv-cpnt">
         <nav className="pv-breadcrumb">
