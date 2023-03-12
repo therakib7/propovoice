@@ -94,6 +94,9 @@ const Setting = (props) => {
         'custom-fields': {
             label: i18n.cus + ' ' + i18n.fields
         },
+        'public-api': {
+            label: "Public API"
+        },
         integration: {
             label: i18n.intg
         },
@@ -211,6 +214,7 @@ const Setting = (props) => {
                                 {currentTab == 'tag' && <Tag />}
                                 {currentTab == 'custom-fields' && <CustomField {...props} />}
                                 {currentTab == 'integration' && <Integrate {...props} />}
+                                {currentTab == 'public-api' && <Integrate {...props} />}
                                 {currentTab == 'license' && <License {...props} />}
                             </Suspense>
                         </div>
