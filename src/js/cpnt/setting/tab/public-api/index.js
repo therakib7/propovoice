@@ -57,7 +57,6 @@ export default function PublicApi() {
     setIsSubmitted(true);
     setAppPwdName("");
     // setAppPwd("");
-    console.log(isSubmitted);
   }
 
   useEffect(() => {
@@ -105,7 +104,6 @@ export default function PublicApi() {
           {/* </button> */}
         </div>
       }
-      {console.log(pwdList)}
       {pwdList.length > 0 && (
         <table className="pv-table">
           <thead>
