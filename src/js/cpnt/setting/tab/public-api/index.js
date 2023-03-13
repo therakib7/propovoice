@@ -17,6 +17,7 @@ const url = (api) => {
 export default function PublicApi(props) {
   const [appPwdName, setAppPwdName] = useState();
   const [pwdList, setPwdList] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const getPwdList = () => {
     const api = `users/${ndpv.profile.id}/application-passwords`;
@@ -26,13 +27,26 @@ export default function PublicApi(props) {
       });
   }
 
-  const handleSubmit = (e) => {
+  const createPwd = async (name) => {
+    const api = `users/${ndpv.profile.id}/application-passwords`;
+    await axios.post(`${url(api)}`, { name: name }, token)
+      .then((res) => {
+        console.log(res.data);
+      });
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await createPwd(appPwdName);
+    setIsSubmitted(true);
+    setAppPwdName("");
+    console.log(isSubmitted);
   }
 
   useEffect(() => {
     getPwdList();
-  }, []);
+    setIsSubmitted(false);
+  }, [isSubmitted]);
 
   return (
     <>
@@ -46,6 +60,7 @@ export default function PublicApi(props) {
               type="text"
               required
               name="app-pwd-name"
+              value={appPwdName}
               onChange={e => setAppPwdName(e.target.value)}
             />
           </div>
@@ -57,6 +72,18 @@ export default function PublicApi(props) {
         </div>
 
       </form>
+
+      <div className="notice notice-success is-dismissible new-application-password-notice" role="alert" tabIndex="-1">
+        <p className="application-password-display">
+          <label htmlFor="new-application-password-value">
+            Your new password for <strong>asdfsad</strong> is: </label>
+          <input id="new-application-password-value" type="text" className="code" readOnly="readonly" value="cDZJ soSM ZNjt QADf rMPI Lp2Z" />
+        </p>
+        <p>Be sure to save this in a safe location. You will not be able to retrieve it.</p>
+        <button type="button" className="notice-dismiss">
+          <span className="screen-reader-text">Dismiss this notice.</span>
+        </button>
+      </div>
 
       {pwdList &&
         <table className="pv-table">
