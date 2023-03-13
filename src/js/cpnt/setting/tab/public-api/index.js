@@ -14,10 +14,12 @@ const url = (api) => {
 };
 
 
-export default function PublicApi(props) {
-  const [appPwdName, setAppPwdName] = useState();
+export default function PublicApi() {
+  const [appPwdName, setAppPwdName] = useState("");
+  const [appPwd, setAppPwd] = useState("");
   const [pwdList, setPwdList] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const getPwdList = () => {
     const api = `users/${ndpv.profile.id}/application-passwords`;
@@ -29,9 +31,21 @@ export default function PublicApi(props) {
 
   const createPwd = async (name) => {
     const api = `users/${ndpv.profile.id}/application-passwords`;
-    await axios.post(`${url(api)}`, { name: name }, token)
+    axios.post(`${url(api)}`, { name: name }, token)
       .then((res) => {
-        console.log(res.data);
+        setAppPwd(res.data.password);
+        console.log(appPwd);
+      });
+  }
+
+
+  const deletePwd = async (uuid) => {
+    const api = `users/${ndpv.profile.id}/application-passwords/${uuid}`;
+    axios.delete(`${url(api)}`, token)
+      .then(() => {
+        setIsDeleted(true);
+        setAppPwdName("");
+        setAppPwd("");
       });
   }
 
@@ -39,14 +53,16 @@ export default function PublicApi(props) {
     e.preventDefault();
     await createPwd(appPwdName);
     setIsSubmitted(true);
-    setAppPwdName("");
+    // setAppPwdName("");
+    // setAppPwd("");
     console.log(isSubmitted);
   }
 
   useEffect(() => {
     getPwdList();
     setIsSubmitted(false);
-  }, [isSubmitted]);
+    setIsDeleted(false);
+  }, [isSubmitted, isDeleted]);
 
   return (
     <>
@@ -67,23 +83,26 @@ export default function PublicApi(props) {
         </div>
         <div className="row">
           <div className="col">
-            <button className="pv-btn pv-btn-big pv-bg-blue pv-bg-hover-blue">Create new Application Password</button>
+            <button className="pv-btn  pv-bg-blue pv-bg-hover-blue">Create new Application Password</button>
           </div>
         </div>
 
       </form>
 
-      <div className="notice notice-success is-dismissible new-application-password-notice" role="alert" tabIndex="-1">
-        <p className="application-password-display">
-          <label htmlFor="new-application-password-value">
-            Your new password for <strong>asdfsad</strong> is: </label>
-          <input id="new-application-password-value" type="text" className="code" readOnly="readonly" value="cDZJ soSM ZNjt QADf rMPI Lp2Z" />
-        </p>
-        <p>Be sure to save this in a safe location. You will not be able to retrieve it.</p>
-        <button type="button" className="notice-dismiss">
-          <span className="screen-reader-text">Dismiss this notice.</span>
-        </button>
-      </div>
+
+      {appPwd &&
+        <div className="notice notice-success is-dismissible new-application-password-notice" role="alert" tabIndex="-1">
+          <p className="application-password-display">
+            <label htmlFor="new-application-password-value">
+              Your new password for <code><b>{appPwdName}</b></code> is: </label>
+            <input id="new-application-password-value" type="text" className="code" readOnly="readonly" value={appPwd} />
+          </p>
+          <p>Be sure to save this in a safe location. You will not be able to retrieve it.</p>
+          {/* <button type="button" className="notice-dismiss"> */}
+          {/*   <span className="screen-reader-text">Dismiss this notice.</span> */}
+          {/* </button> */}
+        </div>
+      }
 
       {pwdList &&
         <table className="pv-table">
@@ -104,7 +123,7 @@ export default function PublicApi(props) {
                 <td>{pwd.last_used}</td>
                 <td>{pwd.last_ip}</td>
                 <td>
-                  <button className="" type="button" >Revoke</button>
+                  <button onClick={() => deletePwd(pwd.uuid)} className="" type="button" >Revoke</button>
                 </td>
               </tr>
 
