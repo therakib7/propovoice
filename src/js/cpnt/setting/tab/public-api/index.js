@@ -17,6 +17,8 @@ const url = (api) => {
 export default function PublicApi() {
   const [appPwdName, setAppPwdName] = useState("");
   const [appPwd, setAppPwd] = useState("");
+  const [newAppPwdName, setNewAppPwdName] = useState("");
+  const [newAppPwd, setNewAppPwd] = useState("");
   const [pwdList, setPwdList] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -33,8 +35,8 @@ export default function PublicApi() {
     const api = `users/${ndpv.profile.id}/application-passwords`;
     axios.post(`${url(api)}`, { name: name }, token)
       .then((res) => {
-        setAppPwd(res.data.password);
-        console.log(appPwd);
+        setNewAppPwdName(res.data.name);
+        setNewAppPwd(res.data.password);
       });
   }
 
@@ -44,8 +46,8 @@ export default function PublicApi() {
     axios.delete(`${url(api)}`, token)
       .then(() => {
         setIsDeleted(true);
-        setAppPwdName("");
-        setAppPwd("");
+        setNewAppPwdName("");
+        setNewAppPwd("");
       });
   }
 
@@ -53,7 +55,7 @@ export default function PublicApi() {
     e.preventDefault();
     await createPwd(appPwdName);
     setIsSubmitted(true);
-    // setAppPwdName("");
+    setAppPwdName("");
     // setAppPwd("");
     console.log(isSubmitted);
   }
@@ -90,12 +92,12 @@ export default function PublicApi() {
       </form>
 
 
-      {appPwd &&
+      {newAppPwd &&
         <div className="notice notice-success is-dismissible new-application-password-notice" role="alert" tabIndex="-1">
           <p className="application-password-display">
             <label htmlFor="new-application-password-value">
-              Your new password for <code><b>{appPwdName}</b></code> is: </label>
-            <input id="new-application-password-value" type="text" className="code" readOnly="readonly" value={appPwd} />
+              Your new password for <code><b>{newAppPwdName}</b></code> is: </label>
+            <input id="new-application-password-value" type="text" className="code" readOnly="readonly" value={newAppPwd} />
           </p>
           <p>Be sure to save this in a safe location. You will not be able to retrieve it.</p>
           {/* <button type="button" className="notice-dismiss"> */}
