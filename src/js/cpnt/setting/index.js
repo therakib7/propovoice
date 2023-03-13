@@ -21,6 +21,7 @@ const Contact = lazy(() => import('./tab/contact'));
 const Tag = lazy(() => import('./tab/tag'));
 const CustomField = lazy(() => import('./tab/custom-field'));
 const Integrate = lazy(() => import('./tab/integrate'));
+const PublicApi = lazy(() => import('./tab/public-api'));
 const License = lazy(() => import('./tab/license'));
 
 //subtab: email
@@ -208,13 +209,14 @@ const Setting = (props) => {
                                 {currentTab == 'project' && <Project {...props} />}
                                 {currentTab == 'payment' && <Payment {...props} />}
 
+
                                 {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate {...props} />}
                                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
                                 {currentTab == 'custom-fields' && <CustomField {...props} />}
                                 {currentTab == 'integration' && <Integrate {...props} />}
-                                {currentTab == 'public-api' && <Integrate {...props} />}
+                                {currentTab == 'public-api' && <PublicApi {...props} />}
                                 {currentTab == 'license' && <License {...props} />}
                             </Suspense>
                         </div>
