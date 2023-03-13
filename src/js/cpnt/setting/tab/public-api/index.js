@@ -103,8 +103,8 @@ export default function PublicApi() {
           {/* </button> */}
         </div>
       }
-
-      {pwdList &&
+      {console.log(pwdList)}
+      {pwdList.length > 0 && (
         <table className="pv-table">
           <thead>
             <tr>
@@ -130,7 +130,7 @@ export default function PublicApi() {
             )}
           </tbody>
         </table>
-      }
+      )}
     </>
   );
 }
