@@ -6,6 +6,7 @@ use Ndpvp\Model\CustomField;
 
 class Fns
 {
+    
     public static function custom_field($mod = '')
     {
         if ( ndpv()->wage() ) {

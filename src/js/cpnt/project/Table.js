@@ -4,8 +4,10 @@ import Action from 'block/action/row';
 import { Arrow, Email, Tag } from 'block/icon';
 import { currency } from 'helper';
 
+const { i18n, caps } = ndpv;
+const isClient = caps.includes("ndpv_client_role");
+
 const TableHeader = props => {
-    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
@@ -19,10 +21,10 @@ const TableHeader = props => {
                 <th>
                     {i18n.project} {i18n.title}
                 </th>
-                <th>
+                {!isClient && <th>
                     <Email />
                     {i18n.client}
-                </th>
+                </th>}
                 <th>
                     <Arrow />
                     {i18n.start} {i18n.date}
@@ -71,7 +73,7 @@ const TableBody = props => {
                     />
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'><span className='pv-list-title'>{row.title}</span></td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
+                {!isClient && <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>}
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.budget && row.currency ? currency(row.budget, row.currency) : ''}</td>

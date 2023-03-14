@@ -210,7 +210,7 @@ const Project = (props) => {
                   strokeLinejoin="round"
                 />
               </svg>
-              {i18n.add} {title}
+              {isClient ? i18n.send + ' ' + i18n.req : i18n.add + ' ' + title}
             </button>
           </div>
         </div>

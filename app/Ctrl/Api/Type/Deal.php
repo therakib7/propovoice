@@ -9,7 +9,7 @@ use Ndpv\Model\Person;
 class Deal
 {
     public function __construct()
-    {
+    { 
         add_action("rest_api_init", [$this, "rest_routes"]);
     }
 
@@ -404,41 +404,48 @@ class Deal
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
         $note = isset($param["note"]) ? nl2br($param["note"]) : "";
+        $client_portal = isset($param["client_portal"]) ? true : false;
 
         /* if ( $lead_id ) {
             wp_send_json_success($lead_id);
         } */
 
-        if (empty($first_name) && empty($org_name)) {
-            $reg_errors->add(
-                "field",
-                esc_html__("Contact info is missing", "propovoice")
-            );
-        }
+        if ( !$client_portal ) {
+            if (empty($first_name) && empty($org_name)) {
+                $reg_errors->add(
+                    "field",
+                    esc_html__("Contact info is missing", "propovoice")
+                );
+            }
 
-        $person = new Person();
-        if ($person_id) {
-            $person->update($param);
-        }
+            $person = new Person();
+            if ($person_id) {
+                $person->update($param);
+            }
 
-        if (!$person_id && $first_name) {
-            $person_id = $person->create($param);
-        }
+            if (!$person_id && $first_name) {
+                $person_id = $person->create($param);
+            }
 
-        $org = new Org();
-        if (!$person_id && $org_id) {
-            $org->update($param);
-        }
+            $org = new Org();
+            if (!$person_id && $org_id) {
+                $org->update($param);
+            }
 
-        if (!$org_id && $org_name) {
-            $org_id = $org->create($param);
-        }
+            if (!$org_id && $org_name) {
+                $org_id = $org->create($param);
+            }
 
-        if (empty($stage_id)) {
-            $reg_errors->add(
-                "field",
-                esc_html__("Please select a stage", "propovoice")
-            );
+            if (empty($stage_id)) {
+                $reg_errors->add(
+                    "field",
+                    esc_html__("Please select a stage", "propovoice")
+                );
+            }
+        } else {
+            //TODO: temporary id
+            $stage_id = 3;
+            $person_id = 15;
         }
 
         /* if ( !$lead_id && empty($contact_id)) {
@@ -467,6 +474,10 @@ class Deal
 
                 if ($title) {
                     update_post_meta($post_id, "title", $title);
+                }
+
+                if ($client_portal) {
+                    update_post_meta($post_id, "client_portal", true);
                 }
 
                 if ($stage_id) {
@@ -730,7 +741,7 @@ class Deal
 
     public function create_per()
     {
-        return current_user_can("ndpv_deal");
+        return current_user_can("ndpv_deal") || current_user_can("ndpv_client_role");
     }
 
     public function update_per()

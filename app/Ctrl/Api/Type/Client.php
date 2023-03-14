@@ -1,6 +1,7 @@
 <?php
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Model\Client as ModelClient;
 use Ndpv\Model\Org;
 use Ndpv\Model\Person;
 
@@ -268,10 +269,13 @@ class Client
         $address = isset($param["address"])
             ? sanitize_text_field($req["address"])
             : null;
-        $img =
-            isset($param["img"]) && isset($param["img"]["id"])
+        $img = isset($param["img"]) && isset($param["img"]["id"])
                 ? absint($param["img"]["id"])
                 : null;
+
+        $client_portal = isset($param["client_portal"])
+            ? rest_sanitize_boolean($param["client_portal"])
+            : false;
 
         if (empty($first_name)) {
             $reg_errors->add(
@@ -339,6 +343,12 @@ class Client
 
                 if ($img) {
                     update_post_meta($post_id, "img", $img);
+                }
+
+                if ( $client_portal ) {
+                    $client_model = new ModelClient();
+                    $client_model->set_user_if_not($first_name, $email);
+                    update_post_meta($post_id, "client_portal", true);
                 }
 
                 wp_send_json_success($post_id);

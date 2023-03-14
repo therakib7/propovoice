@@ -107,6 +107,20 @@ class Invoice
             );
         } */
 
+        if ( current_user_can("ndpv_client_role") ) {
+            //TODO: do it dynamic
+            $current_user = wp_get_current_user();
+            $current_user_mail = $current_user->user_email;
+
+            $args["meta_query"][] = [
+                [
+                    "key" => "to",
+                    "value" => [15],
+                    "compare" => "IN",
+                ],
+            ];
+        }
+
         if ($recurring) {
             $args["meta_query"][] = [
                 [
