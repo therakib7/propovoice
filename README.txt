@@ -182,6 +182,7 @@ The super fantastic pro features that accelerate your business growth and improv
 
 = 1.0.7.2 =
 * Fixed: Accept and Decline button issue
+* Fixed: Paid Invoice edit issue
 * Update: CSS issue
 
 = 1.0.7.1 =
