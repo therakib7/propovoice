@@ -183,6 +183,12 @@ The super fantastic pro features that accelerate your business growth and improv
 = 1.0.7.5 =
 * Fixed: Dashboard loading issue
 
+= 1.0.7.4 =
+* Update: Dashboard loading issue
+
+= 1.0.7.3 =
+* Update: Dashboard loading issue
+
 = 1.0.7.2 =
 * Fixed: Accept and Decline button issue
 * Fixed: Paid Invoice edit issue
