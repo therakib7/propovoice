@@ -46,7 +46,14 @@
 <body <?php body_class(); ?>>
     <?php
     if (is_user_logged_in() && apply_filters('ndpv_admin', current_user_can('ndpv_core'))) {
-        if (ndpv()->wage()) {
+
+        $client_portal = true;
+        $user_id = get_current_user_id();
+        if ( current_user_can("ndpv_client_role") && !get_user_meta($user_id, 'client_portal', true) ) {
+            $client_portal = false;
+        }
+
+        if (ndpv()->wage() && $client_portal) {
             echo '<div id="ndpv-dashboard"></div>';
         } else {
             ndpv()->render('template/partial/403');

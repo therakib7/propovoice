@@ -157,6 +157,9 @@ class Client
             $query_data["img"] = isset($queryMeta["img"])
                 ? $queryMeta["img"][0]
                 : "";
+            $query_data["client_portal"] = isset($queryMeta["client_portal"])
+                ? $queryMeta["client_portal"][0]
+                : "";
 
             $img_id = $query_data["img"];
             $imgData = null;
@@ -345,11 +348,15 @@ class Client
                     update_post_meta($post_id, "img", $img);
                 }
 
-                if ( $client_portal ) {
-                    $client_model = new ModelClient();
-                    $client_model->set_user_if_not($first_name, $email);
-                    update_post_meta($post_id, "client_portal", true);
-                }
+                $client_model = new ModelClient();
+                $client_model->set_user_if_not($first_name, $email, $client_portal);
+                update_post_meta($post_id, "client_portal", $client_portal);
+
+                /* if ( $client_portal ) {
+                    
+                } else {
+                    update_post_meta($post_id, "client_portal", false);
+                } */
 
                 wp_send_json_success($post_id);
             } else {
