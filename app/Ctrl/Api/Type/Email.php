@@ -256,7 +256,7 @@ class Email
 
     public function create_per()
     {
-        return current_user_can("ndpv_email");
+        return true;
     }
 
     public function update_per()

@@ -51,7 +51,7 @@ export default () => {
     const boardView = (load = true) => {
         const span = contentRef.current; // corresponding DOM node
         if (load) {
-            span.className = 'pv-right-content-data pv-board-content';
+            span.className = 'pv-right-content-data pv-board-area';
         } else {
             span.className = 'pv-right-content-data';
         }
