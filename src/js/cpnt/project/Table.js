@@ -12,11 +12,11 @@ const TableHeader = props => {
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox"
+                    {!isClient && <input type="checkbox"
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
-                    />
+                    />}
                 </th>
                 <th>
                     {i18n.project} {i18n.title}
@@ -66,11 +66,11 @@ const TableBody = props => {
         return (
             <tr key={index}>
                 <td>
-                    <input type="checkbox"
+                    {!isClient && <input type="checkbox"
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
-                    />
+                    />}
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'><span className='pv-list-title'>{row.title}</span></td>
                 {!isClient && <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>}

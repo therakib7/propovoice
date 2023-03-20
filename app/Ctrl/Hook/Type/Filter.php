@@ -25,6 +25,10 @@ class Filter
             $classes[] = "ndpv";
             $classes[] = get_option("template") . "-theme";
         }
+
+        if ( current_user_can("ndpv_client_role") ) {
+            $classes[] = "ndpv-client";
+        }
         return $classes;
     }
 

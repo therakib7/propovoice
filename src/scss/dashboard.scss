@@ -363,3 +363,11 @@ input:-webkit-autofill:active {
 .ndpv .pv-horizontal-tab li {
     margin: 0;
 }
+
+// client portal
+
+.ndpv-client .pv-table tr td:first-child,
+.ndpv-client .pv-table tr th:first-child {
+    width: auto;
+    padding-left: 5px;
+}

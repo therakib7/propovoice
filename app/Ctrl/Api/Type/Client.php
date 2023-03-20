@@ -349,7 +349,7 @@ class Client
                 }
 
                 $client_model = new ModelClient();
-                $client_model->set_user_if_not($first_name, $email, $client_portal);
+                $client_model->set_user_if_not($post_id, $first_name, $email, $client_portal);
                 update_post_meta($post_id, "client_portal", $client_portal);
 
                 /* if ( $client_portal ) {

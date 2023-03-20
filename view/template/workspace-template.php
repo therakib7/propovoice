@@ -49,7 +49,7 @@
 
         $client_portal = true;
         $user_id = get_current_user_id();
-        if ( current_user_can("ndpv_client_role") && !get_user_meta($user_id, 'client_portal', true) ) {
+        if ( current_user_can("ndpv_client_role") && !get_user_meta($user_id, 'ndpv_client_portal', true) ) {
             $client_portal = false;
         }
 

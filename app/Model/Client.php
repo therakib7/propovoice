@@ -31,7 +31,7 @@ class Client {
         return $total_data;
     }
 
-    public function set_user_if_not( $name = '', $email = '', $client_portal = false )
+    public function set_user_if_not( $post_id, $name = '', $email = '', $client_portal = false )
     {  
         $user_id = email_exists( $email );
         
@@ -39,10 +39,15 @@ class Client {
             $random_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
             $user_id = wp_create_user( $name, $random_password, $email );
             $user_id_role = new \WP_User($user_id);
-            $user_id_role->set_role('ndpv_client_role');            
+            $user_id_role->set_role('ndpv_client_role');    
+            
+            $type = get_post_type($post_id) == "ndpv_person" ? "person" : "org";
+            update_user_meta($user_id, 'ndpv_client_id', $post_id);
+            update_user_meta($user_id, 'ndpv_client_type', $type);
         } 
 
-        update_user_meta($user_id, 'client_portal', $client_portal);
+        update_user_meta($user_id, 'ndpv_client_portal', $client_portal);
+        
         return $user_id;        
     }
  

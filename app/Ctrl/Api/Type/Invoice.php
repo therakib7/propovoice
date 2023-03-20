@@ -108,14 +108,13 @@ class Invoice
         } */
 
         if ( current_user_can("ndpv_client_role") ) {
-            //TODO: do it dynamic
-            $current_user = wp_get_current_user();
-            $current_user_mail = $current_user->user_email;
+            $user_id = get_current_user_id();
+            $client_id = get_user_meta($user_id, 'ndpv_client_id', true);
 
             $args["meta_query"][] = [
                 [
                     "key" => "to",
-                    "value" => [15],
+                    "value" => [$client_id],
                     "compare" => "IN",
                 ],
             ];
