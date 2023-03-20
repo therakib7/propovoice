@@ -76,9 +76,11 @@ class Project
             ? absint($param["module_id"])
             : null;
         $table_view = isset($param["table_view"]) ? true : false;
+        $project_req = isset($param["project_req"]) ? true : false;
         if ($module_id || $table_view) {
             $board_view = false;
         }
+
         $result = [];
         if ($board_view) {
             $get_status = Fns::get_terms("project_status");
@@ -98,7 +100,7 @@ class Project
                 $result["result"] = $column;
             endforeach;
         } else {
-            $result = $this->project_query($param);
+            $result = $this->project_query($param, null, $project_req);
         }
 
         $result['extra'] = [
@@ -108,7 +110,7 @@ class Project
         wp_send_json_success($result);
     }
 
-    public function project_query($param, $status_id = null)
+    public function project_query($param, $status_id = null, $project_req = false)
     {
         $per_page = 10;
         $offset = 0;
@@ -126,12 +128,24 @@ class Project
             : null;
         $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
 
-        $args = [
-            "post_type" => "ndpv_project",
-            "post_status" => "publish",
-            "posts_per_page" => $per_page,
-            "offset" => $offset,
-        ];
+        $args = [];
+
+        if ( $project_req ) {
+            $args = [
+                "post_type" => "ndpv_deal",
+                "post_status" => "publish",
+                "posts_per_page" => $per_page,
+                "offset" => $offset,
+            ];
+        } else {
+            $args = [
+                "post_type" => "ndpv_project",
+                "post_status" => "publish",
+                "posts_per_page" => $per_page,
+                "offset" => $offset,
+            ];
+        }
+        
 
         if ($status_id) {
             $args["orderby"] = "menu_order";

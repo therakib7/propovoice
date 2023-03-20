@@ -62,7 +62,7 @@ const Project = (props) => {
 		}
 
 		if (wage.length > 0 || isClient) {
-			setBoardView(false);
+			setBoardView(true);
 			props.getLists({ table_view: true });
 		} else {
 			props.getLists();
@@ -77,8 +77,10 @@ const Project = (props) => {
 
 	const viewChange = (view = "") => {
 		if (wage.length > 0 && view == "board") {
-			pro();
-			return;
+			if (!isClient) {
+				pro();
+				return;
+			}
 		}
 
 		setLoading(true);
@@ -88,8 +90,14 @@ const Project = (props) => {
 
 		if (view == "board") {
 			board_view = true;
-			onload = true;
-			params = {};
+			if (!isClient) {
+				onload = true;
+				params = {};
+			}
+		} else {
+			if (isClient) {
+				params = { table_view: true, project_req: true };
+			}
 		}
 		const promise = props.getLists(params);
 		promise.then((resp) => {
@@ -250,14 +258,13 @@ const Project = (props) => {
 				<Preloader />
 			) : (
 				<>
-					{!props.module_id && boardView && (
+					{!props.module_id && boardView && (!isClient) && (
 						<Board new={props.openForm} data={lists} taxForm={taxForm} />
 					)}
 					{/* {(props.module_id || !boardView) && <>
                     {console.log(lists)}
                 </>} */}
-
-					{(props.module_id || !boardView) && (
+					{((boardView && isClient) || (props.module_id || !boardView)) && (
 						<>
 							<Table
 								tableData={lists}

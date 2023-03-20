@@ -121,6 +121,10 @@
     position: relative;
 }
 
+.ndpv .pv-right-content .pv-right-content-data.pv-board-area {
+    padding-bottom: 20px;
+}
+
 .wp-admin.ndpv {
     background-color: #f7f8fa !important;
     overflow-y: auto;
@@ -144,7 +148,7 @@
 }
 
 .ndpv {
-    .pv-deal-content {
+    .pv-board-area {
         max-width: none !important;
     }
 

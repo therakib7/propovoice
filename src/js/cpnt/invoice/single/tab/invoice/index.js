@@ -501,7 +501,7 @@ class Invoice extends Component {
           if (this.props.path == "invoice") {
             toast.error("Paid Invoice is not editable");
           } else if (this.props.path == "estimate") {
-            toast.error("Accept or Decline Estimate is not editable");
+            toast.error("Accepted or Declined Estimate is not editable");
           }
           edit = false;
           break;

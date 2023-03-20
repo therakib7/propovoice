@@ -39,7 +39,7 @@ export default class Form extends Component {
     }
 
     render() {
-        const { title, boardView, showing, showItem, total } = this.props;
+        const { title, boardView, showing, showItem, total, isClient } = this.props;
 
         const activeColor = '#4A5568';
         const inactiveColor = '#A0AEC0';
@@ -52,9 +52,9 @@ export default class Form extends Component {
                     className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5"
                     onClick={() => this.props.viewChange('board')}
                     style={{ marginLeft: 0 }}
-                    title={this.props.isClient ? 'Project' : 'Board View'}
+                    title={isClient ? 'Project' : 'Board View'}
                 >
-                    <svg
+                    {!isClient && <svg
                         width={20}
                         height={20}
                         viewBox="0 0 20 20"
@@ -67,14 +67,64 @@ export default class Form extends Component {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                         />
-                    </svg>
+                    </svg>}
+
+                    {isClient && <svg
+                        width={20}
+                        height={20}
+                        viewBox="0 0 20 20"
+                        fill="none"
+                    >
+                        <path
+                            d="M7.5 5H16.875"
+                            stroke={boardView ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M7.5 10H16.875"
+                            stroke={boardView ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M7.5 15H16.875"
+                            stroke={boardView ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 5H4.375"
+                            stroke={boardView ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 10H4.375"
+                            stroke={boardView ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M3.125 15H4.375"
+                            stroke={boardView ? activeColor : inactiveColor}
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>}
                 </button>
 
                 <button
                     className="pv-btn pv-btn-icon pv-bg-hover-shadow"
                     onClick={() => this.props.viewChange('table')}
                     style={{ marginLeft: 0, marginRight: 10 }}
-                    title={this.props.isClient ? 'Requested Project' : 'Table View'}
+                    title={isClient ? 'Requested Project' : 'Table View'}
                 >
                     <svg
                         width={20}
