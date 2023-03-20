@@ -404,13 +404,13 @@ class Deal
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
         $note = isset($param["note"]) ? nl2br($param["note"]) : "";
-        $client_portal = isset($param["client_portal"]) ? true : false;
+        $project_req = isset($param["project_req"]) ? true : false;
 
         /* if ( $lead_id ) {
             wp_send_json_success($lead_id);
         } */
 
-        if ( !$client_portal ) {
+        if ( !$project_req ) {
             if (empty($first_name) && empty($org_name)) {
                 $reg_errors->add(
                     "field",
@@ -476,8 +476,8 @@ class Deal
                     update_post_meta($post_id, "title", $title);
                 }
 
-                if ($client_portal) {
-                    update_post_meta($post_id, "client_portal", true);
+                if ($project_req) {
+                    update_post_meta($post_id, "project_req", true);
                 }
 
                 if ($stage_id) {

@@ -156,6 +156,15 @@ class Project
             "relation" => "OR",
         ];
 
+        if ( $project_req ) { 
+            $args["meta_query"][] = [
+                [
+                    "key" => "project_req",
+                    "compare" => "EXISTS",
+                ],
+            ];
+        }
+
         if ($status_id) {
             $args["tax_query"] = [
                 [
@@ -428,6 +437,8 @@ class Project
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
         $note = isset($param["note"]) ? nl2br($param["note"]) : "";
 
+        $deal_id = isset($param["deal_id"]) ? absint($param["deal_id"]) : false;
+
         if (empty($title)) {
             $reg_errors->add(
                 "field",
@@ -536,7 +547,7 @@ class Project
                 if ($org_id && !$person_id) {
                     update_post_meta($org_id, "is_client", 1);
                 }
-                //end is_client
+                //end is_client                 
 
                 if ($budget) {
                     update_post_meta($post_id, "budget", $budget);
@@ -560,6 +571,13 @@ class Project
 
                 if ($note) {
                     update_post_meta($post_id, "note", $note);
+                }
+
+                if ( $deal_id ) {
+                    $project_req = get_post_meta($deal_id, 'project_req', true);
+                    if ( $project_req ) {
+                        delete_post_meta($deal_id, "project_req");  
+                    }
                 }
 
                 //custom field

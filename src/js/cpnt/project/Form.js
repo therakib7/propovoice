@@ -149,7 +149,7 @@ class Form extends Component {
         }
 
         if (isClient) {
-            form.client_portal = true;
+            form.project_req = true;
 
             api.add('deals', form).then(resp => {
                 if (resp.data.success) {
@@ -167,7 +167,6 @@ class Form extends Component {
         if (this.props.reload) {
 
             if (this.props.modalType == 'move') {
-
                 api.add('projects', form).then(resp => {
                     if (resp.data.success) {
                         toast.success(ndpv.i18n.aProM);
