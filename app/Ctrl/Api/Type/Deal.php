@@ -443,9 +443,19 @@ class Deal
                 );
             }
         } else {
-            //TODO: temporary id
-            $stage_id = 3;
-            $person_id = 15;
+            //auto asign first deal stage
+            $deal_stage = Fns::get_terms('deal_stage');
+            $stage_id = $deal_stage[0]->term_id;
+
+            //get client 
+            $user_id = get_current_user_id();
+            $client_id = get_user_meta($user_id, 'ndpv_client_id', true);
+            $type = get_user_meta($user_id, 'ndpv_client_type', true);
+            if ( $type == 'person' ) {
+                $person_id = $client_id;
+            } else {
+                $org_id = $client_id;
+            }
         }
 
         /* if ( !$lead_id && empty($contact_id)) {

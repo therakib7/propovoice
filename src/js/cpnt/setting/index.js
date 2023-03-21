@@ -26,6 +26,7 @@ const License = lazy(() => import('./tab/license'));
 //subtab: email
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
+const ClientPortal = lazy(() => import('./tab/email/client-portal'));
 
 const Payment = lazy(() => import('cpnt/payment'));
 
@@ -79,6 +80,9 @@ const Setting = (props) => {
                 },
                 invoice: {
                     label: i18n.inv
+                },
+                client_portal: {
+                    label: 'Client Portal'
                 },
             },
         },
@@ -210,6 +214,7 @@ const Setting = (props) => {
 
                                 {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate {...props} />}
                                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice {...props} />}
+                                {currentTab == 'email' && currentSubtab == 'client_portal' && <ClientPortal {...props} />}
                                 {currentTab == 'contact' && <Contact />}
                                 {currentTab == 'tag' && <Tag />}
                                 {currentTab == 'custom-fields' && <CustomField {...props} />}

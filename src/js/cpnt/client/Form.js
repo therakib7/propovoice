@@ -229,7 +229,7 @@ class Form extends Component {
                                     </div>
                                 </div>
 
-                                <div className="row">
+                                {!wage.length && <div className="row">
                                     <div className="col">
                                         <label id="form-client_portal">Client Portal Access</label>
                                         <div className="pv-field-switch pv-ml-10">
@@ -244,7 +244,7 @@ class Form extends Component {
                                             </label>
                                         </div>
                                     </div>
-                                </div>
+                                </div>}
                             </div>
                         </div>
 
