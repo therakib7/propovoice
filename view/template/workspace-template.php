@@ -45,15 +45,16 @@
 
 <body <?php body_class(); ?>>
     <?php
-    if (is_user_logged_in() && apply_filters('ndpv_admin', current_user_can('ndpv_core'))) {
+    if (is_user_logged_in() ) {
 
+        $core_access = apply_filters('ndpv_admin', current_user_can('ndpv_core'));
         $client_portal = true;
         $user_id = get_current_user_id();
         if ( current_user_can("ndpv_client_role") && !get_user_meta($user_id, 'ndpv_client_portal', true) ) {
             $client_portal = false;
         }
 
-        if (ndpv()->wage() && $client_portal) {
+        if ($core_access && ndpv()->wage() && $client_portal) {
             echo '<div id="ndpv-dashboard"></div>';
         } else {
             ndpv()->render('template/partial/403');
@@ -63,7 +64,7 @@
     ?>
 
     <?php
-        ndpv()->render('template/partial/403');
+        ndpv()->render('template/partial/login');
     }
     ?>
     <?php wp_footer(); ?>
