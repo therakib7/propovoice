@@ -88,14 +88,14 @@ Regards
                 ],   
                 'client_portal' => [    
                     'password' => [
-                        'subject' => '{org_name} client portal credential',
+                        'subject' => '{org_name} client portal credentials',
                         'msg' => 'Hi <b>{client_name}</b>,
-{org_name} give you access in their client portal. 
-You can login with the credential
+{org_name} gives you access to their client portal. 
+You can log in with the credentials
 
-Login URL: {login_url}
-Email: {email}
-Password: {password} 
+<b>Login URL:</b> {login_url}
+<b>Email:</b> {email}
+<b>Password:</b> {password} 
 
 Thank you for staying with us.
 

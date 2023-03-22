@@ -263,25 +263,7 @@
             </tbody>
           </table>
         </td>
-      </tr>
-      <tr>
-        <td>
-          <footer>
-            <table class="ndpv-footer-container">
-              <tbody>
-                <tr>
-                  <td class="ndpv-footer-text">
-                    {footer_text}
-                    <ul class="ndpv-social">
-                      {social}
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </footer>
-        </td>
-      </tr>
+      </tr> 
     </tbody>
   </table>
 </body>

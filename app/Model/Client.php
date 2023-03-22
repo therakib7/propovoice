@@ -38,8 +38,8 @@ class Client {
         $user_id = email_exists( $email );
         
         if ( !$user_id ) {
-            $random_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
-            $user_id = wp_create_user( $name, $random_password, $email );
+            $password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+            $user_id = wp_create_user( $name, $password, $email );
             $user_id_role = new \WP_User($user_id);
             $user_id_role->set_role('ndpv_client_role');    
             
@@ -48,19 +48,42 @@ class Client {
             update_user_meta($user_id, 'ndpv_client_type', $type);
 
             //sent mail
-            $mail_subject = 'Client Portal credential';
-            $subject = Fns::templateVariable($mail_subject, []);
-            $template = ndpv()->render("email/invoice", [], true);
+            $data = [];
 
-            $msg = 'This is your password: ' . $random_password;
-            $body = Fns::templateVariable($template, [
-                "msg" => $msg,
+            $option = get_option('ndpv_email_client_portal_password');
+            if ($option) {
+                $data = $option;
+            } else {
+                $data['subject'] = ndpv()->get_default('email_template', 'client_portal', 'password', 'subject');
+                $data['msg'] = ndpv()->get_default('email_template', 'client_portal', 'password', 'msg');
+            }
+
+            $mail_subject = $data['subject'];
+            $msg = nl2br($data['msg']);
+
+            $business = new Business();
+            $business_info = $business->info();
+            $org_name = $business_info['name'];
+            $org_email = $business_info['email'];
+            $client_name = $name;
+            $permalink = Fns::client_page_url("workspace");
+            $login_url =  "<a href='$permalink'>$permalink</a>";
+
+            $subject = $this->templ_variable($mail_subject, [
+                "org_name" => $org_name,
             ]);
-
-            $compnay_name = 'Test Compnay';
-            $mail_from = 'therakib7@gmail.com';
+            $template = ndpv()->render("email/password", [], true); 
+            $template = str_replace( '{msg}', $msg, $template );            
+            $body = $this->templ_variable($template, [
+                "org_name" => $org_name,
+                "client_name" => $client_name,
+                "login_url" => $login_url,
+                "email" => $email,
+                "password" => $password,
+            ]);
+ 
             $headers = ["Content-Type: text/html; charset=UTF-8"];
-            $headers[] = "From: " . $compnay_name . " <" . $mail_from . ">";  
+            $headers[] = "From: " . $org_name . " <" . $org_email . ">";  
             $send_mail = wp_mail($email, $subject, $body, $headers, []);
 
             if ($send_mail) {
@@ -73,6 +96,31 @@ class Client {
         update_user_meta($user_id, 'ndpv_client_portal', $client_portal);
         
         return $user_id;        
+    }
+
+    private function templ_variable( $string, $array = [] ) {
+        $org_name = isset($array['org_name']) ? $array['org_name'] : '';
+        $client_name = isset($array['client_name']) ? $array['client_name'] : '';
+        $login_url = isset($array['login_url']) ? $array['login_url'] : '';
+        $email = isset($array['email']) ? $array['email'] : '';
+        $password = isset($array['password']) ? $array['password'] : '';
+        return str_replace(
+            array( 
+                '{org_name}', 
+                '{client_name}', 
+                '{login_url}', 
+                '{email}', 
+                '{password}'
+            ),
+            array( 
+                $org_name, 
+                $client_name, 
+                $login_url, 
+                $email, 
+                $password 
+            ),
+            $string
+        );
     }
  
 }
