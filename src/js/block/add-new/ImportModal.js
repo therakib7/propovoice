@@ -15,9 +15,11 @@ const ImportModal = (props) => {
   const [fields, setValues] = useState(Array(modals.length).fill(""));
 
   const today = new Date();
-  const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-  const time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
-  const dateTime = date + '-' + time;
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  const time =
+    today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+  const dateTime = date + "-" + time;
 
   const fileReader = new FileReader();
   const handleOnChange = (e) => {
@@ -32,10 +34,14 @@ const ImportModal = (props) => {
 
   const csvFileToArray = (string) => {
     const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
-    const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
+    const csvRows = string
+      .slice(string.indexOf("\n") + 1)
+      .split("\n")
+      .filter((element) => element);
 
     const csvData = csvRows.map((i) => {
       const fields = i.split(",");
+
       const obj = csvHeader?.reduce((object, header, index) => {
         object[header] = fields[index];
         return object;
@@ -143,11 +149,7 @@ const ImportModal = (props) => {
                   >
                     {i18n.down} {i18n.sample} {i18n.file}
                   </CSVLink>
-                  {!file && (
-                    <p>
-                      {i18n.csvDco}
-                    </p>
-                  )}
+                  {!file && <p>{i18n.csvDco}</p>}
                 </div>
               )}
               <div className="pv-import-map">
@@ -185,7 +187,9 @@ const ImportModal = (props) => {
                               }}
                             >
                               {Object.entries(modal).map((val, i) => (
-                                <option key={i} value={val[0]}>{val[1]}</option>
+                                <option key={i} value={val[0]}>
+                                  {val[1]}
+                                </option>
                               ))}
                             </select>
                           </td>
