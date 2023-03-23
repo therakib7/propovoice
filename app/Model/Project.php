@@ -10,13 +10,19 @@ class Project {
             'post_type' => 'ndpv_project',
             'post_status' => 'publish',
             'posts_per_page' => -1
-        );
+        );  
 
-        $args['meta_query'] = array(
-            'relation' => 'OR'
-        );
+        if ( !$id ) { 
+            if ( current_user_can("ndpv_client_role") ) {
+                $user_id = get_current_user_id();
+                $id = get_user_meta($user_id, 'ndpv_client_id', true);
+            }
+        }
 
         if ( $id ) {
+            $args['meta_query'] = array(
+                'relation' => 'OR'
+            );
             $args['meta_query'][] = array(
                 array(
                     'key'   => 'person_id',
@@ -30,7 +36,7 @@ class Project {
                     'value' => $id
                 )
             );
-        }
+        } 
 
         $query = new \WP_Query($args);
         $total_data = $query->found_posts;
