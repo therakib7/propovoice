@@ -6,6 +6,7 @@ import WithApi from 'hoc/Api';
 
 //subtab: general 
 const General = lazy(() => import('./tab/general'));
+const Password = lazy(() => import('./tab/password'));
 
 const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
@@ -35,13 +36,16 @@ const Setting = (props) => {
     const { tab, subtab } = useParams();
     let navigate = useNavigate();
 
+    const { i18n, caps } = ndpv;
+    const isClient = caps.includes("ndpv_client_role");
+
     let tabDefault = tab;
     let subtabDefault = subtab;
     if (tab === undefined) {
         tabDefault = 'general'
     }
 
-    const i18n = ndpv.i18n;
+
     const tab_data = {
         general: {
             label: i18n.gen
@@ -111,13 +115,25 @@ const Setting = (props) => {
     const [tabs, setTabs] = useState(tab_data);
 
     useEffect(() => {
-        if (has_wage.ins) {
-            let new_tabs = { ...tabs }
-            new_tabs.license = {
-                label: i18n.licman
+        if (isClient) {
+            setTabs({
+                general: {
+                    label: i18n.gen
+                },
+                password: {
+                    label: 'Password'
+                }
+            });
+        } else {
+            if (has_wage.ins) {
+                let new_tabs = { ...tabs }
+                new_tabs.license = {
+                    label: i18n.licman
+                }
+                setTabs(new_tabs);
             }
-            setTabs(new_tabs);
         }
+
     }, []);
 
     const routeChange = (tab, subtab = null) => {
@@ -201,7 +217,7 @@ const Setting = (props) => {
 
                             <Suspense fallback={<Spinner />}>
                                 {currentTab == 'general' && <General />}
-
+                                {currentTab == 'password' && <Password />}
                                 {currentTab == 'task' && <Task />}
                                 {currentTab == 'lead' && <Lead />}
                                 {currentTab == 'deal' && <Deal />}

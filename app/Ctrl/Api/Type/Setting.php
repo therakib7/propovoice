@@ -462,7 +462,6 @@ class Setting
                     ? rest_sanitize_boolean($param["status"])
                     : null;
 
-                $reg_errors = new \WP_Error();
                 if ($data["status"] && !class_exists("woocommerce")) {
                     $reg_errors->add(
                         "field",
@@ -537,6 +536,42 @@ class Setting
                     ? sanitize_textarea_field($param["msg"])
                     : null;
                 $option = update_option("ndpv_" . $tab, $data);
+            }
+
+            if ($tab == "password_change") {
+                $user_id = get_current_user_id();
+
+                $data["current_password"] = isset($param["current_password"])
+                    ? ($param["current_password"])
+                    : '';
+                $data["new_password"] = isset($param["new_password"])
+                    ? sanitize_textarea_field($param["new_password"])
+                    : ''; 
+                $data["confirm_password"] = isset($param["confirm_password"])
+                    ? sanitize_textarea_field($param["confirm_password"])
+                    : ''; 
+
+                $user = get_user_by( 'id', $user_id );
+                if ( !wp_check_password( $data["current_password"], $user->data->user_pass, $user_id ) ) {
+                    $reg_errors->add(
+                        "field",
+                        esc_html__("Current password not matched!!!", "propovoice")
+                    );
+                }
+
+                if ( $data["new_password"] != $data["confirm_password"] ) {
+                    $reg_errors->add(
+                        "field",
+                        esc_html__("Confirm password not matched!!!", "propovoice")
+                    );
+                }
+
+                if ($reg_errors->get_error_messages()) {
+                    wp_send_json_error($reg_errors->get_error_messages());
+                } else {
+                    wp_set_password( $data["new_password"], $user_id );
+                }                
+                
             }
 
             if ($tab == "estvoice_tax") {
