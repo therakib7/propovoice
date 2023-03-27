@@ -87,8 +87,10 @@ const ImportModal = (props) => {
   };
 
   const headerKeys = Object.keys(Object.assign({}, ...csvData));
-  const modal = props.modal;
+  let modal = props.modal;
   const i18n = ndpv.i18n;
+  if (!modal.hasOwnProperty("not_assign"))
+    modal = { not_assign: "Not Assign", ...modal };
 
   return (
     <div className="pv-overlay pv-show">
