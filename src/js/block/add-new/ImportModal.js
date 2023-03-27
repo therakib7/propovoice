@@ -37,7 +37,7 @@ const ImportModal = (props) => {
     const csvRows = string
       .slice(string.indexOf("\n") + 1)
       .split("\n")
-      .filter((element) => element);
+      .filter(Boolean);
 
     const csvData = csvRows.map((i) => {
       const fields = i.split(",");
